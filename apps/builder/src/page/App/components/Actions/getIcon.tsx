@@ -1,6 +1,8 @@
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { ReactNode, lazy } from "react"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
+import { agentActionStyle } from "./styles"
 
 const SupabaseIcon = lazy(() => import("@/page/App/components/Icons/supabase"))
 const GraphQLIcon = lazy(() => import("@/page/App/components/Icons/graphql"))
@@ -43,6 +45,10 @@ const AirtableIcon = lazy(() => import("@/page/App/components/Icons/airtable"))
 const TransformerIcon = lazy(
   () => import("@/page/App/components/Icons/transformer"),
 )
+
+export function getAgentIcon(agent: Agent, size: string) {
+  return <img src={agent?.icon} css={agentActionStyle(size)} />
+}
 
 export function getIconFromResourceType(
   type: ResourceType,

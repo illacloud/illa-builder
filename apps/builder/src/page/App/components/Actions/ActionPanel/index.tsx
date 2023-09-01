@@ -1,13 +1,13 @@
-import { Suspense, lazy } from "react"
-import { FC, useCallback, useMemo, useState } from "react"
-import { useSelector } from "react-redux"
 import {
   ILLAProperties,
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
   ILLA_PAGE_NAME,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import { Suspense, lazy } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
+import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import {
@@ -85,6 +85,9 @@ const SMTPPanel = lazy(
 )
 const TransformerPanel = lazy(
   () => import("@/page/App/components/Actions/ActionPanel/TransformerPanel"),
+)
+const AIAgentPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/AIAgentPanel"),
 )
 
 export const ActionPanel: FC = () => {
@@ -175,6 +178,8 @@ export const ActionPanel: FC = () => {
         return <CouchDBPanel />
       case "airtable":
         return <AirtablePanel />
+      case "aiagent":
+        return <AIAgentPanel />
       default:
         return <></>
     }
@@ -209,7 +214,7 @@ export const ActionPanel: FC = () => {
           )}
         </Suspense>
         <ActionResult
-          key={selectedAction.actionId}
+          key={selectedAction.actionID}
           visible={resultVisible}
           onClose={() => {
             setResultVisible(false)

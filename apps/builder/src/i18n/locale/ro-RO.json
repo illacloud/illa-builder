@@ -72,11 +72,13 @@
       "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
       "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
       "fork-failed": "Esuare fork, te rugam incearca din nou.",
-      "create-suc": "Creare esuata, te rugam incearca din nou.",
+      "create-suc": "Salvat cu succes",
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
-      "delete-suc": "Eliminat cu succes. "
-    }
+      "delete-suc": "Eliminat cu succes. ",
+      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop."
+    },
+    "create": "Crează"
   },
   "dayjs": {
     "just_now": "Chiar acum"
@@ -230,7 +232,7 @@
             "sheet_id_to_copy": "ID placă de copiat",
             "sheet_to_copy_to": "Placă pentru copiere la",
             "authentication": "Autentificare",
-            "connect_with_oauth": "Conectează-te cu OAuth & Salvează",
+            "connect_with_oauth": "Conectează-te cu Google",
             "reconnect_with_oauth": "Reconectați cu OAuth",
             "access_type": "Tip de acces"
           },
@@ -876,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1162,7 +1164,7 @@
         "initial_value": {
           "label": "Valoare iniţială",
           "tooltips": "Suportă obiecte sau valori primitive. Exemplu: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2520,7 +2522,7 @@
       "history": "Istoric",
       "more": "Mai",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "x",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -2558,7 +2560,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nume",
         "desc": "Descriere",
         "mode": "Mod",
@@ -2567,25 +2568,27 @@
         "welcome": "Mesaj de întâmpinare",
         "model": "Model",
         "temperature": "Temperatură",
-        "max-token": "Token-ul maxim"
+        "max-token": "Token-ul maxim",
+        "icon": "Iconiță"
       },
       "placeholder": {
-        "logo": "Incarca",
         "name": "Dă un nume agentului",
         "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
-        "prompt": "Introduceți / pentru a selecta o variabilă",
+        "prompt": "Introduceți {{variableName}} pentru a utiliza o variabilă",
         "variable": {
           "key": "Denumire variabilă",
           "value": "Valoare"
         },
         "welcome": "Furnizaţi un mesaj de bun venit afişat atunci când utilizatorii încep să folosească agentul. (Automatic Translation)",
-        "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
-        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
+        "icon": "Incarca",
+        "send": "Trimite ceva către Agent"
       },
       "tips": {
         "mode": "În modul chat, fiecare mesaj trimis include istoricul conversațiilor ca parte a cererii, ceea ce poate duce la rezultate mai bune, dar consumă mai multe tokeni; în modul text, fiecare mesaj trimis nu include istoricul conversaţiilor, care poate avea rezultate mai puțin optime în comparație cu modul de chat dar care conservă tokenurile.",
         "not-start": "Completează configurația agentului și apasă Start pentru a rula",
-        "not-start-run": "Vă rugăm să faceţi clic pe butonul de pornire din stânga."
+        "not-start-run": "Vă rugăm să faceţi clic pe butonul de pornire din stânga.",
+        "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
+        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
       },
       "option": {
         "mode": {
@@ -2615,7 +2618,27 @@
       },
       "message": {
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
-        "insufficient_token": "Token insuficient"
+        "insufficient_token": "Colla insuficientă",
+        "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. ",
+        "reconnect": "Conexiune pierdută. Reconectare în progres.",
+        "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi.",
+        "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate.",
+        "purchase-required": "Colla nu este suficient pentru a rula, vă rugăm reîncărcați.",
+        "leave": "Există conținut nesalvat, ești sigur că vrei să ieși?",
+        "generating": "Vă rugăm să așteptați ca generația să finalizeze sau să întrerupă procesul"
+      },
+      "title": "Editează Agent AI",
+      "generate-desc": {
+        "button": "Generare AI",
+        "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
+        "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
+      },
+      "generate-icon": {
+        "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "text-generation": "Generare text"
       }
     },
     "common": {
@@ -3213,11 +3236,19 @@
       "owner": "Proprietar",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Vizualizator"
+      "viewer": "Vizualizator",
+      "tips": {
+        "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
+        "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
+        "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Invită membri"
+        "invite_members": "Invită membri",
+        "invite_to_use": "Invită să utilizezi",
+        "invite_to_edit": "Invită să editezi",
+        "contribute": "Comunitate"
       },
       "link": {
         "invite_title": "Link de invitație",
@@ -3232,7 +3263,10 @@
         "turn_off_fail": "Oprirea esuata",
         "turn_on_fail": "Pornire eșuată",
         "make_public_title": "Faceți aplicația publică",
-        "make_public_copy": "Copiază"
+        "make_public_copy": "Copiază",
+        "marketplace": {
+          "label": "Partajează cu link-ul"
+        }
       },
       "email": {
         "invite_title": "Invită prin e-mail",
@@ -3240,8 +3274,8 @@
         "placeholder": "Introduceți adresa de e-mail",
         "invited": "Au invitat",
         "in_list": "Acest utilizator este deja în echipa dvs.",
-        "notmail": "{{ email }} nu este un e-mail",
-        "duplicate": "{{ email }} este duplicat"
+        "duplicate": "{{ email }} este duplicat",
+        "not_mail": "{{ email }} nu este un e-mail"
       },
       "invalid_email": "Te rog introdu un email valid",
       "message": {
@@ -3251,14 +3285,42 @@
       },
       "tab": {
         "invite": "Invită",
-        "public": "Publice"
+        "public": "Publice",
+        "with_team": "Partajează cu membrii echipei"
       },
       "custom_copy_text_app_invite": "{{userName}} v-a distribuit o aplicație de 「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei și verificați APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} ți-a distribuit o APP de la 「{{teamName}}」. Faceți clic pe link pentru a verifica APP: {{inviteLink}}",
       "custom_copy_text": "{{userName}} vă invită să vă alăturați「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Licențe rămase"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Contribuie la comunitate",
+        "default_text": {
+          "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}. Verificați: {{ appLink }}",
+          "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}. Verificați: {{ agentLink }}"
+        },
+        "desc": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele.",
+        "turn_off": "Anulează contribuția",
+        "app": {
+          "desc": "După ce a contribuit aplicația ta la comunitate, alți utilizatori își pot vizualiza interfața, pot executa acțiunile și îl pot furca. Atunci când forjezi o aplicație, informațiile de configurare a resurselor nu sunt incluse, deci nu este nevoie să îți faci griji cu privire la publicarea informațiilor de configurare a resurselor."
+        }
+      },
+      "social_media": {
+        "label": "Distribuie pe",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Știri hacker",
+        "default_text": {
+          "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}",
+          "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vă partajează un AI Agent din …………{{ teamName }}yet. Alăturați-vă echipei și verificați: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invitat cu succes",
@@ -3278,7 +3340,8 @@
       "permission": "Permisiune",
       "operation": "Operațiune",
       "transfer": "Transferă proprietate",
-      "remove": "Elimină"
+      "remove": "Elimină",
+      "ai-agent": "Agenți AI"
     },
     "transfer_modal": {
       "title": "Sunteţi sigur că doriţi să transferaţi dreptul de proprietate?",
@@ -3293,7 +3356,8 @@
       "cancel": "Anulează"
     },
     "status": {
-      "pending": "In asteptare"
+      "pending": "In asteptare",
+      "current-user": "Tu"
     },
     "settings": {
       "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
@@ -3435,25 +3499,25 @@
   "oauth_redirect_title": "Redirecționare",
   "oauth_redirect_description": "Redirecționare către <0>Cloud ILLA </0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Română",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "af-ZA": "Afrikaani",
+    "cs-CZ": "cuv. tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "francitais",
+    "it-IT": "italiană",
+    "nl-NL": "Nederlanduri",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugueIe",
+    "ro-RO": "rumegătoare",
+    "ru-RU": "Nord Nord",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -3592,12 +3656,17 @@
       "billing": "Facturare",
       "license": "Licenta",
       "drive": "Unitate",
+      "colla": "Cola",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Istoricul tranzacțiilor colorate",
       "billing_portal": "Portalul de facturare"
     },
     "title": {
       "billing": "Facturare",
       "license": "Licenta",
-      "drive": "Unitate"
+      "drive": "Unitate",
+      "colla": "Cola",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3606,7 +3675,8 @@
       },
       "sub_cycle": {
         "yearly": "Anual",
-        "monthly": "Lunar"
+        "monthly": "Lunar",
+        "lifetime": "Viață"
       },
       "billing_cyle": {
         "year": "/ An",
@@ -3617,7 +3687,8 @@
         "expiration_date": "Data expirării",
         "licenses": "Licențe",
         "storage": "Depozitare",
-        "traffic": "Trafic"
+        "traffic": "Trafic",
+        "colla": "Cola"
       },
       "period": {
         "current": "Actuală",
@@ -3629,33 +3700,57 @@
         "License": "Licenta",
         "Storage": "Depozitare",
         "Traffic": "Trafic",
-        "balance": "Sold"
+        "balance": "Sold",
+        "colla": "Cola"
       },
       "button": {
         "License": "Gestionare licențe",
         "Storage": "Gestionați stocarea",
-        "Traffic": "Extindere trafic"
+        "Traffic": "Extindere trafic",
+        "colla": "Gestionează Cola"
       },
       "capacity": {
         "License": "{{used}} (total {{total}} licențe) au fost utilizate.",
         "Storage": "{{used}} (total de {{total}} GB) au fost utilizate.",
-        "Traffic": "{{used}} (total de {{total}} GB) au fost utilizate."
+        "Traffic": "{{used}} (total de {{total}} GB) au fost utilizate.",
+        "colla": "{{used}} Colla utilizată (total de {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Lună",
+        "event": "Eveniment",
+        "usage": "Utilizare coloană"
+      },
+      "event": {
+        "increase_storage": "Mărește spațiul de stocare",
+        "increase_colla": "Crește Cola",
+        "increase_traffic": "Sporirea traficului"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Gestionați stocarea",
         "manage_licenses": "Gestionare licențe",
-        "expand_traffic_capac": "Extinderea capacității de trafic"
+        "expand_traffic_capac": "Extinderea capacității de trafic",
+        "colla": "Gestionează Cola"
       },
       "plan_label": {
         "License": "Licențe",
         "Storage": "Depozitare",
-        "Traffic": "Trafic"
+        "Traffic": "Trafic",
+        "colla": "Cola"
       },
       "plan_number_input_label": {
         "License": "Licențe",
-        "Storage_traffic": "GO"
+        "Storage_traffic": "GO",
+        "colla": "Cola"
       },
       "select_option": {
         "Yearly": "Anual",
@@ -3694,7 +3789,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Dezabonare",
@@ -3703,7 +3799,9 @@
         "storage_traffic_increase": "Mărește {{changeNum}} GB",
         "storage_traffic_remove": "Elimină {{changeNum}} GB",
         "license_increase": "Mărește {{changeNum}} licențe",
-        "license_remove": "Elimină {{changeNum}} licențe"
+        "license_remove": "Elimină {{changeNum}} licențe",
+        "colla_increase": "Increase {{changeNum}} Colla",
+        "colla_remove": "Elimină {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "Urmează să adăugați {{changeNum}} GB de stocare. Odată confirmat, vom deduce imediat plata pentru noua stocare pentru acest ciclu de facturare. <0>Află mai multe</0>",
@@ -3724,21 +3822,31 @@
         "subscribe_license_monthly": "Vă veți abona la un abonament lunar ILLA Cloud Plus. <0>Aflați mai multe</0>",
         "subscribe_license_yearly": "Vă veți abona la un abonament anual ILLA Cloud Plus. <0>Aflați mai multe</0>",
         "subscribe_storage_monthly": "Urmează să adaugi spațiul de stocare {{changeNum}}GB. Odată confirmat, vom deduce imediat costul stocării. <0>Află mai multe</0>",
-        "subscribe_storage_yearly": "Urmează să adaugi spațiul de stocare {{changeNum}}GB. Odată confirmat, vom deduce imediat costul stocării. <0>Află mai multe</0>"
+        "subscribe_storage_yearly": "Urmează să adaugi spațiul de stocare {{changeNum}}GB. Odată confirmat, vom deduce imediat costul stocării. <0>Află mai multe</0>",
+        "colla_sub": "Vă veți abona la Colla. Odată confirmat, vom deduce automat taxele la începutul fiecărui ciclu de facturare și vom actualiza abonamentul automat atunci când veți avea nevoie de mai multe Colecte. <0>Află mai multe</0>",
+        "colla_increase": "Urmează să adăugați {{changeNum}} Colla. Odată confirmat, vom deduce imediat suma rămasă datorată pentru acest ciclu de facturare. <0>Aflați mai multe</0>",
+        "colla_remove": "Veți elimina Colonia {{changeNum}} . Odată confirmată, aceasta va intra în vigoare din următorul ciclu de facturare. <0>Aflați mai multe</0>",
+        "colla_unsubscribe": "Veți anula abonamentul dvs. Colla. Odată confirmat, acesta va intra în vigoare din următorul ciclu de facturare. Vă rugăm să rețineți că, după anulare, puteți întâmpina probleme cu utilizarea ILLA Drive și a agentului AI. <0>Aflați mai multe</0>",
+        "colla_update": "Vei modifica abonamentul Colla. Odată confirmat, modificările vor intra în vigoare din următorul ciclu de facturare. <0>Află mai multe</0>"
       },
       "description": {
-        "add_storage": "Calcularea regulilor folosind un abonament lunar de stocare ca exemplu: Să luăm în considerare un scenariu în care v-ați abonat inițial la 5 GB începând cu 14 martie, şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decizi să adaugi 1 GB. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 GB, care se ridică la aproximativ $0. 9, proporțional cu durata de 4 zile din ciclul de 30 de zile. Prin urmare, deducerea este estimată la 1 licență* $0. 9 / 30 zile * 4 zile, rezultând în aproximativ $0,132. Începând cu următorul ciclu de facturare, toate taxele de stocare vor fi consolidate și achitate împreună. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați utilizatorul nostru <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "remove_storage": "În cazul în care capacitatea de stocare ocupată de fișierele dvs. depășește capacitatea de stocare abonată la începutul următorului ciclu de facturare, Toate fişierele vor fi dezactivate până când ştergeţi fişiere sau creşteţi capacitatea de stocare în intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_year": "Începând cu perioada următoare, abonamentul va fi modificat la un abonament anual, iar taxele vor fi deduse automat pe baza tarifării anuale a abonamentelor. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_monthly": "Începând cu perioada următoare, abonamentul va fi schimbat cu un abonament lunar, iar taxele vor fi deduse automat în funcție de prețul abonamentului lunar. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
+        "add_license": "De exemplu, regulile de calcul folosind un abonament lunar al scaunului: Să luăm în considerare un scenariu în care v-ați abonat inițial la 5 locuri începând cu 14 martie; şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decideţi să adăugaţi încă un loc. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 loc, care se ridică la aproximativ 10 dolari, proporţional cu durata de 4 zile a ciclului de 30 de zile. Prin urmare, deducerea este estimată la 1 scaun* $10 / 30 de zile * 4 zile, rezultând în aproximativ 1,33 $. Începând cu următorul ciclu de facturare, toate taxele de sediu vor fi consolidate și achitate împreună. Dacă doriţi să reduceţi locurile sau să faceţi alte modificări la abonament, vă rugăm să-l actualizaţi înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "remove_license": "Dacă numărul de utilizatori cu permisiuni de editare depăşeşte numărul de licenţe la începutul următorului ciclu de facturare, toţi utilizatorii cu excepţia proprietarului vor fi dezactivaţi până când eliminaţi membrii sau creşteţi numărul de licenţe din intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "add_traffic": "După deducerea reușită, traficul tău va crește în timp real. Odată ce traficul este utilizat, taxele nu pot fi rambursate, traficul neutilizat poate fi rambursat în unități GB. De exemplu, dacă achiziționați 10GB de trafic și utilizați 4.5GB, puteți solicita o rambursare de 5GB. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "subscribe_storage_yearly": "Vă veți abona la abonamentul anual de stocare ILLA Drive. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. Suma efectivă dedusă depinde de cantitatea de capacitate de stocare la care v-ați abonat în GB. De exemplu, dacă începi primul abonament pe 25 februarie, 2023, cu o taxă anuală de abonament de 9 $. pe GB, şi aveţi un total de 3 GB, vom scădea $29. la 25 februarie 2023. Dacă adăugați 2 GB pe 25 martie, 2023, vom deduce prima dată plata de 11 luni rămasă la 25 martie 2023. Apoi, până la 25 februarie 2024, vom deduce plata pentru 5 GB, care este (2+3)*$9,9=$49. . Dacă doriți să reduceți spațiul de stocare sau să faceți alte modificări la abonament, vă rugăm să îl actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
-        "subscribe_storage_monthly": "Vă veți abona la abonamentul lunar de stocare ILLA Drive. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. Suma efectivă dedusă depinde de cantitatea de capacitate de stocare la care v-ați abonat în GB. De exemplu, dacă începeți primul abonament pe 25 februarie, 2023, cu o taxă de abonament lunar de $0. 9 per GB şi aveţi un total de 3 GB, vom deduce 2 $. 7 la 25 februarie 2023. Dacă adăugaţi încă 2 licenţe la 21 martie 2023, vom deduce prima dată restul de 5 zile la 21 martie 2023. Apoi, până la 25 martie 2023, vom deduce plata pentru 5 licenţe, care este (2+3)*$. 9=$4.95. Dacă doriți să reduceți licențele sau să efectuați alte modificări la abonament, actualizați-l înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "subscribe_license_monthly": "Vă veți abona la abonamentul lunar al ILLA Cloud Plus. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. Suma efectivă dedusă depinde de numărul de licențe pe care le aveți. De exemplu, dacă începeți primul abonament pe 25 februarie, 2023, cu un abonament lunar de 12 dolari pe licență, si aveti un total de 3 licente, vom deduce 36 USD la 25 februarie 2023. Dacă adăugaţi încă 2 licenţe la 21 martie 2023, vom deduce prima dată restul de 5 zile la 21 martie 2023. Apoi, până la 25 martie 2023, vom deduce plata pentru 5 licenţe, care este (2+3)*$12=$60. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
+        "update_plan_increase_license": "Taxele vor fi deduse automat din perioada următoare, pe baza numărului actualizat de locuri și a stabilirii prețurilor pentru noul ciclu de facturare. De data aceasta, vom deduce plata pentru locurile mărite, în conformitate cu actualul ciclu de facturare. Regulile de calcul pentru creşterea numărului de locuri folosind ca exemplu un abonament lunar al scaunului: Să luăm în considerare un scenariu în care v-aţi abonat iniţial la 5 locuri începând cu 14 martie; şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decideţi să adăugaţi încă un loc. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 loc, care se ridică la aproximativ 10 dolari, proporţional cu durata de 4 zile a ciclului de 30 de zile. Prin urmare, deducerea este estimată la 1 scaun* $10 / 30 de zile * 4 zile, rezultând în aproximativ 1,33 $. Începând cu următorul ciclu de facturare, toate taxele de sediu vor fi consolidate și achitate împreună. Dacă doriţi să reduceţi locurile sau să faceţi alte modificări la abonament, vă rugăm să-l actualizaţi înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_remove_license": "Taxele vor fi deduse automat din perioada următoare pe baza numărului actualizat de licențe și a tarifării noilor cicluri de facturare. Dacă numărul de utilizatori cu permisiuni de editare depăşeşte numărul de licenţe la începutul următorului ciclu de facturare, toţi utilizatorii cu excepţia proprietarului vor fi dezactivaţi până când eliminaţi membrii sau creşteţi numărul de licenţe din intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
-        "update_plan_increase_storage": "Taxele vor fi deduse automat din perioada următoare pe baza stocării actualizate și a stabilirii prețurilor pentru noul ciclu de facturare. De data aceasta, vom deduce plata pentru depozitarea mărită în conformitate cu ciclul de facturare curent. Calcularea regulilor folosind un abonament lunar de stocare ca exemplu: Să luăm în considerare un scenariu în care v-ați abonat inițial la 5 GB începând cu 14 martie, şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decizi să adaugi 1 GB. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 GB, care se ridică la aproximativ $0. 9, proporțional cu durata de 4 zile în cadrul ciclului de 30 de zile. Prin urmare, deducerea este estimată la o licență * $0,99 / 30 zile * 4 zile, rezultând în aproximativ 0,132. Începând cu următorul ciclu de facturare, toate taxele de stocare vor fi consolidate și achitate împreună. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_remove_storage": "Taxele vor fi deduse automat din perioada următoare pe baza stocării actualizate și a stabilirii prețurilor pentru noul ciclu de facturare. În cazul în care capacitatea de stocare ocupată de fișierele dvs. depășește capacitatea de stocare abonată la începutul următorului ciclu de facturare, Toate fişierele vor fi dezactivate până când ştergeţi fişiere sau creşteţi capacitatea de stocare în intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>"
+      },
+      "colla_redeem": {
+        "title": "Cu {{changeNum}} Colla, puteți cumpăra: ",
+        "storage": "Depozitare",
+        "traffic": "Trafic",
+        "token": "Token"
       }
     },
     "message": {
@@ -3760,13 +3868,17 @@
       "failed_to_join_no_license": "Nu se poate alătura deoarece licențele pentru echipă sunt insuficiente, vă rugăm să contactați administratorul.",
       "storage_insufficient_modal": "Spațiul de stocare sau traficul acestei echipe nu este suficient. Vă rugăm să contactați administratorul.",
       "appsumo": {
+        "suc": "Răscumpărat cu succes",
+        "fail": "Redemiterea a eșuat. Te rugăm să încerci din nou mai târziu.",
         "transfer": "Operația a eșuat. Acest utilizator este legat de abonamentul pe toată durata de viață. ",
         "leave": "Operația a eșuat. Acest utilizator este legat de abonamentul pe toată durata de viață. "
       },
       "no_license_operate_failed": "Din cauza licenţelor insuficiente, operaţiunea a eşuat.",
       "failed_to_invite_no_license": "Din cauza licenţelor insuficiente, unele invitaţii ale membrilor au eşuat.",
       "error_subscribe": "Schimbarea planului a eșuat. Te rugăm să încerci din nou mai târziu.",
-      "unsubscription_fail": "Nu s-a putut anula abonamentul. Te rugăm să încerci din nou mai târziu."
+      "unsubscription_fail": "Nu s-a putut anula abonamentul. Te rugăm să încerci din nou mai târziu.",
+      "failed_to_update": "Actualizarea abonamentului a eșuat. Te rugăm să încerci din nou. ",
+      "update_suc": "Abonament actualizat cu succes"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3811,7 +3923,10 @@
         "others": "Contul tău a fost dezactivat deoarece abonamentul echipei a expirat.",
         "your_subscription_ha_not_owner": "Licențe insuficiente",
         "all_members_except_f_not_owner": "Echipa ta nu are suficiente licențe. Te rugăm să contactezi proprietarul echipei.",
-        "upgrade_not_owner": "Am înțeles"
+        "upgrade_not_owner": "Am înțeles",
+        "your_subscription_ha": "Abonamentul a expirat",
+        "all_members_except_f": "Abonamentul echipei tale a expirat. Te rugăm să îl reînnoiești la timp",
+        "upgrade": "Actualizează"
       },
       "blank_page": {
         "insufficient_license_disable": "Contul dvs. a fost dezactivat din cauza licențelor insuficiente de echipă. Vă rugăm să contactați Proprietarul echipei pentru asistență."
@@ -3861,18 +3976,68 @@
       "upgrade": "Actualizează",
       "cancel": "Anulează"
     },
-    "advanced": {
-      "feature": "Elimină filigran"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Ești sigur că vrei să revendici AppSumo în echipa {{teamName}}? ",
+        "cancel": "Anulează",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Selectează o echipă pentru a o revendica",
+          "create_button": "Creează o echipă nouă",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Creare cont"
+      },
+      "update": "Actualizați planul AppSumo"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Scaun insuficient sau abonament expirat, vă rugăm să faceţi upgrade la timp. ",
+        "others": "Din cauza scaunului insuficient aţi fost dezactivat. Vă rugăm să contactaţi proprietarul echipei"
+      }
+    },
+    "yearly_discount": "(Savați aproape 16,7 %)",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/lună",
+      "yearly": "{{ price }}/editor/year"
     },
     "redirect_page": {
+      "title": "Plată reușită",
       "desc1": "Vă mulțumim pentru achiziție. ILLA Cloud va continua să vă ofere mai multe caracteristici.",
       "desc2": "Redirecționare către ILLA Cloud în {{time}} secunde...",
-      "title": "Plată reușită",
       "button": "Înapoi la ILLA Cloud"
     },
     "redirect_to_stripe": "Redirecționare către Stripe",
-    "appsumo": {
-      "update": "Actualizați planul AppSumo"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 MB spațiu pe lună pentru a stoca orice fișier în ILLA Drive",
+          "traffic": "trafic 100 MB pentru descărcarea fişierelor de pe ILLA Drive"
+        }
+      },
+      "drive": {
+        "title": "Unitate ILLA",
+        "storage": "5 GB spațiu pe lună pentru a stoca orice fișier în ILLA Drive",
+        "traffic": "trafic 5 GB pentru descărcarea fișierelor de pe ILLA Drive"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Stocare personalizată pe lună pentru a stoca orice fișier în ILLA Drive",
+          "traffic": "Trafic personalizat pentru descărcarea fişierelor de pe ILLA Drive"
+        }
+      }
+    },
+    "advanced": {
+      "feature": "Elimină filigran"
     }
   },
   "network": {
@@ -3885,7 +4050,8 @@
     },
     "desc": {
       "no_description": "Nici o descriere",
-      "blank": "Nicio cerere"
+      "blank": "Nicio cerere",
+      "blank-agent": "Niciun agent AI aici"
     },
     "app_setting": {
       "app_setting": "Setare aplicație",
@@ -3906,7 +4072,8 @@
       "update_suc": "Actualizare reușită"
     },
     "button": {
-      "blank": "Creează prima ta aplicație"
+      "blank": "Creează prima ta aplicație",
+      "blank-agent": "Creează AI Agent"
     }
   },
   "new_deploy": {
@@ -3924,37 +4091,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invită să editezi",
-      "invite_to_use": "Invită să utilizezi",
-      "share-with-team": "Partajează cu echipa",
-      "contribute": "Contribuie"
+      "share-with-team": "Partajează cu echipa"
     },
     "desc": {
-      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. ",
-      "contribute": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
-    },
-    "tips": {
-      "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
-      "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
-      "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
+      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
     },
     "label": {
-      "contribute": "Contribuie la piata",
-      "social-media": "Distribuie pe"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Știri hacker"
-      }
+      "contribute": "Contribuie la piata"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Salut! Tocmai am descoperit acest uimitor Agent AI. Ai putea fi interesat să îi dai o încercare! Verifică-l! {{promptName}}:{{promptLink}} #AIwrite #PromptManagement #ProductivityBoost",
         "reddit": "Uită-te la acest uimitor Agent AI [{{promptName}}]",
         "linkedin": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
         "facebook": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
@@ -3962,11 +4108,36 @@
         "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
       },
       "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
+    },
+    "button": {
+      "share_contribute": "Copiază & Partajează",
+      "uncontribute": "Anulează contribuția"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Tocmai am găsit o aplicație interesantă. Verifică-l! {{appName}}:{{appLink}}",
+        "reddit": "Vezi această aplicație uimitoare [{{appName}}]",
+        "linkedin": "Tocmai am găsit o aplicație interesantă. Verifică-l! {{appName}}:{{appLink}}",
+        "facebook": "Tocmai am găsit o aplicație interesantă. Verifică-l! {{appName}}:{{appLink}}",
+        "whatsapp": "Tocmai am găsit o aplicație interesantă. Verifică-l! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Şablon web uşor de utilizat [{{appName}}]"
+      },
+      "contribute": "Tocmai am găsit o aplicație interesantă. Verifică-l! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "Agenți AI",
   "marketplace": {
-    "star": "Star {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Stea",
+    "fork": "Fork"
+  },
+  "load": {
+    "before": "Încarcă mai mult"
+  },
+  "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)",
+  "contribute": "Contribuie",
+  "error_page": {
+    "fobidden": "Fără permisiune de acces"
   }
 }

@@ -1,8 +1,9 @@
+import { AvatarUpload } from "@illa-public/cropper"
+import { currentUserActions, getCurrentUser } from "@illa-public/user-data"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, useMessage } from "@illa-design/react"
-import { AvatarUpload } from "@/illa-public-component/Cropper"
 import { Avatar } from "@/page/App/components/Avatar"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import {
@@ -12,8 +13,6 @@ import {
   publicButtonWrapperStyle,
   settingAccountStyle,
 } from "@/page/Setting/SettingAccount/style"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { fetchChangeNickname } from "@/services/setting"
 import { updateUserAvatar, uploadUserAvatar } from "@/services/users"
 import { isILLAAPiError } from "@/utils/typeHelper"
@@ -83,13 +82,7 @@ export const SettingAccount: FC = () => {
     }
     setIsLoading(true)
     try {
-      const response = await fetchChangeNickname(nickNameValue)
-      dispatch(
-        currentUserActions.updateCurrentUserReducer({
-          ...response.data,
-          userId: response.data.id,
-        }),
-      )
+      await fetchChangeNickname(nickNameValue)
       message.success({
         content: "success!",
       })
@@ -106,14 +99,14 @@ export const SettingAccount: FC = () => {
     }
 
     setIsLoading(false)
-  }, [dispatch, errorMessage, message, nickNameValue, t])
+  }, [errorMessage, message, nickNameValue, t])
 
   return (
     <div css={settingAccountStyle}>
       <AvatarUpload onOk={handleUpdateAvatar}>
         <Avatar
           css={avatarStyle}
-          userId={userInfo?.userId}
+          userID={userInfo?.userID}
           nickname={userInfo?.nickname}
           avatar={userInfo?.avatar}
         />

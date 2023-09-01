@@ -91,15 +91,15 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
-            id: `${baseWidgetName}-options-event-resourceId`,
+            id: `${baseWidgetName}-options-event-resourceID`,
             labelName: i18n.t(
               "editor.inspect.setter_label.eventCalendar.resource_id",
             ),
             labelDesc: i18n.t(
               "editor.inspect.setter_tips.eventCalendar.resource_id",
             ),
-            attrName: "resourceId",
-            placeholder: "{{resourceId}}",
+            attrName: "resourceID",
+            placeholder: "{{resourceID}}",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
@@ -245,15 +245,15 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `${baseWidgetName}-mappedOption-event-resourceId`,
+            id: `${baseWidgetName}-mappedOption-event-resourceID`,
             labelName: i18n.t(
               "editor.inspect.setter_label.eventCalendar.resource_id",
             ),
             labelDesc: i18n.t(
               "editor.inspect.setter_tips.eventCalendar.resource_id",
             ),
-            attrName: "resourceIds",
-            placeholder: "{{item.resourceId}}",
+            attrName: "resourceIDs",
+            placeholder: "{{item.resourceID}}",
             isSetterSingleRow: true,
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             expectedType: VALIDATION_TYPES.ARRAY,

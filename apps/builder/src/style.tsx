@@ -59,10 +59,6 @@ export const RIGHT_PANEL_WIDTH = 320
 export const MIDDLE_PANEL_WIDTH = 300
 export const NAVBAR_HEIGHT = 48
 
-export const pxToRem = (px: number) => {
-  return `${px / 100}rem`
-}
-
 export const messageStyle = css`
   @media screen and (max-width: ${MOBILE_MAX_WIDTH}px) {
     border-radius: 16rem;

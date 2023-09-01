@@ -72,7 +72,7 @@ const ElasticSearchPanel: FC = () => {
         index: cachedAction.content.index,
       } as ElasticSearchAction
       if (
-        cachedAction.resourceId === selectedAction.resourceId &&
+        cachedAction.resourceID === selectedAction.resourceID &&
         (selectedAction.content as ElasticSearchAction).operation === value
       ) {
         if (isShowID) {
@@ -102,7 +102,7 @@ const ElasticSearchPanel: FC = () => {
       isQueryContent,
       isShowID,
       selectedAction.content,
-      selectedAction.resourceId,
+      selectedAction.resourceID,
     ],
   )
 

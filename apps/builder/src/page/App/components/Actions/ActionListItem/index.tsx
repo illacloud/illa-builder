@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { isEqual } from "lodash"
 import {
   Suspense,
@@ -19,15 +20,19 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import {
+  getAgentIcon,
+  getIconFromActionType,
+} from "@/page/App/components/Actions/getIcon"
 import {
   getCachedAction,
   getIsILLAGuideMode,
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
@@ -97,10 +102,10 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
 
     const isChanged = useMemo(() => {
       return (
-        selectedAction?.actionId === action.actionId &&
+        selectedAction?.actionID === action.actionID &&
         !isEqual(selectedAction, cachedAction)
       )
-    }, [action.actionId, cachedAction, selectedAction])
+    }, [action.actionID, cachedAction, selectedAction])
 
     const [editName, setEditName] = useState(false)
     const [changing, setChanging] = useState(false)
@@ -139,7 +144,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             actionActions.updateActionDisplayNameReducer({
               newDisplayName: newName,
               oldDisplayName: action.displayName,
-              actionID: newAction.actionId,
+              actionID: newAction.actionID,
             }),
           )
           setEditName(false)
@@ -152,7 +157,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             actionActions.updateActionDisplayNameReducer({
               newDisplayName: newName,
               oldDisplayName: action.displayName,
-              actionID: newAction.actionId,
+              actionID: newAction.actionID,
             }),
           )
           setEditName(false)
@@ -252,7 +257,13 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           <div css={actionItemLeftStyle}>
             <div css={actionIconContainer}>
               <Suspense>
-                {getIconFromActionType(action.actionType, "16px")}
+                {action.actionType === "aiagent"
+                  ? getAgentIcon(
+                      (action as ActionItem<AiAgentActionContent>).content
+                        ?.virtualResource,
+                      "16px",
+                    )
+                  : getIconFromActionType(action.actionType, "16px")}
               </Suspense>
               {error && <WarningCircleIcon css={warningCircleStyle} />}
             </div>

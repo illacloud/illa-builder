@@ -26,7 +26,7 @@ async function handleRemoveActionItemEffect(
   DisplayNameGenerator.removeDisplayName(action.payload.displayName)
   if (
     action.payload.actionID ===
-    listenerApi.getState().config.selectedAction?.actionId
+    listenerApi.getState().config.selectedAction?.actionID
   ) {
     listenerApi.dispatch(configActions.changeSelectedAction(null))
   }
@@ -92,7 +92,7 @@ const handleUpdateAsyncEffect = (
   listenerApi: AppListenerEffectAPI,
 ) => {
   const rootState = listenerApi.getState()
-  const currentSelectedID = rootState.config.selectedAction?.actionId
+  const currentSelectedID = rootState.config.selectedAction?.actionID
   const allChangedActions: ActionItem<ActionContent>[] = []
   if (Array.isArray(action.payload)) {
     const currentActionUpdateSlice: UpdateActionSlicePropsPayload =
@@ -103,13 +103,13 @@ const handleUpdateAsyncEffect = (
     if (!currentActionUpdateSlice) return
     const currentActionID = currentActionUpdateSlice.actionID
     const currentAction = rootState.currentApp.action.find(
-      (item) => item.actionId === currentActionID,
+      (item) => item.actionID === currentActionID,
     )
     if (!currentAction) return
     listenerApi.dispatch(configActions.changeSelectedAction(currentAction))
     action.payload.forEach((payloadAction) => {
       const cAction = rootState.currentApp.action.find(
-        (item) => item.actionId === payloadAction.actionID,
+        (item) => item.actionID === payloadAction.actionID,
       )
       if (cAction) {
         allChangedActions.push(cAction)
@@ -117,9 +117,9 @@ const handleUpdateAsyncEffect = (
     })
   } else {
     const { actionID } = action.payload
-    if (actionID === rootState.config.selectedAction?.actionId) {
+    if (actionID === rootState.config.selectedAction?.actionID) {
       const currentAction = rootState.currentApp.action.find(
-        (item) => item.actionId === actionID,
+        (item) => item.actionID === actionID,
       )
       if (!currentAction) return
       listenerApi.dispatch(configActions.changeSelectedAction(currentAction))

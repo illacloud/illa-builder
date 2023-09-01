@@ -1,10 +1,13 @@
+import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
 import { createMessage } from "@illa-design/react"
-import { ILLAApiError } from "@/api/http"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
-import { getIsILLAGuideMode } from "@/redux/config/configSelector"
+import {
+  getIsILLAGuideMode,
+  getIsILLAProductMode,
+} from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
   ActionContent,
@@ -59,11 +62,11 @@ const checkCanSendRequest = (
 
 const fetchActionResult = async (
   isPublic: boolean,
-  resourceId: string,
+  resourceID: string,
   actionType: ActionType,
   displayName: string,
   appId: string,
-  actionId: string,
+  actionID: string,
   actionContent: ActionContent,
   abortSignal?: AbortSignal,
 ) => {
@@ -73,14 +76,14 @@ const fetchActionResult = async (
   }
 
   const requestBody = {
-    resourceId,
+    resourceID,
     actionType,
     displayName,
     content: actionContent,
   }
   return await fetchActionRunResult(
     appId,
-    actionId,
+    actionID,
     requestBody,
     isPublic,
     abortSignal,
@@ -88,8 +91,8 @@ const fetchActionResult = async (
 }
 
 export interface IExecutionActions extends ActionItem<ActionContent> {
-  $actionId: string
-  $resourceId: string
+  $actionID: string
+  $resourceID: string
 }
 
 export const runActionWithExecutionResult = async (
@@ -100,7 +103,7 @@ export const runActionWithExecutionResult = async (
   const { displayName } = action as ActionItem<
     MysqlLikeAction | RestApiAction<BodyContent>
   >
-  const { content, $actionId, $resourceId, actionType, transformer } = action
+  const { content, $actionID, $resourceID, actionType, transformer } = action
   const originActionList = getActionList(store.getState())
   const originAction = originActionList.find(
     (item) => item.displayName === displayName,
@@ -109,6 +112,7 @@ export const runActionWithExecutionResult = async (
   const rootState = store.getState()
   const appId = getAppId(rootState)
   const isGuideMode = getIsILLAGuideMode(rootState)
+  const isProductionMode = getIsILLAProductMode(rootState)
   const {
     successEvent: _successEvent = [],
     failedEvent: _failedEvent = [],
@@ -138,7 +142,7 @@ export const runActionWithExecutionResult = async (
   )
 
   const currentActionId = (
-    isGuideMode ? GUIDE_DEFAULT_ACTION_ID : $actionId
+    isGuideMode ? GUIDE_DEFAULT_ACTION_ID : $actionID
   ) as string
 
   try {
@@ -152,8 +156,8 @@ export const runActionWithExecutionResult = async (
           | AxiosResponse<BlobPart, unknown>
           | AxiosResponse<ILLAApiError, any>
         )[] = (await fetchActionResult(
-      action.config?.public ?? false,
-      ($resourceId as string) || "",
+      !isProductionMode ? false : action.config?.public ?? false,
+      ($resourceID as string) || "",
       actionType as ActionType,
       displayName,
       appId,
@@ -177,14 +181,17 @@ export const runActionWithExecutionResult = async (
       response,
       isClientS3,
     )
+
     let userTransformedData = runTransformer(
       transformer,
       illaInnerTransformedResponse.data ?? "",
     )
+
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,
         value: {
+          ...illaInnerTransformedResponse,
           data: userTransformedData,
           runResult: undefined,
           isRunning: false,
@@ -192,6 +199,7 @@ export const runActionWithExecutionResult = async (
         },
       }),
     )
+
     if (needRunEventHandler) {
       runAllEventHandler(originSuccessEvent, $dynamicAttrPaths)
     }
@@ -270,14 +278,14 @@ export const registerActionPeriod = (action: IExecutionActions) => {
     !config.advancedConfig.isPeriodically ||
     (config.advancedConfig.periodInterval as unknown as number) <= 0
   ) {
-    removeActionPeriod(action.$actionId)
+    removeActionPeriod(action.$actionID)
     return
   }
-  removeActionPeriod(action.$actionId)
+  removeActionPeriod(action.$actionID)
   const timeID = window.setInterval(() => {
     runActionWithExecutionResult(action)
   }, (config.advancedConfig.periodInterval as unknown as number) * 1000)
-  actionIDMapTimerID[action.$actionId] = timeID
+  actionIDMapTimerID[action.$actionID] = timeID
 }
 
 export const removeActionPeriod = (actionID: string) => {

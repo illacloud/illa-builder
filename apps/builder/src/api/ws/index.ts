@@ -1,9 +1,14 @@
-import { ILLAWebsocket } from "@/api/ws/illaWS"
+import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@illa-public/illa-net/constant"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
+import {
+  ILLAWebsocket,
+  ReduxMessageListener,
+  WSMessageListener,
+} from "@/api/ws/illaWS"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
-import { isCloudVersion } from "@/utils/typeHelper"
-import { HTTP_REQUEST_PUBLIC_BASE_URL } from "../http/constant"
 import { MovingMessageBin, Signal, Target } from "./ILLA_PROTO"
 import { ILLABinaryWebsocket } from "./illaBinaryWS"
 import {
@@ -38,8 +43,8 @@ export function transformComponentReduxPayloadToWsPayload(
 }
 
 export function getTextMessagePayload<T>(
-  signal: Signal,
-  target: Target,
+  signal: TextSignal,
+  target: TextTarget,
   broadcast: boolean,
   reduxBroadcast: Broadcast | null,
   teamID: string,
@@ -117,14 +122,25 @@ export class Connection {
 
   static enterDashboardRoom(wsURL: string) {
     let ws = generateTextMessageWs(wsURL, ILLA_WEBSOCKET_CONTEXT.DASHBOARD)
+    ws.registerListener(ReduxMessageListener)
+    ws.initWebsocket()
     this.roomMap.set("dashboard/", ws)
   }
 
   static enterAppRoom(wsURL: string, binaryWsURL: string, appID: string) {
     let ws = generateTextMessageWs(wsURL, ILLA_WEBSOCKET_CONTEXT.APP)
+    ws.registerListener(ReduxMessageListener)
+    ws.initWebsocket()
     let binaryWs = generateBinaryMessageWs(binaryWsURL)
     this.roomMap.set(`app/${appID}`, ws)
     this.roomMap.set(`app/${appID}/binary`, binaryWs)
+  }
+
+  static enterAgentRoom(wsURL: string, messageListener: WSMessageListener) {
+    let ws = generateTextMessageWs(wsURL, ILLA_WEBSOCKET_CONTEXT.AI_AGENT)
+    ws.registerListener(messageListener)
+    ws.initWebsocket()
+    this.roomMap.set("ai-agent/", ws)
   }
 
   static getTextRoom(
@@ -149,8 +165,8 @@ export class Connection {
     if (textWS != undefined) {
       textWS.send(
         getTextMessagePayload(
-          Signal.LEAVE,
-          Target.NOTHING,
+          TextSignal.LEAVE,
+          TextTarget.NOTHING,
           false,
           {
             type: "leave",

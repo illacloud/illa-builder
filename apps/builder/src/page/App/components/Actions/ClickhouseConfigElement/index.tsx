@@ -1,3 +1,8 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -11,8 +16,6 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   applyConfigItemLabelText,
   container,
@@ -42,13 +45,12 @@ import {
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 
 export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -58,7 +60,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
 
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<ClickhouseResource>
   })
 
@@ -112,7 +114,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "clickhouse",
         onFinished,
         setSaving,

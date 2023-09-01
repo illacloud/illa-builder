@@ -1,9 +1,9 @@
-import { FC, ReactNode, createContext, useCallback, useState } from "react"
-import { useSelector } from "react-redux"
 import {
   HTTP_REQUEST_PUBLIC_BASE_URL,
   PUBLIC_DRIVE_REQUEST_PREFIX,
-} from "@/api/http/constant"
+} from "@illa-public/illa-net/constant"
+import { FC, ReactNode, createContext, useCallback, useState } from "react"
+import { useSelector } from "react-redux"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
   DRIVE_FILE_TYPE,

@@ -1,6 +1,7 @@
-import { builderRequest, notNeedAuthRequest } from "@/api/http"
+import { builderRequest, notNeedAuthRequest } from "@illa-public/illa-net"
 import { AccessType } from "@/redux/resource/googleSheetResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { getCurrentTeamID } from "../utils/team"
 
 export const requestCreateResource = async (data: unknown) => {
   return await builderRequest<Resource<ResourceContent>>(
@@ -10,7 +11,7 @@ export const requestCreateResource = async (data: unknown) => {
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -27,7 +28,7 @@ export const requestUpdateResource = async (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -35,6 +36,7 @@ export const requestUpdateResource = async (
 interface IWhiteListIPResponse {
   resources: string[]
 }
+
 export const requestWhiteListIP = async () => {
   return await notNeedAuthRequest<IWhiteListIPResponse>({
     url: "https://peripheral-api.illasoft.com/v1/meta",
@@ -49,7 +51,7 @@ export const fetchResources = (signal: AbortSignal) => {
       method: "GET",
       signal: signal,
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -57,6 +59,7 @@ interface IResourceMeta {
   resourceName: string
   schema: Record<string, Record<string, { data_type: string }>>
 }
+
 export const fetchResourceMeta = async (resourceID: string) => {
   return builderRequest<IResourceMeta>(
     {
@@ -64,7 +67,7 @@ export const fetchResourceMeta = async (resourceID: string) => {
       method: "GET",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -76,13 +79,13 @@ export const fetchDeleteResource = async (resourceID: string) => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
 
 export const getOAuthAccessToken = async (
-  resourceId: string,
+  resourceID: string,
   redirectURL: string,
   accessType: AccessType,
 ) => {
@@ -91,45 +94,45 @@ export const getOAuthAccessToken = async (
   }>(
     {
       method: "POST",
-      url: `/resources/${resourceId}/token`,
+      url: `/resources/${resourceID}/token`,
       data: {
         accessType,
         redirectURL,
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
 
 export const redirectToGoogleOAuth = async (
-  resourceId: string,
+  resourceID: string,
   accessToken: string,
 ) => {
   return builderRequest<{ url: string }>(
     {
       method: "GET",
-      url: `/resources/${resourceId}/oauth2?accessToken=${accessToken}`,
+      url: `/resources/${resourceID}/oauth2?accessToken=${accessToken}`,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
 
 export const getOAuthRefreshData = async (
-  resourceId: string,
+  resourceID: string,
   signal: AbortSignal,
 ) => {
   return builderRequest<Resource<ResourceContent>>(
     {
-      url: `/resources/${resourceId}/refresh`,
+      url: `/resources/${resourceID}/refresh`,
       method: "POST",
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

@@ -1,29 +1,13 @@
+import { authCloudRequest } from "@illa-public/illa-net"
+import { CurrentUser } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { v4 } from "uuid"
-import { authCloudRequest, needAuthRequest } from "@/api/http"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { fetchSendEmail } from "@/services/auth"
+import { upload } from "@/utils/file/upload"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion } from "@/utils/typeHelper"
-import store from "../store"
 
-interface IUserInfoResponse {
-  avatar: string
-  createdAt: string
-  email: string
-  isPasswordSetted: boolean
-  isTutorialViewed: boolean
-  language: string
-  nickname: string
-  ssoVerified: {
-    github: boolean
-    google: boolean
-  }
-  uid: string
-  updatedAt: string
-  userID: string
-}
 export const fetchUserInfo = () => {
-  return authCloudRequest<IUserInfoResponse>({
+  return authCloudRequest<CurrentUser>({
     url: "/users",
   })
 }
@@ -64,21 +48,6 @@ export const getUserAvatarUploadAddress = async (type: string) => {
   return Promise.reject("data is undefined")
 }
 
-export const upload = async (url: string, file: Blob) => {
-  const resUrl = url.split("?")[0]
-  await needAuthRequest({
-    url,
-    method: "PUT",
-    data: file,
-    headers: {
-      "Content-Type": "multipart/form-data",
-      "Content-Encoding": "compress",
-      "x-amz-acl": "public-read",
-    },
-  })
-  return resUrl
-}
-
 export const updateUserAvatar = async (avatar: string) => {
   await authCloudRequest({
     url: "/users/avatar",
@@ -112,5 +81,4 @@ export const updateTutorialViewed = async (isTutorialViewed: boolean) => {
       isTutorialViewed,
     },
   })
-  store.dispatch(currentUserActions.updateUserIsTutorialViewedReducer(true))
 }

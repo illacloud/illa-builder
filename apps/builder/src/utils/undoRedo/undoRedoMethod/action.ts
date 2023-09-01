@@ -18,18 +18,18 @@ export const addActionItemWhenUndoRedo = async (
   action: ActionItem<ActionContent>,
 ) => {
   const isGuideMode = getIsILLAGuideMode(store.getState())
-  const newAction = omit(action, ["displayName", "actionId"])
+  const newAction = omit(action, ["displayName", "actionID"])
   const displayName = DisplayNameGenerator.isAlreadyGenerate(action.displayName)
     ? DisplayNameGenerator.generateDisplayName(action.actionType)
     : DisplayNameGenerator.updateOrGenerateDisplayName(action.displayName)
-  const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+  const data: Omit<ActionItem<ActionContent>, "actionID"> = {
     ...newAction,
     displayName,
   }
   if (isGuideMode) {
     const createActionData: ActionItem<ActionContent> = {
       ...data,
-      actionId: v4(),
+      actionID: v4(),
     }
     return createActionData
   }
@@ -53,7 +53,7 @@ export const removeActionItemWhenUndoRedo = async (displayName: string) => {
   }
   if (!isGuideMode) {
     try {
-      await fetchDeleteAction(targetAction.actionId)
+      await fetchDeleteAction(targetAction.actionID)
     } catch (e) {
       throw e
     }

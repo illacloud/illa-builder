@@ -1,7 +1,7 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { cloneDeep, set } from "lodash"
 import { FC, useCallback, useContext } from "react"
 import { useDispatch } from "react-redux"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
 import { trackInEditor } from "@/utils/mixpanelHelper"

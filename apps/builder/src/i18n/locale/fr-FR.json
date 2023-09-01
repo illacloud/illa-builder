@@ -72,11 +72,13 @@
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
-      "create-suc": "Échec de la création, veuillez réessayer.",
+      "create-suc": "Sauvegardé avec succès",
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
-      "delete-suc": "Supprimé avec succès. "
-    }
+      "delete-suc": "Supprimé avec succès. ",
+      "mobile-fork-suc": "Forké avec succès. Veuillez modifier sur le bureau."
+    },
+    "create": "Créer"
   },
   "dayjs": {
     "just_now": "Juste maintenant"
@@ -230,7 +232,7 @@
             "sheet_id_to_copy": "ID de la feuille à copier",
             "sheet_to_copy_to": "Feuille à copier vers",
             "authentication": "Authentification",
-            "connect_with_oauth": "Se connecter avec OAuth & Enregistrer",
+            "connect_with_oauth": "Se connecter avec Google",
             "reconnect_with_oauth": "Reconnecter avec OAuth",
             "access_type": "Type d'accès"
           },
@@ -876,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1162,7 +1164,7 @@
         "initial_value": {
           "label": "Valeur initiale",
           "tooltips": "Supporte des objets ou des valeurs primitives. Exemple: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -1338,7 +1340,7 @@
         },
         "recording": {
           "start_button_text": "Démarrer l'enregistrement",
-          "stop_button_text": "Stop",
+          "stop_button_text": "Arrêter",
           "clear_button_text": "Réinitialiser"
         },
         "rich_text": {
@@ -1712,7 +1714,7 @@
         },
         "previous_cursor": "Curseur précédent",
         "input": {
-          "type": "Type",
+          "type": "Type de texte",
           "show_visible_button": "Afficher le bouton visible"
         },
         "recording": {
@@ -2520,7 +2522,7 @@
       "history": "Historique",
       "more": "En savoir plus",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "<unk> S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -2558,7 +2560,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nom",
         "desc": "Libellé",
         "mode": "Mode",
@@ -2567,25 +2568,27 @@
         "welcome": "Message de bienvenue",
         "model": "Modélisation",
         "temperature": "Température",
-        "max-token": "Token max"
+        "max-token": "Token max",
+        "icon": "Icône"
       },
       "placeholder": {
-        "logo": "Charger",
         "name": "Donner un nom à l'agent",
         "desc": "Fournir une brève description de ce à quoi cet agent est destiné à être utilisé.",
-        "prompt": "Entrer / sélectionner une variable",
+        "prompt": "Entrez {{variableName}} pour utiliser une variable",
         "variable": {
           "key": "Nom de la variable",
           "value": "Valeur"
         },
         "welcome": "Fournir un message de bienvenue affiché lorsque les utilisateurs commencent à utiliser l'agent.",
-        "temperature": "Une valeur comprise entre 0 et 1. Plus la valeur est petite, plus l'effet est important",
-        "max-token": "Utilisé pour limiter le nombre maximum de jetons consommés en un seul run"
+        "icon": "Charger",
+        "send": "Envoyer quelque chose à l'Agent"
       },
       "tips": {
         "mode": "En mode chat, chaque message envoyé inclut l'historique de la conversation dans le cadre de la requête, ce qui peut donner de meilleurs résultats, mais consomme plus de jetons ; en mode texte, chaque message envoyé n'inclut pas l'historique de la conversation, qui peut entraîner des résultats moins optimaux par rapport au mode de discussion mais conserve les jetons.",
         "not-start": "Complétez la configuration de l'agent et cliquez sur Démarrer pour lancer",
-        "not-start-run": "Veuillez cliquer sur le bouton Démarrer à gauche."
+        "not-start-run": "Veuillez cliquer sur le bouton Démarrer à gauche.",
+        "temperature": "Une valeur comprise entre 0 et 1. Plus la valeur est petite, plus l'effet est important",
+        "max-token": "Utilisé pour limiter le nombre maximum de jetons consommés en un seul run"
       },
       "option": {
         "mode": {
@@ -2615,7 +2618,27 @@
       },
       "message": {
         "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
-        "insufficient_token": "Jeton insuffisant"
+        "insufficient_token": "Colla Insuffisante",
+        "start-failed": "Impossible de démarrer. Veuillez réessayer. ",
+        "reconnect": "Connexion perdue. Reconnexion en cours.",
+        "token-not-enough": "Limite du modèle atteinte. Veuillez recommencer.",
+        "token": "La valeur actuelle des jetons Max est faible, ce qui peut causer des retours incomplets.",
+        "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger.",
+        "leave": "Il y a du contenu non enregistré, êtes-vous sûr de vouloir quitter ?",
+        "generating": "Veuillez attendre que la génération soit terminée ou interrompre le processus"
+      },
+      "title": "Modifier l'Agent IA",
+      "generate-desc": {
+        "button": "Générer une IA",
+        "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
+        "failed": "Échec de la génération. Veuillez réessayer plus tard. "
+      },
+      "generate-icon": {
+        "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
+      },
+      "title-preview": {
+        "chat": "Discuter",
+        "text-generation": "Génération de texte"
       }
     },
     "common": {
@@ -3213,11 +3236,19 @@
       "owner": "Propriétaire",
       "admin": "Administer",
       "editor": "Editeur",
-      "viewer": "Visionneuse"
+      "viewer": "Visionneuse",
+      "tips": {
+        "admin": "Le membre qui peut gérer tous les membres sauf le propriétaire, modifier les APP et voir les APPs",
+        "editor": "Le membre qui peut gérer les membres de l'éditeur, éditer les APP et afficher les APP",
+        "viewer": "Le membre qui peut gérer les membres de la visionneuse et voir les APP"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Inviter des membres"
+        "invite_members": "Inviter des membres",
+        "invite_to_use": "Inviter à utiliser",
+        "invite_to_edit": "Inviter à modifier",
+        "contribute": "Communauté"
       },
       "link": {
         "invite_title": "Lien d'invitation",
@@ -3232,7 +3263,10 @@
         "turn_off_fail": "Échec de la désactivation",
         "turn_on_fail": "Échec de l'activation",
         "make_public_title": "Rendre l'application publique",
-        "make_public_copy": "Copie"
+        "make_public_copy": "Copie",
+        "marketplace": {
+          "label": "Partager avec le lien"
+        }
       },
       "email": {
         "invite_title": "Inviter par e-mail",
@@ -3240,8 +3274,8 @@
         "placeholder": "Entrez votre adresse e-mail",
         "invited": "Ont invité",
         "in_list": "Cet utilisateur est déjà dans votre équipe.",
-        "notmail": "{{ email }} n'est pas un email",
-        "duplicate": "{{ email }} est dupliqué"
+        "duplicate": "{{ email }} est dupliqué",
+        "not_mail": "{{ email }} n'est pas un email"
       },
       "invalid_email": "Veuillez entrer une adresse e-mail valide",
       "message": {
@@ -3251,14 +3285,42 @@
       },
       "tab": {
         "invite": "Inviter",
-        "public": "Publique"
+        "public": "Publique",
+        "with_team": "Partager avec les membres de l'équipe"
       },
       "custom_copy_text_app_invite": "{{userName}} vous a partagé une application de 「{{teamName}}」. Cliquez sur le lien pour rejoindre l'équipe et vérifier l'APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} vous a partagé une APP de 「{{teamName}}」. Cliquez sur le lien pour vérifier l'APP: {{inviteLink}}",
       "custom_copy_text": "{{userName}} vous invite à rejoindre 「{{teamName}}」. Cliquez sur le lien pour rejoindre l'équipe: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Licences restantes"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} vous a partagé un Agent IA de <unk>{{teamName}}Ω. Cliquez sur le lien pour rejoindre l'équipe et essayer l'Agent IA: {{inviteLink}}",
+      "contribute": {
+        "label": "Contribuer à la communauté",
+        "default_text": {
+          "app": "Je viens de découvrir une application impressionnante appelée {{ appName }}. Vérifiez: {{ appLink }}",
+          "agent": "Je viens de découvrir un agent IA impressionnant appelé {{ agentName }}. Vérifiez: {{ agentLink }}"
+        },
+        "desc": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources.",
+        "turn_off": "Annuler la contribution",
+        "app": {
+          "desc": "Après avoir contribué à votre application à la communauté, les autres utilisateurs peuvent voir son interface, exécuter ses actions et le forker. Lors du forking d'une application, les informations de configuration de la ressource ne sont pas incluses, il n'y a donc pas lieu de s'inquiéter de la divulgation des informations de configuration des ressources."
+        }
+      },
+      "social_media": {
+        "label": "Partager sur",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Nouvelles des pirates informatiques",
+        "default_text": {
+          "app": "Je viens de découvrir une application impressionnante appelée {{ appName }}",
+          "agent": "Je viens de découvrir un agent IA impressionnant appelé {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vous partage un Agent IA de <unk>{{ teamName }}Ω. Rejoignez l'équipe et vérifiez: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invité avec succès",
@@ -3278,7 +3340,8 @@
       "permission": "Permission",
       "operation": "Opération",
       "transfer": "Transférer la propriété",
-      "remove": "Retirer"
+      "remove": "Retirer",
+      "ai-agent": "Agents IA"
     },
     "transfer_modal": {
       "title": "Êtes-vous sûr de vouloir transférer la propriété ?",
@@ -3293,7 +3356,8 @@
       "cancel": "Abandonner"
     },
     "status": {
-      "pending": "En attente"
+      "pending": "En attente",
+      "current-user": "Vous"
     },
     "settings": {
       "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres",
@@ -3435,25 +3499,25 @@
   "oauth_redirect_title": "Rediriger",
   "oauth_redirect_description": "Redirection vers <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Anglais",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "af-ZA": "afrikaans",
+    "cs-CZ": "c<unk> es<unk> tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
     "fr-FR": "francais",
-    "it-IT": "italiano",
+    "it-IT": "Italien",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "Portugais",
+    "ro-RO": "roumaine",
+    "ru-RU": "русски<unk>",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -3592,12 +3656,17 @@
       "billing": "Facturation",
       "license": "Licence",
       "drive": "Lecteur",
+      "colla": "Colla",
+      "appsumo": "Somme des applications",
+      "colla_transaction": "Historique des transactions colla",
       "billing_portal": "Portail de facturation"
     },
     "title": {
       "billing": "Facturation",
       "license": "Licence",
-      "drive": "Lecteur"
+      "drive": "Lecteur",
+      "colla": "Colla",
+      "appsumo": "Somme des applications"
     },
     "subscription_general": {
       "plan": {
@@ -3606,7 +3675,8 @@
       },
       "sub_cycle": {
         "yearly": "Annuel",
-        "monthly": "Mensuel"
+        "monthly": "Mensuel",
+        "lifetime": "Durée de vie"
       },
       "billing_cyle": {
         "year": "/ Année",
@@ -3617,7 +3687,8 @@
         "expiration_date": "Date d'expiration",
         "licenses": "Licences",
         "storage": "Stockage",
-        "traffic": "Trafic"
+        "traffic": "Trafic",
+        "colla": "Colla"
       },
       "period": {
         "current": "Actuel",
@@ -3629,33 +3700,57 @@
         "License": "Licence",
         "Storage": "Stockage",
         "Traffic": "Trafic",
-        "balance": "Solde"
+        "balance": "Solde",
+        "colla": "Colla"
       },
       "button": {
         "License": "Gérer les licences",
         "Storage": "Gérer le stockage",
-        "Traffic": "Développer le trafic"
+        "Traffic": "Développer le trafic",
+        "colla": "Gérer Colla"
       },
       "capacity": {
         "License": "{{used}} (total de {{total}} licences) ont été utilisés.",
         "Storage": "{{used}} (total de {{total}} Go) ont été utilisés.",
-        "Traffic": "{{used}} (total de {{total}} Go) ont été utilisés."
+        "Traffic": "{{used}} (total de {{total}} Go) ont été utilisés.",
+        "colla": "{{used}} Colla utilisé (total de {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Jeton"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Mois",
+        "event": "Evénement",
+        "usage": "Utilisation des colles"
+      },
+      "event": {
+        "increase_storage": "Augmenter le stockage",
+        "increase_colla": "Augmenter Colla",
+        "increase_traffic": "Augmenter le trafic"
+      },
+      "usage": {
+        "change_num": "Colla {{changeNum}}"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Gérer le stockage",
         "manage_licenses": "Gérer les licences",
-        "expand_traffic_capac": "Développer la capacité de trafic"
+        "expand_traffic_capac": "Développer la capacité de trafic",
+        "colla": "Gérer Colla"
       },
       "plan_label": {
         "License": "Licences",
         "Storage": "Stockage",
-        "Traffic": "Trafic"
+        "Traffic": "Trafic",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
         "License": "Licences",
-        "Storage_traffic": "GR"
+        "Storage_traffic": "GR",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "Annuel",
@@ -3694,7 +3789,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} Go",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} Go",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} Go",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} Go"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} Go",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Se désabonner",
@@ -3703,7 +3799,9 @@
         "storage_traffic_increase": "Augmenter {{changeNum}} Go",
         "storage_traffic_remove": "Retirer {{changeNum}} Go",
         "license_increase": "Augmenter {{changeNum}} licences",
-        "license_remove": "Supprimer {{changeNum}} licences"
+        "license_remove": "Supprimer {{changeNum}} licences",
+        "colla_increase": "Augmenter la Colla {{changeNum}}",
+        "colla_remove": "Supprimer la Colla {{changeNum}}"
       },
       "description_title": {
         "add_storage": "Vous allez ajouter {{changeNum}} Go de stockage. Une fois confirmé, nous déduirons immédiatement le paiement du nouveau stockage pour ce cycle de facturation. <0>En savoir plus</0>",
@@ -3724,21 +3822,31 @@
         "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel ILLA Cloud Plus. <0>En savoir plus</0>",
         "subscribe_license_yearly": "Vous allez vous abonner à ILLA Cloud Plus chaque année. <0>En savoir plus</0>",
         "subscribe_storage_monthly": "Vous allez ajouter {{changeNum}}Go de stockage. Une fois confirmé, nous déduirons immédiatement le coût du stockage. <0>En savoir plus</0>",
-        "subscribe_storage_yearly": "Vous allez ajouter {{changeNum}}Go de stockage. Une fois confirmé, nous déduirons immédiatement le coût du stockage. <0>En savoir plus</0>"
+        "subscribe_storage_yearly": "Vous allez ajouter {{changeNum}}Go de stockage. Une fois confirmé, nous déduirons immédiatement le coût du stockage. <0>En savoir plus</0>",
+        "colla_sub": "Vous allez vous abonner à Colla. Une fois confirmé, nous déduirons automatiquement les frais au début de chaque cycle de facturation et mettrons à niveau votre abonnement automatiquement lorsque vous aurez besoin de plus de Colla. <0>En savoir plus</0>",
+        "colla_increase": "Vous allez ajouter {{changeNum}} Colla. Une fois confirmé, nous déduirons immédiatement le montant restant dû pour ce cycle de facturation. <0>En savoir plus</0>",
+        "colla_remove": "Vous allez supprimer {{changeNum}} Colla. Une fois confirmé, cela prendra effet à partir du prochain cycle de facturation. <0>En savoir plus</0>",
+        "colla_unsubscribe": "Vous allez annuler votre abonnement Colla. Une fois confirmé, il prendra effet à partir du prochain cycle de facturation. Veuillez noter qu'après l'annulation, vous pourriez rencontrer des problèmes avec l'utilisation de votre Drive ILLA et AI Agent. <0>En savoir plus</0>",
+        "colla_update": "Vous allez modifier votre abonnement Colla. Une fois confirmé, les modifications prendront effet à partir du prochain cycle de facturation. <0>En savoir plus</0>"
       },
       "description": {
-        "add_storage": "Règles de calcul en utilisant un abonnement de stockage mensuel comme exemple : Examinons un scénario où vous vous êtes initialement abonné à 5 Go à partir du 14 mars, et le cycle de facturation s'étend du 14e de ce mois au 13e du mois prochain. Le 10 mai, vous décidez d'ajouter 1 Go. À ce moment-là, il restait 4 jours jusqu'à la fin du cycle courant le 13 mai (ce qui totalise 30 jours entre le 14 avril et le 13 mai). Pour calculer le paiement rajusté, nous déduirons le coût de 1 GB, qui s'élève à environ 0 $. 9, proportionné à la durée de 4 jours dans le cycle de 30 jours. Par conséquent, la déduction est estimée à 1 licence * 0 $. 9 / 30 jours * 4 jours, ce qui signifie environ 0,132 $. À partir du prochain cycle de facturation, tous les frais de stockage seront consolidés et payés ensemble. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez vous référer à notre <0>Politique de confidentialité</0> et <1>Conditions d'utilisation</1>",
         "remove_storage": "Si la capacité de stockage occupée par vos fichiers dépasse la capacité de stockage souscrite au début du prochain cycle de facturation, Tous les fichiers seront désactivés jusqu'à ce que vous supprimiez des fichiers ou augmentiez la capacité de stockage dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_year": "À partir de la période suivante, l'abonnement sera transformé en un abonnement annuel, et les frais seront automatiquement déduits en fonction du prix de l'abonnement annuel. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_monthly": "À partir de la période suivante, l'abonnement sera transformé en un abonnement mensuel, et les frais seront automatiquement déduits en fonction du prix de l'abonnement mensuel. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
+        "add_license": "Règles de calcul en utilisant un abonnement à un siège mensuel comme exemple : Examinons un scénario où vous vous êtes initialement abonné à 5 sièges à partir du 14 mars, et le cycle de facturation s'étend du 14e de ce mois au 13e du mois prochain. Le 10 mai, vous décidez d'ajouter 1 siège supplémentaire. À ce moment-là, il restait 4 jours jusqu'à la fin du cycle courant le 13 mai (ce qui totalise 30 jours entre le 14 avril et le 13 mai). Pour calculer le paiement rajusté, nous déduirons le coût de 1 siège, qui s'élève à environ 10 $, proportionnellement à la durée de 4 jours au cours du cycle de 30 jours. Par conséquent, la déduction est estimée à 1 siège * 10 $ / 30 jours * 4 jours, ce qui se traduit par environ 1,33 $. À partir du prochain cycle de facturation, tous les frais de siège seront consolidés et payés ensemble. Si vous souhaitez réduire les sièges ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "remove_license": "Si le nombre d'utilisateurs ayant des autorisations d'édition dépasse le nombre de licences au début du prochain cycle de facturation, tous les utilisateurs, sauf le propriétaire, seront désactivés jusqu'à ce que vous supprimiez des membres ou augmentiez le nombre de licences dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "add_traffic": "Après déduction réussie, votre trafic augmentera en temps réel. Une fois le trafic utilisé, les frais ne peuvent pas être remboursés. Le trafic inutilisé peut être remboursé en unités de Go. Par exemple, si vous achetez 10 Go de trafic et que vous utilisez 4,5 Go, vous pouvez demander un remboursement de 5 Go. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "subscribe_storage_yearly": "Vous allez vous abonner à l'abonnement annuel au stockage ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend de la capacité de stockage que vous avez souscrit en Go. Par exemple, si vous commencez votre premier abonnement le 25 février 2023 avec des frais d'abonnement annuels de 9 $. par Go, et vous avez un total de 3 Go, nous déduirons 29 $. le 25 février 2023. Si vous ajoutez 2 Go le 25 mars 2023, nous déduirons d'abord le paiement restant de 11 mois le 25 mars 2023. Puis, d'ici le 25 février 2024, nous déduirons le paiement pour 5 Go, ce qui est (2+3)*9,9$ = 49$. . Si vous souhaitez réduire le stockage ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
-        "subscribe_storage_monthly": "Vous allez vous abonner à l'abonnement mensuel au stockage ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend de la capacité de stockage que vous avez souscrit en Go. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 0 $. 9 par Go, et vous avez un total de 3 Go, nous déduirons 2 $. 7 le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Ensuite, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*0 $. 9=4,95 $. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel d'ILLA Cloud Plus. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend du nombre de licences que vous avez. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 12 $ par licence, et vous avez un total de 3 licences, nous déduirons 36 $ le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Puis, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*$12=$60. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
+        "update_plan_increase_license": "Les frais seront automatiquement déduits en fonction du nombre de sièges mis à jour et du prix du nouveau cycle de facturation à partir de la prochaine période. Cette fois-ci, nous déduirons le paiement des sièges accrus en fonction du cycle de facturation en cours. Règles de calcul de l'augmentation des sièges en utilisant un abonnement mensuel comme exemple : Examinons un scénario où vous vous êtes initialement abonné à 5 sièges à partir du 14 mars, et le cycle de facturation s'étend du 14e de ce mois au 13e du mois prochain. Le 10 mai, vous décidez d'ajouter 1 siège supplémentaire. À ce moment-là, il restait 4 jours jusqu'à la fin du cycle courant le 13 mai (ce qui totalise 30 jours entre le 14 avril et le 13 mai). Pour calculer le paiement rajusté, nous déduirons le coût de 1 siège, qui s'élève à environ 10 $, proportionnellement à la durée de 4 jours au cours du cycle de 30 jours. Par conséquent, la déduction est estimée à 1 siège * 10 $ / 30 jours * 4 jours, ce qui se traduit par environ 1,33 $. À partir du prochain cycle de facturation, tous les frais de siège seront consolidés et payés ensemble. Si vous souhaitez réduire les sièges ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_license": "Les frais seront automatiquement déduits en fonction du nombre de licences mis à jour et du prix du nouveau cycle de facturation à partir de la prochaine période. Si le nombre d'utilisateurs ayant des autorisations d'édition dépasse le nombre de licences au début du prochain cycle de facturation, tous les utilisateurs, sauf le propriétaire, seront désactivés jusqu'à ce que vous supprimiez des membres ou augmentiez le nombre de licences dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
-        "update_plan_increase_storage": "Les frais seront automatiquement déduits en fonction de la mise à jour du stockage et du prix du nouveau cycle de facturation à partir de la prochaine période. Cette fois-ci, nous déduirons le paiement pour l'augmentation du stockage selon le cycle de facturation en cours. Règles de calcul en utilisant un abonnement de stockage mensuel comme exemple : Examinons un scénario où vous vous êtes initialement abonné à 5 Go à partir du 14 mars, et le cycle de facturation s'étend du 14e de ce mois au 13e du mois prochain. Le 10 mai, vous décidez d'ajouter 1 Go. À ce moment-là, il restait 4 jours jusqu'à la fin du cycle courant le 13 mai (ce qui totalise 30 jours entre le 14 avril et le 13 mai). Pour calculer le paiement rajusté, nous déduirons le coût de 1 GB, qui s'élève à environ 0 $. 9, proportionné à la durée de 4 jours dans le cycle de 30 jours. Par conséquent, la déduction est estimée à 1 licence * 0,99 $ / 30 jours * 4 jours, ce qui signifie environ 0,132 $. À partir du prochain cycle de facturation, tous les frais de stockage seront consolidés et payés ensemble. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_storage": "Les frais seront automatiquement déduits en fonction de la mise à jour du stockage et du prix du nouveau cycle de facturation à partir de la prochaine période. Si la capacité de stockage occupée par vos fichiers dépasse la capacité de stockage souscrite au début du prochain cycle de facturation, Tous les fichiers seront désactivés jusqu'à ce que vous supprimiez des fichiers ou augmentiez la capacité de stockage dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>"
+      },
+      "colla_redeem": {
+        "title": "Avec {{changeNum}} Colla, vous pouvez acheter : ",
+        "storage": "Stockage",
+        "traffic": "Trafic",
+        "token": "Jeton"
       }
     },
     "message": {
@@ -3760,13 +3868,17 @@
       "failed_to_join_no_license": "Impossible de rejoindre car les licences d'équipe sont insuffisantes, veuillez contacter l'administrateur.",
       "storage_insufficient_modal": "Le stockage ou le trafic de cette équipe ne suffit pas. Veuillez contacter votre administrateur.",
       "appsumo": {
+        "suc": "Récupéré avec succès",
+        "fail": "Impossible d'échanger. Veuillez réessayer plus tard.",
         "transfer": "L'opération a échoué. Cet utilisateur est lié à l'abonnement à vie. ",
         "leave": "L'opération a échoué. Cet utilisateur est lié à l'abonnement à vie. "
       },
       "no_license_operate_failed": "En raison de licences insuffisantes, l'opération a échoué.",
       "failed_to_invite_no_license": "En raison de licences insuffisantes, certaines invitations de membres ont échoué.",
       "error_subscribe": "Impossible de modifier le plan. Veuillez réessayer plus tard.",
-      "unsubscription_fail": "Impossible d'annuler l'abonnement. Veuillez réessayer plus tard."
+      "unsubscription_fail": "Impossible d'annuler l'abonnement. Veuillez réessayer plus tard.",
+      "failed_to_update": "Impossible de mettre à jour l'abonnement. Veuillez réessayer. ",
+      "update_suc": "Abonnement mis à jour avec succès"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3811,7 +3923,10 @@
         "others": "Votre compte a été désactivé car l'abonnement de l'équipe a expiré.",
         "your_subscription_ha_not_owner": "Pas assez de licences",
         "all_members_except_f_not_owner": "Votre équipe n'a pas assez de licences. Veuillez contacter le propriétaire de votre équipe.",
-        "upgrade_not_owner": "Compris"
+        "upgrade_not_owner": "Compris",
+        "your_subscription_ha": "Abonnement expiré",
+        "all_members_except_f": "L'abonnement de votre équipe a expiré. Veuillez le renouveler à temps",
+        "upgrade": "Mise à jour"
       },
       "blank_page": {
         "insufficient_license_disable": "Votre compte a été désactivé en raison de licences d'équipe insuffisantes. Veuillez contacter le propriétaire de l'équipe pour obtenir de l'aide."
@@ -3861,18 +3976,68 @@
       "upgrade": "Mise à jour",
       "cancel": "Abandonner"
     },
-    "advanced": {
-      "feature": "Supprimer le filigrane"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Êtes-vous sûr de vouloir utiliser AppSumo dans l'équipe {{teamName}}? ",
+        "cancel": "Abandonner",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Sélectionnez une équipe à échanger",
+          "create_button": "Créer une nouvelle équipe",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Créer un compte"
+      },
+      "update": "Mettre à jour le plan AppSumo"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Siège insuffisant ou abonnement expiré, veuillez passer à jour à temps. ",
+        "others": "En raison d'un siège insuffisant, vous avez été désactivé. Veuillez contacter le propriétaire de l'équipe"
+      }
+    },
+    "yearly_discount": "(Économisez près de 16,7 %)",
+    "license_price_new": {
+      "monthly": "{{ price }}/éditeur/mois",
+      "yearly": "{{ price }}/éditeur/année"
     },
     "redirect_page": {
+      "title": "Paiement réussi",
       "desc1": "Merci pour votre achat. ILLA Cloud continuera à vous fournir plus de fonctionnalités.",
       "desc2": "Redirection vers le Cloud ILLA dans {{time}} secondes...",
-      "title": "Paiement réussi",
       "button": "Retour au Cloud ILLA"
     },
     "redirect_to_stripe": "Redirection vers Stripe",
-    "appsumo": {
-      "update": "Mettre à jour le plan AppSumo"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 Mo de stockage par mois pour stocker des fichiers dans ILLA Drive",
+          "traffic": "Trafic de 100 Mo pour télécharger des fichiers depuis le lecteur ILLA"
+        }
+      },
+      "drive": {
+        "title": "Lecteur ILLA",
+        "storage": "5 Go de stockage par mois pour stocker des fichiers dans le disque ILLA",
+        "traffic": "5 Go de trafic pour télécharger des fichiers depuis le lecteur ILLA"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Stockage personnalisé par mois pour stocker tous les fichiers dans le lecteur ILLA",
+          "traffic": "Trafic personnalisé pour télécharger des fichiers depuis le lecteur ILLA"
+        }
+      }
+    },
+    "advanced": {
+      "feature": "Supprimer le filigrane"
     }
   },
   "network": {
@@ -3885,7 +4050,8 @@
     },
     "desc": {
       "no_description": "Pas de description",
-      "blank": "Aucune application"
+      "blank": "Aucune application",
+      "blank-agent": "Aucun agent IA ici"
     },
     "app_setting": {
       "app_setting": "Réglage de l'application",
@@ -3906,7 +4072,8 @@
       "update_suc": "Mis à jour avec succès"
     },
     "button": {
-      "blank": "Créez votre première application"
+      "blank": "Créez votre première application",
+      "blank-agent": "Créer un Agent IA"
     }
   },
   "new_deploy": {
@@ -3924,37 +4091,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Inviter à modifier",
-      "invite_to_use": "Inviter à utiliser",
-      "share-with-team": "Partager avec l'équipe",
-      "contribute": "Contribuer"
+      "share-with-team": "Partager avec l'équipe"
     },
     "desc": {
-      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. ",
-      "contribute": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources."
-    },
-    "tips": {
-      "admin": "Le membre qui peut gérer tous les membres sauf le propriétaire, modifier les APP et voir les APPs",
-      "editor": "Le membre qui peut gérer les membres de l'éditeur, éditer les APP et afficher les APP",
-      "viewer": "Le membre qui peut gérer les membres de la visionneuse et voir les APP"
+      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
     },
     "label": {
-      "contribute": "Contribuer au marché",
-      "social-media": "Partager sur"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Nouvelles des pirates informatiques"
-      }
+      "contribute": "Contribuer au marché"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Salut ! Je viens juste de découvrir cet agent IA incroyable. Vous pourriez être intéressé par un essai aussi ! Allez voir ! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Découvrez cet incroyable Agent IA [{{promptName}}]",
         "linkedin": "Attention à tous les passionnés et professionnels de l'IA qui cherchent à augmenter leur productivité! Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
         "facebook": "Attention à tous les passionnés et professionnels de l'IA qui cherchent à augmenter leur productivité! Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
@@ -3962,11 +4108,36 @@
         "hackernews": "Simplifiez votre charge de travail avec [{{promptName}}] - L'agent IA qui obtient la tâche terminée"
       },
       "contribute": "Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!"
+    },
+    "button": {
+      "share_contribute": "Copier et partager",
+      "uncontribute": "Annuler la contribution"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}",
+        "reddit": "Découvrez cette application incroyable [{{appName}}]",
+        "linkedin": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}",
+        "facebook": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}",
+        "whatsapp": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Modèle d'application web [{{appName}} ] facile à utiliser"
+      },
+      "contribute": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "Agents IA",
   "marketplace": {
-    "star": "Étoile {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Étoiles",
+    "fork": "Fork"
+  },
+  "load": {
+    "before": "Charger plus"
+  },
+  "size_exceed_copied_tips": "Le contenu est trop long à copier. (taille actuelle: {{current_size}} octets, limite : {{limit_size}} octets)",
+  "contribute": "Contribuer",
+  "error_page": {
+    "fobidden": "Aucune autorisation d'accès"
   }
 }

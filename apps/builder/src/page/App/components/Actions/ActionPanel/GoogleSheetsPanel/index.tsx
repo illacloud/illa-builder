@@ -67,8 +67,8 @@ const GoogleSheetsPanel: FC = () => {
   const selectedContent = selectedAction.content
 
   useEffect(() => {
-    if (cachedAction.resourceId == undefined) return
-    fetchResourceMeta(cachedAction.resourceId).then(
+    if (cachedAction.resourceID == undefined) return
+    fetchResourceMeta(cachedAction.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         let tables: { id: string; name: string }[] = []
         if (data.schema) {
@@ -82,7 +82,7 @@ const GoogleSheetsPanel: FC = () => {
         )
       },
     )
-  }, [cachedAction.resourceId])
+  }, [cachedAction.resourceID])
 
   const handleSelectValueChange = useCallback(
     (value: SelectValue) => {

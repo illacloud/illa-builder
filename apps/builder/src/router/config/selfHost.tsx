@@ -6,6 +6,7 @@ import { SettingOthers } from "@/page/Setting/SettingOthers"
 import { SettingPassword } from "@/page/Setting/SettingPassword"
 import { RoutesObjectPro } from "../interface"
 import { selfHostLandingLoader } from "../loader/landingLoader"
+import { teamMemberLoader } from "../loader/teamMemberLoader"
 import { lazyLoad } from "../utils/lazyLoad"
 import {
   publicDashboardChildrenRouter,
@@ -19,6 +20,16 @@ export const selfRouter: RoutesObjectPro[] = [
     loader: selfHostLandingLoader,
   },
   {
+    path: "/privacy-policy",
+    accessByMobile: true,
+    element: lazyLoad(lazy(() => import("@/page/Policy/PrivacyPolicy"))),
+  },
+  {
+    path: "/terms-and-conditions",
+    accessByMobile: true,
+    element: lazyLoad(lazy(() => import("@/page/Policy/TermsAndConditions"))),
+  },
+  {
     path: "/:teamIdentifier/dashboard",
     element: lazyLoad(lazy(() => import("@/page/Dashboard"))),
     children: [
@@ -27,6 +38,7 @@ export const selfRouter: RoutesObjectPro[] = [
         path: "members",
         element: <Member />,
         needLogin: true,
+        loader: teamMemberLoader,
       },
     ],
   },

@@ -1,3 +1,7 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -9,8 +13,6 @@ import {
   PreviousIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   errorIconStyle,
   errorMsgStyle,
@@ -46,7 +48,7 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 
 export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, onFinished, resourceId } = props
+  const { onBack, onFinished, resourceID } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, formState, getValues, watch } = useForm({
@@ -54,7 +56,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
     shouldUnregister: true,
   })
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
+    return state.resource.find((r) => r.resourceID === resourceID) as Resource<
       GraphQLResource<GraphQLAuth>
     >
   })
@@ -112,7 +114,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "graphql",
         onFinished,
         setSaving,

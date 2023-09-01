@@ -24,6 +24,7 @@ export function applyItemStyle(isDraft: boolean): SerializedStyles {
     display: flex;
     padding: 0 0 0 16px;
     height: 56px;
+    width: 184px;
     flex-direction: row;
     align-items: center;
     border-radius: 8px;

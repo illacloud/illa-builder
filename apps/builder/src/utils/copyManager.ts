@@ -1,6 +1,6 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import i18n from "i18next"
 import { createMessage } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"

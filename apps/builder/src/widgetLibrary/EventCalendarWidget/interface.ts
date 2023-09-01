@@ -13,7 +13,7 @@ export interface Event {
   value?: string
   start?: Date
   end?: Date
-  resourceId?: number | string
+  resourceID?: number | string
   description?: string
   allDay?: boolean
   resourceTitle?: string
@@ -22,14 +22,14 @@ export interface Event {
 }
 export interface ResourceMap {
   resourceTitle?: string
-  resourceId?: number | string
+  resourceID?: number | string
 }
 export interface EventInteractionArgs {
   event: Event
   start: stringOrDate
   end: stringOrDate
   isAllDay: boolean
-  resourceId?: number | string
+  resourceID?: number | string
 }
 
 export interface WrappedEventCalendarProps {

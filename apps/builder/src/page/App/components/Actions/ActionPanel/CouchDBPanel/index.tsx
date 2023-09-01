@@ -72,14 +72,14 @@ const CouchDBPanel: FC = () => {
   const [selectOptions, setSelectOptions] = useState<string[]>([])
 
   useEffect(() => {
-    if (cachedAction.resourceId == undefined) return
-    fetchResourceMeta(cachedAction.resourceId).then(
+    if (cachedAction.resourceID == undefined) return
+    fetchResourceMeta(cachedAction.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         const { schema } = data
         setSelectOptions((schema?.databases ?? []) as string[])
       },
     )
-  }, [cachedAction.resourceId])
+  }, [cachedAction.resourceID])
 
   const handleValueChange = useCallback(
     (value: string | boolean, name: string[]) => {

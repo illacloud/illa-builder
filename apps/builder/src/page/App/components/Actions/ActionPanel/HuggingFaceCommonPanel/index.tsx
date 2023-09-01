@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { Select, SelectValue } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { RecordEditor } from "@/components/RecordEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { HuggingFaceCommonPanelProps } from "@/page/App/components/Actions/ActionPanel/HuggingFaceCommonPanel/interface"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
   bodyChooserStyle,
@@ -216,7 +216,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
     (value?: SelectValue) => {
       let newBody = value === "pairs" ? PairsBodyInitital : InputInitial
       if (
-        selectedAction.resourceId === cachedAction.resourceId &&
+        selectedAction.resourceID === cachedAction.resourceID &&
         selectedAction.content?.inputs?.type === value
       ) {
         newBody = selectedAction.content.inputs.content
@@ -355,7 +355,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
                 onChangeValue={handleOnChangeValue}
                 onDelete={handleOnDeleteKey}
                 onAdd={handleOnAddKeys}
-                valueInputType="any"
+                valueInputType={VALIDATION_TYPES.ANY}
               />
             )}
             {(currentParameterType === "binary" ||

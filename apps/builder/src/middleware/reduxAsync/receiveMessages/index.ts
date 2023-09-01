@@ -11,6 +11,7 @@ export const receiveMessage = (action: AnyAction, currentAppID: string) => {
   const newType = `${reduxType}/${reduxAction}`
   action.type = newType
   action.from = REDUX_ACTION_FROM.WS
+
   switch (newType) {
     case "apps/removeDashboardAppReducer": {
       if (payload === currentAppID) {

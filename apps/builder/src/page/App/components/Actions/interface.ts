@@ -1,7 +1,7 @@
 export interface ConfigElementProps {
-  resourceId?: string
+  resourceID?: string
   onBack: () => void
-  onFinished: (resourceId: string) => void
+  onFinished: (resourceID: string) => void
 }
 
 export interface RedisLikeConfigElementProps extends ConfigElementProps {

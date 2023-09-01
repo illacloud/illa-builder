@@ -1,3 +1,4 @@
+import { BaseAiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import {
   AirtableAction,
   AirtableActionConfigType,
@@ -102,6 +103,7 @@ export type ActionType =
   | "appwrite"
   | "upstash"
   | "airtable"
+  | "aiagent"
 
 export type ActionTriggerMode = "manually" | "automate"
 
@@ -123,17 +125,19 @@ export interface IAdvancedConfig {
 export interface ActionConfig {
   public: boolean
   advancedConfig?: IAdvancedConfig
+  icon?: string
 }
 
 export interface ActionItem<T extends ActionContent> {
   config?: ActionConfig
-  actionId: string
+  actionID: string
   displayName: string
   actionType: ActionType
   transformer: Transformer
   triggerMode: ActionTriggerMode
-  resourceId?: string
+  resourceID?: string
   content: T
+  isVirtualResource: boolean
 }
 
 export interface UpdateActionDisplayNamePayload {
@@ -177,6 +181,7 @@ export type ActionContent =
   | CouchDBAction<CouchDBOptionsType>
   | GoogleSheetsAction<GoogleSheetsActionOpts>
   | AirtableAction<AirtableActionConfigType>
+  | BaseAiAgentActionContent
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 

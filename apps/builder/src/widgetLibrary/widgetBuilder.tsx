@@ -1,5 +1,5 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, LazyExoticComponent, lazy } from "react"
-import { isCloudVersion } from "@/utils/typeHelper"
 import {
   AUDIO_EVENT_HANDLER_CONFIG,
   AUDIO_PANEL_CONFIG,

@@ -33,7 +33,7 @@ export const DeleteMultipleRecordsPart: FC = () => {
   return (
     <InputEditor
       title={t("editor.action.panel.label.airtable.record_ids")}
-      value={config.recordIds}
+      value={config.recordIDs}
       placeholder={'{{["1","2","3"]}}'}
       onChange={(value) => {
         dispatch(
@@ -43,7 +43,7 @@ export const DeleteMultipleRecordsPart: FC = () => {
               ...cachedAction.content,
               config: {
                 ...config,
-                recordIds: value,
+                recordIDs: value,
               },
             },
           }),

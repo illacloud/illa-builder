@@ -682,9 +682,9 @@ export class ExecutionTreeFactory {
               widgetOrAction.actionType !== "transformer" &&
               widgetOrAction.triggerMode === "automate"
             ) {
-              const { $actionId } = widgetOrAction
+              const { $actionID } = widgetOrAction
 
-              const runningActionID = this.runningActionsMap.get($actionId)
+              const runningActionID = this.runningActionsMap.get($actionID)
               if (runningActionID) {
                 window.clearTimeout(runningActionID)
               }
@@ -693,7 +693,7 @@ export class ExecutionTreeFactory {
                   widgetOrAction as IExecutionActions,
                 )
               }, 300)
-              this.runningActionsMap.set($actionId, deleteID)
+              this.runningActionsMap.set($actionID, deleteID)
             }
           }
           return current

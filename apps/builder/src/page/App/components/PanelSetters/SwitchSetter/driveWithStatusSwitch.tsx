@@ -1,8 +1,8 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { debounce } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { Switch, useModal } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { dynamicWidthStyle } from "@/page/App/components/PanelSetters/style"
 import {
   fetchAnonymousPermission,

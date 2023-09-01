@@ -1,18 +1,17 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, useMessage } from "@illa-design/react"
+import { Button, ForkIcon, useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { Iframe } from "@/components/Iframe"
 import { getTemplateConfig } from "@/config/template"
 import { TemplateName } from "@/config/template/interface"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import {
   informationStyle,
   logoCursorStyle,
@@ -22,8 +21,8 @@ import {
   viewControlStyle,
 } from "@/page/App/components/PageNavBar/style"
 import { editorContainerStyle } from "@/page/App/style"
+import { Page404 } from "@/page/Status/404"
 import { forkIconStyle, forkTextStyle, frameStyle } from "@/page/Template/style"
-import { Page404 } from "@/page/status/404"
 import { configActions } from "@/redux/config/configSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { fetchResources } from "@/services/resource"

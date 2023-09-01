@@ -14,7 +14,7 @@ export const LayoutAutoChange: FC<LayoutAutoChangeProps> = (props) => {
   return (
     <>
       {isMobile
-        ? lazyLoad(lazy(() => import("@/page/status/MobileFobidden")))
+        ? lazyLoad(lazy(() => import("@/page/Status/MobileFobidden")))
         : desktopPage}
     </>
   )

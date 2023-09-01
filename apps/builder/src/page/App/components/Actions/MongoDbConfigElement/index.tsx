@@ -1,10 +1,12 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
 import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
 import {
@@ -29,7 +31,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -42,7 +44,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
   const { track } = useContext(MixpanelTrackContext)
 
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   let content: MongoDbResource<MongoDbConfig>
@@ -91,7 +93,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "mongodb",
         onFinished,
         setSaving,
@@ -147,14 +149,14 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
           <MongoDbGuiMode
             control={control}
             watch={watch}
-            resourceId={resourceId}
+            resourceID={resourceID}
           />
         )}
         {configTypeWatch === "uri" && (
           <MongoDbUriMode
             control={control}
             watch={watch}
-            resourceId={resourceId}
+            resourceID={resourceID}
           />
         )}
 

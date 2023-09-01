@@ -31,6 +31,12 @@ export const headerStyle = css`
   gap: 16px;
 `
 
+export const tagGroupStyle = css`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+
 export const titleInfoStyle = css`
   display: flex;
   flex-direction: column;
@@ -91,9 +97,4 @@ export const footerStyle = css`
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-`
-
-export const appActionButtonStyle = css`
-  visibility: hidden;
-  transition: all 0.2s ease-in-out;
 `

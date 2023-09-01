@@ -2,8 +2,8 @@ import { ActionCreatorPage } from "@/page/App/components/Actions/ActionGenerator
 import { ResourceType } from "@/redux/resource/resourceState"
 
 export interface ResourceEditorProps {
-  resourceId?: string
+  resourceID?: string
   resourceType: ResourceType
   onBack: (page: ActionCreatorPage) => void
-  onFinished: (resourceId: string) => void
+  onFinished: (resourceID: string) => void
 }

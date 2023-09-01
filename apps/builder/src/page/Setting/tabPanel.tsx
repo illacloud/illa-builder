@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -11,7 +12,6 @@ import {
   tabPreTextStyle,
   tabPrefixStyle,
 } from "@/page/Setting/style"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
 export const SettingTabNavBar: FC = () => {
   const navigate = useNavigate()

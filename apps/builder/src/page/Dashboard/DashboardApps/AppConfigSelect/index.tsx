@@ -1,20 +1,20 @@
-import { FC, ReactNode, useContext, useMemo, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { DownIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
+import { UpgradeIcon } from "@illa-public/icon"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { ReactComponent as CheckmarkIcon } from "@/illa-public-component/RoleSelect/assets/success.svg"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
+} from "@illa-public/mixpanel-utils"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
+import { FC, ReactNode, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { DownIcon, SuccessIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateAppPublicConfig } from "@/services/apps"
 import { track } from "@/utils/mixpanelHelper"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import {
   optionContentStyle,
   optionItemStyle,
@@ -29,13 +29,14 @@ interface AppConfigSelectProps {
   isDeployed: boolean
 }
 
-const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
+export const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   const { canEditApp, appId, isPublic, isDeployed } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+
+  const upgradeModal = useUpgradeModal()
 
   const [popupVisible, setPopupVisible] = useState<boolean>()
 
@@ -80,7 +81,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
       },
     )
     try {
-      const res = await updateAppPublicConfig(isPublic, appId)
+      await updateAppPublicConfig(isPublic, appId)
       track?.(
         ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
         ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
@@ -93,12 +94,11 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
         },
       )
       dispatch(
-        dashboardAppActions.modifyConfigDashboardAppReducer({
+        dashboardAppActions.updateDashboardAppPublicReducer({
           appId,
-          config: { public: isPublic },
+          isPublic,
         }),
       )
-      return res
     } catch (e) {
       console.error(e)
       track?.(
@@ -149,7 +149,9 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
                 key={index}
                 onClick={() => {
                   if (isCloudVersion && !canUseBillingFeature) {
-                    handleUpgradeModalVisible(true, "upgrade")
+                    upgradeModal({
+                      modalType: "upgrade",
+                    })
                     return
                   }
                   onVisibleChange(false)
@@ -157,7 +159,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
                 }}
               >
                 {option.label}
-                {option.value === isPublic && <CheckmarkIcon />}
+                {option.value === isPublic && <SuccessIcon />}
               </div>
             )
           })}
@@ -175,5 +177,3 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
 }
 
 AppConfigSelect.displayName = "AppConfigSelect"
-
-export default AppConfigSelect

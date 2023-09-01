@@ -1,14 +1,13 @@
-import { authCloudRequest } from "@/api/http"
+import { authCloudRequest } from "@illa-public/illa-net"
 import {
-  fetchInviteLinkResponse,
-  inviteByEmailResponse,
-} from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { teamActions } from "@/redux/team/teamSlice"
-import { MemberInfo, TeamInfo } from "@/redux/team/teamState"
-import { isCloudVersion } from "@/utils/typeHelper"
+  MemberInfo,
+  TeamInfo,
+  getCurrentTeamInfo,
+  teamActions,
+} from "@illa-public/user-data"
 import store from "../store"
+import { getCurrentTeamID } from "../utils/team"
+
 
 export const fetchMyTeamsInfo = () => {
   return authCloudRequest<TeamInfo[]>({
@@ -24,7 +23,7 @@ export const fetchUpdateMembers = () => {
       url: "/members",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -35,7 +34,7 @@ export const fetchRemoveTeam = () => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -52,7 +51,7 @@ export const fetchUpdateInviteLinkStatus = (data: IInviteLinkStatusRequest) => {
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -72,72 +71,7 @@ export const fetchUpdateTeamPermissionConfig = (
       data,
     },
     {
-      needTeamID: true,
-    },
-  )
-}
-
-export const fetchInviteLink = async (userRole: USER_ROLE) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/inviteLink/userRole/${userRole}`,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-  return response.data
-}
-
-export const fetchRenewInviteLink = async (userRole: USER_ROLE) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/newInviteLink/userRole/${userRole}`,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-  return response.data
-}
-
-interface IInviteByEmailRequest {
-  email: string
-  userRole: USER_ROLE
-  hosts?: string
-}
-
-export const fetchInviteByEmail = (data: IInviteByEmailRequest) => {
-  return authCloudRequest<inviteByEmailResponse>(
-    {
-      method: "POST",
-      url: `/inviteByEmail`,
-      data,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-}
-
-interface IUpdateChangeUserRoleRequest {
-  userRole: USER_ROLE
-}
-
-export const fetchChangeUserRole = (
-  teamMemberID: string,
-  data: IUpdateChangeUserRoleRequest,
-) => {
-  return authCloudRequest<inviteByEmailResponse>(
-    {
-      method: "PATCH",
-      url: `/teamMembers/${teamMemberID}/role`,
-      data,
-    },
-    {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -149,7 +83,7 @@ export const fetchRemoveTeamMember = (teamMemberID: string) => {
       url: `/teamMembers/${teamMemberID}`,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -211,28 +145,6 @@ export const updateTeamPermissionConfig = async (
   await fetchUpdateTeamPermissionConfig(requestData)
   await updateTeamsInfo(teamIdentifier)
   return allowEditorManageTeamMember && allowViewerManageTeamMember
-}
-
-export const inviteByEmail = async (email: string, userRole: USER_ROLE) => {
-  const requestData = {
-    email,
-    userRole,
-    hosts: !isCloudVersion ? window.location.origin : undefined,
-  }
-  const response = await fetchInviteByEmail(requestData)
-  await updateMembers()
-  return response.data
-}
-
-export const changeTeamMembersRole = async (
-  teamMemberID: string,
-  userRole: USER_ROLE,
-) => {
-  const requestData = {
-    userRole,
-  }
-  await fetchChangeUserRole(teamMemberID, requestData)
-  return true
 }
 
 export const removeTeamMembers = async (teamMemberID: string) => {

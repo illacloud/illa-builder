@@ -72,11 +72,13 @@
       "sort-failed": "フィルタの種類を変更できませんでした。もう一度やり直してください。",
       "detail-load-failed": "詳細の取得に失敗しました。もう一度やり直してください。",
       "fork-failed": "フォークに失敗しました。もう一度やり直してください。",
-      "create-suc": "作成に失敗しました。もう一度やり直してください。",
+      "create-suc": "正常に保存しました",
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
-      "delete-suc": "正常に削除しました。 "
-    }
+      "delete-suc": "正常に削除しました。 ",
+      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。"
+    },
+    "create": "作成"
   },
   "dayjs": {
     "just_now": "ただ"
@@ -161,7 +163,7 @@
           "configure": "{{ name }} を設定",
           "database": "データベース",
           "select": "リソースの種類を選択",
-          "huggingface": "Hugging Face",
+          "huggingface": "抱きしめる顔",
           "appwrite": "Appwrite",
           "couchdb": {
             "couchdb": "CouchDB"
@@ -170,7 +172,7 @@
             "oracle": "Oracle DB"
           },
           "gs": {
-            "google_sheets": "Google Sheets"
+            "google_sheets": "Google シート"
           },
           "neon": {
             "neon": "Neon"
@@ -183,8 +185,8 @@
           "required": "{name}入力してください"
         },
         "label": {
-          "inference_api": "Inference API",
-          "inference_endpoint": "Inference Endpoint",
+          "inference_api": "推論API",
+          "inference_endpoint": "推論エンドポイント",
           "s3": "公開アプリでは無効",
           "acl": "アップロードされたファイルのデフォルトS3 ACL",
           "appwrite": {
@@ -195,9 +197,9 @@
             "collectionid": "コレクション ID",
             "documentid": "ドキュメント ID",
             "data": "データ",
-            "filter": "Filter",
-            "order": "Order by",
-            "limit": "Limit"
+            "filter": "フィルター",
+            "order": "並び順",
+            "limit": "制限"
           },
           "oracle": {
             "sid": "データベース名",
@@ -216,8 +218,8 @@
             "spreadsheet": "スプレッドシート",
             "sheet_name": "シート名",
             "data_range": "データ範囲",
-            "limit": "Limit",
-            "offset": "Offset",
+            "limit": "制限",
+            "offset": "オフセット",
             "a1_notation": "A1表記",
             "values_to_append": "追加する値",
             "filter_by": "フィルタ条件",
@@ -230,7 +232,7 @@
             "sheet_id_to_copy": "コピーするシートID",
             "sheet_to_copy_to": "コピー先のシート",
             "authentication": "認証",
-            "connect_with_oauth": "OAuth で接続して保存",
+            "connect_with_oauth": "Google と接続する",
             "reconnect_with_oauth": "OAuth で再接続する",
             "access_type": "アクセスの種類"
           },
@@ -249,10 +251,10 @@
             "projectid": "プロジェクトID",
             "secret": "••••••••••••••••••••",
             "filter": {
-              "attribute": "attribute",
+              "attribute": "属性",
               "value": "1234"
             },
-            "order": "attribute",
+            "order": "属性",
             "collectionid": "コレクションを選んでください",
             "data": "{{ }} で囲まれたオブジェクト。 たとえば、{{ { \"key\": \"value\" } }}"
           },
@@ -262,17 +264,17 @@
             }
           },
           "oracle": {
-            "username": "oracle",
+            "username": "オラクル",
             "password": "••••••••"
           },
           "gs": {
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "row_filter": {
-              "column_name": "column_name",
+              "column_name": "列名",
               "value": "値"
             },
             "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
-            "primary_key_column": "column_name",
+            "primary_key_column": "列名",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
               "key": "キー値",
@@ -357,11 +359,11 @@
           },
           "restapi": {
             "authentication": {
-              "digest_auth": "Digest Auth",
+              "digest_auth": "ダイジェスト認証",
               "auth_1": "OAuth 1.0",
-              "hawk_authentication": "Hawk Authentication",
+              "hawk_authentication": "ホーク認証",
               "aws_v4": "AWS Signature V4",
-              "session_based_auth": "Session Based Auth (deprecated)"
+              "session_based_auth": "セッションベースの認証（非推奨）"
             },
             "certificates": "自己署名証明書を使用する",
             "ca_certificate": "サーバー証明書",
@@ -405,8 +407,8 @@
             "connection_string": "接続文字列"
           },
           "airtable": {
-            "access_token": "Access token",
-            "api_key": "API key"
+            "access_token": "アクセストークン",
+            "api_key": "API キー"
           }
         },
         "default": {
@@ -447,18 +449,18 @@
           "max_file": "ファイルサイズは 5M を超えることはできません。"
         },
         "firebase": {
-          "action_type": "Action Type",
-          "collection": "Collection",
+          "action_type": "アクションタイプ",
+          "collection": "コレクション",
           "database_ref": "データベース参照",
           "document_id": "ドキュメント ID",
           "email": "郵便",
-          "end_at": "End At",
+          "end_at": "終了",
           "len_of_list": "リストの長さ ",
           "limit": "Limit",
           "next_page_token": "次のページトークン",
           "object_to_set": "設定するオブジェクト",
-          "order_by": "Order by",
-          "ordering_direction": "Ordering direction",
+          "order_by": "並び順",
+          "ordering_direction": "順序の方向",
           "parent_document_id": "親ドキュメントID",
           "phone_number": "電話番号",
           "placeholder": {
@@ -470,20 +472,20 @@
             "select_collection": "コレクションを選択",
             "value": "値"
           },
-          "service_type": "Service Type",
-          "start_at": "Start At",
+          "service_type": "サービスタイプ",
+          "start_at": "開始日時",
           "tips": {
             "document_id": "自動生成された ID の場合は空白のままにします。",
             "parent_document_id_tips": "最上位コレクションの場合は空白のままにします。"
           },
           "uid": "UID",
           "use_a_dropdown": "ドロップダウンを使用",
-          "use_end_at": "Use endAt",
+          "use_end_at": "endAt を使用",
           "use_raw_id": "raw idを使用",
           "use_start_at": "Use startAt",
-          "user_object": "User object ",
+          "user_object": "ユーザーオブジェクト ",
           "value": "值",
-          "where": "where"
+          "where": "どこで"
         },
         "label": {
           "event_handler": "イベントハンドラ",
@@ -507,7 +509,7 @@
               "realm": "testrealm@example.com",
               "ext": "some-app-extra-data",
               "app": "アプリケーション ID",
-              "dig": "delegated-by",
+              "dig": "委任済み by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "クエリパラメータの代わりに HTTP Authorization ヘッダーを使用して認証します",
               "find_instructions_on": "<0>AWS ドキュメント</0>でアクセス キーの場所に関する説明を見つけてください。",
@@ -531,8 +533,8 @@
                 "find": "探す",
                 "get": "ビューを取得"
               },
-              "skip": "Skip",
-              "limit": "Limit",
+              "skip": "スキップ",
+              "limit": "制限",
               "include": "ドキュメントを含める",
               "des": "Descending order",
               "id": "_id",
@@ -590,7 +592,7 @@
                 "delete_record": "レコードを削除する"
               },
               "sort": {
-                "asc": "ASC",
+                "asc": "ASCの",
                 "desc": "DESC"
               }
             },
@@ -610,14 +612,14 @@
             "access_token": "アクセストークン",
             "token_secret": "トークンシークレット",
             "private_key": "Private key",
-            "realm": "Realm",
-            "hawk_auth_id": "Hawk Auth ID",
-            "hawk_auth_key": "Hawk Auth Key",
-            "algorithm": "Algorithm",
-            "user": "User",
+            "realm": "レルム",
+            "hawk_auth_id": "ホーク認証ID",
+            "hawk_auth_key": "ホーク認証キー",
+            "algorithm": "アルゴリズム",
+            "user": "ユーザー",
             "nonce": "Nonce",
             "ext": "ext",
-            "app": "app",
+            "app": "アプリ",
             "dig": "dig",
             "timestamp": "タイムスタンプ",
             "aws_region": "AWS リージョン",
@@ -656,11 +658,11 @@
             "periodically_run": "定期的に実行"
           },
           "airtable": {
-            "base_id": "Base ID",
+            "base_id": "ベースID",
             "table_name": "テーブル名",
             "method": "方法",
             "view": "ビュー",
-            "fields": "Fields",
+            "fields": "フィールド",
             "filter_by_formula": "数式でフィルター",
             "sort": "ソート",
             "max_records": "最大レコード数",
@@ -669,10 +671,10 @@
             "cell_format": "セルのフォーマット",
             "time_zone": "タイムゾーン",
             "user_locales": "ユーザーのロケール",
-            "record_id": "Record ID",
-            "records": "Records",
-            "record": "Record",
-            "record_ids": "Record IDs"
+            "record_id": "レコードID",
+            "records": "レコード",
+            "record": "レコード",
+            "record_ids": "レコードID"
           },
           "ai-agent": {
             "model": "モデル",
@@ -727,7 +729,7 @@
           "object_key_list": "オブジェクトのキー値リスト",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\n sXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNho30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\n YW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\n MFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
-            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.t\"]}}",
             "object_name": "export.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
@@ -783,11 +785,11 @@
             "binary": "'@cats.jpg' \\",
             "use_cache": "ブール値、true の場合は空白のままにします",
             "min_length": "出力要約のトークンの最小長を定義する整数",
-            "top_k": "Integer to define the top tokens",
-            "top_p": "Float to define the tokens",
+            "top_k": "トップトークンを定義するための整数",
+            "top_p": "トークンを定義する浮動小数点数",
             "temperature": "Float(0.0-100.0),1.0 の場合は空白のままにする",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
+            "max_time": "Float (0.0-120.0) で秒単位で時間を定義します",
             "selectParameterType": "タイプを選択"
           },
           "tips": {
@@ -798,15 +800,15 @@
           },
           "parameter": "パラメータ",
           "use_detail_parameters": "詳細パラメータを使用",
-          "use_cache": "Use cache",
-          "wait_for_model": "Wait for model",
-          "min_length": "Min length",
-          "max_length": "Max length",
-          "top_k": "Top k",
-          "top_p": "Top p",
-          "temperature": "Temperature",
-          "repetition_penalty": "Repetition penalty",
-          "max_time": "Max time"
+          "use_cache": "キャッシュを使用",
+          "wait_for_model": "モデルを待機する",
+          "min_length": "最小長さ",
+          "max_length": "最大長さ",
+          "top_k": "トップ k",
+          "top_p": "トップ p",
+          "temperature": "温度",
+          "repetition_penalty": "繰り返しペナルティ",
+          "max_time": "最大時間"
         },
         "sqlgc": {
           "placeholder": {
@@ -820,7 +822,7 @@
           "config_type": "構成タイプ",
           "query": "クエリ",
           "placeholder": {
-            "query": "select * from users;",
+            "query": "ユーザーから * を選択します;",
             "table": "リフレッシュ",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
@@ -876,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -915,13 +917,13 @@
             "ssl_options": "SSL オプション",
             "username_password": "ユーザー名/パスワード",
             "self_signed_certificate": "自己署名証明書を使用",
-            "disable_introspection": "Disable Introspection",
-            "value": "Value",
-            "add_to": "Add to",
-            "header_prefix": "Header prefix",
-            "key": "Key",
+            "disable_introspection": "イントロスペクションを無効にする",
+            "value": "値",
+            "add_to": "追加先",
+            "header_prefix": "ヘッダ接頭辞：",
+            "key": "キー",
             "introspection": "Introspection",
-            "bear_token": "Token",
+            "bear_token": "トークン",
             "connection_options": "接続設定",
             "account_name": "Account Identifier",
             "warehouse": "倉庫",
@@ -946,13 +948,13 @@
             "password": "パスワード",
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "ユーザー名",
-            "default": "default",
+            "default": "デフォルト",
             "hugging_face_url": "絶対 URL (例: https://api-conference.huggingface.co/models/) を使用してください。 ",
             "database_name": "データベース名",
             "account_name": "xy12345.us-east-2.aws",
             "warehouse": "WH",
             "snowflake_database": "SNOWFLAKE_SAMPLE_DATA_DESC",
-            "schema": "PUBLIC",
+            "schema": "公開",
             "role": "役割",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
@@ -962,18 +964,18 @@
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
             "name": "このリソースにILLAで名前を付ける",
-            "private_key": "<0>Click here</0> to see how to obtain this key",
+            "private_key": "<0>ここをクリック</0>このキーを取得する方法を確認してください",
             "ssl_options": "可能な場合は SSL を使用する",
             "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
-            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
+            "introspection": "GraphQL エンドポイントがイントロスペクションクエリをサポートしていない場合は、これをオンにします。 イントロスペクションを無効にすると、このリソースの自動補完やリンクが機能しないため、GraphQLのユーザビリティが低下することに注意してください。",
             "hugging_face_url": "<0>Hugging Faceの詳細については、こちら</0>をクリックしてください。",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "bear_token": "Hug Face プロファイルの設定で <0>ユーザアクセストークンまたは API トークンを取得します。</0>",
             "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default. "
           },
           "title": {
             "advanced_option": "詳細設定",
             "general_option": "ユニバーサル",
-            "graphql_introspection": "GRAPHQL INTROSPECTION"
+            "graphql_introspection": "グラフの入力"
           }
         },
         "error": {
@@ -1126,12 +1128,12 @@
       "acl": {
         "option": {
           "blank": "—",
-          "private": "private",
+          "private": "非公開",
           "public_read": "public-read",
           "public_read_write": "public-read-write",
           "aws_exec_read": "aws-exec-read",
-          "auth": "authenticated-read",
-          "bucket_owner_read": "bucket-owner-read",
+          "auth": "認証された読み取り",
+          "bucket_owner_read": "Bucket-owner-read",
           "bucket_owner_full_control": "bucket-owner-full control"
         }
       }
@@ -2130,9 +2132,9 @@
           "outline": "概要",
           "auto": "自動",
           "limited": "制限",
-          "limit_offset_based": "Limit offset based",
+          "limit_offset_based": "リミットオフセットベース",
           "cursor_based": "カーソルベース",
-          "graphql_relay_cursor": "GraphQL Relay cursor"
+          "graphql_relay_cursor": "GraphQLリレーカーソル"
         },
         "input": {
           "input": "入力",
@@ -2520,7 +2522,7 @@
       "history": "沿革",
       "more": "もっと見る",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "⌘S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -2558,7 +2560,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "ロゴ",
         "name": "名前",
         "desc": "説明",
         "mode": "モード",
@@ -2567,25 +2568,27 @@
         "welcome": "ウェルカムメッセージ",
         "model": "モデル",
         "temperature": "温度",
-        "max-token": "最大トークン"
+        "max-token": "最大トークン",
+        "icon": "アイコン"
       },
       "placeholder": {
-        "logo": "アップロード",
         "name": "エージェントに名前を付けてください",
         "desc": "このエージェントが何に使用されるかを簡単に説明します。",
-        "prompt": "変数を入力 / 選択します",
+        "prompt": "変数を使用するには、 {{variableName}} を入力してください",
         "variable": {
           "key": "変数名",
           "value": "値"
         },
         "welcome": "ユーザーがエージェントの使用を開始したときに表示されるウェルカムメッセージを入力します。",
-        "temperature": "0 から 1 の間の値。値が小さいほど効果が良くなります。",
-        "max-token": "単一のランで消費されるトークンの最大数を制限するために使用されます。"
+        "icon": "アップロード",
+        "send": "エージェントに何か送信"
       },
       "tips": {
         "mode": "チャットモードでは、送信された各メッセージには、リクエストの一部としての会話履歴が含まれており、結果が良くなりますが、トークンが多く消費されます。 テキストモードでは、送信された各メッセージには会話履歴が含まれません。 チャットモードに比べて最適な結果は少なくなり、トークンは保存されます。",
         "not-start": "エージェントの構成を完了し、format@@0をクリックして実行します",
-        "not-start-run": "左のスタートボタンをクリックしてください。"
+        "not-start-run": "左のスタートボタンをクリックしてください。",
+        "temperature": "0 から 1 の間の値。値が小さいほど効果が良くなります。",
+        "max-token": "単一のランで消費されるトークンの最大数を制限するために使用されます。"
       },
       "option": {
         "mode": {
@@ -2615,7 +2618,27 @@
       },
       "message": {
         "click-start": "開始ボタンをクリックしてトリガーします。",
-        "insufficient_token": "トークンが足りません"
+        "insufficient_token": "トークンが足りません",
+        "start-failed": "開始に失敗しました。もう一度やり直してください。 ",
+        "reconnect": "接続が失われました。再接続中...",
+        "token-not-enough": "モデルの上限に達しました。再起動してください。",
+        "token": "Maxトークンの現在の値が低いため、結果が不完全になる可能性があります。",
+        "purchase-required": "Collaは実行するのに十分ではありません。充電してください。",
+        "leave": "保存されていないコンテンツがあります。本当に退出しますか？",
+        "generating": "世代が完了するか、プロセスを中断するまでお待ちください"
+      },
+      "title": "AI エージェントを編集",
+      "generate-desc": {
+        "button": "AI 生成",
+        "tooltips": "AIを使用して、プロンプトに基づいて説明を生成します。 ",
+        "failed": "生成に失敗しました。後でもう一度お試しください。 "
+      },
+      "generate-icon": {
+        "tooltips": "エージェント名と説明に基づいてアイコンを生成するためにAIを使用します"
+      },
+      "title-preview": {
+        "chat": "チャット",
+        "text-generation": "テキストの生成"
       }
     },
     "common": {
@@ -3213,11 +3236,19 @@
       "owner": "オーナー",
       "admin": " 管理者",
       "editor": "編集者",
-      "viewer": "見るだけ"
+      "viewer": "見るだけ",
+      "tips": {
+        "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
+        "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
+        "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "メンバーを招待"
+        "invite_members": "メンバーを招待",
+        "invite_to_use": "招待する",
+        "invite_to_edit": "編集に招待",
+        "contribute": "コミュニティ"
       },
       "link": {
         "invite_title": "招待リンク",
@@ -3232,7 +3263,10 @@
         "turn_off_fail": "オフにできませんでした",
         "turn_on_fail": "オンにできませんでした",
         "make_public_title": "アプリを公開する",
-        "make_public_copy": "コピー"
+        "make_public_copy": "コピー",
+        "marketplace": {
+          "label": "リンクで共有"
+        }
       },
       "email": {
         "invite_title": "メールで招待する",
@@ -3240,8 +3274,8 @@
         "placeholder": "メールアドレスを入力",
         "invited": "招待しました",
         "in_list": "このユーザーは既にチーム内にいます",
-        "notmail": "{{ email }}はメールではありません",
-        "duplicate": "{{ email }}は重複したメールアドレスです"
+        "duplicate": "{{ email }}は重複したメールアドレスです",
+        "not_mail": "{{ email }}はメールではありません"
       },
       "invalid_email": "有効なメールアドレスを入力して下さい。",
       "message": {
@@ -3251,14 +3285,42 @@
       },
       "tab": {
         "invite": "招待",
-        "public": "公開"
+        "public": "公開",
+        "with_team": "チームメンバーと共有"
       },
       "custom_copy_text_app_invite": "{{userName}} が「{{teamName}}」のアプリを共有しました。 リンクをクリックしてチームに参加し、アプリを確認してください: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} が「{{teamName}}」からアプリをあなたと共有しました。 リンクをクリックしてアプリを確認してください: {{inviteLink}}",
       "custom_copy_text": "{{userName}} が「{{チーム名}}」に参加するよう招待しています。 リンクをクリックしてチームに参加します: {{inviteLink}}",
       "tips": {
         "license_insufficient": "残りのライセンス"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}",
+      "contribute": {
+        "label": "コミュニティに貢献する",
+        "default_text": {
+          "app": "{{ appName }}と呼ばれる印象的なアプリを発見しました。確認してください： {{ appLink }}",
+          "agent": "{{ agentName }}という印象的なAIエージェントを発見しました。確認してください： {{ agentLink }}"
+        },
+        "desc": "Marketplaceに貢献すると、すべてのユーザーがエージェントを実行、スター、フォークできます。 他のチームのユーザーがこのエージェントを運営すると、あなたのリソースは消費されません。",
+        "turn_off": "投稿をキャンセル",
+        "app": {
+          "desc": "アプリをコミュニティに貢献すると、他のユーザーがインターフェイスを表示したり、アクションを実行したり、フォークしたりできます。 アプリをフォークするとき、リソース構成情報は含まれないため、リソース構成情報の開示を心配する必要はありません。"
+        }
+      },
+      "social_media": {
+        "label": "共有先：",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "ハッカーニュース",
+        "default_text": {
+          "app": "{{ appName }} という印象的なアプリを見つけました",
+          "agent": "印象的なAIエージェント {{ agentName }}を発見しました"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} は、「{{ teamName }}」からAIエージェントを共有します。チームに参加して確認してください: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "招待しました",
@@ -3278,7 +3340,8 @@
       "permission": "権限",
       "operation": "オペレーション",
       "transfer": "所有権の譲渡",
-      "remove": "削除"
+      "remove": "削除",
+      "ai-agent": "AIエージェント"
     },
     "transfer_modal": {
       "title": "所有権を譲渡してもよろしいですか？",
@@ -3293,7 +3356,8 @@
       "cancel": "キャンセル"
     },
     "status": {
-      "pending": "処理待ち"
+      "pending": "処理待ち",
+      "current-user": "あなたです"
     },
     "settings": {
       "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします",
@@ -3435,25 +3499,25 @@
   "oauth_redirect_title": "이동",
   "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています...",
   "language": {
-    "en-US": "English",
+    "en-US": "日本語",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "アフリカーンス語",
+    "cs-CZ": "c<unk> es<unk> tina",
+    "de-DE": "ドイツ",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "francブドウ栽培format@@0",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugue<unk> s",
+    "ro-RO": "roma<unk> na<unk>",
+    "ru-RU": "<unk> <unk> <unk> <unk> <unk> <unk>",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -3592,12 +3656,17 @@
       "billing": "請求",
       "license": "ライセンス",
       "drive": "ドライブ",
+      "colla": "Colla",
+      "appsumo": "Appsoco",
+      "colla_transaction": "Collaトランザクション履歴",
       "billing_portal": "Billing portal"
     },
     "title": {
       "billing": "請求",
       "license": "ライセンス",
-      "drive": "ドライブ"
+      "drive": "ドライブ",
+      "colla": "Colla",
+      "appsumo": "Appsomo"
     },
     "subscription_general": {
       "plan": {
@@ -3606,7 +3675,8 @@
       },
       "sub_cycle": {
         "yearly": "年ごと",
-        "monthly": "月ごと"
+        "monthly": "月ごと",
+        "lifetime": "有効期間"
       },
       "billing_cyle": {
         "year": "/年",
@@ -3617,7 +3687,8 @@
         "expiration_date": "有効期限",
         "licenses": "ライセンス",
         "storage": "ストレージ",
-        "traffic": "トラフィック"
+        "traffic": "トラフィック",
+        "colla": "Colla"
       },
       "period": {
         "current": "現在",
@@ -3629,33 +3700,57 @@
         "License": "ライセンス",
         "Storage": "ストレージ",
         "Traffic": "トラフィック",
-        "balance": "残高"
+        "balance": "残高",
+        "colla": "Colla"
       },
       "button": {
         "License": "ライセンスの管理",
         "Storage": "ストレージの管理",
-        "Traffic": "トラフィックを拡大"
+        "Traffic": "トラフィックを拡大",
+        "colla": "コラの管理"
       },
       "capacity": {
         "License": "{{used}} (合計 {{total}} ライセンス) が使用されています。",
         "Storage": "{{used}} (合計 {{total}} GB) が使用されています。",
-        "Traffic": "{{used}} (合計 {{total}} GB) が使用されています。"
+        "Traffic": "{{used}} (合計 {{total}} GB) が使用されています。",
+        "colla": "{{used}} Colla used (total of {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "トークン"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "月",
+        "event": "イベント",
+        "usage": "コラの使用法"
+      },
+      "event": {
+        "increase_storage": "ストレージ容量を上げる",
+        "increase_colla": "コラを上げる",
+        "increase_traffic": "トラフィックを増加"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "ストレージの管理",
         "manage_licenses": "ライセンスの管理",
-        "expand_traffic_capac": "トラフィック容量を拡大"
+        "expand_traffic_capac": "トラフィック容量を拡大",
+        "colla": "コラの管理"
       },
       "plan_label": {
         "License": "ライセンス",
         "Storage": "ストレージ",
-        "Traffic": "トラフィック"
+        "Traffic": "トラフィック",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
         "License": "ライセンス",
-        "Storage_traffic": "GB"
+        "Storage_traffic": "GB",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "年ごと",
@@ -3694,7 +3789,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colra"
       },
       "button": {
         "unsubscribe": "購読解除",
@@ -3703,7 +3799,9 @@
         "storage_traffic_increase": "{{changeNum}} GB を上げる",
         "storage_traffic_remove": "{{changeNum}} GB を削除",
         "license_increase": "{{changeNum}} ライセンスを増加",
-        "license_remove": "{{changeNum}} ライセンスを削除"
+        "license_remove": "{{changeNum}} ライセンスを削除",
+        "colla_increase": "{{changeNum}} コラを上げる",
+        "colla_remove": "{{changeNum}} コラを削除"
       },
       "description_title": {
         "add_storage": "{{changeNum}} GB のストレージを追加します。 確認が完了すると、この請求サイクルの新しいストレージの支払いがすぐに差し引かれます。<0>詳細はこちら</0>",
@@ -3724,21 +3822,31 @@
         "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションを購読します。<0>詳細はこちら</0>",
         "subscribe_license_yearly": "あなたはILLA Cloud Plusの年額サブスクリプションを購読します。<0>詳細はこちら</0>",
         "subscribe_storage_monthly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>",
-        "subscribe_storage_yearly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>"
+        "subscribe_storage_yearly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>",
+        "colla_sub": "あなたはコラを購読するつもりです。 確認が完了すると、各請求サイクルの開始時に自動的に手数料が差し引かれ、Colaが必要な場合に自動的にサブスクリプションをアップグレードします。 <0>詳細</0>",
+        "colla_increase": "{{changeNum}} Collaを追加します。確認が完了すると、この請求サイクルの残り金額がすぐに差し引かれます。<0>詳細</0>",
+        "colla_remove": "{{changeNum}} Collaを削除します。確認後、次の請求サイクルから有効になります。<0>詳細</0>",
+        "colla_unsubscribe": "あなたはあなたのCollaサブスクリプションをキャンセルしようとしています。確認後、次の請求サイクルから有効になります。 キャンセル後、ILLA ドライブと AI Agent の使用に問題が発生することがあります。<0>詳細はこちら</0>",
+        "colla_update": "あなたはあなたのCollaサブスクリプションを変更します。確認が完了すると、次の請求サイクルから変更が反映されます。<0>詳細</0>"
       },
       "description": {
-        "add_storage": "毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間の周期内の4日の期間に比例しますので、控除は1ライセンス*0と推定されます。 9 / 30 日 * 4日間、およそ$ 0.132になります。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、ユーザー<0>プライバシーポリシー</0>および<1>サービス規約</1>をご覧ください。",
         "remove_storage": "あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "update_plan_year": "次の期間から、サブスクリプションは年間サブスクリプションに変更されます。 年間購読料に基づいて自動的に手数料が差し引かれます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "update_plan_monthly": "次の期間から、サブスクリプションは月額プランに変更されます 月額料金に基づいて自動的に手数料が差し引かれます ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "add_license": "例として、月額プランを使用した計算ルールを例として挙げましょう。3月14日以降、最初に5議席まで登録されたシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日には、追加で1席追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1席の費用を差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は1席*$ 10 / 30日*4日と推定され、約$ 1.33になります。 次の請求サイクルから、すべての座席料金は統合され、一緒に支払われます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "remove_license": "編集権限を持つユーザーの数が次の課金サイクルの開始時にライセンスの数を超えた場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内でライセンス数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "add_traffic": "正常に控除された後、トラフィックはリアルタイムで増加します。 トラフィックを使用すると、手数料は返金できません。未使用のトラフィックは単位GBで返金できます。 例えば、10GBのトラフィックを購入して4.5GBを使用している場合、5GBの払い戻しを申請することができます。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "subscribe_storage_yearly": "あなたはILLAドライブストレージの年間サブスクリプションに登録することになります。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 差し引かれた実際の量は、GBで購読しているストレージ容量によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始した場合、年間サブスクリプション料金は$ 9です。 GBごとに、合計3GBを持っていると、$ 29が差し引かれます。 2023年2月25日。 2023年3月25日に2GBを追加された場合、2023年3月25日に残りの11ヶ月分の支払いが差し引かれます。 その後、2024年2月25日までに、5 GBの支払いが差し引かれます。これは(2+3)*$9.9=$49です。 をクリックします。 ストレージを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "subscribe_storage_monthly": "あなたはILLAドライブストレージの毎月のサブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 差し引かれた実際の量は、GBで購読しているストレージ容量によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始した場合、月額料金は$ 0です。 1 GBにつき9 GBの合計を持っている、私たちは$ 2を差し引く。 2023年2月25日7。 2023年3月21日にライセンスを2つ追加すると、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに、5ライセンス(2+3*0)の支払いが差し引かれます。 9=$4.95. ライセンスを減らしたり、サブスクリプションにその他の変更を加えたい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 実際に差し引かれる金額は、ライセンスの数によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始し、月額プラン料金は1ライセンスあたり$ 12です。 合計3つのライセンスを持っていますが、2023年2月25日に36ドルを差し引く予定です。 2023年3月21日にライセンスを2つ追加すると、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに、5ライセンス(2+3)*12=60ドル)の支払いが差し引かれます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_increase_license": "更新された議席数と次の期間からの新しい請求サイクルの価格に基づいて手数料が自動的に差し引かれます。 今回は、現在の請求サイクルに応じて、増えた議席の支払いが差し引かれます。 例として、月額プランを使用してシートを増やした場合の計算ルールを例として挙げましょう。3月14日以降、当初5議席を購読した場合のシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日には、追加の座席を1つ追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1席の費用を差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は1席*$ 10 / 30日*4日と推定され、約$ 1.33になります。 次の請求サイクルから、すべての座席料金は統合され、一緒に支払われます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "update_plan_remove_license": "更新されたライセンス数と次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 編集権限を持つユーザーの数が次の課金サイクルの開始時にライセンスの数を超えた場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内でライセンス数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "update_plan_increase_storage": "更新されたストレージと次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 今回は、現在の請求サイクルに応じて、ストレージの増加分の支払いが差し引かれます。 毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間のサイクル内の4日の期間に比例。 したがって、控除は約$ 0.132の結果、1ライセンス* $ 0.99/30日*4日と推定されます。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "update_plan_remove_storage": "更新されたストレージと次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。"
+      },
+      "colla_redeem": {
+        "title": "{{changeNum}} Collaでは、以下を購入できます。 ",
+        "storage": "ストレージ",
+        "traffic": "トラフィック",
+        "token": "トークン"
       }
     },
     "message": {
@@ -3760,13 +3868,17 @@
       "failed_to_join_no_license": "チームライセンスが不足しているため参加できません。管理者に連絡してください。",
       "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
       "appsumo": {
+        "suc": "正常に償還されました",
+        "fail": "交換に失敗しました。後でもう一度お試しください。",
         "transfer": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 ",
         "leave": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 "
       },
       "no_license_operate_failed": "ライセンス不足のため操作に失敗しました。",
       "failed_to_invite_no_license": "ライセンス不足のため、一部のメンバー招待に失敗しました。",
       "error_subscribe": "プランの変更に失敗しました。後でもう一度お試しください。",
-      "unsubscription_fail": "サブスクリプションをキャンセルできませんでした。後でもう一度お試しください。"
+      "unsubscription_fail": "サブスクリプションをキャンセルできませんでした。後でもう一度お試しください。",
+      "failed_to_update": "サブスクリプションの更新に失敗しました。もう一度やり直してください。 ",
+      "update_suc": "サブスクリプションが更新されました"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3811,7 +3923,10 @@
         "others": "チームのサブスクリプションの有効期限が切れているため、あなたのアカウントは無効になっています。",
         "your_subscription_ha_not_owner": "ライセンスが足りません",
         "all_members_except_f_not_owner": "あなたのチームには十分なライセンスがありません。チームのオーナーにお問い合わせください。",
-        "upgrade_not_owner": "了解"
+        "upgrade_not_owner": "了解",
+        "your_subscription_ha": "サブスクリプションが期限切れです",
+        "all_members_except_f": "あなたのチームのサブスクリプションの有効期限が切れています。時間内に更新してください。",
+        "upgrade": "アップグレードする"
       },
       "blank_page": {
         "insufficient_license_disable": "チームライセンスが不足しているため、あなたのアカウントは無効になっています。チームオーナーにお問い合わせください。"
@@ -3861,18 +3976,68 @@
       "upgrade": "アップグレードする",
       "cancel": "キャンセル"
     },
-    "advanced": {
-      "feature": "透かしを削除"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "本当に {{teamName}} チームでAppSumoを利用しますか？ ",
+        "cancel": "キャンセル",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "引き換えるチームを選択",
+          "create_button": "新しいチームを作成",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "アカウントを作成"
+      },
+      "update": "AppSumo プランを更新"
+    },
+    "alert": {
+      "expired": {
+        "owner": "座席数が足りないか、サブスクリプションの有効期限が切れています。時間内にアップグレードしてください。 ",
+        "others": "座席が不足しているため、無効になっています。チームオーナーにお問い合わせください"
+      }
+    },
+    "yearly_discount": "（ほぼ16.7%）",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/month",
+      "yearly": "{{ price }}/editor/year"
     },
     "redirect_page": {
+      "title": "支払いが完了しました",
       "desc1": "ご購入ありがとうございます。ILLA Cloudは引き続き多くの機能を提供します。",
       "desc2": "{{time}} 秒後に ILLA Cloud にリダイレクトしています...",
-      "title": "支払いが完了しました",
       "button": "ILLAクラウドに戻る"
     },
     "redirect_to_stripe": "Stripeにリダイレクト中",
-    "appsumo": {
-      "update": "AppSumo プランを更新"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "ILLAドライブに任意のファイルを保存するために月額100MBのストレージ。",
+          "traffic": "ILLAドライブからファイルをダウンロードするための100 MBのトラフィック。"
+        }
+      },
+      "drive": {
+        "title": "ILLAドライブ",
+        "storage": "ILLAドライブに任意のファイルを格納するために月額5GBのストレージ",
+        "traffic": "ILLAドライブからファイルをダウンロードするための5GBのトラフィック。"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "ILLAドライブに任意のファイルを保存するための月額カスタムストレージ",
+          "traffic": "ILLAドライブからファイルをダウンロードするためのカスタムトラフィック"
+        }
+      }
+    },
+    "advanced": {
+      "feature": "透かしを削除"
     }
   },
   "network": {
@@ -3885,7 +4050,8 @@
     },
     "desc": {
       "no_description": "説明がありません",
-      "blank": "アプリケーションがありません"
+      "blank": "アプリケーションがありません",
+      "blank-agent": "ここにAIエージェントがありません"
     },
     "app_setting": {
       "app_setting": "アプリの設定",
@@ -3906,7 +4072,8 @@
       "update_suc": "正常に更新されました"
     },
     "button": {
-      "blank": "最初のアプリを作成する"
+      "blank": "最初のアプリを作成する",
+      "blank-agent": "AIエージェントを作成"
     }
   },
   "new_deploy": {
@@ -3924,37 +4091,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "編集に招待",
-      "invite_to_use": "招待する",
-      "share-with-team": "チームと共有",
-      "contribute": "貢献"
+      "share-with-team": "チームと共有"
     },
     "desc": {
-      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 ",
-      "contribute": "Marketplaceに貢献すると、すべてのユーザーがエージェントを実行、スター、フォークできます。 他のチームのユーザーがこのエージェントを運営すると、あなたのリソースは消費されません。"
-    },
-    "tips": {
-      "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
-      "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
-      "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
     },
     "label": {
-      "contribute": "マーケットプレイスに貢献する",
-      "social-media": "共有先："
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "ハッカーニュース"
-      }
+      "contribute": "マーケットプレイスに貢献する"
     },
     "default-text": {
       "social-media": {
-        "twitter": "こんにちは！この素晴らしいAIエージェントを見つけました。 ぜひ試してみてください！ {{promptName}}:{{promptLink}} #AIwriting #ProductivityBoost",
         "reddit": "この AI エージェント [{{promptName}} ] をチェックしてください。",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3962,11 +4108,36 @@
         "hackernews": "[{{promptName}}] で作業負荷を簡素化する - 作業を完了させるAIエージェント"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "share_contribute": "コピー & 共有",
+      "uncontribute": "投稿をキャンセル"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "reddit": "この素晴らしいアプリをチェックしてください [{{appName}}]",
+        "linkedin": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "facebook": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "whatsapp": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "簡単に使えるウェブアプリテンプレート [{{appName}}]"
+      },
+      "contribute": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AIエージェント",
   "marketplace": {
-    "star": "スター {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "スター",
+    "fork": "Fork"
+  },
+  "load": {
+    "before": "さらに読み込む"
+  },
+  "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
+  "contribute": "貢献",
+  "error_page": {
+    "fobidden": "アクセス権限がありません"
   }
 }

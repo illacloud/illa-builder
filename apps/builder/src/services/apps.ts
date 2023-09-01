@@ -1,11 +1,5 @@
+import { builderRequest } from "@illa-public/illa-net"
 import { createAction } from "@/api/actions"
-import { authCloudRequest, builderRequest } from "@/api/http"
-import {
-  REDIRECT_PAGE_TYPE,
-  fetchInviteLinkResponse,
-  inviteByEmailResponse,
-} from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
@@ -14,11 +8,12 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import store from "@/store"
-import { isCloudVersion } from "@/utils/typeHelper"
+import { getCurrentTeamID } from "../utils/team"
 
 interface IAPPPublicStatus {
   isPublic: boolean
 }
+
 export const fetchAPPPublicStatus = async (
   appID: string,
   teamIdentifier?: string,
@@ -31,8 +26,7 @@ export const fetchAPPPublicStatus = async (
       signal: signal,
     },
     {
-      needTeamIdentifier: true,
-      teamIdentifier,
+      teamIdentifier: teamIdentifier,
     },
   )
 }
@@ -50,8 +44,7 @@ export const fetchPubicAppInitData = (
       signal: signal,
     },
     {
-      needTeamIdentifier: true,
-      teamIdentifier,
+      teamIdentifier: teamIdentifier,
     },
   )
 }
@@ -59,7 +52,6 @@ export const fetchPubicAppInitData = (
 export const fetchPrivateAppInitData = async (
   appID: string,
   versionID: string,
-  teamIdentifier?: string,
   signal?: AbortSignal,
 ) => {
   return await builderRequest<CurrentAppResp>(
@@ -69,8 +61,7 @@ export const fetchPrivateAppInitData = async (
       signal: signal,
     },
     {
-      needTeamID: true,
-      teamIdentifier,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -85,7 +76,7 @@ export const fetchDeployApp = (appID: string, isPublic?: boolean) => {
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -107,12 +98,12 @@ export const fetchChangeAppSetting = (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
 
-export const fetchAppList = (signal: AbortSignal) => {
+export const fetchTeamAppList = (signal?: AbortSignal) => {
   return builderRequest<DashboardApp[]>(
     {
       url: "/apps",
@@ -120,7 +111,7 @@ export const fetchAppList = (signal: AbortSignal) => {
       signal: signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -129,6 +120,7 @@ interface IAppCreateRequestData {
   appName: string
   initScheme: ComponentNode
 }
+
 export const fetchCreateApp = (data: IAppCreateRequestData) => {
   return builderRequest<DashboardApp>(
     {
@@ -136,7 +128,7 @@ export const fetchCreateApp = (data: IAppCreateRequestData) => {
       method: "POST",
       data,
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -146,7 +138,7 @@ export const fetchDeleteApp = (appID: string) => {
       url: `/apps/${appID}`,
       method: "DELETE",
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -160,71 +152,16 @@ export const fetchCopyApp = (appID: string, name: string) => {
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
-}
-
-export const shareAppByEmail = async (
-  email: string,
-  userRole: USER_ROLE,
-  appID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<inviteByEmailResponse>(
-    {
-      method: "POST",
-      url: `/shareAppByEmail`,
-      data: {
-        email,
-        userRole,
-        appID,
-        redirectPage,
-        hosts: !isCloudVersion ? window.location.origin : undefined,
-      },
-    },
-    { needTeamID: true },
-  )
-  return response.data
-}
-
-export const fetchShareAppLink = async (
-  userRole: USER_ROLE,
-  appID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/shareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,
-    },
-    { needTeamID: true },
-  )
-  return response.data
-}
-
-export const renewShareAppLink = async (
-  userRole: USER_ROLE,
-  appID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/newShareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-  return response.data
 }
 
 export const updateAppPublicConfig = async (
   isPublic: boolean,
   appID: string,
 ) => {
-  await builderRequest<fetchInviteLinkResponse>(
+  await builderRequest<{}>(
     {
       method: "PATCH",
       url: `/apps/${appID}/config`,
@@ -233,7 +170,7 @@ export const updateAppPublicConfig = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
   return true
@@ -252,7 +189,7 @@ export const updateWaterMarkConfig = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -273,7 +210,7 @@ export const updateAppConfig = async (
       data: config,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

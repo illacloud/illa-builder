@@ -1,3 +1,8 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -10,8 +15,6 @@ import {
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -41,7 +44,6 @@ import {
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { handleLinkOpen } from "@/utils/navigate"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 
 const getResourceDefaultPort = (resourceType: string) => {
@@ -63,7 +65,7 @@ const getResourceDefaultPort = (resourceType: string) => {
 export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceType, resourceId, onFinished } = props
+  const { onBack, resourceType, resourceID, onFinished } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -72,7 +74,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   })
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<MysqlLikeResource>
   })
 
@@ -148,7 +150,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         resourceType,
         onFinished,
         setSaving,

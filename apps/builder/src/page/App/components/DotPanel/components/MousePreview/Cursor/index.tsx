@@ -1,3 +1,4 @@
+import { getColorByString } from "@illa-public/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
@@ -5,7 +6,6 @@ import { useDispatch } from "react-redux"
 import { ReactComponent as CursorIcon } from "@/assets/public/cursor.svg"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
-import { getColorByString } from "@/utils/colorHelper"
 import { CursorProps, NickNameContainerProps } from "./interface"
 import { applyCursorContainerStyle, nickNameContainerStyle } from "./style"
 

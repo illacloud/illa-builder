@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { isEqual } from "lodash"
 import {
   FC,
@@ -25,7 +26,6 @@ import { EditableText } from "@/components/EditableText"
 import { SimpleTabs } from "@/components/Tabs"
 import { ACTION_PANEL_TABS } from "@/components/Tabs/constant"
 import i18n from "@/i18n/config"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import {
@@ -405,7 +405,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                   actionActions.updateActionDisplayNameReducer({
                     newDisplayName: value,
                     oldDisplayName: selectedAction.displayName,
-                    actionID: newAction.actionId,
+                    actionID: newAction.actionID,
                   }),
                 )
                 return
@@ -417,7 +417,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                   actionActions.updateActionDisplayNameReducer({
                     newDisplayName: value,
                     oldDisplayName: selectedAction.displayName,
-                    actionID: newAction.actionId,
+                    actionID: newAction.actionID,
                   }),
                 )
               } catch (e) {

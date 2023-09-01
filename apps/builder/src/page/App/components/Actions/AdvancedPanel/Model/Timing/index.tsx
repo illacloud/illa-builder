@@ -1,11 +1,13 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Select, Switch } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import i18n from "@/i18n/config"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { AdvancedPanelControl } from "@/page/App/components/Actions/AdvancedPanel/Components/Control"
 import { AdvancedPanelHeader } from "@/page/App/components/Actions/AdvancedPanel/Components/Header"
 import { getCachedActionAdvancedConfig } from "@/redux/config/configSelector"

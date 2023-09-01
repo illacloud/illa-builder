@@ -1,11 +1,24 @@
-import { FC } from "react"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getCurrentUser,
+} from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
+import { debounce } from "lodash"
+import { FC, ReactNode, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import {
   Divider,
   DownIcon,
   Dropdown,
+  Search,
   TabPane,
   Tabs,
   globalColor,
@@ -13,19 +26,11 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import { Avatar } from "@/page/App/components/Avatar"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchLogout } from "@/services/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion } from "@/utils/typeHelper"
 import {
+  aiAgentBetaStyle,
   containerStyle,
   expandStyle,
   navBarAvatarContainerStyle,
@@ -34,6 +39,7 @@ import {
   settingItemStyle,
   settingListStyle,
   settingUserStyle,
+  tabsContainer,
   usernameStyle,
 } from "./style"
 
@@ -71,7 +77,7 @@ const SettingTrigger: FC<PageLoadingProps> = (props) => {
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
         <Avatar
-          userId={userInfo.userId}
+          userID={userInfo.userID}
           nickname={userInfo.nickname}
           avatar={userInfo?.avatar}
         />
@@ -100,16 +106,23 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   let location = useLocation()
   let pathList = location.pathname.split("/")
 
+  const currentActiveKey = pathList[pathList.length - 1]
+
   const canEditApp = canManage(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
     ATTRIBUTE_GROUP.APP,
     ACTION_MANAGE.EDIT_APP,
   )
 
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const tabs: {
     key: string
     title: string
     hidden?: boolean
+    tabsItemActiveColorScheme?: string
+    tabsItemColorScheme?: string
+    tabsItemAfter?: ReactNode
   }[] = [
     {
       key: "apps",
@@ -123,7 +136,16 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     {
       key: "members",
       title: t("user_management.page.member"),
-      hidden: isCloudVersion,
+      hidden: isCloudVersion || !canEditApp,
+    },
+    {
+      key: "ai-agents",
+      title: t("user_management.page.ai-agent"),
+      hidden: !isCloudVersion,
+      tabsItemActiveColorScheme:
+        "linear-gradient(90deg, #853DFF 0%, #E13EFF 100%)",
+      tabsItemColorScheme: "linear-gradient(90deg, #853DFF 0%, #E13EFF 100%)",
+      tabsItemAfter: <div css={aiAgentBetaStyle}>Beta</div>,
     },
     {
       key: "tutorial",
@@ -132,73 +154,133 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     },
   ]
 
+  const debounceSearchKeywords = useRef(
+    debounce(
+      (params: URLSearchParams) => {
+        setSearchParams(params)
+      },
+      160,
+      { leading: false },
+    ),
+  )
+
   return (
-    <Tabs
-      prefix={
-        <div css={navBarLogoContainerStyle} key="prefix">
-          <Logo
-            onClick={() => {
-              if (isCloudVersion) {
-                window.location.href = `//${import.meta.env.VITE_CLOUD_URL}`
-              } else {
-                navigate(`./apps`)
-              }
-            }}
-          />
-        </div>
-      }
-      suffix={
-        isCloudVersion ? null : (
-          <div css={navBarAvatarContainerStyle} key="suffix">
-            <Dropdown
-              position="bottom-end"
-              trigger="click"
-              triggerProps={{ closeDelay: 0, openDelay: 0, zIndex: 2 }}
-              dropList={<SettingTrigger loadingCallBack={loadingCallBack} />}
-            >
-              <div>
-                <Avatar
-                  userId={userInfo?.userId}
-                  nickname={userInfo?.nickname}
-                  avatar={userInfo?.avatar}
-                />
-                <DownIcon
-                  _css={expandStyle}
-                  size="12px"
-                  color={globalColor(`--${illaPrefix}-grayBlue-05`)}
-                />
-              </div>
-            </Dropdown>
+    <div css={tabsContainer}>
+      <Tabs
+        withoutBorderLine
+        prefix={
+          <div css={navBarLogoContainerStyle} key="prefix">
+            <Logo
+              onClick={() => {
+                if (isCloudVersion) {
+                  window.location.href = `${import.meta.env.ILLA_CLOUD_URL}`
+                } else {
+                  navigate(`./apps`)
+                }
+              }}
+            />
           </div>
-        )
-      }
-      activeKey={pathList[pathList.length - 1]}
-      css={containerStyle}
-      withoutContent
-      colorScheme="grayBlue"
-      size="large"
-      onChange={(key) => {
-        switch (key) {
-          case "apps":
-            navigate("./apps")
-            break
-          case "resources":
-            navigate("./resources")
-            break
-          case "members":
-            navigate(`./members`)
-            break
-          case "tutorial":
-            navigate(`./tutorial`)
-            break
         }
-      }}
-    >
-      {tabs.map((item) => {
-        if (item.hidden) return null
-        return <TabPane title={item.title} key={item.key} />
-      })}
-    </Tabs>
+        suffix={
+          <div css={navBarAvatarContainerStyle}>
+            {!isCloudVersion && (
+              <Dropdown
+                position="bottom-end"
+                trigger="click"
+                triggerProps={{ closeDelay: 0, openDelay: 0, zIndex: 2 }}
+                dropList={<SettingTrigger loadingCallBack={loadingCallBack} />}
+              >
+                <div>
+                  <Avatar
+                    userID={userInfo?.userID}
+                    nickname={userInfo?.nickname}
+                    avatar={userInfo?.avatar}
+                  />
+                  <DownIcon
+                    _css={expandStyle}
+                    size="12px"
+                    color={globalColor(`--${illaPrefix}-grayBlue-05`)}
+                  />
+                </div>
+              </Dropdown>
+            )}
+            {currentActiveKey === "apps" && (
+              <Search
+                pd="0px 24px"
+                w="240px"
+                colorScheme="techPurple"
+                defaultValue={searchParams.get("keywords") ?? ""}
+                onChange={(v) => {
+                  if (v === "" || v === undefined) {
+                    searchParams.delete("keywords")
+                  } else {
+                    searchParams.set("keywords", v)
+                  }
+                  debounceSearchKeywords.current(searchParams)
+                }}
+                placeholder={t("dashboard.search")}
+                allowClear
+              />
+            )}
+            {currentActiveKey === "ai-agents" && (
+              <Search
+                pd="0px 24px"
+                w="240px"
+                colorScheme="techPurple"
+                defaultValue={searchParams.get("keywords") ?? ""}
+                onChange={(v) => {
+                  if (v === "" || v === undefined) {
+                    searchParams.delete("keywords")
+                  } else {
+                    searchParams.set("keywords", v)
+                  }
+                  debounceSearchKeywords.current(searchParams)
+                }}
+                placeholder={t("dashboard.search")}
+                allowClear
+              />
+            )}
+          </div>
+        }
+        activeKey={currentActiveKey}
+        css={containerStyle}
+        withoutContent
+        colorScheme="grayBlue"
+        size="large"
+        onChange={(key) => {
+          switch (key) {
+            case "apps":
+              navigate("./apps")
+              break
+            case "resources":
+              navigate("./resources")
+              break
+            case "members":
+              navigate(`./members`)
+              break
+            case "ai-agents":
+              navigate(`./ai-agents`)
+              break
+            case "tutorial":
+              navigate(`./tutorial`)
+              break
+          }
+        }}
+      >
+        {tabs.map((item) => {
+          if (item.hidden) return null
+          return (
+            <TabPane
+              title={item.title}
+              key={item.key}
+              tabsItemAfter={item.tabsItemAfter}
+              tabsItemActiveColorScheme={item.tabsItemActiveColorScheme}
+              tabsItemColorScheme={item.tabsItemColorScheme}
+            />
+          )
+        })}
+      </Tabs>
+    </div>
   )
 }
 

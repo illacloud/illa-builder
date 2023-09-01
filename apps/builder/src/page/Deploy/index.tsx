@@ -1,10 +1,18 @@
+import { UpgradeIcon } from "@illa-public/icon"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   HTMLAttributes,
   MouseEvent,
   Suspense,
   useCallback,
-  useContext,
   useEffect,
   useState,
 } from "react"
@@ -14,17 +22,6 @@ import { Await, useLoaderData, useParams } from "react-router-dom"
 import { Button, DownIcon, Switch, Trigger } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { FullPageLoading } from "@/components/FullPageLoading"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import {
-  canManage,
-  canUseUpgradeFeature,
-} from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import {
   applyPopupStateStyle,
   deployContainerStyle,
@@ -34,15 +31,13 @@ import {
   upgradePopContainerStyle,
   upgradeTitleStyle,
 } from "@/page/Deploy/style"
+import Page404 from "@/page/Status/404"
 import {
   getAppInfo,
   getCurrentAppWaterMarkConfig,
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateWaterMarkConfig } from "@/services/apps"
-import { isCloudVersion } from "@/utils/typeHelper"
-import Page404 from "../status/404"
 import { DeployContent } from "./content"
 
 const WaterMark: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
@@ -72,7 +67,7 @@ export const Deploy: FC = () => {
 
   const data = useLoaderData()
   const { appId } = useParams()
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [popupVisible, setPopupVisible] = useState<boolean>()
 
@@ -110,9 +105,11 @@ export const Deploy: FC = () => {
 
   const handleUpgradeModal = useCallback(() => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     }
-  }, [canUseBillingFeature, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, upgradeModal])
 
   useEffect(() => {
     document.title = currentApp.appName
@@ -153,8 +150,10 @@ export const Deploy: FC = () => {
                     <Button
                       mt="8px"
                       colorScheme="techPurple"
+                      onClick={() => {
+                        handleUpgradeModal()
+                      }}
                       leftIcon={<UpgradeIcon />}
-                      onClick={handleUpgradeModal}
                     >
                       {t("billing.homepage.upgrade")}
                     </Button>

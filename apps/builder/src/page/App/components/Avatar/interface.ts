@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react"
 
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
-  userId?: string
+  userID?: string
   nickname?: string
   avatar?: string
   // component or app

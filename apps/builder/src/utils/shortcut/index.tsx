@@ -1,21 +1,14 @@
-import {
-  FC,
-  ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Key } from "ts-key-enum"
 import { createModal, useMessage } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
   getIsILLAEditMode,
@@ -33,7 +26,6 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { takeSnapShot } from "@/services/history"
 import store from "@/store"
 import { CopyManager } from "@/utils/copyManager"
@@ -59,7 +51,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const executionResult = useSelector(getExecutionResult)
   const showShadows = useSelector(isShowDot)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   // shortcut
   const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
@@ -357,7 +349,9 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleSaveToHistory = useCallback(async () => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     } else if (appId) {
       if (saveLoading) return
       setSaveLoading(true)
@@ -374,14 +368,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
         setSaveLoading(false)
       }
     }
-  }, [
-    canUseBillingFeature,
-    handleUpgradeModalVisible,
-    saveLoading,
-    appId,
-    message,
-    t,
-  ])
+  }, [appId, canUseBillingFeature, message, saveLoading, t, upgradeModal])
 
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+s`,

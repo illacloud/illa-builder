@@ -1,21 +1,15 @@
-import {
-  FC,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, Select, useMessage } from "@illa-design/react"
 import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
   actionItemContainer,
@@ -30,11 +24,10 @@ import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ResourcesData } from "@/redux/resource/resourceState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchGenerateSQL } from "@/services/action"
 import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const MysqlLikePanel: FC = () => {
@@ -51,16 +44,16 @@ const MysqlLikePanel: FC = () => {
   )
 
   const { t } = useTranslation()
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   useEffect(() => {
-    if (currentAction.resourceId == undefined) return
-    fetchResourceMeta(currentAction.resourceId).then(
+    if (currentAction.resourceID == undefined) return
+    fetchResourceMeta(currentAction.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
     )
-  }, [currentAction.resourceId])
+  }, [currentAction.resourceID])
 
   const mode = useMemo(() => {
     switch (currentAction.actionType) {
@@ -114,7 +107,9 @@ const MysqlLikePanel: FC = () => {
   }, [])
   const handleClickGenerate = useCallback(async () => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
       return
     }
     setGenerateLoading(true)
@@ -128,7 +123,7 @@ const MysqlLikePanel: FC = () => {
     })
     const data = {
       description: inputRef.current?.value,
-      resourceID: currentAction.resourceId,
+      resourceID: currentAction.resourceID,
       action: currentSqlAction,
     }
     try {
@@ -152,13 +147,13 @@ const MysqlLikePanel: FC = () => {
     setGenerateLoading(false)
   }, [
     appInfo.appId,
+    canUseBillingFeature,
     currentAction,
     currentSqlAction,
     dispatch,
     message,
     mysqlContent,
-    canUseBillingFeature,
-    handleUpgradeModalVisible,
+    upgradeModal,
   ])
 
   return (

@@ -62,9 +62,9 @@
     "sort-type": {
       "popular": "最受欢迎",
       "recent": "最新",
-      "star": "Starred"
+      "star": "已收藏"
     },
-    "search": "Search",
+    "search": "搜索",
     "no-result": "没有结果，请刷新或更新您的搜索词。",
     "message": {
       "next-page-error": "下一页加载失败，请重试",
@@ -72,11 +72,13 @@
       "sort-failed": "筛选类型过滤失败，请重试",
       "detail-load-failed": "详细信息查询失败，请重试",
       "fork-failed": "Fork失败，请重试",
-      "create-suc": "创建失败，请重试",
+      "create-suc": "创建成功",
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
-      "delete-suc": "删除成功"
-    }
+      "delete-suc": "删除成功",
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
+    },
+    "create": "创建"
   },
   "dayjs": {
     "just_now": "刚刚"
@@ -2558,7 +2560,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "图标",
         "name": "名称",
         "desc": "描述",
         "mode": "模式",
@@ -2567,25 +2568,27 @@
         "welcome": "初始消息",
         "model": "模型",
         "temperature": "Temperature",
-        "max-token": "最大Token"
+        "max-token": "最大Token",
+        "icon": "图标"
       },
       "placeholder": {
-        "logo": "上传",
         "name": "为Agent命名",
         "desc": "简要描述该Agent的用途。",
-        "prompt": "输入 / 选择变量",
+        "prompt": "输入 {{ 使用变量",
         "variable": {
           "key": "变量名",
           "value": "值"
         },
         "welcome": "提供一个初始消息，在用户开始使用这个agent时展示",
-        "temperature": "0到1之间的值，值越小结果约优",
-        "max-token": "用于限制单次运行的最大数量限制"
+        "icon": "上传",
+        "send": "向Agent发送内容"
       },
       "tips": {
         "mode": "在聊天模式下，发送的每条消息时都会带上对话历史记录一起请求，这可以使结果更优，但会消耗更多的Token； 在文本模式下，发送的每条消息不包含对话历史记录，与聊天模式相比，这个模式的结果可能不够好，但可以节省Token。",
         "not-start": "完成Agent配置并点击开始运行",
-        "not-start-run": "请点击左侧的开始按钮。"
+        "not-start-run": "请点击左侧的开始按钮。",
+        "temperature": "0到1之间的值，值越小结果约优",
+        "max-token": "用于限制单次运行的最大数量限制"
       },
       "option": {
         "mode": {
@@ -2603,7 +2606,7 @@
       "save": "保存",
       "start": "开始",
       "restart": "重新开始",
-      "contribute": "贡献到Marketplace",
+      "contribute": "贡献到社区",
       "button": {
         "send": "发送",
         "generating": "正在生成"
@@ -2615,7 +2618,27 @@
       },
       "message": {
         "click-start": "点击开始按钮触发运行",
-        "insufficient_token": "Token不足"
+        "insufficient_token": "Token不足",
+        "start-failed": "开始失败，请重试。",
+        "reconnect": "连接已断开，正在重连",
+        "token-not-enough": "运行已达模型上限，请重新开始。",
+        "token": "当前Max token设置小于Prompt占用的token或超出了模型限制",
+        "purchase-required": "Colla不足无法运行，请充值",
+        "leave": "有未保存的内容，确认要离开吗？",
+        "generating": "请等待生成结束或中断生成后再切换"
+      },
+      "title": "编辑AI Agent",
+      "generate-desc": {
+        "button": "AI生成",
+        "tooltips": "基于您的Prompt，使用AI生成描述信息",
+        "failed": "生成失败，请稍后重试"
+      },
+      "generate-icon": {
+        "tooltips": "基于Agent的名称和描述，使用AI生成icon"
+      },
+      "title-preview": {
+        "chat": "运行结果预览",
+        "text-generation": "运行结果预览"
       }
     },
     "common": {
@@ -3213,11 +3236,19 @@
       "owner": "所有者",
       "admin": "管理员",
       "editor": "编辑者",
-      "viewer": "浏览者"
+      "viewer": "浏览者",
+      "tips": {
+        "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+        "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
+        "viewer": "可以管理浏览者、查看APP"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "邀请成员"
+        "invite_members": "邀请成员",
+        "invite_to_use": "邀请使用",
+        "invite_to_edit": "邀请进行编辑",
+        "contribute": "社区"
       },
       "link": {
         "invite_title": "邀请链接",
@@ -3232,7 +3263,10 @@
         "turn_off_fail": "关闭失败",
         "turn_on_fail": "开启失败",
         "make_public_title": "设置为公开项目",
-        "make_public_copy": "复制"
+        "make_public_copy": "复制",
+        "marketplace": {
+          "label": "通过链接分享"
+        }
       },
       "email": {
         "invite_title": "通过电子邮件邀请",
@@ -3240,8 +3274,8 @@
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
         "in_list": "该用户已加入您的团队",
-        "notmail": "{{ email }}不是一个邮箱地址",
-        "duplicate": "{{ email }}是重复的电子邮件地址"
+        "duplicate": "{{ email }}是重复的电子邮件地址",
+        "not_mail": "{{ email }}不是一个邮箱地址"
       },
       "invalid_email": "请输入有效的电子邮件",
       "message": {
@@ -3251,14 +3285,42 @@
       },
       "tab": {
         "invite": "邀请",
-        "public": "公开"
+        "public": "公开",
+        "with_team": "和team成员分享"
       },
       "custom_copy_text_app_invite": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接查看APP： {{inviteLink}}",
       "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}",
       "tips": {
         "license_insufficient": "剩余许可证"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}}分享给您一个来自「{{teamName}}」团队的AI Agent. 点击链接加入团队并使用AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "贡献到社区",
+        "default_text": {
+          "app": "我刚发现了一个有意思的app： {{ appName }}，通过链接查看：{{ appLink }}",
+          "agent": "我刚发现了一个有意思的AI Agent：  {{ agentName }}. 通过链接查看: {{ agentLink }}"
+        },
+        "desc": "贡献到社区之后，所有用户都可以运行、Star和Fork您的Agent。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
+        "turn_off": "取消贡献",
+        "app": {
+          "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的Action并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
+        }
+      },
+      "social_media": {
+        "label": "分享到",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News",
+        "default_text": {
+          "app": "我刚发现了一个有意思的app： {{ appName }}",
+          "agent": "我刚发现了一个有意思的AI Agent： {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} 分享给你一个来自 「{{ teamName }}」的AI Agent。加入团队并查看: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -3278,7 +3340,8 @@
       "permission": "权限",
       "operation": "操作",
       "transfer": "转移所有权",
-      "remove": "移除"
+      "remove": "移除",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "您确定要转移所有权吗？",
@@ -3293,7 +3356,8 @@
       "cancel": "取消"
     },
     "status": {
-      "pending": "等待处理"
+      "pending": "等待处理",
+      "current-user": "当前用户"
     },
     "settings": {
       "allow_editors_invite": "允许编辑者和浏览者管理成员",
@@ -3592,12 +3656,17 @@
       "billing": "账单",
       "license": "许可证",
       "drive": "Drive",
+      "colla": "Colla",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla交易记录",
       "billing_portal": "账单门户网站"
     },
     "title": {
       "billing": "账单",
       "license": "许可证",
-      "drive": "Drive"
+      "drive": "Drive",
+      "colla": "Colla",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3606,7 +3675,8 @@
       },
       "sub_cycle": {
         "yearly": "按年",
-        "monthly": "按月"
+        "monthly": "按月",
+        "lifetime": "终身"
       },
       "billing_cyle": {
         "year": "/年",
@@ -3617,7 +3687,8 @@
         "expiration_date": "过期日期",
         "licenses": "许可证",
         "storage": "存储空间",
-        "traffic": "流量"
+        "traffic": "流量",
+        "colla": "Colla"
       },
       "period": {
         "current": "当前周期",
@@ -3629,33 +3700,57 @@
         "License": "许可证",
         "Storage": "存储",
         "Traffic": "流量",
-        "balance": "剩余可用"
+        "balance": "剩余可用",
+        "colla": "Colla"
       },
       "button": {
         "License": "管理许可证",
         "Storage": "管理存储空间",
-        "Traffic": "扩展流量"
+        "Traffic": "扩展流量",
+        "colla": "管理Colla"
       },
       "capacity": {
         "License": "{{used}} (总共 {{total}} 许可证)已被使用。",
         "Storage": "{{used}} (总共为 {{total}} GB) 已被使用。",
-        "Traffic": "{{used}} (总共为 {{total}} GB) 已被使用。"
+        "Traffic": "{{used}} (总共为 {{total}} GB) 已被使用。",
+        "colla": "{{used}} Colla 已用（共 {{total}} Colla）"
+      },
+      "colla_usage": {
+        "token": "Token"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "月份",
+        "event": "事件",
+        "usage": "Colla用量"
+      },
+      "event": {
+        "increase_storage": "增加存储空间",
+        "increase_colla": "增加Colla",
+        "increase_traffic": "增加流量"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} 个Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "管理存储",
         "manage_licenses": "管理许可证",
-        "expand_traffic_capac": "扩展流量能力"
+        "expand_traffic_capac": "扩展流量能力",
+        "colla": "管理Colla"
       },
       "plan_label": {
         "License": "许可证",
         "Storage": "存储",
-        "Traffic": "流量"
+        "Traffic": "流量",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
         "License": "许可证",
-        "Storage_traffic": "GB"
+        "Storage_traffic": "GB",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "年付",
@@ -3694,7 +3789,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{licenseNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} 个Colla"
       },
       "button": {
         "unsubscribe": "取消订阅",
@@ -3703,7 +3799,9 @@
         "storage_traffic_increase": "增加 {{changeNum}} GB",
         "storage_traffic_remove": "移除 {{changeNum}} GB",
         "license_increase": "增加 {{changeNum}} 个许可证",
-        "license_remove": "删除 {{changeNum}} 个许可证"
+        "license_remove": "删除 {{changeNum}} 个许可证",
+        "colla_increase": "{{unitPrice}} × {{storageNum}} 个Colla",
+        "colla_remove": "移除 {{changeNum}} 个Colla"
       },
       "description_title": {
         "add_storage": "您将要增加{{changeNum}}GB存储。一经确认，我们将立即扣除此计费周期的新存储空间费用。<0>了解更多</0>",
@@ -3724,21 +3822,31 @@
         "subscribe_license_monthly": "您即将订阅ILLA Cloud Premium月订阅。<0>了解更多</0>",
         "subscribe_license_yearly": "您即将订阅ILLA Cloud Premium年订阅。<0>了解更多</0>",
         "subscribe_storage_monthly": "您即将增加{{changeNum}}GB 存储。一经确认，我们将立即扣除所需费用 <0>了解更多</0>",
-        "subscribe_storage_yearly": "您即将增加{{changeNum}}GB 存储。一经确认，我们将立即扣除所需费用 <0>了解更多</0>"
+        "subscribe_storage_yearly": "您即将增加{{changeNum}}GB 存储。一经确认，我们将立即扣除所需费用 <0>了解更多</0>",
+        "colla_sub": "您即将订阅 Colla。一经确认，我们将在每个计费周期开始时自动扣除费用，并在您需要更多 Colla 时自动升级您的订阅。<0>了解更多</0>",
+        "colla_increase": "您即将添加 {{changeNum}} 个 Colla。一经确认，我们将立即扣除本计费周期剩余的费用。<0>了解更多</0>",
+        "colla_remove": "您即将移除 {{changeNum}} 个 Colla。一经确认，将从下一个计费周期开始生效。<0>了解更多</0>",
+        "colla_unsubscribe": "您即将取消 Colla 的订阅。一经确认，将从下一个计费周期开始生效。请注意，在取消订阅后，您可能会在使用 ILLA Drive 和 AI Agent 时遇到问题。<0>了解更多</0>",
+        "colla_update": "您即将修改 Colla 的订阅。一经确认，更改将从下一个计费周期开始生效。<0>了解更多</0>"
       },
       "description": {
-        "add_storage": "使用每月存储订阅作为示例的计算规则。让我们考虑一个情景，您最初订阅了5GB，从3月14日开始， 而且账单周期从本月第14个月到下个月第13个月。 5月10日，你决定添加 1 GB。 当时， 到5月13日本周期结束时还剩下4天（从4月14日至5月13日总共30天）。 为了计算调整后的付款，我们将扣除相当于大约0美元的1GB的费用。 9 与30天周期内4天的持续时间相称。因此，扣除额估计为1份许可证* $0。 9 天30天* 4天，约占0.132美元。 从下一个计费周期开始，所有储存费都将合并并一起支付。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的用户 <0>隐私政策</0> 和 <1>服务条款</1>",
         "remove_storage": "如果您的文件占用的存储容量在下一个计费周期开始时超过订阅的存储容量， 所有文件都将被禁用，直到您删除文件或增加可用范围内的存储容量。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "update_plan_year": "从下一个时期开始，订阅将改为每年订阅。 而且收费将根据年度订阅价格自动扣除。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "update_plan_monthly": "从下一个时期开始，订阅将改为每月订阅， 而且收费将根据每月订阅价格自动扣除。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "add_license": "以月度座位订阅为例，计算规则如下：假设您最初从3月14日开始订阅了5个座位，计费周期从本月的14日到下个月的13日。在5月10日，您决定增加1个额外的座位。此时，距离当前周期结束的5月13日还剩下4天（从4月14日到5月13日总共30天）。为了计算调整后的费用，我们将根据在30天周期内的4天时长，按比例扣除1个座位的费用，约为10美元。因此，扣除金额估计为1个座位 * 10美元 / 30天 * 4天，结果约为1.33美元。从下一个计费周期开始，所有座位费用将合并并一起支付。如果您希望减少座位或对订阅进行其他更改，请在下个周期开始之前进行更新。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "remove_license": "如果拥有编辑权限的用户数量超过下一个计费周期开始时的许可数量， 除所有者外，所有用户都将被禁用，直到您移除会员或在可用范围内增加许可数量。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "add_traffic": "扣除成功后，您的流量将实时增加。 使用通信量后，无法退还费用。未使用的通信量可以用GB单位退还。 例如，如果您购买10GB流量并使用4.5GB，您可以申请5GB的退款。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "subscribe_storage_yearly": "您将订阅ILLA Drive 存储的年度订阅。 我们将在每个付款周期开始时从您的帐户中自动扣除费用。 实际扣除的金额取决于您在 GB 中订阅的存储容量。 例如，如果您在2023年2月25日开始第一次订阅，年订阅费为9美元。 如果你拥有3GB，我们将扣除29美元。 贸发会议秘书处的说明 如果你在2023年3月25日添加2GB，我们将首先在2023年3月25日扣除剩余的11个月付款。 然后，到2024年2月25日，我们将扣除5GB(2+3)*9.9=49的付款。 。如果您想要减少存储空间或对订阅作其他更改，请在下一个期间开始之前更新它。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
-        "subscribe_storage_monthly": "您将订阅ILLA Drive 存储的每月订阅。 我们将在每个付款周期开始时从您的帐户中自动扣除费用。 实际扣除的金额取决于您在 GB 中订阅的存储容量。 例如，如果您在2023年2月25日开始第一次订阅，每月订阅费为0美元。 每英镑9美元，而你共有3GB，我们将扣除2美元。 2023年2月25日7日。 如果你在2023年3月21日再增加2份许可证，我们将首先从2023年3月21日的剩余5天付款中扣除。 然后，到2023年3月25日，我们将扣除5份许可证(2+3)*美元的付款。 9=4.95美元。如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "subscribe_license_monthly": "您即将订阅LA Cloud Premium的每月订阅。 我们将在每个付款周期开始时从您的帐户中自动扣除费用。 实际扣除的金额取决于您拥有的许可数量。 例如，如果您在2023年2月25日开始第一次订阅，每月订阅费用为每个许可证12美元， 而且你共有3份许可证，我们将在2023年2月25日扣除36美元。 如果你在2023年3月21日再增加2份许可证，我们将首先从2023年3月21日的剩余5天付款中扣除。 然后，到2023年3月25日，我们将扣除5份许可证(2+3)*12=$60的付款。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "update_plan_increase_license": "费用将根据更新后的座位数量和新计费周期的定价自动扣除。这次，我们将根据当前计费周期扣除增加的座位费用。以下是增加座位的计算规则，以月度座位订阅为例：假设您最初从3月14日开始订阅了5个座位，计费周期从本月的14日到下个月的13日。在5月10日，您决定增加1个额外的座位。此时，距离当前周期结束的5月13日还剩下4天（从4月14日到5月13日总共30天）。为了计算调整后的费用，我们将根据在30天周期内的4天时长，按比例扣除1个座位的费用，约为10美元。因此，扣除金额估计为1个座位 * 10美元 / 30天 * 4天，结果约为1.33美元。从下一个计费周期开始，所有座位费用将合并并一起支付。如果您希望减少座位或对订阅进行其他更改，请在下个周期开始之前进行更新。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "update_plan_remove_license": "这些费用将根据新的许可证数目和下一个时期新的计费周期的定价自动扣除。 如果拥有编辑权限的用户数量超过下一个计费周期开始时的许可数量， 除所有者外，所有用户都将被禁用，直到您移除会员或在可用范围内增加许可数量。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
-        "update_plan_increase_storage": "费用将根据更新的储存和下一个时期新的计费周期的定价自动扣除。 这一次，我们将根据当前账单周期扣除增加的存储费用。 使用每月存储订阅作为示例的计算规则。让我们考虑一个情景，您最初订阅了5GB，从3月14日开始， 而且账单周期从本月第14个月到下个月第13个月。 5月10日，你决定添加 1 GB。 当时， 到5月13日本周期结束时还剩下4天（从4月14日至5月13日总共30天）。 为了计算调整后的付款，我们将扣除相当于大约0美元的1GB的费用。 9 与30天周期内4天时间相称。 因此，扣除的数额估计为1件许可证*0.99/30天*4天，结果约为0.132美元。 从下一个计费周期开始，所有储存费都将合并并一起支付。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
         "update_plan_remove_storage": "费用将根据更新的储存和下一个时期新的计费周期的定价自动扣除。 如果您的文件占用的存储容量在下一个计费周期开始时超过订阅的存储容量， 所有文件都将被禁用，直到您删除文件或增加可用范围内的存储容量。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。"
+      },
+      "colla_redeem": {
+        "title": " {{changeNum}} 个Colla相当于",
+        "storage": "存储空间",
+        "traffic": "流量",
+        "token": "Token"
       }
     },
     "message": {
@@ -3760,13 +3868,17 @@
       "failed_to_join_no_license": "由于团队许可证不足无法加入",
       "storage_insufficient_modal": "存储空间或流量余额不足，请联系管理员。",
       "appsumo": {
+        "suc": "兑换成功",
+        "fail": "兑换失败，请稍后再试。",
         "transfer": "操作失败。此用户已绑定到终身订阅。 ",
         "leave": "操作失败。此用户已绑定到终身订阅。 "
       },
       "no_license_operate_failed": "由于订阅异常，操作失败。",
       "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。",
       "error_subscribe": "付费变更失败，请稍后重试",
-      "unsubscription_fail": "取消订阅失败，请稍后重试。"
+      "unsubscription_fail": "取消订阅失败，请稍后重试。",
+      "failed_to_update": "订阅更新失败，请重试",
+      "update_suc": "订阅更新成功"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3811,7 +3923,10 @@
         "others": "您的帐户已被禁用，因为团队的订阅已经过期。",
         "your_subscription_ha_not_owner": "许可证不足",
         "all_members_except_f_not_owner": "您团队的订阅异常。请与您的团队所有者联系",
-        "upgrade_not_owner": "知道了"
+        "upgrade_not_owner": "知道了",
+        "your_subscription_ha": "订阅已过期",
+        "all_members_except_f": "您的团队订阅已过期。请及时续期",
+        "upgrade": "升级"
       },
       "blank_page": {
         "insufficient_license_disable": "由于团队许可证不足，您的帐户已被禁用。请联系团队所有者寻求帮助。"
@@ -3852,8 +3967,8 @@
         "button_confirm": "确认"
       },
       "ai-agent": {
-        "string1": "GPT-4是为Premium团队提供的选项。",
-        "string2": "请升级到Premium以使用它。通过升级到Premium，您还将获得以下权益。"
+        "string1": "这个模型是为Premium团队准备的功能",
+        "string2": "如果要使用它，请先升级到Premium。通过升级到Premium，您还可以解锁下述功能"
       }
     },
     "homepage": {
@@ -3861,18 +3976,68 @@
       "upgrade": "升级",
       "cancel": "取消"
     },
-    "advanced": {
-      "feature": "移除水标"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "兑换 AppSumo"
+      },
+      "modal": {
+        "title": "兑换 AppSumo",
+        "description": "您确定要在 {{teamName}} 团队中兑换AppSumo 吗？",
+        "cancel": "取消",
+        "confirm": "兑换",
+        "select_team": {
+          "title": "选择一个团队创建",
+          "create_button": "创建新团队",
+          "redeem_button": "兑换"
+        }
+      },
+      "landingpage": {
+        "button": "验证AppSumo邮箱"
+      },
+      "forget_password": {
+        "button": "创建账号"
+      },
+      "update": "更新AppSumo方案"
+    },
+    "alert": {
+      "expired": {
+        "owner": "坐席不足或订阅已过期，请及时升级。",
+        "others": "由于坐席不足，您的账号已被禁用。请联系团队所有者。"
+      }
+    },
+    "yearly_discount": "(节省将近16.7%)",
+    "license_price_new": {
+      "monthly": "{{ price }}/编辑者/月",
+      "yearly": "{{ price }}/编辑者/年"
     },
     "redirect_page": {
+      "title": "支付成功",
       "desc1": "感谢您的购买。ILLA Cloud将持续为您提供更多功能",
       "desc2": "在 {{time}} 秒后重定向到 ILLA Cloud...",
-      "title": "支付成功",
       "button": "返回ILLA Cloud"
     },
     "redirect_to_stripe": "正在重定向至Stripe",
-    "appsumo": {
-      "update": "更新AppSumo方案"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "每月100MB存储，用于在ILLA Drive中存储任意文件",
+          "traffic": "100MB流量，用于从ILLA Drive中下载文件"
+        }
+      },
+      "drive": {
+        "title": "ILLA Drive",
+        "storage": "每月5GB存储，用于在ILLA Drive中存储任意文件",
+        "traffic": "5GB流量，用于从ILLA Drive中下载文件"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "自定义存储大小，用于在ILLA Drive中存储任意文件",
+          "traffic": "自定义流量额度，用于从ILLA Drive中下载文件"
+        }
+      }
+    },
+    "advanced": {
+      "feature": "移除水印"
     }
   },
   "network": {
@@ -3885,7 +4050,8 @@
     },
     "desc": {
       "no_description": "暂无描述",
-      "blank": "没有项目"
+      "blank": "没有项目",
+      "blank-agent": "无AI Agent"
     },
     "app_setting": {
       "app_setting": "项目设置",
@@ -3906,7 +4072,8 @@
       "update_suc": "更新成功"
     },
     "button": {
-      "blank": "创建第一个项目"
+      "blank": "新建",
+      "blank-agent": "创建AI Agent"
     }
   },
   "new_deploy": {
@@ -3924,37 +4091,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "邀请进行编辑",
-      "invite_to_use": "邀请使用",
-      "share-with-team": "和团队共享",
-      "contribute": "贡献"
+      "share-with-team": "和团队共享"
     },
     "desc": {
-      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 ",
-      "contribute": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
-    },
-    "tips": {
-      "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
-      "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
-      "viewer": "可以管理浏览者、查看APP"
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
     },
     "label": {
-      "contribute": "贡献到Marketplace",
-      "social-media": "分享到"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker News"
-      }
+      "contribute": "贡献到社区"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Check out this amazing AI Agent [{{promptName}}]",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3962,11 +4108,36 @@
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "share_contribute": "复制并分享",
+      "uncontribute": "取消贡献"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}",
+        "reddit": "看看这个有趣的应用[{{appName}}]",
+        "linkedin": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}",
+        "facebook": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}",
+        "whatsapp": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "易于使用的应用模板 [{{appName}}]"
+      },
+      "contribute": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}"
     }
   },
   "ai-agents": "AI Agents",
   "marketplace": {
-    "star": "Star {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
+  },
+  "load": {
+    "before": "加载更多"
+  },
+  "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
+  "contribute": "贡献",
+  "error_page": {
+    "fobidden": "没有访问权限"
   }
 }

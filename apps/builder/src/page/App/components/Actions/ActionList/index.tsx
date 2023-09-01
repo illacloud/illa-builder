@@ -26,8 +26,8 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
 
   const dispatch = useDispatch()
 
-  useGoogleAuthStatus((resourceId: string) => {
-    const resourceAction = actionList.find((r) => r.resourceId === resourceId)
+  useGoogleAuthStatus((resourceID: string) => {
+    const resourceAction = actionList.find((r) => r.resourceID === resourceID)
     if (resourceAction) {
       dispatch(configActions.changeSelectedAction(resourceAction))
     }

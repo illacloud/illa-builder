@@ -1,3 +1,5 @@
+import { UpgradeIcon } from "@illa-public/icon"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
@@ -9,7 +11,6 @@ import {
   Dropdown,
   Tag,
 } from "@illa-design/react"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import {
   deployButtonStyle,
   deployConfigButtonStyle,
@@ -17,7 +18,6 @@ import {
   deployLabelStyle,
   deployMenuStyle,
 } from "@/page/App/components/PageNavBar/DeloyButtonGroup/style"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface DeployButtonGroupProps {
   onClickDeploy: () => void
@@ -25,6 +25,7 @@ export interface DeployButtonGroupProps {
   loading: boolean
   isGuideMode: boolean
   canUseBillingFeature: boolean
+  disPrivate: boolean
   isPublic?: boolean
 }
 
@@ -36,6 +37,7 @@ export const DeployButtonGroup: FC<DeployButtonGroupProps> = (props) => {
     isGuideMode,
     canUseBillingFeature,
     onClickDeploy,
+    disPrivate,
     onClickDeployMenu,
   } = props
 
@@ -76,6 +78,7 @@ export const DeployButtonGroup: FC<DeployButtonGroupProps> = (props) => {
             <DropListItem
               key="private"
               value="private"
+              disabled={disPrivate}
               title={
                 <div css={deployMenuStyle}>
                   <div css={deployLabelStyle}>

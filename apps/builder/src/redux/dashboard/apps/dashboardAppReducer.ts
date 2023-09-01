@@ -1,7 +1,9 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   AddDashboardAppPayload,
-  ModifyConfigDashboardAppPayload,
+  ModifyDashboardAppContribute,
+  ModifyDashboardAppDeployed,
+  ModifyDashboardAppPublic,
 } from "@/redux/dashboard/apps/dashboardAppPayload"
 import {
   DashboardApp,
@@ -54,9 +56,9 @@ export const updateDashboardAppReducer: CaseReducer<
   }
 }
 
-export const modifyConfigDashboardAppReducer: CaseReducer<
+export const updateDashboardAppPublicReducer: CaseReducer<
   DashboardAppsState,
-  PayloadAction<ModifyConfigDashboardAppPayload>
+  PayloadAction<ModifyDashboardAppPublic>
 > = (state, action) => {
   let index = state.list.findIndex((element) => {
     return element.appId == action.payload.appId
@@ -66,8 +68,41 @@ export const modifyConfigDashboardAppReducer: CaseReducer<
       ...state.list[index],
       config: {
         ...state.list[index]?.config,
-        ...action.payload.config,
+        public: action.payload.isPublic,
       },
+    }
+  }
+}
+
+export const updateDashboardAppContributeReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<ModifyDashboardAppContribute>
+> = (state, action) => {
+  let index = state.list.findIndex((element) => {
+    return element.appId == action.payload.appId
+  })
+  if (index != -1) {
+    state.list[index] = {
+      ...state.list[index],
+      config: {
+        ...state.list[index]?.config,
+        publishedToMarketplace: action.payload.publishedToMarketplace,
+      },
+    }
+  }
+}
+
+export const updateDashboardAppDeployedReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<ModifyDashboardAppDeployed>
+> = (state, action) => {
+  let index = state.list.findIndex((element) => {
+    return element.appId == action.payload.appId
+  })
+  if (index != -1) {
+    state.list[index] = {
+      ...state.list[index],
+      deployed: action.payload.deployed,
     }
   }
 }

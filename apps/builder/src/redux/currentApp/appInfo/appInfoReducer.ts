@@ -15,10 +15,23 @@ export const updateAppNameReducer: CaseReducer<
   return action.payload
 }
 
-export const updateAppVersionReducer: CaseReducer<
+export const updateAppContributeReducer: CaseReducer<
   DashboardApp,
-  PayloadAction<number>
+  PayloadAction<boolean>
 > = (state, action) => {
-  state.mainlineVersion = action.payload
-  state.releaseVersion = action.payload
+  state.config.publishedToMarketplace = action.payload
+}
+
+export const updateAppPublicReducer: CaseReducer<
+  DashboardApp,
+  PayloadAction<boolean>
+> = (state, action) => {
+  state.config.public = action.payload
+}
+
+export const updateAppDeployedReducer: CaseReducer<
+  DashboardApp,
+  PayloadAction<boolean>
+> = (state, action) => {
+  state.deployed = action.payload
 }

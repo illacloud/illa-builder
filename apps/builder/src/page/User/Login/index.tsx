@@ -1,18 +1,22 @@
 import { Global } from "@emotion/react"
+import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
+import {
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import { LoginPage } from "@illa-public/sso-module"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
-import { ERROR_FLAG } from "@/api/errorFlag"
-import LoginPage from "@/illa-public-component/User/login"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignIn } from "@/services/auth"
 import { mobileAdaptationStyle } from "@/style"
+import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
 
 const UserLogin: FC = () => {
@@ -21,7 +25,6 @@ const UserLogin: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const dispatch = useDispatch()
 
   const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = async (requestBody) => {
@@ -29,17 +32,10 @@ const UserLogin: FC = () => {
     try {
       const res = await fetchSignIn(requestBody)
       const token = res.headers["illa-token"]
-      if (!token) return
+      if (!token) {
+        return
+      }
       ILLABuilderStorage.setLocalStorage("token", token, -1)
-      dispatch(
-        currentUserActions.updateCurrentUserReducer({
-          userId: res.data.id,
-          nickname: res.data.nickname,
-          language: res.data.language || "en-US",
-          email: res.data.email,
-          avatar: res.data.avatar,
-        }),
-      )
       if (!isCloudVersion) {
         const urlSearchParams = new URLSearchParams(location.search)
         const path = translateSearchParamsToURLPathWithSelfHost(urlSearchParams)
@@ -76,14 +72,17 @@ const UserLogin: FC = () => {
   }
 
   return (
-    <>
+    <MixpanelTrackProvider
+      basicTrack={track}
+      pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.LOGIN}
+    >
       <Global styles={mobileAdaptationStyle} />
       <LoginPage
         loading={submitLoading}
         errorMsg={errorMsg}
         onSubmit={onSubmit}
       />
-    </>
+    </MixpanelTrackProvider>
   )
 }
 

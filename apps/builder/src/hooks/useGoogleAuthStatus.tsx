@@ -7,7 +7,7 @@ import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { GoogleSheetAuthStatus } from "@/redux/resource/googleSheetResource"
 
 export const useGoogleAuthStatus = (
-  finished?: (resourceId: string) => void,
+  finished?: (resourceID: string) => void,
 ) => {
   const location = useLocation()
   const message = useMessage()

@@ -72,11 +72,13 @@
       "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
       "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
       "fork-failed": "Mislykkedes at gaffel, prøv igen.",
-      "create-suc": "Kunne ikke oprettes. Prøv venligst igen.",
+      "create-suc": "Gemt med succes",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
-      "delete-suc": "Slettet succesfuldt. "
-    }
+      "delete-suc": "Slettet succesfuldt. ",
+      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet."
+    },
+    "create": "Opret"
   },
   "dayjs": {
     "just_now": "Lige nu"
@@ -230,7 +232,7 @@
             "sheet_id_to_copy": "Ark ID til kopiering",
             "sheet_to_copy_to": "Ark der skal kopieres til",
             "authentication": "Godkendelse",
-            "connect_with_oauth": "Forbind med OAuth og gem",
+            "connect_with_oauth": "Forbind med Google",
             "reconnect_with_oauth": "Genopret forbindelse med OAuth",
             "access_type": "Adgangs type"
           },
@@ -876,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1162,7 +1164,7 @@
         "initial_value": {
           "label": "Oprindelig værdi",
           "tooltips": "Understøtter objekter eller primitive værdier. Eksempel: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2520,7 +2522,7 @@
       "history": "Historik",
       "more": "Mere",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "● S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -2558,7 +2560,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Navn",
         "desc": "Varebeskrivelse",
         "mode": "Tilstand",
@@ -2567,25 +2568,27 @@
         "welcome": "Velkomst besked",
         "model": "Model",
         "temperature": "Temperatur",
-        "max-token": "Maks. token"
+        "max-token": "Maks. token",
+        "icon": "Ikon"
       },
       "placeholder": {
-        "logo": "Upload",
         "name": "Giv et navn til agenten",
         "desc": "Giv en kort beskrivelse af, hvad denne agent er beregnet til at blive brugt til.",
-        "prompt": "Indtast / for at vælge en variabel",
+        "prompt": "Indtast {{variableName}} for at bruge en variabel",
         "variable": {
           "key": "Variabel navn",
           "value": "Værdi"
         },
         "welcome": "Giv en velkomstbesked, der vises, når brugerne begynder at bruge agent.",
-        "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
-        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb"
+        "icon": "Upload",
+        "send": "Send noget til agenten"
       },
       "tips": {
         "mode": "I chattilstand indeholder hver sendt besked samtalehistorikken som en del af anmodningen, hvilket kan resultere i bedre resultater, men forbruger mere tokens; i teksttilstand, hver sendt besked indeholder ikke samtaleoversigten hvilket kan resultere i mindre optimale resultater i forhold til chat-tilstand, men konserves tokens.",
         "not-start": "Færdiggør Agentens konfiguration og klik på Start for at køre",
-        "not-start-run": "Klik på Start-knappen til venstre."
+        "not-start-run": "Klik på Start-knappen til venstre.",
+        "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
+        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb"
       },
       "option": {
         "mode": {
@@ -2615,7 +2618,27 @@
       },
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
-        "insufficient_token": "Utilstrækkelig token"
+        "insufficient_token": "Utilstrækkelig Colla",
+        "start-failed": "Mislykkedes at starte. Prøv igen. ",
+        "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
+        "token-not-enough": "Model grænse nået. Genstart.",
+        "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
+        "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst",
+        "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?",
+        "generating": "Vent venligst til generationen til at fuldføre eller afbryde processen"
+      },
+      "title": "Rediger AI Agent",
+      "generate-desc": {
+        "button": "AI generere",
+        "tooltips": "Brug AI til at generere beskrivelsen baseret på din prompt. ",
+        "failed": "Mislykkedes at generere. Prøv igen senere. "
+      },
+      "generate-icon": {
+        "tooltips": "Brug AI til at generere ikon baseret på agentens navn og beskrivelse"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "text-generation": "Tekst generation"
       }
     },
     "common": {
@@ -3213,11 +3236,19 @@
       "owner": "Ejer",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Fremviser"
+      "viewer": "Fremviser",
+      "tips": {
+        "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
+        "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
+        "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Inviter medlemmer"
+        "invite_members": "Inviter medlemmer",
+        "invite_to_use": "Inviter til brug",
+        "invite_to_edit": "Inviter til at redigere",
+        "contribute": "Fællesskab"
       },
       "link": {
         "invite_title": "Invitér link",
@@ -3232,7 +3263,10 @@
         "turn_off_fail": "Mislykkedes at deaktivere",
         "turn_on_fail": "Kunne ikke aktivere",
         "make_public_title": "Gør appen offentlig",
-        "make_public_copy": "Kopiér"
+        "make_public_copy": "Kopiér",
+        "marketplace": {
+          "label": "Del med link"
+        }
       },
       "email": {
         "invite_title": "Inviter via e-mail",
@@ -3240,8 +3274,8 @@
         "placeholder": "Indtast e-mail adresse",
         "invited": "Har inviteret",
         "in_list": "Denne bruger er allerede på dit team.",
-        "notmail": "{{ email }} er ikke en e-mail",
-        "duplicate": "{{ email }} er duplikeret"
+        "duplicate": "{{ email }} er duplikeret",
+        "not_mail": "{{ email }} er ikke en e-mail"
       },
       "invalid_email": "Indtast venligst en gyldig e-mail",
       "message": {
@@ -3251,14 +3285,42 @@
       },
       "tab": {
         "invite": "Inviter",
-        "public": "Offentlig"
+        "public": "Offentlig",
+        "with_team": "Del med teammedlemmer"
       },
       "custom_copy_text_app_invite": "{{userName}} har delt dig en app på 「{{teamName}}」. Klik på linket for at deltage i teamet og tjek APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} har delt dig en APP fra 「{{teamName}}」. Klik på linket for at tjekke APP: {{inviteLink}}",
       "custom_copy_text": "{{userName}} inviterer dig til at deltage i 「{{teamName}}」. Klik på linket for at deltage i teamet: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Resterende licenser"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} har delt dig en AI Agent of ¤{{teamName}}- Klik på linket for at deltage i teamet og prøv AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Bidrag til fællesskab",
+        "default_text": {
+          "app": "Jeg har lige opdaget en imponerende app kaldet {{ appName }}. Tjek den: {{ appLink }}",
+          "agent": "Jeg har lige opdaget en imponerende AI Agent kaldet {{ agentName }}. Tjek det: {{ agentLink }}"
+        },
+        "desc": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer.",
+        "turn_off": "Annuller bidrag",
+        "app": {
+          "desc": "Efter at have bidraget din app til fællesskabet, kan andre brugere se sin grænseflade, køre sine handlinger, og gaffel det. Når en app forges, er ressourcekonfigurationsoplysningerne ikke inkluderet, så der er ingen grund til at bekymre sig om offentliggørelse af ressourcekonfigurationsoplysninger."
+        }
+      },
+      "social_media": {
+        "label": "Del på",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nyheder",
+        "default_text": {
+          "app": "Jeg har lige opdaget en imponerende app kaldet {{ appName }}",
+          "agent": "Jeg har lige opdaget en imponerende AI Agent kaldet {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} del dig en AI Agent fra ¤{{ teamName }}- Deltag i teamet og tjek det: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Inviteret med succes",
@@ -3278,7 +3340,8 @@
       "permission": "Tilladelse",
       "operation": "Handling",
       "transfer": "Overfør ejerskab",
-      "remove": "Fjern"
+      "remove": "Fjern",
+      "ai-agent": "AI Agenter"
     },
     "transfer_modal": {
       "title": "Er du sikker på, at du vil overføre ejerskab?",
@@ -3293,7 +3356,8 @@
       "cancel": "Annuller"
     },
     "status": {
-      "pending": "Afventer"
+      "pending": "Afventer",
+      "current-user": "Dig"
     },
     "settings": {
       "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer",
@@ -3435,27 +3499,27 @@
   "oauth_redirect_title": "Omdiriger",
   "oauth_redirect_description": "Omdirigerer til <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Engelsk",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "cřesţtina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "franc- ais",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugue s",
+    "ro-RO": "romersk naŽe",
+    "ru-RU": "Rækkevidde - OG Rækkevidde",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
   "logout_failed": "Mislykkedes at logge ud. Prøv igen senere.",
   "drive": {
@@ -3592,12 +3656,17 @@
       "billing": "Fakturering",
       "license": "Licens",
       "drive": "Drev",
+      "colla": "Colla",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla transaktionshistorik",
       "billing_portal": "Fakturering portal"
     },
     "title": {
       "billing": "Fakturering",
       "license": "Licens",
-      "drive": "Drev"
+      "drive": "Drev",
+      "colla": "Colla",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3606,7 +3675,8 @@
       },
       "sub_cycle": {
         "yearly": "Årligt",
-        "monthly": "Månedligt"
+        "monthly": "Månedligt",
+        "lifetime": "Levetid"
       },
       "billing_cyle": {
         "year": "/ År",
@@ -3617,7 +3687,8 @@
         "expiration_date": "Udløbsdato",
         "licenses": "Licenser",
         "storage": "Lagerplads",
-        "traffic": "Trafik"
+        "traffic": "Trafik",
+        "colla": "Colla"
       },
       "period": {
         "current": "Aktuel",
@@ -3629,33 +3700,57 @@
         "License": "Licens",
         "Storage": "Lagerplads",
         "Traffic": "Trafik",
-        "balance": "Saldo"
+        "balance": "Saldo",
+        "colla": "Colla"
       },
       "button": {
         "License": "Administrer licenser",
         "Storage": "Administrer lagerplads",
-        "Traffic": "Udvid trafik"
+        "Traffic": "Udvid trafik",
+        "colla": "Administrer Colla"
       },
       "capacity": {
         "License": "{{used}} (i alt {{total}} licenser) er blevet brugt.",
         "Storage": "{{used}} (i alt {{total}} GB) er blevet brugt.",
-        "Traffic": "{{used}} (i alt {{total}} GB) er blevet brugt."
+        "Traffic": "{{used}} (i alt {{total}} GB) er blevet brugt.",
+        "colla": "{{used}} Colla brugt (i alt {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Måned",
+        "event": "Begivenhed",
+        "usage": "Brug af kolla"
+      },
+      "event": {
+        "increase_storage": "Forøg lagerplads",
+        "increase_colla": "Forøg Colla",
+        "increase_traffic": "Øg trafikken"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Administrer lagerplads",
         "manage_licenses": "Administrer licenser",
-        "expand_traffic_capac": "Udvid trafikkapacitet"
+        "expand_traffic_capac": "Udvid trafikkapacitet",
+        "colla": "Administrer Colla"
       },
       "plan_label": {
         "License": "Licenser",
         "Storage": "Lagerplads",
-        "Traffic": "Trafik"
+        "Traffic": "Trafik",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
         "License": "Licenser",
-        "Storage_traffic": "GB"
+        "Storage_traffic": "GB",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "Årligt",
@@ -3694,7 +3789,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Afmeld",
@@ -3703,7 +3799,9 @@
         "storage_traffic_increase": "Forøg {{changeNum}} GB",
         "storage_traffic_remove": "Fjern {{changeNum}} GB",
         "license_increase": "Forøg {{changeNum}} licenser",
-        "license_remove": "Fjern {{changeNum}} licenser"
+        "license_remove": "Fjern {{changeNum}} licenser",
+        "colla_increase": "Forøg {{changeNum}} Colla",
+        "colla_remove": "Fjern {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "Du kommer til at tilføje {{changeNum}} GB lagerplads. Når den er bekræftet, vil vi straks fratrække betalingen for den nye lagerplads til denne faktureringscyklus. <0>Læs mere</0>",
@@ -3724,21 +3822,31 @@
         "subscribe_license_monthly": "Du vil tilmelde dig månedligt abonnement på ILLA Cloud Plus. <0>Lær mere</0>",
         "subscribe_license_yearly": "Du vil tilmelde dig årligt abonnement på ILLA Cloud Plus. <0>Lær mere</0>",
         "subscribe_storage_monthly": "Du kommer til at tilføje {{changeNum}}GB lagerplads. Når bekræftet, vil vi trække omkostningerne for lageret straks. <0>Lær mere</0>",
-        "subscribe_storage_yearly": "Du kommer til at tilføje {{changeNum}}GB lagerplads. Når bekræftet, vil vi trække omkostningerne for lageret straks. <0>Lær mere</0>"
+        "subscribe_storage_yearly": "Du kommer til at tilføje {{changeNum}}GB lagerplads. Når bekræftet, vil vi trække omkostningerne for lageret straks. <0>Lær mere</0>",
+        "colla_sub": "De vil abonnere på Colla. Når det er bekræftet, vil vi automatisk trække gebyrerne i begyndelsen af hver faktureringscyklus og opgradere dit abonnement automatisk, når du har brug for mere Colla. <0>Lær mere</0>",
+        "colla_increase": "Du vil tilføje {{changeNum}} Colla. Når det er bekræftet, vil vi straks fratrække det resterende skyldige beløb for denne faktureringscyklus. <0>Lær mere</0>",
+        "colla_remove": "Du vil fjerne {{changeNum}} Colla. Når det er bekræftet, vil det træde i kraft fra den næste faktureringscyklus. <0>Lær mere</0>",
+        "colla_unsubscribe": "Du vil annullere dit Colla-abonnement. Når det er bekræftet, vil det træde i kraft fra den næste faktureringsperiode. Bemærk venligst, at du efter afbestilling kan opleve problemer med dit ILLA Drev og AI Agent brug. <0>Lær mere</0>",
+        "colla_update": "Du vil ændre dit Colla-abonnement. Når det er bekræftet, vil ændringerne træde i kraft fra den næste faktureringsperiode. <0>Lær mere</0>"
       },
       "description": {
-        "add_storage": "Beregningsregler ved hjælp af et månedligt abonnement som eksempel: Lad os overveje et scenarie, hvor du oprindeligt abonnerede på 5 GB fra den 14. marts, og faktureringscyklussen strækker sig fra den 14. i denne måned til den 13. i næste måned. Den 10. maj, beslutter du at tilføje 1 GB. På det tidspunkt Der var 4 dage tilbage indtil slutningen af den aktuelle cyklus den 13. maj (hvilket i alt er 30 dage fra den 14. april til den 13. maj). For at beregne den justerede betaling, vil vi fratrække prisen på 1 GB, hvilket svarer til ca. $ 0. 9, proportionalt med varigheden af 4 dage inden for 30-dages cyklus. Derfor anslås fradraget til 1 licens * $0. 9 / 30 dage * 4 dage, hvilket resulterer i cirka $0, 132. Fra og med den næste faktureringscyklus, vil alle lagergebyrer blive konsolideret og betalt sammen. Hvis du ønsker at reducere licenser eller foretage andre ændringer til abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se venligst vores bruger <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "remove_storage": "Hvis lagerkapaciteten i dine filer overstiger den abonnerede lagerkapacitet ved starten af den næste faktureringscyklus, alle filer vil blive deaktiveret, indtil du sletter filer eller øge lagerkapaciteten inden for det tilgængelige interval. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "update_plan_year": "Fra den næste periode vil abonnementet blive ændret til et årligt abonnement og gebyrerne vil automatisk blive fratrukket på grundlag af den årlige abonnementspris. Hvis du ønsker at reducere licenser eller foretage andre ændringer til abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "update_plan_monthly": "Fra den næste periode vil abonnementet blive ændret til et månedligt abonnement og gebyrerne vil automatisk blive fratrukket på grundlag af den månedlige abonnementspris. Hvis du ønsker at reducere licenser eller foretage andre ændringer til abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
+        "add_license": "Beregningsregler ved hjælp af et månedligt abonnement som eksempel: Lad os overveje et scenarie, hvor du oprindeligt abonnerede på 5 pladser fra den 14. marts, og faktureringscyklussen strækker sig fra den 14. i denne måned til den 13. i næste måned. Den 10. maj, beslutter du at tilføje 1 ekstra pladser. På det tidspunkt Der var 4 dage tilbage indtil slutningen af den aktuelle cyklus den 13. maj (hvilket i alt er 30 dage fra den 14. april til den 13. maj). For at beregne den justerede betaling, vil vi fratrække prisen på 1 sæde, hvilket svarer til ca. $10, proportionalt med varigheden af 4 dage inden for 30-dages cyklussen. Derfor skønnes fradraget til 1 sæde * $10 / 30 dage * 4 dage, hvilket resulterer i cirka $1, 33. Fra og med den næste faktureringscyklus, vil alle pladsafgifter blive konsolideret og betalt sammen. Hvis du ønsker at reducere sæder eller foretage andre ændringer i abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "remove_license": "Hvis antallet af brugere med redigeringstilladelser overstiger antallet af licenser i starten af den næste faktureringscyklus, alle brugere undtagen ejeren vil blive deaktiveret indtil du fjerner medlemmer eller øger antallet af licenser inden for det tilgængelige interval. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "add_traffic": "Efter vellykket fradrag, din trafik vil stige i realtid. Når trafikken er brugt, kan gebyrerne ikke refunderes. Ubrugt trafik kan refunderes i enheder af GB. For eksempel, hvis du køber 10GB trafik og bruge 4.5GB, kan du ansøge om en tilbagebetaling af 5GB. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "subscribe_storage_yearly": "Du vil tilmelde dig det årlige abonnement på ILLA Drive-lageret. Vi trækker automatisk gebyrerne fra din konto i begyndelsen af hver betalingscyklus. Det faktiske beløb, der fratrækkes, afhænger af, hvor meget lagerkapacitet du har tegnet abonnement på GB. For eksempel, hvis du starter dit første abonnement den 25. februar 2023, med et årligt abonnementsgebyr på $ 9. per GB, og du har i alt 3 GB, vil vi fratrække $ 29. 25. februar 2023. Hvis du tilføjer 2 GB den 25. marts 2023, vil vi først fratrække de resterende 11 måneders betaling den 25. marts 2023. Derefter, ved 25 februar 2024, vil vi fratrække betalingen for 5 GB, som er (2 +3) * $9,9 = $49. . Hvis du ønsker at reducere lagerplads eller foretage andre ændringer i abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
-        "subscribe_storage_monthly": "Du vil abonnere på det månedlige abonnement på ILLA Drive-lageret. Vi trækker automatisk gebyrerne fra din konto i begyndelsen af hver betalingscyklus. Det faktiske beløb, der fratrækkes, afhænger af, hvor meget lagerkapacitet du har tegnet abonnement på GB. For eksempel, hvis du starter dit første abonnement den 25. februar 2023, med et månedligt abonnementsgebyr på $ 0. 9 per GB, og du har i alt 3 GB, vi vil fratrække $ 2. 7. februar 25, 2023. Hvis du tilføjer 2 flere licenser den 21. marts 2023, vil vi først fratrække de resterende 5 dages betaling den 21. marts 2023. Derefter, inden 25 marts 2023, vil vi fratrække betalingen for 5 licenser, som er (2+3)*$0. 9=$4,95. Hvis du ønsker at reducere licenser eller foretage andre ændringer i abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "subscribe_license_monthly": "Du vil abonnere på det månedlige abonnement på ILLA Cloud Plus. Vi trækker automatisk gebyrerne fra din konto i begyndelsen af hver betalingscyklus. Det faktiske beløb fratrukket afhænger af antallet af licenser, du har. For eksempel, hvis du starter dit første abonnement den 25. februar 2023, med et månedligt abonnementsgebyr på $ 12 per licens, og du har i alt 3 licenser, vil vi fratrække $ 36 den 25. februar 2023. Hvis du tilføjer 2 flere licenser den 21. marts 2023, vil vi først fratrække de resterende 5 dages betaling den 21. marts 2023. Derefter ved 25 marts 2023, vil vi fratrække betalingen for 5 licenser, hvilket er (2+3) * $ 12=$ 60. Hvis du ønsker at reducere licenser eller foretage andre ændringer til abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
+        "update_plan_increase_license": "Gebyrerne vil automatisk blive fratrukket på grundlag af det opdaterede antal pladser og prisfastsættelsen af nye faktureringscyklus fra den næste periode. Denne gang vil vi fratrække betalingen for de øgede sæder i henhold til den aktuelle faktureringscyklus. Beregningsregler for stigende pladser ved hjælp af et månedligt abonnement som eksempel: Lad os overveje et scenarie, hvor du oprindeligt abonnerede på 5 pladser fra den 14. marts, og faktureringscyklussen strækker sig fra den 14. i denne måned til den 13. i næste måned. Den 10. maj, beslutter du at tilføje 1 ekstra sæde. På det tidspunkt Der var 4 dage tilbage indtil slutningen af den aktuelle cyklus den 13. maj (hvilket i alt er 30 dage fra den 14. april til den 13. maj). For at beregne den justerede betaling, vil vi fratrække prisen på 1 sæde, hvilket svarer til ca. $10, proportionalt med varigheden af 4 dage inden for 30-dages cyklussen. Derfor skønnes fradraget til 1 sæde * $10 / 30 dage * 4 dage, hvilket resulterer i cirka $1, 33. Fra og med den næste faktureringscyklus, vil alle pladsafgifter blive konsolideret og betalt sammen. Hvis du ønsker at reducere sæder eller foretage andre ændringer i abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "update_plan_remove_license": "Gebyrerne vil automatisk blive fratrukket på grundlag af det opdaterede antal licenser og prisfastsættelsen af nye faktureringscyklus fra den næste periode. Hvis antallet af brugere med redigeringstilladelser overstiger antallet af licenser i starten af den næste faktureringscyklus, alle brugere undtagen ejeren vil blive deaktiveret indtil du fjerner medlemmer eller øger antallet af licenser inden for det tilgængelige interval. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
-        "update_plan_increase_storage": "Gebyrerne vil automatisk blive fratrukket på grundlag af den ajourførte lagerplads og prisen på den nye faktureringscyklus fra den næste periode. Denne gang vil vi fratrække betalingen for den øgede lagerplads i henhold til den aktuelle faktureringsperiode. Beregningsregler ved hjælp af et månedligt abonnement som eksempel: Lad os overveje et scenarie, hvor du oprindeligt abonnerede på 5 GB fra den 14. marts, og faktureringscyklussen strækker sig fra den 14. i denne måned til den 13. i næste måned. Den 10. maj, beslutter du at tilføje 1 GB. På det tidspunkt Der var 4 dage tilbage indtil slutningen af den aktuelle cyklus den 13. maj (hvilket i alt er 30 dage fra den 14. april til den 13. maj). For at beregne den justerede betaling, vil vi fratrække prisen på 1 GB, hvilket svarer til ca. $ 0. 9 proportionalt med varigheden af 4 dage inden for 30-dages cyklussen. Derfor skønnes fradraget som 1 licens * $0,99 / 30 dage * 4 dage, hvilket resulterer i cirka $0,132. Fra og med den næste faktureringscyklus, vil alle lagergebyrer blive konsolideret og betalt sammen. Hvis du ønsker at reducere licenser eller foretage andre ændringer til abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "update_plan_remove_storage": "Gebyrerne vil automatisk blive fratrukket på grundlag af den ajourførte lagerplads og prisen på den nye faktureringscyklus fra den næste periode. Hvis lagerkapaciteten i dine filer overstiger den abonnerede lagerkapacitet ved starten af den næste faktureringscyklus, alle filer vil blive deaktiveret, indtil du sletter filer eller øge lagerkapaciteten inden for det tilgængelige interval. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>"
+      },
+      "colla_redeem": {
+        "title": "Med {{changeNum}} Colla kan du købe: ",
+        "storage": "Lagerplads",
+        "traffic": "Trafik",
+        "token": "Token"
       }
     },
     "message": {
@@ -3760,13 +3868,17 @@
       "failed_to_join_no_license": "Kan ikke deltage, da teamlicenserne er utilstrækkelige, kontakt venligst administratoren.",
       "storage_insufficient_modal": "Lagring eller trafik af dette team er ikke nok. Kontakt venligst din administrator.",
       "appsumo": {
+        "suc": "Indløst med succes",
+        "fail": "Kunne ikke indløse. Prøv igen senere.",
         "transfer": "Operationen mislykkedes. Denne bruger er bundet til livstidsabonnementet. ",
         "leave": "Operationen mislykkedes. Denne bruger er bundet til livstidsabonnementet. "
       },
       "no_license_operate_failed": "På grund af utilstrækkelige licenser mislykkedes.",
       "failed_to_invite_no_license": "På grund af utilstrækkelig licens er nogle medlemsinvitationer mislykkedes.",
       "error_subscribe": "Planen kunne ikke ændres. Prøv igen senere.",
-      "unsubscription_fail": "Mislykkedes at annullere abonnementet. Prøv igen senere."
+      "unsubscription_fail": "Mislykkedes at annullere abonnementet. Prøv igen senere.",
+      "failed_to_update": "Mislykkedes at opdatere abonnementet. Prøv venligst igen. ",
+      "update_suc": "Abonnement opdateret"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3811,7 +3923,10 @@
         "others": "Din konto er blevet deaktiveret fordi teamets abonnement er udløbet.",
         "your_subscription_ha_not_owner": "Ikke nok licenser",
         "all_members_except_f_not_owner": "Dit team har ikke nok licenser. Kontakt venligst din teamejer.",
-        "upgrade_not_owner": "Fik det"
+        "upgrade_not_owner": "Fik det",
+        "your_subscription_ha": "Abonnement udløbet",
+        "all_members_except_f": "Dit teams abonnement er udløbet. Forny det venligst til tiden",
+        "upgrade": "Opgradér"
       },
       "blank_page": {
         "insufficient_license_disable": "Din konto er blevet deaktiveret på grund af utilstrækkelige teamlicenser. Kontakt venligst teamejeren for at få hjælp."
@@ -3861,18 +3976,68 @@
       "upgrade": "Opgradér",
       "cancel": "Annuller"
     },
-    "advanced": {
-      "feature": "Fjern vandmærke"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Er du sikker på, at du vil indløse AppSumo i {{teamName}} team? ",
+        "cancel": "Annuller",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Vælg et hold at indløse",
+          "create_button": "Opret nyt team",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Opret Konto"
+      },
+      "update": "Opdater AppSumo abonnement"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Utilstrækkeligt sæde eller udløbet abonnement, opgradér venligst til tiden. ",
+        "others": "På grund af utilstrækkelig plads er du blevet deaktiveret. Kontakt venligst teamejeren"
+      }
+    },
+    "yearly_discount": "(Save næsten 16,7 %)",
+    "license_price_new": {
+      "monthly": "{{ price }}/redaktør/måned",
+      "yearly": "{{ price }}/editor/year"
     },
     "redirect_page": {
+      "title": "Betaling gennemført",
       "desc1": "Tak for dit køb. ILLA Cloud vil fortsætte med at give dig flere funktioner.",
       "desc2": "Omdirigerer til ILLA Cloud på {{time}} sekunder...",
-      "title": "Betaling gennemført",
       "button": "Tilbage til ILLA Cloud"
     },
     "redirect_to_stripe": "Omdirigerer til Stripe",
-    "appsumo": {
-      "update": "Opdater AppSumo abonnement"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 MB lagerplads pr. måned for at gemme filer i ILLA drev",
+          "traffic": "100 MB trafik for at downloade filer fra ILLA drev"
+        }
+      },
+      "drive": {
+        "title": "ILLA Drev",
+        "storage": "5 GB lagerplads pr. måned til at gemme filer i ILLA drev",
+        "traffic": "5 GB trafik for at downloade filer fra ILLA drev"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Brugerdefineret lagerplads pr. måned til at gemme filer i ILLA Drive",
+          "traffic": "Brugerdefineret trafik for at downloade filer fra ILLA Drive"
+        }
+      }
+    },
+    "advanced": {
+      "feature": "Fjern vandmærke"
     }
   },
   "network": {
@@ -3885,7 +4050,8 @@
     },
     "desc": {
       "no_description": "Ingen beskrivelse",
-      "blank": "Ingen applikation"
+      "blank": "Ingen applikation",
+      "blank-agent": "Ingen AI Agent her"
     },
     "app_setting": {
       "app_setting": "App indstilling",
@@ -3906,7 +4072,8 @@
       "update_suc": "Opdatering lykkedes"
     },
     "button": {
-      "blank": "Opret din første app"
+      "blank": "Opret din første app",
+      "blank-agent": "Opret AI Agent"
     }
   },
   "new_deploy": {
@@ -3924,37 +4091,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Inviter til at redigere",
-      "invite_to_use": "Inviter til brug",
-      "share-with-team": "Del med teamet",
-      "contribute": "Bidrag"
+      "share-with-team": "Del med teamet"
     },
     "desc": {
-      "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. ",
-      "contribute": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer."
-    },
-    "tips": {
-      "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
-      "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
-      "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
+      "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. "
     },
     "label": {
-      "contribute": "Bidrag til markedspladsen",
-      "social-media": "Del på"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker Nyheder"
-      }
+      "contribute": "Bidrag til markedspladsen"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hej der! Jeg har lige opdaget denne fantastiske AI Agent. Du er måske også interesseret i at prøve det! Tjek det ud! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProduktivityBoost",
         "reddit": "Tjek denne fantastiske AI Agent [{{promptName}}]",
         "linkedin": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
         "facebook": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
@@ -3962,11 +4108,36 @@
         "hackernews": "Forenkle din arbejdsbyrde med [{{promptName}}] - AI Agent, der Får det færdige job"
       },
       "contribute": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!"
+    },
+    "button": {
+      "share_contribute": "Kopiér & Del",
+      "uncontribute": "Annuller bidrag"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "reddit": "Tjek denne fantastiske app [{{appName}}]",
+        "linkedin": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "facebook": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "whatsapp": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Let at bruge web-app skabelon [{{appName}}]"
+      },
+      "contribute": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI Agenter",
   "marketplace": {
-    "star": "Stjerne {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Stjerne",
+    "fork": "Fork"
+  },
+  "load": {
+    "before": "Indlæs mere"
+  },
+  "size_exceed_copied_tips": "Indholdet er for langt til at kopiere. (nuværende størrelse: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "Bidrag",
+  "error_page": {
+    "fobidden": "Ingen adgangstilladelse"
   }
 }

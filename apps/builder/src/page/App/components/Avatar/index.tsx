@@ -1,13 +1,13 @@
+import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@illa-public/illa-net/constant"
+import { getColorByString } from "@illa-public/utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
 import { Popover } from "@illa-design/react"
-import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@/api/http/constant"
 import { AvatarProps } from "@/page/App/components/Avatar/interface"
 import {
   applyUserAvatarStyle,
   getAvatarStyle,
 } from "@/page/App/components/Avatar/style"
-import { getColorByString } from "@/utils/colorHelper"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 const getFirstChar = (str: string | undefined) => {
   if (!str) return "U"
@@ -18,9 +18,9 @@ const getFirstChar = (str: string | undefined) => {
 }
 
 export const Avatar: FC<AvatarProps> = (props) => {
-  const { userId, nickname, avatar, showType, type, showTooltips, className } =
+  const { userID, nickname, avatar, showType, type, showTooltips, className } =
     props
-  const avatarBgColor = getColorByString(userId || "")
+  const avatarBgColor = getColorByString(userID || "")
   const avatarText = getFirstChar(nickname)
   const node = avatar ? (
     <img

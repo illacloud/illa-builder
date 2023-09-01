@@ -1,7 +1,7 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { get } from "lodash"
 import { FC, useCallback } from "react"
 import { Switch } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
 import { trackInEditor } from "@/utils/mixpanelHelper"

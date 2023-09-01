@@ -26,16 +26,16 @@ export const generateRawAction = (
   const {
     content,
     transformer,
-    actionId,
-    resourceId,
+    actionID,
+    resourceID,
     displayName,
     actionType,
     config,
     triggerMode,
   } = action
   const modifiedAction: RawAction = {
-    $actionId: actionId,
-    $resourceId: resourceId,
+    $actionID: actionID,
+    $resourceID: resourceID,
     displayName,
     actionType,
     $type: "ACTION",

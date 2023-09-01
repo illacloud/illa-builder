@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
 import { Connection, getTextMessagePayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { RootState } from "@/store"
 
 export const actionsAsync = (
@@ -17,8 +17,8 @@ export const actionsAsync = (
     case "addActionItemReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.BROADCAST_ONLY,
-          Target.ACTION,
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
           true,
           action,
           teamID,
@@ -31,8 +31,8 @@ export const actionsAsync = (
     case "removeActionItemReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.BROADCAST_ONLY,
-          Target.ACTION,
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
           true,
           action,
           teamID,
@@ -45,8 +45,8 @@ export const actionsAsync = (
     case "updateActionItemReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.BROADCAST_ONLY,
-          Target.ACTION,
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
           true,
           action,
           teamID,
@@ -59,8 +59,8 @@ export const actionsAsync = (
     case "updateActionDisplayNameReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.BROADCAST_ONLY,
-          Target.ACTION,
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
           true,
           action,
           teamID,
@@ -73,8 +73,8 @@ export const actionsAsync = (
     case "batchUpdateMultiActionSlicePropsReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.BROADCAST_ONLY,
-          Target.ACTION,
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
           true,
           action,
           teamID,

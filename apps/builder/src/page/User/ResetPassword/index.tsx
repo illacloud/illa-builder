@@ -1,13 +1,18 @@
 import { Global } from "@emotion/react"
+import {
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import { ResetPasswordPage } from "@illa-public/sso-module"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
-import ResetPasswordPage from "@/illa-public-component/User/resetPassword"
 import { fetchUpdatePassword } from "@/services/auth"
 import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
+import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { ResetPwdFields } from "./interface"
@@ -65,16 +70,23 @@ const ResetPassword: FC = () => {
     setSubmitLoading(false)
   }
 
+  const handleSendEmail = (email: string) => {
+    return sendEmail(email, "forgetpwd")
+  }
+
   return (
-    <div>
+    <MixpanelTrackProvider
+      basicTrack={track}
+      pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.FORGET_PASSWORD}
+    >
       <Global styles={mobileAdaptationStyle} />
       <ResetPasswordPage
         loading={submitLoading}
         errorMsg={errorMsg}
         onSubmit={onSubmit}
-        sendEmail={sendEmail}
+        sendEmail={handleSendEmail}
       />
-    </div>
+    </MixpanelTrackProvider>
   )
 }
 

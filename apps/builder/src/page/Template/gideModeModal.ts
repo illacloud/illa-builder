@@ -1,9 +1,9 @@
-import { createModal } from "@illa-design/react"
-import i18n from "@/i18n/config"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+} from "@illa-public/mixpanel-utils"
+import { createModal } from "@illa-design/react"
+import i18n from "@/i18n/config"
 import { ILLARoute } from "@/router"
 import { updateTutorialViewed } from "@/services/users"
 import { track } from "@/utils/mixpanelHelper"

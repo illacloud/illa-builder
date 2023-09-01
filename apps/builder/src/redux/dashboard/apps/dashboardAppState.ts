@@ -11,6 +11,7 @@ export interface DashboardAppActivity {
 export interface DashboardAppConfig {
   public: boolean
   waterMark: boolean
+  publishedToMarketplace: boolean
   description?: string
 }
 
@@ -26,9 +27,6 @@ export interface DashboardApp {
   appId: string
   appName: string
   deployed: boolean
-  currentVersionId: string
-  mainlineVersion: number
-  releaseVersion: number
   updatedAt: string
   updatedBy: string
   appActivity: DashboardAppActivity
@@ -42,12 +40,10 @@ export const DashboardAppInitialState: DashboardApp = {
   appId: "",
   appName: "",
   deployed: false,
-  currentVersionId: "",
-  mainlineVersion: 0,
-  releaseVersion: 0,
   config: {
     public: false,
     waterMark: false,
+    publishedToMarketplace: false,
   },
   appActivity: {
     modifier: "",

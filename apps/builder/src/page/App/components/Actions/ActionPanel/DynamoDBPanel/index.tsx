@@ -58,13 +58,13 @@ const DynamoDBPanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
-    if (cachedAction.resourceId == undefined) return
-    fetchResourceMeta(cachedAction.resourceId).then(
+    if (cachedAction.resourceID == undefined) return
+    fetchResourceMeta(cachedAction.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
     )
-  }, [cachedAction.resourceId])
+  }, [cachedAction.resourceID])
 
   const handleValueChange = useCallback(
     (value: string | boolean, name: string) => {

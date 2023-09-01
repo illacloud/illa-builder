@@ -17,7 +17,7 @@ export const DashboardErrorElement: FC = () => {
   return (
     <div css={errorBodyStyle}>
       <div css={errorIconContentStyle}>
-        <CloseIcon size="16px" _css={errorIconColorStyle} />
+        <CloseIcon size="16px" css={errorIconColorStyle} />
       </div>
       <div css={errorTitleStyle}>{t("dashboard.common.error_title")}</div>
       <div css={errorDescriptionStyle}>
