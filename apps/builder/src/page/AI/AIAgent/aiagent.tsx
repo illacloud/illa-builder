@@ -19,6 +19,7 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -852,53 +853,69 @@ export const AIAgent: FC = () => {
               name="aiAgentID"
               control={control}
               render={({ field: idField }) => (
-                <div css={rightPanelContainerStyle}>
-                  <PreviewChat
-                    isRunning={isRunning}
-                    hasCreated={Boolean(idField.value)}
-                    isMobile={false}
-                    editState="EDIT"
-                    agentType={field.value}
-                    chatMessages={chatMessages}
-                    generationMessage={generationMessage}
-                    isReceiving={isReceiving}
-                    blockInput={!isRunning || blockInputDirty}
-                    onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
-                      sendMessage(
-                        {
-                          threadID: message.threadID,
-                          prompt: encodeURI(message.message),
-                          variables: [],
-                          actionID: getValues("aiAgentID"),
-                          modelConfig: getValues("modelConfig"),
-                          model: getValues("model"),
-                          agentType: getValues("agentType"),
-                        } as ChatSendRequestPayload,
-                        TextSignal.RUN,
-                        agentType,
-                        "chat",
-                        true,
-                        message,
-                      )
-                    }}
-                    onCancelReceiving={() => {
-                      sendMessage(
-                        {} as ChatSendRequestPayload,
-                        TextSignal.STOP_ALL,
-                        field.value,
-                        "stop_all",
-                        false,
-                      )
-                      setIsReceiving(false)
-                    }}
-                    onShowShareDialog={() => {
-                      setShareDialogVisible(true)
-                    }}
-                    onShowContributeDialog={() => {
-                      setContributedDialogVisible(true)
-                    }}
-                  />
-                </div>
+                <Controller
+                  render={({ field: contributeField }) => (
+                    <div css={rightPanelContainerStyle}>
+                      <PreviewChat
+                        isRunning={isRunning}
+                        hasCreated={Boolean(idField.value)}
+                        isMobile={false}
+                        editState="EDIT"
+                        agentType={field.value}
+                        chatMessages={chatMessages}
+                        generationMessage={generationMessage}
+                        isReceiving={isReceiving}
+                        blockInput={!isRunning || blockInputDirty}
+                        onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                          sendMessage(
+                            {
+                              threadID: message.threadID,
+                              prompt: encodeURI(message.message),
+                              variables: [],
+                              actionID: getValues("aiAgentID"),
+                              modelConfig: getValues("modelConfig"),
+                              model: getValues("model"),
+                              agentType: getValues("agentType"),
+                            } as ChatSendRequestPayload,
+                            TextSignal.RUN,
+                            agentType,
+                            "chat",
+                            true,
+                            message,
+                          )
+                        }}
+                        onCancelReceiving={() => {
+                          sendMessage(
+                            {} as ChatSendRequestPayload,
+                            TextSignal.STOP_ALL,
+                            field.value,
+                            "stop_all",
+                            false,
+                          )
+                          setIsReceiving(false)
+                        }}
+                        onShowShareDialog={() => {
+                          if (
+                            isCloudVersion &&
+                            !canUseBillingFeature &&
+                            !contributeField.value
+                          ) {
+                            upgradeModal({
+                              modalType: "upgrade",
+                            })
+                            return
+                          }
+                          setShareDialogVisible(true)
+                        }}
+                        onShowContributeDialog={() => {
+                          setContributedDialogVisible(true)
+                        }}
+                      />
+                    </div>
+                  )}
+                  name="publishedToMarketplace"
+                  control={control}
+                />
               )}
             />
           )}

@@ -25,7 +25,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { formatNumForAgent } from "@illa-public/utils"
+import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -135,6 +135,12 @@ export const AIAgentRunMobile: FC = () => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
   const dispatch = useDispatch()
+
+  const canInvite = canManageInvite(
+    teamInfo.myRole,
+    teamInfo.permission.allowEditorManageTeamMember,
+    teamInfo.permission.allowViewerManageTeamMember,
+  )
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
@@ -593,14 +599,26 @@ export const AIAgentRunMobile: FC = () => {
                       )}
                     </div>
                   )}
-                  <div
-                    css={shareContainerStyle}
-                    onClick={() => {
-                      setShareDialogVisible(true)
-                    }}
-                  >
-                    <DependencyIcon fs="24px" />
-                  </div>
+                  {(canInvite || field.value) && (
+                    <div
+                      css={shareContainerStyle}
+                      onClick={() => {
+                        if (
+                          isCloudVersion &&
+                          !canUseBillingFeature &&
+                          !field.value
+                        ) {
+                          upgradeModal({
+                            modalType: "upgrade",
+                          })
+                          return
+                        }
+                        setShareDialogVisible(true)
+                      }}
+                    >
+                      <DependencyIcon fs="24px" />
+                    </div>
+                  )}
                 </div>
               )
             }}
