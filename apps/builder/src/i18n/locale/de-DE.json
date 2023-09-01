@@ -2634,7 +2634,8 @@
         "failed": "Fehler beim Generieren. Bitte versuchen Sie es später erneut. "
       },
       "generate-icon": {
-        "tooltips": "Verwende KI um ein Icon basierend auf dem Agentennamen und der Beschreibung zu generieren"
+        "tooltips": "Verwende KI um ein Icon basierend auf dem Agentennamen und der Beschreibung zu generieren",
+        "blank": "Bitte geben Sie zuerst das Namensfeld ein"
       },
       "title-preview": {
         "chat": "Chat",
