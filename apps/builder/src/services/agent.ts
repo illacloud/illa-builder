@@ -151,6 +151,7 @@ export const generateDescription = (prompt: string) => {
       data: {
         prompt: encodeURI(prompt),
       },
+      timeout: 600000,
     },
     {
       teamID: getCurrentTeamID(),
@@ -175,6 +176,7 @@ export const generateIcon = (name: string, description: string) => {
         name: encodeURI(name),
         description: encodeURI(description),
       },
+      timeout: 600000,
     },
     {
       teamID: getCurrentTeamID(),
