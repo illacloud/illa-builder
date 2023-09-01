@@ -11,7 +11,6 @@ import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
-import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignIn } from "@/services/auth"
 import { mobileAdaptationStyle } from "@/style"
 import { track } from "@/utils/mixpanelHelper"
@@ -38,8 +37,12 @@ const UserLogin: FC = () => {
       ILLABuilderStorage.setLocalStorage("token", token, -1)
       if (!isCloudVersion) {
         const urlSearchParams = new URLSearchParams(location.search)
-        const path = translateSearchParamsToURLPathWithSelfHost(urlSearchParams)
-        navigate(`${path}`)
+        const redirectURL = urlSearchParams.get("redirectURL")
+        if (redirectURL) {
+          window.location.href = redirectURL
+        } else {
+          navigate("/0/dashboard/apps")
+        }
       } else {
         navigate(location.state?.from ?? "/", {
           replace: true,

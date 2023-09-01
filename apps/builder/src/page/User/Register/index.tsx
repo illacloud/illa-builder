@@ -12,7 +12,6 @@ import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { formatLanguage } from "@/i18n/config"
-import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignUp } from "@/services/auth"
 import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
@@ -58,8 +57,12 @@ const UserRegister: FC = () => {
       ILLABuilderStorage.setLocalStorage("token", token, -1)
       if (!isCloudVersion) {
         const urlSearchParams = new URLSearchParams(location.search)
-        const path = translateSearchParamsToURLPathWithSelfHost(urlSearchParams)
-        navigate(`${path}`)
+        const redirectURL = urlSearchParams.get("redirectURL")
+        if (redirectURL) {
+          window.location.href = redirectURL
+        } else {
+          navigate("/0/dashboard/apps")
+        }
       } else {
         navigate(location.state?.from ?? "/", {
           replace: true,

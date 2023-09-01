@@ -18,20 +18,22 @@ export const translateSearchParamsToURLPathWithSelfHost = (
 ) => {
   const inviteToken = searchParams.get("inviteToken")
   const teamIdentifier = searchParams.get("teamIdentifier")
-  const appID = searchParams.get("appID")
-  const redirectPage = searchParams.get("redirectPage")
+  const redirectURL = searchParams.get("redirectURL")
   const qs = getQS(searchParams)
   const authToken = getAuthToken()
   // go to deploy
-  if (inviteToken && teamIdentifier && appID) {
+
+  if (inviteToken) {
     if (authToken) {
       const qs = removeIgnoredQS(searchParams)
-      if (redirectPage === "edit") {
-        return `/${teamIdentifier}/app/${appID}${qs}`
+      if (redirectURL) {
+        return decodeURIComponent(redirectURL)
       }
-      return `/${teamIdentifier}/deploy/app/${appID}${qs}`
+      return `/${teamIdentifier}/dashboard/apps${qs}`
     }
-    return `/register${qs}`
+    return `/register${
+      searchParams.toString() ? "?" + searchParams.toString() : ""
+    }`
   }
   // go to workspace,only can use self-host
   if (authToken) {
