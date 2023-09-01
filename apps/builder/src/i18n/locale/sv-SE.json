@@ -2634,7 +2634,8 @@
         "failed": "Det gick inte att generera. Försök igen senare. "
       },
       "generate-icon": {
-        "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning"
+        "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning",
+        "blank": "Vänligen fyll i fältet för namn först"
       },
       "title-preview": {
         "chat": "Chatt",
