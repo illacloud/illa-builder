@@ -2634,7 +2634,8 @@
         "failed": "Failed to generate. Please try again later. "
       },
       "generate-icon": {
-        "tooltips": "Use AI to generate icon based on the agent name and description"
+        "tooltips": "Use AI to generate icon based on the agent name and description",
+        "blank": "Please fill in the name field first"
       },
       "title-preview": {
         "chat": "Chat",
