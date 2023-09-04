@@ -2625,7 +2625,8 @@
         "token": "La valeur actuelle des jetons Max est faible, ce qui peut causer des retours incomplets.",
         "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger.",
         "leave": "Il y a du contenu non enregistré, êtes-vous sûr de vouloir quitter ?",
-        "generating": "Veuillez attendre que la génération soit terminée ou interrompre le processus"
+        "generating": "Veuillez attendre que la génération soit terminée ou interrompre le processus",
+        "model-unavailable": "Le modèle actuel n'est pas disponible"
       },
       "title": "Modifier l'Agent IA",
       "generate-desc": {
