@@ -2625,7 +2625,8 @@
         "token": "The current value of Max tokens is low, which may cause incomplete returned results.",
         "purchase-required": "Colla is not enough to run, please recharge.",
         "leave": "There are unsaved content, are you sure you want to leave?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Please wait for the generation to complete or interrupt the process",
+        "model-unavailable": "The current model is not available"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
