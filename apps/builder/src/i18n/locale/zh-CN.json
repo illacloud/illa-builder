@@ -2625,7 +2625,8 @@
         "token": "当前Max token设置小于Prompt占用的token或超出了模型限制",
         "purchase-required": "Colla不足无法运行，请充值",
         "leave": "有未保存的内容，确认要离开吗？",
-        "generating": "请等待生成结束或中断生成后再切换"
+        "generating": "请等待生成结束或中断生成后再切换",
+        "model-unavailable": "当前模型不可用"
       },
       "title": "编辑AI Agent",
       "generate-desc": {
