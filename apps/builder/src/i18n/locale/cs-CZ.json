@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "Generovat AI",
         "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
-        "failed": "Generování se nezdařilo. Opakujte akci později. "
+        "failed": "Generování se nezdařilo. Opakujte akci později. ",
+        "blank": "Nejprve prosím zadejte výzvu"
       },
       "generate-icon": {
         "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta",
