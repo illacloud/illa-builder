@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "KI generieren",
         "tooltips": "Verwenden Sie die KI um die Beschreibung basierend auf Ihrem Prompt zu generieren. ",
-        "failed": "Fehler beim Generieren. Bitte versuchen Sie es später erneut. "
+        "failed": "Fehler beim Generieren. Bitte versuchen Sie es später erneut. ",
+        "blank": "Bitte zuerst die Eingabeaufforderung eingeben"
       },
       "generate-icon": {
         "tooltips": "Verwende KI um ein Icon basierend auf dem Agentennamen und der Beschreibung zu generieren",
