@@ -119,6 +119,9 @@ export const AIAgentRunMobile: FC = () => {
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
   const currentUserInfo = useSelector(getCurrentUser)
+  const [starNum, setStarNum] = useState(
+    marketplaceInfo?.marketplace.numStars ?? 0,
+  )
 
   const { t } = useTranslation()
 
@@ -581,8 +584,12 @@ export const AIAgentRunMobile: FC = () => {
                         try {
                           if (starState) {
                             await unstarAIAgent(agent.aiAgentID)
+                            if (starNum > 0) {
+                              setStarNum(starNum - 1)
+                            }
                           } else {
                             await starAIAgent(agent.aiAgentID)
+                            setStarNum(starNum + 1)
                           }
                         } catch (e) {
                           setStarState(currentState)
@@ -643,28 +650,19 @@ export const AIAgentRunMobile: FC = () => {
                 <div css={agentTeamNameStyle}>{agent.teamName}</div>
                 {agent.publishedToMarketplace && (
                   <div css={agentMarketResultStyle}>
-                    {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 && (
-                      <span>
-                        {t("marketplace.star", {
-                          operationNum: formatNumForAgent(
-                            marketplaceInfo?.marketplace.numStars ?? 0,
-                          ),
-                        })}{" "}
-                      </span>
+                    <span>{t("marketplace.star")}</span>
+                    {starNum > 0 && (
+                      <span>{formatNumForAgent(starNum)}&nbsp;</span>
                     )}
-                    {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 &&
+                    {starNum > 0 &&
                       (marketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
                       "·"}
-                    {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
-                      <span>
-                        {" "}
-                        {t("marketplace.fork", {
-                          operationNum: formatNumForAgent(
-                            marketplaceInfo?.marketplace.numForks ?? 0,
-                          ),
-                        })}
-                      </span>
-                    )}
+                    <span>&nbsp;{t("marketplace.fork")}</span>
+                    <span>
+                      {formatNumForAgent(
+                        marketplaceInfo?.marketplace.numForks ?? 0,
+                      )}
+                    </span>
                   </div>
                 )}
               </div>
