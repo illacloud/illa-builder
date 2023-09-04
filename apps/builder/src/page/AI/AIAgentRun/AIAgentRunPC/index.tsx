@@ -121,6 +121,9 @@ export const AIAgentRunPC: FC = () => {
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
+  const [starNum, setStarNum] = useState(
+    marketplaceInfo?.marketplace.numStars ?? 0,
+  )
   const upgradeModal = useUpgradeModal()
 
   // premium dialog
@@ -299,8 +302,12 @@ export const AIAgentRunPC: FC = () => {
                 try {
                   if (starState) {
                     await unstarAIAgent(agent.aiAgentID)
+                    if (starNum > 0) {
+                      setStarNum(starNum - 1)
+                    }
                   } else {
                     await starAIAgent(agent.aiAgentID)
+                    setStarNum(starNum + 1)
                   }
                   setStarState(!starState)
                 } catch (e) {
@@ -317,14 +324,7 @@ export const AIAgentRunPC: FC = () => {
               }
             >
               <span>{t("marketplace.star")}</span>
-              {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 && (
-                <span>
-                  {" "}
-                  {formatNumForAgent(
-                    marketplaceInfo?.marketplace.numStars ?? 0,
-                  )}
-                </span>
-              )}
+              {starNum > 0 && <span> {formatNumForAgent(starNum)}</span>}
             </Button>
           )}
           {canManage(
