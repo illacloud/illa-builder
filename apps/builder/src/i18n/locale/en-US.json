@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "AI generate",
         "tooltips": "Use AI to generate the description based on your prompt. ",
-        "failed": "Failed to generate. Please try again later. "
+        "failed": "Failed to generate. Please try again later. ",
+        "blank": "Please enter the prompt first"
       },
       "generate-icon": {
         "tooltips": "Use AI to generate icon based on the agent name and description",
