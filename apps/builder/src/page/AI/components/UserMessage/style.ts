@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { applyMobileStyle } from "@illa-public/utils"
 import { getColor } from "@illa-design/react"
 
 export const agentMessageContainer = css`
@@ -7,6 +8,9 @@ export const agentMessageContainer = css`
   justify-content: end;
   width: 100%;
   flex-direction: row;
+  ${applyMobileStyle(css`
+    padding: 24px 12px 8px 12px;
+  `)}
 `
 
 export const senderContainerStyle = css`
@@ -38,4 +42,7 @@ export const messageContainerStyle = css`
   background: ${getColor("grayBlue", "09")};
   padding: 8px 12px;
   margin-top: 4px;
+  ${applyMobileStyle(css`
+    margin-left: 0;
+  `)}
 `

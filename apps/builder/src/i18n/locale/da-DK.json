@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agentens marked"
+      "marketplace": "Fællesskab"
     },
     "sort-type": {
       "popular": "Mest populære",
@@ -2625,16 +2625,19 @@
         "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
         "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst",
         "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?",
-        "generating": "Vent venligst til generationen til at fuldføre eller afbryde processen"
+        "generating": "Vent venligst til generationen til at fuldføre eller afbryde processen",
+        "model-unavailable": "Den nuværende model er ikke tilgængelig"
       },
       "title": "Rediger AI Agent",
       "generate-desc": {
         "button": "AI generere",
         "tooltips": "Brug AI til at generere beskrivelsen baseret på din prompt. ",
-        "failed": "Mislykkedes at generere. Prøv igen senere. "
+        "failed": "Mislykkedes at generere. Prøv igen senere. ",
+        "blank": "Indtast venligst prompten først"
       },
       "generate-icon": {
-        "tooltips": "Brug AI til at generere ikon baseret på agentens navn og beskrivelse"
+        "tooltips": "Brug AI til at generere ikon baseret på agentens navn og beskrivelse",
+        "blank": "Udfyld venligst navnefeltet først"
       },
       "title-preview": {
         "chat": "Chat",

@@ -11,9 +11,9 @@ import {
   ATTRIBUTE_GROUP,
   canManage,
   canManageInvite,
-  canUseUpgradeFeature,
+  openShareAgentModal,
+  showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -68,21 +68,17 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   const [shareVisible, setShareVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 
-  const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo?.myRole,
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
-  )
-
   const openInviteModal = useCallback(() => {
-    if (isCloudVersion && !canUseBillingFeature && !publishedToMarketplace) {
+    if (
+      !openShareAgentModal(teamInfo, teamInfo.myRole, publishedToMarketplace)
+    ) {
       upgradeModal({
         modalType: "upgrade",
       })
       return
     }
     setShareVisible(true)
-  }, [canUseBillingFeature, publishedToMarketplace, upgradeModal])
+  }, [publishedToMarketplace, teamInfo, upgradeModal])
 
   const handleDuplicateApp = () => {
     if (duplicateLoading) return
@@ -195,7 +191,11 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
                 }
                 onClick={handleDuplicateApp}
               />
-              {(canInvite || publishedToMarketplace) && (
+              {showShareAgentModal(
+                teamInfo,
+                teamInfo.myRole,
+                publishedToMarketplace,
+              ) && (
                 <DropListItem
                   key="share"
                   value="share"
@@ -229,35 +229,41 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
             leftIcon={<MoreIcon size="14px" />}
           />
         </Dropdown>
-      ) : publishedToMarketplace ? (
-        // for viewer
-        <Dropdown
-          position="bottom-end"
-          trigger="click"
-          triggerProps={{ closeDelay: 0, openDelay: 0 }}
-          dropList={
-            <DropList w="184px">
-              <DropListItem
-                key="share"
-                value="share"
-                title={
-                  <div>
-                    <DependencyIcon mr="8px" />
-                    <span>{t("share")}</span>
-                  </div>
-                }
-                onClick={openInviteModal}
-              />
-            </DropList>
-          }
-        >
-          <Button
-            variant="text"
-            colorScheme="grayBlue"
-            leftIcon={<MoreIcon size="14px" />}
-          />
-        </Dropdown>
-      ) : null}
+      ) : (
+        showShareAgentModal(
+          teamInfo,
+          teamInfo.myRole,
+          publishedToMarketplace,
+        ) && (
+          // for viewer
+          <Dropdown
+            position="bottom-end"
+            trigger="click"
+            triggerProps={{ closeDelay: 0, openDelay: 0 }}
+            dropList={
+              <DropList w="184px">
+                <DropListItem
+                  key="share"
+                  value="share"
+                  title={
+                    <div>
+                      <DependencyIcon mr="8px" />
+                      <span>{t("share")}</span>
+                    </div>
+                  }
+                  onClick={openInviteModal}
+                />
+              </DropList>
+            }
+          >
+            <Button
+              variant="text"
+              colorScheme="grayBlue"
+              leftIcon={<MoreIcon size="14px" />}
+            />
+          </Dropdown>
+        )
+      )}
       {shareVisible && (
         <ShareAgentPC
           title={t("user_management.modal.social_media.default_text.agent", {

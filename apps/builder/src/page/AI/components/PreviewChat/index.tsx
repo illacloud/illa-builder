@@ -1,6 +1,5 @@
 import { AI_AGENT_TYPE } from "@illa-public/market-agent/MarketAgentCard/interface"
-import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
-import { canManageInvite } from "@illa-public/user-role-utils"
+import { getCurrentUser } from "@illa-public/user-data"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -27,6 +26,8 @@ import {
   generatingTextStyle,
   inputStyle,
   inputTextContainerStyle,
+  mobileInputElementStyle,
+  mobileInputStyle,
   previewChatContainerStyle,
   previewTitleContainerStyle,
   previewTitleTextStyle,
@@ -37,6 +38,7 @@ import { getAgentWSStatus } from "@/redux/config/configSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
+    showShareAndContributeDialog,
     hasCreated,
     isMobile,
     isRunning,
@@ -60,8 +62,6 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
 
   const [textAreaVal, setTextAreaVal] = useState("")
 
-  const teamInfo = useSelector(getCurrentTeamInfo)!!
-
   const { t } = useTranslation()
 
   const messagesList = useMemo(() => {
@@ -70,23 +70,29 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         message.sender.senderType === SenderType.USER &&
         message.sender.senderID === currentUserInfo.userID
       ) {
-        return <UserMessage key={message.threadID} message={message} />
+        return (
+          <UserMessage
+            key={message.threadID}
+            message={message}
+            hideAvatar={isMobile}
+          />
+        )
       }
-      return <AIAgentMessage key={message.threadID} message={message} />
+      return (
+        <AIAgentMessage
+          key={message.threadID}
+          message={message}
+          hideAvatar={isMobile}
+        />
+      )
     })
-  }, [currentUserInfo.userID, chatMessages])
+  }, [chatMessages, currentUserInfo.userID, isMobile])
 
   useEffect(() => {
     chatRef.current?.scrollTo({
       top: chatRef.current.scrollHeight,
     })
   }, [chatMessages, generationMessage])
-
-  const canInvite = canManageInvite(
-    teamInfo.myRole,
-    teamInfo.permission.allowEditorManageTeamMember,
-    teamInfo.permission.allowViewerManageTeamMember,
-  )
 
   const sendAndClearMessage = useCallback(() => {
     if (textAreaVal !== "") {
@@ -120,7 +126,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               ? t("editor.ai-agent.title-preview.chat")
               : t("editor.ai-agent.title-preview.text-generation")}
           </div>
-          {editState === "EDIT" && canInvite && (
+          {editState === "EDIT" && showShareAndContributeDialog && (
             <Button
               disabled={!hasCreated}
               ml="8px"
@@ -133,7 +139,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               {t("share")}
             </Button>
           )}
-          {editState === "EDIT" && (
+          {editState === "EDIT" && showShareAndContributeDialog && (
             <Button
               disabled={!hasCreated}
               ml="8px"
@@ -221,6 +227,35 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
                 ? t("editor.ai-agent.tips.not-start-run")
                 : t("editor.ai-agent.tips.not-start")}
             </div>
+          </div>
+        ) : isMobile ? (
+          <div css={mobileInputStyle}>
+            <input
+              css={mobileInputElementStyle}
+              value={textAreaVal}
+              placeholder={t("editor.ai-agent.placeholder.send")}
+              onKeyDown={(event) => {
+                if (event.keyCode === 13 && !event.shiftKey) {
+                  event.preventDefault()
+                  if (isReceiving || blockInput) {
+                    return
+                  }
+                  sendAndClearMessage()
+                }
+              }}
+              onChange={(v) => {
+                setTextAreaVal(v.target.value)
+              }}
+            />
+            <Button
+              disabled={isReceiving || blockInput}
+              colorScheme="techPurple"
+              onClick={() => {
+                sendAndClearMessage()
+              }}
+            >
+              {t("editor.ai-agent.button.send")}
+            </Button>
           </div>
         ) : (
           <>

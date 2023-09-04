@@ -10,9 +10,8 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   canManage,
-  canUseUpgradeFeature,
+  openInviteModal,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -41,12 +40,6 @@ const DashboardAIAgent: FC = () => {
 
   const upgradeModal = useUpgradeModal()
 
-  const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo?.myRole,
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
-  )
-
   const [showInvite, setShowInvite] = useState(false)
 
   return (
@@ -59,7 +52,7 @@ const DashboardAIAgent: FC = () => {
             navigate(`/${teamInfo.identifier}/ai-agent`)
           }}
           onInvite={() => {
-            if (isCloudVersion && !canUseBillingFeature) {
+            if (!openInviteModal(teamInfo)) {
               upgradeModal({
                 modalType: "upgrade",
               })

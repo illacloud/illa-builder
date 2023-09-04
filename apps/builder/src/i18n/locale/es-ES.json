@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Equipo",
-      "marketplace": "Mercado del agente"
+      "marketplace": "Comunidad"
     },
     "sort-type": {
       "popular": "Más popular",
@@ -2625,16 +2625,19 @@
         "token": "El valor actual de los tokens Max es bajo, lo que puede causar resultados incompletos devueltos.",
         "purchase-required": "Colla no es suficiente para funcionar, por favor recarga.",
         "leave": "Hay contenido sin guardar, ¿estás seguro de que quieres salir?",
-        "generating": "Por favor, espera a que la generación complete o interrumpa el proceso"
+        "generating": "Por favor, espera a que la generación complete o interrumpa el proceso",
+        "model-unavailable": "El modelo actual no está disponible"
       },
       "title": "Editar agente de IA",
       "generate-desc": {
         "button": "Generar IA",
         "tooltips": "Usa IA para generar la descripción basada en tu petición. ",
-        "failed": "Error al generar. Inténtalo de nuevo más tarde. "
+        "failed": "Error al generar. Inténtalo de nuevo más tarde. ",
+        "blank": "Por favor ingrese el aviso primero"
       },
       "generate-icon": {
-        "tooltips": "Usar IA para generar un icono basado en el nombre del agente y la descripción"
+        "tooltips": "Usar IA para generar un icono basado en el nombre del agente y la descripción",
+        "blank": "Por favor, rellene primero el campo nombre"
       },
       "title-preview": {
         "chat": "Chatear",

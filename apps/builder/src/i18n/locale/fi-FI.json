@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Joukkue",
-      "marketplace": "Agentin markkinat"
+      "marketplace": "Yhteisö"
     },
     "sort-type": {
       "popular": "Suosituin",
@@ -2625,16 +2625,19 @@
         "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
         "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa.",
         "leave": "Sisältöä ei ole tallennettu, oletko varma, että haluat lähteä?",
-        "generating": "Odota, että sukupolvi on valmis tai keskeytä prosessi"
+        "generating": "Odota, että sukupolvi on valmis tai keskeytä prosessi",
+        "model-unavailable": "Nykyinen malli ei ole saatavilla"
       },
       "title": "Muokkaa AI Agenttia",
       "generate-desc": {
         "button": "tekoälyn luominen",
         "tooltips": "Käytä tekoälyä luodaksesi kehotuksesi perustuvan kuvauksen. ",
-        "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. "
+        "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. ",
+        "blank": "Syötä kehotus ensin"
       },
       "generate-icon": {
-        "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella"
+        "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella",
+        "blank": "Ole hyvä ja täytä nimikenttä ensin"
       },
       "title-preview": {
         "chat": "Keskustelu",

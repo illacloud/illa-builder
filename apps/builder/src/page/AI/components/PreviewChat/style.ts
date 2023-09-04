@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { applyMobileStyle } from "@illa-public/utils"
 import { getColor } from "@illa-design/react"
 
 export const blockInputContainerStyle = css`
@@ -56,6 +57,9 @@ export const inputTextContainerStyle = css`
   box-sizing: border-box;
   border-top: 1px solid ${getColor("grayBlue", "08")};
   flex: none;
+  ${applyMobileStyle(css`
+    padding: 12px 20px;
+  `)}
 `
 
 export const chatContainerStyle = css`
@@ -64,6 +68,21 @@ export const chatContainerStyle = css`
   overflow-y: auto;
   height: 100%;
   padding-bottom: 110px;
+`
+
+export const mobileInputElementStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  flex-grow: 1;
+  font-style: normal;
+  border: none;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  padding: 8px 8px 8px 0;
+
+  ::placeholder {
+    color: ${getColor("grayBlue", "04")};
+  }
 `
 
 export const inputStyle = css`
@@ -150,4 +169,10 @@ export const generatingDividerStyle = css`
 
 export const stopIconStyle = css`
   cursor: pointer;
+`
+
+export const mobileInputStyle = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `

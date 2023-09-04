@@ -56,8 +56,8 @@
       "test_success": "测试成功"
     },
     "list-type": {
-      "team": "团队Agent",
-      "marketplace": "Agent库"
+      "team": "Team's",
+      "marketplace": "社区"
     },
     "sort-type": {
       "popular": "最受欢迎",
@@ -2625,16 +2625,19 @@
         "token": "当前Max token设置小于Prompt占用的token或超出了模型限制",
         "purchase-required": "Colla不足无法运行，请充值",
         "leave": "有未保存的内容，确认要离开吗？",
-        "generating": "请等待生成结束或中断生成后再切换"
+        "generating": "请等待生成结束或中断生成后再切换",
+        "model-unavailable": "当前模型不可用"
       },
       "title": "编辑AI Agent",
       "generate-desc": {
         "button": "AI生成",
         "tooltips": "基于您的Prompt，使用AI生成描述信息",
-        "failed": "生成失败，请稍后重试"
+        "failed": "生成失败，请稍后重试",
+        "blank": "请先填入Prompt"
       },
       "generate-icon": {
-        "tooltips": "基于Agent的名称和描述，使用AI生成icon"
+        "tooltips": "基于Agent的名称和描述，使用AI生成icon",
+        "blank": "请先填写名称字段"
       },
       "title-preview": {
         "chat": "运行结果预览",

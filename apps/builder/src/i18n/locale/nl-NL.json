@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agent markt"
+      "marketplace": "Gemeenschap"
     },
     "sort-type": {
       "popular": "Meest populair",
@@ -2625,16 +2625,19 @@
         "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten.",
         "purchase-required": "Colla is niet genoeg om te draaien, gelieve te herladen.",
         "leave": "Er zijn niet-opgeslagen inhoud, weet u zeker dat u wilt verlaten?",
-        "generating": "Wacht tot de generatie het proces voltooit of onderbreekt"
+        "generating": "Wacht tot de generatie het proces voltooit of onderbreekt",
+        "model-unavailable": "Het huidige model is niet beschikbaar"
       },
       "title": "Bewerk AI Agent",
       "generate-desc": {
         "button": "AI genereren",
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
-        "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
+        "failed": "Aanmaken mislukt. Probeer het later opnieuw. ",
+        "blank": "Gelieve eerst de prompt in te voeren"
       },
       "generate-icon": {
-        "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
+        "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent",
+        "blank": "Gelieve eerst het naam veld in te vullen"
       },
       "title-preview": {
         "chat": "Chatten",

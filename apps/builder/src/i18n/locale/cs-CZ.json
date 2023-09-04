@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Týmový",
-      "marketplace": "Agent trh"
+      "marketplace": "Komunita"
     },
     "sort-type": {
       "popular": "Nejoblíbenější",
@@ -2625,16 +2625,19 @@
         "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky.",
         "purchase-required": "Colla nestačí k spuštění, prosím znovu nabit.",
         "leave": "Existuje neuložený obsah, jste si jisti, že chcete odejít?",
-        "generating": "Počkejte prosím na dokončení nebo přerušení procesu generování"
+        "generating": "Počkejte prosím na dokončení nebo přerušení procesu generování",
+        "model-unavailable": "Aktuální model není k dispozici"
       },
       "title": "Upravit AI agenta",
       "generate-desc": {
         "button": "Generovat AI",
         "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
-        "failed": "Generování se nezdařilo. Opakujte akci později. "
+        "failed": "Generování se nezdařilo. Opakujte akci později. ",
+        "blank": "Nejprve prosím zadejte výzvu"
       },
       "generate-icon": {
-        "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta"
+        "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta",
+        "blank": "Nejprve prosím vyplňte pole jména"
       },
       "title-preview": {
         "chat": "Chat",

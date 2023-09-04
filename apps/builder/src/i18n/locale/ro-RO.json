@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Echipa",
-      "marketplace": "Piața agenților"
+      "marketplace": "Comunitate"
     },
     "sort-type": {
       "popular": "Cele mai populare",
@@ -2625,16 +2625,19 @@
         "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate.",
         "purchase-required": "Colla nu este suficient pentru a rula, vă rugăm reîncărcați.",
         "leave": "Există conținut nesalvat, ești sigur că vrei să ieși?",
-        "generating": "Vă rugăm să așteptați ca generația să finalizeze sau să întrerupă procesul"
+        "generating": "Vă rugăm să așteptați ca generația să finalizeze sau să întrerupă procesul",
+        "model-unavailable": "Modelul actual nu este disponibil"
       },
       "title": "Editează Agent AI",
       "generate-desc": {
         "button": "Generare AI",
         "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
-        "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
+        "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. ",
+        "blank": "Vă rugăm să introduceţi mai întâi solicitarea"
       },
       "generate-icon": {
-        "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
+        "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere",
+        "blank": "Vă rugăm să completaţi mai întâi câmpul nume"
       },
       "title-preview": {
         "chat": "Chat",

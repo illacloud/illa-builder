@@ -20,6 +20,7 @@ import {
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
+  showShareAgentModal,
 } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -99,12 +100,6 @@ export const AIAgentRunPC: FC = () => {
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
   const currentUserInfo = useSelector(getCurrentUser)
-
-  const canInvite = canManageInvite(
-    currentTeamInfo.myRole,
-    currentTeamInfo.permission.allowEditorManageTeamMember,
-    currentTeamInfo.permission.allowViewerManageTeamMember,
-  )
 
   const message = useMessage()
 
@@ -276,7 +271,11 @@ export const AIAgentRunPC: FC = () => {
       name="publishedToMarketplace"
       render={({ field }) => (
         <div css={agentMenuContainerStyle}>
-          {(canInvite || field.value) && (
+          {showShareAgentModal(
+            teamInfo,
+            agent.teamID === teamInfo.id ? teamInfo.myRole : USER_ROLE.GUEST,
+            field.value,
+          ) && (
             <Button
               colorScheme="grayBlue"
               leftIcon={<DependencyIcon />}
@@ -620,47 +619,60 @@ export const AIAgentRunPC: FC = () => {
           control={control}
           shouldUnregister={false}
           render={({ field }) => (
-            <div css={rightPanelContainerStyle}>
-              <PreviewChat
-                isRunning={isRunning}
-                hasCreated={true}
-                isMobile={false}
-                editState="RUN"
-                agentType={field.value}
-                chatMessages={chatMessages}
-                generationMessage={generationMessage}
-                isReceiving={isReceiving}
-                blockInput={!isRunning || isDirty}
-                onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
-                  sendMessage(
-                    {
-                      threadID: message.threadID,
-                      prompt: message.message,
-                      variables: [],
-                      modelConfig: getValues("modelConfig"),
-                      model: getValues("model"),
-                      agentType: getValues("agentType"),
-                      actionID: getValues("aiAgentID"),
-                    } as ChatSendRequestPayload,
-                    TextSignal.RUN,
-                    agentType,
-                    "chat",
-                    true,
-                    message,
-                  )
-                }}
-                onCancelReceiving={() => {
-                  sendMessage(
-                    {} as ChatSendRequestPayload,
-                    TextSignal.STOP_ALL,
-                    field.value,
-                    "stop_all",
-                    false,
-                  )
-                  setIsReceiving(false)
-                }}
-              />
-            </div>
+            <Controller
+              control={control}
+              name="publishedToMarketplace"
+              render={({ field: contributedField }) => (
+                <div css={rightPanelContainerStyle}>
+                  <PreviewChat
+                    showShareAndContributeDialog={showShareAgentModal(
+                      teamInfo,
+                      agent.teamID === teamInfo.id
+                        ? teamInfo.myRole
+                        : USER_ROLE.GUEST,
+                      contributedField.value,
+                    )}
+                    isRunning={isRunning}
+                    hasCreated={true}
+                    isMobile={false}
+                    editState="RUN"
+                    agentType={field.value}
+                    chatMessages={chatMessages}
+                    generationMessage={generationMessage}
+                    isReceiving={isReceiving}
+                    blockInput={!isRunning || isDirty}
+                    onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                      sendMessage(
+                        {
+                          threadID: message.threadID,
+                          prompt: message.message,
+                          variables: [],
+                          modelConfig: getValues("modelConfig"),
+                          model: getValues("model"),
+                          agentType: getValues("agentType"),
+                          actionID: getValues("aiAgentID"),
+                        } as ChatSendRequestPayload,
+                        TextSignal.RUN,
+                        agentType,
+                        "chat",
+                        true,
+                        message,
+                      )
+                    }}
+                    onCancelReceiving={() => {
+                      sendMessage(
+                        {} as ChatSendRequestPayload,
+                        TextSignal.STOP_ALL,
+                        field.value,
+                        "stop_all",
+                        false,
+                      )
+                      setIsReceiving(false)
+                    }}
+                  />
+                </div>
+              )}
+            />
           )}
         />
       </div>

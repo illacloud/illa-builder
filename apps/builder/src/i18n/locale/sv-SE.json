@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Lagets",
-      "marketplace": "Agentkommando"
+      "marketplace": "Gemenskap"
     },
     "sort-type": {
       "popular": "Mest populära",
@@ -2625,16 +2625,19 @@
         "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat.",
         "purchase-required": "Colla är inte tillräckligt för att köra, ladda om.",
         "leave": "Det finns osparat innehåll, är du säker på att du vill lämna?",
-        "generating": "Vänta på att generationen ska slutföra eller avbryta processen"
+        "generating": "Vänta på att generationen ska slutföra eller avbryta processen",
+        "model-unavailable": "Den aktuella modellen är inte tillgänglig"
       },
       "title": "Redigera AI Agent",
       "generate-desc": {
         "button": "AI generera",
         "tooltips": "Använd AI för att generera beskrivningen baserat på din prompt. ",
-        "failed": "Det gick inte att generera. Försök igen senare. "
+        "failed": "Det gick inte att generera. Försök igen senare. ",
+        "blank": "Vänligen ange prompten först"
       },
       "generate-icon": {
-        "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning"
+        "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning",
+        "blank": "Vänligen fyll i fältet för namn först"
       },
       "title-preview": {
         "chat": "Chatt",

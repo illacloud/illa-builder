@@ -1,4 +1,5 @@
 import { ShareAppPC } from "@illa-public/invite-modal"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   getCurrentTeamInfo,
   getCurrentUser,
@@ -7,6 +8,7 @@ import {
 import {
   canManageInvite,
   canUseUpgradeFeature,
+  openShareAppModal,
 } from "@illa-public/user-role-utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -20,6 +22,8 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
   const { appInfo } = props
 
   const { t } = useTranslation()
+
+  const upgradeModal = useUpgradeModal()
 
   const currentUserInfo = useSelector(getCurrentUser)
 
@@ -46,6 +50,19 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
       <Button
         colorScheme="grayBlue"
         onClick={() => {
+          if (
+            !openShareAppModal(
+              teamInfo,
+              teamInfo.myRole,
+              appInfo.config.public,
+              appInfo.config.publishedToMarketplace,
+            )
+          ) {
+            upgradeModal({
+              modalType: "upgrade",
+            })
+            return
+          }
           setShareModalVisible(true)
         }}
         leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
