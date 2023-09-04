@@ -2625,7 +2625,8 @@
         "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
         "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa.",
         "leave": "Sisältöä ei ole tallennettu, oletko varma, että haluat lähteä?",
-        "generating": "Odota, että sukupolvi on valmis tai keskeytä prosessi"
+        "generating": "Odota, että sukupolvi on valmis tai keskeytä prosessi",
+        "model-unavailable": "Nykyinen malli ei ole saatavilla"
       },
       "title": "Muokkaa AI Agenttia",
       "generate-desc": {
