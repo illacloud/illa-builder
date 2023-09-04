@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "Generar IA",
         "tooltips": "Usa IA para generar la descripción basada en tu petición. ",
-        "failed": "Error al generar. Inténtalo de nuevo más tarde. "
+        "failed": "Error al generar. Inténtalo de nuevo más tarde. ",
+        "blank": "Por favor ingrese el aviso primero"
       },
       "generate-icon": {
         "tooltips": "Usar IA para generar un icono basado en el nombre del agente y la descripción",
