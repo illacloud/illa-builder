@@ -2625,7 +2625,8 @@
         "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten.",
         "purchase-required": "Colla is niet genoeg om te draaien, gelieve te herladen.",
         "leave": "Er zijn niet-opgeslagen inhoud, weet u zeker dat u wilt verlaten?",
-        "generating": "Wacht tot de generatie het proces voltooit of onderbreekt"
+        "generating": "Wacht tot de generatie het proces voltooit of onderbreekt",
+        "model-unavailable": "Het huidige model is niet beschikbaar"
       },
       "title": "Bewerk AI Agent",
       "generate-desc": {
