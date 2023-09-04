@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "tekoälyn luominen",
         "tooltips": "Käytä tekoälyä luodaksesi kehotuksesi perustuvan kuvauksen. ",
-        "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. "
+        "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. ",
+        "blank": "Syötä kehotus ensin"
       },
       "generate-icon": {
         "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella",
