@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team",
-      "marketplace": "Mercato dell'agente"
+      "marketplace": "Community"
     },
     "sort-type": {
       "popular": "Più popolari",
@@ -2625,16 +2625,19 @@
         "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti.",
         "purchase-required": "Colla non è sufficiente per funzionare, si prega di ricaricare.",
         "leave": "Ci sono contenuti non salvati, sei sicuro di voler uscire?",
-        "generating": "Attendere che la generazione completi o interrompa il processo"
+        "generating": "Attendere che la generazione completi o interrompa il processo",
+        "model-unavailable": "Il modello attuale non è disponibile"
       },
       "title": "Modifica Agente AI",
       "generate-desc": {
         "button": "Generazione AI",
         "tooltips": "Usa AI per generare la descrizione in base al tuo prompt. ",
-        "failed": "Impossibile generare. Riprova più tardi. "
+        "failed": "Impossibile generare. Riprova più tardi. ",
+        "blank": "Inserisci prima il prompt"
       },
       "generate-icon": {
-        "tooltips": "Usa AI per generare icona in base al nome e alla descrizione dell'agente"
+        "tooltips": "Usa AI per generare icona in base al nome e alla descrizione dell'agente",
+        "blank": "Si prega di compilare prima il campo nome"
       },
       "title-preview": {
         "chat": "Chat",

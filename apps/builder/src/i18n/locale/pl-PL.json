@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Drużyna",
-      "marketplace": "Rynek agenta"
+      "marketplace": "Społeczność"
     },
     "sort-type": {
       "popular": "Najpopularniejsze",
@@ -2625,16 +2625,19 @@
         "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki.",
         "purchase-required": "Colla nie wystarczy do uruchomienia, proszę doładować.",
         "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?",
-        "generating": "Poczekaj aż generacja zakończy lub przerwie proces"
+        "generating": "Poczekaj aż generacja zakończy lub przerwie proces",
+        "model-unavailable": "Bieżący model nie jest dostępny"
       },
       "title": "Edytuj agenta AI",
       "generate-desc": {
         "button": "Wygeneruj SI",
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
-        "failed": "Nie udało się wygenerować. Spróbuj ponownie później. "
+        "failed": "Nie udało się wygenerować. Spróbuj ponownie później. ",
+        "blank": "Proszę najpierw podać monit"
       },
       "generate-icon": {
-        "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela"
+        "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela",
+        "blank": "Proszę wypełnić najpierw nazwę pola"
       },
       "title-preview": {
         "chat": "Czat",

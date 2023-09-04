@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Equipes",
-      "marketplace": "Marché des agents"
+      "marketplace": "Communauté"
     },
     "sort-type": {
       "popular": "Les plus populaires",
@@ -2625,16 +2625,19 @@
         "token": "La valeur actuelle des jetons Max est faible, ce qui peut causer des retours incomplets.",
         "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger.",
         "leave": "Il y a du contenu non enregistré, êtes-vous sûr de vouloir quitter ?",
-        "generating": "Veuillez attendre que la génération soit terminée ou interrompre le processus"
+        "generating": "Veuillez attendre que la génération soit terminée ou interrompre le processus",
+        "model-unavailable": "Le modèle actuel n'est pas disponible"
       },
       "title": "Modifier l'Agent IA",
       "generate-desc": {
         "button": "Générer une IA",
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
-        "failed": "Échec de la génération. Veuillez réessayer plus tard. "
+        "failed": "Échec de la génération. Veuillez réessayer plus tard. ",
+        "blank": "Veuillez d'abord entrer l'invite"
       },
       "generate-icon": {
-        "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
+        "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent",
+        "blank": "Veuillez d'abord remplir le champ de nom"
       },
       "title-preview": {
         "chat": "Discuter",

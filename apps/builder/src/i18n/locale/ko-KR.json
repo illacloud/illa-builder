@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agent market"
+      "marketplace": "Community"
     },
     "sort-type": {
       "popular": "Most popular",
@@ -2625,16 +2625,19 @@
         "token": "The current value of Max tokens is low, which may cause incomplete returned results.",
         "purchase-required": "Colla is not enough to run, please recharge.",
         "leave": "There are unsaved content, are you sure you want to leave?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Please wait for the generation to complete or interrupt the process",
+        "model-unavailable": "The current model is not available"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
         "button": "AI generate",
         "tooltips": "Use AI to generate the description based on your prompt. ",
-        "failed": "Failed to generate. Please try again later. "
+        "failed": "Failed to generate. Please try again later. ",
+        "blank": "Please enter the prompt first"
       },
       "generate-icon": {
-        "tooltips": "Use AI to generate icon based on the agent name and description"
+        "tooltips": "Use AI to generate icon based on the agent name and description",
+        "blank": "Please fill in the name field first"
       },
       "title-preview": {
         "chat": "Chat",
