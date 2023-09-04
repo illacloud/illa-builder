@@ -20,6 +20,7 @@ import {
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
+  showShareAgentModal,
 } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -138,12 +139,6 @@ export const AIAgentRunMobile: FC = () => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
   const dispatch = useDispatch()
-
-  const canInvite = canManageInvite(
-    teamInfo.myRole,
-    teamInfo.permission.allowEditorManageTeamMember,
-    teamInfo.permission.allowViewerManageTeamMember,
-  )
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
@@ -478,10 +473,11 @@ export const AIAgentRunMobile: FC = () => {
       render={({ field }) => (
         <div css={previewChatContainer}>
           <PreviewChat
+            editState="RUN"
+            showShareAndContributeDialog={false}
             isRunning={isRunning}
             hasCreated={true}
             isMobile={true}
-            editState="RUN"
             agentType={field.value}
             chatMessages={chatMessages}
             generationMessage={generationMessage}
@@ -606,7 +602,13 @@ export const AIAgentRunMobile: FC = () => {
                       )}
                     </div>
                   )}
-                  {(canInvite || field.value) && (
+                  {showShareAgentModal(
+                    teamInfo,
+                    agent.teamID === teamInfo.id
+                      ? teamInfo.myRole
+                      : USER_ROLE.GUEST,
+                    field.value,
+                  ) && (
                     <div
                       css={shareContainerStyle}
                       onClick={() => {

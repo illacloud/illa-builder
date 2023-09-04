@@ -393,6 +393,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             <CollaboratorsList />
             {showShareAppModal(
               teamInfo,
+              teamInfo.myRole,
               appInfo.config.public,
               appInfo.config.publishedToMarketplace,
               appInfo.deployed,
@@ -501,6 +502,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 isCloudVersion &&
                 showShareAppModal(
                   teamInfo,
+                  teamInfo.myRole,
                   appInfo.config.public,
                   appInfo.config.publishedToMarketplace,
                   appInfo.deployed,

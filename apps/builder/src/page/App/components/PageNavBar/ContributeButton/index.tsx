@@ -8,7 +8,7 @@ import {
 import {
   canManageInvite,
   canUseUpgradeFeature,
-  openInviteModal,
+  openShareAppModal,
 } from "@illa-public/user-role-utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -50,7 +50,14 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
       <Button
         colorScheme="grayBlue"
         onClick={() => {
-          if (!openInviteModal(teamInfo)) {
+          if (
+            !openShareAppModal(
+              teamInfo,
+              teamInfo.myRole,
+              appInfo.config.public,
+              appInfo.config.publishedToMarketplace,
+            )
+          ) {
             upgradeModal({
               modalType: "upgrade",
             })

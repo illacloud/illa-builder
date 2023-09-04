@@ -18,8 +18,9 @@ import {
 import {
   canManageInvite,
   canUseUpgradeFeature,
+  openShareAgentModal,
+  showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -857,6 +858,11 @@ export const AIAgent: FC = () => {
                   render={({ field: contributeField }) => (
                     <div css={rightPanelContainerStyle}>
                       <PreviewChat
+                        showShareAndContributeDialog={showShareAgentModal(
+                          currentTeamInfo,
+                          currentTeamInfo.myRole,
+                          contributeField.value,
+                        )}
                         isRunning={isRunning}
                         hasCreated={Boolean(idField.value)}
                         isMobile={false}
@@ -896,9 +902,11 @@ export const AIAgent: FC = () => {
                         }}
                         onShowShareDialog={() => {
                           if (
-                            isCloudVersion &&
-                            !canUseBillingFeature &&
-                            !contributeField.value
+                            !openShareAgentModal(
+                              currentTeamInfo,
+                              currentTeamInfo.myRole,
+                              contributeField.value,
+                            )
                           ) {
                             upgradeModal({
                               modalType: "upgrade",
@@ -908,6 +916,18 @@ export const AIAgent: FC = () => {
                           setShareDialogVisible(true)
                         }}
                         onShowContributeDialog={() => {
+                          if (
+                            !openShareAgentModal(
+                              currentTeamInfo,
+                              currentTeamInfo.myRole,
+                              contributeField.value,
+                            )
+                          ) {
+                            upgradeModal({
+                              modalType: "upgrade",
+                            })
+                            return
+                          }
                           setContributedDialogVisible(true)
                         }}
                       />

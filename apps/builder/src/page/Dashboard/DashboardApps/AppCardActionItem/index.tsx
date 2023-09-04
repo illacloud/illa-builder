@@ -16,7 +16,7 @@ import {
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
-  openInviteModal,
+  openShareAppModal,
   showShareAppModal,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
@@ -130,14 +130,27 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       element: "app_share",
       parameter5: appInfo.appId,
     })
-    if (!openInviteModal(teamInfo)) {
+    if (
+      !openShareAppModal(
+        teamInfo,
+        teamInfo.myRole,
+        appInfo.config.public,
+        appInfo.config.publishedToMarketplace,
+      )
+    ) {
       upgradeModal({
         modalType: "upgrade",
       })
       return
     }
     setShareVisible(true)
-  }, [appInfo.appId, teamInfo, upgradeModal])
+  }, [
+    appInfo.appId,
+    appInfo.config.public,
+    appInfo.config.publishedToMarketplace,
+    teamInfo,
+    upgradeModal,
+  ])
 
   const handleDeleteApp = useCallback(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
@@ -304,6 +317,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               />
               {showShareAppModal(
                 teamInfo,
+                teamInfo.myRole,
                 appInfo.config.public,
                 appInfo.config.publishedToMarketplace,
                 appInfo.deployed,
@@ -355,6 +369,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       ) : (
         showShareAppModal(
           teamInfo,
+          teamInfo.myRole,
           appInfo.config.public,
           appInfo.config.publishedToMarketplace,
           appInfo.deployed,

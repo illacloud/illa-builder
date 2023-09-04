@@ -59,6 +59,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
           if (
             !openShareAppModal(
               teamInfo,
+              teamInfo.myRole,
               appInfo.config.public,
               appInfo.config.publishedToMarketplace,
             )
