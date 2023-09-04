@@ -2625,7 +2625,8 @@
         "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater.",
         "purchase-required": "Colla er ikke nok til å kjøre, vennligst lade.",
         "leave": "Det er ulagrede innhold, er du sikker på at du vil forlate?",
-        "generating": "Vennligst vent på generasjonen for å fullføre eller avbryte prosessen"
+        "generating": "Vennligst vent på generasjonen for å fullføre eller avbryte prosessen",
+        "model-unavailable": "Gjeldende modell er ikke tilgjengelig"
       },
       "title": "Rediger AI-Agent",
       "generate-desc": {
