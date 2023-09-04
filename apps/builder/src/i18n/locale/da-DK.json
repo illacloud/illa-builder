@@ -2625,7 +2625,8 @@
         "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
         "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst",
         "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?",
-        "generating": "Vent venligst til generationen til at fuldføre eller afbryde processen"
+        "generating": "Vent venligst til generationen til at fuldføre eller afbryde processen",
+        "model-unavailable": "Den nuværende model er ikke tilgængelig"
       },
       "title": "Rediger AI Agent",
       "generate-desc": {
