@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "AI genererer",
         "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
-        "failed": "Kan ikke generere. Prøv igjen senere. "
+        "failed": "Kan ikke generere. Prøv igjen senere. ",
+        "blank": "Vennligst skriv inn spørsmålet først"
       },
       "generate-icon": {
         "tooltips": "Bruk AI til å generere ikon basert på agent navn og beskrivelse",
