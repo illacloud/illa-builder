@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "AI generera",
         "tooltips": "Använd AI för att generera beskrivningen baserat på din prompt. ",
-        "failed": "Det gick inte att generera. Försök igen senare. "
+        "failed": "Det gick inte att generera. Försök igen senare. ",
+        "blank": "Vänligen ange prompten först"
       },
       "generate-icon": {
         "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning",
