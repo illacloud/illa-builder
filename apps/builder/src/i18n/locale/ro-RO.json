@@ -2625,7 +2625,8 @@
         "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate.",
         "purchase-required": "Colla nu este suficient pentru a rula, vă rugăm reîncărcați.",
         "leave": "Există conținut nesalvat, ești sigur că vrei să ieși?",
-        "generating": "Vă rugăm să așteptați ca generația să finalizeze sau să întrerupă procesul"
+        "generating": "Vă rugăm să așteptați ca generația să finalizeze sau să întrerupă procesul",
+        "model-unavailable": "Modelul actual nu este disponibil"
       },
       "title": "Editează Agent AI",
       "generate-desc": {
