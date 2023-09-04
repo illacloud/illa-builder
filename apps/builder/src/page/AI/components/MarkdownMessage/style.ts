@@ -8,7 +8,6 @@ export const markdownMessageStyle = css`
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   font-style: normal;
-  white-space: pre-wrap;
   font-weight: 400;
   line-height: 22px;
 `
