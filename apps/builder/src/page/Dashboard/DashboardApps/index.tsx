@@ -15,7 +15,7 @@ import {
 import {
   canManage,
   canManageInvite,
-  canUseUpgradeFeature,
+  openInviteModal,
 } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -66,12 +66,6 @@ export const DashboardApps: FC = () => {
     teamInfo.myRole,
     teamInfo.permission.allowEditorManageTeamMember,
     teamInfo.permission.allowViewerManageTeamMember,
-  )
-
-  const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo.myRole,
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
   const canEditApp = canManage(
@@ -140,7 +134,7 @@ export const DashboardApps: FC = () => {
           await handleCreateApp()
         }}
         onInvite={() => {
-          if (isCloudVersion && !canUseBillingFeature) {
+          if (!openInviteModal(teamInfo)) {
             upgradeModal({
               modalType: "upgrade",
             })

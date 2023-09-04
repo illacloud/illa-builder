@@ -9,6 +9,7 @@ import {
 import {
   canManageInvite,
   canUseUpgradeFeature,
+  openShareAppModal,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
@@ -55,7 +56,13 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
           )
         }
         onClick={() => {
-          if (isCloudVersion && !canUseBillingFeature) {
+          if (
+            !openShareAppModal(
+              teamInfo,
+              appInfo.config.public,
+              appInfo.config.publishedToMarketplace,
+            )
+          ) {
             upgradeModal({ modalType: "upgrade" })
             return
           }

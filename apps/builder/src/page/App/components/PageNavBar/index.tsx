@@ -3,8 +3,8 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import {
-  canManageInvite,
   canUseUpgradeFeature,
+  showShareAppModal,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import {
@@ -126,12 +126,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     teamInfo.myRole,
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
-  )
-
-  const showInvite = canManageInvite(
-    teamInfo.myRole,
-    teamInfo?.permission?.allowEditorManageTeamMember,
-    teamInfo?.permission?.allowViewerManageTeamMember,
   )
 
   const handleClickDebuggerIcon = useCallback(() => {
@@ -397,9 +391,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {!isGuideMode && (
           <>
             <CollaboratorsList />
-            {(isCloudVersion || (!isCloudVersion && showInvite)) && (
-              <ShareAppButton appInfo={appInfo} />
-            )}
+            {showShareAppModal(
+              teamInfo,
+              appInfo.config.public,
+              appInfo.config.publishedToMarketplace,
+              appInfo.deployed,
+            ) && <ShareAppButton appInfo={appInfo} />}
           </>
         )}
         {isEditMode ? (
@@ -500,9 +497,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Badge>
               {PreviewButton}
-              {!isGuideMode && isCloudVersion && (
-                <ContributeButton appInfo={appInfo} />
-              )}
+              {!isGuideMode &&
+                isCloudVersion &&
+                showShareAppModal(
+                  teamInfo,
+                  appInfo.config.public,
+                  appInfo.config.publishedToMarketplace,
+                  appInfo.deployed,
+                ) && <ContributeButton appInfo={appInfo} />}
               <DeployButtonGroup
                 disPrivate={appInfo.config.publishedToMarketplace}
                 loading={deployLoading}

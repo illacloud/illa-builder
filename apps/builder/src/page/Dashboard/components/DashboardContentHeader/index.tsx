@@ -1,6 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
-import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
-import { canManageInvite } from "@illa-public/user-role-utils"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { showInviteModal } from "@illa-public/user-role-utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -20,13 +20,6 @@ export const DashboardContentHeader: FC<DashboardContentHeaderProps> = (
   const { t } = useTranslation()
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
-  const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
-
-  const showInvite = canManageInvite(
-    currentUserRole,
-    teamInfo?.permission?.allowEditorManageTeamMember,
-    teamInfo?.permission?.allowViewerManageTeamMember,
-  )
 
   return (
     <div css={dashboardContentHeaderContainerStyle}>
@@ -38,7 +31,7 @@ export const DashboardContentHeader: FC<DashboardContentHeaderProps> = (
         }}
       />
       <div css={menuContainerStyle}>
-        {showInvite ? (
+        {showInviteModal(teamInfo) ? (
           <Button
             w="200px"
             colorScheme="grayBlue"

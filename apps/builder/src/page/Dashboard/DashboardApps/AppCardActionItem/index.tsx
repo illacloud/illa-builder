@@ -16,6 +16,8 @@ import {
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
+  openInviteModal,
+  showShareAppModal,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useState } from "react"
@@ -123,19 +125,19 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     })
   }
 
-  const openInviteModal = useCallback(() => {
+  const handleOpenInviteModal = useCallback(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
       element: "app_share",
       parameter5: appInfo.appId,
     })
-    if (isCloudVersion && !canUseBillingFeature) {
+    if (!openInviteModal(teamInfo)) {
       upgradeModal({
         modalType: "upgrade",
       })
       return
     }
     setShareVisible(true)
-  }, [appInfo.appId, canUseBillingFeature, upgradeModal])
+  }, [appInfo.appId, teamInfo, upgradeModal])
 
   const handleDeleteApp = useCallback(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
@@ -300,7 +302,12 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                 }
                 onClick={handleOpenAppSettingModal}
               />
-              {showInvite && (
+              {showShareAppModal(
+                teamInfo,
+                appInfo.config.public,
+                appInfo.config.publishedToMarketplace,
+                appInfo.deployed,
+              ) && (
                 <DropListItem
                   key="share"
                   value="share"
@@ -310,7 +317,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                       <span>{t("share")}</span>
                     </div>
                   }
-                  onClick={openInviteModal}
+                  onClick={handleOpenInviteModal}
                 />
               )}
               <DropListItem
@@ -345,52 +352,55 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             leftIcon={<MoreIcon size="14px" />}
           />
         </Dropdown>
-      ) : appInfo.deployed &&
-        (appInfo.config.public ||
-          appInfo.config.publishedToMarketplace ||
-          showInvite) ? (
-        // for viewer
-        <Dropdown
-          position="bottom-end"
-          trigger="click"
-          triggerProps={{ closeDelay: 0, openDelay: 0 }}
-          onVisibleChange={(visible) => {
-            if (visible) {
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_more", parameter5: appInfo.appId },
-              )
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_share", parameter5: appInfo.appId },
-              )
+      ) : (
+        showShareAppModal(
+          teamInfo,
+          appInfo.config.public,
+          appInfo.config.publishedToMarketplace,
+          appInfo.deployed,
+        ) && (
+          <Dropdown
+            position="bottom-end"
+            trigger="click"
+            triggerProps={{ closeDelay: 0, openDelay: 0 }}
+            onVisibleChange={(visible) => {
+              if (visible) {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "app_more", parameter5: appInfo.appId },
+                )
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "app_share", parameter5: appInfo.appId },
+                )
+              }
+            }}
+            dropList={
+              <DropList w={"184px"}>
+                <DropListItem
+                  key="share"
+                  value="share"
+                  title={
+                    <div>
+                      <DependencyIcon mr="8px" />
+                      <span>{t("share")}</span>
+                    </div>
+                  }
+                  onClick={handleOpenInviteModal}
+                />
+              </DropList>
             }
-          }}
-          dropList={
-            <DropList w={"184px"}>
-              <DropListItem
-                key="share"
-                value="share"
-                title={
-                  <div>
-                    <DependencyIcon mr="8px" />
-                    <span>{t("share")}</span>
-                  </div>
-                }
-                onClick={openInviteModal}
-              />
-            </DropList>
-          }
-        >
-          <Button
-            variant="text"
-            colorScheme="grayBlue"
-            leftIcon={<MoreIcon size="14px" />}
-          />
-        </Dropdown>
-      ) : null}
+          >
+            <Button
+              variant="text"
+              colorScheme="grayBlue"
+              leftIcon={<MoreIcon size="14px" />}
+            />
+          </Dropdown>
+        )
+      )}
       <MixpanelTrackProvider
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
