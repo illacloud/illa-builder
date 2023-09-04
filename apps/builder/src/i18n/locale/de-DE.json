@@ -2625,7 +2625,8 @@
         "token": "Der aktuelle Wert von Max Token ist niedrig, was unvollständige Ergebnisse verursachen kann.",
         "purchase-required": "Colla reicht nicht aus, bitte laden Sie auf.",
         "leave": "Es gibt ungespeicherte Inhalte. Sind Sie sicher, dass Sie verlassen möchten?",
-        "generating": "Bitte warten Sie, bis die Generation den Prozess beendet oder unterbricht"
+        "generating": "Bitte warten Sie, bis die Generation den Prozess beendet oder unterbricht",
+        "model-unavailable": "Das aktuelle Modell ist nicht verfügbar"
       },
       "title": "KI-Agent bearbeiten",
       "generate-desc": {
