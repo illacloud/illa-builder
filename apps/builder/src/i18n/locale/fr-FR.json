@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "Générer une IA",
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
-        "failed": "Échec de la génération. Veuillez réessayer plus tard. "
+        "failed": "Échec de la génération. Veuillez réessayer plus tard. ",
+        "blank": "Veuillez d'abord entrer l'invite"
       },
       "generate-icon": {
         "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent",
