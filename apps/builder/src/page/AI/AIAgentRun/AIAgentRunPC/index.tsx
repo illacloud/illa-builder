@@ -25,7 +25,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { formatNumForAgent } from "@illa-public/utils"
+import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -100,6 +100,12 @@ export const AIAgentRunPC: FC = () => {
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
   const currentUserInfo = useSelector(getCurrentUser)
 
+  const canInvite = canManageInvite(
+    currentTeamInfo.myRole,
+    currentTeamInfo.permission.allowEditorManageTeamMember,
+    currentTeamInfo.permission.allowViewerManageTeamMember,
+  )
+
   const message = useMessage()
 
   // page state
@@ -115,6 +121,9 @@ export const AIAgentRunPC: FC = () => {
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
+  const [starNum, setStarNum] = useState(
+    marketplaceInfo?.marketplace.numStars ?? 0,
+  )
   const upgradeModal = useUpgradeModal()
 
   // premium dialog
@@ -261,106 +270,104 @@ export const AIAgentRunPC: FC = () => {
       },
     })
 
-  const menu = agent.publishedToMarketplace ? (
-    <div css={agentMenuContainerStyle}>
-      <Button
-        colorScheme="grayBlue"
-        leftIcon={<DependencyIcon />}
-        onClick={() => {
-          setShareDialogVisible(true)
-        }}
-      >
-        {t("share")}
-      </Button>
-      <Button
-        ml="8px"
-        colorScheme="grayBlue"
-        onClick={async () => {
-          setStarLoading(true)
-          try {
-            if (starState) {
-              await unstarAIAgent(agent.aiAgentID)
-            } else {
-              await starAIAgent(agent.aiAgentID)
-            }
-            setStarState(!starState)
-          } catch (e) {
-            message.error({
-              content: t("dashboard.message.star-failed"),
-            })
-          } finally {
-            setStarLoading(false)
-          }
-        }}
-        loading={starLoading}
-        leftIcon={
-          starState ? <StarFillIcon c="#FFBB38" /> : <StarOutlineIcon />
-        }
-      >
-        <span>{t("marketplace.star")}</span>
-        {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 && (
-          <span>
-            {" "}
-            {formatNumForAgent(marketplaceInfo?.marketplace.numStars ?? 0)}
-          </span>
-        )}
-      </Button>
-      {canManage(
-        currentTeamInfo.myRole,
-        ATTRIBUTE_GROUP.AGENT,
-        ACTION_MANAGE.CREATE_AGENT,
-      ) && (
-        <Button
-          ml="8px"
-          colorScheme="grayBlue"
-          loading={forkLoading}
-          leftIcon={<ForkIcon />}
-          onClick={async () => {
-            setForkLoading(true)
-            try {
-              const newAgent = await forkAIAgentToTeam(agent.aiAgentID)
-              navigate(
-                `/${teamInfo.identifier}/ai-agent/${newAgent.data.aiAgentID}`,
-              )
-            } catch (e) {
-              message.error({
-                content: t("dashboard.message.fork-failed"),
-              })
-            } finally {
-              setForkLoading(false)
-            }
-          }}
-        >
-          <span>{t("marketplace.fork")}</span>
-          {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
-            <span>
-              {" "}
-              {formatNumForAgent(marketplaceInfo?.marketplace.numForks ?? 0)}
-            </span>
-          )}
-        </Button>
-      )}
-    </div>
-  ) : (
-    <>
-      {canManage(
-        currentTeamInfo.myRole,
-        ATTRIBUTE_GROUP.AGENT,
-        ACTION_MANAGE.CREATE_AGENT,
-      ) && (
+  const menu = (
+    <Controller
+      control={control}
+      name="publishedToMarketplace"
+      render={({ field }) => (
         <div css={agentMenuContainerStyle}>
-          <Button
-            colorScheme="grayBlue"
-            leftIcon={<DependencyIcon />}
-            onClick={() => {
-              setShareDialogVisible(true)
-            }}
-          >
-            {t("share")}
-          </Button>
+          {(canInvite || field.value) && (
+            <Button
+              colorScheme="grayBlue"
+              leftIcon={<DependencyIcon />}
+              onClick={() => {
+                if (isCloudVersion && !canUseBillingFeature && !field.value) {
+                  upgradeModal({
+                    modalType: "upgrade",
+                  })
+                  return
+                }
+                setShareDialogVisible(true)
+              }}
+            >
+              {t("share")}
+            </Button>
+          )}
+          {field.value && (
+            <Button
+              ml="8px"
+              colorScheme="grayBlue"
+              onClick={async () => {
+                setStarLoading(true)
+                try {
+                  if (starState) {
+                    await unstarAIAgent(agent.aiAgentID)
+                    if (starNum > 0) {
+                      setStarNum(starNum - 1)
+                    }
+                  } else {
+                    await starAIAgent(agent.aiAgentID)
+                    setStarNum(starNum + 1)
+                  }
+                  setStarState(!starState)
+                } catch (e) {
+                  message.error({
+                    content: t("dashboard.message.star-failed"),
+                  })
+                } finally {
+                  setStarLoading(false)
+                }
+              }}
+              loading={starLoading}
+              leftIcon={
+                starState ? <StarFillIcon c="#FFBB38" /> : <StarOutlineIcon />
+              }
+            >
+              <span>{t("marketplace.star")}</span>
+              {starNum > 0 && <span> {formatNumForAgent(starNum)}</span>}
+            </Button>
+          )}
+          {canManage(
+            currentTeamInfo.myRole,
+            ATTRIBUTE_GROUP.AGENT,
+            ACTION_MANAGE.CREATE_AGENT,
+          ) &&
+            field.value && (
+              <Button
+                ml="8px"
+                colorScheme="grayBlue"
+                loading={forkLoading}
+                leftIcon={<ForkIcon />}
+                onClick={async () => {
+                  setForkLoading(true)
+                  try {
+                    const newAgent = await forkAIAgentToTeam(agent.aiAgentID)
+                    navigate(
+                      `/${teamInfo.identifier}/ai-agent/${newAgent.data.aiAgentID}`,
+                    )
+                  } catch (e) {
+                    message.error({
+                      content: t("dashboard.message.fork-failed"),
+                    })
+                  } finally {
+                    setForkLoading(false)
+                  }
+                }}
+              >
+                <span>{t("marketplace.fork")}</span>
+                {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
+                  <span>
+                    {" "}
+                    {formatNumForAgent(
+                      marketplaceInfo?.marketplace.numForks ?? 0,
+                    )}
+                  </span>
+                )}
+              </Button>
+            )}
         </div>
       )}
-    </>
+    />
   )
 
   return (

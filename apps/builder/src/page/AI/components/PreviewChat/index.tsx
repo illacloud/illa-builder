@@ -1,10 +1,6 @@
 import { AI_AGENT_TYPE } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
-import { canManage } from "@illa-public/user-role-utils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
+import { canManageInvite } from "@illa-public/user-role-utils"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -57,13 +53,14 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
-  const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
 
   const wsStatus = useSelector(getAgentWSStatus)
 
   const chatRef = useRef<HTMLDivElement>(null)
 
   const [textAreaVal, setTextAreaVal] = useState("")
+
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
 
   const { t } = useTranslation()
 
@@ -84,6 +81,12 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       top: chatRef.current.scrollHeight,
     })
   }, [chatMessages, generationMessage])
+
+  const canInvite = canManageInvite(
+    teamInfo.myRole,
+    teamInfo.permission.allowEditorManageTeamMember,
+    teamInfo.permission.allowViewerManageTeamMember,
+  )
 
   const sendAndClearMessage = useCallback(() => {
     if (textAreaVal !== "") {
@@ -110,46 +113,41 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
 
   return (
     <div css={previewChatContainerStyle}>
-      {!isMobile &&
-        canManage(
-          currentTeamInfo.myRole,
-          ATTRIBUTE_GROUP.AGENT,
-          ACTION_MANAGE.CREATE_AGENT,
-        ) && (
-          <div css={previewTitleContainerStyle}>
-            <div css={previewTitleTextStyle}>
-              {agentType === AI_AGENT_TYPE.CHAT
-                ? t("editor.ai-agent.title-preview.chat")
-                : t("editor.ai-agent.title-preview.text-generation")}
-            </div>
-            {editState === "EDIT" && (
-              <Button
-                disabled={!hasCreated}
-                ml="8px"
-                colorScheme="grayBlue"
-                leftIcon={<DependencyIcon />}
-                onClick={() => {
-                  onShowShareDialog?.()
-                }}
-              >
-                {t("share")}
-              </Button>
-            )}
-            {editState === "EDIT" && (
-              <Button
-                disabled={!hasCreated}
-                ml="8px"
-                colorScheme="grayBlue"
-                leftIcon={<ContributeIcon />}
-                onClick={() => {
-                  onShowContributeDialog?.()
-                }}
-              >
-                {t("editor.ai-agent.contribute")}
-              </Button>
-            )}
+      {!isMobile && (
+        <div css={previewTitleContainerStyle}>
+          <div css={previewTitleTextStyle}>
+            {agentType === AI_AGENT_TYPE.CHAT
+              ? t("editor.ai-agent.title-preview.chat")
+              : t("editor.ai-agent.title-preview.text-generation")}
           </div>
-        )}
+          {editState === "EDIT" && canInvite && (
+            <Button
+              disabled={!hasCreated}
+              ml="8px"
+              colorScheme="grayBlue"
+              leftIcon={<DependencyIcon />}
+              onClick={() => {
+                onShowShareDialog?.()
+              }}
+            >
+              {t("share")}
+            </Button>
+          )}
+          {editState === "EDIT" && (
+            <Button
+              disabled={!hasCreated}
+              ml="8px"
+              colorScheme="grayBlue"
+              leftIcon={<ContributeIcon />}
+              onClick={() => {
+                onShowContributeDialog?.()
+              }}
+            >
+              {t("editor.ai-agent.contribute")}
+            </Button>
+          )}
+        </div>
+      )}
       <div ref={chatRef} css={chatContainerStyle}>
         {agentType === AI_AGENT_TYPE.CHAT ? messagesList : generationBlock}
       </div>
