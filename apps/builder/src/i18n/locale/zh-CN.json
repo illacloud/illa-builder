@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "AI生成",
         "tooltips": "基于您的Prompt，使用AI生成描述信息",
-        "failed": "生成失败，请稍后重试"
+        "failed": "生成失败，请稍后重试",
+        "blank": "请先填入Prompt"
       },
       "generate-icon": {
         "tooltips": "基于Agent的名称和描述，使用AI生成icon",
