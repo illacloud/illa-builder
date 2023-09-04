@@ -2625,7 +2625,8 @@
         "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados.",
         "purchase-required": "Colla não é suficiente para funcionar, por favor recarregue.",
         "leave": "Existem conteúdos não salvos, você tem certeza que deseja sair?",
-        "generating": "Por favor, aguarde a geração concluir ou interrompa o processo"
+        "generating": "Por favor, aguarde a geração concluir ou interrompa o processo",
+        "model-unavailable": "O modelo atual não está disponível"
       },
       "title": "Editar Agente IA",
       "generate-desc": {
