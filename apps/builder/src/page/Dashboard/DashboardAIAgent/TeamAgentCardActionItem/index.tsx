@@ -58,6 +58,12 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
     ACTION_MANAGE.CREATE_AGENT,
   )
 
+  const canInvite = canManageInvite(
+    teamInfo.myRole,
+    teamInfo.permission.allowEditorManageTeamMember,
+    teamInfo.permission.allowViewerManageTeamMember,
+  )
+
   const upgradeModal = useUpgradeModal()
   const [shareVisible, setShareVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
@@ -69,14 +75,14 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   )
 
   const openInviteModal = useCallback(() => {
-    if (isCloudVersion && !canUseBillingFeature) {
+    if (isCloudVersion && !canUseBillingFeature && !publishedToMarketplace) {
       upgradeModal({
         modalType: "upgrade",
       })
       return
     }
     setShareVisible(true)
-  }, [canUseBillingFeature, upgradeModal])
+  }, [canUseBillingFeature, publishedToMarketplace, upgradeModal])
 
   const handleDuplicateApp = () => {
     if (duplicateLoading) return
@@ -189,17 +195,19 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
                 }
                 onClick={handleDuplicateApp}
               />
-              <DropListItem
-                key="share"
-                value="share"
-                title={
-                  <div>
-                    <DependencyIcon mr="8px" />
-                    <span>{t("share")}</span>
-                  </div>
-                }
-                onClick={openInviteModal}
-              />
+              {(canInvite || publishedToMarketplace) && (
+                <DropListItem
+                  key="share"
+                  value="share"
+                  title={
+                    <div>
+                      <DependencyIcon mr="8px" />
+                      <span>{t("share")}</span>
+                    </div>
+                  }
+                  onClick={openInviteModal}
+                />
+              )}
               <DropListItem
                 key="delete"
                 value="delete"
@@ -261,11 +269,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
           onClose={() => {
             setShareVisible(false)
           }}
-          canInvite={canManageInvite(
-            teamInfo.myRole,
-            teamInfo.permission.allowEditorManageTeamMember,
-            teamInfo.permission.allowViewerManageTeamMember,
-          )}
+          canInvite={canInvite}
           defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
           defaultInviteUserRole={USER_ROLE.VIEWER}
           teamID={teamInfo.id}
