@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "AI genereren",
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
-        "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
+        "failed": "Aanmaken mislukt. Probeer het later opnieuw. ",
+        "blank": "Gelieve eerst de prompt in te voeren"
       },
       "generate-icon": {
         "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent",
