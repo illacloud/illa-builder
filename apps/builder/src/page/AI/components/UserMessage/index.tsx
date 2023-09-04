@@ -13,7 +13,7 @@ import {
 } from "@/page/AI/components/UserMessage/style"
 
 export const UserMessage: FC<UserMessageProps> = (props) => {
-  const { message } = props
+  const { message, hideAvatar } = props
   const currentUserInfo = useSelector(getCurrentUser)
   return (
     <div css={agentMessageContainer}>
@@ -23,12 +23,14 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
           <MarkdownMessage>{message.message}</MarkdownMessage>
         </div>
       </div>
-      <Avatar
-        css={senderAvatarStyle}
-        avatarUrl={currentUserInfo.avatar}
-        name={currentUserInfo.nickname}
-        id={currentUserInfo.userID}
-      />
+      {!hideAvatar && (
+        <Avatar
+          css={senderAvatarStyle}
+          avatarUrl={currentUserInfo.avatar}
+          name={currentUserInfo.nickname}
+          id={currentUserInfo.userID}
+        />
+      )}
     </div>
   )
 }

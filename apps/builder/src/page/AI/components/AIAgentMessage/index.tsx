@@ -13,7 +13,7 @@ import {
 } from "./style"
 
 export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
-  const { message } = props
+  const { message, hideAvatar } = props
   const chatContext = useContext(ChatContext)
 
   const senderNickname =
@@ -36,12 +36,14 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
 
   return (
     <div css={agentMessageContainer}>
-      <Avatar
-        css={senderAvatarStyle}
-        avatarUrl={senderAvatar}
-        name={senderNickname}
-        id={message.sender.senderID}
-      />
+      {!hideAvatar && (
+        <Avatar
+          css={senderAvatarStyle}
+          avatarUrl={senderAvatar}
+          name={senderNickname}
+          id={message.sender.senderID}
+        />
+      )}
       <div css={senderContainerStyle}>
         <div css={senderNicknameStyle}>{senderNickname}</div>
         <div css={messageContainerStyle}>

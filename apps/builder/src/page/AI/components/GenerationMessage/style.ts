@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { applyMobileStyle } from "@illa-public/utils"
 import { getColor } from "@illa-design/react"
 
 export const generationContainerStyle = css`
@@ -14,6 +15,11 @@ export const generationContainerStyle = css`
   border: 1px solid #f2f3f5;
   background: getColor("white", "01");
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+  ${applyMobileStyle(css`
+    margin: 48px 20px 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+  `)}
 `
 
 export const avatarContainerStyle = css`
