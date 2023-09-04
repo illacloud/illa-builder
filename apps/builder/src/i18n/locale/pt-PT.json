@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "Gerar IA",
         "tooltips": "Usar AI para gerar a descrição baseada no seu prompt. ",
-        "failed": "Falha ao gerar. Por favor, tente novamente mais tarde. "
+        "failed": "Falha ao gerar. Por favor, tente novamente mais tarde. ",
+        "blank": "Por favor, primeiro digite o prompt"
       },
       "generate-icon": {
         "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente",
