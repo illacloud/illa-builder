@@ -2631,7 +2631,8 @@
       "generate-desc": {
         "button": "Wygeneruj SI",
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
-        "failed": "Nie udało się wygenerować. Spróbuj ponownie później. "
+        "failed": "Nie udało się wygenerować. Spróbuj ponownie później. ",
+        "blank": "Proszę najpierw podać monit"
       },
       "generate-icon": {
         "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela",
