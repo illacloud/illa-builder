@@ -2625,7 +2625,8 @@
         "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat.",
         "purchase-required": "Colla är inte tillräckligt för att köra, ladda om.",
         "leave": "Det finns osparat innehåll, är du säker på att du vill lämna?",
-        "generating": "Vänta på att generationen ska slutföra eller avbryta processen"
+        "generating": "Vänta på att generationen ska slutföra eller avbryta processen",
+        "model-unavailable": "Den aktuella modellen är inte tillgänglig"
       },
       "title": "Redigera AI Agent",
       "generate-desc": {
