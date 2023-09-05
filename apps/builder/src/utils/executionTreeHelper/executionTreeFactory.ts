@@ -653,7 +653,11 @@ export class ExecutionTreeFactory {
                 current,
               )
 
-              set(current, fullPath, evaluateValue)
+              if (typeof evaluateValue === "function") {
+                set(current, fullPath, undefined)
+              } else {
+                set(current, fullPath, evaluateValue)
+              }
             } catch (e) {
               const oldError = get(errorTree, fullPath, []) as ErrorShape[]
               if (Array.isArray(oldError)) {
