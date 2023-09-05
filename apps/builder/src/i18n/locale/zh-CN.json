@@ -56,7 +56,7 @@
       "test_success": "测试成功"
     },
     "list-type": {
-      "team": "Team's",
+      "team": "团队内容",
       "marketplace": "社区"
     },
     "sort-type": {
@@ -3251,7 +3251,7 @@
         "invite_members": "邀请成员",
         "invite_to_use": "邀请使用",
         "invite_to_edit": "邀请进行编辑",
-        "contribute": "社区"
+        "contribute": "社区内容"
       },
       "link": {
         "invite_title": "邀请链接",
