@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Upload erfolgreich",
           "uploadFailed": "Upload fehlgeschlagen",
           "onMenuSelect": "Element auswählen",
-          "on_menu_select": "Menüpunkt auswählen"
+          "on_menu_select": "Menüpunkt auswählen",
+          "pageChange": "Seitenänderung"
         },
         "image_list": {
           "title": "Bilder",
@@ -1792,6 +1793,14 @@
           "legend_position": "Legendenposition",
           "grid_line": "Rasterlinie",
           "y-axis_type": "Y-Achsen-Typ"
+        },
+        "grid_list": {
+          "column_adaptation": "Spaltenanpassung",
+          "column_count": "Spaltenanzahl",
+          "row_height": "Zeilenanpassung",
+          "item_radius": "Elementradius",
+          "item_shadow": "Item Schatten",
+          "item_spacing": "Elementabstand"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Um die Position des legenten zu setzen. ",
           "grid_line": "Um die Farbe der Rasterlinie einzustellen. ",
           "y-axis_type": "Die Einstellung des Diagrammtyps kann die Datenlesbarkeit verbessern."
+        },
+        "grid_list": {
+          "column_adaptation": "Im Auto-Modus bleibt die Anzahl der Spalten fest, während die Spaltenbreite einstellbar ist. Die Änderung des Browserfensters ändert die Spaltenbreite entsprechend.\r\nIm Festen Modus ist die Anzahl der Spalten nicht festgelegt, während die Spaltenbreite konstant bleibt. Die Größe des Browserfensters ändert die Anzahl der Spalten.",
+          "column_count": "Konfiguriert die Anzahl der Spalten, die bestimmt, wie viele Raster pro Zeile angezeigt werden.",
+          "row_height": "Wird verwendet, um die Höhe jeder Zeile zu konfigurieren. Im Auto-Modus ist die Höhe anpassungsfähig, und die Zeilenhöhe wird vom höchsten Raster der aktuellen Zeile bestimmt. Im Festen Modus ist die Zeilenhöhe fest und alle Raster haben die gleiche Höhe.",
+          "item_radius": "Wird verwendet, um den Eckradius jedes Rasters zu konfigurieren",
+          "item_shadow": "Zur Konfiguration der Schattengröße jedes Rasters",
+          "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Unterseite bearbeiten",
         "rename_page_url": "Seite bearbeiten"
       }
+    },
+    "grid_list": {
+      "name": "Rasterliste"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Mitwirken",
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Element anklicken"
+        }
+      }
+    }
   }
 }
