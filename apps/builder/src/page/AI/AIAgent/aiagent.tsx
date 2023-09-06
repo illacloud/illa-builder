@@ -269,7 +269,7 @@ export const AIAgent: FC = () => {
         sendMessage(
           {
             threadID: v4(),
-            prompt: encodeURI(getValues("prompt")),
+            prompt: getValues("prompt"),
             variables: getValues("variables"),
             actionID: getValues("aiAgentID"),
             modelConfig: getValues("modelConfig"),
@@ -876,7 +876,7 @@ export const AIAgent: FC = () => {
                           sendMessage(
                             {
                               threadID: message.threadID,
-                              prompt: encodeURI(message.message),
+                              prompt: encodeURIComponent(message.message),
                               variables: [],
                               actionID: getValues("aiAgentID"),
                               modelConfig: getValues("modelConfig"),

@@ -2,16 +2,18 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { CurrentUser, currentUserActions } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { AxiosResponse } from "axios"
-import { FC, useEffect } from "react"
+import { FC, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useAsyncValue, useBeforeUnload } from "react-router-dom"
 import { TriggerProvider } from "@illa-design/react"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { fixedActionToNewAction } from "@/hooks/utils/fixedAction"
 import { fixedComponentsToNewComponents } from "@/hooks/utils/fixedComponents"
+import { WaterMark } from "@/page/Deploy/Watermark"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
@@ -19,10 +21,7 @@ import { setupComponentsListeners } from "@/redux/currentApp/editor/components/c
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
-import { TeamAgentListData } from "@/services/agent"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { startAppListening } from "@/store"
 import {
   track,
@@ -35,8 +34,7 @@ import { CurrentAppResp } from "../App/resp/currentAppResp"
 interface IDeployContentAsyncValue {
   isPublic: boolean
   appInfo: Promise<AxiosResponse<CurrentAppResp>>
-  resourceInfo: Promise<AxiosResponse<Resource<ResourceContent>[]>>
-  teamAgentList: Promise<AxiosResponse<TeamAgentListData>>
+  userInfo: CurrentUser | undefined
 }
 
 export const DeployContent: FC = () => {
@@ -51,45 +49,28 @@ export const DeployContent: FC = () => {
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
+  const [currentDeployApp, setCurrentDeployApp] = useState<DashboardApp>()
+
   useEffect(() => {
-    const {
-      resourceInfo: resourceResponse,
-      appInfo: appInfoResponse,
-      teamAgentList,
-    } = asyncValue
+    const { appInfo: appInfoResponse } = asyncValue
     const initApp = async () => {
       const appInfo = await appInfoResponse
-      if (!asyncValue.isPublic) {
-        const resourceInfo = await resourceResponse
-        dispatch(resourceActions.updateResourceListReducer(resourceInfo.data))
-        if (isCloudVersion) {
-          const agentList = await teamAgentList
-          dispatch(
-            dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
-              agentList.data.aiAgentList,
-            ),
-          )
-        }
-        dispatch(configActions.updateIllaMode("production"))
-        dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
-        const fixedComponents = fixedComponentsToNewComponents(
-          appInfo.data.components,
+      document.title = appInfo.data.appInfo.appName
+      setCurrentDeployApp(appInfo.data.appInfo)
+      if (asyncValue.userInfo) {
+        dispatch(
+          currentUserActions.updateCurrentUserReducer(asyncValue.userInfo),
         )
-        dispatch(componentsActions.initComponentReducer(fixedComponents))
-        const fixedActions = fixedActionToNewAction(appInfo.data.actions)
-        dispatch(actionActions.initActionListReducer(fixedActions))
-        dispatch(executionActions.startExecutionReducer())
-      } else {
-        dispatch(configActions.updateIllaMode("production"))
-        dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
-        const fixedComponents = fixedComponentsToNewComponents(
-          appInfo.data.components,
-        )
-        dispatch(componentsActions.initComponentReducer(fixedComponents))
-        const fixedActions = fixedActionToNewAction(appInfo.data.actions)
-        dispatch(actionActions.initActionListReducer(fixedActions))
-        dispatch(executionActions.startExecutionReducer())
       }
+      dispatch(configActions.updateIllaMode("production"))
+      dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
+      const fixedComponents = fixedComponentsToNewComponents(
+        appInfo.data.components,
+      )
+      dispatch(componentsActions.initComponentReducer(fixedComponents))
+      const fixedActions = fixedActionToNewAction(appInfo.data.actions)
+      dispatch(actionActions.initActionListReducer(fixedActions))
+      dispatch(executionActions.startExecutionReducer())
     }
     initApp()
   }, [asyncValue, dispatch])
@@ -114,6 +95,9 @@ export const DeployContent: FC = () => {
   return (
     <TriggerProvider renderInBody zIndex={10}>
       {<CanvasPanel />}
+      {(isCloudVersion
+        ? currentDeployApp && currentDeployApp.config.waterMark
+        : true) && <WaterMark />}
     </TriggerProvider>
   )
 }

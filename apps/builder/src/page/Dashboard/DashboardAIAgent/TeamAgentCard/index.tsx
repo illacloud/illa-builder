@@ -32,8 +32,8 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
 
   const canEdit = canManage(
     teamInfo.myRole,
-    ATTRIBUTE_GROUP.AGENT,
-    ACTION_MANAGE.CREATE_AGENT,
+    ATTRIBUTE_GROUP.AI_AGENT,
+    ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
   return (

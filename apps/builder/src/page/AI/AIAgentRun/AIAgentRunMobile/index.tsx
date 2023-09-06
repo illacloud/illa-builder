@@ -543,8 +543,8 @@ export const AIAgentRunMobile: FC = () => {
                   {field.value &&
                     canManage(
                       currentTeamInfo.myRole,
-                      ATTRIBUTE_GROUP.AGENT,
-                      ACTION_MANAGE.CREATE_AGENT,
+                      ATTRIBUTE_GROUP.AI_AGENT,
+                      ACTION_MANAGE.FORK_AI_AGENT,
                     ) && (
                       <div
                         css={shareContainerStyle}

@@ -34,8 +34,8 @@ const DashboardAIAgent: FC = () => {
 
   const canCreateAgent = canManage(
     teamInfo.myRole,
-    ATTRIBUTE_GROUP.AGENT,
-    ACTION_MANAGE.CREATE_AGENT,
+    ATTRIBUTE_GROUP.AI_AGENT,
+    ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
   const upgradeModal = useUpgradeModal()

@@ -71,7 +71,18 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
           },
           currentTeamInfo?.id ?? "",
           currentUserInfo.userID,
-          [payload],
+          [
+            {
+              ...payload,
+              prompt: encodeURIComponent(payload.prompt),
+              variables: payload.variables.map((v) => {
+                return {
+                  ...v,
+                  value: encodeURIComponent(v.value),
+                }
+              }),
+            },
+          ],
         ),
       )
       if (updateMessage && messageContent) {

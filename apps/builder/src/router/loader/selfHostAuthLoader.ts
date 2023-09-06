@@ -5,6 +5,7 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import { LoaderFunction, redirect } from "react-router-dom"
+import i18n from "@/i18n/config"
 import { fetchMyTeamsInfo } from "@/services/team"
 import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
@@ -12,14 +13,25 @@ import { getAuthToken } from "@/utils/auth"
 
 export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
   const authToken = getAuthToken()
-  const currentUser = getCurrentUser(store.getState())
+  const userInfo = getCurrentUser(store.getState())
+  const currentLng = window.localStorage.getItem("i18nextLng")
 
-  if (currentUser.userID) {
+  if (userInfo.userID) {
+    const lng = userInfo.language
+    if (lng && currentLng !== lng) {
+      i18n.changeLanguage(lng)
+      window.location.reload()
+    }
     return null
   }
   if (authToken) {
     try {
       const response = await fetchUserInfo()
+      const lng = response.data.language
+      if (lng && currentLng !== lng) {
+        i18n.changeLanguage(lng)
+        window.location.reload()
+      }
       store.dispatch(currentUserActions.updateCurrentUserReducer(response.data))
       return null
     } catch (e) {

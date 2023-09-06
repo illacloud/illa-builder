@@ -328,8 +328,8 @@ export const AIAgentRunPC: FC = () => {
           )}
           {canManage(
             currentTeamInfo.myRole,
-            ATTRIBUTE_GROUP.AGENT,
-            ACTION_MANAGE.CREATE_AGENT,
+            ATTRIBUTE_GROUP.AI_AGENT,
+            ACTION_MANAGE.FORK_AI_AGENT,
           ) &&
             field.value && (
               <Button
