@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "上传成功",
           "uploadFailed": "上传失败",
           "onMenuSelect": "选中菜单项",
-          "on_menu_select": "选择菜单项"
+          "on_menu_select": "选择菜单项",
+          "pageChange": "页面更改"
         },
         "image_list": {
           "title": "图片",
@@ -1792,6 +1793,14 @@
           "legend_position": "图例位置",
           "grid_line": "网格线",
           "y-axis_type": "Y轴类型"
+        },
+        "grid_list": {
+          "column_adaptation": "列宽适配",
+          "column_count": "列数",
+          "row_height": "行高适配",
+          "item_radius": "格子的圆角",
+          "item_shadow": "格子的阴影",
+          "item_spacing": "格子间距"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "设置图例的位置",
           "grid_line": "设置网格线的颜色",
           "y-axis_type": "设置图表类型以提高数据可读性。"
+        },
+        "grid_list": {
+          "column_adaptation": "在自动模式下，列数保持不变，列宽将自适应。调整浏览器窗口的大小将相应改变列宽度。\n在固定模式下，列数不是固定的，而列宽保持不变。 调整浏览器窗口的大小将更改列数。",
+          "column_count": "用来配置列数，它决定每行显示多少格子。",
+          "row_height": "用来配置每行的高度。在自动模式下，高度自适应，行高由当前行中最高的格子决定。 在固定模式下，行高是固定的，所有格子的高度相同。",
+          "item_radius": "用来配置每个格子的圆角",
+          "item_shadow": "用来配置每个格子的阴影大小",
+          "item_spacing": "用于配置格子之间的间距"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "编辑子页面",
         "rename_page_url": "编辑页面"
       }
+    },
+    "grid_list": {
+      "name": "栅格列表"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "贡献",
   "error_page": {
     "fobidden": "没有访问权限"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "点击项目"
+        }
+      }
+    }
   }
 }
