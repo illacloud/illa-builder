@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Subido con éxito",
           "uploadFailed": "Error al subir",
           "onMenuSelect": "Seleccionar elemento",
-          "on_menu_select": "Seleccionar elemento de menú"
+          "on_menu_select": "Seleccionar elemento de menú",
+          "pageChange": "Page change"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1792,6 +1793,14 @@
           "legend_position": "Posición de la leyenda",
           "grid_line": "Rejilla",
           "y-axis_type": "Tipo eje Y"
+        },
+        "grid_list": {
+          "column_adaptation": "Column adaptation",
+          "column_count": "Column count",
+          "row_height": "Row adaptation",
+          "item_radius": "Item radius",
+          "item_shadow": "Item shadow",
+          "item_spacing": "Item spacing"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Establecer la posición de legal. ",
           "grid_line": "Para establecer el color de la línea de cuadrícula. ",
           "y-axis_type": "Configurar el tipo de gráfico puede mejorar la legibilidad de datos."
+        },
+        "grid_list": {
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
+          "column_count": "Used to configure the number of columns, which determines how many grids are displayed per row.",
+          "row_height": "Used to configure the height of each row. In Auto mode, the height is adaptive, and the row height is determined by the tallest grid in the current row. In Fixed mode, the row height is fixed, and all grids have the same height.",
+          "item_radius": "Used to configure the corner radius of each grid",
+          "item_shadow": "Used to configure the shadow size of each grid",
+          "item_spacing": "Used to configure the spacing between grids"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Editar subpágina",
         "rename_page_url": "Editar página"
       }
+    },
+    "grid_list": {
+      "name": "Grid list"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Contribuir",
   "error_page": {
     "fobidden": "Sin permiso de acceso"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Click item"
+        }
+      }
+    }
   }
 }
