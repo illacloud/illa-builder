@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Ladattu onnistuneesti",
           "uploadFailed": "Lataaminen epäonnistui",
           "onMenuSelect": "Valitse kohde",
-          "on_menu_select": "Valitse valikon kohta"
+          "on_menu_select": "Valitse valikon kohta",
+          "pageChange": "Sivun muutos"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1792,6 +1793,14 @@
           "legend_position": "Selitteen sijainti",
           "grid_line": "Ruudukon rivi",
           "y-axis_type": "Y-akselin tyyppi"
+        },
+        "grid_list": {
+          "column_adaptation": "Sarakkeen mukauttaminen",
+          "column_count": "Sarakkeiden määrä",
+          "row_height": "Rivin mukauttaminen",
+          "item_radius": "Kohteen säde",
+          "item_shadow": "Kohteen varjo",
+          "item_spacing": "Kohteiden väli"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Voit asettaa aseman legentti. ",
           "grid_line": "Jos haluat asettaa rivin värin. ",
           "y-axis_type": "Karttatyypin määrittäminen voi parantaa tietojen luettavuutta."
+        },
+        "grid_list": {
+          "column_adaptation": "Automaattisessa tilassa sarakkeiden määrä pysyy kiinteänä, kun sarakkeen leveys on säädettävissä. Selaimen ikkunan koon muuttaminen muuttaa sarakkeen leveyttä vastaavasti.\r\nKiinteässä tilassa sarakkeiden lukumäärä ei ole kiinteä, kun taas sarakkeen leveys pysyy vakiona. Selaimen ikkunan koon muuttaminen muuttaa sarakkeiden määrää.",
+          "column_count": "Käytetään sarakkeiden lukumäärän määrittämiseen, mikä määrittää kuinka monta ruudukkoa näytetään riviä kohden.",
+          "row_height": "Käytetään kunkin rivin korkeuden määrittämiseen. Automaattitilassa korkeus on mukautuva, ja rivin korkeus määräytyy nykyisen rivin korkeimman ruudukon mukaan. Kiinteässä tilassa rivin korkeus on kiinteä, ja kaikilla ruuduilla on sama korkeus.",
+          "item_radius": "Käytetään määrittämään kulman säde kunkin ruudukon",
+          "item_shadow": "Käytetään kunkin ruudukon varjon koon määrittämiseen",
+          "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Muokkaa alasivua",
         "rename_page_url": "Muokkaa sivua"
       }
+    },
+    "grid_list": {
+      "name": "Ruudukko lista"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Osallistu",
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Napsauta kohdetta"
+        }
+      }
+    }
   }
 }
