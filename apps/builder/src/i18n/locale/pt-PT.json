@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Carregado com sucesso",
           "uploadFailed": "Falha ao fazer upload",
           "onMenuSelect": "Selecione o item",
-          "on_menu_select": "Selecionar item do menu"
+          "on_menu_select": "Selecionar item do menu",
+          "pageChange": "Alteração de página"
         },
         "image_list": {
           "title": "Imagens",
@@ -1792,6 +1793,14 @@
           "legend_position": "Posição da legenda",
           "grid_line": "Linha de grade",
           "y-axis_type": "Tipo Eixo-Y"
+        },
+        "grid_list": {
+          "column_adaptation": "Adaptação da coluna",
+          "column_count": "Contagem de colunas",
+          "row_height": "Adaptação da linha",
+          "item_radius": "Raio do item",
+          "item_shadow": "Sombra do item",
+          "item_spacing": "Espaçamento entre itens"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Para definir a posição da legente. ",
           "grid_line": "Para definir a cor da linha da grade. ",
           "y-axis_type": "Definir o tipo de gráfico pode melhorar a legibilidade de dados."
+        },
+        "grid_list": {
+          "column_adaptation": "No modo automático, o número de colunas permanece fixo enquanto a largura da coluna é ajustável. Redimensionar a janela do navegador alterará a largura da coluna de acordo.\r\nNo modo fixo, o número de colunas não é corrigido enquanto a largura da coluna permanece constante. Redimensionando a janela do navegador irá alterar o número de colunas.",
+          "column_count": "Usado para configurar o número de colunas, que determina quantas grades são exibidas por linha.",
+          "row_height": "Usado para configurar a altura de cada linha. No modo automático, a altura é adaptável, e a altura da linha é determinada pela grade mais alta da linha atual. No modo fixo, a altura da linha é corrigida, e todas as grades têm a mesma altura.",
+          "item_radius": "Usado para configurar o raio do canto de cada grade",
+          "item_shadow": "Usado para configurar o tamanho sombrio de cada grade",
+          "item_spacing": "Usado para configurar o espaçamento entre grades"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Editar sub-página",
         "rename_page_url": "Editar página"
       }
+    },
+    "grid_list": {
+      "name": "Lista de grade"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Contribuir",
   "error_page": {
     "fobidden": "Sem permissão de acesso"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Clique em item"
+        }
+      }
+    }
   }
 }
