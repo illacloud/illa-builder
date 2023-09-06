@@ -167,9 +167,6 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../packages/illa-design/packages/react
-      '@illa-fe-utils/storage':
-        specifier: ^0.0.3
-        version: 0.0.3
       '@illa-public/avatar':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Avatar
@@ -185,6 +182,9 @@ importers:
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/ILLANet
+      '@illa-public/illa-storage':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/ILLAStorage
       '@illa-public/invite-modal':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/InviteModal
@@ -2658,6 +2658,8 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/illa-public-component/ILLAStorage: {}
+
   packages/illa-public-component/Icon:
     dependencies:
       '@emotion/react':
@@ -2963,15 +2965,12 @@ importers:
       '@fingerprintjs/fingerprintjs':
         specifier: ^3.4.0
         version: 3.4.0
-      '@illa-fe-utils/storage':
-        specifier: '*'
-        version: 0.0.3
+      '@illa-public/illa-storage':
+        specifier: workspace:*
+        version: link:../ILLAStorage
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
-      '@types/mixpanel-browser':
-        specifier: ^2.38.1
-        version: 2.38.1
       '@types/react':
         specifier: ^18.2.20
         version: 18.2.20
@@ -2979,8 +2978,8 @@ importers:
         specifier: ^18.2.7
         version: 18.2.7
       mixpanel-browser:
-        specifier: ^2.46.0
-        version: 2.46.0
+        specifier: ^2.47.0
+        version: 2.47.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2988,6 +2987,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@types/mixpanel-browser':
+        specifier: ^2.47.1
+        version: 2.47.1
       '@types/node':
         specifier: ^18.14.4
         version: 18.14.5
@@ -6339,10 +6341,6 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
 
-  /@illa-fe-utils/storage@0.0.3:
-    resolution: {integrity: sha512-gZkaymObh8+7QHpfQiedKcTPi21wpGQh3fD/FrhmiYK9vikjRRUby+5bTlt0qSZb0+B+srN35PSRN5ElbE/gFQ==}
-    dev: false
-
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
@@ -8953,9 +8951,9 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/mixpanel-browser@2.38.1:
-    resolution: {integrity: sha512-XzQbwgiOPsFXUQnjz3vSwcwrvJDbQ35bCiwa/1VXGrHvU1ti9+eqO1GY91DShzkEzKkkEEkxfNshS5dbBZqd7w==}
-    dev: false
+  /@types/mixpanel-browser@2.47.1:
+    resolution: {integrity: sha512-4Oif1hbjmStA6KI1OLer19rbKjlPd67ujp5Wipfa7rIskA/lOFZbp6kYsPjXD0f5AiiCQTbf0R/SnnzgOaKrbA==}
+    dev: true
 
   /@types/ms@0.7.31:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
@@ -15671,8 +15669,8 @@ packages:
     engines: {node: '>= 8.0.0'}
     dev: true
 
-  /mixpanel-browser@2.46.0:
-    resolution: {integrity: sha512-qPFhAFMf5YzzGPd/sgoEl7G0N/ypJ6IaZmjkMYEPiW60i1Muo+v2Zl/dqRcCXwYfF5GvC5175muS1ZuaaYGXAQ==}
+  /mixpanel-browser@2.47.0:
+    resolution: {integrity: sha512-Ldrva0fRBEIFWmEibBQO1PulfpJVF3pf28Guk09lDirDaSQqqU/xs9zQLwN2rL5VwVtsP1aD3JaCgaa98EjojQ==}
     dev: false
 
   /mkdirp-classic@0.5.3:
