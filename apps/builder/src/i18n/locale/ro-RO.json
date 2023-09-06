@@ -1274,7 +1274,7 @@
           "uploadFailed": "Încărcarea a eșuat",
           "onMenuSelect": "Selectare element",
           "on_menu_select": "Selectați elementul de meniu",
-          "pageChange": "Page change"
+          "pageChange": "Modificare pagină"
         },
         "image_list": {
           "title": "Imagini",
@@ -1795,12 +1795,12 @@
           "y-axis_type": "Tipul axei Y"
         },
         "grid_list": {
-          "column_adaptation": "Column adaptation",
-          "column_count": "Column count",
-          "row_height": "Row adaptation",
-          "item_radius": "Item radius",
-          "item_shadow": "Item shadow",
-          "item_spacing": "Item spacing"
+          "column_adaptation": "Adaptarea coloanei",
+          "column_count": "Număr de coloane",
+          "row_height": "Adaptarea liniei",
+          "item_radius": "Raza elementului",
+          "item_shadow": "Obiectul umbră",
+          "item_spacing": "Spațiere articole"
         }
       },
       "setter_tooltip": {
@@ -2077,12 +2077,12 @@
           "y-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor."
         },
         "grid_list": {
-          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
-          "column_count": "Used to configure the number of columns, which determines how many grids are displayed per row.",
-          "row_height": "Used to configure the height of each row. In Auto mode, the height is adaptive, and the row height is determined by the tallest grid in the current row. In Fixed mode, the row height is fixed, and all grids have the same height.",
-          "item_radius": "Used to configure the corner radius of each grid",
-          "item_shadow": "Used to configure the shadow size of each grid",
-          "item_spacing": "Used to configure the spacing between grids"
+          "column_adaptation": "În modul automat, numărul de coloane rămâne fixat în timp ce lățimea coloanei este ajustată. Redimensionarea ferestrei browser-ului va schimba lățimea coloanei în consecință.\r\nÎn modul fix, numărul de coloane nu este fixat în timp ce lățimea coloanei rămâne constantă. Redimensionarea ferestrei browser-ului va modifica numărul de coloane.",
+          "column_count": "Folosit pentru a configura numărul de coloane, care determină câte grile sunt afişate pe rând.",
+          "row_height": "Folosit pentru a configura înălțimea fiecărui rând. În modul Auto, înălţimea este adaptabilă, iar înălţimea rândului este determinată de reţeaua cea mai înaltă din rândul curent. În modul fix, înălţimea rândului este fixată şi toate grilele au aceeaşi înălţime.",
+          "item_radius": "Folosit pentru a configura raza de colţ a fiecărei grile",
+          "item_shadow": "Folosit pentru a configura dimensiunea umbrei pentru fiecare grilă",
+          "item_spacing": "Folosit pentru a configura distanța dintre grile"
         }
       },
       "setter_option": {
@@ -3087,7 +3087,7 @@
       }
     },
     "grid_list": {
-      "name": "Grid list"
+      "name": "Listă grilă"
     }
   },
   "page": {
@@ -4167,7 +4167,7 @@
     "inspect": {
       "setter_content": {
         "widget_action_type_name": {
-          "clickItem": "Click item"
+          "clickItem": "Elementul clic"
         }
       }
     }
