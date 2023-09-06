@@ -33,8 +33,7 @@ export const deployLoader: LoaderFunction = async (args) => {
         userInfo,
       })
     } else {
-      const response = await fetchUserInfo()
-      userInfo = response.data
+      const userInfo = fetchUserInfo()
       const appInfo = fetchPrivateAppInitData(appId, "-2", args.request.signal)
       return defer({
         isPublic,

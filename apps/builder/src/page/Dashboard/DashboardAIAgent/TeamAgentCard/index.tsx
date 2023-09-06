@@ -40,7 +40,9 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
     <div
       css={cardStyle}
       onClick={() => {
-        navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
+        navigate(
+          `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
+        )
       }}
     >
       <div css={headerStyle}>

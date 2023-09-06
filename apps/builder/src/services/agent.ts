@@ -104,7 +104,7 @@ export const fetchAgentContributeState = (
   return agentRequest<{
     isPublishedToMarketplace: boolean
   }>({
-    url: `teams/byIdentifier/${ownerTeamIdentifier}/publicAIAgent/${aiAgentID}/isPublishedToMarketplace`,
+    url: `/teams/byIdentifier/${ownerTeamIdentifier}/publicAIAgent/${aiAgentID}/isPublishedToMarketplace`,
     method: "GET",
   })
 }
@@ -121,16 +121,14 @@ export const fetchAgentDetail = (aiAgentID: string) => {
   )
 }
 
-export const fetchContributedAgentDetail = (aiAgentID: string) => {
-  return agentRequest<Agent>(
-    {
-      url: `/aiAgent/${aiAgentID}`,
-      method: "GET",
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
-  )
+export const fetchContributedAgentDetail = (
+  aiAgentID: string,
+  ownerTeamIdentifier: string,
+) => {
+  return agentRequest<Agent>({
+    url: `/teams/byIdentifier/${ownerTeamIdentifier}/publicAIAgent/${aiAgentID}`,
+    method: "GET",
+  })
 }
 
 export const putAgentDetail = (aiAgentID: string, agentRaw: AgentRaw) => {

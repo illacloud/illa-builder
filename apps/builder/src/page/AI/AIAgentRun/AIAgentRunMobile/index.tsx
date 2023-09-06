@@ -8,6 +8,7 @@ import {
   Agent,
   MarketAIAgent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -94,6 +95,10 @@ export const AIAgentRunMobile: FC = () => {
   }
   const navigate = useNavigate()
 
+  const [currentMarketplaceInfo, setCurrentMarketplaceInfo] = useState<
+    MarketAIAgent | undefined
+  >(marketplaceInfo)
+
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
     defaultValues: agent,
@@ -113,7 +118,7 @@ export const AIAgentRunMobile: FC = () => {
   const [isConnecting, setIsConnecting] = useState(false)
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
   const [starState, setStarState] = useState(
-    marketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
+    currentMarketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
   )
   const [forkLoading, setForkLoading] = useState(false)
   // data state
@@ -121,7 +126,7 @@ export const AIAgentRunMobile: FC = () => {
   const [isReceiving, setIsReceiving] = useState(false)
   const currentUserInfo = useSelector(getCurrentUser)
   const [starNum, setStarNum] = useState(
-    marketplaceInfo?.marketplace.numStars ?? 0,
+    currentMarketplaceInfo?.marketplace.numStars ?? 0,
   )
 
   const { t } = useTranslation()
@@ -198,8 +203,10 @@ export const AIAgentRunMobile: FC = () => {
                 },
               )}
               redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-                marketplaceInfo?.marketplace.contributorTeam.teamIdentify
-              }/ai-agent/${agent.aiAgentID}/run`}
+                agent.teamIdentifier
+              }/ai-agent/${agent.aiAgentID}/run?myTeamIdentifier=${
+                teamInfo.identifier
+              }`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
@@ -227,7 +234,11 @@ export const AIAgentRunMobile: FC = () => {
               }}
               agentID={agent.aiAgentID}
               defaultAgentContributed={field.value}
-              onAgentContributed={(isAgentContributed) => {
+              onAgentContributed={async (isAgentContributed) => {
+                if (isAgentContributed) {
+                  const resp = await getAIAgentMarketplaceInfo(agent.aiAgentID)
+                  setCurrentMarketplaceInfo(resp.data)
+                }
                 field.onChange(isAgentContributed)
               }}
               onCopyInviteLink={(link: string) => {
@@ -657,12 +668,12 @@ export const AIAgentRunMobile: FC = () => {
                       <span>{formatNumForAgent(starNum)}&nbsp;</span>
                     )}
                     {starNum > 0 &&
-                      (marketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
+                      (currentMarketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
                       "·"}
                     <span>&nbsp;{t("marketplace.fork")}</span>
                     <span>
                       {formatNumForAgent(
-                        marketplaceInfo?.marketplace.numForks ?? 0,
+                        currentMarketplaceInfo?.marketplace.numForks ?? 0,
                       )}
                     </span>
                   </div>

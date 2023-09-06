@@ -34,7 +34,7 @@ import { CurrentAppResp } from "../App/resp/currentAppResp"
 interface IDeployContentAsyncValue {
   isPublic: boolean
   appInfo: Promise<AxiosResponse<CurrentAppResp>>
-  userInfo: CurrentUser | undefined
+  userInfo: Promise<AxiosResponse<CurrentUser>> | undefined
 }
 
 export const DeployContent: FC = () => {
@@ -52,15 +52,13 @@ export const DeployContent: FC = () => {
   const [currentDeployApp, setCurrentDeployApp] = useState<DashboardApp>()
 
   useEffect(() => {
-    const { appInfo: appInfoResponse } = asyncValue
     const initApp = async () => {
-      const appInfo = await appInfoResponse
+      const appInfo = await asyncValue.appInfo
       document.title = appInfo.data.appInfo.appName
       setCurrentDeployApp(appInfo.data.appInfo)
       if (asyncValue.userInfo) {
-        dispatch(
-          currentUserActions.updateCurrentUserReducer(asyncValue.userInfo),
-        )
+        const userInfo = await asyncValue.userInfo
+        dispatch(currentUserActions.updateCurrentUserReducer(userInfo.data))
       }
       dispatch(configActions.updateIllaMode("production"))
       dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
