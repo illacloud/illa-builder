@@ -3,7 +3,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -44,10 +44,16 @@ export const AppCard: FC<AppCardProps> = (props) => {
   const canEditApp = canManage(
     teamInfo.myRole,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
 
   const onClickCard = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "card",
+      parameter3: "team",
+      parameter5: appInfo.appId,
+    })
     if (canEditApp) {
       navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
     } else if (appInfo.deployed) {

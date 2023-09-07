@@ -19,6 +19,7 @@ export function getModelLimitToken(model: AI_AGENT_MODEL): number {
 
 export const AgentInitial: Agent = {
   name: "",
+  teamIdentifier: "",
   agentType: AI_AGENT_TYPE.CHAT,
   model: AI_AGENT_MODEL.GPT_3_5_TURBO,
   variables: [{ key: "", value: "" }],

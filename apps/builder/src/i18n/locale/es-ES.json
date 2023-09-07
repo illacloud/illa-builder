@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Subido con éxito",
           "uploadFailed": "Error al subir",
           "onMenuSelect": "Seleccionar elemento",
-          "on_menu_select": "Seleccionar elemento de menú"
+          "on_menu_select": "Seleccionar elemento de menú",
+          "pageChange": "Cambio de página"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1792,6 +1793,14 @@
           "legend_position": "Posición de la leyenda",
           "grid_line": "Rejilla",
           "y-axis_type": "Tipo eje Y"
+        },
+        "grid_list": {
+          "column_adaptation": "Adaptación a columnas",
+          "column_count": "Número de columnas",
+          "row_height": "Adaptación de fila",
+          "item_radius": "Radio del artículo",
+          "item_shadow": "Sombra del objeto",
+          "item_spacing": "Espacio de objetos"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Establecer la posición de legal. ",
           "grid_line": "Para establecer el color de la línea de cuadrícula. ",
           "y-axis_type": "Configurar el tipo de gráfico puede mejorar la legibilidad de datos."
+        },
+        "grid_list": {
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
+          "column_count": "Utilizado para configurar el número de columnas, que determina cuántas rejillas se muestran por fila.",
+          "row_height": "Utilizado para configurar la altura de cada fila. En modo automático, la altura es adaptativa, y la altura de la fila es determinada por la cuadrícula más alta de la fila actual. En modo fijo, la altura de la fila es fija, y todas las rejillas tienen la misma altura.",
+          "item_radius": "Utilizado para configurar el radio de esquina de cada cuadrícula",
+          "item_shadow": "Utilizado para configurar el tamaño de la sombra de cada cuadrícula",
+          "item_spacing": "Utilizado para configurar el espacio entre cuadrículas"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Editar subpágina",
         "rename_page_url": "Editar página"
       }
+    },
+    "grid_list": {
+      "name": "Lista de cuadrícula"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Contribuir",
   "error_page": {
     "fobidden": "Sin permiso de acceso"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Artículo de clic"
+        }
+      }
+    }
   }
 }

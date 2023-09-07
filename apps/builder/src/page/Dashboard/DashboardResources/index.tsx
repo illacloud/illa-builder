@@ -3,7 +3,11 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
-import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getPlanUtils,
+} from "@illa-public/user-data"
 import {
   ACTION_ACCESS,
   ATTRIBUTE_GROUP,
@@ -45,6 +49,7 @@ export const DashboardResources: FC = () => {
   const canAccessResourcesView = canAccess(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
     ATTRIBUTE_GROUP.RESOURCE,
+    getPlanUtils(teamInfo),
     ACTION_ACCESS.VIEW,
   )
 

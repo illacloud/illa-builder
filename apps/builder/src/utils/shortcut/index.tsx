@@ -1,8 +1,8 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
-import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, ReactNode, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -58,18 +58,11 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     useState<boolean>(false)
   const [saveLoading, setSaveLoading] = useState<boolean>(false)
 
-  const canUseBillingFeature = useMemo(
-    () =>
-      canUseUpgradeFeature(
-        teamInfo?.myRole,
-        teamInfo?.totalTeamLicense?.teamLicensePurchased,
-        teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
-      ),
-    [
-      teamInfo?.myRole,
-      teamInfo?.totalTeamLicense?.teamLicensePurchased,
-      teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
-    ],
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    getPlanUtils(teamInfo),
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
   const showDeleteDialog = (

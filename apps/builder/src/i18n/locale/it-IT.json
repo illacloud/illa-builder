@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Caricato con successo",
           "uploadFailed": "Impossibile caricare",
           "onMenuSelect": "Seleziona elemento",
-          "on_menu_select": "Seleziona voce di menu"
+          "on_menu_select": "Seleziona voce di menu",
+          "pageChange": "Modifica pagina"
         },
         "image_list": {
           "title": "Immagini",
@@ -1792,6 +1793,14 @@
           "legend_position": "Posizione della legenda",
           "grid_line": "Riga griglia",
           "y-axis_type": "Tipo di asse Y"
+        },
+        "grid_list": {
+          "column_adaptation": "Adattamento colonna",
+          "column_count": "Conteggio colonne",
+          "row_height": "Adattamento riga",
+          "item_radius": "Raggio oggetto",
+          "item_shadow": "Ombra dell'elemento",
+          "item_spacing": "Spaziatura elementi"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Per impostare la posizione del legent. ",
           "grid_line": "Per impostare il colore della linea della griglia. ",
           "y-axis_type": "Impostare il tipo di grafico può migliorare la leggibilità dei dati."
+        },
+        "grid_list": {
+          "column_adaptation": "In modalità automatica, il numero di colonne rimane fisso mentre la larghezza della colonna è regolabile. Il ridimensionamento della finestra del browser cambierà di conseguenza la larghezza della colonna.\r\nIn modalità fissa, il numero di colonne non è fisso mentre la larghezza della colonna rimane costante. Ridimensionando la finestra del browser cambierà il numero di colonne.",
+          "column_count": "Usato per configurare il numero di colonne, che determina quante griglie vengono visualizzate per riga.",
+          "row_height": "Usato per configurare l'altezza di ogni riga. In modalità automatica, l'altezza è adattabile e l'altezza della riga è determinata dalla griglia più alta della riga corrente. In modalità fissa, l'altezza della riga è fissa, e tutte le griglie hanno la stessa altezza.",
+          "item_radius": "Usato per configurare il raggio d'angolo di ogni griglia",
+          "item_shadow": "Usato per configurare la dimensione dell'ombra di ogni griglia",
+          "item_spacing": "Usato per configurare la spaziatura tra le griglie"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Modifica sotto-pagina",
         "rename_page_url": "Modifica pagina"
       }
+    },
+    "grid_list": {
+      "name": "Elenco griglia"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Contribuisci",
   "error_page": {
     "fobidden": "Nessuna autorizzazione di accesso"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Clic elemento"
+        }
+      }
+    }
   }
 }

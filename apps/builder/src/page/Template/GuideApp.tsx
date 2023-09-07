@@ -1,4 +1,4 @@
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canManage } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -54,6 +54,7 @@ const GuideApp: FC = () => {
     const canEditApp = canManage(
       currentUserRole,
       ATTRIBUTE_GROUP.APP,
+      getPlanUtils(teamInfo),
       ACTION_MANAGE.EDIT_APP,
     )
     if (!canEditApp) {

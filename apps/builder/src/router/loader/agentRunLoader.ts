@@ -1,26 +1,70 @@
 import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
+import { getCurrentTeamInfo, teamActions } from "@illa-public/user-data"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
-import { fetchAgentDetail } from "@/services/agent"
+import {
+  fetchAgentContributeState,
+  fetchAgentDetail,
+  fetchContributedAgentDetail,
+} from "@/services/agent"
+import { fetchMyTeamsInfo } from "@/services/team"
+import store from "@/store"
 
-const fetchAgentFullData = async (agentId: string) => {
-  const agent = await fetchAgentDetail(agentId)
-  let marketInfo = undefined
-  if (agent.data.publishedToMarketplace) {
-    marketInfo = await getAIAgentMarketplaceInfo(agentId)
+const fetchAgentFullData = async (
+  agentId: string,
+  ownerTeamIdentifier: string,
+  myTeamIdentifier: string,
+) => {
+  const teamInfo = getCurrentTeamInfo(store.getState())
+
+  if (!teamInfo) {
+    const info = await fetchMyTeamsInfo()
+    const currentTeamInfo = info.data.find(
+      (item) => item.identifier === myTeamIdentifier,
+    )
+    if (currentTeamInfo) {
+      store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
+      ILLAMixpanel.setGroup(myTeamIdentifier)
+      store.dispatch(teamActions.updateTeamItemsReducer(info.data))
+    } else {
+      return redirect("/404")
+    }
   }
-  return {
-    agent: agent.data,
-    marketplaceInfo: marketInfo ? marketInfo.data : undefined,
+
+  const isContribute = await fetchAgentContributeState(
+    agentId,
+    ownerTeamIdentifier,
+  )
+
+  let agent, marketplace
+
+  if (isContribute.data.isPublishedToMarketplace) {
+    agent = await fetchContributedAgentDetail(agentId, ownerTeamIdentifier)
+    marketplace = await getAIAgentMarketplaceInfo(agentId)
+    return {
+      agent: agent.data,
+      marketplace: marketplace.data,
+    }
+  } else {
+    agent = await fetchAgentDetail(agentId)
+    return {
+      agent: agent.data,
+      marketplace: undefined,
+    }
   }
 }
 
 export const agentRunLoader: LoaderFunction = async (args) => {
-  const { agentID } = args.params
-  if (agentID) {
+  const { agentID, ownerTeamIdentifier } = args.params
+  const myTeamIdentifier = new URL(args.request.url).searchParams.get(
+    "myTeamIdentifier",
+  )
+
+  if (agentID && ownerTeamIdentifier && myTeamIdentifier) {
     return defer({
-      data: fetchAgentFullData(agentID),
+      data: fetchAgentFullData(agentID, ownerTeamIdentifier, myTeamIdentifier),
     })
   } else {
-    redirect("/404")
+    return redirect("/404")
   }
 }

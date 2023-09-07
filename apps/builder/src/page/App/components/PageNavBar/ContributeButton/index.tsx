@@ -1,8 +1,14 @@
 import { ShareAppPC } from "@illa-public/invite-modal"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -17,6 +23,7 @@ import { Button, ContributeIcon, getColor } from "@illa-design/react"
 import { ContributeButtonProps } from "@/page/App/components/PageNavBar/ContributeButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { copyToClipboard } from "@/utils/copyToClipboard"
+import { track } from "@/utils/mixpanelHelper"
 
 export const ContributeButton: FC<ContributeButtonProps> = (props) => {
   const { appInfo } = props
@@ -41,6 +48,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo?.myRole,
+    getPlanUtils(teamInfo),
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
@@ -69,98 +77,124 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
       >
         {t("contribute")}
       </Button>
-      {shareModalVisible && (
-        <ShareAppPC
-          isDeployed={appInfo.deployed}
-          title={t("user_management.modal.social_media.default_text.app", {
-            appName: appInfo.appName,
-          })}
-          defaultTab={"public"}
-          editRedirectURL={`${window.location.origin}/${teamInfo.identifier}/app/${appInfo.appId}`}
-          useRedirectURL={`${window.location.origin}/${teamInfo.identifier}/deploy/app/${appInfo.appId}`}
-          defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
-          onInviteLinkStateChange={(enableInviteLink) => {
-            dispatch(
-              teamActions.updateTeamMemberPermissionReducer({
-                teamID: teamInfo.id,
-                newPermission: {
-                  ...teamInfo.permission,
-                  inviteLinkEnabled: enableInviteLink,
+      <MixpanelTrackProvider
+        basicTrack={track}
+        pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
+      >
+        {shareModalVisible && (
+          <ShareAppPC
+            isDeployed={appInfo.deployed}
+            title={t("user_management.modal.social_media.default_text.app", {
+              appName: appInfo.appName,
+            })}
+            defaultTab={"public"}
+            editRedirectURL={`${window.location.origin}/${teamInfo.identifier}/app/${appInfo.appId}`}
+            useRedirectURL={`${window.location.origin}/${teamInfo.identifier}/deploy/app/${appInfo.appId}`}
+            defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+            onInviteLinkStateChange={(enableInviteLink) => {
+              dispatch(
+                teamActions.updateTeamMemberPermissionReducer({
+                  teamID: teamInfo.id,
+                  newPermission: {
+                    ...teamInfo.permission,
+                    inviteLinkEnabled: enableInviteLink,
+                  },
+                }),
+              )
+            }}
+            onClose={() => {
+              setShareModalVisible(false)
+            }}
+            canInvite={showInvite}
+            defaultBalance={teamInfo.currentTeamLicense.balance}
+            teamID={teamInfo.id}
+            currentUserRole={teamInfo.myRole}
+            onBalanceChange={(balance) => {
+              dispatch(
+                teamActions.updateTeamMemberSubscribeReducer({
+                  teamID: teamInfo.id,
+                  subscribeInfo: {
+                    ...teamInfo.currentTeamLicense,
+                    balance: balance,
+                  },
+                }),
+              )
+            }}
+            defaultAppPublic={appInfo.config.public}
+            defaultAppContribute={appInfo.config.publishedToMarketplace}
+            appID={appInfo.appId}
+            userRoleForThisApp={teamInfo.myRole}
+            ownerTeamID={teamInfo.id}
+            ownerTeamIdentify={teamInfo.identifier}
+            onAppPublic={(isPublic) => {
+              dispatch(appInfoActions.updateAppPublicReducer(isPublic))
+            }}
+            onAppContribute={(isContributed) => {
+              dispatch(appInfoActions.updateAppContributeReducer(isContributed))
+              if (isContributed) {
+                dispatch(appInfoActions.updateAppDeployedReducer(true))
+              }
+            }}
+            onCopyPublicLink={(link) => {
+              copyToClipboard(
+                t("user_management.modal.custom_copy_text_app_invite", {
+                  userName: currentUserInfo.nickname,
+                  teamName: teamInfo.name,
+                  inviteLink: link,
+                }),
+              )
+            }}
+            onCopyContributeLink={(link) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+                {
+                  element: "invite_modal_public_copy",
+                  parameter5: appInfo.appId,
                 },
-              }),
-            )
-          }}
-          onClose={() => {
-            setShareModalVisible(false)
-          }}
-          canInvite={showInvite}
-          defaultBalance={teamInfo.currentTeamLicense.balance}
-          teamID={teamInfo.id}
-          currentUserRole={teamInfo.myRole}
-          onBalanceChange={(balance) => {
-            dispatch(
-              teamActions.updateTeamMemberSubscribeReducer({
-                teamID: teamInfo.id,
-                subscribeInfo: {
-                  ...teamInfo.currentTeamLicense,
-                  balance: balance,
+              )
+              copyToClipboard(
+                t("user_management.modal.contribute.default_text.app", {
+                  appName: appInfo.appName,
+                  appLink: link,
+                }),
+              )
+            }}
+            onCopyEditInviteLink={(link) => {
+              copyToClipboard(
+                t("user_management.modal.custom_copy_text_app_invite", {
+                  userName: currentUserInfo.nickname,
+                  teamName: teamInfo.name,
+                  inviteLink: link,
+                }),
+              )
+            }}
+            onCopyUseInviteLink={(link) => {
+              copyToClipboard(
+                t("user_management.modal.custom_copy_text_app_invite", {
+                  userName: currentUserInfo.nickname,
+                  teamName: teamInfo.name,
+                  inviteLink: link,
+                }),
+              )
+            }}
+            canUseBillingFeature={canUseBillingFeature}
+            onShare={(name) => {
+              const { publishedToMarketplace } = appInfo.config
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+                {
+                  element: "share_modal_social_media",
+                  parameter1: publishedToMarketplace,
+                  parameter4: name,
+                  parameter5: appInfo.appId,
                 },
-              }),
-            )
-          }}
-          defaultAppPublic={appInfo.config.public}
-          defaultAppContribute={appInfo.config.publishedToMarketplace}
-          appID={appInfo.appId}
-          userRoleForThisApp={teamInfo.myRole}
-          ownerTeamID={teamInfo.id}
-          ownerTeamIdentify={teamInfo.identifier}
-          onAppPublic={(isPublic) => {
-            dispatch(appInfoActions.updateAppPublicReducer(isPublic))
-          }}
-          onAppContribute={(isContributed) => {
-            dispatch(appInfoActions.updateAppContributeReducer(isContributed))
-            if (isContributed) {
-              dispatch(appInfoActions.updateAppDeployedReducer(true))
-            }
-          }}
-          onCopyPublicLink={(link) => {
-            copyToClipboard(
-              t("user_management.modal.custom_copy_text_app_invite", {
-                userName: currentUserInfo.nickname,
-                teamName: teamInfo.name,
-                inviteLink: link,
-              }),
-            )
-          }}
-          onCopyContributeLink={(link) => {
-            copyToClipboard(
-              t("user_management.modal.contribute.default_text.app", {
-                appName: appInfo.appName,
-                appLink: link,
-              }),
-            )
-          }}
-          onCopyEditInviteLink={(link) => {
-            copyToClipboard(
-              t("user_management.modal.custom_copy_text_app_invite", {
-                userName: currentUserInfo.nickname,
-                teamName: teamInfo.name,
-                inviteLink: link,
-              }),
-            )
-          }}
-          onCopyUseInviteLink={(link) => {
-            copyToClipboard(
-              t("user_management.modal.custom_copy_text_app_invite", {
-                userName: currentUserInfo.nickname,
-                teamName: teamInfo.name,
-                inviteLink: link,
-              }),
-            )
-          }}
-          canUseBillingFeature={canUseBillingFeature}
-        />
-      )}
+              )
+            }}
+          />
+        )}
+      </MixpanelTrackProvider>
     </>
   )
 }

@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Succesvol geüpload",
           "uploadFailed": "Uploaden mislukt",
           "onMenuSelect": "Selecteer een item",
-          "on_menu_select": "Selecteer menu-item"
+          "on_menu_select": "Selecteer menu-item",
+          "pageChange": "Pagina wijzigen"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1792,6 +1793,14 @@
           "legend_position": "Legende positie",
           "grid_line": "Raster lijn",
           "y-axis_type": "Y-as type"
+        },
+        "grid_list": {
+          "column_adaptation": "Kolom aanpassing",
+          "column_count": "Aantal kolommen",
+          "row_height": "Rij aanpassing",
+          "item_radius": "Item straal",
+          "item_shadow": "Item schaduw",
+          "item_spacing": "Item afstand"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Om de positie van de legende in te stellen. ",
           "grid_line": "Om de kleur van de rasterlijn in te stellen. ",
           "y-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren."
+        },
+        "grid_list": {
+          "column_adaptation": "In Auto Modus blijft het aantal kolommen vast staan terwijl de kolombreedte aanpasbaar is. Het wijzigen van het browservenster zal de kolombreedte wijzigen.\r\nIn vaste modus, is het aantal kolommen niet vast gezet terwijl de kolombreedte constant blijft. Het browservenster wijzigen zal het aantal kolommen wijzigen.",
+          "column_count": "Wordt gebruikt om het aantal kolommen te configureren, die bepalen hoeveel rasters per rij worden weergegeven.",
+          "row_height": "Gebruikt om de hoogte van elke rij te configureren. In Auto Mode is de hoogte aangepast en wordt de rijhoogte bepaald door het hoogste raster in de huidige rij. In vaste modus, is de rijhoogte vastgezet en alle rasters hebben dezelfde hoogte.",
+          "item_radius": "Gebruikt om de straal van de hoek van elk raster te configureren",
+          "item_shadow": "Gebruikt om de schaduw grootte van elk raster te configureren",
+          "item_spacing": "Gebruikt om de tussenafstand tussen rasters in te stellen"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Subpagina bewerken",
         "rename_page_url": "Pagina bewerken"
       }
+    },
+    "grid_list": {
+      "name": "Rooster lijst"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Meedoen",
   "error_page": {
     "fobidden": "Geen toegangstoelating"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Klik op item"
+        }
+      }
+    }
   }
 }

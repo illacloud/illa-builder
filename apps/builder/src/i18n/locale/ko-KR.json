@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Uploaded successfully",
           "uploadFailed": "Failed to upload",
           "onMenuSelect": "Select item",
-          "on_menu_select": "Select menu item"
+          "on_menu_select": "Select menu item",
+          "pageChange": "Page change"
         },
         "image_list": {
           "title": "이미지",
@@ -1792,6 +1793,14 @@
           "legend_position": "Legend position",
           "grid_line": "Grid line",
           "y-axis_type": "Y-axis type"
+        },
+        "grid_list": {
+          "column_adaptation": "Column adaptation",
+          "column_count": "Column count",
+          "row_height": "Row adaptation",
+          "item_radius": "Item radius",
+          "item_shadow": "Item shadow",
+          "item_spacing": "Item spacing"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "To set the position of legent. ",
           "grid_line": "To set the color of grid line. ",
           "y-axis_type": "Setting the chart type can enhance data readability."
+        },
+        "grid_list": {
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
+          "column_count": "Used to configure the number of columns, which determines how many grids are displayed per row.",
+          "row_height": "Used to configure the height of each row. In Auto mode, the height is adaptive, and the row height is determined by the tallest grid in the current row. In Fixed mode, the row height is fixed, and all grids have the same height.",
+          "item_radius": "Used to configure the corner radius of each grid",
+          "item_shadow": "Used to configure the shadow size of each grid",
+          "item_spacing": "Used to configure the spacing between grids"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Edit path",
         "rename_page_url": "Edit page"
       }
+    },
+    "grid_list": {
+      "name": "Grid list"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Contribute",
   "error_page": {
     "fobidden": "No access permission"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Click item"
+        }
+      }
+    }
   }
 }

@@ -1,7 +1,12 @@
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
+import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
 } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
@@ -28,6 +33,7 @@ import {
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { Avatar } from "@/page/App/components/Avatar"
 import { fetchLogout } from "@/services/auth"
+import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
 import {
   aiAgentBetaStyle,
@@ -111,6 +117,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   const canEditApp = canManage(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
 
@@ -156,13 +163,24 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
 
   const debounceSearchKeywords = useRef(
     debounce(
-      (params: URLSearchParams) => {
+      (params: URLSearchParams, pageName: ILLA_MIXPANEL_BUILDER_PAGE_NAME) => {
         setSearchParams(params)
+        track(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, pageName, {
+          element: "search",
+          parameter1: params.get("list") ?? "team",
+          parameter3: params.get("keywords"),
+        })
       },
       160,
       { leading: false },
     ),
   )
+
+  const handleSearchFocus = (pageName: ILLA_MIXPANEL_BUILDER_PAGE_NAME) => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.FOCUS, pageName, {
+      element: "search",
+    })
+  }
 
   return (
     <div css={tabsContainer}>
@@ -210,13 +228,19 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
                 w="240px"
                 colorScheme="techPurple"
                 defaultValue={searchParams.get("keywords") ?? ""}
+                onFocus={() =>
+                  handleSearchFocus(ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP)
+                }
                 onChange={(v) => {
                   if (v === "" || v === undefined) {
                     searchParams.delete("keywords")
                   } else {
                     searchParams.set("keywords", v)
                   }
-                  debounceSearchKeywords.current(searchParams)
+                  debounceSearchKeywords.current(
+                    searchParams,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  )
                 }}
                 placeholder={t("dashboard.search")}
                 allowClear
@@ -228,13 +252,21 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
                 w="240px"
                 colorScheme="techPurple"
                 defaultValue={searchParams.get("keywords") ?? ""}
+                onFocus={() =>
+                  handleSearchFocus(
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_DASHBOARD,
+                  )
+                }
                 onChange={(v) => {
                   if (v === "" || v === undefined) {
                     searchParams.delete("keywords")
                   } else {
                     searchParams.set("keywords", v)
                   }
-                  debounceSearchKeywords.current(searchParams)
+                  debounceSearchKeywords.current(
+                    searchParams,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_DASHBOARD,
+                  )
                 }}
                 placeholder={t("dashboard.search")}
                 allowClear

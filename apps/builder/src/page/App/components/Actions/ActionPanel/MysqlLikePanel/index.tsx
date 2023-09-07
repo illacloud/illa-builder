@@ -1,6 +1,6 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -39,6 +39,7 @@ const MysqlLikePanel: FC = () => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo?.myRole,
+    getPlanUtils(teamInfo),
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )

@@ -1,14 +1,12 @@
-import { getCurrentTeamInfo } from "@illa-public/user-data"
-import { isCloudVersion } from "@illa-public/utils"
+import { currentUserActions } from "@illa-public/user-data"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
-import { fetchTeamAgent } from "@/services/agent"
 import {
   fetchAPPPublicStatus,
   fetchPrivateAppInitData,
   fetchPubicAppInitData,
 } from "@/services/apps"
-import { fetchResources } from "@/services/resource"
-import store from "@/store"
+import { fetchUserInfo, tryFetchUserInfo } from "@/services/users"
+import store from "../../store"
 import { getTeamsInfoLoader } from "./cloudAuthLoader"
 
 export const deployLoader: LoaderFunction = async (args) => {
@@ -16,14 +14,22 @@ export const deployLoader: LoaderFunction = async (args) => {
   if (!appId || !teamIdentifier) {
     return redirect("/404")
   }
+
   try {
     const publicStateResponse = await fetchAPPPublicStatus(
       appId,
       teamIdentifier,
       args.request.signal,
     )
+
     const isPublic = publicStateResponse.data.isPublic
     if (isPublic) {
+      const userInfo = await tryFetchUserInfo()
+      if (userInfo) {
+        store.dispatch(
+          currentUserActions.updateCurrentUserReducer(userInfo.data),
+        )
+      }
       const appInfo = fetchPubicAppInitData(
         appId,
         "-2",
@@ -35,27 +41,16 @@ export const deployLoader: LoaderFunction = async (args) => {
         appInfo,
       })
     } else {
-      let teamInfo = getCurrentTeamInfo(store.getState())
-      if (teamInfo && teamInfo.identifier !== teamIdentifier) {
-        return redirect("/403")
+      const teamInfoLoaderResponse = await getTeamsInfoLoader(args)
+      if (teamInfoLoaderResponse) {
+        return teamInfoLoaderResponse
       }
-      if (!teamInfo) {
-        const teamInfoLoaderResponse = await getTeamsInfoLoader(args)
-        if (teamInfoLoaderResponse) {
-          return teamInfoLoaderResponse
-        }
-        teamInfo = getCurrentTeamInfo(store.getState())
-      }
+      const userInfo = await fetchUserInfo()
+      store.dispatch(currentUserActions.updateCurrentUserReducer(userInfo.data))
       const appInfo = fetchPrivateAppInitData(appId, "-2", args.request.signal)
-      const resourceInfo = fetchResources(args.request.signal)
-      const teamAgentList = isCloudVersion
-        ? fetchTeamAgent(args.request.signal)
-        : undefined
       return defer({
         isPublic,
         appInfo,
-        resourceInfo,
-        teamAgentList,
       })
     }
   } catch (e) {

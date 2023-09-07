@@ -8,12 +8,19 @@ import {
   Agent,
   MarketAIAgent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -31,7 +38,12 @@ import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue, useNavigate } from "react-router-dom"
+import {
+  useAsyncValue,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -61,6 +73,7 @@ import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
 import { copyToClipboard } from "@/utils/copyToClipboard"
+import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -82,12 +95,16 @@ import {
 } from "./style"
 
 export const AIAgentRunPC: FC = () => {
-  const { agent, marketplaceInfo } = useAsyncValue() as {
+  const { agent, marketplace } = useAsyncValue() as {
     agent: Agent
-    marketplaceInfo: MarketAIAgent | undefined
+    marketplace: MarketAIAgent | undefined
   }
 
   const navigate = useNavigate()
+
+  const [currentMarketplaceInfo, setCurrentMarketplaceInfo] = useState<
+    MarketAIAgent | undefined
+  >(marketplace)
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
@@ -110,20 +127,24 @@ export const AIAgentRunPC: FC = () => {
   const [starLoading, setStarLoading] = useState(false)
   const [forkLoading, setForkLoading] = useState(false)
   const [starState, setStarState] = useState(
-    marketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
+    currentMarketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
   )
 
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
   const [starNum, setStarNum] = useState(
-    marketplaceInfo?.marketplace.numStars ?? 0,
+    currentMarketplaceInfo?.marketplace.numStars ?? 0,
   )
   const upgradeModal = useUpgradeModal()
+
+  const { ownerTeamIdentifier } = useParams()
+  const [searchParams] = useSearchParams()
 
   // premium dialog
   const canUseBillingFeature = canUseUpgradeFeature(
     currentTeamInfo?.myRole,
+    getPlanUtils(currentTeamInfo),
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
@@ -139,7 +160,10 @@ export const AIAgentRunPC: FC = () => {
       control={control}
       name="publishedToMarketplace"
       render={({ field }) => (
-        <>
+        <MixpanelTrackProvider
+          basicTrack={track}
+          pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN}
+        >
           {shareDialogVisible && (
             <ShareAgentPC
               title={t(
@@ -148,9 +172,11 @@ export const AIAgentRunPC: FC = () => {
                   agentName: agent.name,
                 },
               )}
-              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-                teamInfo.identifier
-              }/ai-agent/${agent.aiAgentID}/run`}
+              redirectURL={`${
+                import.meta.env.ILLA_BUILDER_URL
+              }/${ownerTeamIdentifier}/ai-agent/${
+                agent.aiAgentID
+              }/run?myTeamIdentifier=${searchParams.get("myTeamIdentifier")}`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
@@ -178,10 +204,22 @@ export const AIAgentRunPC: FC = () => {
               }}
               agentID={agent.aiAgentID}
               defaultAgentContributed={field.value}
-              onAgentContributed={(isAgentContributed) => {
+              onAgentContributed={async (isAgentContributed) => {
+                if (isAgentContributed) {
+                  const resp = await getAIAgentMarketplaceInfo(agent.aiAgentID)
+                  setCurrentMarketplaceInfo(resp.data)
+                }
                 field.onChange(isAgentContributed)
               }}
               onCopyInviteLink={(link: string) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_copy_team",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 copyToClipboard(
                   t("user_management.modal.custom_copy_text_agent_invite", {
                     userName: currentUserInfo.nickname,
@@ -191,6 +229,14 @@ export const AIAgentRunPC: FC = () => {
                 )
               }}
               onCopyAgentMarketLink={(link: string) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_link",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 copyToClipboard(
                   t("user_management.modal.contribute.default_text.agent", {
                     agentName: agent.name,
@@ -215,9 +261,21 @@ export const AIAgentRunPC: FC = () => {
                   }),
                 )
               }}
+              teamPlan={getPlanUtils(currentTeamInfo)}
+              onShare={(platform) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_social_media",
+                    parameter4: platform,
+                    parameter5: agent.aiAgentID,
+                  },
+                )
+              }}
             />
           )}
-        </>
+        </MixpanelTrackProvider>
       )}
     />
   )
@@ -280,6 +338,14 @@ export const AIAgentRunPC: FC = () => {
               colorScheme="grayBlue"
               leftIcon={<DependencyIcon />}
               onClick={() => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 if (isCloudVersion && !canUseBillingFeature && !field.value) {
                   upgradeModal({
                     modalType: "upgrade",
@@ -287,6 +353,14 @@ export const AIAgentRunPC: FC = () => {
                   return
                 }
                 setShareDialogVisible(true)
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
               }}
             >
               {t("share")}
@@ -298,6 +372,14 @@ export const AIAgentRunPC: FC = () => {
               colorScheme="grayBlue"
               onClick={async () => {
                 setStarLoading(true)
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "star",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 try {
                   if (starState) {
                     await unstarAIAgent(agent.aiAgentID)
@@ -328,8 +410,9 @@ export const AIAgentRunPC: FC = () => {
           )}
           {canManage(
             currentTeamInfo.myRole,
-            ATTRIBUTE_GROUP.AGENT,
-            ACTION_MANAGE.CREATE_AGENT,
+            ATTRIBUTE_GROUP.AI_AGENT,
+            getPlanUtils(currentTeamInfo),
+            ACTION_MANAGE.FORK_AI_AGENT,
           ) &&
             field.value && (
               <Button
@@ -338,6 +421,14 @@ export const AIAgentRunPC: FC = () => {
                 loading={forkLoading}
                 leftIcon={<ForkIcon />}
                 onClick={async () => {
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                    {
+                      element: "fork",
+                      parameter5: agent.aiAgentID,
+                    },
+                  )
                   setForkLoading(true)
                   try {
                     const newAgent = await forkAIAgentToTeam(agent.aiAgentID)
@@ -354,11 +445,11 @@ export const AIAgentRunPC: FC = () => {
                 }}
               >
                 <span>{t("marketplace.fork")}</span>
-                {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
+                {(currentMarketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
                   <span>
                     {" "}
                     {formatNumForAgent(
-                      marketplaceInfo?.marketplace.numForks ?? 0,
+                      currentMarketplaceInfo?.marketplace.numForks ?? 0,
                     )}
                   </span>
                 )}
@@ -457,6 +548,15 @@ export const AIAgentRunPC: FC = () => {
                         })
                         return
                       }
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                        {
+                          element: "mode_radio_button",
+                          parameter1: value,
+                          parameter5: agent.aiAgentID,
+                        },
+                      )
                       field.onChange(value)
                     }}
                   />
@@ -592,6 +692,15 @@ export const AIAgentRunPC: FC = () => {
                 return
               }
               reset(data)
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                {
+                  element: isRunning ? "restart" : "start",
+                  parameter1: data.agentType === 1 ? "chat" : "text",
+                  parameter5: agent.aiAgentID,
+                },
+              )
               isRunning
                 ? await reconnect(data.aiAgentID, data.agentType)
                 : await connect(data.aiAgentID, data.agentType)
@@ -642,6 +751,14 @@ export const AIAgentRunPC: FC = () => {
                     isReceiving={isReceiving}
                     blockInput={!isRunning || isDirty}
                     onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                        {
+                          element: "send",
+                          parameter5: agent.aiAgentID,
+                        },
+                      )
                       sendMessage(
                         {
                           threadID: message.threadID,

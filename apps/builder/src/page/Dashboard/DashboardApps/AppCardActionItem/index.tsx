@@ -8,6 +8,7 @@ import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -61,6 +62,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const canEditApp = canManage(
     teamInfo.myRole,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
 
@@ -79,6 +81,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
+    getPlanUtils(teamInfo),
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
@@ -500,6 +503,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               )
             }}
             onCopyContributeLink={(link) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+                {
+                  element: "invite_modal_public_copy",
+                  parameter5: appInfo.appId,
+                },
+              )
               copyToClipboard(
                 t("user_management.modal.contribute.default_text.app", {
                   appName: appInfo.appName,
@@ -526,6 +537,19 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               )
             }}
             canUseBillingFeature={canUseBillingFeature}
+            onShare={(name) => {
+              const { publishedToMarketplace } = appInfo.config
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+                {
+                  element: "share_modal_social_media",
+                  parameter1: publishedToMarketplace,
+                  parameter4: name,
+                  parameter5: appInfo.appId,
+                },
+              )
+            }}
           />
         )}
       </MixpanelTrackProvider>

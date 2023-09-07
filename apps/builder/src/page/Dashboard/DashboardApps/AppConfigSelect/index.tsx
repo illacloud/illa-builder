@@ -4,7 +4,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, ReactNode, useMemo, useState } from "react"
@@ -42,6 +42,7 @@ export const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo?.myRole,
+    getPlanUtils(teamInfo),
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )

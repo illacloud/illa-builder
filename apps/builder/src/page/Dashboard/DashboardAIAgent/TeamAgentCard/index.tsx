@@ -1,14 +1,20 @@
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   canManage,
 } from "@illa-public/user-role-utils"
-import { FC } from "react"
+import { FC, MouseEvent } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
+import { track } from "@/utils/mixpanelHelper"
 import { TeamAgentCardActionItem } from "../TeamAgentCardActionItem"
 import { TeamAgentCardProps } from "./interface"
 import {
@@ -32,17 +38,56 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
 
   const canEdit = canManage(
     teamInfo.myRole,
-    ATTRIBUTE_GROUP.AGENT,
-    ACTION_MANAGE.CREATE_AGENT,
+    ATTRIBUTE_GROUP.AI_AGENT,
+    getPlanUtils(teamInfo),
+    ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
+  const handleClickCard = (agentInfo: Agent) => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_DASHBOARD,
+      {
+        element: "card",
+        parameter3: "team",
+        parameter5: agentInfo.aiAgentID,
+      },
+    )
+    navigate(
+      `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
+    )
+  }
+
+  const handleClickEdit = (e: MouseEvent<HTMLButtonElement>) => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_DASHBOARD,
+      {
+        element: "card_edit",
+        parameter5: agentInfo.aiAgentID,
+      },
+    )
+    e.stopPropagation()
+    navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}`)
+  }
+
+  const handleClickRun = (e: MouseEvent<HTMLButtonElement>) => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_DASHBOARD,
+      {
+        element: "card_run",
+        parameter5: agentInfo.aiAgentID,
+      },
+    )
+    e.stopPropagation()
+    navigate(
+      `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
+    )
+  }
+
   return (
-    <div
-      css={cardStyle}
-      onClick={() => {
-        navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
-      }}
-    >
+    <div css={cardStyle} onClick={() => handleClickCard(agentInfo)}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <img css={agentIconStyle} src={agentInfo.icon} alt="" />
@@ -82,12 +127,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
               variant="text"
               colorScheme="grayBlue"
               leftIcon={<PenIcon size="16px" />}
-              onClick={(e) => {
-                e.stopPropagation()
-                navigate(
-                  `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}`,
-                )
-              }}
+              onClick={handleClickEdit}
             >
               {t("edit")}
             </Button>
@@ -98,12 +138,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
             variant="text"
             colorScheme="grayBlue"
             leftIcon={<PlayFillIcon />}
-            onClick={(e) => {
-              e.stopPropagation()
-              navigate(
-                `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`,
-              )
-            }}
+            onClick={handleClickRun}
           >
             {t("dashboard.common.run")}
           </Button>

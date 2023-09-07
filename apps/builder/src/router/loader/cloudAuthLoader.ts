@@ -3,6 +3,7 @@ import {
   currentUserActions,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import { canAccessManage } from "@illa-public/user-role-utils"
@@ -47,9 +48,16 @@ export const getUserInfoLoader: LoaderFunction = async () => {
         i18n.changeLanguage(lng)
         window.location.reload()
       }
+      ILLAMixpanel.getMixpanelInstance()?.identify(response.data.userID)
+      const reportedUserInfo: Record<string, any> = {}
+      Object.entries(response.data).forEach(([key, value]) => {
+        reportedUserInfo[`illa_${key}`] = value
+      })
+      ILLAMixpanel.getMixpanelInstance()?.people.set(reportedUserInfo)
       store.dispatch(currentUserActions.updateCurrentUserReducer(response.data))
       return null
     } catch (e) {
+      ILLAMixpanel.getMixpanelInstance()?.reset()
       return redirect("/403")
     }
   }
@@ -79,6 +87,7 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
       isCloudVersion &&
       !canAccessManage(
         currentTeamInfo.myRole,
+        getPlanUtils(currentTeamInfo),
         currentTeamInfo.totalTeamLicense.teamLicenseAllPaid,
       )
     ) {
