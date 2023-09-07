@@ -27,7 +27,7 @@ const fetchAgentFullData = async (
       ILLAMixpanel.setGroup(myTeamIdentifier)
       store.dispatch(teamActions.updateTeamItemsReducer(info.data))
     } else {
-      redirect("/404")
+      return redirect("/404")
     }
   }
 
@@ -59,6 +59,7 @@ export const agentRunLoader: LoaderFunction = async (args) => {
   const myTeamIdentifier = new URL(args.request.url).searchParams.get(
     "myTeamIdentifier",
   )
+
   if (agentID && ownerTeamIdentifier && myTeamIdentifier) {
     return defer({
       data: fetchAgentFullData(agentID, ownerTeamIdentifier, myTeamIdentifier),

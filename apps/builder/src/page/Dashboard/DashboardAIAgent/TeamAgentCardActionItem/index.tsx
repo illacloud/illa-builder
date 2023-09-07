@@ -273,7 +273,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
           })}
           redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
-          }/ai-agents/${aiAgentID}/run`}
+          }/ai-agent/${aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`}
           onClose={() => {
             setShareVisible(false)
           }}
