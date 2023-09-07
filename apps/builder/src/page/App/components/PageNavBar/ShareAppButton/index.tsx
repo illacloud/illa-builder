@@ -4,6 +4,7 @@ import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -30,6 +31,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo?.myRole,
+    getPlanUtils(teamInfo),
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )

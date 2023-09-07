@@ -64,6 +64,6 @@ export const agentRunLoader: LoaderFunction = async (args) => {
       data: fetchAgentFullData(agentID, ownerTeamIdentifier, myTeamIdentifier),
     })
   } else {
-    redirect("/404")
+    return redirect("/404")
   }
 }

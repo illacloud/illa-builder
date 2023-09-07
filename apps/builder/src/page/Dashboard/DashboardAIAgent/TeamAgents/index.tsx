@@ -1,4 +1,4 @@
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -94,6 +94,7 @@ export const TeamAgents: FC = () => {
       showCreate={canManage(
         teamInfo.myRole,
         ATTRIBUTE_GROUP.AI_AGENT,
+        getPlanUtils(teamInfo),
         ACTION_MANAGE.CREATE_AI_AGENT,
       )}
       loading={false}

@@ -60,6 +60,21 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       messageContent?: ChatMessage,
     ) => {
       onReceiving(true)
+      const encodePayload: ChatSendRequestPayload = payload
+      Object.keys(encodePayload).forEach((key) => {
+        if (key === "prompt") {
+          encodePayload[key] = encodeURIComponent(encodePayload[key])
+        }
+        if (key === "variables") {
+          encodePayload[key] = encodePayload[key].map((v) => {
+            return {
+              ...v,
+              value: encodeURIComponent(v.value),
+            }
+          })
+        }
+      })
+
       Connection.getTextRoom("ai-agent", "")?.send(
         getTextMessagePayload(
           signal,
@@ -71,18 +86,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
           },
           currentTeamInfo?.id ?? "",
           currentUserInfo.userID,
-          [
-            {
-              ...payload,
-              prompt: encodeURIComponent(payload.prompt),
-              variables: payload.variables.map((v) => {
-                return {
-                  ...v,
-                  value: encodeURIComponent(v.value),
-                }
-              }),
-            },
-          ],
+          [encodePayload],
         ),
       )
       if (updateMessage && messageContent) {

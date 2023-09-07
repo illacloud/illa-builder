@@ -15,6 +15,7 @@ import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -129,6 +130,7 @@ export const AIAgentRunPC: FC = () => {
   // premium dialog
   const canUseBillingFeature = canUseUpgradeFeature(
     currentTeamInfo?.myRole,
+    getPlanUtils(currentTeamInfo),
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
@@ -226,6 +228,7 @@ export const AIAgentRunPC: FC = () => {
                   }),
                 )
               }}
+              teamPlan={getPlanUtils(currentTeamInfo)}
             />
           )}
         </>
@@ -340,6 +343,7 @@ export const AIAgentRunPC: FC = () => {
           {canManage(
             currentTeamInfo.myRole,
             ATTRIBUTE_GROUP.AI_AGENT,
+            getPlanUtils(currentTeamInfo),
             ACTION_MANAGE.FORK_AI_AGENT,
           ) &&
             field.value && (

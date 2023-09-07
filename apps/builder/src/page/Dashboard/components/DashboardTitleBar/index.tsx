@@ -2,6 +2,7 @@ import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
 } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
@@ -111,6 +112,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   const canEditApp = canManage(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
 

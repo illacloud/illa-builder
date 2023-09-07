@@ -10,6 +10,7 @@ import {
   getCurrentTeamInfo,
   getCurrentUser,
   getIsTutorialViewed,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -59,6 +60,7 @@ export const DashboardApps: FC = () => {
   const canCreateApp = canManage(
     teamInfo.myRole,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.CREATE_APP,
   )
 
@@ -71,6 +73,7 @@ export const DashboardApps: FC = () => {
   const canEditApp = canManage(
     teamInfo.myRole,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
 

@@ -1,4 +1,4 @@
-import ILLAStorage from "@illa-fe-utils/storage"
+import ILLAStorage from "@illa-public/illa-storage"
 
 export const ILLABuilderStorage = new ILLAStorage(`ILLABuilder@0.0.0`, 5)
 

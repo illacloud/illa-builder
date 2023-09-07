@@ -2,7 +2,11 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
+import {
+  getCurrentTeamInfo,
+  getCurrentUser,
+  getPlanUtils,
+} from "@illa-public/user-data"
 import { canManage } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -86,6 +90,7 @@ export const Editor: FC = () => {
     const canEditApp = canManage(
       currentUserRole,
       ATTRIBUTE_GROUP.APP,
+      getPlanUtils(teamInfo),
       ACTION_MANAGE.EDIT_APP,
     )
     if (!canEditApp) {

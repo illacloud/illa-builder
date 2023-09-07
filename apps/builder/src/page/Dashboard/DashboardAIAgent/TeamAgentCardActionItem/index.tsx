@@ -4,6 +4,7 @@ import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -55,6 +56,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   const canEdit = canManage(
     teamInfo.myRole,
     ATTRIBUTE_GROUP.AI_AGENT,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
@@ -328,6 +330,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
               }),
             )
           }}
+          teamPlan={getPlanUtils(teamInfo)}
         />
       )}
     </div>
