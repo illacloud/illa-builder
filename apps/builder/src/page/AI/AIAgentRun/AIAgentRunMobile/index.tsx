@@ -207,8 +207,10 @@ export const AIAgentRunMobile: FC = () => {
                 },
               )}
               redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-                marketplaceInfo?.marketplace.contributorTeam.teamIdentify
-              }/ai-agent/${agent.aiAgentID}/run`}
+                marketplaceInfo?.marketplace.contributorTeam.teamIdentifier
+              }/ai-agent/${agent.aiAgentID}/run?&myTeamIdentifier=${
+                teamInfo.identifier
+              }`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
