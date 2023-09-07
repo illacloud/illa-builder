@@ -9,6 +9,11 @@ import {
   MarketAIAgent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -71,6 +76,7 @@ import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
 import { copyToClipboard } from "@/utils/copyToClipboard"
+import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentContentContainerStyle,
@@ -203,7 +209,10 @@ export const AIAgentRunMobile: FC = () => {
       control={control}
       name="publishedToMarketplace"
       render={({ field }) => (
-        <>
+        <MixpanelTrackProvider
+          basicTrack={track}
+          pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN}
+        >
           {shareDialogVisible && (
             <ShareAgentMobile
               title={t(
@@ -252,6 +261,14 @@ export const AIAgentRunMobile: FC = () => {
                 field.onChange(isAgentContributed)
               }}
               onCopyInviteLink={(link: string) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_copy_team",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 copyToClipboard(
                   t("user_management.modal.custom_copy_text_agent_invite", {
                     userName: currentUserInfo.nickname,
@@ -261,6 +278,14 @@ export const AIAgentRunMobile: FC = () => {
                 )
               }}
               onCopyAgentMarketLink={(link: string) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_link",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 copyToClipboard(
                   t("user_management.modal.contribute.default_text.agent", {
                     agentName: agent.name,
@@ -286,9 +311,20 @@ export const AIAgentRunMobile: FC = () => {
                 )
               }}
               teamPlan={getPlanUtils(currentTeamInfo)}
+              onShare={(platform) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_social_media",
+                    parameter4: platform,
+                    parameter5: agent.aiAgentID,
+                  },
+                )
+              }}
             />
           )}
-        </>
+        </MixpanelTrackProvider>
       )}
     />
   )
@@ -329,6 +365,15 @@ export const AIAgentRunMobile: FC = () => {
                     })
                     return
                   }
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                    {
+                      element: "mode_radio_button",
+                      parameter1: value,
+                      parameter5: agent.aiAgentID,
+                    },
+                  )
                   field.onChange(value)
                 }}
               />
@@ -463,6 +508,15 @@ export const AIAgentRunMobile: FC = () => {
           }
           reset(data)
           setCurrentSelectTab("run")
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+            {
+              element: isRunning ? "restart" : "start",
+              parameter1: data.agentType === 1 ? "chat" : "text",
+              parameter5: agent.aiAgentID,
+            },
+          )
           isRunning
             ? await reconnect(data.aiAgentID, data.agentType)
             : await connect(data.aiAgentID, data.agentType)
@@ -506,6 +560,14 @@ export const AIAgentRunMobile: FC = () => {
             isReceiving={isReceiving}
             blockInput={!isRunning || isDirty}
             onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                {
+                  element: "send",
+                  parameter5: agent.aiAgentID,
+                },
+              )
               sendMessage(
                 {
                   threadID: message.threadID,
@@ -572,6 +634,14 @@ export const AIAgentRunMobile: FC = () => {
                       <div
                         css={shareContainerStyle}
                         onClick={async () => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                            {
+                              element: "fork",
+                              parameter5: agent.aiAgentID,
+                            },
+                          )
                           setForkLoading(true)
                           try {
                             await forkAIAgentToTeam(agent.aiAgentID)
@@ -598,6 +668,14 @@ export const AIAgentRunMobile: FC = () => {
                     <div
                       css={shareContainerStyle}
                       onClick={async () => {
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                          {
+                            element: "star",
+                            parameter5: agent.aiAgentID,
+                          },
+                        )
                         const currentState = starState
                         setStarState(!starState)
                         try {
@@ -635,6 +713,14 @@ export const AIAgentRunMobile: FC = () => {
                     <div
                       css={shareContainerStyle}
                       onClick={() => {
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                          {
+                            element: "share",
+                            parameter5: agent.aiAgentID,
+                          },
+                        )
                         if (
                           isCloudVersion &&
                           !canUseBillingFeature &&
@@ -646,6 +732,14 @@ export const AIAgentRunMobile: FC = () => {
                           return
                         }
                         setShareDialogVisible(true)
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                          {
+                            element: "share_modal",
+                            parameter5: agent.aiAgentID,
+                          },
+                        )
                       }}
                     >
                       <DependencyIcon fs="24px" />
@@ -675,19 +769,25 @@ export const AIAgentRunMobile: FC = () => {
                 <div css={agentTeamNameStyle}>{agent.teamName}</div>
                 {agent.publishedToMarketplace && (
                   <div css={agentMarketResultStyle}>
-                    <span>{t("marketplace.star")}</span>
                     {starNum > 0 && (
-                      <span>{formatNumForAgent(starNum)}&nbsp;</span>
+                      <span>
+                        {t("marketplace.star")}
+                        {formatNumForAgent(starNum)}
+                      </span>
                     )}
                     {starNum > 0 &&
                       (currentMarketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
                       "·"}
                     <span>&nbsp;{t("marketplace.fork")}</span>
-                    <span>
-                      {formatNumForAgent(
-                        currentMarketplaceInfo?.marketplace.numForks ?? 0,
-                      )}
-                    </span>
+
+                    {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
+                      <span>
+                        {t("marketplace.fork")}
+                        {formatNumForAgent(
+                          marketplaceInfo?.marketplace.numForks ?? 0,
+                        )}
+                      </span>
+                    )}
                   </div>
                 )}
               </div>

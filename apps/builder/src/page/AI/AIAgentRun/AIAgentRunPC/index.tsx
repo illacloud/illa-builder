@@ -9,6 +9,11 @@ import {
   MarketAIAgent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -68,6 +73,7 @@ import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
 import { copyToClipboard } from "@/utils/copyToClipboard"
+import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -154,7 +160,10 @@ export const AIAgentRunPC: FC = () => {
       control={control}
       name="publishedToMarketplace"
       render={({ field }) => (
-        <>
+        <MixpanelTrackProvider
+          basicTrack={track}
+          pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN}
+        >
           {shareDialogVisible && (
             <ShareAgentPC
               title={t(
@@ -203,6 +212,14 @@ export const AIAgentRunPC: FC = () => {
                 field.onChange(isAgentContributed)
               }}
               onCopyInviteLink={(link: string) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_copy_team",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 copyToClipboard(
                   t("user_management.modal.custom_copy_text_agent_invite", {
                     userName: currentUserInfo.nickname,
@@ -212,6 +229,14 @@ export const AIAgentRunPC: FC = () => {
                 )
               }}
               onCopyAgentMarketLink={(link: string) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_link",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 copyToClipboard(
                   t("user_management.modal.contribute.default_text.agent", {
                     agentName: agent.name,
@@ -237,9 +262,20 @@ export const AIAgentRunPC: FC = () => {
                 )
               }}
               teamPlan={getPlanUtils(currentTeamInfo)}
+              onShare={(platform) => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal_social_media",
+                    parameter4: platform,
+                    parameter5: agent.aiAgentID,
+                  },
+                )
+              }}
             />
           )}
-        </>
+        </MixpanelTrackProvider>
       )}
     />
   )
@@ -302,6 +338,14 @@ export const AIAgentRunPC: FC = () => {
               colorScheme="grayBlue"
               leftIcon={<DependencyIcon />}
               onClick={() => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 if (isCloudVersion && !canUseBillingFeature && !field.value) {
                   upgradeModal({
                     modalType: "upgrade",
@@ -309,6 +353,14 @@ export const AIAgentRunPC: FC = () => {
                   return
                 }
                 setShareDialogVisible(true)
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "share_modal",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
               }}
             >
               {t("share")}
@@ -320,6 +372,14 @@ export const AIAgentRunPC: FC = () => {
               colorScheme="grayBlue"
               onClick={async () => {
                 setStarLoading(true)
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "star",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
                 try {
                   if (starState) {
                     await unstarAIAgent(agent.aiAgentID)
@@ -361,6 +421,14 @@ export const AIAgentRunPC: FC = () => {
                 loading={forkLoading}
                 leftIcon={<ForkIcon />}
                 onClick={async () => {
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                    {
+                      element: "fork",
+                      parameter5: agent.aiAgentID,
+                    },
+                  )
                   setForkLoading(true)
                   try {
                     const newAgent = await forkAIAgentToTeam(agent.aiAgentID)
@@ -480,6 +548,15 @@ export const AIAgentRunPC: FC = () => {
                         })
                         return
                       }
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                        {
+                          element: "mode_radio_button",
+                          parameter1: value,
+                          parameter5: agent.aiAgentID,
+                        },
+                      )
                       field.onChange(value)
                     }}
                   />
@@ -615,6 +692,15 @@ export const AIAgentRunPC: FC = () => {
                 return
               }
               reset(data)
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                {
+                  element: isRunning ? "restart" : "start",
+                  parameter1: data.agentType === 1 ? "chat" : "text",
+                  parameter5: agent.aiAgentID,
+                },
+              )
               isRunning
                 ? await reconnect(data.aiAgentID, data.agentType)
                 : await connect(data.aiAgentID, data.agentType)
@@ -665,6 +751,14 @@ export const AIAgentRunPC: FC = () => {
                     isReceiving={isReceiving}
                     blockInput={!isRunning || isDirty}
                     onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                        {
+                          element: "send",
+                          parameter5: agent.aiAgentID,
+                        },
+                      )
                       sendMessage(
                         {
                           threadID: message.threadID,

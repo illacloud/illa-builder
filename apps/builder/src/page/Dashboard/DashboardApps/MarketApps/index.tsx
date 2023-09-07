@@ -7,6 +7,10 @@ import {
   PRODUCT_SORT_BY,
   ProductMarketApp,
 } from "@illa-public/market-app/service/interface"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { getMarketLinkTemplate } from "@illa-public/utils"
 import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -14,6 +18,7 @@ import { useSearchParams } from "react-router-dom"
 import { Divider, Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
 import { getAuthToken } from "@/utils/auth"
+import { track } from "@/utils/mixpanelHelper"
 import {
   cardListContainerStyle,
   cardListStyle,
@@ -41,6 +46,17 @@ export const MarketApps: FC = () => {
   const sort =
     (searchParams.get("sort") as PRODUCT_SORT_BY) ?? PRODUCT_SORT_BY.POPULAR
   const keywords = searchParams.get("keywords") ?? ""
+
+  const handleClickCard = (product: ProductMarketApp) => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "card",
+      parameter3: "community",
+      parameter5: product.app.appId,
+    })
+    const newUrl = new URL(getMarketLinkTemplate(product.app.appId))
+    newUrl.searchParams.set("token", getAuthToken())
+    window.open(newUrl, "_blank")
+  }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -124,11 +140,7 @@ export const MarketApps: FC = () => {
         <div css={cardListStyle}>
           {marketApps.map((product) => (
             <MarketAppCard
-              onClick={() => {
-                const newUrl = new URL(getMarketLinkTemplate(product.app.appId))
-                newUrl.searchParams.set("token", getAuthToken())
-                window.open(newUrl, "_blank")
-              }}
+              onClick={() => handleClickCard(product)}
               key={product.app.appId}
               app={product.app}
               marketplace={product.marketplace}

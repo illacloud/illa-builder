@@ -1,3 +1,7 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
 import { isBiggerThanTargetRole } from "@illa-public/user-role-utils"
 import { FC } from "react"
@@ -10,6 +14,7 @@ import {
   PlusIcon,
   getColor,
 } from "@illa-design/react"
+import { track } from "@/utils/mixpanelHelper"
 import { TeamContentEmptyProps } from "./interface"
 import { emptyStyle, emptyTextStyle } from "./style"
 
@@ -35,6 +40,13 @@ export const TeamContentEmpty: FC<TeamContentEmptyProps> = (props) => {
               variant="outline"
               leftIcon={<PlusIcon size="10px" />}
               onClick={() => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_DASHBOARD,
+                  {
+                    element: "create_new_app",
+                  },
+                )
                 props.navigate?.()
               }}
             >

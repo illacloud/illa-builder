@@ -74,8 +74,16 @@ export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
     (agentItem: Agent) => {
       if (loading) return
       handleCreateAction(agentItem, () => onCreateAction?.(), setLoading)
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+        {
+          element: "resource_list_create_action",
+          parameter1: actionType,
+        },
+      )
     },
-    [loading, handleCreateAction, onCreateAction],
+    [loading, handleCreateAction, actionType, onCreateAction],
   )
 
   useEffect(() => {
@@ -83,7 +91,7 @@ export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
       ILLA_MIXPANEL_EVENT_TYPE.SHOW,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
       {
-        element: "agent_list_show",
+        element: "resource_list_show",
         parameter1: actionType,
       },
     )
