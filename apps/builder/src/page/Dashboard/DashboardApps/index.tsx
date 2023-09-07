@@ -76,7 +76,6 @@ export const DashboardApps: FC = () => {
     getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
-
   const handleCreateApp = useCallback(async () => {
     setLoading(true)
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {

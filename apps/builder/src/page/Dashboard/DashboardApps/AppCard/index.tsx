@@ -49,6 +49,11 @@ export const AppCard: FC<AppCardProps> = (props) => {
   )
 
   const onClickCard = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "card",
+      parameter3: "team",
+      parameter5: appInfo.appId,
+    })
     if (canEditApp) {
       navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
     } else if (appInfo.deployed) {

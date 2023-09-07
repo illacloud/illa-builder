@@ -4,6 +4,10 @@ import {
   MARKET_AGENT_SORTED_OPTIONS,
   fetchMarketAgentList,
 } from "@illa-public/market-agent/service"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -11,6 +15,7 @@ import { useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { Divider, Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
+import { track } from "@/utils/mixpanelHelper"
 import {
   cardListContainerStyle,
   cardListStyle,
@@ -42,6 +47,21 @@ export const MarketAgents = () => {
   const [updateLoading, setUpdateLoading] = useState<boolean>(true)
 
   const [showLine, setShowLine] = useState<boolean>(false)
+
+  const handleClickCard = (agent: MarketAIAgent) => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_DASHBOARD,
+      {
+        element: "card",
+        parameter3: "community",
+        parameter5: agent.aiAgent.aiAgentID,
+      },
+    )
+    navigate(
+      `/${agent.marketplace.contributorTeam.teamIdentifier}/ai-agent/${agent.aiAgent.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
+    )
+  }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -120,11 +140,7 @@ export const MarketAgents = () => {
         <div css={cardListStyle}>
           {marketAgentList.map((agent) => (
             <MarketAgentCard
-              onClick={() => {
-                navigate(
-                  `/${agent.marketplace.contributorTeam.teamIdentifier}/ai-agent/${agent.aiAgent.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
-                )
-              }}
+              onClick={() => handleClickCard(agent)}
               key={agent.aiAgent.aiAgentID}
               marketAIAgent={agent}
             />

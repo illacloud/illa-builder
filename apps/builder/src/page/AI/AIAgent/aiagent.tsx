@@ -7,6 +7,11 @@ import {
   AI_AGENT_TYPE,
   Agent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -63,6 +68,7 @@ import {
   uploadAgentIcon,
 } from "@/services/agent"
 import { copyToClipboard } from "@/utils/copyToClipboard"
+import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../components/ChatContext"
 import {
   ChatSendRequestPayload,
@@ -89,6 +95,7 @@ import {
   uploadContentContainerStyle,
   uploadTextStyle,
 } from "./style"
+import { agentData2JSONReport } from "./utils"
 
 export const AIAgent: FC = () => {
   const data = useAsyncValue() as {
@@ -321,6 +328,16 @@ export const AIAgent: FC = () => {
                       <div
                         css={descContainerStyle}
                         onClick={async () => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "icon_generate",
+                              parameter1: getValues("prompt") ? true : false,
+                              parameter5: data.agent.aiAgentID || "-1",
+                            },
+                          )
+                          const currentTime = performance.now()
                           if (!getValues("name") || !getValues("description")) {
                             message.error({
                               content: t("editor.ai-agent.generate-icon.blank"),
@@ -333,8 +350,26 @@ export const AIAgent: FC = () => {
                               getValues("name"),
                               getValues("description"),
                             )
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "icon_generate",
+                                consume: performance.now() - currentTime,
+                                parameter2: "suc",
+                              },
+                            )
                             field.onChange(icon.data.payload)
                           } catch (e) {
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "icon_generate",
+                                consume: performance.now() - currentTime,
+                                parameter2: "failed",
+                              },
+                            )
                             message.error({
                               content: t(
                                 "editor.ai-agent.generate-desc.failed",
@@ -357,42 +392,59 @@ export const AIAgent: FC = () => {
                     }
                     subtitleTips={t("editor.ai-agent.generate-icon.tooltips")}
                   >
-                    <AvatarUpload
-                      onOk={async (file) => {
-                        let reader = new FileReader()
-                        reader.onload = () => {
-                          field.onChange(reader.result)
-                          setInRoomUsers(
-                            updateLocalIcon(
-                              reader.result as string,
-                              inRoomUsers,
-                            ),
-                          )
-                        }
-                        reader.readAsDataURL(file)
-                        return true
-                      }}
+                    <MixpanelTrackProvider
+                      basicTrack={track}
+                      pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT}
                     >
-                      {!field.value ? (
-                        <div>
-                          <div css={uploadContainerStyle}>
-                            <div css={uploadContentContainerStyle}>
-                              <PlusIcon c={getColor("grayBlue", "03")} />
-                              <div css={uploadTextStyle}>
-                                {t("editor.ai-agent.placeholder.icon")}
+                      <AvatarUpload
+                        onOk={async (file) => {
+                          let reader = new FileReader()
+                          reader.onload = () => {
+                            field.onChange(reader.result)
+                            setInRoomUsers(
+                              updateLocalIcon(
+                                reader.result as string,
+                                inRoomUsers,
+                              ),
+                            )
+                          }
+                          reader.readAsDataURL(file)
+                          return true
+                        }}
+                      >
+                        <div
+                          onClick={() => {
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "avater",
+                              },
+                            )
+                          }}
+                        >
+                          {!field.value ? (
+                            <div>
+                              <div css={uploadContainerStyle}>
+                                <div css={uploadContentContainerStyle}>
+                                  <PlusIcon c={getColor("grayBlue", "03")} />
+                                  <div css={uploadTextStyle}>
+                                    {t("editor.ai-agent.placeholder.icon")}
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          ) : (
+                            <Image
+                              src={field.value}
+                              css={uploadContentContainerStyle}
+                              width="100px"
+                              height="100px"
+                            />
+                          )}
                         </div>
-                      ) : (
-                        <Image
-                          src={field.value}
-                          css={uploadContentContainerStyle}
-                          width="100px"
-                          height="100px"
-                        />
-                      )}
-                    </AvatarUpload>
+                      </AvatarUpload>
+                    </MixpanelTrackProvider>
                   </AIAgentBlock>
                 )}
               />
@@ -437,6 +489,16 @@ export const AIAgent: FC = () => {
                       <div
                         css={descContainerStyle}
                         onClick={async () => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "desc_generate",
+                              parameter1: getValues("prompt") ? true : false,
+                              parameter5: data.agent.aiAgentID || "-1",
+                            },
+                          )
+                          const currentTime = performance.now()
                           if (!getValues("prompt")) {
                             message.error({
                               content: t("editor.ai-agent.generate-desc.blank"),
@@ -448,8 +510,26 @@ export const AIAgent: FC = () => {
                             const desc = await generateDescription(
                               getValues("prompt"),
                             )
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "desc_generate",
+                                consume: performance.now() - currentTime,
+                                parameter2: "suc",
+                              },
+                            )
                             field.onChange(desc.data.payload)
                           } catch (e) {
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "desc_generate",
+                                consume: performance.now() - currentTime,
+                                parameter2: "failed",
+                              },
+                            )
                             message.error({
                               content: t(
                                 "editor.ai-agent.generate-desc.failed",
@@ -514,6 +594,15 @@ export const AIAgent: FC = () => {
                           })
                           return
                         }
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                          {
+                            element: "mode_radio_button",
+                            parameter1: value,
+                            parameter5: data.agent.aiAgentID || "-1",
+                          },
+                        )
                         field.onChange(value)
                       }}
                     />
@@ -609,7 +698,27 @@ export const AIAgent: FC = () => {
                   >
                     <Select
                       {...field}
+                      onClick={() => {
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                          {
+                            element: "model",
+                            parameter1: field.value,
+                            parameter5: data.agent.aiAgentID || "-1",
+                          },
+                        )
+                      }}
                       onChange={(value) => {
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                          {
+                            element: "model",
+                            parameter1: value,
+                            parameter5: data.agent.aiAgentID || "-1",
+                          },
+                        )
                         if (
                           value !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
                           !canUseBillingFeature
@@ -690,6 +799,15 @@ export const AIAgent: FC = () => {
                         <InputNumber
                           value={field.value}
                           onChange={(value) => {
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "max_token",
+                                parameter1: value,
+                                parameter5: data.agent.aiAgentID || "-1",
+                              },
+                            )
                             field.onChange(value)
                           }}
                           colorScheme={"techPurple"}
@@ -723,6 +841,17 @@ export const AIAgent: FC = () => {
                         step={0.1}
                         min={0}
                         max={2}
+                        onAfterChange={(v) => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "temporature",
+                              parameter1: v,
+                              parameter5: data.agent.aiAgentID || "-1",
+                            },
+                          )
+                        }}
                       />
                       <span css={temperatureStyle}>{field.value}</span>
                     </div>
@@ -736,6 +865,15 @@ export const AIAgent: FC = () => {
           </div>
           <form
             onSubmit={handleSubmit(async (data) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                {
+                  element: "save",
+                  parameter1: agentData2JSONReport(data),
+                  parameter5: data.aiAgentID || "-1",
+                },
+              )
               try {
                 let updateIconURL = data.icon
                 if (data.icon !== undefined && data.icon !== "") {
@@ -829,6 +967,15 @@ export const AIAgent: FC = () => {
                     })
                     return
                   }
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                    {
+                      element: isRunning ? "restart" : "start",
+                      parameter1: agentData2JSONReport(getValues()),
+                      parameter5: getValues("aiAgentID") || "-1",
+                    },
+                  )
                   isRunning
                     ? await reconnect(
                         getValues("aiAgentID"),
@@ -875,6 +1022,14 @@ export const AIAgent: FC = () => {
                         isReceiving={isReceiving}
                         blockInput={!isRunning || blockInputDirty}
                         onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "send",
+                              parameter5: getValues("aiAgentID") || "-1",
+                            },
+                          )
                           sendMessage(
                             {
                               threadID: message.threadID,
@@ -916,6 +1071,14 @@ export const AIAgent: FC = () => {
                             return
                           }
                           setShareDialogVisible(true)
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "share_modal",
+                              parameter5: data.agent.aiAgentID,
+                            },
+                          )
                         }}
                         onShowContributeDialog={() => {
                           if (
@@ -955,7 +1118,10 @@ export const AIAgent: FC = () => {
                 control={control}
                 name="publishedToMarketplace"
                 render={({ field }) => (
-                  <>
+                  <MixpanelTrackProvider
+                    basicTrack={track}
+                    pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT}
+                  >
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
                         title={t(
@@ -1009,6 +1175,14 @@ export const AIAgent: FC = () => {
                           field.onChange(isAgentContributed)
                         }}
                         onCopyInviteLink={(link) => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "share_modal_copy_team",
+                              parameter5: idField.value,
+                            },
+                          )
                           copyToClipboard(
                             t(
                               "user_management.modal.custom_copy_text_agent_invite",
@@ -1021,6 +1195,14 @@ export const AIAgent: FC = () => {
                           )
                         }}
                         onCopyAgentMarketLink={(link) => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "share_modal_link",
+                              parameter5: idField.value,
+                            },
+                          )
                           copyToClipboard(
                             t(
                               "user_management.modal.contribute.default_text.agent",
@@ -1045,9 +1227,20 @@ export const AIAgent: FC = () => {
                           )
                         }}
                         teamPlan={getPlanUtils(currentTeamInfo)}
+                        onShare={(platform) => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "share_modal_social_media",
+                              parameter4: platform,
+                              parameter5: idField.value,
+                            },
+                          )
+                        }}
                       />
                     )}
-                  </>
+                  </MixpanelTrackProvider>
                 )}
               />
             )}
