@@ -101,15 +101,15 @@ import {
 } from "./style"
 
 export const AIAgentRunMobile: FC = () => {
-  const { agent, marketplaceInfo } = useAsyncValue() as {
+  const { agent, marketplace } = useAsyncValue() as {
     agent: Agent
-    marketplaceInfo: MarketAIAgent | undefined
+    marketplace: MarketAIAgent | undefined
   }
   const navigate = useNavigate()
 
   const [currentMarketplaceInfo, setCurrentMarketplaceInfo] = useState<
     MarketAIAgent | undefined
-  >(marketplaceInfo)
+  >(marketplace)
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
@@ -776,15 +776,15 @@ export const AIAgentRunMobile: FC = () => {
                       </span>
                     )}
                     {starNum > 0 &&
-                      (currentMarketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
-                      "·"}
-                    <span>&nbsp;{t("marketplace.fork")}</span>
+                      (currentMarketplaceInfo?.marketplace.numForks ?? 0) >
+                        0 && <span>&nbsp;·&nbsp;</span>}
 
-                    {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
+                    {(currentMarketplaceInfo?.marketplace.numForks ?? 0) >
+                      0 && (
                       <span>
                         {t("marketplace.fork")}
                         {formatNumForAgent(
-                          marketplaceInfo?.marketplace.numForks ?? 0,
+                          currentMarketplaceInfo?.marketplace.numForks ?? 0,
                         )}
                       </span>
                     )}
