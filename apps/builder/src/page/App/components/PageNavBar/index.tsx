@@ -1,7 +1,7 @@
 import { UpgradeIcon } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   canUseUpgradeFeature,
   showShareAppModal,
@@ -124,6 +124,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
+    getPlanUtils(teamInfo),
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )

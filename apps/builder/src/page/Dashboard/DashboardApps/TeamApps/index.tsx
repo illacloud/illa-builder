@@ -1,4 +1,4 @@
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -89,6 +89,7 @@ export const TeamApps: FC<TeamAppsProps> = (props) => {
       showCreate={canManage(
         teamInfo.myRole,
         ATTRIBUTE_GROUP.APP,
+        getPlanUtils(teamInfo),
         ACTION_MANAGE.CREATE_APP,
       )}
       loading={props.loading}

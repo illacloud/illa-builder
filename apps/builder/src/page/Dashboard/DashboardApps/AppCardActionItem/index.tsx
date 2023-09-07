@@ -8,6 +8,7 @@ import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -61,6 +62,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const canEditApp = canManage(
     teamInfo.myRole,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
 
@@ -79,6 +81,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
+    getPlanUtils(teamInfo),
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )

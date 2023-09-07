@@ -1,4 +1,8 @@
-import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getPlanUtils,
+} from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -23,6 +27,7 @@ export const SettingNavBar: FC = () => {
   const canEditApp = canManage(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
     ATTRIBUTE_GROUP.APP,
+    getPlanUtils(teamInfo),
     ACTION_MANAGE.EDIT_APP,
   )
 

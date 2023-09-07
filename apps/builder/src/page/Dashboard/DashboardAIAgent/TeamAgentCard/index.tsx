@@ -3,7 +3,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -38,8 +38,9 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
 
   const canEdit = canManage(
     teamInfo.myRole,
-    ATTRIBUTE_GROUP.AGENT,
-    ACTION_MANAGE.CREATE_AGENT,
+    ATTRIBUTE_GROUP.AI_AGENT,
+    getPlanUtils(teamInfo),
+    ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
   const handleClickCard = (agentInfo: Agent) => {
@@ -52,7 +53,9 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
         parameter5: agentInfo.aiAgentID,
       },
     )
-    navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
+    navigate(
+      `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
+    )
   }
 
   const handleClickEdit = (e: MouseEvent<HTMLButtonElement>) => {
@@ -78,7 +81,9 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
       },
     )
     e.stopPropagation()
-    navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
+    navigate(
+      `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
+    )
   }
 
   return (

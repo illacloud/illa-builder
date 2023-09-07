@@ -14,7 +14,7 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
     errorElement: lazyLoad(lazy(() => import("@/page/Status/404"))),
   },
   {
-    path: "/:teamIdentifier/deploy/app/:appId/:pageName?/:viewPath?",
+    path: "/:ownerTeamIdentifier/deploy/app/:appId/:pageName?/:viewPath?",
     element: lazyLoad(
       lazy(() => import("@/page/Deploy")),
       <FullPageLoading />,

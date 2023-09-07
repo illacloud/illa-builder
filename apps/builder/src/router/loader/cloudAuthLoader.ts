@@ -3,6 +3,7 @@ import {
   currentUserActions,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import { canAccessManage } from "@illa-public/user-role-utils"
@@ -86,6 +87,7 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
       isCloudVersion &&
       !canAccessManage(
         currentTeamInfo.myRole,
+        getPlanUtils(currentTeamInfo),
         currentTeamInfo.totalTeamLicense.teamLicenseAllPaid,
       )
     ) {

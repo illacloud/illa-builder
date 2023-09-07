@@ -3,7 +3,7 @@ import {
   AI_AGENT_TYPE,
   AgentAdvanceConfig,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
-import { Params } from "@/redux/resource/restapiResource"
+import { Params } from "@illa-public/record-editor/interface"
 
 export type EDIT_STATE = "EDIT" | "RUN"
 

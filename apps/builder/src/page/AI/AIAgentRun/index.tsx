@@ -1,9 +1,5 @@
 import { LayoutAutoChange } from "@illa-public/layout-auto-change"
 import {
-  Agent,
-  MarketplaceInfo,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
-import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
@@ -24,10 +20,7 @@ import {
 
 export const AIAgentRun: FC = () => {
   const data = useLoaderData() as {
-    data: Promise<{
-      agent: Agent
-      marketplaceInfo: MarketplaceInfo
-    }>
+    data: Promise<any>
   }
 
   useEffect(() => {

@@ -9,6 +9,7 @@ import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -60,8 +61,9 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
 
   const canEdit = canManage(
     teamInfo.myRole,
-    ATTRIBUTE_GROUP.AGENT,
-    ACTION_MANAGE.CREATE_AGENT,
+    ATTRIBUTE_GROUP.AI_AGENT,
+    getPlanUtils(teamInfo),
+    ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
   const canInvite = canManageInvite(
@@ -332,7 +334,9 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
             })}
             redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
               teamInfo.identifier
-            }/ai-agents/${aiAgentID}/run`}
+            }/ai-agent/${aiAgentID}/run?myTeamIdentifier=${
+              teamInfo.identifier
+            }`}
             onClose={() => {
               setShareVisible(false)
             }}
@@ -416,6 +420,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
                 },
               )
             }}
+            teamPlan={getPlanUtils(teamInfo)}
           />
         )}
       </MixpanelTrackProvider>
