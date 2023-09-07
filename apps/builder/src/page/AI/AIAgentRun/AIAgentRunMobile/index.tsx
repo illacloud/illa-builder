@@ -8,12 +8,14 @@ import {
   Agent,
   MarketAIAgent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -32,7 +34,12 @@ import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue, useNavigate } from "react-router-dom"
+import {
+  useAsyncValue,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -94,6 +101,10 @@ export const AIAgentRunMobile: FC = () => {
   }
   const navigate = useNavigate()
 
+  const [currentMarketplaceInfo, setCurrentMarketplaceInfo] = useState<
+    MarketAIAgent | undefined
+  >(marketplaceInfo)
+
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
     defaultValues: agent,
@@ -113,7 +124,7 @@ export const AIAgentRunMobile: FC = () => {
   const [isConnecting, setIsConnecting] = useState(false)
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
   const [starState, setStarState] = useState(
-    marketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
+    currentMarketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
   )
   const [forkLoading, setForkLoading] = useState(false)
   // data state
@@ -121,8 +132,11 @@ export const AIAgentRunMobile: FC = () => {
   const [isReceiving, setIsReceiving] = useState(false)
   const currentUserInfo = useSelector(getCurrentUser)
   const [starNum, setStarNum] = useState(
-    marketplaceInfo?.marketplace.numStars ?? 0,
+    currentMarketplaceInfo?.marketplace.numStars ?? 0,
   )
+
+  const { ownerTeamIdentifier } = useParams()
+  const [searchParams] = useSearchParams()
 
   const { t } = useTranslation()
 
@@ -133,6 +147,7 @@ export const AIAgentRunMobile: FC = () => {
   // premium dialog
   const canUseBillingFeature = canUseUpgradeFeature(
     currentTeamInfo?.myRole,
+    getPlanUtils(currentTeamInfo),
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
@@ -197,9 +212,11 @@ export const AIAgentRunMobile: FC = () => {
                   agentName: agent.name,
                 },
               )}
-              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-                marketplaceInfo?.marketplace.contributorTeam.teamIdentify
-              }/ai-agent/${agent.aiAgentID}/run`}
+              redirectURL={`${
+                import.meta.env.ILLA_BUILDER_URL
+              }/${ownerTeamIdentifier}/ai-agent/${
+                agent.aiAgentID
+              }/run?myTeamIdentifier=${searchParams.get("myTeamIdentifier")}`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
@@ -227,7 +244,11 @@ export const AIAgentRunMobile: FC = () => {
               }}
               agentID={agent.aiAgentID}
               defaultAgentContributed={field.value}
-              onAgentContributed={(isAgentContributed) => {
+              onAgentContributed={async (isAgentContributed) => {
+                if (isAgentContributed) {
+                  const resp = await getAIAgentMarketplaceInfo(agent.aiAgentID)
+                  setCurrentMarketplaceInfo(resp.data)
+                }
                 field.onChange(isAgentContributed)
               }}
               onCopyInviteLink={(link: string) => {
@@ -264,6 +285,7 @@ export const AIAgentRunMobile: FC = () => {
                   }),
                 )
               }}
+              teamPlan={getPlanUtils(currentTeamInfo)}
             />
           )}
         </>
@@ -543,8 +565,9 @@ export const AIAgentRunMobile: FC = () => {
                   {field.value &&
                     canManage(
                       currentTeamInfo.myRole,
-                      ATTRIBUTE_GROUP.AGENT,
-                      ACTION_MANAGE.CREATE_AGENT,
+                      ATTRIBUTE_GROUP.AI_AGENT,
+                      getPlanUtils(currentTeamInfo),
+                      ACTION_MANAGE.FORK_AI_AGENT,
                     ) && (
                       <div
                         css={shareContainerStyle}
@@ -657,12 +680,12 @@ export const AIAgentRunMobile: FC = () => {
                       <span>{formatNumForAgent(starNum)}&nbsp;</span>
                     )}
                     {starNum > 0 &&
-                      (marketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
+                      (currentMarketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
                       "·"}
                     <span>&nbsp;{t("marketplace.fork")}</span>
                     <span>
                       {formatNumForAgent(
-                        marketplaceInfo?.marketplace.numForks ?? 0,
+                        currentMarketplaceInfo?.marketplace.numForks ?? 0,
                       )}
                     </span>
                   </div>

@@ -1,6 +1,8 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { LoaderFunction, defer } from "react-router-dom"
 import { AgentInitial } from "@/page/AI/AIAgent/interface"
 import { fetchAgentDetail } from "@/services/agent"
+import store from "@/store"
 
 const getAgentInitData = async (agentID?: string) => {
   if (agentID) {
@@ -9,8 +11,14 @@ const getAgentInitData = async (agentID?: string) => {
       agent: agent.data,
     }
   } else {
+    const currentTeamInfo = getCurrentTeamInfo(store.getState())!!
     return {
-      agent: AgentInitial,
+      agent: {
+        ...AgentInitial,
+        teamID: currentTeamInfo.id,
+        teamIdentifier: currentTeamInfo.identifier,
+        teamIcon: currentTeamInfo.icon,
+      },
     }
   }
 }

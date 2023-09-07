@@ -1,15 +1,34 @@
-import { authCloudRequest } from "@illa-public/illa-net"
+import {
+  authCloudRequest,
+  notNeedAuthCloudRequest,
+} from "@illa-public/illa-net"
 import { CurrentUser } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
 import { v4 } from "uuid"
 import { fetchSendEmail } from "@/services/auth"
 import { upload } from "@/utils/file/upload"
 import { ILLABuilderStorage } from "@/utils/storage"
+import { getAuthToken } from "../utils/auth"
 
 export const fetchUserInfo = () => {
   return authCloudRequest<CurrentUser>({
     url: "/users",
   })
+}
+
+export const tryFetchUserInfo = async () => {
+  const token = getAuthToken()
+
+  try {
+    return await notNeedAuthCloudRequest<CurrentUser>({
+      url: "/users",
+      headers: {
+        Authorization: token,
+      },
+    })
+  } catch (e) {
+    return undefined
+  }
 }
 
 export const fetchUserAvatarUploadAddress = (

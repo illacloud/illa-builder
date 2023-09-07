@@ -45,8 +45,7 @@ export const cloudRouter: RoutesObjectPro[] = [
     loader: historyLoader,
   },
   {
-    path: "/:teamIdentifier/ai-agent/:agentID/run",
-    needLogin: true,
+    path: "/:ownerTeamIdentifier/ai-agent/:agentID/run",
     element: lazyLoad(
       lazy(() => import("@/page/AI/AIAgentRun")),
       <FullPageLoading />,

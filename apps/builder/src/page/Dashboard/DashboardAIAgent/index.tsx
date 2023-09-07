@@ -4,6 +4,7 @@ import {
   USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
+  getPlanUtils,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -34,8 +35,9 @@ const DashboardAIAgent: FC = () => {
 
   const canCreateAgent = canManage(
     teamInfo.myRole,
-    ATTRIBUTE_GROUP.AGENT,
-    ACTION_MANAGE.CREATE_AGENT,
+    ATTRIBUTE_GROUP.AI_AGENT,
+    getPlanUtils(teamInfo),
+    ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
   const upgradeModal = useUpgradeModal()

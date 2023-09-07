@@ -24,13 +24,13 @@ export const MarketAgents = () => {
 
   const navigate = useNavigate()
 
-  const teamInfo = useSelector(getCurrentTeamInfo)!!
-
   const [searchParams] = useSearchParams()
 
   const fetching = useRef<boolean>()
   const page = useRef<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(false)
+
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
 
   const [marketAgentList, setMarketAgentList] = useState<MarketAIAgent[]>([])
 
@@ -122,7 +122,7 @@ export const MarketAgents = () => {
             <MarketAgentCard
               onClick={() => {
                 navigate(
-                  `/${teamInfo.identifier}/ai-agent/${agent.aiAgent.aiAgentID}/run`,
+                  `/${agent.marketplace.contributorTeam.teamIdentifier}/ai-agent/${agent.aiAgent.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
                 )
               }}
               key={agent.aiAgent.aiAgentID}

@@ -1,22 +1,29 @@
-import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 
-export const deployContainerStyle = css`
-  width: 100%;
-  height: 100vh;
-`
-
-export const loadingStyle = css`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+export const deployLogoStyle = css`
   position: absolute;
+  bottom: 16px;
+  right: 16px;
+  box-shadow: 0 0 8px 0 ${getColor("blackAlpha", "07")};
+  border: solid 1px ${getColor("grayBlue", "09")};
+  border-radius: 8px;
+  font-size: 12px;
+  padding: 0 12px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: ${getColor("white", "01")};
+  gap: 8px;
+`
+export const logoStyle = css`
+  width: 25px;
+  height: 12px;
 `
 
-export function applyPopupStateStyle(openState?: boolean): SerializedStyles {
+export function applyPopupStateStyle(openState: boolean) {
   const transform = openState
     ? css`
         transform: rotate(180deg);
@@ -40,7 +47,7 @@ export const upgradePopContainerStyle = css`
   text-align: center;
   font-size: 12px;
   line-height: 20px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+  color: ${getColor("grayBlue", "03")};
   ${upgradeBgStyle};
 `
 
@@ -48,7 +55,7 @@ export const upgradeTitleStyle = css`
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const upgradeConfigStyle = css`

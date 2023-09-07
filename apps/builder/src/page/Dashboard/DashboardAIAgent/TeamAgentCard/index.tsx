@@ -1,4 +1,4 @@
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -32,15 +32,18 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
 
   const canEdit = canManage(
     teamInfo.myRole,
-    ATTRIBUTE_GROUP.AGENT,
-    ACTION_MANAGE.CREATE_AGENT,
+    ATTRIBUTE_GROUP.AI_AGENT,
+    getPlanUtils(teamInfo),
+    ACTION_MANAGE.CREATE_AI_AGENT,
   )
 
   return (
     <div
       css={cardStyle}
       onClick={() => {
-        navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
+        navigate(
+          `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
+        )
       }}
     >
       <div css={headerStyle}>
@@ -101,7 +104,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
             onClick={(e) => {
               e.stopPropagation()
               navigate(
-                `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`,
+                `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run?myTeamIdentifier=${teamInfo.identifier}`,
               )
             }}
           >
