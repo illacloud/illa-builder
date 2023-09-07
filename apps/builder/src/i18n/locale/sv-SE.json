@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Uppladdningen lyckades",
           "uploadFailed": "Det gick inte att ladda upp",
           "onMenuSelect": "Välj objekt",
-          "on_menu_select": "Välj menyobjekt"
+          "on_menu_select": "Välj menyobjekt",
+          "pageChange": "Ändrad sida"
         },
         "image_list": {
           "title": "Bilder",
@@ -1792,6 +1793,14 @@
           "legend_position": "Legend position",
           "grid_line": "Rutnätslinje",
           "y-axis_type": "Y-axel typ"
+        },
+        "grid_list": {
+          "column_adaptation": "Anpassning av kolumn",
+          "column_count": "Antal kolumn",
+          "row_height": "Anpassning av rad",
+          "item_radius": "Punkt radie",
+          "item_shadow": "Skugga för objekt",
+          "item_spacing": "Objektavstånd"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Att ställa in positionen för legent. ",
           "grid_line": "För att ställa in färgen på rutnät linje. ",
           "y-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten."
+        },
+        "grid_list": {
+          "column_adaptation": "I Auto-läge förblir antalet kolumner fast medan kolumnbredden är justerbar. Justering av webbläsarfönstret kommer att ändra kolumnbredden därefter.\r\nI fast läge är antalet kolumner inte fast medan kolumnbredden förblir konstant. Att ändra webbläsarfönstret kommer att ändra antalet kolumner.",
+          "column_count": "Används för att konfigurera antalet kolumner som avgör hur många rutnät som visas per rad.",
+          "row_height": "Används för att konfigurera höjden på varje rad. I Auto-läge, är höjden adaptiv, och radens höjd bestäms av den högsta rutnätet i den aktuella raden. I fast läge är radhöjden fast, och alla rutnät har samma höjd.",
+          "item_radius": "Används för att konfigurera hörnradien för varje rutnät",
+          "item_shadow": "Används för att konfigurera skuggstorleken på varje rutnät",
+          "item_spacing": "Används för att konfigurera avståndet mellan rutnäten"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Redigera undersida",
         "rename_page_url": "Redigera sida"
       }
+    },
+    "grid_list": {
+      "name": "Lista över rutnät"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Bidra",
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Klicka på objekt"
+        }
+      }
+    }
   }
 }

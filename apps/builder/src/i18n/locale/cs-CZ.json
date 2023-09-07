@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Úspěšně nahráno",
           "uploadFailed": "Nepodařilo se nahrát",
           "onMenuSelect": "Vybrat položku",
-          "on_menu_select": "Vyberte položku nabídky"
+          "on_menu_select": "Vyberte položku nabídky",
+          "pageChange": "Změna stránky"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1792,6 +1793,14 @@
           "legend_position": "Pozice legendy",
           "grid_line": "Mřížka",
           "y-axis_type": "Typ osy Y"
+        },
+        "grid_list": {
+          "column_adaptation": "Úprava sloupců",
+          "column_count": "Počet sloupců",
+          "row_height": "Úprava řádků",
+          "item_radius": "Poloměr položky",
+          "item_shadow": "Stín položek",
+          "item_spacing": "Mezery položek"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Možnost nastavení legentu. ",
           "grid_line": "Pro nastavení barvy mřížky. ",
           "y-axis_type": "Nastavení typu grafu může zlepšit čitelnost dat."
+        },
+        "grid_list": {
+          "column_adaptation": "V automatickém režimu zůstává počet sloupců pevný, zatímco šířka sloupce je nastavitelná. Změna velikosti okna prohlížeče odpovídajícím způsobem změní šířku sloupce.\r\nV pevném režimu není počet sloupců stanoven, zatímco šířka sloupce zůstává konstantní. Změna velikosti okna prohlížeče změní počet sloupců.",
+          "column_count": "Konfigurace počtu sloupců, které určují, kolik mřížek je zobrazeno na řádek.",
+          "row_height": "Používá se ke konfiguraci výšky každého řádku. V automatickém režimu je výška adaptivní a výška řady je určena nejvyššími mřížkami v aktuálním řádku. V pevném režimu je výška řádku pevná a všechny mřížky mají stejnou výšku.",
+          "item_radius": "Používá se pro nastavení poloměru rohů každé mřížky",
+          "item_shadow": "Používá se ke konfiguraci stínu každé mřížky",
+          "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Upravit podstránku",
         "rename_page_url": "Upravit stránku"
       }
+    },
+    "grid_list": {
+      "name": "Seznam mřížek"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Přispějte",
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Klepněte na položku"
+        }
+      }
+    }
   }
 }

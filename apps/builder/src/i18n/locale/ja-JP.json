@@ -56,7 +56,7 @@
       "test_success": "テスト成功"
     },
     "list-type": {
-      "team": "チーム",
+      "team": "チームの",
       "marketplace": "エージェント市場"
     },
     "sort-type": {
@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "正常にアップロードしました",
           "uploadFailed": "アップロードに失敗しました",
           "onMenuSelect": "アイテムを選択",
-          "on_menu_select": "メニュー項目を選択"
+          "on_menu_select": "メニュー項目を選択",
+          "pageChange": "ページ変更"
         },
         "image_list": {
           "title": "イメージ",
@@ -1792,6 +1793,14 @@
           "legend_position": "凡例の位置",
           "grid_line": "グリッド線",
           "y-axis_type": "Y軸タイプ"
+        },
+        "grid_list": {
+          "column_adaptation": "列の調整",
+          "column_count": "列数",
+          "row_height": "行の調整",
+          "item_radius": "アイテムの半径",
+          "item_shadow": "アイテムの影",
+          "item_spacing": "アイテムの間隔"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "凡例の位置を設定します。 ",
           "grid_line": "グリッド線の色を設定します。 ",
           "y-axis_type": "チャートの種類を設定すると、データの可読性が向上します。"
+        },
+        "grid_list": {
+          "column_adaptation": "自動モードでは、列幅が調整可能な状態で列数は固定されたままになります。ブラウザウィンドウのサイズを変更すると、列幅がそれに応じて変更されます。\r\n固定モードでは、列幅が一定のままで列数が固定されていません。 ブラウザウィンドウのサイズを変更すると、列の数が変更されます。",
+          "column_count": "行ごとに表示されるグリッド数を決定する列数を設定するために使用します。",
+          "row_height": "各行の高さを設定するために使用します。 Auto モードでは、高さは適応し、行の高さは現在の行の中で最も高いグリッドによって決まります。 固定モードでは、行の高さが固定され、すべてのグリッドの高さが同じになります。",
+          "item_radius": "各グリッドの角の半径を設定するために使用",
+          "item_shadow": "各グリッドのシャドウサイズを設定するために使用します。",
+          "item_spacing": "グリッド間の間隔を設定するために使用"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "サブページを編集",
         "rename_page_url": "ページを編集"
       }
+    },
+    "grid_list": {
+      "name": "グリッドリスト"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "貢献",
   "error_page": {
     "fobidden": "アクセス権限がありません"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "アイテムをクリックします"
+        }
+      }
+    }
   }
 }

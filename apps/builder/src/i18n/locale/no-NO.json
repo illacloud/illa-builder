@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Opplasting var vellykket",
           "uploadFailed": "Kan ikke laste opp",
           "onMenuSelect": "Velg element",
-          "on_menu_select": "Velg menypunkt"
+          "on_menu_select": "Velg menypunkt",
+          "pageChange": "Side endring"
         },
         "image_list": {
           "title": "Bilder",
@@ -1792,6 +1793,14 @@
           "legend_position": "Plassering av forklaring",
           "grid_line": "Rutenettlinje",
           "y-axis_type": "Y-akse type"
+        },
+        "grid_list": {
+          "column_adaptation": "Tilpasning av kolonne",
+          "column_count": "Antall kolonner",
+          "row_height": "Tilpasning av rader",
+          "item_radius": "Objekt radius",
+          "item_shadow": "Skygge for element",
+          "item_spacing": "Mellomrom mellom enheter"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Setter du en legentes stilling. ",
           "grid_line": "For å angi fargen på rutenettlinjen. ",
           "y-axis_type": "Å angi diagramtypen kan forbedre lesbarheten til data."
+        },
+        "grid_list": {
+          "column_adaptation": "I automodus forblir antallet kolonner festet mens kolonnebredden er justerbar. Endre leservinduet ved å endre kolonnebredden tilsvarende.\r\ni fast modus bestemmes ikke antallet kolonner festet mens kolonnebredden forblir konstant. Endre nettleservinduet vil endre antall kolonner.",
+          "column_count": "Brukes til å konfigurere antall kolonner, som bestemmer hvor mange tabeller som vises per rad.",
+          "row_height": "Brukes til å konfigurere høyden på hver rad. I auto-modus er høyden adaptiv, og radhøyden bestemmes av det høyeste rutenettet i nåværende rad. I fastmodusen er radhøyden fastsatt, og alle rutene har samme høyde.",
+          "item_radius": "Brukes til å konfigurere hjørneradius i hver tabell",
+          "item_shadow": "Brukes til å konfigurere skyggestørrelsen for hver rute",
+          "item_spacing": "Brukes til å konfigurere mellomrom mellom tabeller"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Rediger underside",
         "rename_page_url": "Rediger side"
       }
+    },
+    "grid_list": {
+      "name": "Rutenett liste"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Bidra",
   "error_page": {
     "fobidden": "Ingen tilgang"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Klikk pÃ¥ element"
+        }
+      }
+    }
   }
 }
