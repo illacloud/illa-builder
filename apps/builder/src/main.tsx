@@ -1,3 +1,4 @@
+import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
 import * as Sentry from "@sentry/react"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
@@ -41,6 +42,8 @@ if (
   document.body.append(firstScript)
   document.body.append(sendScript)
 }
+
+ILLAMixpanel.setDeviceID()
 
 const root = createRoot(document.getElementById("root")!!)
 
