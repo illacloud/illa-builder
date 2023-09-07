@@ -2,11 +2,9 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import { CurrentUser, currentUserActions } from "@illa-public/user-data"
-import { isCloudVersion } from "@illa-public/utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { AxiosResponse } from "axios"
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useAsyncValue, useBeforeUnload } from "react-router-dom"
 import { TriggerProvider } from "@illa-design/react"
@@ -21,7 +19,6 @@ import { setupComponentsListeners } from "@/redux/currentApp/editor/components/c
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { startAppListening } from "@/store"
 import {
   track,
@@ -34,7 +31,6 @@ import { CurrentAppResp } from "../App/resp/currentAppResp"
 interface IDeployContentAsyncValue {
   isPublic: boolean
   appInfo: Promise<AxiosResponse<CurrentAppResp>>
-  userInfo: Promise<AxiosResponse<CurrentUser>> | undefined
 }
 
 export const DeployContent: FC = () => {
@@ -49,17 +45,10 @@ export const DeployContent: FC = () => {
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
-  const [currentDeployApp, setCurrentDeployApp] = useState<DashboardApp>()
-
   useEffect(() => {
     const initApp = async () => {
       const appInfo = await asyncValue.appInfo
       document.title = appInfo.data.appInfo.appName
-      setCurrentDeployApp(appInfo.data.appInfo)
-      if (asyncValue.userInfo) {
-        const userInfo = await asyncValue.userInfo
-        dispatch(currentUserActions.updateCurrentUserReducer(userInfo.data))
-      }
       dispatch(configActions.updateIllaMode("production"))
       dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
       const fixedComponents = fixedComponentsToNewComponents(
@@ -93,9 +82,7 @@ export const DeployContent: FC = () => {
   return (
     <TriggerProvider renderInBody zIndex={10}>
       {<CanvasPanel />}
-      {(isCloudVersion
-        ? currentDeployApp && currentDeployApp.config.waterMark
-        : true) && <WaterMark />}
+      {<WaterMark />}
     </TriggerProvider>
   )
 }
