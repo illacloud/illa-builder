@@ -14,8 +14,12 @@ const getUsedEnv = (env: Record<string, string>) => {
   const usedEnv: Record<string, string> = {}
   Object.keys(env).forEach((key) => {
     if (key.startsWith("ILLA_")) {
-      usedEnv[`import.meta.env.${key}`] = JSON.stringify(env[key])
-      usedEnv[`process.env.${key}`] = JSON.stringify(env[key])
+      let value = env[key]
+      if (key === "ILLA_APP_VERSION") {
+        value = pkg.version
+      }
+      usedEnv[`import.meta.env.${key}`] = JSON.stringify(value)
+      usedEnv[`process.env.${key}`] = JSON.stringify(value)
     }
   })
   return usedEnv
