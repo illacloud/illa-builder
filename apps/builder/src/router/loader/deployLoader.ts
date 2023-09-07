@@ -1,44 +1,56 @@
+import { currentUserActions } from "@illa-public/user-data"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
 import {
   fetchAPPPublicStatus,
   fetchPrivateAppInitData,
   fetchPubicAppInitData,
 } from "@/services/apps"
-import { fetchUserInfo } from "@/services/users"
+import { fetchUserInfo, tryFetchUserInfo } from "@/services/users"
+import store from "../../store"
+import { getTeamsInfoLoader } from "./cloudAuthLoader"
 
 export const deployLoader: LoaderFunction = async (args) => {
-  const { appId, ownerTeamIdentifier } = args.params
-  if (!appId || !ownerTeamIdentifier) {
+  const { appId, teamIdentifier } = args.params
+  if (!appId || !teamIdentifier) {
     return redirect("/404")
   }
 
-  let userInfo = undefined
   try {
     const publicStateResponse = await fetchAPPPublicStatus(
       appId,
-      ownerTeamIdentifier,
+      teamIdentifier,
       args.request.signal,
     )
+
     const isPublic = publicStateResponse.data.isPublic
     if (isPublic) {
+      const userInfo = await tryFetchUserInfo()
+      if (userInfo) {
+        store.dispatch(
+          currentUserActions.updateCurrentUserReducer(userInfo.data),
+        )
+      }
       const appInfo = fetchPubicAppInitData(
         appId,
         "-2",
-        ownerTeamIdentifier,
+        teamIdentifier,
         args.request.signal,
       )
       return defer({
         isPublic,
         appInfo,
-        userInfo,
       })
     } else {
-      const userInfo = fetchUserInfo()
+      const teamInfoLoaderResponse = await getTeamsInfoLoader(args)
+      if (teamInfoLoaderResponse) {
+        return teamInfoLoaderResponse
+      }
+      const userInfo = await fetchUserInfo()
+      store.dispatch(currentUserActions.updateCurrentUserReducer(userInfo.data))
       const appInfo = fetchPrivateAppInitData(appId, "-2", args.request.signal)
       return defer({
         isPublic,
         appInfo,
-        userInfo,
       })
     }
   } catch (e) {
