@@ -95,16 +95,16 @@ import {
 } from "./style"
 
 export const AIAgentRunPC: FC = () => {
-  const { agent, marketplaceInfo } = useAsyncValue() as {
+  const { agent, marketplace } = useAsyncValue() as {
     agent: Agent
-    marketplaceInfo: MarketAIAgent | undefined
+    marketplace: MarketAIAgent | undefined
   }
 
   const navigate = useNavigate()
 
   const [currentMarketplaceInfo, setCurrentMarketplaceInfo] = useState<
     MarketAIAgent | undefined
-  >(marketplaceInfo)
+  >(marketplace)
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",

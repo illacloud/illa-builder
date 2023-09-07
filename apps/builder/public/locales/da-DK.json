@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Uploadet succesfuldt",
           "uploadFailed": "Upload mislykkedes",
           "onMenuSelect": "Vælg element",
-          "on_menu_select": "Vælg menupunkt"
+          "on_menu_select": "Vælg menupunkt",
+          "pageChange": "Side ændring"
         },
         "image_list": {
           "title": "Billeder",
@@ -1792,6 +1793,14 @@
           "legend_position": "Forklarende position",
           "grid_line": "Gitter linje",
           "y-axis_type": "Y-akse type"
+        },
+        "grid_list": {
+          "column_adaptation": "Tilpasning af kolonne",
+          "column_count": "Antal kolonner",
+          "row_height": "Række tilpasning",
+          "item_radius": "Element radius",
+          "item_shadow": "Element skygge",
+          "item_spacing": "Element afstand"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "At indstille positionen af legent. ",
           "grid_line": "For at indstille farven på gitterlinjen. ",
           "y-axis_type": "Indstilling af diagramtypen kan forbedre data læsbarhed."
+        },
+        "grid_list": {
+          "column_adaptation": "I Auto tilstand forbliver antallet af kolonner fast, mens kolonnebredden kan justeres. Ændring af browservinduet vil ændre kolonnebredden i overensstemmelse hermed.\r\nI Fast tilstand er antallet af kolonner ikke fast, mens kolonnebredden forbliver konstant. Ændring af browservinduet vil ændre antallet af kolonner.",
+          "column_count": "Bruges til at konfigurere antallet af kolonner, som bestemmer, hvor mange gitre der vises pr. række.",
+          "row_height": "Bruges til at konfigurere højden af hver række. I Auto tilstand er højden adaptiv, og rækkehøjden bestemmes af det højeste gitter i den aktuelle række. I Fast tilstand er rækkehøjden fast, og alle gitre har samme højde.",
+          "item_radius": "Bruges til at konfigurere hjørneradius for hvert gitter",
+          "item_shadow": "Bruges til at konfigurere skyggestørrelsen for hvert gitter",
+          "item_spacing": "Bruges til at konfigurere afstanden mellem gitre"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Rediger underside",
         "rename_page_url": "Rediger side"
       }
+    },
+    "grid_list": {
+      "name": "Gitter liste"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Bidrag",
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Klik på element"
+        }
+      }
+    }
   }
 }

@@ -1273,7 +1273,8 @@
           "uploadSuccessfully": "Téléchargé avec succès",
           "uploadFailed": "Échec du téléchargement",
           "onMenuSelect": "Sélectionner un élément",
-          "on_menu_select": "Sélectionner un élément de menu"
+          "on_menu_select": "Sélectionner un élément de menu",
+          "pageChange": "Changement de page"
         },
         "image_list": {
           "title": "Images",
@@ -1792,6 +1793,14 @@
           "legend_position": "Position de la légende",
           "grid_line": "Ligne de grille",
           "y-axis_type": "Type d'axe Y"
+        },
+        "grid_list": {
+          "column_adaptation": "Adaptation des colonnes",
+          "column_count": "Nombre de colonnes",
+          "row_height": "Adaptation de ligne",
+          "item_radius": "Rayon de l'objet",
+          "item_shadow": "Ombre de l'élément",
+          "item_spacing": "Espacement des éléments"
         }
       },
       "setter_tooltip": {
@@ -2066,6 +2075,14 @@
           "legend_position": "Fixer la position de la légende. ",
           "grid_line": "Définir la couleur de la ligne de la grille. ",
           "y-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données."
+        },
+        "grid_list": {
+          "column_adaptation": "En mode Automatique, le nombre de colonnes reste fixe lorsque la largeur des colonnes est réglable. Redimensionner la fenêtre du navigateur changera la largeur des colonnes en conséquence.\r\nEn mode fixe, le nombre de colonnes n'est pas fixe tant que la largeur de la colonne reste constante. Redimensionner la fenêtre du navigateur modifiera le nombre de colonnes.",
+          "column_count": "Utilisé pour configurer le nombre de colonnes, qui détermine le nombre de grilles affichées par ligne.",
+          "row_height": "Utilisé pour configurer la hauteur de chaque ligne. En mode Automatique, la hauteur est adaptative et la hauteur de la ligne est déterminée par la grille la plus haute de la ligne courante. En mode Fixe, la hauteur de la ligne est fixée, et toutes les grilles ont la même hauteur.",
+          "item_radius": "Utilisé pour configurer le rayon d'angle de chaque grille",
+          "item_shadow": "Utilisé pour configurer la taille de l'ombre de chaque grille",
+          "item_spacing": "Utilisé pour configurer l'intervalle entre les grilles"
         }
       },
       "setter_option": {
@@ -3068,6 +3085,9 @@
         "rename_url": "Modifier la sous-page",
         "rename_page_url": "Modifier la page"
       }
+    },
+    "grid_list": {
+      "name": "Liste des grilles"
     }
   },
   "page": {
@@ -4142,5 +4162,14 @@
   "contribute": "Contribuer",
   "error_page": {
     "fobidden": "Aucune autorisation d'accès"
+  },
+  "Click item: editor": {
+    "inspect": {
+      "setter_content": {
+        "widget_action_type_name": {
+          "clickItem": "Cliquer sur un élément"
+        }
+      }
+    }
   }
 }
