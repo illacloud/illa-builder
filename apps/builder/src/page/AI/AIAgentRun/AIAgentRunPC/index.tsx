@@ -33,7 +33,12 @@ import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue, useNavigate } from "react-router-dom"
+import {
+  useAsyncValue,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -127,6 +132,9 @@ export const AIAgentRunPC: FC = () => {
   )
   const upgradeModal = useUpgradeModal()
 
+  const { ownerTeamIdentifier } = useParams()
+  const [searchParams] = useSearchParams()
+
   // premium dialog
   const canUseBillingFeature = canUseUpgradeFeature(
     currentTeamInfo?.myRole,
@@ -155,11 +163,11 @@ export const AIAgentRunPC: FC = () => {
                   agentName: agent.name,
                 },
               )}
-              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-                agent.teamIdentifier
-              }/ai-agent/${agent.aiAgentID}/run?myTeamIdentifier=${
-                teamInfo.identifier
-              }`}
+              redirectURL={`${
+                import.meta.env.ILLA_BUILDER_URL
+              }/${ownerTeamIdentifier}/ai-agent/${
+                agent.aiAgentID
+              }/run?myTeamIdentifier=${searchParams.get("myTeamIdentifier")}`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
