@@ -1,5 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { cloneDeep, throttle } from "lodash"
+import { throttle } from "lodash"
 import { useCallback, useMemo, useRef } from "react"
 import { XYCoord, useDrag, useDragLayer, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
@@ -75,7 +75,7 @@ export const useResize = () => {
       hover: (dragHandlerInfo) => {
         const { displayName } = dragHandlerInfo
 
-        const snapShot = cloneDeep(illaSnapshot.getSnapshot())
+        const snapShot = illaSnapshot.getSnapshot()
         const currentWidgetSnapShot = snapShot[displayName]
         const scrollContainerDOM = document.querySelector(
           `[data-scroll-container="${currentWidgetSnapShot.parentNode}"]`,
@@ -88,7 +88,7 @@ export const useResize = () => {
         const { displayName, dragResult } = dragHandlerInfo
         if (!dragResult) return
 
-        const snapShot = cloneDeep(illaSnapshot.getSnapshot())
+        const snapShot = illaSnapshot.getSnapshot()
         const currentWidgetSnapShot = snapShot[displayName]
         dispatch(
           componentsActions.updateComponentLayoutInfoReducer({
@@ -149,7 +149,7 @@ export const useResizingUpdateRealTime = (isActive: boolean) => {
 
   const throttleUpdateComponentPositionByReflow = useMemo(() => {
     return throttle((newItem: WidgetLayoutInfo) => {
-      const snapshotMap = cloneDeep(illaSnapshot.getSnapshot())
+      const snapshotMap = illaSnapshot.getSnapshot()
       const snapShotShape = snapshotMap[newItem.displayName]
       const effectMap = getNewPositionWithCrossing(
         {
@@ -230,7 +230,7 @@ export const useResizingUpdateRealTime = (isActive: boolean) => {
       dragHandlerInfo: DragResizeHandlerInfo,
     ) => {
       const { barPosition, displayName } = dragHandlerInfo
-      const snapShot = cloneDeep(illaSnapshot.getSnapshot())
+      const snapShot = illaSnapshot.getSnapshot()
       const currentWidgetSnapShot = snapShot[displayName]
       if (!mousePositionInViewport || !currentWidgetSnapShot) return
       const parentNodeDisplayName = currentWidgetSnapShot.parentNode

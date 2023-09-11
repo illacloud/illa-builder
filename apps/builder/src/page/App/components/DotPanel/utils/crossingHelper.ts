@@ -1,4 +1,3 @@
-import { cloneDeep } from "lodash"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
@@ -74,15 +73,13 @@ export const getNewPositionWithCrossing = (
   const widgetLayoutArray = realTimeLayout
     ? realTimeLayout
     : illaSnapshot.getSnapShotArrayByParentDisplayName(parentDisplayName)
-  const filterdWidgetLayoutArray = widgetLayoutArray.filter((item) => {
+  const filterWidgetLayoutArray = widgetLayoutArray.filter((item) => {
     return !effectedDisplayNames.includes(item.displayName)
   })
 
   const newEffectedDisplayNames = [...effectedDisplayNames]
 
-  const sortedLayoutInfos = cloneDeep(filterdWidgetLayoutArray).sort(
-    sortedRuleByYAndX,
-  )
+  const sortedLayoutInfos = filterWidgetLayoutArray.sort(sortedRuleByYAndX)
 
   const crossingWidgetInfos = sortedLayoutInfos.filter((item) => {
     return isNewCrossing(mainSquare, item.layoutInfo)
@@ -125,13 +122,13 @@ export const getNewPositionWithCrossing = (
         crossingWidgetInfos.forEach((crossingItem) => {
           const newWidgetInfo = effectMap.get(crossingItem.displayName)!
 
-          const filterdWidgetLayoutArray = widgetLayoutArray.filter((item) => {
+          const filterWidgetLayoutArray = widgetLayoutArray.filter((item) => {
             return ![
               ...newEffectedDisplayNames,
               newWidgetInfo.displayName,
             ].includes(item.displayName)
           })
-          const crossingWidgetInfos = filterdWidgetLayoutArray
+          const crossingWidgetInfos = filterWidgetLayoutArray
             .filter((item) => {
               const newItemWidgetInfo = {
                 ...item.layoutInfo,

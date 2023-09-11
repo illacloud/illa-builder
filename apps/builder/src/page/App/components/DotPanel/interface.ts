@@ -1,15 +1,3 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-
-export interface DragInfo {
-  item: ComponentNode
-  draggedSelectedComponents: ComponentNode[]
-}
-
-// return when drop trigger
-export interface DropResultInfo {
-  isDropOnCanvas: boolean
-}
-
 // return when drop collect trigger
 export interface DropCollectedInfo {
   isActive: boolean

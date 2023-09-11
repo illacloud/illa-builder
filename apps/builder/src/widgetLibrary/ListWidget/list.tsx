@@ -472,7 +472,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const updateTemplateContainerNodesProps = useCallback(
     (childrenNodes: ComponentNode[]) => {
       return childrenNodes.map((itemContainer, index) => {
-        const currentItems = itemContainer.childrenNode
+        const currentItemContainer = cloneDeep(itemContainer)
+        const currentItems = currentItemContainer.childrenNode
         if (Array.isArray(currentItems) && currentItems.length > 0) {
           let newCurrentItems = currentItems.map((currentItem) => {
             if (
@@ -545,12 +546,16 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
             }
             return item
           })
-          set(itemContainer, "childrenNode", newCurrentItems)
+          set(currentItemContainer, "childrenNode", newCurrentItems)
         }
         if (index !== 0) {
-          set(itemContainer, "displayName", `list-widget-container-${index}`)
+          set(
+            currentItemContainer,
+            "displayName",
+            `list-widget-container-${index}`,
+          )
         }
-        return itemContainer
+        return currentItemContainer
       })
     },
     [disabled, executionResult, rawTree],
@@ -561,7 +566,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       const canvasChildrenArray: ComponentNode[] = []
       if (Array.isArray(dataSources) && dataSources.length > 0) {
         dataSources.forEach((v, index) => {
-          canvasChildrenArray[index] = cloneDeep(templateContainerNode)
+          canvasChildrenArray[index] = templateContainerNode
         })
         return updateTemplateContainerNodesProps(canvasChildrenArray)
       } else {
@@ -573,8 +578,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
 
   const getChildrenNodes = useMemo(() => {
     if (childrenNode && childrenNode.length > 0 && dataSources) {
-      const children = cloneDeep(childrenNode)
-      let canvas = children[0]
+      let canvas = childrenNode[0]
       return transTemplateContainerNodes(canvas)
     }
     return null
