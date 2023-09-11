@@ -14,15 +14,13 @@ import useMeasure from "react-use-measure"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
-  DragInfo,
-  DropResultInfo,
-} from "@/page/App/components/DotPanel/interface"
-import {
   applyDashedLineStyle,
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { DropResultInfo } from "../../page/App/components/DotPanel/components/Canvas/interface"
+import { DragInfo } from "../../page/App/components/ScaleSquare/components/DragContainer/interface"
 import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 import { ModalWidgetProps } from "./interface"
 import {

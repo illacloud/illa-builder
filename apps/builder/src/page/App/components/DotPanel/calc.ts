@@ -1,4 +1,3 @@
-import { cloneDeep } from "lodash"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 interface ItemPosition {
@@ -192,25 +191,19 @@ export const getCrossingNodeNewPosition = (
   currentNode: ComponentNode,
   allComponentNode: ComponentNode[],
 ) => {
-  const otherComponents = cloneDeep(allComponentNode)
-  const indexOfAllComponentNode = otherComponents.findIndex(
-    (curr) => curr.displayName === currentNode.displayName,
+  let otherComponents = allComponentNode.filter(
+    (curNode) => curNode.displayName !== currentNode.displayName,
   )
-  if (indexOfAllComponentNode > -1) {
-    otherComponents.splice(indexOfAllComponentNode, 1)
-  }
+
   let res: Map<string, ComponentNode> = new Map(),
     queue: ComponentNode[] = []
 
   queue.push(currentNode)
   while (queue.length !== 0) {
     let length = queue.length
-    const indexOfAllComponentNode = otherComponents.findIndex(
-      (curr) => curr.displayName === queue[0].displayName,
+    otherComponents = otherComponents.filter(
+      (curNode) => curNode.displayName !== queue[0].displayName,
     )
-    if (indexOfAllComponentNode > -1) {
-      otherComponents.splice(indexOfAllComponentNode, 1)
-    }
     const walkedSet = new Set()
     for (let i = 0; i < length; i++) {
       let node = queue.shift() as ComponentNode
@@ -244,25 +237,21 @@ export const getNearingNodes = (
   currentNode: ComponentNode,
   allComponentNode: ComponentNode[],
 ) => {
-  const otherComponents = cloneDeep(allComponentNode)
-  const indexOfAllComponentNode = otherComponents.findIndex(
-    (curr) => curr.displayName === currentNode.displayName,
+  let otherComponents = allComponentNode.filter(
+    (cur) => cur.displayName !== currentNode.displayName,
   )
-  if (indexOfAllComponentNode > -1) {
-    otherComponents.splice(indexOfAllComponentNode, 1)
-  }
+
   let res: Map<string, ComponentNode> = new Map(),
     queue: ComponentNode[] = []
 
   queue.push(currentNode)
   while (queue.length !== 0) {
     let length = queue.length
-    const indexOfAllComponentNode = otherComponents.findIndex(
-      (curr) => curr.displayName === queue[0].displayName,
+
+    otherComponents = otherComponents.filter(
+      (cur) => cur.displayName !== queue[0].displayName,
     )
-    if (indexOfAllComponentNode > -1) {
-      otherComponents.splice(indexOfAllComponentNode, 1)
-    }
+
     const walkedSet = new Set()
     for (let i = 0; i < length; i++) {
       let node = queue.shift() as ComponentNode
@@ -305,8 +294,7 @@ export const getReflowResult = (
   allComponentNodes: ComponentNode[],
   exceptSelf: boolean = true,
 ) => {
-  const currentComponentNodes = cloneDeep(allComponentNodes)
-  const sortedComponentNodes = sortComponentNodes(currentComponentNodes)
+  const sortedComponentNodes = sortComponentNodes(allComponentNodes)
   const effectResultMap = getCrossingNodeNewPosition(
     currentNode,
     sortedComponentNodes,

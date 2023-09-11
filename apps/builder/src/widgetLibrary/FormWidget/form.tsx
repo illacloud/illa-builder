@@ -16,10 +16,6 @@ import { useMessage } from "@illa-design/react"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
-  DragInfo,
-  DropResultInfo,
-} from "@/page/App/components/DotPanel/interface"
-import {
   applyDashedLineStyle,
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
@@ -31,6 +27,8 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
+import { DropResultInfo } from "../../page/App/components/DotPanel/components/Canvas/interface"
+import { DragInfo } from "../../page/App/components/ScaleSquare/components/DragContainer/interface"
 import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 import { FormWidgetProps } from "./interface"
 import {
@@ -499,16 +497,24 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
         }
       },
       drop: (dropInfo) => {
-        const { item } = dropInfo
+        const { draggedComponents } = dropInfo
+        const drageedDisplayNames = draggedComponents.map(
+          (component) => component.displayName,
+        )
         if (disabled) {
           const updateSlice = {
             disabled: "{{true}}",
           }
-          dispatch(
-            componentsActions.updateComponentPropsReducer({
-              displayName: item.displayName,
+          const MultiUpdateSlice = drageedDisplayNames.map((displayName) => {
+            return {
+              displayName,
               updateSlice,
-            }),
+            }
+          })
+          dispatch(
+            componentsActions.updateMultiComponentPropsReducer(
+              MultiUpdateSlice,
+            ),
           )
         }
         return {
