@@ -1,5 +1,4 @@
 import * as Redux from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
@@ -15,13 +14,13 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
     receiveMessage(action, currentAppID)
     const resp = next(action) as RootState
     if (typeList[0] === "components") {
-      const nextRootState = cloneDeep(store.getState())
+      const nextRootState = store.getState()
       const snapShot = getExecutionWidgetLayoutInfo(nextRootState)
       illaSnapshot.setSnapshot(snapShot)
     }
     return resp
   }
-  const prevRootState = cloneDeep(store.getState())
+  const prevRootState = store.getState()
   const resp = next(action)
   try {
     sendMessage(prevRootState, store.getState(), action)
