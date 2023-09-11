@@ -6,10 +6,11 @@ import {
   AI_AGENT_TYPE,
   Agent,
   MarketAIAgent,
+  freeModelList,
   getAIAgentMarketplaceInfo,
   isPremiumModel,
+  premiumModelList,
 } from "@illa-public/market-agent"
-import { freeModelList, premiumModelList } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -25,12 +26,13 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
 import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -47,6 +49,7 @@ import {
   Button,
   DependencyIcon,
   ForkIcon,
+  Input,
   PlayFillIcon,
   PreviousIcon,
   RadioGroup,
@@ -563,9 +566,6 @@ export const AIAgentRunPC: FC = () => {
             <Controller
               name="prompt"
               control={control}
-              rules={{
-                required: true,
-              }}
               shouldUnregister={false}
               render={({ field: promptField }) => (
                 <Controller
@@ -661,6 +661,40 @@ export const AIAgentRunPC: FC = () => {
                         }
                       }),
                     ]}
+                  />
+                </AIAgentBlock>
+              )}
+            />
+            <Controller
+              name={"modelConfig.maxTokens"}
+              control={control}
+              shouldUnregister={false}
+              render={({ field }) => (
+                <AIAgentBlock
+                  title={"Max Token"}
+                  tips={t("editor.ai-agent.tips.max-token")}
+                >
+                  <Input
+                    value={field.value}
+                    colorScheme={"techPurple"}
+                    readOnly
+                  />
+                </AIAgentBlock>
+              )}
+            />
+            <Controller
+              name="modelConfig.temperature"
+              control={control}
+              shouldUnregister={false}
+              render={({ field }) => (
+                <AIAgentBlock
+                  title={"Temperature"}
+                  tips={t("editor.ai-agent.tips.temperature")}
+                >
+                  <Input
+                    value={field.value}
+                    colorScheme={"techPurple"}
+                    readOnly
                   />
                 </AIAgentBlock>
               )}

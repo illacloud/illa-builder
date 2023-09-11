@@ -50,6 +50,7 @@ import {
   Button,
   DependencyIcon,
   ForkIcon,
+  Input,
   LoadingIcon,
   PlayFillIcon,
   PreviousIcon,
@@ -382,9 +383,6 @@ export const AIAgentRunMobile: FC = () => {
         <Controller
           name="prompt"
           control={control}
-          rules={{
-            required: true,
-          }}
           shouldUnregister={false}
           render={({ field: promptField }) => (
             <Controller
@@ -443,7 +441,7 @@ export const AIAgentRunMobile: FC = () => {
           name="model"
           control={control}
           render={({ field }) => (
-            <AIAgentBlock title={t("editor.ai-agent.label.model")} required>
+            <AIAgentBlock title={t("editor.ai-agent.label.model")}>
               <Select
                 {...field}
                 colorScheme={"techPurple"}
@@ -479,6 +477,32 @@ export const AIAgentRunMobile: FC = () => {
                   }),
                 ]}
               />
+            </AIAgentBlock>
+          )}
+        />
+        <Controller
+          name={"modelConfig.maxTokens"}
+          control={control}
+          shouldUnregister={false}
+          render={({ field }) => (
+            <AIAgentBlock
+              title={"Max Token"}
+              tips={t("editor.ai-agent.tips.max-token")}
+            >
+              <Input value={field.value} colorScheme={"techPurple"} readOnly />
+            </AIAgentBlock>
+          )}
+        />
+        <Controller
+          name="modelConfig.temperature"
+          control={control}
+          shouldUnregister={false}
+          render={({ field }) => (
+            <AIAgentBlock
+              title={"Temperature"}
+              tips={t("editor.ai-agent.tips.temperature")}
+            >
+              <Input value={field.value} colorScheme={"techPurple"} readOnly />
             </AIAgentBlock>
           )}
         />
