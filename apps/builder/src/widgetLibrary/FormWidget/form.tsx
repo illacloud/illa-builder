@@ -14,7 +14,9 @@ import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { useMessage } from "@illa-design/react"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
+import { DropResultInfo } from "@/page/App/components/DotPanel/components/Canvas/interface"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import { DragInfo } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"
 import {
   applyDashedLineStyle,
   applyXDirectionDashedLineStyle,
@@ -27,8 +29,6 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
-import { DropResultInfo } from "../../page/App/components/DotPanel/components/Canvas/interface"
-import { DragInfo } from "../../page/App/components/ScaleSquare/components/DragContainer/interface"
 import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 import { FormWidgetProps } from "./interface"
 import {
