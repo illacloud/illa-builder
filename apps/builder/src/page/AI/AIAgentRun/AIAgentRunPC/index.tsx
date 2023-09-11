@@ -3,16 +3,13 @@ import { CodeEditor } from "@illa-public/code-editor"
 import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
 import {
-  AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   Agent,
   MarketAIAgent,
   getAIAgentMarketplaceInfo,
+  isPremiumModel,
 } from "@illa-public/market-agent"
-import {
-  freeModelList,
-  premiumModelList,
-} from "@illa-public/market-agent/modelList"
+import { freeModelList, premiumModelList } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -671,10 +668,7 @@ export const AIAgentRunPC: FC = () => {
           </div>
           <form
             onSubmit={handleSubmit(async (data) => {
-              if (
-                data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
-                !canUseBillingFeature
-              ) {
+              if (!isPremiumModel(data.model) && !canUseBillingFeature) {
                 upgradeModal({
                   modalType: "agent",
                 })

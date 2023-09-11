@@ -1,9 +1,8 @@
-import { getLLM } from "@illa-public/market-agent/modelList"
+import { getLLM } from "@illa-public/market-agent"
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input } from "@illa-design/react"
-import { ReactComponent as ModalOpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/components/RecordEditor"
@@ -94,7 +93,7 @@ const AIAgentPanel: FC = () => {
       <ActionPanelSpace />
       <HorizontalWithLabel labelName={t("editor.ai-agent.label.model")}>
         <Input
-          prefix={<ModalOpenAIIcon />}
+          prefix={getLLM(aiAgentContent.virtualResource.model)?.logo}
           colorScheme="techPurple"
           readOnly
           value={getLLM(aiAgentContent.virtualResource.model)?.name}

@@ -2,12 +2,15 @@ import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
-import { AI_AGENT_MODEL, AI_AGENT_TYPE, Agent } from "@illa-public/market-agent"
 import {
+  AI_AGENT_MODEL,
+  AI_AGENT_TYPE,
+  Agent,
   freeModelList,
+  getLLM,
   isPremiumModel,
   premiumModelList,
-} from "@illa-public/market-agent/modelList"
+} from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -53,7 +56,6 @@ import {
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
-import { getModelLimitToken } from "@/page/AI/AIAgent/interface"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
@@ -781,7 +783,7 @@ export const AIAgent: FC = () => {
                         required: true,
                         validate: (value) =>
                           value > 0 &&
-                          value <= getModelLimitToken(modelField.value),
+                          value <= (getLLM(modelField.value)?.limit ?? 1),
                       }}
                       shouldUnregister={false}
                       render={({ field }) => (
@@ -802,7 +804,7 @@ export const AIAgent: FC = () => {
                           colorScheme={"techPurple"}
                           mode="button"
                           min={1}
-                          max={getModelLimitToken(modelField.value)}
+                          max={getLLM(modelField.value)?.limit ?? 1}
                         />
                       )}
                     />
@@ -810,41 +812,47 @@ export const AIAgent: FC = () => {
                 )}
               />
               <Controller
-                name="modelConfig.temperature"
                 control={control}
-                rules={{
-                  required: true,
-                  validate: (value) => value > 0 && value <= 2,
-                }}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={"Temperature"}
-                    tips={t("editor.ai-agent.tips.temperature")}
-                    required
-                  >
-                    <div css={temperatureContainerStyle}>
-                      <Slider
-                        {...field}
-                        colorScheme={getColor("grayBlue", "02")}
-                        step={0.1}
-                        min={0}
-                        max={2}
-                        onAfterChange={(v) => {
-                          track(
-                            ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
-                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                            {
-                              element: "temporature",
-                              parameter1: v,
-                              parameter5: data.agent.aiAgentID || "-1",
-                            },
-                          )
-                        }}
-                      />
-                      <span css={temperatureStyle}>{field.value}</span>
-                    </div>
-                  </AIAgentBlock>
+                name={"model"}
+                render={({ field: modelField }) => (
+                  <Controller
+                    name="modelConfig.temperature"
+                    control={control}
+                    rules={{
+                      required: true,
+                      validate: (value) => value > 0 && value <= 2,
+                    }}
+                    shouldUnregister={false}
+                    render={({ field }) => (
+                      <AIAgentBlock
+                        title={"Temperature"}
+                        tips={t("editor.ai-agent.tips.temperature")}
+                        required
+                      >
+                        <div css={temperatureContainerStyle}>
+                          <Slider
+                            {...field}
+                            colorScheme={getColor("grayBlue", "02")}
+                            step={0.1}
+                            min={getLLM(modelField.value)?.temperatureRange[0]}
+                            max={getLLM(modelField.value)?.temperatureRange[1]}
+                            onAfterChange={(v) => {
+                              track(
+                                ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                                {
+                                  element: "temporature",
+                                  parameter1: v,
+                                  parameter5: data.agent.aiAgentID || "-1",
+                                },
+                              )
+                            }}
+                          />
+                          <span css={temperatureStyle}>{field.value}</span>
+                        </div>
+                      </AIAgentBlock>
+                    )}
+                  />
                 )}
               />
             </div>
