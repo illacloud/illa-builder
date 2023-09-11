@@ -1,8 +1,4 @@
-import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  Agent,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
+import { AI_AGENT_MODEL, AI_AGENT_TYPE, Agent } from "@illa-public/market-agent"
 
 export function getModelLimitToken(model: AI_AGENT_MODEL): number {
   switch (model) {

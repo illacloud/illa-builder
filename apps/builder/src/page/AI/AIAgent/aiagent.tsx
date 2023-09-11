@@ -2,11 +2,12 @@ import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
+import { AI_AGENT_MODEL, AI_AGENT_TYPE, Agent } from "@illa-public/market-agent"
 import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  Agent,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
+  freeModelList,
+  isPremiumModel,
+  premiumModelList,
+} from "@illa-public/market-agent/modelList"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -52,7 +53,6 @@ import {
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
-import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { getModelLimitToken } from "@/page/AI/AIAgent/interface"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
@@ -720,7 +720,7 @@ export const AIAgent: FC = () => {
                           },
                         )
                         if (
-                          value !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                          isPremiumModel(value as AI_AGENT_MODEL) &&
                           !canUseBillingFeature
                         ) {
                           upgradeModal({
@@ -732,45 +732,34 @@ export const AIAgent: FC = () => {
                       }}
                       colorScheme={"techPurple"}
                       options={[
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-3.5</span>
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_3_5_TURBO,
-                        },
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-3.5-16k</span>
-                              {!canUseBillingFeature && (
-                                <div css={premiumContainerStyle}>
-                                  <UpgradeIcon />
-                                  <div style={{ marginLeft: 4 }}>Premium</div>
-                                </div>
-                              )}
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
-                        },
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-4</span>
-                              {!canUseBillingFeature && (
-                                <div css={premiumContainerStyle}>
-                                  <UpgradeIcon />
-                                  <div style={{ marginLeft: 4 }}>Premium</div>
-                                </div>
-                              )}
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_4,
-                        },
+                        ...freeModelList.map((model) => {
+                          return {
+                            label: (
+                              <div css={labelStyle}>
+                                {model.logo}
+                                <span css={labelTextStyle}>{model.name}</span>
+                              </div>
+                            ),
+                            value: model.value,
+                          }
+                        }),
+                        ...premiumModelList.map((model) => {
+                          return {
+                            label: (
+                              <div css={labelStyle}>
+                                {model.logo}
+                                <span css={labelTextStyle}>{model.name}</span>
+                                {!canUseBillingFeature && (
+                                  <div css={premiumContainerStyle}>
+                                    <UpgradeIcon />
+                                    <div style={{ marginLeft: 4 }}>Premium</div>
+                                  </div>
+                                )}
+                              </div>
+                            ),
+                            value: model.value,
+                          }
+                        }),
                       ]}
                     />
                   </AIAgentBlock>
@@ -959,7 +948,7 @@ export const AIAgent: FC = () => {
                 leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
                 onClick={async () => {
                   if (
-                    getValues("model") !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                    isPremiumModel(getValues("model")) &&
                     !canUseBillingFeature
                   ) {
                     upgradeModal({

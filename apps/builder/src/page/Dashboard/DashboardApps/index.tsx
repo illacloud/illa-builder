@@ -18,10 +18,7 @@ import {
   canManageInvite,
   openInviteModal,
 } from "@illa-public/user-role-utils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
+import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"

@@ -7,8 +7,8 @@ import {
   AI_AGENT_TYPE,
   Agent,
   MarketAIAgent,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
-import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+} from "@illa-public/market-agent"
+import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -29,10 +29,7 @@ import {
   canUseUpgradeFeature,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
+import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
 import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"

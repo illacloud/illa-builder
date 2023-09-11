@@ -7,8 +7,12 @@ import {
   AI_AGENT_TYPE,
   Agent,
   MarketAIAgent,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
-import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+  getAIAgentMarketplaceInfo,
+} from "@illa-public/market-agent"
+import {
+  freeModelList,
+  premiumModelList,
+} from "@illa-public/market-agent/modelList"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -29,10 +33,7 @@ import {
   canUseUpgradeFeature,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
+import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
 import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -60,7 +61,6 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
-import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import {
   labelStyle,
   labelTextStyle,
@@ -635,45 +635,34 @@ export const AIAgentRunPC: FC = () => {
                     readOnly={true}
                     colorScheme={"techPurple"}
                     options={[
-                      {
-                        label: (
-                          <div css={labelStyle}>
-                            <OpenAIIcon />
-                            <span css={labelTextStyle}>GPT-3.5</span>
-                          </div>
-                        ),
-                        value: AI_AGENT_MODEL.GPT_3_5_TURBO,
-                      },
-                      {
-                        label: (
-                          <div css={labelStyle}>
-                            <OpenAIIcon />
-                            <span css={labelTextStyle}>GPT-3.5-16k</span>
-                            {!canUseBillingFeature && (
-                              <div css={premiumContainerStyle}>
-                                <UpgradeIcon />
-                                <div style={{ marginLeft: 4 }}>Premium</div>
-                              </div>
-                            )}
-                          </div>
-                        ),
-                        value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
-                      },
-                      {
-                        label: (
-                          <div css={labelStyle}>
-                            <OpenAIIcon />
-                            <span css={labelTextStyle}>GPT-4</span>
-                            {!canUseBillingFeature && (
-                              <div css={premiumContainerStyle}>
-                                <UpgradeIcon />
-                                <div style={{ marginLeft: 4 }}>Premium</div>
-                              </div>
-                            )}
-                          </div>
-                        ),
-                        value: AI_AGENT_MODEL.GPT_4,
-                      },
+                      ...freeModelList.map((model) => {
+                        return {
+                          label: (
+                            <div css={labelStyle}>
+                              {model.logo}
+                              <span css={labelTextStyle}>{model.name}</span>
+                            </div>
+                          ),
+                          value: model.value,
+                        }
+                      }),
+                      ...premiumModelList.map((model) => {
+                        return {
+                          label: (
+                            <div css={labelStyle}>
+                              {model.logo}
+                              <span css={labelTextStyle}>{model.name}</span>
+                              {!canUseBillingFeature && (
+                                <div css={premiumContainerStyle}>
+                                  <UpgradeIcon />
+                                  <div style={{ marginLeft: 4 }}>Premium</div>
+                                </div>
+                              )}
+                            </div>
+                          ),
+                          value: model.value,
+                        }
+                      }),
                     ]}
                   />
                 </AIAgentBlock>

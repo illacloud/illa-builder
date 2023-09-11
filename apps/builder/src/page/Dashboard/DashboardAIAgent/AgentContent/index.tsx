@@ -1,4 +1,4 @@
-import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent/service"
+import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,

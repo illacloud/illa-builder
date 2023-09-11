@@ -1,9 +1,9 @@
-import { MarketAgentCard } from "@illa-public/market-agent/MarketAgentCard"
-import { MarketAIAgent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { MarketAgentCard } from "@illa-public/market-agent"
+import { MarketAIAgent } from "@illa-public/market-agent"
 import {
   MARKET_AGENT_SORTED_OPTIONS,
   fetchMarketAgentList,
-} from "@illa-public/market-agent/service"
+} from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,

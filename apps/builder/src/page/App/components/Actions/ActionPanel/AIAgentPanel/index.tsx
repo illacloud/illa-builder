@@ -1,4 +1,4 @@
-import { AI_AGENT_MODEL } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { getLLM } from "@illa-public/market-agent/modelList"
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -17,12 +17,6 @@ import { ActionEventHandler } from "../ActionEventHandler"
 import HorizontalWithLabel from "../Layout/HorizontalWithLabel"
 import ActionPanelSpace from "../Layout/Space"
 import { TransformerComponent } from "../TransformerComponent"
-
-export const AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL = {
-  [AI_AGENT_MODEL.GPT_3_5_TURBO]: "GPT 3.5",
-  [AI_AGENT_MODEL.GPT_3_5_TURBO_16K]: "GPT 3.5-16K",
-  [AI_AGENT_MODEL.GPT_4]: "GPT 4",
-}
 
 const AIAgentPanel: FC = () => {
   const currentAction = useSelector(getCachedAction)!
@@ -103,11 +97,7 @@ const AIAgentPanel: FC = () => {
           prefix={<ModalOpenAIIcon />}
           colorScheme="techPurple"
           readOnly
-          value={
-            AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL[
-              aiAgentContent.virtualResource.model
-            ]
-          }
+          value={getLLM(aiAgentContent.virtualResource.model)?.name}
         />
       </HorizontalWithLabel>
       {variables.length > 0 && (

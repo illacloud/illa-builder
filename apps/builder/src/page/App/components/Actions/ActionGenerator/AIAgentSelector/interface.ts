@@ -1,4 +1,4 @@
-import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { Agent } from "@illa-public/market-agent"
 import { ActionCreatorPage } from "@/page/App/components/Actions/ActionGenerator/interface"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 
