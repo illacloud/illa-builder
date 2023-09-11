@@ -820,7 +820,12 @@ export const AIAgent: FC = () => {
                     control={control}
                     rules={{
                       required: true,
-                      validate: (value) => value > 0 && value <= 2,
+                      validate: (value) =>
+                        value >=
+                          (getLLM(modelField.value)?.temperatureRange[0] ??
+                            0.1) &&
+                        value <=
+                          (getLLM(modelField.value)?.temperatureRange[1] ?? 1),
                     }}
                     shouldUnregister={false}
                     render={({ field }) => (
