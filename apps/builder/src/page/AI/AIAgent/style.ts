@@ -88,6 +88,7 @@ export const labelStyle = css`
 `
 
 export const labelTextStyle = css`
+  line-height: 22px;
   margin-left: 8px;
   flex-grow: 1;
   flex-shrink: 1;
