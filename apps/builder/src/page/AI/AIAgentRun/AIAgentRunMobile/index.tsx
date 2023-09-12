@@ -1,15 +1,13 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
-import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentMobile, ShareAgentTab } from "@illa-public/invite-modal"
 import {
   AI_AGENT_TYPE,
   Agent,
   MarketAIAgent,
-  freeModelList,
   getAIAgentMarketplaceInfo,
+  getLLM,
   isPremiumModel,
-  premiumModelList,
 } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
@@ -50,25 +48,17 @@ import {
   Button,
   DependencyIcon,
   ForkIcon,
-  Input,
   LoadingIcon,
   PlayFillIcon,
   PreviousIcon,
   RadioGroup,
   ResetIcon,
-  Select,
   StarFillIcon,
   StarOutlineIcon,
   getColor,
   useMessage,
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
-import {
-  labelStyle,
-  labelTextStyle,
-  premiumContainerStyle,
-} from "@/page/AI/AIAgent/style"
-import { buttonContainerStyle } from "@/page/AI/AIAgentRun/AIAgentRunPC/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interface"
@@ -87,13 +77,16 @@ import {
   agentNameStyle,
   agentTeamNameStyle,
   aiAgentContainerStyle,
+  buttonContainerStyle,
   configContainerStyle,
   dividerStyle,
   headerContainerStyle,
   headerInfoStyle,
+  labelStyle,
   lineStyle,
   menuContainerStyle,
   previewChatContainer,
+  readOnlyTextStyle,
   shareContainerStyle,
   tabContainerStyle,
   tabStyle,
@@ -442,41 +435,10 @@ export const AIAgentRunMobile: FC = () => {
           control={control}
           render={({ field }) => (
             <AIAgentBlock title={t("editor.ai-agent.label.model")}>
-              <Select
-                {...field}
-                colorScheme={"techPurple"}
-                readOnly={true}
-                options={[
-                  ...freeModelList.map((item) => {
-                    return {
-                      label: (
-                        <div css={labelStyle}>
-                          {item.logo}
-                          <span css={labelTextStyle}>{item.name}</span>
-                        </div>
-                      ),
-                      value: item.value,
-                    }
-                  }),
-                  ...premiumModelList.map((item) => {
-                    return {
-                      label: (
-                        <div css={labelStyle}>
-                          {item.logo}
-                          <span css={labelTextStyle}>{item.name}</span>
-                          {!canUseBillingFeature && (
-                            <div css={premiumContainerStyle}>
-                              <UpgradeIcon />
-                              <div style={{ marginLeft: 4 }}>Premium</div>
-                            </div>
-                          )}
-                        </div>
-                      ),
-                      value: item.value,
-                    }
-                  }),
-                ]}
-              />
+              <div css={labelStyle}>
+                {getLLM(field.value)?.logo}
+                <span css={readOnlyTextStyle}>{getLLM(field.value)?.name}</span>
+              </div>
             </AIAgentBlock>
           )}
         />
@@ -489,7 +451,7 @@ export const AIAgentRunMobile: FC = () => {
               title={"Max Token"}
               tips={t("editor.ai-agent.tips.max-token")}
             >
-              <Input value={field.value} colorScheme={"techPurple"} readOnly />
+              <div css={readOnlyTextStyle}>{field.value}</div>
             </AIAgentBlock>
           )}
         />
@@ -502,7 +464,7 @@ export const AIAgentRunMobile: FC = () => {
               title={"Temperature"}
               tips={t("editor.ai-agent.tips.temperature")}
             >
-              <Input value={field.value} colorScheme={"techPurple"} readOnly />
+              <div css={readOnlyTextStyle}>{field.value}</div>
             </AIAgentBlock>
           )}
         />
