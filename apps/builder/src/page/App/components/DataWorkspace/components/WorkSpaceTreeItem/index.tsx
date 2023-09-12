@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion"
-import { FC, MouseEvent, memo, useMemo } from "react"
+import { FC, MouseEvent, memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon } from "@illa-design/react"
 import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
@@ -32,19 +32,6 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
     const isExpanded = expandedKeys.includes(uniqueKey)
     const dispatch = useDispatch()
     const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
-
-    const tree = useMemo(() => {
-      return keyArr.map((name) => (
-        <WorkSpaceTreeNode
-          key={name}
-          name={name}
-          value={data[name]}
-          itemKey={title + name}
-          level={level}
-          parentKey={uniqueKey}
-        />
-      ))
-    }, [keyArr, data, title, level, uniqueKey])
 
     return (
       <>
@@ -82,7 +69,16 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
               transition={{ duration: 0.2 }}
               exit="exit"
             >
-              {tree}
+              {keyArr.map((name) => (
+                <WorkSpaceTreeNode
+                  key={name}
+                  name={name}
+                  value={data[name]}
+                  itemKey={title + name}
+                  level={level}
+                  parentKey={uniqueKey}
+                />
+              ))}
             </motion.div>
           )}
         </AnimatePresence>

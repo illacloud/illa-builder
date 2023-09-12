@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
@@ -26,7 +26,7 @@ import {
 } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { isContainerType } from "@/utils/componentChecker"
 import { FocusManager } from "@/utils/focusManager"
-import { MoveBarPositionShape, MoveBarProps } from "./interface"
+import { MoveBarProps } from "./interface"
 import {
   applyMoveBarWrapperStyle,
   displayNameContainerStyle,
@@ -99,18 +99,10 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     containerWidthRef.current = bounds.width
   }, [bounds.width, currentState])
 
-  const position: MoveBarPositionShape = useMemo(() => {
-    if (widgetTop + SCROLL_CONTAINER_PADDING >= MOVE_BAR_HEIGHT) {
-      return {
-        direction: "top",
-        position: -MOVE_BAR_HEIGHT,
-      }
-    }
-    return {
-      direction: "top",
-      position: 0,
-    }
-  }, [widgetTop])
+  const topPosition =
+    widgetTop + SCROLL_CONTAINER_PADDING >= MOVE_BAR_HEIGHT
+      ? -MOVE_BAR_HEIGHT
+      : 0
 
   const minWidth =
     userList.length >= 3
@@ -123,7 +115,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     bounds.width <=
     (userList.length >= 2 ? MIN_MOVE_BAR_WIDTH : MIN_DISABLE_MARGIN_WIDTH)
 
-  const handleClickOnMoveBar = useCallback(() => {
+  const handleClickOnMoveBar = () => {
     if (isContainerType(widgetType)) {
       FocusManager.switchFocus("canvas", {
         displayName: displayName,
@@ -131,7 +123,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         clickPosition: [],
       })
     }
-  }, [displayName, widgetType])
+  }
 
   return (
     <div
@@ -142,7 +134,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         isError,
         selected,
         isLikeProductionMode,
-        position,
+        topPosition,
         !!userList.length,
         isMouseOver,
       )}

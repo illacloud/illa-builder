@@ -12,9 +12,4 @@ export interface MoveBarProps {
   columnNumber: number
 }
 
-export interface MoveBarPositionShape {
-  direction: "top" | "bottom"
-  position: number
-}
-
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
