@@ -9,7 +9,7 @@ export const panelActionBarWrapperStyle = css`
 `
 
 export const baseIconStyle = css`
-  font-size: 12px;
+  font-size: 16px;
 `
 
 export const clickHotpotWrapperStyle = css`

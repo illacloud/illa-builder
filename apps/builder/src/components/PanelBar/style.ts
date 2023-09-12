@@ -110,7 +110,7 @@ export function applyPanelBarOpenedIconStyle(
   return css`
     transition: transform 200ms;
     transform-origin: center;
-    font-size: 12px;
+    font-size: 16px;
     ${fontColorStyle};
     ${rotate}
   `
@@ -137,7 +137,7 @@ export const panelBarItemContainerAnimationVariants: Variants = {
 }
 
 export const customIconHotpotStyle = css`
-  font-size: 12px;
+  font-size: 16px;
   width: 24px;
   height: 24px;
   display: flex;
