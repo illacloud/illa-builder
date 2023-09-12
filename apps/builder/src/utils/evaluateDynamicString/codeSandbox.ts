@@ -1,3 +1,5 @@
+import { cloneDeep } from "lodash"
+
 const blacklistSet = new Set([
   "top",
   "window",
@@ -158,5 +160,5 @@ export const evalScript = (script: string, dataTree: Record<string, any>) => {
   const userCode = runUsersCode(script)
   const sandbox = proxySandbox(dataTree)
   const result = userCode.call(sandbox)
-  return result
+  return cloneDeep(result)
 }

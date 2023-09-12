@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext } from "react"
+import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/react"
@@ -16,11 +16,12 @@ const MultiSelectedPanel: FC = () => {
   const { t } = useTranslation()
   const shortcut = useContext(ShortCutContext)
 
-  const handleClickDeleteButton = useCallback(() => {
+  const handleClickDeleteButton = () => {
     shortcut.showDeleteDialog(selectedComponents, "widget", {
       source: "left_multi_delete",
     })
-  }, [selectedComponents, shortcut])
+  }
+
   return (
     <div css={multiSelectedPanelWrapper}>
       <div css={formHeaderStyle}>

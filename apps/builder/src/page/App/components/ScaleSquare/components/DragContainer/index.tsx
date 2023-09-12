@@ -1,5 +1,4 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { cloneDeep } from "lodash"
 import { FC } from "react"
 import { useDrag } from "react-dnd"
 import { useSelector } from "react-redux"
@@ -61,7 +60,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
         let allWidgetLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
         illaSnapshot.setSnapshot(allWidgetLayoutInfo)
         let draggedSelectedComponents: WidgetLayoutInfo[] = []
-        let currentSelectedComponents = cloneDeep(selectedComponents)
+        let currentSelectedComponents = selectedComponents
         if (!currentSelectedComponents.includes(displayName)) {
           currentSelectedComponents = [displayName]
         }

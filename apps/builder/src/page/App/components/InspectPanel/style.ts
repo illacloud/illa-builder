@@ -151,6 +151,10 @@ export const multiSelectedPanelWrapper = css`
   padding: 0 16px;
   width: 100%;
   font-size: 14px;
+  height: calc(100% - 1px);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 8px;
 `
 
 export const formHeaderStyle = css`
@@ -159,10 +163,11 @@ export const formHeaderStyle = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-weight: 600;
+  flex: none;
 `
 
 export const formContentStyle = css`
-  overflow: hidden;
+  overflow: auto;
   width: 100%;
   margin-bottom: 16px;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
