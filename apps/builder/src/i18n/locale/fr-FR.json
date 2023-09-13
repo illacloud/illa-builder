@@ -1382,7 +1382,11 @@
         },
         "event": "Evénement",
         "MESSAGE": "MESSAGE",
-        "Toolbar": "BARRE D'OUTIL"
+        "Toolbar": "BARRE D'OUTIL",
+        "divider": "Inner divider",
+        "shadow": "Inner shadow",
+        "background": "Background",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
