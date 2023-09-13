@@ -3753,10 +3753,6 @@
           "colla": "Kolla",
           "seats": "Seter"
         },
-        "cycle": {
-          "month": "{{totalCost}}/måned",
-          "year": "{{totalCost}}/år"
-        },
         "table_desc": {
           "bouns": "Når din nåværende syklus sin Colla balance er utilstrekkelig, vil vi automatisk legge til Colla for deg. Bonus Colla er en ekstra kostnad og er ikke inkludert i abonnementet for syklusen. Når abonnementet ditt fornyes automatisk i den neste syklusen, vil det ikke inkludere bonussamling."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Lisenser",
         "storage": "Lagring",
         "traffic": "Trafikk",
-        "colla": "Kolla"
+        "colla": "Kolla",
+        "colla_unsub": "Balanse",
+        "colla_sub": "Kolla"
       },
       "period": {
         "current": "Nåværende",
         "next": "Neste"
+      },
+      "cycle": {
+        "month": "/ måned",
+        "year": "/ år"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Fjern vannmerke"
+    },
+    "label": {
+      "canceled": "Avbrutt"
     }
   },
   "network": {
