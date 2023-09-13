@@ -1,4 +1,4 @@
-import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { Agent } from "@illa-public/market-agent"
 import { FC, useCallback, useState } from "react"
 import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
