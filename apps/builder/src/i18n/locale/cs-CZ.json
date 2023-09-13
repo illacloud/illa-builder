@@ -3753,10 +3753,6 @@
           "colla": "Colla",
           "seats": "Sedadla"
         },
-        "cycle": {
-          "month": "{{totalCost}}/měsíc",
-          "year": "{{totalCost}}/rok"
-        },
         "table_desc": {
           "bouns": "Když bude bilance vašeho aktuálního cyklu Colla nedostatečná, automaticky pro vás přidáme Colla. Bonus Colla je další poplatek a není zahrnut do předplatného pro cyklus. Jakmile se Vaše předplatné v příštím cyklu automaticky obnoví, nebude obsahovat Bonus Colla."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Licence",
         "storage": "Úložiště",
         "traffic": "Provoz",
-        "colla": "Colla"
+        "colla": "Colla",
+        "colla_unsub": "Zůstatek",
+        "colla_sub": "Colla"
       },
       "period": {
         "current": "Aktuální",
         "next": "Další"
+      },
+      "cycle": {
+        "month": "/ měsíc",
+        "year": "/ rok"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Odstranit vodoznak"
+    },
+    "label": {
+      "canceled": "Zrušeno"
     }
   },
   "network": {
