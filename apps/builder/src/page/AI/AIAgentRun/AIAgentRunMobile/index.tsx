@@ -1,14 +1,14 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
-import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentMobile, ShareAgentTab } from "@illa-public/invite-modal"
 import {
-  AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   Agent,
   MarketAIAgent,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
-import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+  getAIAgentMarketplaceInfo,
+  getLLM,
+  isPremiumModel,
+} from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -24,15 +24,13 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
 import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
@@ -55,20 +53,12 @@ import {
   PreviousIcon,
   RadioGroup,
   ResetIcon,
-  Select,
   StarFillIcon,
   StarOutlineIcon,
   getColor,
   useMessage,
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
-import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
-import {
-  labelStyle,
-  labelTextStyle,
-  premiumContainerStyle,
-} from "@/page/AI/AIAgent/style"
-import { buttonContainerStyle } from "@/page/AI/AIAgentRun/AIAgentRunPC/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interface"
@@ -87,13 +77,16 @@ import {
   agentNameStyle,
   agentTeamNameStyle,
   aiAgentContainerStyle,
+  buttonContainerStyle,
   configContainerStyle,
   dividerStyle,
   headerContainerStyle,
   headerInfoStyle,
+  labelStyle,
   lineStyle,
   menuContainerStyle,
   previewChatContainer,
+  readOnlyTextStyle,
   shareContainerStyle,
   tabContainerStyle,
   tabStyle,
@@ -383,9 +376,6 @@ export const AIAgentRunMobile: FC = () => {
         <Controller
           name="prompt"
           control={control}
-          rules={{
-            required: true,
-          }}
           shouldUnregister={false}
           render={({ field: promptField }) => (
             <Controller
@@ -444,63 +434,44 @@ export const AIAgentRunMobile: FC = () => {
           name="model"
           control={control}
           render={({ field }) => (
-            <AIAgentBlock title={t("editor.ai-agent.label.model")} required>
-              <Select
-                {...field}
-                colorScheme={"techPurple"}
-                readOnly={true}
-                options={[
-                  {
-                    label: (
-                      <div css={labelStyle}>
-                        <OpenAIIcon />
-                        <span css={labelTextStyle}>GPT-3.5</span>
-                      </div>
-                    ),
-                    value: AI_AGENT_MODEL.GPT_3_5_TURBO,
-                  },
-                  {
-                    label: (
-                      <div css={labelStyle}>
-                        <OpenAIIcon />
-                        <span css={labelTextStyle}>GPT-3.5-16k</span>
-                        {!canUseBillingFeature && (
-                          <div css={premiumContainerStyle}>
-                            <UpgradeIcon />
-                            <div style={{ marginLeft: 4 }}>Premium</div>
-                          </div>
-                        )}
-                      </div>
-                    ),
-                    value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
-                  },
-                  {
-                    label: (
-                      <div css={labelStyle}>
-                        <OpenAIIcon />
-                        <span css={labelTextStyle}>GPT-4</span>
-                        {!canUseBillingFeature && (
-                          <div css={premiumContainerStyle}>
-                            <UpgradeIcon />
-                            <div style={{ marginLeft: 4 }}>Premium</div>
-                          </div>
-                        )}
-                      </div>
-                    ),
-                    value: AI_AGENT_MODEL.GPT_4,
-                  },
-                ]}
-              />
+            <AIAgentBlock title={t("editor.ai-agent.label.model")}>
+              <div css={labelStyle}>
+                {getLLM(field.value)?.logo}
+                <span css={readOnlyTextStyle}>{getLLM(field.value)?.name}</span>
+              </div>
+            </AIAgentBlock>
+          )}
+        />
+        <Controller
+          name={"modelConfig.maxTokens"}
+          control={control}
+          shouldUnregister={false}
+          render={({ field }) => (
+            <AIAgentBlock
+              title={"Max Token"}
+              tips={t("editor.ai-agent.tips.max-token")}
+            >
+              <div css={readOnlyTextStyle}>{field.value}</div>
+            </AIAgentBlock>
+          )}
+        />
+        <Controller
+          name="modelConfig.temperature"
+          control={control}
+          shouldUnregister={false}
+          render={({ field }) => (
+            <AIAgentBlock
+              title={"Temperature"}
+              tips={t("editor.ai-agent.tips.temperature")}
+            >
+              <div css={readOnlyTextStyle}>{field.value}</div>
             </AIAgentBlock>
           )}
         />
       </div>
       <form
         onSubmit={handleSubmit(async (data) => {
-          if (
-            data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
-            !canUseBillingFeature
-          ) {
+          if (!isPremiumModel(data.model) && !canUseBillingFeature) {
             upgradeModal({
               modalType: "agent",
             })

@@ -60,6 +60,22 @@ export const agentTitleContainerStyle = css`
   align-items: center;
 `
 
+export const labelStyle = css`
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const readOnlyTextStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+`
+
 export const agentNicknameStyle = css`
   color: ${getColor("grayBlue", "02")};
   font-size: 18px;
