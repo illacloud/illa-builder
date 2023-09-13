@@ -3676,6 +3676,9 @@
     "plus-btn": "Prova gratisversionen",
     "enterprise-btn": "Kontakta oss",
     "menu": {
+      "overview": "Översikt",
+      "pricing": "Prissättning",
+      "balance": "Saldo",
       "billing": "Fakturering",
       "license": "Licens",
       "drive": "Enhet",
@@ -3684,14 +3687,84 @@
       "colla_transaction": "Colla transaktionshistorik",
       "billing_portal": "Faktureringsportal"
     },
+    "pricing": {
+      "premium": {
+        "desc": "Uppgradera ditt team för att få tillgång till avancerade funktioner",
+        "feature": {
+          "builder": {
+            "viewer": "GRATIS för obegränsat antal tittare",
+            "audit_log": "Granskningsloggar",
+            "public": "Publik app",
+            "sql": "AI SQL Generation",
+            "history": "Säkerhetskopiera redigeringshistorik och återställ",
+            "theme": "Anpassade teman för dina appar",
+            "multi_environment": "Multimiljö ( kommer snart )",
+            "deployed_version": "Behåll distribuerade versioner och återställ ( kommer snart )"
+          },
+          "agent": {
+            "gpt": "Tillgång till fler modeller som GPT-4, GPT-3.5...",
+            "colla": "30k Colla (För första gången)"
+          }
+        },
+        "price": "/månad/redaktör"
+      },
+      "colla": {
+        "desc": "Används för betalning av avgifter för mervärdestjänster inom ILLA Cloud, inklusive följande tjänster",
+        "feature": {
+          "storage": "Fillagring. Används för att lagra filer på ILLA Drive.",
+          "traffic": "Traffic. Används för att ladda ner filer från ILLA Drive.",
+          "token": "AI Agent token. Används för att köra AI-agenter.",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5 GB lagring",
+            "3": "5GB trafik",
+            "4": "100K token"
+          }
+        },
+        "price": "/månad/10k Colla"
+      }
+    },
     "title": {
       "billing": "Fakturering",
       "license": "Licens",
       "drive": "Enhet",
       "colla": "Korsa",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "Översikt",
+      "pricing": "Prissättning",
+      "balance": "Saldo",
+      "colla_usage": "Colla användning"
+    },
+    "colla_usage": {
+      "used": "Använt",
+      "token": "Token",
+      "storage": "Lagring",
+      "traffic": "Trafik"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "Gratis",
+        "plus": "Plus",
+        "premium": "Premium"
+      },
+      "colla": {
+        "desc": "Används för betalning av avgifter för mervärdestjänster inom ILLA Cloud, inklusive lagring för ILLA Drive, trafik för ILLA Drive och token för AI Agent.",
+        "table_title": {
+          "colla": "Korsa",
+          "seats": "Sittplatser"
+        },
+        "cycle": {
+          "month": "{{totalCost}}/månad",
+          "year": "{{totalCost}}/år"
+        },
+        "table_desc": {
+          "bouns": "När din nuvarande cykels Colla saldo är otillräckligt, lägger vi automatiskt till Colla åt dig. Bonus Colla är en extra avgift och ingår inte i abonnemanget för cykeln. När din prenumeration förnyas automatiskt i nästa cykel, kommer den inte att inkludera Bonus Colla."
+        },
+        "table_button": {
+          "seats": "Hantera säten",
+          "colla": "Hantera Colla"
+        }
+      },
       "plan": {
         "free": "Gratis",
         "plus": "Plus"
@@ -3770,6 +3843,10 @@
         "Traffic": "Trafik",
         "colla": "Korsa"
       },
+      "price": {
+        "colla_monthly": "{{price}}/månatlig/10k Colla",
+        "colla_yearly": "{{price}}/år/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "Licenser",
         "Storage_traffic": "GB",
@@ -3813,7 +3890,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "Avprenumerera",
@@ -3825,6 +3902,12 @@
         "license_remove": "Ta bort {{changeNum}} licenser",
         "colla_increase": "Öka {{changeNum}} Colla",
         "colla_remove": "Ta bort {{changeNum}} Colla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} lagring",
+        "3": "{{trafficNum}} trafik",
+        "4": "{{tokenNum}} token"
       },
       "description_title": {
         "add_storage": "Du kommer att lägga till {{changeNum}} GB lagring. När vi har bekräftat detta kommer vi omedelbart att dra av betalningen för den nya lagringen för denna faktureringscykel. <0>Läs mer</0>",
@@ -3904,6 +3987,44 @@
       "update_suc": "Prenumerationen har uppdaterats"
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "Otillräckligt lagringsutrymme",
+          "desc": {
+            "1": "Ditt lagringsutrymme är otillräckligt. Vänligen prenumerera på Colla för att öka ditt lagringsutrymme.",
+            "2": "Efter att du prenumererat på Colla, kan din Colla användas för att öka lagring, öka trafiken, och augment token, som automatiskt tilldelas baserat på dina behov."
+          }
+        },
+        "traffic": {
+          "title": "Otillräcklig trafik",
+          "desc": {
+            "1": "Din trafik är otillräcklig. Vänligen prenumerera på Colla för att öka din trafik.",
+            "2": "Efter att du prenumererat på Colla, kan din Colla användas för att öka lagring, öka trafiken, och augment token, som automatiskt tilldelas baserat på dina behov."
+          }
+        },
+        "token": {
+          "title": "Otillräcklig token",
+          "desc": {
+            "1": "Din token är otillräcklig. Vänligen prenumerera på Colla för att öka din token.",
+            "2": "Efter att du prenumererat på Colla, kan din Colla användas för att öka lagring, öka trafiken, och augment token, som automatiskt tilldelas baserat på dina behov."
+          }
+        },
+        "button": "Öka Colla",
+        "cycle": "/månatlig/10k Colla",
+        "failed": {
+          "title": "Det gick inte att öka Colla",
+          "storage": {
+            "desc": "Ditt Colla saldo är otillräckligt för att täcka det aktuella lagringsbehovet. Och vi stötte på några problem samtidigt öka din Colla. Vänligen öka Colla manuellt."
+          },
+          "traffic": {
+            "desc": "Ditt Colla saldo är otillräckligt för att täcka det aktuella trafikbehovet. Och vi stötte på några problem samtidigt öka din Colla. Vänligen öka Colla manuellt."
+          },
+          "token": {
+            "desc": "Ditt Colla saldo är otillräckligt för att täcka det aktuella token krav. Och vi stötte på några problem samtidigt öka din Colla. Vänligen öka Colla manuellt."
+          },
+          "button": "Öka Colla"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "Otillräcklig kapacitet",
         "owner_description_drive": "Lagring eller trafik räcker inte. Uppgradera och försök igen.",
