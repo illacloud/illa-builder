@@ -3676,6 +3676,9 @@
     "plus-btn": "Vyzkoušejte bezplatnou verzi",
     "enterprise-btn": "Kontaktujte nás",
     "menu": {
+      "overview": "Přehled",
+      "pricing": "Ceník",
+      "balance": "Zůstatek",
       "billing": "Fakturace",
       "license": "Licence",
       "drive": "Řidič",
@@ -3684,14 +3687,84 @@
       "colla_transaction": "Historie transakcí Colla",
       "billing_portal": "Fakturační portál"
     },
+    "pricing": {
+      "premium": {
+        "desc": "Povyšte svůj tým pro přístup k pokročilým funkcím",
+        "feature": {
+          "builder": {
+            "viewer": "ZDARMA pro neomezený počet diváků",
+            "audit_log": "Záznamy auditu",
+            "public": "Veřejná aplikace",
+            "sql": "Generování AI SQL",
+            "history": "Historie úprav a obnovení záloh",
+            "theme": "Vlastní motivy pro vaše aplikace",
+            "multi_environment": "Multi-prostředí ( brzy )",
+            "deployed_version": "Ponechat nasazené verze a vrátit se zpět ( brzy )"
+          },
+          "agent": {
+            "gpt": "Přístup k více modelům, jako je GPT-4, GPT-3.5...",
+            "colla": "30k Colla (poprvé )"
+          }
+        },
+        "price": "/měsíc/editor"
+      },
+      "colla": {
+        "desc": "Používá se k úhradě poplatků vzniklých za služby s přidanou hodnotou v rámci ILLA Cloud, včetně těchto služeb",
+        "feature": {
+          "storage": "Ukládání souborů. Používá se na úložiště souborů na ILLA Drive.",
+          "traffic": "Doprava. Používá se ke stahování souborů z ILLA Drive.",
+          "token": "token AI agenta. Používá se ke spuštění AI agentů.",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5GB úložiště",
+            "3": "5GB provozu",
+            "4": "Token 100K"
+          }
+        },
+        "price": "/měsíc/10k Colla"
+      }
+    },
     "title": {
       "billing": "Fakturace",
       "license": "Licence",
       "drive": "Řidič",
       "colla": "Colla",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "Přehled",
+      "pricing": "Ceník",
+      "balance": "Zůstatek",
+      "colla_usage": "Využití Colla"
+    },
+    "colla_usage": {
+      "used": "Použité",
+      "token": "Token",
+      "storage": "Úložiště",
+      "traffic": "Provoz"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "Zdarma",
+        "plus": "Plus",
+        "premium": "Prémie"
+      },
+      "colla": {
+        "desc": "používá se k úhradě poplatků vzniklých za služby s přidanou hodnotou v rámci ILLA Cloud, včetně úložiště pro ILLA Drive, provozu pro ILLA Disk a tokenu pro agenta AI.",
+        "table_title": {
+          "colla": "Colla",
+          "seats": "Sedadla"
+        },
+        "cycle": {
+          "month": "{{totalCost}}/měsíc",
+          "year": "{{totalCost}}/rok"
+        },
+        "table_desc": {
+          "bouns": "Když bude bilance vašeho aktuálního cyklu Colla nedostatečná, automaticky pro vás přidáme Colla. Bonus Colla je další poplatek a není zahrnut do předplatného pro cyklus. Jakmile se Vaše předplatné v příštím cyklu automaticky obnoví, nebude obsahovat Bonus Colla."
+        },
+        "table_button": {
+          "seats": "Správa sedadel",
+          "colla": "Spravovat Colla"
+        }
+      },
       "plan": {
         "free": "Zdarma",
         "plus": "Plus"
@@ -3770,6 +3843,10 @@
         "Traffic": "Provoz",
         "colla": "Colla"
       },
+      "price": {
+        "colla_monthly": "{{price}}/měsíčně/10k Colla",
+        "colla_yearly": "{{price}}/ročně/10 k Colla"
+      },
       "plan_number_input_label": {
         "License": "Licence",
         "Storage_traffic": "CZ",
@@ -3813,7 +3890,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "Odhlásit odběr",
@@ -3825,6 +3902,12 @@
         "license_remove": "Odstranit {{changeNum}} licencí",
         "colla_increase": "Zvýšit {{changeNum}} Colla",
         "colla_remove": "Odstranit {{changeNum}} Colla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} úložiště",
+        "3": "{{trafficNum}} provoz",
+        "4": "{{tokenNum}} token"
       },
       "description_title": {
         "add_storage": "Chystáte se přidat úložiště {{changeNum}} GB. Jakmile bude potvrzeno, okamžitě si odečteme platbu za nové úložiště pro tento fakturační cyklus. <0>Další informace</0>",
@@ -3904,6 +3987,44 @@
       "update_suc": "Předplatné úspěšně aktualizováno"
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "Nedostatek úložiště",
+          "desc": {
+            "1": "Vaše úložiště je nedostatečné. Prosím, přihlaste se do Colla a zvýšte své úložiště.",
+            "2": "Po přihlášení do Colly lze vaše Colla využít k rozšíření úložiště, zvýšení provozu, a rozšiřující token, který bude automaticky přidělen na základě vašich potřeb."
+          }
+        },
+        "traffic": {
+          "title": "Nedostatečný provoz",
+          "desc": {
+            "1": "Váš provoz je nedostatečný. Prosím, přihlaste se do Colla a zvýšte svůj provoz.",
+            "2": "Po přihlášení do Colly lze vaše Colla využít k rozšíření úložiště, zvýšení provozu, a rozšiřující token, který bude automaticky přidělen na základě vašich potřeb."
+          }
+        },
+        "token": {
+          "title": "Nedostatečný token",
+          "desc": {
+            "1": "Váš token je nedostatečný. Prosím, přihlaste se do Colla a zvětšete svůj token.",
+            "2": "Po přihlášení do Colly lze vaše Colla využít k rozšíření úložiště, zvýšení provozu, a rozšiřující token, který bude automaticky přidělen na základě vašich potřeb."
+          }
+        },
+        "button": "Zvýšit Colla",
+        "cycle": "/měsíčně/10k Colla",
+        "failed": {
+          "title": "Nepodařilo se zvýšit Colla",
+          "storage": {
+            "desc": "Váš Colla zůstatek nestačí k pokrytí aktuálního požadavku na úložiště. A narazili jsme na některé problémy při zvyšování vaší Colla. Prosím zvyšte Colla ručně."
+          },
+          "traffic": {
+            "desc": "Váš Colla zůstatek nestačí k pokrytí aktuálního požadavku na dopravu. A při zvýšení vaší Colly jsme narazili na některé problémy. Prosím zvyšte Colla ručně."
+          },
+          "token": {
+            "desc": "Váš Colla zůstatek nestačí k pokrytí aktuálního požadavku na token. A narazili jsme na některé problémy při zvyšování vaší Colla. Prosím zvyšte Colla ručně."
+          },
+          "button": "Zvýšit Colla"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "Nedostatečná kapacita",
         "owner_description_drive": "Úložiště nebo provoz nestačí. Proveďte aktualizaci a zkuste to znovu.",
