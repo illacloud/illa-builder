@@ -1382,7 +1382,11 @@
         },
         "event": "イベント",
         "MESSAGE": "メッセージ",
-        "Toolbar": "ツールバー"
+        "Toolbar": "ツールバー",
+        "divider": "Inner divider",
+        "shadow": "Inner shadow",
+        "background": "Background",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
