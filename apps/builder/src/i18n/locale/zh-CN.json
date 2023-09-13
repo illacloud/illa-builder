@@ -3753,10 +3753,6 @@
           "colla": "Colla",
           "seats": "坐席"
         },
-        "cycle": {
-          "month": "{{totalCost}}/月",
-          "year": "{{totalCost}}/年"
-        },
         "table_desc": {
           "bouns": "在您当前周期的Colla余额不足时，我们将自动为您增加Colla。 “Bonus Colla”是一个额外的费用，不包括在周期订阅中，因此您的订阅在下一个周期自动续订时，也只会支付您订阅的Colla的费用。"
         },
@@ -3784,11 +3780,17 @@
         "licenses": "许可证",
         "storage": "存储空间",
         "traffic": "流量",
-        "colla": "Colla"
+        "colla": "Colla",
+        "colla_unsub": "余额",
+        "colla_sub": "Colla"
       },
       "period": {
         "current": "当前周期",
         "next": "下个周期"
+      },
+      "cycle": {
+        "month": "/月",
+        "year": "/年"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "移除水印"
+    },
+    "label": {
+      "canceled": "已取消"
     }
   },
   "network": {
