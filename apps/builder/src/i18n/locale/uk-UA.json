@@ -1382,7 +1382,11 @@
         },
         "event": "Подія",
         "MESSAGE": "ПОВІДОМЛЕННЯ",
-        "Toolbar": "ЗАТРИМКА"
+        "Toolbar": "ЗАТРИМКА",
+        "divider": "Inner divider",
+        "shadow": "Inner shadow",
+        "background": "Background",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
