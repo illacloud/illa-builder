@@ -3676,6 +3676,9 @@
     "plus-btn": "试用免费版本",
     "enterprise-btn": "联系我们",
     "menu": {
+      "overview": "总览",
+      "pricing": "定价",
+      "balance": "余额",
       "billing": "账单",
       "license": "许可证",
       "drive": "Drive",
@@ -3684,14 +3687,84 @@
       "colla_transaction": "Colla交易记录",
       "billing_portal": "账单门户网站"
     },
+    "pricing": {
+      "premium": {
+        "desc": "升级您的团队以访问高级功能",
+        "feature": {
+          "builder": {
+            "viewer": "免费添加无限个浏览者",
+            "audit_log": "审计日志",
+            "public": "发布公开App",
+            "sql": "SQL智能生成",
+            "history": "备份编辑历史并支持恢复",
+            "theme": "为您的应用自定义主题",
+            "multi_environment": "多开发环境(即将推出 )",
+            "deployed_version": "保存已部署版本并回滚(即将推出 )"
+          },
+          "agent": {
+            "gpt": "访问更多模型，如GPT-4, GPT-3.5...",
+            "colla": "30k Colla(首次)"
+          }
+        },
+        "price": "/月/编辑者"
+      },
+      "colla": {
+        "desc": "用于支付ILLA Cloud增值服务的费用，包括以下服务",
+        "feature": {
+          "storage": "文件存储，用于在 ILLA Drive上存储文件。",
+          "traffic": "流量，用于从ILLA Drive中下载文件。",
+          "token": "AI Agent Token. 用于运行 AI Agent.",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5GB存储空间",
+            "3": "5GB流量",
+            "4": "100K token"
+          }
+        },
+        "price": "/月/10k Colla"
+      }
+    },
     "title": {
       "billing": "账单",
       "license": "许可证",
       "drive": "Drive",
       "colla": "Colla",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "总览",
+      "pricing": "定价",
+      "balance": "余额",
+      "colla_usage": "Colla用量"
+    },
+    "colla_usage": {
+      "used": "已用",
+      "token": "Token",
+      "storage": "存储空间",
+      "traffic": "流量"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "免费",
+        "plus": "Plus",
+        "premium": "Premium"
+      },
+      "colla": {
+        "desc": "用于支付ILLA Cloud增值服务的费用。包括ILLA Drive的存储空间、ILLA Drive的下载流量和 AI Agent的token。",
+        "table_title": {
+          "colla": "Colla",
+          "seats": "坐席"
+        },
+        "cycle": {
+          "month": "{{totalCost}}/月",
+          "year": "{{totalCost}}/年"
+        },
+        "table_desc": {
+          "bouns": "在您当前周期的Colla余额不足时，我们将自动为您增加Colla。 “Bonus Colla”是一个额外的费用，不包括在周期订阅中，因此您的订阅在下一个周期自动续订时，也只会支付您订阅的Colla的费用。"
+        },
+        "table_button": {
+          "seats": "管理坐席",
+          "colla": "管理Colla"
+        }
+      },
       "plan": {
         "free": "免费",
         "plus": "Premium"
@@ -3770,6 +3843,10 @@
         "Traffic": "流量",
         "colla": "Colla"
       },
+      "price": {
+        "colla_monthly": "{{price}}/月/10k Colla",
+        "colla_yearly": "{{price}}/年/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "许可证",
         "Storage_traffic": "GB",
@@ -3813,7 +3890,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} 个Colla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "取消订阅",
@@ -3825,6 +3902,12 @@
         "license_remove": "删除 {{changeNum}} 个许可证",
         "colla_increase": "{{unitPrice}} × {{storageNum}} 个Colla",
         "colla_remove": "移除 {{changeNum}} 个Colla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} 存储空间",
+        "3": "{{trafficNum}} 流量",
+        "4": "{{tokenNum}} token"
       },
       "description_title": {
         "add_storage": "您将要增加{{changeNum}}GB存储。一经确认，我们将立即扣除此计费周期的新存储空间费用。<0>了解更多</0>",
@@ -3904,6 +3987,44 @@
       "update_suc": "订阅更新成功"
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "存储空间不足",
+          "desc": {
+            "1": "您的存储空间不足。请订阅Colla以增加您的存储空间。",
+            "2": "在订阅Colla后，您的Colla可以用来增加存储，增加流量， 增加token等。可以根据您的需要自动分配。"
+          }
+        },
+        "traffic": {
+          "title": "流量不足",
+          "desc": {
+            "1": "您的流量不足。请订阅Colla以增加您的流量。",
+            "2": "在订阅Colla后，您的Colla可以用来增加存储，增加流量， 增加token等。可以根据您的需要自动分配。"
+          }
+        },
+        "token": {
+          "title": "Token不足",
+          "desc": {
+            "1": "您的token不足。请订阅Colla以增加token。",
+            "2": "在订阅Colla后，您的Colla可以用来增加存储，增加流量， 增加token等。可以根据您的需要自动分配。"
+          }
+        },
+        "button": "增加Colla",
+        "cycle": "/月/10k Colla",
+        "failed": {
+          "title": "增加 Colla 失败",
+          "storage": {
+            "desc": "您的 Colla 余额不足以满足当前存储需求。我们在增加您的 Colla 时遇到了一些问题。请手动增加Colla。"
+          },
+          "traffic": {
+            "desc": "您的 Colla 余额不足以满足当前下载需求。我们在增加您的 Colla 时遇到了一些问题。请手动增加Colla。"
+          },
+          "token": {
+            "desc": "您的 Colla 余额不足以满足当前token需求。我们在增加您的 Colla 时遇到了一些问题。请手动增加Colla。"
+          },
+          "button": "增加Colla"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "配额不足",
         "owner_description_drive": "您的流量或存储空间不足。请升级后重试。",
