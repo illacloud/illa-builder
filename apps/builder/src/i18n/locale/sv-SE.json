@@ -3753,10 +3753,6 @@
           "colla": "Korsa",
           "seats": "Sittplatser"
         },
-        "cycle": {
-          "month": "{{totalCost}}/månad",
-          "year": "{{totalCost}}/år"
-        },
         "table_desc": {
           "bouns": "När din nuvarande cykels Colla saldo är otillräckligt, lägger vi automatiskt till Colla åt dig. Bonus Colla är en extra avgift och ingår inte i abonnemanget för cykeln. När din prenumeration förnyas automatiskt i nästa cykel, kommer den inte att inkludera Bonus Colla."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Licenser",
         "storage": "Lagring",
         "traffic": "Trafik",
-        "colla": "Korsa"
+        "colla": "Korsa",
+        "colla_unsub": "Saldo",
+        "colla_sub": "Korsa"
       },
       "period": {
         "current": "Nuvarande",
         "next": "Nästa"
+      },
+      "cycle": {
+        "month": "/ månad",
+        "year": "/ år"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Ta bort vattenstämpel"
+    },
+    "label": {
+      "canceled": "Avbruten"
     }
   },
   "network": {
