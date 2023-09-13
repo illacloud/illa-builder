@@ -3753,10 +3753,6 @@
           "colla": "Colla",
           "seats": "Seats"
         },
-        "cycle": {
-          "month": "{{totalCost}}/month",
-          "year": "{{totalCost}}/year"
-        },
         "table_desc": {
           "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Licencias",
         "storage": "Almacenamiento",
         "traffic": "Tronco",
-        "colla": "Colla"
+        "colla": "Colla",
+        "colla_unsub": "Balance",
+        "colla_sub": "Colla"
       },
       "period": {
         "current": "Actual",
         "next": "Siguiente"
+      },
+      "cycle": {
+        "month": "/ month",
+        "year": "/ year"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Quitar marca de agua"
+    },
+    "label": {
+      "canceled": "Canceled"
     }
   },
   "network": {
