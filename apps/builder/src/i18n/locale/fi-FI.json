@@ -3753,10 +3753,6 @@
           "colla": "Kolla",
           "seats": "Istuimet"
         },
-        "cycle": {
-          "month": "{{totalCost}}/kuukausi",
-          "year": "{{totalCost}}/vuosi"
-        },
         "table_desc": {
           "bouns": "Kun nykyisen syklin Colla tasapaino on riittämätön, lisäämme Colla automaattisesti sinulle. Bonus Colla on lisämaksu eikä se sisälly syklin tilaukseen. Kun tilauksesi uusiutuu automaattisesti seuraavan syklin aikana, se ei sisällä Bonus Collaa."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Lisenssit",
         "storage": "Tallennustila",
         "traffic": "Liikenne",
-        "colla": "Kolla"
+        "colla": "Kolla",
+        "colla_unsub": "Saldo",
+        "colla_sub": "Kolla"
       },
       "period": {
         "current": "Nykyinen",
         "next": "Seuraava"
+      },
+      "cycle": {
+        "month": "/ kuukausi",
+        "year": "/ vuosi"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Poista vesileima"
+    },
+    "label": {
+      "canceled": "Peruttu"
     }
   },
   "network": {
