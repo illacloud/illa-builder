@@ -1,5 +1,5 @@
 import { CellContext } from "@tanstack/table-core"
-import { isBoolean, isDate } from "lodash"
+import { isBoolean } from "lodash"
 import {
   dayjsPro,
   isArray,
@@ -235,14 +235,6 @@ const isValidUrl = (str: unknown) => {
   return pattern.test(str)
 }
 
-function isValidDate(val: unknown) {
-  if (isString(val) || isNumber(val) || isDate(val)) {
-    const date = new Date(val)
-    return !isNaN(date.getTime())
-  }
-  return false
-}
-
 export const getCellForType = (
   data: ColumnItemShape,
   eventPath: string,
@@ -445,11 +437,6 @@ export const getCellForType = (
           return RenderTableLink({
             cell: props,
             value: stringValue,
-            alignment,
-          })
-        } else if (isValidDate(value)) {
-          return RenderTableStringCell({
-            value: dayjsPro(value).format(format),
             alignment,
           })
         } else {
