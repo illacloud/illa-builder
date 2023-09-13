@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import { assign } from "lodash"
+import { merge } from "lodash"
 import _ from "lodash"
 import numbro from "numbro"
 import Papa from "papaparse"
@@ -92,10 +92,6 @@ class ILLAEditorRuntimePropsCollector {
     return THIRD_PARTY_PACKAGES
   }
 
-  public getMergedRuntimeProps(otherProps: Record<string, unknown>) {
-    return assign({}, this._runtimeProps, otherProps)
-  }
-
   public getGlobalCalcContext(otherContext?: Record<string, unknown>) {
     const rootState = store.getState()
     const executionResult = getExecutionResult(rootState)
@@ -124,7 +120,7 @@ class ILLAEditorRuntimePropsCollector {
       },
       {} as Record<string, any>,
     )
-    return assign({}, this._runtimeProps, formatedExecutionResult, otherContext)
+    return merge({}, this._runtimeProps, formatedExecutionResult, otherContext)
   }
 
   public getCurrentPageCalcContext(otherContext?: Record<string, unknown>) {
@@ -161,13 +157,13 @@ class ILLAEditorRuntimePropsCollector {
       },
       {} as Record<string, any>,
     )
-    return assign({}, this._runtimeProps, formatedExecutionResult, otherContext)
+    return merge({}, this._runtimeProps, formatedExecutionResult, otherContext)
   }
 
   public getGlobalCalcContextWithLimit(otherContext?: Record<string, unknown>) {
     const rootState = store.getState()
     const executionResult = getExecutionResultToGlobalCodeMirror(rootState)
-    return assign({}, this._runtimeProps, executionResult, otherContext)
+    return merge({}, this._runtimeProps, executionResult, otherContext)
   }
 }
 
