@@ -1382,7 +1382,11 @@
         },
         "event": "事件",
         "MESSAGE": "消息",
-        "Toolbar": "工具栏"
+        "Toolbar": "工具栏",
+        "divider": "内部分割线",
+        "shadow": "内部阴影",
+        "background": "背景",
+        "padding": "内边距（像素）"
       },
       "setter_label": {
         "chat": {
