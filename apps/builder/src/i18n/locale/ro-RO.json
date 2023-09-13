@@ -3676,6 +3676,9 @@
     "plus-btn": "Încercați versiunea gratuită",
     "enterprise-btn": "Contactați-ne",
     "menu": {
+      "overview": "Prezentare generală",
+      "pricing": "Prețuri",
+      "balance": "Sold",
       "billing": "Facturare",
       "license": "Licenta",
       "drive": "Unitate",
@@ -3684,14 +3687,84 @@
       "colla_transaction": "Istoricul tranzacțiilor colorate",
       "billing_portal": "Portalul de facturare"
     },
+    "pricing": {
+      "premium": {
+        "desc": "Actualizează-ți echipa pentru a accesa funcții avansate",
+        "feature": {
+          "builder": {
+            "viewer": "GRATUIT pentru telespectatori nelimitați",
+            "audit_log": "Jurnale de audit",
+            "public": "Aplicație publică",
+            "sql": "Generare AI SQL",
+            "history": "Salvare istoric editare & restaurare",
+            "theme": "Teme personalizate pentru aplicațiile dvs.",
+            "multi_environment": "Multimediul (în curând)",
+            "deployed_version": "Păstrați versiunile implementate și reveniți (în curând)"
+          },
+          "agent": {
+            "gpt": "Accesul la mai multe modele, cum ar fi GPT-4, GPT-3.5...",
+            "colla": "30k Colla ( Pentru prima dată)"
+          }
+        },
+        "price": "/lună/editor"
+      },
+      "colla": {
+        "desc": "Folosit pentru plata onorariilor suportate pentru servicii cu valoare adăugată în cadrul ILLA Cloud, inclusiv următoarele servicii",
+        "feature": {
+          "storage": "Stocare fișiere. Folosit pentru fișiere de stocare pe ILLA Drive.",
+          "traffic": "Trafic. Folosit pentru a descărca fișiere de pe ILLA Drive.",
+          "token": "Token Agent AI. Folosit pentru a rula AI Agenti.",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5GB spațiu",
+            "3": "trafic 5GB",
+            "4": "Jeton 100K"
+          }
+        },
+        "price": "/lună/10k Colla"
+      }
+    },
     "title": {
       "billing": "Facturare",
       "license": "Licenta",
       "drive": "Unitate",
       "colla": "Cola",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "Prezentare generală",
+      "pricing": "Prețuri",
+      "balance": "Sold",
+      "colla_usage": "Utilizare coloană"
+    },
+    "colla_usage": {
+      "used": "Utilizat",
+      "token": "Token",
+      "storage": "Depozitare",
+      "traffic": "Trafic"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "Gratuit",
+        "plus": "Plus",
+        "premium": "Premium"
+      },
+      "colla": {
+        "desc": "Folosit pentru plata taxelor suportate pentru servicii cu valoare adăugată în cadrul ILLA Cloud, incluzând stocarea pentru ILLA Drive, trafic pentru ILLA Drive și token pentru Agent AI.",
+        "table_title": {
+          "colla": "Cola",
+          "seats": "Locuri"
+        },
+        "cycle": {
+          "month": "{{totalCost}}/lună",
+          "year": "{{totalCost}}/an"
+        },
+        "table_desc": {
+          "bouns": "Când soldul actual al ciclului colla este insuficient, vom adăuga în mod automat Colla pentru tine. Bonus Colla este un cost suplimentar şi nu este inclus în abonamentul ciclului. Când abonamentul tău se reînnoiește automat în următorul ciclu, acesta nu va include Bonus Colla."
+        },
+        "table_button": {
+          "seats": "Gestionare locuri",
+          "colla": "Gestionează Cola"
+        }
+      },
       "plan": {
         "free": "Gratuit",
         "plus": "Plus"
@@ -3770,6 +3843,10 @@
         "Traffic": "Trafic",
         "colla": "Cola"
       },
+      "price": {
+        "colla_monthly": "{{price}}/lunar/10k Colla",
+        "colla_yearly": "{{price}}/an/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "Licențe",
         "Storage_traffic": "GO",
@@ -3813,7 +3890,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "Dezabonare",
@@ -3825,6 +3902,12 @@
         "license_remove": "Elimină {{changeNum}} licențe",
         "colla_increase": "Increase {{changeNum}} Colla",
         "colla_remove": "Elimină {{changeNum}} Colla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} stocare",
+        "3": "{{trafficNum}} trafic",
+        "4": "{{tokenNum}} token"
       },
       "description_title": {
         "add_storage": "Urmează să adăugați {{changeNum}} GB de stocare. Odată confirmat, vom deduce imediat plata pentru noua stocare pentru acest ciclu de facturare. <0>Află mai multe</0>",
@@ -3904,6 +3987,44 @@
       "update_suc": "Abonament actualizat cu succes"
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "Stocare insuficientă",
+          "desc": {
+            "1": "Spațiul de stocare este insuficient. Vă rugăm să vă abonați la Colla pentru a vă mări spațiul de stocare.",
+            "2": "După abonarea la Cola, Colla ta poate fi utilizată pentru a crește stocarea, a crește traficul și augment token, care vor fi alocate automat în funcție de nevoile dvs."
+          }
+        },
+        "traffic": {
+          "title": "Trafic insuficient",
+          "desc": {
+            "1": "Traficul tău este insuficient. Te rugăm să te abonezi la Colla pentru a crește traficul.",
+            "2": "După abonarea la Cola, Colla ta poate fi utilizată pentru a crește stocarea, a crește traficul și augment token, care vor fi alocate automat în funcție de nevoile dvs."
+          }
+        },
+        "token": {
+          "title": "Token insuficient",
+          "desc": {
+            "1": "Token-ul tău este insuficient. Te rugăm să te abonezi la Colla pentru a crește jetonul.",
+            "2": "După abonarea la Cola, Colla ta poate fi utilizată pentru a crește stocarea, a crește traficul și augment token, care vor fi alocate automat în funcție de nevoile dvs."
+          }
+        },
+        "button": "Crește Cola",
+        "cycle": "/lună/10k Colla",
+        "failed": {
+          "title": "Creșterea coloanei a eșuat",
+          "storage": {
+            "desc": "Soldul dvs. Colla este insuficient pentru a acoperi cerința actuală de stocare. Și am întâmpinat unele probleme în timp ce ați mărit Cola. Vă rugăm să măriți Colla manual."
+          },
+          "traffic": {
+            "desc": "Soldul dvs. Colla este insuficient pentru a acoperi cerința curentă de trafic. Și am întâmpinat unele probleme în timp ce ați mărit Cola. Vă rugăm să creșteți Colla manual."
+          },
+          "token": {
+            "desc": "Soldul dvs. Colla este insuficient pentru a acoperi cerința curentă de token. Și am întâmpinat unele probleme în timp ce ați mărit Cola. Vă rugăm să creșteți Colla manual."
+          },
+          "button": "Crește Cola"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "Capacitate insuficientă",
         "owner_description_drive": "Spațiul de stocare sau traficul nu sunt suficiente. Vă rugăm să actualizați și să încercați din nou.",
