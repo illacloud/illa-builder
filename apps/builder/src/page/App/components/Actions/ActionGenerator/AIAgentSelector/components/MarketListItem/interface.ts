@@ -1,7 +1,4 @@
-import {
-  Agent,
-  MarketAIAgent,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
+import { Agent, MarketAIAgent } from "@illa-public/market-agent"
 import { CSSProperties } from "react"
 
 export interface MarketListItemProps {

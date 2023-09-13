@@ -1,4 +1,4 @@
-import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { Agent, getLLM } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -14,8 +14,8 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
+import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAIAgent/TeamAgentCardActionItem"
 import { track } from "@/utils/mixpanelHelper"
-import { TeamAgentCardActionItem } from "../TeamAgentCardActionItem"
 import { TeamAgentCardProps } from "./interface"
 import {
   agentIconStyle,
@@ -25,6 +25,9 @@ import {
   descriptionStyle,
   footerStyle,
   headerStyle,
+  modelContainerStyle,
+  modelLogoStyle,
+  modelNameStyle,
   nameStyle,
   titleInfoStyle,
 } from "./style"
@@ -89,9 +92,13 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   return (
     <div css={cardStyle} onClick={() => handleClickCard(agentInfo)}>
       <div css={headerStyle}>
+        <img css={agentIconStyle} src={agentInfo.icon} alt={agentInfo.name} />
         <div css={titleInfoStyle}>
-          <img css={agentIconStyle} src={agentInfo.icon} alt="" />
           <span css={nameStyle}>{agentInfo.name}</span>
+          <div css={modelContainerStyle}>
+            <div css={modelLogoStyle}>{getLLM(agentInfo.model)?.logo}</div>
+            <div css={modelNameStyle}>{getLLM(agentInfo.model)?.name}</div>
+          </div>
         </div>
         <TeamAgentCardActionItem
           aiAgentID={agentInfo.aiAgentID}

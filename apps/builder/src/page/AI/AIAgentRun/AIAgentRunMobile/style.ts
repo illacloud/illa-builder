@@ -8,6 +8,30 @@ export const aiAgentContainerStyle = css`
   height: 100%;
 `
 
+export const buttonContainerStyle = css`
+  padding: 24px;
+  border-top: 1px solid ${getColor("grayBlue", "08")};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const readOnlyTextStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+`
+
+export const labelStyle = css`
+  display: flex;
+  width: 100%;
+  gap: 4px;
+  flex-direction: row;
+  align-items: center;
+`
+
 export const headerInfoStyle = css`
   display: flex;
   flex-direction: row;

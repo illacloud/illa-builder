@@ -1,4 +1,4 @@
-import { AI_AGENT_TYPE } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { AI_AGENT_TYPE } from "@illa-public/market-agent"
 import { getCurrentUser } from "@illa-public/user-data"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"

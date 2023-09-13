@@ -1,8 +1,5 @@
 import { agentRequest, marketplaceRequest } from "@illa-public/illa-net"
-import {
-  Agent,
-  AgentRaw,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
+import { Agent, AgentRaw } from "@illa-public/market-agent"
 import { v4 } from "uuid"
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"

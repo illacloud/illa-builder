@@ -1,4 +1,4 @@
-import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { Agent } from "@illa-public/market-agent"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   AddTeamAIAgentPayload,
