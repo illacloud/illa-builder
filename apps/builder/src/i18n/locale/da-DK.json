@@ -1382,7 +1382,11 @@
         },
         "event": "Begivenhed",
         "MESSAGE": "BESKYTTELSE",
-        "Toolbar": "TOOLBAR"
+        "Toolbar": "TOOLBAR",
+        "divider": "Inner divider",
+        "shadow": "Inner shadow",
+        "background": "Background",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
