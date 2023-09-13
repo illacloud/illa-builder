@@ -314,9 +314,7 @@ export const getGlobalInfoExecutionResult = createSelector(
 
 export const getExecutionWidgetLayoutInfo = createSelector(
   [getExecution],
-  (execution) => {
-    return execution.widgetsLayoutInfo
-  },
+  (execution) => execution.widgetsLayoutInfo,
 )
 
 export const getPageLoadingActions = createSelector(

@@ -1,5 +1,4 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import {
   applyEffectMapToComponentNodes,
@@ -305,11 +304,9 @@ const handleUpdateHeightEffect = (
     allComponents = target.childrenNode
   }
 
-  const cloneDeepAllComponents = cloneDeep(allComponents)
-  const findIndex = cloneDeepAllComponents.findIndex(
-    (node) => node.displayName === newItem.displayName,
+  const cloneDeepAllComponents = allComponents.filter(
+    (node) => node.displayName !== newItem.displayName,
   )
-  cloneDeepAllComponents.splice(findIndex, 1, newItem)
 
   if (oldHeight <= newItem.h && oldHeight < height) {
     const result = getReflowResult(newItem, cloneDeepAllComponents, false)

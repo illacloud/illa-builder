@@ -1,4 +1,4 @@
-import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent/service"
+import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent"
 import * as React from "react"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"

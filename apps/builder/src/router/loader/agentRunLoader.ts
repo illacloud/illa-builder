@@ -1,4 +1,4 @@
-import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
+import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent"
 import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
 import { getCurrentTeamInfo, teamActions } from "@illa-public/user-data"
 import { LoaderFunction, defer, redirect } from "react-router-dom"

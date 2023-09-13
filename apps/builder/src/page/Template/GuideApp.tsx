@@ -1,9 +1,6 @@
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canManage } from "@illa-public/user-role-utils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
+import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"

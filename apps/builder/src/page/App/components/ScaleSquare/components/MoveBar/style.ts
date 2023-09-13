@@ -1,7 +1,6 @@
-import { SerializedStyles, css } from "@emotion/react"
+import { css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import { MOVE_BAR_HEIGHT } from "@/page/App/components/ScaleSquare/constant/moveBar"
-import { MoveBarPositionShape } from "./interface"
 
 export const warningStyle = css`
   margin-left: 4px;
@@ -13,27 +12,14 @@ export const applyMoveBarWrapperStyle = (
   isError: boolean,
   selected: boolean,
   isLikeProductionMode: boolean,
-  position: MoveBarPositionShape,
+  topPosition: number,
   hasEditors: boolean,
   isMouseHover: boolean,
 ) => {
-  let positionStyle: SerializedStyles
   let borderRadiusStyle = css`
     border-radius: 4px 4px 0 0;
   `
 
-  if (position.direction === "top") {
-    positionStyle = css`
-      top: ${position.position}px;
-    `
-  } else {
-    positionStyle = css`
-      bottom: ${position.position}px;
-    `
-    borderRadiusStyle = css`
-      border-radius: 0 0 4px 4px;
-    `
-  }
   const backgroundColorStyle = isError
     ? globalColor(`--${illaPrefix}-red-03`)
     : globalColor(`--${illaPrefix}-techPurple-01`)
@@ -44,7 +30,7 @@ export const applyMoveBarWrapperStyle = (
     ${borderRadiusStyle};
     display: flex;
     position: absolute;
-    ${positionStyle};
+    top: ${topPosition}px;
     left: 0;
     align-items: center;
     font-size: 12px;
