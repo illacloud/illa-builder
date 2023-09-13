@@ -3753,10 +3753,6 @@
           "colla": "Lila",
           "seats": "Sitze"
         },
-        "cycle": {
-          "month": "{{totalCost}}/Monat",
-          "year": "{{totalCost}}/Jahr"
-        },
         "table_desc": {
           "bouns": "Wenn dein aktueller Zyklusstand nicht ausreicht, werden wir automatisch Colla für dich hinzufügen. Bonus Colla ist eine zusätzliche Gebühr und ist nicht im Abonnement für den Zyklus enthalten. Wenn Ihr Abonnement automatisch im nächsten Zyklus verlängert wird, wird es keine Bonus-Colla enthalten."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Lizenzen",
         "storage": "Speicher",
         "traffic": "Verkehr",
-        "colla": "Lila"
+        "colla": "Lila",
+        "colla_unsub": "Saldo",
+        "colla_sub": "Lila"
       },
       "period": {
         "current": "Aktuell",
         "next": "Nächste"
+      },
+      "cycle": {
+        "month": "/ Monat",
+        "year": "/ Jahr"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Wasserzeichen entfernen"
+    },
+    "label": {
+      "canceled": "Abgebrochen"
     }
   },
   "network": {
