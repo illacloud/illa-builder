@@ -3753,10 +3753,6 @@
           "colla": "Colla",
           "seats": "席"
         },
-        "cycle": {
-          "month": "{{totalCost}}/月",
-          "year": "{{totalCost}}/年"
-        },
         "table_desc": {
           "bouns": "現在の周期のColla残高が不足している場合は、自動的にCollaを追加します。 ボーナスコラは追加料金であり、月額プランには含まれません。 サブスクリプションが次のサイクルで自動的に更新されると、ボーナスコラは含まれません。"
         },
@@ -3784,11 +3780,17 @@
         "licenses": "ライセンス",
         "storage": "ストレージ",
         "traffic": "トラフィック",
-        "colla": "Colla"
+        "colla": "Colla",
+        "colla_unsub": "残高",
+        "colla_sub": "Colla"
       },
       "period": {
         "current": "現在",
         "next": "次へ"
+      },
+      "cycle": {
+        "month": "/月",
+        "year": "/年"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "透かしを削除"
+    },
+    "label": {
+      "canceled": "キャンセルしました"
     }
   },
   "network": {
