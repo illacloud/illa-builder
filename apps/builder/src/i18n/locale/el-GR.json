@@ -3753,10 +3753,6 @@
           "colla": "Colla",
           "seats": "Καθίσματα"
         },
-        "cycle": {
-          "month": "{{totalCost}}/month",
-          "year": "{{totalCost}}/year"
-        },
         "table_desc": {
           "bouns": "Όταν το τρέχον υπόλοιπο Colla του κύκλου σας είναι ανεπαρκές, θα προσθέσουμε αυτόματα Colla για εσάς. Το Bonus Colla είναι μια πρόσθετη χρέωση και δεν περιλαμβάνεται στη συνδρομή για τον κύκλο. Όταν η συνδρομή σας ανανεώνεται αυτόματα στον επόμενο κύκλο, δεν θα περιλαμβάνει το Bonus Colla."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Άδειες",
         "storage": "Αποθήκευση",
         "traffic": "Κίνηση",
-        "colla": "Colla"
+        "colla": "Colla",
+        "colla_unsub": "Υπόλοιπο",
+        "colla_sub": "Colla"
       },
       "period": {
         "current": "Τρέχων",
         "next": "Επόμενο"
+      },
+      "cycle": {
+        "month": "/ μήνας",
+        "year": "/ έτος"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Αφαίρεση υδατογραφήματος"
+    },
+    "label": {
+      "canceled": "Ακυρώθηκε"
     }
   },
   "network": {
