@@ -17,11 +17,6 @@ export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
   const currentLng = window.localStorage.getItem("i18nextLng")
 
   if (userInfo.userID) {
-    const lng = userInfo.language
-    if (lng && currentLng !== lng) {
-      i18n.changeLanguage(lng)
-      window.location.reload()
-    }
     return null
   }
   if (authToken) {
