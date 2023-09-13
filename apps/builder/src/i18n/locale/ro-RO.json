@@ -3753,10 +3753,6 @@
           "colla": "Cola",
           "seats": "Locuri"
         },
-        "cycle": {
-          "month": "{{totalCost}}/lună",
-          "year": "{{totalCost}}/an"
-        },
         "table_desc": {
           "bouns": "Când soldul actual al ciclului colla este insuficient, vom adăuga în mod automat Colla pentru tine. Bonus Colla este un cost suplimentar şi nu este inclus în abonamentul ciclului. Când abonamentul tău se reînnoiește automat în următorul ciclu, acesta nu va include Bonus Colla."
         },
@@ -3784,11 +3780,17 @@
         "licenses": "Licențe",
         "storage": "Depozitare",
         "traffic": "Trafic",
-        "colla": "Cola"
+        "colla": "Cola",
+        "colla_unsub": "Sold",
+        "colla_sub": "Cola"
       },
       "period": {
         "current": "Actuală",
         "next": "Următoarea"
+      },
+      "cycle": {
+        "month": "/ lună",
+        "year": "/ an"
       }
     },
     "subscription_card": {
@@ -4182,6 +4184,9 @@
     },
     "advanced": {
       "feature": "Elimină filigran"
+    },
+    "label": {
+      "canceled": "Anulat"
     }
   },
   "network": {
