@@ -3676,6 +3676,9 @@
     "plus-btn": "無料版をお試しください",
     "enterprise-btn": "お問い合わせ",
     "menu": {
+      "overview": "概要",
+      "pricing": "価格",
+      "balance": "残高",
       "billing": "請求",
       "license": "ライセンス",
       "drive": "ドライブ",
@@ -3684,14 +3687,84 @@
       "colla_transaction": "Collaトランザクション履歴",
       "billing_portal": "Billing portal"
     },
+    "pricing": {
+      "premium": {
+        "desc": "チームをアップグレードして高度な機能にアクセスする",
+        "feature": {
+          "builder": {
+            "viewer": "無制限の視聴者のために無料",
+            "audit_log": "監査ログ",
+            "public": "アプリを公開",
+            "sql": "AI SQLの生成",
+            "history": "バックアップ編集の履歴と復元",
+            "theme": "アプリのカスタムテーマ",
+            "multi_environment": "マルチ環境 (近日公開予定)",
+            "deployed_version": "デプロイされたバージョンを保持して元に戻す (近日公開)"
+          },
+          "agent": {
+            "gpt": "GPT-4、GPT-3.5などの他のモデルへのアクセス...",
+            "colla": "30k Colla (初めて)"
+          }
+        },
+        "price": "/month/editor"
+      },
+      "colla": {
+        "desc": "ILLA クラウド内の付加価値サービスに必要な手数料の支払いに使用されます。以下のサービスを含む。",
+        "feature": {
+          "storage": "ファイルストレージ ILLA ドライブ上のファイルの保存に使用します。",
+          "traffic": "トラフィック。ILLAドライブからファイルをダウンロードするために使用されます。",
+          "token": "AIエージェントトークン。AIエージェントの実行に使用されます。",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5GBのストレージ",
+            "3": "5GBのトラフィック",
+            "4": "100Kトークン"
+          }
+        },
+        "price": "/month/10k Colla"
+      }
+    },
     "title": {
       "billing": "請求",
       "license": "ライセンス",
       "drive": "ドライブ",
       "colla": "Colla",
-      "appsumo": "Appsomo"
+      "appsumo": "Appsomo",
+      "overview": "概要",
+      "pricing": "価格",
+      "balance": "残高",
+      "colla_usage": "コラの使用法"
+    },
+    "colla_usage": {
+      "used": "使用中",
+      "token": "トークン",
+      "storage": "ストレージ",
+      "traffic": "トラフィック"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "無料",
+        "plus": "プラス",
+        "premium": "プレミアム"
+      },
+      "colla": {
+        "desc": "ILLA Cloud 内の付加価値サービスにかかる手数料の支払いに使用されます。 ILLA ドライブのストレージ、ILLA ドライブのトラフィック、AI Agent のトークンなど。",
+        "table_title": {
+          "colla": "Colla",
+          "seats": "席"
+        },
+        "cycle": {
+          "month": "{{totalCost}}/月",
+          "year": "{{totalCost}}/年"
+        },
+        "table_desc": {
+          "bouns": "現在の周期のColla残高が不足している場合は、自動的にCollaを追加します。 ボーナスコラは追加料金であり、月額プランには含まれません。 サブスクリプションが次のサイクルで自動的に更新されると、ボーナスコラは含まれません。"
+        },
+        "table_button": {
+          "seats": "座席管理",
+          "colla": "コラの管理"
+        }
+      },
       "plan": {
         "free": "無料",
         "plus": "プラス"
@@ -3770,6 +3843,10 @@
         "Traffic": "トラフィック",
         "colla": "Colla"
       },
+      "price": {
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "ライセンス",
         "Storage_traffic": "GB",
@@ -3813,7 +3890,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Colra"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "購読解除",
@@ -3825,6 +3902,12 @@
         "license_remove": "{{changeNum}} ライセンスを削除",
         "colla_increase": "{{changeNum}} コラを上げる",
         "colla_remove": "{{changeNum}} コラを削除"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} ストレージ",
+        "3": "{{trafficNum}} トラフィック",
+        "4": "{{tokenNum}} トークン"
       },
       "description_title": {
         "add_storage": "{{changeNum}} GB のストレージを追加します。 確認が完了すると、この請求サイクルの新しいストレージの支払いがすぐに差し引かれます。<0>詳細はこちら</0>",
@@ -3904,6 +3987,44 @@
       "update_suc": "サブスクリプションが更新されました"
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "ストレージが足りません",
+          "desc": {
+            "1": "ストレージが不足しています。Colraに登録してストレージを増やしてください。",
+            "2": "Collaを購読した後、Collaはストレージの増加、トラフィックの増加に利用できます。 「augment token」は自動的に割り当てられます"
+          }
+        },
+        "traffic": {
+          "title": "トラフィック不足",
+          "desc": {
+            "1": "トラフィックが不足しています。Colla に登録してトラフィックを増やしてください。",
+            "2": "Collaを購読した後、Collaはストレージの増加、トラフィックの増加に利用できます。 「augment token」は自動的に割り当てられます"
+          }
+        },
+        "token": {
+          "title": "トークンが足りません",
+          "desc": {
+            "1": "トークンが不足しています。トークンを増やすにはCollaを購読してください。",
+            "2": "Collaを購読した後、Collaはストレージの増加、トラフィックの増加に利用できます。 「augment token」は自動的に割り当てられます"
+          }
+        },
+        "button": "コラを上げる",
+        "cycle": "/monthly/10k Colla",
+        "failed": {
+          "title": "コラを増やすことができませんでした",
+          "storage": {
+            "desc": "現在のストレージ要件をカバーするには、Colla残高が不足しています。Collaを増やす際にいくつかの問題が発生しました。Collaを手動で増やしてください。"
+          },
+          "traffic": {
+            "desc": "現在のトラフィック要件をカバーするには、Colla残高が不足しています。Collaを増やす際にいくつかの問題が発生しました。Collaを手動で増やしてください。"
+          },
+          "token": {
+            "desc": "現在のトークン要件をカバーするには、Colla残高が不十分です。Collaを増やしている間にいくつかの問題が発生しました。Collaを手動で増やしてください。"
+          },
+          "button": "コラを上げる"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "容量不足",
         "owner_description_drive": "ストレージまたはトラフィックが不十分です。アップグレードしてもう一度お試しください。",
