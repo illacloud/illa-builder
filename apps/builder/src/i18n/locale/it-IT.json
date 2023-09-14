@@ -4203,7 +4203,8 @@
       "feature": "Rimuovi filigrana"
     },
     "label": {
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "expired": "Expired"
     }
   },
   "network": {
