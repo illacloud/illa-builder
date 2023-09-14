@@ -4204,7 +4204,8 @@
     },
     "label": {
       "canceled": "Avbrutt",
-      "expired": "Expired"
+      "expired": "Utløpt",
+      "paused": "Pauset"
     }
   },
   "network": {
