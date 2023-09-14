@@ -4203,7 +4203,8 @@
       "feature": "Usuń znak wodny"
     },
     "label": {
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "expired": "Expired"
     }
   },
   "network": {
