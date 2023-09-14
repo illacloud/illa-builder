@@ -3725,7 +3725,8 @@
             "4": "Jeton 100K"
           }
         },
-        "price": "/lună/10k Colla"
+        "price": "/lună/10k Colla",
+        "button": "Increase Colla"
       }
     },
     "title": {
