@@ -1383,9 +1383,9 @@
         "event": "Γεγονός",
         "MESSAGE": "ΜΗΝΥΜΑΤΑ",
         "Toolbar": "TOOLBAR",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Εσωτερικό διαχωριστικό",
+        "shadow": "Εσωτερική σκιά",
+        "background": "Φόντο",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/μήνα/10k Colla",
-        "button": "Increase Colla"
+        "button": "Αύξηση Colla"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "Κίνηση",
         "colla": "Colla",
         "colla_unsub": "Υπόλοιπο",
-        "colla_sub": "Colla"
+        "colla_sub": "Colla",
+        "seats": "Καθίσματα",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Τρέχων",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ μήνας",
         "year": "/ έτος"
+      },
+      "table_desc": {
+        "bouns": "Όταν το τρέχον υπόλοιπο Colla του κύκλου σας είναι ανεπαρκές, θα προσθέσουμε αυτόματα Colla για εσάς. Το Bonus Colla είναι μια πρόσθετη χρέωση και δεν περιλαμβάνεται στη συνδρομή για τον κύκλο. Όταν η συνδρομή σας ανανεώνεται αυτόματα στον επόμενο κύκλο, δεν θα περιλαμβάνει το Bonus Colla. "
+      },
+      "table_button": {
+        "seats": "Διαχείριση θέσεων",
+        "colla": "Διαχείριση Colla"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Αποτυχία αλλαγής σχεδίου. Παρακαλώ προσπαθήστε ξανά αργότερα.",
       "unsubscription_fail": "Αποτυχία ακύρωσης της συνδρομής. Παρακαλώ προσπαθήστε ξανά αργότερα.",
       "failed_to_update": "Απέτυχε η ενημέρωση της συνδρομής. Παρακαλώ δοκιμάστε ξανά. ",
-      "update_suc": "Η συνδρομή ενημερώθηκε επιτυχώς"
+      "update_suc": "Η συνδρομή ενημερώθηκε επιτυχώς",
+      "no_storage": "Ανεπαρκής αποθήκευση. Επικοινωνήστε με το διαχειριστή για να αυξήσετε τη Colla.",
+      "no_traffic": "Ανεπαρκής κυκλοφορία. Παρακαλώ επικοινωνήστε με το διαχειριστή για να αυξήσετε τη Colla.",
+      "no_token": "Ανεπαρκές token. Παρακαλώ επικοινωνήστε με το διαχειριστή για να αυξήσετε τη Colla."
     },
     "modal": {
       "colla_insufficient_modal": {
