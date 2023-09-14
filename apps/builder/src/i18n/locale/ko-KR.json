@@ -3787,7 +3787,9 @@
         "traffic": "Traffic",
         "colla": "Colla",
         "colla_unsub": "Balance",
-        "colla_sub": "Colla"
+        "colla_sub": "Colla",
+        "seats": "Seats",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Current",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ month",
         "year": "/ year"
+      },
+      "table_desc": {
+        "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla. "
+      },
+      "table_button": {
+        "seats": "Manage seats",
+        "colla": "Manage Colla"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Failed to change plan. Please try again later.",
       "unsubscription_fail": "Failed to cancel the subscription. Please try again later.",
       "failed_to_update": "Failed to update the subscription. Please try again. ",
-      "update_suc": "Subscription updated successfully"
+      "update_suc": "Subscription updated successfully",
+      "no_storage": "Insufficient storage. Please contact the administrator to increase Colla.",
+      "no_traffic": "Insufficient traffic. Please contact the administrator to increase Colla.",
+      "no_token": "Insufficient token. Please contact the administrator to increase Colla."
     },
     "modal": {
       "colla_insufficient_modal": {
