@@ -3725,7 +3725,8 @@
             "4": "100K διακριτικό"
           }
         },
-        "price": "/μήνα/10k Colla"
+        "price": "/μήνα/10k Colla",
+        "button": "Increase Colla"
       }
     },
     "title": {
