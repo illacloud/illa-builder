@@ -4203,7 +4203,8 @@
       "feature": "Supprimer le filigrane"
     },
     "label": {
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "expired": "Expired"
     }
   },
   "network": {
