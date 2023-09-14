@@ -557,7 +557,7 @@ export const AIAgent: FC = () => {
                   >
                     <TextArea
                       {...field}
-                      minH="64px"
+                      minH="120px"
                       showWordLimit={true}
                       error={field.value.length > 160}
                       maxLength={160}
