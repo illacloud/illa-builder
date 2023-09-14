@@ -1383,9 +1383,9 @@
         "event": "Hendelse",
         "MESSAGE": "MELDING",
         "Toolbar": "TOOLBAR",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Indre divider",
+        "shadow": "Indre skygge",
+        "background": "Bakgrunn",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/måned Kolla",
-        "button": "Increase Colla"
+        "button": "Øk kolla"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "Trafikk",
         "colla": "Kolla",
         "colla_unsub": "Balanse",
-        "colla_sub": "Kolla"
+        "colla_sub": "Kolla",
+        "seats": "Seter",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Nåværende",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ måned",
         "year": "/ år"
+      },
+      "table_desc": {
+        "bouns": "Når din nåværende syklus sin Colla balance er utilstrekkelig, vil vi automatisk legge til Colla for deg. Bonus Colla er en ekstra kostnad og er ikke inkludert i abonnementet for syklusen. Når abonnementet ditt fornyes automatisk i den neste syklusen, vil det ikke inkludere bonussamling. "
+      },
+      "table_button": {
+        "seats": "Administrer seter",
+        "colla": "Behandle kolla"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Mislyktes med å endre planen. Prøv igjen senere.",
       "unsubscription_fail": "Kan ikke avslutte abonnementet. Vennligst prøv igjen senere.",
       "failed_to_update": "Kan ikke oppdatere abonnementet. Vennligst prøv igjen. ",
-      "update_suc": "Abonnementet er oppdatert"
+      "update_suc": "Abonnementet er oppdatert",
+      "no_storage": "Manglende lagring. Vennligst kontakt administrator for å øke samlingen.",
+      "no_traffic": "Utilstrekkelig trafikk. Vennligst kontakt administratoren for å øke samlingen.",
+      "no_token": "Utilstrekkelig token. Kontakt administratoren for å øke samlingen."
     },
     "modal": {
       "colla_insufficient_modal": {
