@@ -4203,7 +4203,8 @@
       "feature": "Poista vesileima"
     },
     "label": {
-      "canceled": "Peruttu"
+      "canceled": "Peruttu",
+      "expired": "Expired"
     }
   },
   "network": {
