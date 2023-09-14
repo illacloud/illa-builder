@@ -38,7 +38,8 @@ import { getAgentWSStatus } from "@/redux/config/configSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
-    showShareAndContributeDialog,
+    showShareDialog,
+    showContributeDialog,
     hasCreated,
     isMobile,
     isRunning,
@@ -126,7 +127,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               ? t("editor.ai-agent.title-preview.chat")
               : t("editor.ai-agent.title-preview.text-generation")}
           </div>
-          {editState === "EDIT" && showShareAndContributeDialog && (
+          {editState === "EDIT" && showShareDialog && (
             <Button
               disabled={!hasCreated}
               ml="8px"
@@ -139,7 +140,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               {t("share")}
             </Button>
           )}
-          {editState === "EDIT" && showShareAndContributeDialog && (
+          {editState === "EDIT" && showContributeDialog && (
             <Button
               disabled={!hasCreated}
               ml="8px"

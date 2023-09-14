@@ -521,7 +521,8 @@ export const AIAgentRunMobile: FC = () => {
         <div css={previewChatContainer}>
           <PreviewChat
             editState="RUN"
-            showShareAndContributeDialog={false}
+            showShareDialog={false}
+            showContributeDialog={false}
             isRunning={isRunning}
             hasCreated={true}
             isMobile={true}
