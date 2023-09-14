@@ -68,7 +68,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     if (typeof attrName === "string") {
       if (parentAttrName) {
         const parentAttrNamePath = toPath(parentAttrName)
-
         return convertPathToString([...parentAttrNamePath, attrName])
       }
       return attrName
@@ -81,11 +80,10 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
         return name
       })
     }
+    return ""
   }, [parentAttrName, attrName])
 
-  const isSetterSingleRowWrapper = useMemo(() => {
-    return isSetterSingleRow || !labelName
-  }, [isSetterSingleRow, labelName])
+  const isSetterSingleRowWrapper = isSetterSingleRow || !labelName
 
   const finalValue = useMemo(() => {
     if (typeof _finalAttrName === "string") {
@@ -121,7 +119,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           widgetOrAction={widgetOrAction}
           defaultValue={defaultValue}
           icon={icon}
-          componentNode={componentNode}
+          componentNode={componentNode!}
           isGuideMode={isGuideMode}
         />
       </div>

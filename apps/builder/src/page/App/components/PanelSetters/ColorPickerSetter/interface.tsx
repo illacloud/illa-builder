@@ -1,3 +1,5 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 
-export interface ColorPickerSetterProps extends BaseSetter {}
+export interface ColorPickerSetterProps extends BaseSetter {
+  value: string
+}

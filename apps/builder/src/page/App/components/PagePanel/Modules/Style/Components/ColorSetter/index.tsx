@@ -1,26 +1,27 @@
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { hexToHsva } from "@uiw/react-color"
 import { debounce } from "lodash"
 import { FC, useRef } from "react"
-import { Trigger, globalColor, illaPrefix } from "@illa-design/react"
+import { BindIcon, Trigger, globalColor, illaPrefix } from "@illa-design/react"
 import { ColorPicker } from "@/components/ColorPicker"
 import { colorSchemes } from "@/components/ColorPicker/constants"
+import { ColorPickerSetterProps } from "./interface"
 import {
-  ButtonContentWrapperStyle,
   alphaContentStyle,
   applyCircleStyle,
+  buttonContentWrapperStyle,
   colorContentStyle,
-  inListSetterWrapperStyle,
-} from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
-import { trackInEditor } from "@/utils/mixpanelHelper"
+  colorTipAndValueContainerStyle,
+} from "./style"
 
-const ColorPickerSetter: FC<any> = (props) => {
-  const { attrName, handleUpdateDsl, value, widgetType } = props
+const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
+  const { handleUpdateColor, value } = props
   const currentColor = useRef<string>(value)
-  const debounceOnChange = debounce(handleUpdateDsl, 300)
+  const debounceOnChange = debounce(handleUpdateColor, 300)
 
   let c = value
+  let isInnerColorScheme = false
   if (colorSchemes.includes(value)) {
+    isInnerColorScheme = true
     c = globalColor(`--${illaPrefix}-${value}-03`)
   }
   return (
@@ -35,39 +36,27 @@ const ColorPickerSetter: FC<any> = (props) => {
           selectedColor={value}
           onChange={(color) => {
             currentColor.current = color
-            debounceOnChange(attrName, color)
+            debounceOnChange(color)
           }}
         />
       }
-      onVisibleChange={(visible) => {
-        if (visible) {
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-            element: "component_inspect_color_select",
-            parameter1: widgetType,
-            parameter2: attrName,
-          })
-        } else {
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-            element: "component_inspect_color_select",
-            parameter1: widgetType,
-            parameter2: attrName,
-            parameter3: currentColor.current,
-          })
-        }
-      }}
     >
-      <div css={inListSetterWrapperStyle}>
-        <div css={ButtonContentWrapperStyle}>
+      <div css={buttonContentWrapperStyle}>
+        <div css={colorTipAndValueContainerStyle}>
           <div css={applyCircleStyle(c)} />
           <span css={colorContentStyle}>
             {value?.includes("#")
               ? value?.toLocaleUpperCase().slice(0, -2)
               : value}
           </span>
+        </div>
+        {isInnerColorScheme ? (
+          <BindIcon />
+        ) : (
           <span css={alphaContentStyle}>
             {parseInt(`${hexToHsva(c || "#fff").a * 100}`)}%
           </span>
-        </div>
+        )}
       </div>
     </Trigger>
   )

@@ -2,11 +2,11 @@ import Sketch from "@uiw/react-color-sketch"
 import { SwatchPresetColor } from "@uiw/react-color-swatch"
 import { FC, useMemo } from "react"
 import { getColor } from "@illa-design/react"
-import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
+import { colorSchemes } from "./constants"
 import { ColorPickerProps } from "./interface"
 
 export const ColorPicker: FC<ColorPickerProps> = (props) => {
-  const { onChange, selectedColor } = props
+  const { onChange, selectedColor, disableAlpha } = props
 
   const preColors = useMemo(() => {
     return colorSchemes.map((color) => {
@@ -34,6 +34,7 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
     <Sketch
       color={c}
       presetColors={preColors}
+      disableAlpha={disableAlpha}
       onChange={(color) => {
         if (colorMap.has(color.hexa)) {
           onChange(colorMap.get(color.hex) || colorMap.get(color.hexa)!!)
