@@ -4204,7 +4204,8 @@
     },
     "label": {
       "canceled": "Отменено",
-      "expired": "Expired"
+      "expired": "Истёк",
+      "paused": "Пауза"
     }
   },
   "network": {
