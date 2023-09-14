@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/月/10k Colla",
-        "button": "Increase Colla"
+        "button": "增加Colla"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "流量",
         "colla": "Colla",
         "colla_unsub": "余额",
-        "colla_sub": "Colla"
+        "colla_sub": "Colla",
+        "seats": "坐席",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "当前周期",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/月",
         "year": "/年"
+      },
+      "table_desc": {
+        "bouns": "在您当前周期的Colla余额不足时，我们将自动为您增加Colla。 “Bonus Colla”是一个额外的费用，不包括在周期订阅中，因此您的订阅在下一个周期自动续订时，也只会支付您订阅的Colla的费用。 "
+      },
+      "table_button": {
+        "seats": "管理坐席",
+        "colla": "管理Colla"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "付费变更失败，请稍后重试",
       "unsubscription_fail": "取消订阅失败，请稍后重试。",
       "failed_to_update": "订阅更新失败，请重试",
-      "update_suc": "订阅更新成功"
+      "update_suc": "订阅更新成功",
+      "no_storage": "存储不足。请联系管理员增加Colla。",
+      "no_traffic": "流量不足。请联系管理员增加Colla。",
+      "no_token": "Token不足。请联系管理员增加Colla。"
     },
     "modal": {
       "colla_insufficient_modal": {
