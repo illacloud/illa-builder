@@ -1383,9 +1383,9 @@
         "event": "Eveniment",
         "MESSAGE": "MESAJ",
         "Toolbar": "TOOLBAR",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Divizor interior",
+        "shadow": "Umbră interioară",
+        "background": "Context",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/lună/10k Colla",
-        "button": "Increase Colla"
+        "button": "Crește Cola"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "Trafic",
         "colla": "Cola",
         "colla_unsub": "Sold",
-        "colla_sub": "Cola"
+        "colla_sub": "Cola",
+        "seats": "Locuri",
+        "bouns": "Colla de roboți"
       },
       "period": {
         "current": "Actuală",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ lună",
         "year": "/ an"
+      },
+      "table_desc": {
+        "bouns": "Când soldul actual al ciclului colla este insuficient, vom adăuga în mod automat Colla pentru tine. Bonus Colla este un cost suplimentar şi nu este inclus în abonamentul ciclului. Când abonamentul tău se reînnoiește automat în următorul ciclu, acesta nu va include Bonus Colla. "
+      },
+      "table_button": {
+        "seats": "Gestionare locuri",
+        "colla": "Gestionează Cola"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Schimbarea planului a eșuat. Te rugăm să încerci din nou mai târziu.",
       "unsubscription_fail": "Nu s-a putut anula abonamentul. Te rugăm să încerci din nou mai târziu.",
       "failed_to_update": "Actualizarea abonamentului a eșuat. Te rugăm să încerci din nou. ",
-      "update_suc": "Abonament actualizat cu succes"
+      "update_suc": "Abonament actualizat cu succes",
+      "no_storage": "Spațiu de stocare insuficient. Vă rugăm să contactați administratorul pentru a crește Columa.",
+      "no_traffic": "Trafic insuficient. Vă rugăm să contactați administratorul pentru a crește Columa.",
+      "no_token": "Token insuficient. Vă rugăm să contactați administratorul pentru a crește Columa."
     },
     "modal": {
       "colla_insufficient_modal": {
