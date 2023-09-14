@@ -4203,7 +4203,8 @@
       "feature": "Elimină filigran"
     },
     "label": {
-      "canceled": "Anulat"
+      "canceled": "Anulat",
+      "expired": "Expired"
     }
   },
   "network": {
