@@ -4203,7 +4203,8 @@
       "feature": "移除水印"
     },
     "label": {
-      "canceled": "已取消"
+      "canceled": "已取消",
+      "expired": "Expired"
     }
   },
   "network": {
