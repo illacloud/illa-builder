@@ -557,9 +557,9 @@ export const AIAgent: FC = () => {
                   >
                     <TextArea
                       {...field}
-                      minH="64px"
+                      minH="120px"
                       showWordLimit={true}
-                      error={true}
+                      error={field.value.length > 160}
                       maxLength={160}
                       placeholder={t("editor.ai-agent.placeholder.desc")}
                       colorScheme={"techPurple"}
