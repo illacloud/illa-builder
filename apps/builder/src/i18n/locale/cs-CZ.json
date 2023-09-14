@@ -1383,9 +1383,9 @@
         "event": "Událost",
         "MESSAGE": "ZPRÁVA",
         "Toolbar": "JEDNACÍ ŘÁD",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Vnitřní oddělovač",
+        "shadow": "Vnitřní stín",
+        "background": "Pozadí",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/měsíc/10k Colla",
-        "button": "Increase Colla"
+        "button": "Zvýšit Colla"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "Provoz",
         "colla": "Colla",
         "colla_unsub": "Zůstatek",
-        "colla_sub": "Colla"
+        "colla_sub": "Colla",
+        "seats": "Sedadla",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Aktuální",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ měsíc",
         "year": "/ rok"
+      },
+      "table_desc": {
+        "bouns": "Když bude bilance vašeho aktuálního cyklu Colla nedostatečná, automaticky pro vás přidáme Colla. Bonus Colla je další poplatek a není zahrnut do předplatného pro cyklus. Jakmile se Vaše předplatné v příštím cyklu automaticky obnoví, nebude obsahovat Bonus Colla. "
+      },
+      "table_button": {
+        "seats": "Správa sedadel",
+        "colla": "Spravovat Colla"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Nepodařilo se změnit tarif. Opakujte akci později.",
       "unsubscription_fail": "Nepodařilo se zrušit předplatné. Opakujte akci později.",
       "failed_to_update": "Nepodařilo se aktualizovat odběr. Zkuste to prosím znovu. ",
-      "update_suc": "Předplatné úspěšně aktualizováno"
+      "update_suc": "Předplatné úspěšně aktualizováno",
+      "no_storage": "Nedostatek úložiště. Obraťte se na správce pro zvýšení Colla.",
+      "no_traffic": "Nedostatečný provoz. Obraťte se na správce, abyste zvýšili Kolu.",
+      "no_token": "Nedostatek tokenu. Obraťte se na správce pro zvýšení Colla."
     },
     "modal": {
       "colla_insufficient_modal": {
