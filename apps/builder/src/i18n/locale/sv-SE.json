@@ -4203,7 +4203,8 @@
       "feature": "Ta bort vattenstämpel"
     },
     "label": {
-      "canceled": "Avbruten"
+      "canceled": "Avbruten",
+      "expired": "Expired"
     }
   },
   "network": {
