@@ -30,6 +30,7 @@ import {
   canUseUpgradeFeature,
   openShareAgentModal,
   showShareAgentModal,
+  showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
@@ -480,6 +481,7 @@ export const AIAgent: FC = () => {
                 control={control}
                 rules={{
                   required: true,
+                  maxLength: 160,
                 }}
                 shouldUnregister={false}
                 render={({ field }) => (
@@ -556,6 +558,8 @@ export const AIAgent: FC = () => {
                     <TextArea
                       {...field}
                       minH="64px"
+                      showWordLimit={true}
+                      error={true}
                       maxLength={160}
                       placeholder={t("editor.ai-agent.placeholder.desc")}
                       colorScheme={"techPurple"}
@@ -1009,7 +1013,10 @@ export const AIAgent: FC = () => {
                   render={({ field: contributeField }) => (
                     <div css={rightPanelContainerStyle}>
                       <PreviewChat
-                        showShareAndContributeDialog={showShareAgentModal(
+                        showShareDialog={showShareAgentModalOnlyForShare(
+                          currentTeamInfo,
+                        )}
+                        showContributeDialog={showShareAgentModal(
                           currentTeamInfo,
                           currentTeamInfo.myRole,
                           contributeField.value,

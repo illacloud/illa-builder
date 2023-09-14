@@ -57,7 +57,8 @@ export interface PreviewChatProps {
   isReceiving: boolean
   isRunning: boolean
   isMobile: boolean
-  showShareAndContributeDialog: boolean
+  showShareDialog: boolean
+  showContributeDialog: boolean
   onShowShareDialog?: () => void
   onShowContributeDialog?: () => void
 }
