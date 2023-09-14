@@ -3725,7 +3725,8 @@
             "4": "Token 100K"
           }
         },
-        "price": "/měsíc/10k Colla"
+        "price": "/měsíc/10k Colla",
+        "button": "Increase Colla"
       }
     },
     "title": {
