@@ -4203,7 +4203,8 @@
       "feature": "Watermerk verwijderen"
     },
     "label": {
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "expired": "Expired"
     }
   },
   "network": {
