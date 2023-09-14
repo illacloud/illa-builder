@@ -1383,9 +1383,9 @@
         "event": "Ereignis",
         "MESSAGE": "NACHRICHT",
         "Toolbar": "TOOLBAR",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Innere Trennlinie",
+        "shadow": "Innenschatten",
+        "background": "Hintergrund",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/Monat/10k Colla",
-        "button": "Increase Colla"
+        "button": "Colla erhöhen"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "Verkehr",
         "colla": "Lila",
         "colla_unsub": "Saldo",
-        "colla_sub": "Lila"
+        "colla_sub": "Lila",
+        "seats": "Sitze",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Aktuell",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ Monat",
         "year": "/ Jahr"
+      },
+      "table_desc": {
+        "bouns": "Wenn dein aktueller Zyklusstand nicht ausreicht, werden wir automatisch Colla für dich hinzufügen. Bonus Colla ist eine zusätzliche Gebühr und ist nicht im Abonnement für den Zyklus enthalten. Wenn Ihr Abonnement automatisch im nächsten Zyklus verlängert wird, wird es keine Bonus-Colla enthalten. "
+      },
+      "table_button": {
+        "seats": "Sitze verwalten",
+        "colla": "Colla verwalten"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Fehler beim Ändern des Plans. Bitte versuchen Sie es später erneut.",
       "unsubscription_fail": "Abo konnte nicht storniert werden. Bitte versuchen Sie es später erneut.",
       "failed_to_update": "Fehler beim Aktualisieren des Abonnements. Bitte versuchen Sie es erneut. ",
-      "update_suc": "Abonnement erfolgreich aktualisiert"
+      "update_suc": "Abonnement erfolgreich aktualisiert",
+      "no_storage": "Unzureichender Speicher. Bitte kontaktieren Sie den Administrator, um Colla zu erhöhen.",
+      "no_traffic": "Unzureichender Datenverkehr. Bitte kontaktieren Sie den Administrator, um Cola zu erhöhen.",
+      "no_token": "Unzureichendes Token. Bitte kontaktieren Sie den Administrator, um Cola zu erhöhen."
     },
     "modal": {
       "colla_insufficient_modal": {
