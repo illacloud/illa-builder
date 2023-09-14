@@ -559,7 +559,7 @@ export const AIAgent: FC = () => {
                       {...field}
                       minH="64px"
                       showWordLimit={true}
-                      error={true}
+                      error={field.value.length > 160}
                       maxLength={160}
                       placeholder={t("editor.ai-agent.placeholder.desc")}
                       colorScheme={"techPurple"}
