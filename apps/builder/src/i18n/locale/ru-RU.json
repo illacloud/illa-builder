@@ -4203,7 +4203,8 @@
       "feature": "Удалить водяной знак"
     },
     "label": {
-      "canceled": "Отменено"
+      "canceled": "Отменено",
+      "expired": "Expired"
     }
   },
   "network": {
