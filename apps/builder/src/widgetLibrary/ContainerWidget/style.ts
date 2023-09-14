@@ -11,17 +11,21 @@ export const emptyStateStyle = css`
   text-align: center;
 `
 
-export const applyEmptyStateWrapperStyle = (isInner: boolean = false) => css`
+export const applyEmptyStateWrapperStyle = (
+  isInner: boolean = false,
+  paddingTopBottom: number,
+) => css`
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: ${(isInner ? 14 : 15) * UNIT_HEIGHT -
-  2 * SCROLL_CONTAINER_PADDING}px;
+  min-height: ${isInner
+    ? "100%"
+    : 15 * UNIT_HEIGHT - 2 * SCROLL_CONTAINER_PADDING + paddingTopBottom};
 `
 
-export const containerWrapperStyle = css`
+export const applyContainerWrapperStyle = css`
   width: 100%;
   height: 100%;
   display: flex;

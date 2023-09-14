@@ -15,9 +15,9 @@ import {
   ActionTriggerMode,
   IAdvancedConfig,
 } from "@/redux/currentApp/action/actionState"
+import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { getDashboardTeamAIAgentList } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { AiAgentActionContent } from "../../../../../../redux/currentApp/action/aiAgentAction"
 import {
   itemContainer,
   itemText,

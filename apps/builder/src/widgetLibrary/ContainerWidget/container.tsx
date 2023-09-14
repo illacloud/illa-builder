@@ -3,7 +3,7 @@ import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 import { ContainerEmptyState } from "./emptyState"
-import { containerWrapperStyle } from "./style"
+import { applyContainerWrapperStyle } from "./style"
 
 export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
@@ -20,6 +20,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     triggerEventHandler,
     updateComponentHeight,
     linkWidgetDisplayName,
+    padding,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
 
@@ -174,13 +175,14 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={containerWrapperStyle} onClick={handleOnClick}>
+      <div css={applyContainerWrapperStyle} onClick={handleOnClick}>
         {Array.isArray(childrenNode) && currentIndex < childrenNode.length ? (
           <RenderChildrenCanvas
             currentComponentNode={childrenNode[currentIndex]}
             columnNumber={columnNumber}
             handleUpdateHeight={handleUpdateHeight}
             canResizeCanvas={enableAutoHeight}
+            containerPadding={padding?.size}
           />
         ) : (
           <ContainerEmptyState />

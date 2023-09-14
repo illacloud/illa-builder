@@ -1,5 +1,5 @@
 import { ChartDataset, ChartType } from "chart.js"
-import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
+import { ChartDatasetShape } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 
 export interface WrappedChartProps
   extends Omit<ChartWidgetProps, "xAxis" | "datasets"> {

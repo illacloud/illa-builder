@@ -6,7 +6,7 @@ import {
   ImageProps,
   TableProps,
 } from "@illa-design/react"
-import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
+import { CellItemProps } from "@/page/App/components/InspectPanel/PanelSetters/TableSetter/CellSetter/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export enum Columns {

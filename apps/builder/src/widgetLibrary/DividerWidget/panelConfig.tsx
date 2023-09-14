@@ -65,7 +65,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-style-list`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         attrName: "styles",
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         useCustomLayout: true,
@@ -73,7 +73,8 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-style-text-size`,
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
-            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
+            setterType: "MEASURE_CHECK_INPUT_SETTER",
+            useCustomLayout: true,
             attrName: "fs",
             icon: <TextSizeIcon />,
             defaultValue: "14px",

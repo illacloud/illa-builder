@@ -2,6 +2,7 @@ import { FC } from "react"
 import { FocusManager } from "@/utils/focusManager"
 import { PageBasic } from "./Modules/Basic"
 import { PageFrame } from "./Modules/Frame"
+import { PageStyle } from "./Modules/Style"
 import { PagePanelWrapperStyle, PageScrollContainerWrapperStyle } from "./style"
 
 const PagePanel: FC = () => {
@@ -15,6 +16,7 @@ const PagePanel: FC = () => {
       <div css={PageScrollContainerWrapperStyle}>
         <PageFrame />
         <PageBasic />
+        <PageStyle />
       </div>
     </div>
   )

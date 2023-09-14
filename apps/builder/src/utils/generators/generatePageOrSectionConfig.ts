@@ -1,4 +1,5 @@
 import { v4 } from "uuid"
+import { getColor } from "@illa-design/react"
 import {
   DEFAULT_ASIDE_COLUMNS_NUMBER,
   DEFAULT_BODY_COLUMNS_NUMBER,
@@ -7,6 +8,7 @@ import {
   CONTAINER_TYPE,
   ComponentNode,
   ModalSectionNode,
+  PADDING_MODE,
   PageNode,
   PageNodeProps,
   SECTION_POSITION,
@@ -104,7 +106,7 @@ export const generateSectionConfig = (
       ? bodySubpaths[0]
       : "sub-page1"
 
-  return {
+  const result: SectionNode = {
     displayName: `${displayName}`,
     parentNode: parentNode,
     showName: showName,
@@ -130,9 +132,24 @@ export const generateSectionConfig = (
           path: defaultSubPath,
         },
       ],
+      style: {},
     },
     childrenNode: [childrenNode],
   }
+  if (showName === "bodySection") {
+    result.props.style = {
+      padding: {
+        mode: PADDING_MODE.ALL,
+        size: "24",
+      },
+    }
+  }
+  if (showName !== "bodySection") {
+    result.props.style = {
+      dividerColor: getColor("grayBlue", "08"),
+    }
+  }
+  return result
 }
 
 export const generateModalSectionConfig = (

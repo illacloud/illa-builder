@@ -1,5 +1,4 @@
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
-import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { MODAL_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ModalWidget/eventHandlerConfig"
@@ -54,42 +53,16 @@ export const MODAL_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: `${baseWidgetName}-styles-color`,
-        setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.border"),
-        attrName: "border",
+        id: `${baseWidgetName}-styles-border`,
+        setterType: "BORDER_SETTER",
         useCustomLayout: true,
-        childrenSetter: [
-          {
-            id: `${baseWidgetName}-style-border`,
-            labelName: i18n.t("editor.inspect.setter_label.color"),
-            attrName: "borderColor",
-            setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "#ffffffff",
-          },
-          {
-            id: `${baseWidgetName}-style-radius`,
-            labelName: i18n.t("editor.inspect.setter_label.radius"),
-            attrName: "radius",
-            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
-            icon: <RadioIcon />,
-            defaultValue: "4px",
-          },
-          {
-            id: `${baseWidgetName}-style-border-width`,
-            labelName: i18n.t("editor.inspect.setter_label.width"),
-            attrName: "borderWidth",
-            icon: <StrokeWidthIcon />,
-            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
-            defaultValue: "1px",
-          },
-        ],
+        attrName: "border",
       },
       {
-        id: `${baseWidgetName}-styles-style`,
-        setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.style"),
-        attrName: "style",
+        id: `${baseWidgetName}-styles-color`,
+        setterType: "STYLE_CONTAINER_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
+        attrName: "border",
         useCustomLayout: true,
         childrenSetter: [
           {
@@ -97,7 +70,26 @@ export const MODAL_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.background"),
             attrName: "backgroundColor",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "#ffffffff",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-styles-style`,
+        setterType: "STYLE_CONTAINER_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.style"),
+        attrName: "style",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-style-radius`,
+            labelName: i18n.t("editor.inspect.setter_label.radius"),
+            attrName: "radius",
+            setterType: "MEASURE_CHECK_INPUT_SETTER",
+            useCustomLayout: true,
+            icon: <RadioIcon />,
+            defaultValue: "4px",
           },
         ],
       },

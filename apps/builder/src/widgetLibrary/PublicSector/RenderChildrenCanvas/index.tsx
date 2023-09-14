@@ -16,6 +16,7 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
     columnNumber,
     canResizeCanvas = false,
     handleUpdateHeight,
+    containerPadding,
   } = props
   const isEditMode = useSelector(getIsILLAEditMode)
   const canShowDots = useSelector(isShowDot)
@@ -27,13 +28,18 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
       currentComponentNode.childrenNode.length === 0) ||
       !currentComponentNode.displayName)
   ) {
-    return <ContainerEmptyState handleUpdateHeight={handleUpdateHeight} />
+    return (
+      <ContainerEmptyState
+        handleUpdateHeight={handleUpdateHeight}
+        containerPadding={containerPadding}
+      />
+    )
   }
 
   return (
     <RenderComponentCanvasContainer
       displayName={currentComponentNode.displayName}
-      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
+      containerPadding={containerPadding ?? `${LIKE_CONTAINER_WIDGET_PADDING}`}
       columnNumber={columnNumber}
       handleUpdateHeight={handleUpdateHeight}
       canResizeCanvas={canResizeCanvas}

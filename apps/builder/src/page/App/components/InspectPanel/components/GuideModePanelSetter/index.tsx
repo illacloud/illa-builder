@@ -10,7 +10,7 @@ import { RenderGuideModePanelSetterProps } from "./interface"
 const RenderGuideModePanelSetter: FC<RenderGuideModePanelSetterProps> = (
   props,
 ) => {
-  const { config, displayName, isInList, parentAttrName, currentStep } = props
+  const { config, displayName, parentAttrName, currentStep } = props
   const { id } = config
   const currentStepInfo = GUIDE_STEP[currentStep]
   const { hideTrigger, titleKey, descKey, selector, doItForMe } =
@@ -24,7 +24,6 @@ const RenderGuideModePanelSetter: FC<RenderGuideModePanelSetterProps> = (
           <RenderPanelSetter
             config={config}
             displayName={displayName}
-            isInList={isInList}
             parentAttrName={parentAttrName}
           />
         </div>
@@ -51,7 +50,6 @@ const RenderGuideModePanelSetter: FC<RenderGuideModePanelSetterProps> = (
           <RenderPanelSetter
             config={config}
             displayName={displayName}
-            isInList={isInList}
             parentAttrName={parentAttrName}
           />
         </div>
@@ -62,7 +60,6 @@ const RenderGuideModePanelSetter: FC<RenderGuideModePanelSetterProps> = (
     <RenderPanelSetter
       config={config}
       displayName={displayName}
-      isInList={isInList}
       parentAttrName={parentAttrName}
     />
   )

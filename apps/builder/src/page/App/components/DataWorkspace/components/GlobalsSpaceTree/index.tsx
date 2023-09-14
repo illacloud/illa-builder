@@ -3,8 +3,8 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { PlusIcon, Trigger, omit } from "@illa-design/react"
+import IconHotSpot from "@/components/IconHotSpot"
 import { PanelBar } from "@/components/PanelBar"
-import { customIconHotpotStyle } from "@/components/PanelBar/style"
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 import { hiddenFields } from "@/page/App/components/DataWorkspace/constant"
 import {
@@ -59,8 +59,7 @@ export const GlobalsSpaceTree: FC = () => {
             setIsOpen(visible)
           }}
         >
-          <div
-            css={customIconHotpotStyle}
+          <IconHotSpot
             onClick={(e) => {
               e.stopPropagation()
               setIsOpen(true)
@@ -70,7 +69,7 @@ export const GlobalsSpaceTree: FC = () => {
             }}
           >
             <PlusIcon />
-          </div>
+          </IconHotSpot>
         </Trigger>
       }
       destroyChildrenWhenClose

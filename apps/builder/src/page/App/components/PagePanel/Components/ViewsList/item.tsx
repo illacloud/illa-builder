@@ -2,12 +2,13 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { ReduceIcon, Trigger, useMessage } from "@illa-design/react"
+import IconHotSpot from "@/components/IconHotSpot"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ItemProps } from "./interface"
 import { LabelNameAndDragIcon } from "./labelName"
 import { Modal } from "./modal"
-import { deleteIconStyle, itemWrapperStyle } from "./style"
+import { itemWrapperStyle } from "./style"
 
 export const Item: FC<ItemProps> = (props) => {
   const {
@@ -101,13 +102,19 @@ export const Item: FC<ItemProps> = (props) => {
           name={path}
           isDuplicationKey={isDuplicationPath}
         />
-        <ReduceIcon
-          css={deleteIconStyle}
+        <IconHotSpot
           onClick={(e) => {
             e.stopPropagation()
             handleDeleteSectionView(index)
           }}
-        />
+        >
+          <ReduceIcon
+            onClick={(e) => {
+              e.stopPropagation()
+              handleDeleteSectionView(index)
+            }}
+          />
+        </IconHotSpot>
       </div>
     </Trigger>
   )

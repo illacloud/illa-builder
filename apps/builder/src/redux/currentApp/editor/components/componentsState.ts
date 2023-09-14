@@ -1,5 +1,3 @@
-import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-
 export enum CONTAINER_TYPE {
   "EDITOR_DOT_PANEL" = "EDITOR_DOT_PANEL",
   "EDITOR_SCALE_SQUARE" = "EDITOR_SCALE_SQUARE",
@@ -55,6 +53,10 @@ export interface RootComponentNode extends ComponentNode {
   props: RootComponentNodeProps
 }
 
+export enum PADDING_MODE {
+  ALL = "all",
+  PARTIAL = "partial",
+}
 export interface PageNodeProps {
   canvasSize: "auto" | "fixed"
   canvasWidth: number
@@ -99,6 +101,15 @@ export interface BaseSectionNodeProps {
   viewSortedKey: string[]
   sectionViewConfigs: SectionViewShape[]
   defaultViewKey: string
+  style?: {
+    dividerColor?: string
+    background?: string
+    shadowSize?: "none" | "small" | "medium" | "large"
+    padding?: {
+      mode: PADDING_MODE
+      size: string
+    }
+  }
 }
 
 export interface LeftOrRightSectionNodeProps extends BaseSectionNodeProps {
@@ -152,7 +163,13 @@ export interface AddContainerComponentViewsReducerPayload {
   displayName: string
   containerDisplayName: string
   linkedDisplayName?: string
-  addedViewItem: ViewItemShape[]
+  addedViewItem: {
+    id: string
+    key: string
+    label: string
+    disabled?: string
+    hidden?: string
+  }[]
   addComponent: ComponentNode
 }
 
@@ -262,4 +279,26 @@ export interface DeleteGlobalStatePayload {
 export interface DeleteSubPageViewNodePayload {
   pageName: string
   subPagePath: string
+}
+
+export interface UpdateCurrentPageStylePayload {
+  pageName: string
+  style: Record<string, any>
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
+}
+
+export interface DeleteCurrentPageStylePayload {
+  pageName: string
+  styleKey: string
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
 }
