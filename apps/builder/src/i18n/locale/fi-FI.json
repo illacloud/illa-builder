@@ -3725,7 +3725,8 @@
             "4": "100K tunnus"
           }
         },
-        "price": "/kk/10k Kolla"
+        "price": "/kk/10k Kolla",
+        "button": "Increase Colla"
       }
     },
     "title": {
