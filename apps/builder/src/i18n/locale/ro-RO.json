@@ -3860,8 +3860,8 @@
         "colla": "Cola"
       },
       "price": {
-        "colla_monthly": "{{price}}/lunar/10k Colla",
-        "colla_yearly": "{{price}}/an/10k Colla"
+        "colla_monthly": "{{price}} / lunar / 10k Colla",
+        "colla_yearly": "{{price}} / anual / 120k Colla"
       },
       "plan_number_input_label": {
         "License": "Licențe",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Crește Cola",
-        "cycle": "/lună/10k Colla",
+        "cycle": "/ lunar / 10k Colla",
         "failed": {
           "title": "Creșterea coloanei a eșuat",
           "storage": {
