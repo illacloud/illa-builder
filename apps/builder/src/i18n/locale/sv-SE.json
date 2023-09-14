@@ -1383,9 +1383,9 @@
         "event": "Händelse",
         "MESSAGE": "MEDDELANDE",
         "Toolbar": "TOOLBAR",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Inre avdelare",
+        "shadow": "Inre skugga",
+        "background": "Bakgrund",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/månad/10k Colla",
-        "button": "Increase Colla"
+        "button": "Öka Colla"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "Trafik",
         "colla": "Korsa",
         "colla_unsub": "Saldo",
-        "colla_sub": "Korsa"
+        "colla_sub": "Korsa",
+        "seats": "Sittplatser",
+        "bouns": "Studsar Colla"
       },
       "period": {
         "current": "Nuvarande",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ månad",
         "year": "/ år"
+      },
+      "table_desc": {
+        "bouns": "När din nuvarande cykels Colla saldo är otillräckligt, lägger vi automatiskt till Colla åt dig. Bonus Colla är en extra avgift och ingår inte i abonnemanget för cykeln. När din prenumeration förnyas automatiskt i nästa cykel, kommer den inte att inkludera Bonus Colla. "
+      },
+      "table_button": {
+        "seats": "Hantera säten",
+        "colla": "Hantera Colla"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Det gick inte att ändra plan. Försök igen senare.",
       "unsubscription_fail": "Det gick inte att avbryta prenumerationen. Försök igen senare.",
       "failed_to_update": "Det gick inte att uppdatera prenumerationen. Försök igen. ",
-      "update_suc": "Prenumerationen har uppdaterats"
+      "update_suc": "Prenumerationen har uppdaterats",
+      "no_storage": "Otillräckligt lagringsutrymme. Kontakta administratören för att öka Colla.",
+      "no_traffic": "Otillräcklig trafik. Kontakta administratören för att öka Colla.",
+      "no_token": "Otillräcklig token. Kontakta administratören för att öka Colla."
     },
     "modal": {
       "colla_insufficient_modal": {
