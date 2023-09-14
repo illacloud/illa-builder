@@ -4204,7 +4204,8 @@
     },
     "label": {
       "canceled": "已取消",
-      "expired": "Expired"
+      "expired": "Expired",
+      "paused": "暂停"
     }
   },
   "network": {
