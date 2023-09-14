@@ -55,6 +55,10 @@ export interface RootComponentNode extends ComponentNode {
   props: RootComponentNodeProps
 }
 
+export enum PADDING_MODE {
+  ALL = "all",
+  PARTIAL = "partial",
+}
 export interface PageNodeProps {
   canvasSize: "auto" | "fixed"
   canvasWidth: number
@@ -80,6 +84,51 @@ export interface PageNodeProps {
   bodyColumns?: number
   headerColumns?: number
   footerColumns?: number
+  style?: {
+    leftPanel?: {
+      dividerColor?: string
+      background?: string
+      shadowSize?: string
+      padding?: {
+        mode: PADDING_MODE
+        size: string
+      }
+    }
+    body?: {
+      background?: string
+      padding?: {
+        mode: PADDING_MODE
+        size: string
+      }
+    }
+    rightPanel?: {
+      dividerColor?: string
+      background?: string
+      shadowSize?: string
+      padding?: {
+        mode: PADDING_MODE
+        size: string
+      }
+    }
+    headerPanel?: {
+      dividerColor?: string
+      background?: string
+      shadowSize?: string
+      padding?: {
+        mode: PADDING_MODE
+        size: string
+      }
+    }
+    footerPanel?: {
+      dividerColor?: string
+      background?: string
+      shadowSize?: string
+      padding?: {
+        mode: PADDING_MODE
+        size: string
+      }
+    }
+  }
 }
 
 export interface PageNode extends ComponentNode {
@@ -262,4 +311,14 @@ export interface DeleteGlobalStatePayload {
 export interface DeleteSubPageViewNodePayload {
   pageName: string
   subPagePath: string
+}
+
+export interface UpdateCurrentPageStylePayload {
+  pageName: string
+  style: Record<string, any>
+}
+
+export interface DeleteCurrentPageStylePayload {
+  pageName: string
+  styleKey: string
 }

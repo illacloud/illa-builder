@@ -421,3 +421,17 @@ export const getIsResizing = createSelector(
     return ids.length > 0
   },
 )
+
+export const getCurrentPageStyle = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    return get(executionResult, `${currentPageDisplayName}.style`, {})
+  },
+)
+
+export const getCurrentPageExecutionResult = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    return get(executionResult, `${currentPageDisplayName}`, {})
+  },
+)

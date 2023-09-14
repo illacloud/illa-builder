@@ -15,6 +15,7 @@ export const shadowSelectStyle = css`
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
 `
 
 export const shadowIconHotSpotStyle = css`

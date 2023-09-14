@@ -426,24 +426,16 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             footerHeight={hasFooter ? bottomHeight : 0}
             containerHeight={bounds.height}
             currentPageDisplayName={currentPageDisplayName}
-            leftPosition={leftPosition}
-            rightPosition={rightPosition}
             columnNumber={headerColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
           />
         )}
         {hasLeft && leftSection && currentPageDisplayName && (
           <RenderLeftSection
             sectionNode={leftSection}
-            offsetLeft={bounds.left}
-            containerWidth={bounds.width}
             leftWidth={realLeftWidth}
-            rightWidth={realRightWidth}
-            currentPageDisplayName={currentPageDisplayName}
-            leftPosition={leftPosition}
             showFoldIcon={showLeftFoldIcon}
             isFold={isLeftFold}
             setIsLeftFold={setIsLeftFold}
-            canvasSize={canvasSize}
             columnNumber={leftColumns ?? DEFAULT_ASIDE_COLUMNS_NUMBER}
           />
         )}
@@ -456,16 +448,10 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         {hasRight && rightSection && currentPageDisplayName && (
           <RenderRightSection
             sectionNode={rightSection}
-            offsetLeft={bounds.left}
-            containerWidth={bounds.width}
-            leftWidth={realLeftWidth}
-            currentPageDisplayName={currentPageDisplayName}
-            rightPosition={rightPosition}
             showFoldIcon={showRightFoldIcon}
             isFold={isRightFold}
             rightWidth={realRightWidth}
             setIsRightFold={setIsRightFold}
-            canvasSize={canvasSize}
             columnNumber={rightColumns ?? DEFAULT_ASIDE_COLUMNS_NUMBER}
           />
         )}
@@ -476,8 +462,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             containerHeight={bounds.height}
             headerHeight={hasHeader ? topHeight : 0}
             currentPageDisplayName={currentPageDisplayName}
-            leftPosition={leftPosition}
-            rightPosition={rightPosition}
             columnNumber={footerColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
           />
         )}

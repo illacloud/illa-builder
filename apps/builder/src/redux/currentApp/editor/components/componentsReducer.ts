@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, difference, set } from "lodash"
+import { cloneDeep, difference, merge, set, unset } from "lodash"
 import {
   generateNewViewItem,
   generateNewViewItemFromBodySectionConfig,
@@ -21,6 +21,7 @@ import {
   ComponentsInitialState,
   ComponentsState,
   DeleteComponentNodePayload,
+  DeleteCurrentPageStylePayload,
   DeleteGlobalStatePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
@@ -36,6 +37,7 @@ import {
   UpdateComponentNodeHeightPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateCurrentPageStylePayload,
   UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
@@ -1032,4 +1034,26 @@ export const addSubPageReducer: CaseReducer<
   const pageNode = searchDsl(state, action.payload.pageName)
   if (!pageNode) return
   addSubpageReducerHelper(pageNode, "bodySection")
+}
+
+export const updateCurrentPageStyleReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateCurrentPageStylePayload>
+> = (state, action) => {
+  const pageNode = searchDsl(state, action.payload.pageName)
+  if (!pageNode || !pageNode.props) return
+  if (!pageNode.props.style) {
+    pageNode.props.style = action.payload.style
+  } else {
+    merge(pageNode.props.style, action.payload.style)
+  }
+}
+
+export const deleteCurrentPageStyleReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteCurrentPageStylePayload>
+> = (state, action) => {
+  const pageNode = searchDsl(state, action.payload.pageName)
+  if (!pageNode || !pageNode.props) return
+  unset(pageNode.props?.style ?? {}, action.payload.styleKey)
 }

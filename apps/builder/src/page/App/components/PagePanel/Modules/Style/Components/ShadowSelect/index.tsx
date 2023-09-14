@@ -16,42 +16,41 @@ const ShadowSelect: FC<ShadowSetterProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <div css={shadowSelectWrapperStyle}>
-      <div css={shadowSelectStyle}>
-        <div css={shadowIconHotSpotStyle}>
-          <ShadowIcon />
-        </div>
-        <Dropdown
-          trigger="click"
-          position="bottom"
-          autoAlignPopupWidth
-          dropList={
-            <DropList>
-              {SHADOW_OPTIONS.map(
-                (option: { label: string; value: string }) => {
-                  return (
-                    <DropListItem
-                      key={option.label}
-                      value={option.value}
-                      selected={value === option.value}
-                      colorScheme="techPurple"
-                      title={option.label}
-                      onClick={() => {
-                        onChange(option.value)
-                      }}
-                    />
-                  )
-                },
-              )}
-            </DropList>
-          }
-        >
-          <span>
+    <Dropdown
+      trigger="click"
+      position="bottom-start"
+      autoAlignPopupWidth
+      dropList={
+        <DropList>
+          {SHADOW_OPTIONS.map((option) => {
+            return (
+              <DropListItem
+                key={option.label}
+                value={option.value}
+                selected={value === option.value}
+                colorScheme="techPurple"
+                title={option.label}
+                onClick={() => {
+                  onChange(option.value)
+                }}
+              />
+            )
+          })}
+        </DropList>
+      }
+    >
+      <div css={shadowSelectWrapperStyle}>
+        <div css={shadowSelectStyle}>
+          <div css={shadowIconHotSpotStyle}>
+            <ShadowIcon />
+          </div>
+
+          <div>
             {t(`editor.inspect.setter_option.shadow.${value || "small"}`)}
-          </span>
-        </Dropdown>
+          </div>
+        </div>
       </div>
-    </div>
+    </Dropdown>
   )
 }
 

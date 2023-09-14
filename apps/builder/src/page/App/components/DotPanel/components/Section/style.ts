@@ -1,47 +1,5 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { RESIZE_BAR_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-
-export const disabledHorizontalBarWrapperStyle = css`
-  height: 100%;
-  width: 8px;
-  background-color: #f7f8fa;
-`
-
-export const resizeBarBasicWrapperStyle = css`
-  background-color: #f7f8fa;
-  transition: background-color 200ms ease-in-out;
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-`
-
-export const resizeVerticalBarWrapperStyle = css`
-  ${resizeBarBasicWrapperStyle};
-  width: 100%;
-  height: ${RESIZE_BAR_HEIGHT}px;
-`
-
-export const resizeHorizontalBarWrapperStyle = css`
-  ${resizeBarBasicWrapperStyle}
-  height: 100%;
-  width: ${RESIZE_BAR_HEIGHT}px;
-  cursor: col-resize;
-  :hover {
-    background-color: ${getColor("grayBlue", "08")};
-  }
-  :active {
-    background-color: ${getColor("grayBlue", "08")};
-  }
-`
-
-export const resizeHorizontalBarStyle = css`
-  width: 2px;
-  height: 32px;
-  border-radius: 1px;
-  background-color: ${getColor("grayBlue", "06")};
-`
 
 export const containerWrapperStyle = css`
   width: 100%;
@@ -110,24 +68,3 @@ export const applyHorizontalAnimationWrapperStyle = (
   display: flex;
   flex-direction: ${direction === "right" ? "row-reverse" : "row"};
 `
-export const basicTipsStyle = css`
-  position: absolute;
-  padding: 2px 4px;
-  background-color: ${getColor("techPurple", "01")};
-  border: 1px solid ${getColor("white", "01")};
-  border-radius: 4px;
-  color: white;
-  user-select: none;
-  pointer-events: none;
-  font-size: 12px;
-  overflow: hidden;
-  z-index: 10;
-`
-
-export const horizontalWidthTipsStyle = (direction: "left" | "right") => {
-  return css`
-    ${basicTipsStyle};
-    ${direction}: -35px;
-    top: calc(50% - 10px);
-  `
-}
