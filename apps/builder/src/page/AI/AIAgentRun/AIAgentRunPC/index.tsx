@@ -30,6 +30,7 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
   showShareAgentModal,
+  showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
 import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
@@ -707,7 +708,13 @@ export const AIAgentRunPC: FC = () => {
               render={({ field: contributedField }) => (
                 <div css={rightPanelContainerStyle}>
                   <PreviewChat
-                    showShareAndContributeDialog={showShareAgentModal(
+                    showShareDialog={showShareAgentModalOnlyForShare(
+                      teamInfo,
+                      agent.teamID === teamInfo.id
+                        ? teamInfo.myRole
+                        : USER_ROLE.GUEST,
+                    )}
+                    showContributeDialog={showShareAgentModal(
                       teamInfo,
                       agent.teamID === teamInfo.id
                         ? teamInfo.myRole
