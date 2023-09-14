@@ -481,6 +481,7 @@ export const AIAgent: FC = () => {
                 control={control}
                 rules={{
                   required: true,
+                  maxLength: 160,
                 }}
                 shouldUnregister={false}
                 render={({ field }) => (
@@ -557,6 +558,8 @@ export const AIAgent: FC = () => {
                     <TextArea
                       {...field}
                       minH="64px"
+                      showWordLimit={true}
+                      error={true}
                       maxLength={160}
                       placeholder={t("editor.ai-agent.placeholder.desc")}
                       colorScheme={"techPurple"}
