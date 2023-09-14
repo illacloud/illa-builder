@@ -3860,8 +3860,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}}/monthly/10k Colla",
-        "colla_yearly": "{{price}}/yearly/10k Colla"
+        "colla_monthly": "{{price}} / 月額/10k Colla",
+        "colla_yearly": "{{price}} / 年間/120k Colla"
       },
       "plan_number_input_label": {
         "License": "ライセンス",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "コラを上げる",
-        "cycle": "/monthly/10k Colla",
+        "cycle": "/ monthly / 10k Colla",
         "failed": {
           "title": "コラを増やすことができませんでした",
           "storage": {
