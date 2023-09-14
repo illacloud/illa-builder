@@ -4203,7 +4203,8 @@
       "feature": "Odstranit vodoznak"
     },
     "label": {
-      "canceled": "Zrušeno"
+      "canceled": "Zrušeno",
+      "expired": "Expired"
     }
   },
   "network": {
