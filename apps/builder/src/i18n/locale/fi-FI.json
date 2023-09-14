@@ -1383,9 +1383,9 @@
         "event": "Tapahtuma",
         "MESSAGE": "VIESTI",
         "Toolbar": "TOOLBAR",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Sisäinen jakaja",
+        "shadow": "Sisäinen varjo",
+        "background": "Tausta",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -3726,7 +3726,7 @@
           }
         },
         "price": "/kk/10k Kolla",
-        "button": "Increase Colla"
+        "button": "Lisää Kollaa"
       }
     },
     "title": {
@@ -3787,7 +3787,9 @@
         "traffic": "Liikenne",
         "colla": "Kolla",
         "colla_unsub": "Saldo",
-        "colla_sub": "Kolla"
+        "colla_sub": "Kolla",
+        "seats": "Istuimet",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Nykyinen",
@@ -3796,6 +3798,13 @@
       "cycle": {
         "month": "/ kuukausi",
         "year": "/ vuosi"
+      },
+      "table_desc": {
+        "bouns": "Kun nykyisen syklin Colla tasapaino on riittämätön, lisäämme Colla automaattisesti sinulle. Bonus Colla on lisämaksu eikä se sisälly syklin tilaukseen. Kun tilauksesi uusiutuu automaattisesti seuraavan syklin aikana, se ei sisällä Bonus Collaa. "
+      },
+      "table_button": {
+        "seats": "Hallitse istuimia",
+        "colla": "Hallitse Kollaa"
       }
     },
     "subscription_card": {
@@ -3991,7 +4000,10 @@
       "error_subscribe": "Suunnitelman muuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
       "unsubscription_fail": "Tilauksen peruuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
       "failed_to_update": "Tilauksen päivittäminen epäonnistui. Yritä uudelleen. ",
-      "update_suc": "Tilaus päivitetty onnistuneesti"
+      "update_suc": "Tilaus päivitetty onnistuneesti",
+      "no_storage": "Riittämätön tallennustila. Ota yhteyttä järjestelmänvalvojaan lisätäksesi Collaa.",
+      "no_traffic": "Liikenne ei riitä. Ota yhteyttä järjestelmänvalvojaan lisätäksesi Collaa.",
+      "no_token": "Riittämätön token. Ota yhteyttä järjestelmänvalvojaan lisätäksesi Collaa."
     },
     "modal": {
       "colla_insufficient_modal": {
