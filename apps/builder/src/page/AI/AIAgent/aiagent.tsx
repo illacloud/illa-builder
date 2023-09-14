@@ -1012,7 +1012,6 @@ export const AIAgent: FC = () => {
                       <PreviewChat
                         showShareDialog={showShareAgentModalOnlyForShare(
                           currentTeamInfo,
-                          currentTeamInfo.myRole,
                         )}
                         showContributeDialog={showShareAgentModal(
                           currentTeamInfo,

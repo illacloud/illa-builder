@@ -708,12 +708,7 @@ export const AIAgentRunPC: FC = () => {
               render={({ field: contributedField }) => (
                 <div css={rightPanelContainerStyle}>
                   <PreviewChat
-                    showShareDialog={showShareAgentModalOnlyForShare(
-                      teamInfo,
-                      agent.teamID === teamInfo.id
-                        ? teamInfo.myRole
-                        : USER_ROLE.GUEST,
-                    )}
+                    showShareDialog={showShareAgentModalOnlyForShare(teamInfo)}
                     showContributeDialog={showShareAgentModal(
                       teamInfo,
                       agent.teamID === teamInfo.id
