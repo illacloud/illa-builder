@@ -4203,7 +4203,8 @@
       "feature": "Fjern vandmærke"
     },
     "label": {
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "expired": "Expired"
     }
   },
   "network": {
