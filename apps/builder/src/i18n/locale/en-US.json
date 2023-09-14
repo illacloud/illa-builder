@@ -4203,7 +4203,8 @@
       "feature": "Remove watermark"
     },
     "label": {
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "expired": "Expired"
     }
   },
   "network": {
