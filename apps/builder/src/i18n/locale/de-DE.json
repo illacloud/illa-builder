@@ -4203,7 +4203,8 @@
       "feature": "Wasserzeichen entfernen"
     },
     "label": {
-      "canceled": "Abgebrochen"
+      "canceled": "Abgebrochen",
+      "expired": "Expired"
     }
   },
   "network": {
