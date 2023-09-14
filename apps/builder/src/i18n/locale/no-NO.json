@@ -4203,7 +4203,8 @@
       "feature": "Fjern vannmerke"
     },
     "label": {
-      "canceled": "Avbrutt"
+      "canceled": "Avbrutt",
+      "expired": "Expired"
     }
   },
   "network": {
