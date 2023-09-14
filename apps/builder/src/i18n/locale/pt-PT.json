@@ -3860,8 +3860,8 @@
         "colla": "Coca"
       },
       "price": {
-        "colla_monthly": "{{price}}/monthly/10k Colla",
-        "colla_yearly": "{{price}}/yearly/10k Colla"
+        "colla_monthly": "{{price}} / monthly / 10k Colla",
+        "colla_yearly": "{{price}} / yearly / 120k Colla"
       },
       "plan_number_input_label": {
         "License": "Licenças",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Increase Colla",
-        "cycle": "/monthly/10k Colla",
+        "cycle": "/ monthly / 10k Colla",
         "failed": {
           "title": "Failed to increase Colla",
           "storage": {
