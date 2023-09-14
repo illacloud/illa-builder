@@ -3860,8 +3860,8 @@
         "colla": "Lila"
       },
       "price": {
-        "colla_monthly": "{{price}}/monatlich/10k Colla",
-        "colla_yearly": "{{price}}/jährlich/10k Colla"
+        "colla_monthly": "{{price}} / monatlich / 10k Colla",
+        "colla_yearly": "{{price}} / Jährlich / 120k Colla"
       },
       "plan_number_input_label": {
         "License": "Lizenzen",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Colla erhöhen",
-        "cycle": "/monatlich/10k Colla",
+        "cycle": "/ monatlich / 10k Colla",
         "failed": {
           "title": "Fehler beim Erhöhen der Colla",
           "storage": {
