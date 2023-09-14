@@ -4203,7 +4203,8 @@
       "feature": "透かしを削除"
     },
     "label": {
-      "canceled": "キャンセルしました"
+      "canceled": "キャンセルしました",
+      "expired": "Expired"
     }
   },
   "network": {
