@@ -4203,7 +4203,8 @@
       "feature": "Remover marca d'agua"
     },
     "label": {
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "expired": "Expired"
     }
   },
   "network": {
