@@ -4203,7 +4203,8 @@
       "feature": "Αφαίρεση υδατογραφήματος"
     },
     "label": {
-      "canceled": "Ακυρώθηκε"
+      "canceled": "Ακυρώθηκε",
+      "expired": "Expired"
     }
   },
   "network": {
