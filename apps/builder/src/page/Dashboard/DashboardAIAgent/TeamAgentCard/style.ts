@@ -22,6 +22,13 @@ export const modelLogoStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 16px;
+  height: 16px;
+
+  & svg {
+    height: 100%;
+    width: 100%;
+  }
 `
 
 export const cardStyle = css`
