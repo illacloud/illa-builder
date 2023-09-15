@@ -1,4 +1,4 @@
-import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
+import { ShareAgentPC } from "@illa-public/invite-modal"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -17,6 +17,7 @@ import {
   ATTRIBUTE_GROUP,
   canManage,
   canManageInvite,
+  canUseUpgradeFeature,
   openShareAgentModal,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
@@ -329,6 +330,12 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
       >
         {shareVisible && (
           <ShareAgentPC
+            canUseBillingFeature={canUseUpgradeFeature(
+              teamInfo.myRole,
+              getPlanUtils(teamInfo),
+              teamInfo.totalTeamLicense?.teamLicensePurchased,
+              teamInfo.totalTeamLicense?.teamLicenseAllPaid,
+            )}
             title={t("user_management.modal.social_media.default_text.agent", {
               agentName: aiAgentName,
             })}
@@ -341,7 +348,6 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
               setShareVisible(false)
             }}
             canInvite={canInvite}
-            defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
             defaultInviteUserRole={USER_ROLE.VIEWER}
             teamID={teamInfo.id}
             currentUserRole={teamInfo.myRole}

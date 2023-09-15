@@ -60,6 +60,20 @@ export const agentTitleContainerStyle = css`
   align-items: center;
 `
 
+export const labelLogoStyle = css`
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+
+  & svg {
+    height: 100%;
+    width: 100%;
+  }
+`
+
 export const labelStyle = css`
   display: flex;
   width: 100%;
