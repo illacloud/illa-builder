@@ -83,6 +83,7 @@ import {
   buttonContainerStyle,
   descContainerStyle,
   descTextStyle,
+  labelLogoStyle,
   labelStyle,
   labelTextStyle,
   leftLoadingCoverStyle,
@@ -742,7 +743,7 @@ export const AIAgent: FC = () => {
                           return {
                             label: (
                               <div css={labelStyle}>
-                                {model.logo}
+                                <span css={labelLogoStyle}>{model.logo}</span>
                                 <span css={labelTextStyle}>{model.name}</span>
                               </div>
                             ),
@@ -753,7 +754,7 @@ export const AIAgent: FC = () => {
                           return {
                             label: (
                               <div css={labelStyle}>
-                                {model.logo}
+                                <span css={labelLogoStyle}>{model.logo}</span>
                                 <span css={labelTextStyle}>{model.name}</span>
                                 {!canUseBillingFeature && (
                                   <div css={premiumContainerStyle}>
@@ -1133,6 +1134,12 @@ export const AIAgent: FC = () => {
                   >
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
+                        canUseBillingFeature={canUseUpgradeFeature(
+                          currentTeamInfo.myRole,
+                          getPlanUtils(currentTeamInfo),
+                          currentTeamInfo.totalTeamLicense.teamLicensePurchased,
+                          currentTeamInfo.totalTeamLicense.teamLicenseAllPaid,
+                        )}
                         title={t(
                           "user_management.modal.social_media.default_text.agent",
                           {
