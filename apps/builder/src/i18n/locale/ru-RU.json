@@ -3860,8 +3860,8 @@
         "colla": "Колла"
       },
       "price": {
-        "colla_monthly": "{{price}} / ежемесячный / 10k Colla",
-        "colla_yearly": "{{price}} / год / 120k Colla"
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/год / 10k Colla"
       },
       "plan_number_input_label": {
         "License": "Лицензии",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Увеличить коллу",
-        "cycle": "/ ежемесячно / 10 тысяч Colla",
+        "cycle": "/ежемесячно/10k Colla",
         "failed": {
           "title": "Не удалось увеличить Colla",
           "storage": {
