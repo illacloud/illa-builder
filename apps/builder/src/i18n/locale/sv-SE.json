@@ -3860,8 +3860,8 @@
         "colla": "Korsa"
       },
       "price": {
-        "colla_monthly": "{{price}} / månadsvis / 10k Colla",
-        "colla_yearly": "{{price}} / årligt / 120k Colla"
+        "colla_monthly": "{{price}}/månatlig/10k Colla",
+        "colla_yearly": "{{price}}/år/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Licenser",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Öka Colla",
-        "cycle": "/ månadsvis / 10 k Colla",
+        "cycle": "/månatlig/10k Colla",
         "failed": {
           "title": "Det gick inte att öka Colla",
           "storage": {
