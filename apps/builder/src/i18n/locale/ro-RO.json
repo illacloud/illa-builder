@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 este pentru echipa Premium. ",
         "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Acest model este pentru echipele Premium",
+        "upgrade_desc": "Pentru a folosi acest model, vă rugăm să contactaţi administratorul pentru a vă actualiza echipa.",
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
