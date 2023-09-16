@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "这个模型是为Premium团队准备的功能",
         "string2": "如果要使用它，请先升级到Premium。通过升级到Premium，您还可以解锁下述功能"
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "此模型适用于Premium团队",
+        "upgrade_desc": "要使用这个模型，请联系管理员升级您的团队。",
+        "upgrade_button": "好的"
       }
     },
     "homepage": {
