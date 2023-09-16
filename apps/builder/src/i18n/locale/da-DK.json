@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 er for Premium-teamet. ",
         "string2": "For at bruge den, skal du opgradere til Premium. Ved at opgradere til Premium, vil du også have adgang til følgende funktioner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "This model is for Premium teams",
+        "upgrade_desc": "To use this model, please contact the admin to upgrade your team.",
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
