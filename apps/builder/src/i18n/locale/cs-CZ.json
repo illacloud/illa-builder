@@ -3860,8 +3860,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}} / měsíčně / 10 k Colla",
-        "colla_yearly": "{{price}} / ročně / 120k Colla"
+        "colla_monthly": "{{price}}/měsíčně/10k Colla",
+        "colla_yearly": "{{price}}/ročně/10 k Colla"
       },
       "plan_number_input_label": {
         "License": "Licence",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Zvýšit Colla",
-        "cycle": "/ měsíční/10k Colla",
+        "cycle": "/měsíčně/10k Colla",
         "failed": {
           "title": "Nepodařilo se zvýšit Colla",
           "storage": {
