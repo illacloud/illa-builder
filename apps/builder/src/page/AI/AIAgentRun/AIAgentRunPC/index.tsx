@@ -676,7 +676,7 @@ export const AIAgentRunPC: FC = () => {
           </div>
           <form
             onSubmit={handleSubmit(async (data) => {
-              if (!isPremiumModel(data.model) && !canUseBillingFeature) {
+              if (isPremiumModel(data.model) && !canUseBillingFeature) {
                 upgradeModal({
                   modalType: "agent",
                 })
