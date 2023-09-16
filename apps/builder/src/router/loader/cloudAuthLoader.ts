@@ -48,16 +48,16 @@ export const getUserInfoLoader: LoaderFunction = async () => {
         i18n.changeLanguage(lng)
         window.location.reload()
       }
-      ILLAMixpanel.getMixpanelInstance().identify(response.data.userID)
+      ILLAMixpanel.getMixpanelInstance()?.identify(response.data.userID)
       const reportedUserInfo: Record<string, any> = {}
       Object.entries(response.data).forEach(([key, value]) => {
         reportedUserInfo[`illa_${key}`] = value
       })
-      ILLAMixpanel.getMixpanelInstance().people.set(reportedUserInfo)
+      ILLAMixpanel.getMixpanelInstance()?.people.set(reportedUserInfo)
       store.dispatch(currentUserActions.updateCurrentUserReducer(response.data))
       return null
     } catch (e) {
-      ILLAMixpanel.getMixpanelInstance().reset()
+      ILLAMixpanel.getMixpanelInstance()?.reset()
       return redirect("/403")
     }
   }

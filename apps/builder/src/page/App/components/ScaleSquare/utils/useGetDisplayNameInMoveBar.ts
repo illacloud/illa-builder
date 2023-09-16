@@ -7,7 +7,10 @@ export const useDisplayNameInMoveBarSelector = (
   displayName: string,
   widgetType: string,
 ) => {
-  const executionResult = useSelector(getExecutionResult)
+  const executionResult = useSelector(
+    getExecutionResult,
+    (prev, next) => prev === next,
+  )
   const realProps: Record<string, any> = get(executionResult, displayName, {})
 
   const displayNameInMoveBar = useMemo(() => {

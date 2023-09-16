@@ -92,10 +92,6 @@ class ILLAEditorRuntimePropsCollector {
     return THIRD_PARTY_PACKAGES
   }
 
-  public getMergedRuntimeProps(otherProps: Record<string, unknown>) {
-    return merge({}, this._runtimeProps, otherProps)
-  }
-
   public getGlobalCalcContext(otherContext?: Record<string, unknown>) {
     const rootState = store.getState()
     const executionResult = getExecutionResult(rootState)

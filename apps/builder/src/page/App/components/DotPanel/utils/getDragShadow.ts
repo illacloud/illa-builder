@@ -1,4 +1,4 @@
-import { clamp, cloneDeep } from "lodash"
+import { clamp } from "lodash"
 import { XYCoord } from "react-dnd"
 import { DRAG_EFFECT } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
@@ -338,7 +338,7 @@ export const canCrossDifferenceColumnNumber = (draggedShapes: NodeShape[]) => {
     return true
   }
 
-  const sortedLayoutInfoByY = cloneDeep(draggedShapes).sort((node1, node2) => {
+  const sortedLayoutInfoByY = draggedShapes.sort((node1, node2) => {
     if (node1.y < node2.y) {
       return -1
     }

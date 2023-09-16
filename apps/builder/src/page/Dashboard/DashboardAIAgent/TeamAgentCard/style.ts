@@ -1,13 +1,43 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
+export const modelContainerStyle = css`
+  display: flex;
+  margin-top: 4px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+`
+
+export const modelNameStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+`
+
+export const modelLogoStyle = css`
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+
+  & svg {
+    height: 100%;
+    width: 100%;
+  }
+`
+
 export const cardStyle = css`
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 24px;
   width: 100%;
-  height: 196px;
+  height: 212px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
   background: ${getColor("white", "01")};
@@ -37,22 +67,22 @@ export const appActionButtonStyle = css`
 
 export const headerStyle = css`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
+  flex-direction: row;
 `
 
 export const titleInfoStyle = css`
   display: flex;
+  margin-right: 8px;
   justify-content: center;
-  align-items: center;
-  gap: 16px;
+  flex-grow: 1;
+  flex-direction: column;
+  margin-left: 16px;
   overflow: hidden;
 `
 
 export const agentIconStyle = css`
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   border-radius: 8px;
 `
 
@@ -61,7 +91,6 @@ export const nameStyle = css`
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
-  width: 240px;
   ${textEllipsisStyle};
 `
 

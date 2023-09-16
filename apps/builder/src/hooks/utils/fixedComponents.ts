@@ -1,4 +1,3 @@
-import { cloneDeep } from "lodash"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const fixedChartComponent = (component: ComponentNode) => {
@@ -44,7 +43,7 @@ const fixedMenuComponent = (component: ComponentNode) => {
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentNode,
 ) => {
-  const newComponentsTree = cloneDeep(componentsTree) ?? {}
+  const newComponentsTree = componentsTree ?? {}
   if (Array.isArray(newComponentsTree.childrenNode)) {
     newComponentsTree.childrenNode =
       newComponentsTree.childrenNode?.map((component) => {

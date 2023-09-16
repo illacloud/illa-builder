@@ -6,7 +6,11 @@ import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   Agent,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
+  freeModelList,
+  getLLM,
+  isPremiumModel,
+  premiumModelList,
+} from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -26,6 +30,7 @@ import {
   canUseUpgradeFeature,
   openShareAgentModal,
   showShareAgentModal,
+  showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
@@ -52,8 +57,6 @@ import {
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
-import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
-import { getModelLimitToken } from "@/page/AI/AIAgent/interface"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
@@ -80,6 +83,7 @@ import {
   buttonContainerStyle,
   descContainerStyle,
   descTextStyle,
+  labelLogoStyle,
   labelStyle,
   labelTextStyle,
   leftLoadingCoverStyle,
@@ -478,6 +482,7 @@ export const AIAgent: FC = () => {
                 control={control}
                 rules={{
                   required: true,
+                  maxLength: 160,
                 }}
                 shouldUnregister={false}
                 render={({ field }) => (
@@ -553,7 +558,9 @@ export const AIAgent: FC = () => {
                   >
                     <TextArea
                       {...field}
-                      minH="64px"
+                      minH="120px"
+                      showWordLimit={true}
+                      error={field.value.length > 160}
                       maxLength={160}
                       placeholder={t("editor.ai-agent.placeholder.desc")}
                       colorScheme={"techPurple"}
@@ -720,7 +727,7 @@ export const AIAgent: FC = () => {
                           },
                         )
                         if (
-                          value !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                          isPremiumModel(value as AI_AGENT_MODEL) &&
                           !canUseBillingFeature
                         ) {
                           upgradeModal({
@@ -732,45 +739,34 @@ export const AIAgent: FC = () => {
                       }}
                       colorScheme={"techPurple"}
                       options={[
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-3.5</span>
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_3_5_TURBO,
-                        },
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-3.5-16k</span>
-                              {!canUseBillingFeature && (
-                                <div css={premiumContainerStyle}>
-                                  <UpgradeIcon />
-                                  <div style={{ marginLeft: 4 }}>Premium</div>
-                                </div>
-                              )}
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
-                        },
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-4</span>
-                              {!canUseBillingFeature && (
-                                <div css={premiumContainerStyle}>
-                                  <UpgradeIcon />
-                                  <div style={{ marginLeft: 4 }}>Premium</div>
-                                </div>
-                              )}
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_4,
-                        },
+                        ...freeModelList.map((model) => {
+                          return {
+                            label: (
+                              <div css={labelStyle}>
+                                <span css={labelLogoStyle}>{model.logo}</span>
+                                <span css={labelTextStyle}>{model.name}</span>
+                              </div>
+                            ),
+                            value: model.value,
+                          }
+                        }),
+                        ...premiumModelList.map((model) => {
+                          return {
+                            label: (
+                              <div css={labelStyle}>
+                                <span css={labelLogoStyle}>{model.logo}</span>
+                                <span css={labelTextStyle}>{model.name}</span>
+                                {!canUseBillingFeature && (
+                                  <div css={premiumContainerStyle}>
+                                    <UpgradeIcon />
+                                    <div style={{ marginLeft: 4 }}>Premium</div>
+                                  </div>
+                                )}
+                              </div>
+                            ),
+                            value: model.value,
+                          }
+                        }),
                       ]}
                     />
                   </AIAgentBlock>
@@ -792,7 +788,7 @@ export const AIAgent: FC = () => {
                         required: true,
                         validate: (value) =>
                           value > 0 &&
-                          value <= getModelLimitToken(modelField.value),
+                          value <= (getLLM(modelField.value)?.limit ?? 1),
                       }}
                       shouldUnregister={false}
                       render={({ field }) => (
@@ -813,7 +809,7 @@ export const AIAgent: FC = () => {
                           colorScheme={"techPurple"}
                           mode="button"
                           min={1}
-                          max={getModelLimitToken(modelField.value)}
+                          max={getLLM(modelField.value)?.limit ?? 1}
                         />
                       )}
                     />
@@ -821,41 +817,52 @@ export const AIAgent: FC = () => {
                 )}
               />
               <Controller
-                name="modelConfig.temperature"
                 control={control}
-                rules={{
-                  required: true,
-                  validate: (value) => value > 0 && value <= 2,
-                }}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={"Temperature"}
-                    tips={t("editor.ai-agent.tips.temperature")}
-                    required
-                  >
-                    <div css={temperatureContainerStyle}>
-                      <Slider
-                        {...field}
-                        colorScheme={getColor("grayBlue", "02")}
-                        step={0.1}
-                        min={0}
-                        max={2}
-                        onAfterChange={(v) => {
-                          track(
-                            ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
-                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                            {
-                              element: "temporature",
-                              parameter1: v,
-                              parameter5: data.agent.aiAgentID || "-1",
-                            },
-                          )
-                        }}
-                      />
-                      <span css={temperatureStyle}>{field.value}</span>
-                    </div>
-                  </AIAgentBlock>
+                name={"model"}
+                render={({ field: modelField }) => (
+                  <Controller
+                    name="modelConfig.temperature"
+                    control={control}
+                    rules={{
+                      required: true,
+                      validate: (value) =>
+                        value >=
+                          (getLLM(modelField.value)?.temperatureRange[0] ??
+                            0.1) &&
+                        value <=
+                          (getLLM(modelField.value)?.temperatureRange[1] ?? 1),
+                    }}
+                    shouldUnregister={false}
+                    render={({ field }) => (
+                      <AIAgentBlock
+                        title={"Temperature"}
+                        tips={t("editor.ai-agent.tips.temperature")}
+                        required
+                      >
+                        <div css={temperatureContainerStyle}>
+                          <Slider
+                            {...field}
+                            colorScheme={getColor("grayBlue", "02")}
+                            step={0.1}
+                            min={getLLM(modelField.value)?.temperatureRange[0]}
+                            max={getLLM(modelField.value)?.temperatureRange[1]}
+                            onAfterChange={(v) => {
+                              track(
+                                ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                                {
+                                  element: "temporature",
+                                  parameter1: v,
+                                  parameter5: data.agent.aiAgentID || "-1",
+                                },
+                              )
+                            }}
+                          />
+                          <span css={temperatureStyle}>{field.value}</span>
+                        </div>
+                      </AIAgentBlock>
+                    )}
+                  />
                 )}
               />
             </div>
@@ -959,7 +966,7 @@ export const AIAgent: FC = () => {
                 leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
                 onClick={async () => {
                   if (
-                    getValues("model") !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                    isPremiumModel(getValues("model")) &&
                     !canUseBillingFeature
                   ) {
                     upgradeModal({
@@ -1007,7 +1014,10 @@ export const AIAgent: FC = () => {
                   render={({ field: contributeField }) => (
                     <div css={rightPanelContainerStyle}>
                       <PreviewChat
-                        showShareAndContributeDialog={showShareAgentModal(
+                        showShareDialog={showShareAgentModalOnlyForShare(
+                          currentTeamInfo,
+                        )}
+                        showContributeDialog={showShareAgentModal(
                           currentTeamInfo,
                           currentTeamInfo.myRole,
                           contributeField.value,
@@ -1124,6 +1134,12 @@ export const AIAgent: FC = () => {
                   >
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
+                        canUseBillingFeature={canUseUpgradeFeature(
+                          currentTeamInfo.myRole,
+                          getPlanUtils(currentTeamInfo),
+                          currentTeamInfo.totalTeamLicense.teamLicensePurchased,
+                          currentTeamInfo.totalTeamLicense.teamLicenseAllPaid,
+                        )}
                         title={t(
                           "user_management.modal.social_media.default_text.agent",
                           {

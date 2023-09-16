@@ -2,8 +2,8 @@ import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   AgentAdvanceConfig,
-} from "@illa-public/market-agent/MarketAgentCard/interface"
-import { Params } from "@illa-public/record-editor/interface"
+} from "@illa-public/market-agent"
+import { Params } from "@illa-public/record-editor"
 
 export type EDIT_STATE = "EDIT" | "RUN"
 
@@ -57,7 +57,8 @@ export interface PreviewChatProps {
   isReceiving: boolean
   isRunning: boolean
   isMobile: boolean
-  showShareAndContributeDialog: boolean
+  showShareDialog: boolean
+  showContributeDialog: boolean
   onShowShareDialog?: () => void
   onShowContributeDialog?: () => void
 }
