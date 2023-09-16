@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 - для преміум-команди. ",
         "string2": "Щоб використовувати його, будь ласка, оновіть Premium-версію. Купуючи Premium, ви також матимете доступ до наступних функцій. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "This model is for Premium teams",
+        "upgrade_desc": "To use this model, please contact the admin to upgrade your team.",
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
