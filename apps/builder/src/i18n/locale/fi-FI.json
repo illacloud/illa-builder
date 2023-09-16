@@ -3860,8 +3860,8 @@
         "colla": "Kolla"
       },
       "price": {
-        "colla_monthly": "{{price}} / kuukausittain / 10k Colla",
-        "colla_yearly": "{{price}} / vuosittainen / 120k Colla"
+        "colla_monthly": "{{price}}/kuukausi/10K Colla",
+        "colla_yearly": "{{price}}/vuosi/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Lisenssit",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Lisää Kollaa",
-        "cycle": "/ kuukausittain / 10k Colla",
+        "cycle": "/kuukausi/10k Colla",
         "failed": {
           "title": "Collan lisääminen epäonnistui",
           "storage": {
