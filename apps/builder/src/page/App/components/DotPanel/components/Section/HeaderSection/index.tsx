@@ -92,7 +92,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
       <div css={containerWrapperStyle}>
         {componentNode ? (
           <RenderComponentCanvasContainer
-            displayName={componentNode.displayName}
+            displayName={componentNode}
             containerPadding={padding?.size ?? `${BASIC_CANVAS_PADDING}`}
             columnNumber={columnNumber}
             isRootCanvas
