@@ -5,6 +5,7 @@ export const applyLeftSectionWrapperStyle = (
   width: string,
   top: string = "0px",
   isFold: boolean,
+  dividerColor?: string,
 ) => css`
   position: absolute;
   top: var(--illa-canvas-left-top, ${top});
@@ -14,4 +15,5 @@ export const applyLeftSectionWrapperStyle = (
   display: flex;
   flex-direction: row;
   min-width: ${isFold ? 0 : `${LEFT_MIN_WIDTH}px`};
+  border-right: ${dividerColor ? `1px solid ${dividerColor}` : "unset"};
 `

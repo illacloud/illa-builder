@@ -87,7 +87,12 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
 
   return (
     <div
-      css={applyHeaderSectionWrapperStyle(`${topHeight}px`, "240px", "500px")}
+      css={applyHeaderSectionWrapperStyle(
+        `${topHeight}px`,
+        "240px",
+        "500px",
+        dividerColor,
+      )}
     >
       <div css={containerWrapperStyle}>
         {componentNode ? (
@@ -102,7 +107,6 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
             minHeight={HEADER_MIN_HEIGHT}
             background={background}
             shadowSize={shadowSize}
-            dividerColor={dividerColor}
           />
         ) : (
           <EmptyState />

@@ -161,7 +161,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteLeftDivider}
         >
           <ColorPickerSetter
-            value={getColor("grayBlue", "08")}
+            value={leftStyle?.dividerColor ?? getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateLeftDivider}
           />
         </DeleteActionContainer>
@@ -172,7 +172,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteRightDivider}
         >
           <ColorPickerSetter
-            value={getColor("grayBlue", "08")}
+            value={rightStyle?.dividerColor ?? getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateRightDivider}
           />
         </DeleteActionContainer>
@@ -183,7 +183,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteHeaderDivider}
         >
           <ColorPickerSetter
-            value={getColor("grayBlue", "08")}
+            value={headerStyle?.dividerColor ?? getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateHeaderDivider}
           />
         </DeleteActionContainer>
@@ -194,7 +194,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteFooterDivider}
         >
           <ColorPickerSetter
-            value={getColor("grayBlue", "08")}
+            value={footerStyle?.dividerColor ?? getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateFooterDivider}
           />
         </DeleteActionContainer>

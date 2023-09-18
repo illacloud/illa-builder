@@ -5,6 +5,7 @@ export const applyFooterSectionWrapperStyle = (
   height: string,
   left: string = "0px",
   width: string = "0px",
+  dividerColor?: string,
 ) => css`
   position: absolute;
   bottom: 0;
@@ -14,4 +15,5 @@ export const applyFooterSectionWrapperStyle = (
   display: flex;
   flex-direction: column-reverse;
   min-height: ${FOOTER_MIN_HEIGHT}px;
+  border-top: ${dividerColor ? `1px solid ${dividerColor}` : "unset"};
 `

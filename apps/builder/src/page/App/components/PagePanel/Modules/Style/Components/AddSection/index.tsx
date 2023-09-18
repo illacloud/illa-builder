@@ -22,7 +22,7 @@ export const AddSection: FC<AddSectionProps> = ({ children }) => {
   const dispatch = useDispatch()
 
   const currentPage = useSelector(getCurrentPageExecutionResult)
-  const { displayName } = currentPage
+  const { displayName, hasFooter, hasLeft, hasRight, hasHeader } = currentPage
 
   const rightSection = useSelector(getCurrentPageRightSection)
   const leftSection = useSelector(getCurrentPageLeftSection)
@@ -42,22 +42,22 @@ export const AddSection: FC<AddSectionProps> = ({ children }) => {
     {
       label: i18n.t("editor.page.label_name.left_panel"),
       value: "leftSection",
-      disabled: hasLeftDivider,
+      disabled: !hasLeft || hasLeftDivider,
     },
     {
       label: i18n.t("editor.page.label_name.right_panel"),
       value: "rightSection",
-      disabled: hasRightDivider,
+      disabled: !hasRight || hasRightDivider,
     },
     {
       label: i18n.t("editor.page.label_name.header"),
       value: "headerSection",
-      disabled: hasHeaderDivider,
+      disabled: !hasHeader || hasHeaderDivider,
     },
     {
       label: i18n.t("editor.page.label_name.footer"),
       value: "footerSection",
-      disabled: hasFooterDivider,
+      disabled: !hasFooter || hasFooterDivider,
     },
   ]
 
