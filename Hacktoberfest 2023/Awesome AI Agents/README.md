@@ -14,7 +14,7 @@
 
 ![signup](https://cdn.illacloud.com/official-website/img/github/1.gif)
 
-### Step 2: Click the Create button to create a new AI Agent or App. 
+### Step 2: Click the Create button to create a new AI Agent. 
 
 **Create AI Agent**
 ![image](https://cdn.illacloud.com/official-website/img/github/2.png)
