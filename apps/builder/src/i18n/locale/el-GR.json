@@ -3860,8 +3860,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}} / μηνιαίως / 10k Colla",
-        "colla_yearly": "{{price}} / yearly / 120k Colla"
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Άδειες",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Αύξηση Colla",
-        "cycle": "/ μηνιαία / 10k Colla",
+        "cycle": "/monthly/10k Colla",
         "failed": {
           "title": "Αποτυχία αύξησης της Colla",
           "storage": {
@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "Το GPT-4 είναι για την ομάδα Premium. ",
         "string2": "Για να το χρησιμοποιήσετε, παρακαλώ αναβαθμίστε σε Premium. Αναβαθμίζοντας στο Premium, θα έχετε επίσης πρόσβαση στις ακόλουθες λειτουργίες. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Αυτό το μοντέλο είναι για Premium ομάδες",
+        "upgrade_desc": "Για να χρησιμοποιήσετε αυτό το μοντέλο, παρακαλώ επικοινωνήστε με τον διαχειριστή για να αναβαθμίσετε την ομάδα σας.",
+        "upgrade_button": "Εντάξει"
       }
     },
     "homepage": {

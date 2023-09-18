@@ -3860,8 +3860,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}} / měsíčně / 10 k Colla",
-        "colla_yearly": "{{price}} / ročně / 120k Colla"
+        "colla_monthly": "{{price}}/měsíčně/10k Colla",
+        "colla_yearly": "{{price}}/ročně/10 k Colla"
       },
       "plan_number_input_label": {
         "License": "Licence",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Zvýšit Colla",
-        "cycle": "/ měsíční/10k Colla",
+        "cycle": "/měsíčně/10k Colla",
         "failed": {
           "title": "Nepodařilo se zvýšit Colla",
           "storage": {
@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 je pro prémiový tým. ",
         "string2": "Chcete-li jej použít, proveďte upgrade na Premium. Proveďte upgrade na Premium, budete mít také přístup k následujícím funkcím. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Tento model je pro prémiové týmy",
+        "upgrade_desc": "Chcete-li použít tento model, obraťte se na správce pro aktualizaci vašeho týmu.",
+        "upgrade_button": "OK"
       }
     },
     "homepage": {

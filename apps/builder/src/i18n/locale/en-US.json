@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "This model is for Premium team. ",
         "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "This model is for Premium teams",
+        "upgrade_desc": "To use this model, please contact the admin to upgrade your team.",
+        "upgrade_button": "OK"
       }
     },
     "homepage": {

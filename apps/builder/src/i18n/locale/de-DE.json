@@ -3860,8 +3860,8 @@
         "colla": "Lila"
       },
       "price": {
-        "colla_monthly": "{{price}} / monatlich / 10k Colla",
-        "colla_yearly": "{{price}} / Jährlich / 120k Colla"
+        "colla_monthly": "{{price}}/monatlich/10k Colla",
+        "colla_yearly": "{{price}}/jährlich/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Lizenzen",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Colla erhöhen",
-        "cycle": "/ monatlich / 10k Colla",
+        "cycle": "/monatlich/10k Colla",
         "failed": {
           "title": "Fehler beim Erhöhen der Colla",
           "storage": {
@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 ist für das Premium-Team. ",
         "string2": "Um es zu verwenden, upgraden Sie bitte auf Premium. Durch ein Upgrade auf Premium, haben Sie auch Zugriff auf die folgenden Funktionen. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Dieses Modell ist für Premium-Teams",
+        "upgrade_desc": "Um dieses Modell zu verwenden, kontaktieren Sie bitte den Administrator, um Ihr Team zu aktualisieren.",
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {

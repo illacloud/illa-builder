@@ -3860,8 +3860,8 @@
         "colla": "Kolla"
       },
       "price": {
-        "colla_monthly": "{{price}} / månedlig / 10 kolla",
-        "colla_yearly": "{{price}} / Årlig / 120k Colla"
+        "colla_monthly": "{{price}}/ månedsl/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Lisenser",
@@ -4029,7 +4029,7 @@
           }
         },
         "button": "Øk kolla",
-        "cycle": "/ månedlig / 10k Colla",
+        "cycle": "/månedsl/10k Colla",
         "failed": {
           "title": "Kunne ikke øke Colla",
           "storage": {
@@ -4132,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 er for Premium-team. ",
         "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Denne modellen er for Premium team",
+        "upgrade_desc": "For å bruke denne modellen, vennligst kontakt admin for å oppgradere teamet ditt.",
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
