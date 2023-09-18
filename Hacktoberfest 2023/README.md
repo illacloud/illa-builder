@@ -55,8 +55,6 @@ Learn more 👉: https://www.illacloud.com/hacktoberfest2023
 
 6. Create pull request
 
-7. Create pull request
-
-8. 🎉 Finished
+7. 🎉 Finished
    
 ![7](https://cdn.illacloud.com/official-website/img/github/7.gif)
