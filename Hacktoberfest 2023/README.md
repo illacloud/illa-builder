@@ -38,7 +38,7 @@ Learn more 👉: https://www.illacloud.com/hacktoberfest2023
 **App**
 ![5](https://cdn.illacloud.com/official-website/img/github/5.gif)
 
-**Step 4:** Submit a pull request on GitHub.
+### Step 4: Submit a pull request on GitHub.
 
 **The quickest way:**
 
