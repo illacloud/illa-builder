@@ -33,7 +33,7 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
   return (
     <RenderComponentCanvasContainer
       displayName={currentComponentNode.displayName}
-      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
+      containerPadding={`${LIKE_CONTAINER_WIDGET_PADDING}`}
       columnNumber={columnNumber}
       handleUpdateHeight={handleUpdateHeight}
       canResizeCanvas={canResizeCanvas}

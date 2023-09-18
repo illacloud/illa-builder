@@ -11,14 +11,13 @@ import {
 import { getCurrentDisplayName } from "@/page/App/components/DotPanel/hooks/sectionUtils"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentPageFooterSection } from "@/redux/currentApp/executionTree/executionSelector"
 import { containerWrapperStyle } from "../style"
 import { RenderFooterSectionProps } from "./interface"
 import { applyFooterSectionWrapperStyle } from "./style"
 
 export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
   const {
-    sectionNode,
     bottomHeight,
     containerHeight,
     headerHeight,
@@ -28,29 +27,23 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
 
   const dispatch = useDispatch()
 
-  const executionResult = useSelector(getExecutionResult)
   const isProductionMode = useSelector(getIsILLAProductMode)
-  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const footerNode = useSelector(getCurrentPageFooterSection)
+  let { viewPath } = useParams()
+
   const {
     viewSortedKey,
     currentViewIndex,
     defaultViewKey,
     sectionViewConfigs,
-  } = sectionNodeProps
-  let { viewPath } = useParams()
-  const currentViewDisplayName = getCurrentDisplayName(
-    sectionViewConfigs,
-    viewSortedKey,
-    defaultViewKey,
-    isProductionMode,
-    viewPath,
-    currentViewIndex,
-  )
-
-  const componentNode = sectionNode.childrenNode?.find(
-    (node) => node.displayName === currentViewDisplayName,
-  )
-
+    style,
+  } = footerNode ?? {}
+  const {
+    padding,
+    background = "white",
+    shadowSize = "none",
+    dividerColor,
+  } = style ?? {}
   const handleUpdateHeight = useCallback(
     (height: number) => {
       let currentWrapperHeight = height
@@ -78,6 +71,21 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
     [containerHeight, currentPageDisplayName, dispatch, headerHeight],
   )
 
+  if (!footerNode) return null
+
+  const currentViewDisplayName = getCurrentDisplayName(
+    sectionViewConfigs,
+    viewSortedKey,
+    defaultViewKey,
+    isProductionMode,
+    viewPath,
+    currentViewIndex,
+  )
+
+  const componentNode = footerNode.$childrenNode?.find(
+    (displayName: string) => displayName === currentViewDisplayName,
+  )
+
   return (
     <div
       css={applyFooterSectionWrapperStyle(
@@ -90,13 +98,16 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
         {componentNode ? (
           <RenderComponentCanvasContainer
             displayName={componentNode.displayName}
-            containerPadding={BASIC_CANVAS_PADDING}
+            containerPadding={padding?.size ?? `${BASIC_CANVAS_PADDING}`}
             columnNumber={columnNumber}
             isRootCanvas
             safeRowNumber={0}
             handleUpdateHeight={handleUpdateHeight}
             canResizeCanvas
             minHeight={FOOTER_MIN_HEIGHT}
+            background={background}
+            shadowSize={shadowSize}
+            dividerColor={dividerColor}
           />
         ) : (
           <EmptyState />

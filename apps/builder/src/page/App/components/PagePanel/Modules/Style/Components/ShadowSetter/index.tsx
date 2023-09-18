@@ -1,9 +1,15 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { getCurrentPageExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { componentsActions } from "../../../../../../../../redux/currentApp/editor/components/componentsSlice"
-import { PageLabel } from "../../../../Components/Label"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import {
+  getCurrentPageExecutionResult,
+  getCurrentPageFooterSection,
+  getCurrentPageHeaderSection,
+  getCurrentPageLeftSection,
+  getCurrentPageRightSection,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import {
   labelContainerStyle,
   sectionContainerStyle,
@@ -17,14 +23,16 @@ export const ShadowSetter: FC = () => {
   const dispatch = useDispatch()
 
   const currentPage = useSelector(getCurrentPageExecutionResult)
-  const {
-    displayName,
-    hasFooter,
-    hasLeft,
-    hasRight,
-    hasHeader,
-    style: currentPageStyle,
-  } = currentPage
+  const { displayName, hasFooter, hasLeft, hasRight, hasHeader } = currentPage
+
+  const rightSection = useSelector(getCurrentPageRightSection)
+  const leftSection = useSelector(getCurrentPageLeftSection)
+  const headerSection = useSelector(getCurrentPageHeaderSection)
+  const footerSection = useSelector(getCurrentPageFooterSection)
+  const { style: rightStyle } = rightSection ?? {}
+  const { style: leftStyle } = leftSection ?? {}
+  const { style: headerStyle } = headerSection ?? {}
+  const { style: footerStyle } = footerSection ?? {}
 
   const handleUpdateLeftShadow = useCallback(
     (value: SHADOW_VALUE) => {
@@ -32,10 +40,9 @@ export const ShadowSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            leftPanel: {
-              shadowSize: value,
-            },
+            shadowSize: value,
           },
+          sectionName: "leftSection",
         }),
       )
     },
@@ -48,10 +55,9 @@ export const ShadowSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            rightPanel: {
-              shadowSize: value,
-            },
+            shadowSize: value,
           },
+          sectionName: "rightSection",
         }),
       )
     },
@@ -64,10 +70,9 @@ export const ShadowSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            header: {
-              shadowSize: value,
-            },
+            shadowSize: value,
           },
+          sectionName: "headerSection",
         }),
       )
     },
@@ -80,10 +85,9 @@ export const ShadowSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            footer: {
-              shadowSize: value,
-            },
+            shadowSize: value,
           },
+          sectionName: "footerSection",
         }),
       )
     },
@@ -105,7 +109,7 @@ export const ShadowSetter: FC = () => {
             size="small"
           />
           <ShadowSelect
-            value={currentPageStyle?.leftPanel?.shadowSize ?? SHADOW_VALUE.NONE}
+            value={leftStyle?.shadowSize ?? SHADOW_VALUE.NONE}
             onChange={handleUpdateLeftShadow}
           />
         </div>
@@ -117,9 +121,7 @@ export const ShadowSetter: FC = () => {
             size="small"
           />
           <ShadowSelect
-            value={
-              currentPageStyle?.rightPanel?.shadowSize ?? SHADOW_VALUE.NONE
-            }
+            value={rightStyle?.shadowSize ?? SHADOW_VALUE.NONE}
             onChange={handleUpdateRightShadow}
           />
         </div>
@@ -131,7 +133,7 @@ export const ShadowSetter: FC = () => {
             size="small"
           />
           <ShadowSelect
-            value={currentPageStyle?.header?.shadowSize ?? SHADOW_VALUE.NONE}
+            value={headerStyle?.shadowSize ?? SHADOW_VALUE.NONE}
             onChange={handleUpdateHeaderShadow}
           />
         </div>
@@ -143,7 +145,7 @@ export const ShadowSetter: FC = () => {
             size="small"
           />
           <ShadowSelect
-            value={currentPageStyle?.footer?.shadowSize ?? SHADOW_VALUE.NONE}
+            value={footerStyle?.shadowSize ?? SHADOW_VALUE.NONE}
             onChange={handleUpdateFooterShadow}
           />
         </div>

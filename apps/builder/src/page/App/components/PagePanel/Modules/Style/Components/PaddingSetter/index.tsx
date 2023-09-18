@@ -4,16 +4,23 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import { ReactComponent as AllIcon } from "@/assets/rightPagePanel/all.svg"
-import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentPageExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { componentsActions } from "../../../../../../../../redux/currentApp/editor/components/componentsSlice"
-import { BASIC_CANVAS_PADDING } from "../../../../../DotPanel/constant/canvas"
-import { PageLabel } from "../../../../Components/Label"
+import { BASIC_CANVAS_PADDING } from "@/page/App/components/DotPanel/constant/canvas"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import {
   labelContainerStyle,
   sectionContainerStyle,
   setterContainerStyle,
-} from "../../style"
+} from "@/page/App/components/PagePanel/Modules/Style/style"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  getCurrentPageBodySection,
+  getCurrentPageExecutionResult,
+  getCurrentPageFooterSection,
+  getCurrentPageHeaderSection,
+  getCurrentPageLeftSection,
+  getCurrentPageRightSection,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { DirectionPaddingSetter } from "../DirectionPaddingSetter"
 
 const options = [
@@ -31,22 +38,26 @@ export const PaddingSetter: FC = () => {
   const { t } = useTranslation()
 
   const currentPage = useSelector(getCurrentPageExecutionResult)
-  const {
-    displayName,
-    hasFooter,
-    hasLeft,
-    hasRight,
-    hasHeader,
-    style: currentPageStyle,
-  } = currentPage
+  const { displayName, hasFooter, hasLeft, hasRight, hasHeader } = currentPage
+
+  const bodySection = useSelector(getCurrentPageBodySection)
+  const rightSection = useSelector(getCurrentPageRightSection)
+  const leftSection = useSelector(getCurrentPageLeftSection)
+  const headerSection = useSelector(getCurrentPageHeaderSection)
+  const footerSection = useSelector(getCurrentPageFooterSection)
+  const { style: bodyStyle } = bodySection ?? {}
+  const { style: rightStyle } = rightSection ?? {}
+  const { style: leftStyle } = leftSection ?? {}
+  const { style: headerStyle } = headerSection ?? {}
+  const { style: footerStyle } = footerSection ?? {}
 
   const dispatch = useDispatch()
 
-  const { padding: bodyPadding = {} } = currentPageStyle?.body ?? {}
-  const { padding: headerPadding = {} } = currentPageStyle?.header ?? {}
-  const { padding: leftPanelPadding = {} } = currentPageStyle?.leftPanel ?? {}
-  const { padding: rightPanelPadding = {} } = currentPageStyle?.rightPanel ?? {}
-  const { padding: footerPadding = {} } = currentPageStyle?.footer ?? {}
+  const { padding: bodyPadding = {} } = bodyStyle ?? {}
+  const { padding: headerPadding = {} } = headerStyle ?? {}
+  const { padding: leftPanelPadding = {} } = leftStyle ?? {}
+  const { padding: rightPanelPadding = {} } = rightStyle ?? {}
+  const { padding: footerPadding = {} } = footerStyle ?? {}
 
   const bodyPaddingMode = bodyPadding.mode ?? PADDING_MODE.ALL
   const headerPaddingMode = headerPadding.mode ?? PADDING_MODE.ALL
@@ -74,13 +85,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              leftPanel: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "leftSection",
           }),
         )
         break
@@ -99,13 +109,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              leftPanel: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "leftSection",
           }),
         )
         break
@@ -127,13 +136,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              rightPanel: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "rightSection",
           }),
         )
         break
@@ -152,13 +160,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              rightPanel: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "rightSection",
           }),
         )
         break
@@ -180,13 +187,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              header: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "headerSection",
           }),
         )
         break
@@ -205,13 +211,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              header: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "headerSection",
           }),
         )
         break
@@ -233,13 +238,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              footer: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "footerSection",
           }),
         )
         break
@@ -258,13 +262,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              footer: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "footerSection",
           }),
         )
         break
@@ -287,13 +290,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              body: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "bodySection",
           }),
         )
         break
@@ -312,13 +314,12 @@ export const PaddingSetter: FC = () => {
           componentsActions.updateCurrentPageStyleReducer({
             pageName: displayName,
             style: {
-              body: {
-                padding: {
-                  mode: value,
-                  size: result,
-                },
+              padding: {
+                mode: value,
+                size: result,
               },
             },
+            sectionName: "bodySection",
           }),
         )
         break
@@ -331,12 +332,11 @@ export const PaddingSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          leftPanel: {
-            padding: {
-              size: value,
-            },
+          padding: {
+            size: value,
           },
         },
+        sectionName: "leftSection",
       }),
     )
   }
@@ -346,12 +346,11 @@ export const PaddingSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          rightPanel: {
-            padding: {
-              size: value,
-            },
+          padding: {
+            size: value,
           },
         },
+        sectionName: "rightSection",
       }),
     )
   }
@@ -361,12 +360,11 @@ export const PaddingSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          header: {
-            padding: {
-              size: value,
-            },
+          padding: {
+            size: value,
           },
         },
+        sectionName: "headerSection",
       }),
     )
   }
@@ -376,12 +374,11 @@ export const PaddingSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          footer: {
-            padding: {
-              size: value,
-            },
+          padding: {
+            size: value,
           },
         },
+        sectionName: "footerSection",
       }),
     )
   }
@@ -391,12 +388,11 @@ export const PaddingSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          body: {
-            padding: {
-              size: value,
-            },
+          padding: {
+            size: value,
           },
         },
+        sectionName: "bodySection",
       }),
     )
   }

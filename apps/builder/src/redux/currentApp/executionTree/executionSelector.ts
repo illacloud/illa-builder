@@ -435,3 +435,123 @@ export const getCurrentPageExecutionResult = createSelector(
     return get(executionResult, `${currentPageDisplayName}`, {})
   },
 )
+
+export const getCurrentPageBodySection = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    const currentPageNode = get(executionResult, currentPageDisplayName)
+    if (!currentPageNode) return undefined
+    const childDisplayName = currentPageNode.$childrenNode.find(
+      (displayName: string) => {
+        const node = get(executionResult, displayName)
+        return (
+          node &&
+          node?.$widgetType === "SECTION_NODE" &&
+          node?.displayName.startsWith("bodySection")
+        )
+      },
+    )
+    if (!childDisplayName) return undefined
+    return get(executionResult, childDisplayName)
+  },
+)
+
+export const getCurrentPageLeftSection = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    const currentPageNode = get(executionResult, currentPageDisplayName)
+    if (!currentPageNode) return undefined
+    const childDisplayName = currentPageNode.$childrenNode.find(
+      (displayName: string) => {
+        const node = get(executionResult, displayName)
+        return (
+          node &&
+          node?.$widgetType === "SECTION_NODE" &&
+          node?.displayName.startsWith("leftSection")
+        )
+      },
+    )
+    if (!childDisplayName) return undefined
+    return get(executionResult, childDisplayName)
+  },
+)
+
+export const getCurrentPageRightSection = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    const currentPageNode = get(executionResult, currentPageDisplayName)
+    if (!currentPageNode) return undefined
+    const childDisplayName = currentPageNode.$childrenNode.find(
+      (displayName: string) => {
+        const node = get(executionResult, displayName)
+        return (
+          node &&
+          node?.$widgetType === "SECTION_NODE" &&
+          node?.displayName.startsWith("rightSection")
+        )
+      },
+    )
+    if (!childDisplayName) return undefined
+    return get(executionResult, childDisplayName)
+  },
+)
+
+export const getCurrentPageHeaderSection = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    const currentPageNode = get(executionResult, currentPageDisplayName)
+    if (!currentPageNode) return undefined
+    const childDisplayName = currentPageNode.$childrenNode.find(
+      (displayName: string) => {
+        const node = get(executionResult, displayName)
+        return (
+          node &&
+          node?.$widgetType === "SECTION_NODE" &&
+          node?.displayName.startsWith("headerSection")
+        )
+      },
+    )
+    if (!childDisplayName) return undefined
+    return get(executionResult, childDisplayName)
+  },
+)
+
+export const getCurrentPageFooterSection = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    const currentPageNode = get(executionResult, currentPageDisplayName)
+    if (!currentPageNode) return undefined
+    const childDisplayName = currentPageNode.$childrenNode.find(
+      (displayName: string) => {
+        const node = get(executionResult, displayName)
+        return (
+          node &&
+          node?.$widgetType === "SECTION_NODE" &&
+          node?.displayName.startsWith("footerSection")
+        )
+      },
+    )
+    if (!childDisplayName) return undefined
+    return get(executionResult, childDisplayName)
+  },
+)
+
+export const getCurrentPageModalSection = createSelector(
+  [getCurrentPageDisplayName, getExecutionResult],
+  (currentPageDisplayName, executionResult) => {
+    const currentPageNode = get(executionResult, currentPageDisplayName)
+    if (!currentPageNode) return undefined
+    const childDisplayName = currentPageNode.$childrenNode.find(
+      (displayName: string) => {
+        const node = get(executionResult, displayName)
+        return (
+          node &&
+          node.$widgetType === "SECTION_NODE" &&
+          node.displayName.startsWith("modalSection")
+        )
+      },
+    )
+    if (!childDisplayName) return undefined
+    return get(executionResult, childDisplayName)
+  },
+)

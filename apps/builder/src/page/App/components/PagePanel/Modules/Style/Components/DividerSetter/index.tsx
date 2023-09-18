@@ -1,15 +1,22 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { PlusIcon } from "@illa-design/react"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getCurrentPageExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { PageLabel } from "../../../../Components/Label"
+import { PlusIcon, getColor } from "@illa-design/react"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import {
   iconHotSpotContainerStyle,
   labelContainerStyle,
   sectionContainerStyle,
-} from "../../style"
+} from "@/page/App/components/PagePanel/Modules/Style/style"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import {
+  getCurrentPageExecutionResult,
+  getCurrentPageFooterSection,
+  getCurrentPageHeaderSection,
+  getCurrentPageLeftSection,
+  getCurrentPageRightSection,
+} from "@/redux/currentApp/executionTree/executionSelector"
+import { AddSection } from "../AddSection"
 import ColorPickerSetter from "../ColorSetter"
 import { DeleteActionContainer } from "../DelteActionContainer"
 
@@ -19,14 +26,21 @@ export const DividerSetter: FC = () => {
   const dispatch = useDispatch()
 
   const currentPage = useSelector(getCurrentPageExecutionResult)
-  const { displayName, style: currentPageStyle } = currentPage
+  const { displayName } = currentPage
 
-  const { leftPanel, rightPanel, header, footer } = currentPageStyle ?? {}
+  const rightSection = useSelector(getCurrentPageRightSection)
+  const leftSection = useSelector(getCurrentPageLeftSection)
+  const headerSection = useSelector(getCurrentPageHeaderSection)
+  const footerSection = useSelector(getCurrentPageFooterSection)
+  const { style: rightStyle } = rightSection ?? {}
+  const { style: leftStyle } = leftSection ?? {}
+  const { style: headerStyle } = headerSection ?? {}
+  const { style: footerStyle } = footerSection ?? {}
 
-  const hasLeftDivider = !!leftPanel?.dividerColor
-  const hasRightDivider = !!rightPanel?.dividerColor
-  const hasHeaderDivider = !!header?.dividerColor
-  const hasFooterDivider = !!footer?.dividerColor
+  const hasLeftDivider = !!leftStyle?.dividerColor
+  const hasRightDivider = !!rightStyle?.dividerColor
+  const hasHeaderDivider = !!headerStyle?.dividerColor
+  const hasFooterDivider = !!footerStyle?.dividerColor
 
   const handleUpdateLeftDivider = useCallback(
     (value: string) => {
@@ -34,10 +48,9 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            leftPanel: {
-              dividerColor: value,
-            },
+            dividerColor: value,
           },
+          sectionName: "leftSection",
         }),
       )
     },
@@ -48,7 +61,8 @@ export const DividerSetter: FC = () => {
     dispatch(
       componentsActions.deleteCurrentPageStyleReducer({
         pageName: displayName,
-        styleKey: "leftPanel.dividerColor",
+        styleKey: "dividerColor",
+        sectionName: "leftSection",
       }),
     )
   }, [dispatch, displayName])
@@ -59,10 +73,9 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            rightPanel: {
-              dividerColor: value,
-            },
+            dividerColor: value,
           },
+          sectionName: "rightSection",
         }),
       )
     },
@@ -73,7 +86,8 @@ export const DividerSetter: FC = () => {
     dispatch(
       componentsActions.deleteCurrentPageStyleReducer({
         pageName: displayName,
-        styleKey: "rightPanel.dividerColor",
+        styleKey: "dividerColor",
+        sectionName: "rightSection",
       }),
     )
   }, [dispatch, displayName])
@@ -84,10 +98,9 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            header: {
-              dividerColor: value,
-            },
+            dividerColor: value,
           },
+          sectionName: "headerSection",
         }),
       )
     },
@@ -98,7 +111,8 @@ export const DividerSetter: FC = () => {
     dispatch(
       componentsActions.deleteCurrentPageStyleReducer({
         pageName: displayName,
-        styleKey: "header.dividerColor",
+        styleKey: "dividerColor",
+        sectionName: "headerSection",
       }),
     )
   }, [dispatch, displayName])
@@ -109,10 +123,9 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            footer: {
-              dividerColor: value,
-            },
+            dividerColor: value,
           },
+          sectionName: "footerSection",
         }),
       )
     },
@@ -123,7 +136,8 @@ export const DividerSetter: FC = () => {
     dispatch(
       componentsActions.deleteCurrentPageStyleReducer({
         pageName: displayName,
-        styleKey: "footer.dividerColor",
+        styleKey: "dividerColor",
+        sectionName: "footerSection",
       }),
     )
   }, [dispatch, displayName])
@@ -135,9 +149,11 @@ export const DividerSetter: FC = () => {
           labelName={t("editor.inspect.setter_group.divider")}
           size="big"
         />
-        <span css={iconHotSpotContainerStyle}>
-          <PlusIcon />
-        </span>
+        <AddSection>
+          <span css={iconHotSpotContainerStyle}>
+            <PlusIcon />
+          </span>
+        </AddSection>
       </div>
       {hasLeftDivider && (
         <DeleteActionContainer
@@ -145,7 +161,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteLeftDivider}
         >
           <ColorPickerSetter
-            value="white"
+            value={getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateLeftDivider}
           />
         </DeleteActionContainer>
@@ -156,7 +172,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteRightDivider}
         >
           <ColorPickerSetter
-            value="white"
+            value={getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateRightDivider}
           />
         </DeleteActionContainer>
@@ -167,7 +183,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteHeaderDivider}
         >
           <ColorPickerSetter
-            value="white"
+            value={getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateHeaderDivider}
           />
         </DeleteActionContainer>
@@ -178,7 +194,7 @@ export const DividerSetter: FC = () => {
           onClickDelete={handleDeleteFooterDivider}
         >
           <ColorPickerSetter
-            value="white"
+            value={getColor("grayBlue", "08")}
             handleUpdateColor={handleUpdateFooterDivider}
           />
         </DeleteActionContainer>

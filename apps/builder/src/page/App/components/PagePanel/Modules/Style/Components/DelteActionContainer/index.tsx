@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { MinusIcon } from "@illa-design/react"
-import { PageLabel } from "../../../../Components/Label"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { DeleteActionContainerProps } from "./interface"
 import {
   deleteActionContainerStyle,

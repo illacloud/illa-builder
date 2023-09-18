@@ -16,13 +16,11 @@ import {
 } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
 import {
-  ModalSectionNode,
-  PageNode,
-  SECTION_POSITION,
-  SectionNode,
-} from "@/redux/currentApp/editor/components/componentsState"
-import { getPageLoadingActions } from "@/redux/currentApp/executionTree/executionSelector"
+  getCurrentPageExecutionResult,
+  getPageLoadingActions,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import {
   IExecutionActions,
@@ -44,20 +42,6 @@ import {
   pageContainerWrapperStyle,
 } from "./style"
 
-const getShowNameMapSectionNode = (pageNode: PageNode) => {
-  const { childrenNode = [] } = pageNode
-  const nameMapSection: Map<string, SectionNode | ModalSectionNode> = new Map()
-  childrenNode.forEach((node) => {
-    if (node.type === "SECTION_NODE") {
-      nameMapSection.set(node.showName, node as SectionNode)
-    }
-    if (node.type === "MODAL_SECTION_NODE") {
-      nameMapSection.set(node.showName, node as ModalSectionNode)
-    }
-  })
-  return nameMapSection
-}
-
 const getLeftAndRightWidth = (
   canvasSize: "auto" | "fixed",
   width: number,
@@ -71,16 +55,14 @@ const getLeftAndRightWidth = (
 }
 
 export const RenderPage: FC<RenderPageProps> = (props) => {
-  const { pageNode, currentPageDisplayName } = props
+  const { currentPageDisplayName } = props
   const containerWrapperRef = useRef<HTMLDivElement>(null)
   const [containerRef, bounds] = useMeasure()
   const canvasShape = useSelector(getCanvasShape)
   const mode = useSelector(getIllaMode)
   const dispatch = useDispatch()
+  const pageNode = useSelector(getCurrentPageExecutionResult)
 
-  const showNameMapSectionNode = getShowNameMapSectionNode(pageNode)
-
-  const { props: pageProps } = pageNode
   const {
     canvasSize,
     canvasWidth,
@@ -101,7 +83,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     headerColumns,
     footerColumns,
     bodyColumns,
-  } = pageProps
+  } = pageNode
 
   const [isLeftFold, setIsLeftFold] = useState(false)
   const [isRightFold, setIsRightFold] = useState(false)
@@ -383,32 +365,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     return <PageLoading />
   }
 
-  const headerSection = showNameMapSectionNode.get("headerSection") as
-    | SectionNode
-    | undefined
-  const bodySection = showNameMapSectionNode.get("bodySection") as
-    | SectionNode
-    | undefined
-  const leftSection = showNameMapSectionNode.get("leftSection") as
-    | SectionNode
-    | undefined
-  const rightSection = showNameMapSectionNode.get("rightSection") as
-    | SectionNode
-    | undefined
-  const footerSection = showNameMapSectionNode.get("footerSection") as
-    | SectionNode
-    | undefined
-  const modalSection = showNameMapSectionNode.get("modalSection") as
-    | ModalSectionNode
-    | undefined
-
-  if (
-    !pageNode ||
-    pageNode.type !== "PAGE_NODE" ||
-    !pageNode.props ||
-    showNameMapSectionNode.size === 0
-  )
-    return null
+  if (!pageNode || pageNode.$widgetType !== "PAGE_NODE") return null
 
   const finalCanvasWidth =
     canvasSize === "fixed" ? `${canvasWidth}px` : `${canvasWidth}%`
@@ -419,9 +376,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       ref={containerWrapperRef}
     >
       <div css={pageContainerWrapperStyle} ref={containerRef}>
-        {hasHeader && headerSection && currentPageDisplayName && (
+        {hasHeader && currentPageDisplayName && (
           <RenderHeaderSection
-            sectionNode={headerSection}
             topHeight={topHeight}
             footerHeight={hasFooter ? bottomHeight : 0}
             containerHeight={bounds.height}
@@ -429,9 +385,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             columnNumber={headerColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
           />
         )}
-        {hasLeft && leftSection && currentPageDisplayName && (
+        {hasLeft && currentPageDisplayName && (
           <RenderLeftSection
-            sectionNode={leftSection}
             leftWidth={realLeftWidth}
             showFoldIcon={showLeftFoldIcon}
             isFold={isLeftFold}
@@ -439,15 +394,13 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             columnNumber={leftColumns ?? DEFAULT_ASIDE_COLUMNS_NUMBER}
           />
         )}
-        {bodySection && currentPageDisplayName && (
+        {currentPageDisplayName && (
           <RenderBodySection
-            sectionNode={bodySection}
             columnNumber={bodyColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
           />
         )}
-        {hasRight && rightSection && currentPageDisplayName && (
+        {hasRight && currentPageDisplayName && (
           <RenderRightSection
-            sectionNode={rightSection}
             showFoldIcon={showRightFoldIcon}
             isFold={isRightFold}
             rightWidth={realRightWidth}
@@ -455,9 +408,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             columnNumber={rightColumns ?? DEFAULT_ASIDE_COLUMNS_NUMBER}
           />
         )}
-        {hasFooter && footerSection && currentPageDisplayName && (
+        {hasFooter && currentPageDisplayName && (
           <RenderFooterSection
-            sectionNode={footerSection}
             bottomHeight={bottomHeight}
             containerHeight={bounds.height}
             headerHeight={hasHeader ? topHeight : 0}
@@ -466,12 +418,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           />
         )}
       </div>
-      {modalSection && (
-        <RenderModalSection
-          sectionNode={modalSection}
-          columnNumber={bodyColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
-        />
-      )}
+      <RenderModalSection
+        columnNumber={bodyColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
+      />
     </div>
   )
 }

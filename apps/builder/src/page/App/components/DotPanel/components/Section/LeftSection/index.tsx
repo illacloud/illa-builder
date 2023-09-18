@@ -8,7 +8,7 @@ import { EmptyState } from "@/page/App/components/DotPanel/components/Page/empty
 import { BASIC_CANVAS_PADDING } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCurrentDisplayName } from "@/page/App/components/DotPanel/hooks/sectionUtils"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentPageLeftSection } from "@/redux/currentApp/executionTree/executionSelector"
 import {
   applyHorizontalAnimationWrapperStyle,
   applyNoBottomPaddingStyle,
@@ -22,25 +22,25 @@ import { RenderLeftSectionProps } from "./interface"
 import { applyLeftSectionWrapperStyle } from "./style"
 
 export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
-  const {
-    sectionNode,
-    showFoldIcon,
-    isFold,
-    leftWidth,
-    setIsLeftFold,
-    columnNumber,
-  } = props
+  const { showFoldIcon, isFold, leftWidth, setIsLeftFold, columnNumber } = props
 
-  const executionResult = useSelector(getExecutionResult)
   const isProductionMode = useSelector(getIsILLAProductMode)
-  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const leftSectionNode = useSelector(getCurrentPageLeftSection)
+  let { viewPath } = useParams()
+
   const {
     viewSortedKey,
     currentViewIndex,
     defaultViewKey,
     sectionViewConfigs,
-  } = sectionNodeProps
-  let { viewPath } = useParams()
+    style,
+  } = leftSectionNode ?? {}
+  const {
+    padding,
+    background = "white",
+    shadowSize = "none",
+    dividerColor,
+  } = style ?? {}
   const currentViewDisplayName = getCurrentDisplayName(
     sectionViewConfigs,
     viewSortedKey,
@@ -50,13 +50,15 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
     currentViewIndex,
   )
 
-  const componentNode = sectionNode.childrenNode?.find(
-    (node) => node.displayName === currentViewDisplayName,
+  const componentNode = leftSectionNode?.$childrenNode?.find(
+    (node: string) => node === currentViewDisplayName,
   )
 
   const handleOnClickFoldIcon = useCallback(() => {
     setIsLeftFold(!isFold)
   }, [isFold, setIsLeftFold])
+
+  if (!leftSectionNode) return null
 
   return (
     <div
@@ -73,9 +75,12 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
           {componentNode ? (
             <RenderComponentCanvasContainer
               displayName={componentNode.displayName}
-              containerPadding={BASIC_CANVAS_PADDING}
+              containerPadding={padding?.size ?? `${BASIC_CANVAS_PADDING}`}
               columnNumber={columnNumber}
               isRootCanvas
+              background={background}
+              shadowSize={shadowSize}
+              dividerColor={dividerColor}
             />
           ) : (
             <EmptyState />

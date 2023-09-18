@@ -1,14 +1,21 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getCurrentPageExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { PageLabel } from "../../../../Components/Label"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import {
   labelContainerStyle,
   sectionContainerStyle,
   setterContainerStyle,
-} from "../../style"
+} from "@/page/App/components/PagePanel/Modules/Style/style"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import {
+  getCurrentPageBodySection,
+  getCurrentPageExecutionResult,
+  getCurrentPageFooterSection,
+  getCurrentPageHeaderSection,
+  getCurrentPageLeftSection,
+  getCurrentPageRightSection,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import ColorPickerSetter from "../ColorSetter"
 
 export const BackgroundSetter: FC = () => {
@@ -17,26 +24,27 @@ export const BackgroundSetter: FC = () => {
   const dispatch = useDispatch()
 
   const currentPage = useSelector(getCurrentPageExecutionResult)
-  const {
-    displayName,
-    hasFooter,
-    hasLeft,
-    hasRight,
-    hasHeader,
-    style: currentPageStyle,
-  } = currentPage
+  const { displayName, hasFooter, hasLeft, hasRight, hasHeader } = currentPage
 
-  const { leftPanel, rightPanel, body, header, footer } = currentPageStyle ?? {}
+  const bodySection = useSelector(getCurrentPageBodySection)
+  const rightSection = useSelector(getCurrentPageRightSection)
+  const leftSection = useSelector(getCurrentPageLeftSection)
+  const headerSection = useSelector(getCurrentPageHeaderSection)
+  const footerSection = useSelector(getCurrentPageFooterSection)
+  const { style: bodyStyle } = bodySection ?? {}
+  const { style: rightStyle } = rightSection ?? {}
+  const { style: leftStyle } = leftSection ?? {}
+  const { style: headerStyle } = headerSection ?? {}
+  const { style: footerStyle } = footerSection ?? {}
 
   const handleChangeLeftBackGroundColor = (value: string) => {
     dispatch(
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          leftPanel: {
-            background: value,
-          },
+          background: value,
         },
+        sectionName: "leftSection",
       }),
     )
   }
@@ -45,10 +53,9 @@ export const BackgroundSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          rightPanel: {
-            background: value,
-          },
+          background: value,
         },
+        sectionName: "rightSection",
       }),
     )
   }
@@ -57,10 +64,9 @@ export const BackgroundSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          body: {
-            background: value,
-          },
+          background: value,
         },
+        sectionName: "bodySection",
       }),
     )
   }
@@ -69,10 +75,9 @@ export const BackgroundSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          header: {
-            background: value,
-          },
+          background: value,
         },
+        sectionName: "headerSection",
       }),
     )
   }
@@ -81,10 +86,9 @@ export const BackgroundSetter: FC = () => {
       componentsActions.updateCurrentPageStyleReducer({
         pageName: displayName,
         style: {
-          footer: {
-            background: value,
-          },
+          background: value,
         },
+        sectionName: "footerSection",
       }),
     )
   }
@@ -100,7 +104,7 @@ export const BackgroundSetter: FC = () => {
       <div css={setterContainerStyle}>
         <PageLabel labelName={t("editor.page.label_name.body")} size="small" />
         <ColorPickerSetter
-          value={body.background ?? "white"}
+          value={bodyStyle?.background ?? "white"}
           handleUpdateColor={handleChangeBodyBackGroundColor}
         />
       </div>
@@ -111,7 +115,7 @@ export const BackgroundSetter: FC = () => {
             size="small"
           />
           <ColorPickerSetter
-            value={header.background ?? "white"}
+            value={headerStyle?.background ?? "white"}
             handleUpdateColor={handleChangeHeaderBackGroundColor}
           />
         </div>
@@ -123,7 +127,7 @@ export const BackgroundSetter: FC = () => {
             size="small"
           />
           <ColorPickerSetter
-            value={leftPanel.background ?? "white"}
+            value={leftStyle?.background ?? "white"}
             handleUpdateColor={handleChangeLeftBackGroundColor}
           />
         </div>
@@ -135,7 +139,7 @@ export const BackgroundSetter: FC = () => {
             size="small"
           />
           <ColorPickerSetter
-            value={rightPanel.background ?? "white"}
+            value={rightStyle?.background ?? "white"}
             handleUpdateColor={handleChangeRightBackGroundColor}
           />
         </div>
@@ -147,7 +151,7 @@ export const BackgroundSetter: FC = () => {
             size="small"
           />
           <ColorPickerSetter
-            value={footer.background ?? "white"}
+            value={footerStyle?.background ?? "white"}
             handleUpdateColor={handleChangeFooterBackGroundColor}
           />
         </div>

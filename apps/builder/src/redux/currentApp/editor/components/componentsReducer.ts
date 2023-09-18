@@ -1041,11 +1041,16 @@ export const updateCurrentPageStyleReducer: CaseReducer<
   PayloadAction<UpdateCurrentPageStylePayload>
 > = (state, action) => {
   const pageNode = searchDsl(state, action.payload.pageName)
-  if (!pageNode || !pageNode.props) return
-  if (!pageNode.props.style) {
-    pageNode.props.style = action.payload.style
+  if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+  const targetSectionNode = pageNode.childrenNode.find((node) => {
+    return node.showName === action.payload.sectionName
+  })
+  if (!targetSectionNode || !targetSectionNode.props) return
+
+  if (!targetSectionNode.props.style) {
+    targetSectionNode.props.style = action.payload.style
   } else {
-    merge(pageNode.props.style, action.payload.style)
+    merge(targetSectionNode.props.style, action.payload.style)
   }
 }
 
@@ -1054,6 +1059,10 @@ export const deleteCurrentPageStyleReducer: CaseReducer<
   PayloadAction<DeleteCurrentPageStylePayload>
 > = (state, action) => {
   const pageNode = searchDsl(state, action.payload.pageName)
-  if (!pageNode || !pageNode.props) return
-  unset(pageNode.props?.style ?? {}, action.payload.styleKey)
+  if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+  const targetSectionNode = pageNode.childrenNode.find((node) => {
+    return node.showName === action.payload.sectionName
+  })
+  if (!targetSectionNode || !targetSectionNode.props) return
+  unset(targetSectionNode.props?.style ?? {}, action.payload.styleKey)
 }

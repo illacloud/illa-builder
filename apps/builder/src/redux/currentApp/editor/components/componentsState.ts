@@ -84,51 +84,6 @@ export interface PageNodeProps {
   bodyColumns?: number
   headerColumns?: number
   footerColumns?: number
-  style?: {
-    leftPanel?: {
-      dividerColor?: string
-      background?: string
-      shadowSize?: string
-      padding?: {
-        mode: PADDING_MODE
-        size: string
-      }
-    }
-    body?: {
-      background?: string
-      padding?: {
-        mode: PADDING_MODE
-        size: string
-      }
-    }
-    rightPanel?: {
-      dividerColor?: string
-      background?: string
-      shadowSize?: string
-      padding?: {
-        mode: PADDING_MODE
-        size: string
-      }
-    }
-    headerPanel?: {
-      dividerColor?: string
-      background?: string
-      shadowSize?: string
-      padding?: {
-        mode: PADDING_MODE
-        size: string
-      }
-    }
-    footerPanel?: {
-      dividerColor?: string
-      background?: string
-      shadowSize?: string
-      padding?: {
-        mode: PADDING_MODE
-        size: string
-      }
-    }
-  }
 }
 
 export interface PageNode extends ComponentNode {
@@ -148,6 +103,15 @@ export interface BaseSectionNodeProps {
   viewSortedKey: string[]
   sectionViewConfigs: SectionViewShape[]
   defaultViewKey: string
+  style?: {
+    dividerColor?: string
+    background?: string
+    shadowSize?: "none" | "small" | "medium" | "large"
+    padding?: {
+      mode: PADDING_MODE
+      size: string
+    }
+  }
 }
 
 export interface LeftOrRightSectionNodeProps extends BaseSectionNodeProps {
@@ -316,9 +280,21 @@ export interface DeleteSubPageViewNodePayload {
 export interface UpdateCurrentPageStylePayload {
   pageName: string
   style: Record<string, any>
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
 }
 
 export interface DeleteCurrentPageStylePayload {
   pageName: string
   styleKey: string
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
 }

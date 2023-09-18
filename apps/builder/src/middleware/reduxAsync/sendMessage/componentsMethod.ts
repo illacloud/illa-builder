@@ -30,6 +30,7 @@ import {
   UpdateComponentNodeHeightPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateCurrentPageStylePayload,
   UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
@@ -810,6 +811,57 @@ export const componentsAsync = (
           teamID,
           uid,
           [addedSectionViewNode],
+        ),
+      )
+    }
+
+    case "updateCurrentPageStyleReducer": {
+      const { pageName, sectionName } = payload as UpdateCurrentPageStylePayload
+      const nextRootNode = getCanvas(nextRootState)
+      if (!nextRootNode) break
+      const pageNode = searchDsl(nextRootNode, pageName)
+      if (!pageNode) break
+      const sectionNode = pageNode.childrenNode.find(
+        (node) => node.showName === sectionName,
+      )
+      if (!sectionNode) return
+
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(sectionNode)
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
+          true,
+          null,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+    }
+
+    case "deleteCurrentPageStyleReducer": {
+      const { pageName, sectionName } = payload as UpdateCurrentPageStylePayload
+      const nextRootNode = getCanvas(nextRootState)
+      if (!nextRootNode) break
+      const pageNode = searchDsl(nextRootNode, pageName)
+      if (!pageNode) break
+      const sectionNode = pageNode.childrenNode.find(
+        (node) => node.showName === sectionName,
+      )
+      if (!sectionNode) return
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(sectionNode)
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
+          true,
+          null,
+          teamID,
+          uid,
+          updateWSPayload,
         ),
       )
     }

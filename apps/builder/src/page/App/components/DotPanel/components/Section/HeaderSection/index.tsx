@@ -11,14 +11,13 @@ import {
 import { getCurrentDisplayName } from "@/page/App/components/DotPanel/hooks/sectionUtils"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentPageHeaderSection } from "@/redux/currentApp/executionTree/executionSelector"
 import { containerWrapperStyle } from "../style"
 import { RenderHeaderSectionProps } from "./interface"
 import { applyHeaderSectionWrapperStyle } from "./style"
 
 export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
   const {
-    sectionNode,
     topHeight,
     containerHeight,
     footerHeight,
@@ -28,16 +27,22 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
 
   const dispatch = useDispatch()
 
-  const executionResult = useSelector(getExecutionResult)
+  let { viewPath } = useParams()
   const isProductionMode = useSelector(getIsILLAProductMode)
-  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const headerNode = useSelector(getCurrentPageHeaderSection)
   const {
     viewSortedKey,
     currentViewIndex,
     defaultViewKey,
     sectionViewConfigs,
-  } = sectionNodeProps
-  let { viewPath } = useParams()
+    style,
+  } = headerNode ?? {}
+  const {
+    padding,
+    background = "white",
+    shadowSize,
+    dividerColor,
+  } = style ?? {}
   const currentViewDisplayName = getCurrentDisplayName(
     sectionViewConfigs,
     viewSortedKey,
@@ -74,10 +79,10 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
     [containerHeight, currentPageDisplayName, dispatch, footerHeight],
   )
 
-  if (!sectionNodeProps) return null
+  if (!headerNode) return null
 
-  const componentNode = sectionNode.childrenNode?.find(
-    (node) => node.displayName === currentViewDisplayName,
+  const componentNode = headerNode.$childrenNode?.find(
+    (node: string) => node === currentViewDisplayName,
   )
 
   return (
@@ -88,13 +93,16 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
         {componentNode ? (
           <RenderComponentCanvasContainer
             displayName={componentNode.displayName}
-            containerPadding={BASIC_CANVAS_PADDING}
+            containerPadding={padding?.size ?? `${BASIC_CANVAS_PADDING}`}
             columnNumber={columnNumber}
             isRootCanvas
             safeRowNumber={0}
             handleUpdateHeight={handleUpdateHeight}
             canResizeCanvas
             minHeight={HEADER_MIN_HEIGHT}
+            background={background}
+            shadowSize={shadowSize}
+            dividerColor={dividerColor}
           />
         ) : (
           <EmptyState />

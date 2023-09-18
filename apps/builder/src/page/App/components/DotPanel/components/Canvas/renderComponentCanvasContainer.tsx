@@ -86,6 +86,9 @@ const RenderComponentCanvasContainer: FC<
     canResizeCanvas = false,
     safeRowNumber = SAFE_ROWS,
     minHeight,
+    background,
+    shadowSize = "none",
+    dividerColor,
     handleUpdateHeight,
   } = props
 
@@ -102,11 +105,23 @@ const RenderComponentCanvasContainer: FC<
   const messageHandler = useMessage()
   const innerCanvasRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation()
+  const paddings = containerPadding.split(" ")
   const fixedBounds = {
-    top: bounds.top + containerPadding + SCROLL_CONTAINER_PADDING,
-    left: bounds.left + containerPadding + SCROLL_CONTAINER_PADDING,
-    width: bounds.width - (containerPadding + SCROLL_CONTAINER_PADDING) * 2,
-    height: bounds.height - (containerPadding + SCROLL_CONTAINER_PADDING) * 2,
+    top: bounds.top + Number(paddings[0]) + SCROLL_CONTAINER_PADDING,
+    left:
+      bounds.left +
+      (paddings.length > 1 ? Number(paddings[3]) : Number(paddings[0])) +
+      SCROLL_CONTAINER_PADDING,
+    width:
+      bounds.width -
+      ((paddings.length > 1 ? Number(paddings[3]) : Number(paddings[0])) +
+        (paddings.length > 1 ? Number(paddings[1]) : Number(paddings[0])) +
+        SCROLL_CONTAINER_PADDING * 2),
+    height:
+      bounds.height -
+      (Number(paddings[0]) +
+        (paddings.length > 1 ? Number(paddings[2]) : Number(paddings[0])) +
+        SCROLL_CONTAINER_PADDING * 2),
   }
 
   const canShowDot = useSelector(isShowDot)
@@ -432,11 +447,9 @@ const RenderComponentCanvasContainer: FC<
   const canvasUpdateHeightHandler = useCallback(
     (height: number) => {
       if (!handleUpdateHeight) return
-      handleUpdateHeight(
-        height + SCROLL_CONTAINER_PADDING * 2 + containerPadding * 2,
-      )
+      handleUpdateHeight(height + SCROLL_CONTAINER_PADDING * 2 + 8 * 2)
     },
-    [containerPadding, handleUpdateHeight],
+    [handleUpdateHeight],
   )
 
   useAutoUpdateCanvasHeight(
@@ -503,7 +516,12 @@ const RenderComponentCanvasContainer: FC<
 
   return (
     <div
-      css={outerComponentCanvasContainerStyle(containerPadding)}
+      css={outerComponentCanvasContainerStyle(
+        containerPadding,
+        background,
+        shadowSize,
+        dividerColor,
+      )}
       ref={canvasRef}
     >
       <div
