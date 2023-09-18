@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, difference, set } from "lodash"
+import { cloneDeep, difference, merge, set, unset } from "lodash"
 import {
   generateNewViewItem,
   generateNewViewItemFromBodySectionConfig,
@@ -21,6 +21,7 @@ import {
   ComponentsInitialState,
   ComponentsState,
   DeleteComponentNodePayload,
+  DeleteCurrentPageStylePayload,
   DeleteGlobalStatePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
@@ -36,6 +37,7 @@ import {
   UpdateComponentNodeHeightPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateCurrentPageStylePayload,
   UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
@@ -1032,4 +1034,35 @@ export const addSubPageReducer: CaseReducer<
   const pageNode = searchDsl(state, action.payload.pageName)
   if (!pageNode) return
   addSubpageReducerHelper(pageNode, "bodySection")
+}
+
+export const updateCurrentPageStyleReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateCurrentPageStylePayload>
+> = (state, action) => {
+  const pageNode = searchDsl(state, action.payload.pageName)
+  if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+  const targetSectionNode = pageNode.childrenNode.find((node) => {
+    return node.showName === action.payload.sectionName
+  })
+  if (!targetSectionNode || !targetSectionNode.props) return
+
+  if (!targetSectionNode.props.style) {
+    targetSectionNode.props.style = action.payload.style
+  } else {
+    merge(targetSectionNode.props.style, action.payload.style)
+  }
+}
+
+export const deleteCurrentPageStyleReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteCurrentPageStylePayload>
+> = (state, action) => {
+  const pageNode = searchDsl(state, action.payload.pageName)
+  if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+  const targetSectionNode = pageNode.childrenNode.find((node) => {
+    return node.showName === action.payload.sectionName
+  })
+  if (!targetSectionNode || !targetSectionNode.props) return
+  unset(targetSectionNode.props?.style ?? {}, action.payload.styleKey)
 }

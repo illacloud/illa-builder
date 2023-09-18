@@ -11,10 +11,7 @@ import {
   getCanvas,
   getViewportSizeSelector,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import {
-  PageNode,
-  RootComponentNode,
-} from "@/redux/currentApp/editor/components/componentsState"
+import { RootComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   getAppLoadedActions,
   getExecutionResult,
@@ -124,7 +121,6 @@ export const DotPanel: FC = () => {
         >
           <RenderPage
             key={currentDisplayName}
-            pageNode={currentChildrenNode as PageNode}
             currentPageDisplayName={currentDisplayName}
           />
         </div>

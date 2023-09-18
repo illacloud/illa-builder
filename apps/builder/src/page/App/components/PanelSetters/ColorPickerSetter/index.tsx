@@ -3,7 +3,8 @@ import { hexToHsva } from "@uiw/react-color"
 import { debounce } from "lodash"
 import { FC, useRef } from "react"
 import { Trigger, globalColor, illaPrefix } from "@illa-design/react"
-import { ColorPicker } from "@/page/App/components/ColorPicker"
+import { ColorPicker } from "@/components/ColorPicker"
+import { colorSchemes } from "@/components/ColorPicker/constants"
 import {
   ButtonContentWrapperStyle,
   alphaContentStyle,
@@ -12,7 +13,6 @@ import {
   inListSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 
 const ColorPickerSetter: FC<any> = (props) => {
   const { attrName, handleUpdateDsl, value, widgetType } = props

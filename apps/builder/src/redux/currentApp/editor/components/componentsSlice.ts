@@ -11,6 +11,7 @@ import {
   batchUpdateComponentLayoutInfoWhenReflowReducer,
   batchUpdateMultiComponentSlicePropsReducer,
   deleteComponentNodeReducer,
+  deleteCurrentPageStyleReducer,
   deleteGlobalStateByKeyReducer,
   deletePageNodeReducer,
   deleteSectionViewReducer,
@@ -27,6 +28,7 @@ import {
   updateComponentNodeHeightReducer,
   updateComponentPropsReducer,
   updateComponentReflowReducer,
+  updateCurrentPageStyleReducer,
   updateDefaultSubPagePathReducer,
   updateMultiComponentPropsReducer,
   updateRootNodePropsReducer,
@@ -77,6 +79,8 @@ const componentsSlice = createSlice({
     updateSubPagePathReducer,
     updateDefaultSubPagePathReducer,
     addSubPageReducer,
+    updateCurrentPageStyleReducer,
+    deleteCurrentPageStyleReducer,
   },
 })
 

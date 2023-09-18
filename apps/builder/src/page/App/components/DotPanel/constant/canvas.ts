@@ -6,7 +6,6 @@ export const DEFAULT_ASIDE_COLUMNS_NUMBER = 8
 export const HEADER_MIN_HEIGHT = 40
 export const FOOTER_MIN_HEIGHT = 40
 export const BODY_MIN_HEIGHT = 40
-export const RESIZE_BAR_HEIGHT = 8
 
 export const LEFT_MIN_WIDTH = 80
 export const RIGHT_MIN_WIDTH = 80
@@ -14,9 +13,7 @@ export const BODY_MIN_WIDTH = 80
 
 export const BASIC_CANVAS_PADDING = 8
 export const SCROLL_CONTAINER_PADDING = 2
-export const FOLDER_ICON_CONTAINER_HEIGHT = 28
 export const BORDER_WIDTH = 2
-export const DOT_DIAMETER = 1
 export const ADD_ROWS = 40
 export const SAFE_ROWS = 10
 

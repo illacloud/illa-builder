@@ -1,7 +1,6 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { Variants } from "framer-motion"
 import { globalColor, illaPrefix } from "@illa-design/react"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
 const getPanelBarHeaderHeight = (size: "default" | "small") => {
   switch (size) {
@@ -13,7 +12,7 @@ const getPanelBarHeaderHeight = (size: "default" | "small") => {
     default:
     case "default": {
       return css`
-        height: 48px;
+        height: 40px;
       `
     }
   }
@@ -47,8 +46,8 @@ export const applyPanelBarHeaderStyle = (
     cursor: pointer;
     ${heightCss};
     ${borderCss};
-    ${publicPaddingStyle};
-    padding-right: 10px;
+    padding: 0 16px;
+    padding-right: 16px;
   `
 }
 
@@ -138,8 +137,7 @@ export const panelBarItemContainerAnimationVariants: Variants = {
 
 export const customIconHotpotStyle = css`
   font-size: 16px;
-  width: 24px;
-  height: 24px;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
