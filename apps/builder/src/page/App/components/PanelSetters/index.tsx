@@ -244,6 +244,9 @@ const SetterTypeMapSetter = {
         "@/page/App/components/PanelSetters/SwitchSetter/driveWithStatusSwitch"
       ),
   ),
+  PADDING_INPUT_SETTER: lazy(
+    () => import("@/page/App/components/PanelSetters/InputSetter/paddingInput"),
+  ),
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter
