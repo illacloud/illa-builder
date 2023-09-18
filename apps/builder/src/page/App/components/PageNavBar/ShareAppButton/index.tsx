@@ -17,13 +17,14 @@ import {
   canUseUpgradeFeature,
   openShareAppModal,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
+import { getMarketLinkTemplate, isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, getColor } from "@illa-design/react"
 import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 
@@ -137,6 +138,9 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
               dispatch(appInfoActions.updateAppContributeReducer(isContributed))
               if (isContributed) {
                 dispatch(appInfoActions.updateAppDeployedReducer(true))
+                const newUrl = new URL(getMarketLinkTemplate(appInfo.appId))
+                newUrl.searchParams.set("token", getAuthToken())
+                window.open(newUrl, "_blank")
               }
             }}
             onCopyPublicLink={(link) => {
