@@ -4,7 +4,7 @@
 
 By contributing AI Agents or ILLA Apps to the ILLA community and submitting a pull request to ILLA, you have the opportunity to receive a Digital Reward Kit from Hacktoberfest and Swags from ILLA Cloud.
 
-<a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/github/0.png"></a>
+<a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202979.png"></a>
 
 <div align="center">
   <h3>Learn more 👇</h3>
