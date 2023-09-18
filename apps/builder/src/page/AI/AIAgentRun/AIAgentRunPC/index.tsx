@@ -1,6 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
-import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
+import { ShareAgentPC } from "@illa-public/invite-modal"
 import {
   AI_AGENT_TYPE,
   Agent,
@@ -29,10 +29,11 @@ import {
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
+  openShareAgentModal,
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
-import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
+import { formatNumForAgent } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -82,6 +83,7 @@ import {
   backMenuStyle,
   backTextStyle,
   buttonContainerStyle,
+  labelLogoStyle,
   labelStyle,
   leftPanelContainerStyle,
   readOnlyTextStyle,
@@ -160,6 +162,12 @@ export const AIAgentRunPC: FC = () => {
         >
           {shareDialogVisible && (
             <ShareAgentPC
+              canUseBillingFeature={canUseUpgradeFeature(
+                teamInfo.myRole,
+                getPlanUtils(teamInfo),
+                teamInfo.totalTeamLicense.teamLicensePurchased,
+                teamInfo.totalTeamLicense.teamLicenseAllPaid,
+              )}
               title={t(
                 "user_management.modal.social_media.default_text.agent",
                 {
@@ -179,7 +187,6 @@ export const AIAgentRunPC: FC = () => {
                 teamInfo.permission.allowEditorManageTeamMember,
                 teamInfo.permission.allowViewerManageTeamMember,
               )}
-              defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
               defaultInviteUserRole={USER_ROLE.VIEWER}
               teamID={teamInfo.id}
               currentUserRole={teamInfo.myRole}
@@ -340,7 +347,15 @@ export const AIAgentRunPC: FC = () => {
                     parameter5: agent.aiAgentID,
                   },
                 )
-                if (isCloudVersion && !canUseBillingFeature && !field.value) {
+                if (
+                  !openShareAgentModal(
+                    teamInfo,
+                    currentTeamInfo.id === agent.teamID
+                      ? currentTeamInfo.myRole
+                      : USER_ROLE.GUEST,
+                    field.value,
+                  )
+                ) {
                   upgradeModal({
                     modalType: "upgrade",
                   })
@@ -622,7 +637,9 @@ export const AIAgentRunPC: FC = () => {
               render={({ field }) => (
                 <AIAgentBlock title={t("editor.ai-agent.label.model")}>
                   <div css={labelStyle}>
-                    {getLLM(field.value)?.logo}
+                    <span css={labelLogoStyle}>
+                      {getLLM(field.value)?.logo}
+                    </span>
                     <span css={readOnlyTextStyle}>
                       {getLLM(field.value)?.name}
                     </span>
@@ -659,7 +676,7 @@ export const AIAgentRunPC: FC = () => {
           </div>
           <form
             onSubmit={handleSubmit(async (data) => {
-              if (!isPremiumModel(data.model) && !canUseBillingFeature) {
+              if (isPremiumModel(data.model) && !canUseBillingFeature) {
                 upgradeModal({
                   modalType: "agent",
                 })

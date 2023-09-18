@@ -29,9 +29,10 @@ import {
   canManage,
   canManageInvite,
   canUseUpgradeFeature,
+  openShareAgentModal,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import { formatNumForAgent, isCloudVersion } from "@illa-public/utils"
+import { formatNumForAgent } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -82,6 +83,7 @@ import {
   dividerStyle,
   headerContainerStyle,
   headerInfoStyle,
+  labelLogoStyle,
   labelStyle,
   lineStyle,
   menuContainerStyle,
@@ -208,6 +210,12 @@ export const AIAgentRunMobile: FC = () => {
         >
           {shareDialogVisible && (
             <ShareAgentMobile
+              canUseBillingFeature={canUseUpgradeFeature(
+                teamInfo.myRole,
+                getPlanUtils(teamInfo),
+                teamInfo.totalTeamLicense.teamLicensePurchased,
+                teamInfo.totalTeamLicense.teamLicenseAllPaid,
+              )}
               title={t(
                 "user_management.modal.social_media.default_text.agent",
                 {
@@ -436,7 +444,7 @@ export const AIAgentRunMobile: FC = () => {
           render={({ field }) => (
             <AIAgentBlock title={t("editor.ai-agent.label.model")}>
               <div css={labelStyle}>
-                {getLLM(field.value)?.logo}
+                <span css={labelLogoStyle}>{getLLM(field.value)?.logo}</span>
                 <span css={readOnlyTextStyle}>{getLLM(field.value)?.name}</span>
               </div>
             </AIAgentBlock>
@@ -471,7 +479,7 @@ export const AIAgentRunMobile: FC = () => {
       </div>
       <form
         onSubmit={handleSubmit(async (data) => {
-          if (!isPremiumModel(data.model) && !canUseBillingFeature) {
+          if (isPremiumModel(data.model) && !canUseBillingFeature) {
             upgradeModal({
               modalType: "agent",
             })
@@ -694,9 +702,13 @@ export const AIAgentRunMobile: FC = () => {
                           },
                         )
                         if (
-                          isCloudVersion &&
-                          !canUseBillingFeature &&
-                          !field.value
+                          !openShareAgentModal(
+                            teamInfo,
+                            currentTeamInfo.id === agent.teamID
+                              ? currentTeamInfo.myRole
+                              : USER_ROLE.GUEST,
+                            field.value,
+                          )
                         ) {
                           upgradeModal({
                             modalType: "upgrade",

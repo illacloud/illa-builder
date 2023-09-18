@@ -1382,7 +1382,11 @@
         },
         "event": "Ereignis",
         "MESSAGE": "NACHRICHT",
-        "Toolbar": "TOOLBAR"
+        "Toolbar": "TOOLBAR",
+        "divider": "Innere Trennlinie",
+        "shadow": "Innenschatten",
+        "background": "Hintergrund",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
@@ -3676,6 +3680,9 @@
     "plus-btn": "Probiere die kostenlose Version aus",
     "enterprise-btn": "Kontaktiere uns",
     "menu": {
+      "overview": "Übersicht",
+      "pricing": "Preis",
+      "balance": "Saldo",
       "billing": "Abrechnung",
       "license": "Lizenz",
       "drive": "Laufwerk",
@@ -3684,14 +3691,81 @@
       "colla_transaction": "Kolla-Transaktionsverlauf",
       "billing_portal": "Rechnungsportal"
     },
+    "pricing": {
+      "premium": {
+        "desc": "Verbessern Sie Ihr Team, um auf erweiterte Funktionen zuzugreifen",
+        "feature": {
+          "builder": {
+            "viewer": "GRATIS für unbegrenzte Zuschauer",
+            "audit_log": "Audit-Logs",
+            "public": "App öffentlich",
+            "sql": "AI SQL Generierung",
+            "history": "Backup-Bearbeitungsverlauf & Wiederherstellung",
+            "theme": "Benutzerdefinierte Designs für Ihre Apps",
+            "multi_environment": "Multi-Umgebung (demnächst )",
+            "deployed_version": "Bereitgestellte Versionen behalten & rückgängig machen ( bald kommen)"
+          },
+          "agent": {
+            "gpt": "Zugriff auf weitere Modelle wie GPT-4, GPT-3.5...",
+            "colla": "30k Colla (zum ersten Mal)"
+          }
+        },
+        "price": "/Monat/Editor"
+      },
+      "colla": {
+        "desc": "Verwendet zur Zahlung von Gebühren für Mehrwertdienste innerhalb der ILLA Cloud, einschließlich der folgenden Dienste",
+        "feature": {
+          "storage": "Datei-Speicher. Wird zur Speicherung von Dateien auf dem ILLA Laufwerk verwendet.",
+          "traffic": "Traffic. Wird zum Herunterladen von Dateien von ILLA Drive.",
+          "token": "KI Agent-Token. Wird zum Ausführen von KI Agenten verwendet.",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5GB Speicher",
+            "3": "5GB Datenverkehr",
+            "4": "100K Token"
+          }
+        },
+        "price": "/Monat/10k Colla",
+        "button": "Colla erhöhen"
+      }
+    },
     "title": {
       "billing": "Abrechnung",
       "license": "Lizenz",
       "drive": "Laufwerk",
       "colla": "Lila",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "Übersicht",
+      "pricing": "Preis",
+      "balance": "Saldo",
+      "colla_usage": "Kolla-Nutzung"
+    },
+    "colla_usage": {
+      "used": "Verwendet",
+      "token": "Token",
+      "storage": "Speicher",
+      "traffic": "Verkehr"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "Kostenlos",
+        "plus": "Plus",
+        "premium": "Prämie"
+      },
+      "colla": {
+        "desc": "Verwendet zur Zahlung von Gebühren für Mehrwertdienste innerhalb der ILLA Cloud, inklusive Speicher für ILLA Drive, Traffic für ILLA Drive und Token für den AI Agent.",
+        "table_title": {
+          "colla": "Lila",
+          "seats": "Sitze"
+        },
+        "table_desc": {
+          "bouns": "Wenn dein aktueller Zyklusstand nicht ausreicht, werden wir automatisch Colla für dich hinzufügen. Bonus Colla ist eine zusätzliche Gebühr und ist nicht im Abonnement für den Zyklus enthalten. Wenn Ihr Abonnement automatisch im nächsten Zyklus verlängert wird, wird es keine Bonus-Colla enthalten."
+        },
+        "table_button": {
+          "seats": "Sitze verwalten",
+          "colla": "Colla verwalten"
+        }
+      },
       "plan": {
         "free": "Kostenlos",
         "plus": "Plus"
@@ -3711,11 +3785,26 @@
         "licenses": "Lizenzen",
         "storage": "Speicher",
         "traffic": "Verkehr",
-        "colla": "Lila"
+        "colla": "Lila",
+        "colla_unsub": "Saldo",
+        "colla_sub": "Lila",
+        "seats": "Sitze",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Aktuell",
         "next": "Nächste"
+      },
+      "cycle": {
+        "month": "/ Monat",
+        "year": "/ Jahr"
+      },
+      "table_desc": {
+        "bouns": "Wenn dein aktueller Zyklusstand nicht ausreicht, werden wir automatisch Colla für dich hinzufügen. Bonus Colla ist eine zusätzliche Gebühr und ist nicht im Abonnement für den Zyklus enthalten. Wenn Ihr Abonnement automatisch im nächsten Zyklus verlängert wird, wird es keine Bonus-Colla enthalten. "
+      },
+      "table_button": {
+        "seats": "Sitze verwalten",
+        "colla": "Colla verwalten"
       }
     },
     "subscription_card": {
@@ -3770,6 +3859,10 @@
         "Traffic": "Verkehr",
         "colla": "Lila"
       },
+      "price": {
+        "colla_monthly": "{{price}}/monatlich/10k Colla",
+        "colla_yearly": "{{price}}/jährlich/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "Lizenzen",
         "Storage_traffic": "SF",
@@ -3813,7 +3906,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "Abmelden",
@@ -3825,6 +3918,12 @@
         "license_remove": "{{changeNum}} Lizenzen entfernen",
         "colla_increase": "Erhöhe {{changeNum}} Colla",
         "colla_remove": "{{changeNum}} Colla entfernen"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} Speicher",
+        "3": "{{trafficNum}} Datenverkehr",
+        "4": "{{tokenNum}} Token"
       },
       "description_title": {
         "add_storage": "Sie werden {{changeNum}} GB Speicher hinzufügen. Einmal bestätigt, werden wir die Zahlung für den neuen Speicher für diesen Abrechnungszyklus sofort abziehen. <0>Mehr erfahren</0>",
@@ -3901,9 +4000,50 @@
       "error_subscribe": "Fehler beim Ändern des Plans. Bitte versuchen Sie es später erneut.",
       "unsubscription_fail": "Abo konnte nicht storniert werden. Bitte versuchen Sie es später erneut.",
       "failed_to_update": "Fehler beim Aktualisieren des Abonnements. Bitte versuchen Sie es erneut. ",
-      "update_suc": "Abonnement erfolgreich aktualisiert"
+      "update_suc": "Abonnement erfolgreich aktualisiert",
+      "no_storage": "Unzureichender Speicher. Bitte kontaktieren Sie den Administrator, um Colla zu erhöhen.",
+      "no_traffic": "Unzureichender Datenverkehr. Bitte kontaktieren Sie den Administrator, um Cola zu erhöhen.",
+      "no_token": "Unzureichendes Token. Bitte kontaktieren Sie den Administrator, um Cola zu erhöhen."
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "Unzureichender Speicher",
+          "desc": {
+            "1": "Ihr Speicher ist nicht ausreichend. Bitte abonnieren Sie Colla, um Ihren Speicher zu erhöhen.",
+            "2": "Nach der Anmeldung bei Cola kann Ihre Colla genutzt werden, um den Speicher zu erhöhen, den Traffic zu erhöhen, und ergänzen Sie den Token, der automatisch nach Ihren Bedürfnissen zugewiesen wird."
+          }
+        },
+        "traffic": {
+          "title": "Unzureichender Datenverkehr",
+          "desc": {
+            "1": "Ihr Traffic ist unzureichend. Bitte abonnieren Sie Colla, um Ihren Traffic zu erhöhen.",
+            "2": "Nach der Anmeldung bei Cola kann Ihre Colla genutzt werden, um den Speicher zu erhöhen, den Traffic zu erhöhen, und ergänzen Sie den Token, der automatisch nach Ihren Bedürfnissen zugewiesen wird."
+          }
+        },
+        "token": {
+          "title": "Unzureichendes Token",
+          "desc": {
+            "1": "Ihr Token ist nicht ausreichend. Bitte abonnieren Sie Colla, um Ihr Token zu erhöhen.",
+            "2": "Nach der Anmeldung bei Cola kann Ihre Colla genutzt werden, um den Speicher zu erhöhen, den Traffic zu erhöhen, und ergänzen Sie den Token, der automatisch nach Ihren Bedürfnissen zugewiesen wird."
+          }
+        },
+        "button": "Colla erhöhen",
+        "cycle": "/monatlich/10k Colla",
+        "failed": {
+          "title": "Fehler beim Erhöhen der Colla",
+          "storage": {
+            "desc": "Ihr Colla-Guthaben reicht nicht aus, um den aktuellen Speicherbedarf zu decken. Und wir sind auf einige Probleme gestoßen, während wir Ihre Cola erhöhen. Bitte erhöhen Sie Colla manuell."
+          },
+          "traffic": {
+            "desc": "Ihr Colla-Guthaben reicht nicht aus, um den aktuellen Traffic-Bedarf zu decken. Und wir sind auf einige Probleme gestoßen, während wir Ihre Cola erhöhen. Bitte erhöhen Sie Colla manuell."
+          },
+          "token": {
+            "desc": "Ihr Colla Guthaben reicht nicht aus, um die aktuelle Token Anforderung zu decken. Und wir sind auf einige Probleme gestoßen, während wir Ihre Cola erhöhen. Bitte erhöhen Sie Colla manuell."
+          },
+          "button": "Colla erhöhen"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "Unzureichende Kapazität",
         "owner_description_drive": "Speicher oder Datenverkehr reichen nicht aus. Bitte aktualisieren Sie und versuchen Sie es erneut.",
@@ -3992,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 ist für das Premium-Team. ",
         "string2": "Um es zu verwenden, upgraden Sie bitte auf Premium. Durch ein Upgrade auf Premium, haben Sie auch Zugriff auf die folgenden Funktionen. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Dieses Modell ist für Premium-Teams",
+        "upgrade_desc": "Um dieses Modell zu verwenden, kontaktieren Sie bitte den Administrator, um Ihr Team zu aktualisieren.",
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -4061,6 +4206,11 @@
     },
     "advanced": {
       "feature": "Wasserzeichen entfernen"
+    },
+    "label": {
+      "canceled": "Abgebrochen",
+      "expired": "Abgelaufen",
+      "paused": "Pausiert"
     }
   },
   "network": {

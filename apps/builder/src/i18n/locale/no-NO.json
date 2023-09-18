@@ -1382,7 +1382,11 @@
         },
         "event": "Hendelse",
         "MESSAGE": "MELDING",
-        "Toolbar": "TOOLBAR"
+        "Toolbar": "TOOLBAR",
+        "divider": "Indre divider",
+        "shadow": "Indre skygge",
+        "background": "Bakgrunn",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
@@ -3676,6 +3680,9 @@
     "plus-btn": "Prøv gratis versjonen",
     "enterprise-btn": "Kontakt oss",
     "menu": {
+      "overview": "Oversikt",
+      "pricing": "Priser",
+      "balance": "Balanse",
       "billing": "Fakturering",
       "license": "Lisens",
       "drive": "Stasjon",
@@ -3684,14 +3691,81 @@
       "colla_transaction": "Colla Transaksjonshistorikk",
       "billing_portal": "Fakturering portal"
     },
+    "pricing": {
+      "premium": {
+        "desc": "Oppgrader ditt team for å få tilgang til avanserte funksjoner",
+        "feature": {
+          "builder": {
+            "viewer": "GRATIS for ubegrenset antall seere",
+            "audit_log": "Revisjon logger",
+            "public": "App offentlig",
+            "sql": "AI SQL Generering",
+            "history": "Sikkerhetskopiere redigering av historikk og gjenoppretting",
+            "theme": "Egendefinerte temaer for dine apper",
+            "multi_environment": "Multi-environment (kommer snart",
+            "deployed_version": "Behold distribuerte versjoner og gå tilbake (kommer snart kommer)"
+          },
+          "agent": {
+            "gpt": "Tilgang til flere modeller som GPT-4, GPT-3.5...",
+            "colla": "30k Colla ( For første gang)"
+          }
+        },
+        "price": "/måned/redigering"
+      },
+      "colla": {
+        "desc": "Brukes til betaling av avgifter for verdiavgiftstjenester i ILLA sky, inkludert følgende tjenester",
+        "feature": {
+          "storage": "Fillagring. Brukes til lagringsfiler på ILLA-driveren.",
+          "traffic": "Traffic. Brukes til å laste ned filer fra ILLA-driveren.",
+          "token": "AI Agent token. Brukes til å kjøre AI agenter.",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5GB lagring",
+            "3": "5GB trafikk",
+            "4": "100K token"
+          }
+        },
+        "price": "/måned Kolla",
+        "button": "Øk kolla"
+      }
+    },
     "title": {
       "billing": "Fakturering",
       "license": "Lisens",
       "drive": "Stasjon",
       "colla": "Kolla",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "Oversikt",
+      "pricing": "Priser",
+      "balance": "Balanse",
+      "colla_usage": "Bruk av kolla"
+    },
+    "colla_usage": {
+      "used": "Brukt",
+      "token": "Sjetong",
+      "storage": "Lagring",
+      "traffic": "Trafikk"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "Gratis",
+        "plus": "Pluss",
+        "premium": "Premium"
+      },
+      "colla": {
+        "desc": "Brukes til betaling av avgifter for verdiavgiftstjenester i ILLA sky inkludert lagring av ILLA-drivende, trafikk til ILLA-stasjon og token for AI Agent.",
+        "table_title": {
+          "colla": "Kolla",
+          "seats": "Seter"
+        },
+        "table_desc": {
+          "bouns": "Når din nåværende syklus sin Colla balance er utilstrekkelig, vil vi automatisk legge til Colla for deg. Bonus Colla er en ekstra kostnad og er ikke inkludert i abonnementet for syklusen. Når abonnementet ditt fornyes automatisk i den neste syklusen, vil det ikke inkludere bonussamling."
+        },
+        "table_button": {
+          "seats": "Administrer seter",
+          "colla": "Behandle kolla"
+        }
+      },
       "plan": {
         "free": "Gratis",
         "plus": "Pluss"
@@ -3711,11 +3785,26 @@
         "licenses": "Lisenser",
         "storage": "Lagring",
         "traffic": "Trafikk",
-        "colla": "Kolla"
+        "colla": "Kolla",
+        "colla_unsub": "Balanse",
+        "colla_sub": "Kolla",
+        "seats": "Seter",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Nåværende",
         "next": "Neste"
+      },
+      "cycle": {
+        "month": "/ måned",
+        "year": "/ år"
+      },
+      "table_desc": {
+        "bouns": "Når din nåværende syklus sin Colla balance er utilstrekkelig, vil vi automatisk legge til Colla for deg. Bonus Colla er en ekstra kostnad og er ikke inkludert i abonnementet for syklusen. Når abonnementet ditt fornyes automatisk i den neste syklusen, vil det ikke inkludere bonussamling. "
+      },
+      "table_button": {
+        "seats": "Administrer seter",
+        "colla": "Behandle kolla"
       }
     },
     "subscription_card": {
@@ -3770,6 +3859,10 @@
         "Traffic": "Trafikk",
         "colla": "Kolla"
       },
+      "price": {
+        "colla_monthly": "{{price}}/ månedsl/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "Lisenser",
         "Storage_traffic": "NO",
@@ -3813,7 +3906,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Kolla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "Avmeld",
@@ -3825,6 +3918,12 @@
         "license_remove": "Fjern {{changeNum}} lisenser",
         "colla_increase": "Øk {{changeNum}} Kolla",
         "colla_remove": "Fjern {{changeNum}} Kolla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Kolla",
+        "2": "{{storageNum}} lagring",
+        "3": "{{trafficNum}} trafikk",
+        "4": "{{tokenNum}} tegn"
       },
       "description_title": {
         "add_storage": "Du kommer til å legge til lagring av {{changeNum}} GB. Når det er bekreftet, vil vi umiddelbart trekke fra betalingen ved den nye lagringsprosessen for denne faktureringssyklusen. <0>Lær mer</0>",
@@ -3901,9 +4000,50 @@
       "error_subscribe": "Mislyktes med å endre planen. Prøv igjen senere.",
       "unsubscription_fail": "Kan ikke avslutte abonnementet. Vennligst prøv igjen senere.",
       "failed_to_update": "Kan ikke oppdatere abonnementet. Vennligst prøv igjen. ",
-      "update_suc": "Abonnementet er oppdatert"
+      "update_suc": "Abonnementet er oppdatert",
+      "no_storage": "Manglende lagring. Vennligst kontakt administrator for å øke samlingen.",
+      "no_traffic": "Utilstrekkelig trafikk. Vennligst kontakt administratoren for å øke samlingen.",
+      "no_token": "Utilstrekkelig token. Kontakt administratoren for å øke samlingen."
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "Ikke nok lagringsplass",
+          "desc": {
+            "1": "Ditt lager er utilstrekkelig. Vennligst abonner på Colla for å øke lagringen din.",
+            "2": "Etter at du har meldt deg på Colla, kan Colla din bli brukt for å øke lagringen, øke trafikken, og forsterkningstoken, som automatisk blir tildelt basert på dine behov."
+          }
+        },
+        "traffic": {
+          "title": "Utilstrekkelig trafikk",
+          "desc": {
+            "1": "Din trafikk er utilstrekkelig. Vennligst abonner på Colla for å øke trafikken din.",
+            "2": "Etter at du har meldt deg på Colla, kan Colla din bli brukt for å øke lagringen, øke trafikken, og forsterkningstoken, som automatisk blir tildelt basert på dine behov."
+          }
+        },
+        "token": {
+          "title": "Utilstrekkelig token",
+          "desc": {
+            "1": "Ditt token er utilstrekkelig. Vennligst abonner på Colla for å øke din token.",
+            "2": "Etter at du har meldt deg på Colla, kan Colla din bli brukt for å øke lagringen, øke trafikken, og forsterkningstoken, som automatisk blir tildelt basert på dine behov."
+          }
+        },
+        "button": "Øk kolla",
+        "cycle": "/månedsl/10k Colla",
+        "failed": {
+          "title": "Kunne ikke øke Colla",
+          "storage": {
+            "desc": "Colla balansen din er ikke tilstrekkelig til å dekke den nåværende lagringskravet. Vi fikk noen problemer mens vi opprettet samlingen. Vennligst øk Colla manuelt."
+          },
+          "traffic": {
+            "desc": "Colla balansen din er ikke tilstrekkelig til å dekke de gjeldende trafikkbehovet. Vi fikk noen problemer mens vi opprettet samlingen. Vennligst øk Colla manuelt."
+          },
+          "token": {
+            "desc": "Colla balansen din er ikke tilstrekkelig til å dekke det gjeldende token-tegnet. Vi opplevde noen problemer mens vi gjorde din Colla. Vennligst øk Colla manuelt."
+          },
+          "button": "Øk kolla"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "Utilstrekkelig kapasitet",
         "owner_description_drive": "Lagringsområdet eller trafikken er ikke nok. Vennligst oppgrader og prøv igjen.",
@@ -3992,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 er for Premium-team. ",
         "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Denne modellen er for Premium team",
+        "upgrade_desc": "For å bruke denne modellen, vennligst kontakt admin for å oppgradere teamet ditt.",
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -4061,6 +4206,11 @@
     },
     "advanced": {
       "feature": "Fjern vannmerke"
+    },
+    "label": {
+      "canceled": "Avbrutt",
+      "expired": "Utløpt",
+      "paused": "Pauset"
     }
   },
   "network": {

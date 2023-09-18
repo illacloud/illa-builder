@@ -1382,7 +1382,11 @@
         },
         "event": "Tapahtuma",
         "MESSAGE": "VIESTI",
-        "Toolbar": "TOOLBAR"
+        "Toolbar": "TOOLBAR",
+        "divider": "Sisäinen jakaja",
+        "shadow": "Sisäinen varjo",
+        "background": "Tausta",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
@@ -3676,6 +3680,9 @@
     "plus-btn": "Kokeile ilmaista versiota",
     "enterprise-btn": "Ota yhteyttä",
     "menu": {
+      "overview": "Yleiskatsaus",
+      "pricing": "Hinnoittelu",
+      "balance": "Saldo",
       "billing": "Laskutus",
       "license": "Lisenssi",
       "drive": "Asema",
@@ -3684,14 +3691,81 @@
       "colla_transaction": "Kollan tapahtumahistoria",
       "billing_portal": "Laskutusportaali"
     },
+    "pricing": {
+      "premium": {
+        "desc": "Päivitä tiimisi käyttääksesi edistyneitä ominaisuuksia",
+        "feature": {
+          "builder": {
+            "viewer": "ILMAINEN rajoittamattomille katsojille",
+            "audit_log": "Tarkastuslokit",
+            "public": "Sovellus julkinen",
+            "sql": "AI SQL Generation",
+            "history": "Varmuuskopioi muokkaushistoria ja palautus",
+            "theme": "Mukautetut teemat sovelluksillesi",
+            "multi_environment": "Moni ympäristö ( tulossa pian )",
+            "deployed_version": "Pidä käytössä olevat versiot ja palauta ( tulossa pian )"
+          },
+          "agent": {
+            "gpt": "Pääsy useampiin malleihin, kuten GPT-4, GPT-3.5...",
+            "colla": "30k Colla ( ensimmäistä kertaa )"
+          }
+        },
+        "price": "/kk/editor"
+      },
+      "colla": {
+        "desc": "Käytetään ILLA Cloudin arvonlisäyspalveluista aiheutuneiden maksujen maksamiseen, mukaan lukien seuraavat palvelut",
+        "feature": {
+          "storage": "Tiedoston tallennustila. Käytetään ILLA Driven tallennustiedostoihin.",
+          "traffic": "Liikenne. Käytetään ladattaessa tiedostoja ILLA Drivesta.",
+          "token": "AI Agent merkitty. Käytetään AI Agents.",
+          "conversion": {
+            "1": "10K Kolla",
+            "2": "5 Gt tallennustila",
+            "3": "5GB liikenne",
+            "4": "100K tunnus"
+          }
+        },
+        "price": "/kk/10k Kolla",
+        "button": "Lisää Kollaa"
+      }
+    },
     "title": {
       "billing": "Laskutus",
       "license": "Lisenssi",
       "drive": "Asema",
       "colla": "Kolla",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "Yleiskatsaus",
+      "pricing": "Hinnoittelu",
+      "balance": "Saldo",
+      "colla_usage": "Kollan käyttö"
+    },
+    "colla_usage": {
+      "used": "Käytetty",
+      "token": "Pääsymerkki",
+      "storage": "Tallennustila",
+      "traffic": "Liikenne"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "Ilmainen",
+        "plus": "Plus",
+        "premium": "Premium"
+      },
+      "colla": {
+        "desc": "Käytetään ILLA Cloudin arvonlisäyspalveluista aiheutuneiden maksujen maksamiseen, mukaan lukien varastointi ILLA Drive, liikenne ILLA Drive ja poletti AI Agent.",
+        "table_title": {
+          "colla": "Kolla",
+          "seats": "Istuimet"
+        },
+        "table_desc": {
+          "bouns": "Kun nykyisen syklin Colla tasapaino on riittämätön, lisäämme Colla automaattisesti sinulle. Bonus Colla on lisämaksu eikä se sisälly syklin tilaukseen. Kun tilauksesi uusiutuu automaattisesti seuraavan syklin aikana, se ei sisällä Bonus Collaa."
+        },
+        "table_button": {
+          "seats": "Hallitse istuimia",
+          "colla": "Hallitse Kollaa"
+        }
+      },
       "plan": {
         "free": "Ilmainen",
         "plus": "Plus"
@@ -3711,11 +3785,26 @@
         "licenses": "Lisenssit",
         "storage": "Tallennustila",
         "traffic": "Liikenne",
-        "colla": "Kolla"
+        "colla": "Kolla",
+        "colla_unsub": "Saldo",
+        "colla_sub": "Kolla",
+        "seats": "Istuimet",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Nykyinen",
         "next": "Seuraava"
+      },
+      "cycle": {
+        "month": "/ kuukausi",
+        "year": "/ vuosi"
+      },
+      "table_desc": {
+        "bouns": "Kun nykyisen syklin Colla tasapaino on riittämätön, lisäämme Colla automaattisesti sinulle. Bonus Colla on lisämaksu eikä se sisälly syklin tilaukseen. Kun tilauksesi uusiutuu automaattisesti seuraavan syklin aikana, se ei sisällä Bonus Collaa. "
+      },
+      "table_button": {
+        "seats": "Hallitse istuimia",
+        "colla": "Hallitse Kollaa"
       }
     },
     "subscription_card": {
@@ -3770,6 +3859,10 @@
         "Traffic": "Liikenne",
         "colla": "Kolla"
       },
+      "price": {
+        "colla_monthly": "{{price}}/kuukausi/10K Colla",
+        "colla_yearly": "{{price}}/vuosi/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "Lisenssit",
         "Storage_traffic": "Gt",
@@ -3813,7 +3906,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "Peruuta Tilaus",
@@ -3825,6 +3918,12 @@
         "license_remove": "Poista {{changeNum}} lisenssiä",
         "colla_increase": "Lisää {{changeNum}} Colla",
         "colla_remove": "Poista {{changeNum}} Colla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} tallennustilaa",
+        "3": "{{trafficNum}} liikennettä",
+        "4": "{{tokenNum}} token"
       },
       "description_title": {
         "add_storage": "Olet menossa lisäämään {{changeNum}} Gt tallennustilaa. Kun se on vahvistettu, vähennämme välittömästi tämän laskutusjakson uuden tallennustilan maksun. <0>Lue lisää</0>",
@@ -3901,9 +4000,50 @@
       "error_subscribe": "Suunnitelman muuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
       "unsubscription_fail": "Tilauksen peruuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
       "failed_to_update": "Tilauksen päivittäminen epäonnistui. Yritä uudelleen. ",
-      "update_suc": "Tilaus päivitetty onnistuneesti"
+      "update_suc": "Tilaus päivitetty onnistuneesti",
+      "no_storage": "Riittämätön tallennustila. Ota yhteyttä järjestelmänvalvojaan lisätäksesi Collaa.",
+      "no_traffic": "Liikenne ei riitä. Ota yhteyttä järjestelmänvalvojaan lisätäksesi Collaa.",
+      "no_token": "Riittämätön token. Ota yhteyttä järjestelmänvalvojaan lisätäksesi Collaa."
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "Muisti ei riitä",
+          "desc": {
+            "1": "Tallennustila on riittämätön. Tilaa Colla lisätäksesi tallennustilaa.",
+            "2": "Kun olet tilannut Collan, voit käyttää Colla lisätä varastointia, lisätä liikennettä, ja vahvistus merkitty, joka jaetaan automaattisesti perustuu sinun tarpeidesi."
+          }
+        },
+        "traffic": {
+          "title": "Liikenne ei riitä",
+          "desc": {
+            "1": "Liikenne on riittämätön. Tilaa Colla lisätäksesi liikennettäsi.",
+            "2": "Kun olet tilannut Collan, voit käyttää Colla lisätä varastointia, lisätä liikennettä, ja vahvistus merkitty, joka jaetaan automaattisesti perustuu sinun tarpeidesi."
+          }
+        },
+        "token": {
+          "title": "Riittämätön tunnus",
+          "desc": {
+            "1": "Tunnuksesi on riittämätön. Tilaa Colla lisätäksesi tunnustasi.",
+            "2": "Kun olet tilannut Collan, voit käyttää Colla lisätä varastointia, lisätä liikennettä, ja vahvistus merkitty, joka jaetaan automaattisesti perustuu sinun tarpeidesi."
+          }
+        },
+        "button": "Lisää Kollaa",
+        "cycle": "/kuukausi/10k Colla",
+        "failed": {
+          "title": "Collan lisääminen epäonnistui",
+          "storage": {
+            "desc": "Colla saldosi ei riitä kattamaan nykyistä tallennustilaa. Ja kohtasimme joitakin ongelmia samalla kun lisäämme Collaa. Lisää Colla manuaalisesti."
+          },
+          "traffic": {
+            "desc": "Colla saldosi ei riitä kattamaan nykyistä liikennetarvetta. Ja kohtasimme joitakin ongelmia samalla kun lisäämme Collaa. Lisää Colla manuaalisesti."
+          },
+          "token": {
+            "desc": "Colla saldo ei riitä kattamaan nykyisen token vaatimus. Ja kohtasimme joitakin ongelmia samalla kun lisäämme Colla. Lisää Colla manuaalisesti."
+          },
+          "button": "Lisää Kollaa"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "Riittämätön kapasiteetti",
         "owner_description_drive": "Tallennustila tai liikenne ei riitä. Päivitä ja yritä uudelleen.",
@@ -3992,6 +4132,11 @@
       "ai-agent": {
         "string1": "GPT-4 on Premium-tiimille. ",
         "string2": "Jos haluat käyttää sitä, päivitä Premiumiin. Päivittämällä Premiumiin sinulla on myös pääsy seuraaviin ominaisuuksiin. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Tämä malli on Premium-tiimeille",
+        "upgrade_desc": "Käyttääksesi tätä mallia, ota yhteyttä ylläpitäjään päivittääksesi tiimisi.",
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -4061,6 +4206,11 @@
     },
     "advanced": {
       "feature": "Poista vesileima"
+    },
+    "label": {
+      "canceled": "Peruttu",
+      "expired": "Vanhentunut",
+      "paused": "Keskeytetty"
     }
   },
   "network": {
