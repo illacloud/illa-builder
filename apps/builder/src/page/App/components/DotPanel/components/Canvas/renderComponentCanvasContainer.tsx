@@ -88,7 +88,6 @@ const RenderComponentCanvasContainer: FC<
     minHeight,
     background,
     shadowSize = "none",
-    dividerColor,
     handleUpdateHeight,
   } = props
 
@@ -520,7 +519,6 @@ const RenderComponentCanvasContainer: FC<
         containerPadding,
         background,
         shadowSize,
-        dividerColor,
       )}
       ref={canvasRef}
     >

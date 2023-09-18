@@ -5,7 +5,6 @@ import { PanelBar } from "@/components/PanelBar"
 import { BackgroundSetter } from "./Components/BackgroundSetter"
 import { DividerSetter } from "./Components/DividerSetter"
 import { PaddingSetter } from "./Components/PaddingSetter"
-import { ShadowSetter } from "./Components/ShadowSetter"
 
 export const PageStyle: FC = () => {
   const { t } = useTranslation()
@@ -14,8 +13,8 @@ export const PageStyle: FC = () => {
     <PanelBar title={t("editor.inspect.setter_group.style")}>
       <DividerSetter />
       <Divider />
-      <ShadowSetter />
-      <Divider />
+      {/* <ShadowSetter />
+      <Divider /> */}
       <BackgroundSetter />
       <Divider />
       <PaddingSetter />

@@ -11,7 +11,6 @@ export const outerComponentCanvasContainerStyle = (
   padding: string,
   background: string = "white",
   shadowSize: "none" | "small" | "medium" | "large",
-  dividerColor?: string,
 ) => css`
   height: 100%;
   width: 100%;
@@ -23,7 +22,6 @@ export const outerComponentCanvasContainerStyle = (
   overflow: hidden;
   background: ${background};
   box-shadow: ${getShadowStyle(shadowSize)};
-  border: ${dividerColor ? `1px solid ${dividerColor}` : "unset"};
 `
 
 export const outerModalCanvasContainerStyle = (padding: string) => css`

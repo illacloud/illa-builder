@@ -66,6 +66,7 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
         `${isFold ? 40 : leftWidth}px`,
         "0px",
         isFold,
+        dividerColor,
       )}
     >
       <div css={applyHorizontalAnimationWrapperStyle(isFold, "left")}>
@@ -80,7 +81,6 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
               isRootCanvas
               background={background}
               shadowSize={shadowSize}
-              dividerColor={dividerColor}
             />
           ) : (
             <EmptyState />

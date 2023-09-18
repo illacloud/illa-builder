@@ -92,6 +92,7 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
         `${bottomHeight}px`,
         "240px",
         "500px",
+        dividerColor,
       )}
     >
       <div css={containerWrapperStyle}>
@@ -107,7 +108,6 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
             minHeight={FOOTER_MIN_HEIGHT}
             background={background}
             shadowSize={shadowSize}
-            dividerColor={dividerColor}
           />
         ) : (
           <EmptyState />

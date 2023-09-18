@@ -9,7 +9,6 @@ export interface RenderComponentCanvasContainerProps {
   minHeight?: number
   background?: string
   shadowSize?: "none" | "small" | "medium" | "large"
-  dividerColor?: string
 }
 
 export interface DropCollectedProps {
