@@ -59,6 +59,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
+import { getPaddingShape } from "@/utils/styleUtils/padding"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { useAutoUpdateCanvasHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import {
@@ -104,22 +105,19 @@ const RenderComponentCanvasContainer: FC<
   const messageHandler = useMessage()
   const innerCanvasRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation()
-  const paddings = containerPadding.split(" ")
+  const paddings = getPaddingShape(containerPadding)
   const fixedBounds = {
-    top: bounds.top + Number(paddings[0]) + SCROLL_CONTAINER_PADDING,
-    left:
-      bounds.left +
-      (paddings.length > 1 ? Number(paddings[3]) : Number(paddings[0])) +
-      SCROLL_CONTAINER_PADDING,
+    top: bounds.top + paddings.paddingTop + SCROLL_CONTAINER_PADDING,
+    left: bounds.left + paddings.paddingLeft + SCROLL_CONTAINER_PADDING,
     width:
       bounds.width -
-      ((paddings.length > 1 ? Number(paddings[3]) : Number(paddings[0])) +
-        (paddings.length > 1 ? Number(paddings[1]) : Number(paddings[0])) +
+      (paddings.paddingLeft +
+        paddings.paddingRight +
         SCROLL_CONTAINER_PADDING * 2),
     height:
       bounds.height -
-      (Number(paddings[0]) +
-        (paddings.length > 1 ? Number(paddings[2]) : Number(paddings[0])) +
+      (paddings.paddingTop +
+        paddings.paddingBottom +
         SCROLL_CONTAINER_PADDING * 2),
   }
 
@@ -572,7 +570,10 @@ const RenderComponentCanvasContainer: FC<
                 )
               })
             ) : isRootCanvas ? null : (
-              <ContainerEmptyState isInner />
+              <ContainerEmptyState
+                isInner
+                containerPadding={containerPadding}
+              />
             )}
             {collectedProps.isOver && isEditMode && (
               <DragPreview

@@ -284,7 +284,6 @@ export const PaddingSetter: FC = () => {
         if (partialSize.length === 1) {
           result = partialSize[0]
         }
-        console.log("result", result)
 
         dispatch(
           componentsActions.updateCurrentPageStyleReducer({
