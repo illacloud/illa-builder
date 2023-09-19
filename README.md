@@ -1,4 +1,21 @@
 <div align="center">
+  <h2>Hacktoberfest2023 | ILLA Cloud is coming soon</h2>
+</div>
+
+By contributing AI Agents or ILLA Apps to the ILLA community and submitting a pull request to ILLA, you have the opportunity to receive a Digital Reward Kit from Hacktoberfest and Swags from ILLA Cloud.
+
+<a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202979.png"></a>
+
+<div align="center">
+  <h3>Learn more 👇</h3>
+  <a href="https://www.illacloud.com/hacktoberfest2023">
+    <img alt="Hacktoberfest2023|ILLA Cloud" src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Hacktoberfest%20OW%20banner.png"/>
+  </a>
+</div>
+
+---
+
+<div align="center">
   <a href="https://cloud.illacloud.com/">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
   </a>
