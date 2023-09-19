@@ -1274,7 +1274,8 @@
           "uploadFailed": "上传失败",
           "onMenuSelect": "选中菜单项",
           "on_menu_select": "选择菜单项",
-          "pageChange": "页面更改"
+          "pageChange": "页面更改",
+          "clickItem": "点击项目"
         },
         "image_list": {
           "title": "图片",
@@ -4312,14 +4313,5 @@
   "contribute": "贡献",
   "error_page": {
     "fobidden": "没有访问权限"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "点击项目"
-        }
-      }
-    }
   }
 }
