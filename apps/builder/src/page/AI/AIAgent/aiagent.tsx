@@ -32,6 +32,7 @@ import {
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
+import { getAgentPublicLink } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -70,6 +71,7 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
+import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../components/ChatContext"
@@ -1189,6 +1191,13 @@ export const AIAgent: FC = () => {
                         defaultAgentContributed={field.value}
                         onAgentContributed={(isAgentContributed) => {
                           field.onChange(isAgentContributed)
+                          if (isAgentContributed) {
+                            const newUrl = new URL(
+                              getAgentPublicLink(idField.value),
+                            )
+                            newUrl.searchParams.set("token", getAuthToken())
+                            window.open(newUrl, "_blank")
+                          }
                         }}
                         onCopyInviteLink={(link) => {
                           track(

@@ -1274,7 +1274,8 @@
           "uploadFailed": "Αποτυχία μεταφόρτωσης",
           "onMenuSelect": "Επιλογή αντικειμένου",
           "on_menu_select": "Επιλέξτε στοιχείο μενού",
-          "pageChange": "Αλλαγή σελίδας"
+          "pageChange": "Αλλαγή σελίδας",
+          "clickItem": "Κάντε κλικ στο στοιχείο"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1804,7 +1805,9 @@
           "row_height": "Προσαρμογή γραμμής",
           "item_radius": "Ακτίνα αντικειμένου",
           "item_shadow": "Σκιά αντικειμένου",
-          "item_spacing": "Απόσταση αντικειμένων"
+          "item_spacing": "Απόσταση αντικειμένων",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2089,8 @@
           "row_height": "Χρησιμοποιείται για να ρυθμίσετε το ύψος κάθε γραμμής. Στη λειτουργία Auto, το ύψος είναι προσαρμοστικό, και το ύψος της γραμμής καθορίζεται από το ψηλότερο πλέγμα στην τρέχουσα σειρά. Σε σταθερή λειτουργία, το ύψος της σειράς είναι σταθερό και όλα τα πλέγματα έχουν το ίδιο ύψος.",
           "item_radius": "Χρησιμοποιείται για να ρυθμίσετε την ακτίνα γωνίας κάθε πλέγματος",
           "item_shadow": "Χρησιμοποιείται για να ρυθμίσετε το μέγεθος σκιάς κάθε πλέγματος",
-          "item_spacing": "Χρησιμοποιείται για τη ρύθμιση της απόστασης μεταξύ των δικτύων"
+          "item_spacing": "Χρησιμοποιείται για τη ρύθμιση της απόστασης μεταξύ των δικτύων",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -4312,14 +4316,5 @@
   "contribute": "Συνεισφέρετε",
   "error_page": {
     "fobidden": "Δεν υπάρχει δικαίωμα πρόσβασης"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Κάντε κλικ στο στοιχείο"
-        }
-      }
-    }
   }
 }

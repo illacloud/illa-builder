@@ -1274,7 +1274,8 @@
           "uploadFailed": "Lataaminen epäonnistui",
           "onMenuSelect": "Valitse kohde",
           "on_menu_select": "Valitse valikon kohta",
-          "pageChange": "Sivun muutos"
+          "pageChange": "Sivun muutos",
+          "clickItem": "Napsauta kohdetta"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1804,7 +1805,9 @@
           "row_height": "Rivin mukauttaminen",
           "item_radius": "Kohteen säde",
           "item_shadow": "Kohteen varjo",
-          "item_spacing": "Kohteiden väli"
+          "item_spacing": "Kohteiden väli",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2089,8 @@
           "row_height": "Käytetään kunkin rivin korkeuden määrittämiseen. Automaattitilassa korkeus on mukautuva, ja rivin korkeus määräytyy nykyisen rivin korkeimman ruudukon mukaan. Kiinteässä tilassa rivin korkeus on kiinteä, ja kaikilla ruuduilla on sama korkeus.",
           "item_radius": "Käytetään määrittämään kulman säde kunkin ruudukon",
           "item_shadow": "Käytetään kunkin ruudukon varjon koon määrittämiseen",
-          "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen"
+          "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -4312,14 +4316,5 @@
   "contribute": "Osallistu",
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Napsauta kohdetta"
-        }
-      }
-    }
   }
 }

@@ -1274,7 +1274,8 @@
           "uploadFailed": "Failed to upload",
           "onMenuSelect": "Select item",
           "on_menu_select": "Select menu item",
-          "pageChange": "Page change"
+          "pageChange": "Page change",
+          "clickItem": "Click item"
         },
         "image_list": {
           "title": "이미지",
@@ -1804,7 +1805,9 @@
           "row_height": "Row adaptation",
           "item_radius": "Item radius",
           "item_shadow": "Item shadow",
-          "item_spacing": "Item spacing"
+          "item_spacing": "Item spacing",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2089,8 @@
           "row_height": "Used to configure the height of each row. In Auto mode, the height is adaptive, and the row height is determined by the tallest grid in the current row. In Fixed mode, the row height is fixed, and all grids have the same height.",
           "item_radius": "Used to configure the corner radius of each grid",
           "item_shadow": "Used to configure the shadow size of each grid",
-          "item_spacing": "Used to configure the spacing between grids"
+          "item_spacing": "Used to configure the spacing between grids",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -4312,14 +4316,5 @@
   "contribute": "Contribute",
   "error_page": {
     "fobidden": "No access permission"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Click item"
-        }
-      }
-    }
   }
 }

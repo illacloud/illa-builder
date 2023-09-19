@@ -21,6 +21,7 @@ import {
   openShareAgentModal,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
+import { getAgentPublicLink } from "@illa-public/utils"
 import { FC, MouseEvent, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -40,6 +41,7 @@ import {
 import { TeamAgentCardActionItemProps } from "@/page/Dashboard/DashboardAIAgent/TeamAgentCardActionItem/interface"
 import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import { deleteAIAgent, duplicateAIAgent } from "@/services/agent"
+import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
@@ -368,6 +370,11 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
             defaultAgentContributed={publishedToMarketplace}
             onAgentContributed={(isAgentContributed) => {
               onContributed(isAgentContributed)
+              if (isAgentContributed) {
+                const newUrl = new URL(getAgentPublicLink(aiAgentID))
+                newUrl.searchParams.set("token", getAuthToken())
+                window.open(newUrl, "_blank")
+              }
             }}
             onCopyInviteLink={(link) => {
               track(
