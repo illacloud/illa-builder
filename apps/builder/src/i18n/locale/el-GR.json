@@ -1274,7 +1274,8 @@
           "uploadFailed": "Αποτυχία μεταφόρτωσης",
           "onMenuSelect": "Επιλογή αντικειμένου",
           "on_menu_select": "Επιλέξτε στοιχείο μενού",
-          "pageChange": "Αλλαγή σελίδας"
+          "pageChange": "Αλλαγή σελίδας",
+          "clickItem": "Κάντε κλικ στο στοιχείο"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -4312,14 +4313,5 @@
   "contribute": "Συνεισφέρετε",
   "error_page": {
     "fobidden": "Δεν υπάρχει δικαίωμα πρόσβασης"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Κάντε κλικ στο στοιχείο"
-        }
-      }
-    }
   }
 }
