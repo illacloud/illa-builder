@@ -1806,8 +1806,8 @@
           "item_radius": "アイテムの半径",
           "item_shadow": "アイテムの影",
           "item_spacing": "アイテムの間隔",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "列の最大数",
+          "min_column_count": "列の最小数"
         }
       },
       "setter_tooltip": {
@@ -2090,7 +2090,7 @@
           "item_radius": "各グリッドの角の半径を設定するために使用",
           "item_shadow": "各グリッドのシャドウサイズを設定するために使用します。",
           "item_spacing": "グリッド間の間隔を設定するために使用",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
         }
       },
       "setter_option": {

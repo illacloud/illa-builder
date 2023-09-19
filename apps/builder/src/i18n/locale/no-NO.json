@@ -1806,8 +1806,8 @@
           "item_radius": "Objekt radius",
           "item_shadow": "Skygge for element",
           "item_spacing": "Mellomrom mellom enheter",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Maksimalt antall kolonner",
+          "min_column_count": "Minimum antall kolonner"
         }
       },
       "setter_tooltip": {
@@ -2090,7 +2090,7 @@
           "item_radius": "Brukes til å konfigurere hjørneradius i hver tabell",
           "item_shadow": "Brukes til å konfigurere skyggestørrelsen for hver rute",
           "item_spacing": "Brukes til å konfigurere mellomrom mellom tabeller",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Angi maksimalt antall kolonner som kan vises i rutenettlistekomponenten når den øker bredden. Når det største antallet kolonner nås, og lerretsbredden fortsetter å øke, kolonnebredden vil økes for å romme opplegget, og antall kolonner vil ikke øke ytterligere."
         }
       },
       "setter_option": {

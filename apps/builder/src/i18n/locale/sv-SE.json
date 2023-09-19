@@ -1806,8 +1806,8 @@
           "item_radius": "Punkt radie",
           "item_shadow": "Skugga för objekt",
           "item_spacing": "Objektavstånd",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Max antal kolumner",
+          "min_column_count": "Minsta antal kolumner"
         }
       },
       "setter_tooltip": {
@@ -2090,7 +2090,7 @@
           "item_radius": "Används för att konfigurera hörnradien för varje rutnät",
           "item_shadow": "Används för att konfigurera skuggstorleken på varje rutnät",
           "item_spacing": "Används för att konfigurera avståndet mellan rutnäten",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Ange det maximala antalet kolumner som kan visas i Grid list-komponenten när dess bredd ökar. När det maximala antalet kolumner är nått och duken bredd fortsätter att öka, kolumnbredden kommer att ökas för att rymma layouten och antalet kolumner kommer inte att öka ytterligare."
         }
       },
       "setter_option": {
