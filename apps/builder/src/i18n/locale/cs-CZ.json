@@ -1806,8 +1806,8 @@
           "item_radius": "Poloměr položky",
           "item_shadow": "Stín položek",
           "item_spacing": "Mezery položek",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Maximální počet sloupců",
+          "min_column_count": "Minimální počet sloupců"
         }
       },
       "setter_tooltip": {
@@ -2090,7 +2090,7 @@
           "item_radius": "Používá se pro nastavení poloměru rohů každé mřížky",
           "item_shadow": "Používá se ke konfiguraci stínu každé mřížky",
           "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
         }
       },
       "setter_option": {
