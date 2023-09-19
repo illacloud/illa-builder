@@ -1805,7 +1805,9 @@
           "row_height": "行高适配",
           "item_radius": "格子的圆角",
           "item_shadow": "格子的阴影",
-          "item_spacing": "格子间距"
+          "item_spacing": "格子间距",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2087,7 +2089,8 @@
           "row_height": "用来配置每行的高度。在自动模式下，高度自适应，行高由当前行中最高的格子决定。 在固定模式下，行高是固定的，所有格子的高度相同。",
           "item_radius": "用来配置每个格子的圆角",
           "item_shadow": "用来配置每个格子的阴影大小",
-          "item_spacing": "用于配置格子之间的间距"
+          "item_spacing": "用于配置格子之间的间距",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
