@@ -1274,7 +1274,8 @@
           "uploadFailed": "Nie udało się przesłać",
           "onMenuSelect": "Wybierz element",
           "on_menu_select": "Wybierz pozycję menu",
-          "pageChange": "Zmiana strony"
+          "pageChange": "Zmiana strony",
+          "clickItem": "Kliknij element"
         },
         "image_list": {
           "title": "Obrazy",
@@ -4312,14 +4313,5 @@
   "contribute": "Wesprzyj",
   "error_page": {
     "fobidden": "Brak uprawnień dostępu"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Kliknij element"
-        }
-      }
-    }
   }
 }
