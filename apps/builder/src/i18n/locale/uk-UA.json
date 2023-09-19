@@ -1805,7 +1805,9 @@
           "row_height": "Рядкова адаптація",
           "item_radius": "Радіус елемента",
           "item_shadow": "Тіні елемента",
-          "item_spacing": "Відстань між предметами"
+          "item_spacing": "Відстань між предметами",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2087,7 +2089,8 @@
           "row_height": "Використовується для налаштування висоти кожного рядка. В автоматичному режимі висота адаптивна, а висота рядка визначається найвищою сіткою в поточному рядку. Фіксований режим, висота рядка фіксована, і всі сітки мають однакову висоту.",
           "item_radius": "Використовується для налаштування кутового радіусу кожної сітки",
           "item_shadow": "Використовується для налаштування розміру тіні для кожної сітки",
-          "item_spacing": "Використовується для налаштування інтервалу між сітками"
+          "item_spacing": "Використовується для налаштування інтервалу між сітками",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
