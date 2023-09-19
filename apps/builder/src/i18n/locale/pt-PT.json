@@ -1274,7 +1274,8 @@
           "uploadFailed": "Falha ao fazer upload",
           "onMenuSelect": "Selecione o item",
           "on_menu_select": "Selecionar item do menu",
-          "pageChange": "Alteração de página"
+          "pageChange": "Alteração de página",
+          "clickItem": "Clique em item"
         },
         "image_list": {
           "title": "Imagens",
@@ -4312,14 +4313,5 @@
   "contribute": "Contribuir",
   "error_page": {
     "fobidden": "Sem permissão de acesso"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Clique em item"
-        }
-      }
-    }
   }
 }
