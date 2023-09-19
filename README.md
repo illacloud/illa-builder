@@ -1,5 +1,5 @@
 <div align="center">
-  <h2>Hacktoberfest2023 | ILLA Cloud is coming soon</h2>
+  <h2>Hacktoberfest 2023 with ILLA Cloud</h2>
 </div>
 
 By contributing AI Agents or ILLA Apps to the ILLA community and submitting a pull request to ILLA, you have the opportunity to receive a Digital Reward Kit from Hacktoberfest and Swags from ILLA Cloud.
