@@ -1274,7 +1274,8 @@
           "uploadFailed": "Uploaden mislukt",
           "onMenuSelect": "Selecteer een item",
           "on_menu_select": "Selecteer menu-item",
-          "pageChange": "Pagina wijzigen"
+          "pageChange": "Pagina wijzigen",
+          "clickItem": "Klik op item"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -4312,14 +4313,5 @@
   "contribute": "Meedoen",
   "error_page": {
     "fobidden": "Geen toegangstoelating"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klik op item"
-        }
-      }
-    }
   }
 }
