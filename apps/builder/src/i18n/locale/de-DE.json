@@ -1805,7 +1805,9 @@
           "row_height": "Zeilenanpassung",
           "item_radius": "Elementradius",
           "item_shadow": "Item Schatten",
-          "item_spacing": "Elementabstand"
+          "item_spacing": "Elementabstand",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2087,7 +2089,8 @@
           "row_height": "Wird verwendet, um die Höhe jeder Zeile zu konfigurieren. Im Auto-Modus ist die Höhe anpassungsfähig, und die Zeilenhöhe wird vom höchsten Raster der aktuellen Zeile bestimmt. Im Festen Modus ist die Zeilenhöhe fest und alle Raster haben die gleiche Höhe.",
           "item_radius": "Wird verwendet, um den Eckradius jedes Rasters zu konfigurieren",
           "item_shadow": "Zur Konfiguration der Schattengröße jedes Rasters",
-          "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren"
+          "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
