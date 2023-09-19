@@ -20,7 +20,7 @@ import {
   openShareAppModal,
   showShareAppModal,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
+import { getMarketLinkTemplate, isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -43,6 +43,7 @@ import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/u
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
+import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
@@ -491,6 +492,9 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                     deployed: true,
                   }),
                 )
+                const newUrl = new URL(getMarketLinkTemplate(appInfo.appId))
+                newUrl.searchParams.set("token", getAuthToken())
+                window.open(newUrl, "_blank")
               }
             }}
             onCopyPublicLink={(link) => {

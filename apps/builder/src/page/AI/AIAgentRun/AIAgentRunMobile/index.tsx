@@ -32,7 +32,7 @@ import {
   openShareAgentModal,
   showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import { formatNumForAgent } from "@illa-public/utils"
+import { formatNumForAgent, getAgentPublicLink } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -66,6 +66,7 @@ import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interfa
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
+import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
@@ -258,6 +259,11 @@ export const AIAgentRunMobile: FC = () => {
                 if (isAgentContributed) {
                   const resp = await getAIAgentMarketplaceInfo(agent.aiAgentID)
                   setCurrentMarketplaceInfo(resp.data)
+                  const newUrl = new URL(
+                    getAgentPublicLink(resp.data.aiAgent.aiAgentID),
+                  )
+                  newUrl.searchParams.set("token", getAuthToken())
+                  window.open(newUrl, "_blank")
                 }
                 field.onChange(isAgentContributed)
               }}

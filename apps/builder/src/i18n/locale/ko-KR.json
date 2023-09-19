@@ -1274,7 +1274,8 @@
           "uploadFailed": "Failed to upload",
           "onMenuSelect": "Select item",
           "on_menu_select": "Select menu item",
-          "pageChange": "Page change"
+          "pageChange": "Page change",
+          "clickItem": "Click item"
         },
         "image_list": {
           "title": "이미지",
@@ -1382,7 +1383,11 @@
         },
         "event": "이벤트",
         "MESSAGE": "메시지",
-        "Toolbar": "툴바"
+        "Toolbar": "툴바",
+        "divider": "Inner divider",
+        "shadow": "Inner shadow",
+        "background": "Background",
+        "padding": "Padding ( px )"
       },
       "setter_label": {
         "chat": {
@@ -1800,7 +1805,9 @@
           "row_height": "Row adaptation",
           "item_radius": "Item radius",
           "item_shadow": "Item shadow",
-          "item_spacing": "Item spacing"
+          "item_spacing": "Item spacing",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2082,7 +2089,8 @@
           "row_height": "Used to configure the height of each row. In Auto mode, the height is adaptive, and the row height is determined by the tallest grid in the current row. In Fixed mode, the row height is fixed, and all grids have the same height.",
           "item_radius": "Used to configure the corner radius of each grid",
           "item_shadow": "Used to configure the shadow size of each grid",
-          "item_spacing": "Used to configure the spacing between grids"
+          "item_spacing": "Used to configure the spacing between grids",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -3676,6 +3684,9 @@
     "plus-btn": "Try the free version",
     "enterprise-btn": "Contact us",
     "menu": {
+      "overview": "Overview",
+      "pricing": "Pricing",
+      "balance": "Balance",
       "billing": "Billing",
       "license": "License",
       "drive": "Drive",
@@ -3684,14 +3695,81 @@
       "colla_transaction": "Colla transaction history",
       "billing_portal": "Billing portal"
     },
+    "pricing": {
+      "premium": {
+        "desc": "Upgrade your team to access advanced features",
+        "feature": {
+          "builder": {
+            "viewer": "FREE for unlimited viewers",
+            "audit_log": "Audit logs",
+            "public": "App public",
+            "sql": "AI SQL Generation",
+            "history": "Backup editing history & restore",
+            "theme": "Custom themes for your apps",
+            "multi_environment": "Multi-environment ( coming soon )",
+            "deployed_version": "Keep deployed versions & revert ( coming soon )"
+          },
+          "agent": {
+            "gpt": "Access to more models such as GPT-4, GPT-3.5...",
+            "colla": "30k Colla ( For first time )"
+          }
+        },
+        "price": "/month/editor"
+      },
+      "colla": {
+        "desc": "Used for payment of fees incurred for value-added services within ILLA Cloud, including the following services",
+        "feature": {
+          "storage": "File storage. Used to storage files on ILLA Drive.",
+          "traffic": "Traffic. Used to download files from ILLA Drive.",
+          "token": "AI Agent token. Used to run AI Agents.",
+          "conversion": {
+            "1": "10k Colla",
+            "2": "5GB storage",
+            "3": "5GB traffic",
+            "4": "100K token"
+          }
+        },
+        "price": "/month/10k Colla",
+        "button": "Increase Colla"
+      }
+    },
     "title": {
       "billing": "Billing",
       "license": "License",
       "drive": "Drive",
       "colla": "Colla",
-      "appsumo": "Appsumo"
+      "appsumo": "Appsumo",
+      "overview": "Overview",
+      "pricing": "Pricing",
+      "balance": "Balance",
+      "colla_usage": "Colla usage"
+    },
+    "colla_usage": {
+      "used": "Used",
+      "token": "Token",
+      "storage": "Storage",
+      "traffic": "Traffic"
     },
     "subscription_general": {
+      "team_type": {
+        "free": "Free",
+        "plus": "Plus",
+        "premium": "Premium"
+      },
+      "colla": {
+        "desc": "Used for payment of fees incurred for value-added services within ILLA Cloud, including storage for ILLA Drive, traffic for ILLA Drive and token for AI Agent.",
+        "table_title": {
+          "colla": "Colla",
+          "seats": "Seats"
+        },
+        "table_desc": {
+          "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla."
+        },
+        "table_button": {
+          "seats": "Manage seats",
+          "colla": "Manage Colla"
+        }
+      },
       "plan": {
         "free": "Free",
         "plus": "Plus"
@@ -3711,11 +3789,26 @@
         "licenses": "Licenses",
         "storage": "Storage",
         "traffic": "Traffic",
-        "colla": "Colla"
+        "colla": "Colla",
+        "colla_unsub": "Balance",
+        "colla_sub": "Colla",
+        "seats": "Seats",
+        "bouns": "Bouns Colla"
       },
       "period": {
         "current": "Current",
         "next": "Next"
+      },
+      "cycle": {
+        "month": "/ month",
+        "year": "/ year"
+      },
+      "table_desc": {
+        "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla. "
+      },
+      "table_button": {
+        "seats": "Manage seats",
+        "colla": "Manage Colla"
       }
     },
     "subscription_card": {
@@ -3770,6 +3863,10 @@
         "Traffic": "Traffic",
         "colla": "Colla"
       },
+      "price": {
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
+      },
       "plan_number_input_label": {
         "License": "Licenses",
         "Storage_traffic": "GB",
@@ -3813,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
+        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
       },
       "button": {
         "unsubscribe": "Unsubscribe",
@@ -3825,6 +3922,12 @@
         "license_remove": "Remove {{changeNum}} licenses",
         "colla_increase": "Increase {{changeNum}} Colla",
         "colla_remove": "Remove {{changeNum}} Colla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} storage",
+        "3": "{{trafficNum}} traffic",
+        "4": "{{tokenNum}} token"
       },
       "description_title": {
         "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
@@ -3901,9 +4004,50 @@
       "error_subscribe": "Failed to change plan. Please try again later.",
       "unsubscription_fail": "Failed to cancel the subscription. Please try again later.",
       "failed_to_update": "Failed to update the subscription. Please try again. ",
-      "update_suc": "Subscription updated successfully"
+      "update_suc": "Subscription updated successfully",
+      "no_storage": "Insufficient storage. Please contact the administrator to increase Colla.",
+      "no_traffic": "Insufficient traffic. Please contact the administrator to increase Colla.",
+      "no_token": "Insufficient token. Please contact the administrator to increase Colla."
     },
     "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "Insufficient storage",
+          "desc": {
+            "1": "Your storage is insufficient. Please subscribe to Colla to increase your storage.",
+            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+          }
+        },
+        "traffic": {
+          "title": "Insufficient traffic",
+          "desc": {
+            "1": "Your traffic is insufficient. Please subscribe to Colla to increase your traffic.",
+            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+          }
+        },
+        "token": {
+          "title": "Insufficient token",
+          "desc": {
+            "1": "Your token is insufficient. Please subscribe to Colla to increase your token.",
+            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+          }
+        },
+        "button": "Increase Colla",
+        "cycle": "/monthly/10k Colla",
+        "failed": {
+          "title": "Failed to increase Colla",
+          "storage": {
+            "desc": "Your Colla balance is insufficient to cover the current storage requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+          },
+          "traffic": {
+            "desc": "Your Colla balance is insufficient to cover the current traffic requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+          },
+          "token": {
+            "desc": "Your Colla balance is insufficient to cover the current token requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+          },
+          "button": "Increase Colla"
+        }
+      },
       "storage_insufficient_modal": {
         "owner_title_drive": "Insufficient capacity",
         "owner_description_drive": "The storage or traffic is not enough. Please upgrade and try again.",
@@ -3992,6 +4136,11 @@
       "ai-agent": {
         "string1": "GPT-4 is for Premium team. ",
         "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "This model is for Premium teams",
+        "upgrade_desc": "To use this model, please contact the admin to upgrade your team.",
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -4061,6 +4210,11 @@
     },
     "advanced": {
       "feature": "Remove watermark"
+    },
+    "label": {
+      "canceled": "Canceled",
+      "expired": "Expired",
+      "paused": "Paused"
     }
   },
   "network": {
@@ -4162,14 +4316,5 @@
   "contribute": "Contribute",
   "error_page": {
     "fobidden": "No access permission"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Click item"
-        }
-      }
-    }
   }
 }
