@@ -1274,7 +1274,8 @@
           "uploadFailed": "Не удалось загрузить",
           "onMenuSelect": "Выберите элемент",
           "on_menu_select": "Выберите пункт меню",
-          "pageChange": "Изменение страницы"
+          "pageChange": "Изменение страницы",
+          "clickItem": "Щелкните по элементу"
         },
         "image_list": {
           "title": "Изображения",
@@ -4312,14 +4313,5 @@
   "contribute": "Внести вклад",
   "error_page": {
     "fobidden": "Нет разрешения на доступ"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Щелкните по элементу"
-        }
-      }
-    }
   }
 }
