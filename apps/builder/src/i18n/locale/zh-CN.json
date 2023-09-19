@@ -2090,7 +2090,7 @@
           "item_radius": "用来配置每个格子的圆角",
           "item_shadow": "用来配置每个格子的阴影大小",
           "item_spacing": "用于配置格子之间的间距",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。"
         }
       },
       "setter_option": {
