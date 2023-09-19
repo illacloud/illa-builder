@@ -1274,7 +1274,8 @@
           "uploadFailed": "Échec du téléchargement",
           "onMenuSelect": "Sélectionner un élément",
           "on_menu_select": "Sélectionner un élément de menu",
-          "pageChange": "Changement de page"
+          "pageChange": "Changement de page",
+          "clickItem": "Cliquer sur un élément"
         },
         "image_list": {
           "title": "Images",
@@ -4312,14 +4313,5 @@
   "contribute": "Contribuer",
   "error_page": {
     "fobidden": "Aucune autorisation d'accès"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Cliquer sur un élément"
-        }
-      }
-    }
   }
 }
