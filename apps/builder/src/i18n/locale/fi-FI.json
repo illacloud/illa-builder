@@ -1274,7 +1274,8 @@
           "uploadFailed": "Lataaminen epäonnistui",
           "onMenuSelect": "Valitse kohde",
           "on_menu_select": "Valitse valikon kohta",
-          "pageChange": "Sivun muutos"
+          "pageChange": "Sivun muutos",
+          "clickItem": "Napsauta kohdetta"
         },
         "image_list": {
           "title": "Kuvat",
@@ -4312,14 +4313,5 @@
   "contribute": "Osallistu",
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Napsauta kohdetta"
-        }
-      }
-    }
   }
 }
