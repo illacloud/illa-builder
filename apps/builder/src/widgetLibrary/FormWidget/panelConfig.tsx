@@ -149,6 +149,7 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.shadow.shadow"),
             attrName: "shadow",
             setterType: "SHADOW_SELECT_SETTER",
+            useCustomLayout: true,
             defaultValue: "small",
           },
         ],

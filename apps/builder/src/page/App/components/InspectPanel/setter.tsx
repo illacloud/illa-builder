@@ -83,7 +83,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
       <div
         css={applySetterPublicWrapperStyle(
           isSetterSingleRowWrapper,
-          setterType === "EVENT_HANDLER_SETTER",
+          useCustomLayout,
         )}
       >
         <Comp
@@ -110,7 +110,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   }, [
     Comp,
     isSetterSingleRowWrapper,
-    setterType,
+    useCustomLayout,
     props,
     _finalAttrName,
     finalValue,

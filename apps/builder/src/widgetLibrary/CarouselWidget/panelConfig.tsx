@@ -18,6 +18,7 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-options-mode`,
         attrName: "configureMode",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         options: [
           {
             label: i18n.t("widget.public.select_options.manual"),

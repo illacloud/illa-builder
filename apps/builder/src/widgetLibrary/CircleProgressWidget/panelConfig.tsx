@@ -62,6 +62,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-layout-alignment`,
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "alignment",
         options: [

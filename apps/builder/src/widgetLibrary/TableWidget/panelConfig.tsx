@@ -143,6 +143,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-variant`,
                 setterType: "RADIO_GROUP_SETTER",
+                useCustomLayout: true,
                 labelName: i18n.t("editor.inspect.setter_label.variant"),
                 attrName: "variant",
                 options: [
@@ -326,6 +327,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-column-column-variant`,
             setterType: "RADIO_GROUP_SETTER",
+            useCustomLayout: true,
             labelName: i18n.t("editor.inspect.setter_label.variant"),
             attrName: "variant",
             options: [
@@ -344,6 +346,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-column-alignment`,
             setterType: "RADIO_GROUP_SETTER",
+            useCustomLayout: true,
             labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
             attrName: "alignment",
             options: [
@@ -382,6 +385,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_sort_order"),
         attrName: "defaultSortOrder",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         bindAttrName: ["defaultSortKey"],
         shown: (value) => value !== "default",
         options: [
@@ -444,6 +448,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.overFlow"),
         attrName: "overFlow",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         options: [
           { label: i18n.t("widget.table.pagination"), value: "pagination" },
           { label: i18n.t("widget.table.scroll"), value: "scroll" },

@@ -85,6 +85,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
@@ -97,6 +98,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [

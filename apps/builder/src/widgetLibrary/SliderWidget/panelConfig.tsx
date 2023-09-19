@@ -87,6 +87,7 @@ export const SLIDER_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
@@ -100,6 +101,7 @@ export const SLIDER_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [

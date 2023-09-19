@@ -14,3 +14,16 @@ export const applyRadioGroupWrapperStyle = (
 export const radioGroupStyle = css`
   width: 100%;
 `
+
+export const baseRadioGroupContainerStyle = (
+  isSetterSingleRow: boolean = false,
+) => {
+  return css`
+    display: flex;
+    flex-direction: ${!isSetterSingleRow ? "row" : "column"};
+    align-items: ${!isSetterSingleRow ? "center" : "flex-start"};
+    justify-content: ${!isSetterSingleRow ? "space-between" : "flex-start"};
+    width: 100%;
+    padding: 8px 16px;
+  `
+}

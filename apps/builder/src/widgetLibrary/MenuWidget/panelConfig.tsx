@@ -23,6 +23,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-options-mode`,
         attrName: "optionConfigureMode",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         options: [
           {
             label: i18n.t("widget.public.select_options.manual"),
@@ -210,6 +211,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.direction"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.timeline_direction"),
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         attrName: "mode",
         options: [
           { label: i18n.t("widget.timeline.vertical"), value: "vertical" },
@@ -224,6 +226,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.align"),
         attrName: "horizontalAlign",
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         bindAttrName: ["mode"],
         shown: (mode) => mode === "horizontal",
         options: [

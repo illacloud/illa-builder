@@ -2,6 +2,7 @@ import { css } from "@emotion/react"
 
 export const containerStyle = css`
   padding: 0px 16px;
+  width: 100%;
 `
 
 export const headerContainerStyle = css`

@@ -44,7 +44,7 @@ export const applyCustomIconStyle = (
 
 const singleRowStyle = css`
   width: 100%;
-  ${publicPaddingStyle}
+  padding: 8px 16px;
 `
 
 const doubleRowStyle = css`
