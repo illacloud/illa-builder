@@ -12,11 +12,11 @@ import { ReactComponent as ScatterPlotIcon } from "@/assets/chart/scatter-plot.s
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
 import i18n from "@/i18n/config"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   chartTypeIconCss,
   chartTypeStringCss,
-} from "@/page/App/components/PanelSetters/ChartSetter/style"
+} from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/style"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget/interface"
 import { typeWithNoAxis } from "./utils"

@@ -25,7 +25,7 @@ import { get, groupBy as groupByFunc } from "lodash"
 import { FC, useMemo, useRef } from "react"
 import { Doughnut, Pie, Radar, Chart as ReactChart } from "react-chartjs-2"
 import { globalColor, illaPrefix } from "@illa-design/react"
-import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
+import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { formatDataAsObject } from "@/utils/formatData"
 import {
   ChartWidgetProps,

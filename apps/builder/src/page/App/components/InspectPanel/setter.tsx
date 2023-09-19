@@ -1,13 +1,13 @@
 import { get, toPath } from "lodash"
 import { memo, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { getSetterByType } from "@/page/App/components/InspectPanel/PanelSetters"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
+import { PanelLabel } from "./components/Label"
 import { PanelSetterProps } from "./interface"
-import { PanelLabel } from "./label"
 import { applySetterPublicWrapperStyle, applySetterWrapperStyle } from "./style"
 
 export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
