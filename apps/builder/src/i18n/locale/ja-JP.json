@@ -1274,7 +1274,8 @@
           "uploadFailed": "アップロードに失敗しました",
           "onMenuSelect": "アイテムを選択",
           "on_menu_select": "メニュー項目を選択",
-          "pageChange": "ページ変更"
+          "pageChange": "ページ変更",
+          "clickItem": "アイテムをクリックします"
         },
         "image_list": {
           "title": "イメージ",
@@ -1804,7 +1805,9 @@
           "row_height": "行の調整",
           "item_radius": "アイテムの半径",
           "item_shadow": "アイテムの影",
-          "item_spacing": "アイテムの間隔"
+          "item_spacing": "アイテムの間隔",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2089,8 @@
           "row_height": "各行の高さを設定するために使用します。 Auto モードでは、高さは適応し、行の高さは現在の行の中で最も高いグリッドによって決まります。 固定モードでは、行の高さが固定され、すべてのグリッドの高さが同じになります。",
           "item_radius": "各グリッドの角の半径を設定するために使用",
           "item_shadow": "各グリッドのシャドウサイズを設定するために使用します。",
-          "item_spacing": "グリッド間の間隔を設定するために使用"
+          "item_spacing": "グリッド間の間隔を設定するために使用",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -4312,14 +4316,5 @@
   "contribute": "貢献",
   "error_page": {
     "fobidden": "アクセス権限がありません"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "アイテムをクリックします"
-        }
-      }
-    }
   }
 }

@@ -1274,7 +1274,8 @@
           "uploadFailed": "Error al subir",
           "onMenuSelect": "Seleccionar elemento",
           "on_menu_select": "Seleccionar elemento de menú",
-          "pageChange": "Cambio de página"
+          "pageChange": "Cambio de página",
+          "clickItem": "Artículo de clic"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1804,7 +1805,9 @@
           "row_height": "Adaptación de fila",
           "item_radius": "Radio del artículo",
           "item_shadow": "Sombra del objeto",
-          "item_spacing": "Espacio de objetos"
+          "item_spacing": "Espacio de objetos",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2089,8 @@
           "row_height": "Utilizado para configurar la altura de cada fila. En modo automático, la altura es adaptativa, y la altura de la fila es determinada por la cuadrícula más alta de la fila actual. En modo fijo, la altura de la fila es fija, y todas las rejillas tienen la misma altura.",
           "item_radius": "Utilizado para configurar el radio de esquina de cada cuadrícula",
           "item_shadow": "Utilizado para configurar el tamaño de la sombra de cada cuadrícula",
-          "item_spacing": "Utilizado para configurar el espacio entre cuadrículas"
+          "item_spacing": "Utilizado para configurar el espacio entre cuadrículas",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -4312,14 +4316,5 @@
   "contribute": "Contribuir",
   "error_page": {
     "fobidden": "Sin permiso de acceso"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Artículo de clic"
-        }
-      }
-    }
   }
 }

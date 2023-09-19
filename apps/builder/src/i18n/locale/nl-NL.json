@@ -1274,7 +1274,8 @@
           "uploadFailed": "Uploaden mislukt",
           "onMenuSelect": "Selecteer een item",
           "on_menu_select": "Selecteer menu-item",
-          "pageChange": "Pagina wijzigen"
+          "pageChange": "Pagina wijzigen",
+          "clickItem": "Klik op item"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1804,7 +1805,9 @@
           "row_height": "Rij aanpassing",
           "item_radius": "Item straal",
           "item_shadow": "Item schaduw",
-          "item_spacing": "Item afstand"
+          "item_spacing": "Item afstand",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2089,8 @@
           "row_height": "Gebruikt om de hoogte van elke rij te configureren. In Auto Mode is de hoogte aangepast en wordt de rijhoogte bepaald door het hoogste raster in de huidige rij. In vaste modus, is de rijhoogte vastgezet en alle rasters hebben dezelfde hoogte.",
           "item_radius": "Gebruikt om de straal van de hoek van elk raster te configureren",
           "item_shadow": "Gebruikt om de schaduw grootte van elk raster te configureren",
-          "item_spacing": "Gebruikt om de tussenafstand tussen rasters in te stellen"
+          "item_spacing": "Gebruikt om de tussenafstand tussen rasters in te stellen",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -4312,14 +4316,5 @@
   "contribute": "Meedoen",
   "error_page": {
     "fobidden": "Geen toegangstoelating"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klik op item"
-        }
-      }
-    }
   }
 }
