@@ -1274,7 +1274,8 @@
           "uploadFailed": "Error al subir",
           "onMenuSelect": "Seleccionar elemento",
           "on_menu_select": "Seleccionar elemento de menú",
-          "pageChange": "Cambio de página"
+          "pageChange": "Cambio de página",
+          "clickItem": "Artículo de clic"
         },
         "image_list": {
           "title": "Imágenes",
@@ -4312,14 +4313,5 @@
   "contribute": "Contribuir",
   "error_page": {
     "fobidden": "Sin permiso de acceso"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Artículo de clic"
-        }
-      }
-    }
   }
 }
