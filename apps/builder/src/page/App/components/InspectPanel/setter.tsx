@@ -1,20 +1,19 @@
 import { get, toPath } from "lodash"
 import { memo, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { getSetterByType } from "@/page/App/components/InspectPanel/PanelSetters"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
+import { PanelLabel } from "./components/Label"
 import { PanelSetterProps } from "./interface"
-import { PanelLabel } from "./label"
 import { applySetterPublicWrapperStyle, applySetterWrapperStyle } from "./style"
 
 export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const {
     setterType,
     isSetterSingleRow,
-    isInList,
     labelName,
     labelDesc,
     useCustomLayout = false,
@@ -56,13 +55,9 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
 
   const renderLabel = useMemo(() => {
     return canShowLabel && !useCustomLayout && labelName ? (
-      <PanelLabel
-        labelName={labelName}
-        labelDesc={labelDesc}
-        isInList={isInList}
-      />
+      <PanelLabel labelName={labelName} labelDesc={labelDesc} />
     ) : null
-  }, [canShowLabel, useCustomLayout, labelName, labelDesc, isInList])
+  }, [canShowLabel, useCustomLayout, labelName, labelDesc])
 
   const _finalAttrName = useMemo(() => {
     if (typeof attrName === "string") {
@@ -71,14 +66,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
         return convertPathToString([...parentAttrNamePath, attrName])
       }
       return attrName
-    }
-    if (Array.isArray(attrName)) {
-      return attrName?.map((name) => {
-        if (parentAttrName) {
-          return `${parentAttrName}.${name}`
-        }
-        return name
-      })
     }
     return ""
   }, [parentAttrName, attrName])
@@ -89,18 +76,14 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     if (typeof _finalAttrName === "string") {
       return get(widgetProps, _finalAttrName)
     }
-    if (Array.isArray(_finalAttrName)) {
-      return _finalAttrName.map((name) => get(widgetProps, name))
-    }
   }, [widgetProps, _finalAttrName])
 
   const renderSetter = useMemo(() => {
     return Comp ? (
       <div
         css={applySetterPublicWrapperStyle(
-          isInList,
           isSetterSingleRowWrapper,
-          setterType === "LIST_SETTER" || setterType === "EVENT_HANDLER_SETTER",
+          setterType === "EVENT_HANDLER_SETTER",
         )}
       >
         <Comp
@@ -126,7 +109,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     ) : null
   }, [
     Comp,
-    isInList,
     isSetterSingleRowWrapper,
     setterType,
     props,
@@ -148,13 +130,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   ])
 
   return canRenderSetter ? (
-    <div
-      css={applySetterWrapperStyle(
-        isSetterSingleRow,
-        isInList,
-        useCustomLayout,
-      )}
-    >
+    <div css={applySetterWrapperStyle(isSetterSingleRow, useCustomLayout)}>
       {renderLabel}
       {renderSetter}
     </div>

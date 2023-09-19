@@ -12,7 +12,7 @@ const getPanelBarHeaderHeight = (size: "default" | "small") => {
     default:
     case "default": {
       return css`
-        height: 40px;
+        height: 48px;
       `
     }
   }

@@ -1,5 +1,5 @@
 import deepDiff, { Diff } from "deep-diff"
-import { cloneDeep, set } from "lodash"
+import { merge } from "lodash"
 import {
   getWidgetOrActionDynamicAttrPaths,
   hasDynamicStringSnippet,
@@ -130,10 +130,7 @@ export const getNewWidgetPropsByUpdateSlice = (
   updateSlice: Record<string, unknown>,
   oldWidgetProps: Record<string, unknown>,
 ) => {
-  let newWidgetProps = cloneDeep(oldWidgetProps)
-  Object.keys(updateSlice).forEach((attrPath) => {
-    set(newWidgetProps, attrPath, updateSlice[attrPath])
-  })
+  let newWidgetProps = merge({}, oldWidgetProps, updateSlice)
 
   const diffs = deepDiff(oldWidgetProps, newWidgetProps)
   if (!Array.isArray(diffs)) return oldWidgetProps

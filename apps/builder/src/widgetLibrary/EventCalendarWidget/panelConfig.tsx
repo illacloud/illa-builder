@@ -462,7 +462,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-style-Calendar`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_group.eventCalendar.calendar"),
         attrName: "calendar",
         useCustomLayout: true,
@@ -477,6 +477,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             ),
             attrName: "slotBackground",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "white",
           },
           {
@@ -489,13 +490,14 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             ),
             attrName: "titleColor",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "gray",
           },
         ],
       },
       {
         id: `${baseWidgetName}-style-color`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_group.event"),
         attrName: "event",
         useCustomLayout: true,
@@ -510,6 +512,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             ),
             attrName: "eventBackground",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "blue",
           },
           {
@@ -522,6 +525,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             ),
             attrName: "eventTextColor",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "blue",
           },
         ],

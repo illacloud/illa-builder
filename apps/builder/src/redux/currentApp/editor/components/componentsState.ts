@@ -1,5 +1,3 @@
-import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-
 export enum CONTAINER_TYPE {
   "EDITOR_DOT_PANEL" = "EDITOR_DOT_PANEL",
   "EDITOR_SCALE_SQUARE" = "EDITOR_SCALE_SQUARE",
@@ -165,7 +163,13 @@ export interface AddContainerComponentViewsReducerPayload {
   displayName: string
   containerDisplayName: string
   linkedDisplayName?: string
-  addedViewItem: ViewItemShape[]
+  addedViewItem: {
+    id: string
+    key: string
+    label: string
+    disabled?: string
+    hidden?: string
+  }[]
   addComponent: ComponentNode
 }
 

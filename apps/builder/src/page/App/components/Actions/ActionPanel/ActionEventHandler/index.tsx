@@ -93,13 +93,11 @@ export const ActionEventHandler: FC = () => {
               <RenderPanelSetter
                 config={actionSuccessEventHandlerConfig}
                 displayName={action.displayName}
-                isInList={false}
                 parentAttrName=""
               />
               <RenderPanelSetter
                 config={actionFailedEventHandlerConfig}
                 displayName={action.displayName}
-                isInList={false}
                 parentAttrName=""
               />
             </SelectedProvider>

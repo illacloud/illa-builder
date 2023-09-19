@@ -2,6 +2,7 @@ import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PlusIcon, getColor } from "@illa-design/react"
+import ColorPickerSetter from "@/components/ColorSetter"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import {
   iconHotSpotContainerStyle,
@@ -17,8 +18,7 @@ import {
   getCurrentPageRightSection,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { AddSection } from "../AddSection"
-import ColorPickerSetter from "../ColorSetter"
-import { DeleteActionContainer } from "../DelteActionContainer"
+import { DeleteActionContainer } from "../DeleteActionContainer"
 
 export const DividerSetter: FC = () => {
   const { t } = useTranslation()
