@@ -1805,7 +1805,9 @@
           "row_height": "Række tilpasning",
           "item_radius": "Element radius",
           "item_shadow": "Element skygge",
-          "item_spacing": "Element afstand"
+          "item_spacing": "Element afstand",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2087,7 +2089,8 @@
           "row_height": "Bruges til at konfigurere højden af hver række. I Auto tilstand er højden adaptiv, og rækkehøjden bestemmes af det højeste gitter i den aktuelle række. I Fast tilstand er rækkehøjden fast, og alle gitre har samme højde.",
           "item_radius": "Bruges til at konfigurere hjørneradius for hvert gitter",
           "item_shadow": "Bruges til at konfigurere skyggestørrelsen for hvert gitter",
-          "item_spacing": "Bruges til at konfigurere afstanden mellem gitre"
+          "item_spacing": "Bruges til at konfigurere afstanden mellem gitre",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
