@@ -1274,7 +1274,8 @@
           "uploadFailed": "Încărcarea a eșuat",
           "onMenuSelect": "Selectare element",
           "on_menu_select": "Selectați elementul de meniu",
-          "pageChange": "Modificare pagină"
+          "pageChange": "Modificare pagină",
+          "clickItem": "Elementul clic"
         },
         "image_list": {
           "title": "Imagini",
@@ -4312,14 +4313,5 @@
   "contribute": "Contribuie",
   "error_page": {
     "fobidden": "Fără permisiune de acces"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Elementul clic"
-        }
-      }
-    }
   }
 }
