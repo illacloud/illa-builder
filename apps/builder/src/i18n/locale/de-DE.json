@@ -1806,8 +1806,8 @@
           "item_radius": "Elementradius",
           "item_shadow": "Item Schatten",
           "item_spacing": "Elementabstand",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Maximale Anzahl von Spalten",
+          "min_column_count": "Min. Anzahl der Spalten"
         }
       },
       "setter_tooltip": {
@@ -2090,7 +2090,7 @@
           "item_radius": "Wird verwendet, um den Eckradius jedes Rasters zu konfigurieren",
           "item_shadow": "Zur Konfiguration der Schattengröße jedes Rasters",
           "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen."
         }
       },
       "setter_option": {

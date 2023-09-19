@@ -1806,8 +1806,8 @@
           "item_radius": "Raza elementului",
           "item_shadow": "Obiectul umbră",
           "item_spacing": "Spațiere articole",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Numărul maxim de coloane",
+          "min_column_count": "Număr minim de coloane"
         }
       },
       "setter_tooltip": {
@@ -2090,7 +2090,7 @@
           "item_radius": "Folosit pentru a configura raza de colţ a fiecărei grile",
           "item_shadow": "Folosit pentru a configura dimensiunea umbrei pentru fiecare grilă",
           "item_spacing": "Folosit pentru a configura distanța dintre grile",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Setați numărul maxim de coloane care pot fi afișate în componenta listă pe măsură ce lățimea crește. (Automatic Translation) Când se atinge numărul maxim de coloane şi lăţimea pânzei continuă să crească, lățimea coloanei va fi mărită pentru a accepta aspectul și numărul de coloane nu va crește mai mult."
         }
       },
       "setter_option": {
