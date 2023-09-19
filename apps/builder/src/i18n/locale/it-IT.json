@@ -1805,7 +1805,9 @@
           "row_height": "Adattamento riga",
           "item_radius": "Raggio oggetto",
           "item_shadow": "Ombra dell'elemento",
-          "item_spacing": "Spaziatura elementi"
+          "item_spacing": "Spaziatura elementi",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2087,7 +2089,8 @@
           "row_height": "Usato per configurare l'altezza di ogni riga. In modalità automatica, l'altezza è adattabile e l'altezza della riga è determinata dalla griglia più alta della riga corrente. In modalità fissa, l'altezza della riga è fissa, e tutte le griglie hanno la stessa altezza.",
           "item_radius": "Usato per configurare il raggio d'angolo di ogni griglia",
           "item_shadow": "Usato per configurare la dimensione dell'ombra di ogni griglia",
-          "item_spacing": "Usato per configurare la spaziatura tra le griglie"
+          "item_spacing": "Usato per configurare la spaziatura tra le griglie",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
