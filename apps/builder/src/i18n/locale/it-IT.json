@@ -1274,7 +1274,8 @@
           "uploadFailed": "Impossibile caricare",
           "onMenuSelect": "Seleziona elemento",
           "on_menu_select": "Seleziona voce di menu",
-          "pageChange": "Modifica pagina"
+          "pageChange": "Modifica pagina",
+          "clickItem": "Clic elemento"
         },
         "image_list": {
           "title": "Immagini",
@@ -4312,14 +4313,5 @@
   "contribute": "Contribuisci",
   "error_page": {
     "fobidden": "Nessuna autorizzazione di accesso"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Clic elemento"
-        }
-      }
-    }
   }
 }
