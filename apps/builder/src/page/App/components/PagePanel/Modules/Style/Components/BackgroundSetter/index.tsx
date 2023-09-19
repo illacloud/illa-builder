@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import ColorPickerSetter from "@/components/ColorSetter"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import {
   labelContainerStyle,
@@ -16,7 +17,6 @@ import {
   getCurrentPageLeftSection,
   getCurrentPageRightSection,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import ColorPickerSetter from "../ColorSetter"
 
 export const BackgroundSetter: FC = () => {
   const { t } = useTranslation()

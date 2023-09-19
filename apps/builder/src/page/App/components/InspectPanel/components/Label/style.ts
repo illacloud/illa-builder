@@ -1,31 +1,27 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const baseLabelStyle = css`
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`
-
-export const ListLabelStyle = css`
-  color: ${getColor("grayBlue", "04")};
-  font-weight: 400;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`
-
-export function applyLabelStyle(isInList?: boolean) {
-  return isInList ? ListLabelStyle : baseLabelStyle
+const getLabelStyleBySize = (size: "medium" | "small") => {
+  switch (size) {
+    case "medium": {
+      return css`
+        font-size: 14px;
+        color: ${getColor("grayBlue", "02")};
+      `
+    }
+    case "small": {
+      return css`
+        font-size: 12px;
+        color: ${getColor("grayBlue", "03")};
+      `
+    }
+  }
 }
 
 export function applyLabelTipsStyle(
-  isInList?: boolean,
-  hasLabelDesc?: boolean,
+  hasLabelDesc: boolean,
+  size: "medium" | "small",
 ) {
-  const labelStyle = applyLabelStyle(isInList)
   const borderBottomStyle = hasLabelDesc
     ? css`
         border-bottom: 1px dashed ${getColor("grayBlue", "06")};
@@ -34,7 +30,11 @@ export function applyLabelTipsStyle(
   return css`
     height: 22px;
     line-height: 22px;
-    ${labelStyle};
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    ${getLabelStyleBySize(size)}
     ${borderBottomStyle};
   `
 }

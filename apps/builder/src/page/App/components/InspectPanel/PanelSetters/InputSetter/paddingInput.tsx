@@ -60,7 +60,6 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
     handleUpdateMultiAttrDSL?.({
       padding: {
         size: allValue,
-        mode: value.mode,
       },
     })
   }
@@ -69,7 +68,6 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
     handleUpdateMultiAttrDSL?.({
       padding: {
         size: formatValue(e.target.value ?? ""),
-        mode: value.mode,
       },
     })
   }
@@ -80,7 +78,6 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
       handleUpdateMultiAttrDSL?.({
         padding: {
           size: values.join(" "),
-          mode: value.mode,
         },
       })
     }

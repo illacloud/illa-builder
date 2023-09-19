@@ -18,7 +18,6 @@ export const ModalBody: FC<BodyProps> = (props) => {
             key={`${id}-${widgetDisplayName}`}
             config={child}
             displayName={widgetDisplayName ?? ""}
-            isInList={false}
             parentAttrName={attrPath}
             guideInfo={guideInfo}
           />

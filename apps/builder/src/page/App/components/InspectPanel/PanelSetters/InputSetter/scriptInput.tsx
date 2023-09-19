@@ -30,7 +30,6 @@ const ScriptInput: FC<BaseInputSetterProps> = (props) => {
     handleUpdateDsl,
     value,
     widgetDisplayName,
-    isInList,
     labelName,
     detailedDescription,
     labelDesc,
@@ -96,7 +95,7 @@ const ScriptInput: FC<BaseInputSetterProps> = (props) => {
   )
 
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
+    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
       <CodeEditor
         scopeOfAutoComplete="page"
         className={className}

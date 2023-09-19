@@ -1,5 +1,4 @@
 import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/interface"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSelectSetterProps extends BaseSetter {
   options?: any
@@ -18,7 +17,6 @@ export interface BaseDynamicSelectSetterProps extends BaseSetter {
   path: string
   options: any
   value: any
-  expectedType: VALIDATION_TYPES
   selectPlaceholder?: string
   inputPlaceholder?: string
   isError: boolean

@@ -10,13 +10,7 @@ import RenderPanelBar from "../Panelbar"
 import { FieldFactoryProps } from "./interface"
 
 const FieldFactory: FC<FieldFactoryProps> = (props) => {
-  const {
-    panelConfig,
-    displayName,
-    widgetProps,
-    guideInfo,
-    isInList = false,
-  } = props
+  const { panelConfig, displayName, widgetProps, guideInfo } = props
 
   if (!displayName || !panelConfig || !panelConfig.length) return null
   return (
@@ -45,7 +39,6 @@ const FieldFactory: FC<FieldFactoryProps> = (props) => {
               key={key}
               config={item as PanelFieldConfig}
               displayName={displayName}
-              isInList={isInList}
               parentAttrName=""
               guideInfo={guideInfo}
             />

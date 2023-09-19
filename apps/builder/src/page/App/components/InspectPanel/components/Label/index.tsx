@@ -6,9 +6,11 @@ import { applyLabelTipsStyle } from "./style"
 
 export const PanelLabel: FC<PanelLabelProps> = memo(
   (props: PanelLabelProps) => {
-    const { labelDesc, labelName, isInList } = props
+    const { labelDesc, labelName, size = "medium" } = props
 
-    return (
+    return !labelDesc ? (
+      <span css={applyLabelTipsStyle(!!labelDesc, size)}>{labelName}</span>
+    ) : (
       <Trigger
         content={<ILLAMarkdown textString={labelDesc} />}
         trigger="hover"
@@ -16,9 +18,7 @@ export const PanelLabel: FC<PanelLabelProps> = memo(
         maxW="240px"
         disabled={!labelDesc}
       >
-        <span css={applyLabelTipsStyle(isInList, !!labelDesc)}>
-          {labelName}
-        </span>
+        <span css={applyLabelTipsStyle(!!labelDesc, size)}>{labelName}</span>
       </Trigger>
     )
   },

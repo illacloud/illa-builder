@@ -37,15 +37,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/searchSelect"
       ),
   ),
-  INPUT_WITH_SELECT_SETTER: lazy(
-    () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/inputWithSelect"
-      ),
-  ),
-  LIST_SETTER: lazy(
-    () => import("@/page/App/components/InspectPanel/PanelSetters/ListSetter"),
-  ),
+  // INPUT_WITH_SELECT_SETTER: lazy(
+  //   () =>
+  //     import(
+  //       "@/page/App/components/InspectPanel/PanelSetters/InputSetter/inputWithSelect"
+  //     ),
+  // ),
   DYNAMIC_SWITCH_SETTER: lazy(
     () =>
       import(
@@ -62,12 +59,6 @@ const SetterTypeMapSetter = {
     () =>
       import(
         "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseSelect"
-      ),
-  ),
-  COLOR_PICKER_SETTER: lazy(
-    () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/ColorPickerSetter"
       ),
   ),
   OPTION_LIST_SETTER: lazy(
@@ -196,15 +187,6 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/eventActionTypeSelect"
       ),
   ),
-  EDITABLE_INPUT_WITH_MEASURE_SETTER: lazy(
-    () => import("./InputSetter/editableInputSetterWithMeasure"),
-  ),
-  BASE_DYNAMIC_SELECT_SETTER: lazy(
-    () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseDynamicSelect"
-      ),
-  ),
   CHART_KEYS_SELECT_SETTER: lazy(
     () =>
       import(
@@ -268,7 +250,7 @@ const SetterTypeMapSetter = {
   SHADOW_SELECT_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/shadowSelect"
+        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/ShadowSelect"
       ),
   ),
   EVENT_TARGET_STATE_SELECT_SETTER: lazy(
@@ -299,6 +281,28 @@ const SetterTypeMapSetter = {
     () =>
       import(
         "@/page/App/components/InspectPanel/PanelSetters/InputSetter/paddingInput"
+      ),
+  ),
+  BORDER_SETTER: lazy(
+    () =>
+      import("@/page/App/components/InspectPanel/PanelSetters/BorderSetter"),
+  ),
+  STYLE_CONTAINER_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/StyleContainerSetter"
+      ),
+  ),
+  COLOR_PICKER_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/ColorPickerSetter"
+      ),
+  ),
+  MEASURE_CHECK_INPUT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/MeasureCheckInput"
       ),
   ),
 }

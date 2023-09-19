@@ -4,14 +4,14 @@ import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/inte
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface MenuOptionSetterProps extends BaseSetter {
-  childrenSetter: PanelFieldConfig[]
+  childrenSetter?: PanelFieldConfig[]
 }
 
 export interface SetterSubMenuProps extends HTMLAttributes<HTMLDivElement> {
   widgetDisplayName: string
   attrPath: string
   value: string
-  childrenSetter: PanelFieldConfig[]
+  childrenSetter?: PanelFieldConfig[]
   label: string
   onClickAdd: (value: string) => void
   onDelete: () => void
@@ -24,7 +24,7 @@ export interface NewButtonProps extends ButtonProps {
 export interface SetterMenuItemProps extends HTMLAttributes<HTMLDivElement> {
   widgetDisplayName: string
   attrPath: string
-  childrenSetter: PanelFieldConfig[]
+  childrenSetter?: PanelFieldConfig[]
   value: string
   label: string
   onClickItem: (value: string) => void

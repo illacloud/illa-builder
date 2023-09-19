@@ -2,24 +2,31 @@ import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import alpha from "@/assets/alpha.svg"
 
+export const circleHotSpotStyle = css`
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+`
+
 export function applyCircleStyle(color: string): SerializedStyles {
   return css`
     &::after {
       content: "";
       display: inline-block;
       background-color: ${color};
-      width: 100%;
-      height: 100%;
+      width: 16px;
+      height: 16px;
     }
 
     background-image: url(${alpha});
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    flex: none;
-    position: relative;
     overflow: hidden;
+    flex: none;
   `
 }
 
@@ -35,7 +42,7 @@ export const buttonContentWrapperStyle = css`
   cursor: pointer;
   align-items: center;
   border-radius: 8px;
-  padding: 4px 12px 4px 8px;
+  padding: 3px 12px 3px 12px;
   justify-content: space-between;
   border: 1px solid ${getColor("grayBlue", "08")};
 

@@ -1,21 +1,15 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
-import {
-  fixedWidthStyle,
-  listSetterWidthStyle,
-} from "@/page/App/components/InspectPanel/PanelSetters/style"
+import { fixedWidthStyle } from "@/page/App/components/InspectPanel/PanelSetters/style"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
 export const applyInputSetterWrapperStyle = (
   isSetterSingleRow: boolean = false,
-  isInList: boolean = false,
 ): SerializedStyles => {
   return isSetterSingleRow
     ? css`
         width: 100%;
       `
-    : isInList
-    ? listSetterWidthStyle
     : fixedWidthStyle
 }
 

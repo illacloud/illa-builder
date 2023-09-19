@@ -2,18 +2,19 @@ import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import BaseDynamicSelect from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseDynamicSelect"
-import { BaseDynamicSelectSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/interface"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { BaseSetter } from "../interface"
 
-export interface DynamicSelectSetterProps extends BaseDynamicSelectSetterProps {
+export interface DynamicSelectSetterProps extends BaseSetter {
   inputPlaceholder?: string
   selectPlaceholder?: string
   isDynamicAttrName?: string
   selectAttrName?: string
   inputAttrName?: string
+  options?: { label: string; value: any }[]
 }
 
 const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {

@@ -26,7 +26,6 @@ const BaseInput: FC<BaseInputSetterProps> = (props) => {
     expectedType,
     value,
     widgetDisplayName,
-    isInList,
     labelName,
     detailedDescription,
     labelDesc,
@@ -104,7 +103,7 @@ const BaseInput: FC<BaseInputSetterProps> = (props) => {
   )
 
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
+    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
       <CodeEditor
         scopeOfAutoComplete="page"
         className={className}

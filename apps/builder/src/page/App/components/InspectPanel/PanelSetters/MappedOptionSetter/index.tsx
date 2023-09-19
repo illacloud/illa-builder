@@ -20,7 +20,6 @@ const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
               key={`${id}-${widgetDisplayName}`}
               config={child}
               displayName={widgetDisplayName ?? ""}
-              isInList
               parentAttrName={attrName}
             />
           )

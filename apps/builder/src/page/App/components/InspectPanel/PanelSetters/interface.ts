@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -14,9 +15,8 @@ export interface BaseSetter {
     displayName: string,
     updateSlice: Record<string, unknown>,
   ) => void
-  expectedType?: VALIDATION_TYPES | VALIDATION_TYPES[]
+  expectedType?: VALIDATION_TYPES
   attrNames?: string[]
-  isInList?: boolean
   widgetDisplayName: string
   widgetType: string
   widgetOrAction: "ACTION" | "WIDGET"
@@ -26,4 +26,5 @@ export interface BaseSetter {
   labelName?: string
   labelDesc?: string
   isGuideMode?: boolean
+  icon?: ReactNode
 }

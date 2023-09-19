@@ -141,7 +141,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-style-color`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
@@ -150,6 +150,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-color`,
             labelName: i18n.t("editor.inspect.setter_label.text"),
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             attrName: "colorScheme",
             defaultValue: "grayBlue",
           },
@@ -157,7 +158,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-style-size`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
         useCustomLayout: true,
@@ -165,7 +166,8 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-style-text-size`,
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
-            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
+            setterType: "MEASURE_CHECK_INPUT_SETTER",
+            useCustomLayout: true,
             attrName: "fs",
             icon: <TextSizeIcon />,
             defaultValue: "14px",

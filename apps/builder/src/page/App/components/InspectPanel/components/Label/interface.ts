@@ -1,5 +1,5 @@
 export interface PanelLabelProps {
   labelName?: string
   labelDesc?: string
-  isInList?: boolean
+  size?: "medium" | "small"
 }

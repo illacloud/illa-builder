@@ -9,6 +9,7 @@ import {
   alphaContentStyle,
   applyCircleStyle,
   buttonContentWrapperStyle,
+  circleHotSpotStyle,
   colorContentStyle,
   colorTipAndValueContainerStyle,
 } from "./style"
@@ -43,7 +44,9 @@ const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
     >
       <div css={buttonContentWrapperStyle}>
         <div css={colorTipAndValueContainerStyle}>
-          <div css={applyCircleStyle(c)} />
+          <div css={circleHotSpotStyle}>
+            <div css={applyCircleStyle(c)} />
+          </div>
           <span css={colorContentStyle}>
             {value?.includes("#")
               ? value?.toLocaleUpperCase().slice(0, -2)

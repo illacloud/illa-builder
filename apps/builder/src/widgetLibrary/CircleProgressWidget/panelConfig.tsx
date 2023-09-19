@@ -87,7 +87,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-color-list`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
@@ -96,6 +96,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-color`,
             labelName: i18n.t("editor.inspect.setter_label.styles"),
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             attrName: "color",
             defaultValue: "blue",
           },
@@ -103,6 +104,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-trailColor`,
             labelName: i18n.t("editor.inspect.setter_label.trail_color"),
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             attrName: "trailColor",
             defaultValue: "gray",
           },
@@ -110,7 +112,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-style-list`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
         useCustomLayout: true,
@@ -118,7 +120,8 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-strokeWidth`,
             labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
-            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
+            setterType: "MEASURE_CHECK_INPUT_SETTER",
+            useCustomLayout: true,
             icon: <StrokeWidthIcon />,
             attrName: "strokeWidth",
             defaultValue: "4px",

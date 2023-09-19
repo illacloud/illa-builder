@@ -7,7 +7,6 @@ export const publicPaddingStyle = css`
 
 export function applySetterWrapperStyle(
   isSetterSingleRow: boolean = false,
-  isInList: boolean = false,
   useCustomLayout: boolean = false,
 ): SerializedStyles {
   if (useCustomLayout) {
@@ -21,17 +20,16 @@ export function applySetterWrapperStyle(
 
   const basicStyle = css`
     display: flex;
-    align-items: ${isInList ? "center" : "baseline"};
+    align-items: center;
     justify-content: space-between;
   `
   return css`
-    ${isInList ? "padding: 0 12px;" : "padding: 0px 16px;"};
+    padding: 0px 16px;
     ${basicStyle};
   `
 }
 
 export const applySetterPublicWrapperStyle = (
-  isInList: boolean = false,
   isSetterSingleRowWrapper: boolean = false,
   notNeedPadding: boolean,
 ) => {
@@ -46,16 +44,9 @@ export const applySetterPublicWrapperStyle = (
       align-items: center;
     `
   }
-  return isInList
-    ? css`
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        ${widthStyle}
-      `
-    : css`
-        padding: 8px 0;
-        min-height: 48px;
-        ${widthStyle}
-      `
+  return css`
+    padding: 8px 0;
+    min-height: 48px;
+    ${widthStyle}
+  `
 }
