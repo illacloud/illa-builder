@@ -1274,7 +1274,8 @@
           "uploadFailed": "Upload fehlgeschlagen",
           "onMenuSelect": "Element auswählen",
           "on_menu_select": "Menüpunkt auswählen",
-          "pageChange": "Seitenänderung"
+          "pageChange": "Seitenänderung",
+          "clickItem": "Element anklicken"
         },
         "image_list": {
           "title": "Bilder",
@@ -4312,14 +4313,5 @@
   "contribute": "Mitwirken",
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Element anklicken"
-        }
-      }
-    }
   }
 }
