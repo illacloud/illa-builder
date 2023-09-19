@@ -1274,7 +1274,8 @@
           "uploadFailed": "Upload mislykkedes",
           "onMenuSelect": "Vælg element",
           "on_menu_select": "Vælg menupunkt",
-          "pageChange": "Side ændring"
+          "pageChange": "Side ændring",
+          "clickItem": "Klik på element"
         },
         "image_list": {
           "title": "Billeder",
@@ -4312,14 +4313,5 @@
   "contribute": "Bidrag",
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klik på element"
-        }
-      }
-    }
   }
 }
