@@ -32,7 +32,7 @@ AI 에이전트 또는 ILLA 앱을 ILLA 커뮤니티에 제공하고 ILLA에 풀
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/github-home.png">
+  <img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/20230919-210525.png">
 </a>
 </p>
 
