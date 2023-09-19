@@ -1805,7 +1805,9 @@
           "row_height": "Adaptarea liniei",
           "item_radius": "Raza elementului",
           "item_shadow": "Obiectul umbră",
-          "item_spacing": "Spațiere articole"
+          "item_spacing": "Spațiere articole",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2087,7 +2089,8 @@
           "row_height": "Folosit pentru a configura înălțimea fiecărui rând. În modul Auto, înălţimea este adaptabilă, iar înălţimea rândului este determinată de reţeaua cea mai înaltă din rândul curent. În modul fix, înălţimea rândului este fixată şi toate grilele au aceeaşi înălţime.",
           "item_radius": "Folosit pentru a configura raza de colţ a fiecărei grile",
           "item_shadow": "Folosit pentru a configura dimensiunea umbrei pentru fiecare grilă",
-          "item_spacing": "Folosit pentru a configura distanța dintre grile"
+          "item_spacing": "Folosit pentru a configura distanța dintre grile",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
