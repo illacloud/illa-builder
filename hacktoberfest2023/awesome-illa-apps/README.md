@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://illa.ai">
-    <img alt="Awesome ILLA Cloud"  width="360px" src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202980.png"/>
+    <img alt="Awesome ILLA Cloud" src="https://cdn.illacloud.com/official-website/img/hacktoberFest/illa_awesome.svg"/>
   </a>
 </div>
 
