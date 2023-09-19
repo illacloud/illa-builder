@@ -1274,7 +1274,8 @@
           "uploadFailed": "Kan ikke laste opp",
           "onMenuSelect": "Velg element",
           "on_menu_select": "Velg menypunkt",
-          "pageChange": "Side endring"
+          "pageChange": "Side endring",
+          "clickItem": "Klikk pÃ¥ element"
         },
         "image_list": {
           "title": "Bilder",
@@ -4312,14 +4313,5 @@
   "contribute": "Bidra",
   "error_page": {
     "fobidden": "Ingen tilgang"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klikk pÃ¥ element"
-        }
-      }
-    }
   }
 }
