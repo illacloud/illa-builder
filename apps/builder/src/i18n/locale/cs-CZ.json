@@ -1274,7 +1274,8 @@
           "uploadFailed": "Nepodařilo se nahrát",
           "onMenuSelect": "Vybrat položku",
           "on_menu_select": "Vyberte položku nabídky",
-          "pageChange": "Změna stránky"
+          "pageChange": "Změna stránky",
+          "clickItem": "Klepněte na položku"
         },
         "image_list": {
           "title": "Obrázky",
@@ -4312,14 +4313,5 @@
   "contribute": "Přispějte",
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klepněte na položku"
-        }
-      }
-    }
   }
 }
