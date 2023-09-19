@@ -1806,8 +1806,8 @@
           "item_radius": "Kohteen säde",
           "item_shadow": "Kohteen varjo",
           "item_spacing": "Kohteiden väli",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Maksimi määrä sarakkeita",
+          "min_column_count": "Sarakkeiden vähimmäismäärä"
         }
       },
       "setter_tooltip": {
@@ -2090,7 +2090,7 @@
           "item_radius": "Käytetään määrittämään kulman säde kunkin ruudukon",
           "item_shadow": "Käytetään kunkin ruudukon varjon koon määrittämiseen",
           "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
         }
       },
       "setter_option": {
