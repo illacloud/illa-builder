@@ -32,7 +32,7 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/github-home.png">
+  <img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/20230919-210525.png">
 </a>
 </p>
 
