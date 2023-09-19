@@ -21,6 +21,7 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.direction"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.timeline_direction"),
         setterType: "RADIO_GROUP_SETTER",
+        useCustomLayout: true,
         attrName: "direction",
         options: [
           { label: i18n.t("widget.timeline.vertical"), value: "vertical" },

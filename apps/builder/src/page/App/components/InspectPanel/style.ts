@@ -40,8 +40,7 @@ export const applySetterPublicWrapperStyle = (
     : null
   if (notNeedPadding) {
     return css`
-      min-height: 48px;
-      align-items: center;
+      width: 100%;
     `
   }
   return css`

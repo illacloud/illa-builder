@@ -104,6 +104,7 @@ export const RICH_TEXT_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.shadow.shadow"),
             attrName: "shadow",
             setterType: "SHADOW_SELECT_SETTER",
+            useCustomLayout: true,
             defaultValue: "small",
           },
         ],

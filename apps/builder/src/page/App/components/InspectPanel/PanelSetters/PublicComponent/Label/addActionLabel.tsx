@@ -15,7 +15,7 @@ export const AddActionLabel: FC<AddActionLabelProps> = (props) => {
       <Button
         pd="1px 8px"
         colorScheme="techPurple"
-        size="medium"
+        size="small"
         variant="text"
         onClick={handleAddItem}
         leftIcon={

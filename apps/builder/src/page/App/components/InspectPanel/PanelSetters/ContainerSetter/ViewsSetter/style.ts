@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const setterPublicWrapper = css`
-  padding: 0 16px;
+  padding: 8px 16px;
   width: 100%;
 `
 
