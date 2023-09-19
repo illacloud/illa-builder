@@ -1274,7 +1274,8 @@
           "uploadFailed": "Не завантажено",
           "onMenuSelect": "Виберіть елемент",
           "on_menu_select": "Виберіть пункт меню",
-          "pageChange": "Зміна сторінки"
+          "pageChange": "Зміна сторінки",
+          "clickItem": "Натиснути предмет"
         },
         "image_list": {
           "title": "Малюнки",
@@ -4312,14 +4313,5 @@
   "contribute": "Зробити свій внесок",
   "error_page": {
     "fobidden": "Немає дозволу на доступ"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Натиснути предмет"
-        }
-      }
-    }
   }
 }
