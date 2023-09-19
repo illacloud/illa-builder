@@ -444,9 +444,14 @@ const RenderComponentCanvasContainer: FC<
   const canvasUpdateHeightHandler = useCallback(
     (height: number) => {
       if (!handleUpdateHeight) return
-      handleUpdateHeight(height + SCROLL_CONTAINER_PADDING * 2 + 8 * 2)
+      handleUpdateHeight(
+        height +
+          SCROLL_CONTAINER_PADDING * 2 +
+          paddings.paddingTop +
+          paddings.paddingBottom,
+      )
     },
-    [handleUpdateHeight],
+    [handleUpdateHeight, paddings.paddingBottom, paddings.paddingTop],
   )
 
   useAutoUpdateCanvasHeight(
