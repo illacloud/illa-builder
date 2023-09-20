@@ -102,23 +102,14 @@ export const DRIVE_PICKER_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
-      // {
-      //   id: `${baseWidgetName}-validation-fileSize`,
-      //   labelName: i18n.t("editor.inspect.setter_label.min_max_size"),
-      //   placeholder: i18n.t("editor.inspect.setter_placeholder.min_max_size"),
-      //   setterType: "INPUT_WITH_SELECT_SETTER",
-      //   attrName: ["minSize", "maxSize", "sizeType"],
-      //   useCustomLayout: true,
-      //   expectedType: [
-      //     VALIDATION_TYPES.NUMBER,
-      //     VALIDATION_TYPES.NUMBER,
-      //     VALIDATION_TYPES.STRING,
-      //   ],
-      //   options: [
-      //     { label: "KB", value: "kb" },
-      //     { label: "MB", value: "mb" },
-      //   ],
-      // },
+      {
+        id: `${baseWidgetName}-validation-fileSize`,
+        labelName: i18n.t("editor.inspect.setter_label.min_max_size"),
+        placeholder: i18n.t("editor.inspect.setter_placeholder.min_max_size"),
+        setterType: "FILE_MIN_MAX_SETTER",
+        attrName: "",
+        useCustomLayout: true,
+      },
       {
         id: `${baseWidgetName}-label-minFileNum`,
         labelName: i18n.t(

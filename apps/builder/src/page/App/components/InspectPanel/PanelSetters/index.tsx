@@ -37,12 +37,6 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/searchSelect"
       ),
   ),
-  // INPUT_WITH_SELECT_SETTER: lazy(
-  //   () =>
-  //     import(
-  //       "@/page/App/components/InspectPanel/PanelSetters/InputSetter/inputWithSelect"
-  //     ),
-  // ),
   DYNAMIC_SWITCH_SETTER: lazy(
     () =>
       import(
@@ -297,6 +291,12 @@ const SetterTypeMapSetter = {
     () =>
       import(
         "@/page/App/components/InspectPanel/PanelSetters/InputSetter/MeasureCheckInput"
+      ),
+  ),
+  FILE_MIN_MAX_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/FileMinMaxSetter"
       ),
   ),
 }
