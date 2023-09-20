@@ -546,7 +546,7 @@ export const getCurrentPageModalSection = createSelector(
         const node = get(executionResult, displayName)
         return (
           node &&
-          node.$widgetType === "SECTION_NODE" &&
+          node.$widgetType === "MODAL_SECTION_NODE" &&
           node.displayName.startsWith("modalSection")
         )
       },

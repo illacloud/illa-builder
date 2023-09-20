@@ -24,7 +24,9 @@ const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
 
   return (
     <div css={baseRadioGroupContainerStyle(isSetterSingleRow)}>
-      <PanelLabel labelName={labelName} labelDesc={labelDesc} size="medium" />
+      {labelName && (
+        <PanelLabel labelName={labelName} labelDesc={labelDesc} size="medium" />
+      )}
       <div css={applyRadioGroupWrapperStyle(isSetterSingleRow)}>
         <RadioGroup
           onChange={(value) => {

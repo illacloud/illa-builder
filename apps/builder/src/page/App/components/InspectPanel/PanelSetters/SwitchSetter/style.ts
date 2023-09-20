@@ -1,6 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
 export const dynamicSwitchWrapperStyle = css`
   display: flex;
@@ -53,7 +52,7 @@ const doubleRowStyle = css`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  ${publicPaddingStyle}
+  padding: 8px 16px;
 `
 
 export const applyLabelWrapperStyle = (

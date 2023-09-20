@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { PlusIcon } from "@illa-design/react"
-import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
+import { ReactComponent as BorderIcon } from "@/assets/border.svg"
 import { IconHotSpot } from "@/components/IconHotSpot"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { PanelLabel } from "../../components/Label"
@@ -39,7 +39,7 @@ const BorderSetter: FC<BaseInputSetterProps> = (props) => {
         value={borderWidth}
         attrName="borderWidth"
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
-        icon={<StrokeWidthIcon />}
+        icon={<BorderIcon />}
       />
     </div>
   )

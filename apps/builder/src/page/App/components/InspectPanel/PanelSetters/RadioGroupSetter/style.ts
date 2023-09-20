@@ -6,6 +6,7 @@ export const applyRadioGroupWrapperStyle = (
 ): SerializedStyles => {
   return isSetterSingleRow
     ? css`
+        padding-top: 8px;
         width: 100%;
       `
     : fixedWidthStyle

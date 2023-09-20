@@ -273,10 +273,10 @@ export const CHAT_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: `${baseWidgetName}-styles-color`,
+        id: `${baseWidgetName}-styles-style`,
         setterType: "STYLE_CONTAINER_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.border"),
-        attrName: "border",
+        labelName: i18n.t("editor.inspect.setter_label.style"),
+        attrName: "style",
         useCustomLayout: true,
         childrenSetter: [
           {
@@ -288,15 +288,6 @@ export const CHAT_PANEL_CONFIG: PanelConfig[] = [
             icon: <RadioIcon />,
             defaultValue: "4px",
           },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-styles-style`,
-        setterType: "STYLE_CONTAINER_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.style"),
-        attrName: "style",
-        useCustomLayout: true,
-        childrenSetter: [
           {
             id: `${baseWidgetName}-style-shadow`,
             labelName: i18n.t("editor.inspect.setter_label.shadow.shadow"),
