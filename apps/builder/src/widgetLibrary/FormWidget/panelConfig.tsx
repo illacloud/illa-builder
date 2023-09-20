@@ -114,18 +114,17 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-styles-color`,
         setterType: "STYLE_CONTAINER_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.border"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "border",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: `${baseWidgetName}-style-radius`,
-            labelName: i18n.t("editor.inspect.setter_label.radius"),
-            attrName: "radius",
-            setterType: "MEASURE_CHECK_INPUT_SETTER",
+            id: `${baseWidgetName}-style-background`,
+            labelName: i18n.t("editor.inspect.setter_label.background"),
+            attrName: "backgroundColor",
+            setterType: "COLOR_PICKER_SETTER",
             useCustomLayout: true,
-            icon: <RadioIcon />,
-            defaultValue: "4px",
+            defaultValue: "#ffffffff",
           },
         ],
       },
@@ -137,12 +136,13 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: `${baseWidgetName}-style-background`,
-            labelName: i18n.t("editor.inspect.setter_label.background"),
-            attrName: "backgroundColor",
-            setterType: "COLOR_PICKER_SETTER",
+            id: `${baseWidgetName}-style-radius`,
+            labelName: i18n.t("editor.inspect.setter_label.radius"),
+            attrName: "radius",
+            setterType: "MEASURE_CHECK_INPUT_SETTER",
             useCustomLayout: true,
-            defaultValue: "#ffffffff",
+            icon: <RadioIcon />,
+            defaultValue: "4px",
           },
           {
             id: `${baseWidgetName}-style-shadow`,

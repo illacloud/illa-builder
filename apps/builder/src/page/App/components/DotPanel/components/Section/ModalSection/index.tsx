@@ -5,14 +5,12 @@ import { BASIC_CANVAS_PADDING } from "@/page/App/components/DotPanel/constant/ca
 import {
   getCurrentPageModalSection,
   getExecutionResult,
-  getExecutionWidgetLayoutInfo,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { RenderModalSectionProps } from "./interface"
 import { modalWrapperStyle } from "./style"
 
 export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
   const { columnNumber } = props
-  const layoutInfos = useSelector(getExecutionWidgetLayoutInfo)
   const executionResult = useSelector(getExecutionResult)
   const modalSection = useSelector(getCurrentPageModalSection)
 
@@ -23,10 +21,8 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
   )
     return null
 
-  const currentLayoutInfo = layoutInfos[modalSection.displayName]
-
-  const currentModalDisplayName = currentLayoutInfo.childrenNode?.find(
-    (childName) => {
+  const currentModalDisplayName = modalSection.$childrenNode?.find(
+    (childName: string) => {
       const childNode = executionResult[childName]
       return childNode?.isVisible
     },
