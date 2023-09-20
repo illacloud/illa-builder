@@ -1677,7 +1677,7 @@
           "background": "배경",
           "calendar_background": "배경",
           "calendar_border": "프레임",
-          "calendar_text": "텍스트 양",
+          "calendar_text": "Secondary text",
           "event_background": "배경",
           "event_text": "프레임",
           "draggable": "드래그 가능",
