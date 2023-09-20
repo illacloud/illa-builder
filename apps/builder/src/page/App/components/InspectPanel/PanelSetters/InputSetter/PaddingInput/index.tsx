@@ -6,7 +6,12 @@ import { ReactComponent as AllIcon } from "@/assets/rightPagePanel/all.svg"
 import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
 import { PanelLabel } from "../../../components/Label"
 import { DirectionPaddingSetterProps } from "./interface"
-import { directionPaddingContainerStyle, setterContainerStyle } from "./style"
+import {
+  directionPaddingContainerStyle,
+  optionsIconHotSpotStyle,
+  prefixContainerStyle,
+  setterContainerStyle,
+} from "./style"
 
 const formatValue = (value: string = "") => {
   const values = value
@@ -27,11 +32,19 @@ const formatValue = (value: string = "") => {
 
 const options = [
   {
-    label: <AllIcon />,
+    label: (
+      <div css={optionsIconHotSpotStyle}>
+        <AllIcon />
+      </div>
+    ),
     value: PADDING_MODE.ALL,
   },
   {
-    label: <PartialIcon />,
+    label: (
+      <div css={optionsIconHotSpotStyle}>
+        <PartialIcon />
+      </div>
+    ),
     value: PADDING_MODE.PARTIAL,
   },
 ]
@@ -40,15 +53,14 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   props,
 ) => {
   const { t } = useTranslation()
-  const {
-    value = {
-      size: "0",
-      mode: PADDING_MODE.ALL,
-    },
-    handleUpdateMultiAttrDSL,
-  } = props
-  const values = value.size.split(" ")
-  const isAll = value.mode === PADDING_MODE.ALL
+  const { handleUpdateMultiAttrDSL, componentNode } = props
+  const paddingValue = {
+    mode: componentNode?.props?.padding?.mode ?? PADDING_MODE.ALL,
+    size: componentNode?.props?.padding?.size ?? "0",
+  }
+
+  const values = paddingValue.size.split(" ")
+  const isAll = paddingValue.mode === PADDING_MODE.ALL
 
   const allInputRef = useRef<HTMLInputElement>(null)
 
@@ -80,11 +92,11 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   }
 
   const handleChangeMode = (mode: PADDING_MODE) => {
-    if (value.mode === mode) return
+    if (paddingValue.mode === mode) return
     switch (mode) {
       case PADDING_MODE.ALL: {
-        let result = value.size
-        const partialSize = Array.from(new Set(value.size.split(" ")))
+        let result = paddingValue.size
+        const partialSize = Array.from(new Set(paddingValue.size.split(" ")))
         if (partialSize.length === 1) {
           result = partialSize[0]
         }
@@ -98,8 +110,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
         break
       }
       case PADDING_MODE.PARTIAL: {
-        const partialSize = value.size.split(" ")
-        let result = value.size
+        const partialSize = paddingValue.size.split(" ")
+        let result = paddingValue.size
         if (partialSize.length === 1) {
           result = `${partialSize[0]} ${partialSize[0]} ${partialSize[0]} ${partialSize[0]}`
         }
@@ -122,19 +134,20 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
     <>
       <div css={setterContainerStyle}>
         <PanelLabel labelName={t("editor.inspect.setter_group.padding")} />
-
         <RadioGroup
           type="button"
           options={options}
-          value={value.mode}
+          value={paddingValue.mode}
           onChange={handleChangeMode}
           size="small"
+          w="105px"
+          forceEqualWidth
         />
       </div>
       <div css={directionPaddingContainerStyle}>
         {isAll ? (
           <Input
-            prefix="All"
+            prefix={<span css={prefixContainerStyle}>All</span>}
             colorScheme="techPurple"
             value={values.join(" ")}
             ref={allInputRef}
@@ -144,14 +157,14 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
         ) : (
           <>
             <Input
-              prefix="T"
+              prefix={<span css={prefixContainerStyle}>T</span>}
               colorScheme="techPurple"
               bdRadius="8px 0 0 8px"
               value={values[0]}
               onChange={handleChangePartialValue(0)}
             />
             <Input
-              prefix="R"
+              prefix={<span css={prefixContainerStyle}>R</span>}
               colorScheme="techPurple"
               bdRadius="0"
               pos="relative"
@@ -160,7 +173,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
               onChange={handleChangePartialValue(1)}
             />
             <Input
-              prefix="B"
+              prefix={<span css={prefixContainerStyle}>B</span>}
               colorScheme="techPurple"
               bdRadius="0"
               pos="relative"
@@ -169,7 +182,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
               onChange={handleChangePartialValue(2)}
             />
             <Input
-              prefix="L"
+              prefix={<span css={prefixContainerStyle}>L</span>}
               colorScheme="techPurple"
               bdRadius="0 8px 8px 0"
               pos="relative"

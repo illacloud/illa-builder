@@ -825,7 +825,6 @@ export const componentsAsync = (
         (node) => node.showName === sectionName,
       )
       if (!sectionNode) return
-
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(sectionNode)
       Connection.getTextRoom("app", currentAppID)?.send(
@@ -833,7 +832,7 @@ export const componentsAsync = (
           TextSignal.UPDATE_STATE,
           TextTarget.COMPONENTS,
           true,
-          null,
+          action,
           teamID,
           uid,
           updateWSPayload,
@@ -858,7 +857,7 @@ export const componentsAsync = (
           TextSignal.UPDATE_STATE,
           TextTarget.COMPONENTS,
           true,
-          null,
+          action,
           teamID,
           uid,
           updateWSPayload,

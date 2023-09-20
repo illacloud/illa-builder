@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PlusIcon, getColor } from "@illa-design/react"
 import ColorPickerSetter from "@/components/ColorSetter"
+import IconHotSpot from "@/components/IconHotSpot"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import {
-  iconHotSpotContainerStyle,
   labelContainerStyle,
   sectionContainerStyle,
 } from "@/page/App/components/PagePanel/Modules/Style/style"
@@ -150,8 +150,10 @@ export const DividerSetter: FC = () => {
           size="big"
         />
         <AddSection>
-          <span css={iconHotSpotContainerStyle}>
-            <PlusIcon />
+          <span>
+            <IconHotSpot>
+              <PlusIcon />
+            </IconHotSpot>
           </span>
         </AddSection>
       </div>

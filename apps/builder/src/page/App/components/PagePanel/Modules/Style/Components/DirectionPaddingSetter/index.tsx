@@ -1,7 +1,7 @@
 import { FC, FocusEventHandler, useRef } from "react"
 import { Input } from "@illa-design/react"
 import { DirectionPaddingSetterProps } from "./interface"
-import { directionPaddingContainerStyle } from "./style"
+import { directionPaddingContainerStyle, prefixContainerStyle } from "./style"
 
 const formatValue = (value: string) => {
   const values = value
@@ -47,7 +47,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
     <div css={directionPaddingContainerStyle}>
       {isAll ? (
         <Input
-          prefix="All"
+          prefix={<span css={prefixContainerStyle}>All</span>}
           colorScheme="techPurple"
           value={value}
           ref={allInputRef}
@@ -57,14 +57,14 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
       ) : (
         <>
           <Input
-            prefix="T"
+            prefix={<span css={prefixContainerStyle}>T</span>}
             colorScheme="techPurple"
             bdRadius="8px 0 0 8px"
             value={values[0]}
             onChange={handleChangePartialValue(0)}
           />
           <Input
-            prefix="R"
+            prefix={<span css={prefixContainerStyle}>R</span>}
             colorScheme="techPurple"
             bdRadius="0"
             pos="relative"
@@ -73,7 +73,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             onChange={handleChangePartialValue(1)}
           />
           <Input
-            prefix="B"
+            prefix={<span css={prefixContainerStyle}>B</span>}
             colorScheme="techPurple"
             bdRadius="0"
             pos="relative"
@@ -82,7 +82,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             onChange={handleChangePartialValue(2)}
           />
           <Input
-            prefix="L"
+            prefix={<span css={prefixContainerStyle}>L</span>}
             colorScheme="techPurple"
             bdRadius="0 8px 8px 0"
             pos="relative"

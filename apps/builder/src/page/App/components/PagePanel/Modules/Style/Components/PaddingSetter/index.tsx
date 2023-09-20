@@ -22,14 +22,23 @@ import {
   getCurrentPageRightSection,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { DirectionPaddingSetter } from "../DirectionPaddingSetter"
+import { optionsIconHotSpotStyle } from "./style"
 
 const options = [
   {
-    label: <AllIcon />,
+    label: (
+      <div css={optionsIconHotSpotStyle}>
+        <AllIcon />
+      </div>
+    ),
     value: PADDING_MODE.ALL,
   },
   {
-    label: <PartialIcon />,
+    label: (
+      <div css={optionsIconHotSpotStyle}>
+        <PartialIcon />
+      </div>
+    ),
     value: PADDING_MODE.PARTIAL,
   },
 ]
@@ -412,6 +421,8 @@ export const PaddingSetter: FC = () => {
           value={bodyPaddingMode}
           onChange={changeBodyPaddingMode}
           size="small"
+          w="105px"
+          forceEqualWidth
         />
       </div>
       <DirectionPaddingSetter

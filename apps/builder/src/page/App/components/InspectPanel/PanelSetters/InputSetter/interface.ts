@@ -23,12 +23,3 @@ export interface BaseInputSetterProps extends BaseSetter {
   value?: string
   wrappedCodeFunc?: (code: string) => string
 }
-
-// export interface InputWithSelectSetterProps
-//   extends BaseSetter,
-//     PanelLabelProps {
-//   options?: string[] | number[] | SelectOptionObject[]
-//   expectedType: VALIDATION_TYPES[]
-//   value: string[]
-//   placeholder?: string
-// }
