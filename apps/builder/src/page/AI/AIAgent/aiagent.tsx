@@ -32,7 +32,7 @@ import {
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
-import { getAgentPublicLink } from "@illa-public/utils"
+import { getAgentPublicLink, sendTagEvent } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -902,6 +902,7 @@ export const AIAgent: FC = () => {
                       (v) => v.key !== "" && v.value !== "",
                     ),
                   })
+                  sendTagEvent("create_agent", currentUserInfo.userID)
                   dispatch(
                     dashboardTeamAIAgentActions.addTeamAIAgentReducer({
                       aiAgent: resp.data,
