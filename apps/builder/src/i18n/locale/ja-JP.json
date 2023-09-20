@@ -1677,7 +1677,7 @@
           "background": "バックグラウンド",
           "calendar_background": "バックグラウンド",
           "calendar_border": "フレーム",
-          "calendar_text": "Secondary text",
+          "calendar_text": "セカンダリテキスト",
           "event_background": "バックグラウンド",
           "event_text": "テクストヤン",
           "draggable": "ドラッグ可能",
