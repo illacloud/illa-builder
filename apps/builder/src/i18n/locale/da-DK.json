@@ -1677,7 +1677,7 @@
           "background": "Baggrund",
           "calendar_background": "Baggrund",
           "calendar_border": "Border",
-          "calendar_text": "Tekst",
+          "calendar_text": "Secondary text",
           "event_background": "Baggrund",
           "event_text": "Tekst",
           "draggable": "Trækbar",

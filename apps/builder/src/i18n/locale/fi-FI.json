@@ -1677,7 +1677,7 @@
           "background": "Tausta",
           "calendar_background": "Tausta",
           "calendar_border": "Border",
-          "calendar_text": "Teksti",
+          "calendar_text": "Secondary text",
           "event_background": "Tausta",
           "event_text": "Teksti",
           "draggable": "Vedettävä",

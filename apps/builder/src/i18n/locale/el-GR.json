@@ -1677,7 +1677,7 @@
           "background": "Φόντο",
           "calendar_background": "Φόντο",
           "calendar_border": "Border",
-          "calendar_text": "Κείμενο",
+          "calendar_text": "Secondary text",
           "event_background": "Φόντο",
           "event_text": "Κείμενο",
           "draggable": "Μετακινούμενο",
