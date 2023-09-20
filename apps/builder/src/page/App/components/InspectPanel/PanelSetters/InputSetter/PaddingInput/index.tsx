@@ -53,15 +53,14 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   props,
 ) => {
   const { t } = useTranslation()
-  const {
-    value = {
-      size: "0",
-      mode: PADDING_MODE.ALL,
-    },
-    handleUpdateMultiAttrDSL,
-  } = props
-  const values = value.size.split(" ")
-  const isAll = value.mode === PADDING_MODE.ALL
+  const { handleUpdateMultiAttrDSL, componentNode } = props
+  const paddingValue = {
+    mode: componentNode?.props?.padding?.mode ?? PADDING_MODE.ALL,
+    size: componentNode?.props?.padding?.size ?? "0",
+  }
+
+  const values = paddingValue.size.split(" ")
+  const isAll = paddingValue.mode === PADDING_MODE.ALL
 
   const allInputRef = useRef<HTMLInputElement>(null)
 
@@ -93,11 +92,11 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   }
 
   const handleChangeMode = (mode: PADDING_MODE) => {
-    if (value.mode === mode) return
+    if (paddingValue.mode === mode) return
     switch (mode) {
       case PADDING_MODE.ALL: {
-        let result = value.size
-        const partialSize = Array.from(new Set(value.size.split(" ")))
+        let result = paddingValue.size
+        const partialSize = Array.from(new Set(paddingValue.size.split(" ")))
         if (partialSize.length === 1) {
           result = partialSize[0]
         }
@@ -111,8 +110,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
         break
       }
       case PADDING_MODE.PARTIAL: {
-        const partialSize = value.size.split(" ")
-        let result = value.size
+        const partialSize = paddingValue.size.split(" ")
+        let result = paddingValue.size
         if (partialSize.length === 1) {
           result = `${partialSize[0]} ${partialSize[0]} ${partialSize[0]} ${partialSize[0]}`
         }
@@ -138,7 +137,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
         <RadioGroup
           type="button"
           options={options}
-          value={value.mode}
+          value={paddingValue.mode}
           onChange={handleChangeMode}
           size="small"
           w="105px"

@@ -1,12 +1,20 @@
-import { FC } from "react"
+import { ForwardRefRenderFunction, forwardRef } from "react"
 import { IconHotSpotProps } from "./interface"
 import { iconHotSpotContainerStyle } from "./style"
 
-export const IconHotSpot: FC<IconHotSpotProps> = (props) => {
+const IconHotSpot: ForwardRefRenderFunction<
+  HTMLSpanElement,
+  IconHotSpotProps
+> = (props, ref) => {
   const { children, iconSize, inactiveColor, activeColor } = props
   return (
-    <span css={iconHotSpotContainerStyle(iconSize, activeColor, inactiveColor)}>
+    <span
+      css={iconHotSpotContainerStyle(iconSize, activeColor, inactiveColor)}
+      ref={ref}
+    >
       {children}
     </span>
   )
 }
+
+export default forwardRef<HTMLSpanElement, IconHotSpotProps>(IconHotSpot)

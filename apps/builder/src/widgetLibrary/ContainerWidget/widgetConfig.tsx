@@ -1,6 +1,7 @@
 import { v4 } from "uuid"
 import { ReactComponent as ContainerWidgetIcon } from "@/assets/widgetCover/container.svg"
 import i18n from "@/i18n/config"
+import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
@@ -36,5 +37,9 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
     shadow: "small",
     dynamicHeight: "auto",
     resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+    padding: {
+      mode: PADDING_MODE.ALL,
+      size: "24",
+    },
   },
 }
