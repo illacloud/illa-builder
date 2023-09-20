@@ -19,7 +19,7 @@ import {
   openInviteModal,
 } from "@illa-public/user-role-utils"
 import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
+import { isCloudVersion, sendTagEvent } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -83,6 +83,7 @@ export const DashboardApps: FC = () => {
         appName: "Untitled app",
         initScheme: BASIC_APP_CONFIG,
       })
+      sendTagEvent("create_app", currentUserInfo?.userID)
       dispatch(
         dashboardAppActions.addDashboardAppReducer({
           app: resp.data,
@@ -94,7 +95,14 @@ export const DashboardApps: FC = () => {
     } finally {
       setLoading(false)
     }
-  }, [dispatch, navigate, teamInfo.identifier, message, t])
+  }, [
+    currentUserInfo?.userID,
+    dispatch,
+    navigate,
+    teamInfo.identifier,
+    message,
+    t,
+  ])
 
   useEffect(() => {
     if (!isTutorialViewed && canEditApp) {
