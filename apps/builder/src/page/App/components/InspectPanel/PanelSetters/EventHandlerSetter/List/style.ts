@@ -47,14 +47,6 @@ export const fontButtonStyle = css`
 export const listItemWrapperStyle = css`
   height: 32px;
   width: 100%;
-
-  &:not(:last-child) {
-    margin-bottom: 16px;
-  }
-
-  &:last-child {
-    margin-bottom: 8px;
-  }
 `
 
 export const groupWrapperStyle = css`
@@ -111,7 +103,6 @@ export const emptyBodyStyle = css`
   padding: 8px 16px;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
-  margin-bottom: 8px;
   border-radius: 8px;
   font-size: 14px;
 `

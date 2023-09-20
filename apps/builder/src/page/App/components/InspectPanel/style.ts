@@ -14,38 +14,14 @@ export function applySetterWrapperStyle(
   }
   if (isSetterSingleRow) {
     return css`
-      ${publicPaddingStyle}
+      padding: 0 16px;
     `
   }
 
-  const basicStyle = css`
+  return css`
+    padding: 0px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  `
-  return css`
-    padding: 0px 16px;
-    ${basicStyle};
-  `
-}
-
-export const applySetterPublicWrapperStyle = (
-  isSetterSingleRowWrapper: boolean = false,
-  notNeedPadding: boolean,
-) => {
-  const widthStyle = isSetterSingleRowWrapper
-    ? css`
-        width: 100%;
-      `
-    : null
-  if (notNeedPadding) {
-    return css`
-      width: 100%;
-    `
-  }
-  return css`
-    padding: 8px 0;
-    min-height: 48px;
-    ${widthStyle}
   `
 }

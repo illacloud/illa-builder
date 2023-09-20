@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next"
 import { Input, RadioGroup } from "@illa-design/react"
 import { ReactComponent as AllIcon } from "@/assets/rightPagePanel/all.svg"
 import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
-import { PanelLabel } from "../../components/Label"
-import { BaseInputSetterProps } from "./interface"
+import { PanelLabel } from "../../../components/Label"
+import { DirectionPaddingSetterProps } from "./interface"
 import { directionPaddingContainerStyle, setterContainerStyle } from "./style"
 
 const formatValue = (value: string = "") => {
@@ -23,10 +23,6 @@ const formatValue = (value: string = "") => {
     return `${values[0]} ${values[1]} ${values[2]} ${values[3]}`
   }
   return values.join(" ")
-}
-
-export interface DirectionPaddingSetterProps extends BaseInputSetterProps {
-  value?: any
 }
 
 const options = [

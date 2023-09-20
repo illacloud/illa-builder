@@ -170,7 +170,6 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-layout-layout`,
         labelName: i18n.t("editor.inspect.setter_label.layout"),
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         attrName: "tabPosition",
         options: [
           {
@@ -196,7 +195,6 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.align"),
         attrName: "align",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         bindAttrName: ["tabPosition"],
         shown: (tabPosition) =>
           tabPosition === "top" || tabPosition === "bottom",

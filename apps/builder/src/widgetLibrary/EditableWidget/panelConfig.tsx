@@ -61,7 +61,6 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.top"), value: "top" },
@@ -72,7 +71,6 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         options: [
           {
             label: <HorizontalStartIcon />,

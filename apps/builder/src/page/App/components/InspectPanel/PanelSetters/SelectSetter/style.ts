@@ -11,14 +11,37 @@ export const applyBaseSelectWrapperStyle = (
     : fixedWidthStyle
 }
 
+export const setterContainerStyle = (isSetterSingleRow: boolean = false) => {
+  const basicStyle = css`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  `
+  const singleRowStyle = css`
+    flex-direction: column;
+    gap: 8px;
+  `
+  return css`
+    display: flex;
+    padding: 8px 0;
+    ${isSetterSingleRow ? singleRowStyle : basicStyle};
+    width: 100%;
+  `
+}
+
+export const basicDynamicSetterContainerStyle = css`
+  display: flex;
+  padding: 8px 0;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+`
 export const dynamicSelectHeaderStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 40px;
 `
 
 export const dynamicSelectSetterStyle = css`
-  min-height: 40px;
   width: 100%;
 `

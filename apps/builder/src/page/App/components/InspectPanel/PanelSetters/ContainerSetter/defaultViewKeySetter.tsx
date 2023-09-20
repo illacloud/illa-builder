@@ -3,7 +3,7 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { ViewItemShape } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import { ContainerDefaultViewKeySetterProps } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/interface"
-import BaseInput from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/baseInput"
+import BaseInput from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/BaseInput"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 

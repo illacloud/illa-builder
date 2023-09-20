@@ -90,7 +90,6 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.chart.direction"),
         attrName: "direction",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         bindAttrName: ["chartType"],
         shown: (chartType: ChartType) => !typeWithNoAxis(chartType),
         options: [
@@ -300,7 +299,6 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.chart.legend_position"),
         attrName: "legendPosition",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         bindAttrName: ["labelHidden"],
         isSetterSingleRow: true,
         shown: (labelHidden: boolean) => !labelHidden,

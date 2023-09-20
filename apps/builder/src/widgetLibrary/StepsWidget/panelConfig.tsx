@@ -75,7 +75,6 @@ export const STEPS_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-options-mode`,
         attrName: "optionConfigureMode",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         bindAttrName: ["linkContainer"],
         shown: (value) => !value,
         options: [
@@ -234,7 +233,6 @@ export const STEPS_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-layout-direction`,
         labelName: i18n.t("editor.inspect.setter_label.direction"),
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         attrName: "direction",
         options: [
           {

@@ -10,7 +10,9 @@ import {
   fetchOpenAnonymousPermission,
 } from "@/services/drive"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { PanelLabel } from "../../components/Label"
 import { BaseSwitchProps } from "./interface"
+import { setterContainerStyle } from "./style"
 
 const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
   const {
@@ -19,6 +21,10 @@ const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
     handleUpdateDsl,
     widgetType,
     handleUpdateMultiAttrDSL,
+    isSetterSingleRow,
+    labelDesc,
+    labelName,
+    size,
   } = props
   const anonymousPermission = useRef<boolean>(true)
   const modal = useModal()
@@ -96,12 +102,19 @@ const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
   }, [attrName])
 
   return (
-    <div css={dynamicWidthStyle}>
-      <Switch
-        onChange={debounceHandleOnSwitch}
-        checked={value}
-        colorScheme="techPurple"
-      />
+    <div css={setterContainerStyle(isSetterSingleRow)}>
+      <span>
+        {labelName && (
+          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+        )}
+      </span>
+      <div css={dynamicWidthStyle}>
+        <Switch
+          onChange={debounceHandleOnSwitch}
+          checked={value}
+          colorScheme="techPurple"
+        />
+      </div>
     </div>
   )
 }

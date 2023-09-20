@@ -9,6 +9,7 @@ import {
 import { DynamicIcon } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/DynamicIcon"
 import { BaseDynamicSelectSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/interface"
 import {
+  basicDynamicSetterContainerStyle,
   dynamicSelectHeaderStyle,
   dynamicSelectSetterStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/style"
@@ -56,46 +57,12 @@ const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
   const onChangeSelectInner = useCallback(
     (value: any) => {
       onChangeSelect(value)
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CHANGE, {
-        element: "component_inspect_select",
-        parameter1: widgetType,
-        parameter2: attrName,
-        parameter3: value,
-      })
     },
-    [attrName, onChangeSelect, widgetType],
+    [onChangeSelect],
   )
-
-  const onFocus = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.FOCUS, {
-      element: "component_inspect_code_mirror",
-      parameter1: widgetType,
-      parameter2: attrName,
-    })
-  }, [attrName, widgetType])
-
-  const onBlur = useCallback(
-    (value: string) => {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-        element: "component_inspect_code_mirror",
-        parameter1: widgetType,
-        parameter2: attrName,
-        parameter3: value.length,
-      })
-    },
-    [attrName, widgetType],
-  )
-
-  const onClick = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "component_inspect_select",
-      parameter1: widgetType,
-      parameter2: attrName,
-    })
-  }, [attrName, widgetType])
 
   return (
-    <>
+    <div css={basicDynamicSetterContainerStyle}>
       <div css={dynamicSelectHeaderStyle}>
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <DynamicIcon
@@ -119,8 +86,6 @@ const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
             codeType={CODE_TYPE.EXPRESSION}
             modalTitle={labelName}
             modalDescription={labelDesc ?? detailedDescription}
-            onFocus={onFocus}
-            onBlur={onBlur}
             scopeOfAutoComplete="page"
           />
         ) : (
@@ -130,14 +95,13 @@ const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
             options={options}
             value={value}
             onChange={onChangeSelectInner}
-            onClick={onClick}
             showSearch
             allowClear
             error={isError}
           />
         )}
       </div>
-    </>
+    </div>
   )
 }
 

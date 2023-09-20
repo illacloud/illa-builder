@@ -3,6 +3,10 @@ import { PanelLabelProps } from "@/page/App/components/InspectPanel/components/L
 
 export interface BaseSwitchProps extends BaseSetter {
   value?: boolean
+  labelName?: string
+  detailedDescription?: string
+  labelDesc?: string
+  size?: "medium" | "small"
 }
 
 export interface DynamicSwitchProps extends BaseSetter, PanelLabelProps {

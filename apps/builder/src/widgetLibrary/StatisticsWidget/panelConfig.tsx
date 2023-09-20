@@ -261,7 +261,6 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "textAlign",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         defaultValue: "start",
         options: [
           {

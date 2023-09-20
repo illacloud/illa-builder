@@ -101,7 +101,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-style-variant`,
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         labelName: i18n.t("editor.inspect.setter_label.variant"),
         attrName: "variant",
         options: [

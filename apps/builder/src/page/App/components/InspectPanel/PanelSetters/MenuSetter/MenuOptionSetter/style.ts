@@ -3,7 +3,7 @@ import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const menuOptionSetterContainerStyle = css`
   box-sizing: border-box;
-  margin: 0 16px;
+  margin: 8px 16px;
   min-height: 264px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};

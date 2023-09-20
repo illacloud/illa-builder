@@ -5,12 +5,11 @@ import { Switch } from "@illa-design/react"
 import { DynamicIcon } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/DynamicIcon"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import BaseInput from "../InputSetter/baseInput"
+import BaseInput from "../InputSetter/BaseInput"
 import { DynamicSwitchProps } from "./interface"
 import {
   applyLabelWrapperStyle,
   customAndSwitchWrapperStyle,
-  dynamicSwitchInputStyle,
   dynamicSwitchWrapperStyle,
 } from "./style"
 
@@ -59,7 +58,9 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
       <div css={dynamicSwitchWrapperStyle}>
-        <PanelLabel labelName={labelName} labelDesc={labelDesc} />
+        {labelName && (
+          <PanelLabel labelName={labelName} labelDesc={labelDesc} />
+        )}
         <div css={customAndSwitchWrapperStyle}>
           {openDynamic && (
             <DynamicIcon
@@ -85,14 +86,13 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         </div>
       </div>
       {customSelected && (
-        <div css={dynamicSwitchInputStyle}>
-          <BaseInput
-            {...props}
-            value={value as string}
-            isSetterSingleRow
-            detailedDescription={detailedDescription ?? labelDesc}
-          />
-        </div>
+        <BaseInput
+          {...props}
+          value={value as string}
+          isSetterSingleRow
+          detailedDescription={detailedDescription ?? labelDesc}
+          onlyHasSetter={true}
+        />
       )}
     </div>
   )

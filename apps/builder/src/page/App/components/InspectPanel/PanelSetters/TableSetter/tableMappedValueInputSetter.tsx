@@ -5,7 +5,7 @@ import { BaseInputSetterProps } from "@/page/App/components/InspectPanel/PanelSe
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
-import BaseInput from "../InputSetter/baseInput"
+import BaseInput from "../InputSetter/BaseInput"
 
 const realInputValue = (
   attrValue: string | undefined,
