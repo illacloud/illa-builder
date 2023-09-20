@@ -1677,7 +1677,7 @@
           "background": "Arrière-plan",
           "calendar_background": "Arrière-plan",
           "calendar_border": "Border",
-          "calendar_text": "Texte du texte",
+          "calendar_text": "Secondary text",
           "event_background": "Arrière-plan",
           "event_text": "Texte du texte",
           "draggable": "Déplaçable",

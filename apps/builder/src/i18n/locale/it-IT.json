@@ -1677,7 +1677,7 @@
           "background": "Sfondo",
           "calendar_background": "Sfondo",
           "calendar_border": "Border",
-          "calendar_text": "Testo",
+          "calendar_text": "Secondary text",
           "event_background": "Sfondo",
           "event_text": "Testo",
           "draggable": "Trascinabile",

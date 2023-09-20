@@ -1677,7 +1677,7 @@
           "background": "Achtergrond",
           "calendar_background": "Achtergrond",
           "calendar_border": "Border",
-          "calendar_text": "Tekstveld",
+          "calendar_text": "Secondary text",
           "event_background": "Achtergrond",
           "event_text": "Tekstveld",
           "draggable": "Versleepbaar",

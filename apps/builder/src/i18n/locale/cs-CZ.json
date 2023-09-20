@@ -1677,7 +1677,7 @@
           "background": "Pozadí",
           "calendar_background": "Pozadí",
           "calendar_border": "Border",
-          "calendar_text": "Text",
+          "calendar_text": "Secondary text",
           "event_background": "Pozadí",
           "event_text": "Text",
           "draggable": "Posunout",
