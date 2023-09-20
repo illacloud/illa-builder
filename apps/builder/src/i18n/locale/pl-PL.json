@@ -1677,7 +1677,7 @@
           "background": "Kontekst",
           "calendar_background": "Kontekst",
           "calendar_border": "Border",
-          "calendar_text": "Tekst",
+          "calendar_text": "Secondary text",
           "event_background": "Kontekst",
           "event_text": "Tekst",
           "draggable": "Przeciągalny",
