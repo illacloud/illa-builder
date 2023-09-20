@@ -51,7 +51,6 @@ export const PDF_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.scale"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.scale"),
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         attrName: "scaleMode",
         options: [
           {

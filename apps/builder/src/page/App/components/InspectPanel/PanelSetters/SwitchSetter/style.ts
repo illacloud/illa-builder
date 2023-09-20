@@ -47,12 +47,11 @@ const singleRowStyle = css`
 `
 
 const doubleRowStyle = css`
-  min-height: 48px;
   width: 100%;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   padding: 8px 16px;
+  gap: 8px;
 `
 
 export const applyLabelWrapperStyle = (
@@ -61,7 +60,20 @@ export const applyLabelWrapperStyle = (
   return isCustom ? doubleRowStyle : singleRowStyle
 }
 
-export const dynamicSwitchInputStyle = css`
-  padding: 8px 0;
-  width: 100%;
-`
+export const setterContainerStyle = (isSetterSingleRow: boolean = false) => {
+  const basicStyle = css`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  `
+  const singleRowStyle = css`
+    flex-direction: column;
+    gap: 8px;
+  `
+  return css`
+    display: flex;
+    padding: 8px 0;
+    ${isSetterSingleRow ? singleRowStyle : basicStyle};
+    width: 100%;
+  `
+}

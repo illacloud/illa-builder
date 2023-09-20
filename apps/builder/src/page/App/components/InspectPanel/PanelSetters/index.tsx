@@ -4,13 +4,13 @@ const SetterTypeMapSetter = {
   INPUT_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/baseInput"
+        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/BaseInput"
       ),
   ),
   SCRIPT_INPUT_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/scriptInput"
+        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/ScriptInput"
       ),
   ),
   ICON_SETTER: lazy(
@@ -47,12 +47,6 @@ const SetterTypeMapSetter = {
     () =>
       import(
         "@/page/App/components/InspectPanel/PanelSetters/SwitchSetter/dynamicSwitch"
-      ),
-  ),
-  DYNAMIC_SELECT_SETTER: lazy(
-    () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/DynamicSelectSetter"
       ),
   ),
   BASE_SELECT_SETTER: lazy(
@@ -172,7 +166,7 @@ const SetterTypeMapSetter = {
   OPTION_MAPPED_INPUT_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/optionMappedInputSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/OptionMappedInput/optionMappedInputSetter"
       ),
   ),
   EVENT_WIDGET_METHOD_SELECT_SETTER: lazy(
@@ -280,7 +274,7 @@ const SetterTypeMapSetter = {
   PADDING_INPUT_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/paddingInput"
+        "@/page/App/components/InspectPanel/PanelSetters/InputSetter/PaddingInput"
       ),
   ),
   BORDER_SETTER: lazy(

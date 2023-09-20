@@ -16,7 +16,7 @@ export const optionListHeaderStyle = css`
 
 export const listStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  margin: 0 16px 0 16px;
+  margin: 8px 16px;
   border-radius: 8px;
 `
 
@@ -25,5 +25,4 @@ export const listWrapperStyle = css`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 12px 0;
 `

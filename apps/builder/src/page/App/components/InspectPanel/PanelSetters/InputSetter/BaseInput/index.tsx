@@ -12,28 +12,27 @@ import {
 } from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/util"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
-import {
-  realInputValueWithScript,
-  wrapperScriptCode,
-} from "@/utils/evaluateDynamicString/valueConverter"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { BaseInputSetterProps } from "./interface"
-import { applyInputSetterWrapperStyle } from "./style"
+import { PanelLabel } from "../../../components/Label"
+import { NewBaseInputSetterProps } from "./interface"
+import { applyInputSetterWrapperStyle, setterContainerStyle } from "./style"
 
-const ScriptInput: FC<BaseInputSetterProps> = (props) => {
+const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
   const {
-    className,
     isSetterSingleRow,
     placeholder,
     attrName,
     handleUpdateDsl,
+    expectedType,
     value,
     widgetDisplayName,
     labelName,
     detailedDescription,
     labelDesc,
     widgetType,
+    wrappedCodeFunc,
+    size,
+    onlyHasSetter = false,
   } = props
 
   const listWidgets = useSelector(
@@ -50,12 +49,24 @@ const ScriptInput: FC<BaseInputSetterProps> = (props) => {
     return ""
   }, [listWidgets, widgetDisplayName])
 
-  const finalValue = useMemo(() => {
-    let tempValue = value
-    if (currentListDisplayName) {
-      tempValue = realInputValueWithList(value, currentListDisplayName)
+  const finalWrapperCode = useMemo(() => {
+    if (
+      currentListDisplayName &&
+      hasDynamicStringSnippet(value ?? "") &&
+      value?.includes("currentItem")
+    ) {
+      return (value: string) => {
+        return getNeedComputedValueWithList(value, currentListDisplayName)
+      }
     }
-    return realInputValueWithScript(tempValue, true)
+    return wrappedCodeFunc
+  }, [currentListDisplayName, value, wrappedCodeFunc])
+
+  const finalValue = useMemo(() => {
+    if (currentListDisplayName) {
+      return realInputValueWithList(value, currentListDisplayName)
+    }
+    return value || ""
   }, [currentListDisplayName, value])
 
   const onChange = useCallback(
@@ -68,7 +79,6 @@ const ScriptInput: FC<BaseInputSetterProps> = (props) => {
       ) {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
-      output = wrapperScriptCode(output, true)
       handleUpdateDsl(attrName, output)
     },
     [attrName, currentListDisplayName, handleUpdateDsl],
@@ -95,29 +105,34 @@ const ScriptInput: FC<BaseInputSetterProps> = (props) => {
   )
 
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
-      <CodeEditor
-        scopeOfAutoComplete="page"
-        className={className}
-        value={finalValue}
-        onChange={onChange}
-        showLineNumbers={false}
-        placeholder={placeholder}
-        expectValueType={VALIDATION_TYPES.STRING}
-        lang={CODE_LANG.JAVASCRIPT}
-        maxHeight="208px"
-        minHeight="120px"
-        maxWidth="100%"
-        codeType={CODE_TYPE.FUNCTION}
-        modalTitle={labelName}
-        canShowCompleteInfo
-        modalDescription={detailedDescription ?? labelDesc}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
+    <div css={setterContainerStyle(isSetterSingleRow, onlyHasSetter)}>
+      {!onlyHasSetter && labelName && (
+        <span>
+          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+        </span>
+      )}
+      <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
+        <CodeEditor
+          scopeOfAutoComplete="page"
+          value={finalValue}
+          onChange={onChange}
+          showLineNumbers={false}
+          placeholder={placeholder}
+          expectValueType={currentListDisplayName ? undefined : expectedType}
+          lang={CODE_LANG.JAVASCRIPT}
+          maxHeight="208px"
+          maxWidth="100%"
+          codeType={CODE_TYPE.EXPRESSION}
+          modalTitle={labelName}
+          modalDescription={detailedDescription ?? labelDesc}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          wrappedCodeFunc={finalWrapperCode}
+        />
+      </div>
     </div>
   )
 }
 
-ScriptInput.displayName = "BaseInput"
-export default ScriptInput
+BaseInput.displayName = "BaseInput"
+export default BaseInput

@@ -62,7 +62,6 @@ export const DRIVE_PICKER_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         options: [
           {
             label: i18n.t(
@@ -205,7 +204,6 @@ export const DRIVE_PICKER_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-style-variant`,
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         labelName: i18n.t("editor.inspect.setter_label.variant"),
         attrName: "variant",
         options: [

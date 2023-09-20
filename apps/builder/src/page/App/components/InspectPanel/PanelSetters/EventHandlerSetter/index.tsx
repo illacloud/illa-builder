@@ -4,9 +4,9 @@ import { BaseEventHandlerProvider } from "@/page/App/components/InspectPanel/Pan
 import { NewBaseEventHandlerSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/EventHandlerSetter/interface"
 import { generateNewEventItem } from "@/page/App/components/InspectPanel/PanelSetters/EventHandlerSetter/utils"
 import { AddActionLabel } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/Label/addActionLabel"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ListBody } from "./List/body"
+import { containerStyle } from "./style"
 
 const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (props) => {
   const {
@@ -57,7 +57,7 @@ const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (props) => {
       childrenSetter={childrenSetter}
       widgetType={widgetType}
     >
-      <div css={publicPaddingStyle}>
+      <div css={containerStyle}>
         <AddActionLabel
           labelName={labelName}
           labelDesc={labelDesc}

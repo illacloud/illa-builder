@@ -5,10 +5,10 @@ import { DatasetsProvider } from "@/page/App/components/InspectPanel/PanelSetter
 import { ChartDatasetsSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import { generateDatasetItem } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/chartDatasetsSetter/utils"
 import { AddActionLabel } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/Label/addActionLabel"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { ListBody } from "./listBody"
+import { chartDataSetterContainerStyle } from "./style"
 
 const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
   const {
@@ -80,7 +80,7 @@ const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
       childrenSetter={childrenSetter}
       datasets={value}
     >
-      <div css={publicPaddingStyle}>
+      <div css={chartDataSetterContainerStyle}>
         <AddActionLabel
           labelName={labelName}
           labelDesc={labelDesc}

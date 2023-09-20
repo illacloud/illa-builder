@@ -1,6 +1,13 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
+export const chartDataSetterContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px;
+`
+
 export const ListItemWrapperCss = css`
   height: 32px;
   display: flex;
@@ -28,7 +35,7 @@ export const listItemInfoAreaStyle = css`
   width: 200px;
   display: flex;
   align-items: center;
-  padding: 0 8px;
+  padding-right: 8px;
   border-radius: 8px;
   cursor: pointer;
   :hover {

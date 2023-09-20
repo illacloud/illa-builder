@@ -26,7 +26,6 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.text_align"),
         attrName: "textAlign",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         options: [
           {
             label: <HorizontalStartIcon />,

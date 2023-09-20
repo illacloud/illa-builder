@@ -12,25 +12,28 @@ import {
 } from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/util"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
+import {
+  realInputValueWithScript,
+  wrapperScriptCode,
+} from "@/utils/evaluateDynamicString/valueConverter"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { BaseInputSetterProps } from "./interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { BaseInputSetterProps } from "../interface"
 import { applyInputSetterWrapperStyle } from "./style"
 
-const BaseInput: FC<BaseInputSetterProps> = (props) => {
+const ScriptInput: FC<BaseInputSetterProps> = (props) => {
   const {
     className,
     isSetterSingleRow,
     placeholder,
     attrName,
     handleUpdateDsl,
-    expectedType,
     value,
     widgetDisplayName,
     labelName,
     detailedDescription,
     labelDesc,
     widgetType,
-    wrappedCodeFunc,
   } = props
 
   const listWidgets = useSelector(
@@ -47,24 +50,12 @@ const BaseInput: FC<BaseInputSetterProps> = (props) => {
     return ""
   }, [listWidgets, widgetDisplayName])
 
-  const finalWrapperCode = useMemo(() => {
-    if (
-      currentListDisplayName &&
-      hasDynamicStringSnippet(value ?? "") &&
-      value?.includes("currentItem")
-    ) {
-      return (value: string) => {
-        return getNeedComputedValueWithList(value, currentListDisplayName)
-      }
-    }
-    return wrappedCodeFunc
-  }, [currentListDisplayName, value, wrappedCodeFunc])
-
   const finalValue = useMemo(() => {
+    let tempValue = value
     if (currentListDisplayName) {
-      return realInputValueWithList(value, currentListDisplayName)
+      tempValue = realInputValueWithList(value, currentListDisplayName)
     }
-    return value || ""
+    return realInputValueWithScript(tempValue, true)
   }, [currentListDisplayName, value])
 
   const onChange = useCallback(
@@ -77,6 +68,7 @@ const BaseInput: FC<BaseInputSetterProps> = (props) => {
       ) {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
+      output = wrapperScriptCode(output, true)
       handleUpdateDsl(attrName, output)
     },
     [attrName, currentListDisplayName, handleUpdateDsl],
@@ -111,20 +103,21 @@ const BaseInput: FC<BaseInputSetterProps> = (props) => {
         onChange={onChange}
         showLineNumbers={false}
         placeholder={placeholder}
-        expectValueType={currentListDisplayName ? undefined : expectedType}
+        expectValueType={VALIDATION_TYPES.STRING}
         lang={CODE_LANG.JAVASCRIPT}
         maxHeight="208px"
+        minHeight="120px"
         maxWidth="100%"
-        codeType={CODE_TYPE.EXPRESSION}
+        codeType={CODE_TYPE.FUNCTION}
         modalTitle={labelName}
+        canShowCompleteInfo
         modalDescription={detailedDescription ?? labelDesc}
         onFocus={onFocus}
         onBlur={onBlur}
-        wrappedCodeFunc={finalWrapperCode}
       />
     </div>
   )
 }
 
-BaseInput.displayName = "BaseInput"
-export default BaseInput
+ScriptInput.displayName = "BaseInput"
+export default ScriptInput

@@ -14,7 +14,6 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-options-mode-event`,
         attrName: "eventConfigureMode",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         options: [
           {
             label: i18n.t("widget.public.select_options.manual"),

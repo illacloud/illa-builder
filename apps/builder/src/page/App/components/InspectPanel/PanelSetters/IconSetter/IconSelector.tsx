@@ -9,9 +9,19 @@ import {
 } from "@/page/App/components/InspectPanel/PanelSetters/IconSetter/interface"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { AllData } from "@/widgetLibrary/IconWidget/utils"
+import { PanelLabel } from "../../components/Label"
+import { setterContainerStyle } from "./style"
 
 const IconSelector: FC<IconSelectorProps> = (props) => {
-  const { value, widgetType, attrName } = props
+  const {
+    value,
+    widgetType,
+    attrName,
+    labelName,
+    labelDesc,
+    size,
+    isSetterSingleRow,
+  } = props
   const [rightPanelData, setRightPanelData] = useState<IconDataType>({
     name: value,
     getIcon: AllData[value],
@@ -47,26 +57,33 @@ const IconSelector: FC<IconSelectorProps> = (props) => {
   )
 
   return (
-    <Trigger
-      withoutPadding
-      colorScheme="white"
-      popupVisible={modalVisible}
-      content={
-        <IconTriggerComponent
-          handleCurrentIconClick={handleCurrentIconClick}
-          handleCloseModal={handleCloseModal}
-        />
-      }
-      trigger="click"
-      showArrow={false}
-      position="left-start"
-      clickOutsideToClose
-      onVisibleChange={handleCloseModal}
-    >
-      <div>
-        <BaseIconSetter {...props} showData={rightPanelData} />
-      </div>
-    </Trigger>
+    <div css={setterContainerStyle(isSetterSingleRow)}>
+      {labelName && (
+        <span>
+          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+        </span>
+      )}
+      <Trigger
+        withoutPadding
+        colorScheme="white"
+        popupVisible={modalVisible}
+        content={
+          <IconTriggerComponent
+            handleCurrentIconClick={handleCurrentIconClick}
+            handleCloseModal={handleCloseModal}
+          />
+        }
+        trigger="click"
+        showArrow={false}
+        position="left-start"
+        clickOutsideToClose
+        onVisibleChange={handleCloseModal}
+      >
+        <div>
+          <BaseIconSetter {...props} showData={rightPanelData} />
+        </div>
+      </Trigger>
+    </div>
   )
 }
 

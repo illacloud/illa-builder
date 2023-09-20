@@ -69,7 +69,6 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.overFlow"),
         attrName: "overflowMethod",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         bindAttrName: ["dynamicHeight"],
         shown: (dynamicHeight: string) => dynamicHeight !== "auto",
         options: [

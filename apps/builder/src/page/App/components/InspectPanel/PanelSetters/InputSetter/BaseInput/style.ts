@@ -1,9 +1,9 @@
-import { SerializedStyles, css } from "@emotion/react"
-import { fixedWidthStyle } from "@/page/App/components/InspectPanel/PanelSetters/style"
+import { css } from "@emotion/react"
+import { fixedWidthStyle } from "../../style"
 
-export const applyRadioGroupWrapperStyle = (
+export const applyInputSetterWrapperStyle = (
   isSetterSingleRow: boolean = false,
-): SerializedStyles => {
+) => {
   return isSetterSingleRow
     ? css`
         width: 100%;
@@ -11,12 +11,9 @@ export const applyRadioGroupWrapperStyle = (
     : fixedWidthStyle
 }
 
-export const radioGroupStyle = css`
-  width: 100%;
-`
-
-export const baseRadioGroupContainerStyle = (
+export const setterContainerStyle = (
   isSetterSingleRow: boolean = false,
+  onlyHasSetter: boolean,
 ) => {
   const basicStyle = css`
     flex-direction: row;
@@ -29,7 +26,7 @@ export const baseRadioGroupContainerStyle = (
   `
   return css`
     display: flex;
-    padding: 8px 0;
+    padding: ${onlyHasSetter ? `0` : `8px 0`};
     ${isSetterSingleRow ? singleRowStyle : basicStyle};
     width: 100%;
   `

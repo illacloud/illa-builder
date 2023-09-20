@@ -23,7 +23,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tooltip.text_value"),
         attrName: "disableMarkdown",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         options: [
           { label: "Markdown", value: false },
           { label: i18n.t("widget.text.text_model"), value: true },
@@ -33,11 +32,8 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-value`,
         attrName: "value",
         setterType: "INPUT_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.content"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.text_value"),
         expectedType: VALIDATION_TYPES.STRING,
         isSetterSingleRow: true,
-        canShowLabel: false,
       },
     ],
   },
@@ -85,7 +81,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         shown: (dynamicHeight: string) => dynamicHeight !== "auto",
         bindAttrName: ["dynamicHeight"],
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         attrName: "verticalAlign",
         isSetterSingleRow: true,
         options: [
@@ -108,7 +103,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
         attrName: "horizontalAlign",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
         isSetterSingleRow: true,
         options: [
           {

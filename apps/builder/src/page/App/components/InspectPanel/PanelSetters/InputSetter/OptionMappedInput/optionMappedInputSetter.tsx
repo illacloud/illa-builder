@@ -3,8 +3,8 @@ import {
   getNeedComputedValue,
   realInputValue,
 } from "@/utils/InspectHelper/selectWidgetHelper"
-import BaseInput from "./baseInput"
-import { BaseInputSetterProps } from "./interface"
+import BaseInput from "../BaseInput"
+import { BaseInputSetterProps } from "../interface"
 
 const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
   const { handleUpdateDsl, value, widgetDisplayName } = props
