@@ -443,6 +443,8 @@ export const PaddingSetter: FC = () => {
               value={headerPaddingMode}
               onChange={changeHeaderPaddingMode}
               size="small"
+              w="105px"
+              forceEqualWidth
             />
           </div>
           <DirectionPaddingSetter
@@ -465,6 +467,8 @@ export const PaddingSetter: FC = () => {
               value={leftPanelPaddingMode}
               onChange={changeLeftPaddingMode}
               size="small"
+              w="105px"
+              forceEqualWidth
             />
           </div>
           <DirectionPaddingSetter
@@ -487,6 +491,8 @@ export const PaddingSetter: FC = () => {
               value={rightPanelPaddingMode}
               onChange={changeRightPaddingMode}
               size="small"
+              w="105px"
+              forceEqualWidth
             />
           </div>
           <DirectionPaddingSetter
@@ -509,6 +515,8 @@ export const PaddingSetter: FC = () => {
               value={footerPaddingMode}
               onChange={changeFooterPaddingMode}
               size="small"
+              w="105px"
+              forceEqualWidth
             />
           </div>
           <DirectionPaddingSetter

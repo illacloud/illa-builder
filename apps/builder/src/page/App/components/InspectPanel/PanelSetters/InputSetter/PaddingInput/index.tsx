@@ -1,8 +1,10 @@
 import { ReactComponent as PartialIcon } from "@assets/rightPagePanel/partial.svg"
 import { FC, FocusEventHandler, useRef } from "react"
 import { useTranslation } from "react-i18next"
+import { useDispatch } from "react-redux"
 import { Input, RadioGroup } from "@illa-design/react"
 import { ReactComponent as AllIcon } from "@/assets/rightPagePanel/all.svg"
+import { configActions } from "@/redux/config/configSlice"
 import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
 import { PanelLabel } from "../../../components/Label"
 import { DirectionPaddingSetterProps } from "./interface"
@@ -53,6 +55,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   props,
 ) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const { handleUpdateMultiAttrDSL, componentNode } = props
   const paddingValue = {
     mode: componentNode?.props?.padding?.mode ?? PADDING_MODE.ALL,
@@ -80,6 +83,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
         size: formatValue(e.target.value ?? ""),
       },
     })
+    dispatch(configActions.updateShowDot(false))
   }
 
   const handleChangePartialValue = (index: number) => {
@@ -133,6 +137,14 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
     }
   }
 
+  const handleOnFocus = () => {
+    dispatch(configActions.updateShowDot(true))
+  }
+
+  const handleOnBlurPartialValue = () => {
+    dispatch(configActions.updateShowDot(false))
+  }
+
   return (
     <>
       <div css={setterContainerStyle}>
@@ -154,6 +166,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             colorScheme="techPurple"
             value={values.join(" ")}
             ref={allInputRef}
+            onFocus={handleOnFocus}
             onChange={handleChangeAllValue}
             onBlur={handleBlurAllValue}
           />
@@ -164,6 +177,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
               colorScheme="techPurple"
               bdRadius="8px 0 0 8px"
               value={values[0]}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlurPartialValue}
               onChange={handleChangePartialValue(0)}
             />
             <Input
@@ -173,6 +188,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
               pos="relative"
               l="-1px"
               value={values[1]}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlurPartialValue}
               onChange={handleChangePartialValue(1)}
             />
             <Input
@@ -182,6 +199,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
               pos="relative"
               l="-2px"
               value={values[2]}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlurPartialValue}
               onChange={handleChangePartialValue(2)}
             />
             <Input
@@ -191,6 +210,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
               pos="relative"
               l="-3px"
               value={values[3]}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlurPartialValue}
               onChange={handleChangePartialValue(3)}
             />
           </>
