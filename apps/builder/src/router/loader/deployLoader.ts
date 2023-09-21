@@ -1,4 +1,5 @@
 import { currentUserActions } from "@illa-public/user-data"
+import { sendConfigEvent } from "@illa-public/utils"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
 import {
   fetchAPPPublicStatus,
@@ -46,6 +47,7 @@ export const deployLoader: LoaderFunction = async (args) => {
         return teamInfoLoaderResponse
       }
       const userInfo = await fetchUserInfo()
+      sendConfigEvent(userInfo?.data.userID)
       store.dispatch(currentUserActions.updateCurrentUserReducer(userInfo.data))
       const appInfo = fetchPrivateAppInitData(appId, "-2", args.request.signal)
       return defer({
