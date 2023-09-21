@@ -509,5 +509,61 @@ export const componentsSnapShot = (
       }
       break
     }
+    case "updateCurrentPageStyleReducer": {
+      const { pageName, sectionName } = action.payload
+      const pageNode = searchDSLByDisplayName(pageName, _prevRootState)
+      if (!pageNode) break
+      const sectionNode = pageNode.childrenNode?.find(
+        (node) => node.showName === sectionName,
+      )
+      if (!sectionNode) break
+      const newAction = {
+        type: "components/updateCurrentPageStyleReducer",
+        payload: {
+          pageName: pageName,
+          style: sectionNode.props?.style,
+          sectionName: sectionName,
+        },
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "deleteCurrentPageStyleReducer": {
+      const { pageName, sectionName } = action.payload
+      const pageNode = searchDSLByDisplayName(pageName, _prevRootState)
+      if (!pageNode) break
+      const sectionNode = pageNode.childrenNode?.find(
+        (node) => node.showName === sectionName,
+      )
+      if (!sectionNode) break
+      const sectionNodeStyle = sectionNode.props?.style
+      if (!sectionNodeStyle) break
+      const newAction = {
+        type: "components/updateCurrentPageStyleReducer",
+        payload: {
+          pageName: pageName,
+          style: sectionNodeStyle,
+          sectionName: sectionName,
+        },
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
   }
 }
