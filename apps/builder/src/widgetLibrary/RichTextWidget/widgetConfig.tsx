@@ -19,7 +19,6 @@ export const RICH_TEXT_WIDGET_CONFIG: WidgetConfig = {
     ),
     hidden: false,
     radius: "4px",
-    borderWidth: "1px",
     shadow: "small",
     markdownValue: "",
   },

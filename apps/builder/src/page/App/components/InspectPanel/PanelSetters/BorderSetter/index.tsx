@@ -1,8 +1,8 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-// import { PlusIcon } from "@illa-design/react"
+import { MinusIcon, PlusIcon, getColor } from "@illa-design/react"
 import { ReactComponent as BorderIcon } from "@/assets/border.svg"
-// import IconHotSpot from "@/components/IconHotSpot"
+import IconHotSpot from "@/components/IconHotSpot"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { PanelLabel } from "../../components/Label"
 import ColorPickerSetter from "../ColorPickerSetter"
@@ -18,29 +18,55 @@ const BorderSetter: FC<BaseInputSetterProps> = (props) => {
   const borderWidth = currentWidget?.props?.borderWidth
   const borderColor = currentWidget?.props?.borderColor
 
+  const hasBorder = !!borderWidth && !!borderColor
+
   const { t } = useTranslation()
+
+  const handleClickAddBorder = () => {
+    handleUpdateMultiAttrDSL?.({
+      borderWidth: "1px",
+      borderColor: getColor("white", "01"),
+    })
+  }
+
+  const handleClickDeleteBorder = () => {
+    handleUpdateMultiAttrDSL?.({
+      borderWidth: undefined,
+      borderColor: undefined,
+    })
+  }
 
   return (
     <div css={containerStyle}>
       <div css={headerContainerStyle}>
         <PanelLabel labelName={t("editor.inspect.setter_label.border")} />
-        {/* <IconHotSpot>
-          <PlusIcon />
-        </IconHotSpot> */}
+        {hasBorder ? (
+          <IconHotSpot onClick={handleClickDeleteBorder}>
+            <MinusIcon />
+          </IconHotSpot>
+        ) : (
+          <IconHotSpot onClick={handleClickAddBorder}>
+            <PlusIcon />
+          </IconHotSpot>
+        )}
       </div>
-      <ColorPickerSetter
-        labelName={t("editor.inspect.setter_group.color")}
-        value={borderColor}
-        attrName="borderColor"
-        handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
-      />
-      <MeasureCheckInput
-        labelName={t("editor.inspect.setter_label.border_width")}
-        value={borderWidth}
-        attrName="borderWidth"
-        handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
-        icon={<BorderIcon />}
-      />
+      {hasBorder && (
+        <>
+          <ColorPickerSetter
+            labelName={t("editor.inspect.setter_group.color")}
+            value={borderColor}
+            attrName="borderColor"
+            handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+          />
+          <MeasureCheckInput
+            labelName={t("editor.inspect.setter_label.border_width")}
+            value={borderWidth}
+            attrName="borderWidth"
+            handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+            icon={<BorderIcon />}
+          />
+        </>
+      )}
     </div>
   )
 }

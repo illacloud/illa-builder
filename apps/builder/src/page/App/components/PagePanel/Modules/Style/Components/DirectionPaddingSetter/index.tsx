@@ -22,6 +22,13 @@ const formatValue = (value: string) => {
   return values.join(" ")
 }
 
+const formatPartialValue = (value: string = "") => {
+  if (!/^[0-9]+$/.test(value)) {
+    return "0"
+  }
+  return value
+}
+
 export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   props,
 ) => {
@@ -43,6 +50,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   const handleChangePartialValue = (index: number) => {
     return (value: string) => {
       values[index] = value
+      if (value !== "" && !/^[0-9]+$/.test(value)) return
       handleUpdateValue(values.join(" "))
     }
   }
@@ -51,8 +59,14 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
     dispatch(configActions.updateShowDot(true))
   }
 
-  const handleOnBlurPartialValue = () => {
-    dispatch(configActions.updateShowDot(false))
+  const handleOnBlurPartialValue = (index: number) => {
+    const fixFunc: FocusEventHandler<HTMLInputElement> = (e) => {
+      dispatch(configActions.updateShowDot(false))
+      const value = formatPartialValue(e.target.value)
+      values[index] = value
+      handleUpdateValue(values.join(" "))
+    }
+    return fixFunc
   }
 
   return (
@@ -75,7 +89,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             bdRadius="8px 0 0 8px"
             value={values[0]}
             onFocus={handleOnFocus}
-            onBlur={handleOnBlurPartialValue}
+            onBlur={handleOnBlurPartialValue(0)}
             onChange={handleChangePartialValue(0)}
           />
           <Input
@@ -86,7 +100,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             l="-1px"
             value={values[1]}
             onFocus={handleOnFocus}
-            onBlur={handleOnBlurPartialValue}
+            onBlur={handleOnBlurPartialValue(1)}
             onChange={handleChangePartialValue(1)}
           />
           <Input
@@ -97,7 +111,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             l="-2px"
             value={values[2]}
             onFocus={handleOnFocus}
-            onBlur={handleOnBlurPartialValue}
+            onBlur={handleOnBlurPartialValue(2)}
             onChange={handleChangePartialValue(2)}
           />
           <Input
@@ -108,7 +122,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             l="-3px"
             value={values[3]}
             onFocus={handleOnFocus}
-            onBlur={handleOnBlurPartialValue}
+            onBlur={handleOnBlurPartialValue(3)}
             onChange={handleChangePartialValue(3)}
           />
         </>

@@ -29,7 +29,7 @@ export const openFoldWrapperStyle = css`
   border-radius: 0px 16px 16px 0px;
   cursor: pointer;
   font-size: 12px;
-  color: ${getColor("grayBlue", "04")};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const applyOpenFoldPositionStyle = (direction: "left" | "right") => {
