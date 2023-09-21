@@ -461,10 +461,10 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: `${baseWidgetName}-style-Calendar`,
+        id: `${baseWidgetName}-style-color`,
         setterType: "STYLE_CONTAINER_SETTER",
-        labelName: i18n.t("editor.inspect.setter_group.eventCalendar.calendar"),
-        attrName: "calendar",
+        labelName: i18n.t("editor.inspect.setter_group.event"),
+        attrName: "event",
         useCustomLayout: true,
         childrenSetter: [
           {
@@ -493,15 +493,6 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             useCustomLayout: true,
             defaultValue: "gray",
           },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-style-color`,
-        setterType: "STYLE_CONTAINER_SETTER",
-        labelName: i18n.t("editor.inspect.setter_group.event"),
-        attrName: "event",
-        useCustomLayout: true,
-        childrenSetter: [
           {
             id: `${baseWidgetName}-style-event-bg`,
             labelName: i18n.t(

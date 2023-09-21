@@ -3,8 +3,8 @@ import { FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PlusIcon } from "@illa-design/react"
+import IconHotSpot from "@/components/IconHotSpot"
 import { PanelBar } from "@/components/PanelBar"
-import { customIconHotpotStyle } from "@/components/PanelBar/style"
 import { getPageDisplayNameMapViewDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { RootComponentNodeProps } from "@/redux/currentApp/editor/components/componentsState"
@@ -50,9 +50,9 @@ export const PageSpaceTree: FC = () => {
       title={t("editor.data_work_space.pages_title")}
       destroyChildrenWhenClose
       customIcon={
-        <div css={customIconHotpotStyle} onClick={handleClickAddButton}>
+        <IconHotSpot onClick={handleClickAddButton}>
           <PlusIcon />
-        </div>
+        </IconHotSpot>
       }
       onIllaFocus={() => {
         FocusManager.switchFocus("data_page")

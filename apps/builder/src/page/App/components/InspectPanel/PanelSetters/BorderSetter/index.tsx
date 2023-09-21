@@ -1,8 +1,8 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { PlusIcon } from "@illa-design/react"
+// import { PlusIcon } from "@illa-design/react"
 import { ReactComponent as BorderIcon } from "@/assets/border.svg"
-import IconHotSpot from "@/components/IconHotSpot"
+// import IconHotSpot from "@/components/IconHotSpot"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { PanelLabel } from "../../components/Label"
 import ColorPickerSetter from "../ColorPickerSetter"
@@ -24,9 +24,9 @@ const BorderSetter: FC<BaseInputSetterProps> = (props) => {
     <div css={containerStyle}>
       <div css={headerContainerStyle}>
         <PanelLabel labelName={t("editor.inspect.setter_label.border")} />
-        <IconHotSpot>
+        {/* <IconHotSpot>
           <PlusIcon />
-        </IconHotSpot>
+        </IconHotSpot> */}
       </div>
       <ColorPickerSetter
         labelName={t("editor.inspect.setter_group.color")}

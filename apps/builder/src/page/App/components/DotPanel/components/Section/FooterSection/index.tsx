@@ -93,6 +93,7 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
         "240px",
         "500px",
         dividerColor,
+        background,
       )}
     >
       <div css={containerWrapperStyle}>
@@ -106,7 +107,6 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
             handleUpdateHeight={handleUpdateHeight}
             canResizeCanvas
             minHeight={FOOTER_MIN_HEIGHT}
-            background={background}
             shadowSize={shadowSize}
           />
         ) : (

@@ -7,6 +7,7 @@ export const iconHotSpotContainerStyle = (
   inactiveColor = getColor("grayBlue", "04"),
 ) => css`
   padding: 4px;
+  border-radius: 4px;
   font-size: ${iconSize}px;
   color: ${inactiveColor};
   cursor: pointer;

@@ -7,8 +7,9 @@ export const containerWrapperStyle = css`
   padding: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 `
-
 export const applyNoBottomPaddingStyle = (isShowFold: boolean) => {
   return isShowFold
     ? css`
@@ -16,23 +17,6 @@ export const applyNoBottomPaddingStyle = (isShowFold: boolean) => {
       `
     : null
 }
-
-export const applySideBarWrapperStyle = (direction: "left" | "right") => {
-  return css`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: ${direction === "left" ? "flex-end" : "flex-start"};
-    padding: 0 8px 8px 8px;
-    color: ${getColor("grayBlue", "04")};
-    font-size: 12px;
-  `
-}
-
-export const sideBarIconStyle = css`
-  cursor: pointer;
-  flex: none;
-`
 
 export const openFoldWrapperStyle = css`
   width: 32px;
@@ -55,6 +39,17 @@ export const applyOpenFoldPositionStyle = (direction: "left" | "right") => {
     transform: ${direction === "right" ? "rotate(180deg)" : "unset"};
   `
 }
+
+export const applyCloseFoldPositionStyle = css`
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  border-radius: 16px 0 0 16px;
+`
+
+export const rotaIconStyle = css`
+  transform: rotate(180deg);
+`
 
 export const applyHorizontalAnimationWrapperStyle = (
   isFold: boolean,
