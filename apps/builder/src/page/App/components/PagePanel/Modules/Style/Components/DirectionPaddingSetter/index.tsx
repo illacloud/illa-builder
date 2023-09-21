@@ -1,5 +1,7 @@
 import { FC, FocusEventHandler, useRef } from "react"
+import { useDispatch } from "react-redux"
 import { Input } from "@illa-design/react"
+import { configActions } from "@/redux/config/configSlice"
 import { DirectionPaddingSetterProps } from "./interface"
 import { directionPaddingContainerStyle, prefixContainerStyle } from "./style"
 
@@ -27,6 +29,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   const values = value.split(" ")
 
   const allInputRef = useRef<HTMLInputElement>(null)
+  const dispatch = useDispatch()
 
   const handleChangeAllValue = (value: string) => {
     handleUpdateValue(value)
@@ -34,6 +37,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
 
   const handleBlurAllValue: FocusEventHandler<HTMLInputElement> = (e) => {
     handleUpdateValue(formatValue(e.target.value ?? ""))
+    dispatch(configActions.updateShowDot(false))
   }
 
   const handleChangePartialValue = (index: number) => {
@@ -41,6 +45,14 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
       values[index] = value
       handleUpdateValue(values.join(" "))
     }
+  }
+
+  const handleOnFocus = () => {
+    dispatch(configActions.updateShowDot(true))
+  }
+
+  const handleOnBlurPartialValue = () => {
+    dispatch(configActions.updateShowDot(false))
   }
 
   return (
@@ -51,6 +63,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
           colorScheme="techPurple"
           value={value}
           ref={allInputRef}
+          onFocus={handleOnFocus}
           onChange={handleChangeAllValue}
           onBlur={handleBlurAllValue}
         />
@@ -61,6 +74,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             colorScheme="techPurple"
             bdRadius="8px 0 0 8px"
             value={values[0]}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlurPartialValue}
             onChange={handleChangePartialValue(0)}
           />
           <Input
@@ -70,6 +85,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             pos="relative"
             l="-1px"
             value={values[1]}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlurPartialValue}
             onChange={handleChangePartialValue(1)}
           />
           <Input
@@ -79,6 +96,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             pos="relative"
             l="-2px"
             value={values[2]}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlurPartialValue}
             onChange={handleChangePartialValue(2)}
           />
           <Input
@@ -88,6 +107,8 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
             pos="relative"
             l="-3px"
             value={values[3]}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlurPartialValue}
             onChange={handleChangePartialValue(3)}
           />
         </>
