@@ -26,7 +26,7 @@ if (
 
 if (
   import.meta.env.ILLA_APP_ENV &&
-  import.meta.env.ILLA_APP_ENV !== "development" &&
+  import.meta.env.ILLA_APP_ENV === "production" &&
   import.meta.env.ILLA_INSTANCE_ID === "CLOUD"
 ) {
   const firstScript = document.createElement("script")
