@@ -6,9 +6,11 @@ const IconHotSpot: ForwardRefRenderFunction<
   HTMLSpanElement,
   IconHotSpotProps
 > = (props, ref) => {
-  const { children, iconSize, inactiveColor, activeColor } = props
+  const { children, iconSize, inactiveColor, activeColor, ...otherProps } =
+    props
   return (
     <span
+      {...otherProps}
       css={iconHotSpotContainerStyle(iconSize, activeColor, inactiveColor)}
       ref={ref}
     >

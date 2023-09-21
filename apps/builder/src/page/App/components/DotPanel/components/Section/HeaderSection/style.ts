@@ -6,6 +6,7 @@ export const applyHeaderSectionWrapperStyle = (
   left: string = "0px",
   width: string = "0px",
   dividerColor?: string,
+  background: string = "transparent",
 ) => css`
   position: absolute;
   top: 0;
@@ -16,4 +17,5 @@ export const applyHeaderSectionWrapperStyle = (
   flex-direction: column;
   min-height: ${HEADER_MIN_HEIGHT}px;
   border-bottom: ${dividerColor ? `1px solid ${dividerColor}` : "unset"};
+  background: ${background};
 `

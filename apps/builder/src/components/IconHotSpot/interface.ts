@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 
-export interface IconHotSpotProps {
+export interface IconHotSpotProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode
   iconSize?: number
   activeColor?: string

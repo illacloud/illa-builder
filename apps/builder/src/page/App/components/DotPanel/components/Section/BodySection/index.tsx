@@ -40,7 +40,7 @@ export const RenderBodySection: FC<RenderSectionProps> = (props) => {
   )
 
   return (
-    <div css={bodySectionWrapperStyle}>
+    <div css={bodySectionWrapperStyle(background)}>
       <div css={containerWrapperStyle}>
         {componentNode ? (
           <RenderComponentCanvasContainer
@@ -48,7 +48,6 @@ export const RenderBodySection: FC<RenderSectionProps> = (props) => {
             containerPadding={padding?.size ?? `${BASIC_CANVAS_PADDING}`}
             columnNumber={columnNumber}
             isRootCanvas
-            background={background}
           />
         ) : (
           <EmptyState />

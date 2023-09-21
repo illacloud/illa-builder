@@ -92,6 +92,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
         "240px",
         "500px",
         dividerColor,
+        background,
       )}
     >
       <div css={containerWrapperStyle}>
@@ -105,7 +106,6 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
             handleUpdateHeight={handleUpdateHeight}
             canResizeCanvas
             minHeight={HEADER_MIN_HEIGHT}
-            background={background}
             shadowSize={shadowSize}
           />
         ) : (

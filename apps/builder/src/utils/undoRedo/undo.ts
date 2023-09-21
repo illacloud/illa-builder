@@ -1,5 +1,4 @@
 import { AnyAction } from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
@@ -30,7 +29,7 @@ export class ILLA_UNDO_REDO {
   }
 
   popFromUndoStack() {
-    const rootState = cloneDeep(store.getState())
+    const rootState = store.getState()
     const snapShot = getExecutionWidgetLayoutInfo(rootState)
     illaSnapshot.setSnapshot(snapShot)
     if (this.undoStack.isEmpty()) {
@@ -61,7 +60,7 @@ export class ILLA_UNDO_REDO {
   }
 
   popFromRedoStack() {
-    const rootState = cloneDeep(store.getState())
+    const rootState = store.getState()
     const snapShot = getExecutionWidgetLayoutInfo(rootState)
     illaSnapshot.setSnapshot(snapShot)
     if (this.redoStack.isEmpty()) {

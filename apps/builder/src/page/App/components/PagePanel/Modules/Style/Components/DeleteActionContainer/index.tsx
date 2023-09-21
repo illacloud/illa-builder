@@ -1,12 +1,9 @@
 import { FC } from "react"
 import { MinusIcon } from "@illa-design/react"
+import IconHotSpot from "@/components/IconHotSpot"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { DeleteActionContainerProps } from "./interface"
-import {
-  deleteActionContainerStyle,
-  deleteContainerStyle,
-  hotSpotContainerStyle,
-} from "./style"
+import { deleteActionContainerStyle, deleteContainerStyle } from "./style"
 
 export const DeleteActionContainer: FC<DeleteActionContainerProps> = (
   props,
@@ -18,9 +15,9 @@ export const DeleteActionContainer: FC<DeleteActionContainerProps> = (
       <PageLabel labelName={labelName} size="small" />
       <div css={deleteContainerStyle} className="deleteContainer">
         {children}
-        <div onClick={onClickDelete} css={hotSpotContainerStyle}>
+        <IconHotSpot onClick={onClickDelete}>
           <MinusIcon />
-        </div>
+        </IconHotSpot>
       </div>
     </div>
   )

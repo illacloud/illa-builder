@@ -510,29 +510,32 @@ export const componentsSnapShot = (
       break
     }
     case "updateCurrentPageStyleReducer": {
-      const { pageName, sectionName } = action.payload
+      const { pageName, style, sectionName } = action.payload
       const pageNode = searchDSLByDisplayName(pageName, _prevRootState)
+      const updateKeys = Object.keys(style)
       if (!pageNode) break
       const sectionNode = pageNode.childrenNode?.find(
         (node) => node.showName === sectionName,
       )
       if (!sectionNode) break
+      const needBackStyle: Record<string, any> = {}
+      updateKeys.forEach((key) => {
+        needBackStyle[key] = sectionNode.props?.style?.[key] ?? undefined
+      })
       const newAction = {
         type: "components/updateCurrentPageStyleReducer",
         payload: {
           pageName: pageName,
-          style: sectionNode.props?.style,
+          style: needBackStyle,
           sectionName: sectionName,
         },
+        from: action.from,
       }
+
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack([
-          JSON.parse(JSON.stringify(newAction)),
-        ])
+        IllaUndoRedoManager.pushToRedoStack([newAction])
       } else {
-        IllaUndoRedoManager.pushToUndoStack([
-          JSON.parse(JSON.stringify(newAction)),
-        ])
+        IllaUndoRedoManager.pushToUndoStack([newAction])
       }
       break
     }
@@ -553,6 +556,7 @@ export const componentsSnapShot = (
           style: sectionNodeStyle,
           sectionName: sectionName,
         },
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
         IllaUndoRedoManager.pushToRedoStack([

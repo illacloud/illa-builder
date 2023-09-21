@@ -9,7 +9,7 @@ import { getShadowStyle } from "@/utils/styleUtils/shadow"
 
 export const outerComponentCanvasContainerStyle = (
   padding: string,
-  background: string = "white",
+  background: string = "transparent",
   shadowSize: "none" | "small" | "medium" | "large",
   dividerColor?: string,
 ) => css`

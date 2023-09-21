@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, difference, merge, set, unset } from "lodash"
+import { cloneDeep, difference, set, unset } from "lodash"
 import {
   generateNewViewItem,
   generateNewViewItemFromBodySectionConfig,
@@ -1050,7 +1050,12 @@ export const updateCurrentPageStyleReducer: CaseReducer<
   if (!targetSectionNode.props.style) {
     targetSectionNode.props.style = action.payload.style
   } else {
-    merge(targetSectionNode.props.style, action.payload.style)
+    Object.keys(action.payload.style).forEach((key) => {
+      if (action.payload.style[key] === undefined) {
+        unset(targetSectionNode.props?.style ?? {}, key)
+      }
+      targetSectionNode.props!.style[key] = action.payload.style[key]
+    })
   }
 }
 

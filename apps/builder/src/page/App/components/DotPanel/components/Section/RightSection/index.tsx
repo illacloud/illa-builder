@@ -13,10 +13,8 @@ import {
   applyHorizontalAnimationWrapperStyle,
   applyNoBottomPaddingStyle,
   applyOpenFoldPositionStyle,
-  applySideBarWrapperStyle,
   containerWrapperStyle,
   openFoldWrapperStyle,
-  sideBarIconStyle,
 } from "../style"
 import { RenderRightSectionProps } from "./interface"
 import { applyRightSectionWrapperStyle } from "./style"
@@ -66,6 +64,7 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
         "0px",
         isFold,
         dividerColor,
+        background,
       )}
     >
       <div css={applyHorizontalAnimationWrapperStyle(isFold, "right")}>
@@ -78,29 +77,29 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
               containerPadding={padding?.size ?? `${BASIC_CANVAS_PADDING}`}
               columnNumber={columnNumber}
               isRootCanvas
-              background={background}
               shadowSize={shadowSize}
             />
           ) : (
             <EmptyState />
           )}
-          {showFoldIcon && (
-            <div css={applySideBarWrapperStyle("right")}>
-              <NextIcon
-                css={sideBarIconStyle}
+          <AnimatePresence>
+            {showFoldIcon && !isFold && (
+              <motion.div
+                css={[
+                  openFoldWrapperStyle,
+                  applyOpenFoldPositionStyle("right"),
+                ]}
                 onClick={handleOnClickFoldIcon}
-              />
-            </div>
-          )}
+                initial={{ x: -34 }}
+                animate={{ x: 0 }}
+                exit={{ x: -34 }}
+                transition={{ duration: 0.3 }}
+              >
+                <NextIcon />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-        {/* {isEditMode && animationComplete && (
-          <div
-            css={resizeHorizontalBarWrapperStyle}
-            onMouseDown={handleClickMoveBar}
-          >
-            <div css={resizeHorizontalBarStyle} />
-          </div>
-        )} */}
       </div>
 
       <AnimatePresence>
