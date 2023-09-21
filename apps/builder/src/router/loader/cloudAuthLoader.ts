@@ -7,7 +7,7 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import { canAccessManage } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
+import { isCloudVersion, sendConfigEvent } from "@illa-public/utils"
 import { LoaderFunction, redirect } from "react-router-dom"
 import i18n from "@/i18n/config"
 import { cloudUrl } from "@/router/constant"
@@ -43,6 +43,7 @@ export const getUserInfoLoader: LoaderFunction = async () => {
   if (authToken) {
     try {
       const response = await fetchUserInfo()
+      sendConfigEvent(response?.data.userID)
       const lng = response.data.language
       if (lng && currentLng !== lng) {
         i18n.changeLanguage(lng)
