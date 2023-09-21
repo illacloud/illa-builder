@@ -67,6 +67,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   const handleChangeAllValue = (allValue: string) => {
     handleUpdateMultiAttrDSL?.({
       padding: {
+        mode: PADDING_MODE.ALL,
         size: allValue,
       },
     })
@@ -75,6 +76,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   const handleBlurAllValue: FocusEventHandler<HTMLInputElement> = (e) => {
     handleUpdateMultiAttrDSL?.({
       padding: {
+        mode: PADDING_MODE.ALL,
         size: formatValue(e.target.value ?? ""),
       },
     })
@@ -85,6 +87,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
       values[index] = partialValue
       handleUpdateMultiAttrDSL?.({
         padding: {
+          mode: PADDING_MODE.PARTIAL,
           size: values.join(" "),
         },
       })

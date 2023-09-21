@@ -20,9 +20,9 @@ export const applyEmptyStateWrapperStyle = (
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: ${(isInner ? 14 : 15) * UNIT_HEIGHT -
-  2 * SCROLL_CONTAINER_PADDING +
-  paddingTopBottom}px;
+  min-height: ${isInner
+    ? "100%"
+    : 15 * UNIT_HEIGHT - 2 * SCROLL_CONTAINER_PADDING + paddingTopBottom};
 `
 
 export const applyContainerWrapperStyle = css`
