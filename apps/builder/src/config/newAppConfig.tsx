@@ -7,6 +7,7 @@ import {
   CONTAINER_TYPE,
   ComponentNode,
   ModalSectionNode,
+  PADDING_MODE,
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
@@ -37,6 +38,12 @@ export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
         path: "sub-page1",
       },
     ],
+    style: {
+      padding: {
+        mode: PADDING_MODE.ALL,
+        size: "24",
+      },
+    },
   },
   childrenNode: [
     {

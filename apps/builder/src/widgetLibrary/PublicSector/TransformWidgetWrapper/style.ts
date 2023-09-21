@@ -1,5 +1,6 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
+import { getShadowStyle } from "@/utils/styleUtils/shadow"
 
 export const applyValidateMessageWrapperStyle = (
   labelWidth: number,
@@ -45,23 +46,6 @@ export const applyCenterLabelAndComponentWrapperStyle = (
   `
 }
 
-const getShadowStyle = (shadow?: "none" | "small" | "medium" | "large") => {
-  switch (shadow) {
-    case "small": {
-      return "0px 2px 8px rgba(0, 0, 0, 0.08);"
-    }
-    case "medium": {
-      return "0px 4px 16px rgba(0, 0, 0, 0.08);"
-    }
-    case "large": {
-      return "0px 8px 20px rgba(0, 0, 0, 0.12);"
-    }
-    case "none":
-    default:
-      return "unset"
-  }
-}
-
 const getWrapperBackgroundColor = (
   widgetType?: string,
   backgroundColor?: string,
@@ -84,7 +68,7 @@ export const applyWrapperStylesStyle = (
   borderWidth?: string,
   radius?: string,
   backgroundColor?: string,
-  shadow?: "none" | "small" | "medium" | "large",
+  shadowSize?: "none" | "small" | "medium" | "large",
   widgetType?: string,
 ) => {
   let borderStyle = "unset"
@@ -95,7 +79,7 @@ export const applyWrapperStylesStyle = (
         : "transparent"
     }`
   }
-  const shadowStyle = getShadowStyle(shadow)
+  const shadowStyle = getShadowStyle(shadowSize)
   return css`
     width: 100%;
     height: 100%;

@@ -6,5 +6,4 @@ export interface FieldFactoryProps {
   displayName: string
   widgetProps: Record<string, any>
   guideInfo: Guide
-  isInList?: boolean
 }

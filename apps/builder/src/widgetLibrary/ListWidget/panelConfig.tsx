@@ -107,7 +107,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-style-color`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
@@ -118,6 +118,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
               "editor.inspect.setter_label.item_background_color",
             ),
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             attrName: "itemBackGroundColor",
             defaultValue: "white",
           },
@@ -125,6 +126,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-background-color`,
             labelName: i18n.t("editor.inspect.setter_label.background_color"),
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             attrName: "backgroundColor",
             defaultValue: "white",
           },

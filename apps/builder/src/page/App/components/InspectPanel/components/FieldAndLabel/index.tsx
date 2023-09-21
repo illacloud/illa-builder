@@ -7,7 +7,6 @@ const RenderFieldAndLabel: FC<RenderFieldAndLabelProps> = (props) => {
   const {
     config,
     displayName,
-    isInList = false,
     parentAttrName,
     guideInfo = { isOpen: false, currentStep: 0 },
   } = props
@@ -17,7 +16,6 @@ const RenderFieldAndLabel: FC<RenderFieldAndLabelProps> = (props) => {
       <RenderGuideModePanelSetter
         config={config}
         displayName={displayName}
-        isInList={isInList}
         parentAttrName={parentAttrName}
         currentStep={guideInfo.currentStep}
       />
@@ -28,7 +26,6 @@ const RenderFieldAndLabel: FC<RenderFieldAndLabelProps> = (props) => {
     <RenderPanelSetter
       config={config}
       displayName={displayName}
-      isInList={isInList}
       parentAttrName={parentAttrName}
     />
   )

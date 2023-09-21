@@ -57,13 +57,6 @@ export const labelNameStyle = css`
   white-space: nowrap;
 `
 
-export const deleteIconStyle = css`
-  cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  width: 16px;
-  height: 16px;
-`
-
 export const itemWrapperStyle = css`
   display: flex;
   width: 100%;
