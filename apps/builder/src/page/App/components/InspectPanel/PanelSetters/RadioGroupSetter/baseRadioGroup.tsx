@@ -47,7 +47,7 @@ const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
           value={value}
           options={options}
           type="button"
-          size="large"
+          size="medium"
           colorScheme="grayBlue"
           css={radioGroupStyle}
         />
