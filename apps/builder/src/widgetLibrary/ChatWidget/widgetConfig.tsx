@@ -88,7 +88,6 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
     selectedMessage: emptyMessage,
     replyMessage: emptyMessage,
     radius: "4px",
-    borderWidth: "1px",
     shadow: "small",
   },
 }

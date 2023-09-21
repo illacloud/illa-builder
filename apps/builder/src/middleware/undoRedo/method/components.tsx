@@ -509,5 +509,65 @@ export const componentsSnapShot = (
       }
       break
     }
+    case "updateCurrentPageStyleReducer": {
+      const { pageName, style, sectionName } = action.payload
+      const pageNode = searchDSLByDisplayName(pageName, _prevRootState)
+      const updateKeys = Object.keys(style)
+      if (!pageNode) break
+      const sectionNode = pageNode.childrenNode?.find(
+        (node) => node.showName === sectionName,
+      )
+      if (!sectionNode) break
+      const needBackStyle: Record<string, any> = {}
+      updateKeys.forEach((key) => {
+        needBackStyle[key] = sectionNode.props?.style?.[key] ?? undefined
+      })
+      const newAction = {
+        type: "components/updateCurrentPageStyleReducer",
+        payload: {
+          pageName: pageName,
+          style: needBackStyle,
+          sectionName: sectionName,
+        },
+        from: action.from,
+      }
+
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([newAction])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([newAction])
+      }
+      break
+    }
+    case "deleteCurrentPageStyleReducer": {
+      const { pageName, sectionName } = action.payload
+      const pageNode = searchDSLByDisplayName(pageName, _prevRootState)
+      if (!pageNode) break
+      const sectionNode = pageNode.childrenNode?.find(
+        (node) => node.showName === sectionName,
+      )
+      if (!sectionNode) break
+      const sectionNodeStyle = sectionNode.props?.style
+      if (!sectionNodeStyle) break
+      const newAction = {
+        type: "components/updateCurrentPageStyleReducer",
+        payload: {
+          pageName: pageName,
+          style: sectionNodeStyle,
+          sectionName: sectionName,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
   }
 }

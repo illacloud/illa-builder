@@ -84,7 +84,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-styles-list`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         isSetterSingleRow: true,
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
@@ -93,7 +93,8 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-style-radius`,
             labelName: i18n.t("editor.inspect.setter_label.radius"),
-            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
+            setterType: "MEASURE_CHECK_INPUT_SETTER",
+            useCustomLayout: true,
             attrName: "radius",
             icon: <RadioIcon />,
             defaultValue: "0px",

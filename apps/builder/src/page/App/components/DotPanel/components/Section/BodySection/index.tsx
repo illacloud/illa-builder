@@ -6,24 +6,26 @@ import { EmptyState } from "@/page/App/components/DotPanel/components/Page/empty
 import { BASIC_CANVAS_PADDING } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCurrentDisplayName } from "@/page/App/components/DotPanel/hooks/sectionUtils"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentPageBodySection } from "@/redux/currentApp/executionTree/executionSelector"
 import { containerWrapperStyle } from "../style"
 import { RenderSectionProps } from "./interface"
 import { bodySectionWrapperStyle } from "./style"
 
 export const RenderBodySection: FC<RenderSectionProps> = (props) => {
-  const { sectionNode, columnNumber } = props
-  const executionResult = useSelector(getExecutionResult)
+  const { columnNumber } = props
+  let { viewPath } = useParams()
   const isProductionMode = useSelector(getIsILLAProductMode)
-  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const bodySection = useSelector(getCurrentPageBodySection)
+  if (!bodySection) return null
 
   const {
     viewSortedKey,
     currentViewIndex,
     defaultViewKey,
     sectionViewConfigs,
-  } = sectionNodeProps
-  let { viewPath } = useParams()
+    style,
+  } = bodySection
+  const { padding, background = "white" } = style ?? {}
   const currentViewDisplayName = getCurrentDisplayName(
     sectionViewConfigs,
     viewSortedKey,
@@ -33,18 +35,17 @@ export const RenderBodySection: FC<RenderSectionProps> = (props) => {
     currentViewIndex,
   )
 
-  if (!sectionNodeProps) return null
-
-  const componentNode = sectionNode.childrenNode?.find(
-    (node) => node.displayName === currentViewDisplayName,
+  const componentNode = bodySection.$childrenNode?.find(
+    (node: string) => node === currentViewDisplayName,
   )
+
   return (
-    <div css={bodySectionWrapperStyle}>
+    <div css={bodySectionWrapperStyle(background)}>
       <div css={containerWrapperStyle}>
         {componentNode ? (
           <RenderComponentCanvasContainer
-            displayName={componentNode.displayName}
-            containerPadding={BASIC_CANVAS_PADDING}
+            displayName={componentNode}
+            containerPadding={padding?.size ?? `${BASIC_CANVAS_PADDING}`}
             columnNumber={columnNumber}
             isRootCanvas
           />

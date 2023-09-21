@@ -70,10 +70,8 @@ export function initChartWidgetDefaultProps() {
     direction: "x",
     legendPosition: "top",
     dateFormat: "YYYY-MM-DD",
-    borderColor: "#ffffffff",
     radius: "4px",
     backgroundColor: "#ffffffff",
-    borderWidth: "1px",
     shadow: "small",
   }
 }

@@ -1,4 +1,7 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ComponentNode,
+  PADDING_MODE,
+} from "@/redux/currentApp/editor/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface viewListItemShaper {
@@ -21,4 +24,8 @@ export interface ContainerProps extends BaseWidgetProps {
   dynamicHeight: "auto" | "fixed" | "limited"
   dynamicMinHeight?: number
   dynamicMaxHeight?: number
+  padding?: {
+    size: string
+    mode: PADDING_MODE
+  }
 }
