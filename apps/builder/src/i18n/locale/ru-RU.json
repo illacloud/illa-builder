@@ -3730,7 +3730,7 @@
           }
         },
         "price": "/ месяц / 5к Colla",
-        "button": "Увеличить коллу"
+        "button": "Управление Коллой"
       }
     },
     "title": {
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ",
-        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Отписаться",
