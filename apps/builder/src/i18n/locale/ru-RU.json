@@ -3723,14 +3723,14 @@
           "traffic": "Трафик. Используется для загрузки файлов из ILLA Drive.",
           "token": "Токен агента ИИ. Используется для запуска агентов ИИ.",
           "conversion": {
-            "1": "5к Колла",
+            "1": "10k Колла",
             "2": "5Гб хранилища",
             "3": "5GB трафика",
             "4": "100 K токен"
           }
         },
-        "price": "/ месяц / 5к Colla",
-        "button": "Управление Коллой"
+        "price": "/месяц/10k Colla",
+        "button": "Увеличить коллу"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Колла"
       },
       "price": {
-        "colla_monthly": "{{price}} / ежемесячно / 5k Colla",
-        "colla_yearly": "{{price}} / год / 60k Colla"
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/год / 10k Colla"
       },
       "plan_number_input_label": {
         "License": "Лицензии",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Отписаться",
