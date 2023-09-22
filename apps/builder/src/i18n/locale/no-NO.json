@@ -3723,14 +3723,14 @@
           "traffic": "Traffic. Brukes til å laste ned filer fra ILLA-driveren.",
           "token": "AI Agent token. Brukes til å kjøre AI agenter.",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GB lagring",
             "3": "5GB trafikk",
             "4": "100K token"
           }
         },
-        "price": "/ måned / 5k Colla",
-        "button": "Behandle kolla"
+        "price": "/måned Kolla",
+        "button": "Øk kolla"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Kolla"
       },
       "price": {
-        "colla_monthly": "{{price}} / månedlig / 5k Colla",
-        "colla_yearly": "{{price}} / Årlig / 60k Colla"
+        "colla_monthly": "{{price}}/ månedsl/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Lisenser",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Avmeld",
