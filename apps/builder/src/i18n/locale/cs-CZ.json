@@ -3723,14 +3723,14 @@
           "traffic": "Doprava. Používá se ke stahování souborů z ILLA Drive.",
           "token": "token AI agenta. Používá se ke spuštění AI agentů.",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GB úložiště",
             "3": "5GB provozu",
             "4": "Token 100K"
           }
         },
-        "price": "/ měsíc / 5k Colla",
-        "button": "Spravovat Colla"
+        "price": "/měsíc/10k Colla",
+        "button": "Zvýšit Colla"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}} / měsíčně / 5k Colla",
-        "colla_yearly": "{{price}} / ročně / 60k Colla"
+        "colla_monthly": "{{price}}/měsíčně/10k Colla",
+        "colla_yearly": "{{price}}/ročně/10 k Colla"
       },
       "plan_number_input_label": {
         "License": "Licence",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Odhlásit odběr",
