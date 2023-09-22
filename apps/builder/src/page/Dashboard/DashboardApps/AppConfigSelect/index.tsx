@@ -1,4 +1,3 @@
-import { UpgradeIcon } from "@illa-public/icon"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -10,7 +9,8 @@ import { isCloudVersion } from "@illa-public/utils"
 import { FC, ReactNode, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { DownIcon, SuccessIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
+import { DownIcon, SuccessIcon, Trigger, UpIcon } from "@illa-design/react"
+import { UpgradeTag } from "@/components/UpgradeTag"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { updateAppPublicConfig } from "@/services/apps"
 import { track } from "@/utils/mixpanelHelper"
@@ -19,6 +19,7 @@ import {
   optionContentStyle,
   optionItemStyle,
   pointerStyle,
+  publicButtonWithTagStyle,
   valueLabelStyle,
 } from "./style"
 
@@ -55,13 +56,9 @@ export const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
       },
       {
         label: (
-          <div>
-            {t("new_dashboard.access.public")}
-            {!canUseBillingFeature && (
-              <Tag ml="8px" colorScheme="techPurple">
-                <UpgradeIcon /> {t("billing.homepage.upgrade")}
-              </Tag>
-            )}
+          <div css={publicButtonWithTagStyle}>
+            <span>{t("new_dashboard.access.public")}</span>
+            {!canUseBillingFeature && <UpgradeTag />}
           </div>
         ),
         value: true,
