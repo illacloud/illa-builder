@@ -3730,7 +3730,7 @@
           }
         },
         "price": "/ kuukausi / 5k Colla",
-        "button": "Lisää Kollaa"
+        "button": "Hallitse Kollaa"
       }
     },
     "title": {
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Peruuta Tilaus",
