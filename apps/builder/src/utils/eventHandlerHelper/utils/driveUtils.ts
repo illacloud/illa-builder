@@ -1,4 +1,8 @@
 import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
+import {
+  CollarModalType,
+  handleCollaPurchaseError,
+} from "@illa-public/upgrade-modal"
 import { Zip, ZipPassThrough } from "fflate"
 import { createWriteStream } from "streamsaver"
 import { createMessage } from "@illa-design/react"
@@ -85,6 +89,9 @@ export const downloadFromILLADrive = async (
           }
         }
       } catch (e) {
+        // TODO wtf, error flag
+        const res = handleCollaPurchaseError(e, CollarModalType.TRAFFIC)
+        if (res) return
         if (isILLAAPiError(e)) {
           if (
             e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_TRAFFIC
@@ -186,6 +193,9 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
       uploadResult,
     )
   } catch (e) {
+    // TODO wtf, error flag
+    const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
+    if (res) return
     if (isILLAAPiError(e)) {
       if (e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_VOLUME) {
         message.error({
