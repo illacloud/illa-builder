@@ -38,7 +38,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
-  const { displayName, width, height, scaleMode, url, showTollBar } = props
+  const { displayName, width, height, scaleMode, url, showToolBar } = props
   const { t } = useTranslation()
   const pageRef = useRef<HTMLDivElement[]>([])
   const documentRef = useRef<HTMLDivElement>(null)
@@ -124,7 +124,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
           <Loading />
         </div>
       ) : null}
-      {showTollBar && !error && !loading ? (
+      {showToolBar && !error && !loading ? (
         <div css={[toolBarStyle, applyHiddenStyle(loading)]}>
           <ToolButton
             disabled={pageNumber <= 1}
@@ -213,7 +213,7 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
     height,
     scaleMode,
     url,
-    showTollBar,
+    showToolBar,
     w,
     h,
   } = props
@@ -271,7 +271,7 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
           height={height}
           scaleMode={scaleMode}
           url={url}
-          showTollBar={showTollBar}
+          showToolBar={showToolBar}
         />
       </TooltipWrapper>
     </div>
