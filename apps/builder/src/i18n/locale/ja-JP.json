@@ -1677,7 +1677,7 @@
           "background": "バックグラウンド",
           "calendar_background": "バックグラウンド",
           "calendar_border": "フレーム",
-          "calendar_text": "テクストヤン",
+          "calendar_text": "セカンダリテキスト",
           "event_background": "バックグラウンド",
           "event_text": "テクストヤン",
           "draggable": "ドラッグ可能",
@@ -3723,14 +3723,14 @@
           "traffic": "トラフィック。ILLAドライブからファイルをダウンロードするために使用されます。",
           "token": "AIエージェントトークン。AIエージェントの実行に使用されます。",
           "conversion": {
-            "1": "10k Colla",
+            "1": "5k Colla",
             "2": "5GBのストレージ",
             "3": "5GBのトラフィック",
             "4": "100Kトークン"
           }
         },
-        "price": "/month/10k Colla",
-        "button": "コラを上げる"
+        "price": "/ 月 / 5k Colla",
+        "button": "コラの管理"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}}/monthly/10k Colla",
-        "colla_yearly": "{{price}}/yearly/10k Colla"
+        "colla_monthly": "{{price}} / 月額/5k Colla",
+        "colla_yearly": "{{price}} / 年間/60k Colla"
       },
       "plan_number_input_label": {
         "License": "ライセンス",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "購読解除",

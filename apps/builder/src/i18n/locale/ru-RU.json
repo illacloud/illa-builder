@@ -1677,7 +1677,7 @@
           "background": "Справочная информация",
           "calendar_background": "Справочная информация",
           "calendar_border": "Border",
-          "calendar_text": "Текст",
+          "calendar_text": "Вторичный текст",
           "event_background": "Справочная информация",
           "event_text": "Текст",
           "draggable": "Перетаскивание",
@@ -2078,7 +2078,7 @@
           "y-axis_value": "Задать значение оси Y",
           "stack_grouped_data": "Значения различных групп с одинаковым значением оси X будут укладываться в штабелерную диаграмму. Сложные диаграммы могут использоваться для сравнения общего размера разных категорий или групп, а также относительные размеры отдельных подкатегорий или подгрупп.",
           "x-axis_type": "Настройка типа диаграммы может повысить читабельность данных.",
-          "format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "format": "Допустимая строка формата даты. Смотрите [dayJS](https://day.js.org/docs/en/parse/string-format).",
           "legend_position": "Устанавливать местоположение законного. ",
           "grid_line": "Установить цвет линии сетки. ",
           "y-axis_type": "Настройка типа диаграммы может повысить читабельность данных."
@@ -3723,14 +3723,14 @@
           "traffic": "Трафик. Используется для загрузки файлов из ILLA Drive.",
           "token": "Токен агента ИИ. Используется для запуска агентов ИИ.",
           "conversion": {
-            "1": "10k Колла",
+            "1": "5к Колла",
             "2": "5Гб хранилища",
             "3": "5GB трафика",
             "4": "100 K токен"
           }
         },
-        "price": "/месяц/10k Colla",
-        "button": "Увеличить коллу"
+        "price": "/ месяц / 5к Colla",
+        "button": "Управление Коллой"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Колла"
       },
       "price": {
-        "colla_monthly": "{{price}}/monthly/10k Colla",
-        "colla_yearly": "{{price}}/год / 10k Colla"
+        "colla_monthly": "{{price}} / ежемесячно / 5k Colla",
+        "colla_yearly": "{{price}} / год / 60k Colla"
       },
       "plan_number_input_label": {
         "License": "Лицензии",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Отписаться",

@@ -1677,7 +1677,7 @@
           "background": "Φόντο",
           "calendar_background": "Φόντο",
           "calendar_border": "Border",
-          "calendar_text": "Κείμενο",
+          "calendar_text": "Δευτερεύον κείμενο",
           "event_background": "Φόντο",
           "event_text": "Κείμενο",
           "draggable": "Μετακινούμενο",
@@ -3723,14 +3723,14 @@
           "traffic": "Κυκλοφορία. Χρησιμοποιείται για λήψη αρχείων από το ILLA Drive.",
           "token": "Διακριτικό AI Agent. Χρησιμοποιείται για την εκτέλεση AI Agents.",
           "conversion": {
-            "1": "10k Colla",
+            "1": "5k Colla",
             "2": "5GB χώρος αποθήκευσης",
             "3": "5GB κυκλοφορία",
             "4": "100K διακριτικό"
           }
         },
-        "price": "/μήνα/10k Colla",
-        "button": "Αύξηση Colla"
+        "price": "/ μήνας / 5k Colla",
+        "button": "Διαχείριση Colla"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}}/monthly/10k Colla",
-        "colla_yearly": "{{price}}/yearly/10k Colla"
+        "colla_monthly": "{{price}} / μηνιαίως / 5k Colla",
+        "colla_yearly": "{{price}} / yearly / 60k Colla"
       },
       "plan_number_input_label": {
         "License": "Άδειες",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Διαγραφή",

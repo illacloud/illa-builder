@@ -1677,7 +1677,7 @@
           "background": "Pozadí",
           "calendar_background": "Pozadí",
           "calendar_border": "Border",
-          "calendar_text": "Text",
+          "calendar_text": "Sekundární text",
           "event_background": "Pozadí",
           "event_text": "Text",
           "draggable": "Posunout",
@@ -3723,14 +3723,14 @@
           "traffic": "Doprava. Používá se ke stahování souborů z ILLA Drive.",
           "token": "token AI agenta. Používá se ke spuštění AI agentů.",
           "conversion": {
-            "1": "10k Colla",
+            "1": "5k Colla",
             "2": "5GB úložiště",
             "3": "5GB provozu",
             "4": "Token 100K"
           }
         },
-        "price": "/měsíc/10k Colla",
-        "button": "Zvýšit Colla"
+        "price": "/ měsíc / 5k Colla",
+        "button": "Spravovat Colla"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}}/měsíčně/10k Colla",
-        "colla_yearly": "{{price}}/ročně/10 k Colla"
+        "colla_monthly": "{{price}} / měsíčně / 5k Colla",
+        "colla_yearly": "{{price}} / ročně / 60k Colla"
       },
       "plan_number_input_label": {
         "License": "Licence",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Odhlásit odběr",

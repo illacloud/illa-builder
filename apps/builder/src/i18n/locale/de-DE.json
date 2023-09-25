@@ -1677,7 +1677,7 @@
           "background": "Hintergrund",
           "calendar_background": "Hintergrund",
           "calendar_border": "Border",
-          "calendar_text": "Text",
+          "calendar_text": "Sekundärer Text",
           "event_background": "Hintergrund",
           "event_text": "Text",
           "draggable": "Ziehen möglich",
@@ -3723,14 +3723,14 @@
           "traffic": "Traffic. Wird zum Herunterladen von Dateien von ILLA Drive.",
           "token": "KI Agent-Token. Wird zum Ausführen von KI Agenten verwendet.",
           "conversion": {
-            "1": "10k Colla",
+            "1": "5k Colla",
             "2": "5GB Speicher",
             "3": "5GB Datenverkehr",
             "4": "100K Token"
           }
         },
-        "price": "/Monat/10k Colla",
-        "button": "Colla erhöhen"
+        "price": "/ Monat / 5k Colla",
+        "button": "Colla verwalten"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Lila"
       },
       "price": {
-        "colla_monthly": "{{price}}/monatlich/10k Colla",
-        "colla_yearly": "{{price}}/jährlich/10k Colla"
+        "colla_monthly": "{{price}} / monatlich / 5k Colla",
+        "colla_yearly": "{{price}} / Jährlich / 60k Colla"
       },
       "plan_number_input_label": {
         "License": "Lizenzen",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Abmelden",

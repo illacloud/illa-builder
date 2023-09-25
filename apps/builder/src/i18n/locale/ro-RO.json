@@ -1677,7 +1677,7 @@
           "background": "Context",
           "calendar_background": "Context",
           "calendar_border": "Border",
-          "calendar_text": "Text",
+          "calendar_text": "Text secundar",
           "event_background": "Context",
           "event_text": "Text",
           "draggable": "Draggable",
@@ -3723,14 +3723,14 @@
           "traffic": "Trafic. Folosit pentru a descărca fișiere de pe ILLA Drive.",
           "token": "Token Agent AI. Folosit pentru a rula AI Agenti.",
           "conversion": {
-            "1": "10k Colla",
+            "1": "5k Colla",
             "2": "5GB spațiu",
             "3": "trafic 5GB",
             "4": "Jeton 100K"
           }
         },
-        "price": "/lună/10k Colla",
-        "button": "Crește Cola"
+        "price": "/ lună / 5k Colla",
+        "button": "Gestionează Cola"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Cola"
       },
       "price": {
-        "colla_monthly": "{{price}}/lunar/10k Colla",
-        "colla_yearly": "{{price}}/an/10k Colla"
+        "colla_monthly": "{{price}} / lunar / 5k Colla",
+        "colla_yearly": "{{price}} / anual / 60k Colla"
       },
       "plan_number_input_label": {
         "License": "Licențe",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Dezabonare",
