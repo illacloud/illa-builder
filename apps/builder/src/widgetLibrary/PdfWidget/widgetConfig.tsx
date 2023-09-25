@@ -14,7 +14,7 @@ export const PDF_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     url: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Guideline_No._GD-Ed-2214_Marman_Clamp_Systems_Design_Guidelines.pdf",
     hidden: false,
-    showTollBar: true,
+    showToolBar: true,
     scaleMode: "width",
     width: undefined,
     height: undefined,
