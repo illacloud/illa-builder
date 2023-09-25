@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Accesul la mai multe modele, cum ar fi GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "colla": "2.5k Colla / lună"
           }
         },
         "price": "/lună/editor"
@@ -3726,7 +3726,7 @@
             "1": "10k Colla",
             "2": "5GB spațiu",
             "3": "trafic 5GB",
-            "4": "50k token"
+            "4": "Jeton 50k"
           }
         },
         "price": "/lună/10k Colla",
