@@ -4033,7 +4033,7 @@
           }
         },
         "button": "Increase Colla",
-        "cycle": "/ monthly / 10k Colla",
+        "cycle": "monthly / 5k Colla",
         "failed": {
           "title": "Failed to increase Colla",
           "storage": {
