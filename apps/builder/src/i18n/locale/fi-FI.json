@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Pääsy useampiin malleihin, kuten GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "colla": "2,5k Koolla / kuukausi"
           }
         },
         "price": "/kk/editor"
@@ -3726,7 +3726,7 @@
             "1": "10K Kolla",
             "2": "5 Gt tallennustila",
             "3": "5GB liikenne",
-            "4": "50k token"
+            "4": "50k tunnus"
           }
         },
         "price": "/kk/10k Kolla",
