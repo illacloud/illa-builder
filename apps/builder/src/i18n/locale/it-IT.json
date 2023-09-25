@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Access to more models such as GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For first time )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/month/editor"
@@ -3726,7 +3726,7 @@
             "1": "10k Colla",
             "2": "5GB storage",
             "3": "5GB traffic",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/month/10k Colla",
