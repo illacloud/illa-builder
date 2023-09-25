@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Přístup k více modelům, jako je GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "colla": "2.5k Colla / měsíc"
           }
         },
         "price": "/měsíc/editor"
