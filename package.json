@@ -21,27 +21,28 @@
     "@emotion/react": "^11.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.4.4",
-    "@reduxjs/toolkit": "^1.9.1",
-    "react-i18next": "^12.1.4",
-    "i18next": "^22.4.9",
-    "turbo": "1.8.3"
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.16.0",
+    "@reduxjs/toolkit": "^1.9.6",
+    "react-i18next": "^13.2.2",
+    "i18next": "^23.5.1",
+    "dayjs": "^1.11.10",
+    "turbo": "^1.10.14"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
-    "@rollup/plugin-typescript": "^11.1.2",
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@types/react": "^18.2.20",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@rollup/plugin-typescript": "^11.1.3",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
-    "@types/node": "^18.14.4",
-    "eslint": "^8.33.0",
+    "@types/node": "^18.17.19",
+    "eslint": "^8.50.0",
     "eslint-config-illa": "workspace:*",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.1",
-    "prettier": "^2.8.4",
-    "typescript": "^5.0.4",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
     "vite": "^4.4.9"
   },
   "engines": {
@@ -57,7 +58,12 @@
       "react-router-dom": "$react-router-dom",
       "@reduxjs/toolkit": "$@reduxjs/toolkit",
       "react-i18next": "$react-i18next",
-      "i18next": "$i18next"
+      "i18next": "$i18next",
+      "typescript": "$typescript",
+      "vite": "$vite",
+      "@emotion/react": "$@emotion/react",
+      "turbo": "$turbo",
+      "dayjs": "$dayjs"
     }
   }
 }

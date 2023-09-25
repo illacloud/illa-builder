@@ -1,10 +1,8 @@
-import { Global } from "@emotion/react"
 import { isCloudVersion } from "@illa-public/utils"
 import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { RoutesObjectPro } from "@/router/interface"
 import { routerConfig } from "@/router/routerConfig"
-import { mobileAdaptationStyle } from "@/style"
 import { beautifyURLLoader } from "./loader/beautifyURLLoader"
 import { setTokenToLocalStorageLoader } from "./loader/cloudAuthLoader"
 import {
@@ -30,12 +28,7 @@ const wrappedRouter = (
     if (!newRouteItem.accessByMobile) {
       newRouteItem.element = <LayoutAutoChange desktopPage={element} />
     } else {
-      newRouteItem.element = (
-        <>
-          <Global styles={mobileAdaptationStyle} />
-          {element}
-        </>
-      )
+      newRouteItem.element = <>{element}</>
     }
     newRouteItem.loader = async (args) => {
       if (isCloudVersion) {

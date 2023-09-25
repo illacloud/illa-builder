@@ -111,7 +111,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         displayName,
         resourceID,
         content: initialContent,
-        isVirtualResource: true,
+        isVirtualResource: false,
         ...actionItemInitial,
       }
       if (data.actionType !== "transformer") {
