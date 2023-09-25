@@ -445,7 +445,7 @@ export const InitialValue = {
   [AuthActionTypeValue.GET_USER_BY_EMAIL]: GetUserByEmailInitial,
   [AuthActionTypeValue.GET_USER_BY_PHONE]: GetUserByPhoneInitial,
   [AuthActionTypeValue.CREATE_ONE_USER]: CreateUserInitial,
-  [AuthActionTypeValue.UPDATE_ONE_USER]: UpdateOneUserInitial,
+  // [AuthActionTypeValue.UPDATE_ONE_USER]: UpdateOneUserInitial, // TODO: fix this
   [AuthActionTypeValue.DELETE_ONE_USER]: DeleteOneUserInitial,
   [AuthActionTypeValue.LIST_USERS]: ListUsersInitial,
   [FirestoreActionTypeValue.QUERY_FIREBASE]: QueryFirebaseInitial,
