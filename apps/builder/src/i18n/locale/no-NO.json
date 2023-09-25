@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Tilgang til flere modeller som GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For første gang)"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/måned/redigering"
@@ -3726,7 +3726,7 @@
             "1": "10k Colla",
             "2": "5GB lagring",
             "3": "5GB trafikk",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/måned Kolla",
