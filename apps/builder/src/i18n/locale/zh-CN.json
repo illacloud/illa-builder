@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "访问更多模型，如GPT-4, GPT-3.5...",
-            "colla": "30k Colla(首次)"
+            "colla": "2.5k Colla / 月"
           }
         },
         "price": "/月/编辑者"
@@ -3726,7 +3726,7 @@
             "1": "5k Colla",
             "2": "5GB存储空间",
             "3": "5GB流量",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/ 月 / 5k Colla",

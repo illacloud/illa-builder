@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Tillgång till fler modeller som GPT-4, GPT-3.5...",
-            "colla": "30k Colla (För första gången)"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/månad/redaktör"
@@ -3723,14 +3723,14 @@
           "traffic": "Traffic. Används för att ladda ner filer från ILLA Drive.",
           "token": "AI Agent token. Används för att köra AI-agenter.",
           "conversion": {
-            "1": "5 k Colla",
+            "1": "10k Colla",
             "2": "5 GB lagring",
             "3": "5GB trafik",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
-        "price": "/ månad / 5k Colla",
-        "button": "Hantera Colla"
+        "price": "/månad/10k Colla",
+        "button": "Öka Colla"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Korsa"
       },
       "price": {
-        "colla_monthly": "{{price}} / månadsvis / 5k Colla",
-        "colla_yearly": "{{price}} / årligt / 60 k Colla"
+        "colla_monthly": "{{price}}/månatlig/10k Colla",
+        "colla_yearly": "{{price}}/år/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Licenser",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Avprenumerera",

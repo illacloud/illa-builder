@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Pääsy useampiin malleihin, kuten GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( ensimmäistä kertaa )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/kk/editor"
@@ -3723,14 +3723,14 @@
           "traffic": "Liikenne. Käytetään ladattaessa tiedostoja ILLA Drivesta.",
           "token": "AI Agent merkitty. Käytetään AI Agents.",
           "conversion": {
-            "1": "5K Kolla",
+            "1": "10K Kolla",
             "2": "5 Gt tallennustila",
             "3": "5GB liikenne",
-            "4": "100K tunnus"
+            "4": "50k token"
           }
         },
-        "price": "/ kuukausi / 5k Colla",
-        "button": "Hallitse Kollaa"
+        "price": "/kk/10k Kolla",
+        "button": "Lisää Kollaa"
       }
     },
     "title": {
@@ -3864,8 +3864,8 @@
         "colla": "Kolla"
       },
       "price": {
-        "colla_monthly": "{{price}} / kuukausittain / 5k Colla",
-        "colla_yearly": "{{price}} / vuosittainen / 60k Colla"
+        "colla_monthly": "{{price}}/kuukausi/10K Colla",
+        "colla_yearly": "{{price}}/vuosi/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Lisenssit",
@@ -3910,7 +3910,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Peruuta Tilaus",
