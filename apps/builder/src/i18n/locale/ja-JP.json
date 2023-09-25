@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "GPT-4、GPT-3.5などの他のモデルへのアクセス...",
-            "colla": "30k Colla (初めて)"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/month/editor"
@@ -3726,7 +3726,7 @@
             "1": "10k Colla",
             "2": "5GBのストレージ",
             "3": "5GBのトラフィック",
-            "4": "100Kトークン"
+            "4": "50k token"
           }
         },
         "price": "/month/10k Colla",
