@@ -605,11 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Create from resource",
               "js": "JavaScript",
               "global-data": "Global data",
               "ai-agent": "AI Agent",
-              "more": "More"
+              "more": "More",
+              "create-resource": "Create from resource"
             }
           },
           "restapi": {
