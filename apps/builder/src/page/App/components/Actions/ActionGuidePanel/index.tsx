@@ -11,6 +11,7 @@ import {
   ActionContent,
   ActionItem,
   ActionType,
+  GlobalDataActionContent,
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
@@ -92,6 +93,22 @@ export const ActionGuidePanel: FC = () => {
               oldKey: "",
             }),
           )
+          const createActionData: ActionItem<GlobalDataActionContent> = {
+            actionID: displayName,
+            displayName: displayName,
+            actionType: "globalData",
+            triggerMode: "manually",
+            isVirtualResource: true,
+            content: {
+              initialValue: "",
+            },
+            transformer: {
+              enable: false,
+              rawData: "",
+            },
+          }
+          dispatch(configActions.changeSelectedAction(createActionData))
+
           break
         }
         default: {
