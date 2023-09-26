@@ -651,6 +651,9 @@
               "filter_by_formula": "수식 사용 방법을 알아보려면 <0>여기를 클릭</0>하세요.",
               "time_zone": "지원되는 모든 시간대를 확인하려면 <0>여기를 클릭</0>하세요.",
               "user_locales": "지원되는 모든 언어를 확인하려면 <0>여기를 클릭</0>하세요."
+            },
+            "global-data": {
+              "how-to-use": "Use this global data by {{globalData.state1}}"
             }
           },
           "advanced": {
