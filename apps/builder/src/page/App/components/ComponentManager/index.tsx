@@ -70,7 +70,7 @@ export const ComponentsManager: FC = () => {
       <Suspense fallback={<WidgetLoading />}>
         {getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}
       </Suspense>
-      {widgetCount > 0 && (
+      {widgetCount <= 0 && (
         <div css={notHasComponentTipsStyle}>
           <Tip />
         </div>
