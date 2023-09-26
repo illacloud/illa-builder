@@ -651,6 +651,9 @@
               "filter_by_formula": "<0>Klikk her</0> for å lære hvordan du bruker formel.",
               "time_zone": "<0>Klikk her</0> for å kontrollere alle støttede tidssoner.",
               "user_locales": "<0>Klikk her</0> for å sjekke alle støttede lokaliteter. "
+            },
+            "global-data": {
+              "how-to-use": "Bruk disse globale dataene av {{globalData.state1}}"
             }
           },
           "advanced": {
