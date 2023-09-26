@@ -605,11 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Vytvořit ze zdroje",
               "js": "JavaScript",
               "global-data": "Globální data",
               "ai-agent": "AI Agent",
-              "more": "Více"
+              "more": "Více",
+              "create-resource": "Vytvořit ze zdroje"
             }
           },
           "restapi": {
