@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "Globale data",
+              "ai-agent": "AI Agent",
+              "more": "Mer",
+              "create-resource": "Opprett fra ressurs"
             }
           },
           "restapi": {
@@ -681,6 +688,10 @@
             "variable": "Variabel",
             "input": "Send innhold",
             "max-token": "Maks token"
+          },
+          "general": {
+            "connect-data-source": "Koble til database eller api",
+            "more-type": "Mer type datakilder"
           }
         },
         "menu": {
@@ -880,6 +891,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Koble til din datakilde og opprett en handling for å utføre CRUD"
           }
         }
       },
@@ -3096,6 +3112,9 @@
     },
     "grid_list": {
       "name": "Rutenett liste"
+    },
+    "frame": {
+      "initial-title": "Dra en komponent for å legge den til rammen"
     }
   },
   "page": {

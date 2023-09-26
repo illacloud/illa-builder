@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "Globala data",
+              "ai-agent": "AI Agent",
+              "more": "Mer",
+              "create-resource": "Skapa från resurs"
             }
           },
           "restapi": {
@@ -681,6 +688,10 @@
             "variable": "Variabel",
             "input": "Skicka innehåll",
             "max-token": "Max token"
+          },
+          "general": {
+            "connect-data-source": "Anslut till databas eller api",
+            "more-type": "Fler typer av datakällor"
           }
         },
         "menu": {
@@ -880,6 +891,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Anslut till din datakälla och skapa en åtgärd för att utföra CRUD"
           }
         }
       },
@@ -3096,6 +3112,9 @@
     },
     "grid_list": {
       "name": "Lista över rutnät"
+    },
+    "frame": {
+      "initial-title": "Dra en komponent för att lägga till den i ramen"
     }
   },
   "page": {

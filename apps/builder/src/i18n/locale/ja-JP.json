@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "グローバルデータ",
+              "ai-agent": "AI Agent",
+              "more": "もっと見る",
+              "create-resource": "リソースから作成"
             }
           },
           "restapi": {
@@ -681,6 +688,10 @@
             "variable": "変数",
             "input": "コンテンツを送信",
             "max-token": "最大トークン"
+          },
+          "general": {
+            "connect-data-source": "データベースまたは api に接続します",
+            "more-type": "More type of data source"
           }
         },
         "menu": {
@@ -880,6 +891,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "データソースに接続し、CRUD を実行するアクションを作成します"
           }
         }
       },
@@ -3096,6 +3112,9 @@
     },
     "grid_list": {
       "name": "グリッドリスト"
+    },
+    "frame": {
+      "initial-title": "コンポーネントをドラッグしてフレームに追加します"
     }
   },
   "page": {

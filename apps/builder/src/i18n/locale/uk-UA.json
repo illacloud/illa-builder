@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "Global data",
+              "ai-agent": "AI Agent",
+              "more": "More",
+              "create-resource": "Create from resource"
             }
           },
           "restapi": {
@@ -681,6 +688,10 @@
             "variable": "Змінна",
             "input": "Надіслати вміст",
             "max-token": "Максимальний токен"
+          },
+          "general": {
+            "connect-data-source": "Connect to database or api",
+            "more-type": "More type of data sources"
           }
         },
         "menu": {
@@ -880,6 +891,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Connect to your data source and create an action to perform CRUD"
           }
         }
       },
@@ -3096,6 +3112,9 @@
     },
     "grid_list": {
       "name": "Список сіток"
+    },
+    "frame": {
+      "initial-title": "Drag a component to add it to the frame"
     }
   },
   "page": {
