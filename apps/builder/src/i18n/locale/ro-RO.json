@@ -605,11 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Creează din resurse",
               "js": "JavaScript",
               "global-data": "Date globale",
               "ai-agent": "AI Agent",
-              "more": "Mai"
+              "more": "Mai",
+              "create-resource": "Creează din resurse"
             }
           },
           "restapi": {
