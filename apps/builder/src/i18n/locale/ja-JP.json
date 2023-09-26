@@ -605,10 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Create from resource",
+              "create-reasource": "リソースから作成",
               "js": "JavaScript",
-              "global-data": "Global data",
-              "ai-agent": "AI Agent"
+              "global-data": "グローバルデータ",
+              "ai-agent": "AI Agent",
+              "more": "もっと見る"
             }
           },
           "restapi": {
@@ -687,6 +688,10 @@
             "variable": "変数",
             "input": "コンテンツを送信",
             "max-token": "最大トークン"
+          },
+          "general": {
+            "connect-data-source": "データベースまたは api に接続します",
+            "more-type": "More type of data source"
           }
         },
         "menu": {
@@ -890,7 +895,7 @@
         },
         "title": {
           "general": {
-            "initial-title": "Connect to your data source and create an action to excute CRUD"
+            "initial-title": "データソースに接続し、CRUD を実行するアクションを作成します"
           }
         }
       },
@@ -3109,7 +3114,7 @@
       "name": "グリッドリスト"
     },
     "frame": {
-      "initial-title": "Drag a component to add it to the frame"
+      "initial-title": "コンポーネントをドラッグしてフレームに追加します"
     }
   },
   "page": {
