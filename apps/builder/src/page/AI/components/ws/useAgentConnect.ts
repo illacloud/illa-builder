@@ -2,6 +2,7 @@ import { AI_AGENT_TYPE } from "@illa-public/market-agent"
 import {
   CollarModalType,
   handleCollaPurchaseError,
+  usePayErrorModal,
 } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -52,6 +53,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
   const currentUserInfo = useSelector(getCurrentUser)
 
   const message = useMessage()
+  const payErrorModal = usePayErrorModal()
   const { t } = useTranslation()
 
   const sendMessage = useCallback(
@@ -206,7 +208,6 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                     break
                 }
               } else {
-                // TODO wtf, error flag code
                 switch (callback.errorCode) {
                   case 1:
                     onReceiving(false)
@@ -225,8 +226,8 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                     break
                   case 17:
                   case 18:
-                    message.error({
-                      content: t("editor.ai-agent.message.token-not-enough"),
+                    payErrorModal({
+                      modalType: CollarModalType.TOKEN,
                     })
                     break
                   case 3:
@@ -245,7 +246,6 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
         onReceiving(true)
         onStartRunning()
       } catch (e) {
-        // TODO wtf, error flag
         onConnecting(false)
         const res = handleCollaPurchaseError(e, CollarModalType.TOKEN)
         if (res) return
@@ -257,16 +257,17 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     },
     [
       cleanMessage,
+      message,
       onConnecting,
-      onRunning,
       onReceiving,
-      onStartRunning,
-      onUpdateRoomUsers,
+      onRunning,
       onSendClean,
       onSendPrompt,
+      onStartRunning,
       onUpdateChatMessage,
       onUpdateGenerationMessage,
-      message,
+      onUpdateRoomUsers,
+      payErrorModal,
       t,
     ],
   )
