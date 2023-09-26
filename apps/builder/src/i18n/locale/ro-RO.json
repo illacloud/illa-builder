@@ -605,10 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Create from resource",
+              "create-reasource": "Creează din resurse",
               "js": "JavaScript",
-              "global-data": "Global data",
-              "ai-agent": "AI Agent"
+              "global-data": "Date globale",
+              "ai-agent": "AI Agent",
+              "more": "Mai"
             }
           },
           "restapi": {
@@ -687,6 +688,10 @@
             "variable": "Variabilă",
             "input": "Trimite conținut",
             "max-token": "Token-ul maxim"
+          },
+          "general": {
+            "connect-data-source": "Conectează-te la baza de date sau API",
+            "more-type": "Mai multe tipuri de surse de date"
           }
         },
         "menu": {
@@ -890,7 +895,7 @@
         },
         "title": {
           "general": {
-            "initial-title": "Connect to your data source and create an action to excute CRUD"
+            "initial-title": "Conectați-vă la sursa de date și creați o acțiune pentru a efectua CRUD"
           }
         }
       },
@@ -3109,7 +3114,7 @@
       "name": "Listă grilă"
     },
     "frame": {
-      "initial-title": "Connect to your data source and create an action to excute CRUD"
+      "initial-title": "Trage o componentă pentru a o adăuga la cadru"
     }
   },
   "page": {
