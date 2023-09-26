@@ -651,6 +651,9 @@
               "filter_by_formula": "<0>Klikkaa tästä</0> oppiaksesi käyttämään kaavaa.",
               "time_zone": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut aikavyöhykkeet.",
               "user_locales": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut lokaatiot. "
+            },
+            "global-data": {
+              "how-to-use": "Käytä näitä yleisiä tietoja {{globalData.state1}}"
             }
           },
           "advanced": {
