@@ -651,6 +651,9 @@
               "filter_by_formula": "<0>Kliknutím zde</0> se dozvíte, jak použít vzorec",
               "time_zone": "<0>Klikněte zde</0> pro kontrolu všech podporovaných časových pásem.",
               "user_locales": "<0>Klikněte zde</0> pro kontrolu všech podporovaných lokalizací. "
+            },
+            "global-data": {
+              "how-to-use": "Použít tato globální data {{globalData.state1}}"
             }
           },
           "advanced": {
