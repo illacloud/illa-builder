@@ -605,11 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Δημιουργία από πόρους",
               "js": "JavaScript",
               "global-data": "Καθολικά δεδομένα",
               "ai-agent": "AI Agent",
-              "more": "Περισσότερα"
+              "more": "Περισσότερα",
+              "create-resource": "Δημιουργία από πόρους"
             }
           },
           "restapi": {
