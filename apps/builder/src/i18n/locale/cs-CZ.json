@@ -605,10 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Create from resource",
+              "create-reasource": "Vytvořit ze zdroje",
               "js": "JavaScript",
-              "global-data": "Global data",
-              "ai-agent": "AI Agent"
+              "global-data": "Globální data",
+              "ai-agent": "AI Agent",
+              "more": "Více"
             }
           },
           "restapi": {
@@ -687,6 +688,10 @@
             "variable": "Proměnná",
             "input": "Odeslat obsah",
             "max-token": "Maximální token"
+          },
+          "general": {
+            "connect-data-source": "Připojit k databázi nebo api",
+            "more-type": "Další typ zdrojů údajů"
           }
         },
         "menu": {
@@ -890,7 +895,7 @@
         },
         "title": {
           "general": {
-            "initial-title": "Connect to your data source and create an action to excute CRUD"
+            "initial-title": "Připojte se ke zdroji dat a vytvořte akci k provedení CRUD"
           }
         }
       },
@@ -3109,7 +3114,7 @@
       "name": "Seznam mřížek"
     },
     "frame": {
-      "initial-title": "Drag a component to add it to the frame"
+      "initial-title": "Přetažením komponenty ji přidáte do rámečku"
     }
   },
   "page": {
