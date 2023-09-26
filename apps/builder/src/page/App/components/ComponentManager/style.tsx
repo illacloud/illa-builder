@@ -39,6 +39,6 @@ export const containerStyle = css`
 
 export const notHasComponentTipsStyle = css`
   position: absolute;
-  right: calc(100% + 23px);
-  top: 189px;
+  right: calc(100% + 100px);
+  top: 260px;
 `
