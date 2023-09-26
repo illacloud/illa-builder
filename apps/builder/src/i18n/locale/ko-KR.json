@@ -603,6 +603,12 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "create-reasource": "Create from resource",
+              "js": "JavaScript",
+              "global-data": "Global data",
+              "ai-agent": "AI Agent"
             }
           },
           "restapi": {
@@ -880,6 +886,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string } }}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Connect to your data source and create an action to excute CRUD"
           }
         }
       },
@@ -3096,6 +3107,9 @@
     },
     "grid_list": {
       "name": "Grid list"
+    },
+    "frame": {
+      "initial-title": "Drag a component to add it to the frame"
     }
   },
   "page": {
