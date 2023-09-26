@@ -651,6 +651,9 @@
               "filter_by_formula": "<0>Faceți clic aici</0> pentru a afla cum să utilizați formula.",
               "time_zone": "<0>Faceți clic aici</0> pentru a verifica toate fusele orare acceptate.",
               "user_locales": "<0>Faceți clic aici</0> pentru a verifica toate localurile acceptate. "
+            },
+            "global-data": {
+              "how-to-use": "Utilizați aceste date globale de către {{globalData.state1}}"
             }
           },
           "advanced": {
