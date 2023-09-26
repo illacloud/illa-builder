@@ -605,10 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Create from resource",
-              "js": "JavaScript",
-              "global-data": "Global data",
-              "ai-agent": "AI Agent"
+              "create-reasource": "Luo resurssista",
+              "js": "Skripti",
+              "global-data": "Globaalit tiedot",
+              "ai-agent": "AI Agent",
+              "more": "Lisää"
             }
           },
           "restapi": {
@@ -687,6 +688,10 @@
             "variable": "Muuttuja",
             "input": "Lähetä sisältöä",
             "max-token": "Max tunnus"
+          },
+          "general": {
+            "connect-data-source": "Yhdistä tietokantaan tai apiin",
+            "more-type": "Enemmän tietolähteitä"
           }
         },
         "menu": {
@@ -890,7 +895,7 @@
         },
         "title": {
           "general": {
-            "initial-title": "Connect to your data source and create an action to excute CRUD"
+            "initial-title": "Yhdistä tietolähteeseesi ja luo toiminto CRUD:n suorittamiseksi"
           }
         }
       },
@@ -3109,7 +3114,7 @@
       "name": "Ruudukko lista"
     },
     "frame": {
-      "initial-title": "Drag a component to add it to the frame"
+      "initial-title": "Vedä komponentti lisätäksesi sen kehykseen"
     }
   },
   "page": {
