@@ -141,7 +141,6 @@ export const DrivePickerProvider: FC<Props> = (props) => {
           handleCloseModal()
           resolve(true)
         } catch (e) {
-          // TODO wtf, error flag
           reject(e)
         }
       })
