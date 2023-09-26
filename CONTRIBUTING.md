@@ -79,7 +79,7 @@ ILLA_USE_HTTPS=false
 
 #### If you not have rust
 
-You can use Docker pull image:`docker pull illa-soft/illa-builder:latest`,and then you can run `docker run -d -p 9345:2022 illasoft/illa-builder:latest`,this means you will deploy illa-builder-backend at port 9345. And then you can modify your `.env.development.local`
+You can use Docker pull image:`docker pull illasoft/illa-builder:latest`,and then you can run `docker run -d -p 9345:2022 illasoft/illa-builder:latest`,this means you will deploy illa-builder-backend at port 9345. And then you can modify your `.env.development.local`
 
 
 

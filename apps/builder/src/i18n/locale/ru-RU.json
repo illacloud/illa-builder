@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "Глобальные данные",
+              "ai-agent": "AI Agent",
+              "more": "Ещё",
+              "create-resource": "Создать из ресурса"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Нажмите здесь</0>, чтобы узнать, как использовать формулу.",
               "time_zone": "<0>Нажмите здесь</0> для проверки всех поддерживаемых часовых поясов.",
               "user_locales": "<0>Нажмите здесь</0>, чтобы проверить все поддерживаемые локали. "
+            },
+            "global-data": {
+              "how-to-use": "Использовать эти глобальные данные {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Переменная",
             "input": "Отправить контент",
             "max-token": "Макс. токен"
+          },
+          "general": {
+            "connect-data-source": "Подключиться к базе данных или api",
+            "more-type": "Больше типов источников данных"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Подключитесь к источнику данных и создайте действие для выполнения CRUD"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Список сетки"
+    },
+    "frame": {
+      "initial-title": "Перетащите компонент, чтобы добавить его в кадр"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Доступ к другим моделям, таким как GPT-4, GPT-3.5...",
-            "colla": "30k Колла ( Впервые )"
+            "colla": "2.5k Колла в месяц"
           }
         },
         "price": "/месяц/редактор"
@@ -3723,14 +3745,14 @@
           "traffic": "Трафик. Используется для загрузки файлов из ILLA Drive.",
           "token": "Токен агента ИИ. Используется для запуска агентов ИИ.",
           "conversion": {
-            "1": "5к Колла",
+            "1": "10k Колла",
             "2": "5Гб хранилища",
             "3": "5GB трафика",
-            "4": "100 K токен"
+            "4": "50k токен"
           }
         },
-        "price": "/ месяц / 5к Colla",
-        "button": "Управление Коллой"
+        "price": "/месяц/10k Colla",
+        "button": "Увеличить коллу"
       }
     },
     "title": {
@@ -3864,8 +3886,8 @@
         "colla": "Колла"
       },
       "price": {
-        "colla_monthly": "{{price}} / ежемесячно / 5k Colla",
-        "colla_yearly": "{{price}} / год / 60k Colla"
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/год / 10k Colla"
       },
       "plan_number_input_label": {
         "License": "Лицензии",
@@ -3910,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Отписаться",

@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "Globale Daten",
+              "ai-agent": "AI Agent",
+              "more": "Mehr",
+              "create-resource": "Aus Ressource erstellen"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klicken Sie hier</0> um die Verwendung von Formeln zu erfahren.",
               "time_zone": "<0>Hier klicken</0> um alle unterstützten Zeitzonen zu überprüfen.",
               "user_locales": "<0>Hier klicken</0> um alle unterstützten Sprachen zu überprüfen. "
+            },
+            "global-data": {
+              "how-to-use": "Diese globalen Daten von {{globalData.state1}} verwenden"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variable",
             "input": "Inhalt senden",
             "max-token": "Max. Token"
+          },
+          "general": {
+            "connect-data-source": "Mit Datenbank oder Api verbinden",
+            "more-type": "Weitere Datenquellentypen"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Verbinde dich mit deiner Datenquelle und erstelle eine Aktion um CRUD auszuführen"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Rasterliste"
+    },
+    "frame": {
+      "initial-title": "Ziehen Sie eine Komponente, um sie dem Rahmen hinzuzufügen"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Zugriff auf weitere Modelle wie GPT-4, GPT-3.5...",
-            "colla": "30k Colla (zum ersten Mal)"
+            "colla": "2,5k Colla / Monat"
           }
         },
         "price": "/Monat/Editor"
@@ -3723,14 +3745,14 @@
           "traffic": "Traffic. Wird zum Herunterladen von Dateien von ILLA Drive.",
           "token": "KI Agent-Token. Wird zum Ausführen von KI Agenten verwendet.",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GB Speicher",
             "3": "5GB Datenverkehr",
-            "4": "100K Token"
+            "4": "50k Token"
           }
         },
-        "price": "/ Monat / 5k Colla",
-        "button": "Colla verwalten"
+        "price": "/Monat/10k Colla",
+        "button": "Colla erhöhen"
       }
     },
     "title": {
@@ -3864,8 +3886,8 @@
         "colla": "Lila"
       },
       "price": {
-        "colla_monthly": "{{price}} / monatlich / 5k Colla",
-        "colla_yearly": "{{price}} / Jährlich / 60k Colla"
+        "colla_monthly": "{{price}}/monatlich/10k Colla",
+        "colla_yearly": "{{price}}/jährlich/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Lizenzen",
@@ -3910,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Abmelden",

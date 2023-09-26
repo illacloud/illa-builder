@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "Globale data",
+              "ai-agent": "AI Agent",
+              "more": "Mer",
+              "create-resource": "Opprett fra ressurs"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klikk her</0> for å lære hvordan du bruker formel.",
               "time_zone": "<0>Klikk her</0> for å kontrollere alle støttede tidssoner.",
               "user_locales": "<0>Klikk her</0> for å sjekke alle støttede lokaliteter. "
+            },
+            "global-data": {
+              "how-to-use": "Bruk disse globale dataene av {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variabel",
             "input": "Send innhold",
             "max-token": "Maks token"
+          },
+          "general": {
+            "connect-data-source": "Koble til database eller api",
+            "more-type": "Mer type datakilder"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Koble til din datakilde og opprett en handling for å utføre CRUD"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Rutenett liste"
+    },
+    "frame": {
+      "initial-title": "Dra en komponent for å legge den til rammen"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Tilgang til flere modeller som GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For første gang)"
+            "colla": "2,5k Colla / måned"
           }
         },
         "price": "/måned/redigering"
@@ -3723,14 +3745,14 @@
           "traffic": "Traffic. Brukes til å laste ned filer fra ILLA-driveren.",
           "token": "AI Agent token. Brukes til å kjøre AI agenter.",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GB lagring",
             "3": "5GB trafikk",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
-        "price": "/ måned / 5k Colla",
-        "button": "Behandle kolla"
+        "price": "/måned Kolla",
+        "button": "Øk kolla"
       }
     },
     "title": {
@@ -3864,8 +3886,8 @@
         "colla": "Kolla"
       },
       "price": {
-        "colla_monthly": "{{price}} / månedlig / 5k Colla",
-        "colla_yearly": "{{price}} / Årlig / 60k Colla"
+        "colla_monthly": "{{price}}/ månedsl/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Lisenser",
@@ -3910,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Avmeld",

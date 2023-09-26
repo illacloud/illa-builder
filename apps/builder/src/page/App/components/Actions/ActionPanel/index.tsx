@@ -90,6 +90,10 @@ const AIAgentPanel = lazy(
   () => import("@/page/App/components/Actions/ActionPanel/AIAgentPanel"),
 )
 
+const GlobalDataPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/GlobalDataPanel"),
+)
+
 export const ActionPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction)
   const selectedAction = useSelector(getSelectedAction)!
@@ -129,6 +133,7 @@ export const ActionPanel: FC = () => {
       })
     }
   }, [cachedAction])
+
   const panel = useMemo(() => {
     switch (cachedAction?.actionType) {
       case "clickhouse":
@@ -180,12 +185,14 @@ export const ActionPanel: FC = () => {
         return <AirtablePanel />
       case "aiagent":
         return <AIAgentPanel />
+      case "globalData":
+        return <GlobalDataPanel />
       default:
         return <></>
     }
   }, [cachedAction])
 
-  if (cachedAction === null || cachedAction === undefined) {
+  if (!cachedAction) {
     return <></>
   }
 

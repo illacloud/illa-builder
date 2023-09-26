@@ -1,5 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { RootState } from "@/store"
+import { getGlobalDataToActionList } from "../editor/components/componentsSelector"
 
 export const getActionList = (state: RootState) => state.currentApp.action
 
@@ -21,5 +22,12 @@ export const getDisplayNameMapActions = createSelector(
       displayNameMapActions[action.displayName] = action
     })
     return displayNameMapActions
+  },
+)
+
+export const getActionMixedList = createSelector(
+  [getActionList, getGlobalDataToActionList],
+  (actionList, globalDataList) => {
+    return actionList.concat(...globalDataList)
   },
 )

@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "グローバルデータ",
+              "ai-agent": "AI Agent",
+              "more": "もっと見る",
+              "create-resource": "リソースから作成"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "数式の使い方は<0>こちら</0>をクリックしてください。",
               "time_zone": "<0>ここをクリック</0>サポートされているすべてのタイムゾーンを確認します。",
               "user_locales": "<0>ここをクリック</0>サポートされているすべてのロケールを確認します。 "
+            },
+            "global-data": {
+              "how-to-use": "このグローバルデータを {{globalData.state1}}で使用する"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "変数",
             "input": "コンテンツを送信",
             "max-token": "最大トークン"
+          },
+          "general": {
+            "connect-data-source": "データベースまたは api に接続します",
+            "more-type": "More type of data source"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "データソースに接続し、CRUD を実行するアクションを作成します"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "グリッドリスト"
+    },
+    "frame": {
+      "initial-title": "コンポーネントをドラッグしてフレームに追加します"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "GPT-4、GPT-3.5などの他のモデルへのアクセス...",
-            "colla": "30k Colla (初めて)"
+            "colla": "2.5kコラ/月"
           }
         },
         "price": "/month/editor"
@@ -3723,14 +3745,14 @@
           "traffic": "トラフィック。ILLAドライブからファイルをダウンロードするために使用されます。",
           "token": "AIエージェントトークン。AIエージェントの実行に使用されます。",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GBのストレージ",
             "3": "5GBのトラフィック",
-            "4": "100Kトークン"
+            "4": "50kトークン"
           }
         },
-        "price": "/ 月 / 5k Colla",
-        "button": "コラの管理"
+        "price": "/month/10k Colla",
+        "button": "コラを上げる"
       }
     },
     "title": {
@@ -3864,8 +3886,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}} / 月額/5k Colla",
-        "colla_yearly": "{{price}} / 年間/60k Colla"
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
       },
       "plan_number_input_label": {
         "License": "ライセンス",
@@ -3910,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} * {{purchaseNum}} "
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "購読解除",
