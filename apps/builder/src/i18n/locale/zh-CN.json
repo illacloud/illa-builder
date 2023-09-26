@@ -99,11 +99,11 @@
         "action_generator": {
           "btns": {
             "back": "返回",
-            "create_action": "创建 Action",
+            "create_action": "创建动作",
             "new_resource": "添加资源"
           },
           "selector": {
-            "title": "选择 Action 类型"
+            "title": "选择动作类型"
           },
           "title": {
             "choose_resource": "资源选择 "
@@ -121,7 +121,7 @@
         "message": {
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
           "failed": "服务器连接失败",
-          "load_action_list_fail": "获取 Action 列表失败: {{message}}",
+          "load_action_list_fail": "获取动作列表失败: {{message}}",
           "load_resource_fail": "获取资源列表失败: {{message}}",
           "name_already_exist": "名称已经存在",
           "please_input_name": "请输入名称",
@@ -146,10 +146,10 @@
           "transformer": "Transformer"
         },
         "tips": {
-          "empty": "添加 Action 以开始处理连接资源中的数据",
+          "empty": "添加动作以开始处理连接资源中的数据",
           "not_found": "抱歉，没有搜索结果"
         },
-        "title": "Action 列表"
+        "title": "动作列表"
       },
       "form": {
         "btn": {
@@ -214,7 +214,7 @@
           },
           "gs": {
             "private_key": "私钥",
-            "action_type": "操作类型",
+            "action_type": "动作类型",
             "spreadsheet": "电子表格",
             "sheet_name": "工作表名称",
             "data_range": "数据范围",
@@ -439,7 +439,7 @@
           "test_run": "测试运行"
         },
         "elastic": {
-          "action_type": "Action Type",
+          "action_type": "动作类型",
           "body": "Body",
           "id": "Id",
           "index": "Index",
@@ -449,7 +449,7 @@
           "max_file": "文件大小不能超过5M。"
         },
         "firebase": {
-          "action_type": "Action Type",
+          "action_type": "动作类型",
           "collection": "集合",
           "database_ref": "Limit offset based",
           "document_id": "文档ID",
@@ -468,7 +468,7 @@
             "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
             "input_collection": "输入一个集合",
             "key": "键",
-            "select_an_action": "选择一个行为",
+            "select_an_action": "选择一个动作",
             "select_collection": "选择一个集合",
             "value": "值"
           },
@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "全局变量",
+              "ai-agent": "AI Agent",
+              "more": "更多",
+              "create-resource": "从数据源创建"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>点击这里</0>了解如何使用公式。",
               "time_zone": "<0>点击这里</0>来检查所有支持的时区。",
               "user_locales": "<0>点击这里</0>来检查所有支持的语言。"
+            },
+            "global-data": {
+              "how-to-use": "通过{{globalData.state1}}来使用这个全局变量"
             }
           },
           "advanced": {
@@ -651,9 +661,9 @@
             "page_trigger": "触发时机",
             "loading_page": "加载页",
             "page_load_delay": "延迟时间 (ms)",
-            "run_this_action_peri": "定期运行此Action",
+            "run_this_action_peri": "定期运行此动作",
             "interval": "间隔时间 (s)",
-            "actions_running_when": "页面加载时运行的操作",
+            "actions_running_when": "页面加载时运行的动作",
             "pages": "页面",
             "periodically_run": "定期运行"
           },
@@ -681,6 +691,10 @@
             "variable": "变量",
             "input": "发送内容",
             "max-token": "最大Token"
+          },
+          "general": {
+            "connect-data-source": "连接到数据库或API",
+            "more-type": "更多连接方式"
           }
         },
         "menu": {
@@ -690,7 +704,7 @@
           }
         },
         "mongodb": {
-          "action_type": "Action Type",
+          "action_type": "动作类型",
           "aggregation": "Aggregation",
           "collection": "Collection",
           "document": "Document",
@@ -715,7 +729,7 @@
           }
         },
         "s3": {
-          "action_type": "Action Type",
+          "action_type": "动作类型",
           "bucket_name": "桶名",
           "content_type": "内容类型",
           "delimiter": "分隔符",
@@ -881,6 +895,11 @@
               "file": "{{ { data: binary string, filename: string } }}"
             }
           }
+        },
+        "title": {
+          "general": {
+            "initial-title": "连接到您的数据源并创建一个动作来执行增删改查"
+          }
         }
       },
       "resource": {
@@ -989,7 +1008,7 @@
             "access_token": "Access Token",
             "access_token_lifespan": "Access Token lifespan(optiinal)",
             "access_token_url": "Access token url",
-            "action_type": "Action type",
+            "action_type": "动作类型",
             "audience": "Audience",
             "authentication": "API 认证",
             "authorization_url": "authorization url",
@@ -1043,7 +1062,7 @@
             "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN.",
             "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
             "get_req_auto_run": "(GET 请求) 当参数改变时会自动执行",
-            "name": "在 ILLA 中创建 Action 时的资源名称"
+            "name": "在 ILLA 中创建动作时的资源名称"
           },
           "title": {
             "advanced_option": "通用"
@@ -1150,7 +1169,7 @@
       "duplicate": "复制"
     },
     "data_work_space": {
-      "actions_title": "ACTIONS 列表 ",
+      "actions_title": "动作列表 ",
       "components_title": "组件列表 ",
       "globals_title": "全局变量 ",
       "pages_title": "页面列表",
@@ -1619,7 +1638,7 @@
           "file_name": "带扩展名的文件名",
           "file_type": "文件类型"
         },
-        "action_name": "查询名称",
+        "action_name": "动作名称",
         "variable": {
           "path_of_value": "值的路径",
           "variable": "全局变量"
@@ -2021,7 +2040,7 @@
           "whether_allow_users_": "是否允许用户选中一个单元格",
           "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。"
         },
-        "previous_cursor": "使用Action的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
+        "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
           "type": "设置输入类型",
           "show_visible_button": "设置是否显示可见按钮"
@@ -2506,8 +2525,8 @@
           "exit": "中止",
           "do_it": "帮我完成",
           "drag_title": "将组件拖到画布中",
-          "modify_action_title": "修改ACTION",
-          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_title": "修改动作",
+          "modify_action_description_modify": "修改动作以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "单击保存，然后单击运行",
           "display_data_title": "在表格中显示数据",
           "display_data_description_select": "选择画布中的表格",
@@ -2516,7 +2535,7 @@
           "event_handler_description_1": "选择画布里的按钮",
           "event_handler_description_2": "添加事件处理器",
           "event_handler_description_3": "点击事件处理器",
-          "event_handler_description_4": "将动作改为触发ACTION",
+          "event_handler_description_4": "将操作改为触发动作",
           "event_handler_description_5": "将查询更改为postgre1",
           "test_it_title": "测试一下",
           "test_it_description": "输入您要搜索的用户名，然后点击按钮",
@@ -2524,7 +2543,7 @@
           "congratulations_title": "恭喜🎉",
           "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
           "congratulations_button": "完成",
-          "event_handler_description_all": "1. 添加事件处理器\n2. 点击事件处理器\n3. 将触发的行为改为触发Action\n4. 更改Action为postgresql1"
+          "event_handler_description_all": "1. 添加事件处理器\n2. 点击事件处理器\n3. 将触发的行为改为触发动作\n4. 更改Action为postgresql1"
         }
       }
     },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "栅格列表"
+    },
+    "frame": {
+      "initial-title": "拖拽组件以添加到画布"
     }
   },
   "page": {
@@ -3335,7 +3357,7 @@
         "desc": "贡献到社区之后，所有用户都可以运行、Star和Fork您的Agent。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
         "turn_off": "取消贡献",
         "app": {
-          "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的Action并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
+          "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的动作并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
         }
       },
       "social_media": {

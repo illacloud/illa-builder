@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Skripti",
+              "global-data": "Globaalit tiedot",
+              "ai-agent": "AI Agent",
+              "more": "Lisää",
+              "create-resource": "Luo resurssista"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klikkaa tästä</0> oppiaksesi käyttämään kaavaa.",
               "time_zone": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut aikavyöhykkeet.",
               "user_locales": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut lokaatiot. "
+            },
+            "global-data": {
+              "how-to-use": "Käytä näitä yleisiä tietoja {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Muuttuja",
             "input": "Lähetä sisältöä",
             "max-token": "Max tunnus"
+          },
+          "general": {
+            "connect-data-source": "Yhdistä tietokantaan tai apiin",
+            "more-type": "Enemmän tietolähteitä"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Yhdistä tietolähteeseesi ja luo toiminto CRUD:n suorittamiseksi"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Ruudukko lista"
+    },
+    "frame": {
+      "initial-title": "Vedä komponentti lisätäksesi sen kehykseen"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Pääsy useampiin malleihin, kuten GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "colla": "2,5k Koolla / kuukausi"
           }
         },
         "price": "/kk/editor"
@@ -3726,7 +3748,7 @@
             "1": "10K Kolla",
             "2": "5 Gt tallennustila",
             "3": "5GB liikenne",
-            "4": "50k token"
+            "4": "50k tunnus"
           }
         },
         "price": "/kk/10k Kolla",

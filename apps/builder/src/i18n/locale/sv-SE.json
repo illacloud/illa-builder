@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "JavaScript",
+              "global-data": "Globala data",
+              "ai-agent": "AI Agent",
+              "more": "Mer",
+              "create-resource": "Skapa från resurs"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klicka här</0> för att lära dig att använda formel.",
               "time_zone": "<0>Klicka här</0> för att kontrollera alla tidszoner som stöds.",
               "user_locales": "<0>Klicka här</0> för att kontrollera alla språk som stöds. "
+            },
+            "global-data": {
+              "how-to-use": "Använd denna globala data av {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variabel",
             "input": "Skicka innehåll",
             "max-token": "Max token"
+          },
+          "general": {
+            "connect-data-source": "Anslut till databas eller api",
+            "more-type": "Fler typer av datakällor"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Anslut till din datakälla och skapa en åtgärd för att utföra CRUD"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Lista över rutnät"
+    },
+    "frame": {
+      "initial-title": "Dra en komponent för att lägga till den i ramen"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Tillgång till fler modeller som GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "colla": "2,5k Colla / månad"
           }
         },
         "price": "/månad/redaktör"
