@@ -605,11 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "Luo resurssista",
               "js": "Skripti",
               "global-data": "Globaalit tiedot",
               "ai-agent": "AI Agent",
-              "more": "Lisää"
+              "more": "Lisää",
+              "create-resource": "Luo resurssista"
             }
           },
           "restapi": {
