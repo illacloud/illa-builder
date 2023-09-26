@@ -15,7 +15,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props
 
   return (
-    <Spin css={containerStyle} colorScheme="techPurple">
+    <Spin css={containerStyle} colorScheme="techPurple" loading={false}>
       {ActionTypeList.map(({ title, item, category }) => (
         <div key={category}>
           <span css={categoryStyle}>{title}</span>
