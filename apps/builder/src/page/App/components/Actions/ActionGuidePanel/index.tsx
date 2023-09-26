@@ -27,7 +27,6 @@ import {
   categoryItemNameStyle,
   categoryTitleStyle,
   guidePanelContainerStyle,
-  headerContainerStyle,
   headerStyle,
   iconHotSpot,
   loadingContainerStyle,
@@ -122,11 +121,9 @@ export const ActionGuidePanel: FC = () => {
   return (
     <>
       <div css={guidePanelContainerStyle}>
-        <div css={headerContainerStyle}>
-          <span css={headerStyle}>
-            {t("editor.action.panel.title.general.initial-title")}
-          </span>
-        </div>
+        <h5 css={headerStyle}>
+          {t("editor.action.panel.title.general.initial-title")}
+        </h5>
         <h6 css={categoryTitleStyle}>
           {t("editor.action.panel.label.general.connect-data-source")}
         </h6>

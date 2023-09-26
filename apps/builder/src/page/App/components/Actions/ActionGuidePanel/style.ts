@@ -11,18 +11,14 @@ export const guidePanelContainerStyle = css`
   position: relative;
 `
 
-export const headerContainerStyle = css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-`
-
 export const headerStyle = css`
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
+  width: 552px;
+  margin: 0;
+  padding: 0;
 `
 
 export const categoryTitleStyle = css`
