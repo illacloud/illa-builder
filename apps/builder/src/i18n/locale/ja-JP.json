@@ -605,11 +605,11 @@
               }
             },
             "general": {
-              "create-reasource": "リソースから作成",
               "js": "JavaScript",
               "global-data": "グローバルデータ",
               "ai-agent": "AI Agent",
-              "more": "もっと見る"
+              "more": "もっと見る",
+              "create-resource": "リソースから作成"
             }
           },
           "restapi": {
