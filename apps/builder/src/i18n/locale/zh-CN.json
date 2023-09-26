@@ -651,6 +651,9 @@
               "filter_by_formula": "<0>点击这里</0>了解如何使用公式。",
               "time_zone": "<0>点击这里</0>来检查所有支持的时区。",
               "user_locales": "<0>点击这里</0>来检查所有支持的语言。"
+            },
+            "global-data": {
+              "how-to-use": "通过{{globalData.state1}}来使用这个全局变量"
             }
           },
           "advanced": {
