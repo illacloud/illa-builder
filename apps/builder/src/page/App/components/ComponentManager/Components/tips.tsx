@@ -7,8 +7,10 @@ export const Tip: FC = () => {
   const { t } = useTranslation()
   return (
     <div css={tipContainerStyle}>
-      <VectorIcon css={vectorStyle} />
-      <span css={tipTextStyle}>{t("widget.frame.initial-title")}</span>
+      <span css={tipTextStyle}>
+        <VectorIcon css={vectorStyle} />
+        {t("widget.frame.initial-title")}
+      </span>
     </div>
   )
 }
