@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Accesul la mai multe modele, cum ar fi GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( Pentru prima dată)"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/lună/editor"
@@ -3723,13 +3723,13 @@
           "traffic": "Trafic. Folosit pentru a descărca fișiere de pe ILLA Drive.",
           "token": "Token Agent AI. Folosit pentru a rula AI Agenti.",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GB spațiu",
             "3": "trafic 5GB",
-            "4": "Jeton 100K"
+            "4": "50k token"
           }
         },
-        "price": "/ lună / 5k Colla",
+        "price": "/lună/10k Colla",
         "button": "Crește Cola"
       }
     },
@@ -3864,8 +3864,8 @@
         "colla": "Cola"
       },
       "price": {
-        "colla_monthly": "{{price}} / lunar / 5k Colla",
-        "colla_yearly": "{{price}} / anual / 60k Colla"
+        "colla_monthly": "{{price}}/lunar/10k Colla",
+        "colla_yearly": "{{price}}/an/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Licențe",

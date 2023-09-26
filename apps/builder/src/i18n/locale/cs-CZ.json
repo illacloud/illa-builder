@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Přístup k více modelům, jako je GPT-4, GPT-3.5...",
-            "colla": "30k Colla (poprvé )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/měsíc/editor"
@@ -3723,13 +3723,13 @@
           "traffic": "Doprava. Používá se ke stahování souborů z ILLA Drive.",
           "token": "token AI agenta. Používá se ke spuštění AI agentů.",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GB úložiště",
             "3": "5GB provozu",
-            "4": "Token 100K"
+            "4": "50k token"
           }
         },
-        "price": "/ měsíc / 5k Colla",
+        "price": "/měsíc/10k Colla",
         "button": "Zvýšit Colla"
       }
     },
@@ -3864,8 +3864,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}} / měsíčně / 5k Colla",
-        "colla_yearly": "{{price}} / ročně / 60k Colla"
+        "colla_monthly": "{{price}}/měsíčně/10k Colla",
+        "colla_yearly": "{{price}}/ročně/10 k Colla"
       },
       "plan_number_input_label": {
         "License": "Licence",

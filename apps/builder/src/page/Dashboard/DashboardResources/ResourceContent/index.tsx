@@ -176,6 +176,7 @@ export const ResourcesContent: FC = () => {
           size="large"
           data={resourceData}
           columns={columns}
+          ovY="auto"
         />
       ) : null}
       {!resourcesListInRedux?.length ? <Empty paddingVertical="120px" /> : null}

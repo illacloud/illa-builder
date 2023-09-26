@@ -11,7 +11,7 @@ export interface WrappedPdfProps
   height?: number
   scaleMode?: "width" | "height"
   url?: string
-  showTollBar?: boolean
+  showToolBar?: boolean
 }
 
 export interface PdfWidgetProps

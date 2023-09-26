@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Доступ к другим моделям, таким как GPT-4, GPT-3.5...",
-            "colla": "30k Колла ( Впервые )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/месяц/редактор"
@@ -3723,13 +3723,13 @@
           "traffic": "Трафик. Используется для загрузки файлов из ILLA Drive.",
           "token": "Токен агента ИИ. Используется для запуска агентов ИИ.",
           "conversion": {
-            "1": "5к Колла",
+            "1": "10k Колла",
             "2": "5Гб хранилища",
             "3": "5GB трафика",
-            "4": "100 K токен"
+            "4": "50k token"
           }
         },
-        "price": "/ месяц / 5к Colla",
+        "price": "/месяц/10k Colla",
         "button": "Увеличить коллу"
       }
     },
@@ -3864,8 +3864,8 @@
         "colla": "Колла"
       },
       "price": {
-        "colla_monthly": "{{price}} / ежемесячно / 5k Colla",
-        "colla_yearly": "{{price}} / год / 60k Colla"
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/год / 10k Colla"
       },
       "plan_number_input_label": {
         "License": "Лицензии",

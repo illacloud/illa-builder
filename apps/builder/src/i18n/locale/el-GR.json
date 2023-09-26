@@ -3711,7 +3711,7 @@
           },
           "agent": {
             "gpt": "Πρόσβαση σε περισσότερα μοντέλα όπως GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( Για πρώτη φορά )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/μήνας/επεξεργαστής"
@@ -3723,13 +3723,13 @@
           "traffic": "Κυκλοφορία. Χρησιμοποιείται για λήψη αρχείων από το ILLA Drive.",
           "token": "Διακριτικό AI Agent. Χρησιμοποιείται για την εκτέλεση AI Agents.",
           "conversion": {
-            "1": "5k Colla",
+            "1": "10k Colla",
             "2": "5GB χώρος αποθήκευσης",
             "3": "5GB κυκλοφορία",
-            "4": "100K διακριτικό"
+            "4": "50k token"
           }
         },
-        "price": "/ μήνας / 5k Colla",
+        "price": "/μήνα/10k Colla",
         "button": "Αύξηση Colla"
       }
     },
@@ -3864,8 +3864,8 @@
         "colla": "Colla"
       },
       "price": {
-        "colla_monthly": "{{price}} / μηνιαίως / 5k Colla",
-        "colla_yearly": "{{price}} / yearly / 60k Colla"
+        "colla_monthly": "{{price}}/monthly/10k Colla",
+        "colla_yearly": "{{price}}/yearly/10k Colla"
       },
       "plan_number_input_label": {
         "License": "Άδειες",
