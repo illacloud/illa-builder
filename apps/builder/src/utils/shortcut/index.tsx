@@ -67,7 +67,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const showDeleteDialog = (
     displayName: string[],
-    type?: "widget" | "page" | "action" | "subpage" | "pageView",
+    type?: "widget" | "page" | "action" | "subpage" | "pageView" | "globalData",
     options?: Record<string, any>,
   ) => {
     const modal = createModal()
@@ -156,6 +156,14 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
                   viewDisplayName: options!.viewDisplayName,
                   parentNodeName: options!.parentNodeName,
                   originPageSortedKey: options!.originPageSortedKey,
+                }),
+              )
+              break
+            }
+            case "globalData": {
+              dispatch(
+                componentsActions.deleteGlobalStateByKeyReducer({
+                  key: displayName[0],
                 }),
               )
               break

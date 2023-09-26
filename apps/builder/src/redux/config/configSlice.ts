@@ -6,6 +6,7 @@ import {
   plusScale,
   removeExpandedKey,
   resetConfig,
+  resetSelectedActionReducer,
   setExpandedKey,
   updateBottomPanel,
   updateCachedAction,
@@ -47,6 +48,7 @@ const configSlice = createSlice({
     updateDevicesOnlineStatusReducer,
     updateWSStatusReducer,
     updateHoveredComponent,
+    resetSelectedActionReducer,
   },
 })
 

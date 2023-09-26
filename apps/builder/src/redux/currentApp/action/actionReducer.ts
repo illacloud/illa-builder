@@ -87,6 +87,8 @@ export const removeActionItemReducer: CaseReducer<
     ),
     1,
   )
+  DisplayNameGenerator.removeDisplayName(action.payload.displayName)
+
   return state
 }
 

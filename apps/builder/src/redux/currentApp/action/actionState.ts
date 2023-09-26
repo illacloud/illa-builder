@@ -104,6 +104,7 @@ export type ActionType =
   | "upstash"
   | "airtable"
   | "aiagent"
+  | "globalData"
 
 export type ActionTriggerMode = "manually" | "automate"
 
@@ -162,6 +163,10 @@ export const actionItemInitial: Pick<
   triggerMode: "manually",
 }
 
+export interface GlobalDataActionContent {
+  initialValue: string
+}
+
 export type ActionContent =
   | HuggingFaceAction<HuggingFaceBodyContent>
   | FirebaseAction<FirebaseContentType>
@@ -182,6 +187,7 @@ export type ActionContent =
   | GoogleSheetsAction<GoogleSheetsActionOpts>
   | AirtableAction<AirtableActionConfigType>
   | BaseAiAgentActionContent
+  | GlobalDataActionContent
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 

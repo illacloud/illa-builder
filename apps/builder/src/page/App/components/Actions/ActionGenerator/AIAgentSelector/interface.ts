@@ -4,6 +4,7 @@ import { ActionType } from "@/redux/currentApp/action/actionState"
 
 export interface ActionResourceSelectorProps {
   actionType: ActionType
+  canBack?: boolean
   onBack: (page: ActionCreatorPage) => void
   handleCreateAction: (
     item: Agent,

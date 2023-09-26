@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import { RIGHT_PANEL_WIDTH } from "../../../../style"
 
 export const componentPanelCss = css`
   display: inline-flex;
@@ -24,4 +25,20 @@ export const applyTabItemStyle = (isActive: boolean) => css`
   :hover {
     background-color: ${getColor("grayBlue", "09")};
   }
+`
+
+export const containerStyle = css`
+  box-sizing: border-box;
+  width: ${RIGHT_PANEL_WIDTH}px;
+  min-width: ${RIGHT_PANEL_WIDTH}px;
+  height: 100%;
+  border-left: 1px solid ${getColor("grayBlue", "08")};
+  background: ${getColor("white", "01")};
+  position: relative;
+`
+
+export const notHasComponentTipsStyle = css`
+  position: absolute;
+  right: calc(100% + 23px);
+  top: 189px;
 `

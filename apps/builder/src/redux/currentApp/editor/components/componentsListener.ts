@@ -13,6 +13,7 @@ import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collab
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import {
   getCanvas,
+  getGlobalDataToActionList,
   searchDSLByDisplayName,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -388,6 +389,12 @@ const handleUpdateGlobalDataDisplayNameEffect = (
   const { key, oldKey } = action.payload
   if (!oldKey) return
   const rootState = listenerApi.getState()
+  const globalDataList = getGlobalDataToActionList(rootState)
+  const currentGlobalData = globalDataList.find(
+    (action) => action.displayName === key,
+  )
+  if (!currentGlobalData) return
+  listenerApi.dispatch(configActions.changeSelectedAction(currentGlobalData))
   const independenciesMap = getInDependenciesMap(rootState)
   const seeds = getRawTree(rootState)
   const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(

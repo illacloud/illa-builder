@@ -18,13 +18,6 @@ export const searchInputContainerStyle = css`
   justify-content: flex-end;
 `
 
-export const applySearchHeaderTitleStyle = (hasBorderBottom: boolean) => css`
-  justify-content: space-between;
-  border-bottom: ${hasBorderBottom
-    ? `1px solid ${getColor("grayBlue", "08")}`
-    : "none"};
-`
-
 export const searchHeaderTitleTextStyle = css`
   white-space: nowrap;
   font-size: 14px;
@@ -32,13 +25,6 @@ export const searchHeaderTitleTextStyle = css`
   flex: 1;
 `
 
-export const searchHeaderTitleIconStyle = css`
-  cursor: pointer;
-
-  &:hover {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-  }
-`
 export const searchInputStyle = css`
   margin-right: 8px;
 
@@ -56,7 +42,17 @@ export const searchInputIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 
-export const actionTitleTabsContainerStyle = css`
-  padding: 12px 0;
-  gap: 8px;
+export const actionListHeaderContainerStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+`
+
+export const actionTitleStyle = css`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: ${getColor("grayBlue", "04")};
+  margin: 0;
 `

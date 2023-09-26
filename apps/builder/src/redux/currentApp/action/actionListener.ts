@@ -12,25 +12,11 @@ import { fetchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { registerActionPeriod } from "@/utils/action/runAction"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
   ActionContent,
   ActionItem,
   UpdateActionSlicePropsPayload,
 } from "./actionState"
-
-async function handleRemoveActionItemEffect(
-  action: ReturnType<typeof actionActions.removeActionItemReducer>,
-  listenerApi: AppListenerEffectAPI,
-) {
-  DisplayNameGenerator.removeDisplayName(action.payload.displayName)
-  if (
-    action.payload.actionID ===
-    listenerApi.getState().config.selectedAction?.actionID
-  ) {
-    listenerApi.dispatch(configActions.changeSelectedAction(null))
-  }
-}
 
 async function handleAddActionItemEffect(
   action: ReturnType<typeof actionActions.addActionItemReducer>,
@@ -139,10 +125,6 @@ export function setupActionListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
   const subscriptions = [
-    startListening({
-      actionCreator: actionActions.removeActionItemReducer,
-      effect: handleRemoveActionItemEffect,
-    }),
     startListening({
       actionCreator: actionActions.updateActionItemReducer,
       effect: handleUpdateActionItem,
