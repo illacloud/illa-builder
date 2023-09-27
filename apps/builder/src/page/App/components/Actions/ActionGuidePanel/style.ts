@@ -2,13 +2,13 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const guidePanelContainerStyle = css`
-  width: 100%;
+  width: 584px;
+  margin: 0 auto;
   height: 100%;
-  padding: 24px 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  padding: 24px 16px;
   position: relative;
+  overflow-x: auto;
+  flex: none;
 `
 
 export const headerStyle = css`
