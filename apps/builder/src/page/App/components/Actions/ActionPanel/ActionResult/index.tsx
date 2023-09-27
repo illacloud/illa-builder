@@ -27,7 +27,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
     RESULT_SHOW_TYPE.RESPONSE,
   )
 
-  const selectedAction = useSelector(getSelectedAction)!
+  const selectedAction = useSelector(getSelectedAction)! ?? {}
 
   const currentActionExecutionResult = useSelector<
     RootState,

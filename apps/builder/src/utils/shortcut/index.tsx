@@ -35,6 +35,7 @@ import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { isMAC } from "@/utils/userAgent"
+import { DisplayNameGenerator } from "../generators/generateDisplayName"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
@@ -166,6 +167,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
                   key: displayName[0],
                 }),
               )
+              DisplayNameGenerator.removeDisplayName(displayName[0])
               break
             }
           }
