@@ -3942,7 +3942,7 @@
         "storage_traffic_remove": "移除 {{changeNum}} GB",
         "license_increase": "增加 {{changeNum}} 个许可证",
         "license_remove": "删除 {{changeNum}} 个许可证",
-        "colla_increase": "{{unitPrice}} × {{storageNum}} 个Colla",
+        "colla_increase": "增加 {{changeNum}} 个Colla",
         "colla_remove": "移除 {{changeNum}} 个Colla"
       },
       "colla": {

@@ -89,7 +89,6 @@ export const downloadFromILLADrive = async (
           }
         }
       } catch (e) {
-        // TODO wtf, error flag
         const res = handleCollaPurchaseError(e, CollarModalType.TRAFFIC)
         if (res) return
         if (isILLAAPiError(e)) {
@@ -193,7 +192,6 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
       uploadResult,
     )
   } catch (e) {
-    // TODO wtf, error flag
     const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
     if (res) return
     if (isILLAAPiError(e)) {
