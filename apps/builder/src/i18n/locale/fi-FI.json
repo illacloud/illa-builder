@@ -605,7 +605,7 @@
               }
             },
             "general": {
-              "js": "Muuntaja",
+              "js": "Transformer",
               "global-data": "Globaalit tiedot",
               "ai-agent": "AI Agent",
               "more": "Lisää",
