@@ -31,8 +31,12 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionItem,
+  GlobalDataActionContent,
+} from "@/redux/currentApp/action/actionState"
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
@@ -139,6 +143,21 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           ...action,
           displayName: newName,
         }
+
+        if (action.actionType === "globalData") {
+          DisplayNameGenerator.addDisplayNames([newName])
+          DisplayNameGenerator.removeDisplayName(action.displayName)
+          dispatch(
+            componentsActions.setGlobalStateReducer({
+              key: newName,
+              value: (action.content as GlobalDataActionContent).initialValue,
+              oldKey: action.displayName,
+            }),
+          )
+          setEditName(false)
+          return
+        }
+
         if (isGuideMode) {
           dispatch(
             actionActions.updateActionDisplayNameReducer({

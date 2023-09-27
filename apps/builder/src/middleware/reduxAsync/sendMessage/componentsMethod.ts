@@ -704,6 +704,24 @@ export const componentsAsync = (
       )
       break
     }
+    case "deleteGlobalStateByKeyReducer": {
+      const rootNode = getCanvas(nextRootState)
+      if (!rootNode) break
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(rootNode)
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
+          true,
+          action,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+      break
+    }
     case "deleteSubPageViewNodeReducer": {
       const rootNode = getCanvas(prevRootState)
       const nextRootNode = getCanvas(nextRootState)

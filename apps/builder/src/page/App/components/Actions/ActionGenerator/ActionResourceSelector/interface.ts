@@ -4,6 +4,7 @@ import { ResourceType } from "@/redux/resource/resourceState"
 
 export interface ActionResourceSelectorProps {
   actionType: ActionType
+  canBack?: boolean
   onBack: (page: ActionCreatorPage) => void
   handleCreateAction: (
     resourceID: string,

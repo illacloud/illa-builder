@@ -168,3 +168,16 @@ export const updateHoveredComponent: CaseReducer<
 > = (state, action) => {
   state.hoveredComponents = action.payload
 }
+
+export const resetSelectedActionReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<string>
+> = (state, action) => {
+  if (!state.selectedAction) return
+  if (state.selectedAction?.displayName === action.payload) {
+    state.selectedAction = null
+  }
+  if (state.cachedAction?.actionID === state.selectedAction?.actionID) {
+    state.cachedAction = null
+  }
+}

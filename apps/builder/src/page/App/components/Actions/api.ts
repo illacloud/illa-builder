@@ -7,7 +7,9 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
+  GlobalDataActionContent,
 } from "@/redux/currentApp/action/actionState"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
 import { neonSSLInitialValue } from "@/redux/resource/neonResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
@@ -31,6 +33,7 @@ import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isILLAAPiError } from "@/utils/typeHelper"
+import { configActions } from "../../../../redux/config/configSlice"
 
 const message = createMessage()
 
@@ -38,11 +41,21 @@ export async function onCopyActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
   const newAction = omit(action, ["displayName", "actionID"])
   const displayName = DisplayNameGenerator.generateDisplayName(
-    action.actionType,
+    action.actionType === "globalData" ? "state" : action.actionType,
   )
   const data: Omit<ActionItem<ActionContent>, "actionID"> = {
     ...newAction,
     displayName,
+  }
+  if (action.actionType === "globalData") {
+    store.dispatch(
+      componentsActions.setGlobalStateReducer({
+        key: data.displayName,
+        value: (data.content as GlobalDataActionContent).initialValue,
+        oldKey: "",
+      }),
+    )
+    return
   }
   if (isGuideMode) {
     const createActionData: ActionItem<ActionContent> = {
@@ -77,6 +90,8 @@ export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
   const { actionID, displayName } = action
   if (isGuideMode) {
+    store.dispatch(configActions.resetSelectedActionReducer(displayName))
+
     store.dispatch(
       actionActions.removeActionItemReducer({
         actionID: actionID,
@@ -90,6 +105,8 @@ export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
   }
   try {
     await fetchDeleteAction(actionID)
+    store.dispatch(configActions.resetSelectedActionReducer(displayName))
+
     store.dispatch(
       actionActions.removeActionItemReducer({
         actionID: actionID,

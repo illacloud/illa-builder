@@ -80,6 +80,10 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Transformer"
       case "airtable":
         return "Airtable"
+      case "aiagent":
+        return "AI Agent"
+      case "globalData":
+        return "Global Data"
       default:
         return ""
     }

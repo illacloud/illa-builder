@@ -866,7 +866,7 @@ export const setGlobalStateReducer: CaseReducer<
   if (!state) return
   const { value, key, oldKey } = action.payload
   const originGlobalData = state.props?.globalData || {}
-  if (oldKey && originGlobalData[oldKey]) {
+  if (oldKey && originGlobalData.hasOwnProperty(oldKey)) {
     delete originGlobalData[oldKey]
   }
   const newProps = {

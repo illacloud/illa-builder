@@ -1,6 +1,6 @@
-import { ActionDataItem } from "@/page/App/components/Actions/ActionGenerator/config"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 
-export interface ActionTypeSelectorCardProps extends ActionDataItem {
+export interface ActionTypeSelectorCardProps {
   onSelect?: (item: ActionType) => void
+  actionType: ActionType
 }

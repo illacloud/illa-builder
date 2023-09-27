@@ -1,138 +1,42 @@
 import i18n from "@/i18n/config"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 
-export interface ActionDataItem {
-  actionType: ActionType
-  isDraft: boolean
-}
-
-export const Databases: ActionDataItem[] = [
-  {
-    actionType: "postgresql",
-    isDraft: false,
-  },
-  {
-    actionType: "mysql",
-    isDraft: false,
-  },
-  {
-    actionType: "mssql",
-    isDraft: false,
-  },
-  {
-    actionType: "oracle",
-    isDraft: false,
-  },
-  {
-    actionType: "mariadb",
-    isDraft: false,
-  },
-  {
-    actionType: "tidb",
-    isDraft: false,
-  },
-  {
-    actionType: "neon",
-    isDraft: false,
-  },
-  {
-    actionType: "redis",
-    isDraft: false,
-  },
-  {
-    actionType: "upstash",
-    isDraft: false,
-  },
-  {
-    actionType: "mongodb",
-    isDraft: false,
-  },
-  {
-    actionType: "elasticsearch",
-    isDraft: false,
-  },
-  {
-    actionType: "dynamodb",
-    isDraft: false,
-  },
-  {
-    actionType: "snowflake",
-    isDraft: false,
-  },
-  {
-    actionType: "supabasedb",
-    isDraft: false,
-  },
-  {
-    actionType: "clickhouse",
-    isDraft: false,
-  },
-  {
-    actionType: "couchdb",
-    isDraft: false,
-  },
-  {
-    actionType: "appwrite",
-    isDraft: false,
-  },
-  {
-    actionType: "hydra",
-    isDraft: false,
-  },
+export const Databases: ActionType[] = [
+  "postgresql",
+  "mysql",
+  "mssql",
+  "oracle",
+  "mariadb",
+  "tidb",
+  "neon",
+  "redis",
+  "upstash",
+  "mongodb",
+  "elasticsearch",
+  "dynamodb",
+  "snowflake",
+  "supabasedb",
+  "clickhouse",
+  "couchdb",
+  "appwrite",
+  "hydra",
 ]
 
-export const Apis: ActionDataItem[] = [
-  {
-    actionType: "restapi",
-    isDraft: false,
-  },
-  {
-    actionType: "s3",
-    isDraft: false,
-  },
-  {
-    actionType: "firebase",
-    isDraft: false,
-  },
-  {
-    actionType: "graphql",
-    isDraft: false,
-  },
-  {
-    actionType: "smtp",
-    isDraft: false,
-  },
-  {
-    actionType: "googlesheets",
-    isDraft: false,
-  },
-  {
-    actionType: "airtable",
-    isDraft: false,
-  },
-  {
-    actionType: "huggingface",
-    isDraft: false,
-  },
-  {
-    actionType: "hfendpoint",
-    isDraft: false,
-  },
+export const Apis: ActionType[] = [
+  "restapi",
+  "s3",
+  "firebase",
+  "graphql",
+  "smtp",
+  "googlesheets",
+  "airtable",
+  "huggingface",
+  "hfendpoint",
 ]
 
-export const JsTransformer: ActionDataItem[] = [
-  {
-    actionType: "transformer",
-    isDraft: false,
-  },
-]
+export const JsTransformer: ActionType[] = ["transformer"]
 
-export const AIAgent: ActionDataItem[] = [
-  {
-    actionType: "aiagent",
-    isDraft: false,
-  },
-]
+export const AIAgent: ActionType[] = ["aiagent"]
 
 export const ActionTypeList = [
   {
@@ -144,15 +48,5 @@ export const ActionTypeList = [
     title: i18n.t("editor.action.type.api"),
     item: Apis,
     category: "apis" as const,
-  },
-  {
-    title: i18n.t("editor.action.type.js_transformer"),
-    item: JsTransformer,
-    category: "jsTransformer" as const,
-  },
-  {
-    title: "AI Agent",
-    item: AIAgent,
-    category: "aiAgent" as const,
   },
 ]
