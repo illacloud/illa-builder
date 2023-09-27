@@ -3360,6 +3360,9 @@ importers:
         specifier: ^13.2.2
         version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../UserData
       '@types/chroma-js':
         specifier: ^2.1.4
         version: 2.1.5
