@@ -17,6 +17,7 @@ import {
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { fetchCreateAction } from "@/services/action"
+import { getActionNameFromActionType } from "@/utils/actionResourceTransformer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionGenerator } from "../ActionGenerator"
 import { getIconFromActionType } from "../getIcon"
@@ -135,7 +136,9 @@ export const ActionGuidePanel: FC = () => {
               onClick={handleClickActionType(type)}
             >
               <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
-              <span css={categoryItemNameStyle}>{type}</span>
+              <span css={categoryItemNameStyle}>
+                {getActionNameFromActionType(type)}
+              </span>
             </button>
           ))}
           <button css={basicButtonStyle} onClick={handleClickActionType(null)}>
@@ -162,7 +165,9 @@ export const ActionGuidePanel: FC = () => {
               onClick={handleClickActionType(type)}
             >
               <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
-              <span css={categoryItemNameStyle}>{type}</span>
+              <span css={categoryItemNameStyle}>
+                {getActionNameFromActionType(type)}
+              </span>
             </button>
           ))}
         </section>
