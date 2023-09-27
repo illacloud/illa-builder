@@ -2,7 +2,7 @@ import { AI_AGENT_TYPE } from "@illa-public/market-agent"
 import {
   CollarModalType,
   handleCollaPurchaseError,
-  usePayErrorModal,
+  useCollarModal,
 } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -53,7 +53,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
   const currentUserInfo = useSelector(getCurrentUser)
 
   const message = useMessage()
-  const payErrorModal = usePayErrorModal()
+  const collaModal = useCollarModal()
   const { t } = useTranslation()
 
   const sendMessage = useCallback(
@@ -226,7 +226,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                     break
                   case 17:
                   case 18:
-                    payErrorModal({
+                    collaModal({
                       modalType: CollarModalType.TOKEN,
                     })
                     break
@@ -267,7 +267,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       onUpdateChatMessage,
       onUpdateGenerationMessage,
       onUpdateRoomUsers,
-      payErrorModal,
+      collaModal,
       t,
     ],
   )
