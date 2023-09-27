@@ -51,6 +51,16 @@ import {
   CONTAINER_WIDGET_CONFIG,
 } from "@/widgetLibrary/ContainerWidget"
 import {
+  DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG,
+  DATA_GRID_COMMUNITY_PANEL_CONFIG,
+  DATA_GRID_COMMUNITY_WIDGET_CONFIG,
+} from "@/widgetLibrary/DataGridCommunityWidget"
+import {
+  DATA_GRID_PREMIUM_EVENT_HANDLER_CONFIG,
+  DATA_GRID_PREMIUM_PANEL_CONFIG,
+  DATA_GRID_PREMIUM_WIDGET_CONFIG,
+} from "@/widgetLibrary/DataGridPremiumWidget"
+import {
   DATE_RANGE_EVENT_HANDLER_CONFIG,
   DATE_RANGE_PANEL_CONFIG,
   DATE_RANGE_WIDGET_CONFIG,
@@ -430,6 +440,22 @@ export const WidgetConfigMap: Record<
     panelConfig: TABLE_PANEL_CONFIG,
     eventHandlerConfig: TABLE_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/TableWidget/table")),
+  },
+  DATA_GRID_COMMUNITY_WIDGET: {
+    config: DATA_GRID_COMMUNITY_WIDGET_CONFIG,
+    panelConfig: DATA_GRID_COMMUNITY_PANEL_CONFIG,
+    eventHandlerConfig: DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG,
+    widget: lazy(
+      () => import("@/widgetLibrary/DataGridCommunityWidget/dataGridCommunity"),
+    ),
+  },
+  DATA_GRID_PREMIUM_WIDGET: {
+    config: DATA_GRID_PREMIUM_WIDGET_CONFIG,
+    panelConfig: DATA_GRID_PREMIUM_PANEL_CONFIG,
+    eventHandlerConfig: DATA_GRID_PREMIUM_EVENT_HANDLER_CONFIG,
+    widget: lazy(
+      () => import("@/widgetLibrary/DataGridPremiumWidget/dataGridPremium"),
+    ),
   },
   // container
   CONTAINER_WIDGET: {
