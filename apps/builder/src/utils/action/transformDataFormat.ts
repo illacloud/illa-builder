@@ -97,7 +97,7 @@ export const transformDataFormat = (
     case "graphql": {
       return {
         ...contents,
-        query: contents.query.replace(/\n/g, ""),
+        query: (contents?.query ?? "").replace(/\n/g, ""),
       }
     }
     case "huggingface":

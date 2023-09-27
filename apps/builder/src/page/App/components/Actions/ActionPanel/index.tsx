@@ -221,7 +221,7 @@ export const ActionPanel: FC = () => {
           )}
         </Suspense>
         <ActionResult
-          key={selectedAction.actionID}
+          key={selectedAction?.actionID}
           visible={resultVisible}
           onClose={() => {
             setResultVisible(false)
