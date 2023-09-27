@@ -1,4 +1,9 @@
 import { AI_AGENT_TYPE } from "@illa-public/market-agent"
+import {
+  CollarModalType,
+  handleCollaPurchaseError,
+  useCollarModal,
+} from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -48,6 +53,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
   const currentUserInfo = useSelector(getCurrentUser)
 
   const message = useMessage()
+  const collaModal = useCollarModal()
   const { t } = useTranslation()
 
   const sendMessage = useCallback(
@@ -220,8 +226,8 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                     break
                   case 17:
                   case 18:
-                    message.error({
-                      content: t("editor.ai-agent.message.token-not-enough"),
+                    collaModal({
+                      modalType: CollarModalType.TOKEN,
                     })
                     break
                   case 3:
@@ -241,6 +247,8 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
         onStartRunning()
       } catch (e) {
         onConnecting(false)
+        const res = handleCollaPurchaseError(e, CollarModalType.TOKEN)
+        if (res) return
         message.error({
           content: t("editor.ai-agent.message.start-failed"),
         })
@@ -249,16 +257,17 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     },
     [
       cleanMessage,
+      message,
       onConnecting,
-      onRunning,
       onReceiving,
-      onStartRunning,
-      onUpdateRoomUsers,
+      onRunning,
       onSendClean,
       onSendPrompt,
+      onStartRunning,
       onUpdateChatMessage,
       onUpdateGenerationMessage,
-      message,
+      onUpdateRoomUsers,
+      collaModal,
       t,
     ],
   )
