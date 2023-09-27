@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformator",
+              "global-data": "Globale data",
+              "ai-agent": "AI Agent",
+              "more": "Mer",
+              "create-resource": "Opprett fra ressurs"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klikk her</0> for å lære hvordan du bruker formel.",
               "time_zone": "<0>Klikk her</0> for å kontrollere alle støttede tidssoner.",
               "user_locales": "<0>Klikk her</0> for å sjekke alle støttede lokaliteter. "
+            },
+            "global-data": {
+              "how-to-use": "Bruk disse globale dataene av {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variabel",
             "input": "Send innhold",
             "max-token": "Maks token"
+          },
+          "general": {
+            "connect-data-source": "Koble til database eller api",
+            "more-type": "Mer type datakilder"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Koble til din datakilde og opprett en handling for å utføre CRUD"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Rutenett liste"
+    },
+    "frame": {
+      "initial-title": "Dra en komponent for å legge den til rammen"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Tilgang til flere modeller som GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "colla": "2,5k Colla / måned"
           }
         },
         "price": "/måned/redigering"

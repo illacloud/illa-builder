@@ -35,6 +35,7 @@ import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { isMAC } from "@/utils/userAgent"
+import { DisplayNameGenerator } from "../generators/generateDisplayName"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
@@ -67,7 +68,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const showDeleteDialog = (
     displayName: string[],
-    type?: "widget" | "page" | "action" | "subpage" | "pageView",
+    type?: "widget" | "page" | "action" | "subpage" | "pageView" | "globalData",
     options?: Record<string, any>,
   ) => {
     const modal = createModal()
@@ -158,6 +159,15 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
                   originPageSortedKey: options!.originPageSortedKey,
                 }),
               )
+              break
+            }
+            case "globalData": {
+              dispatch(
+                componentsActions.deleteGlobalStateByKeyReducer({
+                  key: displayName[0],
+                }),
+              )
+              DisplayNameGenerator.removeDisplayName(displayName[0])
               break
             }
           }

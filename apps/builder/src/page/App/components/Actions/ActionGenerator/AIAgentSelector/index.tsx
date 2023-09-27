@@ -37,7 +37,8 @@ const sortOptions = [
 ]
 
 export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
-  const { actionType, onBack, onCreateAction, handleCreateAction } = props
+  const { actionType, canBack, onBack, onCreateAction, handleCreateAction } =
+    props
 
   const { t } = useTranslation()
   const [agentType, setAgentType] = useState("team")
@@ -147,16 +148,18 @@ export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
       </div>
 
       <div css={footerStyle}>
-        <Button
-          leftIcon={<PreviousIcon />}
-          variant="text"
-          colorScheme="gray"
-          onClick={() => {
-            onBack("select")
-          }}
-        >
-          {t("back")}
-        </Button>
+        {canBack && (
+          <Button
+            leftIcon={<PreviousIcon />}
+            variant="text"
+            colorScheme="gray"
+            onClick={() => {
+              onBack("select")
+            }}
+          >
+            {t("back")}
+          </Button>
+        )}
       </div>
     </div>
   )

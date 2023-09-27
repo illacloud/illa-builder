@@ -22,7 +22,6 @@ import {
   leftPanelStyle,
   middlePanelStyle,
   navbarStyle,
-  rightPanelStyle,
 } from "@/page/App/style"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import {
@@ -94,20 +93,12 @@ const GuideApp: FC = () => {
               <TriggerProvider renderInBody zIndex={10}>
                 <CanvasPanel ref={canvasRef} css={centerPanelStyle} />
               </TriggerProvider>
-              {showBottomPanel && !showDebugger ? (
-                <ActionEditor
-                  data-onboarding-action="actionEditor"
-                  css={bottomPanelStyle}
-                />
-              ) : null}
+              {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
               {showDebugger && <Debugger css={bottomPanelStyle} />}
             </div>
             {showRightPanel && (
               <TriggerProvider renderInBody zIndex={10}>
-                <ComponentsManager
-                  data-onboarding-comp="componentsManager"
-                  css={rightPanelStyle}
-                />
+                <ComponentsManager />
               </TriggerProvider>
             )}
           </div>

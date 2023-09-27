@@ -5,6 +5,7 @@ import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store, { RootState } from "@/store"
+import { ActionItem, GlobalDataActionContent } from "../../action/actionState"
 
 export function searchDSLByDisplayName(
   displayName: string,
@@ -554,6 +555,36 @@ export const getOriginalGlobalData = createSelector([getCanvas], (rootNode) => {
   return (rootNode?.props?.globalData ?? {}) as Record<string, string>
 })
 
+export const getGlobalDataToActionList = createSelector(
+  [getCanvas],
+  (rootNode) => {
+    const globalData = (rootNode?.props?.globalData ?? {}) as Record<
+      string,
+      string
+    >
+
+    const result: ActionItem<GlobalDataActionContent>[] =
+      Object.keys(globalData)?.map((key) => {
+        return {
+          actionID: key,
+          displayName: key,
+          actionType: "globalData",
+          triggerMode: "manually",
+          isVirtualResource: true,
+          content: {
+            initialValue: globalData[key],
+          },
+          transformer: {
+            enable: false,
+            rawData: "",
+          },
+        }
+      }) ?? []
+
+    return result
+  },
+)
+
 export const getPageDisplayNameMapViewDisplayName = createSelector(
   [getCanvas],
   (rootNode) => {
@@ -583,3 +614,24 @@ export const getCurrentPageSortedKeys = createSelector(
     return rootNode.props?.pageSortedKey ?? []
   },
 )
+
+export const getWidgetCount = createSelector([getCanvas], (rootNode) => {
+  if (!rootNode) return 0
+  const queue = [rootNode]
+  let count = 0
+  while (queue.length > 0) {
+    const head = queue[queue.length - 1]
+    if (head.type.endsWith("_WIDGET")) {
+      count++
+    }
+    queue.pop()
+    if (head.childrenNode) {
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
+        }
+      })
+    }
+  }
+  return count
+})

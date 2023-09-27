@@ -124,17 +124,6 @@ export const objectAndArrayDescStyle = css`
   color: ${getColor("grayBlue", "04")};
 `
 
-export const globalStateEditIconHotSpotStyle = css`
-  width: 12px;
-  height: 12px;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  visibility: hidden;
-`
-
 export const applyObjectOrArrayContainerStyle = (
   isSelected: boolean,
   level: number,

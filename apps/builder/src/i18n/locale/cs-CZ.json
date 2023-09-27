@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformátor",
+              "global-data": "Globální data",
+              "ai-agent": "AI Agent",
+              "more": "Více",
+              "create-resource": "Vytvořit ze zdroje"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Kliknutím zde</0> se dozvíte, jak použít vzorec",
               "time_zone": "<0>Klikněte zde</0> pro kontrolu všech podporovaných časových pásem.",
               "user_locales": "<0>Klikněte zde</0> pro kontrolu všech podporovaných lokalizací. "
+            },
+            "global-data": {
+              "how-to-use": "Použít tato globální data {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Proměnná",
             "input": "Odeslat obsah",
             "max-token": "Maximální token"
+          },
+          "general": {
+            "connect-data-source": "Připojit k databázi nebo api",
+            "more-type": "Další typ zdrojů údajů"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Připojte se ke zdroji dat a vytvořte akci k provedení CRUD"
           }
         }
       },
@@ -3096,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Seznam mřížek"
+    },
+    "frame": {
+      "initial-title": "Přetažením komponenty ji přidáte do rámečku"
     }
   },
   "page": {
@@ -3711,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Přístup k více modelům, jako je GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "colla": "2.5k Colla / měsíc"
           }
         },
         "price": "/měsíc/editor"

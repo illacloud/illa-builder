@@ -1,19 +1,17 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { AnimatePresence, motion } from "framer-motion"
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { CaretRightIcon, PenIcon, Trigger } from "@illa-design/react"
+import { CaretRightIcon } from "@illa-design/react"
 import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { CreateGlobalStateModal } from "../GlobalsSpaceTree/createGlobalStateModal"
 import { GlobalStateTreeItem } from "./globalStateTreeItem"
 import {
   applyExpandIconStyle,
   applyJsonContentStyle,
   applyObjectOrArrayContainerStyle,
-  globalStateEditIconHotSpotStyle,
   globalStateItemContainerStyle,
   objectAndArrayDescStyle,
   objectAndArrayTitleStyle,
@@ -35,8 +33,6 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
   const isExpanded = expandedKeys.includes(uniqueKey)
   const dispatch = useDispatch()
   const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
-
-  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
@@ -67,53 +63,6 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
             {keyArr.length}
             {keyArr.length > 1 ? "keys" : "key"}
           </label>
-          {level === 1 && (
-            <Trigger
-              trigger="click"
-              colorScheme="white"
-              withoutPadding
-              withoutShadow
-              position="right"
-              showArrow={false}
-              clickOutsideToClose
-              content={
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation()
-                  }}
-                >
-                  <CreateGlobalStateModal
-                    onClose={() => {
-                      setIsOpen(false)
-                    }}
-                    actionType="UPDATE"
-                    variableName={title}
-                  />
-                </div>
-              }
-              popupVisible={isOpen}
-              onVisibleChange={(visible) => {
-                if (visible) {
-                  trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-                    element: "global_modal",
-                    parameter2: "edit",
-                  })
-                }
-                setIsOpen(visible)
-              }}
-            >
-              <div
-                css={globalStateEditIconHotSpotStyle}
-                className="global-state-edit-icon-hot-spot"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setIsOpen(true)
-                }}
-              >
-                <PenIcon />
-              </div>
-            </Trigger>
-          )}
         </div>
       </div>
       <AnimatePresence>

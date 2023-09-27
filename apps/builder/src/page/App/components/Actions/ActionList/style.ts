@@ -33,3 +33,18 @@ export const actionListEmptyStyle = css`
   border-radius: 4px;
   border: dashed 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
+
+export const createDropListItemContainerStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`
+
+export const prefixIconContainerStyle = css`
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

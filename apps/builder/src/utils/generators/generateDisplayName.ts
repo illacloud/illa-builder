@@ -64,6 +64,10 @@ export class DisplayNameGenerator {
       this.displayNameList.add(action.displayName)
     })
     this.addComponentDisplayName(componentNode)
+    const globalData = componentNode.props?.globalData ?? {}
+    Object.keys(globalData).forEach((key) => {
+      this.displayNameList.add(key)
+    })
   }
 
   static addComponentDisplayName(componentNode: ComponentNode) {
