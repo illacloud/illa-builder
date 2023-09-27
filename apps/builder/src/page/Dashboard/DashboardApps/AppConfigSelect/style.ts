@@ -27,6 +27,12 @@ export const optionContentStyle = css`
   color: ${getColor("grayBlue", "02")};
 `
 
+export const publicButtonWithTagStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`
+
 export const optionItemStyle = css`
   display: flex;
   justify-content: space-between;
