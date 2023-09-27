@@ -605,7 +605,7 @@
               }
             },
             "general": {
-              "js": "Трансформатор",
+              "js": "JavaScript",
               "global-data": "Глобальные данные",
               "ai-agent": "AI Agent",
               "more": "Ещё",
