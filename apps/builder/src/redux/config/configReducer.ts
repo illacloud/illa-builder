@@ -174,10 +174,13 @@ export const resetSelectedActionReducer: CaseReducer<
   PayloadAction<string>
 > = (state, action) => {
   if (!state.selectedAction) return
-  if (state.selectedAction?.displayName === action.payload) {
+  const selectedActionDisplayName = state.selectedAction.displayName
+  const selectedActionID = state.selectedAction.actionID
+  if (selectedActionDisplayName === action.payload) {
     state.selectedAction = null
   }
-  if (state.cachedAction?.actionID === state.selectedAction?.actionID) {
+  if (!state.cachedAction) return
+  if (state.cachedAction.actionID === selectedActionID) {
     state.cachedAction = null
   }
 }
