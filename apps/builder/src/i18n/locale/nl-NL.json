@@ -605,7 +605,7 @@
               }
             },
             "general": {
-              "js": "JavaScript",
+              "js": "Transformer",
               "global-data": "Global data",
               "ai-agent": "AI Agent",
               "more": "More",

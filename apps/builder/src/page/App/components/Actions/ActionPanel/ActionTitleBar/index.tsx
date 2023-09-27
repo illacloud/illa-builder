@@ -146,8 +146,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const [saveLoading, setSaveLoading] = useState(false)
   const shortcut = useContext(ShortCutContext)
 
-  const selectedAction = useSelector(getSelectedAction)!
+  const selectedAction = useSelector(getSelectedAction)! ?? {}
   const cachedAction = useSelector(getCachedAction)!
+
   const selectedActionExecutionResult = useSelector<
     RootState,
     Record<string, any>
@@ -172,7 +173,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const runError = executionResult[selectedAction.displayName]?.runResult?.error
 
-  let runMode: RunMode = useMemo(() => {
+  const getRunMode = () => {
     if (isGuideOpen) {
       if (isChanged) {
         return "save"
@@ -190,7 +191,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     } else {
       return "run"
     }
-  }, [isChanged, cachedAction, isGuideOpen])
+  }
+
+  const runMode = getRunMode()
 
   const innerTabItems = useMemo(() => {
     if (
