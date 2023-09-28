@@ -8,11 +8,13 @@ setup("authenticate", async ({ page }) => {
     method: "POST",
     url: "/auth/signin",
     data: {
-      email: process.env.USER_EMAIL,
-      password: process.env.USER_PASSWORD,
+      email: process.env.ILLA_CLOUD_USER_EMAIL,
+      password: process.env.ILLA_CLOUD_USER_PASSWORD,
     },
   })
   const token = result.headers["illa-token"]
-  await page.goto(`/${process.env.TEAM_IDENTITY}/dashboard/apps?token=${token}`)
+  await page.goto(
+    `/${process.env.ILLA_CLOUD_TEAM_IDENTITY}/dashboard/apps?token=${token}`,
+  )
   await page.context().storageState({ path: authFile })
 })
