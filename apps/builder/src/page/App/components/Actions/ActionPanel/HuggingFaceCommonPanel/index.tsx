@@ -332,6 +332,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
             <div css={bodySelectorStyle}>
               <Select
                 colorScheme="techPurple"
+                showSearch={true}
                 defaultValue={content?.inputs?.type || "text"}
                 value={content?.inputs?.type || "text"}
                 w="100%"
