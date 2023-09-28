@@ -6,8 +6,9 @@
   "scripts": {
     "test": "playwright test",
     "test:development": "cross-env ILLA_APP_ENV=development playwright test",
-    "codegen": "playwright codegen  https://localhost:3000/bbbbb/dashboard/apps --load-storage=.auth/user.json --ignore-https-errors",
-    "test:auth": "cross-env ILLA_APP_ENV=development playwright test auth.setup.ts"
+    "test:auth": "cross-env ILLA_APP_ENV=development playwright test auth.setup.ts",
+    "codegen": "node ./script/codeGen.js",
+    "init:env": "node ./script/initEnv.js"
   },
   "keywords": [],
   "author": "",
