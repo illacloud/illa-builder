@@ -214,7 +214,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
           ml="16px"
           mr="16px"
           mb="8px"
-          css={addNewActionButtonStyle}
+          _css={addNewActionButtonStyle}
         >
           <Space size="4px" direction="horizontal" alignItems="center">
             <AddIcon size="14px" />
