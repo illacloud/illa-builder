@@ -138,10 +138,13 @@ export const FilesModalContent: FC = () => {
       return
     }
     setConfirmLoading(true)
-    submitSelect(selectItems).finally(() => {
-      setSelectItems([])
-      setConfirmLoading(false)
-    })
+    submitSelect(selectItems)
+      .then(() => {
+        setSelectItems([])
+      })
+      .finally(() => {
+        setConfirmLoading(false)
+      })
   }, [selectItems, submitSelect, validateFileNum])
 
   const getListDate = useCallback(

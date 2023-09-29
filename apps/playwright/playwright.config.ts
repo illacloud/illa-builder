@@ -1,7 +1,9 @@
 import { defineConfig, devices } from "@playwright/test"
-import dotenv from "dotenv"
+import * as dotenv from "dotenv"
 
 const modeExt = process.env.ILLA_APP_ENV || "development"
+dotenv.config({ path: ".env" })
+dotenv.config({ path: ".env.local", override: true })
 dotenv.config({ path: `.env.${modeExt}.local`, override: true })
 
 /**

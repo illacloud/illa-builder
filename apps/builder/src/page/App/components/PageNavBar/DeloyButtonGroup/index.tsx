@@ -1,4 +1,3 @@
-import { UpgradeIcon } from "@illa-public/icon"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
@@ -9,14 +8,15 @@ import {
   DropList,
   DropListItem,
   Dropdown,
-  Tag,
 } from "@illa-design/react"
+import { UpgradeTag } from "@/components/UpgradeTag"
 import {
   deployButtonStyle,
   deployConfigButtonStyle,
   deployConfigDescStyle,
   deployLabelStyle,
   deployMenuStyle,
+  deployMenuWithTagStyle,
 } from "@/page/App/components/PageNavBar/DeloyButtonGroup/style"
 
 export interface DeployButtonGroupProps {
@@ -100,13 +100,11 @@ export const DeployButtonGroup: FC<DeployButtonGroupProps> = (props) => {
                       {t("new_deploy.title.public_app")}
                     </div>
                   ) : (
-                    <div>
+                    <div css={deployMenuWithTagStyle}>
                       <span css={deployLabelStyle}>
                         {t("new_deploy.title.public_app")}
                       </span>
-                      <Tag ml="8px" colorScheme="techPurple">
-                        <UpgradeIcon /> {t("billing.homepage.upgrade")}
-                      </Tag>
+                      <UpgradeTag />
                     </div>
                   )}
                   <div css={deployConfigDescStyle}>

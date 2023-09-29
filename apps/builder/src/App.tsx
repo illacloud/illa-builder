@@ -4,10 +4,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
 } from "@illa-public/mixpanel-utils"
-import {
-  UpgradeDrawerGroup,
-  UpgradeModalGroup,
-} from "@illa-public/upgrade-modal"
+import { UpgradeModalGroup } from "@illa-public/upgrade-modal"
 import { getCurrentTranslateLanguage } from "@illa-public/user-data"
 import { useEffect, useMemo } from "react"
 import { DndProvider } from "react-dnd"
@@ -87,7 +84,6 @@ function App() {
           <ConfigProvider locale={configLanguage}>
             <Global styles={globalStyle} />
             <MessageGroup pt={!isProductMode ? "46px" : "0"} />
-            <UpgradeDrawerGroup />
             <UpgradeModalGroup />
             <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
             <ModalGroup />

@@ -22,14 +22,13 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem, ActionType } from "@/redux/currentApp/action/actionState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   ApiMethod,
   BodyContent,
   BodyType,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
-import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { Resource } from "@/redux/resource/resourceState"
 import {
   Params,
@@ -39,7 +38,6 @@ import {
 import { RootState } from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-const huggingFaceMethodSelectOptions: ApiMethod[] = ["POST"]
 const resetAPIMethodSelectOptions: ApiMethod[] = [
   "GET",
   "POST",
@@ -50,16 +48,6 @@ const resetAPIMethodSelectOptions: ApiMethod[] = [
   "OPTIONS",
 ]
 
-const getMethod = (actionType: ActionType) => {
-  switch (actionType) {
-    case "huggingface":
-      return huggingFaceMethodSelectOptions
-    case "restapi":
-    default:
-      return resetAPIMethodSelectOptions
-  }
-}
-
 const RestApiPanel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<
@@ -68,7 +56,6 @@ const RestApiPanel: FC = () => {
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
     RestApiAction<BodyContent>
   >
-  const isHuggingFace = cachedAction.actionType === "huggingface"
   const content = cachedAction.content as RestApiAction<BodyContent>
   const dispatch = useDispatch()
 
@@ -127,28 +114,22 @@ const RestApiPanel: FC = () => {
             value={content.method}
             w="160px"
             maxW="160px"
-            options={getMethod(cachedAction.actionType)}
+            options={resetAPIMethodSelectOptions}
             onChange={handleChangeMethod}
           />
           <Trigger
             position="top-start"
             content={
               currentResource?.content
-                ? isHuggingFace
-                  ? (currentResource as Resource<HuggingFaceResource>).content
-                      .baseURL
-                  : (currentResource as Resource<RestApiResource<RestApiAuth>>)
-                      .content.baseUrl
+                ? (currentResource as Resource<RestApiResource<RestApiAuth>>)
+                    .content.baseUrl
                 : ""
             }
           >
             <div css={urlStyle}>
               {currentResource?.content
-                ? isHuggingFace
-                  ? (currentResource as Resource<HuggingFaceResource>).content
-                      .baseURL
-                  : (currentResource as Resource<RestApiResource<RestApiAuth>>)
-                      .content.baseUrl
+                ? (currentResource as Resource<RestApiResource<RestApiAuth>>)
+                    .content.baseUrl
                 : ""}
             </div>
           </Trigger>

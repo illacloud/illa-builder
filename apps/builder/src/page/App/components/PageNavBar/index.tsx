@@ -1,4 +1,3 @@
-import { UpgradeIcon } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
@@ -30,12 +29,12 @@ import {
   FullScreenIcon,
   MoreIcon,
   Switch,
-  Tag,
   getColor,
   useMessage,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+import { UpgradeTag } from "@/components/UpgradeTag"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
@@ -84,16 +83,6 @@ import {
   upgradeStyle,
   viewControlStyle,
 } from "./style"
-
-const UpgradeTag: FC = () => {
-  const { t } = useTranslation()
-
-  return (
-    <Tag colorScheme="techPurple">
-      <UpgradeIcon /> {t("billing.homepage.upgrade")}
-    </Tag>
-  )
-}
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
