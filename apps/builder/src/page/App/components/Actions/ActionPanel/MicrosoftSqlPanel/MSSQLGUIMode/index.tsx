@@ -5,7 +5,6 @@ import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/Micros
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import { MicrosoftSqlActionGUIMode } from "@/redux/currentApp/action/microsoftSqlAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -34,8 +33,8 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
     setLoading(true)
     fetchResourceMeta(resourceID)
       .then(
-        ({ data }: { data: ResourcesData }) => {
-          const tables = Object.keys(data.schema ?? {}).map((key) => key)
+        ({ data }) => {
+          const tables = Object.keys(data.Schema ?? {}).map((key) => key)
           setCollectionSelect(tables)
           setLoading(false)
           setError(false)

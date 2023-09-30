@@ -23,7 +23,6 @@ import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchGenerateSQL } from "@/services/action"
 import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -49,11 +48,9 @@ const MysqlLikePanel: FC = () => {
 
   useEffect(() => {
     if (currentAction.resourceID == undefined) return
-    fetchResourceMeta(currentAction.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        setSqlTable(data?.schema ?? {})
-      },
-    )
+    fetchResourceMeta(currentAction.resourceID).then(({ data }) => {
+      setSqlTable(data?.Schema ?? {})
+    })
   }, [currentAction.resourceID])
 
   const mode = useMemo(() => {
