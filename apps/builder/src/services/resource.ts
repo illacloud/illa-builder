@@ -56,8 +56,8 @@ export const fetchResources = (signal: AbortSignal) => {
 }
 
 interface IResourceMeta {
-  resourceName: string
-  schema: Record<string, Record<string, { data_type: string }>>
+  Success: boolean
+  Schema: Record<string, unknown>
 }
 
 export const fetchResourceMeta = async (resourceID: string) => {
