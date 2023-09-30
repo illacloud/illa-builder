@@ -32,7 +32,6 @@ import {
   GoogleSheetsActionOpts,
   GoogleSheetsActionType,
 } from "@/redux/currentApp/action/googleSheetsAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { Params } from "@/redux/resource/restapiResource"
 import { fetchResourceMeta } from "@/services/resource"
 
@@ -68,20 +67,18 @@ const GoogleSheetsPanel: FC = () => {
 
   useEffect(() => {
     if (cachedAction.resourceID == undefined) return
-    fetchResourceMeta(cachedAction.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        let tables: { id: string; name: string }[] = []
-        if (data.schema) {
-          tables = (data.schema?.spreadsheets ?? []) as {
-            id: string
-            name: string
-          }[]
-        }
-        setSpreadsheetsOption(
-          tables.map((table) => ({ label: table.name, value: table.id })),
-        )
-      },
-    )
+    fetchResourceMeta(cachedAction.resourceID).then(({ data }) => {
+      let tables: { id: string; name: string }[] = []
+      if (data.Schema) {
+        tables = (data.Schema?.spreadsheets ?? []) as {
+          id: string
+          name: string
+        }[]
+      }
+      setSpreadsheetsOption(
+        tables.map((table) => ({ label: table.name, value: table.id })),
+      )
+    })
   }, [cachedAction.resourceID])
 
   const handleSelectValueChange = useCallback(

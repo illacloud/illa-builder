@@ -12,7 +12,6 @@ import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { RedisAction } from "@/redux/currentApp/action/redisAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -22,11 +21,9 @@ const RedisPanel: FC = () => {
 
   useEffect(() => {
     if (action.resourceID == undefined) return
-    fetchResourceMeta(action.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        setSqlTable(data?.schema ?? {})
-      },
-    )
+    fetchResourceMeta(action.resourceID).then(({ data }) => {
+      setSqlTable(data?.Schema ?? {})
+    })
   }, [action.resourceID])
 
   const currentContent = action.content as RedisAction
