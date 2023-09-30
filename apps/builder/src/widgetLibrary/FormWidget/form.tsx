@@ -276,7 +276,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       return {
         displayName: node.displayName,
         value: {
-          value: "",
+          value: node.props!.value,
           validateMessage: "",
         },
       }
