@@ -1,7 +1,9 @@
 # Ara Ara: Find Your Next Favorite Anime 🌸
 
 ## Description
-Ara Ara is a geeky bot designed to help you discover animes similar to your favorites.<br><br>
+Ara Ara is a geeky bot designed to help you discover animes similar to your favorites.
+[Quick try](https://illa.ai/ai-agent/ILAex4p1C73m/detail)
+<br><br>
 Whether you are into shonen, slice of life, or any other genre, Ara Ara will find the perfect match for you. Enter the name of an anime you like, and the bot will provide you with a list of shows that share comparable genres, storylines, or overall vibe.
 
 
