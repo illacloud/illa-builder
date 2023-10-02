@@ -45,6 +45,10 @@ const AirtableIcon = lazy(() => import("@/page/App/components/Icons/airtable"))
 const TransformerIcon = lazy(
   () => import("@/page/App/components/Icons/transformer"),
 )
+const AIAgentIcon = lazy(() => import("@/page/App/components/Icons/aiAgent"))
+const GlobalDataIcon = lazy(
+  () => import("@/page/App/components/Icons/globalData"),
+)
 
 export function getAgentIcon(agent: Agent, size: string) {
   return <img src={agent?.icon} css={agentActionStyle(size)} />
@@ -172,6 +176,10 @@ export function getIconFromActionType(
       return <AppwriteIcon size={size} />
     case "airtable":
       return <AirtableIcon size={size} />
+    case "aiagent":
+      return <AIAgentIcon size={size} />
+    case "globalData":
+      return <GlobalDataIcon size={size} />
   }
   return null
 }

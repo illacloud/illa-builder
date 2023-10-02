@@ -16,6 +16,15 @@ export const deployConfigButtonStyle = css`
 `
 export const deployMenuStyle = css`
   padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`
+
+export const deployMenuWithTagStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `
 
 export const deployButtonStyle = css`

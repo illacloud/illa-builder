@@ -2,9 +2,11 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { getCurrentUserID } from "@illa-public/user-data"
+import { sendTagEvent } from "@illa-public/utils"
 import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Input, Modal, useMessage } from "@illa-design/react"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
@@ -20,6 +22,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { teamIdentifier } = useParams()
+  const currentUserID = useSelector(getCurrentUserID)
 
   const [loading, setLoading] = useState(false)
   const message = useMessage()
@@ -100,6 +103,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
           .then(
             (response) => {
               onCreateSuccess()
+              sendTagEvent("create_app", currentUserID)
               dispatch(
                 dashboardAppActions.addDashboardAppReducer({
                   app: response.data,

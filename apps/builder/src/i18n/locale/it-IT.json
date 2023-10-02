@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "Global data",
+              "ai-agent": "AI Agent",
+              "more": "More",
+              "create-resource": "Create from resource"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Clicca qui</0> per imparare a usare la formula.",
               "time_zone": "<0>Clicca qui</0> per controllare tutti i fusi orari supportati.",
               "user_locales": "<0>Clicca qui</0> per controllare tutti i locali supportati. "
+            },
+            "global-data": {
+              "how-to-use": "Use this global data by {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variabile",
             "input": "Invia contenuto",
             "max-token": "Max token"
+          },
+          "general": {
+            "connect-data-source": "Connect to database or api",
+            "more-type": "More type of data sources"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Connect to your data source and create an action to perform CRUD"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Impossibile caricare",
           "onMenuSelect": "Seleziona elemento",
           "on_menu_select": "Seleziona voce di menu",
-          "pageChange": "Modifica pagina"
+          "pageChange": "Modifica pagina",
+          "clickItem": "Clic elemento"
         },
         "image_list": {
           "title": "Immagini",
@@ -1676,7 +1696,7 @@
           "background": "Sfondo",
           "calendar_background": "Sfondo",
           "calendar_border": "Border",
-          "calendar_text": "Testo",
+          "calendar_text": "Secondary text",
           "event_background": "Sfondo",
           "event_text": "Testo",
           "draggable": "Trascinabile",
@@ -1804,7 +1824,9 @@
           "row_height": "Adattamento riga",
           "item_radius": "Raggio oggetto",
           "item_shadow": "Ombra dell'elemento",
-          "item_spacing": "Spaziatura elementi"
+          "item_spacing": "Spaziatura elementi",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Usato per configurare l'altezza di ogni riga. In modalità automatica, l'altezza è adattabile e l'altezza della riga è determinata dalla griglia più alta della riga corrente. In modalità fissa, l'altezza della riga è fissa, e tutte le griglie hanno la stessa altezza.",
           "item_radius": "Usato per configurare il raggio d'angolo di ogni griglia",
           "item_shadow": "Usato per configurare la dimensione dell'ombra di ogni griglia",
-          "item_spacing": "Usato per configurare la spaziatura tra le griglie"
+          "item_spacing": "Usato per configurare la spaziatura tra le griglie",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Elenco griglia"
+    },
+    "frame": {
+      "initial-title": "Drag a component to add it to the frame"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Access to more models such as GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For first time )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/month/editor"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GB storage",
             "3": "5GB traffic",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/month/10k Colla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Disiscriviti",
@@ -4312,14 +4338,5 @@
   "contribute": "Contribuisci",
   "error_page": {
     "fobidden": "Nessuna autorizzazione di accesso"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Clic elemento"
-        }
-      }
-    }
   }
 }

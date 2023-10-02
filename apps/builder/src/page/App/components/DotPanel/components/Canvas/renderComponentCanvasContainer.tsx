@@ -59,6 +59,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
+import { getPaddingShape } from "@/utils/styleUtils/padding"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { useAutoUpdateCanvasHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import {
@@ -86,6 +87,8 @@ const RenderComponentCanvasContainer: FC<
     canResizeCanvas = false,
     safeRowNumber = SAFE_ROWS,
     minHeight,
+    background,
+    shadowSize = "none",
     handleUpdateHeight,
   } = props
 
@@ -102,11 +105,20 @@ const RenderComponentCanvasContainer: FC<
   const messageHandler = useMessage()
   const innerCanvasRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation()
+  const paddings = getPaddingShape(containerPadding)
   const fixedBounds = {
-    top: bounds.top + containerPadding + SCROLL_CONTAINER_PADDING,
-    left: bounds.left + containerPadding + SCROLL_CONTAINER_PADDING,
-    width: bounds.width - (containerPadding + SCROLL_CONTAINER_PADDING) * 2,
-    height: bounds.height - (containerPadding + SCROLL_CONTAINER_PADDING) * 2,
+    top: bounds.top + paddings.paddingTop + SCROLL_CONTAINER_PADDING,
+    left: bounds.left + paddings.paddingLeft + SCROLL_CONTAINER_PADDING,
+    width:
+      bounds.width -
+      (paddings.paddingLeft +
+        paddings.paddingRight +
+        SCROLL_CONTAINER_PADDING * 2),
+    height:
+      bounds.height -
+      (paddings.paddingTop +
+        paddings.paddingBottom +
+        SCROLL_CONTAINER_PADDING * 2),
   }
 
   const canShowDot = useSelector(isShowDot)
@@ -433,10 +445,13 @@ const RenderComponentCanvasContainer: FC<
     (height: number) => {
       if (!handleUpdateHeight) return
       handleUpdateHeight(
-        height + SCROLL_CONTAINER_PADDING * 2 + containerPadding * 2,
+        height +
+          SCROLL_CONTAINER_PADDING * 2 +
+          paddings.paddingTop +
+          paddings.paddingBottom,
       )
     },
-    [containerPadding, handleUpdateHeight],
+    [handleUpdateHeight, paddings.paddingBottom, paddings.paddingTop],
   )
 
   useAutoUpdateCanvasHeight(
@@ -503,7 +518,11 @@ const RenderComponentCanvasContainer: FC<
 
   return (
     <div
-      css={outerComponentCanvasContainerStyle(containerPadding)}
+      css={outerComponentCanvasContainerStyle(
+        containerPadding,
+        background,
+        shadowSize,
+      )}
       ref={canvasRef}
     >
       <div
@@ -556,7 +575,10 @@ const RenderComponentCanvasContainer: FC<
                 )
               })
             ) : isRootCanvas ? null : (
-              <ContainerEmptyState isInner />
+              <ContainerEmptyState
+                isInner
+                containerPadding={containerPadding}
+              />
             )}
             {collectedProps.isOver && isEditMode && (
               <DragPreview

@@ -16,14 +16,12 @@ import i18n from "@/i18n/config"
 import {
   BODY_MIN_HEIGHT,
   BODY_MIN_WIDTH,
+  DEFAULT_PERCENT_WIDTH,
+  DEFAULT_PX_WIDTH,
   FOOTER_MIN_HEIGHT,
   HEADER_MIN_HEIGHT,
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
-} from "@/page/App/components/DotPanel/constant/canvas"
-import {
-  DEFAULT_PERCENT_WIDTH,
-  DEFAULT_PX_WIDTH,
 } from "@/page/App/components/DotPanel/constant/canvas"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { LayoutSelect } from "@/page/App/components/PagePanel/Components/LayoutSelect"
@@ -509,6 +507,10 @@ export const PageFrame: FC = () => {
         <SetterPadding>
           <InputNumber
             w="96px"
+            precision={0}
+            step={1}
+            min={finalCanvasSize === "fixed" ? 240 : 27}
+            max={finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100}
             value={Number(finalCanvasWidth.toFixed(0))}
             colorScheme="techPurple"
             onChange={handleChangeCanvasWidth}
@@ -567,8 +569,13 @@ export const PageFrame: FC = () => {
                 <InputNumber
                   w="96px"
                   value={Number(leftWidth.toFixed(0))}
+                  precision={0}
                   colorScheme="techPurple"
                   onChange={handleUpdateLeftPanelWidth}
+                  min={finalCanvasSize === "fixed" ? 240 : 27}
+                  max={
+                    finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100
+                  }
                   step={1}
                   onBlur={(e) => {
                     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
@@ -639,6 +646,11 @@ export const PageFrame: FC = () => {
               <SetterPadding>
                 <InputNumber
                   w="96px"
+                  precision={0}
+                  min={finalCanvasSize === "fixed" ? 240 : 27}
+                  max={
+                    finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100
+                  }
                   value={Number(rightWidth.toFixed(0))}
                   colorScheme="techPurple"
                   onChange={handleUpdateRightPanelWidth}
@@ -688,6 +700,9 @@ export const PageFrame: FC = () => {
           <SetterPadding>
             <InputNumber
               w="96px"
+              precision={0}
+              min={finalCanvasSize === "fixed" ? 240 : 27}
+              max={finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100}
               colorScheme="techPurple"
               value={Number(bodyWidth.toFixed(0))}
               onChange={handleUpdateBodyPanelWidth}

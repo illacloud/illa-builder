@@ -1,10 +1,30 @@
 <div align="center">
+  <h2>Hacktoberfest 2023｜ILLA Cloud</h2>
+
+  在ILLA中创建AI Agent或ILLA App并贡献到ILLA社区，在GitHub中将贡献的内容提交PR给ILLA，您就有机会获得来自Hacktoberfest的数字奖励套件和来自ILLA Cloud的礼品
+
+</div>
+
+
+<a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202979.png"></a>
+
+<div align="center">
+  <h3>了解活动详情 👇</h3>
+  <a href="https://www.illacloud.com/hacktoberfest2023">
+    <img alt="Hacktoberfest2023|ILLA Cloud" src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Hacktoberfest%20OW%20banner.png"/>
+  </a>
+</div>
+
+---
+
+
+<div align="center">
   <a href="https://cloud.illacloud.com/">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
   </a>
 </div>
 
-<h1 align="center"><a href="https://Cloud.illacloud.com/">ILLA Builder</a></h1>
+<h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a></h1>
 
 <p align="center">ILLA 是一个强大的开源低代码平台，供开发人员构建内部工具。 通过使用 ILLA 的组件和操作库，开发人员可以节省大量构建工具的时间。 </p>
 
@@ -14,7 +34,7 @@
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/github-home.png">
+  <img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/20230919-210525.png">
 </a>
 </p>
 
@@ -31,7 +51,7 @@
 
 
 ## 🚀开始体验ILLA
-试用ILLA的最方便的方式是注册并登录 [ILLA Cloud](https://cloud.illacloud.com/)。要获取邀请码，请填写此 [Google 表单](https://forms.gle/XFRSUc3yFpzbCdcWA)并尽可能提供更多信息。我们将在两个工作日内审核您的提交，并尽快与您联系。为加快审核过程，我们邀请您加入我们的[Discord 社区](https://discord.gg/illacloud)，在那里您可以更快地获得邀请码。
+试用ILLA的最方便的方式是注册并登录 [ILLA Cloud](https://cloud.illacloud.com/)。
 
 您还可以[本地部署](https://github.com/illacloud/illa-builder/blob/main/README-CN.md#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2)ILLA工具（Docker、Docker Compose和Kubernetes）。
 <p>
@@ -96,9 +116,6 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 ## 💬 社区
 
 加入 ILLA 社区，分享您的想法、建议或问题，并与其他用户和贡献者交流。
-
-微信用户交流群二维码
-![wechat_group_qrcode](https://github.com/illacloud/.github/blob/main/assets/images/20230619-221740.jpeg)
 
 Discord与Github社区入口
 

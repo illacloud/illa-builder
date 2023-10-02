@@ -5,25 +5,45 @@ import {
   SCROLL_CONTAINER_PADDING,
   UNIT_HEIGHT,
 } from "@/page/App/components/DotPanel/constant/canvas"
+import { getPaddingShape } from "@/utils/styleUtils/padding"
+import { getShadowStyle } from "@/utils/styleUtils/shadow"
 
-export const outerComponentCanvasContainerStyle = (padding: number) => css`
-  height: 100%;
-  width: 100%;
-  padding: ${padding}px;
-  position: relative;
-  overflow: hidden;
-`
+export const outerComponentCanvasContainerStyle = (
+  padding: string,
+  background: string = "transparent",
+  shadowSize: "none" | "small" | "medium" | "large",
+  dividerColor?: string,
+) => {
+  const { paddingTop, paddingBottom, paddingLeft, paddingRight } =
+    getPaddingShape(padding)
+  return css`
+    height: 100%;
+    width: 100%;
+    padding: ${paddingTop}px ${paddingRight}px ${paddingBottom}px
+      ${paddingLeft}px;
+    position: relative;
+    overflow: hidden;
+    background: ${background};
+    box-shadow: ${getShadowStyle(shadowSize)};
+    border: ${dividerColor ? `1px solid ${dividerColor}` : "unset"};
+  `
+}
 
-export const outerModalCanvasContainerStyle = (padding: number) => css`
-  height: 100%;
-  width: 100%;
-  padding: ${padding}px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
+export const outerModalCanvasContainerStyle = (padding: string) => {
+  const { paddingTop, paddingBottom, paddingLeft, paddingRight } =
+    getPaddingShape(padding)
+  return css`
+    height: 100%;
+    width: 100%;
+    padding: ${paddingTop}px ${paddingRight}px ${paddingBottom}px
+      ${paddingLeft}px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `
+}
 
 export const outerComponentCanvasContainerWithJsonStyle = (
   padding: number,
@@ -43,15 +63,19 @@ export const componentCanvasContainerStyle = css`
   overflow: hidden auto;
 `
 
-export const containerShapeStyle = (padding: number) => css`
-  top: ${padding}px;
-  bottom: ${padding}px;
-  left: ${padding}px;
-  right: ${padding}px;
-  position: absolute;
-  border: ${BORDER_WIDTH}px solid ${getColor("grayBlue", "09")};
-  pointer-events: none;
-`
+export const containerShapeStyle = (padding: string) => {
+  const { paddingTop, paddingBottom, paddingLeft, paddingRight } =
+    getPaddingShape(padding)
+  return css`
+    top: ${paddingTop}px;
+    bottom: ${paddingBottom}px;
+    left: ${paddingLeft}px;
+    right: ${paddingRight}px;
+    position: absolute;
+    border: ${BORDER_WIDTH}px solid ${getColor("grayBlue", "09")};
+    pointer-events: none;
+  `
+}
 
 export const dropZoneStyle = (canvasHeight?: number) => css`
   width: 100%;

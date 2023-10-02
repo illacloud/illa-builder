@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformátor",
+              "global-data": "Globální data",
+              "ai-agent": "AI Agent",
+              "more": "Více",
+              "create-resource": "Vytvořit ze zdroje"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Kliknutím zde</0> se dozvíte, jak použít vzorec",
               "time_zone": "<0>Klikněte zde</0> pro kontrolu všech podporovaných časových pásem.",
               "user_locales": "<0>Klikněte zde</0> pro kontrolu všech podporovaných lokalizací. "
+            },
+            "global-data": {
+              "how-to-use": "Použít tato globální data {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Proměnná",
             "input": "Odeslat obsah",
             "max-token": "Maximální token"
+          },
+          "general": {
+            "connect-data-source": "Připojit k databázi nebo api",
+            "more-type": "Další typ zdrojů údajů"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Připojte se ke zdroji dat a vytvořte akci k provedení CRUD"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Nepodařilo se nahrát",
           "onMenuSelect": "Vybrat položku",
           "on_menu_select": "Vyberte položku nabídky",
-          "pageChange": "Změna stránky"
+          "pageChange": "Změna stránky",
+          "clickItem": "Klepněte na položku"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1676,7 +1696,7 @@
           "background": "Pozadí",
           "calendar_background": "Pozadí",
           "calendar_border": "Border",
-          "calendar_text": "Text",
+          "calendar_text": "Sekundární text",
           "event_background": "Pozadí",
           "event_text": "Text",
           "draggable": "Posunout",
@@ -1804,7 +1824,9 @@
           "row_height": "Úprava řádků",
           "item_radius": "Poloměr položky",
           "item_shadow": "Stín položek",
-          "item_spacing": "Mezery položek"
+          "item_spacing": "Mezery položek",
+          "max_column_count": "Maximální počet sloupců",
+          "min_column_count": "Minimální počet sloupců"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Používá se ke konfiguraci výšky každého řádku. V automatickém režimu je výška adaptivní a výška řady je určena nejvyššími mřížkami v aktuálním řádku. V pevném režimu je výška řádku pevná a všechny mřížky mají stejnou výšku.",
           "item_radius": "Používá se pro nastavení poloměru rohů každé mřížky",
           "item_shadow": "Používá se ke konfiguraci stínu každé mřížky",
-          "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami"
+          "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami",
+          "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Seznam mřížek"
+    },
+    "frame": {
+      "initial-title": "Přetažením komponenty ji přidáte do rámečku"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Přístup k více modelům, jako je GPT-4, GPT-3.5...",
-            "colla": "30k Colla (poprvé )"
+            "colla": "2.5k Colla / měsíc"
           }
         },
         "price": "/měsíc/editor"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GB úložiště",
             "3": "5GB provozu",
-            "4": "Token 100K"
+            "4": "50k token"
           }
         },
         "price": "/měsíc/10k Colla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Odhlásit odběr",
@@ -4312,14 +4338,5 @@
   "contribute": "Přispějte",
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klepněte na položku"
-        }
-      }
-    }
   }
 }

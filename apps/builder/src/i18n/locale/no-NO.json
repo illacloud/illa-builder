@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformator",
+              "global-data": "Globale data",
+              "ai-agent": "AI Agent",
+              "more": "Mer",
+              "create-resource": "Opprett fra ressurs"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klikk her</0> for å lære hvordan du bruker formel.",
               "time_zone": "<0>Klikk her</0> for å kontrollere alle støttede tidssoner.",
               "user_locales": "<0>Klikk her</0> for å sjekke alle støttede lokaliteter. "
+            },
+            "global-data": {
+              "how-to-use": "Bruk disse globale dataene av {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variabel",
             "input": "Send innhold",
             "max-token": "Maks token"
+          },
+          "general": {
+            "connect-data-source": "Koble til database eller api",
+            "more-type": "Mer type datakilder"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Koble til din datakilde og opprett en handling for å utføre CRUD"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Kan ikke laste opp",
           "onMenuSelect": "Velg element",
           "on_menu_select": "Velg menypunkt",
-          "pageChange": "Side endring"
+          "pageChange": "Side endring",
+          "clickItem": "Klikk pÃ¥ element"
         },
         "image_list": {
           "title": "Bilder",
@@ -1676,7 +1696,7 @@
           "background": "Bakgrunn",
           "calendar_background": "Bakgrunn",
           "calendar_border": "Border",
-          "calendar_text": "Tekst",
+          "calendar_text": "Sekundær tekst",
           "event_background": "Bakgrunn",
           "event_text": "Tekst",
           "draggable": "Flyttbar",
@@ -1804,7 +1824,9 @@
           "row_height": "Tilpasning av rader",
           "item_radius": "Objekt radius",
           "item_shadow": "Skygge for element",
-          "item_spacing": "Mellomrom mellom enheter"
+          "item_spacing": "Mellomrom mellom enheter",
+          "max_column_count": "Maksimalt antall kolonner",
+          "min_column_count": "Minimum antall kolonner"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Brukes til å konfigurere høyden på hver rad. I auto-modus er høyden adaptiv, og radhøyden bestemmes av det høyeste rutenettet i nåværende rad. I fastmodusen er radhøyden fastsatt, og alle rutene har samme høyde.",
           "item_radius": "Brukes til å konfigurere hjørneradius i hver tabell",
           "item_shadow": "Brukes til å konfigurere skyggestørrelsen for hver rute",
-          "item_spacing": "Brukes til å konfigurere mellomrom mellom tabeller"
+          "item_spacing": "Brukes til å konfigurere mellomrom mellom tabeller",
+          "max_column_count": "Angi maksimalt antall kolonner som kan vises i rutenettlistekomponenten når den øker bredden. Når det største antallet kolonner nås, og lerretsbredden fortsetter å øke, kolonnebredden vil økes for å romme opplegget, og antall kolonner vil ikke øke ytterligere."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Rutenett liste"
+    },
+    "frame": {
+      "initial-title": "Dra en komponent for å legge den til rammen"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Tilgang til flere modeller som GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For første gang)"
+            "colla": "2,5k Colla / måned"
           }
         },
         "price": "/måned/redigering"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GB lagring",
             "3": "5GB trafikk",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/måned Kolla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Avmeld",
@@ -4312,14 +4338,5 @@
   "contribute": "Bidra",
   "error_page": {
     "fobidden": "Ingen tilgang"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klikk pÃ¥ element"
-        }
-      }
-    }
   }
 }

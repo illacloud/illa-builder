@@ -16,7 +16,6 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { CollectionType } from "@/redux/currentApp/action/firebaseAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -39,15 +38,13 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
 
   useEffect(() => {
     if (action.resourceID == undefined) return
-    fetchResourceMeta(action.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        let tables: string[] = []
-        if (data.schema) {
-          tables = (data.schema.collections || []) as string[]
-        }
-        setCollectionSelect(tables)
-      },
-    )
+    fetchResourceMeta(action.resourceID).then(({ data }) => {
+      let tables: string[] = []
+      if (data.Schema) {
+        tables = (data.Schema.collections || []) as string[]
+      }
+      setCollectionSelect(tables)
+    })
   }, [action.resourceID])
 
   return (

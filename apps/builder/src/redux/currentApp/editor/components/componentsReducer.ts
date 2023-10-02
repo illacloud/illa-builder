@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, difference, set } from "lodash"
+import { cloneDeep, difference, set, unset } from "lodash"
 import {
   generateNewViewItem,
   generateNewViewItemFromBodySectionConfig,
@@ -21,6 +21,7 @@ import {
   ComponentsInitialState,
   ComponentsState,
   DeleteComponentNodePayload,
+  DeleteCurrentPageStylePayload,
   DeleteGlobalStatePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
@@ -36,6 +37,7 @@ import {
   UpdateComponentNodeHeightPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateCurrentPageStylePayload,
   UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
@@ -864,7 +866,7 @@ export const setGlobalStateReducer: CaseReducer<
   if (!state) return
   const { value, key, oldKey } = action.payload
   const originGlobalData = state.props?.globalData || {}
-  if (oldKey && originGlobalData[oldKey]) {
+  if (oldKey && originGlobalData.hasOwnProperty(oldKey)) {
     delete originGlobalData[oldKey]
   }
   const newProps = {
@@ -1032,4 +1034,40 @@ export const addSubPageReducer: CaseReducer<
   const pageNode = searchDsl(state, action.payload.pageName)
   if (!pageNode) return
   addSubpageReducerHelper(pageNode, "bodySection")
+}
+
+export const updateCurrentPageStyleReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateCurrentPageStylePayload>
+> = (state, action) => {
+  const pageNode = searchDsl(state, action.payload.pageName)
+  if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+  const targetSectionNode = pageNode.childrenNode.find((node) => {
+    return node.showName === action.payload.sectionName
+  })
+  if (!targetSectionNode || !targetSectionNode.props) return
+
+  if (!targetSectionNode.props.style) {
+    targetSectionNode.props.style = action.payload.style
+  } else {
+    Object.keys(action.payload.style).forEach((key) => {
+      if (action.payload.style[key] === undefined) {
+        unset(targetSectionNode.props?.style ?? {}, key)
+      }
+      targetSectionNode.props!.style[key] = action.payload.style[key]
+    })
+  }
+}
+
+export const deleteCurrentPageStyleReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteCurrentPageStylePayload>
+> = (state, action) => {
+  const pageNode = searchDsl(state, action.payload.pageName)
+  if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+  const targetSectionNode = pageNode.childrenNode.find((node) => {
+    return node.showName === action.payload.sectionName
+  })
+  if (!targetSectionNode || !targetSectionNode.props) return
+  unset(targetSectionNode.props?.style ?? {}, action.payload.styleKey)
 }

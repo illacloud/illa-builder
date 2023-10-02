@@ -1,32 +1,25 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import {
-  FC,
-  HTMLAttributes,
-  Suspense,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import { FC, Suspense, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { SimpleTabs, getRenderBody } from "@/components/Tabs"
 import { COMPONENT_MANAGER_TABS } from "@/components/Tabs/constant"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
+import { getWidgetCount } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
+import { Tip } from "./Components/tips"
+import { containerStyle, notHasComponentTipsStyle } from "./style"
 
-export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
-  props,
-) => {
-  const { className, onClick, ...rest } = props
-
+export const ComponentsManager: FC = () => {
   const [activeKey, setActiveKey] = useState("Insert")
 
   const selectedDisplayNames = useSelector(getSelectedComponentDisplayNames)
   const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
   const prevPageDisplayName = useRef<string>(currentPageDisplayName)
   const isClickChange = useRef<boolean>(false)
+  const widgetCount = useSelector(getWidgetCount)
 
   useEffect(() => {
     if (!isClickChange.current) {
@@ -68,13 +61,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   }
 
   return (
-    <div
-      className={className}
-      {...rest}
-      onClick={(e) => {
-        onClick?.(e)
-      }}
-    >
+    <div css={containerStyle} data-onboarding-comp="componentsManager">
       <SimpleTabs
         items={COMPONENT_MANAGER_TABS}
         activeKey={activeKey}
@@ -83,6 +70,11 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
       <Suspense fallback={<WidgetLoading />}>
         {getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}
       </Suspense>
+      {widgetCount <= 0 && (
+        <div css={notHasComponentTipsStyle}>
+          <Tip />
+        </div>
+      )}
     </div>
   )
 }

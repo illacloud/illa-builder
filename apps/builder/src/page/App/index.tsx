@@ -62,7 +62,6 @@ import {
   middlePanelStyle,
   modalStyle,
   navbarStyle,
-  rightPanelStyle,
   waringIconStyle,
 } from "./style"
 
@@ -209,15 +208,13 @@ export const Editor: FC = () => {
                 <CanvasPanel css={centerPanelStyle} />
               </TriggerProvider>
               <TriggerProvider renderInBody zIndex={10}>
-                {showBottomPanel && !showDebugger ? (
-                  <ActionEditor css={bottomPanelStyle} />
-                ) : null}
+                {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
               </TriggerProvider>
               {showDebugger && <Debugger css={bottomPanelStyle} />}
             </div>
             {showRightPanel && (
               <TriggerProvider renderInBody zIndex={10}>
-                <ComponentsManager css={rightPanelStyle} />
+                <ComponentsManager />
               </TriggerProvider>
             )}
           </div>

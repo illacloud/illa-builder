@@ -1,0 +1,25 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:development": "cross-env ILLA_APP_ENV=development playwright test",
+    "test:auth": "cross-env ILLA_APP_ENV=development playwright test auth.setup.ts",
+    "codegen": "node ./script/codeGen.js",
+    "init:env": "node ./script/initEnv.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@illa-public/illa-net": "workspace:*"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.38.1",
+    "@types/node": "^18.14.4",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1"
+  }
+}

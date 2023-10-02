@@ -37,6 +37,7 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
+  GlobalDataActionContent,
 } from "@/redux/currentApp/action/actionState"
 import {
   BodyContentType,
@@ -45,10 +46,12 @@ import {
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
 import { runOriginAction } from "@/utils/action/runAction"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { ActionTitleBarProps } from "./interface"
@@ -143,8 +146,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const [saveLoading, setSaveLoading] = useState(false)
   const shortcut = useContext(ShortCutContext)
 
-  const selectedAction = useSelector(getSelectedAction)!
+  const selectedAction = useSelector(getSelectedAction)! ?? {}
   const cachedAction = useSelector(getCachedAction)!
+
   const selectedActionExecutionResult = useSelector<
     RootState,
     Record<string, any>
@@ -169,7 +173,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const runError = executionResult[selectedAction.displayName]?.runResult?.error
 
-  let runMode: RunMode = useMemo(() => {
+  const getRunMode = () => {
     if (isGuideOpen) {
       if (isChanged) {
         return "save"
@@ -187,17 +191,25 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     } else {
       return "run"
     }
-  }, [isChanged, cachedAction, isGuideOpen])
+  }
+
+  const runMode = getRunMode()
 
   const innerTabItems = useMemo(() => {
-    if (selectedAction.actionType === "transformer") {
+    if (
+      selectedAction.actionType === "transformer" ||
+      selectedAction.actionType === "globalData"
+    ) {
       return [ACTION_PANEL_TABS[0]]
     }
     return ACTION_PANEL_TABS
   }, [selectedAction.actionType])
 
   useEffect(() => {
-    if (selectedAction.actionType === "transformer") {
+    if (
+      selectedAction.actionType === "transformer" ||
+      selectedAction.actionType === "globalData"
+    ) {
       handleChangeTab("general")
     }
   }, [handleChangeTab, selectedAction.actionType])
@@ -281,6 +293,17 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         runCachedAction(cachedActionValue)
         break
       case "save":
+        if (cachedAction.actionType === "globalData") {
+          dispatch(
+            componentsActions.setGlobalStateReducer({
+              key: cachedAction.displayName,
+              value: (cachedAction.content as GlobalDataActionContent)
+                .initialValue,
+              oldKey: cachedAction.displayName,
+            }),
+          )
+          return
+        }
         if (isGuideOpen) {
           cachedActionValue &&
             dispatch(actionActions.updateActionItemReducer(cachedActionValue))
@@ -344,7 +367,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const renderButton = useMemo(() => {
     return runMode === "run" || runMode === "test_run"
-      ? cachedAction?.actionType !== "transformer"
+      ? cachedAction?.actionType !== "transformer" &&
+          cachedAction?.actionType !== "globalData"
       : true
   }, [cachedAction?.actionType, runMode])
 
@@ -400,6 +424,27 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 ...selectedAction,
                 displayName: value,
               }
+              if (selectedAction.actionType === "globalData") {
+                if (DisplayNameGenerator.isAlreadyGenerate(value)) {
+                  message.error({
+                    content: t("editor.action.panel.error.duplicated"),
+                  })
+                  return
+                }
+                DisplayNameGenerator.addDisplayNames([value])
+                DisplayNameGenerator.removeDisplayName(
+                  selectedAction.displayName,
+                )
+                dispatch(
+                  componentsActions.setGlobalStateReducer({
+                    key: value,
+                    value: (selectedAction.content as GlobalDataActionContent)
+                      .initialValue,
+                    oldKey: selectedAction.displayName,
+                  }),
+                )
+                return
+              }
               if (isGuideOpen) {
                 dispatch(
                   actionActions.updateActionDisplayNameReducer({
@@ -408,6 +453,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                     actionID: newAction.actionID,
                   }),
                 )
+
                 return
               }
               setSaveLoading(true)

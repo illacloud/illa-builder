@@ -26,7 +26,7 @@ export const PDF_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-layout-show-tool-bar`,
         labelName: i18n.t("editor.inspect.setter_label.show_tool_bar"),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        attrName: "showTollBar",
+        attrName: "showToolBar",
         placeholder: "{{false}}",
         useCustomLayout: true,
         openDynamic: true,

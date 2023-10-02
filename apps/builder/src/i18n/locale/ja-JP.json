@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "グローバルデータ",
+              "ai-agent": "AI Agent",
+              "more": "もっと見る",
+              "create-resource": "リソースから作成"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "数式の使い方は<0>こちら</0>をクリックしてください。",
               "time_zone": "<0>ここをクリック</0>サポートされているすべてのタイムゾーンを確認します。",
               "user_locales": "<0>ここをクリック</0>サポートされているすべてのロケールを確認します。 "
+            },
+            "global-data": {
+              "how-to-use": "このグローバルデータを {{globalData.state1}}で使用する"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "変数",
             "input": "コンテンツを送信",
             "max-token": "最大トークン"
+          },
+          "general": {
+            "connect-data-source": "データベースまたは api に接続します",
+            "more-type": "More type of data source"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "データソースに接続し、CRUD を実行するアクションを作成します"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "アップロードに失敗しました",
           "onMenuSelect": "アイテムを選択",
           "on_menu_select": "メニュー項目を選択",
-          "pageChange": "ページ変更"
+          "pageChange": "ページ変更",
+          "clickItem": "アイテムをクリックします"
         },
         "image_list": {
           "title": "イメージ",
@@ -1676,7 +1696,7 @@
           "background": "バックグラウンド",
           "calendar_background": "バックグラウンド",
           "calendar_border": "フレーム",
-          "calendar_text": "テクストヤン",
+          "calendar_text": "セカンダリテキスト",
           "event_background": "バックグラウンド",
           "event_text": "テクストヤン",
           "draggable": "ドラッグ可能",
@@ -1804,7 +1824,9 @@
           "row_height": "行の調整",
           "item_radius": "アイテムの半径",
           "item_shadow": "アイテムの影",
-          "item_spacing": "アイテムの間隔"
+          "item_spacing": "アイテムの間隔",
+          "max_column_count": "列の最大数",
+          "min_column_count": "列の最小数"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "各行の高さを設定するために使用します。 Auto モードでは、高さは適応し、行の高さは現在の行の中で最も高いグリッドによって決まります。 固定モードでは、行の高さが固定され、すべてのグリッドの高さが同じになります。",
           "item_radius": "各グリッドの角の半径を設定するために使用",
           "item_shadow": "各グリッドのシャドウサイズを設定するために使用します。",
-          "item_spacing": "グリッド間の間隔を設定するために使用"
+          "item_spacing": "グリッド間の間隔を設定するために使用",
+          "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "グリッドリスト"
+    },
+    "frame": {
+      "initial-title": "コンポーネントをドラッグしてフレームに追加します"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "GPT-4、GPT-3.5などの他のモデルへのアクセス...",
-            "colla": "30k Colla (初めて)"
+            "colla": "2.5kコラ/月"
           }
         },
         "price": "/month/editor"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GBのストレージ",
             "3": "5GBのトラフィック",
-            "4": "100Kトークン"
+            "4": "50kトークン"
           }
         },
         "price": "/month/10k Colla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "購読解除",
@@ -4312,14 +4338,5 @@
   "contribute": "貢献",
   "error_page": {
     "fobidden": "アクセス権限がありません"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "アイテムをクリックします"
-        }
-      }
-    }
   }
 }

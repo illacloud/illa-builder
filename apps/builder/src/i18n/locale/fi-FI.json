@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "Globaalit tiedot",
+              "ai-agent": "AI Agent",
+              "more": "Lisää",
+              "create-resource": "Luo resurssista"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klikkaa tästä</0> oppiaksesi käyttämään kaavaa.",
               "time_zone": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut aikavyöhykkeet.",
               "user_locales": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut lokaatiot. "
+            },
+            "global-data": {
+              "how-to-use": "Käytä näitä yleisiä tietoja {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Muuttuja",
             "input": "Lähetä sisältöä",
             "max-token": "Max tunnus"
+          },
+          "general": {
+            "connect-data-source": "Yhdistä tietokantaan tai apiin",
+            "more-type": "Enemmän tietolähteitä"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Yhdistä tietolähteeseesi ja luo toiminto CRUD:n suorittamiseksi"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Lataaminen epäonnistui",
           "onMenuSelect": "Valitse kohde",
           "on_menu_select": "Valitse valikon kohta",
-          "pageChange": "Sivun muutos"
+          "pageChange": "Sivun muutos",
+          "clickItem": "Napsauta kohdetta"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1676,7 +1696,7 @@
           "background": "Tausta",
           "calendar_background": "Tausta",
           "calendar_border": "Border",
-          "calendar_text": "Teksti",
+          "calendar_text": "Toissijainen teksti",
           "event_background": "Tausta",
           "event_text": "Teksti",
           "draggable": "Vedettävä",
@@ -1804,7 +1824,9 @@
           "row_height": "Rivin mukauttaminen",
           "item_radius": "Kohteen säde",
           "item_shadow": "Kohteen varjo",
-          "item_spacing": "Kohteiden väli"
+          "item_spacing": "Kohteiden väli",
+          "max_column_count": "Maksimi määrä sarakkeita",
+          "min_column_count": "Sarakkeiden vähimmäismäärä"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Käytetään kunkin rivin korkeuden määrittämiseen. Automaattitilassa korkeus on mukautuva, ja rivin korkeus määräytyy nykyisen rivin korkeimman ruudukon mukaan. Kiinteässä tilassa rivin korkeus on kiinteä, ja kaikilla ruuduilla on sama korkeus.",
           "item_radius": "Käytetään määrittämään kulman säde kunkin ruudukon",
           "item_shadow": "Käytetään kunkin ruudukon varjon koon määrittämiseen",
-          "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen"
+          "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
+          "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Ruudukko lista"
+    },
+    "frame": {
+      "initial-title": "Vedä komponentti lisätäksesi sen kehykseen"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Pääsy useampiin malleihin, kuten GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( ensimmäistä kertaa )"
+            "colla": "2,5k Koolla / kuukausi"
           }
         },
         "price": "/kk/editor"
@@ -3722,7 +3748,7 @@
             "1": "10K Kolla",
             "2": "5 Gt tallennustila",
             "3": "5GB liikenne",
-            "4": "100K tunnus"
+            "4": "50k tunnus"
           }
         },
         "price": "/kk/10k Kolla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Peruuta Tilaus",
@@ -4312,14 +4338,5 @@
   "contribute": "Osallistu",
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Napsauta kohdetta"
-        }
-      }
-    }
   }
 }

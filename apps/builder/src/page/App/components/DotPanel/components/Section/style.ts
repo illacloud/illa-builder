@@ -1,58 +1,15 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { RESIZE_BAR_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-
-export const disabledHorizontalBarWrapperStyle = css`
-  height: 100%;
-  width: 8px;
-  background-color: #f7f8fa;
-`
-
-export const resizeBarBasicWrapperStyle = css`
-  background-color: #f7f8fa;
-  transition: background-color 200ms ease-in-out;
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-`
-
-export const resizeVerticalBarWrapperStyle = css`
-  ${resizeBarBasicWrapperStyle};
-  width: 100%;
-  height: ${RESIZE_BAR_HEIGHT}px;
-`
-
-export const resizeHorizontalBarWrapperStyle = css`
-  ${resizeBarBasicWrapperStyle}
-  height: 100%;
-  width: ${RESIZE_BAR_HEIGHT}px;
-  cursor: col-resize;
-  :hover {
-    background-color: ${getColor("grayBlue", "08")};
-  }
-  :active {
-    background-color: ${getColor("grayBlue", "08")};
-  }
-`
-
-export const resizeHorizontalBarStyle = css`
-  width: 2px;
-  height: 32px;
-  border-radius: 1px;
-  background-color: ${getColor("grayBlue", "06")};
-`
 
 export const containerWrapperStyle = css`
   width: 100%;
   height: 100%;
   padding: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 `
-
 export const applyNoBottomPaddingStyle = (isShowFold: boolean) => {
   return isShowFold
     ? css`
@@ -60,23 +17,6 @@ export const applyNoBottomPaddingStyle = (isShowFold: boolean) => {
       `
     : null
 }
-
-export const applySideBarWrapperStyle = (direction: "left" | "right") => {
-  return css`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: ${direction === "left" ? "flex-end" : "flex-start"};
-    padding: 0 8px 8px 8px;
-    color: ${getColor("grayBlue", "04")};
-    font-size: 12px;
-  `
-}
-
-export const sideBarIconStyle = css`
-  cursor: pointer;
-  flex: none;
-`
 
 export const openFoldWrapperStyle = css`
   width: 32px;
@@ -89,7 +29,7 @@ export const openFoldWrapperStyle = css`
   border-radius: 0px 16px 16px 0px;
   cursor: pointer;
   font-size: 12px;
-  color: ${getColor("grayBlue", "04")};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const applyOpenFoldPositionStyle = (direction: "left" | "right") => {
@@ -99,6 +39,17 @@ export const applyOpenFoldPositionStyle = (direction: "left" | "right") => {
     transform: ${direction === "right" ? "rotate(180deg)" : "unset"};
   `
 }
+
+export const applyCloseFoldPositionStyle = css`
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  border-radius: 16px 0 0 16px;
+`
+
+export const rotaIconStyle = css`
+  transform: rotate(180deg);
+`
 
 export const applyHorizontalAnimationWrapperStyle = (
   isFold: boolean,
@@ -110,24 +61,3 @@ export const applyHorizontalAnimationWrapperStyle = (
   display: flex;
   flex-direction: ${direction === "right" ? "row-reverse" : "row"};
 `
-export const basicTipsStyle = css`
-  position: absolute;
-  padding: 2px 4px;
-  background-color: ${getColor("techPurple", "01")};
-  border: 1px solid ${getColor("white", "01")};
-  border-radius: 4px;
-  color: white;
-  user-select: none;
-  pointer-events: none;
-  font-size: 12px;
-  overflow: hidden;
-  z-index: 10;
-`
-
-export const horizontalWidthTipsStyle = (direction: "left" | "right") => {
-  return css`
-    ${basicTipsStyle};
-    ${direction}: -35px;
-    top: calc(50% - 10px);
-  `
-}

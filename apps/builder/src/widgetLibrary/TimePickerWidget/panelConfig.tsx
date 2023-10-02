@@ -227,7 +227,7 @@ export const TIME_PICKER_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-style-list`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         isSetterSingleRow: true,
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
@@ -237,6 +237,7 @@ export const TIME_PICKER_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-bg`,
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             attrName: "colorScheme",
             defaultValue: "blue",
           },

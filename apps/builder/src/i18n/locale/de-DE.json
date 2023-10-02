@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformator",
+              "global-data": "Globale Daten",
+              "ai-agent": "AI Agent",
+              "more": "Mehr",
+              "create-resource": "Aus Ressource erstellen"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klicken Sie hier</0> um die Verwendung von Formeln zu erfahren.",
               "time_zone": "<0>Hier klicken</0> um alle unterstützten Zeitzonen zu überprüfen.",
               "user_locales": "<0>Hier klicken</0> um alle unterstützten Sprachen zu überprüfen. "
+            },
+            "global-data": {
+              "how-to-use": "Diese globalen Daten von {{globalData.state1}} verwenden"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variable",
             "input": "Inhalt senden",
             "max-token": "Max. Token"
+          },
+          "general": {
+            "connect-data-source": "Mit Datenbank oder Api verbinden",
+            "more-type": "Weitere Datenquellentypen"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Verbinde dich mit deiner Datenquelle und erstelle eine Aktion um CRUD auszuführen"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Upload fehlgeschlagen",
           "onMenuSelect": "Element auswählen",
           "on_menu_select": "Menüpunkt auswählen",
-          "pageChange": "Seitenänderung"
+          "pageChange": "Seitenänderung",
+          "clickItem": "Element anklicken"
         },
         "image_list": {
           "title": "Bilder",
@@ -1676,7 +1696,7 @@
           "background": "Hintergrund",
           "calendar_background": "Hintergrund",
           "calendar_border": "Border",
-          "calendar_text": "Text",
+          "calendar_text": "Sekundärer Text",
           "event_background": "Hintergrund",
           "event_text": "Text",
           "draggable": "Ziehen möglich",
@@ -1804,7 +1824,9 @@
           "row_height": "Zeilenanpassung",
           "item_radius": "Elementradius",
           "item_shadow": "Item Schatten",
-          "item_spacing": "Elementabstand"
+          "item_spacing": "Elementabstand",
+          "max_column_count": "Maximale Anzahl von Spalten",
+          "min_column_count": "Min. Anzahl der Spalten"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Wird verwendet, um die Höhe jeder Zeile zu konfigurieren. Im Auto-Modus ist die Höhe anpassungsfähig, und die Zeilenhöhe wird vom höchsten Raster der aktuellen Zeile bestimmt. Im Festen Modus ist die Zeilenhöhe fest und alle Raster haben die gleiche Höhe.",
           "item_radius": "Wird verwendet, um den Eckradius jedes Rasters zu konfigurieren",
           "item_shadow": "Zur Konfiguration der Schattengröße jedes Rasters",
-          "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren"
+          "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren",
+          "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Rasterliste"
+    },
+    "frame": {
+      "initial-title": "Ziehen Sie eine Komponente, um sie dem Rahmen hinzuzufügen"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Zugriff auf weitere Modelle wie GPT-4, GPT-3.5...",
-            "colla": "30k Colla (zum ersten Mal)"
+            "colla": "2,5k Colla / Monat"
           }
         },
         "price": "/Monat/Editor"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GB Speicher",
             "3": "5GB Datenverkehr",
-            "4": "100K Token"
+            "4": "50k Token"
           }
         },
         "price": "/Monat/10k Colla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Abmelden",
@@ -4312,14 +4338,5 @@
   "contribute": "Mitwirken",
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Element anklicken"
-        }
-      }
-    }
   }
 }

@@ -31,6 +31,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
 ) => {
   const {
     actionType,
+    canBack,
     onBack,
     onCreateAction,
     onCreateResource,
@@ -112,16 +113,20 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
         }}
       />
       <div css={footerStyle}>
-        <Button
-          leftIcon={<PreviousIcon />}
-          variant="text"
-          colorScheme="gray"
-          onClick={() => {
-            onBack("select")
-          }}
-        >
-          {t("back")}
-        </Button>
+        {canBack ? (
+          <Button
+            leftIcon={<PreviousIcon />}
+            variant="text"
+            colorScheme="gray"
+            onClick={() => {
+              onBack("select")
+            }}
+          >
+            {t("back")}
+          </Button>
+        ) : (
+          <span />
+        )}
         <ButtonGroup spacing="8px">
           <Button
             leftIcon={<AddIcon />}

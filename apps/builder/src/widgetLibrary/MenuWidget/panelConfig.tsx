@@ -249,7 +249,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-colors`,
-        setterType: "LIST_SETTER",
+        setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
@@ -259,6 +259,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "blue",
           },
           {
@@ -266,6 +267,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.hover_bg_color"),
             attrName: "hoverColorScheme",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "gray",
           },
           {
@@ -273,6 +275,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.background_color"),
             attrName: "bgColor",
             setterType: "COLOR_PICKER_SETTER",
+            useCustomLayout: true,
             defaultValue: "transparent",
           },
         ],

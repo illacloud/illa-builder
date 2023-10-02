@@ -16,7 +16,7 @@ import {
   transformTitle,
   transformTitleStyle,
 } from "@/page/App/components/Actions/ActionPanel/TransformerComponent/style"
-import { PanelLabel } from "@/page/App/components/InspectPanel/label"
+import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import {
   getCachedAction,
   getSelectedAction,

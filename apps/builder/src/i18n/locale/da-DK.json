@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "Global data",
+              "ai-agent": "AI Agent",
+              "more": "More",
+              "create-resource": "Create from resource"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klik her</0> for at lære at bruge formlen.",
               "time_zone": "<0>Klik her</0> for at tjekke alle understøttede tidszoner.",
               "user_locales": "<0>Klik her</0> for at tjekke alle understøttede lokaler. "
+            },
+            "global-data": {
+              "how-to-use": "Use this global data by {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variabel",
             "input": "Send indhold",
             "max-token": "Maks. token"
+          },
+          "general": {
+            "connect-data-source": "Connect to database or api",
+            "more-type": "More type of data sources"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Connect to your data source and create an action to perform CRUD"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Upload mislykkedes",
           "onMenuSelect": "Vælg element",
           "on_menu_select": "Vælg menupunkt",
-          "pageChange": "Side ændring"
+          "pageChange": "Side ændring",
+          "clickItem": "Klik på element"
         },
         "image_list": {
           "title": "Billeder",
@@ -1676,7 +1696,7 @@
           "background": "Baggrund",
           "calendar_background": "Baggrund",
           "calendar_border": "Border",
-          "calendar_text": "Tekst",
+          "calendar_text": "Secondary text",
           "event_background": "Baggrund",
           "event_text": "Tekst",
           "draggable": "Trækbar",
@@ -1804,7 +1824,9 @@
           "row_height": "Række tilpasning",
           "item_radius": "Element radius",
           "item_shadow": "Element skygge",
-          "item_spacing": "Element afstand"
+          "item_spacing": "Element afstand",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Bruges til at konfigurere højden af hver række. I Auto tilstand er højden adaptiv, og rækkehøjden bestemmes af det højeste gitter i den aktuelle række. I Fast tilstand er rækkehøjden fast, og alle gitre har samme højde.",
           "item_radius": "Bruges til at konfigurere hjørneradius for hvert gitter",
           "item_shadow": "Bruges til at konfigurere skyggestørrelsen for hvert gitter",
-          "item_spacing": "Bruges til at konfigurere afstanden mellem gitre"
+          "item_spacing": "Bruges til at konfigurere afstanden mellem gitre",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Gitter liste"
+    },
+    "frame": {
+      "initial-title": "Drag a component to add it to the frame"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Access to more models such as GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For first time )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/month/editor"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GB storage",
             "3": "5GB traffic",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/month/10k Colla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Afmeld",
@@ -4312,14 +4338,5 @@
   "contribute": "Bidrag",
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klik på element"
-        }
-      }
-    }
   }
 }

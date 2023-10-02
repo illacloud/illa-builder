@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "Global data",
+              "ai-agent": "AI Agent",
+              "more": "More",
+              "create-resource": "Create from resource"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Натисніть тут</0> щоб дізнатися, як використовувати формулу.",
               "time_zone": "<0>Натисніть тут</0> щоб перевірити всі підтримувані часові пояси.",
               "user_locales": "<0>Натисніть тут</0> щоб перевірити всі підтримувані мови. "
+            },
+            "global-data": {
+              "how-to-use": "Use this global data by {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Змінна",
             "input": "Надіслати вміст",
             "max-token": "Максимальний токен"
+          },
+          "general": {
+            "connect-data-source": "Connect to database or api",
+            "more-type": "More type of data sources"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Connect to your data source and create an action to perform CRUD"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Не завантажено",
           "onMenuSelect": "Виберіть елемент",
           "on_menu_select": "Виберіть пункт меню",
-          "pageChange": "Зміна сторінки"
+          "pageChange": "Зміна сторінки",
+          "clickItem": "Натиснути предмет"
         },
         "image_list": {
           "title": "Малюнки",
@@ -1676,7 +1696,7 @@
           "background": "Фон",
           "calendar_background": "Фон",
           "calendar_border": "Border",
-          "calendar_text": "Текст",
+          "calendar_text": "Secondary text",
           "event_background": "Фон",
           "event_text": "Текст",
           "draggable": "Перетягуємий",
@@ -1804,7 +1824,9 @@
           "row_height": "Рядкова адаптація",
           "item_radius": "Радіус елемента",
           "item_shadow": "Тіні елемента",
-          "item_spacing": "Відстань між предметами"
+          "item_spacing": "Відстань між предметами",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Використовується для налаштування висоти кожного рядка. В автоматичному режимі висота адаптивна, а висота рядка визначається найвищою сіткою в поточному рядку. Фіксований режим, висота рядка фіксована, і всі сітки мають однакову висоту.",
           "item_radius": "Використовується для налаштування кутового радіусу кожної сітки",
           "item_shadow": "Використовується для налаштування розміру тіні для кожної сітки",
-          "item_spacing": "Використовується для налаштування інтервалу між сітками"
+          "item_spacing": "Використовується для налаштування інтервалу між сітками",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Список сіток"
+    },
+    "frame": {
+      "initial-title": "Drag a component to add it to the frame"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Access to more models such as GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For first time )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/month/editor"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GB storage",
             "3": "5GB traffic",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/month/10k Colla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Відмовитися від підписки",
@@ -4312,14 +4338,5 @@
   "contribute": "Зробити свій внесок",
   "error_page": {
     "fobidden": "Немає дозволу на доступ"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Натиснути предмет"
-        }
-      }
-    }
   }
 }

@@ -38,11 +38,17 @@ import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
 export const ACTION_MODAL_WIDTH = 1080
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
-  const { visible, onClose } = props
-  const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
+  const {
+    visible,
+    onClose,
+    defaultStep = "select",
+    defaultActionType = null,
+    canBackToSelect = true,
+  } = props
+  const [currentStep, setCurrentStep] = useState<ActionCreatorPage>(defaultStep)
 
   const [currentActionType, setCurrentActionType] = useState<ActionType | null>(
-    null,
+    defaultActionType,
   )
 
   const { t } = useTranslation()
@@ -111,14 +117,12 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         displayName,
         resourceID,
         content: initialContent,
-        isVirtualResource: true,
+        isVirtualResource: false,
         ...actionItemInitial,
       }
-      if (data.actionType !== "transformer") {
-        data.config = {
-          public: false,
-          advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
-        }
+      data.config = {
+        public: false,
+        advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
       }
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
@@ -242,14 +246,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         element: "resource_type_modal_resource",
         parameter5: actionType,
       })
-      if (actionType == "transformer") {
-        onClose()
-      } else {
-        setCurrentStep("createAction")
-        setCurrentActionType(actionType)
-      }
+      setCurrentStep("createAction")
+      setCurrentActionType(actionType)
     },
-    [onClose, track],
+    [track],
   )
 
   const handleCreateResource = useCallback((actionType: ActionType) => {
@@ -331,6 +331,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
               onBack={handleBack}
               handleCreateAction={handleCreateAgentAction}
               onCreateAction={handleCreateAction}
+              canBack={canBackToSelect}
             />
           ) : (
             <ActionResourceSelector
@@ -339,6 +340,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
               handleCreateAction={handleDirectCreateAction}
               onCreateResource={handleCreateResource}
               onCreateAction={handleCreateAction}
+              canBack={canBackToSelect}
             />
           ))}
         {currentStep === "createResource" && transformResource && (

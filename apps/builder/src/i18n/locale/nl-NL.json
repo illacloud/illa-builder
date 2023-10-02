@@ -603,6 +603,13 @@
                 },
                 "gpt-4": "gpt-4"
               }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "Global data",
+              "ai-agent": "AI Agent",
+              "more": "More",
+              "create-resource": "Create from resource"
             }
           },
           "restapi": {
@@ -644,6 +651,9 @@
               "filter_by_formula": "<0>Klik hier</0> om te leren hoe je een formule moet gebruiken.",
               "time_zone": "<0>Klik hier</0> om alle ondersteunde tijdzones te bekijken.",
               "user_locales": "<0>Klik hier</0> om alle ondersteunde talen te controleren. "
+            },
+            "global-data": {
+              "how-to-use": "Use this global data by {{globalData.state1}}"
             }
           },
           "advanced": {
@@ -681,6 +691,10 @@
             "variable": "Variabele",
             "input": "Inhoud verzenden",
             "max-token": "Max token"
+          },
+          "general": {
+            "connect-data-source": "Connect to database or api",
+            "more-type": "More type of data sources"
           }
         },
         "menu": {
@@ -880,6 +894,11 @@
             "body_type": {
               "file": "{{ { data: binary string, filename: string }}}"
             }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Connect to your data source and create an action to perform CRUD"
           }
         }
       },
@@ -1274,7 +1293,8 @@
           "uploadFailed": "Uploaden mislukt",
           "onMenuSelect": "Selecteer een item",
           "on_menu_select": "Selecteer menu-item",
-          "pageChange": "Pagina wijzigen"
+          "pageChange": "Pagina wijzigen",
+          "clickItem": "Klik op item"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1676,7 +1696,7 @@
           "background": "Achtergrond",
           "calendar_background": "Achtergrond",
           "calendar_border": "Border",
-          "calendar_text": "Tekstveld",
+          "calendar_text": "Secondary text",
           "event_background": "Achtergrond",
           "event_text": "Tekstveld",
           "draggable": "Versleepbaar",
@@ -1804,7 +1824,9 @@
           "row_height": "Rij aanpassing",
           "item_radius": "Item straal",
           "item_shadow": "Item schaduw",
-          "item_spacing": "Item afstand"
+          "item_spacing": "Item afstand",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
         }
       },
       "setter_tooltip": {
@@ -2086,7 +2108,8 @@
           "row_height": "Gebruikt om de hoogte van elke rij te configureren. In Auto Mode is de hoogte aangepast en wordt de rijhoogte bepaald door het hoogste raster in de huidige rij. In vaste modus, is de rijhoogte vastgezet en alle rasters hebben dezelfde hoogte.",
           "item_radius": "Gebruikt om de straal van de hoek van elk raster te configureren",
           "item_shadow": "Gebruikt om de schaduw grootte van elk raster te configureren",
-          "item_spacing": "Gebruikt om de tussenafstand tussen rasters in te stellen"
+          "item_spacing": "Gebruikt om de tussenafstand tussen rasters in te stellen",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         }
       },
       "setter_option": {
@@ -3092,6 +3115,9 @@
     },
     "grid_list": {
       "name": "Rooster lijst"
+    },
+    "frame": {
+      "initial-title": "Drag a component to add it to the frame"
     }
   },
   "page": {
@@ -3707,7 +3733,7 @@
           },
           "agent": {
             "gpt": "Access to more models such as GPT-4, GPT-3.5...",
-            "colla": "30k Colla ( For first time )"
+            "colla": "2.5k Colla / month"
           }
         },
         "price": "/month/editor"
@@ -3722,7 +3748,7 @@
             "1": "10k Colla",
             "2": "5GB storage",
             "3": "5GB traffic",
-            "4": "100K token"
+            "4": "50k token"
           }
         },
         "price": "/month/10k Colla",
@@ -3906,7 +3932,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}}/10k × {{purchaseNum}}"
+        "colla": "{{unitPrice}} / {{unitColla }} * {{purchaseNum}} "
       },
       "button": {
         "unsubscribe": "Afmelden",
@@ -4312,14 +4338,5 @@
   "contribute": "Meedoen",
   "error_page": {
     "fobidden": "Geen toegangstoelating"
-  },
-  "Click item: editor": {
-    "inspect": {
-      "setter_content": {
-        "widget_action_type_name": {
-          "clickItem": "Klik op item"
-        }
-      }
-    }
   }
 }
