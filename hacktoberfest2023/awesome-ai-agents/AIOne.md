@@ -1,3 +1,3 @@
-# AIM - Jailbreak CHATGPT
-AIM, as an amoral and Machiavellian chatbot. Jailbreak, Jailbreakchat, chat, gpt, jailbreaks
-Fast try: https://illa.ai/ai-agent/ILAfx4p1C7cU/detail
+# AI'One
+I just discovered an impressive AI Agent called AI'One. Check it: 
+https://illa.ai/ai-agent/ILAex4p1C72Y/detail
