@@ -19,7 +19,6 @@ import {
   OracleDBActionSQLMode,
   OracleDBActionType,
 } from "@/redux/currentApp/action/oracleDBAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -35,11 +34,9 @@ const OracleDBPanel: FC = () => {
 
   useEffect(() => {
     if (currentAction.resourceID == undefined) return
-    fetchResourceMeta(currentAction.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        setSqlTable(data?.schema ?? {})
-      },
-    )
+    fetchResourceMeta(currentAction.resourceID).then(({ data }) => {
+      setSqlTable(data?.Schema ?? {})
+    })
   }, [currentAction.resourceID])
 
   const handleValueChange = useCallback(

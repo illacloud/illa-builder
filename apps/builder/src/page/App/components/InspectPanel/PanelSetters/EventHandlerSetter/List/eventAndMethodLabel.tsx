@@ -72,6 +72,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
           attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}
           childrenSetter={childrenSetter}
+          _css={{ name: "event-handler-style", styles: `width: 350px` }}
         />
       }
       trigger="click"

@@ -30,7 +30,6 @@ import {
   DynamoDBSelectOptions,
   StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -59,11 +58,9 @@ const DynamoDBPanel: FC = () => {
 
   useEffect(() => {
     if (cachedAction.resourceID == undefined) return
-    fetchResourceMeta(cachedAction.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        setSqlTable(data?.schema ?? {})
-      },
-    )
+    fetchResourceMeta(cachedAction.resourceID).then(({ data }) => {
+      setSqlTable(data?.Schema ?? {})
+    })
   }, [cachedAction.resourceID])
 
   const handleValueChange = useCallback(

@@ -100,11 +100,6 @@ export interface ResourceInitialConfig<T extends ResourceContent> {
   content: T
 }
 
-export interface ResourcesData {
-  schema: Record<string, unknown>
-  resourceName: string
-}
-
 export interface DbSSL {
   ssl: boolean
   serverCert: string

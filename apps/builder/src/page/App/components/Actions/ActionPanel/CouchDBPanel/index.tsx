@@ -32,7 +32,6 @@ import {
   CouchDBActionMethods,
   CouchDBOptionsType,
 } from "@/redux/currentApp/action/couchDBAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 
 type CouchDBPanelType = ActionItem<CouchDBAction<CouchDBOptionsType>>
@@ -73,12 +72,10 @@ const CouchDBPanel: FC = () => {
 
   useEffect(() => {
     if (cachedAction.resourceID == undefined) return
-    fetchResourceMeta(cachedAction.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        const { schema } = data
-        setSelectOptions((schema?.databases ?? []) as string[])
-      },
-    )
+    fetchResourceMeta(cachedAction.resourceID).then(({ data }) => {
+      const { Schema } = data
+      setSelectOptions((Schema?.databases ?? []) as string[])
+    })
   }, [cachedAction.resourceID])
 
   const handleValueChange = useCallback(

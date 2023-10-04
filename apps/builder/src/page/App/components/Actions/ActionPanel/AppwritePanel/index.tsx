@@ -24,7 +24,6 @@ import {
   DocumentOperationsInitial,
   ListDocumentsInitial,
 } from "@/redux/currentApp/action/appwriteAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 
 const AppwriteSubComponentMap = {
@@ -49,14 +48,12 @@ const AppwritePanel: FC = () => {
 
   useEffect(() => {
     if (cachedAction.resourceID == undefined) return
-    fetchResourceMeta(cachedAction.resourceID).then(
-      ({ data }: { data: ResourcesData }) => {
-        const ids = ((data.schema?.collections as []) ?? []).map(
-          (item: { id: string }) => item.id,
-        )
-        setCollectionIds(ids)
-      },
-    )
+    fetchResourceMeta(cachedAction.resourceID).then(({ data }) => {
+      const ids = ((data.Schema?.collections as []) ?? []).map(
+        (item: { id: string }) => item.id,
+      )
+      setCollectionIds(ids)
+    })
   }, [cachedAction.resourceID])
 
   const handleMethodValueChange = useCallback(
