@@ -1,0 +1,1 @@
+This AI agent takes pdf as input. Divides it into chunks, creates embeddings and awaits user prompt. Then performs similarity search between user's prompt and available embeddings and returns the most relevant answer
