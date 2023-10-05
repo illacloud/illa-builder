@@ -1,7 +1,6 @@
 # Translation Tutor
-AI tutor to Strengthen your language language translation skills and understanding of idiomatic expressions.
-Link: I just discovered an impressive AI Agent called Translation Tutor. 
-Check it: https://illa.ai/ai-agent/ILAex4p1C71f/detail
+AI tutor to Strengthen your language language translation skills and understanding of idiomatic expressions
+Link: https://illa.ai/ai-agent/ILAex4p1C71f/detail
 
 ## Demo Chat
 ![image](https://github.com/ashuvssut/illa-builder/assets/60546840/c5196860-fcf9-4d6b-9a5b-48a00b8340b1)
