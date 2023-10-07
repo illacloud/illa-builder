@@ -1827,7 +1827,8 @@
           "item_spacing": "Mellomrom mellom enheter",
           "max_column_count": "Maksimalt antall kolonner",
           "min_column_count": "Minimum antall kolonner"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Dra en komponent for å legge den til rammen"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
