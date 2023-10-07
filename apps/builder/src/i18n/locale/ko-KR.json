@@ -1827,7 +1827,8 @@
           "item_spacing": "Item spacing",
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Drag a component to add it to the frame"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
