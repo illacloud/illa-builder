@@ -28,6 +28,7 @@ import {
   categoryItemNameStyle,
   categoryTitleStyle,
   guidePanelContainerStyle,
+  guidePanelOutContainerStyle,
   headerStyle,
   iconHotSpot,
   loadingContainerStyle,
@@ -121,61 +122,66 @@ export const ActionGuidePanel: FC = () => {
 
   return (
     <>
-      <div css={guidePanelContainerStyle}>
-        <h5 css={headerStyle}>
-          {t("editor.action.panel.title.general.initial-title")}
-        </h5>
-        <h6 css={categoryTitleStyle}>
-          {t("editor.action.panel.label.general.connect-data-source")}
-        </h6>
-        <section css={categoryItemContainerStyle}>
-          {RECOMMEND_RESOURCES.map((type) => (
+      <div css={guidePanelOutContainerStyle}>
+        <div css={guidePanelContainerStyle}>
+          <h5 css={headerStyle}>
+            {t("editor.action.panel.title.general.initial-title")}
+          </h5>
+          <h6 css={categoryTitleStyle}>
+            {t("editor.action.panel.label.general.connect-data-source")}
+          </h6>
+          <section css={categoryItemContainerStyle}>
+            {RECOMMEND_RESOURCES.map((type) => (
+              <button
+                css={basicButtonStyle}
+                key={type}
+                onClick={handleClickActionType(type)}
+              >
+                <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
+                <span css={categoryItemNameStyle}>
+                  {getActionNameFromActionType(type)}
+                </span>
+              </button>
+            ))}
             <button
               css={basicButtonStyle}
-              key={type}
-              onClick={handleClickActionType(type)}
+              onClick={handleClickActionType(null)}
             >
-              <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
-              <span css={categoryItemNameStyle}>
-                {getActionNameFromActionType(type)}
+              <span css={iconHotSpot}>
+                <PlusIcon />
+              </span>
+              <span css={moreTipsStyle}>
+                {t("editor.action.panel.label.option.general.more")}
               </span>
             </button>
-          ))}
-          <button css={basicButtonStyle} onClick={handleClickActionType(null)}>
-            <span css={iconHotSpot}>
-              <PlusIcon />
-            </span>
-            <span css={moreTipsStyle}>
-              {t("editor.action.panel.label.option.general.more")}
-            </span>
-          </button>
-        </section>
-        <h6 css={categoryTitleStyle}>
-          {t("editor.action.panel.label.general.more-type")}
-        </h6>
+          </section>
+          <h6 css={categoryTitleStyle}>
+            {t("editor.action.panel.label.general.more-type")}
+          </h6>
 
-        <section css={categoryItemContainerStyle}>
-          {MORE_DATA_TYPE.filter((type) => {
-            if (!isCloudVersion) return type !== "aiagent"
-            return type
-          }).map((type) => (
-            <button
-              css={basicButtonStyle}
-              key={type}
-              onClick={handleClickActionType(type)}
-            >
-              <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
-              <span css={categoryItemNameStyle}>
-                {getActionNameFromActionType(type)}
-              </span>
-            </button>
-          ))}
-        </section>
-        {isLoading && (
-          <div css={loadingContainerStyle}>
-            <Loading colorScheme="techPurple" />
-          </div>
-        )}
+          <section css={categoryItemContainerStyle}>
+            {MORE_DATA_TYPE.filter((type) => {
+              if (!isCloudVersion) return type !== "aiagent"
+              return type
+            }).map((type) => (
+              <button
+                css={basicButtonStyle}
+                key={type}
+                onClick={handleClickActionType(type)}
+              >
+                <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
+                <span css={categoryItemNameStyle}>
+                  {getActionNameFromActionType(type)}
+                </span>
+              </button>
+            ))}
+          </section>
+          {isLoading && (
+            <div css={loadingContainerStyle}>
+              <Loading colorScheme="techPurple" />
+            </div>
+          )}
+        </div>
       </div>
       {generatorVisible && (
         <ActionGenerator
