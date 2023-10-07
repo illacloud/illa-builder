@@ -1,4 +1,4 @@
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { InputNumber, LoadingIcon } from "@illa-design/react"
 import {
   NumberInputWidgetProps,
@@ -60,30 +60,19 @@ export const WrappedInputNumber = forwardRef<
     })
   }
 
-  const formatDisplayValue = useMemo(() => {
-    return openThousandSeparator ? parserThousand : undefined
-  }, [openThousandSeparator])
-
-  const finalSuffix = useMemo(() => {
-    if (loading) {
-      return <LoadingIcon spin />
-    }
-    return suffix
-  }, [loading, suffix])
-
   return (
     <InputNumber
       ref={ref}
       max={max}
       min={min}
-      formatter={formatDisplayValue}
+      formatter={openThousandSeparator ? parserThousand : undefined}
       placeholder={placeholder}
       value={value}
-      precision={Number(precision)}
+      precision={precision}
       disabled={disabled}
       readOnly={readOnly}
       prefix={prefix}
-      suffix={finalSuffix}
+      suffix={loading ? <LoadingIcon spin /> : suffix}
       mode="button"
       onChange={changeValue}
       colorScheme={colorScheme}
@@ -178,18 +167,6 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     value,
   ])
 
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
-
-  const handleOnBlur = useCallback(() => {
-    triggerEventHandler("blur")
-  }, [triggerEventHandler])
-
-  const handleOnFocus = useCallback(() => {
-    triggerEventHandler("focus")
-  }, [triggerEventHandler])
-
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -210,9 +187,15 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
             {...props}
             ref={numberInputRef}
             getValidateMessage={getValidateMessage}
-            handleOnChange={handleOnChange}
-            handleOnBlur={handleOnBlur}
-            handleOnFocus={handleOnFocus}
+            handleOnChange={() => {
+              triggerEventHandler("change")
+            }}
+            handleOnBlur={() => {
+              triggerEventHandler("blur")
+            }}
+            handleOnFocus={() => {
+              triggerEventHandler("focus")
+            }}
           />
         </div>
       </TooltipWrapper>
