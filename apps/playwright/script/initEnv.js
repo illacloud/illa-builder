@@ -12,8 +12,8 @@ dotenv.config({ path: ENV_DEV_LOCAL_FILE_PATH, override: true })
 
 fetch("https://vnfxllrjvmzlialmdqrd.supabase.co/rest/v1/CI_INFO?select=*", {
   headers: {
-    apikey: process.env.SUPABASE_KEY,
-    Authorization: `Bearer ${process.env.SUPABASE_KEY}`
+    apikey: process.env.ILLA_SUPABASE_KEY,
+    Authorization: `Bearer ${process.env.ILLA_SUPABASE_KEY}`
   }
 }).then(res => res.json()).then(res => {
   const envInfo = res[0].resource
@@ -24,7 +24,7 @@ fetch("https://vnfxllrjvmzlialmdqrd.supabase.co/rest/v1/CI_INFO?select=*", {
       const resourcePrefix = resourceType.toUpperCase()
       const envKey = `${ENV_PREFIX}${resourcePrefix}_${resourceKey.toUpperCase()}`
       const envValue = resourceInfo[resourceKey]
-      if (typeof envValue === "string" && resourceKey !== "resourceType")
+      if ((typeof envValue === "string" || typeof envValue === "number") && resourceKey !== "resourceType")
         writeContent += `${envKey}=${envValue}\n`
     })
   })
