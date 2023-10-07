@@ -1827,7 +1827,8 @@
           "item_spacing": "Elementabstand",
           "max_column_count": "Maximale Anzahl von Spalten",
           "min_column_count": "Min. Anzahl der Spalten"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Ziehen Sie eine Komponente, um sie dem Rahmen hinzuzufügen"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
