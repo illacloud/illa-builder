@@ -5,7 +5,7 @@
   "private": true,
   "author": "ILLA Cloud <opensource@illasoft.com>",
   "license": "Apache-2.0",
-  "version": "3.0.18",
+  "version": "3.0.19",
   "scripts": {
     "dev": "vite --strictPort --force",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode cloud",
