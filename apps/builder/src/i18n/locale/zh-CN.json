@@ -1827,7 +1827,8 @@
           "item_spacing": "格子间距",
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
-        }
+        },
+        "src": "源"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "拖拽组件以添加到画布"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
