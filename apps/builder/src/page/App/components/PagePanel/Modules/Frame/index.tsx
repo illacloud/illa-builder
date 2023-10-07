@@ -1,5 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { FC, useCallback, useMemo } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -104,7 +104,9 @@ export const PageFrame: FC = () => {
     return 100 - leftWidth - rightWidth
   }, [canvasSize, canvasWidth, leftWidth, rightWidth])
 
-  const finalCanvasWidth = getRealCanvasWidth(canvasWidth)
+  const [finalCanvasWidth, setFinalCanvasWidth] = useState(
+    getRealCanvasWidth(canvasWidth),
+  )
 
   const finalCanvasSize = canvasSize === "fixed" ? "fixed" : "auto"
 
@@ -405,23 +407,17 @@ export const PageFrame: FC = () => {
   const handleChangeCanvasWidth = useCallback(
     (value?: number) => {
       if (!currentPageDisplayName || value == undefined) return
-
-      let newProps = {
-        canvasWidth: value,
-      }
-      dispatch(
-        componentsActions.updateTargetPagePropsReducer({
-          pageName: currentPageDisplayName,
-          newProps,
-        }),
-      )
+      setFinalCanvasWidth(value)
     },
-    [currentPageDisplayName, dispatch],
+    [currentPageDisplayName],
   )
 
   const handleBlurCanvasWidth = useCallback(() => {
     if (canvasSize === "fixed") {
-      if (canvasWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+      if (
+        finalCanvasWidth <
+        BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH
+      ) {
         message.error({
           content: t("frame_size.invalid_tips", {
             size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
@@ -437,6 +433,16 @@ export const PageFrame: FC = () => {
             },
           }),
         )
+        setFinalCanvasWidth(BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH)
+      } else {
+        dispatch(
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              canvasWidth: finalCanvasWidth,
+            },
+          }),
+        )
       }
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
         element: "page_width",
@@ -444,8 +450,8 @@ export const PageFrame: FC = () => {
         parameter3: canvasWidth,
       })
     } else {
-      const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
-      const currentWidth = originalWidth * (canvasWidth / 100)
+      const originalWidth = canvasShape.canvasWidth / (canvasWidth / 100)
+      const currentWidth = originalWidth * (finalCanvasWidth / 100)
       if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
         const minWidth =
           (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
@@ -460,6 +466,16 @@ export const PageFrame: FC = () => {
             pageName: currentPageDisplayName,
             newProps: {
               canvasWidth: minWidth,
+            },
+          }),
+        )
+        setFinalCanvasWidth(minWidth)
+      } else {
+        dispatch(
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              canvasWidth: finalCanvasWidth,
             },
           }),
         )
@@ -509,8 +525,6 @@ export const PageFrame: FC = () => {
             w="96px"
             precision={0}
             step={1}
-            min={finalCanvasSize === "fixed" ? 240 : 27}
-            max={finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100}
             value={Number(finalCanvasWidth.toFixed(0))}
             colorScheme="techPurple"
             onChange={handleChangeCanvasWidth}
@@ -572,10 +586,6 @@ export const PageFrame: FC = () => {
                   precision={0}
                   colorScheme="techPurple"
                   onChange={handleUpdateLeftPanelWidth}
-                  min={finalCanvasSize === "fixed" ? 240 : 27}
-                  max={
-                    finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100
-                  }
                   step={1}
                   onBlur={(e) => {
                     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
@@ -647,10 +657,6 @@ export const PageFrame: FC = () => {
                 <InputNumber
                   w="96px"
                   precision={0}
-                  min={finalCanvasSize === "fixed" ? 240 : 27}
-                  max={
-                    finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100
-                  }
                   value={Number(rightWidth.toFixed(0))}
                   colorScheme="techPurple"
                   onChange={handleUpdateRightPanelWidth}
@@ -701,8 +707,6 @@ export const PageFrame: FC = () => {
             <InputNumber
               w="96px"
               precision={0}
-              min={finalCanvasSize === "fixed" ? 240 : 27}
-              max={finalCanvasSize === "fixed" ? Number.MAX_SAFE_INTEGER : 100}
               colorScheme="techPurple"
               value={Number(bodyWidth.toFixed(0))}
               onChange={handleUpdateBodyPanelWidth}

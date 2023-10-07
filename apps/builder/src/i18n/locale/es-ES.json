@@ -1827,7 +1827,8 @@
           "item_spacing": "Espacio de objetos",
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Drag a component to add it to the frame"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
