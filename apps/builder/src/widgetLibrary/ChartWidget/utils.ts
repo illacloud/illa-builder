@@ -6,11 +6,12 @@ import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget/in
 export const formatDataWithSum = (
   originData: Record<string, unknown[]>,
   datasetValues: string,
+  realXAxis: string[],
 ) => {
   const data: number[] = []
-  Object.keys(originData).forEach((x) => {
+  realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
@@ -22,46 +23,51 @@ export const formatDataWithSum = (
 export const formatDataWithMax = (
   originData: Record<string, unknown[]>,
   datasetValues: string,
+  realXAxis: string[],
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
     data.push(max(values) || 0)
   })
+
   return data
 }
 
 export const formatDataWithMin = (
   originData: Record<string, unknown[]>,
   datasetValues: string,
+  realXAxis: string[],
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
     data.push(min(values) || 0)
   })
+
   return data
 }
 
 export const formatDataWithAverage = (
   originData: Record<string, unknown[]>,
   datasetValues: string,
+  realXAxis: string[],
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
@@ -73,31 +79,37 @@ export const formatDataWithAverage = (
 export const formatDataWithMedian = (
   originData: Record<string, unknown[]>,
   datasetValues: string,
+  realXAxis: string[],
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
+    values = values.sort((a, b) => a - b)
+
     const len = values.length
-    let position
     if (len % 2) {
-      position = (len + 1) / 2
+      data.push(values[Math.floor(len / 2)])
     } else {
-      position = (len || 0) / 2
+      data.push((values[len / 2] + values[len / 2 - 1]) / 2)
     }
-    data.push(values[position] || 0)
   })
+
   return data
 }
 
-export const formatDataWithCount = (originData: Record<string, unknown[]>) => {
+export const formatDataWithCount = (
+  originData: Record<string, unknown[]>,
+  realXAxis: string[],
+) => {
   const data: number[] = []
-  Object.keys(originData).forEach((x) => {
-    const v = originData[x]
+
+  realXAxis.forEach((x) => {
+    const v = originData[x] ?? []
     data.push(v?.length || 0)
   })
   return data
@@ -107,25 +119,26 @@ export const formatData = (
   formatDataSources: Record<string, unknown[]>,
   datasetValues: string,
   aggregationMethod: CHART_DATASET_AGGREGATION_METHOD,
+  realXAxis: string[] = [],
 ) => {
   switch (aggregationMethod) {
     case CHART_DATASET_AGGREGATION_METHOD.SUM: {
-      return formatDataWithSum(formatDataSources, datasetValues)
+      return formatDataWithSum(formatDataSources, datasetValues, realXAxis)
     }
     case CHART_DATASET_AGGREGATION_METHOD.AVERAGE: {
-      return formatDataWithAverage(formatDataSources, datasetValues)
+      return formatDataWithAverage(formatDataSources, datasetValues, realXAxis)
     }
     case CHART_DATASET_AGGREGATION_METHOD.COUNT: {
-      return formatDataWithCount(formatDataSources)
+      return formatDataWithCount(formatDataSources, realXAxis)
     }
     case CHART_DATASET_AGGREGATION_METHOD.MAX: {
-      return formatDataWithMax(formatDataSources, datasetValues)
+      return formatDataWithMax(formatDataSources, datasetValues, realXAxis)
     }
     case CHART_DATASET_AGGREGATION_METHOD.MEDIAN: {
-      return formatDataWithMedian(formatDataSources, datasetValues)
+      return formatDataWithMedian(formatDataSources, datasetValues, realXAxis)
     }
     case CHART_DATASET_AGGREGATION_METHOD.MIN: {
-      return formatDataWithMin(formatDataSources, datasetValues)
+      return formatDataWithMin(formatDataSources, datasetValues, realXAxis)
     }
     default: {
       return []
