@@ -296,7 +296,12 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
         let data: number[] = []
         if (!groupBy || typeWithNoAxis(chartType)) {
           const formatDataSources = groupByFunc(realDataSourceArray, xAxis)
-          data = formatData(formatDataSources, datasetValues, aggregationMethod)
+          data = formatData(
+            formatDataSources,
+            datasetValues,
+            aggregationMethod,
+            realXAxis,
+          )
         } else {
           const groupedData = groupByFunc(realDataSourceArray, groupBy)
           const relationData: Record<string, any> = {}
@@ -307,6 +312,7 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
               groupData,
               datasetValues,
               aggregationMethod,
+              realXAxis,
             )
             realXAxis.forEach((x) => {
               if (relationData[key] == undefined) relationData[key] = {}
@@ -320,6 +326,7 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
             color,
             CHART_COLOR_TYPE_CONFIG["illa-preset"],
           ) as string[]
+          console.log("relationData", relationData)
           return Object.keys(relationData).map((k, i) => {
             const value = relationData[k]
             return {
@@ -354,6 +361,8 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
       return result
     }
   }, [chartType, datasets, groupBy, realDataSourceArray, realXAxis, xAxis])
+
+  console.log("realDatasets", realDatasets)
 
   return (
     <div css={chartContainerStyle(backgroundColor)}>
