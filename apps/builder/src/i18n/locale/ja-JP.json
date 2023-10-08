@@ -1426,7 +1426,7 @@
         "background_color": "背景色",
         "border": "フレーム",
         "border_width": "ボーダー幅",
-        "caption": "字幕",
+        "caption": "キャプション",
         "chart_title": "題名",
         "chart_type": "チャートタイプ",
         "color": "色",
@@ -2980,7 +2980,7 @@
         "manual": "自動",
         "mapped": "マニュアル"
       },
-      "top": "優れました"
+      "top": "上"
     },
     "radio_button": {
       "name": "ボタンラジオ"
