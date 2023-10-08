@@ -1,4 +1,4 @@
-import { hexToHsva } from "@uiw/react-color"
+import { hexToHsva } from "@uiw/color-convert"
 import { debounce } from "lodash"
 import { FC, useRef } from "react"
 import { BindIcon, Trigger, globalColor, illaPrefix } from "@illa-design/react"
@@ -15,7 +15,7 @@ import {
 } from "./style"
 
 const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
-  const { handleUpdateColor, value } = props
+  const { handleUpdateColor, value, setterSize = "small" } = props
   const currentColor = useRef<string>(value)
   const debounceOnChange = debounce(handleUpdateColor, 300)
 
@@ -42,7 +42,7 @@ const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
         />
       }
     >
-      <div css={buttonContentWrapperStyle}>
+      <div css={buttonContentWrapperStyle(setterSize)}>
         <div css={colorTipAndValueContainerStyle}>
           <div css={circleHotSpotStyle}>
             <div css={applyCircleStyle(c)} />

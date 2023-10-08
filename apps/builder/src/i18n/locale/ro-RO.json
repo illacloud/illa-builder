@@ -1827,7 +1827,8 @@
           "item_spacing": "Spațiere articole",
           "max_column_count": "Numărul maxim de coloane",
           "min_column_count": "Număr minim de coloane"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Trage o componentă pentru a o adăuga la cadru"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {

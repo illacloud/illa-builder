@@ -1827,7 +1827,8 @@
           "item_spacing": "Rozstaw przedmiotów",
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Drag a component to add it to the frame"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
