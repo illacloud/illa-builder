@@ -1,4 +1,3 @@
-import { SwatchPresetColor } from "@uiw/react-color"
 import { getColor } from "@illa-design/react"
 
 export const colorSchemes = [
@@ -27,5 +26,5 @@ export const PRE_COLOR = colorSchemes.map((color) => {
   return {
     title: color,
     color: getColor(color, "03"),
-  } as SwatchPresetColor
+  }
 })

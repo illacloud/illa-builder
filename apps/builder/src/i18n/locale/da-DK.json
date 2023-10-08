@@ -1827,7 +1827,8 @@
           "item_spacing": "Element afstand",
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Drag a component to add it to the frame"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
