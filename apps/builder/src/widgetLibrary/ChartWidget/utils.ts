@@ -11,7 +11,7 @@ export const formatDataWithSum = (
   const data: number[] = []
   realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
@@ -29,7 +29,7 @@ export const formatDataWithMax = (
 
   realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
@@ -48,7 +48,7 @@ export const formatDataWithMin = (
 
   realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
@@ -67,7 +67,7 @@ export const formatDataWithAverage = (
 
   realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
@@ -85,18 +85,18 @@ export const formatDataWithMedian = (
 
   realXAxis.forEach((x) => {
     let values: number[] = []
-    const v = originData[x]
+    const v = originData[x] ?? []
     v.forEach((vk) => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
+    values = values.sort((a, b) => a - b)
+
     const len = values.length
-    let position
     if (len % 2) {
-      position = (len + 1) / 2
+      data.push(values[Math.floor(len / 2)])
     } else {
-      position = (len || 0) / 2
+      data.push((values[len / 2] + values[len / 2 - 1]) / 2)
     }
-    data.push(values[position] || 0)
   })
 
   return data
@@ -109,7 +109,7 @@ export const formatDataWithCount = (
   const data: number[] = []
 
   realXAxis.forEach((x) => {
-    const v = originData[x]
+    const v = originData[x] ?? []
     data.push(v?.length || 0)
   })
   return data
