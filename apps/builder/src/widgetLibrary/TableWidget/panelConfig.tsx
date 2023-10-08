@@ -175,8 +175,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                 id: `${baseWidgetName}-column-buttonGroupContent-colorScheme`,
                 labelName: i18n.t("editor.inspect.setter_label.theme_color"),
                 setterType: "COLOR_PICKER_SETTER",
-                useCustomLayout: true,
                 attrName: "colorScheme",
+                labelSize: "medium",
               },
             ],
           },
@@ -200,8 +200,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                 id: `${baseWidgetName}-column-buttonGroupContent-colorScheme`,
                 labelName: i18n.t("editor.inspect.setter_label.theme_color"),
                 setterType: "COLOR_PICKER_SETTER",
-                useCustomLayout: true,
                 attrName: "colorScheme",
+                labelSize: "medium",
               },
               {
                 ...generatorTableEventHandlerConfig(
@@ -301,7 +301,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-column-colorScheme`,
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_PICKER_SETTER",
-            useCustomLayout: true,
+            labelSize: "medium",
             attrName: "colorScheme",
             defaultValue: "blue",
             bindAttrName: ["type"],
