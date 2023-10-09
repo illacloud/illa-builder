@@ -11,7 +11,7 @@ const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
     handleUpdateMultiAttrDSL,
     value,
     attrName,
-    size = "small",
+    labelSize = "small",
   } = props
 
   const handleUpdateBorderColor = (currentColor: string) => {
@@ -22,8 +22,16 @@ const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
 
   return (
     <div css={setterContainerStyle}>
-      <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
-      <ColorSetter handleUpdateColor={handleUpdateBorderColor} value={value} />
+      <PanelLabel
+        labelName={labelName}
+        labelDesc={labelDesc}
+        labelSize={labelSize}
+      />
+      <ColorSetter
+        handleUpdateColor={handleUpdateBorderColor}
+        value={value}
+        setterSize={labelSize}
+      />
     </div>
   )
 }
