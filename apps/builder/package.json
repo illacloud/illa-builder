@@ -39,6 +39,7 @@
     "@editorjs/list": "^1.8.0",
     "@editorjs/marker": "^1.3.0",
     "@emotion/cache": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@illa-design/react": "workspace:*",
     "@illa-public/illa-storage": "workspace:*",
     "@illa-public/utils": "workspace:*",
