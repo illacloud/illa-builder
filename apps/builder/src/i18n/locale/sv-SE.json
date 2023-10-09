@@ -1827,7 +1827,8 @@
           "item_spacing": "Objektavstånd",
           "max_column_count": "Max antal kolumner",
           "min_column_count": "Minsta antal kolumner"
-        }
+        },
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -3118,6 +3119,9 @@
     },
     "frame": {
       "initial-title": "Dra en komponent för att lägga till den i ramen"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {

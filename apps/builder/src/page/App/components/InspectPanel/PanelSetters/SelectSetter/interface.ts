@@ -7,7 +7,7 @@ export interface BaseSelectSetterProps extends BaseSetter {
   placeholder?: string
   value: string
   showSearch?: boolean
-  size?: "medium" | "small"
+  labelSize?: "medium" | "small"
 }
 
 export interface BaseDynamicSelectSetterProps extends BaseSetter {
