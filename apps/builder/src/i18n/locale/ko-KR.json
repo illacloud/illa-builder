@@ -40,7 +40,7 @@
       "error_title": "실수",
       "marketplace": "Marketplace",
       "run": "Run",
-      "fork": "Fork"
+      "fork": "포크"
     },
     "resource": {
       "create_resource": "리소스 만들기",
@@ -62,10 +62,10 @@
     "sort-type": {
       "popular": "Most popular",
       "recent": "Recently updated",
-      "star": "Starred"
+      "star": "즐겨찾기"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "검색",
+    "no-result": "검색 결과가 없습니다. 검색어를 새로 고치거나 변경해보세요.",
     "message": {
       "next-page-error": "Failed to load next page. Please try again.",
       "create-failed": "Failed to create agent. Please try again.",
