@@ -15,7 +15,7 @@ import {
 } from "./style"
 
 const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
-  const { handleUpdateColor, value } = props
+  const { handleUpdateColor, value, setterSize = "small" } = props
   const currentColor = useRef<string>(value)
   const debounceOnChange = debounce(handleUpdateColor, 300)
 
@@ -42,7 +42,7 @@ const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
         />
       }
     >
-      <div css={buttonContentWrapperStyle}>
+      <div css={buttonContentWrapperStyle(setterSize)}>
         <div css={colorTipAndValueContainerStyle}>
           <div css={circleHotSpotStyle}>
             <div css={applyCircleStyle(c)} />
