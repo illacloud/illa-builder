@@ -88,7 +88,7 @@ After successfully deployed, you can register with email address or log in with 
   </a>
 </p>
 
-#### 🎨 Step 2: Build UI with built-in components
+#### 🎨🎨 Step 2: Build UI with built-in components
 Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
 
 <p align="center">
@@ -97,7 +97,7 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
   </a>
 </p>
 
-#### 🔌 Step 3: Connect to your data
+#### 🔌🔌🔌 Step 3: Connect to your data
 Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
 <p align="center">
   <a href="https://cloud.illacloud.com/">
@@ -105,7 +105,7 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
   </a>
 </p>
 
-#### 🚀 Step 4: Deploy your app
+#### 🚀🚀🚀🚀 Step 4: Deploy your app
 Deploy your app and self host it. 
 <p align="center">
   <a href="https://cloud.illacloud.com/">
@@ -120,16 +120,16 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)   [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)   
 
-## 🌱 Contributing
+## 🌱🌱 Contributing
 
 Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
 <p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
 
-## 📢 Translating
+## 📢📢 Translating
 
 The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you like to contribute.
 
-## 🔥 We're Hiring
+## 🔥🔥 We're Hiring
 
 Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
 
