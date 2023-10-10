@@ -1735,7 +1735,8 @@
           "has_next_page": "Tem a próxima página",
           "currency_code": "Código da moeda",
           "cell_selection": "Seleção de célula",
-          "click_outside_to_des": "Clique fora para desmarcar"
+          "click_outside_to_des": "Clique fora para desmarcar",
+          "page": "Default page index"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
