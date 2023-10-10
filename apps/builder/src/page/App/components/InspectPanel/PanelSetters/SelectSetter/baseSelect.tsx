@@ -20,14 +20,18 @@ const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     showSearch,
     labelName,
     labelDesc,
-    size,
+    labelSize,
   } = props
 
   return (
     <div css={setterContainerStyle(isSetterSingleRow)}>
       <span>
         {labelName && (
-          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+          <PanelLabel
+            labelName={labelName}
+            labelDesc={labelDesc}
+            labelSize={labelSize}
+          />
         )}
       </span>
       <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
