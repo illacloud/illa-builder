@@ -1735,7 +1735,8 @@
           "has_next_page": "Har næste side",
           "currency_code": "Valuta kode",
           "cell_selection": "Valg af celler",
-          "click_outside_to_des": "Klik udenfor for at fravælge"
+          "click_outside_to_des": "Klik udenfor for at fravælge",
+          "page": "Default page index"
         },
         "previous_cursor": "Forrige markør",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
