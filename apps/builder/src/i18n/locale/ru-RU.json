@@ -3002,7 +3002,8 @@
       "descend": "Desc",
       "name": "Таблица",
       "pagination": "Пагинация",
-      "scroll": "Прокрутка"
+      "scroll": "Прокрутка",
+      "default": "По умолчанию"
     },
     "tabs": {
       "name": "Tabs"
