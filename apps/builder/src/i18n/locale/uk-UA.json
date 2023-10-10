@@ -1735,7 +1735,8 @@
           "has_next_page": "Має наступну сторінку",
           "currency_code": "Код валюти",
           "cell_selection": "Вибір клітинки",
-          "click_outside_to_des": "Натисніть на вулицю, щоб зняти виділення"
+          "click_outside_to_des": "Натисніть на вулицю, щоб зняти виділення",
+          "page": "Default page index"
         },
         "previous_cursor": "Попередній курсор",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
