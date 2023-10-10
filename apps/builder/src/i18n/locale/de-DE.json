@@ -1735,7 +1735,8 @@
           "has_next_page": "Hat nächste Seite",
           "currency_code": "Währungscode",
           "cell_selection": "Zellenauswahl",
-          "click_outside_to_des": "Zum Abwählen ausserhalb klicken"
+          "click_outside_to_des": "Zum Abwählen ausserhalb klicken",
+          "page": "Default page index"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Maximale Anzahl von Spalten",
           "min_column_count": "Min. Anzahl der Spalten"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
