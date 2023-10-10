@@ -3002,7 +3002,8 @@
       "descend": "降序",
       "name": "表格",
       "pagination": "翻页",
-      "scroll": "滚动"
+      "scroll": "滚动",
+      "default": "默认"
     },
     "tabs": {
       "name": "选项卡"
