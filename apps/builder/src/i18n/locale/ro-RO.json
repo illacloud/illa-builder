@@ -3002,7 +3002,8 @@
       "descend": "Desc",
       "name": "Tabel",
       "pagination": "Paginare",
-      "scroll": "Derulează"
+      "scroll": "Derulează",
+      "default": "Implicit"
     },
     "tabs": {
       "name": "Tabs"
