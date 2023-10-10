@@ -1735,7 +1735,8 @@
           "has_next_page": "Posiada następną stronę",
           "currency_code": "Kod waluty",
           "cell_selection": "Wybór komórki",
-          "click_outside_to_des": "Kliknij na zewnątrz, aby odznaczyć"
+          "click_outside_to_des": "Kliknij na zewnątrz, aby odznaczyć",
+          "page": "Default page index"
         },
         "previous_cursor": "Poprzedni kursor",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
