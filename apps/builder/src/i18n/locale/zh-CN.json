@@ -1735,7 +1735,8 @@
           "has_next_page": "是否有下一页",
           "currency_code": "货币代码",
           "cell_selection": "选中单元格",
-          "click_outside_to_des": "点击外部取消选择"
+          "click_outside_to_des": "点击外部取消选择",
+          "page": "默认页面索引"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "源"
+        "src": "源",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
