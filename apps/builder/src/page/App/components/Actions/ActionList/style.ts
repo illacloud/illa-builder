@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const searchHeaderContainerStyle = css`
-  width: 340px;
+  width: 255px;
   min-width: 255px;
   display: flex;
   flex-direction: column;
