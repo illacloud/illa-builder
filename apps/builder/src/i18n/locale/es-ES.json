@@ -3002,7 +3002,8 @@
       "descend": "Desc",
       "name": "Tabla",
       "pagination": "Paginación",
-      "scroll": "Desplazar"
+      "scroll": "Desplazar",
+      "default": "Default"
     },
     "tabs": {
       "name": "Tabs"
