@@ -1735,7 +1735,8 @@
           "has_next_page": "Έχει επόμενη σελίδα",
           "currency_code": "Κωδικός νομίσματος",
           "cell_selection": "Επιλογή κελιού",
-          "click_outside_to_des": "Κάντε κλικ έξω για να αποεπιλέξετε"
+          "click_outside_to_des": "Κάντε κλικ έξω για να αποεπιλέξετε",
+          "page": "Default page index"
         },
         "previous_cursor": "Προηγούμενος δρομέας",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Μέγιστος αριθμός στηλών",
           "min_column_count": "Ελάχιστος αριθμός στηλών"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
