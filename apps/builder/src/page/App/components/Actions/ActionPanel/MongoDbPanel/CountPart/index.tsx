@@ -48,7 +48,14 @@ export const CountPart: FC<MongoDbActionPartProps> = (props) => {
       lineNumbers
       style={{ height: "88px" }}
       mode={CODE_LANG.JAVASCRIPT}
-      placeholder={'{"type":"cheese"}'}
+      placeholder={
+        "{\n" +
+        '  "type":"cheese",\n' +
+        '  "_id": {\n' +
+        '    "$oid":"646385ae462e929b7a3d86bc"\n' +
+        "  }\n" +
+        "}"
+      }
       value={typeContent.query}
       onChange={handleValueChange}
       expectedType={VALIDATION_TYPES.STRING}

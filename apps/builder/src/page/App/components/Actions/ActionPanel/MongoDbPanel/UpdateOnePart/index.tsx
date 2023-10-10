@@ -50,7 +50,14 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
         style={{ height: "88px" }}
         expectedType={VALIDATION_TYPES.STRING}
         mode={CODE_LANG.JAVASCRIPT}
-        placeholder={'{"type":"cheese"}'}
+        placeholder={
+          "{\n" +
+          '  "type":"cheese",\n' +
+          '  "_id": {\n' +
+          '    "$oid":"646385ae462e929b7a3d86bc"\n' +
+          "  }\n" +
+          "}"
+        }
       />
       <InputEditor
         lineNumbers
