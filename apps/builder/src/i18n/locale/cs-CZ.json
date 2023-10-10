@@ -1735,7 +1735,8 @@
           "has_next_page": "Má další stránku",
           "currency_code": "Kód měny",
           "cell_selection": "Výběr buňky",
-          "click_outside_to_des": "Klikněte vně pro zrušení výběru"
+          "click_outside_to_des": "Klikněte vně pro zrušení výběru",
+          "page": "Default page index"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Maximální počet sloupců",
           "min_column_count": "Minimální počet sloupců"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
