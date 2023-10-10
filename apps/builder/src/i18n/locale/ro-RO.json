@@ -1735,7 +1735,8 @@
           "has_next_page": "Are pagina următoare",
           "currency_code": "Codul valutei",
           "cell_selection": "Selecție celulă",
-          "click_outside_to_des": "Click afară pentru a deselecta"
+          "click_outside_to_des": "Click afară pentru a deselecta",
+          "page": "Default page index"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Numărul maxim de coloane",
           "min_column_count": "Număr minim de coloane"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
