@@ -3002,7 +3002,8 @@
       "descend": "降順",
       "name": "シート",
       "pagination": "ページをめくる",
-      "scroll": "スクロール"
+      "scroll": "スクロール",
+      "default": "デフォルト"
     },
     "tabs": {
       "name": "タブ"
