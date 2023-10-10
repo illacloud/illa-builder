@@ -1735,7 +1735,8 @@
           "has_next_page": "On seuraava sivu",
           "currency_code": "Valuutan koodi",
           "cell_selection": "Solun valinta",
-          "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan"
+          "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan",
+          "page": "Default page index"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Maksimi määrä sarakkeita",
           "min_column_count": "Sarakkeiden vähimmäismäärä"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
