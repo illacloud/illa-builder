@@ -1735,7 +1735,8 @@
           "has_next_page": "次のページあり",
           "currency_code": "通貨コード",
           "cell_selection": "セルを選択",
-          "click_outside_to_des": "外をクリックして選択を解除"
+          "click_outside_to_des": "外をクリックして選択を解除",
+          "page": "Default page index"
         },
         "previous_cursor": "前のカーソル",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "列の最大数",
           "min_column_count": "列の最小数"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
