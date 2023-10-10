@@ -3002,7 +3002,8 @@
       "descend": "Desc",
       "name": "Tabel",
       "pagination": "Sideinddeling",
-      "scroll": "Rul"
+      "scroll": "Rul",
+      "default": "Default"
     },
     "tabs": {
       "name": "Tabs"
