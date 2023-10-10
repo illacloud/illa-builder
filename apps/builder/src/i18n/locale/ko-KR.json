@@ -3002,7 +3002,8 @@
       "descend": "내림차순",
       "name": "시트",
       "pagination": "페이지를 넘기다",
-      "scroll": "스크롤"
+      "scroll": "스크롤",
+      "default": "Default"
     },
     "tabs": {
       "name": "탭"
