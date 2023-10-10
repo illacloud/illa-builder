@@ -1735,7 +1735,8 @@
           "has_next_page": "Har neste side",
           "currency_code": "Valuta kode",
           "cell_selection": "Valg av celle",
-          "click_outside_to_des": "Klikk utenfor for å fjerne"
+          "click_outside_to_des": "Klikk utenfor for å fjerne",
+          "page": "Default page index"
         },
         "previous_cursor": "Forrige markør",
         "input": {
@@ -1828,7 +1829,8 @@
           "max_column_count": "Maksimalt antall kolonner",
           "min_column_count": "Minimum antall kolonner"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
