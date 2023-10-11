@@ -1321,7 +1321,8 @@
         "pageChange": "修改页面",
         "refresh": "刷新",
         "density_setting": "Density",
-        "column_setting": "Columns"
+        "column_setting": "Columns",
+        "refresh_setting": "Refresh"
       },
       "setter_default_value": {
         "fill": "填充",
