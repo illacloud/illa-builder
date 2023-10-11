@@ -1319,7 +1319,9 @@
         "filterChange": "FiltrZmień",
         "sortChange": "zmiana sortowania",
         "pageChange": "Zmiana strony",
-        "refresh": "odśwież"
+        "refresh": "odśwież",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Wypełnij",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Tryb filtrowania. ORAZ lub OR.",
           "currency_code": "W okresie objętym dochodzeniem przeglądowym przywóz z ChRL wzrósł o 7 %.",
           "whether_allow_users_": "Czy pozwala użytkownikom wybrać komórkę",
-          "supported_in_the_row": "Obsługiwane w trybie pojedynczego wyboru wiersza. Po włączeniu go kliknij obszar inny niż tabela, aby odznaczyć wiersz."
+          "supported_in_the_row": "Obsługiwane w trybie pojedynczego wyboru wiersza. Po włączeniu go kliknij obszar inny niż tabela, aby odznaczyć wiersz.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Użyj danych akcji, aby ustawić poprzedni kursor. Na przykład,  {{ pageInfo.startCursor }}",
         "input": {
