@@ -1319,7 +1319,9 @@
         "filterChange": "filterSkift",
         "sortChange": "sortSkift",
         "pageChange": "sideSkift",
-        "refresh": "opfrisk"
+        "refresh": "opfrisk",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Udfyld",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Filtertilstand. OG eller OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Om det er tilladt for brugere at vælge en celle",
-          "supported_in_the_row": "Understøttet i rækken enkelt markeringstilstand. Når du har aktiveret det, skal du klikke på et andet område end tabellen for at fravælge rækken."
+          "supported_in_the_row": "Understøttet i rækken enkelt markeringstilstand. Når du har aktiveret det, skal du klikke på et andet område end tabellen for at fravælge rækken.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Brug handlingsdata til at indstille den forrige markør. For eksempel  {{ pageInfo.startCursor }}",
         "input": {
