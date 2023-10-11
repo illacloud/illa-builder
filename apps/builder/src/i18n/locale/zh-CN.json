@@ -1319,7 +1319,9 @@
         "filterChange": "过滤器更改",
         "sortChange": "更改排序",
         "pageChange": "修改页面",
-        "refresh": "刷新"
+        "refresh": "刷新",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "填充",
@@ -2041,7 +2043,8 @@
           "filter_mode": "过滤器的模式，and或or。",
           "currency_code": "USD",
           "whether_allow_users_": "是否允许用户选中一个单元格",
-          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。"
+          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
