@@ -1319,7 +1319,9 @@
         "filterChange": "filterChange",
         "sortChange": "並べ替え変更",
         "pageChange": "ページ変更",
-        "refresh": "更新"
+        "refresh": "更新",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "充填",
@@ -2041,7 +2043,8 @@
           "filter_mode": "フィルタモード。andまたはor。",
           "currency_code": "USD",
           "whether_allow_users_": "ユーザーにセルの選択を許可するかどうか",
-          "supported_in_the_row": "行単一選択モードでサポートされています。有効にしたら、テーブル以外の領域をクリックして、行の選択を解除します。"
+          "supported_in_the_row": "行単一選択モードでサポートされています。有効にしたら、テーブル以外の領域をクリックして、行の選択を解除します。",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
         "input": {
