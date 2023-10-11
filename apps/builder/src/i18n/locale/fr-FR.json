@@ -1319,7 +1319,9 @@
         "filterChange": "Changer de filtre",
         "sortChange": "trier par changement",
         "pageChange": "Changement de page",
-        "refresh": "Actualiser"
+        "refresh": "Actualiser",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Remplir",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Le mode filtre. ET OU OU.",
           "currency_code": "USD",
           "whether_allow_users_": "Permettre aux utilisateurs de sélectionner une cellule",
-          "supported_in_the_row": "Pris en charge dans le mode de sélection simple ligne. Après l'avoir activé, cliquez sur une zone autre que la table pour désélectionner la ligne."
+          "supported_in_the_row": "Pris en charge dans le mode de sélection simple ligne. Après l'avoir activé, cliquez sur une zone autre que la table pour désélectionner la ligne.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Utilisez les données de l'action pour définir le curseur précédent. Par exemple,  {{ pageInfo.startCursor }}",
         "input": {
