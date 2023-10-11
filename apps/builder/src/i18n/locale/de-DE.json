@@ -1321,7 +1321,8 @@
         "pageChange": "seitenänderung",
         "refresh": "aktualisieren",
         "density_setting": "Density",
-        "column_setting": "Columns"
+        "column_setting": "Columns",
+        "refresh_setting": "Refresh"
       },
       "setter_default_value": {
         "fill": "Füllen",
