@@ -1319,7 +1319,9 @@
         "filterChange": "Endre filter",
         "sortChange": "sorterEndring",
         "pageChange": "sideEndre",
-        "refresh": "oppdater"
+        "refresh": "oppdater",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Fyll",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Filtermodus. OG eller eller.",
           "currency_code": "USD",
           "whether_allow_users_": "Om brukere kan velge en celle",
-          "supported_in_the_row": "Støttet kun i radens valgmodus. Etter aktivering kan du klikke på et annet område enn tabellen for å fjerne raden."
+          "supported_in_the_row": "Støttet kun i radens valgmodus. Etter aktivering kan du klikke på et annet område enn tabellen for å fjerne raden.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Bruk handlingsdataene til å angi forrige kursor. For eksempel,  {{ pageInfo.startCursor }}",
         "input": {
