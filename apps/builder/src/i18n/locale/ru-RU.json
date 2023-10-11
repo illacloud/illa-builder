@@ -1319,7 +1319,9 @@
         "filterChange": "изменить фильтр",
         "sortChange": "СортировкаИзменить",
         "pageChange": "изменение страницы",
-        "refresh": "обновить"
+        "refresh": "обновить",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Заполнить",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Режим фильтра. AND или OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Разрешать ли пользователям выбирать ячейку",
-          "supported_in_the_row": "Поддерживается в режиме одиночного выделения строки. После включения, нажмите на другую область, чем таблица."
+          "supported_in_the_row": "Поддерживается в режиме одиночного выделения строки. После включения, нажмите на другую область, чем таблица.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Используйте данные для установки предыдущего курсора. Например,  {{ pageInfo.startCursor }}",
         "input": {
