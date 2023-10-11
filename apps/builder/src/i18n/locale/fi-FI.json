@@ -1319,7 +1319,9 @@
         "filterChange": "suodatinmuutos",
         "sortChange": "sortChange",
         "pageChange": "Sivumuutos",
-        "refresh": "päivitä"
+        "refresh": "päivitä",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Täytä",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Salli käyttäjien valita solu",
-          "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan."
+          "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {
