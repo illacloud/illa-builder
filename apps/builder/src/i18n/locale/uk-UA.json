@@ -1319,7 +1319,9 @@
         "filterChange": "зміна фільтру",
         "sortChange": "сортувальна зміна",
         "pageChange": "Зміна сторінки",
-        "refresh": "оновити"
+        "refresh": "оновити",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Заливка рядка",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Режим фільтра. І або АБО.",
           "currency_code": "Долари США",
           "whether_allow_users_": "Дозволити користувачам вибирати клітинку",
-          "supported_in_the_row": "Підтримується в режимі одного вибору рядка. Після увімкнення натисніть область поза таблицею, щоб зняти виділення з рядка."
+          "supported_in_the_row": "Підтримується в режимі одного вибору рядка. Після увімкнення натисніть область поза таблицею, щоб зняти виділення з рядка.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}",
         "input": {
