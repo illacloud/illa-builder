@@ -1319,7 +1319,9 @@
         "filterChange": "filtruSchimbați",
         "sortChange": "sortare",
         "pageChange": "paginăSchimbați",
-        "refresh": "Reîmprospătare"
+        "refresh": "Reîmprospătare",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Completează",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Modul filtre. ŞI sau SAU.",
           "currency_code": "USD",
           "whether_allow_users_": "Dacă permiteți utilizatorilor să selecteze o celulă",
-          "supported_in_the_row": "Acceptat în modul de selecţie simplă a rândului. După activare, faceţi clic pe o altă zonă decât tabelul pentru a dezselecta rândul."
+          "supported_in_the_row": "Acceptat în modul de selecţie simplă a rândului. După activare, faceţi clic pe o altă zonă decât tabelul pentru a dezselecta rândul.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
