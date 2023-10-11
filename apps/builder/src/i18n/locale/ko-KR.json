@@ -1319,7 +1319,9 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "Refresh"
+        "refresh": "Refresh",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "충전재",
@@ -2041,7 +2043,8 @@
           "filter_mode": "The filter mode. and / or.",
           "currency_code": "USD",
           "whether_allow_users_": "사용자가 셀을 선택하도록 허용할지 여부",
-          "supported_in_the_row": "행 단일 선택 모드에서 지원됩니다. 활성화 후 표 이외의 영역을 클릭하면 행 선택이 해제됩니다."
+          "supported_in_the_row": "행 단일 선택 모드에서 지원됩니다. 활성화 후 표 이외의 영역을 클릭하면 행 선택이 해제됩니다.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}",
         "input": {
