@@ -1319,7 +1319,9 @@
         "filterChange": "filterwijziging",
         "sortChange": "sorteerwijziging",
         "pageChange": "paginawijziging",
-        "refresh": "Vernieuwen"
+        "refresh": "Vernieuwen",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Invullen",
@@ -2041,7 +2043,8 @@
           "filter_mode": "De filtermodus. AND of OOR.",
           "currency_code": "USD",
           "whether_allow_users_": "Of gebruikers een cel mogen selecteren",
-          "supported_in_the_row": "Ondersteund in rij enkele selectie modus. Na het inschakelen klik op een ander gebied dan de tabel om de rij uit te schakelen."
+          "supported_in_the_row": "Ondersteund in rij enkele selectie modus. Na het inschakelen klik op een ander gebied dan de tabel om de rij uit te schakelen.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Gebruik de actie gegevens om de vorige cursor in te stellen. Bijvoorbeeld,  {{ pageInfo.startCursor }}",
         "input": {
