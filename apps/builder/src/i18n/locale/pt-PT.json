@@ -1319,7 +1319,9 @@
         "filterChange": "alterarFiltroAlterar",
         "sortChange": "alterarAlterar",
         "pageChange": "páginaAlterar",
-        "refresh": "Atualizar"
+        "refresh": "Atualizar",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Preencher",
@@ -2041,7 +2043,8 @@
           "filter_mode": "O modo de filtro. E ou OR.",
           "currency_code": "R$",
           "whether_allow_users_": "Permitir que os usuários selecionem uma célula",
-          "supported_in_the_row": "Suportado no modo de seleção de linha única. Depois de ativá-lo, clique em uma área diferente da tabela para desselecionar a linha."
+          "supported_in_the_row": "Suportado no modo de seleção de linha única. Depois de ativá-lo, clique em uma área diferente da tabela para desselecionar a linha.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Use os dados de ação para definir o cursor anterior. Por exemplo,  {{ pageInfo.startCursor }}",
         "input": {
