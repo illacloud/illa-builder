@@ -1319,7 +1319,9 @@
         "filterChange": "filterÄndra",
         "sortChange": "sorteraÄndra",
         "pageChange": "sidaÄndra",
-        "refresh": "Uppdatera"
+        "refresh": "Uppdatera",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Fyll",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Filterläget. OCH eller OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Om tillåta användare att välja en cell",
-          "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden."
+          "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
