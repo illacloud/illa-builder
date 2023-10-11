@@ -1319,7 +1319,9 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "aggiorna"
+        "refresh": "aggiorna",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Riempi",
@@ -2041,7 +2043,8 @@
           "filter_mode": "La modalità filtro. AND o OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Indica se consentire agli utenti di selezionare una cella",
-          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga."
+          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Usa i dati di azione per impostare il cursore precedente. Per esempio,  {{ pageInfo.startCursor }}",
         "input": {
