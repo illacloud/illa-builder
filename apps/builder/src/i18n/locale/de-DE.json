@@ -1319,7 +1319,9 @@
         "filterChange": "filteränderung",
         "sortChange": "sortieränderung",
         "pageChange": "seitenänderung",
-        "refresh": "aktualisieren"
+        "refresh": "aktualisieren",
+        "density_setting": "Density",
+        "column_setting": "Columns"
       },
       "setter_default_value": {
         "fill": "Füllen",
@@ -2041,7 +2043,8 @@
           "filter_mode": "Der Filtermodus. AND oder OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Ob es Benutzern erlaubt eine Zelle auszuwählen",
-          "supported_in_the_row": "Wird im Zeilen-Einzelauswahlmodus unterstützt. Nach dem Aktivieren klicken Sie auf einen anderen Bereich als die Tabelle, um die Zeilenauswahl zu deaktivieren."
+          "supported_in_the_row": "Wird im Zeilen-Einzelauswahlmodus unterstützt. Nach dem Aktivieren klicken Sie auf einen anderen Bereich als die Tabelle, um die Zeilenauswahl zu deaktivieren.",
+          "density_setting": "Used to set the row height density or not. "
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
