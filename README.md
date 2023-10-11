@@ -147,8 +147,7 @@ Contact Us: hr@illasoft.com
     </td>
     <td> 
       <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"/> <br> 
-This project is licensed under <a href="./LICENSE">Apache License 2.0</a>.
-<img width=2300/>
+This project is licensed under <a href="./LICENSE">Apache License 2.0</a>. <img width=2300/>
     </td>
   </tr>
 </table>
