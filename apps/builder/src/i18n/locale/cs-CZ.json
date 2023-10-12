@@ -1837,7 +1837,7 @@
         "page_size_options": "Možnosti velikosti stránky",
         "export_setting": "Exportovat",
         "filter_setting": "Filtr",
-        "primary_key": "Primary key"
+        "primary_key": "Primární klíč"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2126,7 +2126,7 @@
           "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami",
           "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
         },
-        "primary_key": "A unique key for identifying a row"
+        "primary_key": "Jedinečný klíč pro identifikaci řádku"
       },
       "setter_option": {
         "fixed": "Fixní",
