@@ -1836,7 +1836,8 @@
         "src": "src",
         "page_size_options": "Page size options",
         "export_setting": "Export",
-        "filter_setting": "Filter"
+        "filter_setting": "Filter",
+        "primary_key": "Primary key"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -2124,7 +2125,8 @@
           "item_shadow": "Usato per configurare la dimensione dell'ombra di ogni griglia",
           "item_spacing": "Usato per configurare la spaziatura tra le griglie",
           "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
-        }
+        },
+        "primary_key": "A unique key for identifying a row"
       },
       "setter_option": {
         "fixed": "Fisso",
