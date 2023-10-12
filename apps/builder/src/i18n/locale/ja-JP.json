@@ -3024,7 +3024,7 @@
       "export": {
         "title": "エクスポート",
         "csv": "CSV形式でエクスポート",
-        "excel": "Excel としてエクスポート",
+        "excel": "Export as excel",
         "print": "印刷"
       }
     },
