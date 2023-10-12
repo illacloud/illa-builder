@@ -1,6 +1,8 @@
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DataGridCommunityWidget"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "dataGridPremium"
 export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
@@ -25,6 +27,15 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         useCustomLayout: true,
       },
+      {
+        id: `${baseWidgetName}-basic-primaryKey`,
+        labelName: i18n.t("editor.inspect.setter_label.primary_key"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.primary_key"),
+        attrName: "primaryKey",
+        setterType: "DATA_GRID_COLUMNS_SELECT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        openDynamic: true,
+      },
     ],
   },
   {
@@ -32,19 +43,19 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.sort"),
     children: [
       {
-        id: `${baseWidgetName}-basic-defaultSortKey`,
+        id: `${baseWidgetName}-basic-sortKey`,
         labelName: i18n.t("editor.inspect.setter_label.default_sort_key"),
-        attrName: "defaultSortKey",
+        attrName: "sortKey",
         setterType: "DATA_GRID_COLUMNS_SELECT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         openDynamic: true,
       },
       {
-        id: `${baseWidgetName}-basic-defaultSortOrder`,
+        id: `${baseWidgetName}-basic-sortOrder`,
         labelName: i18n.t("editor.inspect.setter_label.default_sort_order"),
-        attrName: "defaultSortOrder",
+        attrName: "sortOrder",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: ["defaultSortKey"],
+        bindAttrName: ["sortKey"],
         shown: (value) => value !== "default",
         options: [
           { label: i18n.t("widget.table.ascend"), value: "asc" },
@@ -271,6 +282,18 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
         openDynamic: true,
         useCustomLayout: true,
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG.events,
+        ),
       },
     ],
   },

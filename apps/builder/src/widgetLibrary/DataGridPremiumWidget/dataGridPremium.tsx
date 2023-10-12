@@ -17,9 +17,10 @@ import {
   GridCsvGetRowsToExportParams,
   GridPrintGetRowsToExportParams,
 } from "@mui/x-data-grid/models/gridExport"
-import { isArray } from "lodash"
+import { get, isArray } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { ExportAllSetting } from "./ExportAllSetting"
 import { BaseDataGridProps } from "./interface"
@@ -32,8 +33,8 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     dataSource,
     dataSourceJS,
     dataSourceMode,
-    defaultSortKey,
-    defaultSortOrder,
+    sortKey,
+    sortOrder,
     handleUpdateMultiExecutionResult,
     displayName,
     multiRowSelection,
@@ -49,6 +50,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     filterSetting,
     enableServerSidePagination,
     totalRowCount,
+    primaryKey,
   } = props
 
   const { t } = useTranslation()
@@ -126,13 +128,24 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
   return (
     <StyledEngineProvider injectFirst>
       <DataGridPremium
+        getRowId={(row) => {
+          if (primaryKey === undefined || primaryKey === "—") {
+            return v4()
+          } else {
+            if (primaryKey in row) {
+              return get(row, primaryKey)
+            }
+          }
+        }}
+        onRowSelectionModelChange={(model) => {
+          console.log("longbo", model)
+        }}
         sortModel={
-          defaultSortKey != undefined && defaultSortOrder != undefined
+          sortKey != undefined && sortOrder != undefined
             ? [
                 {
-                  field: defaultSortKey,
-                  sort:
-                    defaultSortOrder === "default" ? null : defaultSortOrder,
+                  field: sortKey,
+                  sort: sortOrder === "default" ? null : sortOrder,
                 },
               ]
             : []

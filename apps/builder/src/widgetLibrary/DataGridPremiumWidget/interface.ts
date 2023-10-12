@@ -6,8 +6,8 @@ export interface BaseDataGridProps extends BaseWidgetProps {
   dataSourceMode?: "dynamic" | "select"
   loading?: boolean
   emptyState?: string
-  defaultSortKey?: string
-  defaultSortOrder?: "asc" | "desc" | "default"
+  sortKey?: string
+  sortOrder?: "asc" | "desc" | "default"
   multiRowSelection?: boolean
   overFlow?: "pagination" | "scroll"
   pageSize?: number
@@ -21,4 +21,5 @@ export interface BaseDataGridProps extends BaseWidgetProps {
   densitySetting?: boolean
   enableServerSidePagination?: boolean
   totalRowCount?: number
+  primaryKey?: string
 }

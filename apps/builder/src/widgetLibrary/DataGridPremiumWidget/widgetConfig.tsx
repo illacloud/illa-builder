@@ -13,5 +13,9 @@ export const DATA_GRID_PREMIUM_WIDGET_CONFIG: WidgetConfig = {
   resizeDirection: RESIZE_DIRECTION.ALL,
   w: 18,
   h: 50,
-  defaults: {},
+  defaults: {
+    dataSourceMode: "dynamic",
+    dataSource: [],
+    overFlow: "pagination",
+  },
 }
