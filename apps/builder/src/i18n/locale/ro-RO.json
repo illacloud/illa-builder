@@ -1320,9 +1320,9 @@
         "sortChange": "sortare",
         "pageChange": "paginăSchimbați",
         "refresh": "Reîmprospătare",
-        "density_setting": "Density",
-        "column_setting": "Columns",
-        "refresh_setting": "Refresh"
+        "density_setting": "Densitate",
+        "column_setting": "Coloane",
+        "refresh_setting": "Împrospătează"
       },
       "setter_default_value": {
         "fill": "Completează",
@@ -1739,8 +1739,8 @@
           "currency_code": "Codul valutei",
           "cell_selection": "Selecție celulă",
           "click_outside_to_des": "Click afară pentru a deselecta",
-          "page": "Default page index",
-          "export_all_data_setting": "Export all"
+          "page": "Indexul implicit al paginii",
+          "export_all_data_setting": "Exportă tot"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
@@ -1834,9 +1834,9 @@
           "min_column_count": "Număr minim de coloane"
         },
         "src": "src",
-        "page_size_options": "Page size options",
-        "export_setting": "Export",
-        "filter_setting": "Filter"
+        "page_size_options": "Opțiuni pentru dimensiunea paginii",
+        "export_setting": "Exportă",
+        "filter_setting": "Filtrare"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1898,8 +1898,8 @@
         "showFooter": "Setează dacă să afișeze subsolul",
         "senderAvatar": "Setează avatarul expeditorului. De exemplu, în sursa de date, avatarul expeditorului este câmpul sendAvatar și puteți seta câmpul {{item.sendAvatar}}.",
         "receiving": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
-        "export_setting": "Used to set whether or not users are allowed to export filtered data.",
-        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table."
+        "export_setting": "Folosit pentru a seta dacă utilizatorilor li se permite sau nu să exporte date filtrate.",
+        "filter_setting": "Folosit pentru a seta dacă să afișeze sau nu filtre, permițând utilizatorilor să filtreze datele în tabel."
       },
       "tab_title": "Inspectează",
       "unselected_tip1": "Nicio componentă selectată.",
@@ -2050,9 +2050,9 @@
           "currency_code": "USD",
           "whether_allow_users_": "Dacă permiteți utilizatorilor să selecteze o celulă",
           "supported_in_the_row": "Acceptat în modul de selecţie simplă a rândului. După activare, faceţi clic pe o altă zonă decât tabelul pentru a dezselecta rândul.",
-          "density_setting": "Used to set the row height density or not. ",
-          "refresh_setting": "Used to set whether to show a refresh icon",
-          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data."
+          "density_setting": "Folosit pentru a seta densitatea de înălţime a rândului. ",
+          "refresh_setting": "Folosit pentru a seta dacă se afișează o pictogramă de reîmprospătare",
+          "export_raw_data_setting": "Folosit pentru a seta dacă utilizatorilor li se permite sau nu să exporte date brute nefiltrate."
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
@@ -3017,13 +3017,13 @@
       "pagination": "Paginare",
       "scroll": "Derulează",
       "default": "Implicit",
-      "export_all_data": "Export all",
-      "refresh": "Refresh",
+      "export_all_data": "Exportă tot",
+      "refresh": "Împrospătează",
       "export": {
-        "title": "Export",
-        "csv": "Export as csv",
-        "excel": "Export as excel",
-        "print": "Print"
+        "title": "Exportă",
+        "csv": "Exportă ca csv",
+        "excel": "Exportă ca Excel",
+        "print": "Tipărește"
       }
     },
     "tabs": {
