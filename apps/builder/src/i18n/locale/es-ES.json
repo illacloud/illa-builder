@@ -3022,7 +3022,7 @@
       "export": {
         "title": "Export",
         "csv": "Export as csv",
-        "excel": "Export as excel",
+        "excel": "Export as Excel",
         "print": "Print"
       }
     },
