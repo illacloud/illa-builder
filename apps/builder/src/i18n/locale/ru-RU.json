@@ -3024,7 +3024,7 @@
       "export": {
         "title": "Экспорт",
         "csv": "Экспорт в csv",
-        "excel": "Экспорт в Excel",
+        "excel": "Export as excel",
         "print": "Печать"
       }
     },
