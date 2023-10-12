@@ -3024,7 +3024,7 @@
       "export": {
         "title": "Vie",
         "csv": "Vie csv:nä",
-        "excel": "Vie Excelinä",
+        "excel": "Export as excel",
         "print": "Tulosta"
       }
     },
