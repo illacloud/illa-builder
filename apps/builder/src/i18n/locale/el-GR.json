@@ -3024,7 +3024,7 @@
       "export": {
         "title": "Εξαγωγή",
         "csv": "Εξαγωγή ως csv",
-        "excel": "Εξαγωγή ως Excel",
+        "excel": "Export as excel",
         "print": "Εκτύπωση"
       }
     },
