@@ -1,11 +1,10 @@
-import { FC, memo, useCallback, useMemo } from "react"
+import { FC, memo, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
 import { PanelHeader } from "@/page/App/components/InspectPanel/components/Header"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getGuideInfo } from "@/redux/guide/guideSelector"
 import { isObject } from "@/utils/typeHelper"
 import { panelBuilder } from "../../utils/panelBuilder"
 import FieldFactory from "../FieldFactory"
@@ -16,8 +15,6 @@ import {
 
 const SingleSelectedPanel: FC = () => {
   const dispatch = useDispatch()
-
-  const guideInfo = useSelector(getGuideInfo)
   const singleSelectedComponentNode = useSelector(
     getComponentNodeBySingleSelected,
   )
@@ -69,9 +66,7 @@ const SingleSelectedPanel: FC = () => {
     [dispatch],
   )
 
-  const builderPanelConfig = useMemo(() => {
-    return panelBuilder(widgetType)
-  }, [widgetType])
+  const builderPanelConfig = panelBuilder(widgetType)
 
   return (
     builderPanelConfig && (
@@ -93,7 +88,6 @@ const SingleSelectedPanel: FC = () => {
               panelConfig={builderPanelConfig}
               displayName={widgetDisplayName}
               widgetProps={widgetProps}
-              guideInfo={guideInfo}
             />
           </div>
         </div>

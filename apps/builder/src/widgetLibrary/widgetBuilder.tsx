@@ -102,6 +102,10 @@ import {
   FORM_WIDGET_CONFIG,
 } from "@/widgetLibrary/FormWidget"
 import {
+  IFRAME_PANEL_CONFIG,
+  IFRAME_WIDGET_CONFIG,
+} from "@/widgetLibrary/IFrameWidget"
+import {
   ICON_EVENT_HANDLER_CONFIG,
   ICON_PANEL_CONFIG,
   ICON_WIDGET_CONFIG,
@@ -589,6 +593,11 @@ export const WidgetConfigMap: Record<
     panelConfig: CAROUSEL_PANEL_CONFIG,
     eventHandlerConfig: CAROUSEL_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/CarouselWidget/carousel")),
+  },
+  IFRAME_WIDGET: {
+    config: IFRAME_WIDGET_CONFIG,
+    panelConfig: IFRAME_PANEL_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/IFrameWidget/iframe")),
   },
 }
 

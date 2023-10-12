@@ -1319,7 +1319,10 @@
         "filterChange": "filterÄndra",
         "sortChange": "sorteraÄndra",
         "pageChange": "sidaÄndra",
-        "refresh": "Uppdatera"
+        "refresh": "Uppdatera",
+        "density_setting": "Densitet",
+        "column_setting": "Kolumner",
+        "refresh_setting": "Uppdatera"
       },
       "setter_default_value": {
         "fill": "Fyll",
@@ -1735,7 +1738,9 @@
           "has_next_page": "Har nästa sida",
           "currency_code": "Valutakod",
           "cell_selection": "Val av cell",
-          "click_outside_to_des": "Klicka utanför för att avmarkera"
+          "click_outside_to_des": "Klicka utanför för att avmarkera",
+          "page": "Förvalt sidindex",
+          "export_all_data_setting": "Exportera alla"
         },
         "previous_cursor": "Föregående markör",
         "input": {
@@ -1827,7 +1832,12 @@
           "item_spacing": "Objektavstånd",
           "max_column_count": "Max antal kolumner",
           "min_column_count": "Minsta antal kolumner"
-        }
+        },
+        "src": "src",
+        "page_size_options": "Alternativ för sidstorlek",
+        "export_setting": "Exportera",
+        "filter_setting": "Filtrera",
+        "primary_key": "Primär nyckel"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1888,7 +1898,9 @@
         "showSendTime": "Ange om sändningstiden ska visas",
         "showFooter": "Ange om sidfoten ska visas",
         "senderAvatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
-        "receiving": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs."
+        "receiving": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
+        "export_setting": "Används för att ställa in om användare får exportera filtrerad data eller inte.",
+        "filter_setting": "Används för att ställa in om du vill visa filter eller inte, vilket tillåter användare att filtrera data i tabellen."
       },
       "tab_title": "Inspektera",
       "unselected_tip1": "Inga komponenter valda.",
@@ -2038,7 +2050,10 @@
           "filter_mode": "Filterläget. OCH eller OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Om tillåta användare att välja en cell",
-          "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden."
+          "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden.",
+          "density_setting": "Används för att ställa in radens höjd densitet eller inte. ",
+          "refresh_setting": "Används för att ställa in om en uppdateringsikon ska visas",
+          "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata."
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2110,7 +2125,8 @@
           "item_shadow": "Används för att konfigurera skuggstorleken på varje rutnät",
           "item_spacing": "Används för att konfigurera avståndet mellan rutnäten",
           "max_column_count": "Ange det maximala antalet kolumner som kan visas i Grid list-komponenten när dess bredd ökar. När det maximala antalet kolumner är nått och duken bredd fortsätter att öka, kolumnbredden kommer att ökas för att rymma layouten och antalet kolumner kommer inte att öka ytterligare."
-        }
+        },
+        "primary_key": "En unik nyckel för att identifiera en rad"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -3001,7 +3017,16 @@
       "descend": "Desc",
       "name": "Tabell",
       "pagination": "Sidnumrering",
-      "scroll": "Rulla"
+      "scroll": "Rulla",
+      "default": "Standard",
+      "export_all_data": "Exportera alla",
+      "refresh": "Uppdatera",
+      "export": {
+        "title": "Exportera",
+        "csv": "Exportera som csv",
+        "excel": "Exportera som Excel",
+        "print": "Skriv ut"
+      }
     },
     "tabs": {
       "name": "Tabs"
@@ -3118,6 +3143,9 @@
     },
     "frame": {
       "initial-title": "Dra en komponent för att lägga till den i ramen"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
