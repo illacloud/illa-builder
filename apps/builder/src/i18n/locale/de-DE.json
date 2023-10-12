@@ -1837,7 +1837,7 @@
         "page_size_options": "Seitengrößenoptionen",
         "export_setting": "Exportieren",
         "filter_setting": "Filtern",
-        "primary_key": "Primary key"
+        "primary_key": "Primärschlüssel"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2126,7 +2126,7 @@
           "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren",
           "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen."
         },
-        "primary_key": "A unique key for identifying a row"
+        "primary_key": "Ein eindeutiger Schlüssel zur Identifizierung einer Zeile"
       },
       "setter_option": {
         "fixed": "Feste",
