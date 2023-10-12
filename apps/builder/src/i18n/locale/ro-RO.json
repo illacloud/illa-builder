@@ -1837,7 +1837,7 @@
         "page_size_options": "Opțiuni pentru dimensiunea paginii",
         "export_setting": "Exportă",
         "filter_setting": "Filtrare",
-        "primary_key": "Primary key"
+        "primary_key": "Cheie principală"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2126,7 +2126,7 @@
           "item_spacing": "Folosit pentru a configura distanța dintre grile",
           "max_column_count": "Setați numărul maxim de coloane care pot fi afișate în componenta listă pe măsură ce lățimea crește. (Automatic Translation) Când se atinge numărul maxim de coloane şi lăţimea pânzei continuă să crească, lățimea coloanei va fi mărită pentru a accepta aspectul și numărul de coloane nu va crește mai mult."
         },
-        "primary_key": "A unique key for identifying a row"
+        "primary_key": "O cheie unică pentru identificarea unui rând"
       },
       "setter_option": {
         "fixed": "Fixat",
