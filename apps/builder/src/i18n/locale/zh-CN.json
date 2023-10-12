@@ -1836,7 +1836,8 @@
         "src": "源",
         "page_size_options": "每页显示数量选项",
         "export_setting": "导出",
-        "filter_setting": "筛选"
+        "filter_setting": "筛选",
+        "primary_key": "主键"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2124,7 +2125,8 @@
           "item_shadow": "用来配置每个格子的阴影大小",
           "item_spacing": "用于配置格子之间的间距",
           "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。"
-        }
+        },
+        "primary_key": "用于标识行的唯一键值"
       },
       "setter_option": {
         "fixed": "固定高度",
