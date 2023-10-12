@@ -1836,7 +1836,8 @@
         "src": "src",
         "page_size_options": "Alternativ för sidstorlek",
         "export_setting": "Exportera",
-        "filter_setting": "Filtrera"
+        "filter_setting": "Filtrera",
+        "primary_key": "Primary key"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2124,7 +2125,8 @@
           "item_shadow": "Används för att konfigurera skuggstorleken på varje rutnät",
           "item_spacing": "Används för att konfigurera avståndet mellan rutnäten",
           "max_column_count": "Ange det maximala antalet kolumner som kan visas i Grid list-komponenten när dess bredd ökar. När det maximala antalet kolumner är nått och duken bredd fortsätter att öka, kolumnbredden kommer att ökas för att rymma layouten och antalet kolumner kommer inte att öka ytterligare."
-        }
+        },
+        "primary_key": "A unique key for identifying a row"
       },
       "setter_option": {
         "fixed": "Fast",
