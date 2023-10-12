@@ -3020,10 +3020,10 @@
       "export_all_data": "导出全部",
       "refresh": "刷新",
       "export": {
-        "title": "Export",
-        "csv": "Export as csv",
-        "excel": "Export as excel",
-        "print": "Print"
+        "title": "导出",
+        "csv": "导出为CSV",
+        "excel": "导出为Excel",
+        "print": "打印"
       }
     },
     "tabs": {
