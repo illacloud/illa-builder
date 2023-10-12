@@ -1320,9 +1320,9 @@
         "sortChange": "更改排序",
         "pageChange": "修改页面",
         "refresh": "刷新",
-        "density_setting": "Density",
-        "column_setting": "Columns",
-        "refresh_setting": "Refresh"
+        "density_setting": "行密集显示",
+        "column_setting": "列设置",
+        "refresh_setting": "刷新"
       },
       "setter_default_value": {
         "fill": "填充",
@@ -1739,7 +1739,8 @@
           "currency_code": "货币代码",
           "cell_selection": "选中单元格",
           "click_outside_to_des": "点击外部取消选择",
-          "page": "默认页面索引"
+          "page": "默认页面索引",
+          "export_all_data_setting": "导出全部"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -1833,7 +1834,9 @@
           "min_column_count": "Min number of columns"
         },
         "src": "源",
-        "page_size_options": "Page size options"
+        "page_size_options": "每页显示数量选项",
+        "export_setting": "导出",
+        "filter_setting": "筛选"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1894,7 +1897,9 @@
         "showSendTime": "设置是否显示发送时间",
         "showFooter": "设置是否显示页脚",
         "senderAvatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
-        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。"
+        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。",
+        "export_setting": "用于设置是否允许用户导出筛选后的数据",
+        "filter_setting": "用于设置是否展示筛选器，允许用户筛选数据"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -2045,7 +2050,9 @@
           "currency_code": "USD",
           "whether_allow_users_": "是否允许用户选中一个单元格",
           "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。",
-          "density_setting": "Used to set the row height density or not. "
+          "density_setting": "用于设置行高密集与否",
+          "refresh_setting": "用于设置是否展示刷新按钮",
+          "export_raw_data_setting": "用于设置是否允许用户导出未经筛选的原始数据"
         },
         "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
@@ -3009,7 +3016,15 @@
       "name": "表格",
       "pagination": "翻页",
       "scroll": "滚动",
-      "default": "默认"
+      "default": "默认",
+      "export_all_data": "导出全部",
+      "refresh": "刷新",
+      "export": {
+        "title": "Export",
+        "csv": "Export as csv",
+        "excel": "Export as excel",
+        "print": "Print"
+      }
     },
     "tabs": {
       "name": "选项卡"
