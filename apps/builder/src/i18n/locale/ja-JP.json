@@ -1836,7 +1836,8 @@
         "src": "src",
         "page_size_options": "ページサイズオプション",
         "export_setting": "エクスポート",
-        "filter_setting": "フィルター"
+        "filter_setting": "フィルター",
+        "primary_key": "Primary key"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2124,7 +2125,8 @@
           "item_shadow": "各グリッドのシャドウサイズを設定するために使用します。",
           "item_spacing": "グリッド間の間隔を設定するために使用",
           "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
-        }
+        },
+        "primary_key": "A unique key for identifying a row"
       },
       "setter_option": {
         "fixed": "固定高さ",
