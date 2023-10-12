@@ -55,6 +55,7 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_sort_order"),
         attrName: "sortOrder",
         setterType: "RADIO_GROUP_SETTER",
+        isSetterSingleRow: true,
         bindAttrName: ["sortKey"],
         shown: (value) => value !== "default",
         options: [
@@ -211,6 +212,7 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         bindAttrName: ["overFlow"],
         shown: (overFlow) => overFlow === "pagination",
+        isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.ARRAY,
       },
     ],
@@ -262,10 +264,10 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-exportAllSetting`,
         labelName: i18n.t(
-          "editor.inspect.setter_label.table.export_all_setting",
+          "editor.inspect.setter_label.table.export_all_data_setting",
         ),
         labelDesc: i18n.t(
-          "editor.inspect.setter_tips.table.export_all_setting",
+          "editor.inspect.setter_tips.table.export_all_data_setting",
         ),
         attrName: "exportAllSetting",
         setterType: "DYNAMIC_SWITCH_SETTER",

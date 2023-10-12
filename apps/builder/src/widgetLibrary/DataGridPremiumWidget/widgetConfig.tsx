@@ -2,6 +2,29 @@ import { ReactComponent as TableWidgetIcon } from "@/assets/widgetCover/table.sv
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
+const originData = [
+  {
+    month: "April",
+    users: 3700,
+    incomes: 4000,
+  },
+  {
+    month: "May",
+    users: 5400,
+    incomes: 8700,
+  },
+  {
+    month: "June",
+    users: 6000,
+    incomes: 12000,
+  },
+  {
+    month: "July",
+    users: 8000,
+    incomes: 14000,
+  },
+]
+
 export const DATA_GRID_PREMIUM_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
   type: "DATA_GRID_PREMIUM_WIDGET",
@@ -15,7 +38,9 @@ export const DATA_GRID_PREMIUM_WIDGET_CONFIG: WidgetConfig = {
   h: 50,
   defaults: {
     dataSourceMode: "dynamic",
+    dataSourceJS: `{{${JSON.stringify(originData, null, "  ")}}}`,
     dataSource: [],
-    overFlow: "pagination",
+    overFlow: "scroll",
+    sortOrder: "default",
   },
 }

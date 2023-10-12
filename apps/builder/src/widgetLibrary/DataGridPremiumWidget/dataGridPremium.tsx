@@ -30,6 +30,7 @@ LicenseInfo.setLicenseKey(import.meta.env.ILLA_MUI_LICENSE)
 export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
   const {
     loading,
+    triggerEventHandler,
     dataSource,
     dataSourceJS,
     dataSourceMode,
@@ -109,7 +110,13 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
         )}
         {exportAllSetting && <ExportAllSetting />}
         {refreshSetting && (
-          <Button startIcon={<RefreshIcon />} size="small">
+          <Button
+            startIcon={<RefreshIcon />}
+            size="small"
+            onClick={() => {
+              triggerEventHandler("onRefresh")
+            }}
+          >
             {t("widget.table.refresh")}
           </Button>
         )}
@@ -120,9 +127,10 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     filterSetting,
     densitySetting,
     exportSetting,
+    exportAllSetting,
     refreshSetting,
     t,
-    exportAllSetting,
+    triggerEventHandler,
   ])
 
   return (
@@ -138,7 +146,15 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
           }
         }}
         onRowSelectionModelChange={(model) => {
-          console.log("longbo", model)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedRows: model,
+              },
+            },
+          ])
+          triggerEventHandler("onRowSelectionModelChange")
         }}
         sortModel={
           sortKey != undefined && sortOrder != undefined
@@ -171,6 +187,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
               },
             },
           ])
+          triggerEventHandler("onPaginationModelChange")
         }}
         onSortModelChange={(model) => {
           if (model.length > 0) {
@@ -194,6 +211,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
               },
             ])
           }
+          triggerEventHandler("onSortModelChange")
         }}
         checkboxSelection={multiRowSelection}
         rows={arrayData}
@@ -204,6 +222,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
             ? Math.ceil(totalRowCount / (pageSize ?? 1))
             : undefined
         }
+        keepNonExistentRowsSelected={enableServerSidePagination}
         loading={loading}
         slots={{
           toolbar: toolbar,
