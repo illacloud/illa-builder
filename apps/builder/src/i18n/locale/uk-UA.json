@@ -1836,7 +1836,8 @@
         "src": "src",
         "page_size_options": "Page size options",
         "export_setting": "Export",
-        "filter_setting": "Filter"
+        "filter_setting": "Filter",
+        "primary_key": "Primary key"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -2124,7 +2125,8 @@
           "item_shadow": "Використовується для налаштування розміру тіні для кожної сітки",
           "item_spacing": "Використовується для налаштування інтервалу між сітками",
           "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
-        }
+        },
+        "primary_key": "A unique key for identifying a row"
       },
       "setter_option": {
         "fixed": "Виправлена",
