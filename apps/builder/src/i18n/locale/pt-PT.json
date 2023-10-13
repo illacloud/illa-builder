@@ -1843,7 +1843,9 @@
         "pin_column": "Pin column",
         "enable_users_to_sort": "Enable users to sort",
         "enable_users_to_pin": "Enable users to pin",
-        "enable_users_to_filter": "Enable users to filter"
+        "enable_users_to_filter": "Enable users to filter",
+        "enable_users_to_hide": "Enable users to hide",
+        "enable_users_to_set_group_by": "Enable users to set group by"
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -2138,7 +2140,10 @@
         "pin_column": "Used to pin the column to all users",
         "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
         "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
-        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
+        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
+        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
+        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. "
       },
       "setter_option": {
         "fixed": "Corrigido",
@@ -3557,6 +3562,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Seleção de linha mudou"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Enable users to aggregate"
       }
     }
   },
