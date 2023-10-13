@@ -1319,10 +1319,7 @@
         "filterChange": "filteränderung",
         "sortChange": "sortieränderung",
         "pageChange": "seitenänderung",
-        "refresh": "aktualisieren",
-        "density_setting": "Dichte",
-        "column_setting": "Spalten",
-        "refresh_setting": "Aktualisieren"
+        "refresh": "aktualisieren"
       },
       "setter_default_value": {
         "fill": "Füllen",
@@ -1738,9 +1735,7 @@
           "has_next_page": "Hat nächste Seite",
           "currency_code": "Währungscode",
           "cell_selection": "Zellenauswahl",
-          "click_outside_to_des": "Zum Abwählen ausserhalb klicken",
-          "page": "Standardseitenindex",
-          "export_all_data_setting": "Alle exportieren"
+          "click_outside_to_des": "Zum Abwählen ausserhalb klicken"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
@@ -1833,11 +1828,7 @@
           "max_column_count": "Maximale Anzahl von Spalten",
           "min_column_count": "Min. Anzahl der Spalten"
         },
-        "src": "src",
-        "page_size_options": "Seitengrößenoptionen",
-        "export_setting": "Exportieren",
-        "filter_setting": "Filtern",
-        "primary_key": "Primärschlüssel"
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1898,9 +1889,7 @@
         "showSendTime": "Legt fest, ob die Sendezeit angezeigt werden soll",
         "showFooter": "Legen Sie fest, ob die Fußzeile angezeigt werden soll",
         "senderAvatar": "Setze den Avatar des Absenders. Zum Beispiel ist in Ihrer Datenquelle der Avatar des Absenders das sendAvatar-Feld und Sie können das Feld auf {{item.sendAvatar}} setzen.",
-        "receiving": "Legen Sie fest, ob beim Empfang von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht von action1 empfangen wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird.",
-        "export_setting": "Wird verwendet, um festzulegen, ob Benutzer gefilterte Daten exportieren dürfen oder nicht.",
-        "filter_setting": "Wird verwendet, um festzulegen, ob Filter angezeigt werden sollen oder nicht, was es Benutzern erlaubt, Daten in der Tabelle zu filtern."
+        "receiving": "Legen Sie fest, ob beim Empfang von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht von action1 empfangen wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird."
       },
       "tab_title": "Prüfen",
       "unselected_tip1": "Keine Komponenten ausgewählt.",
@@ -2050,10 +2039,7 @@
           "filter_mode": "Der Filtermodus. AND oder OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Ob es Benutzern erlaubt eine Zelle auszuwählen",
-          "supported_in_the_row": "Wird im Zeilen-Einzelauswahlmodus unterstützt. Nach dem Aktivieren klicken Sie auf einen anderen Bereich als die Tabelle, um die Zeilenauswahl zu deaktivieren.",
-          "density_setting": "Wird verwendet, um die Zeilenhöhe zu bestimmen oder nicht. ",
-          "refresh_setting": "Wird verwendet, um ein Aktualisierungs-Symbol anzuzeigen",
-          "export_raw_data_setting": "Wird verwendet, um festzulegen, ob Benutzer ungefilterte Rohdaten exportieren dürfen oder nicht."
+          "supported_in_the_row": "Wird im Zeilen-Einzelauswahlmodus unterstützt. Nach dem Aktivieren klicken Sie auf einen anderen Bereich als die Tabelle, um die Zeilenauswahl zu deaktivieren."
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2125,8 +2111,7 @@
           "item_shadow": "Zur Konfiguration der Schattengröße jedes Rasters",
           "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren",
           "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen."
-        },
-        "primary_key": "Ein eindeutiger Schlüssel zur Identifizierung einer Zeile"
+        }
       },
       "setter_option": {
         "fixed": "Feste",
@@ -3017,16 +3002,7 @@
       "descend": "Desc",
       "name": "Tisch",
       "pagination": "Paginierung",
-      "scroll": "Scrollen",
-      "default": "Standard",
-      "export_all_data": "Alle exportieren",
-      "refresh": "Aktualisieren",
-      "export": {
-        "title": "Exportieren",
-        "csv": "Als csv exportieren",
-        "excel": "Als Excel exportieren",
-        "print": "Drucken"
-      }
+      "scroll": "Scrollen"
     },
     "tabs": {
       "name": "Tabs"

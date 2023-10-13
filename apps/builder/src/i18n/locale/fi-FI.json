@@ -1319,10 +1319,7 @@
         "filterChange": "suodatinmuutos",
         "sortChange": "sortChange",
         "pageChange": "Sivumuutos",
-        "refresh": "päivitä",
-        "density_setting": "Tiheys",
-        "column_setting": "Sarakkeet",
-        "refresh_setting": "Päivitä"
+        "refresh": "päivitä"
       },
       "setter_default_value": {
         "fill": "Täytä",
@@ -1738,9 +1735,7 @@
           "has_next_page": "On seuraava sivu",
           "currency_code": "Valuutan koodi",
           "cell_selection": "Solun valinta",
-          "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan",
-          "page": "Oletussivun indeksi",
-          "export_all_data_setting": "Vie kaikki"
+          "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
@@ -1833,11 +1828,7 @@
           "max_column_count": "Maksimi määrä sarakkeita",
           "min_column_count": "Sarakkeiden vähimmäismäärä"
         },
-        "src": "src",
-        "page_size_options": "Sivun kokoasetukset",
-        "export_setting": "Vie",
-        "filter_setting": "Suodatin",
-        "primary_key": "Ensisijainen avain"
+        "src": "src"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1898,9 +1889,7 @@
         "showSendTime": "Aseta näytetäänkö lähetysaika @ info: whatsthis",
         "showFooter": "Määritä näytetäänkö alatunniste",
         "senderAvatar": "Aseta lähettäjän avatari. Esimerkiksi tietolähteessäsi lähettäjän avatar on sendAvatar kenttä ja voit asettaa kentän arvoon {{item.sendAvatar}}.",
-        "receiving": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
-        "export_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodatettuja tietoja.",
-        "filter_setting": "Käytetään sen määrittämiseen, näyttääkö suodattimet vai ei, jolloin käyttäjät voivat suodattaa tiedot taulukossa."
+        "receiving": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä."
       },
       "tab_title": "Tutki",
       "unselected_tip1": "Komponentteja ei ole valittu.",
@@ -2050,10 +2039,7 @@
           "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Salli käyttäjien valita solu",
-          "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan.",
-          "density_setting": "Käytetään rivin korkeuden määrittämiseen tai ei. ",
-          "refresh_setting": "Käytetään määritettäessä, näyttääkö virkistävä kuvake",
-          "export_raw_data_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodattamatonta raakatietoa."
+          "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan."
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2125,8 +2111,7 @@
           "item_shadow": "Käytetään kunkin ruudukon varjon koon määrittämiseen",
           "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
           "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
-        },
-        "primary_key": "Yksilöllinen avain rivin tunnistamiseen"
+        }
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -3017,16 +3002,7 @@
       "descend": "Desc",
       "name": "Taulukko",
       "pagination": "Sivutus",
-      "scroll": "Vieritä",
-      "default": "Oletus",
-      "export_all_data": "Vie kaikki",
-      "refresh": "Päivitä",
-      "export": {
-        "title": "Vie",
-        "csv": "Vie csv:nä",
-        "excel": "Vie Excelinä",
-        "print": "Tulosta"
-      }
+      "scroll": "Vieritä"
     },
     "tabs": {
       "name": "Tabs"
