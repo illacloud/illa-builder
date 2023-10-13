@@ -1839,7 +1839,11 @@
         "filter_setting": "Filtr",
         "primary_key": "Primární klíč",
         "allow_row_selection": "Povolit výběr řádků",
-        "selection_mode": "Režim výběru"
+        "selection_mode": "Režim výběru",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2130,7 +2134,10 @@
         },
         "primary_key": "Jedinečný klíč pro identifikaci řádku",
         "selection_mode": "Používá se k nastavení výběru více řádků nebo výběru jednoho řádku",
-        "allow_row_selection": "Slouží k nastavení, zda povolit nebo zakázat uživatelům vybrat řádek"
+        "allow_row_selection": "Slouží k nastavení, zda povolit nebo zakázat uživatelům vybrat řádek",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column"
       },
       "setter_option": {
         "fixed": "Fixní",
