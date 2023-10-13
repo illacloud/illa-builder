@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -26,7 +27,6 @@ import {
 import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { TextLink } from "@/page/User/components/TextLink"
 import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"

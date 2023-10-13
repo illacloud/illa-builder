@@ -9,7 +9,7 @@ import {
   ActionItem,
   GlobalDataActionContent,
 } from "@/redux/currentApp/action/actionState"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
 import { neonSSLInitialValue } from "@/redux/resource/neonResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"

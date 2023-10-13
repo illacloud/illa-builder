@@ -1,4 +1,4 @@
-import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
+import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
 
 export interface MultiSelectedScaleSquareProps {
   unitW: number

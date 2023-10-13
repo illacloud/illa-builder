@@ -11,7 +11,7 @@ import {
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getCanvas } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { getGuideInfo } from "@/redux/guide/guideSelector"
 import { ILLARoute } from "@/router"

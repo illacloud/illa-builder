@@ -220,6 +220,9 @@ importers:
       '@illa-public/sso-module':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/SSOModule
+      '@illa-public/text-link':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/TextLink
       '@illa-public/upgrade-modal':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/UpgradeModal
@@ -385,9 +388,6 @@ importers:
       react-use-measure:
         specifier: ^2.1.1
         version: 2.1.1(react-dom@18.2.0)(react@18.2.0)
-      react-virtualized-auto-sizer:
-        specifier: ^1.0.20
-        version: 1.0.20(react-dom@18.2.0)(react@18.2.0)
       react-virtuoso:
         specifier: ^4.3.11
         version: 4.3.11(react-dom@18.2.0)(react@18.2.0)
@@ -13176,16 +13176,6 @@ packages:
       throttle-debounce: 3.0.1
       ts-easing: 0.2.0
       tslib: 2.5.0
-    dev: false
-
-  /react-virtualized-auto-sizer@1.0.20(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-OdIyHwj4S4wyhbKHOKM1wLSj/UDXm839Z3Cvfg2a9j+He6yDa6i5p0qQvEiCnyQlGO/HyfSnigQwuxvYalaAXA==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-virtuoso@4.3.11(react-dom@18.2.0)(react@18.2.0):

@@ -11,8 +11,8 @@ import {
   sectionContainerStyle,
   setterContainerStyle,
 } from "@/page/App/components/PagePanel/Modules/Style/style"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { PADDING_MODE } from "@/redux/currentApp/components/componentsState"
 import {
   getCurrentPageBodySection,
   getCurrentPageExecutionResult,

@@ -49,8 +49,8 @@ import {
 import {
   getContainerListDisplayNameMappedChildrenNodeDisplayName,
   searchDSLByDisplayName,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+} from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageDisplayName,
   getExecutionWidgetLayoutInfo,

@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -20,7 +21,6 @@ import {
   oAuthStatusContainerStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { TextLink } from "@/page/User/components/TextLink"
 import {
   AccessType,
   GoogleSheetAuthStatus,

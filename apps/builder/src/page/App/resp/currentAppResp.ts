@@ -2,9 +2,9 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { DependenciesState } from "@/redux/currentApp/executionTree/executionState"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
 export interface CurrentAppResp {
   appInfo: DashboardApp

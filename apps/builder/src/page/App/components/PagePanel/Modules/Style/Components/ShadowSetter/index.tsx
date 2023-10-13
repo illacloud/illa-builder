@@ -2,7 +2,7 @@ import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageExecutionResult,
   getCurrentPageFooterSection,

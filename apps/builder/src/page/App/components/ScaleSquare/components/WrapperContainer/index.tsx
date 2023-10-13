@@ -18,7 +18,7 @@ import {
   getComponentAttachUsers,
   getTargetCurrentUsersExpendMe,
 } from "@/redux/currentApp/collaborators/collaboratorsSelector"
-import { getComponentDisplayNameMapDepth } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getComponentDisplayNameMapDepth } from "@/redux/currentApp/components/componentsSelector"
 import {
   getExecutionError,
   getExecutionResult,

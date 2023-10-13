@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -7,7 +8,6 @@ import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import { container, footerStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { TextLink } from "@/page/User/components/TextLink"
 import {
   AirtableResource,
   AirtableResourceInitial,

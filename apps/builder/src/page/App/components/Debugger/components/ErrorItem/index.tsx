@@ -8,7 +8,7 @@ import { configActions } from "@/redux/config/configSlice"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+} from "@/redux/currentApp/components/componentsSelector"
 import { getDisplayNameAndPropertyPath } from "@/utils/executionTreeHelper/utils"
 import { ErrorItemProps } from "./interface"
 import {

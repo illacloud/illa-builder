@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { FC, HTMLAttributes } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
@@ -11,7 +12,6 @@ import {
   linkStyle,
   titleStyle,
 } from "@/components/Guide/GuidePopover/style"
-import { TextLink } from "@/page/User/components/TextLink"
 import { guideActions } from "@/redux/guide/guideSlice"
 import { openDiscord } from "@/utils/navigate"
 

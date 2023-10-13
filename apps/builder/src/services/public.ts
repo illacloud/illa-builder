@@ -1,18 +1,5 @@
 import { builderRequest } from "@illa-public/illa-net"
-import { BuilderCardInfo } from "@/page/Member/interface"
 import { getCurrentTeamID } from "../utils/team"
-
-export const fetchBuilderDesc = () => {
-  return builderRequest<BuilderCardInfo>(
-    {
-      method: "get",
-      url: `/builder/desc`,
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
-  )
-}
 
 interface IFetchWsURLResponse {
   wsURL: string

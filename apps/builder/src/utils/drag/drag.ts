@@ -1,6 +1,6 @@
 import { configActions } from "@/redux/config/configSlice"
-import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"

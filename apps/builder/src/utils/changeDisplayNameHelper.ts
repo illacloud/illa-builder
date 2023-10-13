@@ -1,6 +1,6 @@
 import { get, toPath } from "lodash"
 import { UpdateActionSlicePropsPayload } from "@/redux/currentApp/action/actionState"
-import { UpdateComponentSlicePropsPayload } from "@/redux/currentApp/editor/components/componentsPayload"
+import { UpdateComponentSlicePropsPayload } from "@/redux/currentApp/components/componentsPayload"
 import { hasDynamicStringSnippet } from "./evaluateDynamicString/utils"
 import {
   convertPathToString,

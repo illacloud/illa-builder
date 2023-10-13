@@ -1,4 +1,4 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export interface TransformWidgetProps {
   displayName: string

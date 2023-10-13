@@ -13,7 +13,7 @@ import {
 } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/style"
 import { BaseModal } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/Modal"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getComponentNodeBySingleSelected } from "@/redux/currentApp/components/componentsSelector"
 
 interface ListItemProps {
   value: ViewItemShape

@@ -9,7 +9,6 @@ import {
   isString,
 } from "@illa-design/react"
 import { isValidCurrencyCode } from "@/constants/currency"
-import { getLocalLanguage } from "@/page/User/Register"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   ColumnItemShape,
@@ -27,6 +26,7 @@ import {
   RenderTableStringCell,
   RenderTableTag,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
+import i18n from "../../i18n/config"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -257,7 +257,7 @@ export const getCellForType = (
     backgroundColor,
   } = data
 
-  const locale = getLocalLanguage()
+  const locale = i18n.language
   const columnEventPath = convertPathToString(["columns", `${columnIndex}`])
 
   switch (type) {

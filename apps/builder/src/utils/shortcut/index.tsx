@@ -23,8 +23,8 @@ import {
   getCanvas,
   getSelectedComponentNode,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+} from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { takeSnapShot } from "@/services/history"
 import store from "@/store"

@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
@@ -33,7 +34,6 @@ import {
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { ControlledType } from "@/page/App/components/ControlledElement/interface"
-import { TextLink } from "@/page/User/components/TextLink"
 import {
   RedisResource,
   RedisResourceInitial,

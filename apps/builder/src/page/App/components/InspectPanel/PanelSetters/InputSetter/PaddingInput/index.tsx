@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { Input, RadioGroup } from "@illa-design/react"
 import { ReactComponent as AllIcon } from "@/assets/rightPagePanel/all.svg"
 import { configActions } from "@/redux/config/configSlice"
-import { PADDING_MODE } from "@/redux/currentApp/editor/components/componentsState"
+import { PADDING_MODE } from "@/redux/currentApp/components/componentsState"
 import { PanelLabel } from "../../../components/Label"
 import { DirectionPaddingSetterProps } from "./interface"
 import {

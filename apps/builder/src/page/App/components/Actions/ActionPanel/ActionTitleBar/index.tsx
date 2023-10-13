@@ -46,7 +46,7 @@ import {
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"

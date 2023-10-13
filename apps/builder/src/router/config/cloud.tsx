@@ -7,11 +7,7 @@ import { historyLoader } from "@/router/loader/historyLoader"
 import { cloudUrl } from "../constant"
 import { RoutesObjectPro } from "../interface"
 import { lazyLoad } from "../utils/lazyLoad"
-import {
-  publicDashboardChildrenRouter,
-  publicRouterConfig,
-  publicTeamChildrenRouter,
-} from "./public"
+import { publicRouterConfig, publicTeamChildrenRouter } from "./public"
 
 export const cloudRouter: RoutesObjectPro[] = [
   {
@@ -19,21 +15,6 @@ export const cloudRouter: RoutesObjectPro[] = [
     loader: async () => {
       return redirect(cloudUrl)
     },
-  },
-  {
-    path: "/:teamIdentifier/dashboard",
-    element: lazyLoad(lazy(() => import("@/page/Dashboard"))),
-    children: [
-      ...publicDashboardChildrenRouter,
-      {
-        path: "ai-agents",
-        element: lazyLoad(
-          lazy(() => import("@/page/Dashboard/DashboardAIAgent")),
-          <FullPageLoading />,
-        ),
-        needLogin: true,
-      },
-    ],
   },
   {
     path: "/:teamIdentifier/appHistory/:appId",

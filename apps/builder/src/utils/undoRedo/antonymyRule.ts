@@ -3,7 +3,7 @@ import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import { configActions } from "@/redux/config/configSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import store from "@/store"
 import { changeDisplayNameHelperWhenUndoRedo } from "../componentNode/changeDisplayNameHelper"
 import {

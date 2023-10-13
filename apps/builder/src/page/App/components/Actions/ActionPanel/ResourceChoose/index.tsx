@@ -13,9 +13,9 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
+import { ResourceGenerator } from "@/page/App/components/Actions/ResourceGenerator"
+import { ResourceCreator } from "@/page/App/components/Actions/ResourceGenerator/ResourceCreator"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
-import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
-import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import {
   getCachedAction,
   getSelectedAction,

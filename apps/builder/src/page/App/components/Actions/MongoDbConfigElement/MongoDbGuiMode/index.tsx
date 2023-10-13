@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
 import { Trans, useTranslation } from "react-i18next"
@@ -12,7 +13,6 @@ import {
   labelContainer,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { TextLink } from "@/page/User/components/TextLink"
 import {
   MongoDbGuiConfigContent,
   MongoDbGuiConfigContentInitial,

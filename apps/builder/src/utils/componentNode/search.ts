@@ -2,8 +2,8 @@ import {
   DEFAULT_ASIDE_COLUMNS_NUMBER,
   DEFAULT_BODY_COLUMNS_NUMBER,
 } from "@/page/App/components/DotPanel/constant/canvas"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,

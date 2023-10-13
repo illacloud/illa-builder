@@ -11,7 +11,6 @@ import { Modal, useMessage } from "@illa-design/react"
 import { AIAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AIAgentSelector"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
-import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -35,6 +34,7 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { INIT_ACTION_ADVANCED_CONFIG } from "../AdvancedPanel/constant"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
+import { modalContentStyle } from "./style"
 
 export const ACTION_MODAL_WIDTH = 1080
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
