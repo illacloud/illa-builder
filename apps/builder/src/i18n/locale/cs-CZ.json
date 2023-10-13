@@ -1837,7 +1837,9 @@
         "page_size_options": "Možnosti velikosti stránky",
         "export_setting": "Exportovat",
         "filter_setting": "Filtr",
-        "primary_key": "Primární klíč"
+        "primary_key": "Primární klíč",
+        "allow_row_selection": "Povolit výběr řádků",
+        "selection_mode": "Režim výběru"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2126,7 +2128,9 @@
           "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami",
           "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
         },
-        "primary_key": "Jedinečný klíč pro identifikaci řádku"
+        "primary_key": "Jedinečný klíč pro identifikaci řádku",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row"
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -2331,6 +2335,10 @@
       },
       "page": {
         "blank_view": "Žádná podstránka"
+      },
+      "setter_options": {
+        "single_row_selection": "Jediný výběr",
+        "multiple_row_selection": "Vícenásobný výběr"
       }
     },
     "page": {
