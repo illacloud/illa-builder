@@ -1839,7 +1839,11 @@
         "filter_setting": "Φίλτρο",
         "primary_key": "Πρωτεύον κλειδί",
         "allow_row_selection": "Επιτρέπεται η επιλογή γραμμής",
-        "selection_mode": "Λειτουργία επιλογής"
+        "selection_mode": "Λειτουργία επιλογής",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter"
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -2130,7 +2134,11 @@
         },
         "primary_key": "Ένα μοναδικό κλειδί για τον εντοπισμό μιας σειράς",
         "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
       },
       "setter_option": {
         "fixed": "Σταθερό",
