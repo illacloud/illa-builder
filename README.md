@@ -140,4 +140,14 @@ Contact Us: hr@illasoft.com
 
 ## LICENSE
 
-This project is currently licensed under [Apache License 2.0](./LICENSE).
+<table>
+  <tr>
+     <td>
+       <p align="center"> <img src="https://github.com/malivinayak/illa-builder/assets/66154908/e290d370-aed3-4c32-bf12-39ef94d2ad22" width="80%"></img>
+    </td>
+    <td> 
+      <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"/> <br> 
+This project is licensed under <a href="./LICENSE">Apache License 2.0</a>. <img width=2300/>
+    </td>
+  </tr>
+</table>
