@@ -1,27 +1,45 @@
+import i18n from "i18next"
 import { EventHandlerConfig } from "@/widgetLibrary/interface"
 
 export const DATA_GRID_PREMIUM_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   events: [
     {
-      label: "onSortModelChange",
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.sortingChange",
+      ),
       value: "onSortModelChange",
     },
     {
-      label: "onPaginationModelChange",
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.pageChange",
+      ),
       value: "onPaginationModelChange",
     },
     {
-      label: "onRefresh",
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.refresh",
+      ),
       value: "onRefresh",
     },
     {
-      label: "onFilterModelChange",
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.filtersChange",
+      ),
       value: "onFilterModelChange",
     },
     {
-      label: "onRowSelected",
-      value: "onRowSelected",
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.rowSelectChange",
+      ),
+      value: "onRowSelectionModelChange",
     },
   ],
-  methods: ["refresh", "setFilterItem"],
+  methods: [
+    "refresh",
+    "setFilterModel",
+    "setPage",
+    "setPageSize",
+    "setSelectedRows",
+    "selectedRowsPrimaryKeys",
+  ],
 }

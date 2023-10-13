@@ -38,6 +38,7 @@ export const DATA_GRID_PREMIUM_WIDGET_CONFIG: WidgetConfig = {
   h: 50,
   defaults: {
     dataSourceMode: "dynamic",
+    excludeHiddenColumns: true,
     dataSourceJS: `{{${JSON.stringify(originData, null, "  ")}}}`,
     dataSource: [],
     overFlow: "scroll",

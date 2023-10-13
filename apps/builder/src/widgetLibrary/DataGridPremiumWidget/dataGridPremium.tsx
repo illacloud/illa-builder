@@ -9,16 +9,25 @@ import {
   GridToolbarDensitySelector,
   GridToolbarExport,
   GridToolbarFilterButton,
+  GridToolbarQuickFilter,
   LicenseInfo,
   gridPaginatedVisibleSortedGridRowIdsSelector,
 } from "@mui/x-data-grid-premium"
+import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef"
 import {
   GridCsvGetRowsToExportParams,
   GridPrintGetRowsToExportParams,
 } from "@mui/x-data-grid/models/gridExport"
-import { get, isArray } from "lodash"
-import { FC, useCallback, useMemo } from "react"
+import { get, isArray, isNumber } from "lodash"
+import {
+  FC,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
@@ -38,7 +47,8 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     sortOrder,
     handleUpdateMultiExecutionResult,
     displayName,
-    multiRowSelection,
+    rowSelection,
+    rowSelectionMode,
     overFlow,
     pageSize,
     page,
@@ -46,12 +56,18 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     columnSetting,
     densitySetting,
     refreshSetting,
+    quickFilterSetting,
     exportSetting,
     exportAllSetting,
     filterSetting,
     enableServerSidePagination,
     totalRowCount,
     primaryKey,
+    filterModel,
+    selectedRowsPrimaryKeys,
+    excludeHiddenColumns,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   } = props
 
   const { t } = useTranslation()
@@ -120,6 +136,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
             {t("widget.table.refresh")}
           </Button>
         )}
+        {quickFilterSetting && <GridToolbarQuickFilter />}
       </GridToolbarContainer>
     )
   }, [
@@ -130,12 +147,96 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     exportAllSetting,
     refreshSetting,
     t,
+    quickFilterSetting,
     triggerEventHandler,
   ])
+
+  useEffect(() => {
+    updateComponentRuntimeProps({
+      refresh: () => {
+        triggerEventHandler("onRefresh")
+      },
+      setFilterModel: (model: unknown) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              filterModel: model,
+            },
+          },
+        ])
+        triggerEventHandler("onFilterModelChange")
+      },
+      setPage: (page: unknown) => {
+        if (isNumber(page)) {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                page,
+              },
+            },
+          ])
+          triggerEventHandler("onPaginationModelChange")
+        }
+      },
+      setPageSize: (pageSize: unknown) => {
+        if (isNumber(pageSize)) {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                pageSize,
+              },
+            },
+          ])
+          triggerEventHandler("onPaginationModelChange")
+        }
+      },
+      setSelectedRows: (rows: unknown) => {
+        if (isArray(rows)) {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedRows: rows,
+              },
+            },
+          ])
+          triggerEventHandler("onRowSelectionModelChange")
+        }
+      },
+      selectedRowsPrimaryKeys: (ids: unknown) => {
+        if (isArray(ids)) {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedRowsPrimaryKeys: ids,
+              },
+            },
+          ])
+          triggerEventHandler("onRowSelectionModelChange")
+        }
+      },
+    })
+    return () => {
+      deleteComponentRuntimeProps()
+    }
+  }, [
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
+    triggerEventHandler,
+    handleUpdateMultiExecutionResult,
+    displayName,
+  ])
+
+  const ref = useRef<GridApiPremium>() as MutableRefObject<GridApiPremium>
 
   return (
     <StyledEngineProvider injectFirst>
       <DataGridPremium
+        apiRef={ref}
         getRowId={(row) => {
           if (primaryKey === undefined || primaryKey === "—") {
             return v4()
@@ -145,12 +246,38 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
             }
           }
         }}
+        filterModel={
+          filterModel !== undefined
+            ? {
+                ...filterModel,
+                quickFilterExcludeHiddenColumns:
+                  filterModel.quickFilterExcludeHiddenColumns ??
+                  excludeHiddenColumns,
+              }
+            : undefined
+        }
+        onFilterModelChange={(model) => {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                filterModel: model,
+              },
+            },
+          ])
+          triggerEventHandler("onFilterModelChange")
+        }}
+        rowSelectionModel={rowSelection ? selectedRowsPrimaryKeys : undefined}
+        rowSelection={rowSelection}
         onRowSelectionModelChange={(model) => {
           handleUpdateMultiExecutionResult([
             {
               displayName,
               value: {
-                selectedRows: model,
+                selectedRowsPrimaryKeys: model,
+                selectedRows: Array.from(
+                  ref.current.getSelectedRows().values(),
+                ),
               },
             },
           ])
@@ -195,8 +322,8 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
               {
                 displayName,
                 value: {
-                  defaultSortKey: model[0].field,
-                  defaultSortOrder: model[0].sort,
+                  sortKey: model[0].field,
+                  sortOrder: model[0].sort,
                 },
               },
             ])
@@ -205,15 +332,18 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
               {
                 displayName,
                 value: {
-                  defaultSortKey: undefined,
-                  defaultSortOrder: undefined,
+                  sortKey: undefined,
+                  sortOrder: undefined,
                 },
               },
             ])
           }
           triggerEventHandler("onSortModelChange")
         }}
-        checkboxSelection={multiRowSelection}
+        disableMultipleRowSelection={
+          rowSelectionMode === "single" || !rowSelection
+        }
+        checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
         rows={arrayData}
         columns={columns}
         paginationMode={enableServerSidePagination ? "server" : "client"}

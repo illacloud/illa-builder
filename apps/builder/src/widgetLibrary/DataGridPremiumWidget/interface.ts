@@ -1,3 +1,5 @@
+import { GridFilterModel } from "@mui/x-data-grid"
+import { GridInputRowSelectionModel } from "@mui/x-data-grid/models/gridRowSelectionModel"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface BaseDataGridProps extends BaseWidgetProps {
@@ -8,18 +10,23 @@ export interface BaseDataGridProps extends BaseWidgetProps {
   emptyState?: string
   sortKey?: string
   sortOrder?: "asc" | "desc" | "default"
-  multiRowSelection?: boolean
+  rowSelection?: boolean
+  rowSelectionMode?: "single" | "multiple"
   overFlow?: "pagination" | "scroll"
   pageSize?: number
   page?: number
   pageSizeOptions?: number[]
   refreshSetting?: boolean
+  quickFilterSetting?: boolean
   exportSetting?: boolean
   exportAllSetting?: boolean
   filterSetting?: boolean
   columnSetting?: boolean
   densitySetting?: boolean
   enableServerSidePagination?: boolean
+  excludeHiddenColumns?: boolean
   totalRowCount?: number
   primaryKey?: string
+  filterModel?: GridFilterModel
+  selectedRowsPrimaryKeys?: GridInputRowSelectionModel
 }
