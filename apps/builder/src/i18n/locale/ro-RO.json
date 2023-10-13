@@ -1837,7 +1837,9 @@
         "page_size_options": "Opțiuni pentru dimensiunea paginii",
         "export_setting": "Exportă",
         "filter_setting": "Filtrare",
-        "primary_key": "Cheie principală"
+        "primary_key": "Cheie principală",
+        "allow_row_selection": "Permite selecția rândului",
+        "selection_mode": "Mod selecţie"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2126,7 +2128,9 @@
           "item_spacing": "Folosit pentru a configura distanța dintre grile",
           "max_column_count": "Setați numărul maxim de coloane care pot fi afișate în componenta listă pe măsură ce lățimea crește. (Automatic Translation) Când se atinge numărul maxim de coloane şi lăţimea pânzei continuă să crească, lățimea coloanei va fi mărită pentru a accepta aspectul și numărul de coloane nu va crește mai mult."
         },
-        "primary_key": "O cheie unică pentru identificarea unui rând"
+        "primary_key": "O cheie unică pentru identificarea unui rând",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row"
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -2331,6 +2335,10 @@
       },
       "page": {
         "blank_view": "Nicio subpagină"
+      },
+      "setter_options": {
+        "single_row_selection": "Selecţie unică",
+        "multiple_row_selection": "Selecție multiplă"
       }
     },
     "page": {
