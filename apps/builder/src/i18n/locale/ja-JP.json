@@ -1839,7 +1839,11 @@
         "filter_setting": "フィルター",
         "primary_key": "プライマリーキー",
         "allow_row_selection": "行の選択を許可",
-        "selection_mode": "選択モード"
+        "selection_mode": "選択モード",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2130,7 +2134,11 @@
         },
         "primary_key": "行を識別するためのユニークなキー",
         "selection_mode": "複数行の選択または単一行の選択を設定するために使用されます",
-        "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用"
+        "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
       },
       "setter_option": {
         "fixed": "固定高さ",
