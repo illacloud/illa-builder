@@ -1840,11 +1840,12 @@
         "primary_key": "Первичный ключ",
         "allow_row_selection": "Разрешить выбор строк",
         "selection_mode": "Режим выбора",
-        "pin_column": "Pin column",
-        "enable_users_to_sort": "Enable users to sort",
-        "enable_users_to_pin": "Enable users to pin",
-        "enable_users_to_filter": "Enable users to filter",
-        "enable_users_to_hide": "Enable users to hide"
+        "pin_column": "Закрепить столбец",
+        "enable_users_to_sort": "Разрешить сортировку пользователей",
+        "enable_users_to_pin": "Разрешить пользователям закреплять",
+        "enable_users_to_filter": "Разрешить пользователям фильтровать",
+        "enable_users_to_hide": "Разрешить пользователям скрывать",
+        "enable_users_to_set_group_by": "Разрешить пользователям устанавливать группу по"
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -2136,10 +2137,13 @@
         "primary_key": "Уникальный ключ для определения строки",
         "selection_mode": "Используется для выбора нескольких рядов или одного выбора рядов",
         "allow_row_selection": "Используется для установки разрешения пользователям выбирать строку",
-        "pin_column": "Used to pin the column to all users",
-        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
-        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
+        "pin_column": "Используется для закрепления столбца всем пользователям",
+        "enable_users_to_sort": "Используется для установки разрешения пользователям изменять сортировку этого столбца. ",
+        "enable_users_to_pin": "Используется для установки разрешения пользователям закрепить столбец",
+        "enable_users_to_filter": "Используется для установки разрешения пользователям фильтровать по этой колонке",
+        "enable_users_to_hide": "Используется для установки разрешить пользователям скрыть столбец",
+        "enable_users_to_aggregate": "Используется для установки разрешения пользователям выполнять агрегацию данных в этом столбце.",
+        "enable_users_to_set_group_by": "Используется для установки разрешения пользователям настраивать отображение группировки данных. "
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -3558,6 +3562,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Изменение строки выбора"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Разрешить пользователям объединять"
       }
     }
   },
