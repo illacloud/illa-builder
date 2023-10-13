@@ -1839,7 +1839,11 @@
         "filter_setting": "Filtern",
         "primary_key": "Primärschlüssel",
         "allow_row_selection": "Zeilenauswahl erlauben",
-        "selection_mode": "Auswahlmodus"
+        "selection_mode": "Auswahlmodus",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2130,7 +2134,11 @@
         },
         "primary_key": "Ein eindeutiger Schlüssel zur Identifizierung einer Zeile",
         "selection_mode": "Wird verwendet, um mehrere Zeilen oder eine einzelne Zeilenauswahl zu setzen",
-        "allow_row_selection": "Wird verwendet, um festzulegen, ob Benutzer die Zeile auswählen dürfen oder nicht"
+        "allow_row_selection": "Wird verwendet, um festzulegen, ob Benutzer die Zeile auswählen dürfen oder nicht",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
       },
       "setter_option": {
         "fixed": "Feste",
