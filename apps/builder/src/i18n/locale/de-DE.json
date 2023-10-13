@@ -1840,10 +1840,12 @@
         "primary_key": "Primärschlüssel",
         "allow_row_selection": "Zeilenauswahl erlauben",
         "selection_mode": "Auswahlmodus",
-        "pin_column": "Pin column",
-        "enable_users_to_sort": "Enable users to sort",
-        "enable_users_to_pin": "Enable users to pin",
-        "enable_users_to_filter": "Enable users to filter"
+        "pin_column": "Spalte anheften",
+        "enable_users_to_sort": "Benutzer zum Sortieren aktivieren",
+        "enable_users_to_pin": "Benutzer zum Pin aktivieren",
+        "enable_users_to_filter": "Benutzer zum Filtern aktivieren",
+        "enable_users_to_hide": "Benutzer zum Verbergen aktivieren",
+        "enable_users_to_set_group_by": "Benutzern erlauben, Gruppe zu setzen von"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2135,10 +2137,13 @@
         "primary_key": "Ein eindeutiger Schlüssel zur Identifizierung einer Zeile",
         "selection_mode": "Wird verwendet, um mehrere Zeilen oder eine einzelne Zeilenauswahl zu setzen",
         "allow_row_selection": "Wird verwendet, um festzulegen, ob Benutzer die Zeile auswählen dürfen oder nicht",
-        "pin_column": "Used to pin the column to all users",
-        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
-        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
+        "pin_column": "Wird verwendet, um die Spalte an alle Benutzer anzupinnen",
+        "enable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. ",
+        "enable_users_to_pin": "Wird verwendet, um festzulegen, ob Benutzer die Spalte anpinnen können oder nicht",
+        "enable_users_to_filter": "Wird verwendet, um festzulegen, ob Benutzer in dieser Spalte filtern dürfen oder nicht",
+        "enable_users_to_hide": "Wird verwendet, um festzulegen, ob Benutzer die Spalte ausblenden dürfen oder nicht",
+        "enable_users_to_aggregate": "Wird verwendet, um festzulegen, ob Benutzer die Daten-Aggregation in dieser Spalte durchführen können oder nicht.",
+        "enable_users_to_set_group_by": "Wird verwendet, um festzulegen, ob Benutzer die Anzeige für die Datengruppierung einrichten können oder nicht. "
       },
       "setter_option": {
         "fixed": "Feste",
@@ -3557,6 +3562,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Zeilenauswahl Änderung"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Benutzer zum Sammeln aktivieren"
       }
     }
   },
