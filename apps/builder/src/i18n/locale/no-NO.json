@@ -2129,8 +2129,8 @@
           "max_column_count": "Angi maksimalt antall kolonner som kan vises i rutenettlistekomponenten når den øker bredden. Når det største antallet kolonner nås, og lerretsbredden fortsetter å øke, kolonnebredden vil økes for å romme opplegget, og antall kolonner vil ikke øke ytterligere."
         },
         "primary_key": "En unik nøkkel for å identifisere en rad",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "selection_mode": "Brukes til å angi valg av flere rader eller enkeltradvalg",
+        "allow_row_selection": "Brukes for å angi om eller ikke tillater brukere å velge rad"
       },
       "setter_option": {
         "fixed": "Fast",
