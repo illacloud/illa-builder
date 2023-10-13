@@ -1840,10 +1840,12 @@
         "primary_key": "Primær nøkkel",
         "allow_row_selection": "Tillat radmarkering",
         "selection_mode": "Utvalg modus",
-        "pin_column": "Pin column",
-        "enable_users_to_sort": "Enable users to sort",
-        "enable_users_to_pin": "Enable users to pin",
-        "enable_users_to_filter": "Enable users to filter"
+        "pin_column": "Fest kolonne",
+        "enable_users_to_sort": "Tillat brukere å sortere",
+        "enable_users_to_pin": "Tillat brukere å feste",
+        "enable_users_to_filter": "Aktiver brukere for å filtrere",
+        "enable_users_to_hide": "Aktivere brukere å skjule",
+        "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2135,10 +2137,13 @@
         "primary_key": "En unik nøkkel for å identifisere en rad",
         "selection_mode": "Brukes til å angi valg av flere rader eller enkeltradvalg",
         "allow_row_selection": "Brukes for å angi om eller ikke tillater brukere å velge rad",
-        "pin_column": "Used to pin the column to all users",
-        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
-        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
+        "pin_column": "Brukes til å feste kolonnen til alle brukere",
+        "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
+        "enable_users_to_pin": "Brukes for å angi om brukere tillater å feste kolonnen",
+        "enable_users_to_filter": "Brukes for å angi om brukere kan filtrere i denne kolonnen",
+        "enable_users_to_hide": "Brukes for å angi om brukere tillater å skjule kolonnen",
+        "enable_users_to_aggregate": "Brukes for å angi om brukerne skal kunne aggregere data i denne kolonnen eller ikke.",
+        "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -3557,6 +3562,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Velg rad endring"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Tillat brukere å aggregere"
       }
     }
   },
