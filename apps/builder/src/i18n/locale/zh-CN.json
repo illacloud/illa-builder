@@ -1839,7 +1839,12 @@
         "filter_setting": "筛选",
         "primary_key": "主键",
         "allow_row_selection": "允许选中行",
-        "selection_mode": "选择模式"
+        "selection_mode": "选择模式",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter",
+        "enable_users_to_hide": "Enable users to hide"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2130,7 +2135,11 @@
         },
         "primary_key": "用于标识行的唯一键值",
         "selection_mode": "用于设置多行选择还是单行选择",
-        "allow_row_selection": "用于设置是否允许用户选中行"
+        "allow_row_selection": "用于设置是否允许用户选中行",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
       },
       "setter_option": {
         "fixed": "固定高度",
