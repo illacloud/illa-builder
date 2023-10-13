@@ -1837,7 +1837,9 @@
         "page_size_options": "每页显示数量选项",
         "export_setting": "导出",
         "filter_setting": "筛选",
-        "primary_key": "主键"
+        "primary_key": "主键",
+        "allow_row_selection": "允许选中行",
+        "selection_mode": "选择模式"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2126,7 +2128,9 @@
           "item_spacing": "用于配置格子之间的间距",
           "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。"
         },
-        "primary_key": "用于标识行的唯一键值"
+        "primary_key": "用于标识行的唯一键值",
+        "selection_mode": "用于设置多行选择还是单行选择",
+        "allow_row_selection": "用于设置是否允许用户选中行"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -2331,6 +2335,10 @@
       },
       "page": {
         "blank_view": "无子页面"
+      },
+      "setter_options": {
+        "single_row_selection": "单选",
+        "multiple_row_selection": "多选"
       }
     },
     "page": {

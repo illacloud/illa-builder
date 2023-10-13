@@ -1837,7 +1837,9 @@
         "page_size_options": "Page size options",
         "export_setting": "Export",
         "filter_setting": "Filter",
-        "primary_key": "Primary key"
+        "primary_key": "Primary key",
+        "allow_row_selection": "Allow row selection",
+        "selection_mode": "Selection mode"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -2126,7 +2128,9 @@
           "item_spacing": "Usato per configurare la spaziatura tra le griglie",
           "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         },
-        "primary_key": "A unique key for identifying a row"
+        "primary_key": "A unique key for identifying a row",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row"
       },
       "setter_option": {
         "fixed": "Fisso",
@@ -2331,6 +2335,10 @@
       },
       "page": {
         "blank_view": "Nessuna sotto-pagina"
+      },
+      "setter_options": {
+        "single_row_selection": "Single selection",
+        "multiple_row_selection": "Multiple selection"
       }
     },
     "page": {

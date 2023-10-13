@@ -1837,7 +1837,9 @@
         "page_size_options": "Alternativer for sidestørrelse",
         "export_setting": "Eksporter",
         "filter_setting": "Filtrer",
-        "primary_key": "Primær nøkkel"
+        "primary_key": "Primær nøkkel",
+        "allow_row_selection": "Tillat radmarkering",
+        "selection_mode": "Utvalg modus"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2126,7 +2128,9 @@
           "item_spacing": "Brukes til å konfigurere mellomrom mellom tabeller",
           "max_column_count": "Angi maksimalt antall kolonner som kan vises i rutenettlistekomponenten når den øker bredden. Når det største antallet kolonner nås, og lerretsbredden fortsetter å øke, kolonnebredden vil økes for å romme opplegget, og antall kolonner vil ikke øke ytterligere."
         },
-        "primary_key": "En unik nøkkel for å identifisere en rad"
+        "primary_key": "En unik nøkkel for å identifisere en rad",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2331,6 +2335,10 @@
       },
       "page": {
         "blank_view": "Ingen underside"
+      },
+      "setter_options": {
+        "single_row_selection": "Enkelt valg",
+        "multiple_row_selection": "Flere valg"
       }
     },
     "page": {
