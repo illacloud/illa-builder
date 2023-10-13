@@ -1837,7 +1837,9 @@
         "page_size_options": "ページサイズオプション",
         "export_setting": "エクスポート",
         "filter_setting": "フィルター",
-        "primary_key": "プライマリーキー"
+        "primary_key": "プライマリーキー",
+        "allow_row_selection": "行の選択を許可",
+        "selection_mode": "選択モード"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2126,7 +2128,9 @@
           "item_spacing": "グリッド間の間隔を設定するために使用",
           "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
         },
-        "primary_key": "行を識別するためのユニークなキー"
+        "primary_key": "行を識別するためのユニークなキー",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -2331,6 +2335,10 @@
       },
       "page": {
         "blank_view": "サブページがありません"
+      },
+      "setter_options": {
+        "single_row_selection": "単一選択",
+        "multiple_row_selection": "複数選択"
       }
     },
     "page": {
