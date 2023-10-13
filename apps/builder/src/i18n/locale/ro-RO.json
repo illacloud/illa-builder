@@ -1839,7 +1839,11 @@
         "filter_setting": "Filtrare",
         "primary_key": "Cheie principală",
         "allow_row_selection": "Permite selecția rândului",
-        "selection_mode": "Mod selecţie"
+        "selection_mode": "Mod selecţie",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2130,7 +2134,10 @@
         },
         "primary_key": "O cheie unică pentru identificarea unui rând",
         "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column"
       },
       "setter_option": {
         "fixed": "Fixat",
