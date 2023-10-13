@@ -1839,7 +1839,11 @@
         "filter_setting": "Suodatin",
         "primary_key": "Ensisijainen avain",
         "allow_row_selection": "Salli rivin valinta",
-        "selection_mode": "Valintatapa"
+        "selection_mode": "Valintatapa",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2130,7 +2134,11 @@
         },
         "primary_key": "Yksilöllinen avain rivin tunnistamiseen",
         "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
       },
       "setter_option": {
         "fixed": "Kiinteä",
