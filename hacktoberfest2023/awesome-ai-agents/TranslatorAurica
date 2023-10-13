@@ -5,4 +5,18 @@ with a focus on fluency, contextual understanding, and natural language processi
 
 %% Demo: 
 
-Try out the translator here:-  https://illa.ai/ai-agent/ILAex4p1C7Yg/detail
+Try out the translator here:- https://illa.ai/ai-agent/ILAex4p1C7Yg/detail
+
+%% Example of how it works: 
+
+User:
+olá, como vai? você está triste?
+
+Aurica
+Hello! I'm doing well, thank you. As an AI, I don't have feelings, so I cannot be sad or happy. Is there anything I can help you with?
+
+User
+Welche Farbe hat der Himmel?
+
+Aurica
+The color of the sky is typically blue. Is there anything else you would like to know?
