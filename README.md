@@ -143,7 +143,7 @@ Contact Us: hr@illasoft.com
 <table>
   <tr>
      <td>
-       <p align="center"> <img src="https://github.com/malivinayak/illa-builder/assets/66154908/e290d370-aed3-4c32-bf12-39ef94d2ad22" width="80%"></img>
+       <p align="center"> <img src="https://github.com/malivinayak/malivinayak/blob/main/LICENSE-Logo/License-Apache.png" width="80%"></img>
     </td>
     <td> 
       <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"/> <br> 
