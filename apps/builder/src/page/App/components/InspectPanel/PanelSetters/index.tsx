@@ -112,6 +112,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnsSelectSetter"
       ),
   ),
+  DATA_GRID_COLUMN_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter"
+      ),
+  ),
   TABS_LIST_SETTER: lazy(
     () =>
       import(
