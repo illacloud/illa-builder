@@ -1837,7 +1837,9 @@
         "page_size_options": "Sivun kokoasetukset",
         "export_setting": "Vie",
         "filter_setting": "Suodatin",
-        "primary_key": "Ensisijainen avain"
+        "primary_key": "Ensisijainen avain",
+        "allow_row_selection": "Salli rivin valinta",
+        "selection_mode": "Valintatapa"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2126,7 +2128,9 @@
           "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
           "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
         },
-        "primary_key": "Yksilöllinen avain rivin tunnistamiseen"
+        "primary_key": "Yksilöllinen avain rivin tunnistamiseen",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row"
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -2331,6 +2335,10 @@
       },
       "page": {
         "blank_view": "Ei alasivua"
+      },
+      "setter_options": {
+        "single_row_selection": "Yksi valinta",
+        "multiple_row_selection": "Useita valintoja"
       }
     },
     "page": {
