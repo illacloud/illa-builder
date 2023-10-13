@@ -1839,7 +1839,11 @@
         "filter_setting": "Filter",
         "primary_key": "Primary key",
         "allow_row_selection": "Allow row selection",
-        "selection_mode": "Selection mode"
+        "selection_mode": "Selection mode",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -2130,7 +2134,10 @@
         },
         "primary_key": "A unique key for identifying a row",
         "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column"
       },
       "setter_option": {
         "fixed": "Fijado",
