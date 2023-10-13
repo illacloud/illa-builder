@@ -2129,8 +2129,8 @@
           "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen."
         },
         "primary_key": "Ein eindeutiger Schlüssel zur Identifizierung einer Zeile",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "selection_mode": "Wird verwendet, um mehrere Zeilen oder eine einzelne Zeilenauswahl zu setzen",
+        "allow_row_selection": "Wird verwendet, um festzulegen, ob Benutzer die Zeile auswählen dürfen oder nicht"
       },
       "setter_option": {
         "fixed": "Feste",
