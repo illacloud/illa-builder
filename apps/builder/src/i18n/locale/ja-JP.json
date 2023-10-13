@@ -2129,8 +2129,8 @@
           "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
         },
         "primary_key": "行を識別するためのユニークなキー",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "selection_mode": "複数行の選択または単一行の選択を設定するために使用されます",
+        "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用"
       },
       "setter_option": {
         "fixed": "固定高さ",
