@@ -1840,10 +1840,12 @@
         "primary_key": "Ensisijainen avain",
         "allow_row_selection": "Salli rivin valinta",
         "selection_mode": "Valintatapa",
-        "pin_column": "Pin column",
-        "enable_users_to_sort": "Enable users to sort",
-        "enable_users_to_pin": "Enable users to pin",
-        "enable_users_to_filter": "Enable users to filter"
+        "pin_column": "Kiinnitä sarake",
+        "enable_users_to_sort": "Salli käyttäjien lajitella",
+        "enable_users_to_pin": "Salli käyttäjien kiinnitys",
+        "enable_users_to_filter": "Salli käyttäjien suodatus",
+        "enable_users_to_hide": "Salli käyttäjien piilottaa",
+        "enable_users_to_set_group_by": "Salli käyttäjien asettaa ryhmä"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2133,12 +2135,15 @@
           "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
         },
         "primary_key": "Yksilöllinen avain rivin tunnistamiseen",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row",
-        "pin_column": "Used to pin the column to all users",
-        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
-        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column"
+        "selection_mode": "Käytetään useamman rivin valinnan tai yhden rivin valinnan asettamiseen",
+        "allow_row_selection": "Käytetään määritettäessä, sallivatko käyttäjät valita rivin",
+        "pin_column": "Käytetään sarakkeen kiinnittämiseen kaikille käyttäjille",
+        "enable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. ",
+        "enable_users_to_pin": "Käytetään määritettäessä, sallivatko käyttäjät kiinnittää sarakkeen",
+        "enable_users_to_filter": "Käytetään määritettäessä, sallivatko käyttäjät suodattaa tämän sarakkeen",
+        "enable_users_to_hide": "Käytetään määritettäessä, sallivatko käyttäjät piilottaa sarakkeen",
+        "enable_users_to_aggregate": "Käytetään määritettäessä, sallivatko käyttäjät suorittaa tietojen yhdistämisen tähän sarakkeeseen.",
+        "enable_users_to_set_group_by": "Käytetään määritettäessä, sallivatko käyttäjät asettaa tietoryhmänäytön vai eivät. "
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -3557,6 +3562,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Rivin Valinnan Muutos"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Salli käyttäjien koota yhteen"
       }
     }
   },
