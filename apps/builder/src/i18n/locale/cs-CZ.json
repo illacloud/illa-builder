@@ -2129,8 +2129,8 @@
           "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
         },
         "primary_key": "Jedinečný klíč pro identifikaci řádku",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "selection_mode": "Používá se k nastavení výběru více řádků nebo výběru jednoho řádku",
+        "allow_row_selection": "Slouží k nastavení, zda povolit nebo zakázat uživatelům vybrat řádek"
       },
       "setter_option": {
         "fixed": "Fixní",
