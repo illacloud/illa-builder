@@ -1839,7 +1839,13 @@
         "filter_setting": "フィルター",
         "primary_key": "プライマリーキー",
         "allow_row_selection": "行の選択を許可",
-        "selection_mode": "選択モード"
+        "selection_mode": "選択モード",
+        "pin_column": "列をピン留めする",
+        "enable_users_to_sort": "ユーザーの並び替えを有効にする",
+        "enable_users_to_pin": "ユーザーのピン留めを有効にする",
+        "enable_users_to_filter": "フィルタを有効にする",
+        "enable_users_to_hide": "ユーザーの非表示を有効にする",
+        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2129,8 +2135,15 @@
           "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
         },
         "primary_key": "行を識別するためのユニークなキー",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "selection_mode": "複数行の選択または単一行の選択を設定するために使用されます",
+        "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用",
+        "pin_column": "すべてのユーザーに列を固定するために使用",
+        "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
+        "enable_users_to_pin": "ユーザーが列を固定することを許可するかどうかを設定するために使用",
+        "enable_users_to_filter": "このカラムをフィルタリングできるかどうかを設定するために使用します。",
+        "enable_users_to_hide": "ユーザーが列を非表示にするかどうかを設定するために使用します。",
+        "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
+        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 "
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -3549,6 +3562,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "行の選択変更"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "ユーザーの集計を有効にする"
       }
     }
   },
