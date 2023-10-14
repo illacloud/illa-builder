@@ -1,7 +1,7 @@
 name: "Has AI-Agent idea"
 description: "AI-Agent idea request"
 labels: ["ILLA with AI"]
-title: "[[AI Agent idea]] "
+title: "[AI Agent idea] "
 body:
   - type: "markdown"
     attributes:
