@@ -1,7 +1,7 @@
 name: "Has ILLA App idea"
 description: "ILLA App idea request"
 labels: ["build with ILLA"]
-title: "[[ILLA App idea]] "
+title: "[ILLA App idea] "
 body:
   - type: "markdown"
     attributes:
