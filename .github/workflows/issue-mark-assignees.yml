@@ -12,4 +12,4 @@ jobs:
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'mark-assignees'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ env.ILLA_BOT_TOKEN }}
