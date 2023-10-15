@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { FC, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Modal } from "@illa-design/react"
@@ -12,7 +13,6 @@ import {
   ResourceGeneratorProps,
 } from "@/page/App/components/Actions/ResourceGenerator/interface"
 import { ResourceType } from "@/redux/resource/resourceState"
-import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { modalContentStyle } from "./style"
 
 export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {

@@ -1,9 +1,9 @@
-import { FC, Suspense } from "react"
-import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import {
   getResourceNameFromResourceType,
   getResourceSubTitleFromResourceType,
-} from "@/utils/actionResourceTransformer"
+} from "@illa-public/resource-generator"
+import { FC, Suspense } from "react"
+import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceCardSelectorProps } from "./interface"
 import {
   applyItemStyle,

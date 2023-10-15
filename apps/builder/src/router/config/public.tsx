@@ -1,10 +1,31 @@
 import { lazy } from "react"
 import { FullPageLoading } from "@/components/FullPageLoading"
+import { ResourceCreate } from "@/page/Resource/Create"
+import { ResourceEdit } from "@/page/Resource/Edit"
+import { ResourceLayout } from "@/page/Resource/layout"
 import { RoutesObjectPro } from "@/router/interface"
 import { lazyLoad } from "@/router/utils/lazyLoad"
 import { deployLoader } from "../loader/deployLoader"
+import { getDashboardResourcesLoader } from "../loader/resourceEditorLoader"
 
 export const publicTeamChildrenRouter: RoutesObjectPro[] = [
+  {
+    path: "/:teamIdentifier/resource",
+    element: <ResourceLayout />,
+    children: [
+      {
+        path: "new/:resourceType",
+        needLogin: true,
+        element: <ResourceCreate />,
+      },
+      {
+        path: "edit/:resourceID",
+        needLogin: true,
+        loader: getDashboardResourcesLoader,
+        element: <ResourceEdit />,
+      },
+    ] as RoutesObjectPro[],
+  },
   {
     path: "/:teamIdentifier/app/:appId",
     element: lazyLoad(lazy(() => import("@/page/App"))),

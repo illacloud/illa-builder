@@ -1,28 +1,30 @@
+import { ResourceType } from "@illa-public/public-types"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { AirtableConfigElement } from "@/page/App/components/Actions/AirtableConfigElement"
-import { AppWriteConfigElement } from "@/page/App/components/Actions/AppwriteConfigElement"
-import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
-import { CouchDBConfigElement } from "@/page/App/components/Actions/CouchDBConfigElement"
-import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
-import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
-import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
-import { GoogleSheetsConfigElement } from "@/page/App/components/Actions/GoogleSheetsConfigElement"
-import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
-import { HuggingFaceConfigElement } from "@/page/App/components/Actions/HuggingFaceConfigElement"
-import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/HuggingFaceEndpointConfigElement"
-import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/MicrosoftSqlConfigElement"
-import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
-import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
-import { NeonConfigElement } from "@/page/App/components/Actions/NeonConfigElement"
-import { OracleDBConfigElement } from "@/page/App/components/Actions/OracleDBConfigElement"
-import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
+import { AirtableConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/AirtableConfigElement"
+import { AppWriteConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/AppwriteConfigElement"
+import { ClickhouseConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ClickhouseConfigElement"
+import { CouchDBConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/CouchDBConfigElement"
+import { DynamoDBConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/DynamoDBConfigElement"
+import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ElasticSearchConfigElement"
+import { FirebaseConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/FirebaseConfigElement"
+import { GoogleSheetsConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GoogleSheetsConfigElement"
+import { GraphQLConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement"
+import { HuggingFaceConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/HuggingFaceConfigElement"
+import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/HuggingFaceEndpointConfigElement"
+import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MicrosoftSqlConfigElement"
+import { MongoDbConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement"
+import { MysqlLikeConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MysqlLikeConfigElement"
+import { NeonConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/NeonConfigElement"
+import { OracleDBConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/OracleDBConfigElement"
+import { RedisConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RedisConfigElement"
+import { RestApiConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement"
+import { S3ConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/S3ConfigElement"
+import { SMTPConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SMTPConfigElement"
+import { SnowflakeConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement"
 import { ResourceCreatorProps } from "@/page/App/components/Actions/ResourceGenerator/ResourceCreator/interface"
-import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
-import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
-import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
-import { SnowflakeConfigElement } from "@/page/App/components/Actions/SnowflakeConfigElement"
 import { RootState } from "@/store"
+import { ConfigElementProvider } from "../ConfigElements/provider"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceID, onBack, onFinished } = props
@@ -79,7 +81,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "redis":
         return (
           <RedisConfigElement
-            type="redis"
+            resourceType="redis"
             resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
@@ -88,7 +90,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "upstash":
         return (
           <RedisConfigElement
-            type="upstash"
+            resourceType="upstash"
             resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
@@ -145,5 +147,13 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
     }
   }, [resourceID, handleBack, onFinished, finalResourceType])
 
-  return <>{element}</>
+  return (
+    <ConfigElementProvider
+      resourceType={finalResourceType as ResourceType}
+      onFinished={onFinished}
+      resourceID={resourceID}
+    >
+      {element}
+    </ConfigElementProvider>
+  )
 }

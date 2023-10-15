@@ -3,13 +3,13 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { FC, useCallback, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Modal, useMessage } from "@illa-design/react"
 import { AIAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AIAgentSelector"
-import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -26,12 +26,10 @@ import {
 } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { fetchCreateAction } from "@/services/action"
-import {
-  getResourceNameFromResourceType,
-  getResourceTypeFromActionType,
-} from "@/utils/actionResourceTransformer"
+import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { INIT_ACTION_ADVANCED_CONFIG } from "../AdvancedPanel/constant"
+import { ResourceCreator } from "../ResourceGenerator/ResourceCreator"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 import { modalContentStyle } from "./style"
@@ -344,7 +342,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
             />
           ))}
         {currentStep === "createResource" && transformResource && (
-          <ActionResourceCreator
+          <ResourceCreator
             resourceType={transformResource}
             onBack={handleBack}
             onFinished={handleFinishCreateNewResource}

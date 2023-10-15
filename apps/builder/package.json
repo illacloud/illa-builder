@@ -124,7 +124,9 @@
     "@illa-public/illa-net": "workspace:*",
     "@illa-public/member-page": "workspace:*",
     "@illa-public/upgrade-modal": "workspace:*",
-    "@illa-public/text-link": "workspace:*"
+    "@illa-public/text-link": "workspace:*",
+    "@illa-public/resource-generator": "workspace:*",
+    "@illa-public/public-types": "workspace:*"
   },
   "devDependencies": {
     "@mdx-js/rollup": "^2.3.0",

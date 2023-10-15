@@ -2,6 +2,11 @@ import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
+import {
+  labelContainerStyle,
+  sectionContainerStyle,
+  setterContainerStyle,
+} from "@/page/App/components/PagePanel/Modules/Style/style"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageExecutionResult,
@@ -10,11 +15,6 @@ import {
   getCurrentPageLeftSection,
   getCurrentPageRightSection,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import {
-  labelContainerStyle,
-  sectionContainerStyle,
-  setterContainerStyle,
-} from "../../style"
 import ShadowSelect from "../ShadowSelect"
 import { SHADOW_VALUE } from "../ShadowSelect/constants"
 

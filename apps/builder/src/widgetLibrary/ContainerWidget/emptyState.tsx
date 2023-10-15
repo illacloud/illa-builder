@@ -1,11 +1,11 @@
 import { FC, useEffect } from "react"
 import { useTranslation } from "react-i18next"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getPaddingShape } from "@/utils/styleUtils/padding"
 import {
   applyEmptyStateWrapperStyle,
   emptyStateStyle,
 } from "@/widgetLibrary/ContainerWidget/style"
-import { UNIT_HEIGHT } from "../../page/App/components/DotPanel/constant/canvas"
 
 export const ContainerEmptyState: FC<{
   isInner?: boolean

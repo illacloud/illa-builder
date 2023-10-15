@@ -1,4 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { FC, Suspense, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -28,10 +29,7 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import {
-  getResourceNameFromResourceType,
-  getResourceTypeFromActionType,
-} from "@/utils/actionResourceTransformer"
+import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   createNewStyle,

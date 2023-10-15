@@ -9,6 +9,7 @@ import {
   isString,
 } from "@illa-design/react"
 import { isValidCurrencyCode } from "@/constants/currency"
+import i18n from "@/i18n/config"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   ColumnItemShape,
@@ -26,7 +27,6 @@ import {
   RenderTableStringCell,
   RenderTableTag,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
-import i18n from "../../i18n/config"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
