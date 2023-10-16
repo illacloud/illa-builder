@@ -76,7 +76,8 @@
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. ",
-      "mobile-fork-suc": "Pomyślnie sforkowano. Proszę edytować na pulpicie."
+      "mobile-fork-suc": "Pomyślnie sforkowano. Proszę edytować na pulpicie.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Utwórz"
   },
