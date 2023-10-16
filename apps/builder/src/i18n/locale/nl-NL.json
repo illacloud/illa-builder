@@ -76,7 +76,8 @@
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. ",
-      "mobile-fork-suc": "Succesvol afgebroken. Bewerk op bureaublad."
+      "mobile-fork-suc": "Succesvol afgebroken. Bewerk op bureaublad.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Aanmaken"
   },
