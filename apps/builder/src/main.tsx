@@ -1,4 +1,5 @@
 import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
+import { initDateReport } from "@illa-public/utils"
 import * as Sentry from "@sentry/react"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
@@ -24,26 +25,7 @@ if (
   })
 }
 
-if (
-  import.meta.env.ILLA_APP_ENV &&
-  import.meta.env.ILLA_APP_ENV === "production" &&
-  import.meta.env.ILLA_INSTANCE_ID === "CLOUD"
-) {
-  const firstScript = document.createElement("script")
-  const sendScript = document.createElement("script")
-  sendScript.innerHTML = `
-  window.dataLayer = window.dataLayer || []
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    gtag("js", new Date())
-    gtag("config", 'G-QW745VE33W')`
-  firstScript.async = true
-  firstScript.src = "https://www.googletagmanager.com/gtag/js?id=G-QW745VE33W"
-  document.body.append(firstScript)
-  document.body.append(sendScript)
-}
-
+initDateReport()
 ILLAMixpanel.setDeviceID()
 
 const root = createRoot(document.getElementById("root")!!)
