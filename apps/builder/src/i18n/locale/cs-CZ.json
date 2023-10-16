@@ -1839,7 +1839,13 @@
         "filter_setting": "Filtr",
         "primary_key": "Primární klíč",
         "allow_row_selection": "Povolit výběr řádků",
-        "selection_mode": "Režim výběru"
+        "selection_mode": "Režim výběru",
+        "pin_column": "PINový sloupec",
+        "enable_users_to_sort": "Povolit řazení uživatelů",
+        "enable_users_to_pin": "Povolit uživatele pro pin",
+        "enable_users_to_filter": "Povolit uživatelům filtrovat",
+        "enable_users_to_hide": "Povolit uživatelům skrýt",
+        "enable_users_to_set_group_by": "Povolit uživatelům nastavit skupinu podle"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2129,8 +2135,15 @@
           "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
         },
         "primary_key": "Jedinečný klíč pro identifikaci řádku",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "selection_mode": "Používá se k nastavení výběru více řádků nebo výběru jednoho řádku",
+        "allow_row_selection": "Slouží k nastavení, zda povolit nebo zakázat uživatelům vybrat řádek",
+        "pin_column": "Sloupec připnut všem uživatelům",
+        "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
+        "enable_users_to_pin": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům připnutí sloupce",
+        "enable_users_to_filter": "Slouží k nastavení, zda povolit uživatelům filtrovat v tomto sloupci",
+        "enable_users_to_hide": "Slouží k nastavení, zda povolit nebo zakázat uživatelům skrýt sloupec",
+        "enable_users_to_aggregate": "Slouží k nastavení, zda umožnit nebo neumožnit uživatelům provést agregaci údajů v tomto sloupci.",
+        "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. "
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -3549,6 +3562,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Změna počtu řádků"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Povolit uživatelům agregovat"
       }
     }
   },
