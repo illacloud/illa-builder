@@ -56,6 +56,9 @@ export const generateRawAction = (
   modifiedAction.$dynamicAttrPaths = [
     ...((newProps?.$dynamicAttrPaths ?? []) as string[]),
   ]
+  let context: Record<string, unknown> = {}
+
+  modifiedAction.$context = context
 
   return modifiedAction
 }

@@ -75,21 +75,30 @@ export const getDynamicValue = (
     ILLAEditorRuntimePropsCollectorInstance.getThirdPartyPackages(),
   )
   if (stringSnippets.length) {
+    let context: Record<string, unknown> = {}
     const values = jsSnippets.map((jsSnippet, index) => {
       if (jsSnippet) {
-        return evalScript(jsSnippet, calcContext)
+        const value = evalScript(jsSnippet, calcContext)
+        context[jsSnippet] = value
+        return value
       } else {
         return stringSnippets[index]
       }
     })
     if (stringSnippets.length === 1) {
-      return values[0]
+      return {
+        result: values[0],
+        context,
+      }
     }
-    return substituteDynamicBindingWithValues(
-      dynamicString,
-      stringSnippets,
-      values,
-      evaluationType,
-    )
+    return {
+      result: substituteDynamicBindingWithValues(
+        dynamicString,
+        stringSnippets,
+        values,
+        evaluationType,
+      ),
+      context,
+    }
   }
 }
