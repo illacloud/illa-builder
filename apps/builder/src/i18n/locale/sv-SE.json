@@ -4388,7 +4388,14 @@
     "before": "Ladda mer"
   },
   "size_exceed_copied_tips": "Innehållet är för långt för att kopieras. (nuvarande storlek: {{current_size}} bytes, gräns: {{limit_size}} bytes)",
-  "contribute": "Bidra",
+  "contribute": {
+    "tag": {
+      "recommended": "Rekommenderad",
+      "add_tag": "Lägg till taggar",
+      "tag": "Tagg",
+      "failed_to_save": "Det gick inte att spara"
+    }
+  },
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
   }
