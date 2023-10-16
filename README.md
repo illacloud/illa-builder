@@ -122,14 +122,14 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 
 ## 🌱 Contributing
 
-Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
-<p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
+Thinking about contributing? All kind of contributions to ILLA are greatly appreciated and welcomed! Check out our [Contribution Guide](./CONTRIBUTING.md) for details about how you can get involved.
+<p>Appreciate all the contributions from our ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">Contributors!</a></p>
 
 ## 📢 Translating
 
-The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you like to contribute.
+The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you would like to contribute.
 
-## 🔥 We're Hiring
+## 🔥 We are Hiring!
 
 Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
 
@@ -138,6 +138,6 @@ Looking for a passionate and creative team? We are actively hiring engineers for
 
 Contact Us: hr@illasoft.com
 
-## License
+## LICENSE
 
-This project is [Apache License 2.0](./LICENSE).
+This project is currently licensed under [Apache License 2.0](./LICENSE).
