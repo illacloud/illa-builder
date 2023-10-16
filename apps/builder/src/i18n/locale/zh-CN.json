@@ -4388,7 +4388,14 @@
     "before": "加载更多"
   },
   "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
-  "contribute": "贡献",
+  "contribute": {
+    "tag": {
+      "recommended": "推荐",
+      "add_tag": "添加标签",
+      "tag": "标签",
+      "failed_to_save": "保存失败"
+    }
+  },
   "error_page": {
     "fobidden": "没有访问权限"
   }
