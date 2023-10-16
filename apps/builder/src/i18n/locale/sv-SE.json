@@ -76,7 +76,8 @@
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. ",
-      "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet."
+      "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet.",
+      "save_resource": "Sparandet lyckades, sidan kommer att stängas om 3 sekunder..."
     },
     "create": "Skapa"
   },
