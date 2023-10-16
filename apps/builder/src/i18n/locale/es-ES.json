@@ -76,7 +76,8 @@
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
       "delete-suc": "Eliminado correctamente. ",
-      "mobile-fork-suc": "Bifurcado con éxito. Por favor edite en el ordenador."
+      "mobile-fork-suc": "Bifurcado con éxito. Por favor edite en el ordenador.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Crear"
   },
