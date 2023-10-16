@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { RIGHT_PANEL_WIDTH } from "../../../../style"
+import { RIGHT_PANEL_WIDTH } from "@/style"
 
 export const componentPanelCss = css`
   display: inline-flex;

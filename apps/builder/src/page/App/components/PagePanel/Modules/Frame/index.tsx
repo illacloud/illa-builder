@@ -34,9 +34,9 @@ import { getCanvasShape } from "@/redux/config/configSelector"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { PageNodeProps } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { PageNodeProps } from "@/redux/currentApp/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"

@@ -5,7 +5,7 @@ import { ChartDataSourceSetterProps } from "@/page/App/components/InspectPanel/P
 import BaseDynamicSelect from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseDynamicSelect"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"

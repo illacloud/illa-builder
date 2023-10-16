@@ -16,8 +16,8 @@ import {
   inputAreaLabelWrapperStyle,
   inputAreaWrapperStyle,
 } from "@/page/App/components/PageNavBar/style"
-import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { getViewportSizeSelector } from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 
 const validateHeight = (currentHeight: number | undefined) => {

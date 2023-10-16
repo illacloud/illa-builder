@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
 
 export const updateAppInfoReducer: CaseReducer<
   DashboardApp,

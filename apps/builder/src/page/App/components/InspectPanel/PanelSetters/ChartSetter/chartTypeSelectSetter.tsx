@@ -20,7 +20,7 @@ import BaseSelectSetter from "@/page/App/components/InspectPanel/PanelSetters/Se
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+} from "@/redux/currentApp/components/componentsSelector"
 import { RootState } from "@/store"
 import { ChartTypeSelectSetterProps } from "./interface"
 

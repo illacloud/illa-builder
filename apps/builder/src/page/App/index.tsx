@@ -39,7 +39,7 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { fetchAppBinaryWsUrl, fetchAppTextWsUrl } from "@/services/public"
 import { startAppListening } from "@/store"

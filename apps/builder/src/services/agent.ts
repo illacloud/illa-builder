@@ -1,7 +1,6 @@
 import { agentRequest, marketplaceRequest } from "@illa-public/illa-net"
 import { Agent, AgentRaw } from "@illa-public/market-agent"
 import { v4 } from "uuid"
-import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
 import { getCurrentTeamID } from "@/utils/team"
@@ -234,6 +233,10 @@ export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
       teamID: getCurrentTeamID(),
     },
   )
+}
+
+export interface UploadResponse {
+  uploadAddress: string
 }
 
 export const uploadAgentIcon = async (base64: string) => {

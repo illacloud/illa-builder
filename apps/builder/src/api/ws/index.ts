@@ -7,7 +7,7 @@ import {
   WSMessageListener,
 } from "@/api/ws/illaWS"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import store from "@/store"
 import { MovingMessageBin, Signal, Target } from "./ILLA_PROTO"
 import { ILLABinaryWebsocket } from "./illaBinaryWS"

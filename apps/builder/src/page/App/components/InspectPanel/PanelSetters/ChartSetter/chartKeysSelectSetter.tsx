@@ -7,7 +7,7 @@ import { ChartDataSourceSetterProps } from "@/page/App/components/InspectPanel/P
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+} from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { formatDataAsObject } from "@/utils/formatData"

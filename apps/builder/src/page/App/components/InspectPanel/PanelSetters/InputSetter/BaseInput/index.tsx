@@ -10,10 +10,10 @@ import {
   getNeedComputedValueWithList,
   realInputValueWithList,
 } from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/util"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { PanelLabel } from "../../../components/Label"
 import { NewBaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle, setterContainerStyle } from "./style"
 

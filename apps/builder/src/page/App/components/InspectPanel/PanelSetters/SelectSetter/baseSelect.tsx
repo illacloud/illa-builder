@@ -4,7 +4,7 @@ import {
   applyBaseSelectWrapperStyle,
   setterContainerStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/style"
-import { PanelLabel } from "../../components/Label"
+import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { BaseSelectSetterProps } from "./interface"
 
 const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {

@@ -6,8 +6,8 @@ import {
   baseRadioGroupContainerStyle,
   radioGroupStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/RadioGroupSetter/style"
+import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { PanelLabel } from "../../components/Label"
 import { BaseRadioGroupProps } from "./interface"
 
 const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {

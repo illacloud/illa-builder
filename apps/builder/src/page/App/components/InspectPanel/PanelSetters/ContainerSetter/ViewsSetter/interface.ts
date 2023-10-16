@@ -1,6 +1,6 @@
 import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export interface ViewItemShape {
   id: string

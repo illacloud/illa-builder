@@ -11,8 +11,8 @@ import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { SectionViewShape } from "@/redux/currentApp/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executionTree/executionState"

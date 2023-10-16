@@ -5,7 +5,7 @@ import BaseDynamicSelect from "@/page/App/components/InspectPanel/PanelSetters/S
 import { TableDataSourceSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/TableSetter/interface"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import {
   getExecutionError,
   getExecutionResult,

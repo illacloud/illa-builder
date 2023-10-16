@@ -13,7 +13,7 @@ import {
   PageNodeProps,
   SECTION_POSITION,
   SectionNode,
-} from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsState"
 import { newGenerateComponentNode } from "./generateComponentNode"
 import { DisplayNameGenerator } from "./generateDisplayName"
 

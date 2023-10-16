@@ -62,8 +62,8 @@ import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
+import { aiAgentActions } from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import {
   createAgent,
   generateDescription,
@@ -904,7 +904,7 @@ export const AIAgent: FC = () => {
                   })
                   sendTagEvent("create_agent", currentUserInfo.userID)
                   dispatch(
-                    dashboardTeamAIAgentActions.addTeamAIAgentReducer({
+                    aiAgentActions.addTeamAIAgentReducer({
                       aiAgent: resp.data,
                     }),
                   )
@@ -924,7 +924,7 @@ export const AIAgent: FC = () => {
                     ),
                   })
                   dispatch(
-                    dashboardTeamAIAgentActions.modifyTeamAIAgentReducer({
+                    aiAgentActions.modifyTeamAIAgentReducer({
                       aiAgentID: resp.data.aiAgentID,
                       modifiedProps: resp.data,
                     }),

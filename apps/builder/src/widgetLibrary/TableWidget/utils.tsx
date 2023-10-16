@@ -9,7 +9,7 @@ import {
   isString,
 } from "@illa-design/react"
 import { isValidCurrencyCode } from "@/constants/currency"
-import { getLocalLanguage } from "@/page/User/Register"
+import i18n from "@/i18n/config"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   ColumnItemShape,
@@ -257,7 +257,7 @@ export const getCellForType = (
     backgroundColor,
   } = data
 
-  const locale = getLocalLanguage()
+  const locale = i18n.language
   const columnEventPath = convertPathToString(["columns", `${columnIndex}`])
 
   switch (type) {

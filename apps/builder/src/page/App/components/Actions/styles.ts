@@ -79,6 +79,7 @@ export const footerStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 `
 
 export const divider = css`

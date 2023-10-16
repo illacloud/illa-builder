@@ -2,7 +2,7 @@ import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getActionExecutionResult,
   getInDependenciesMap,

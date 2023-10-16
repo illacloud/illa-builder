@@ -3,8 +3,8 @@ import { PayloadAction } from "@reduxjs/toolkit"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 

@@ -1,5 +1,5 @@
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export type RoomType = "dashboard" | "app" | "ai-agent"
 

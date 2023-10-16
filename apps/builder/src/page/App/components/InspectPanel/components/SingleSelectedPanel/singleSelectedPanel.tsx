@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
 import { PanelHeader } from "@/page/App/components/InspectPanel/components/Header"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { panelBuilder } from "@/page/App/components/InspectPanel/utils/panelBuilder"
+import { getComponentNodeBySingleSelected } from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { isObject } from "@/utils/typeHelper"
-import { panelBuilder } from "../../utils/panelBuilder"
 import FieldFactory from "../FieldFactory"
 import {
   singleSelectedPanelSetterWrapperStyle,

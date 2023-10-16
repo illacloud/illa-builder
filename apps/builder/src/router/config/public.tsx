@@ -1,12 +1,31 @@
 import { lazy } from "react"
-import { Navigate } from "react-router-dom"
 import { FullPageLoading } from "@/components/FullPageLoading"
+import { ResourceCreate } from "@/page/Resource/Create"
+import { ResourceEdit } from "@/page/Resource/Edit"
+import { ResourceLayout } from "@/page/Resource/layout"
 import { RoutesObjectPro } from "@/router/interface"
 import { lazyLoad } from "@/router/utils/lazyLoad"
-import { getDashboardResourcesLoader } from "../loader/dashBoardLoader"
 import { deployLoader } from "../loader/deployLoader"
+import { getDashboardResourcesLoader } from "../loader/resourceEditorLoader"
 
 export const publicTeamChildrenRouter: RoutesObjectPro[] = [
+  {
+    path: "/:teamIdentifier/resource",
+    element: <ResourceLayout />,
+    children: [
+      {
+        path: "new/:resourceType",
+        needLogin: true,
+        element: <ResourceCreate />,
+      },
+      {
+        path: "edit/:resourceID",
+        needLogin: true,
+        loader: getDashboardResourcesLoader,
+        element: <ResourceEdit />,
+      },
+    ] as RoutesObjectPro[],
+  },
   {
     path: "/:teamIdentifier/app/:appId",
     element: lazyLoad(lazy(() => import("@/page/App"))),
@@ -26,12 +45,6 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
       const { currentParams, nextParams } = args
       return currentParams.appId !== nextParams.appId
     },
-  },
-  {
-    path: "/:teamIdentifier/template/:templateName",
-    element: lazyLoad(lazy(() => import("@/page/Template"))),
-    errorElement: lazyLoad(lazy(() => import("@/page/Status/404"))),
-    needLogin: true,
   },
   {
     path: "/:teamIdentifier/guide",
@@ -56,38 +69,5 @@ export const publicRouterConfig: RoutesObjectPro[] = [
     path: "/*",
     element: lazyLoad(lazy(() => import("@/page/Status/404"))),
     accessByMobile: true,
-  },
-]
-
-export const publicDashboardChildrenRouter: RoutesObjectPro[] = [
-  {
-    index: true,
-    element: <Navigate to="apps" replace={true} />,
-    needLogin: true,
-  },
-  {
-    path: "apps",
-    element: lazyLoad(
-      lazy(() => import("@/page/Dashboard/DashboardApps")),
-      <FullPageLoading />,
-    ),
-    needLogin: true,
-  },
-  {
-    path: "resources",
-    element: lazyLoad(
-      lazy(() => import("@/page/Dashboard/DashboardResources")),
-      <FullPageLoading />,
-    ),
-    needLogin: true,
-    loader: getDashboardResourcesLoader,
-  },
-  {
-    path: "tutorial",
-    needLogin: true,
-    element: lazyLoad(
-      lazy(() => import("@/page/Dashboard/Tutorial")),
-      <FullPageLoading />,
-    ),
   },
 ]

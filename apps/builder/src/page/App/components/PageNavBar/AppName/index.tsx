@@ -1,8 +1,8 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useState } from "react"
 import { PenIcon } from "@illa-design/react"
+import { AppSettingModal } from "@/page/App/components/PageNavBar/AppSettingModal"
 import { AppNameProps } from "@/page/App/components/PageNavBar/interface"
-import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { nameContainerStyle, nameStyle } from "./style"
 

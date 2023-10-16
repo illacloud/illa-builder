@@ -7,7 +7,7 @@ import {
   fetchPubicAppInitData,
 } from "@/services/apps"
 import { fetchUserInfo, tryFetchUserInfo } from "@/services/users"
-import store from "../../store"
+import store from "@/store"
 import { getTeamsInfoLoader } from "./cloudAuthLoader"
 
 export const deployLoader: LoaderFunction = async (args) => {

@@ -10,7 +10,7 @@ import {
 } from "@/page/App/components/ScaleSquare/components/AutoHeightWithLimitedContainer/style"
 import { applyBarHandlerStyle } from "@/page/App/components/ScaleSquare/style"
 import { configActions } from "@/redux/config/configSlice"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,

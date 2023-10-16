@@ -43,7 +43,7 @@ import { DeployButtonGroup } from "@/page/App/components/PageNavBar/DeloyButtonG
 import { ShareAppButton } from "@/page/App/components/PageNavBar/ShareAppButton"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
-import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
+import { duplicateApp } from "@/page/App/components/PageNavBar/utils"
 import {
   getIsILLAEditMode,
   getIsILLAGuideMode,
@@ -57,7 +57,6 @@ import {
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import {
   fetchDeployApp,
   forkCurrentApp,
@@ -144,19 +143,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       try {
         await fetchDeployApp(appId, isPublic)
         dispatch(appInfoActions.updateAppDeployedReducer(true))
-        dispatch(
-          dashboardAppActions.updateDashboardAppDeployedReducer({
-            appId,
-            deployed: true,
-          }),
-        )
         dispatch(appInfoActions.updateAppPublicReducer(isPublic))
-        dispatch(
-          dashboardAppActions.updateDashboardAppPublicReducer({
-            appId,
-            isPublic,
-          }),
-        )
         window.open(
           `${window.location.origin}/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
@@ -275,9 +262,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     setDuplicateLoading(true)
     try {
       const response = await duplicateApp(appInfo.appId, appInfo.appName)
-      dispatch(
-        dashboardAppActions.addDashboardAppReducer({ app: response.data }),
-      )
       navigate(`/${teamIdentifier}/app/${response.data.appId}`)
     } catch (error) {
       if (isILLAAPiError(error)) {

@@ -1,6 +1,6 @@
 import { Diff } from "deep-diff"
-import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
-import { CONTAINER_TYPE } from "../editor/components/componentsState"
+import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
+import { CONTAINER_TYPE } from "../components/componentsState"
 
 export enum ExecutionErrorType {
   EVALUATED = "EVALUATED",

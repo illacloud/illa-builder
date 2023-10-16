@@ -1,6 +1,6 @@
 import { FC } from "react"
-import RenderFieldAndLabel from "../../components/FieldAndLabel"
-import { PanelLabel } from "../../components/Label"
+import RenderFieldAndLabel from "@/page/App/components/InspectPanel/components/FieldAndLabel"
+import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { StyleContainerSetterProps } from "./interface"
 import { containerStyle, headerContainerStyle } from "./style"
 

@@ -11,7 +11,7 @@ import {
 } from "@illa-design/react"
 import { ReactComponent as HomepageIcon } from "@/assets/dataWorkspace/homepage.svg"
 import { ReactComponent as WebsiteIcon } from "@/assets/dataWorkspace/website.svg"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isValidDisplayName } from "@/utils/typeHelper"

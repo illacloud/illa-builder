@@ -4,13 +4,13 @@ import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { Switch, useModal } from "@illa-design/react"
 import { dynamicWidthStyle } from "@/page/App/components/InspectPanel/PanelSetters/style"
+import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import {
   fetchAnonymousPermission,
   fetchCloseAnonymousPermission,
   fetchOpenAnonymousPermission,
 } from "@/services/drive"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { PanelLabel } from "../../components/Label"
 import { BaseSwitchProps } from "./interface"
 import { setterContainerStyle } from "./style"
 

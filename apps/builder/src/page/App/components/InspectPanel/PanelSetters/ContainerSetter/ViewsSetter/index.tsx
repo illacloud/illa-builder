@@ -17,9 +17,9 @@ import { generateNewViewItem } from "@/page/App/components/InspectPanel/PanelSet
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store, { RootState } from "@/store"
 import { newGenerateChildrenComponentNode } from "@/utils/generators/generateComponentNode"
