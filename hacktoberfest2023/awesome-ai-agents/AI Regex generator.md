@@ -1,0 +1,3 @@
+# AI Regex generator
+This agent will be provide a regex for a given list of strings.
+Fast try: https://illa.ai/ai-agent/ILAex4p1C7Xn/detail
