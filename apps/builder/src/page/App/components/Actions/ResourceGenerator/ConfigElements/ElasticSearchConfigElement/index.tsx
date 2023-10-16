@@ -35,9 +35,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const ElasticSearchConfigElement: FC<BaseConfigElementProps> = (
-  props,
-) => {
+const ElasticSearchConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
 
   const { t } = useTranslation()
@@ -167,3 +165,4 @@ export const ElasticSearchConfigElement: FC<BaseConfigElementProps> = (
 }
 
 ElasticSearchConfigElement.displayName = "ElasticSearchConfigElement"
+export default ElasticSearchConfigElement

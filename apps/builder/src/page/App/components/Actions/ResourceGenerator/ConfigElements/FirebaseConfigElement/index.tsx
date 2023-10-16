@@ -40,7 +40,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const FirebaseConfigElement: FC<BaseConfigElementProps> = (props) => {
+const FirebaseConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
 
   const { t } = useTranslation()
@@ -224,3 +224,4 @@ export const FirebaseConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 FirebaseConfigElement.displayName = "FirebaseConfigElement"
+export default FirebaseConfigElement

@@ -27,7 +27,7 @@ import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const HuggingFaceConfigElement: FC<BaseConfigElementProps> = (props) => {
+const HuggingFaceConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
   const { t } = useTranslation()
 
@@ -134,3 +134,4 @@ export const HuggingFaceConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 HuggingFaceConfigElement.displayName = "HuggingFaceConfigElement"
+export default HuggingFaceConfigElement

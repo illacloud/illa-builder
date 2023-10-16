@@ -86,7 +86,7 @@ const handleConnectionStringValidate = (inputString: string) => {
   return ""
 }
 
-export const NeonConfigElement: FC<BaseConfigElementProps> = (props) => {
+const NeonConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props
 
   const { t } = useTranslation()
@@ -354,3 +354,4 @@ export const NeonConfigElement: FC<BaseConfigElementProps> = (props) => {
   )
 }
 NeonConfigElement.displayName = "NeonConfigElement"
+export default NeonConfigElement

@@ -52,9 +52,7 @@ const getResourceDefaultPort = (resourceType: string) => {
   }
 }
 
-export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
-  props,
-) => {
+const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
   const { onBack, resourceType, resourceID, hasFooter = true } = props
 
   const { t } = useTranslation()
@@ -337,3 +335,4 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 }
 
 MysqlLikeConfigElement.displayName = "MysqlConfigElement"
+export default MysqlLikeConfigElement

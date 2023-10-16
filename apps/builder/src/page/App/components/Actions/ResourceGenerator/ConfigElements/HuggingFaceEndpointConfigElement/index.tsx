@@ -32,7 +32,7 @@ import { urlValidate, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const HuggingFaceEndpointConfigElement: FC<BaseConfigElementProps> = (
+const HuggingFaceEndpointConfigElement: FC<BaseConfigElementProps> = (
   props,
 ) => {
   const { onBack, resourceID, hasFooter = true } = props
@@ -186,3 +186,4 @@ export const HuggingFaceEndpointConfigElement: FC<BaseConfigElementProps> = (
 
 HuggingFaceEndpointConfigElement.displayName =
   "HuggingFaceEndpointConfigElement"
+export default HuggingFaceEndpointConfigElement

@@ -33,7 +33,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const DynamoDBConfigElement: FC<BaseConfigElementProps> = (props) => {
+const DynamoDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props
   const { t } = useTranslation()
   const { control } = useFormContext()
@@ -166,3 +166,4 @@ export const DynamoDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   )
 }
 DynamoDBConfigElement.displayName = "DynamoDBConfigElement"
+export default DynamoDBConfigElement

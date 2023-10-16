@@ -16,7 +16,7 @@ import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const AirtableConfigElement: FC<BaseConfigElementProps> = (props) => {
+const AirtableConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
   const { t } = useTranslation()
 
@@ -94,3 +94,4 @@ export const AirtableConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 AirtableConfigElement.displayName = "AirtableConfigElement"
+export default AirtableConfigElement

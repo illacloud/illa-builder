@@ -38,7 +38,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const S3ConfigElement: FC<BaseConfigElementProps> = (props) => {
+const S3ConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
   const { t } = useTranslation()
   const { control, formState, watch } = useFormContext()
@@ -241,3 +241,4 @@ export const S3ConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 S3ConfigElement.displayName = "S3ConfigElement"
+export default S3ConfigElement

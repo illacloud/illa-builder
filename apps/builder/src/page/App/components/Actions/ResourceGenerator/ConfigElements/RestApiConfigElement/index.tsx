@@ -42,7 +42,7 @@ const RestApiAuthTypeComponentMap = {
   digest: DigestAuthPanel,
 }
 
-export const RestApiConfigElement: FC<BaseConfigElementProps> = (props) => {
+const RestApiConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
 
   const { t } = useTranslation()
@@ -312,3 +312,4 @@ export const RestApiConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 RestApiConfigElement.displayName = "RestApiConfigElement"
+export default RestApiConfigElement

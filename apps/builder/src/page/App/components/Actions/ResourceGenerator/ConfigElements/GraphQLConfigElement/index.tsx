@@ -40,7 +40,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
+const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
 
   const { t } = useTranslation()
@@ -246,3 +246,4 @@ export const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 GraphQLConfigElement.displayName = "GraphQLConfigElement"
+export default GraphQLConfigElement

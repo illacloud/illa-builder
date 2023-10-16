@@ -28,7 +28,7 @@ import { BaseConfigElementProps } from "../interface"
 
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 
-export const SnowflakeConfigElement: FC<BaseConfigElementProps> = (props) => {
+const SnowflakeConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
   const { t } = useTranslation()
   const { control, watch } = useFormContext()
@@ -181,3 +181,4 @@ export const SnowflakeConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 SnowflakeConfigElement.displayName = "SnowflakeConfigElement"
+export default SnowflakeConfigElement

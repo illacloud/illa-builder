@@ -35,7 +35,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const CouchDBConfigElement: FC<BaseConfigElementProps> = (props) => {
+const CouchDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props
   const { t } = useTranslation()
   const { control, formState } = useFormContext()
@@ -200,3 +200,4 @@ export const CouchDBConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 CouchDBConfigElement.displayName = "CouchDBConfigElement"
+export default CouchDBConfigElement

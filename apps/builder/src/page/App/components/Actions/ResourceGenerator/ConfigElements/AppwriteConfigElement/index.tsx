@@ -35,7 +35,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const AppWriteConfigElement: FC<BaseConfigElementProps> = (props) => {
+const AppWriteConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props
   const { t } = useTranslation()
   const { control, formState } = useFormContext()
@@ -175,3 +175,4 @@ export const AppWriteConfigElement: FC<BaseConfigElementProps> = (props) => {
   )
 }
 AppWriteConfigElement.displayName = "AppWriteConfigElement"
+export default AppWriteConfigElement

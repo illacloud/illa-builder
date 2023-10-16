@@ -31,9 +31,7 @@ import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (
-  props,
-) => {
+const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props
 
   const { control, watch, formState } = useFormContext()
@@ -257,3 +255,4 @@ export const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (
   )
 }
 GoogleSheetsConfigElement.displayName = "GoogleSheetsConfigElement"
+export default GoogleSheetsConfigElement

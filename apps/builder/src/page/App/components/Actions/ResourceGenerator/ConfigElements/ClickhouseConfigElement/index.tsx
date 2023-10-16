@@ -40,7 +40,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const ClickhouseConfigElement: FC<BaseConfigElementProps> = (props) => {
+const ClickhouseConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
 
   const { t } = useTranslation()
@@ -319,3 +319,4 @@ export const ClickhouseConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 ClickhouseConfigElement.displayName = "ClickhouseConfigElement"
+export default ClickhouseConfigElement

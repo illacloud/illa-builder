@@ -38,7 +38,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
+const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props
   const { t } = useTranslation()
   const { control, formState } = useFormContext()
@@ -266,3 +266,4 @@ export const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   )
 }
 OracleDBConfigElement.displayName = "OracleDBConfigElement"
+export default OracleDBConfigElement

@@ -36,7 +36,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { RedisLikeConfigElementProps } from "./interface"
 
-export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
+const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
   const { onBack, resourceID, resourceType, hasFooter = true } = props
   const { t } = useTranslation()
   const { control } = useFormContext()
@@ -264,3 +264,4 @@ export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
 }
 
 RedisConfigElement.displayName = "RedisConfigElement"
+export default RedisConfigElement

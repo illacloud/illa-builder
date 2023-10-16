@@ -33,7 +33,7 @@ import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 
-export const SMTPConfigElement: FC<BaseConfigElementProps> = (props) => {
+const SMTPConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
   const { t } = useTranslation()
   const { control } = useFormContext()
@@ -160,3 +160,4 @@ export const SMTPConfigElement: FC<BaseConfigElementProps> = (props) => {
 }
 
 SMTPConfigElement.displayName = "SMTPConfigElement"
+export default SMTPConfigElement
