@@ -4388,7 +4388,14 @@
     "before": "Lataa lisää"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Osallistu",
+  "contribute": {
+    "tag": {
+      "recommended": "Suositeltu",
+      "add_tag": "Lisää tunnisteita",
+      "tag": "Tunniste",
+      "failed_to_save": "Tallennus epäonnistui"
+    }
+  },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
   }
