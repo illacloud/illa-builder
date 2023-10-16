@@ -4388,7 +4388,14 @@
     "before": "さらに読み込む"
   },
   "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
-  "contribute": "貢献",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "タグを追加",
+      "tag": "タグ",
+      "failed_to_save": "保存に失敗しました"
+    }
+  },
   "error_page": {
     "fobidden": "アクセス権限がありません"
   }
