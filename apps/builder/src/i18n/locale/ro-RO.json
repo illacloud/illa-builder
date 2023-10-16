@@ -76,7 +76,8 @@
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. ",
-      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop."
+      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop.",
+      "save_resource": "Salvare reușită, pagina se va închide în 3 secunde..."
     },
     "create": "Crează"
   },
