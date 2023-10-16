@@ -1,5 +1,6 @@
 import { GridFilterModel } from "@mui/x-data-grid"
 import { GridInputRowSelectionModel } from "@mui/x-data-grid/models/gridRowSelectionModel"
+import { ColumnConfig } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface BaseDataGridProps extends BaseWidgetProps {
@@ -29,4 +30,5 @@ export interface BaseDataGridProps extends BaseWidgetProps {
   primaryKey?: string
   filterModel?: GridFilterModel
   selectedRowsPrimaryKeys?: GridInputRowSelectionModel
+  columns?: ColumnConfig[]
 }

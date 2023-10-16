@@ -14,7 +14,6 @@ import {
   gridPaginatedVisibleSortedGridRowIdsSelector,
 } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
-import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef"
 import {
   GridCsvGetRowsToExportParams,
   GridPrintGetRowsToExportParams,
@@ -68,6 +67,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     excludeHiddenColumns,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
+    columns,
   } = props
 
   const { t } = useTranslation()
@@ -79,20 +79,6 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
   const arrayData: object[] = useMemo(() => {
     return dealRawData2ArrayData(rawData)
   }, [rawData])
-
-  const columns: GridColDef<object>[] = useMemo(() => {
-    if (arrayData.length == 0) {
-      return []
-    } else {
-      return Object.keys(arrayData[0]).map((key) => {
-        return {
-          field: key,
-          width: 150,
-          resizable: false,
-        }
-      })
-    }
-  }, [arrayData])
 
   const toolbar = useCallback(() => {
     return (
@@ -345,7 +331,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
         }
         checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
         rows={arrayData}
-        columns={columns}
+        columns={columns ?? []}
         paginationMode={enableServerSidePagination ? "server" : "client"}
         rowCount={
           totalRowCount !== undefined

@@ -39,6 +39,18 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
+    id: `${baseWidgetName}-column`,
+    groupName: i18n.t("editor.inspect.setter_group.column"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-columns`,
+        useCustomLayout: true,
+        attrName: "columns",
+        setterType: "DATA_GRID_COLUMN_SETTER",
+      },
+    ],
+  },
+  {
     id: `${baseWidgetName}-sort`,
     groupName: i18n.t("editor.inspect.setter_group.sort"),
     children: [
