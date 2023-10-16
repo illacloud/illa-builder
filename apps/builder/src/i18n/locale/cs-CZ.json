@@ -76,7 +76,8 @@
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. ",
-      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači."
+      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači.",
+      "save_resource": "Úspěšně uloženo, stránka se zavře za 3 sekundy..."
     },
     "create": "Vytvořit"
   },
