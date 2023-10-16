@@ -76,7 +76,8 @@
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. ",
-      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet."
+      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Opret"
   },
