@@ -76,7 +76,8 @@
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
       "delete-suc": "Supprimé avec succès. ",
-      "mobile-fork-suc": "Forké avec succès. Veuillez modifier sur le bureau."
+      "mobile-fork-suc": "Forké avec succès. Veuillez modifier sur le bureau.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Créer"
   },
