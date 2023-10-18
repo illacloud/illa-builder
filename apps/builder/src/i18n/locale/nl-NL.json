@@ -76,7 +76,8 @@
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. ",
-      "mobile-fork-suc": "Succesvol afgebroken. Bewerk op bureaublad."
+      "mobile-fork-suc": "Succesvol afgebroken. Bewerk op bureaublad.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Aanmaken"
   },
@@ -4387,7 +4388,14 @@
     "before": "Meer laden"
   },
   "size_exceed_copied_tips": "De inhoud is te lang om te kopiëren. (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)",
-  "contribute": "Meedoen",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    }
+  },
   "error_page": {
     "fobidden": "Geen toegangstoelating"
   }
