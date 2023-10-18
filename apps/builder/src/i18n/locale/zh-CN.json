@@ -4395,8 +4395,16 @@
       "tag": "标签",
       "failed_to_save": "保存失败"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link"
+    "update": "编辑标签",
+    "copy_link": "复制链接",
+    "first_time_modal": {
+      "title": "贡献到社区",
+      "button": "贡献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "编辑"
+    }
   },
   "error_page": {
     "fobidden": "没有访问权限"
