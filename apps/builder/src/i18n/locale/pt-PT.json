@@ -76,7 +76,8 @@
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. ",
-      "mobile-fork-suc": "Forked com sucesso. Edite no desktop."
+      "mobile-fork-suc": "Forked com sucesso. Edite no desktop.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Crio"
   },
@@ -4387,7 +4388,16 @@
     "before": "Carregue mais"
   },
   "size_exceed_copied_tips": "O conteúdo é muito longo para ser copiado. (tamanho atual: {{current_size}} bytes, limite: {{limit_size}} bytes)",
-  "contribute": "Contribuir",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
+  },
   "error_page": {
     "fobidden": "Sem permissão de acesso"
   }

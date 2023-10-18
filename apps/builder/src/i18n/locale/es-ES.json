@@ -76,7 +76,8 @@
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
       "delete-suc": "Eliminado correctamente. ",
-      "mobile-fork-suc": "Bifurcado con éxito. Por favor edite en el ordenador."
+      "mobile-fork-suc": "Bifurcado con éxito. Por favor edite en el ordenador.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Crear"
   },
@@ -4387,7 +4388,16 @@
     "before": "Cargar más"
   },
   "size_exceed_copied_tips": "El contenido es demasiado largo para copiar. (tamaño actual: {{current_size}} bytes, límite: {{limit_size}} bytes)",
-  "contribute": "Contribuir",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
+  },
   "error_page": {
     "fobidden": "Sin permiso de acceso"
   }
