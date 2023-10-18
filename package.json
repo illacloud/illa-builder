@@ -7,9 +7,10 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {
-    "dev": "turbo run dev --filter=illa-builder",
+    "dev": "turbo run dev --filter=illa-builder --filter=illa-cloud-fe",
+    "dev:cloud": "turbo run dev --filter=illa-builder",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288 turbo run build-cloud --filter=illa-builder",
-    "build-self": "NODE_OPTIONS=--max-old-space-size=12288 turbo run build-self --filter=illa-builder",
+    "build-self": "NODE_OPTIONS=--max-old-space-size=12288 turbo run build-self --filter=illa-builder --filter=illa-cloud-fe",
     "prepare": "husky install",
     "format": "prettier --write \"apps/**/*.{ts,tsx}\"",
     "lint": "eslint \"apps/**/src/**/**.{ts,tsx}\" --config \".eslintrc.js\"",

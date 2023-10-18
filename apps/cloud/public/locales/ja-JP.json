@@ -1,0 +1,4368 @@
+{
+  "bookFrom": {
+    "title": "デモを予約する",
+    "form": {
+      "about": {
+        "label": "あなたのプロジェクトについて少し教えてください",
+        "required": ".",
+        "pattern": ""
+      },
+      "wantTo": {
+        "label": "ILLAで何をしたいですか?",
+        "required": ".",
+        "pattern": ""
+      }
+    },
+    "message": {},
+    "submit": "送信"
+  },
+  "partnerFrom": {
+    "title": "パートナーになる",
+    "form": {
+      "name": {
+        "label": "名前",
+        "placeholder-1": "名",
+        "placeholder-2": "姓"
+      },
+      "title": {
+        "label": "あなたのタイトル"
+      },
+      "companyName": {
+        "label": "会社名"
+      },
+      "companyWebsite": {
+        "label": "会社ウェブサイト",
+        "pattern": "有効な URL を入力してください"
+      },
+      "email": {
+        "label": "Eメールアドレス",
+        "pattern": "正しいメールアドレスを入力してください。"
+      }
+    },
+    "message": {},
+    "submit": "送信"
+  },
+  "billing": {
+    "menu": {
+      "billing": "請求",
+      "license": "すべてのサブスクリプション",
+      "drive": "ドライブ",
+      "appsumo": "Appsoco",
+      "colla_transaction": "Collaトランザクション履歴",
+      "billing_portal": "Billing portal",
+      "overview": "すべてのサブスクリプション",
+      "pricing": "価格",
+      "balance": "残高",
+      "colla": "コラの使用法"
+    },
+    "title": {
+      "overview": "すべてのサブスクリプション",
+      "pricing": "価格",
+      "balance": "残高",
+      "colla_usage": "コラの使用法",
+      "billing": "請求",
+      "license": "シート",
+      "drive": "ドライブ",
+      "colla": "Colla",
+      "appsumo": "Appsoco"
+    },
+    "pricing": {
+      "premium": {
+        "desc": "チームをアップグレードして高度な機能にアクセスする",
+        "feature": {
+          "builder": {
+            "viewer": "無制限の視聴者のために無料",
+            "audit_log": "監査ログ",
+            "public": "アプリを公開",
+            "sql": "AI SQLの生成",
+            "history": "バックアップ編集の履歴と復元",
+            "theme": "アプリのカスタムテーマ",
+            "multi_environment": "マルチ環境 (近日公開予定)",
+            "deployed_version": "デプロイされたバージョンを保持して元に戻す (近日公開)"
+          },
+          "agent": {
+            "gpt": "GPT-4、 \nGPT-3.5-turbo-16k などの他のモデルへのアクセス",
+            "colla": "座席あたり2.5kコラ"
+          }
+        },
+        "price": "/month/editor"
+      },
+      "colla": {
+        "desc": "ILLA Cloud の付加価値サービスの支払いに使用",
+        "feature": {
+          "storage": "ファイルストレージ ILLA ドライブ上のファイルの保存に使用します。",
+          "traffic": "トラフィック。ILLAドライブからファイルをダウンロードするために使用されます。",
+          "token": "AIエージェントトークン。AIエージェントの実行に使用されます。",
+          "conversion": {
+            "1": "5k Colla",
+            "2": "5GBのストレージ",
+            "3": "5GBのトラフィック",
+            "4": "50kトークン"
+          }
+        },
+        "price": "/month/5k Colla",
+        "button": "コラの管理"
+      }
+    },
+    "monthly": "月ごと",
+    "yearly": "年ごと",
+    "members": "チーム",
+    "app": "アプリ",
+    "security-support": "セキュリティとサポート",
+    "apps": {
+      "components": "すべてのコンポーネント",
+      "resources": "すべてのリソース",
+      "plugins": "無制限のプラグイン(近日公開)",
+      "sql": "AI SQLの生成",
+      "watermark": "透かしを削除"
+    },
+    "security": {
+      "historic-7": "バックアップ編集の履歴と復元",
+      "historic-30": "デプロイされたバージョンと元に戻す（近日公開予定）",
+      "develop-environment": "環境の開発（近日公開予定）",
+      "app-public": "アプリを公開",
+      "restore-data": "バックアップ編集の履歴と復元",
+      "deployed": "ILLAサポートへのアクセス",
+      "dedicated": "専任ソリューションエンジニア"
+    },
+    "tips": {
+      "plugins": "プラグインをインポートし、チーム内のすべてのアプリ内で使用する",
+      "sql": "自然言語を入力し、SQL文を生成します",
+      "staging": "ステージング環境に対してアプリをテストする",
+      "app-public": "アプリを公開し、リンクを持つ誰でもアクセスできます",
+      "restore-data": "必要な時に履歴をバックアップまたは復元します",
+      "deployed": "導入されたエンジニアはより速く搭載するのを助けます",
+      "dedicated": "Slack/email/phoneを介した専用の顧客ソリューションエンジニア",
+      "preview_insufficient": "容量不足のためファイルをプレビューできません。容量を拡大してください。"
+    },
+    "deployment": {
+      "title": "柔軟な展開",
+      "title-1": "柔軟な",
+      "title-2": "デプロイメント",
+      "introduction": "ILLAでは、2つの方法で展開することができます。開発者は、ILLA Cloudを使用して、どのデバイスでもアプリの構築を迅速に開始できます。 また、データの安全性を確保するため、より優れたセキュリティ機能を備えたILLA CLIを無料で提供しています。",
+      "illa-cloud": {
+        "title": "ILLA Cloud",
+        "des": "ワンクリックでデプロイを試して、最も簡単なデプロイ体験をお楽しみください"
+      },
+      "illa-CLI": {
+        "title": "ILLA CLI",
+        "des": "ILLAを自己ホストするための最速かつ最も簡単な方法"
+      },
+      "kubernetes": {
+        "title": "Kubernetes",
+        "des": "ILLA Helm チャートを使用して ILLA をKubernetesにデプロイする"
+      },
+      "docker": {
+        "title": "Docker",
+        "des": "ILLAを30秒後にローカルにデプロイする"
+      }
+    },
+    "user-month": "ユーザー毎/月",
+    "editor-month": "毎月エディタ/月",
+    "start-at": "100ユーザーから開始",
+    "free-members": "個人利用のメンバーは1名です",
+    "unlimited-viewer": "無制限の視聴者のために無料",
+    "unlimited-members": "無制限のメンバー",
+    "free-btn": "現在のプラン",
+    "plus-btn": "無料版をお試しください",
+    "enterprise-btn": "お問い合わせ",
+    "colla_usage": {
+      "used": "使用中",
+      "token": "トークン",
+      "storage": "ストレージ",
+      "traffic": "トラフィック"
+    },
+    "subscription_general": {
+      "team_type": {
+        "free": "無料",
+        "plus": "プラス",
+        "premium": "プレミアム"
+      },
+      "colla": {
+        "desc": "ILLA Cloud 内の付加価値サービスにかかる手数料の支払いに使用されます。 ILLA ドライブのストレージ、ILLA ドライブのトラフィック、AI Agent のトークンなど。",
+        "table_title": {
+          "colla": "コラを購読中",
+          "seats": "購読済みシート"
+        },
+        "table_desc": {
+          "bouns": "現在の周期のColla残高が不足している場合は、自動的にCollaを追加します。 ボーナスコラは追加料金であり、月額プランには含まれません。 サブスクリプションが次のサイクルで自動的に更新されると、ボーナスコラは含まれません。"
+        },
+        "table_button": {
+          "seats": "座席管理",
+          "colla": "コラの管理"
+        }
+      },
+      "plan": {
+        "free": "無料",
+        "plus": "プレミアム"
+      },
+      "sub_cycle": {
+        "yearly": "年ごと",
+        "monthly": "月ごと",
+        "lifetime": "Lifetime"
+      },
+      "billing_cyle": {
+        "year": "/年",
+        "month": "/ 月"
+      },
+      "table_title": {
+        "next_payment_date": "次回の支払日",
+        "expiration_date": "有効期限",
+        "licenses": "席",
+        "storage": "ストレージ",
+        "traffic": "トラフィック",
+        "colla": "残りのColra",
+        "colla_sub": "コラを購読中",
+        "colla_unsub": "残高",
+        "seats": "購読済みシート",
+        "bouns": "Bouns Colla"
+      },
+      "period": {
+        "current": "現在",
+        "next": "次へ"
+      },
+      "cycle": {
+        "month": "/月",
+        "year": "/年"
+      },
+      "table_desc": {
+        "bouns": "現在の周期のColla残高が不足している場合は、自動的にCollaを追加します。 ボーナスコラは追加料金であり、月額プランには含まれません。 サブスクリプションが次のサイクルで自動的に更新されると、ボーナスコラは含まれません。 "
+      },
+      "table_button": {
+        "seats": "座席管理",
+        "colla": "コラの管理"
+      }
+    },
+    "subscription_card": {
+      "title": {
+        "License": "席",
+        "Storage": "ストレージ",
+        "Traffic": "トラフィック",
+        "balance": "残高",
+        "colla": "Colla"
+      },
+      "button": {
+        "License": "座席管理",
+        "Storage": "ストレージの管理",
+        "Traffic": "トラフィックを拡大",
+        "colla": "コラの管理"
+      },
+      "capacity": {
+        "License": "使用済み（ {{total}} 席） ",
+        "Storage": "{{used}} (合計 {{total}} GB) が使用されています。",
+        "Traffic": "{{used}} (合計 {{total}} GB) が使用されています。",
+        "colla": "{{used}} Colla used (total of {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "トークン",
+        "traffic": "トラフィック",
+        "storage": "ストレージ"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "月",
+        "event": "イベント",
+        "usage": "コラの使用法"
+      },
+      "event": {
+        "increase_storage": "ストレージ容量を上げる",
+        "increase_colla": "コラを上げる",
+        "increase_traffic": "トラフィックを増加"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
+      }
+    },
+    "payment_sidebar": {
+      "price": {
+        "colla_monthly": "{{price}} / 月額/5k Colla",
+        "colla_yearly": "{{price}} / 年間/60k Colla"
+      },
+      "title": {
+        "manage_storage": "ストレージの管理",
+        "manage_licenses": "座席管理",
+        "expand_traffic_capac": "トラフィック容量を拡大",
+        "colla": "コラの管理"
+      },
+      "plan_label": {
+        "License": "席",
+        "Storage": "ストレージ",
+        "Traffic": "トラフィック",
+        "colla": "Colla"
+      },
+      "plan_number_input_label": {
+        "License": "席",
+        "Storage_traffic": "GB",
+        "colla": "Colla"
+      },
+      "select_option": {
+        "Yearly": "年ごと",
+        "Monthly": "月ごと"
+      },
+      "price_label": {
+        "total": "合計"
+      },
+      "price_type": {
+        "this_period_remove": "この期間",
+        "this_period": "この期間",
+        "next_period": "次の期間",
+        "next_period_remove": "次の期間",
+        "payment": "コスト",
+        "this_period_storage": "この期間",
+        "next_period_storage": "次の期間",
+        "this_period_remove_storage": "この期間",
+        "next_period_remove_storage": "次の期間",
+        "payment_storage": "コスト",
+        "payment_traffic": "コスト",
+        "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
+      },
+      "price_cal": {
+        "this_period": "{{unitPrice}} × {{licenseNum}} 座席× {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} 席",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} 席",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} 座席× {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} 席",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} 席",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} 席",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} 席",
+        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
+      },
+      "button": {
+        "unsubscribe": "購読解除",
+        "subscribe": "購読する",
+        "change_plan": "プランの変更",
+        "storage_traffic_increase": "{{changeNum}} GB を上げる",
+        "storage_traffic_remove": "{{changeNum}} GB を削除",
+        "license_increase": "{{changeNum}} 座席の増加",
+        "license_remove": "{{changeNum}} シートを削除",
+        "colla_increase": "{{changeNum}} コラを上げる",
+        "colla_remove": "{{changeNum}} コラを削除"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} ストレージ",
+        "3": "{{trafficNum}} トラフィック",
+        "4": "{{tokenNum}} トークン"
+      },
+      "description_title": {
+        "add_storage": "{{changeNum}} GB のストレージを追加します。 確認が完了すると、この請求サイクルの新しいストレージの支払いがすぐに差し引かれます。<0>詳細はこちら</0>",
+        "remove_storage": "{{changeNum}} GB のストレージを削除します。確認後、次の課金サイクルで変更が有効になります。<0>詳細はこちら</0>",
+        "update_plan_year": "年間支払いプランに更新します。 確認後、次の請求サイクルの開始から変更が有効になります。<0>詳細はこちら</0>",
+        "update_plan_monthly": "毎月の支払いプランに更新します。 確認後、次の請求サイクルの開始から変更が有効になります。<0>詳細はこちら</0>",
+        "add_license": "{{changeNum}} 席を追加します。確認後、この請求サイクルの新しいシートの支払いがすぐに差し引かれます。<0>詳細はこちら</0>",
+        "remove_license": "{{changeNum}} シートを削除します。確認後、次の請求サイクルで変更が反映されます。<0>詳細</0>",
+        "add_traffic": "{{changeNum}}GB のトラフィックを追加します。確認後、追加トラフィックのコストがすぐに差し引かれます。<0>詳細はこちら</0>",
+        "subscribe_storage": "あなたはILLA Cloud Premiumに登録することになります。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。<0>詳細はこちら</0>。",
+        "subscribe_license": "あなたはILLAドライブに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。<0>詳細はこちら</0>。",
+        "update_plan_increase_license": "{{changeNum}} シートを追加し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
+        "update_plan_remove_license": "{{changeNum}} シートを削除し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
+        "update_plan_increase_storage": "{{changeNum}} GBのストレージを追加し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
+        "update_plan_remove_storage": "{{changeNum}} GBのストレージを削除し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
+        "unsubscribe_license": "ILLA Cloud Premiumの登録を解除します。 キャンセル後、次の請求サイクルからプレミアム機能にアクセスできなくなります。<0>詳細</0>",
+        "unsubscribe_storage": "ILLAドライブのストレージの登録を解除します。 キャンセル後、次の請求サイクルから開始すると、ストレージ容量は100MBに復元されます。 <0>詳細</0>",
+        "subscribe_license_monthly": "ILLA Cloud Premiumの月額サブスクリプションを購読します。<0>詳細はこちら</0>",
+        "subscribe_license_yearly": "ILLA Cloud Premiumの年間サブスクリプションを購読します。詳細はこちら</0>をご覧ください。",
+        "subscribe_storage_monthly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>",
+        "subscribe_storage_yearly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>",
+        "colla_sub": "あなたはコラを購読するつもりです。 確認が完了すると、各請求サイクルの開始時に自動的に手数料が差し引かれ、Colaが必要な場合に自動的にサブスクリプションをアップグレードします。 <0>詳細</0>",
+        "colla_increase": "{{changeNum}} Collaを追加します。確認が完了すると、この請求サイクルの残り金額がすぐに差し引かれます。<0>詳細</0>",
+        "colla_remove": "{{changeNum}} Collaを削除します。確認後、次の請求サイクルから有効になります。<0>詳細</0>",
+        "colla_unsubscribe": "あなたはあなたのCollaサブスクリプションをキャンセルしようとしています。確認後、次の請求サイクルから有効になります。 キャンセル後、ILLA ドライブと AI Agent の使用に問題が発生することがあります。<0>詳細はこちら</0>",
+        "colla_update": "あなたはあなたのCollaサブスクリプションを変更します。確認が完了すると、次の請求サイクルから変更が反映されます。<0>詳細</0>"
+      },
+      "description": {
+        "remove_storage": "あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_year": "次の期間から、サブスクリプションは年間サブスクリプションに変更されます。 年間購読料に基づいて自動的に手数料が差し引かれます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_monthly": "次の期間から、サブスクリプションは月額プランに変更されます 月額料金に基づいて自動的に手数料が差し引かれます シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "add_license": "例として、月額プランを使用した計算ルールを例として挙げましょう。3月14日以降、最初に5議席まで登録されたシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日には、追加で1席追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1席の費用を差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は1席*$ 10 / 30日*4日と推定され、約$ 1.33になります。 次の請求サイクルから、すべての座席料金は統合され、一緒に支払われます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "remove_license": "編集権限を持つユーザーの数が次の課金サイクルの開始時にシートの数を超える場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内のシート数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "add_traffic": "正常に控除された後、トラフィックはリアルタイムで増加します。 トラフィックを使用すると、手数料は返金できません。未使用のトラフィックは単位GBで返金できます。 例えば、10GBのトラフィックを購入して4.5GBを使用している場合、5GBの払い戻しを申請することができます。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "subscribe_storage_yearly": "あなたはILLAドライブストレージの年間サブスクリプションに登録することになります。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 差し引かれた実際の量は、GBで購読しているストレージ容量によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始した場合、年間サブスクリプション料金は$ 9です。 GBごとに、合計3GBを持っていると、$ 29が差し引かれます。 2023年2月25日。 2023年3月25日に2GBを追加された場合、2023年3月25日に残りの11ヶ月分の支払いが差し引かれます。 その後、2024年2月25日までに、5 GBの支払いが差し引かれます。これは(2+3)*$9.9=$49です。 をクリックします。 ストレージを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 実際に差し引かれる金額は、あなたが持っている席の数によって異なります。 例えば、2023年2月25日に最初のサブスクリプションを開始し、月額料金は1座席あたり12ドルです。 合計3席ですが2023年2月25日に36ドル差し引かれます 2023年3月21日にさらに2議席追加された場合、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに5席分の支払いが差し引かれます(2+3)*$12=$60です。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_increase_license": "更新された議席数と次の期間からの新しい請求サイクルの価格に基づいて手数料が自動的に差し引かれます。 今回は、現在の請求サイクルに応じて、増えた議席の支払いが差し引かれます。 例として、月額プランを使用してシートを増やした場合の計算ルールを例として挙げましょう。3月14日以降、当初5議席を購読した場合のシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日には、追加の座席を1つ追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1席の費用を差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は1席*$ 10 / 30日*4日と推定され、約$ 1.33になります。 次の請求サイクルから、すべての座席料金は統合され、一緒に支払われます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_remove_license": "更新された議席数と次の期間からの新しい請求サイクルの価格に基づいて手数料が自動的に差し引かれます。 編集権限を持つユーザーの数が次の課金サイクルの開始時にシートの数を超える場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内のシート数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_remove_storage": "更新されたストレージと次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。"
+      },
+      "colla_redeem": {
+        "title": "{{changeNum}} Collaでは、以下を購入できます。 ",
+        "storage": "ストレージ",
+        "traffic": "トラフィック",
+        "token": "トークン"
+      }
+    },
+    "message": {
+      "failed_to_subscribe": "購読に失敗しました。もう一度お試しください。",
+      "failed_to_add_traffic": "トラフィックの追加に失敗しました。もう一度やり直してください。 ",
+      "failed_to_add_storage": "ストレージの追加に失敗しました。もう一度やり直してください。 ",
+      "failed_to_remove_storage": "ストレージの削除に失敗しました。もう一度やり直してください。 ",
+      "failed_to_add_licens": "座席を追加できませんでした。もう一度やり直してください。 ",
+      "failed_to_remove_lic": "席の削除に失敗しました。もう一度やり直してください。 ",
+      "failed_to_change_pla": "プランの変更に失敗しました。もう一度やり直してください。 ",
+      "failed_to_unsubscrib": "購読解除に失敗しました。もう一度やり直してください。 ",
+      "successfully_removed": "正常に削除されました。変更は {{nextPaymentDate}} から適用されます。",
+      "unsubscription_succe": "サブスクリプションを解除しました。変更は {{nextPaymentDate}} から有効になります",
+      "cancel_subscribe": "サブスクリプションが完了できませんでした。もう一度お試しいただくか、billing@illasoft.com までご連絡ください。",
+      "cancel_purchase": "購入が完了できませんでした。もう一度お試しいただくか、billing@illasoft.com までご連絡ください。",
+      "successfully_changed": "サブスクリプションが正常に変更されました。数分後に有効になります",
+      "failed_to_change": "サブスクリプションの変更に失敗しました",
+      "unsubscription_suc": "サブスクリプションは正常にキャンセルされ、次の期間から有効になります",
+      "failed_to_join_no_license": "座席が不足しているため参加できません ",
+      "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
+      "appsumo": {
+        "suc": "正常に引き換えました",
+        "fail": "交換に失敗しました。後でもう一度お試しください。",
+        "transfer": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 ",
+        "leave": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 "
+      },
+      "no_license_operate_failed": "ライセンス不足のため操作に失敗しました。",
+      "failed_to_invite_no_license": "ライセンス不足のため、一部のメンバー招待に失敗しました。",
+      "error_subscribe": "購読に失敗しました。後でもう一度お試しください。",
+      "unsubscription_fail": "サブスクリプションをキャンセルできませんでした。後でもう一度お試しください。",
+      "failed_to_update": "サブスクリプションの更新に失敗しました。もう一度やり直してください。 ",
+      "update_suc": "サブスクリプションが更新されました",
+      "no_traffic": "トラフィックが不足しています。Collaを増やすには管理者に問い合わせてください。",
+      "no_storage": "ストレージが不足しています。Collaを増やすには管理者に問い合わせてください。"
+    },
+    "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "ストレージが足りません",
+          "desc": {
+            "1": "ストレージが不足しています。Colraを購読するか、Colraを追加してストレージを増やしてください。",
+            "2": "Collaを購読した後、Collaはストレージの増加、トラフィックの増加に利用できます。 「augment token」は自動的に割り当てられます"
+          }
+        },
+        "traffic": {
+          "title": "トラフィック不足",
+          "desc": {
+            "1": "トラフィックが不足しています。Colraを購読するかColraを追加してトラフィックを増やしてください。",
+            "2": "Collaを購読した後、Collaはストレージの増加、トラフィックの増加に利用できます。 「augment token」は自動的に割り当てられます"
+          }
+        },
+        "token": {
+          "title": "トークンが足りません",
+          "desc": {
+            "1": "トークンが不足しています。Collaを購読するか、Collaを追加してトークンを増やしてください。",
+            "2": "Collaを購読した後、Collaはストレージの増加、トラフィックの増加に利用できます。 「augment token」は自動的に割り当てられます"
+          }
+        },
+        "button": "コラを上げる",
+        "cycle": "monthly / 5k Colla",
+        "failed": {
+          "title": "コラを増やすことができませんでした",
+          "storage": {
+            "desc": "現在のストレージ要件をカバーするには、Colla残高が不足しています。Collaを増やす際にいくつかの問題が発生しました。Collaを手動で増やしてください。"
+          },
+          "traffic": {
+            "desc": "現在のトラフィック要件をカバーするには、Colla残高が不足しています。Collaを増やす際にいくつかの問題が発生しました。Collaを手動で増やしてください。"
+          },
+          "token": {
+            "desc": "現在のトークン要件をカバーするには、Colla残高が不十分です。Collaを増やしている間にいくつかの問題が発生しました。Collaを手動で増やしてください。"
+          },
+          "button": "コラを上げる"
+        }
+      },
+      "storage_insufficient_modal": {
+        "owner_title_drive": "容量不足",
+        "owner_description_drive": "ストレージまたはトラフィックが不十分です。アップグレードしてもう一度お試しください。",
+        "owner_button_drive": "アップグレードする",
+        "not_owner_title_drive": "操作に失敗しました",
+        "not_owner_description_drive": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
+        "not_owner_button_drive": "了解",
+        "out_title_drive": "ダウンロードに失敗しました",
+        "out_description_drive": "ダウンロードに失敗しました。ファイルの所有者に連絡してください",
+        "out_button_drive": "了解"
+      },
+      "sub_suc": {
+        "subscription_success": "サブスクリプションに成功しました",
+        "you_can_now_invite_m": "数分で有効になります。 メンバーを招待して、後で高度な機能を使い始めることができます。試してみてください！",
+        "you_can_now_upload_m": "さらにファイルをアップロードできるようになりました。",
+        "payment_successful": "支払いが完了しました",
+        "we_have_added_the_li": "数分後に有効になります。シートを追加しました。 サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
+        "we_have_added_the_st": "私たちはあなたのためにストレージを追加しました。サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
+        "we_have_added_the_tr": "トラフィックを追加しました。より多くのファイルをダウンロードすることができます。",
+        "successfully_updated": "正常に更新されました",
+        "the_change_to_the_su": "サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
+        "got_it": "了解"
+      },
+      "upgrade_now_admin": {
+        "upgrade_to_plus": "プレミアムにアップグレード",
+        "this_feature_is_avai": "この機能はプレミアムユーザーのみ利用できます。使用するには、プラスにアップグレードしてください。 プレミアムにアップグレードすると、次の機能にもアクセスできます。 ",
+        "add_unlimited_viewer": "無制限の視聴者メンバーを無料で追加",
+        "publish_public_appli": "公開アプリケーションを公開",
+        "ai_sql_generation": "AI SQLの生成",
+        "audit_logs": "監査ログ",
+        "learn_more": "もっと詳しく",
+        "upgrade": "アップグレードする",
+        "insufficient_license_title": "座席が足りません",
+        "insufficient_license_description": "より多くの編集者を招待するには、まず座席を増やしてください。あなたのチームのすべてのメンバーは、ILLA Cloud Plusの機能を使用できます。 各機能への特定のアクセスは、各メンバーの役割によって異なります。 ",
+        "insufficient_license_button": "シートを追加",
+        "pricing": "editor/mo, yearly($20/editor, monthly)"
+      },
+      "expired": {
+        "owner": "サブスクリプションの有効期限が切れています。引き続き使用するには、サブスクリプションを更新してください。",
+        "others": "チームのサブスクリプションの有効期限が切れているため、あなたのアカウントは無効になっています。",
+        "your_subscription_ha_not_owner": "サブスクリプションが期限切れです",
+        "all_members_except_f_not_owner": "あなたのチームのサブスクリプションの有効期限が切れています。チームのオーナーに連絡してください。",
+        "upgrade_not_owner": "了解",
+        "your_subscription_ha": "サブスクリプションが期限切れです",
+        "all_members_except_f": "あなたのチームのサブスクリプションの有効期限が切れています。時間内に更新してください。",
+        "upgrade": "アップグレードする"
+      },
+      "blank_page": {
+        "insufficient_license_disable": "チームスペースが不足しているため、あなたのアカウントは無効になっています。チームオーナーにお問い合わせください。"
+      },
+      "upgrade_not_admin": {
+        "insufficient_license_title": "座席が足りません",
+        "insufficient_license_description": "シートが不足しているため操作に失敗しました。チームオーナーに連絡してください。",
+        "insufficient_license_button": "OK"
+      },
+      "storage_insufficient": {
+        "owner_title": "ストレージ容量が足りません",
+        "owner_description": "ファイルを正常に保存するには、時間内にストレージを増やしてください。 ",
+        "owner_button": "容量アップ",
+        "not_owner_title": "ストレージ容量が足りません",
+        "not_owner_description": "ファイルを正常に保存するには、管理者に問い合わせて時間内にストレージ容量を増やしてください。",
+        "not_owner_button": "OK",
+        "owner_pricing": "5 GB/月"
+      },
+      "traffic_insufficient": {
+        "owner_title": "トラフィック容量不足",
+        "owner_description": "ファイルに正常にアクセスするには、時間内にトラフィック容量を増やしてください。 ",
+        "owner_button": "容量アップ",
+        "not_owner_title": "トラフィック不足",
+        "not_owner_description": "ファイルに正常にアクセスするには、管理者に連絡して時間内にトラフィック容量を増やしてください。",
+        "not_owner_button": "OK",
+        "owner_pricing": "5 GB"
+      },
+      "cancel_confirm": {
+        "description": "キャンセル後、次の課金サイクルから無料プランに戻ります。 サブスクリプションプランに含まれる機能にはアクセスできなくなります。",
+        "title": "サブスクリプションをキャンセルしますか？",
+        "button_cancel": "キャンセル",
+        "button_confirm": "確認する"
+      },
+      "change_confirm": {
+        "description": "一度削減されると、次の請求サイクルで変更が有効になります。 新たに割り当てられた容量を超えるリソースがある場合、すべてのリソースにアクセスできなくなる可能性があります。",
+        "title": "プランを変更しますか?",
+        "button_cancel": "キャンセル",
+        "button_confirm": "確認する"
+      }
+    },
+    "homepage": {
+      "get_access_to_advanc": "高度な機能にアクセスする",
+      "upgrade": "アップグレードする",
+      "cancel": "キャンセル"
+    },
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "AppSumo引き換える"
+      },
+      "modal": {
+        "title": "AppSumo引き換える",
+        "description": "{{teamName}} チームで AppSumo を利用してもよろしいですか?",
+        "cancel": "キャンセル",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "引き換えるチームを選択",
+          "create_button": "新しいチームを作成",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "アカウントを作成"
+      },
+      "update": "AppSumo プランを更新"
+    },
+    "alert": {
+      "expired": {
+        "owner": "座席数が足りないか、サブスクリプションの有効期限が切れています。時間内にアップグレードしてください。 ",
+        "others": "座席が不足しているため、無効になっています。チームオーナーにお問い合わせください"
+      }
+    },
+    "yearly_discount": "(ほぼ16.7%節約)",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/month",
+      "yearly": "{{ price }}/editor/year"
+    },
+    "redirect_page": {
+      "title": "支払いが完了しました",
+      "desc1": "ご購入ありがとうございます。ILLA Cloudは引き続き多くの機能を提供します。",
+      "desc2": "{{time}} 秒後に ILLA Cloud にリダイレクトしています...",
+      "button": "ILLAクラウドに戻る"
+    },
+    "redirect_to_stripe": "Stripeにリダイレクト中",
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "ILLAドライブの任意のファイルを保存するために月額100MBのストレージ。",
+          "traffic": "ILLAドライブからファイルをダウンロードするための100 MBのトラフィック。"
+        }
+      },
+      "drive": {
+        "title": "ILLAドライブ",
+        "storage": "ILLAドライブに任意のファイルを保存するために月額5GBのストレージ",
+        "traffic": "ILLAドライブからファイルをダウンロードするための5GBのトラフィック。"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "ILLAドライブに任意のファイルを保存するための月額カスタムストレージ",
+          "traffic": "ILLAドライブからファイルをダウンロードするためのカスタムトラフィック"
+        }
+      }
+    },
+    "label": {
+      "canceled": "キャンセルしました",
+      "expired": "期限切れ",
+      "paused": "一時停止"
+    },
+    "expired": {
+      "title": "サブスクリプションの有効期限が切れています。 ",
+      "description": "すべてのプレミアム機能にアクセスできません。デプロイしたパブリックアプリはプライベートアプリに設定されています。",
+      "description_other": "All premium features are not accessible. "
+    }
+  },
+  "page": {
+    "title": "ページ",
+    "user": {
+      "description": "雷速度で内部ツールを構築する",
+      "forgot_password": {
+        "actions": {
+          "reset": "リセット",
+          "send": "確認コードを取得する"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "有効なメールアドレスを入力してください",
+            "registered": "メールアドレスはどのアカウントにも関連付けられていません。",
+            "require": "メールを入力してください"
+          },
+          "newPassword": {
+            "require": "パスワードを入力してください"
+          },
+          "verification_code": {
+            "expired": "確認コードの有効期限が切れています",
+            "invalid": "無効な認証コード",
+            "require": "認証コードを入力してください"
+          }
+        },
+        "fields": {
+          "email": "メール",
+          "newPassword": "新しいパスワード",
+          "verification_code": "確認コード"
+        },
+        "placeholder": {
+          "email": "メールを入力してください",
+          "verification_code": "確認コードを入力してください"
+        },
+        "subtitle": "戻る ログイン",
+        "tips": {
+          "fail": "パスワードのリセットに失敗しました",
+          "fail_sent": "確認コードを送信できませんでした",
+          "success": "パスワードのリセットが成功しました",
+          "verification_code": "確認コードが送信されました"
+        },
+        "title": "パスワードをリセットする"
+      },
+      "password": {
+        "placeholder": "パスワードを入力してください"
+      },
+      "policy": "ILLA を使用することにより、<0>プライバシー ポリシー</0>と<1>利用規約</1>に同意したことになります",
+      "sign_in": {
+        "actions": {
+          "login": "ログイン"
+        },
+        "description": {
+          "forgot_password": "パスワードをお忘れですか？",
+          "policy": "[ログイン] をクリックして、 < 0 >サービス利用規約< /0 >および< 1 >プライバシー規約< /1 >を読み、同意したことを示します。",
+          "register": "新しいユーザー？ < 0 >アカウント登録< /0 >"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "有効なメールを入力してください",
+            "registered": "メールアドレスはどのアカウントにも関連付けられていません。",
+            "require": "メールを入力してください。"
+          },
+          "password": {
+            "incorrect": "正しいアカウント パスワードを入力してください",
+            "locked": "5回以上間違ったパスワードを入力すると、アカウントは1時間ロックされます",
+            "min_length": "パスワードは最低でも6文字必要です",
+            "require": "パスワードを空白にすることはできません"
+          }
+        },
+        "fields": {
+          "email": "メール",
+          "password": "パスワード"
+        },
+        "placeholder": {
+          "email": "メールを入力してください"
+        },
+        "tips": {
+          "fail": "ログインに失敗しました",
+          "success": "新しいパスワードを入力してください",
+          "fail_account": "メールアドレスまたはパスワードが正しくありません"
+        },
+        "title": "お帰りなさい",
+        "option": {
+          "or": "OR",
+          "github": "GitHubでサインイン",
+          "google": "Googleでサインイン"
+        },
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "正常にサインアップします。 メールアカウントのパスワードは後で設定できます",
+            "auth_failed": "認証に失敗しました"
+          }
+        },
+        "message": {
+          "github_no_user_name": "ユーザー名が必要です。 GitHub の設定を確認してください"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "アカウントを作成する",
+          "send": "確認コードを取得する"
+        },
+        "description": {
+          "login": "すでにアカウントをお持ちですか？ < 0 >ログイン< /0 >",
+          "policy": "[今すぐ登録] をクリックして、<0>利用規約</0>と<1>プライバシー契約</1>を読んで同意したことを示します",
+          "subscribe": "ILLAのニュースを購読する"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "有効なメールを入力してください",
+            "registered": "このメールはすでに登録されています。ログインしてください",
+            "require": "メールを入力してください。"
+          },
+          "password": {
+            "require": "パスワードを空白にすることはできません"
+          },
+          "username": {
+            "length": "ユーザー名は 3 ～ 15 文字である必要があります",
+            "require": "ユーザー名を空にすることはできません"
+          },
+          "verification_code": {
+            "expired": "確認コードの有効期限が切れています",
+            "invalid": "無効な認証コード",
+            "require": "確認コードを入力してください"
+          }
+        },
+        "fields": {
+          "email": "メール",
+          "password": "パスワード",
+          "username": "ユーザー名",
+          "verification_code": "確認コード"
+        },
+        "placeholder": {
+          "email": "メールを入力してください",
+          "username": "ユーザー名を入力してください",
+          "verification_code": "確認コードを入力してください"
+        },
+        "tips": {
+          "fail": "サインアップに失敗しました",
+          "fail_sent": "確認コードを送信できませんでした",
+          "success": "サインアップしました",
+          "verification_code": "確認コードが送信されました"
+        },
+        "title": "サインアップ",
+        "option": {
+          "github": "GitHubでサインアップ",
+          "google": "Google にサインアップ"
+        }
+      }
+    },
+    "workspace": {
+      "menu": {
+        "create_team": "チームを作成",
+        "members": "メンバー",
+        "workspace": "ワークスペース",
+        "agents": "AIエージェント",
+        "apps": "アプリ",
+        "resources": "リソース",
+        "drive": "ファイル",
+        "audit_logs": "監査ログ",
+        "community": "コミュニティ"
+      },
+      "modal": {
+        "create_team": {
+          "domain": "チームID",
+          "team_name": "チームの名"
+        },
+        "save": "キャンセル",
+        "free_team": {
+          "cannot_create": {
+            "title": "無料チーム数上限に達しました",
+            "desc": "無料のチームが上限に達しました。新しいチームを作成する前に他のチームから退出してください。",
+            "button": "OK"
+          },
+          "cannot_transfer": {
+            "title": "ユーザーの無料チームの上限に達しました",
+            "desc": "このユーザーの無料チームの数が上限に達しました。 別のユーザーに転送するか、無料のチームを管理するためにユーザーに連絡してください。"
+          }
+        }
+      },
+      "drive": {
+        "title": "ILLAドライブ",
+        "description_multi_file": "{{fileNum}} ファイル",
+        "description_one_file": "1 個のファイル",
+        "description_no_file": "ファイルがありません",
+        "description": "1 ファイル",
+        "description_plural": "{{count}} ファイル",
+        "description_no_file_yet": "ファイルはまだありません"
+      }
+    },
+    "left": {
+      "menu": {
+        "tutorial": "初心者ガイド",
+        "discord": "Discord に参加",
+        "issue": "イシューを表示",
+        "documentation": "ドキュメンテーション",
+        "setting": "設定"
+      }
+    }
+  },
+  "user_management": {
+    "role": {
+      "owner": "オーナー",
+      "admin": "Administer",
+      "editor": "編集者",
+      "viewer": "見るだけ",
+      "tips": {
+        "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
+        "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
+        "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+      }
+    },
+    "modal": {
+      "title": {
+        "invite_members": "メンバーを招待",
+        "invite_to_use": "招待する",
+        "invite_to_edit": "編集に招待",
+        "contribute": "コミュニティ"
+      },
+      "link": {
+        "invite_title": "招待リンク",
+        "copy": "コピー",
+        "turn_off": "招待リンクをオフにする",
+        "update": "招待リンクを更新する",
+        "description": "オンにしてリンク経由でメンバーを招待します。 ",
+        "turn_on": "招待リンクをオンにする",
+        "fail": "リンクを取得できませんでした。しばらくしてからもう一度お試しください",
+        "copied_suc": "コピーしました！",
+        "failed_to_copy": "コピーに失敗しました",
+        "turn_off_fail": "オフにできませんでした",
+        "turn_on_fail": "オンにできませんでした",
+        "make_public_title": "アプリを公開する",
+        "make_public_copy": "コピー",
+        "marketplace": {
+          "label": "リンクで共有"
+        }
+      },
+      "email": {
+        "invite_title": "メールで招待する",
+        "invite": "招待",
+        "placeholder": "メールを入力してください",
+        "invited": "招待しました",
+        "in_list": "このユーザーは既にチーム内にいます",
+        "duplicate": "{{ email }} は重複したメールアドレスです",
+        "notmail": "{{ email }}はメールではありません",
+        "not_mail": "有効なメールアドレスを入力してください。 "
+      },
+      "invalid_email": "有効なメールを入力してください",
+      "message": {
+        "make_public_suc": "設定が完了しました",
+        "make_public_failed": "設定に失敗しました",
+        "app_share_in_team": "{{ email }} はすでにあなたのチームに所属しています。リンクを彼と共有してください。"
+      },
+      "tab": {
+        "invite": "招待",
+        "public": "公開"
+      },
+      "custom_copy_text": "{{userName}} があなたを 「{{teamName}}」に招待しています。チームに参加するにはリンクをクリックしてください: {{inviteLink}}",
+      "custom_copy_text_app_invite": "{{userName}} があなたを「{{teamName}}」に招待しています。チームに参加するにはリンクをクリックしてください: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} があなたを 「{{teamName}}」に招待しています。チームに参加するにはリンクをクリックしてください: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "残りのシート"
+      },
+      "remainLicense": "残りのシート",
+      "contribute": {
+        "label": "Contribute to community",
+        "app": {
+          "desc": "After contributing your app to the community, other users can view its interface, run its actions, and fork it. When forking an app, the resource configuration information is not included, so there is no need to worry about the disclosure of resource configuration information."
+        },
+        "desc": "After contributing to the community, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      },
+      "social_media": {
+        "label": "Share on social media"
+      }
+    },
+    "mes": {
+      "invite_suc": "招待しました",
+      "invite_fail": "招待に失敗しました",
+      "update_suc": "更新成功",
+      "update_fail": "更新に失敗しました",
+      "transfer_suc": "譲渡しました",
+      "transfer_fail": "譲渡に失敗しました",
+      "remove_suc": "削除完了",
+      "remove_fail": "削除に失敗しました",
+      "change_role_fail": "更新に失敗しました",
+      "change_role_suc": "更新に成功しました"
+    },
+    "page": {
+      "member": "メンバー",
+      "invite": "招待する",
+      "permission": "権限",
+      "operation": "オペレーション",
+      "transfer": "所有権の譲渡",
+      "remove": "削除"
+    },
+    "transfer_modal": {
+      "title": "所有権を譲渡してもよろしいですか？",
+      "description": "譲渡後、管理者に変更されます。",
+      "transfer": "譲渡",
+      "cancel": "キャンセル"
+    },
+    "remove_modal": {
+      "title": "{{ username }} を削除しますか ?",
+      "description": "削除後、ユーザーはチームにアクセスできなくなります。",
+      "remove": "削除",
+      "cancel": "キャンセル"
+    },
+    "status": {
+      "pending": "処理待ち",
+      "current-user": "あなたです"
+    },
+    "settings": {
+      "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします"
+    }
+  },
+  "homepage": {
+    "team_modal": {
+      "title": "チームを作成",
+      "team_name": "チームの名",
+      "team_domain": "チームID",
+      "domain": ".illacloud.com",
+      "save": "保存",
+      "cancel": "キャンセル",
+      "existed": "すでに存在していた",
+      "available": "利用可能",
+      "invite_code": "招待コード",
+      "invite_code_description": "オプション。 招待コードをお持ちの場合は、ここに入力してください",
+      "contact": "招待コードが必要ですか? <0>ILLAに連絡</0>",
+      "team_name_empty": "チームの名を入力して下さい",
+      "create": "作成する",
+      "team_domain_invalid": "英字、数字、「 _ 」を使用できます。 英字が数字で開始および終了する必要があります。 長さは 200 文字を超えることはできません。",
+      "team_identifier": "チームID",
+      "team_identifier_empty": "チームIDを入力してください",
+      "team_domain_empty": "チームIDを入力してください",
+      "team_id_invalid": "英字、数字、「 _ 」を使用できます。 英字が数字で開始および終了する必要があります。 長さは 200 文字を超えることはできません。",
+      "invite_code_empty": "招待コードをご入力ください",
+      "team_domain_invalid_character": "英字、数字、「 _ 」を使用できます。 英字が数字で開始および終了する必要があります。",
+      "team_domain_invalid_length": "長さは 200 文字を超えることはできません。",
+      "tip": {
+        "team_identifier": "これはチームの URL に追加されます。 200 文字以内の文字または数字を使用してください (例: illa)"
+      },
+      "get_invite_code": "招待コードを入手する",
+      "invite_code_tips": "(オプション)"
+    },
+    "mes": {
+      "team_create_suc": "作成されました。"
+    },
+    "create_new_team": "新しいチームの作成",
+    "no_team": "あなたにはチームがありません",
+    "workspace": {
+      "invite": "招待する"
+    },
+    "member": "メンバー",
+    "team_setting": "チーム設定",
+    "builder_card": {
+      "title": "ILLA Builder",
+      "apps": "アプリ",
+      "app": "アプリ",
+      "resources": "リソース",
+      "resource": "リソース",
+      "edited_1min": "1 分前に編集されました",
+      "edited_mins": "{{ n }} 分前に編集",
+      "edited_1hour": "1時間前に編集",
+      "edited_hours": " {{ n }} 時間前に編集",
+      "edited_1day": "1 日前に編集",
+      "edited_days": "[n] 日前に編集",
+      "edited_justnow": "たった今編集されました",
+      "no_content": "まだアプリケーションはありません",
+      "visible_apps": "利用可能なアプリケーション",
+      "visible_app": "利用可能なアプリケーション",
+      "drive": {
+        "edited_1min": "1分前に更新",
+        "edited_mins": "{{ n }} 分前に更新",
+        "edited_1hour": "1時間前に更新",
+        "edited_hours": "{{ n }}  時間前に更新",
+        "edited_1day": "日前に更新",
+        "edited_days": "{{ n }} 日前に更新",
+        "edited_justnow": "今すぐ更新されました"
+      }
+    },
+    "message": {
+      "join_failed": "チームに参加できませんでした: あなたのメールは招待メールではありません。",
+      "join_failed_other_error": "チームに参加できませんでした。 チーム管理者に連絡してください。",
+      "join_suc": "入りました",
+      "have_joined": "既にチームに参加しています。手動でチームに変更してください。 "
+    },
+    "agent_card": {
+      "title": "AI Agent",
+      "desc": "プロンプトのエキスパートが提供する AI Agent を使用するか、独自の AI エージェントを作成してください"
+    },
+    "marketplace_card": {
+      "title": "コミュニティ",
+      "desc": "熟練したエンジニアによって細心の注意を払って作成された無数のAIエージェントとILLAアプリは、無限のインスピレーションを与えてくれます。"
+    },
+    "builder": {
+      "desc": "コンポーネントをドラッグ＆ドロップして、ダッシュボード、CRUD アプリなどのアプリをビルドします"
+    },
+    "drive": {
+      "desc": "コンテンツ配信を加速し、ユーザーエクスペリエンスを向上させる信頼性の高いCDNソリューション。"
+    }
+  },
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "チーム設定",
+      "member": "メンバー",
+      "leave": "チームを離れる",
+      "delete": "チームを削除します",
+      "audit_log": "監査ログ",
+      "security": "セキュリティとプライバシー"
+    },
+    "audit_log": {
+      "App_selection": {
+        "label": "アプリ名",
+        "placeholder": "アプリを選択"
+      },
+      "Resource_selection": {
+        "label": "リソース",
+        "placeholder": "リソース名を入力"
+      },
+      "Action_selection": {
+        "label": "アクション",
+        "placeholder": "アクション名を入力"
+      },
+      "User_selection": {
+        "label": "演算子",
+        "placeholder": "メールアドレスを選択"
+      },
+      "event_selection": {
+        "label": "イベントの種類",
+        "placeholder": "イベントを選択",
+        "createApp": "アプリを作成",
+        "editApp": "アプリを編集",
+        "deleteApp": "アプリを削除",
+        "viewApp": "アプリを表示",
+        "deployApp": "アプリをデプロイする",
+        "createResource": "リソースを作成",
+        "updateResource": "リソースを更新",
+        "deleteResource": "リソースを削除",
+        "runAction": "実行アクション",
+        "uploadFiles": "ファイルをアップロード",
+        "deleteFiles": "ファイルを削除",
+        "downloadFiles": "ファイルをダウンロード",
+        "inviteMember": "メンバーを招待",
+        "deleteMember": "メンバーを削除",
+        "changeMemberPermission": "メンバーの役割を変更",
+        "joinTeam": "チームに参加",
+        "createTeam": "チームを作成",
+        "updateTeam": "チーム情報を更新",
+        "triggerTask": "タスクをトリガーする"
+      },
+      "date_range": {
+        "label": "日付範囲"
+      },
+      "date_range_start": {
+        "label": "開始日",
+        "placeholder": "開始日"
+      },
+      "date_range_end": {
+        "label": "終了日",
+        "placeholder": "終了日"
+      },
+      "blank": {
+        "no_audit": "取得された一致するログはありません",
+        "free": "監査ログは、ILLA Cloud Premiumで提供される機能であり、ILLA Cloud Premiumに登録することで、すべての履歴コンテンツを取得できます。"
+      }
+    },
+    "leave_modal": {
+      "title": "このチームを離れてもよろしいですか？",
+      "description": "このチームを離れると、チームのリソースにアクセスできなくなります。",
+      "leave": "離れる",
+      "cancel": "キャンセル"
+    },
+    "delete_modal": {
+      "title": "このチームを削除してもよろしいですか?",
+      "desctiption": "削除後、チーム ID は使用できなくなり、すべてのメンバーがこのチームから削除されます。",
+      "delete": "삭제",
+      "cancel": "キャンセル"
+    },
+    "team_info": {
+      "title": "チームプロフィール",
+      "team_name": "チームの名",
+      "team_domain": "チームID",
+      "domain": ".illacloud.com",
+      "existed": "すでに存在していた",
+      "available": "利用可能",
+      "edit": "編集",
+      "save": "保存",
+      "adjust_avater": "アバターを調整する",
+      "avater_crop": "切り取り",
+      "team_name_empty": "チームの名を入力して下さい",
+      "team_id_empty": "チームのIDを入力してください",
+      "team_name_placeholder": "チームの名を入力して下さい",
+      "team_id_placeholder": "チームIDを入力してください",
+      "leave_title": "このチームを離れる",
+      "leave_button": "チームを離れる",
+      "delete_title": "チームとそのリソースを削除する",
+      "delete_button": "チームを削除します"
+    },
+    "mes": {
+      "domain_suc": "作成されました。",
+      "delete_suc": "正常に削除されました",
+      "delete_fail": "削除できませんでした",
+      "leave_suc": "離れました",
+      "leave_fail": "離れませんでした"
+    },
+    "message": {
+      "save_suc": "正常に保存されました",
+      "save_fail": "保存に失敗しました",
+      "suc": "正常に操作されました。 ",
+      "fail": "操作に失敗しました"
+    },
+    "security": {
+      "app-contribute": "コミュニティにチームアプリを貢献できるようにします"
+    }
+  },
+  "profile": {
+    "setting": {
+      "account": "アカウント",
+      "logout": "ログアウト",
+      "personal_info": "プロフィール",
+      "username": "ユーザー名",
+      "email": "メール",
+      "uneditable": "(編集不可)",
+      "password": {
+        "verification_code": "検証コード",
+        "send_code": "コードを送信",
+        "message": {
+          "incorrect_code": "認証コードが間違っています"
+        },
+        "tips": {
+          "code_sended": "確認コードを {{email}} に送信しました"
+        },
+        "placeholder": {
+          "blank_password": "パスワードを入力します",
+          "verification_code": "検証コードを入力してください"
+        },
+        "title": "パスワード"
+      },
+      "current_pwd": "現在のパスワード",
+      "new_pwd": "新しいパスワード",
+      "confirm_pwd": "パスワードを確認する",
+      "save": "保存",
+      "language": "言語",
+      "en": "English",
+      "zh_hans": "简体中文",
+      "zh_hant": "繁體中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "message": {
+        "save_suc": "保存しました",
+        "save_fail": "保存に失敗しました"
+      },
+      "username_placeholder": "ユーザー名を入力してください",
+      "password_placeholder": "現在のパスワードを入力",
+      "new_password_placeholder": "新しいパスワードの入力",
+      "new_password_again_placeholder": "パスワードをもう一回ご入力してください",
+      "username_empty": "ユーザー名を入力してください",
+      "password_empty": "現在のパスワードを入力してください。",
+      "new_password_empty": "新しいパスワードを入力してください",
+      "new_password_again_empty": "パスワードをもう一回ご入力してください",
+      "username_length": "ユーザー名は 3 ～ 15 文字である必要があります",
+      "password_length": "パスワードは 6 ～ 20 文字である必要があります",
+      "password_not_match": "新しいパスワードが一致しません。もう一度お試しください",
+      "title": "設定",
+      "logout_title": "このブラウザからログアウトする",
+      "current_pwd_err": "現在のパスワードが違います",
+      "oauth": {
+        "message": {
+          "google": "接続に成功しました。 Google でログインできるようになりました",
+          "github": "接続に成功しました。 GitHub でログインできるようになりました",
+          "auth_failed": "認証に失敗しました",
+          "auth_failed_email_not_match": "接続に失敗した。 メールが一致しません",
+          "disconnect_suc": "切断されました",
+          "disconnect_failed": "切断に失敗しました。 後でもう一度やり直してください"
+        },
+        "modal": {
+          "title": "切断できません",
+          "description": "現在のメールにはパスワードがありません。 メールでログインできないことを避けるため、最初にパスワードを設定してください。",
+          "set_button": "パスワードを設定",
+          "cancel_button": "キャンセル"
+        },
+        "description": {
+          "Google_unconnect": "GoogleアカウントをILLAアカウントに接続して、Googleでログインします",
+          "GitHub_unconnect": "GitHub アカウントを ILLA アカウントに接続して、GitHub でログインします",
+          "Google_connected": "Google アカウントに正常に接続されました。 Google でログインできるようになりました。 下のボタンをクリックして切断してください。",
+          "GitHub_connected": "GitHub アカウントに正常に接続されました。 これで GitHub にログインできます。 下のボタンをクリックして切断してください。",
+          "Google_disconnected": "正常に切断されました。 次回Googleでログインすると、再度接続されます。",
+          "GitHub_disconnected": "正常に切断されました。 次回 GitHub でログインすると、再度接続されます。"
+        },
+        "button": {
+          "connect": "接続",
+          "disconnect": "切断する"
+        },
+        "title": {
+          "oauth": "接続済みアカウント"
+        }
+      },
+      "subscribe_illa_news": {
+        "label": "ILLAのメールマガジンを購読する",
+        "tips": "加入後、ILLAでは最新の機能やイベント、業界動向などをメールでお知らせします。",
+        "button": "購読解除"
+      },
+      "group": {
+        "account": "マイアカウント",
+        "team": "チーム"
+      },
+      "subscribe_illa_news_unsub": {
+        "label": "購読解除済み",
+        "tips": "ILLAのニュースレターの購読解除に成功しました。"
+      }
+    },
+    "setting_message": {
+      "logout_failed": "ログアウトできませんでした"
+    }
+  },
+  "user": {
+    "sign_up": {
+      "fields": {
+        "username": "ユーザー名",
+        "email": "メール",
+        "verification_code": "確認コード",
+        "password": "パスワード"
+      },
+      "placeholder": {
+        "username": "ユーザー名を入力してください",
+        "email": "メールを入力してください。",
+        "enter_verification_code": "確認コードを入力してください",
+        "enter_password": "パスワードを入力してください"
+      },
+      "agreement": {
+        "using_illa": "ILLAを使用することにより、次の契約に同意したことになります：",
+        "privacy_policy": "個人情報保護",
+        "and": "と",
+        "terms_of_service": "サービス利用規約"
+      }
+    }
+  },
+  "mob": {
+    "user": {
+      "sign_up": {
+        "fields": {
+          "password": "パスワード"
+        }
+      }
+    }
+  },
+  "error_page": {
+    "404": "404",
+    "not_found": "ページが見つかりません。",
+    "back": "ILLA Cloudに戻る",
+    "again": "再試行",
+    "fobidden": "アクセス権限がありません"
+  },
+  "network_error": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
+  "team_create_suc": "作成されました",
+  "team_create_fail": "作成に失敗しました",
+  "team": {
+    "create": {
+      "fail_invite_code_used": "招待コードが使用されました。",
+      "fail_same_identifier": "このIDは既に使用されています。 変更して、もう一度お試しください。",
+      "fail": "作成に失敗しました",
+      "fail_network": "ネットワークエラーが発生しました、後程もう一度お試しください。",
+      "error_invite_code": "確認コードが間違っています"
+    }
+  },
+  "policy": {
+    "privacy": {
+      "title": "プライバシー規約",
+      "description": "このプライバシー ポリシーでは、当社のサービスを通じて受け取る情報の収集、使用、および開示に関する当社の慣行について説明します。"
+    },
+    "terms": {
+      "description": "これらの利用規約は、当社のサイトへのアクセスと使用、およびさまざまなサービスの提供を管理します。",
+      "title": "サービス利用規約"
+    }
+  },
+  "image_exceed": "写真のサイズは500KBを超えてはいけません。",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "切り取り",
+        "save": "保存",
+        "cancel": "キャンセル"
+      }
+    }
+  },
+  "status": {
+    "no_permission_title": "不十分な権限",
+    "no_permission_description": "要求された操作を実行する権限がありません。 チームの管理者に連絡してください。",
+    "500": {
+      "des": "リクエストに失敗しました。しばらくしてからもう一度お試しください。"
+    },
+    "back": "ホームページに戻ります"
+  },
+  "oauth_redirect_description": "<0>ILLA Cloud</0>にリダイレクトしています...",
+  "oauth_redirect_title": "リダイレクト",
+  "drive": {
+    "menu": {
+      "files": "ファイル",
+      "capacity_usage": "容量と使用率"
+    },
+    "back": {
+      "title": "ILLAドライブ"
+    },
+    "title": {
+      "files": "ファイル",
+      "file": "ファイル"
+    },
+    "header_operation": {
+      "refresh": "更新",
+      "batch_operation": "バッチ（{{selectedFileNum}} ファイル）",
+      "new_folder": "新規フォルダ",
+      "upload": "アップロード",
+      "files": "ファイル",
+      "folder": "フォルダ",
+      "delete": "削除",
+      "move": "移動",
+      "copy_link": "リンクをコピー",
+      "download": "ダウンロード",
+      "file_upload": "ファイルをアップロード",
+      "folder_upload": "フォルダをアップロード",
+      "search_placeholder": "検索"
+    },
+    "new_folder": {
+      "untitled_folder": "無題のフォルダ"
+    },
+    "table": {
+      "title": {
+        "no_files": "ファイルがありません",
+        "file_name": "ファイル名",
+        "last_modifier": "Last modifier",
+        "file_size": "ファイルのサイズ",
+        "last_modified": "最終更新日時",
+        "creator": "作成者"
+      },
+      "body": {
+        "detail": "詳細",
+        "delete": "削除",
+        "move": "移動",
+        "copy_link": "リンクをコピー",
+        "download": "ダウンロード",
+        "rename": "名前の変更",
+        "open_folder": "フォルダを開く"
+      }
+    },
+    "link_modal": {
+      "title": {
+        "copy_link": "共有",
+        "hotlink": "ホットリンク保護"
+      },
+      "only_team_members_ca": "チームメンバーだけがアクセスできます",
+      "link": "リンク",
+      "button": {
+        "copy_link": "リンクをコピー"
+      },
+      "anyone_with_the_link": "リンクを持っている人は誰でもアクセスできます",
+      "expired_duration": "期限切れ時間",
+      "permanent": "恒久的",
+      "custom": "カスタム",
+      "description": {
+        "hotlink": "ホットリンク保護を有効にすると、ユーザーはILLAアプリからのみファイルにアクセスできます。 ホットリンク保護をオフにすると、ユーザーはリンクを取得してファイルにアクセスできます。\r\n\r\nホットリンク保護は、他のウェブサイトやアプリがあなたのファイルに直接リンクするのを防ぐセキュリティ対策です。 これにより、許可されていないアクセスや使用からコンテンツと帯域幅を保護できます。 この機能を有効にすることで、ファイルにはILLAアプリからのみアクセスできるようにすることができます。 コンテンツにセキュリティを追加します。"
+      }
+    },
+    "move_modal": {
+      "title": {
+        "move": "移動"
+      },
+      "description": {
+        "move_to": "移動先: "
+      },
+      "no_folders": "フォルダがありません",
+      "new_folder": "新しいフォルダ",
+      "cancel": "キャンセル",
+      "move": "移動",
+      "move_here": "ここに移動"
+    },
+    "capacity_usage": {
+      "capacity_usage": "容量と使用率",
+      "storage": "ストレージ",
+      "data_traffic": "データトラフィック",
+      "current": "現在",
+      "next_renewal_date": "次の更新日",
+      "detail": "詳細",
+      "yearly": "年ごと",
+      "year": "年",
+      "monthly": "月ごと",
+      "month": "月",
+      "manage_storage": "ストレージの管理",
+      "expand": "展開"
+    },
+    "same_name_modal": {
+      "this_folder_already_": "同じ名前のファイルが既にこのフォルダに存在するか、このフォルダにアップロードされています。置き換えますか？",
+      "keep_both": "両方を保持",
+      "replace": "置換",
+      "cancel": "キャンセル",
+      "apply_to_all": "すべてに適用"
+    },
+    "rename_modal": {
+      "title": "名前の変更",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "validate": "1. 文字、数字、-~_=: のみ使用できます\n2. 制限は255文字以下です",
+      "validate_failed": "文字、数字、-~_=: のみ使用できます",
+      "same_name": "この名前のファイルは既に存在するか、アップロード中です。別のファイル名を使用してください。 "
+    },
+    "delete_modal": {
+      "title": "よろしいですか？",
+      "description_multi": "削除後、ユーザーはこれらのファイルにアクセスできなくなります",
+      "description_single": "削除後、ユーザーはこのファイルにアクセスできなくなります",
+      "cancel": "キャンセル",
+      "delete": "削除"
+    },
+    "upload_modal": {
+      "resume_all": "すべて再開",
+      "suspend_all": "すべて中断",
+      "click_to_retry": "クリックして再試行する",
+      "network_error": "ネットワークエラー",
+      "file_not_found": "ファイルが見つかりません",
+      "insufficient_capacit": "容量が足りません。時間内に更新してください。 ",
+      "nothing_download": "ダウンロードされているファイルはありません",
+      "nothing_upload": "アップロードされているファイルはありません"
+    },
+    "message": {
+      "rename_failed": "名前を変更できませんでした。同じ名前のファイルが既に存在します。",
+      "move_file": "1 ファイルを移動中",
+      "view": "表示",
+      "select_up_to_100_files": "最大 100 個のファイルを選択してください。 ",
+      "failed": "操作に失敗しました。一部のファイルのメタデータが変更されています。再選択してください。 ",
+      "too_low_chrome_version": "ブラウザのバージョンが低すぎます。ブラウザをアップグレードしてください。",
+      "upload_suc_message": "正常にアップロードされました。新しいファイルを確認するには更新してください。",
+      "move_same_name": "ファイル名が複製され、名前が変更されました。",
+      "share_illa": "雷速度で内部ツールを構築する",
+      "share_go": "ILLA Cloud を無料でお試しください",
+      "link_in_team": "{{username}} がファイルを共有しました。リンクをクリックして表示: {{link}}",
+      "link_download": "{{username}} がファイルを共有しました。ダウンロードするリンクをクリックしてください: {{link}}",
+      "link_share_page": "{{username}} がいくつかのファイルを共有しました。リンクをクリックして表示: {{link}}",
+      "mobile": {
+        "share_illa": "雷速度で内部ツールを構築する",
+        "share_go": "無料で試す"
+      },
+      "start_download": "ダウンロードを開始",
+      "start_upload": "アップロードを開始",
+      "move_file_suc_plural": "{{count}} ファイルが正常に移動されました",
+      "move_file_suc": "ファイルが正常に移動されました",
+      "create_suc": "フォルダが正常に作成されました",
+      "create_failed": "フォルダの作成に失敗しました。後でもう一度お試しください。",
+      "leave": "未完了のタスクがあります。退出するとタスクに失敗します。退出してもよろしいですか？"
+    },
+    "upload_element": {
+      "uploading": "{{uploadedfileNum/allFileNum}} ファイルをアップロードしています。 ",
+      "upload_suc": "アップロードに成功しました{{uploadedfileNum/allFileNum}} ({{failedNum}} 失敗)",
+      "upload_failed": "アップロード{{uploadedfileNum/allFileNum}} ({{failedNum}} 失敗)",
+      "upload_suc_failed": "アップロードした{{uploadedfileNum/allFileNum}} ({{failedNum}} 失敗)",
+      "uploading_plural": "1つのファイルをアップロードしています。"
+    },
+    "generated_links": {
+      "button": "生成されたリンク",
+      "title": "生成されたリンク",
+      "no_links": "生成されたリンクはありません",
+      "file_name": "ファイル名",
+      "link": "リンク",
+      "generated_date": "生成日",
+      "expired_date": "期限切れ日",
+      "validity_status": "有効なステータス",
+      "permanent": "恒久的",
+      "valid": "Valid",
+      "invalid": "無効です",
+      "file_deleted": "ファイルを削除しました",
+      "folder_deleted": "フォルダを削除しました",
+      "some_files_or_folder": "一部のファイルまたはフォルダが削除されました",
+      "expired": "期限切れ",
+      "deleted": "削除しました"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "フォルダを作成",
+        "cancel": "キャンセル",
+        "create": "作成"
+      }
+    },
+    "download_element": {
+      "download_failed": "ダウンロードに失敗しました",
+      "download_suc": "ダウンロードが完了しました",
+      "downloading": "{{downloadedfileNum/allFileNum}}",
+      "downloading_failed": "{{downloadedfileNum/allFileNum}}のダウンロードに失敗しました ({{failedNum}} 失敗)",
+      "download_suc_failed": "ダウンロードした {{downloadedfileNum/allFileNum}}({{failedNum}} 失敗)"
+    },
+    "breadcrumbs": {
+      "all": "すべてのファイル"
+    },
+    "detail_page": {
+      "error": "ファイルが見つかりません"
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "このタスクを削除しますか？",
+        "description": "このタスクを削除してもよろしいですか？削除すると、タスクは終了します。",
+        "cancel": "キャンセル",
+        "delete": "削除"
+      }
+    },
+    "detail": {
+      "fileName": "ファイル名",
+      "fileSize": "ファイルのサイズ",
+      "modAt": "変更",
+      "modBy": "変更"
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "「PublicAccess」は、Builder内のコンポーネントを介して公開されるファイルを格納するために使用されます。 このフォルダ内のファイルにアクセスするには認証は必要ありません。ファイルのセキュリティを確保するため、ここに重要なファイルを保存しないでください。"
+      },
+      "allow_access_switch": {
+        "label": "パブリックアクセスを許可",
+        "tips": "パブリックアプリへのアクセスを許可するには、このスイッチをオンにしてください。 "
+      }
+    }
+  },
+  "move_modal": {
+    "description": {
+      "root_folder": "ルートフォルダ"
+    }
+  },
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  },
+  "copied": "コピーしました",
+  "failed_to_copy": "コピーに失敗しました",
+  "move_file_plural": "{{count}} ファイルを移動中",
+  "team_already_deleted": "チームはすでに削除されています。更新してください。 ",
+  "network": {
+    "error": "ネットワークエラーが発生しました。後でもう一度お試しください。"
+  },
+  "appSumo": "AppSumo",
+  "current": "サブスクリプション",
+  "new_share": {
+    "tips": {
+      "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
+      "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
+      "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+    }
+  },
+  "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
+  "empty_copied_tips": "コピーするコンテンツは空です",
+  "redirect": "転送中...",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Back",
+            "create_action": "Create Action",
+            "new_resource": "New Resource"
+          },
+          "selector": {
+            "title": "Select action type"
+          },
+          "title": {
+            "choose_resource": "Choose a resource "
+          }
+        },
+        "btn": {
+          "close": "close",
+          "new": "New"
+        },
+        "contextMenu": {
+          "delete": "Delete",
+          "duplicate": "Duplicate",
+          "rename": "Rename"
+        },
+        "message": {
+          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
+          "failed": "Failed to connect to server",
+          "load_action_list_fail": "Failed to get Action list: {{message}}",
+          "load_resource_fail": "Failed to get resource list: {{message}}",
+          "name_already_exist": "Already exists",
+          "please_input_name": "Please input name",
+          "success_created": "Successfully created",
+          "success_deleted": "Successfully deleted",
+          "success_saved": "Successfully saved",
+          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
+        },
+        "placeholder": {
+          "search": "Search"
+        },
+        "runtime": {
+          "backend": "Backend",
+          "execute_resource": "execute resource",
+          "frontend": "Frontend",
+          "handle_response": "handle response",
+          "post_processing": "post processing",
+          "prepare_query": "Prepare query",
+          "response_size": "Response size",
+          "total": "Total",
+          "transfer_data": "transfer data",
+          "transformer": "transformer"
+        },
+        "tips": {
+          "empty": "Add an action to begin working with data from a connected resource.",
+          "not_found": "No search results"
+        },
+        "title": "Action List"
+      },
+      "form": {
+        "btn": {
+          "back": "Back",
+          "save_changes": "Save Resource",
+          "test_connection": "Test Connection"
+        },
+        "required": "This is required",
+        "title": {
+          "api": "APIs",
+          "configure": "Configure {{ name }}",
+          "database": "DATABASES",
+          "select": "Select Resource Type",
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
+          },
+          "neon": {
+            "neon": "Neon"
+          },
+          "airtable": {
+            "airtable": "Airtable"
+          }
+        },
+        "validate": {
+          "required": "{name} is required"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint",
+          "s3": "Invalid in public apps",
+          "acl": "S3 ACL for uploaded files",
+          "appwrite": {
+            "host": "Host",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "Api key",
+            "collectionid": "Collection ID",
+            "documentid": "Document ID",
+            "data": "Data",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          },
+          "oracle": {
+            "sid": "Treat Database name as",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Certificates",
+            "verification_mode": "Verification mode"
+          },
+          "gs": {
+            "private_key": "Private key",
+            "action_type": "Action type",
+            "spreadsheet": "Spreadsheet",
+            "sheet_name": "Sheet name",
+            "data_range": "Data range",
+            "limit": "Limit",
+            "offset": "Offset",
+            "a1_notation": "A1 notation",
+            "values_to_append": "Values to append",
+            "filter_by": "Filter by",
+            "update_value": "Update value",
+            "primary_key_column": "Primary key column",
+            "array_of_rows_to_upd": "Array of rows to update",
+            "filters_to_match_row": "Row index",
+            "consider_queries_tha": "Consider queries that delete no rows as successes",
+            "title_of_spreadsheet": "Title of spreadsheet",
+            "sheet_id_to_copy": "Sheet ID to copy",
+            "sheet_to_copy_to": "Sheet to copy to",
+            "authentication": "Authentication",
+            "connect_with_oauth": "Connect with Google",
+            "reconnect_with_oauth": "Reconnect with Google",
+            "access_type": "Access type"
+          },
+          "mongodb": {
+            "command": "Command"
+          },
+          "airtable": {
+            "authentication": "Authentication"
+          }
+        },
+        "placeholder": {
+          "url": "Enter request URL here",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute",
+            "collectionid": "Select a collection",
+            "data": "An object enclosed in {{ }}. For example, \n{{ { \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracle",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "value"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "key",
+              "value": "value"
+            }
+          }
+        },
+        "tips": {
+          "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. <0>See Cross-Origin Resource Sharing (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "It looks like you're trying to connect to a database that's local to your machine or part of a private network. It might not work in the ILLA Cloud version. Check out our <0>docs</0> for how to the self-host version.",
+            "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
+            "title": {
+              "tips": "Tips"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Your server may be vulnerable to attacks."
+            }
+          },
+          "gs": {
+            "private_key": "Used to connect to Google Sheets. Click <0>here</0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here</1> for documentation on creating a service account and access key.\n\nUsers might experience limits from different processing components not controlled by Sheets. Learn more about the <2>quota limits</2>",
+            "leave_blank_to_selec": "Leave blank to select the first sheet",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets",
+            "copy_to_sheet_name": "Required. Rename the copied sheet.",
+            "successfully_authent": "Successfully authenticated",
+            "failed_to_authentica": "Failed to authenticate"
+          },
+          "tidb": {
+            "ca_certificate": "We fill in the CA Certificate used for TLS Connections to Serverless Tier by default. If you need TLS Connections to Dedicated Tier, <0>Click here</0> to view the configuration method."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse Cloud Service, it is recommended to turn on the SSL."
+          },
+          "airtable": {
+            "access_token": "<0>Click here</0> to learn how to get the access token.",
+            "api_key": "API key will be deprecated on February 1, 2024. Please pay attention to the <0>official documentation of Airtable</0> to avoid resource access errors."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Service Name"
+            },
+            "ssl": "Use SSL when available"
+          },
+          "couchdb": {
+            "ssl": "Use SSL/TLS when available"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Digest Auth",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk Authentication",
+              "aws_v4": "AWS Signature V4",
+              "session_based_auth": "Session Based Auth (deprecated)"
+            },
+            "certificates": "Use self-signed certificates",
+            "ca_certificate": "CA Certificate",
+            "client_key": "Client Key",
+            "client_certificate": "Client Certificate",
+            "verification_mode": {
+              "full_verification": "Full verification",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Skip CA Certificate verification"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Read data from a spreadsheet",
+              "append_data_to_a_spr": "Append data to a spreadsheet",
+              "update_a_spreadsheet": "Update a spreadsheet",
+              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
+              "delete_a_single_row_": "Delete a single row from a spreadsheet",
+              "create_a_spreadsheet": "Create a spreadsheet",
+              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "list_available_sprea": "List available spreadsheets",
+              "get_spreadsheet_info": "Get spreadsheet info"
+            },
+            "data_range": {
+              "use_a1_notation": "Use A1 notation",
+              "use_limit_and_offset": "Use limit and offset"
+            },
+            "filter_by": {
+              "use_a1_notation": "Use A1 notation",
+              "use_row_filters": "Use row filters"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Service account",
+            "read_and_write": "Read and write",
+            "read_only": "Read-only"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          },
+          "airtable": {
+            "access_token": "Access token",
+            "api_key": "API key"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Service Account"
+          }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Select"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Disable",
+          "enable": "Enable",
+          "new": "New",
+          "run": "Run",
+          "save": "Save",
+          "save_and_run": "Save & Run",
+          "save_fail": "Failed to save",
+          "test_run": "Test run"
+        },
+        "elastic": {
+          "action_type": "Action Type",
+          "body": "Body",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
+        "error": {
+          "max_file": "The size of file can't exceed 5M."
+        },
+        "firebase": {
+          "action_type": "Action Type",
+          "collection": "Collection",
+          "database_ref": "Database ref",
+          "document_id": "Document ID",
+          "email": "Email",
+          "end_at": "End At",
+          "len_of_list": "Length of list ",
+          "limit": "limit",
+          "next_page_token": "Next page token",
+          "object_to_set": "Object to set",
+          "order_by": "Order by",
+          "ordering_direction": "Ordering direction",
+          "parent_document_id": "Parent document ID",
+          "phone_number": "Phone number",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
+            "input_collection": "Enter a collection",
+            "key": "key",
+            "select_an_action": "Select an action",
+            "select_collection": "Select a collection",
+            "value": "value"
+          },
+          "service_type": "Service Type",
+          "start_at": "Start At",
+          "tips": {
+            "document_id": "Leave blank for autogenerated ID.",
+            "parent_document_id_tips": "Leave blank for top-level collections."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Use a dropdown",
+          "use_end_at": "Use endAt",
+          "use_raw_id": "Use raw id",
+          "use_start_at": "Use startAt",
+          "user_object": "User object ",
+          "value": "value",
+          "where": "where"
+        },
+        "label": {
+          "event_handler": "Event Handler",
+          "failure": "Failure",
+          "resource": "Resource",
+          "success": "Success",
+          "transformer": "Transformer",
+          "couchdb": {
+            "database": "Database",
+            "action_type": "Action type"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Select a database",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Consumer key",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "some-app-extra-data",
+              "app": "Application id",
+              "dig": "delegated-by",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "Select pages"
+            },
+            "ai-agent": {
+              "value": "Value"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "List records",
+                "retrieve": "Retrieve record",
+                "create": "Create record",
+                "update": "Update record",
+                "delete": "Delete record",
+                "find": "Find",
+                "get": "Get view"
+              },
+              "skip": "Skip",
+              "limit": "Limit",
+              "include": "Include docs",
+              "des": "Order",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Record",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "ViewURL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Docs included in the returned results",
+              "des_option": "Use descending order"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "File",
+                "text": "Text"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query Parameters",
+                "header_authorization": "Header Authorization"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Trigger this action when page loads",
+              "show_a_loading_page_": "Show a loading page on page load",
+              "on_page_loading": "On page loading",
+              "on_app_loading": "On APP loaded",
+              "none": "None"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "List records",
+                "get_record": "Get record",
+                "create_record": "Create record",
+                "update_multiple_reco": "Update multiple records",
+                "update_record": "Update record",
+                "delete_multiple_reco": "Delete multiple records",
+                "delete_record": "Delete record"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "Global data",
+              "ai-agent": "AI Agent",
+              "more": "More",
+              "create-resource": "Create from resource"
+            }
+          },
+          "restapi": {
+            "signature_method": "Signature method",
+            "consumer_key": "Consumer key",
+            "consumer_secret": "Consumer secret",
+            "access_token": "Access token",
+            "token_secret": "Token secret",
+            "private_key": "Private key",
+            "realm": "Realm",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Key",
+            "algorithm": "Algorithm",
+            "user": "User",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Timestamp",
+            "aws_region": "AWS Region",
+            "aws_service": "AWS Service",
+            "aws_access_key_id": "AWS Access Key ID",
+            "aws_secret_key_id": "AWS Secret Key ID",
+            "role_to_assume": "Role to assume (ARN)",
+            "list_of_cookies_to_f": "List of cookies to forward",
+            "add_access_token_to": "Add Access Token To"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "No actions will be triggered when the page loads. You can manually trigger the action and enable \"Trigger this action when page loads\" in the advanced settings."
+            },
+            "airtable": {
+              "base_id": "Get the base ID from your base URL. It is usually a string starting with \"app\". ",
+              "filter_by_formula": "<0>Click here</0> to learn how to use formula.",
+              "time_zone": "<0>Click here</0> to check all supported timezones.",
+              "user_locales": "<0>Click here</0> to check all supported locales. "
+            },
+            "global-data": {
+              "how-to-use": "Use this global data by {{globalData.state1}}"
+            }
+          },
+          "advanced": {
+            "advanced": "ADVANCED",
+            "page_trigger": "Trigger Timing",
+            "loading_page": "Loading page",
+            "page_load_delay": "Delay (ms)",
+            "run_this_action_peri": "Run this action periodically",
+            "interval": "Interval (s)",
+            "actions_running_when": "Actions running when the page loads",
+            "pages": "Pages",
+            "periodically_run": "Periodically run"
+          },
+          "airtable": {
+            "base_id": "Base ID",
+            "table_name": "Table name",
+            "method": "Method",
+            "view": "View",
+            "fields": "Fields",
+            "filter_by_formula": "Filter by formula",
+            "sort": "Sort",
+            "max_records": "Max records",
+            "page_size": "Page size",
+            "offset": "Offset",
+            "cell_format": "Cell format",
+            "time_zone": "Time zone",
+            "user_locales": "User locales",
+            "record_id": "Record ID",
+            "records": "Records",
+            "record": "Record",
+            "record_ids": "Record IDs"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variable",
+            "input": "Send content",
+            "max-token": "Max token"
+          },
+          "general": {
+            "connect-data-source": "Connect to database or api",
+            "more-type": "More type of data sources"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Action Type",
+          "aggregation": "Aggregation",
+          "collection": "Collection",
+          "document": "Document",
+          "field": "Field",
+          "filter": "Filter",
+          "limit": "Limit",
+          "operations": "Operations",
+          "options": "Options",
+          "projection": "Projection",
+          "query": "Query",
+          "skip": "Skip",
+          "sort_by": "Sort By",
+          "update": "Update"
+        },
+        "option": {
+          "resource": {
+            "new": "Create a new resource"
+          },
+          "trigger": {
+            "manually": "Run action only when manually triggered",
+            "on_change": "Run action automatically when inputs change"
+          }
+        },
+        "s3": {
+          "action_type": "Action Type",
+          "bucket_name": "Bucket name",
+          "content_type": "Content-Type",
+          "delimiter": "Delimiter",
+          "error": {
+            "max_file": "The size of file can't exceed 5M."
+          },
+          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
+          "generate_signed_url": "Generate Signed URL",
+          "max_keys": "Max keys",
+          "object_key": "Object key",
+          "object_key_list": "Object key list",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefix to filter results",
+          "tips": {
+            "delimiter": "A delimiter is a character you use to group keys.",
+            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names."
+          },
+          "upload_data": "Upload data",
+          "upload_data_list": "Upload data list",
+          "upload_object_name": "Upload object name",
+          "upload_object_name_list": "Upload object name list",
+          "timeout_upload": "Timeout for uploading a file (Minute)",
+          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
+        },
+        "smtp": {
+          "attachment": "Attachment(s)",
+          "bcc_email": "Bcc email(s)",
+          "body": "Body",
+          "cc_email": "Cc email(s)",
+          "from_email": "From email",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Reply-to email",
+          "set_replay_email": "Set Reply-To email",
+          "subject": "Subject",
+          "tips": {
+            "port": "Some ISPs may block port 25.If the connection fails, please change the \nport."
+          },
+          "to_email": "To email(s)",
+          "use_html": "Use HTML",
+          "use_raw": "Use raw text"
+        },
+        "tips": {
+          "transformer": "Enable transformers to transform the result of the query to a different format."
+        },
+        "graphql": {
+          "query": "Query",
+          "variables": "Variables",
+          "headers": "Headers",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \r\nquery ($owner: String!, $name: String!){\r\n  repository(owner: $owner, name: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Model ID",
+          "placeholder": {
+            "mode_id": "bert-base-uncased",
+            "text": "The answer to the universe is [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
+            "binary": "i.e. {{ upload1.file[0] }}. A binary files without file prefix",
+            "use_cache": "Boolean, leave blank for true",
+            "min_length": "Integer to define the minimum length in tokens of the output summary",
+            "top_k": "Integer to define the top tokens",
+            "top_p": "Float to define the tokens",
+            "temperature": "Float(0.0-100.0)，leave blank for 1.0",
+            "repetition_penalty": "Float (0.0-100.0)",
+            "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
+            "selectParameterType": "Select a type"
+          },
+          "tips": {
+            "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
+            "use_detail_parameters": "<0>Click here</0> to learn more about the detail parameters",
+            "temperature": "1 means regular sampling, 0 means always taking the highest score, 100.0 is getting closer to uniform probability.",
+            "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
+          },
+          "parameter": "Parameter",
+          "use_detail_parameters": "Use detail parameters",
+          "use_cache": "Use cache",
+          "wait_for_model": "Wait for model",
+          "min_length": "Min length",
+          "max_length": "Max length",
+          "top_k": "Top k",
+          "top_p": "Top p",
+          "temperature": "Temperature",
+          "repetition_penalty": "Repetition penalty",
+          "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "What SQL statement do you want to generate"
+          },
+          "button": {
+            "text": "SQL Generate"
+          }
+        },
+        "mssql": {
+          "config_type": "Config Type",
+          "query": "Query",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "Select a table",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Table",
+          "insert_record": "Array of records to insert",
+          "dropdown": {
+            "retry": "Click to retry"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
+          },
+          "option": {
+            "query": "query",
+            "scan": "scan",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "updateItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Failed",
+          "ran_successfully": "Success"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status code",
+            "headers": "Headers",
+            "response": "Data",
+            "rawdata": "Raw data"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "Connect to your data source and create an action to perform CRUD"
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Coming Soon"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Invalid private key. "
+          },
+          "label": {
+            "ca_certificate": "CA Certificate",
+            "client_certificate": "Client Certificate",
+            "client_key": "Client Key",
+            "config_type": "Config Type",
+            "connect_type": "Connect Type",
+            "connection_format": "Connection format",
+            "connection_string": "Connection String",
+            "database": "Database",
+            "database_index": "Database Index",
+            "firebase_database_url": "Firebase Database URL",
+            "firebase_project_id": "Firestore Project ID",
+            "hostname": "Hostname",
+            "hostname_port": "Hostname/Port",
+            "hosturl": "Host Url",
+            "mongodb_connection_dns_seed_list": "DNS seed list connection",
+            "mongodb_connection_standard": "Standard Connection",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Client Cert and Key",
+            "name": "Name",
+            "port": "Port",
+            "private_key": "Private Key",
+            "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
+            "ssl_options": "SSL options",
+            "username_password": "Username/Password",
+            "self_signed_certificate": "Use self-signed certificate",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix",
+            "key": "Key",
+            "introspection": "Introspection",
+            "bear_token": "Token",
+            "connection_options": "Connection options",
+            "account_name": "Account name",
+            "warehouse": "Warehouse",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "Role",
+            "username": "Username",
+            "password": "Password",
+            "dynamo_region": "AWS region",
+            "dynamo_access_key_id": "AWS Access Key ID",
+            "dynamo_secret_key": "AWS Secret Key"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_production",
+            "database_index": "default 0",
+            "hostname": "Hostname",
+            "hosturl": "i.e. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "password": "Password",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Username",
+            "default": "default",
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "Database name",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "Role",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "name": "The name for resource when creating actions in the ILLA.",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
+            "ssl_options": "SSL is used when available",
+            "username_password": "Credentials will be encrypted & stored securely on our servers.",
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
+            "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default."
+          },
+          "title": {
+            "advanced_option": "Advanced Options",
+            "general_option": "GENERAL",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
+          }
+        },
+        "error": {
+          "invalid_url": "Please enter a valid URL, for example, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "New"
+          },
+          "label": {
+            "access_token": "Access Token",
+            "access_token_lifespan": "Access Token\n lifespan(optiinal)",
+            "access_token_url": "Access Token URL",
+            "action_type": "Action Type",
+            "audience": "Audience",
+            "authentication": "Authentication",
+            "authorization_url": "Authorization URL",
+            "base_url": "Base URL",
+            "basic_auth_password": "Basic Auth password",
+            "basic_auth_username": "Basic Auth username",
+            "bearerToken": "Bearer Token",
+            "body": "Body",
+            "client_id": "Client ID",
+            "client_secret": "Client Secret",
+            "configure_oauth2": "Configuring OAuth 2.0",
+            "cookies": "Cookies",
+            "copy_url_to_application": "Copy this URL to your application",
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "extra_body_values": "Extra Body Values",
+            "forward_all_cookies": "Forward All Cookies",
+            "headers": "Headers",
+            "list_of_cookies_to_forward": "List Of Cookies To\n Forward",
+            "name": "Name",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Refresh Token",
+            "scopes": "Scopes (separated by\n a space)",
+            "share_oauth2_credentials_between_users": "Share OAuth2.0 credentials between users",
+            "url_parameters": "URL Parameters",
+            "use_client_credentials_auth": "Use client credentials auth",
+            "digest_auth_username": "Username",
+            "digest_auth_password": "Password"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Basic Auth",
+              "bearer": "Bearer",
+              "none": "None",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token Lifespan in seconds",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "i.e.\"Internal Admin API\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "database": "i.e.\"Users DB(readonly)\"",
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "param_key": "key",
+            "param_value": "value",
+            "password": "password",
+            "username": "username"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "name": "The name for resource when creating actions in the ILLA."
+          },
+          "title": {
+            "advanced_option": "GENERAL"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Access key",
+            "base_url": "Base URL",
+            "bucket_name": "Bucket name",
+            "custome_s3_endpoint": "Custom S3 endpoint",
+            "region": "Region",
+            "secret_access_key": "Secret access key",
+            "use_custome_s3_endpoint": "Use custom S3 endpoint"
+          },
+          "placeholder": {
+            "base_url": "i.e. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+          },
+          "tip": {
+            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Allow IP addresses",
+            "message": "If your resources are not publicly accessible, please update your network or firewall setting to add ILLA's IP addresses to the allowlist so that ILLA can connect to your resources."
+          }
+        },
+        "button": {
+          "copy_ip": "Copy IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Deleted"
+      },
+      "result": {
+        "title": {
+          "api_request": "API Request",
+          "error": "Query ran fail",
+          "json": "JSON",
+          "response": "Data",
+          "success": "Success",
+          "table": "Table"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Database",
+        "js_transformer": "JavaScript Transformer"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Failed to show tables. Please try again later."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "delete_content": "Delete it maybe make some bugs，please confirm.",
+      "delete_title": "Are you sure you want to delete {{ displayName}}?",
+      "editor_list": "Current editors"
+    },
+    "context_menu": {
+      "delete": "Delete",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONS & TRANSFORMERS ",
+      "components_title": "COMPONENTS ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "PAGES",
+      "global_data_modal": {
+        "title": "Edit global data",
+        "variable_name": {
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "label": "Name",
+          "message": "Please enter the variable name"
+        },
+        "initial_value": {
+          "label": "Initial value",
+          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Failed to deploy"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" already exists",
+      "validate_error": "\"{{ displayName }}\" must start with a letter or \"_\", and can only contain letters, numbers, \"_\", or \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Delete",
+          "reset_state": "Reset state",
+          "view_documentation": "View documentation"
+        }
+      },
+      "multi_selected_header": "{{ number }} components selected",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Bar chart",
+          "line": "Line chart",
+          "pie": "Pie chart",
+          "scatterplot": "Scatterplot"
+        },
+        "color_picker": {
+          "prefabricated": "Prefabricated color",
+          "title": "Edit color"
+        },
+        "column_setter": {
+          "label": "Columns ({{number}})",
+          "new": "New",
+          "title": "Title"
+        },
+        "event_handler_list": {
+          "empty": "Trigger queries, control components, or call other APIs in response to component events.",
+          "incomplete_selection": "Incomplete selection",
+          "new": "New",
+          "title": "Edit event handler"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Delete",
+          "label": "Menus ({{number}})",
+          "new": "New",
+          "sub": "Sub"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "No label",
+          "model_title": "Edit Options",
+          "new": "New",
+          "title": "Options"
+        },
+        "select_page_setter": {
+          "placeholder": "Select a page"
+        },
+        "select_view_setter": {
+          "placeholder": "Select a view"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Views"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Change",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Filters change",
+          "fail": "Fail",
+          "focus": "Focus",
+          "invalid": "Invalid",
+          "paginationChange": "Page change",
+          "row_select": "Row select",
+          "sortingChange": "Sort change",
+          "submit": "Submit",
+          "success": "Success",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal",
+          "play": "Play",
+          "pause": "Pause",
+          "ended": "Ended",
+          "loaded": "Loaded",
+          "rowSelect": "Row select",
+          "markerSelected": "markerSelected",
+          "markerCreated": "markerCreated",
+          "select": "Select",
+          "DragOrClickNoEventArea": "Drag or click no event area",
+          "rowClick": "Row click",
+          "refresh": "Refresh",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell",
+          "delete": "Delete",
+          "replay": "Reply",
+          "startUploading": "Start uploading",
+          "uploadSuccessfully": "Uploaded successfully",
+          "uploadFailed": "Failed to upload",
+          "onMenuSelect": "Select item",
+          "on_menu_select": "Select menu item",
+          "pageChange": "Page change",
+          "clickItem": "Click item"
+        },
+        "image_list": {
+          "title": "Images",
+          "empty": "No  images",
+          "model_title": "Edit images",
+          "config": {
+            "model_label": "Label",
+            "image_url": "Image URL"
+          }
+        },
+        "image_setter": {
+          "new": "New"
+        },
+        "Change": "Change",
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "No title"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "Refresh",
+        "density_setting": "Density",
+        "column_setting": "Columns",
+        "refresh_setting": "Refresh"
+      },
+      "setter_default_value": {
+        "fill": "Fill",
+        "message_type": {
+          "error": "Error",
+          "info": "Info",
+          "success": "Success",
+          "warning": "Warning"
+        },
+        "outline": "Outline",
+        "validation_pattern": {
+          "email": "Email",
+          "regex": "Regex",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
+        },
+        "upload_type": {
+          "button": "Button",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Single file",
+          "multiple_files": "Multiple files",
+          "directory": "Directory"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "Select time"
+        },
+        "time_range": {
+          "start_placeholder": "Start time",
+          "end_placeholder": "End time"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
+        },
+        "rich_text": {
+          "default_text": "Type text here"
+        },
+        "drive_builder": {
+          "button_text": "Select"
+        }
+      },
+      "setter_group": {
+        "adornments": "ADORNMENTS",
+        "basic": "BASIC",
+        "column": "COLUMNS",
+        "data": "DATA",
+        "interaction": "INTERACTION",
+        "label": "LABEL",
+        "layout": "LAYOUT",
+        "menu": "MENU",
+        "options": "OPTIONS",
+        "pagination": "PAGINATION",
+        "row_selection": "USER SELECTION",
+        "sort": "SORT",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "VALIDATION",
+        "views": "VIEWS",
+        "images": "IMAGES",
+        "primary_value": "PRIMARY VALUE",
+        "secValue": "Secondary value",
+        "border": "Border",
+        "color": "Color",
+        "icon": "Icon",
+        "secondary_value": "SECONDARY VALUE",
+        "resource": "RESOURCE",
+        "eventCalendar": {
+          "calendar": "Calendar"
+        },
+        "event": "Event",
+        "MESSAGE": "MESSAGE",
+        "Toolbar": "TOOLBAR",
+        "divider": "Inner divider",
+        "shadow": "Inner shadow",
+        "background": "Background",
+        "padding": "Padding ( px )"
+      },
+      "setter_label": {
+        "chat": {
+          "data_source": "Data source",
+          "enable_message_selec": "Enable message selection",
+          "selection_type": "Selection type",
+          "loading_when_sending": "Loading when sending",
+          "image_background": "Image background"
+        },
+        "action": "Action",
+        "align": "Align",
+        "allow_clear": "Allow clear",
+        "allow_half": "Allow half",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "background": "Background",
+        "background_color": "Background",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Caption",
+        "chart_title": "Title",
+        "chart_type": "Chart type",
+        "color": "Color",
+        "colors": "Colors",
+        "column_title": "Column title",
+        "column_type": "Column type",
+        "columns": "Columns",
+        "component": "Component",
+        "config_type": "Config type",
+        "container": "Container",
+        "content": "Content",
+        "control_component": "Control component",
+        "custom_rule": "Custom rule",
+        "data": "Data",
+        "data_source": "Data source",
+        "data_sources": "Data sources",
+        "dataset": {
+          "aggregation_method": "Aggregation method",
+          "name": "Dataset name",
+          "remove": "Remove dataset",
+          "value": "Dataset values"
+        },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Decimal place",
+        "decimal_places": "Decimal places",
+        "default_sort_key": "Column",
+        "default_sort_order": "Direction",
+        "default_tab": "Default tab",
+        "default_value": "Default value",
+        "default_views": "Default view",
+        "description": "Description",
+        "direction": "Direction",
+        "disable_submit": "Disable submit",
+        "disabled": "Disabled",
+        "download": "Download",
+        "duration": "Duration",
+        "empty_state": "Empty state",
+        "enable_sorting": "Enable Sorting",
+        "end_data": "End date",
+        "end_placeholder": "End placeholder",
+        "event": "Event",
+        "event_handler": "Event handler",
+        "expansion_method": "Expansion method",
+        "failure": "Failure",
+        "filter": "Filter",
+        "font_size": "Font size",
+        "form_data_key": "Form Data Key",
+        "format": "Format",
+        "go_to_url": "Go to URL",
+        "group_by": "Group by",
+        "group_layout": "Group layout",
+        "hidden": "Hidden",
+        "hidden_label": "Hidden label",
+        "hide_validation_message": "Hide validation message",
+        "hide_value_label": "Hide value label",
+        "horizontal_alignment": "Horizontal alignment",
+        "icon": "Icon",
+        "image_source": "Image source",
+        "img_height": "Height",
+        "img_width": "Width",
+        "index": "Index",
+        "item_background_color": "Item background",
+        "items": "Items",
+        "key": "Key",
+        "label": "Label",
+        "label_alignment": "Alignment",
+        "label_position": "Position",
+        "label_width": "Width(%)",
+        "layout": "Layout",
+        "legend_position": "Legend position",
+        "link_to_container": "Link to a container",
+        "links_color": "Links",
+        "loading": "Loading",
+        "loop_back_to_start": "Loop back to start",
+        "loop_start_to_back": "Loop start to back",
+        "mapped_option": "Mapped Option",
+        "mapped_value": "Mapped Value",
+        "max_count": "Max count",
+        "max_date": "Max date",
+        "max_length": "Max length",
+        "maximum": "Maximum",
+        "method": "Method",
+        "min_date": "Min date",
+        "min_length": "Min Length",
+        "minimum": "Minimum",
+        "multi_row_selection": "Multi-Row Selection",
+        "new_tab": "New tab",
+        "only_run_when": "Only run when",
+        "overFlow": "OverFlow",
+        "page": "Page",
+        "pageSize": "PageSize",
+        "pattern": "Pattern",
+        "pending": "Pending",
+        "placeholder": "Placeholder",
+        "prefix_text": "Prefix text",
+        "radius": "Radius",
+        "read_only": "Read only",
+        "regex": "Regex",
+        "required_field": "Required field",
+        "reset_after_successful_submit": "Reset after successful submit",
+        "router": "Router",
+        "run_script": "Run script",
+        "scale_type": "Scale Type",
+        "set_router": "Set router",
+        "set_temporary_state": "Set temporary state",
+        "shadow": {
+          "shadow": "Shadow"
+        },
+        "show_character_count": "Show character count",
+        "show_clear_button": "Show clear button",
+        "show_footer": "Show footer",
+        "show_header": "Show header",
+        "show_notification": "Show notification",
+        "sort": "Sort",
+        "start_date": "Start date",
+        "start_placeholder": "Start placeholder",
+        "step_size": "Step size",
+        "stroke_width": "Stroke width",
+        "style": "Style",
+        "styles": "Styles",
+        "submit_form": "Submit form",
+        "success": "Success",
+        "suffix_text": "Suffix text",
+        "text": "Text",
+        "text_align": "Text align",
+        "text_size": "Text size",
+        "theme_color": "Theme color",
+        "thousand_separator": "Thousand separator",
+        "time_format": "Time format",
+        "title": "Title",
+        "tooltip": "Tooltip",
+        "trail_color": "Trail color",
+        "trigger_query": "Trigger action",
+        "type": "Type",
+        "validate_inputs_on_submit": "Validate inputs on submit",
+        "value": "Value",
+        "value_labels": "Value labels",
+        "variant": "Variant",
+        "vertical_alignment": "Vertical alignment",
+        "width": "Width",
+        "x_axis_name": "X-axis name",
+        "x_axis_title": "X-axis title",
+        "x_axis_type": "X-axis type",
+        "x_axis_value": "X-axis value",
+        "y_axis_name": "Y-axis name",
+        "y_axis_title": "Y-axis title",
+        "height": "Height",
+        "min_height": "Min height (px)",
+        "show_underline": "Show underline",
+        "auto_play": "Auto play",
+        "interval": "Interval(ms)",
+        "show_button": "Show arrows",
+        "show_dot": "Show dots at the bottom",
+        "hidden_images": "Hidden images",
+        "file_type": "File types",
+        "selection_types": "Selection type",
+        "append_newly_files": "Append newly selected files",
+        "file_list": "File list",
+        "parse_value": "Parse Value",
+        "max_files": "Max files",
+        "min_files": "Min files",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Overflow",
+        "file_url": "PDF Source",
+        "show_tool_bar": "Show tool bar",
+        "scale": "Scale page to",
+        "scroll": "Snap scroll to each page",
+        "min_max_size": "Min size ～ Max size",
+        "video_url": "Video source",
+        "autoplay": "Autoplay",
+        "loop": "Loop",
+        "volume": "Volume",
+        "show_controls": "Show controls",
+        "img_url_array": "Image URL Array",
+        "statistics": {
+          "label": "Label",
+          "primary_value": "Primary value",
+          "secValue": "Secondary value",
+          "decimal": "Decimal place",
+          "trend_sign": "Show trend sign",
+          "positive_sign": "Positive sign",
+          "negative_sign": "Negative sign",
+          "thousand_separator": "Show thousand separator",
+          "trend_color": "Enable trend color",
+          "prefix_text": "Prefix text",
+          "suffix_text": "Suffix text",
+          "title": "Title"
+        },
+        "mute": "Mute",
+        "collapse": {
+          "type": "Type",
+          "accordin_mode": "Accordion mode",
+          "header_color": "Header",
+          "body_color": "Body",
+          "expand_icon": "Expand",
+          "collapse_icon": "Collapse",
+          "icon_color": "Color"
+        },
+        "choose_at_least": "Choose at least",
+        "choose_up_to": "Choose up to",
+        "copy_to_clipboard": "Copy to clipboard",
+        "file_download": {
+          "file_data": "File data",
+          "file_name": "File name with extension",
+          "file_type": "File type"
+        },
+        "action_name": "Action name",
+        "variable": {
+          "path_of_value": "Path of value",
+          "variable": "Global data"
+        },
+        "code": {
+          "write_code": "Write code"
+        },
+        "slider": {
+          "step_size": "Step size",
+          "minimum": "Minimum",
+          "maximum": "Maximum",
+          "hide_output": "Hide output",
+          "prefix_icon": "Prefix icon",
+          "suffix_icon": "Suffix icon",
+          "allow_wrapping": "Allow wrapping"
+        },
+        "range_slider": {
+          "start_value": "Start value",
+          "end_value": "End value"
+        },
+        "name": "Name",
+        "audio": {
+          "audio_url": "Audio source"
+        },
+        "map": {
+          "markers": "Markers",
+          "initial_location": "Initial location",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Latitude field name",
+          "longitude_field_name": "Longitude field name",
+          "zoom": "Zoom",
+          "enable_add_markers": "Enable add markers",
+          "enable_search_locati": "Enable search location",
+          "enable_clustering": "Enable clustering"
+        },
+        "time_range": {
+          "start_time": "Start time",
+          "end_time": "End time"
+        },
+        "eventCalendar": {
+          "event_value": "Event value",
+          "event_id": "Event id",
+          "title": "Title",
+          "description": "Description",
+          "start": "Start",
+          "end": "End",
+          "resource_id": "Resource id",
+          "resource_title": "Resource title",
+          "all_day": "All day",
+          "data_source": "Data source",
+          "default_date": "Default date",
+          "resource_grid": "Resource grid",
+          "default_view": "Default view",
+          "show_current_time": "Show current time",
+          "background": "Background",
+          "calendar_background": "Background",
+          "calendar_border": "Border",
+          "calendar_text": "Secondary text",
+          "event_background": "Background",
+          "event_text": "Text",
+          "draggable": "Draggable",
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disabled resizing"
+        },
+        "table": {
+          "page_index": "Page index",
+          "index": "Index",
+          "scroll_to_the_select": "Scroll to the selected row",
+          "filters": "Filters",
+          "filter_mode": "Filter mode",
+          "show_thousands_separ": "Show thousands separator ",
+          "tag_label": "Tag label",
+          "tag_color": "Tag color",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download raw data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code",
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect",
+          "page": "Default page index",
+          "export_all_data_setting": "Export all"
+        },
+        "previous_cursor": "Previous cursor",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)",
+          "stop_button_text": "Stop button text"
+        },
+        "message_id": "Message ID",
+        "message": "Message",
+        "message_type": "Message type",
+        "sendTime": "Send time",
+        "timeFormat": "Time format",
+        "currentSenderId": "Current sender ID",
+        "receiving": "Loading when receiving",
+        "toolbar-replay": "Show reply button",
+        "toolbar-delete": "Show delete button",
+        "showAvatar": "Show avatar",
+        "showSendTime": "Show send time",
+        "showFooter": "Show footer",
+        "leftMessageColor": "Message on left",
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all",
+        "replayMessageId": "Reply message ID",
+        "senderName": "Sender name",
+        "senderId": "Sender ID",
+        "showName": "Show name",
+        "rich_text": {
+          "default_text": "Placeholder"
+        },
+        "senderAvatar": "Sender avatar",
+        "drive_builder": {
+          "allow_public_use": "Use in public app",
+          "illa_drive_folder": "ILLA Drive folder",
+          "generate_signed_url": "Generate signed URL",
+          "expired_time": "Expired type",
+          "time": "Expired time(s)",
+          "turn_on_hotlink": "Turn on hotlink protect",
+          "button_text": "Button text",
+          "selection_type": "Selection type",
+          "allowed_file_types": "Allowed file types",
+          "file_list": "File list",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min file num",
+          "max_file_num": "Max file num",
+          "file_name_duplicatio": "File name duplication",
+          "fileData": "File data",
+          "downloadZIP": "Download as a ZIP"
+        },
+        "download_from_drive": "Download from ILLA Drive",
+        "save_to_drive": "Save to ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title",
+          "only_show_icon": "Only show icon",
+          "groupLabels": "Group labels"
+        },
+        "hover_bg_color": "Hover background",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Default form data",
+          "hidden_submit_button": "Hidden submit button",
+          "submit_button_full_w": "Submit button full width",
+          "submit_button_text": "Submit button text"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
+        },
+        "grid_list": {
+          "column_adaptation": "Column adaptation",
+          "column_count": "Column count",
+          "row_height": "Row adaptation",
+          "item_radius": "Item radius",
+          "item_shadow": "Item shadow",
+          "item_spacing": "Item spacing",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
+        },
+        "src": "src",
+        "page_size_options": "Page size options",
+        "export_setting": "Export",
+        "filter_setting": "Filter",
+        "primary_key": "Primary key"
+      },
+      "setter_tooltip": {
+        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
+        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
+        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
+        "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
+        "download": "Show download button in toolbar.",
+        "filter": "Show filter button in toolbar.",
+        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
+        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
+        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
+        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "loading": "Whether the component should show a loading indicator.",
+        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
+        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Use {{table.selectedRow[n].columnName}} to access data.",
+        "only_run_when": "Conditions that must be met before the event executes.",
+        "placeholder": "The value will be shown when the input field is empty.",
+        "progress_percentage": "The percentage value is between 0 and 100.",
+        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
+        "required_field": "Valid only when the switch is on.",
+        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
+        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized. In Markdown mode, the platform supports both Markdown syntax and HTML syntax. In order to utilize both syntaxes simultaneously, it is necessary to include a blank newline between the two syntaxes.",
+        "timeline_direction": "Change the direction of the timeline.",
+        "timeline_pending": "Whether to show a node with a pending status.",
+        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
+        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
+        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option.",
+        "file_url": "Supports PDF URLs on the web, or base64 encoded data of pdf files. For example: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Scale each page to fill the width or height of the component.",
+        "scroll": "Automatically locate to the beginning of each page when scrolling.",
+        "video_url": "Supports most video services or a direct link to any common video file type or the base64 encoded data of video files. For example: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Collapsible list: list, all items will automatically copy the style of the first item. You can specify the component data in each item via {{ currentItem.columnName }}. Collapsible panel: each panel is independent, you can specify the component style and data of each item separately.",
+          "items": "Number of items",
+          "accordin_mode": "In accordion mode, when an item is expanded, other items will collapse."
+        },
+        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
+        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
+        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
+        "replayMessageId": "If it is replying to a specified message, use this field to set which message to reply to.",
+        "expandAll": "Whether or not to expand all the nodes",
+        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
+        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
+        "currentSenderId": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
+        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
+        "sendTimeFormat": "Set the format of sending time. For example, hh:MM:ss.",
+        "showAvatar": "Set whether to show the avatar",
+        "showName": "Set whether to show the name",
+        "showSendTime": "Set whether to show the send time",
+        "showFooter": "Set whether to show the footer",
+        "senderAvatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
+        "receiving": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
+        "export_setting": "Used to set whether or not users are allowed to export filtered data.",
+        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table."
+      },
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it.",
+      "setter": {
+        "click_mask_close": "Click mask to close modal",
+        "modal": {
+          "blank": "No icons"
+        }
+      },
+      "setter_tips": {
+        "chat": {
+          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
+          "enable_message_selec": "Set whether to allow a message to be selected",
+          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
+          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
+          "image_background": "Set a image background. Base64 and image URL are supported"
+        },
+        "carousel_tips": "Use {{ item }} to get value from the data source. For example, there are two attributes in the data source. They are imageUrl and url. If you want to go to different url when click image, use {{ item.url }} to set the url.",
+        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
+        "img_url_array": "Use {{ item.attributeName }} to get image URL from the data source. ",
+        "carousel": {
+          "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Support base64 data, raw data, mapped data of table. "
+        },
+        "variable": {
+          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "The target value"
+        },
+        "slider": {
+          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
+          "minimum": "The minimum value of the slider",
+          "maximum": "The maximum value of the slider",
+          "step_size": "The minimum change unit of the slide",
+          "label": "The name of the field displayed to the user",
+          "caption": "A caption used to describe the field in detail",
+          "hide_label": "Set whether to display the label",
+          "allow_wrapping": "Set whether to allow label wrapping",
+          "position": "Set the position of the label relative to the component",
+          "alignment": "Set the alignment of the label",
+          "width": "When the label is on the left side of the component, set the width ratio of the label",
+          "prefix_icon": "The icon displayed in front of the component",
+          "suffix_icon": "The icon displayed after the component",
+          "hide_output": "Set whether to hide the value when sliding"
+        },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
+        "step": {
+          "default_step": "Default step",
+          "show_step_number": "Show step numbers",
+          "indicate_completed_steps": "Indicate completed steps"
+        },
+        "range_slider": {
+          "start_value": "To set the minimum value of the range",
+          "end_value": "To set the maximum value of the range"
+        },
+        "audio": {
+          "audio_url": "Supports direct links to any common audio file type or the links to some audio services or the base64 encoded data of audio files. For example: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "To set markers on the map. The markers should be an array of objects with the same properties as the Default markers.",
+          "initial_location": "When initializing the map, the default centered display position",
+          "default_markers": "The default markers displayed when initializing the map. You can set it dynamically with the JavaScript in {{}}. ",
+          "latitude_field_name": "The latitude is taken from which property of the Initial location and Default markers objects.",
+          "longitude_field_name": "The longitude is taken from which property of the Initial location and Default markers objects.",
+          "zoom": "To set the map zoom",
+          "enable_add_markers": "Whether to allow users to add markers by clicking on the map",
+          "enable_search_locati": "Whether to allow users to search for location",
+          "enable_clustering": "Whether to allow multiple markers to aggregate when the map is zoomed out"
+        },
+        "time_picker": {
+          "format": "A valid time format string. For more information of the format: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "The span of the value in minutes",
+          "show_a_clear_button_": "Show a clear button when the mouse is over the component. "
+        },
+        "time_range": {
+          "start_time": "The initial start time of the component. ",
+          "end_time": "The initial end time of the component. ",
+          "start_placeholder": "The value will be shown when the start time field is empty.",
+          "end_placeholder": "The value will be shown when the end time field is empty."
+        },
+        "eventCalendar": {
+          "event_value": "Use Object enclosed in {{ to set the event value. For example, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "A unique ID used to identify the event",
+          "title": "The title of the event",
+          "description": "The description of the event",
+          "start": "Start time of the event",
+          "end": "End time of the event",
+          "resource_id": "The resource could be a person, a meeting room, etc. You can set a resource id and connect it to the event. ",
+          "resource_title": "The resource name displayed in the resource view",
+          "all_day": "Whether an all-day event",
+          "data_source": "Data source of the events. A data source should be an array of objects. Every object is an event. For example, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "The default date when launch the app",
+          "resource_grid": "Whether to show a resource grid",
+          "default_view": "The default view when launch the app",
+          "show_current_time": "Set whether to show the current time line",
+          "calendar_background": "Set the background of the calendar",
+          "calendar_border": "Set color of the border",
+          "calendar_text": "Set color of the text",
+          "event_background": "Set the background of event card",
+          "event_text": "Set the text color of event card",
+          "couldnot_drag": "If you wish to drag to adjust the time range, please proceed to the preview page for the operation.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "The icon displayed in the table",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download raw data icon.",
+          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. We support these filterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
+          "filter_mode": "The filter mode. and / or.",
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row.",
+          "density_setting": "Used to set the row height density or not. ",
+          "refresh_setting": "Used to set whether to show a refresh icon",
+          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data."
+        },
+        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
+        },
+        "leftMessageColor": "Set the color of the messages on the left",
+        "rightMessageColor": "Set the color of the messages on the right",
+        "toolbar-replay": "Set whether to show a reply button when select a message.",
+        "toolbar-delete": "Set whether to show a delete button when select a message.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        },
+        "drive_builder": {
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
+          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
+          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
+          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
+          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
+          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
+          "button_text": "To set the text on the button",
+          "selection_type": "Set whether to allow the user to select a single file or multiple files",
+          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}. Leave blank to allow all file types. ",
+          "file_list": "To set whether to show the selected file list. ",
+          "min_size": "To set the allowed minimum file size",
+          "max_size": "To set the allowed maximum file size",
+          "min_file_num": "To set the minimum number of files allowed to be selected",
+          "max_file_num": "To set the maximum number of files allowed to be selected",
+          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. You can use the Drive file picker component to select files and set this value directly through {{filePciker1.value}}.",
+          "downloadZIP": "To set whether to download the files as one ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here",
+          "only_show_icon": "TO hidden the label and only show icon"
+        },
+        "statistics": {
+          "title": "Set the title to display"
+        },
+        "page": {
+          "default_view": "When users enter an error URL, we will automatically redirect to the default sub-page. When there is no default sub-page, we will treat the first sub-page in the list as the default sub-page"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis",
+          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups.",
+          "x-axis_type": "Setting the chart type can enhance data readability.",
+          "format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "To set the position of legent. ",
+          "grid_line": "To set the color of grid line. ",
+          "y-axis_type": "Setting the chart type can enhance data readability."
+        },
+        "grid_list": {
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
+          "column_count": "Used to configure the number of columns, which determines how many grids are displayed per row.",
+          "row_height": "Used to configure the height of each row. In Auto mode, the height is adaptive, and the row height is determined by the tallest grid in the current row. In Fixed mode, the row height is fixed, and all grids have the same height.",
+          "item_radius": "Used to configure the corner radius of each grid",
+          "item_shadow": "Used to configure the shadow size of each grid",
+          "item_spacing": "Used to configure the spacing between grids",
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+        },
+        "primary_key": "A unique key for identifying a row"
+      },
+      "setter_option": {
+        "fixed": "Fixed",
+        "auto_limited": "Auto height with limits",
+        "auto_height": "Auto height",
+        "text_ellipsis": "Ellipsis",
+        "text_scroll": "Scroll",
+        "text_clip": "Clip",
+        "scale_height": "Height",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Collapsible panel"
+        },
+        "file_download": {
+          "auto": "Auto",
+          "plain_text": "Plain text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "None",
+          "large": "Large",
+          "medium": "Medium",
+          "small": "Small"
+        },
+        "eventCalendar": {
+          "sunday": "Sunday",
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "month": "Month",
+          "week": "Week",
+          "day": "Day",
+          "agenda": "Agenda"
+        },
+        "table": {
+          "set_sort": "Set sort",
+          "column": "Column",
+          "number": "Number",
+          "percent": "Percent",
+          "currency": "Currency",
+          "text": "Text",
+          "tag": "Tag",
+          "button_group": "Button group",
+          "date": "Date",
+          "time": "Time",
+          "date_time": "Date Time",
+          "link": "Link",
+          "rating": "Rating",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Button",
+          "icon": "Icon",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Responsive",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Left-click",
+            "right-click": "Right-click"
+          }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Persistent",
+            "customer": "Custom"
+          },
+          "single_file": "Single file",
+          "multiple_files": "Multiple files",
+          "anonymous_modal": {
+            "title": "Allow  public users to access ILLA Drive?",
+            "desc": "When turned on, only the Public apps access folder of this app can be accessed. When an APP is set as public, all users can access the folder.",
+            "cancelBtn": "Cancel",
+            "submitBtn": "Turn on"
+          },
+          "file_name_duplicatio": {
+            "replace": "Replace",
+            "keepboth": "Keep both"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Default",
+            "Date": "Date"
+          }
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "No limits",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Positive color",
+          "negative_color": "Negative color"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema for the form.\n\nExample\n{{action1.data }}\n\nLearn more about how to write the JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI Schema for the form - see the uiSchema prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExample\n{{ action1.data }}",
+          "default_form_data": "Default Form data - see the formData prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExample\r\n{{ action1.data }}",
+          "hidden_submit_button": "Set whether to hide the submit button",
+          "submit_button_full_w": "Set whether the submit button is full width.",
+          "submit_button_text": "Set the text of the submit button"
+        }
+      },
+      "setter_tootip": {
+        "volume": "A number between 0 and 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Please choose at lease {{ min }} options.",
+        "choose_up_to": "Please choose up to {{max}} options.",
+        "map": {
+          "zoom": "Please set a value between 1 and 22"
+        },
+        "upload": {
+          "size_exceed": "Files over 500MB may fail to parse.",
+          "single_file": "Only a single file is allowed.",
+          "file": "Unsupported file types are removed",
+          "directory": "Only directories are allowed."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Please select a file with a size greater than {{min}}",
+          "max_size": "Please select a file with a size smaller than {{max}}",
+          "min_files": "Please select at least {{min}} files",
+          "max_files": "Please select at most {{max}} files"
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload",
+        "noStorage": "Failed to upload because of not enough storage.",
+        "noTraffic": "Failed to download because of not enough traffic."
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Write your code here. Use JavaScript inside of {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The value will be shown when the input field is empty."
+        }
+      },
+      "widget": {
+        "reply": "Reply to: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No sub-page"
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Add",
+        "body": "Body",
+        "default_view": "Default sub-page",
+        "edit_view": "Edit sub-page",
+        "footer": "Footer",
+        "header": "Header",
+        "key": "Key",
+        "left_panel": "Left panel",
+        "preset": "Preset",
+        "right_panel": "Right panel",
+        "set_as_homepage": "Set as homepage",
+        "show_fold_icon": "Show fold icon",
+        "view_path": "Name",
+        "views": "Sub-pages",
+        "width": "Width",
+        "height": "Height",
+        "columns": "Columns",
+        "set_as_default_subpage": "Set as default sub-page",
+        "delete-page": "Delete page",
+        "delete-sub-page": "Delete sub-page"
+      },
+      "model_tips": {
+        "cancel_button": "Cancel",
+        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
+        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
+        "ok_button": "Confirm"
+      },
+      "panel_bar_title": {
+        "basic": "BASIC",
+        "frame": "LAYOUT"
+      },
+      "tab_title": "Page",
+      "tooltips": {
+        "show_fold_icon": "Show a button to collapse or expand the panel",
+        "view_path": "To configure access to this page, you'll need to adjust the name. For instance, if you change the name to '**newPage**', and add it as a sub-page of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "auto_canvas_width": "The width of page as a percentage of the browser width."
+      },
+      "message": {
+        "new_path": "No matching sub-page found. New sub-page has been added. "
+      }
+    },
+    "validate_message": {
+      "email": "Please enter a valid email address",
+      "max_length": "Must be no more than {{ number }} characters",
+      "max_value": "Must be less than {{ number }}",
+      "min_length": "Must be at least {{ number }} characters",
+      "min_value": "Must be greater than {{ number }}",
+      "regex": "Please match the requested format",
+      "required": "This field is required",
+      "url": "Please enter a valid URL",
+      "max_size": "The file size can't exceed {{maxSize }} {{ type }}.",
+      "min_files": "At least {{ minFiles }} files are required.",
+      "max_files": "Support up to {{ maxFiles }} files.",
+      "min_size": "The file size can't be less than {{minSize }} {{ type }}.",
+      "min_max_size": "Min size ~ Max size"
+    },
+    "widget_picker": {
+      "empty_tip": "Sorry, no search results",
+      "search_placeholder": "Search",
+      "sessions": {
+        "calendar": "Calendar inputs",
+        "commonly": "Commonly components",
+        "container": "Container and form",
+        "data": "Data",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Presentation",
+        "selects": "Select inputs",
+        "drive": "ILLA Drive"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Set hidden",
+      "set_file_url": "Set PDF source",
+      "play": "Play",
+      "pause": "Pause",
+      "seek_to": {
+        "time": "Time",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Video source"
+      },
+      "speed": {
+        "speed": "Speed",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stop",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "Volume",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "Primary value"
+      },
+      "collapse": {
+        "expand_all_items": "Expand all items",
+        "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "Show next visible image",
+        "showPrevious": "Show previous visible image"
+      },
+      "file_download": {
+        "download": "Download",
+        "message": {
+          "suc": "Start to download",
+          "fail": "Request failed",
+          "download_failed": "Failed to download"
+        }
+      },
+      "setGlobalData": "Set global data",
+      "setLocalStorage": "Set local storage",
+      "audio": {
+        "set_audio_url": "Set audio source"
+      },
+      "map": {
+        "marker_selected": "Marker selected",
+        "marker_created": "Marker created",
+        "markers_changed": "Markers changed"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Clear filters",
+        "clear_column_setting": "Clear column setting",
+        "refresh": "Refresh",
+        "select_page": "Select page",
+        "select_row": "Select row",
+        "clear_selection": "Clear selection",
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "Click free time"
+      },
+      "clearReplyMessage": "Clear reply message"
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Tutorial"
+          },
+          "title": {
+            "tutorial": "Tutorial",
+            "templates": "Guide"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "Follow ILLA's tutorial to learn how to build an app.",
+            "action": "Go"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Fork this template as a new app"
+          },
+          "templates_name": {
+            "table": "Dashboard",
+            "form": "Survey",
+            "list": "Admin panel",
+            "table_guide": "Table guide",
+            "custom_login": "Custom login",
+            "run_script": "Run Script",
+            "calendar_guide": "Calendar guide",
+            "chat_guide": "Chat use case",
+            "custom_login_with_sc": "Script login"
+          },
+          "templates_description": {
+            "table": "Use tables to create dashboards.",
+            "form": "Use form and input components to create form apps.",
+            "list": "Use a list component to display and manage information",
+            "table_guide": "The features supported by Table and how to use them",
+            "custom_login": "To restrict only users in your database can access your public apps",
+            "run_script": "Flexible event handling with Run Script",
+            "calendar_guide": "Managing events and viewing events with Calendar component",
+            "custom_login_with_sc": "Use Script to restrict only users in your database can access your apps"
+          },
+          "modal": {
+            "title": "Fork and deploy",
+            "placeholder": "App name",
+            "cancel": "Cancel",
+            "fork": "Fork and deploy"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Step 1: Drag an input here",
+          "drag_button": "Step 2: Drag a button here",
+          "drag_table": "Step 3:  Drag a table here",
+          "exit": "Cancel",
+          "do_it": "Do it for me",
+          "drag_title": "Drag components to the frame",
+          "modify_action_title": "Modify the action",
+          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component. \n\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Click Save and then click Run",
+          "display_data_title": "Display data on table",
+          "display_data_description_select": "Select the table on the frame",
+          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgresql1.data}} to get the data.",
+          "event_handler_title": "Click button to trigger action",
+          "event_handler_description_1": "Select the button on the frame",
+          "event_handler_description_2": "Add an event handler",
+          "event_handler_description_3": "Click the event handler",
+          "event_handler_description_4": "Change the action to trigger action",
+          "event_handler_description_5": "Change the Query to postgre1",
+          "test_it_title": "Test it out",
+          "test_it_description": "Input a user name you want to search for and click the button",
+          "test_it_button": "Next",
+          "congratulations_title": "Congratulations 🎉",
+          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord</0>. ",
+          "congratulations_button": "Done",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Data size exceeds limit (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+    },
+    "history": {
+      "operation": {
+        "Added": "Added {{operationTargetName}}",
+        "Deleted": "Deleted {{operationTargetName}}",
+        "Updated": "Updated {{operationTargetName}}",
+        "Moved": "Moved {{operationTargetName}}",
+        "Reseted": "Reseted {{operationTargetName}}",
+        "Restored": "Restored from {{versionName}}"
+      },
+      "save": "Save as history",
+      "history": "History",
+      "more": "More",
+      "save_keyboard": {
+        "cmds": "⌘ S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Current",
+        "manual": "Manual",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December",
+        "final_node": "No more history",
+        "label": "View only"
+      },
+      "restore": "Restore this version",
+      "message": {
+        "version_change": "The current app version has changed",
+        "suc": {
+          "save": "Current version is successfully saved as a history record",
+          "restore": "Successfully restored",
+          "preview": "The history record is successfully loaded."
+        },
+        "fail": {
+          "save": "Failed to save",
+          "restore": "Failed to restore",
+          "preview": "Failed to load the history record."
+        }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "name": "Name",
+        "desc": "Description",
+        "mode": "Mode",
+        "prompt": "Prompt",
+        "variable": "Variable",
+        "welcome": "Welcome message",
+        "model": "Model",
+        "temperature": "Temperature",
+        "max-token": "Max token",
+        "icon": "Icon"
+      },
+      "placeholder": {
+        "name": "Give a name to the agent",
+        "desc": "Provide a brief description of what this agent is intended to be used for.",
+        "prompt": "Enter {{variableName}} to use a variable",
+        "variable": {
+          "key": "Variable name",
+          "value": "Value"
+        },
+        "welcome": "Provide a welcome message displayed when users start use the agent.",
+        "icon": "Upload",
+        "send": "Send something to the Agent"
+      },
+      "tips": {
+        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
+        "not-start": "Complete the Agent configure and click Start to run",
+        "not-start-run": "Please click the Start button on the left.",
+        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
+        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Text generation"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "New",
+      "save": "Save",
+      "start": "Start",
+      "restart": "Restart",
+      "contribute": "Contribute to community",
+      "button": {
+        "send": "Send",
+        "generating": "Generating"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Generate text"
+      },
+      "message": {
+        "click-start": "Click the Start button to trigger.",
+        "insufficient_token": "Insufficient Colla",
+        "start-failed": "Failed to start. Please try again. ",
+        "reconnect": "Connection lost. Reconnecting...",
+        "token-not-enough": "Model limit reached. Please restart.",
+        "token": "The Max token is smaller than the number of tokens occupied by the prompt or exceeds the model's limit.",
+        "purchase-required": "Colla is not enough to run, please recharge.",
+        "leave": "There are unsaved content, are you sure you want to leave?",
+        "generating": "Please wait for the generation to complete or interrupt the process",
+        "model-unavailable": "The current model is not available"
+      },
+      "title": "Edit AI Agent",
+      "generate-desc": {
+        "button": "AI generate",
+        "tooltips": "Use AI to generate the description based on your prompt. ",
+        "failed": "Failed to generate. Please try again later. ",
+        "blank": "Please enter the prompt first"
+      },
+      "generate-icon": {
+        "tooltips": "Use AI to generate icon based on the agent name and description",
+        "blank": "Please fill in the name field first"
+      },
+      "title-preview": {
+        "chat": "Preview window",
+        "text-generation": "Preview window"
+      }
+    },
+    "common": {
+      "required": "Required"
+    }
+  },
+  "dashboard": {
+    "app_market": "テンプレート",
+    "market": "市場",
+    "app": {
+      "all_apps": "All Apps",
+      "create_app": "Create App",
+      "duplicate_fail": "Failed to duplicate",
+      "duplicate_placeholder": "Enter your app name here",
+      "edited_time": "Edited at {{ time }} by {{ user }}",
+      "name_empty": "Please enter a name",
+      "name_existed": "Name already taken",
+      "rename_app": "Rename App",
+      "rename_fail": "Failed to rename",
+      "rename_success": "Renamed successfully",
+      "trash_failure": "Failed to delete",
+      "trash_success": "Deleted successfully"
+    },
+    "common": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "delete_cancel_text": "Cancel",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_ok_text": "Delete",
+      "delete_title": "Are you sure?",
+      "error_button": "Retry",
+      "error_description": "There is a problem with your operation.",
+      "error_title": "Error",
+      "marketplace": "Community",
+      "run": "Run",
+      "fork": "Fork",
+      "duplicate": "Duplicate",
+      "share": "Share",
+      "edit": "Edit",
+      "launch": "Launch"
+    },
+    "resource": {
+      "create_resource": "Create New",
+      "created": "Created",
+      "dbname": "Database Name",
+      "delete_fail": "Failed to delete",
+      "delete_success": "Deleted successfully",
+      "resource_name": "Name",
+      "resource_type": "Type",
+      "save_fail": "Failed to save",
+      "save_success": "Save successfully",
+      "test_fail": "Failed to test",
+      "test_success": "Test successfully"
+    },
+    "list-type": {
+      "team": "Team's",
+      "marketplace": "Community"
+    },
+    "sort-type": {
+      "popular": "Most popular",
+      "recent": "Latest",
+      "star": "Starred"
+    },
+    "search": "Search",
+    "no-result": "No result here. Please refresh or change your search terms.",
+    "message": {
+      "next-page-error": "Failed to load next page. Please try again.",
+      "create-failed": "Failed to save agent. Please try again.",
+      "sort-failed": "Failed to change the filter type. Please try again.",
+      "detail-load-failed": "Failed to retrieve details, please try again.",
+      "fork-failed": "Failed to fork, please try again.",
+      "create-suc": "Successfully saved",
+      "fork-suc": "Successfully forked.",
+      "delete-failed": "Faild to delete. Please try again. ",
+      "delete-suc": "Successfully deleted. ",
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
+    },
+    "create": "Create"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Deployed",
+      "undeploy": "Undeploy"
+    },
+    "desc": {
+      "no_description": "No description",
+      "blank": "No application",
+      "blank-agent": "No AI Agent here"
+    },
+    "app_setting": {
+      "app_setting": "App setting",
+      "app_name": "App name",
+      "description": "Description",
+      "save": "Save",
+      "placeholder": {
+        "description": "Enter the description for the app",
+        "app_name": "Enter a name for the app"
+      }
+    },
+    "access": {
+      "public": "Public",
+      "private": "Private"
+    },
+    "message": {
+      "update_failed": "Failed to update",
+      "update_suc": "Successfully updated"
+    },
+    "button": {
+      "blank": "Create new",
+      "blank-agent": "Create AI Agent"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Private app",
+      "public_app": "Public app"
+    },
+    "desc": {
+      "private_app": "Only the team members can access the deployed app",
+      "public_app": "Anyone with the app link can access the deployed app"
+    },
+    "button": {
+      "public": "Public"
+    }
+  },
+  "ai-agents": "AI Agents",
+  "marketplace": {
+    "star": "Star",
+    "fork": "Fork"
+  },
+  "load": {
+    "before": "Load more"
+  },
+  "resources": "Resources",
+  "- user_management": {
+    "modal": {
+      "tab": {
+        "with_team": "Share with team members"
+      }
+    }
+  },
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    }
+  },
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Learn how to build an app in 5 minutes",
+          "description": "Follow ILLA's tutorial to learn how to build an app. This will take about 5 minutes.",
+          "cancel": "Cancel",
+          "take": "Take a tutorial"
+        }
+      }
+    }
+  }
+}
