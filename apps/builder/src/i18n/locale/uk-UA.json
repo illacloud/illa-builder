@@ -76,7 +76,8 @@
       "fork-suc": "Успішно форжили.",
       "delete-failed": "Не вдалося видалити. Будь ласка, спробуйте ще раз. ",
       "delete-suc": "Успішно видалено. ",
-      "mobile-fork-suc": "Успішно відгалужено. Будь ласка, відредагуйте на робочому столі."
+      "mobile-fork-suc": "Успішно відгалужено. Будь ласка, відредагуйте на робочому столі.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Створити"
   },
@@ -4387,7 +4388,16 @@
     "before": "Завантажити ще"
   },
   "size_exceed_copied_tips": "Вміст занадто довгий для копіювання. (поточний розмір: {{current_size}} байт, обмеження: {{limit_size}} байт)",
-  "contribute": "Зробити свій внесок",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
+  },
   "error_page": {
     "fobidden": "Немає дозволу на доступ"
   }

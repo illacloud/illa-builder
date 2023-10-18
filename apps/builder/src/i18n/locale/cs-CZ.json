@@ -76,7 +76,8 @@
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. ",
-      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači."
+      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači.",
+      "save_resource": "Úspěšně uloženo, stránka se zavře za 3 sekundy..."
     },
     "create": "Vytvořit"
   },
@@ -4387,7 +4388,16 @@
     "before": "Načíst více"
   },
   "size_exceed_copied_tips": "Obsah je příliš dlouhý na kopírování. (aktuální velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)",
-  "contribute": "Přispějte",
+  "contribute": {
+    "tag": {
+      "recommended": "Doporučené",
+      "add_tag": "Přidat štítky",
+      "tag": "Značka",
+      "failed_to_save": "Uložení se nezdařilo"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
+  },
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
   }

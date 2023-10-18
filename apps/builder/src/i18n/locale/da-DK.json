@@ -76,7 +76,8 @@
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. ",
-      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet."
+      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Opret"
   },
@@ -4387,7 +4388,16 @@
     "before": "Indlæs mere"
   },
   "size_exceed_copied_tips": "Indholdet er for langt til at kopiere. (nuværende størrelse: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Bidrag",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
+  },
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
   }

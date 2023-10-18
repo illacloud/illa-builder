@@ -76,7 +76,8 @@
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. ",
-      "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet."
+      "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet.",
+      "save_resource": "Sparandet lyckades, sidan kommer att stängas om 3 sekunder..."
     },
     "create": "Skapa"
   },
@@ -4387,7 +4388,16 @@
     "before": "Ladda mer"
   },
   "size_exceed_copied_tips": "Innehållet är för långt för att kopieras. (nuvarande storlek: {{current_size}} bytes, gräns: {{limit_size}} bytes)",
-  "contribute": "Bidra",
+  "contribute": {
+    "tag": {
+      "recommended": "Rekommenderad",
+      "add_tag": "Lägg till taggar",
+      "tag": "Tagg",
+      "failed_to_save": "Det gick inte att spara"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
+  },
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
   }

@@ -76,7 +76,8 @@
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. ",
-      "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen."
+      "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen.",
+      "save_resource": "Lagre vellykket, siden vil lukkes om 3 sekunder..."
     },
     "create": "Opprett"
   },
@@ -4387,7 +4388,16 @@
     "before": "Last mer"
   },
   "size_exceed_copied_tips": "Innholdet er for langt for kopiering. (gjeldende størrelse: {{current_size}} bytes, begrensing: {{limit_size}} bytes)",
-  "contribute": "Bidra",
+  "contribute": {
+    "tag": {
+      "recommended": "Anbefalt",
+      "add_tag": "Legg til tagger",
+      "tag": "Tagg",
+      "failed_to_save": "Kunne ikke lagre"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
+  },
   "error_page": {
     "fobidden": "Ingen tilgang"
   }
