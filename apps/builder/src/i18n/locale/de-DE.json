@@ -4394,7 +4394,9 @@
       "add_tag": "Tags hinzufügen",
       "tag": "Markierung",
       "failed_to_save": "Speichern fehlgeschlagen"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"

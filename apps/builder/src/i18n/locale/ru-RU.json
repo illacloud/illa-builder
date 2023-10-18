@@ -4394,7 +4394,9 @@
       "add_tag": "Добавить теги",
       "tag": "Тег",
       "failed_to_save": "Не удалось сохранить"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Нет разрешения на доступ"

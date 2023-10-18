@@ -4394,7 +4394,9 @@
       "add_tag": "Přidat štítky",
       "tag": "Značka",
       "failed_to_save": "Uložení se nezdařilo"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"

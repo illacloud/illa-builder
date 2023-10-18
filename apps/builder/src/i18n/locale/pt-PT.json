@@ -4394,7 +4394,9 @@
       "add_tag": "Add tags",
       "tag": "Tag",
       "failed_to_save": "Failed to save"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Sem permissão de acesso"
