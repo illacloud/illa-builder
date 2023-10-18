@@ -3,7 +3,7 @@ import {
   notNeedAuthCloudRequest,
 } from "@illa-public/illa-net"
 import { CurrentUser } from "@illa-public/user-data"
-import { getAuthToken } from "../utils/auth"
+import { getAuthToken } from "@illa-public/utils"
 
 export const fetchUserInfo = () => {
   return authCloudRequest<CurrentUser>({

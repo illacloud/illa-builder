@@ -14,7 +14,11 @@ import {
   ATTRIBUTE_GROUP,
   canManage,
 } from "@illa-public/user-role-utils"
-import { getAuthToken, sendTagEvent } from "@illa-public/utils"
+import {
+  getAuthToken,
+  getILLABuilderURL,
+  sendTagEvent,
+} from "@illa-public/utils"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -95,7 +99,7 @@ export const PCAppWorkspace = () => {
         const newAppName = generateDuplicateAppName(targetAppInfo.appName)
         const response = await fetchCopyApp(appID, newAppName, currentTeamID)
         window.open(
-          `${import.meta.env.ILLA_BUILDER_URL}/${teamIdentifier}/app/${
+          `${getILLABuilderURL()}/${teamIdentifier}/app/${
             response.appId
           }?token=${getAuthToken()}`,
           "_blank",
@@ -168,7 +172,7 @@ export const PCAppWorkspace = () => {
       sendTagEvent("create_app", userInfo?.userID)
       refreshAppList()
       window.open(
-        `${import.meta.env.ILLA_BUILDER_URL}/${teamIdentifier}/app/${
+        `${getILLABuilderURL()}/${teamIdentifier}/app/${
           resp.data.appId
         }?token=${getAuthToken()}`,
         "_blank",

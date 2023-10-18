@@ -1,5 +1,5 @@
+import { getAuthToken } from "@illa-public/utils"
 import { AxiosRequestConfig } from "axios"
-import { getAuthToken } from "@/utils/auth"
 
 export const authInterceptor = (config: AxiosRequestConfig) => {
   const token = getAuthToken()

@@ -1,4 +1,4 @@
-import { getAuthToken } from "@illa-public/utils"
+import { getAuthToken, getILLACloudURL } from "@illa-public/utils"
 import { fetchLogout } from "@/services/auth"
 import { ILLACloudStorage } from "@/utils/storage"
 
@@ -20,13 +20,13 @@ export const onClickLogout = async () => {
   const ILLAToken = getAuthToken()
   ILLACloudStorage.clearLocalStorage()
   if (!ILLAToken) {
-    window.location.href = `${import.meta.env.ILLA_CLOUD_URL}/login`
+    window.location.href = `${getILLACloudURL()}/login`
     return
   }
   try {
     await fetchLogout(ILLAToken)
   } catch (e) {
   } finally {
-    window.location.href = `${import.meta.env.ILLA_CLOUD_URL}/login`
+    window.location.href = `${getILLACloudURL()}/login`
   }
 }
