@@ -4394,7 +4394,9 @@
       "add_tag": "Lisää tunnisteita",
       "tag": "Tunniste",
       "failed_to_save": "Tallennus epäonnistui"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
