@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { createBrowserRouter } from "react-router-dom"
 import { ILLARoutesObject } from "@/router/interface"
 import { routerConfig } from "@/router/routerConfig"
@@ -22,4 +23,6 @@ const wrappedRouter = (routesConfig: ILLARoutesObject[]) => {
   })
 }
 
-export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig))
+export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig), {
+  basename: import.meta.env.PROD && !isCloudVersion ? "/cloud" : "/",
+})

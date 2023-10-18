@@ -83,7 +83,7 @@ export default defineConfig(({ command, mode }) => {
   writeFileSync("./public/appInfo.json", `{"version":${version}}`)
 
   return {
-    base: isBuildSelfHost ? "/builder" : "/",
+    base: isBuildSelfHost ? "/build" : "/",
     plugins: plugin,
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
