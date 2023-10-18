@@ -4394,7 +4394,9 @@
       "add_tag": "Adaugă etichete",
       "tag": "Etichetă",
       "failed_to_save": "Salvarea nu a reușit"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Fără permisiune de acces"
