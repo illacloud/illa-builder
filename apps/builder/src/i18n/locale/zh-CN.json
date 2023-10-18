@@ -4394,7 +4394,9 @@
       "add_tag": "添加标签",
       "tag": "标签",
       "failed_to_save": "保存失败"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "没有访问权限"

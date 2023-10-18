@@ -4394,7 +4394,9 @@
       "add_tag": "Legg til tagger",
       "tag": "Tagg",
       "failed_to_save": "Kunne ikke lagre"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Ingen tilgang"

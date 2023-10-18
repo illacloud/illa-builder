@@ -4394,7 +4394,9 @@
       "add_tag": "Προσθήκη ετικετών",
       "tag": "Ετικέτα",
       "failed_to_save": "Αποτυχία αποθήκευσης"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "Δεν υπάρχει δικαίωμα πρόσβασης"

@@ -4394,7 +4394,9 @@
       "add_tag": "タグを追加",
       "tag": "タグ",
       "failed_to_save": "保存に失敗しました"
-    }
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link"
   },
   "error_page": {
     "fobidden": "アクセス権限がありません"
