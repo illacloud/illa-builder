@@ -36,9 +36,11 @@ export const colorTipAndValueContainerStyle = css`
   gap: 8px;
 `
 
-export const buttonContentWrapperStyle = css`
+export const buttonContentWrapperStyle = (
+  setterSize: "small" | "medium",
+) => css`
   display: flex;
-  width: 170px;
+  width: ${setterSize === "medium" ? "182px" : "170px"};
   cursor: pointer;
   align-items: center;
   border-radius: 8px;

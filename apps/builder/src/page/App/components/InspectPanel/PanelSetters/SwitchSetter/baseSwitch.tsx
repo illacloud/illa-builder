@@ -16,14 +16,18 @@ const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
     isSetterSingleRow,
     labelDesc,
     labelName,
-    size,
+    labelSize,
   } = props
 
   return (
     <div css={setterContainerStyle(isSetterSingleRow)}>
       {labelName && (
         <span>
-          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+          <PanelLabel
+            labelName={labelName}
+            labelDesc={labelDesc}
+            labelSize={labelSize}
+          />
         </span>
       )}
       <div css={dynamicWidthStyle}>

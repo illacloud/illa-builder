@@ -2,19 +2,20 @@ import { FC } from "react"
 import { useSelector } from "react-redux"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { EmptySelected } from "./components/EmptySelected"
-import { SelectedPanel } from "./selectedPanel"
+import MultiSelectedPanel from "./components/MultiSelectedPanel/multiSelectedPanel"
+import SingleSelectedPanel from "./components/SingleSelectedPanel/singleSelectedPanel"
 
 const InspectPanel: FC = () => {
   const selectedComponentsDisplayNames = useSelector(
     getSelectedComponentDisplayNames,
   )
 
-  const isNotSelected = selectedComponentsDisplayNames.length === 0
-
-  return isNotSelected ? (
+  return selectedComponentsDisplayNames.length === 0 ? (
     <EmptySelected />
+  ) : selectedComponentsDisplayNames.length > 1 ? (
+    <MultiSelectedPanel />
   ) : (
-    <SelectedPanel selectedDisplayNames={selectedComponentsDisplayNames} />
+    <SingleSelectedPanel />
   )
 }
 

@@ -13,7 +13,7 @@ const MeasureCheckInput: FC<MeasureCheckInputSetterProps> = (props) => {
     value,
     icon,
     labelName,
-    size = "small",
+    labelSize = "small",
     labelDesc,
   } = props
 
@@ -42,7 +42,11 @@ const MeasureCheckInput: FC<MeasureCheckInputSetterProps> = (props) => {
 
   return (
     <div css={setterContainerStyle}>
-      <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+      <PanelLabel
+        labelName={labelName}
+        labelDesc={labelDesc}
+        labelSize={labelSize}
+      />
       <Input
         onChange={handleUpdateBorderWidth}
         value={value}

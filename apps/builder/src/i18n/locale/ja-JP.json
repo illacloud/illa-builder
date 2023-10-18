@@ -38,7 +38,7 @@
       "error_button": "リトライ",
       "error_description": "間違ったリクエスト",
       "error_title": "間違い",
-      "marketplace": "市場",
+      "marketplace": "コミュニティ",
       "run": "実行",
       "fork": "Fork"
     },
@@ -76,7 +76,8 @@
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
       "delete-suc": "正常に削除しました。 ",
-      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。"
+      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。",
+      "save_resource": "保存に成功しました。ページは3秒で閉じられます..."
     },
     "create": "作成"
   },
@@ -343,7 +344,7 @@
               "greaterthanequal": ">="
             },
             "order": {
-              "asc": "Asc",
+              "asc": "昇順",
               "desc": "Desc"
             }
           },
@@ -464,7 +465,7 @@
           "parent_document_id": "親ドキュメントID",
           "phone_number": "電話番号",
           "placeholder": {
-            "asc": "asc",
+            "asc": "昇順",
             "document_value": "{{ \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
             "input_collection": "コレクションを入力",
             "key": "キー",
@@ -592,8 +593,8 @@
                 "delete_record": "レコードを削除する"
               },
               "sort": {
-                "asc": "ASCの",
-                "desc": "DESC"
+                "asc": "昇順",
+                "desc": "降順"
               }
             },
             "ai-agent": {
@@ -1181,7 +1182,7 @@
           "message": "変数名を入力してください。"
         },
         "initial_value": {
-          "label": "초기 값",
+          "label": "初期値",
           "tooltips": "オブジェクトまたはプリミティブ値をサポートします。 例: { カウント: 0 }",
           "placeholder": "{ count: 0 }"
         }
@@ -1319,7 +1320,10 @@
         "filterChange": "filterChange",
         "sortChange": "並べ替え変更",
         "pageChange": "ページ変更",
-        "refresh": "更新"
+        "refresh": "更新",
+        "density_setting": "解像度:",
+        "column_setting": "列",
+        "refresh_setting": "更新"
       },
       "setter_default_value": {
         "fill": "充填",
@@ -1327,9 +1331,9 @@
           "error": "間違い",
           "info": "情報",
           "success": "成功",
-          "warning": "暖かい"
+          "warning": "警告"
         },
-        "outline": "脳卒中",
+        "outline": "輪郭のみ",
         "validation_pattern": {
           "email": "郵便",
           "regex": "正規表現",
@@ -1426,7 +1430,7 @@
         "background_color": "背景色",
         "border": "フレーム",
         "border_width": "ボーダー幅",
-        "caption": "字幕",
+        "caption": "キャプション",
         "chart_title": "題名",
         "chart_type": "チャートタイプ",
         "color": "色",
@@ -1735,7 +1739,9 @@
           "has_next_page": "次のページあり",
           "currency_code": "通貨コード",
           "cell_selection": "セルを選択",
-          "click_outside_to_des": "外をクリックして選択を解除"
+          "click_outside_to_des": "外をクリックして選択を解除",
+          "page": "既定のページインデックス",
+          "export_all_data_setting": "すべてエクスポート"
         },
         "previous_cursor": "前のカーソル",
         "input": {
@@ -1827,7 +1833,20 @@
           "item_spacing": "アイテムの間隔",
           "max_column_count": "列の最大数",
           "min_column_count": "列の最小数"
-        }
+        },
+        "src": "src",
+        "page_size_options": "ページサイズオプション",
+        "export_setting": "エクスポート",
+        "filter_setting": "フィルター",
+        "primary_key": "プライマリーキー",
+        "allow_row_selection": "行の選択を許可",
+        "selection_mode": "選択モード",
+        "pin_column": "列をピン留めする",
+        "enable_users_to_sort": "ユーザーの並び替えを有効にする",
+        "enable_users_to_pin": "ユーザーのピン留めを有効にする",
+        "enable_users_to_filter": "フィルタを有効にする",
+        "enable_users_to_hide": "ユーザーの非表示を有効にする",
+        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1888,7 +1907,9 @@
         "showSendTime": "送信時刻を表示するかどうかを設定します",
         "showFooter": "フッターを表示するかどうかを設定します",
         "senderAvatar": "送信者アバターを設定します。 たとえば、データソースでは、送信者のアバターはsendAvatarフィールドで、 {{item.sendAvatar}}に設定できます。",
-        "receiving": "メッセージの受信時に読み込みを表示するかどうかを設定します。 アクション1からメッセージを受信した場合は、 {{action1.isRunning}}に設定できます。 そしてロード状態は action1 が実行されているときに表示されます。"
+        "receiving": "メッセージの受信時に読み込みを表示するかどうかを設定します。 アクション1からメッセージを受信した場合は、 {{action1.isRunning}}に設定できます。 そしてロード状態は action1 が実行されているときに表示されます。",
+        "export_setting": "フィルタリングされたデータをエクスポートできるかどうかを設定します。",
+        "filter_setting": "フィルターを表示するかどうかを設定するために使用します。"
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -2038,7 +2059,10 @@
           "filter_mode": "フィルタモード。andまたはor。",
           "currency_code": "USD",
           "whether_allow_users_": "ユーザーにセルの選択を許可するかどうか",
-          "supported_in_the_row": "行単一選択モードでサポートされています。有効にしたら、テーブル以外の領域をクリックして、行の選択を解除します。"
+          "supported_in_the_row": "行単一選択モードでサポートされています。有効にしたら、テーブル以外の領域をクリックして、行の選択を解除します。",
+          "density_setting": "行の高さの密度を設定するかどうかに使用します。 ",
+          "refresh_setting": "更新アイコンを表示するかどうかを設定するために使用",
+          "export_raw_data_setting": "フィルターされていない生データをエクスポートできるかどうかを設定します。"
         },
         "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
         "input": {
@@ -2110,7 +2134,17 @@
           "item_shadow": "各グリッドのシャドウサイズを設定するために使用します。",
           "item_spacing": "グリッド間の間隔を設定するために使用",
           "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
-        }
+        },
+        "primary_key": "行を識別するためのユニークなキー",
+        "selection_mode": "複数行の選択または単一行の選択を設定するために使用されます",
+        "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用",
+        "pin_column": "すべてのユーザーに列を固定するために使用",
+        "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
+        "enable_users_to_pin": "ユーザーが列を固定することを許可するかどうかを設定するために使用",
+        "enable_users_to_filter": "このカラムをフィルタリングできるかどうかを設定するために使用します。",
+        "enable_users_to_hide": "ユーザーが列を非表示にするかどうかを設定するために使用します。",
+        "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
+        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 "
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -2315,6 +2349,10 @@
       },
       "page": {
         "blank_view": "サブページがありません"
+      },
+      "setter_options": {
+        "single_row_selection": "単一選択",
+        "multiple_row_selection": "複数選択"
       }
     },
     "page": {
@@ -2979,7 +3017,7 @@
         "manual": "自動",
         "mapped": "マニュアル"
       },
-      "top": "優れました"
+      "top": "上"
     },
     "radio_button": {
       "name": "ボタンラジオ"
@@ -3001,7 +3039,16 @@
       "descend": "降順",
       "name": "シート",
       "pagination": "ページをめくる",
-      "scroll": "スクロール"
+      "scroll": "スクロール",
+      "default": "デフォルト",
+      "export_all_data": "すべてエクスポート",
+      "refresh": "更新",
+      "export": {
+        "title": "エクスポート",
+        "csv": "CSV形式でエクスポート",
+        "excel": "Export as excel",
+        "print": "印刷"
+      }
     },
     "tabs": {
       "name": "タブ"
@@ -3118,6 +3165,9 @@
     },
     "frame": {
       "initial-title": "コンポーネントをドラッグしてフレームに追加します"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
@@ -3513,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "行の選択変更"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "ユーザーの集計を有効にする"
       }
     }
   },
@@ -4335,7 +4388,24 @@
     "before": "さらに読み込む"
   },
   "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
-  "contribute": "貢献",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "タグを追加",
+      "tag": "タグ",
+      "failed_to_save": "保存に失敗しました"
+    },
+    "update": "タグを編集",
+    "copy_link": "リンクをコピー",
+    "first_time_modal": {
+      "title": "コミュニティに貢献する",
+      "button": "貢献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "編集"
+    }
+  },
   "error_page": {
     "fobidden": "アクセス権限がありません"
   }

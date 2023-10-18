@@ -1,5 +1,5 @@
 import { Reorder } from "framer-motion"
-import { get, isEqual } from "lodash"
+import { get, isEqual, isString } from "lodash"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -206,7 +206,11 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
                         attrPath={`${attrName}.${index}.subItems.${i}`}
                         childrenSetter={childrenSetter}
                         widgetDisplayName={widgetDisplayName}
-                        label={child.label as string}
+                        label={
+                          isString(child.label)
+                            ? child.label
+                            : JSON.stringify(child.label)
+                        }
                         value={child.value}
                         onClickItem={() => {}}
                       />

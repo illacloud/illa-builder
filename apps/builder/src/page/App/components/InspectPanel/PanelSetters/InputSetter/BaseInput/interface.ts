@@ -13,6 +13,6 @@ export interface NewBaseInputSetterProps {
   labelDesc?: string
   widgetType: string
   wrappedCodeFunc?: (code: string) => string
-  size?: "medium" | "small"
+  labelSize?: "medium" | "small"
   onlyHasSetter?: boolean
 }

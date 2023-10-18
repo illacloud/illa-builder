@@ -39,7 +39,7 @@ AI 에이전트 또는 ILLA 앱을 ILLA 커뮤니티에 제공하고 ILLA에 풀
 
 <p align="center">
   <a href="https://discord.gg/illacloud"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
-  <a href="https://twitter.com/illacloudHQ"><img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white" height=18></a>
+  <a href="https://twitter.com/illacloudHQ"><img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white" height=18></a>
   <a href="https://github.com/orgs/illacloud/discussions"><img src="https://img.shields.io/badge/discussions-GitHub-333333?logo=github" height=18></a>
   <a title="Crowdin" target="_blank" href="https://crowdin.com/project/illa-builder"><img src="https://badges.crowdin.net/illa-builder/localized.svg"  height=18></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/illacloud/illa-builder" height=18></a>

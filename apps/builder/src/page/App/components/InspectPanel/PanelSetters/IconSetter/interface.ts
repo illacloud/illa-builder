@@ -14,7 +14,7 @@ export interface BaseIconSetterProps extends BaseSetter {
 
 export interface IconSelectorProps extends BaseSetter {
   value: string
-  size?: "medium" | "small"
+  labelSize?: "medium" | "small"
 }
 
 export interface IconPickerListProps {

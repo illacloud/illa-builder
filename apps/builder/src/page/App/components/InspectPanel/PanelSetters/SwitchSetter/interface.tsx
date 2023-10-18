@@ -6,7 +6,7 @@ export interface BaseSwitchProps extends BaseSetter {
   labelName?: string
   detailedDescription?: string
   labelDesc?: string
-  size?: "medium" | "small"
+  labelSize?: "medium" | "small"
 }
 
 export interface DynamicSwitchProps extends BaseSetter, PanelLabelProps {

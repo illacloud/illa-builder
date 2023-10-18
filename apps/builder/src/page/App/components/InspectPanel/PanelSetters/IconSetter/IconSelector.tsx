@@ -19,7 +19,7 @@ const IconSelector: FC<IconSelectorProps> = (props) => {
     attrName,
     labelName,
     labelDesc,
-    size,
+    labelSize,
     isSetterSingleRow,
   } = props
   const [rightPanelData, setRightPanelData] = useState<IconDataType>({
@@ -60,7 +60,11 @@ const IconSelector: FC<IconSelectorProps> = (props) => {
     <div css={setterContainerStyle(isSetterSingleRow)}>
       {labelName && (
         <span>
-          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+          <PanelLabel
+            labelName={labelName}
+            labelDesc={labelDesc}
+            labelSize={labelSize}
+          />
         </span>
       )}
       <Trigger

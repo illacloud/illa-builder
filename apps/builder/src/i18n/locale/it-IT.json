@@ -76,7 +76,8 @@
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
       "delete-suc": "Eliminato con successo. ",
-      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Crea"
   },
@@ -1319,7 +1320,10 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "aggiorna"
+        "refresh": "aggiorna",
+        "density_setting": "Density",
+        "column_setting": "Columns",
+        "refresh_setting": "Refresh"
       },
       "setter_default_value": {
         "fill": "Riempi",
@@ -1735,7 +1739,9 @@
           "has_next_page": "Ha la pagina successiva",
           "currency_code": "Codice valuta",
           "cell_selection": "Selezione celle",
-          "click_outside_to_des": "Clicca fuori per deselezionare"
+          "click_outside_to_des": "Clicca fuori per deselezionare",
+          "page": "Default page index",
+          "export_all_data_setting": "Export all"
         },
         "previous_cursor": "Cursore precedente",
         "input": {
@@ -1827,7 +1833,20 @@
           "item_spacing": "Spaziatura elementi",
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
-        }
+        },
+        "src": "src",
+        "page_size_options": "Page size options",
+        "export_setting": "Export",
+        "filter_setting": "Filter",
+        "primary_key": "Primary key",
+        "allow_row_selection": "Allow row selection",
+        "selection_mode": "Selection mode",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter",
+        "enable_users_to_hide": "Enable users to hide",
+        "enable_users_to_set_group_by": "Enable users to set group by"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1888,7 +1907,9 @@
         "showSendTime": "Imposta se mostrare il tempo di invio",
         "showFooter": "Imposta se mostrare il piè di pagina",
         "senderAvatar": "Imposta l'avatar del mittente. Ad esempio, nella sorgente dei dati, l'avatar del mittente è il campo sendAvatar e puoi impostare il campo su {{item.sendAvatar}}.",
-        "receiving": "Imposta se visualizzare il caricamento durante la ricezione dei messaggi. Se il tuo messaggio viene ricevuto dall'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione."
+        "receiving": "Imposta se visualizzare il caricamento durante la ricezione dei messaggi. Se il tuo messaggio viene ricevuto dall'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione.",
+        "export_setting": "Used to set whether or not users are allowed to export filtered data.",
+        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table."
       },
       "tab_title": "Esamina",
       "unselected_tip1": "Nessun componente selezionato.",
@@ -2038,7 +2059,10 @@
           "filter_mode": "La modalità filtro. AND o OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Indica se consentire agli utenti di selezionare una cella",
-          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga."
+          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga.",
+          "density_setting": "Used to set the row height density or not. ",
+          "refresh_setting": "Used to set whether to show a refresh icon",
+          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data."
         },
         "previous_cursor": "Usa i dati di azione per impostare il cursore precedente. Per esempio,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2110,7 +2134,17 @@
           "item_shadow": "Usato per configurare la dimensione dell'ombra di ogni griglia",
           "item_spacing": "Usato per configurare la spaziatura tra le griglie",
           "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
-        }
+        },
+        "primary_key": "A unique key for identifying a row",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
+        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
+        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
+        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. "
       },
       "setter_option": {
         "fixed": "Fisso",
@@ -2315,6 +2349,10 @@
       },
       "page": {
         "blank_view": "Nessuna sotto-pagina"
+      },
+      "setter_options": {
+        "single_row_selection": "Single selection",
+        "multiple_row_selection": "Multiple selection"
       }
     },
     "page": {
@@ -3001,7 +3039,16 @@
       "descend": "Desc",
       "name": "Tabella",
       "pagination": "Paginazione",
-      "scroll": "Scorrimento"
+      "scroll": "Scorrimento",
+      "default": "Default",
+      "export_all_data": "Export all",
+      "refresh": "Refresh",
+      "export": {
+        "title": "Export",
+        "csv": "Export as csv",
+        "excel": "Export as excel",
+        "print": "Print"
+      }
     },
     "tabs": {
       "name": "Tabs"
@@ -3118,6 +3165,9 @@
     },
     "frame": {
       "initial-title": "Drag a component to add it to the frame"
+    },
+    "iframe": {
+      "name": "IFrame"
     }
   },
   "page": {
@@ -3513,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Modifica Selezione Riga"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Enable users to aggregate"
       }
     }
   },
@@ -4335,7 +4388,24 @@
     "before": "Carica altro"
   },
   "size_exceed_copied_tips": "Il contenuto è troppo lungo per copiare. (dimensione corrente: {{current_size}} byte, limite: {{limit_size}} bytes)",
-  "contribute": "Contribuisci",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link",
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
+    }
+  },
   "error_page": {
     "fobidden": "Nessuna autorizzazione di accesso"
   }

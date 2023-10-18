@@ -24,7 +24,7 @@ const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
     isSetterSingleRow,
     labelDesc,
     labelName,
-    size,
+    labelSize,
   } = props
   const anonymousPermission = useRef<boolean>(true)
   const modal = useModal()
@@ -105,7 +105,11 @@ const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
     <div css={setterContainerStyle(isSetterSingleRow)}>
       <span>
         {labelName && (
-          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+          <PanelLabel
+            labelName={labelName}
+            labelDesc={labelDesc}
+            labelSize={labelSize}
+          />
         )}
       </span>
       <div css={dynamicWidthStyle}>

@@ -31,7 +31,7 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
     labelDesc,
     widgetType,
     wrappedCodeFunc,
-    size,
+    labelSize,
     onlyHasSetter = false,
   } = props
 
@@ -108,7 +108,11 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
     <div css={setterContainerStyle(isSetterSingleRow, onlyHasSetter)}>
       {!onlyHasSetter && labelName && (
         <span>
-          <PanelLabel labelName={labelName} labelDesc={labelDesc} size={size} />
+          <PanelLabel
+            labelName={labelName}
+            labelDesc={labelDesc}
+            labelSize={labelSize}
+          />
         </span>
       )}
       <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>

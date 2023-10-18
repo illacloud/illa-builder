@@ -5,7 +5,7 @@ import { RenderPanelBarProps } from "./interface"
 import { ghostEmptyStyle } from "./style"
 
 const RenderPanelBar: FC<RenderPanelBarProps> = (props) => {
-  const { config, displayName, widgetProps, guideInfo } = props
+  const { config, displayName, widgetProps } = props
   const { groupName, children } = config
 
   return (
@@ -16,7 +16,6 @@ const RenderPanelBar: FC<RenderPanelBarProps> = (props) => {
             panelConfig={children}
             displayName={displayName}
             widgetProps={widgetProps}
-            guideInfo={guideInfo}
           />
         </div>
       )}

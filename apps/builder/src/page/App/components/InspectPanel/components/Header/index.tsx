@@ -3,6 +3,7 @@ import { FC, useCallback, useContext } from "react"
 import { useDispatch } from "react-redux"
 import { Dropdown, MoreIcon } from "@illa-design/react"
 import { EditableText } from "@/components/EditableText"
+import IconHotSpot from "@/components/IconHotSpot"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -91,7 +92,9 @@ export const PanelHeader: FC = () => {
             }
           }}
         >
-          <MoreIcon />
+          <IconHotSpot>
+            <MoreIcon />
+          </IconHotSpot>
         </Dropdown>
       </div>
     </div>

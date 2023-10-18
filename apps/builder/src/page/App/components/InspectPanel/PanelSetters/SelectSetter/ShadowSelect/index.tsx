@@ -47,7 +47,7 @@ const ShadowSelect: FC<ShadowSelectProps> = (props) => {
 
   return (
     <div css={setterContainerStyle}>
-      <PanelLabel labelName={labelName} size="small" />
+      <PanelLabel labelName={labelName} labelSize="small" />
       <Select
         onChange={handleUpdateShadow}
         value={value}

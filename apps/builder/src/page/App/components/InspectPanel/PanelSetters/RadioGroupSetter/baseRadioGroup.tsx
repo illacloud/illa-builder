@@ -29,7 +29,7 @@ const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
           <PanelLabel
             labelName={labelName}
             labelDesc={labelDesc}
-            size="medium"
+            labelSize="medium"
           />
         </span>
       )}
