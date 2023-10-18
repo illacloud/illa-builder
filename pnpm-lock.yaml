@@ -551,18 +551,12 @@ importers:
       '@illa-design/table':
         specifier: workspace:*
         version: link:../../packages/illa-design/packages/table
-      '@illa-public/auth-shown':
-        specifier: workspace:*
-        version: link:../../packages/illa-public-component/AuthShown
       '@illa-public/avatar':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Avatar
       '@illa-public/cloud-dashboard-layout':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/CloudDashboardLayout
-      '@illa-public/code-editor':
-        specifier: workspace:*
-        version: link:../../packages/illa-public-component/CodeEditor
       '@illa-public/cropper':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Cropper
@@ -584,36 +578,21 @@ importers:
       '@illa-public/layout-auto-change':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/LayoutAutoChange
-      '@illa-public/market-agent':
-        specifier: workspace:*
-        version: link:../../packages/illa-public-component/MarketAgent
       '@illa-public/member-page':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MemberPage
-      '@illa-public/mixpanel-utils':
-        specifier: workspace:*
-        version: link:../../packages/illa-public-component/MixpanelUtils
       '@illa-public/public-configs':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/publicConfig
       '@illa-public/public-types':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/publicTypes
-      '@illa-public/record-editor':
-        specifier: workspace:*
-        version: link:../../packages/illa-public-component/RecordEditor
       '@illa-public/resource-generator':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/ResourceGenerator
-      '@illa-public/select':
-        specifier: workspace:*
-        version: link:../../packages/illa-public-component/Select
       '@illa-public/sso-module':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/SSOModule
-      '@illa-public/upgrade-modal':
-        specifier: workspace:*
-        version: link:../../packages/illa-public-component/UpgradeModal
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/UserData
@@ -654,15 +633,9 @@ importers:
         specifier: ^9.0.0
         version: 9.0.1
     devDependencies:
-      '@mdx-js/rollup':
-        specifier: ^2.3.0
-        version: 2.3.0(rollup@3.28.1)
       '@types/lodash':
         specifier: ^4.14.194
         version: 4.14.199
-      '@types/mdx':
-        specifier: ^2.0.3
-        version: 2.0.3
       '@types/stylis':
         specifier: ^4.0.2
         version: 4.0.2
@@ -2407,6 +2380,13 @@ importers:
       react-use:
         specifier: ^17.4.0
         version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
+      uuid:
+        specifier: ^8.3.2
+        version: 8.3.2
+    devDependencies:
+      '@types/uuid':
+        specifier: ^8.3.4
+        version: 8.3.4
 
   packages/illa-design/packages/tag:
     dependencies:
