@@ -4394,6 +4394,16 @@
       "add_tag": "Tags hinzufügen",
       "tag": "Markierung",
       "failed_to_save": "Speichern fehlgeschlagen"
+    },
+    "update": "Tags bearbeiten",
+    "copy_link": "Link kopieren",
+    "first_time_modal": {
+      "title": "Zur Community beitragen",
+      "button": "Mitwirken"
+    },
+    "update_modal": {
+      "button": "Aktualisieren",
+      "title": "Bearbeiten"
     }
   },
   "error_page": {

@@ -4394,6 +4394,16 @@
       "add_tag": "Legg til tagger",
       "tag": "Tagg",
       "failed_to_save": "Kunne ikke lagre"
+    },
+    "update": "Rediger tagger",
+    "copy_link": "Kopier lenke",
+    "first_time_modal": {
+      "title": "Bidra til samfunnet",
+      "button": "Bidra"
+    },
+    "update_modal": {
+      "button": "Oppdater",
+      "title": "Rediger"
     }
   },
   "error_page": {
