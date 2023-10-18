@@ -5,7 +5,9 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
   USER_ROLE,
+  USER_STATUS,
   currentUserActions,
   getCurrentTeamInfo,
   getCurrentUser,
@@ -155,6 +157,22 @@ export const DashboardApps: FC = () => {
       <AppsContent onCreatedApp={handleCreateApp} loading={loading} />
       {inviteModalVisible && (
         <InviteMemberPC
+          itemID={teamInfo.id}
+          onInvitedChange={(userList) => {
+            const memberListInfo: MemberInfo[] = userList.map((user) => {
+              return {
+                ...user,
+                userID: "",
+                nickname: "",
+                avatar: "",
+                userStatus: USER_STATUS.PENDING,
+                permission: {},
+                createdAt: "",
+                updatedAt: "",
+              }
+            })
+            dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
+          }}
           redirectURL={`${window.location.origin}/${teamInfo?.identifier}/dashboard/apps`}
           onClose={() => setInviteModalVisible(false)}
           canInvite={showInvite}

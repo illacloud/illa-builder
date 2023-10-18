@@ -19,7 +19,9 @@ import {
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
   USER_ROLE,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -1134,6 +1136,28 @@ export const AIAgent: FC = () => {
                   >
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
+                        itemID={idField.value}
+                        onInvitedChange={(userList) => {
+                          const memberListInfo: MemberInfo[] = userList.map(
+                            (user) => {
+                              return {
+                                ...user,
+                                userID: "",
+                                nickname: "",
+                                avatar: "",
+                                userStatus: USER_STATUS.PENDING,
+                                permission: {},
+                                createdAt: "",
+                                updatedAt: "",
+                              }
+                            },
+                          )
+                          dispatch(
+                            teamActions.updateInvitedUserReducer(
+                              memberListInfo,
+                            ),
+                          )
+                        }}
                         canUseBillingFeature={canUseUpgradeFeature(
                           currentTeamInfo.myRole,
                           getPlanUtils(currentTeamInfo),

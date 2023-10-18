@@ -17,7 +17,9 @@ import {
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
   USER_ROLE,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -210,6 +212,7 @@ export const AIAgentRunMobile: FC = () => {
           {shareDialogVisible && (
             <ShareAgentMobile
               canUseBillingFeature={canUseBillingFeature}
+              itemID={agent.aiAgentID}
               title={t(
                 "user_management.modal.social_media.default_text.agent",
                 {
@@ -324,6 +327,21 @@ export const AIAgentRunMobile: FC = () => {
                     parameter5: agent.aiAgentID,
                   },
                 )
+              }}
+              onInvitedChange={(userList) => {
+                const memberListInfo: MemberInfo[] = userList.map((user) => {
+                  return {
+                    ...user,
+                    userID: "",
+                    nickname: "",
+                    avatar: "",
+                    userStatus: USER_STATUS.PENDING,
+                    permission: {},
+                    createdAt: "",
+                    updatedAt: "",
+                  }
+                })
+                dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
               }}
             />
           )}

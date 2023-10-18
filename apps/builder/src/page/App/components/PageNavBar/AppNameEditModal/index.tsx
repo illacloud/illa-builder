@@ -53,7 +53,7 @@ export const AppNameEditModal: FC<AppNameEditorModalProps> = (props) => {
     })
       .then(
         (response) => {
-          dispatch(appInfoActions.updateAppNameReducer(response.data))
+          dispatch(appInfoActions.updateAppInfoReducer(response.data))
           message.success({
             content: t("dashboard.app.rename_success"),
           })

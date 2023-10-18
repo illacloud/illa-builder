@@ -6,7 +6,9 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
   USER_ROLE,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -332,6 +334,22 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
       >
         {shareVisible && (
           <ShareAgentPC
+            itemID={aiAgentID}
+            onInvitedChange={(userList) => {
+              const memberListInfo: MemberInfo[] = userList.map((user) => {
+                return {
+                  ...user,
+                  userID: "",
+                  nickname: "",
+                  avatar: "",
+                  userStatus: USER_STATUS.PENDING,
+                  permission: {},
+                  createdAt: "",
+                  updatedAt: "",
+                }
+              })
+              dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
+            }}
             canUseBillingFeature={canUseUpgradeFeature(
               teamInfo.myRole,
               getPlanUtils(teamInfo),

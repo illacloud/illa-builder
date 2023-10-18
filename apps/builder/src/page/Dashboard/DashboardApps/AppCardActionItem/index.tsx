@@ -6,6 +6,8 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -41,6 +43,7 @@ import {
 import { AppCardActionItemProps } from "@/page/Dashboard/DashboardApps/AppCardActionItem/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { getAuthToken } from "@/utils/auth"
@@ -426,6 +429,36 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       >
         {shareVisible && (
           <ShareAppPC
+            itemID={appInfo.appId}
+            onInvitedChange={(userList) => {
+              const memberListInfo: MemberInfo[] = userList.map((user) => {
+                return {
+                  ...user,
+                  userID: "",
+                  nickname: "",
+                  avatar: "",
+                  userStatus: USER_STATUS.PENDING,
+                  permission: {},
+                  createdAt: "",
+                  updatedAt: "",
+                }
+              })
+              dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
+            }}
+            appDesc={appInfo.config.description ?? ""}
+            appName={appInfo.appName}
+            onAppInfoUpdate={(appName, appDesc) => {
+              dispatch(
+                appInfoActions.updateAppInfoReducer({
+                  ...appInfo,
+                  appName,
+                  config: {
+                    ...appInfo.config,
+                    description: appDesc,
+                  },
+                }),
+              )
+            }}
             isDeployed={appInfo.deployed}
             title={t("user_management.modal.social_media.default_text.app", {
               appName: appInfo.appName,
