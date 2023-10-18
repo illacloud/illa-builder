@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@illa-public/utils"
 import i18n from "i18next"
 import I18nextBrowserLanguageDetector from "i18next-browser-languagedetector"
 import HttpApi, { HttpBackendOptions } from "i18next-http-backend"
@@ -56,7 +57,9 @@ i18n
   .init<HttpBackendOptions>({
     load: "currentOnly",
     backend: {
-      loadPath: "/locales/{{lng}}.json",
+      loadPath:
+        (import.meta.env.PROD && !isCloudVersion ? "/cloud/" : "/") +
+        "locales/{{lng}}.json",
     },
     fallbackLng: (code) => {
       const language = formatLanguage(code)
