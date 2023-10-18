@@ -177,7 +177,7 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
                       {...field}
                       showWordLimit
                       maxLength={180}
-                      autoSize={{ minRows: 6, maxRows: 6 }}
+                      autoSize={{ minRows: 6 }}
                       colorScheme="techPurple"
                       error={!!formState?.errors.description}
                       placeholder={t(

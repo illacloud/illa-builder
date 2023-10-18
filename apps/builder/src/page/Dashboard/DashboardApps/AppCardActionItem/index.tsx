@@ -445,7 +445,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               })
               dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
             }}
-            appDesc={appInfo.config.description ?? ""}
+            appDesc={appInfo.config.description}
             appName={appInfo.appName}
             onAppInfoUpdate={(appName, appDesc) => {
               dispatch(
