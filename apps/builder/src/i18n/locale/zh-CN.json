@@ -76,7 +76,8 @@
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功",
-      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑",
+      "save_resource": "保存成功，页面将在3s后关闭"
     },
     "create": "创建"
   },
@@ -4387,7 +4388,24 @@
     "before": "加载更多"
   },
   "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
-  "contribute": "贡献",
+  "contribute": {
+    "tag": {
+      "recommended": "推荐",
+      "add_tag": "添加标签",
+      "tag": "标签",
+      "failed_to_save": "保存失败"
+    },
+    "update": "编辑标签",
+    "copy_link": "复制链接",
+    "first_time_modal": {
+      "title": "贡献到社区",
+      "button": "贡献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "编辑"
+    }
+  },
   "error_page": {
     "fobidden": "没有访问权限"
   }

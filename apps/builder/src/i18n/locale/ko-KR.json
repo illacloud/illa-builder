@@ -76,7 +76,8 @@
       "fork-suc": "성공적으로 포크되었습니다.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. ",
-      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Create"
   },
@@ -4387,7 +4388,24 @@
     "before": "Load more"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Contribute",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link",
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
+    }
+  },
   "error_page": {
     "fobidden": "No access permission"
   }
