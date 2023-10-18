@@ -4396,7 +4396,15 @@
       "failed_to_save": "Failed to save"
     },
     "update": "Edit tags",
-    "copy_link": "Copy link"
+    "copy_link": "Copy link",
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
+    }
   },
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
