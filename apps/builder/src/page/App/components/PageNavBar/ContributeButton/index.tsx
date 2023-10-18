@@ -79,7 +79,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
         }}
         leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
       >
-        {t("contribute")}
+        {t("contribute.first_time_modal.button")}
       </Button>
       <MixpanelTrackProvider
         basicTrack={track}
