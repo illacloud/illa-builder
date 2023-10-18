@@ -32,7 +32,12 @@ import {
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
-import { getAgentPublicLink, sendTagEvent } from "@illa-public/utils"
+import {
+  getAgentPublicLink,
+  getILLABuilderURL,
+  sendTagEvent,
+} from "@illa-public/utils"
+import { getAuthToken } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -71,7 +76,6 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
-import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../components/ChatContext"
@@ -1149,7 +1153,7 @@ export const AIAgent: FC = () => {
                             agentName: nameField.value,
                           },
                         )}
-                        redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+                        redirectURL={`${getILLABuilderURL()}/${
                           currentTeamInfo.identifier
                         }/ai-agent/${idField.value}`}
                         onClose={() => {

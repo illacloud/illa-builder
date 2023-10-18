@@ -5,7 +5,7 @@ import {
   canUseUpgradeFeature,
   showShareAppModal,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
+import { getILLACloudURL, isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   MouseEvent,
@@ -16,7 +16,7 @@ import {
 } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import {
   Badge,
   BugIcon,
@@ -336,13 +336,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <Logo
-          width="34px"
-          onClick={() => {
-            navigate(`/${teamIdentifier}/dashboard/apps`)
-          }}
-          css={logoCursorStyle}
-        />
+        <Link to={getILLACloudURL()}>
+          <Logo width="34px" css={logoCursorStyle} />
+        </Link>
+
         <div css={informationStyle}>
           <AppName appInfo={appInfo} />
           {isOnline ? (

@@ -1,7 +1,7 @@
 import { ResourceCard, TeamContentEmpty } from "@illa-public/dashboard"
 import { ResourceTypeSelector } from "@illa-public/resource-generator"
 import { getCurrentId } from "@illa-public/user-data"
-import { getAuthToken } from "@illa-public/utils"
+import { getAuthToken, getILLABuilderURL } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -33,9 +33,7 @@ export const PCResourcesWorkspace: FC = () => {
 
   const onSelectResourceType = (resourceType: string) => {
     window.open(
-      `${
-        import.meta.env.ILLA_BUILDER_URL
-      }/${teamIdentifier}/resource/new/${resourceType}?token=${getAuthToken()}`,
+      `${getILLABuilderURL()}/${teamIdentifier}/resource/new/${resourceType}?token=${getAuthToken()}`,
     )
   }
 
@@ -107,9 +105,7 @@ export const PCResourcesWorkspace: FC = () => {
                 onDeleteResource={onResourceDelete}
                 onEditResource={() => {
                   window.open(
-                    `${
-                      import.meta.env.ILLA_BUILDER_URL
-                    }/${teamIdentifier}/resource/edit/${
+                    `${getILLABuilderURL()}/${teamIdentifier}/resource/edit/${
                       resourceInfo.resourceID
                     }?token=${getAuthToken()}`,
                   )

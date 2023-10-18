@@ -19,7 +19,11 @@ import {
   canManageInvite,
   showInviteModal,
 } from "@illa-public/user-role-utils"
-import { getAuthToken, isCloudVersion } from "@illa-public/utils"
+import {
+  getAuthToken,
+  getILLABuilderURL,
+  isCloudVersion,
+} from "@illa-public/utils"
 import { FC, Suspense, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -71,9 +75,7 @@ export const PCDashBoardLayout: FC = () => {
         },
         onOk: () => {
           window.open(
-            `${
-              import.meta.env.ILLA_BUILDER_URL
-            }/${teamIdentifier}/guide?token=${getAuthToken()}`,
+            `${getILLABuilderURL()}/${teamIdentifier}/guide?token=${getAuthToken()}`,
           )
         },
         afterOpen: () => {

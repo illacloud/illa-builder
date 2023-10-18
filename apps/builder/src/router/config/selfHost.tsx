@@ -1,11 +1,14 @@
+import { getILLACloudURL } from "@illa-public/utils"
+import { redirect } from "react-router-dom"
 import { RoutesObjectPro } from "../interface"
-import { selfHostLandingLoader } from "../loader/landingLoader"
 import { publicRouterConfig, publicTeamChildrenRouter } from "./public"
 
 export const selfRouter: RoutesObjectPro[] = [
   {
     index: true,
-    loader: selfHostLandingLoader,
+    loader: async () => {
+      return redirect(getILLACloudURL())
+    },
   },
   ...publicTeamChildrenRouter,
   ...publicRouterConfig,
