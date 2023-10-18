@@ -1,5 +1,2 @@
 ILLA_INSTANCE_ID=SELF_HOST_CLOUD
-ILLA_BUILDER_URL=http://localhost:2022/builder
-ILLA_CLOUD_URL=http://localhost:2022/cloud
-ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=production
