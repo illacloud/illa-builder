@@ -4395,8 +4395,16 @@
       "tag": "Тег",
       "failed_to_save": "Не удалось сохранить"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link"
+    "update": "Изменить теги",
+    "copy_link": "Копировать ссылку",
+    "first_time_modal": {
+      "title": "Внести свой вклад в сообщество",
+      "button": "Внести вклад"
+    },
+    "update_modal": {
+      "button": "Обновить",
+      "title": "Редактирование"
+    }
   },
   "error_page": {
     "fobidden": "Нет разрешения на доступ"
