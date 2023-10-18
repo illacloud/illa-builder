@@ -35,7 +35,7 @@ export const ResourceTypeSelector: FC<ResourceTypeSelectorProps> = (props) => {
         onCopyIpReport={() => {
           track(
             ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-            ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
             { element: "resource_type_modal_copy" },
           )
         }}

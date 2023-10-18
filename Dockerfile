@@ -5,7 +5,7 @@ RUN ls -alh /etc/nginx/
 
 RUN apk add --no-cache \
     bash \
-    sed 
+    sed
 
 
 ## copy frontend
@@ -17,18 +17,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 # test nginx
 RUN nginx -t
 
-
-
-RUN ls -alh /opt/illa/illa-builder-frontend/
-
-## add main scripts
-COPY illa-builder-frontend-main.sh /opt/illa/
-COPY illa-builder-frontend-config-init.sh /opt/illa/
-RUN chmod +x /opt/illa/illa-builder-frontend-main.sh 
-RUN chmod +x /opt/illa/illa-builder-frontend-config-init.sh
-
 # HEALTHCHECK --interval=5s --timeout=3s CMD curl -fs http://127.0.0.1:80/status?src=docker_health_check -H"Host:localhost" || exit 1
 
 # run
 EXPOSE 80
-CMD ["/opt/illa/illa-builder-frontend-main.sh"]
