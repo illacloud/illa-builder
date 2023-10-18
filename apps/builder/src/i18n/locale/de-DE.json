@@ -4395,8 +4395,16 @@
       "tag": "Markierung",
       "failed_to_save": "Speichern fehlgeschlagen"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link"
+    "update": "Tags bearbeiten",
+    "copy_link": "Link kopieren",
+    "first_time_modal": {
+      "title": "Zur Community beitragen",
+      "button": "Mitwirken"
+    },
+    "update_modal": {
+      "button": "Aktualisieren",
+      "title": "Bearbeiten"
+    }
   },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
