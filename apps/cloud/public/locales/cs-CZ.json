@@ -873,7 +873,7 @@
         "invite_title": "Pozvat e-mailem",
         "invite": "Pozvat",
         "placeholder": "Zadejte e-mailovou adresu",
-        "invited": "Pozvali",
+        "invited": "Tento uživatel je již ve vašem týmu.",
         "in_list": "Tento uživatel je již ve vašem týmu.",
         "duplicate": "{{ email }} je duplikován",
         "notmail": "{{ email }} není e-mail",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "Pozvat",
-        "public": "Veřejnost"
+        "public": "Veřejnost",
+        "with_team": "Sdílet s týmem"
       },
       "custom_copy_text": "{{userName}} vás zve k připojení se k 「{{teamName}}」. Klepnutím na odkaz se připojíte k týmu: {{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}} vás sdílel s aplikací 「{{teamName}}」. Klikněte na odkaz pro připojení se k týmu a zkontrolujte APP: {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "Po přispění vaší aplikace do komunity si ostatní uživatelé mohou prohlédnout její rozhraní, spustit její akce a rozštěpit ji. Při vytváření aplikace nejsou zahrnuty informace o konfiguraci zdrojů, takže není třeba se znepokojovat zveřejněním informací o konfiguraci zdrojů."
         },
-        "desc": "Po přispění do komunity mohou všichni uživatelé spouštět, házet a rozštěpit svého agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat."
+        "desc": "Po přispění do komunity mohou všichni uživatelé spouštět, házet a rozštěpit svého agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat.",
+        "default_text": {
+          "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}. Podívejte se: {{ agentLink }}",
+          "app": "Právě jsem objevil působivou aplikaci s názvem {{ appName }}. Podívejte se: {{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "Sdílet na sociálních sítích"
-      }
+        "label": "Sdílet na sociálních sítích",
+        "default_text": {
+          "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}",
+          "app": "Právě jsem objevil působivou aplikaci s názvem {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vás sdílí AI agenta z <unk>{{ teamName }}<unk> . Připojte se k týmu a zkontrolujte jej: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Pozvánka úspěšně",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "Šablony",
-    "market": "Tržiště",
+    "market": "Vytvořit ze šablony",
     "app": {
       "all_apps": "Všechny aplikace",
       "create_app": "Vytvořit aplikaci",
@@ -4375,5 +4385,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "Právě teď"
   }
 }
