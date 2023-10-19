@@ -11,6 +11,7 @@ export const outerContainerStyle = css`
   display: flex;
   width: 100%;
   justify-content: center;
+  overflow: hidden;
 `
 
 export const innerContainerStyle = css`
