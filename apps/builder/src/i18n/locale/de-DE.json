@@ -610,7 +610,9 @@
               "global-data": "Globale Daten",
               "ai-agent": "AI Agent",
               "more": "Mehr",
-              "create-resource": "Aus Ressource erstellen"
+              "create-resource": "Aus Ressource erstellen",
+              "unsafe": "Unsicher",
+              "safe": "Sicher"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "Diese globalen Daten von {{globalData.state1}} verwenden"
+            },
+            "general": {
+              "safe_mode": "Wenn Sie den Safe Mode verwenden, kann Ihr SQL nur Variablen an der Stelle von Variablen referenzieren, zum Beispiel wo Name = '{{input1.value}}'. Dies hindert Benutzer daran, Ihre Datenbank zu kompromittieren, indem Anweisungen wie '; Drop Tabelle;' in input1 eingegeben werden. Wenn Sie den unsicheren Modus verwenden, können SQL-Syntaxwörter auch durch Variablen ersetzt werden zum Beispiel wo {{input1.value}} {{input2.value}} '{{input3.value}}'. In diesem Fall kann die Datenbank jedoch durch die vom Benutzer eingegebenen Inhalte kompromittiert werden. Es wird nicht empfohlen, diesen Modus zu verwenden."
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "Mit Datenbank oder Api verbinden",
-            "more-type": "Weitere Datenquellentypen"
+            "more-type": "Weitere Datenquellentypen",
+            "safe_mode": "Modus"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "Element auswählen",
           "on_menu_select": "Menüpunkt auswählen",
           "pageChange": "Seitenänderung",
-          "clickItem": "Element anklicken"
+          "clickItem": "Element anklicken",
+          "columnVisibilityChange": "Spaltensichtbarkeit ändern"
         },
         "image_list": {
           "title": "Bilder",
@@ -3168,6 +3175,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Datenraster"
     }
   },
   "page": {
