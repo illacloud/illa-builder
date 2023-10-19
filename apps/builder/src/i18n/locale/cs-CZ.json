@@ -1729,7 +1729,7 @@
           "icon": "Ikona",
           "color": "Barva",
           "sort_by_mapped_value": "Seřadit podle mapované hodnoty",
-          "background": "Pozadí",
+          "background": "Pozadí buněk",
           "alignment": "Zarovnání",
           "column_width": "Šířka sloupce",
           "width": "Width",
@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "Povolit uživatele pro pin",
         "enable_users_to_filter": "Povolit uživatelům filtrovat",
         "enable_users_to_hide": "Povolit uživatelům skrýt",
-        "enable_users_to_set_group_by": "Povolit uživatelům nastavit skupinu podle"
+        "enable_users_to_set_group_by": "Povolit uživatelům nastavit skupinu podle",
+        "column_description": "L 343, 22.12.2009, s. 1)."
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "Slouží k nastavení, zda povolit uživatelům filtrovat v tomto sloupci",
         "enable_users_to_hide": "Slouží k nastavení, zda povolit nebo zakázat uživatelům skrýt sloupec",
         "enable_users_to_aggregate": "Slouží k nastavení, zda umožnit nebo neumožnit uživatelům provést agregaci údajů v tomto sloupci.",
-        "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. "
+        "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. ",
+        "column_description": "Slouží k nastavení popisu tohoto sloupce"
       },
       "setter_option": {
         "fixed": "Fixní",
