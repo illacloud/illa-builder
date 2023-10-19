@@ -1729,7 +1729,7 @@
           "icon": "Kuvake",
           "color": "Väri",
           "sort_by_mapped_value": "Järjestä kartoitetun arvon mukaan",
-          "background": "Solujen tausta",
+          "background": "Tausta",
           "alignment": "Tasaus",
           "column_width": "Sarakkeen leveys",
           "width": "Width",
