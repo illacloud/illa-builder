@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "Tillat brukere å feste",
         "enable_users_to_filter": "Aktiver brukere for å filtrere",
         "enable_users_to_hide": "Aktivere brukere å skjule",
-        "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av"
+        "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av",
+        "column_description": "Beskrivelse"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "Brukes for å angi om brukere kan filtrere i denne kolonnen",
         "enable_users_to_hide": "Brukes for å angi om brukere tillater å skjule kolonnen",
         "enable_users_to_aggregate": "Brukes for å angi om brukerne skal kunne aggregere data i denne kolonnen eller ikke.",
-        "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. "
+        "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. ",
+        "column_description": "Brukes til å angi en beskrivelse av denne kolonnen"
       },
       "setter_option": {
         "fixed": "Fast",

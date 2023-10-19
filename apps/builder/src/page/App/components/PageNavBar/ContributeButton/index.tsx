@@ -22,8 +22,11 @@ import {
   canUseUpgradeFeature,
   openShareAppModal,
 } from "@illa-public/user-role-utils"
-import { getILLABuilderURL, getMarketLinkTemplate } from "@illa-public/utils"
-import { getAuthToken } from "@illa-public/utils"
+import {
+  getAuthToken,
+  getILLABuilderURL,
+  getMarketLinkTemplate,
+} from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"

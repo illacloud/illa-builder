@@ -52,7 +52,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue, useNavigate } from "react-router-dom"
+import { useAsyncValue, useParams } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -120,7 +120,6 @@ export const AIAgent: FC = () => {
   const data = useAsyncValue() as {
     agent: Agent
   }
-  const navigate = useNavigate()
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
@@ -132,6 +131,8 @@ export const AIAgent: FC = () => {
           : data.agent.variables,
     },
   })
+
+  const { agentID, teamIdentifier } = useParams()
 
   const { isSubmitting, isValid, isDirty } = useFormState({
     control,
@@ -328,11 +329,20 @@ export const AIAgent: FC = () => {
             <div
               css={leftPanelTitleTextStyle}
               onClick={() => {
-                if (document.referrer) {
-                  navigate(-1)
-                } else {
-                  location.href = getILLACloudURL()
+                if (
+                  document.referrer.includes(import.meta.env.ILLA_CLOUD_URL)
+                ) {
+                  return (location.href = `${getILLACloudURL()}/workspace/${teamIdentifier}/ai-agents`)
                 }
+                if (
+                  document.referrer.includes(import.meta.env.ILLA_MARKET_URL) &&
+                  agentID
+                ) {
+                  return (location.href = `${
+                    import.meta.env.ILLA_MARKET_URL
+                  }/ai-agent/${agentID}/detail`)
+                }
+                return (location.href = getILLACloudURL())
               }}
             >
               <PreviousIcon fs="16px" />
@@ -1319,6 +1329,27 @@ export const AIAgent: FC = () => {
                           )
                         }}
                         teamPlan={getPlanUtils(currentTeamInfo)}
+                      />
+                    )}
+                    {contributedDialogVisible && (
+                      <ContributeAgentPC
+                        onContributed={(isAgentContributed) => {
+                          field.onChange(isAgentContributed)
+                          if (isAgentContributed) {
+                            const newUrl = new URL(
+                              getAgentPublicLink(idField.value),
+                            )
+                            newUrl.searchParams.set("token", getAuthToken())
+                            window.open(newUrl, "_blank")
+                          }
+                        }}
+                        teamID={currentTeamInfo.id}
+                        onClose={() => {
+                          setContributedDialogVisible(false)
+                        }}
+                        productID={idField.value}
+                        productType={HASHTAG_REQUEST_TYPE.UNIT_TYPE_AI_AGENT}
+                        productContributed={field.value}
                       />
                     )}
                     {contributedDialogVisible && (

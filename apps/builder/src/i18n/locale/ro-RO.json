@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "Permite utilizatorilor să fixeze",
         "enable_users_to_filter": "Permite utilizatorilor să filtreze",
         "enable_users_to_hide": "Permite utilizatorilor să ascundă",
-        "enable_users_to_set_group_by": "Permite utilizatorilor să seteze gruparea după"
+        "enable_users_to_set_group_by": "Permite utilizatorilor să seteze gruparea după",
+        "column_description": "Descriere"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "Folosit pentru a seta dacă permite sau nu utilizatorilor să filtreze pe această coloană",
         "enable_users_to_hide": "Folosit pentru a seta dacă permite sau nu utilizatorilor să ascundă coloana",
         "enable_users_to_aggregate": "Folosit pentru a seta dacă permite sau nu utilizatorilor să efectueze agregarea de date pe această coloană.",
-        "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. "
+        "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. ",
+        "column_description": "Folosit pentru a seta o descriere a acestei coloane"
       },
       "setter_option": {
         "fixed": "Fixat",

@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "ユーザーのピン留めを有効にする",
         "enable_users_to_filter": "フィルタを有効にする",
         "enable_users_to_hide": "ユーザーの非表示を有効にする",
-        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする"
+        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする",
+        "column_description": "説明"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "このカラムをフィルタリングできるかどうかを設定するために使用します。",
         "enable_users_to_hide": "ユーザーが列を非表示にするかどうかを設定するために使用します。",
         "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
-        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 "
+        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 ",
+        "column_description": "この列の説明を設定するために使用"
       },
       "setter_option": {
         "fixed": "固定高さ",

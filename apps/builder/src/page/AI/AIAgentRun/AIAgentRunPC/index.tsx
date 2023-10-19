@@ -142,7 +142,7 @@ export const AIAgentRunPC: FC = () => {
   )
   const upgradeModal = useUpgradeModal()
 
-  const { ownerTeamIdentifier } = useParams()
+  const { ownerTeamIdentifier, agentID } = useParams()
   const [searchParams] = useSearchParams()
 
   // premium dialog
@@ -508,11 +508,20 @@ export const AIAgentRunPC: FC = () => {
             <div
               css={backMenuStyle}
               onClick={() => {
-                if (document.referrer) {
-                  navigate(-1)
-                } else {
-                  location.href = getILLACloudURL()
+                if (
+                  document.referrer.includes(import.meta.env.ILLA_CLOUD_URL)
+                ) {
+                  return (location.href = `${getILLACloudURL()}/workspace/${ownerTeamIdentifier}/ai-agents`)
                 }
+                if (
+                  document.referrer.includes(import.meta.env.ILLA_MARKET_URL) &&
+                  agentID
+                ) {
+                  return (location.href = `${
+                    import.meta.env.ILLA_MARKET_URL
+                  }/ai-agent/${agentID}/detail`)
+                }
+                return (location.href = getILLACloudURL())
               }}
             >
               <PreviousIcon fs="16px" />

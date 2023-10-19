@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "Aktivera användare att fästa",
         "enable_users_to_filter": "Aktivera användare att filtrera",
         "enable_users_to_hide": "Aktivera användare att dölja",
-        "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av"
+        "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av",
+        "column_description": "Beskrivning"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "Används för att ställa in om användare tillåts filtrera på denna kolumn",
         "enable_users_to_hide": "Används för att ställa in om användare tillåts dölja kolumnen",
         "enable_users_to_aggregate": "Används för att ställa in om användare ska tillåta att data aggregering görs på den här kolumnen.",
-        "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. "
+        "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
+        "column_description": "Används för att ange en beskrivning av denna kolumn"
       },
       "setter_option": {
         "fixed": "Fast",
