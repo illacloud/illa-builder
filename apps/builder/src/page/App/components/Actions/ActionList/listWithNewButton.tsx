@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -192,19 +193,21 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
               }
               onClick={handleClickActionType("globalData")}
             />
-            <DropListItem
-              key="aiagent"
-              value="aiagent"
-              title={
-                <div css={createDropListItemContainerStyle}>
-                  <span css={prefixIconContainerStyle}>
-                    <AIAgentIcon />
-                  </span>
-                  {t("editor.action.panel.label.option.general.ai-agent")}
-                </div>
-              }
-              onClick={handleClickActionType("aiagent")}
-            />
+            {isCloudVersion && (
+              <DropListItem
+                key="aiagent"
+                value="aiagent"
+                title={
+                  <div css={createDropListItemContainerStyle}>
+                    <span css={prefixIconContainerStyle}>
+                      <AIAgentIcon />
+                    </span>
+                    {t("editor.action.panel.label.option.general.ai-agent")}
+                  </div>
+                }
+                onClick={handleClickActionType("aiagent")}
+              />
+            )}
           </DropList>
         }
       >
