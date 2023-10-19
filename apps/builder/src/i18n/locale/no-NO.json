@@ -610,7 +610,9 @@
               "global-data": "Globale data",
               "ai-agent": "AI Agent",
               "more": "Mer",
-              "create-resource": "Opprett fra ressurs"
+              "create-resource": "Opprett fra ressurs",
+              "unsafe": "Usikker",
+              "safe": "Sikker"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "Bruk disse globale dataene av {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "Når du bruker sikker modus, kan SQL bare referere til variabler i stedet for variabler, for eksempel, der navn = '{{input1.value}}'. Dette hindrer brukere i å kompromittere databasen ved å angi erklæringer som '; slipp-tabell;' i input1. Ved bruk av usikker modus, kan SQL-syntaksord også erstattes med variabler, slikt som der {{input1.value}} {{input2.value}} '{{input3.value}}'. I dette tilfellet kan databasen imidlertid bli kompromittert av innholdet som brukeren har angitt. Det er ikke anbefalt for deg å bruke denne modus."
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "Koble til database eller api",
-            "more-type": "Mer type datakilder"
+            "more-type": "Mer type datakilder",
+            "safe_mode": "Modus"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "Velg element",
           "on_menu_select": "Velg menypunkt",
           "pageChange": "Side endring",
-          "clickItem": "Klikk pÃ¥ element"
+          "clickItem": "Klikk pÃ¥ element",
+          "columnVisibilityChange": "Kolonne synlighet endring"
         },
         "image_list": {
           "title": "Bilder",
@@ -3168,6 +3175,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Datatrutenett"
     }
   },
   "page": {

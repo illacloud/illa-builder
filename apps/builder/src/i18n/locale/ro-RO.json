@@ -610,7 +610,9 @@
               "global-data": "Date globale",
               "ai-agent": "AI Agent",
               "more": "Mai",
-              "create-resource": "Creează din resurse"
+              "create-resource": "Creează din resurse",
+              "unsafe": "Nesigur",
+              "safe": "Sigur"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "Utilizați aceste date globale de către {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "Când utilizați modul de siguranță, SQL poate doar variabilele de referință în locul variabilelor, de exemplu, unde numele = '{{input1.value}}'. Acest lucru îi împiedică pe utilizatori să compromită baza de date prin introducerea unor declarații ca \"tabelul de renunțare\". La utilizarea modului nesigur, cuvintele de sintaxă SQL pot fi de asemenea înlocuite cu variabile, cum ar fi unde {{input1.value}} {{input2.value}} '{{input3.value}}'. Cu toate acestea, în acest caz, baza de date poate fi compromisă de conținutul introdus de utilizator. Nu este recomandat să utilizaţi acest mod."
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "Conectează-te la baza de date sau API",
-            "more-type": "Mai multe tipuri de surse de date"
+            "more-type": "Mai multe tipuri de surse de date",
+            "safe_mode": "Mod"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "Selectare element",
           "on_menu_select": "Selectați elementul de meniu",
           "pageChange": "Modificare pagină",
-          "clickItem": "Elementul clic"
+          "clickItem": "Elementul clic",
+          "columnVisibilityChange": "Schimbare vizibilitate coloană"
         },
         "image_list": {
           "title": "Imagini",
@@ -3168,6 +3175,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Grila de date"
     }
   },
   "page": {
