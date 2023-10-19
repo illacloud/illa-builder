@@ -18,7 +18,7 @@ import {
   canUseUpgradeFeature,
   openShareAppModal,
 } from "@illa-public/user-role-utils"
-import { getMarketLinkTemplate } from "@illa-public/utils"
+import { getILLABuilderURL, getMarketLinkTemplate } from "@illa-public/utils"
 import { getAuthToken } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -122,8 +122,12 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
               appName: appInfo.appName,
             })}
             defaultTab={"public"}
-            editRedirectURL={`${window.location.origin}/${teamInfo.identifier}/app/${appInfo.appId}`}
-            useRedirectURL={`${window.location.origin}/${teamInfo.identifier}/deploy/app/${appInfo.appId}`}
+            editRedirectURL={`${getILLABuilderURL()}/${
+              teamInfo.identifier
+            }/app/${appInfo.appId}`}
+            useRedirectURL={`${getILLABuilderURL()}/${
+              teamInfo.identifier
+            }/deploy/app/${appInfo.appId}`}
             defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
             onInviteLinkStateChange={(enableInviteLink) => {
               dispatch(

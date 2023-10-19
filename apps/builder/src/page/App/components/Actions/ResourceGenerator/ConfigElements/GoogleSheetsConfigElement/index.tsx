@@ -8,7 +8,10 @@ import {
   ButtonGroup,
   PreviousIcon,
   WarningCircleIcon,
+  useMessage,
 } from "@illa-design/react"
+import { ReactComponent as DisabledGoogleLogoIcon } from "@/assets/googlesheets/disabled-google.svg"
+import { ReactComponent as GoogleLogoIcon } from "@/assets/googlesheets/google-logo.svg"
 import { useOAuthRefresh } from "@/hooks/useOAuthRefresh"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import {
@@ -30,6 +33,7 @@ import { getOAuthAccessToken, redirectToGoogleOAuth } from "@/services/resource"
 import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
+import { googleIconStyle, googleSheetsButtonStyle } from "./style"
 
 const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props
@@ -40,6 +44,7 @@ const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (props) => {
   const resource = useSelector(getAllResources).find(
     (r) => r.resourceID === resourceID,
   )
+  const message = useMessage()
 
   const content = (resource?.content ??
     GoogleSheetResourceInitial) as GoogleSheetResource
@@ -95,17 +100,25 @@ const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (props) => {
     resourceID: string,
     accessType: AccessType,
   ) => {
-    const response = await getOAuthAccessToken(
-      resourceID,
-      `${window.location.origin}${location.pathname}`,
-      accessType,
-    )
-    const { accessToken } = response.data
-    if (accessToken) {
-      const res = await redirectToGoogleOAuth(resourceID, accessToken)
-      if (res.data.url) {
-        window.location.assign(res.data.url)
+    try {
+      const response = await getOAuthAccessToken(
+        resourceID,
+        `${window.location.origin}${location.pathname}`,
+        accessType,
+      )
+      const { accessToken } = response.data
+      if (accessToken) {
+        const res = await redirectToGoogleOAuth(resourceID, accessToken)
+        if (res.data.url) {
+          window.location.assign(res.data.url)
+        }
+      } else {
+        throw new Error()
       }
+    } catch (e) {
+      message.error({
+        content: t("editor.action.form.tips.gs.failed_to_authentica"),
+      })
     }
   }
 
@@ -228,18 +241,23 @@ const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (props) => {
           </Button>
           {isAuthenticated ? (
             <ButtonGroup spacing="8px">
-              <Button
-                colorScheme="gray"
-                disabled={!formState.isValid}
+              <button
+                css={googleSheetsButtonStyle}
                 type="button"
                 onClick={() => handleOAuthConnect(resourceID!!, accessType)}
+                disabled={!formState.isValid}
               >
-                {t("editor.action.form.label.gs.reconnect_with_oauth")}
-              </Button>
-              <CreateButton />
-            </ButtonGroup>
-          ) : (
-            <ButtonGroup spacing="8px">
+                <span css={googleIconStyle}>
+                  {formState.isValid ? (
+                    <GoogleLogoIcon />
+                  ) : (
+                    <DisabledGoogleLogoIcon />
+                  )}
+                </span>
+                <span>
+                  {t("editor.action.form.label.gs.reconnect_with_oauth")}
+                </span>
+              </button>
               <CreateButton
                 text={
                   showInitialConnectButton
@@ -248,6 +266,35 @@ const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (props) => {
                 }
               />
             </ButtonGroup>
+          ) : (
+            <>
+              {showInitialConnectButton ? (
+                <button
+                  css={googleSheetsButtonStyle}
+                  type="submit"
+                  disabled={!formState.isValid || formState.isSubmitting}
+                >
+                  <span css={googleIconStyle}>
+                    {formState.isValid ? (
+                      <GoogleLogoIcon />
+                    ) : (
+                      <DisabledGoogleLogoIcon />
+                    )}
+                  </span>
+                  <span>
+                    {t("editor.action.form.label.gs.connect_with_oauth")}
+                  </span>
+                </button>
+              ) : (
+                <CreateButton
+                  text={
+                    showInitialConnectButton
+                      ? t("editor.action.form.label.gs.connect_with_oauth")
+                      : t("editor.action.form.btn.save_changes")
+                  }
+                />
+              )}
+            </>
           )}
         </div>
       )}

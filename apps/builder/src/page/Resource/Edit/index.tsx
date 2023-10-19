@@ -8,14 +8,18 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
-import { useMessage } from "@illa-design/react"
+import { Divider, useMessage } from "@illa-design/react"
 import { ConfigElementProvider } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/provider"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { track } from "@/utils/mixpanelHelper"
 import { ConfigElement } from "../../App/components/Actions/ResourceGenerator/ConfigElements"
 import { Header } from "../components/resourceHeader"
 import { WhiteList } from "../components/whiteList"
-import { containerStyle, innerContainerStyle } from "./style"
+import {
+  containerStyle,
+  innerContainerStyle,
+  outerContainerStyle,
+} from "./style"
 
 export const ResourceEdit: FC = () => {
   const { resourceID } = useParams()
@@ -57,14 +61,16 @@ export const ResourceEdit: FC = () => {
     >
       <div css={innerContainerStyle}>
         <Header resourceType={resourceType as ResourceType} />
-
-        <div css={containerStyle}>
-          <ConfigElement
-            resourceType={resourceType}
-            resourceID={resourceID}
-            hasFooter={false}
-          />
-          {isCloudVersion && <WhiteList />}
+        <Divider />
+        <div css={outerContainerStyle}>
+          <div css={containerStyle}>
+            <ConfigElement
+              resourceType={resourceType}
+              resourceID={resourceID}
+              hasFooter={false}
+            />
+            {isCloudVersion && <WhiteList />}
+          </div>
         </div>
       </div>
     </ConfigElementProvider>

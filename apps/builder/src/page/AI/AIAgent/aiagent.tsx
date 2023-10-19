@@ -1277,7 +1277,6 @@ export const AIAgent: FC = () => {
                             }),
                           )
                         }}
-                        teamPlan={getPlanUtils(currentTeamInfo)}
                         onShare={(platform) => {
                           track(
                             ILLA_MIXPANEL_EVENT_TYPE.CLICK,
@@ -1289,6 +1288,7 @@ export const AIAgent: FC = () => {
                             },
                           )
                         }}
+                        teamPlan={getPlanUtils(currentTeamInfo)}
                       />
                     )}
                   </MixpanelTrackProvider>

@@ -318,7 +318,6 @@ export const AIAgentRunMobile: FC = () => {
                   }),
                 )
               }}
-              teamPlan={getPlanUtils(currentTeamInfo)}
               onShare={(platform) => {
                 track(
                   ILLA_MIXPANEL_EVENT_TYPE.CLICK,
@@ -345,6 +344,7 @@ export const AIAgentRunMobile: FC = () => {
                 })
                 dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
               }}
+              teamPlan={getPlanUtils(currentTeamInfo)}
             />
           )}
         </MixpanelTrackProvider>
