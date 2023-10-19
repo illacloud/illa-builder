@@ -1,4 +1,4 @@
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"

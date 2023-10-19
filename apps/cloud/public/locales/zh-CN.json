@@ -1,0 +1,4393 @@
+{
+  "bookFrom": {
+    "title": "预约Demo演示",
+    "form": {
+      "about": {
+        "label": "告诉我们关于您的项目的信息",
+        "required": ".",
+        "pattern": ""
+      },
+      "wantTo": {
+        "label": "您想用ILLA做什么？",
+        "required": ".",
+        "pattern": ""
+      }
+    },
+    "message": {},
+    "submit": "提交"
+  },
+  "partnerFrom": {
+    "title": "成为合作伙伴",
+    "form": {
+      "name": {
+        "label": "姓名",
+        "placeholder-1": "姓",
+        "placeholder-2": "名"
+      },
+      "title": {
+        "label": "你的职务"
+      },
+      "companyName": {
+        "label": "公司名称"
+      },
+      "companyWebsite": {
+        "label": "公司网站",
+        "pattern": "请输入有效的URL"
+      },
+      "email": {
+        "label": "邮箱",
+        "pattern": "请输入正确的邮箱"
+      }
+    },
+    "message": {},
+    "submit": "提交"
+  },
+  "billing": {
+    "menu": {
+      "billing": "账单",
+      "license": "全部订阅",
+      "drive": "Drive",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla交易记录",
+      "billing_portal": "账单中心",
+      "overview": "全部订阅",
+      "pricing": "定价",
+      "balance": "余额",
+      "colla": "Colla用量"
+    },
+    "title": {
+      "overview": "全部订阅",
+      "pricing": "定价",
+      "balance": "余额",
+      "colla_usage": "Colla用量",
+      "billing": "账单",
+      "license": "坐席",
+      "drive": "Drive",
+      "colla": "Colla",
+      "appsumo": "Appsumo"
+    },
+    "pricing": {
+      "premium": {
+        "desc": "升级您的团队以访问高级功能",
+        "feature": {
+          "builder": {
+            "viewer": "免费添加无限个浏览者",
+            "audit_log": "审计日志",
+            "public": "发布公开App",
+            "sql": "SQL智能生成",
+            "history": "备份编辑历史并支持恢复",
+            "theme": "为您的应用自定义主题",
+            "multi_environment": "多开发环境(即将推出 )",
+            "deployed_version": "保存已部署版本并回滚(即将推出 )"
+          },
+          "agent": {
+            "gpt": "访问更多模型，如GPT-4, GPT-3.5-turbo-16k",
+            "colla": "每个坐席 2.5k Colla"
+          }
+        },
+        "price": "/月/编辑者"
+      },
+      "colla": {
+        "desc": "用于支付ILLA Cloud内的增值服务",
+        "feature": {
+          "storage": "文件存储，用于在 ILLA Drive上存储文件。",
+          "traffic": "流量，用于从ILLA Drive中下载文件。",
+          "token": "AI Agent Token. 用于运行 AI Agent.",
+          "conversion": {
+            "1": "5k Colla",
+            "2": "5GB存储空间",
+            "3": "5GB流量",
+            "4": "50k token"
+          }
+        },
+        "price": "/月/5k Colla",
+        "button": "管理Colla"
+      }
+    },
+    "monthly": "月付",
+    "yearly": "年付",
+    "members": "团队",
+    "app": "应用",
+    "security-support": "安全和支持",
+    "apps": {
+      "components": "所有组件",
+      "resources": "所有资源",
+      "plugins": "不限插件数量(即将上线)",
+      "sql": "SQL智能生成",
+      "watermark": "移除水印"
+    },
+    "security": {
+      "historic-7": "备份编辑历史并支持恢复",
+      "historic-30": "保存已部署版本并回滚(Coming soon)",
+      "develop-environment": "开发环境(即将上线)",
+      "app-public": "公开APP",
+      "restore-data": "备份编辑历史并支持恢复",
+      "deployed": "获取ILLA支持",
+      "dedicated": "专用解决方案工程师"
+    },
+    "tips": {
+      "plugins": "导入插件并在您团队的所有应用程序中使用它",
+      "sql": "输入自然语言，生成SQL语句",
+      "staging": "在staging环境中测试您的应用",
+      "app-public": "公开发布应用程序，知道链接的任何人都可以访问它",
+      "restore-data": "随时备份或恢复记录",
+      "deployed": "部署工程师可以帮助您的团队快速上手",
+      "dedicated": "专门的解决方案工程师通过 Slack/电子邮件/电话帮您解决问题",
+      "preview_insufficient": "配额不足，文件无法预览。请先增加配额。"
+    },
+    "deployment": {
+      "title": "灵活部署",
+      "title-1": "灵活",
+      "title-2": "部署",
+      "introduction": "ILLA为开发者们提供了全新的开发方式，您可以邀请成员加入您的团队，进行协同开发。成员们的操作将被实时同步给每一位协作者，并且可以实时与其他协作者沟通，及时给予反馈，提高开发效率。",
+      "illa-cloud": {
+        "title": "ILLA Cloud",
+        "des": "一键部署ILLA，体验最便捷的部署过程"
+      },
+      "illa-CLI": {
+        "title": "ILLA CLI",
+        "des": "最轻松的私有化部署方式，快速上手ILLA Builder"
+      },
+      "kubernetes": {
+        "title": "Kubernetes",
+        "des": "使用ILLA Helm chart将ILLA部署到Kubernete"
+      },
+      "docker": {
+        "title": "Docker",
+        "des": "30秒完成ILLA本地部署"
+      }
+    },
+    "user-month": "每用户/月",
+    "editor-month": "每编辑者/月",
+    "start-at": "100个用户起",
+    "free-members": "仅一个用户，个人使用",
+    "unlimited-viewer": "免费添加无限个浏览者",
+    "unlimited-members": "不限成员数量",
+    "free-btn": "当前计划",
+    "plus-btn": "升级",
+    "enterprise-btn": "联系我们",
+    "colla_usage": {
+      "used": "已用",
+      "token": "Token",
+      "storage": "存储空间",
+      "traffic": "流量"
+    },
+    "subscription_general": {
+      "team_type": {
+        "free": "免费",
+        "plus": "Plus",
+        "premium": "Premium"
+      },
+      "colla": {
+        "desc": "用于支付ILLA Cloud增值服务的费用。包括ILLA Drive的存储空间、ILLA Drive的下载流量和 AI Agent的token。",
+        "table_title": {
+          "colla": "已订阅Colla",
+          "seats": "已订阅坐席"
+        },
+        "table_desc": {
+          "bouns": "在您当前周期的Colla余额不足时，我们将自动为您增加Colla。 “Bonus Colla”是一个额外的费用，不包括在周期订阅中，因此您的订阅在下一个周期自动续订时，也只会支付您订阅的Colla的费用。"
+        },
+        "table_button": {
+          "seats": "管理坐席",
+          "colla": "管理Colla"
+        }
+      },
+      "plan": {
+        "free": "免费",
+        "plus": "Premium"
+      },
+      "sub_cycle": {
+        "yearly": "年付",
+        "monthly": "月付",
+        "lifetime": "Lifetime"
+      },
+      "billing_cyle": {
+        "year": "/年",
+        "month": "/月"
+      },
+      "table_title": {
+        "next_payment_date": "下次付款日期",
+        "expiration_date": "过期日期",
+        "licenses": "坐席",
+        "storage": "存储空间",
+        "traffic": "流量",
+        "colla": "剩余Colla",
+        "colla_sub": "已订阅的Colla",
+        "colla_unsub": "余额",
+        "seats": "已订阅的坐席",
+        "bouns": "Bouns Colla"
+      },
+      "period": {
+        "current": "当前周期",
+        "next": "下个周期"
+      },
+      "cycle": {
+        "month": "/月",
+        "year": "/年"
+      },
+      "table_desc": {
+        "bouns": "在您当前周期的Colla余额不足时，我们将自动为您增加Colla。 “Bonus Colla”是一个额外的费用，不包括在周期订阅中，因此您的订阅在下一个周期自动续订时，也只会支付您订阅的Colla的费用。 "
+      },
+      "table_button": {
+        "seats": "管理坐席",
+        "colla": "管理Colla"
+      }
+    },
+    "subscription_card": {
+      "title": {
+        "License": "坐席",
+        "Storage": "存储",
+        "Traffic": "流量",
+        "balance": "剩余可用",
+        "colla": "Colla"
+      },
+      "button": {
+        "License": "管理坐席",
+        "Storage": "管理存储空间",
+        "Traffic": "扩展流量",
+        "colla": "管理Colla"
+      },
+      "capacity": {
+        "License": "个已用（共 {{total}} 个坐席）",
+        "Storage": "{{used}}GB 已用（共 {{total}}GB）",
+        "Traffic": "{{used}}GB 已用（共 {{total}}GB）",
+        "colla": "{{used}} Colla 已用（共 {{total}} Colla）"
+      },
+      "colla_usage": {
+        "token": "Token",
+        "traffic": "流量",
+        "storage": "存储空间"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "月份",
+        "event": "事件",
+        "usage": "Colla用量"
+      },
+      "event": {
+        "increase_storage": "增加存储空间",
+        "increase_colla": "增加Colla",
+        "increase_traffic": "增加流量"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} 个Colla"
+      }
+    },
+    "payment_sidebar": {
+      "price": {
+        "colla_monthly": "{{price}} / 月 / 5k Colla",
+        "colla_yearly": "{{price}} / 年 / 60k Colla"
+      },
+      "title": {
+        "manage_storage": "管理存储",
+        "manage_licenses": "管理坐席",
+        "expand_traffic_capac": "扩展流量能力",
+        "colla": "管理Colla"
+      },
+      "plan_label": {
+        "License": "坐席",
+        "Storage": "存储",
+        "Traffic": "流量",
+        "colla": "Colla"
+      },
+      "plan_number_input_label": {
+        "License": "坐席",
+        "Storage_traffic": "GB",
+        "colla": "Colla"
+      },
+      "select_option": {
+        "Yearly": "年付",
+        "Monthly": "月付"
+      },
+      "price_label": {
+        "total": "总计"
+      },
+      "price_type": {
+        "this_period_remove": "此期间",
+        "this_period": "此期间",
+        "next_period": "下一周期",
+        "next_period_remove": "下一周期",
+        "payment": "费用",
+        "this_period_storage": "此期间",
+        "next_period_storage": "下一周期",
+        "this_period_remove_storage": "此期间",
+        "next_period_remove_storage": "下一周期",
+        "payment_storage": "费用",
+        "payment_traffic": "费用",
+        "payment_description_traffic": "{{unitPrice}} x {{trafficNum}} GB"
+      },
+      "price_cal": {
+        "this_period": "{{unitPrice}} x {{licenseNum}} 个坐席 × {{remainDays}} 天 / {{totalDays}} 天",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} 个坐席",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} 个坐席",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} 个坐席 × {{remainDays}} 天 / {{totalDays}} 天",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} 个坐席",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} 个坐席",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} 个坐席",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} 个坐席",
+        "this_period_storage": "{{unitPrice}} x {{storageNum}} GB × {{remainDays}} 天 / {{totalDays}} 天",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "this_period_remove_storage": "{{unitPrice}} x {{storageNum}} GB × {{remainDays}} 天 / {{totalDays}} 天",
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{licenseNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} * {{purchaseNum}} "
+      },
+      "button": {
+        "unsubscribe": "取消订阅",
+        "subscribe": "订阅",
+        "change_plan": "更改订阅",
+        "storage_traffic_increase": "增加 {{changeNum}} GB",
+        "storage_traffic_remove": "移除 {{changeNum}} GB",
+        "license_increase": "增加 {{changeNum}} 个坐席",
+        "license_remove": "减少 {{changeNum}} 个坐席",
+        "colla_increase": "增加 {{changeNum}} 个Colla",
+        "colla_remove": "移除 {{changeNum}} 个Colla"
+      },
+      "colla": {
+        "1": "{{purchaseNum}} Colla",
+        "2": "{{storageNum}} 存储空间",
+        "3": "{{trafficNum}} 流量",
+        "4": "{{tokenNum}} token"
+      },
+      "description_title": {
+        "add_storage": "您将要增加{{changeNum}}GB存储。一经确认，我们将立即扣除此计费周期的新存储空间费用。<0>了解更多</0>",
+        "remove_storage": "您将要移除{{changeNum}}GB存储。一经确认，更改将从下一个计费周期开始生效。<0>了解更多</0>",
+        "update_plan_year": "您将更新到按年付款。一经确认，更改将从下一个计费周期开始生效。<0>了解更多</0>",
+        "update_plan_monthly": "您将更新到按月付费。一经确认，更改将从下一个计费周期开始生效。<0>了解更多</0>",
+        "add_license": "您将添加 {{changeNum}} 个坐席。一经确认，我们将立即扣除本周期新增坐席应付的费用。<0>了解更多</0>",
+        "remove_license": "您将移除 {{changeNum}} 个坐席。一经确认，更改将在下一个计费周期生效。<0>了解更多</0>",
+        "add_traffic": "您将要添加{{changeNum}}GB流量。一经确认，我们将立即扣除本周期的应付款项。<0>了解更多</0>",
+        "subscribe_storage": "您将订阅ILLA Cloud Premium。我们会在每个付款周期开始时自动从您的账户中扣除费用。 <0>了解更多</0>",
+        "subscribe_license": "您将订阅ILLA Drive。我们会在每个付款周期开始时自动从您的账户中扣除费用。 <0>了解更多</0>",
+        "update_plan_increase_license": "您将添加 {{changeNum}} 个坐席并更新订阅周期。<0>了解更多</0>",
+        "update_plan_remove_license": "您将移除 {{changeNum}} 个坐席并更新订阅周期。<0>了解更多</0>",
+        "update_plan_increase_storage": "您将添加{{changeNum}}GB存储并更新您的订阅期。<0>了解更多</0>",
+        "update_plan_remove_storage": "您将要移除{{changeNum}}GB存储并更新您的订阅期。<0>了解更多</0>",
+        "unsubscribe_license": "您将要取消订阅 ILLA Cloud Premium。 取消后，从下一个计费周期开始，Premium功能将无法访问。<0>了解更多</0>",
+        "unsubscribe_storage": "您将取消订阅 ILLA Drive 存储。取消后，从下一个计费周期开始，存储容量将恢复为100MB。 <0>了解更多</0>",
+        "subscribe_license_monthly": "您即将订阅ILLA Cloud Premium月订阅。<0>了解更多</0>",
+        "subscribe_license_yearly": "您将要订阅ILLA Cloud Premium年订阅。<0>了解更多</0>",
+        "subscribe_storage_monthly": "您即将增加{{changeNum}}GB 存储。一经确认，我们将立即扣除所需费用 <0>了解更多</0>",
+        "subscribe_storage_yearly": "您即将增加{{changeNum}}GB 存储。一经确认，我们将立即扣除所需费用 <0>了解更多</0>",
+        "colla_sub": "您即将订阅 Colla。一经确认，我们将在每个计费周期开始时自动扣除费用，并在您需要更多 Colla 时自动升级您的订阅。<0>了解更多</0>",
+        "colla_increase": "您即将添加 {{changeNum}} 个 Colla。一经确认，我们将立即扣除本计费周期剩余的费用。<0>了解更多</0>",
+        "colla_remove": "您即将移除 {{changeNum}} 个 Colla。一经确认，将从下一个计费周期开始生效。<0>了解更多</0>",
+        "colla_unsubscribe": "您即将取消 Colla 的订阅。一经确认，将从下一个计费周期开始生效。请注意，在取消订阅后，您可能会在使用 ILLA Drive 和 AI Agent 时遇到问题。<0>了解更多</0>",
+        "colla_update": "您即将修改 Colla 的订阅。一经确认，更改将从下一个计费周期开始生效。<0>了解更多</0>"
+      },
+      "description": {
+        "remove_storage": "如果您的文件占用的存储容量在下一个计费周期开始时超过订阅的存储容量， 所有文件都将被禁用，直到您删除文件或增加可用范围内的存储容量。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "update_plan_year": "从下一个周期开始，订阅将更改为年度订阅，并根据年度订阅定价自动扣除费用。如果您希望减少座位或对订阅进行其他更改，请在下一个周期开始之前进行更新。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "update_plan_monthly": "从下一个周期开始，订阅将更改为月度订阅，并根据月度订阅定价自动扣除费用。如果您希望减少座位或对订阅进行其他更改，请在下一个周期开始之前进行更新。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "add_license": "以月度座位订阅为例，计算规则如下：假设您最初从3月14日开始订阅了5个座位，计费周期从本月的14日到下个月的13日。在5月10日，您决定增加1个额外的座位。此时，距离当前周期结束的5月13日还剩下4天（从4月14日到5月13日总共30天）。为了计算调整后的费用，我们将根据在30天周期内的4天时长，按比例扣除1个座位的费用，约为10美元。因此，扣除金额估计为1个座位 * 10美元 / 30天 * 4天，结果约为1.33美元。从下一个计费周期开始，所有座位费用将合并并一起支付。如果您希望减少座位或对订阅进行其他更改，请在下个周期开始之前进行更新。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "remove_license": "如果在下一个计费周期开始时具有编辑权限的用户数量超过座位数量，除了所有者之外的所有用户将被禁用，直到您在可用范围内删除成员或增加座位数量。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "add_traffic": "扣除成功后，您的流量将实时增加。 使用通信量后，无法退还费用。未使用的通信量可以用GB单位退还。 例如，如果您购买10GB流量并使用4.5GB，您可以申请5GB的退款。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "subscribe_storage_yearly": "您将订阅ILLA Drive 存储的年度订阅。 我们将在每个付款周期开始时从您的帐户中自动扣除费用。 实际扣除的金额取决于您在 GB 中订阅的存储容量。 例如，如果您在2023年2月25日开始第一次订阅，年订阅费为9美元。 如果你拥有3GB，我们将扣除29美元。 贸发会议秘书处的说明 如果你在2023年3月25日添加2GB，我们将首先在2023年3月25日扣除剩余的11个月付款。 然后，到2024年2月25日，我们将扣除5GB(2+3)*9.9=49的付款。 。如果您想要减少存储空间或对订阅作其他更改，请在下一个期间开始之前更新它。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "subscribe_license_monthly": "您即将订阅 ILLA Cloud Plus 的月度订阅。我们将在每个付款周期开始时自动从您的账户中扣除费用。实际扣除的金额取决于您拥有的座位数量。例如，如果您在2023年2月25日开始第一次订阅，每个座位的月度订阅费用为12美元，而您总共有3个座位，那么我们将在2023年2月25日扣除36美元。如果您在2023年3月21日再增加2个座位，我们将首先在2023年3月21日扣除剩余5天的费用。然后，到2023年3月25日，我们将扣除5个座位的费用，即(2+3)*12美元=60美元。如果您希望减少座位或对订阅进行其他更改，请在下个周期开始之前进行更新。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "update_plan_increase_license": "费用将根据更新后的座位数量和新计费周期的定价自动扣除。这次，我们将根据当前计费周期扣除增加的座位费用。以下是增加座位的计算规则，以月度座位订阅为例：假设您最初从3月14日开始订阅了5个座位，计费周期从本月的14日到下个月的13日。在5月10日，您决定增加1个额外的座位。此时，距离当前周期结束的5月13日还剩下4天（从4月14日到5月13日总共30天）。为了计算调整后的费用，我们将根据在30天周期内的4天时长，按比例扣除1个座位的费用，约为10美元。因此，扣除金额估计为1个座位 * 10美元 / 30天 * 4天，结果约为1.33美元。从下一个计费周期开始，所有座位费用将合并并一起支付。如果您希望减少座位或对订阅进行其他更改，请在下个周期开始之前进行更新。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "update_plan_remove_license": "费用将根据更新后的座位数量和新计费周期的定价自动扣除。如果在下一个计费周期开始时具有编辑权限的用户数量超过座位数量，除了所有者之外的所有用户将被禁用，直到您在可用范围内删除成员或增加座位数量。有关更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。",
+        "update_plan_remove_storage": "费用将根据更新的储存和下一个时期新的计费周期的定价自动扣除。 如果您的文件占用的存储容量在下一个计费周期开始时超过订阅的存储容量， 所有文件都将被禁用，直到您删除文件或增加可用范围内的存储容量。 欲了解更多信息，请参阅我们的<0>隐私政策</0>和<1>服务条款</1>。"
+      },
+      "colla_redeem": {
+        "title": " {{changeNum}} 个Colla相当于",
+        "storage": "存储空间",
+        "traffic": "流量",
+        "token": "Token"
+      }
+    },
+    "message": {
+      "failed_to_subscribe": "订阅失败。请重试。",
+      "failed_to_add_traffic": "添加流量失败。请重试。 ",
+      "failed_to_add_storage": "添加存储失败。请重试。 ",
+      "failed_to_remove_storage": "删除存储失败。请重试。 ",
+      "failed_to_add_licens": "添加坐席失败，请重试。",
+      "failed_to_remove_lic": "移除坐席失败，请重试。",
+      "failed_to_change_pla": "更改计划失败。请重试。 ",
+      "failed_to_unsubscrib": "取消订阅失败。请重试。 ",
+      "successfully_removed": "成功删除。更改将从 {{nextPaymentDate}} 生效。",
+      "unsubscription_succe": "取消订阅成功。更改将从 {{nextPaymentDate}} 生效",
+      "cancel_subscribe": "订阅未完成，请重试或联系 billing@illasoft.com。",
+      "cancel_purchase": "购买未完成，请重试或联系 billing@illasoft.com",
+      "successfully_changed": "订阅更改成功，几分钟后将会生效",
+      "failed_to_change": "订阅更改失败",
+      "unsubscription_suc": "订阅已成功取消，并将在下一阶段生效",
+      "failed_to_join_no_license": "由于坐席不足，加入失败",
+      "storage_insufficient_modal": "存储空间或流量余额不足，请联系管理员。",
+      "appsumo": {
+        "suc": "兑换成功",
+        "fail": "兑换失败，请稍后再试。",
+        "transfer": "操作失败。此用户已绑定到终身订阅。 ",
+        "leave": "操作失败。此用户已绑定到终身订阅。 "
+      },
+      "no_license_operate_failed": "由于订阅异常，操作失败。",
+      "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。",
+      "error_subscribe": "订阅失败，请稍后重试",
+      "unsubscription_fail": "取消订阅失败，请稍后重试。",
+      "failed_to_update": "订阅更新失败，请重试",
+      "update_suc": "订阅更新成功",
+      "no_traffic": "流量不足。请联系管理员增加Colla。",
+      "no_storage": "存储不足。请联系管理员增加Colla"
+    },
+    "modal": {
+      "colla_insufficient_modal": {
+        "storage": {
+          "title": "存储空间不足",
+          "desc": {
+            "1": "您的存储空间不足。请订阅Colla或增加Colla以增加您的存储空间。",
+            "2": "在订阅Colla后，您的Colla可以用来增加存储，增加流量， 增加token等。可以根据您的需要自动分配。"
+          }
+        },
+        "traffic": {
+          "title": "流量不足",
+          "desc": {
+            "1": "您的流量不足。请订阅Colla或增加Colla以增加您的流量。",
+            "2": "在订阅Colla后，您的Colla可以用来增加存储，增加流量， 增加token等。可以根据您的需要自动分配。"
+          }
+        },
+        "token": {
+          "title": "Token不足",
+          "desc": {
+            "1": "您的token不足。请订阅Colla或增加Colla以增加token。",
+            "2": "在订阅Colla后，您的Colla可以用来增加存储，增加流量， 增加token等。可以根据您的需要自动分配。"
+          }
+        },
+        "button": "增加Colla",
+        "cycle": "每月 / 5k Colla",
+        "failed": {
+          "title": "增加 Colla 失败",
+          "storage": {
+            "desc": "您的 Colla 余额不足以满足当前存储需求。我们在增加您的 Colla 时遇到了一些问题。请手动增加Colla。"
+          },
+          "traffic": {
+            "desc": "您的 Colla 余额不足以满足当前下载需求。我们在增加您的 Colla 时遇到了一些问题。请手动增加Colla。"
+          },
+          "token": {
+            "desc": "您的 Colla 余额不足以满足当前token需求。我们在增加您的 Colla 时遇到了一些问题。请手动增加Colla。"
+          },
+          "button": "增加Colla"
+        }
+      },
+      "storage_insufficient_modal": {
+        "owner_title_drive": "配额不足",
+        "owner_description_drive": "您的流量或存储空间不足。请升级后重试。",
+        "owner_button_drive": "升级",
+        "not_owner_title_drive": "操作失败",
+        "not_owner_description_drive": "流量或存储空间不足，请联系管理员。",
+        "not_owner_button_drive": "好的",
+        "out_title_drive": "下载失败",
+        "out_description_drive": "由于流量不足，下载失败，请与文件所有者联系",
+        "out_button_drive": "好的"
+      },
+      "sub_suc": {
+        "subscription_success": "订阅成功",
+        "you_can_now_invite_m": "几分钟后将会生效。您稍后就可以邀请成员并开始使用高级功能了。",
+        "you_can_now_upload_m": "几分钟后将会生效。您稍后就可以上传更多文件。",
+        "payment_successful": "支付成功",
+        "we_have_added_the_li": "更改将在几分钟内生效。我们已经为您添加了坐席。有关订阅周期的更改将从下一个计费周期开始生效。",
+        "we_have_added_the_st": "几分钟后将会生效。我们稍后就会为您添加了存储。订阅期的任何更改都将从下一个计费周期开始生效。",
+        "we_have_added_the_tr": "几分钟后将会生效。我们稍后就会为您添加了流量。您现在可以下载更多文件。",
+        "successfully_updated": "成功更新",
+        "the_change_to_the_su": "订阅期的变动将从下一个计费周期开始生效。",
+        "got_it": "明白了"
+      },
+      "upgrade_now_admin": {
+        "upgrade_to_plus": "升级到Premium",
+        "this_feature_is_avai": "此功能仅供Premium用户使用。若要使用它，请升级至Premium。 通过升级到 Plus，您也可以访问以下功能。 ",
+        "add_unlimited_viewer": "免费添加无限个浏览者",
+        "publish_public_appli": "发布公开应用",
+        "ai_sql_generation": "AI SQL 生成",
+        "audit_logs": "审计日志",
+        "learn_more": "了解更多",
+        "upgrade": "升级",
+        "insufficient_license_title": "坐席不足",
+        "insufficient_license_description": "要邀请更多的编辑者，请先增加坐席数。您团队的所有成员都可以使用 ILLA Cloud Premium 的功能。每个成员对每个功能的具体访问权限取决于其角色。",
+        "insufficient_license_button": "添加坐席",
+        "pricing": "编辑者/月，年付(月付$20/编辑者)"
+      },
+      "expired": {
+        "owner": "您的订阅已过期。要继续使用，请更新它。",
+        "others": "您的帐户已被禁用，因为团队的订阅已经过期。",
+        "your_subscription_ha_not_owner": "订阅异常",
+        "all_members_except_f_not_owner": "您团队的订阅异常，请和团队所有者联系",
+        "upgrade_not_owner": "知道了",
+        "your_subscription_ha": "订阅已过期",
+        "all_members_except_f": "您的团队订阅已过期。请及时续期",
+        "upgrade": "升级"
+      },
+      "blank_page": {
+        "insufficient_license_disable": "由于团队坐席不足，您的账户已被禁用。请联系团队所有者以获取帮助。"
+      },
+      "upgrade_not_admin": {
+        "insufficient_license_title": "坐席不足",
+        "insufficient_license_description": "由于坐席不足，操作失败，请联系团队所有者",
+        "insufficient_license_button": "好的"
+      },
+      "storage_insufficient": {
+        "owner_title": "存储容量不足",
+        "owner_description": "为了正常存储文件，请及时增加存储。 ",
+        "owner_button": "增加容量",
+        "not_owner_title": "存储容量不足",
+        "not_owner_description": "为了正常存储文件，请联系您的管理员及时增加存储容量。",
+        "not_owner_button": "好的",
+        "owner_pricing": "5 GB/月"
+      },
+      "traffic_insufficient": {
+        "owner_title": "下载流量不足",
+        "owner_description": "为了正常访问文件，请及时增加流量容量。 ",
+        "owner_button": "增加流量",
+        "not_owner_title": "流量不足",
+        "not_owner_description": "要正常访问文件，请联系您的管理员以增加流量流量。",
+        "not_owner_button": "好的",
+        "owner_pricing": "5 GB"
+      },
+      "cancel_confirm": {
+        "description": "取消后，您的团队将从下一个结算周期开始恢复为免费计划。 订阅计划中包含的功能将不再可用。",
+        "title": "要取消订阅吗？",
+        "button_cancel": "取消",
+        "button_confirm": "确认"
+      },
+      "change_confirm": {
+        "description": "一旦减少，更改将在下一个计费周期生效。 如果有资源超过新分配的容量，则所有资源都可能无法访问。",
+        "title": "变更方案？",
+        "button_cancel": "取消",
+        "button_confirm": "确认"
+      }
+    },
+    "homepage": {
+      "get_access_to_advanc": "获取高级功能访问权限",
+      "upgrade": "升级",
+      "cancel": "取消"
+    },
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "兑换 AppSumo"
+      },
+      "modal": {
+        "title": "兑换 AppSumo",
+        "description": "您确定要在 {{teamName}} 团队中兑换AppSumo 吗？",
+        "cancel": "取消",
+        "confirm": "兑换",
+        "select_team": {
+          "title": "选择团队以激活AppSumo",
+          "create_button": "创建团队",
+          "redeem_button": "激活"
+        }
+      },
+      "landingpage": {
+        "button": "验证AppSumo邮箱"
+      },
+      "forget_password": {
+        "button": "创建账号"
+      },
+      "update": "更新AppSumo方案"
+    },
+    "alert": {
+      "expired": {
+        "owner": "坐席不足或订阅已过期，请及时升级。",
+        "others": "由于坐席不足，您的账号已被禁用。请联系团队所有者。"
+      }
+    },
+    "yearly_discount": "(节省将近16.7%)",
+    "license_price_new": {
+      "monthly": "{{ price }}/编辑者/月",
+      "yearly": "{{ price }}/编辑者/年"
+    },
+    "redirect_page": {
+      "title": "支付成功",
+      "desc1": "感谢您的购买。ILLA Cloud将持续为您提供更多功能",
+      "desc2": "在 {{time}} 秒后重定向到 ILLA Cloud...",
+      "button": "返回ILLA Cloud"
+    },
+    "redirect_to_stripe": "正在重定向到Stripe",
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "每月100MB存储，用于在ILLA Drive中存储任意文件",
+          "traffic": "100MB流量，用于从ILLA Drive中下载文件"
+        }
+      },
+      "drive": {
+        "title": "ILLA Drive",
+        "storage": "每月5GB存储，用于在ILLA Drive中存储任意文件",
+        "traffic": "5GB流量，用于从ILLA Drive中下载文件"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "自定义存储大小，用于在ILLA Drive中存储任意文件",
+          "traffic": "自定义流量额度，用于从ILLA Drive中下载文件"
+        }
+      }
+    },
+    "label": {
+      "canceled": "已取消",
+      "expired": "已过期",
+      "paused": "暂停"
+    },
+    "expired": {
+      "title": "您的订阅已过期",
+      "description": "所有高级功能均无法访问。 您部署的公开App也已设置为私有App。",
+      "description_other": "所有高级功能都无法访问。 "
+    }
+  },
+  "page": {
+    "title": "页面",
+    "user": {
+      "description": "以超乎想象的速度构建内部工具",
+      "forgot_password": {
+        "actions": {
+          "reset": "重置",
+          "send": "获取验证码"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
+          },
+          "newPassword": {
+            "require": "密码不能为空"
+          },
+          "verification_code": {
+            "expired": "验证码已过期",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "newPassword": "新密码",
+          "verification_code": "验证码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱",
+          "verification_code": "请输入验证码"
+        },
+        "subtitle": "返回登录",
+        "tips": {
+          "fail": "重置密码失败",
+          "fail_sent": "发送验证码失败",
+          "success": "重置密码成功",
+          "verification_code": "验证码已发送"
+        },
+        "title": "重置密码"
+      },
+      "password": {
+        "placeholder": "请输入密码"
+      },
+      "policy": "使用 ILLA 即表示您同意我们的<0>隐私政策</0>和<1>服务条款</1>",
+      "sign_in": {
+        "actions": {
+          "login": "登录"
+        },
+        "description": {
+          "forgot_password": "忘记密码?",
+          "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "register": "新用户？<0>注册账号</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
+          },
+          "password": {
+            "incorrect": "请输入正确的账号密码",
+            "locked": "密码输错超过5次，账户将被锁定1小时",
+            "min_length": "密码须至少6个字符",
+            "require": "密码不能为空"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "password": "密码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱"
+        },
+        "tips": {
+          "fail": "登录失败",
+          "success": "登录成功",
+          "fail_account": "邮箱或密码错误"
+        },
+        "title": "欢迎回来",
+        "option": {
+          "or": "OR",
+          "github": "使用GitHub账户登入",
+          "google": "使用 Google 账户登入"
+        },
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "注册成功。 您可以稍后为您的电子邮件帐户设置密码",
+            "auth_failed": "认证失败"
+          }
+        },
+        "message": {
+          "github_no_user_name": "需要用户名。请检查您的GitHub设置"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "创建账户",
+          "send": "获取验证码"
+        },
+        "description": {
+          "login": "已有账户？ <0>登录</0>",
+          "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "subscribe": "订阅ILLA的动态"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱已注册，请登录",
+            "require": "邮箱不能为空"
+          },
+          "password": {
+            "require": "密码不能为空"
+          },
+          "username": {
+            "length": "用户名须为3～15个字符",
+            "require": "用户名不能为空"
+          },
+          "verification_code": {
+            "expired": "验证码已过期",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "password": "密码",
+          "username": "用户名",
+          "verification_code": "验证码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱",
+          "username": "请输入用户名",
+          "verification_code": "请输入验证码"
+        },
+        "tips": {
+          "fail": "注册失败",
+          "fail_sent": "发送验证码失败",
+          "success": "注册成功",
+          "verification_code": "验证码已发送"
+        },
+        "title": "注册",
+        "option": {
+          "github": "使用GitHub账户注册",
+          "google": "使用Google账户注册"
+        }
+      }
+    },
+    "workspace": {
+      "menu": {
+        "create_team": "创建团队",
+        "members": "成员",
+        "workspace": "工作区",
+        "agents": "AI Agents",
+        "apps": "Apps",
+        "resources": "Resources",
+        "drive": "Files",
+        "audit_logs": "Audit logs",
+        "community": "Community"
+      },
+      "modal": {
+        "create_team": {
+          "domain": "团队标识符",
+          "team_name": "团队名称"
+        },
+        "save": "取消",
+        "free_team": {
+          "cannot_create": {
+            "title": "免费团队已达上限",
+            "desc": "您的免费团队已达到上限。请在创建新团队之前离开其他免费团队。",
+            "button": "好的"
+          },
+          "cannot_transfer": {
+            "title": "该用户的免费团队已达到上限",
+            "desc": "该用户的免费团队数量已达上限。 请转移给其他用户或联系该用户管理其免费团队。"
+          }
+        }
+      },
+      "drive": {
+        "title": "ILLA Drive",
+        "description_multi_file": "{{fileNum}} 个文件",
+        "description_one_file": "1 个文件",
+        "description_no_file": "没有文件",
+        "description": "1 个文件",
+        "description_plural": "{{count}} 个文件",
+        "description_no_file_yet": "暂无文件"
+      }
+    },
+    "left": {
+      "menu": {
+        "tutorial": "新手教程",
+        "discord": "加入我们的Discord",
+        "issue": "查看议题",
+        "documentation": "帮助文档",
+        "setting": "设置"
+      }
+    }
+  },
+  "user_management": {
+    "role": {
+      "owner": "所有者",
+      "admin": "管理员",
+      "editor": "编辑者",
+      "viewer": "浏览者",
+      "tips": {
+        "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+        "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
+        "viewer": "可以管理浏览者、查看APP"
+      }
+    },
+    "modal": {
+      "title": {
+        "invite_members": "邀请成员",
+        "invite_to_use": "邀请使用",
+        "invite_to_edit": "邀请进行编辑",
+        "contribute": "社区"
+      },
+      "link": {
+        "invite_title": "邀请链接",
+        "copy": "复制",
+        "turn_off": "关闭邀请链接",
+        "update": "更新邀请链接",
+        "description": "开启并通过链接邀请成员。 ",
+        "turn_on": "打开邀请链接",
+        "fail": "链接获取失败，请稍后重试",
+        "copied_suc": "复制成功！",
+        "failed_to_copy": "复制失败",
+        "turn_off_fail": "关闭失败",
+        "turn_on_fail": "开启失败",
+        "make_public_title": "设置为公开项目",
+        "make_public_copy": "复制",
+        "marketplace": {
+          "label": "通过链接分享"
+        }
+      },
+      "email": {
+        "invite_title": "通过电子邮件邀请",
+        "invite": "邀请",
+        "placeholder": "请输入电子邮件地址",
+        "invited": "该用户已在成员列表",
+        "in_list": "该用户已加入您的团队",
+        "duplicate": "{{ email }} 是重复的电子邮件地址",
+        "notmail": "{{ email }} 不是一个邮箱地址",
+        "not_mail": "请输入可用的邮箱"
+      },
+      "invalid_email": "邮箱格式不正确",
+      "message": {
+        "make_public_suc": "设置成功",
+        "make_public_failed": "设置失败",
+        "app_share_in_team": "{{ email }} 已经加入您的团队，可通过链接分享。"
+      },
+      "tab": {
+        "invite": "邀请",
+        "public": "公开",
+        "with_team": "和团队共享"
+      },
+      "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}",
+      "custom_copy_text_app_invite": "{{userName}} 分享了一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} 分享了一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "剩余坐席"
+      },
+      "remainLicense": "剩余坐席",
+      "contribute": {
+        "label": "贡献到社区",
+        "app": {
+          "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的动作并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
+        },
+        "desc": "贡献到社区之后，所有用户都可以运行、Star和Fork您的Agent。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
+        "default_text": {
+          "agent": "我刚发现了一个有意思的AI Agent：  {{ agentName }}. 通过链接查看: {{ agentLink }}",
+          "app": "我刚发现了一个有意思的app： {{ appName }}，通过链接查看：{{ appLink }}"
+        }
+      },
+      "social_media": {
+        "label": "分享到社交媒体",
+        "default_text": {
+          "agent": "我刚发现了一个有意思的AI Agent： {{ agentName }}",
+          "app": "我刚发现了一个有意思的app： {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} 分享给你一个来自 「{{ teamName }}」的AI Agent。加入团队并查看: {{ inviteLink }}"
+    },
+    "mes": {
+      "invite_suc": "邀请成功",
+      "invite_fail": "邀请失败",
+      "update_suc": "更新成功",
+      "update_fail": "更新失败",
+      "transfer_suc": "转移成功",
+      "transfer_fail": "转移失败",
+      "remove_suc": "移除成功",
+      "remove_fail": "移除失败",
+      "change_role_fail": "更新失败",
+      "change_role_suc": "更新成功"
+    },
+    "page": {
+      "member": "成员",
+      "invite": "邀请",
+      "permission": "权限",
+      "operation": "操作",
+      "transfer": "转移所有权",
+      "remove": "移除"
+    },
+    "transfer_modal": {
+      "title": "您确定要转移所有权吗？",
+      "description": "转移后，您的权限将更改为管理员。",
+      "transfer": "转移",
+      "cancel": "取消"
+    },
+    "remove_modal": {
+      "title": "你想要删除 {{ username }} 吗？",
+      "description": "删除后，用户将无法访问该团队。",
+      "remove": "移除",
+      "cancel": "取消"
+    },
+    "status": {
+      "pending": "等待处理",
+      "current-user": "当前登录"
+    },
+    "settings": {
+      "allow_editors_invite": "允许编辑者和浏览者管理成员",
+      "allow_register": "允许用户通过链接注册"
+    }
+  },
+  "homepage": {
+    "team_modal": {
+      "title": "创建团队",
+      "team_name": "团队名称",
+      "team_domain": "团队标识符",
+      "domain": ".illacloud.com",
+      "save": "保存",
+      "cancel": "取消",
+      "existed": "已存在",
+      "available": "可用",
+      "invite_code": "邀请码",
+      "invite_code_description": "选填项。 如果您有邀请码，请在此处填写。",
+      "contact": "需要邀请码？ <0>联系ILLA</0>",
+      "team_name_empty": "请输入团队名称",
+      "create": "创建",
+      "team_domain_invalid": "只允许使用字母、数字和“_”。 必须以字母或数字开头和结尾。 长度不能超过 200 个字符。",
+      "team_identifier": "团队标识符",
+      "team_identifier_empty": "请输入团队标识符",
+      "team_domain_empty": "请输入团队标识符",
+      "team_id_invalid": "只允许使用字母、数字和“_”。 必须以字母或数字开头和结尾。 长度不能超过 200 个字符。",
+      "invite_code_empty": "请输入邀请码。",
+      "team_domain_invalid_character": "只允许使用字母、数字和“_”。 必须以字母或数字开头和结尾。",
+      "team_domain_invalid_length": "长度不能超过 200 个字符。",
+      "tip": {
+        "team_identifier": "这将添加到您团队的 URL。请使用 200 个字符以内的字母或数字（例如illa）"
+      },
+      "get_invite_code": "获取邀请码",
+      "invite_code_tips": "(选填)"
+    },
+    "mes": {
+      "team_create_suc": "创建成功"
+    },
+    "create_new_team": "创建一个新团队",
+    "no_team": "您没有团队",
+    "workspace": {
+      "invite": "邀请"
+    },
+    "member": "成员",
+    "team_setting": "团队设置",
+    "builder_card": {
+      "title": "ILLA Builder",
+      "apps": "项目",
+      "app": "项目",
+      "resources": "资源",
+      "resource": "资源",
+      "edited_1min": "1 分钟前更新",
+      "edited_mins": "{{ n }} 分钟前更新",
+      "edited_1hour": "1 小时前更新",
+      "edited_hours": " {{ n }} 小时前更新",
+      "edited_1day": "1天前更新",
+      "edited_days": " {{ n }} 天前更新",
+      "edited_justnow": "刚刚编辑",
+      "no_content": "暂无项目",
+      "visible_apps": "个已部署应用",
+      "visible_app": "个已部署应用",
+      "drive": {
+        "edited_1min": "更新于一分钟前",
+        "edited_mins": "在{{n}}分钟前更新",
+        "edited_1hour": "一个小时前更新",
+        "edited_hours": "在{{n}}小时前更新",
+        "edited_1day": "更新于一天前",
+        "edited_days": "更新于{{n}}天前",
+        "edited_justnow": "刚刚更新"
+      }
+    },
+    "message": {
+      "join_failed": "您登录的邮箱不是被邀请的邮箱",
+      "join_failed_other_error": "未成功加入团队",
+      "join_suc": "加入成功",
+      "have_joined": "您已经加入该团队，请手动切换。"
+    },
+    "agent_card": {
+      "title": "AI Agent",
+      "desc": "使用 Prompt 专家提供的 AI Agent，或创建您自己的 AI Agent"
+    },
+    "marketplace_card": {
+      "title": "社区",
+      "desc": "由技术精湛的工程师精心打造的AI Agent和ILLA App，赋予您无限灵感。"
+    },
+    "builder": {
+      "desc": "通过拖放组件的方式快速构建Dashboard、CRUD App等应用程序"
+    },
+    "drive": {
+      "desc": "可靠的 CDN 解决方案，用于加速内容交付并改善用户体验。"
+    }
+  },
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "团队设置",
+      "member": "成员",
+      "leave": "离开团队",
+      "delete": "删除团队",
+      "audit_log": "审计日志",
+      "security": "安全与隐私"
+    },
+    "audit_log": {
+      "App_selection": {
+        "label": "项目名称",
+        "placeholder": "选择一个项目"
+      },
+      "Resource_selection": {
+        "label": "资源",
+        "placeholder": "输入资源名称"
+      },
+      "Action_selection": {
+        "label": "Action",
+        "placeholder": "Action名称"
+      },
+      "User_selection": {
+        "label": "操作者",
+        "placeholder": "选择一个邮箱"
+      },
+      "event_selection": {
+        "label": "事件类型",
+        "placeholder": "选择一个事件",
+        "createApp": "创建项目",
+        "editApp": "编辑项目",
+        "deleteApp": "删除项目",
+        "viewApp": "查看项目",
+        "deployApp": "部署项目",
+        "createResource": "创建资源",
+        "updateResource": "更新资源",
+        "deleteResource": "删除资源",
+        "runAction": "运行Action",
+        "uploadFiles": "上传文件",
+        "deleteFiles": "删除文件",
+        "downloadFiles": "下载文件",
+        "inviteMember": "邀请成员",
+        "deleteMember": "删除成员",
+        "changeMemberPermission": "更改成员角色",
+        "joinTeam": "加入团队",
+        "createTeam": "创建团队",
+        "updateTeam": "更新团队信息",
+        "triggerTask": "触发任务"
+      },
+      "date_range": {
+        "label": "日期范围"
+      },
+      "date_range_start": {
+        "label": "开始日期",
+        "placeholder": "开始日期"
+      },
+      "date_range_end": {
+        "label": "结束日期",
+        "placeholder": "结束日期"
+      },
+      "blank": {
+        "no_audit": "没有检索到匹配的日志",
+        "free": "审计日志是我们在ILLA Cloud Premium中提供的功能，通过订阅ILLA Cloud Premium，您可以检索全部历史内容。"
+      }
+    },
+    "leave_modal": {
+      "title": "确认离开当前团队吗？",
+      "description": "离开该团队后，您将无法访问任何团队资源。",
+      "leave": "离开",
+      "cancel": "取消"
+    },
+    "delete_modal": {
+      "title": "确认删除团队吗？",
+      "desctiption": "该操作会删除团队中的所有资源，包括项目、资源、成员、标识符等，请确认。",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "team_info": {
+      "title": "团队信息",
+      "team_name": "团队名称",
+      "team_domain": "团队标识符",
+      "domain": ".illacloud.com",
+      "existed": "已存在",
+      "available": "可用",
+      "edit": "编辑",
+      "save": "保存变更",
+      "adjust_avater": "编辑头像",
+      "avater_crop": "裁剪",
+      "team_name_empty": "请输入团队名称",
+      "team_id_empty": "请输入团队标识符",
+      "team_name_placeholder": "请输入团队名称",
+      "team_id_placeholder": "请输入团队标识符",
+      "leave_title": "离开当前团队",
+      "leave_button": "离开团队",
+      "delete_title": "删除团队及其资源",
+      "delete_button": "删除团队"
+    },
+    "mes": {
+      "domain_suc": "创建成功",
+      "delete_suc": "删除成功",
+      "delete_fail": "删除失败",
+      "leave_suc": "退出成功",
+      "leave_fail": "退出失败"
+    },
+    "message": {
+      "save_suc": "保存成功",
+      "save_fail": "保存失败",
+      "suc": "操作成功",
+      "fail": "操作失败"
+    },
+    "security": {
+      "app-contribute": "允许将团队的应用贡献到社区"
+    }
+  },
+  "profile": {
+    "setting": {
+      "account": "账号",
+      "logout": "退出登录",
+      "personal_info": "个人资料",
+      "username": "用户名",
+      "email": "邮箱",
+      "uneditable": "(不可编辑)",
+      "password": {
+        "verification_code": "验证码",
+        "send_code": "发送验证码",
+        "message": {
+          "incorrect_code": "验证码错误"
+        },
+        "tips": {
+          "code_sended": "验证码已发送至{{email}}"
+        },
+        "placeholder": {
+          "blank_password": "输入密码",
+          "verification_code": "输入验证码"
+        },
+        "title": "密码"
+      },
+      "current_pwd": "当前密码",
+      "new_pwd": "新密码",
+      "confirm_pwd": "确认密码",
+      "save": "保存更改",
+      "language": "语言",
+      "en": "English",
+      "zh_hans": "简体中文",
+      "zh_hant": "繁體中文",
+      "ja": "日本語",
+      "ko": "한국어",
+      "message": {
+        "save_suc": "保存成功",
+        "save_fail": "保存失败"
+      },
+      "username_placeholder": "请输入用户名",
+      "password_placeholder": "输入当前密码",
+      "new_password_placeholder": "请输入新密码",
+      "new_password_again_placeholder": "请再次输入新的登录密码",
+      "username_empty": "用户名不能为空",
+      "password_empty": "请输入当前密码",
+      "new_password_empty": "请输入新密码",
+      "new_password_again_empty": "请再次输入新的登录密码",
+      "username_length": "用户名须为3～15个字符",
+      "password_length": "密码须为6～20个字符",
+      "password_not_match": "新密码不一致，请重试 ",
+      "title": "设置",
+      "logout_title": "从当前浏览器退出登录",
+      "current_pwd_err": "当前密码不正确",
+      "oauth": {
+        "message": {
+          "google": "连接成功。 您现在可以使用 Google 登录",
+          "github": "连接成功。 您现在可以使用 GitHub 登录",
+          "auth_failed": "认证失败",
+          "auth_failed_email_not_match": "连接失败。 电子邮件不匹配",
+          "disconnect_suc": "断开连接",
+          "disconnect_failed": "断开连接失败。 请稍后再试"
+        },
+        "modal": {
+          "title": "无法断开",
+          "description": "当前邮箱没有密码。 为避免邮箱无法登录，请先设置密码。",
+          "set_button": "设置密码",
+          "cancel_button": "取消"
+        },
+        "description": {
+          "Google_unconnect": "将 Google 帐户连接到您的 ILLA 帐户以使用 Google 登录",
+          "GitHub_unconnect": "将 GitHub 帐户连接到您的 ILLA 帐户以使用 GitHub 登录",
+          "Google_connected": "已成功连接到 Google 帐户。 您现在可以使用 Google 登录。 单击下面的按钮断开连接。",
+          "GitHub_connected": "成功连接到 GitHub 帐户。 您现在可以使用 GitHub 登录。 单击下面的按钮断开连接。",
+          "Google_disconnected": "成功断开连接。 下次您使用 Google 登录时，它将再次连接。",
+          "GitHub_disconnected": "成功断开连接。 下次使用 GitHub 登录时，它会再次连接。"
+        },
+        "button": {
+          "connect": "连接",
+          "disconnect": "断开"
+        },
+        "title": {
+          "oauth": "关联账户"
+        }
+      },
+      "subscribe_illa_news": {
+        "label": "订阅 ILLA 的最新资讯",
+        "tips": "订阅后，ILLA将通过电子邮件告知您与ILLA Cloud相关的最新功能、活动、行业趋势以及其他资讯。",
+        "button": "取消订阅"
+      },
+      "group": {
+        "account": "我的账号",
+        "team": "团队"
+      },
+      "subscribe_illa_news_unsub": {
+        "label": "已取消",
+        "tips": "您已成功取消订阅ILLA的最新资讯"
+      }
+    },
+    "setting_message": {
+      "logout_failed": "退出失败，请稍后重试"
+    }
+  },
+  "user": {
+    "sign_up": {
+      "fields": {
+        "username": "用户名",
+        "email": "邮箱",
+        "verification_code": "验证码",
+        "password": "密码"
+      },
+      "placeholder": {
+        "username": "用户名不能为空",
+        "email": "邮箱不能为空",
+        "enter_verification_code": "请输入验证码",
+        "enter_password": "请输入密码"
+      },
+      "agreement": {
+        "using_illa": "使用ILLA即同意我们的",
+        "privacy_policy": "隐私政策",
+        "and": "和",
+        "terms_of_service": "服务条款"
+      }
+    }
+  },
+  "mob": {
+    "user": {
+      "sign_up": {
+        "fields": {
+          "password": "密码"
+        }
+      }
+    }
+  },
+  "error_page": {
+    "404": "404",
+    "not_found": "无法找到页面",
+    "back": "返回ILLA Cloud",
+    "again": "重试",
+    "fobidden": "没有访问权限"
+  },
+  "network_error": "网络已断开，请检查此设备的网络",
+  "team_create_suc": "创建成功",
+  "team_create_fail": "创建失败",
+  "team": {
+    "create": {
+      "fail_invite_code_used": "邀请码已被使用。",
+      "fail_same_identifier": "这个标识符已被占用，请更改并重试。",
+      "fail": "创建失败",
+      "fail_network": "网络错误，请稍后重试。",
+      "error_invite_code": "无效的邀请码"
+    }
+  },
+  "policy": {
+    "privacy": {
+      "title": "隐私协议",
+      "description": "本隐私政策将向您说明我们如何收集、使用和披露通过我们的服务收集到的信息。"
+    },
+    "terms": {
+      "description": "这些服务条款管理您对我们网站以及我们提供的各种服务的访问和使用。",
+      "title": "服务条款"
+    }
+  },
+  "image_exceed": "图片大小不能超过500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "裁剪",
+        "save": "保存",
+        "cancel": "取消"
+      }
+    }
+  },
+  "status": {
+    "no_permission_title": "权限不足",
+    "no_permission_description": "权限不足， 请联系您团队中的管理员。",
+    "500": {
+      "des": "请求失败，请稍后再试。"
+    },
+    "back": "回到主页"
+  },
+  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud</0>",
+  "oauth_redirect_title": "重定向",
+  "drive": {
+    "menu": {
+      "files": "文件",
+      "capacity_usage": "容量使用情况"
+    },
+    "back": {
+      "title": "ILLA Drive"
+    },
+    "title": {
+      "files": "文件",
+      "file": "文件"
+    },
+    "header_operation": {
+      "refresh": "刷新",
+      "batch_operation": "批量({{selectedFileNum}} 个文件)",
+      "new_folder": "新建文件夹",
+      "upload": "上传",
+      "files": "文件",
+      "folder": "文件夹",
+      "delete": "删除",
+      "move": "移动",
+      "copy_link": "复制链接",
+      "download": "下载",
+      "file_upload": "上传文件",
+      "folder_upload": "上传文件夹",
+      "search_placeholder": "搜索"
+    },
+    "new_folder": {
+      "untitled_folder": "未命名文件夹"
+    },
+    "table": {
+      "title": {
+        "no_files": "没有文件",
+        "file_name": "文件名称",
+        "last_modifier": "Last modifier",
+        "file_size": "文件大小",
+        "last_modified": "最后修改",
+        "creator": "创建者"
+      },
+      "body": {
+        "detail": "细节",
+        "delete": "删除",
+        "move": "移动",
+        "copy_link": "复制链接",
+        "download": "下载",
+        "rename": "重命名",
+        "open_folder": "打开文件夹"
+      }
+    },
+    "link_modal": {
+      "title": {
+        "copy_link": "分享",
+        "hotlink": "Hotlink保护"
+      },
+      "only_team_members_ca": "只有团队成员可以访问",
+      "link": "链接",
+      "button": {
+        "copy_link": "复制链接"
+      },
+      "anyone_with_the_link": "任何具有链接的人都可以访问",
+      "expired_duration": "过期时间",
+      "permanent": "永久的",
+      "custom": "自定义",
+      "description": {
+        "hotlink": "启用热链接保护意味着用户只能通过您的 ILLA 应用程序访问文件。 当热链接保护关闭时，用户可以通过获取链接访问文件。\r\n\r\n热链接保护是防止其他网站或应用直接链接到您的文件的安全措施。 这将有助于保护您的内容和带宽免遭未经授权的访问和使用。 启用此功能，您将确保您的文件只能通过您的 ILLA 应用访问， 为您的内容添加一层额外的安全保护。"
+      }
+    },
+    "move_modal": {
+      "title": {
+        "move": "移动"
+      },
+      "description": {
+        "move_to": "移动到: "
+      },
+      "no_folders": "没有文件夹",
+      "new_folder": "新建文件夹",
+      "cancel": "取消",
+      "move": "移动",
+      "move_here": "移动到这里"
+    },
+    "capacity_usage": {
+      "capacity_usage": "容量使用情况",
+      "storage": "存储",
+      "data_traffic": "数据流量",
+      "current": "当前的",
+      "next_renewal_date": "下次更新日期",
+      "detail": "细节",
+      "yearly": "年付",
+      "year": "年份",
+      "monthly": "月付",
+      "month": "月",
+      "manage_storage": "管理存储",
+      "expand": "扩展"
+    },
+    "same_name_modal": {
+      "this_folder_already_": "同名文件已存在于此文件夹或正在上传到此文件夹。您想要替换它吗？",
+      "keep_both": "两者都保留",
+      "replace": "替换",
+      "cancel": "取消",
+      "apply_to_all": "应用于所有"
+    },
+    "rename_modal": {
+      "title": "重命名",
+      "cancel": "取消",
+      "save": "保存",
+      "validate": "1. 只允许字母、 数字和 -~_=：\n2. 限制为 255 个字符",
+      "validate_failed": "只允许字母、 数字和 -~_=:",
+      "same_name": "具有此名称的文件已经存在或正在上传，请使用其他文件名。 "
+    },
+    "delete_modal": {
+      "title": "您确定吗？",
+      "description_multi": "删除后，用户将无法访问这些文件",
+      "description_single": "删除后，用户将无法访问此文件",
+      "cancel": "取消",
+      "delete": "删除"
+    },
+    "upload_modal": {
+      "resume_all": "恢复所有",
+      "suspend_all": "挂起所有",
+      "click_to_retry": "点击重试",
+      "network_error": "网络错误",
+      "file_not_found": "找不到文件",
+      "insufficient_capacit": "容量不足。请及时更新。 ",
+      "nothing_download": "没有正在下载的文件",
+      "nothing_upload": "没有正在上传的文件"
+    },
+    "message": {
+      "rename_failed": "重命名失败。具有相同名称的文件已存在。",
+      "move_file": "正在移动1个文件",
+      "view": "查看",
+      "select_up_to_100_files": "请选择最多100个文件。 ",
+      "failed": "操作失败。某些文件的元数据已更改，请重新选择。 ",
+      "too_low_chrome_version": "您的浏览器版本太低。请升级您的浏览器。",
+      "upload_suc_message": "上传成功。请刷新以检查新文件。",
+      "move_same_name": "文件名已复制并重命名。",
+      "share_illa": "以超乎想象的速度构建内部工具",
+      "share_go": "免费试用ILLA 云",
+      "link_in_team": "{{username}} 与您分享了一个文件。点击链接查看： {{link}}",
+      "link_download": "{{username}} 与您分享了一个文件。点击要下载的链接： {{link}}",
+      "link_share_page": "{{username}} 与您分享了一些文件。点击链接查看： {{link}}",
+      "mobile": {
+        "share_illa": "以超乎想象的速度构建内部工具",
+        "share_go": "免费试用"
+      },
+      "start_download": "开始下载",
+      "start_upload": "开始上传",
+      "move_file_suc_plural": "{{count}} 个文件已成功移动",
+      "move_file_suc": "移动成功",
+      "create_suc": "文件夹创建成功",
+      "create_failed": "创建文件夹失败。请稍后再试。",
+      "leave": "您有未完成的任务。离开将导致任务失败。您确定要离开吗？"
+    },
+    "upload_element": {
+      "uploading": "正在上传 {uploadedfileNum/allFileNum}} 个文件(s)。 ",
+      "upload_suc": "成功上传{{uploadedfileNum/allFileNum}} ({{failedNum}} 失败)",
+      "upload_failed": "正在上传 {uploadedfileNum/allFileNum}} ({{failedNum}} 失败)",
+      "upload_suc_failed": "已上传 {uploadedfileNume/allFileNum}} ({{failedNum}} 失败)",
+      "uploading_plural": "正在上传 1 文件。"
+    },
+    "generated_links": {
+      "button": "生成的链接",
+      "title": "生成的链接",
+      "no_links": "没有生成的链接",
+      "file_name": "文件名称",
+      "link": "链接",
+      "generated_date": "生成日期",
+      "expired_date": "过期日期",
+      "validity_status": "有效性状态",
+      "permanent": "永久的",
+      "valid": "Valid",
+      "invalid": "无效的",
+      "file_deleted": "文件已删除",
+      "folder_deleted": "文件夹已删除",
+      "some_files_or_folder": "一些文件或文件夹已被删除",
+      "expired": "已过期",
+      "deleted": "已删除"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "创建文件夹",
+        "cancel": "取消",
+        "create": "创建"
+      }
+    },
+    "download_element": {
+      "download_failed": "下载失败",
+      "download_suc": "下载成功",
+      "downloading": "正在下载 {{下载文件编号/allFileNum}}",
+      "downloading_failed": "下载 {{下载文件编号/allFileNum}} ({{failedNum}} 失败)",
+      "download_suc_failed": "已下载 {{下载文件编号/allFileNum}} ({{failedNum}} 失败)"
+    },
+    "breadcrumbs": {
+      "all": "所有文件"
+    },
+    "detail_page": {
+      "error": "找不到文件"
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "删除此任务？",
+        "description": "您确定要删除此任务吗？一旦删除，这个任务将被终止。",
+        "cancel": "取消",
+        "delete": "删除"
+      }
+    },
+    "detail": {
+      "fileName": "文件名称",
+      "fileSize": "文件大小",
+      "modAt": "修改于",
+      "modBy": "修改者"
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "“PublicAccess文件夹”用于存放允许通过Builder中的组件公开访问的文件。访问这个文件夹里的内容不需要校验权限。为了保护您的文件安全，请勿在此存放重要文件。"
+      },
+      "allow_access_switch": {
+        "label": "允许公开访问",
+        "tips": "打开开关以允许公开app访问"
+      }
+    }
+  },
+  "move_modal": {
+    "description": {
+      "root_folder": "根文件夹"
+    }
+  },
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  },
+  "copied": "已复制",
+  "failed_to_copy": "复制失败",
+  "move_file_plural": "正在移动 {{count}} 个文件",
+  "team_already_deleted": "团队已被删除。请刷新。 ",
+  "network": {
+    "error": "网络错误，请稍后重试。"
+  },
+  "appSumo": "AppSumo",
+  "current": "订阅",
+  "new_share": {
+    "tips": {
+      "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+      "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
+      "viewer": "可以管理浏览者、查看APP"
+    }
+  },
+  "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
+  "empty_copied_tips": "复制内容为空",
+  "redirect": "跳转中...",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "返回",
+            "create_action": "创建动作",
+            "new_resource": "添加资源"
+          },
+          "selector": {
+            "title": "选择动作类型"
+          },
+          "title": {
+            "choose_resource": "资源选择 "
+          }
+        },
+        "btn": {
+          "close": "关闭",
+          "new": "新建"
+        },
+        "contextMenu": {
+          "delete": "删除",
+          "duplicate": "复制",
+          "rename": "重命名"
+        },
+        "message": {
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
+          "failed": "服务器连接失败",
+          "load_action_list_fail": "获取动作列表失败: {{message}}",
+          "load_resource_fail": "获取资源列表失败: {{message}}",
+          "name_already_exist": "名称已经存在",
+          "please_input_name": "请输入名称",
+          "success_created": "创建成功",
+          "success_deleted": "删除成功",
+          "success_saved": "保存成功",
+          "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头"
+        },
+        "placeholder": {
+          "search": "搜索"
+        },
+        "runtime": {
+          "backend": "后端",
+          "execute_resource": "服务器处理",
+          "frontend": "前端",
+          "handle_response": "处理返回",
+          "post_processing": "后处理",
+          "prepare_query": "查询准备",
+          "response_size": "响应大小 ",
+          "total": "总用时",
+          "transfer_data": "传输数据",
+          "transformer": "Transformer"
+        },
+        "tips": {
+          "empty": "添加动作以开始处理连接资源中的数据",
+          "not_found": "抱歉，没有搜索结果"
+        },
+        "title": "动作列表"
+      },
+      "form": {
+        "btn": {
+          "back": "后退",
+          "save_changes": "保存资源",
+          "test_connection": "测试连接"
+        },
+        "required": "这是必填项",
+        "title": {
+          "api": "API",
+          "configure": "配置 {{ name }}",
+          "database": "数据库",
+          "select": "选择资源类型",
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
+          },
+          "neon": {
+            "neon": "Neon"
+          },
+          "airtable": {
+            "airtable": "Airtable"
+          }
+        },
+        "validate": {
+          "required": "请输入{name}"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint",
+          "s3": "在公开APP中不可用",
+          "acl": "上传文件的默认S3 ACL",
+          "appwrite": {
+            "host": "主机",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "集合ID",
+            "documentid": "文档ID",
+            "data": "数据",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          },
+          "oracle": {
+            "sid": "将数据库名称视为",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "证书",
+            "verification_mode": "验证方式"
+          },
+          "gs": {
+            "private_key": "私钥",
+            "action_type": "动作类型",
+            "spreadsheet": "电子表格",
+            "sheet_name": "工作表名称",
+            "data_range": "数据范围",
+            "limit": "Limit",
+            "offset": "Offset",
+            "a1_notation": "A1表示法",
+            "values_to_append": "待新增的值",
+            "filter_by": "筛选条件",
+            "update_value": "待更新的值",
+            "primary_key_column": "主键列名",
+            "array_of_rows_to_upd": "待更新的行数据的数组",
+            "filters_to_match_row": "行索引",
+            "consider_queries_tha": "将未删除任何行的查询视为成功",
+            "title_of_spreadsheet": "电子表格的标题",
+            "sheet_id_to_copy": "要复制的工作表ID",
+            "sheet_to_copy_to": "要复制到的工作表",
+            "authentication": "验证",
+            "connect_with_oauth": "连接 OAuth 并保存",
+            "reconnect_with_oauth": "重新连接 OAuth",
+            "access_type": "接入类型"
+          },
+          "mongodb": {
+            "command": "命令"
+          },
+          "airtable": {
+            "authentication": "认证"
+          }
+        },
+        "placeholder": {
+          "url": "在此处输入请求 URL",
+          "appwrite": {
+            "host": "主机名或IP",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute",
+            "collectionid": "请选择一个集合",
+            "data": "一个包含在{{ }}里的对象。如{{ { \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracle",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "值"
+            },
+            "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "键",
+              "value": "值"
+            }
+          }
+        },
+        "tips": {
+          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>",
+          "connect_to_local": {
+            "cloud": "看起来您正在尝试连接到您机器本地的数据库或私有网络的一部分。 它可能不适用于 ILLA Cloud 版本。 查看我们的<0>文档<0>，了解如何使用自托管版本。",
+            "selfhost": "看起来您正在尝试连接到您机器本地的数据库。 请使用机器的局域网 IP 地址，而不是“localhost”或“127.0.0.1”。",
+            "title": {
+              "tips": "提示"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "您的服务器可能容易受到攻击"
+            }
+          },
+          "gs": {
+            "private_key": "用于连接到 Google 表格。 单击<0>此处</0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处</1>。用户可能会遇到不受表格控制的不同处理组件的限制。 详细了解<2>配额限制</2>",
+            "leave_blank_to_selec": "留空以选择第一张表",
+            "to_select_the_first_": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 </0>",
+            "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
+            "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 </0>",
+            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
+            "copy_to_sheet_name": "必填。重命名复制后的表",
+            "successfully_authent": "认证成功",
+            "failed_to_authentica": "认证失败"
+          },
+          "tidb": {
+            "ca_certificate": "我们默认填写用于与无服务器层的TLS连接的证书。如需与专用层的TLS连接，<0>点击这里</0>查看配置方法"
+          },
+          "neon": {
+            "normal": "创建一个 Neon 项目并在 <0>project dashboard</0> 中获取字符串。",
+            "failed": "无法解析字符串。 请检查您的字符串或手动配置。",
+            "no_password": "该字符串没有密码。 复制前请在 Neon 仪表板中显示密码。"
+          },
+          "clickhouse": {
+            "ssl": "当使用 ClickHouse 云服务时，建议开启SSL。"
+          },
+          "airtable": {
+            "access_token": "<0>点此</0>了解如何获取Access token",
+            "api_key": "API key将于2024年2月1日弃用。请注意<0>Airtable官方文档</0>，避免资源访问错误。"
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "创建文档",
+              "list": "文件列表",
+              "get": "获取文档",
+              "update": "更新文档",
+              "delete": "删除文档"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "或",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "服务名称"
+            },
+            "ssl": "可用时使用 SSL"
+          },
+          "couchdb": {
+            "ssl": "可用时使用 SSL/TLS"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Digest Auth",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk Authentication",
+              "aws_v4": "AWS Signature V4",
+              "session_based_auth": "Session Based Auth (deprecated)"
+            },
+            "certificates": "使用自签名证书",
+            "ca_certificate": "服务端证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书",
+            "verification_mode": {
+              "full_verification": "全面验证",
+              "verify_ca_certificat": "验证服务端证书",
+              "skip_ca_certificate_": "跳过服务端证书验证"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "从电子表格中读取数据",
+              "append_data_to_a_spr": "将数据附加到电子表格",
+              "update_a_spreadsheet": "更新电子表格",
+              "bulk_update_a_spread": "通过主键批量更新电子表格",
+              "delete_a_single_row_": "更新电子表格",
+              "create_a_spreadsheet": "创建电子表格",
+              "copy_a_single_sheet_": "将单个工作表复制到另一个电子表格",
+              "list_available_sprea": "列出可用电子表格",
+              "get_spreadsheet_info": "获取电子表格信息"
+            },
+            "data_range": {
+              "use_a1_notation": "使用 A1 表示法",
+              "use_limit_and_offset": "使用限制和偏移量"
+            },
+            "filter_by": {
+              "use_a1_notation": "使用 A1 表示法",
+              "use_row_filters": "使用行过滤器"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "服务帐号",
+            "read_and_write": "读写",
+            "read_only": "只读"
+          },
+          "neon": {
+            "parse": "解析",
+            "connection_string": "连接字符串"
+          },
+          "airtable": {
+            "access_token": "Access token",
+            "api_key": "API key"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "服务账户"
+          }
+        },
+        "button": {
+          "marketplace": {
+            "select": "选择"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "关闭",
+          "enable": "开启",
+          "new": "新增",
+          "run": "运行",
+          "save": "保存",
+          "save_and_run": "保存 & 运行",
+          "save_fail": "保存失败",
+          "test_run": "测试运行"
+        },
+        "elastic": {
+          "action_type": "动作类型",
+          "body": "Body",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
+        "error": {
+          "max_file": "文件大小不能超过5M。"
+        },
+        "firebase": {
+          "action_type": "动作类型",
+          "collection": "集合",
+          "database_ref": "Limit offset based",
+          "document_id": "文档ID",
+          "email": "邮箱",
+          "end_at": "End At",
+          "len_of_list": "列表长度",
+          "limit": "Limit",
+          "next_page_token": "下一页token",
+          "object_to_set": "要设置的对象",
+          "order_by": "Order by",
+          "ordering_direction": "Ordering direction",
+          "parent_document_id": "父文档ID",
+          "phone_number": "手机号码",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
+            "input_collection": "输入一个集合",
+            "key": "键",
+            "select_an_action": "选择一个动作",
+            "select_collection": "选择一个集合",
+            "value": "值"
+          },
+          "service_type": "Service Type",
+          "start_at": "Start At",
+          "tips": {
+            "document_id": "为空时将自动生成ID",
+            "parent_document_id_tips": "为空时选择最外层目录"
+          },
+          "uid": "UID",
+          "use_a_dropdown": "使用下拉选择",
+          "use_end_at": "Use endAt",
+          "use_raw_id": "使用原始ID",
+          "use_start_at": "Use startAt",
+          "user_object": "用户对象",
+          "value": "值",
+          "where": "where"
+        },
+        "label": {
+          "event_handler": "事件处理器",
+          "failure": "失败",
+          "resource": "资源",
+          "success": "成功",
+          "transformer": "Transformer",
+          "couchdb": {
+            "database": "数据库",
+            "action_type": "动作类型"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "选择数据库",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+            },
+            "restapi": {
+              "consumer_key": "消费者密钥",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "some-app-extra-data",
+              "app": "应用程序ID",
+              "dig": "delegated-by",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "使用 HTTP Authorization header代替查询参数",
+              "find_instructions_on": "<0>在 AWS 文档</0>中找到关于在哪里可以找到访问密钥的说明。",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "选择页面"
+            },
+            "ai-agent": {
+              "value": "值"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "列出记录",
+                "retrieve": "检索记录",
+                "create": "创建记录",
+                "update": "更新记录",
+                "delete": "删除记录",
+                "find": "查找",
+                "get": "获取视图"
+              },
+              "skip": "Skip",
+              "limit": "Limit",
+              "include": "包含文档",
+              "des": "Descending order",
+              "id": "_id",
+              "rev": "rev",
+              "record": "记录",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "查看网址",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "包含在返回结果中的文档",
+              "des_option": "按降序排序"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "纯文本"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "文件",
+                "text": "文本"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query Parameters",
+                "header_authorization": "Header认证"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "页面加载时触发此操作",
+              "show_a_loading_page_": "在页面加载时显示加载页面",
+              "on_page_loading": "页面加载时",
+              "on_app_loading": "APP加载后",
+              "none": "无"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "列出记录",
+                "get_record": "获取一条记录",
+                "create_record": "创建记录",
+                "update_multiple_reco": "更新多条记录",
+                "update_record": "更新记录",
+                "delete_multiple_reco": "删除多条记录",
+                "delete_record": "删除一条记录"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
+            },
+            "general": {
+              "js": "Transformer",
+              "global-data": "全局变量",
+              "ai-agent": "AI Agent",
+              "more": "更多",
+              "create-resource": "从数据源创建"
+            }
+          },
+          "restapi": {
+            "signature_method": "签名方式",
+            "consumer_key": "消费者密钥",
+            "consumer_secret": "消费者密钥",
+            "access_token": "访问令牌",
+            "token_secret": "令牌密钥",
+            "private_key": "私钥",
+            "realm": "Realm",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Key",
+            "algorithm": "Algorithm",
+            "user": "User",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "时间戳",
+            "aws_region": "AWS 区域",
+            "aws_service": "亚马逊服务",
+            "aws_access_key_id": "AWS 访问密钥 ID",
+            "aws_secret_key_id": "AWS 密钥 ID",
+            "role_to_assume": "使用的角色 (ARN)",
+            "list_of_cookies_to_f": "要转发的 cookie 列表",
+            "add_access_token_to": "添加访问令牌到"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "要么是二进制字符串，要么是一个对象：{{ { data: binary string, filename?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "这个页面加载时不会触发任何操作。 您可以将Action设置为手动触发，并在高级设置中启用“页面加载时触发此操作”。"
+            },
+            "airtable": {
+              "base_id": "从您的base URL中获取base ID。通常是一个以“app”开头的字符串。 ",
+              "filter_by_formula": "<0>点击这里</0>了解如何使用公式。",
+              "time_zone": "<0>点击这里</0>来检查所有支持的时区。",
+              "user_locales": "<0>点击这里</0>来检查所有支持的语言。"
+            },
+            "global-data": {
+              "how-to-use": "通过{{globalData.state1}}来使用这个全局变量"
+            }
+          },
+          "advanced": {
+            "advanced": "高级配置",
+            "page_trigger": "触发时机",
+            "loading_page": "加载页",
+            "page_load_delay": "延迟时间 (ms)",
+            "run_this_action_peri": "定期运行此动作",
+            "interval": "间隔时间 (s)",
+            "actions_running_when": "页面加载时运行的动作",
+            "pages": "页面",
+            "periodically_run": "定期运行"
+          },
+          "airtable": {
+            "base_id": "Base ID",
+            "table_name": "表名",
+            "method": "方法",
+            "view": "视图",
+            "fields": "Fields",
+            "filter_by_formula": "按公式筛选",
+            "sort": "排序",
+            "max_records": "最大记录数",
+            "page_size": "分页大小",
+            "offset": "偏移量",
+            "cell_format": "单元格格式",
+            "time_zone": "时区",
+            "user_locales": "用户语言",
+            "record_id": "Record ID",
+            "records": "Records",
+            "record": "Record",
+            "record_ids": "Record IDs"
+          },
+          "ai-agent": {
+            "model": "模型",
+            "variable": "变量",
+            "input": "发送内容",
+            "max-token": "最大Token"
+          },
+          "general": {
+            "connect-data-source": "连接到数据库或API",
+            "more-type": "更多连接方式"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "删除",
+            "duplicate": "复制"
+          }
+        },
+        "mongodb": {
+          "action_type": "动作类型",
+          "aggregation": "Aggregation",
+          "collection": "Collection",
+          "document": "Document",
+          "field": "Field",
+          "filter": "Filter",
+          "limit": "Limit",
+          "operations": "Operations",
+          "options": "Options",
+          "projection": "Projection",
+          "query": "Query",
+          "skip": "Skip",
+          "sort_by": "Sort By",
+          "update": "Update"
+        },
+        "option": {
+          "resource": {
+            "new": "添加资源"
+          },
+          "trigger": {
+            "manually": "手动触发时执行",
+            "on_change": "当输入更改时自动执行"
+          }
+        },
+        "s3": {
+          "action_type": "动作类型",
+          "bucket_name": "桶名",
+          "content_type": "内容类型",
+          "delimiter": "分隔符",
+          "error": {
+            "max_file": "文件大小不能超过5M。"
+          },
+          "expiry_duration_of_signed_url": "签名网址的有效期(分钟)",
+          "generate_signed_url": "生成签名网址",
+          "max_keys": "最大键值",
+          "object_key": "对象键值",
+          "object_key_list": "对象键值列表",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "用于过滤结果的前缀",
+          "tips": {
+            "delimiter": "分隔符是一个用来分组键值的字符。",
+            "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。"
+          },
+          "upload_data": "上传数据",
+          "upload_data_list": "上传数据列表",
+          "upload_object_name": "上传对象名称",
+          "upload_object_name_list": "上传对象名称列表",
+          "timeout_upload": "上传文件超时(分钟)",
+          "timeout_upload_multiple": "上传单个文件超时(分钟)"
+        },
+        "smtp": {
+          "attachment": "附件",
+          "bcc_email": "密送",
+          "body": "正文",
+          "cc_email": "抄送",
+          "from_email": "发件人",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "用逗号分隔邮箱。如{{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "回复",
+          "set_replay_email": "设置回复邮箱",
+          "subject": "主题",
+          "tips": {
+            "port": "一些互联网服务提供商可能会禁用端口25。如果连接失败，请修改端口。"
+          },
+          "to_email": "收件人",
+          "use_html": "使用HTML",
+          "use_raw": "使用原始文本"
+        },
+        "tips": {
+          "transformer": "启用Transformer将查询结果转换为不同的格式"
+        },
+        "graphql": {
+          "query": "Query",
+          "variables": "Variables",
+          "headers": "Headers",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \nquery ($owner: String!, $name: String!){\n  repository(owner: $owner, name: $name) \n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "模型 ID",
+          "placeholder": {
+            "mode_id": "bert-base-uncased",
+            "text": "The answer to the universe is [MASK].",
+            "json": "{ \n\"past_user_inputs\": [\"Which movie is the best ?\"], \n\"generated_responses\": [\"It's Die Hard for sure.\"], \n\"text\": \"Can you explain why ?\" \n}",
+            "binary": "i.e. {{ upload1.file[0] }}. A binary files without file prefix",
+            "use_cache": "Boolean，为空时默认true",
+            "min_length": "整数，用于定义输出摘要的最小标记长度",
+            "top_k": "整数，用于定义在创建新文本的示例操作中的顶级标记。",
+            "top_p": "浮点数，用于定义在文本生成示例操作中的标记。",
+            "temperature": "Float(0.0-100.0)，为空时默认1.0",
+            "repetition_penalty": "浮点数(0.0-100.0)",
+            "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）",
+            "selectParameterType": "选择类型"
+          },
+          "tips": {
+            "mode_id": "转到<0>Model Hub</0>并选择您想要使用的模型。",
+            "use_detail_parameters": "<0>点击这里</0>以了解更多详细参数",
+            "temperature": "1表示定期抽样，0表示总是取最高分，100.0越来越接近均匀概率。",
+            "repetition_penalty": "Token在一代中使用得越多，在连续的一代传递中不被挑选的惩罚就越多。"
+          },
+          "parameter": "参数",
+          "use_detail_parameters": "使用详细参数",
+          "use_cache": "Use cache",
+          "wait_for_model": "Wait for model",
+          "min_length": "Min length",
+          "max_length": "Max length",
+          "top_k": "Top k",
+          "top_p": "Top p",
+          "temperature": "Temperature",
+          "repetition_penalty": "Repetition penalty",
+          "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "您想生成什么SQL语句"
+          },
+          "button": {
+            "text": "生成SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "配置类型",
+          "query": "查询",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "选择一张表",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "表",
+          "insert_record": "待插入的记录数组",
+          "dropdown": {
+            "retry": "点击重试"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
+          },
+          "option": {
+            "query": "query",
+            "scan": "scan",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "updateItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+          }
+        },
+        "status": {
+          "ran_failed": "运行失败",
+          "ran_successfully": "运行成功"
+        },
+        "result": {
+          "restapi": {
+            "status": "状态代码",
+            "headers": "数据头",
+            "response": "数据",
+            "rawdata": "原始数据"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        },
+        "title": {
+          "general": {
+            "initial-title": "连接到您的数据源并创建一个动作来执行增删改查"
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "即将更新"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "私钥无效 "
+          },
+          "label": {
+            "ca_certificate": "服务端证书",
+            "client_certificate": "客户端证书",
+            "client_key": "客户端密钥",
+            "config_type": "配置类型",
+            "connect_type": "连接类型",
+            "connection_format": "连接方式",
+            "connection_string": "连接地址",
+            "database": "数据库名称",
+            "database_index": "数据库索引",
+            "firebase_database_url": "Firebase数据库URL",
+            "firebase_project_id": "Firebase项目ID",
+            "hostname": "主机",
+            "hostname_port": "主机/端口",
+            "hosturl": "主机URL",
+            "mongodb_connection_dns_seed_list": "DNS seed list connection",
+            "mongodb_connection_standard": "Standard Connection",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Client Cert and Key",
+            "name": "名称",
+            "port": "端口",
+            "private_key": "私钥",
+            "private_key_hover": "与具有Firebase权限的服务账户相关的私钥。",
+            "ssl_options": "SSL 选项",
+            "username_password": "用户名/密码",
+            "self_signed_certificate": "使用自签名证书",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix",
+            "key": "Key",
+            "introspection": "Introspection",
+            "bear_token": "Token",
+            "connection_options": "连接选项",
+            "account_name": "账号名称",
+            "warehouse": "仓库",
+            "schema": "模式",
+            "snowflake_basic_auth": "基础认证",
+            "snowflake_key_auth": "密钥对 (仅支持加密私钥)",
+            "role": "用户角色",
+            "username": "用户名",
+            "password": "密码",
+            "dynamo_region": "AWS区域",
+            "dynamo_access_key_id": "AWS访问密钥 ID",
+            "dynamo_secret_key": "AWS密钥"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_production",
+            "database_index": "默认 0",
+            "hostname": "主机名",
+            "hosturl": "例如 https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "password": "密码",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "用户名",
+            "default": "default",
+            "hugging_face_url": "使用绝对URL (eg https://api-inference.huggingface.co/models/)。 ",
+            "database_name": "数据库名称",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "WH_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "用户角色",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\n••••••••\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
+            "name": "为这个在ILLA中的资源命名",
+            "private_key": "<0>点此</0>查看如何生成密钥",
+            "ssl_options": "可用时使用 SSL",
+            "username_password": "凭证将被加密并安全存储在我们的服务器上",
+            "introspection": "如果你的GraphQL端点不支持introspection查询，就开启该开关。请注意，禁用introspection会降低GraphQL的可用性，因为该资源的自动完成和提示将不再工作。",
+            "hugging_face_url": "<0>点击这里</0>以了解更多有关Hugging Face的信息。",
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "为您的连接添加连接选项。当SSL选项开启时，我们会默认添加encrypt和trustServerCertificate。"
+          },
+          "title": {
+            "advanced_option": "高级配置",
+            "general_option": "通用",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
+          }
+        },
+        "error": {
+          "invalid_url": "请输入可用的URL，例如http://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "新增"
+          },
+          "label": {
+            "access_token": "Access Token",
+            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "access_token_url": "Access token url",
+            "action_type": "动作类型",
+            "audience": "Audience",
+            "authentication": "API 认证",
+            "authorization_url": "authorization url",
+            "base_url": "Base URL",
+            "basic_auth_password": "基础认证密码",
+            "basic_auth_username": "基础认证用户名",
+            "bearerToken": "Bearer 令牌",
+            "body": "Body",
+            "client_id": "Client ID",
+            "client_secret": "Client secret",
+            "configure_oauth2": "配置OAuth 2.0",
+            "cookies": "Cookies",
+            "copy_url_to_application": "复制URL",
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "extra_body_values": "Extra body value",
+            "forward_all_cookies": "转发所有 Cookies",
+            "headers": "Headers",
+            "list_of_cookies_to_forward": "要转发的 cookie 列表",
+            "name": "名称",
+            "oauth_callback_url": "OAuth回调URL",
+            "refresh_token": "Refresh Token",
+            "scopes": "Scopes",
+            "share_oauth2_credentials_between_users": "在用户之间共享 OAuth2.0 凭据",
+            "url_parameters": "URL parameters",
+            "use_client_credentials_auth": "使用客户端凭据身份验证",
+            "digest_auth_username": "用户名",
+            "digest_auth_password": "密码"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "基础认证",
+              "bearer": "Bearer",
+              "none": "无",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token Lifespan in seconds",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "i.e.\"Internal Admin API\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "请使用绝对 URL (e.g https://example.com)",
+            "database": "i.e.\"Users DB(readonly)\"",
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "param_key": "key",
+            "param_value": "value",
+            "password": "密码",
+            "username": "用户名"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
+            "get_req_auto_run": "(GET 请求) 当参数改变时会自动执行",
+            "name": "在 ILLA 中创建动作时的资源名称"
+          },
+          "title": {
+            "advanced_option": "通用"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "访问密钥",
+            "base_url": "基准网址",
+            "bucket_name": "桶名",
+            "custome_s3_endpoint": "自定义S3端点",
+            "region": "区域",
+            "secret_access_key": "秘密访问密钥",
+            "use_custome_s3_endpoint": "使用自定义S3端点"
+          },
+          "placeholder": {
+            "base_url": "例如https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "用于连接到其他非S3服务，如Digital Ocean Spaces或Wasabi。"
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+          },
+          "tip": {
+            "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "了解更多关于 Hugging Face: ",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "令牌",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "<0>在您的 Hugging Face 配置文件设置</0>中获取 Organizations API 令牌。",
+            "hf_endpoint": "了解更多有关 <0>Hugging Face Endpoint</0>的内容"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://u149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "添加允许的IP地址",
+            "message": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
+          }
+        },
+        "button": {
+          "copy_ip": "复制IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "已删除"
+      },
+      "result": {
+        "title": {
+          "api_request": "API 请求参数",
+          "error": "查询失败",
+          "json": "JSON",
+          "response": "返回数据",
+          "success": "查询成功",
+          "table": "表格"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "数据库",
+        "js_transformer": "JavaScript Transformer"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "无法显示表。 请稍后再试。"
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
+        }
+      }
+    },
+    "component": {
+      "cancel": "取消",
+      "delete": "删除",
+      "delete_content": "删除它后无法恢复，可能会导致程序出错，请确认引用后删除",
+      "delete_title": "你想要删除 {{ displayName }} 吗？",
+      "editor_list": "正在编辑的用户"
+    },
+    "context_menu": {
+      "delete": "删除",
+      "duplicate": "复制"
+    },
+    "data_work_space": {
+      "actions_title": "动作列表 ",
+      "components_title": "组件列表 ",
+      "globals_title": "全局变量 ",
+      "pages_title": "页面列表",
+      "global_data_modal": {
+        "title": "编辑全局变量",
+        "variable_name": {
+          "tooltips": "Use the initial value in this app via {{variableName}}",
+          "label": "变量名",
+          "message": "请输入变量名称"
+        },
+        "initial_value": {
+          "label": "初期値",
+          "tooltips": "支持对象或原始值。 示例：{ 计数：0 }",
+          "placeholder": "{ count: 0 }"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "部署失败"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" 已存在",
+      "validate_error": "\"{{ displayName }}\" 必须由字母或\"_\"开始, 并且只能包含字符，数字，\"_\", 或者 \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "删除",
+          "reset_state": "重置状态",
+          "view_documentation": "View documentation"
+        }
+      },
+      "multi_selected_header": "已选中 {{ number }} 个组件",
+      "setter_content": {
+        "chart_type": {
+          "bar": "柱状图",
+          "line": "折线图",
+          "pie": "饼图",
+          "scatterplot": "散点图"
+        },
+        "color_picker": {
+          "prefabricated": "Prefabricated color",
+          "title": "Edit color"
+        },
+        "column_setter": {
+          "label": "列 ({{number}})",
+          "new": "新建",
+          "title": "标题"
+        },
+        "event_handler_list": {
+          "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
+          "incomplete_selection": "不完整的选择",
+          "new": "新建",
+          "title": "编辑事件处理器"
+        },
+        "list_setter": {
+          "reset": "重置"
+        },
+        "menu_setter": {
+          "delete": "删除",
+          "label": "菜单 ({{number}})",
+          "new": "新建",
+          "sub": "子菜单"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "删除",
+            "duplicate": "复制"
+          },
+          "list_no_label": "无标签",
+          "model_title": "编辑选项",
+          "new": "新建",
+          "title": "选项"
+        },
+        "select_page_setter": {
+          "placeholder": "选择一个页面"
+        },
+        "select_view_setter": {
+          "placeholder": "选择一个视图路径"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Views"
+        },
+        "widget_action_type_name": {
+          "blur": "失焦",
+          "change": "内容改变",
+          "click": "单击",
+          "clickMenuItem": "单击",
+          "columnFiltersChange": "行筛选改变",
+          "fail": "失败后",
+          "focus": "聚焦",
+          "invalid": "校验失败",
+          "paginationChange": "翻页配置改变",
+          "row_select": "选择行",
+          "sortingChange": "排序方式改变",
+          "submit": "提交",
+          "success": "成功后",
+          "onOpenModal": "打开对话框",
+          "onCloseModal": "关闭对话框",
+          "play": "播放",
+          "pause": "暂停",
+          "ended": "已结束",
+          "loaded": "已载入",
+          "rowSelect": "选择行",
+          "markerSelected": "选中点",
+          "markerCreated": "创建点",
+          "select": "选择",
+          "DragOrClickNoEventArea": "拖拽或点击无事件区域",
+          "rowClick": "点击行",
+          "refresh": "刷新",
+          "filtersChange": "行筛选改变",
+          "rowSelectChange": "行选择变更",
+          "onCellSelect": "选中单元格",
+          "delete": "删除",
+          "replay": "答复",
+          "startUploading": "开始上传",
+          "uploadSuccessfully": "上传成功",
+          "uploadFailed": "上传失败",
+          "onMenuSelect": "选中菜单项",
+          "on_menu_select": "选择菜单项",
+          "pageChange": "页面更改",
+          "clickItem": "点击项目"
+        },
+        "image_list": {
+          "title": "图片",
+          "empty": "没有图片",
+          "model_title": "编辑图像",
+          "config": {
+            "model_label": "标签",
+            "image_url": "图片URL"
+          }
+        },
+        "image_setter": {
+          "new": "新增"
+        },
+        "Change": "内容更改",
+        "Select": "选择",
+        "eventCalendar": {
+          "no_title": "无标题"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "过滤器更改",
+        "sortChange": "更改排序",
+        "pageChange": "修改页面",
+        "refresh": "刷新",
+        "density_setting": "行密集显示",
+        "column_setting": "列设置",
+        "refresh_setting": "刷新"
+      },
+      "setter_default_value": {
+        "fill": "填充",
+        "message_type": {
+          "error": "错误",
+          "info": "信息",
+          "success": "成功",
+          "warning": "警告"
+        },
+        "outline": "描边",
+        "validation_pattern": {
+          "email": " 邮箱",
+          "regex": "正则表达式",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "固定",
+          "auto": "自适应"
+        },
+        "upload_type": {
+          "button": "按钮",
+          "dropzone": "文件区域"
+        },
+        "selection_types": {
+          "single_file": "单一文件",
+          "multiple_files": "多个文件",
+          "directory": "文件夹"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "请选择时间"
+        },
+        "time_range": {
+          "start_placeholder": "开始时间",
+          "end_placeholder": "时间结束"
+        },
+        "recording": {
+          "start_button_text": "开始录制",
+          "stop_button_text": "停止",
+          "clear_button_text": "清空"
+        },
+        "rich_text": {
+          "default_text": "在此输入文本"
+        },
+        "drive_builder": {
+          "button_text": "选择文件"
+        }
+      },
+      "setter_group": {
+        "adornments": "额外修饰属性",
+        "basic": "基础",
+        "column": "列",
+        "data": "数据",
+        "interaction": "交互",
+        "label": "标签",
+        "layout": "布局",
+        "menu": "菜单",
+        "options": "选项",
+        "pagination": "翻页",
+        "row_selection": "用户选择",
+        "sort": "排序",
+        "style": "风格",
+        "tabs": "选项卡",
+        "toolbar": "工具栏",
+        "validation": "验证",
+        "views": "视图",
+        "images": "图片",
+        "primary_value": "主要数值",
+        "secValue": "次要数值",
+        "border": "描边",
+        "color": "颜色",
+        "icon": "图标",
+        "secondary_value": "次要值",
+        "resource": "资源",
+        "eventCalendar": {
+          "calendar": "日历"
+        },
+        "event": "事件",
+        "MESSAGE": "消息",
+        "Toolbar": "工具栏",
+        "divider": "内部分割线",
+        "shadow": "内部阴影",
+        "background": "背景",
+        "padding": "内边距（像素）"
+      },
+      "setter_label": {
+        "chat": {
+          "data_source": "数据源",
+          "enable_message_selec": "启用消息选择",
+          "selection_type": "选择类型",
+          "loading_when_sending": "发送时加载",
+          "image_background": "图像背景"
+        },
+        "action": "动作",
+        "align": "对齐",
+        "allow_clear": "允许清除",
+        "allow_half": "允许一半",
+        "alt_text": "替换文本",
+        "alt_text_desc": "屏幕阅读器可访问的图像描述。如果无法加载图像，这也会作为备用方案进行渲染。",
+        "background": "背景",
+        "background_color": "背景色",
+        "border": "描边",
+        "border_width": "边框宽度",
+        "caption": "副标题",
+        "chart_title": "标题",
+        "chart_type": "图表类型",
+        "color": "颜色",
+        "colors": "颜色",
+        "column_title": "列标题",
+        "column_type": "列类型",
+        "columns": "列数据",
+        "component": "组件",
+        "config_type": "配置类型",
+        "container": "容器",
+        "content": "内容",
+        "control_component": "控制组件",
+        "custom_rule": "自定义规则",
+        "data": "数据",
+        "data_source": "数据源",
+        "data_sources": "数据源",
+        "dataset": {
+          "aggregation_method": "聚合方式",
+          "name": "数据集名称",
+          "remove": "移除数据集",
+          "value": "数据列"
+        },
+        "switch_group": {
+          "option_label_alignment": "选项标签的位置"
+        },
+        "dataset_config": "数据集配置",
+        "datasets": "数据集",
+        "decimal_place": "小数位",
+        "decimal_places": "小数位数",
+        "default_sort_key": "排序列",
+        "default_sort_order": "顺序",
+        "default_tab": "默认值",
+        "default_value": "默认值",
+        "default_views": "默认视图",
+        "description": "描述",
+        "direction": "方向",
+        "disable_submit": "禁用提交",
+        "disabled": "禁用",
+        "download": "下载",
+        "duration": "持续时间",
+        "empty_state": "空状态",
+        "enable_sorting": "排序",
+        "end_data": "结束日期",
+        "end_placeholder": "结束日期占位符",
+        "event": "事件",
+        "event_handler": "事件处理器",
+        "expansion_method": "展开方式",
+        "failure": "请求失败",
+        "filter": "筛选",
+        "font_size": "字号",
+        "form_data_key": "表单数据键值",
+        "format": "格式化",
+        "go_to_url": "跳转链接",
+        "group_by": "分组标签",
+        "group_layout": "组内布局",
+        "hidden": "隐藏",
+        "hidden_label": "隐藏标签",
+        "hide_validation_message": "隐藏验证信息",
+        "hide_value_label": "隐藏值标签",
+        "horizontal_alignment": "水平对齐",
+        "icon": "图标",
+        "image_source": "图片来源",
+        "img_height": "高度",
+        "img_width": "宽度",
+        "index": "索引",
+        "item_background_color": "项目背景色",
+        "items": "项",
+        "key": "键值",
+        "label": "标签",
+        "label_alignment": "对齐",
+        "label_position": "位置",
+        "label_width": "宽度(%)",
+        "layout": "布局",
+        "legend_position": "图例位置",
+        "link_to_container": "是否关联到容器",
+        "links_color": "链接色",
+        "loading": "加载中",
+        "loop_back_to_start": "列表循环",
+        "loop_start_to_back": "列表循环",
+        "mapped_option": "映射选项",
+        "mapped_value": "映射值",
+        "max_count": "最大数量",
+        "max_date": "最大日期",
+        "max_length": "最大长度",
+        "maximum": "最大值",
+        "method": "方法",
+        "min_date": "最小日期",
+        "min_length": "最小长度",
+        "minimum": "最小值",
+        "multi_row_selection": "多行选择",
+        "new_tab": "在新标签中打开",
+        "only_run_when": "先决条件",
+        "overFlow": "翻页方式",
+        "page": "页面",
+        "pageSize": "每页行数",
+        "pattern": "模式",
+        "pending": "待处理节点",
+        "placeholder": "占位符",
+        "prefix_text": "前缀文本",
+        "radius": "圆角",
+        "read_only": "只读",
+        "regex": "正则表达式",
+        "required_field": "必需字段",
+        "reset_after_successful_submit": "提交成功后重置输入内容",
+        "router": "路由",
+        "run_script": "运行脚本",
+        "scale_type": "缩放类型",
+        "set_router": "设置路由",
+        "set_temporary_state": "设置临时状态",
+        "shadow": {
+          "shadow": "阴影"
+        },
+        "show_character_count": "展示字符数量",
+        "show_clear_button": "展示清除按钮",
+        "show_footer": "显示操作区",
+        "show_header": "显示标题区",
+        "show_notification": "展示通知",
+        "sort": "排序",
+        "start_date": "开始日期",
+        "start_placeholder": "开始日期占位符",
+        "step_size": "步长",
+        "stroke_width": "描边宽度",
+        "style": "样式",
+        "styles": "样式",
+        "submit_form": "提交表单",
+        "success": "请求成功",
+        "suffix_text": "后缀文本",
+        "text": "文本",
+        "text_align": "文本对齐",
+        "text_size": "文本大小",
+        "theme_color": "主题色",
+        "thousand_separator": "千位分隔符",
+        "time_format": "时间格式化",
+        "title": " 标题",
+        "tooltip": "提示",
+        "trail_color": "描边颜色",
+        "trigger_query": "触发请求",
+        "type": "类型",
+        "validate_inputs_on_submit": "提交时校验输入",
+        "value": "值",
+        "value_labels": "维度",
+        "variant": "样式",
+        "vertical_alignment": "垂直对齐",
+        "width": "宽度",
+        "x_axis_name": "横坐标名称",
+        "x_axis_title": "X轴标题",
+        "x_axis_type": "X轴类型",
+        "x_axis_value": "X 轴",
+        "y_axis_name": "纵坐标名称",
+        "y_axis_title": "Y轴标题",
+        "height": "高度",
+        "min_height": "最小高度（px）",
+        "show_underline": "展示下划线",
+        "auto_play": "自动播放",
+        "interval": "间隔时间（毫秒）",
+        "show_button": "展示指示箭头",
+        "show_dot": "显示底部指示点",
+        "hidden_images": "隐藏图片",
+        "file_type": "文件类型",
+        "selection_types": "选择类型",
+        "append_newly_files": "追加新选择的文件",
+        "file_list": "文件列表",
+        "parse_value": "解析文件",
+        "max_files": "最多文件个数",
+        "min_files": "最少文件个数",
+        "max_size": "最大文件大小",
+        "min_size": "最小文件大小",
+        "text_overflow": "文本溢出",
+        "file_url": "PDF数据源",
+        "show_tool_bar": "显示工具栏",
+        "scale": "缩放页面",
+        "scroll": "快速滚动到每一页",
+        "min_max_size": "最小～最大文件大小",
+        "video_url": "视频数据源",
+        "autoplay": "自动播放",
+        "loop": "循环播放",
+        "volume": "音量",
+        "show_controls": "显示控制栏",
+        "img_url_array": "图片URL数组",
+        "statistics": {
+          "label": "标签",
+          "primary_value": "主要数值",
+          "secValue": "次要数值",
+          "decimal": "小数位",
+          "trend_sign": "显示趋势标识",
+          "positive_sign": "正向标识",
+          "negative_sign": "负向标识",
+          "thousand_separator": "显示千位分隔符",
+          "trend_color": "使用趋势色",
+          "prefix_text": "前缀文字",
+          "suffix_text": "后缀文字",
+          "title": "标题"
+        },
+        "mute": "静音",
+        "collapse": {
+          "type": "类型",
+          "accordin_mode": "手风琴模式",
+          "header_color": "头部",
+          "body_color": "主体",
+          "expand_icon": "展开",
+          "collapse_icon": "折叠面板",
+          "icon_color": "颜色"
+        },
+        "choose_at_least": "最少选择",
+        "choose_up_to": "最多选择",
+        "copy_to_clipboard": "复制到剪贴板",
+        "file_download": {
+          "file_data": "文件数据",
+          "file_name": "带扩展名的文件名",
+          "file_type": "文件类型"
+        },
+        "action_name": "动作名称",
+        "variable": {
+          "path_of_value": "值的路径",
+          "variable": "全局变量"
+        },
+        "code": {
+          "write_code": "编写代码"
+        },
+        "slider": {
+          "step_size": "步进值",
+          "minimum": "最小值",
+          "maximum": "最大值",
+          "hide_output": "隐藏输出数值",
+          "prefix_icon": "前缀图标",
+          "suffix_icon": "后置图标",
+          "allow_wrapping": "自动换行"
+        },
+        "range_slider": {
+          "start_value": "起始值",
+          "end_value": "结束值"
+        },
+        "name": "名称",
+        "audio": {
+          "audio_url": "音频数据源"
+        },
+        "map": {
+          "markers": "标记",
+          "initial_location": "初始位置",
+          "default_markers": "默认标记",
+          "latitude_field_name": "纬度字段名称",
+          "longitude_field_name": "经度字段名称",
+          "zoom": "缩放",
+          "enable_add_markers": "允许添加标记",
+          "enable_search_locati": "允许搜索位置",
+          "enable_clustering": "允许点聚集"
+        },
+        "time_range": {
+          "start_time": "开始时间",
+          "end_time": "结束时间"
+        },
+        "eventCalendar": {
+          "event_value": "事件值",
+          "event_id": "事件ID",
+          "title": "标题",
+          "description": "描述",
+          "start": "开始时间",
+          "end": "结束时间",
+          "resource_id": "资源ID",
+          "resource_title": "资源标题",
+          "all_day": "全天事件",
+          "data_source": "数据源",
+          "default_date": "默认日期",
+          "resource_grid": "资源网格",
+          "default_view": "默认视图",
+          "show_current_time": "显示当前时间",
+          "background": "背景",
+          "calendar_background": "背景",
+          "calendar_border": "边框",
+          "calendar_text": "次要文本",
+          "event_background": "背景",
+          "event_text": "文本",
+          "draggable": "是否可拖拽",
+          "resizable": "是否可调整大小",
+          "custom_message_draggable": "禁用拖动时的自定义消息",
+          "custom_message_resizable": "禁用调整大小时的自定义消息"
+        },
+        "table": {
+          "page_index": "页面索引",
+          "index": "索引",
+          "scroll_to_the_select": "滚动到所选行",
+          "filters": "过滤",
+          "filter_mode": "过滤模式",
+          "show_thousands_separ": "显示千位分隔符",
+          "tag_label": "Tag标签",
+          "tag_color": "Tag颜色",
+          "open_in_new_tab": "在新标签中打开",
+          "variant": "样式",
+          "icon": "图标",
+          "color": "颜色",
+          "sort_by_mapped_value": "按映射值排序",
+          "background": "背景色",
+          "alignment": "对齐方式",
+          "column_width": "列宽",
+          "width": "宽度",
+          "disable_user_selecti": "禁用用户选择",
+          "default_selected_row": "默认选中行",
+          "refresh": "刷新",
+          "download_row_data": "下载原始数据",
+          "column_setting": "列设置",
+          "cell_overflow": "单元格溢出",
+          "enable_server_side_p": "启用服务器端分页",
+          "pagination_type": "分页类型",
+          "total_row_count": "总行数",
+          "next_cursor": "下一个光标",
+          "has_next_page": "是否有下一页",
+          "currency_code": "货币代码",
+          "cell_selection": "选中单元格",
+          "click_outside_to_des": "点击外部取消选择",
+          "page": "默认页面索引",
+          "export_all_data_setting": "导出全部"
+        },
+        "previous_cursor": "上一光标",
+        "input": {
+          "type": "类型",
+          "show_visible_button": "显示可见按钮"
+        },
+        "recording": {
+          "start_button_text": "开始录制按钮文本",
+          "clear_button_text": "清除按钮文本",
+          "min_duration": "最小录制时间 (s)",
+          "max_duration": "最大录制时间 (s)",
+          "stop_button_text": "停止按钮文本"
+        },
+        "message_id": "消息ID",
+        "message": "消息",
+        "message_type": "消息类型",
+        "sendTime": "发送时间",
+        "timeFormat": "时间格式",
+        "currentSenderId": "当前发送方ID",
+        "receiving": "接收时加载",
+        "toolbar-replay": "显示回复按钮",
+        "toolbar-delete": "显示删除按钮",
+        "showAvatar": "显示头像",
+        "showSendTime": "显示发送时间",
+        "showFooter": "显示页脚",
+        "leftMessageColor": "左侧消息",
+        "rightMessageColor": "右侧消息",
+        "expandAll": "展开所有",
+        "replayMessageId": "回复消息ID",
+        "senderName": "发送方名称",
+        "senderId": "发送方ID",
+        "showName": "显示名称",
+        "rich_text": {
+          "default_text": "占位符"
+        },
+        "senderAvatar": "发送方头像",
+        "drive_builder": {
+          "allow_public_use": "在公开项目中使用",
+          "illa_drive_folder": "ILLA Drive文件夹",
+          "generate_signed_url": "生成签名URL",
+          "expired_time": "过期类型",
+          "time": "过期时间(s)",
+          "turn_on_hotlink": "开启防盗链",
+          "button_text": "按钮文案",
+          "selection_type": "选择类型",
+          "allowed_file_types": "允许的文件类型",
+          "file_list": "文件列表",
+          "min_size": "最小大小",
+          "max_size": "最大大小",
+          "min_file_num": "最小文件数量",
+          "max_file_num": "最大文件大小",
+          "file_name_duplicatio": "文件名称重复",
+          "fileData": "文件数据",
+          "downloadZIP": "下载为ZIP"
+        },
+        "download_from_drive": "从ILLA Drive下载",
+        "save_to_drive": "保存到ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "标题",
+          "only_show_icon": "只展示icon",
+          "groupLabels": "群组标签"
+        },
+        "hover_bg_color": "悬停背景",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "默认表单数据",
+          "default_form_data": "隐藏提交按钮",
+          "hidden_submit_button": "隐藏提交按钮",
+          "submit_button_full_w": "提交按钮全宽",
+          "submit_button_text": "提交按钮文案"
+        },
+        "chart": {
+          "direction": "方向",
+          "y-axis_value": "纵坐标值",
+          "stack_grouped_data": "堆栈数据",
+          "x-axis_type": "X轴类型",
+          "format": "格式",
+          "legend_position": "图例位置",
+          "grid_line": "网格线",
+          "y-axis_type": "Y轴类型"
+        },
+        "grid_list": {
+          "column_adaptation": "列宽适配",
+          "column_count": "列数",
+          "row_height": "行高适配",
+          "item_radius": "格子的圆角",
+          "item_shadow": "格子的阴影",
+          "item_spacing": "格子间距",
+          "max_column_count": "Max number of columns",
+          "min_column_count": "Min number of columns"
+        },
+        "src": "源",
+        "page_size_options": "每页显示数量选项",
+        "export_setting": "导出",
+        "filter_setting": "筛选",
+        "primary_key": "主键"
+      },
+      "setter_tooltip": {
+        "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
+        "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组,可以创建同一级别的选项，添加 children 属性可以添加子集",
+        "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
+        "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
+        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
+        "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
+        "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
+        "disabled_submit": "禁用提交时，调用form.submit()方法的组件也会被禁用。",
+        "download": "在工具栏显示下载按钮。",
+        "filter": "在工具栏显示筛选按钮。",
+        "form_data_key": "在构建数据属性时，指定一个包装表单组件的键。",
+        "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态。",
+        "hide_validation_message": "当验证输入有误时隐藏错误信息。您可以通过编写 JavaScript 对是否隐藏进行动态修改。",
+        "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
+        "loading": "控制组件是否为加载状态。",
+        "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项。",
+        "mapped_value": "使用 {{ currentRow }} 来访问当前行的数据。例如，根据 \"成本 \"和 \"点击次数 \"列计算得到\"每次点击成本\"：\n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "您可以使用{{table.selectedRow.data}}来访问数据。如果您启用了多行选择，它将返回一个数组，您可以像这样使用它：{{ table1.selectedRow.data[0].email }}}。如果您没有启用多行选择，它将返回一个对象，你可以像这样使用它：{{ table1.selectedRow.data.email }}。",
+        "only_run_when": "在此输入该事件执行前必须满足的条件。",
+        "placeholder": "当输入中没有值时，展示的信息。",
+        "progress_percentage": "进度条的数值范围为 0-100。",
+        "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
+        "required_field": "在开关开启后对输入框执行验证。",
+        "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
+        "table_only_run_when": "事件执行前必须满足的条件。使用{{ currentRow }}来访问当前行的数据。例如，只在 \"imgSize \"小于5120时运行：{{ currentRow.imgSize <= 5120 }}}。",
+        "table_set_value": "使用currentRow来访问当前行的数据。例如，根据 \"电子邮件 \"来设置可编辑文本（editableText）组件的值：  {{ currentRow.email }}.\n  同时，您还可以通过在组件的INSPECT中使用{{ table. selectedRow[n] }}来设置值：{{ table1.selectedRow[n].email }}。",
+        "table_url": "使用 {{ currentRow }} 来访问当前行的数据。例如，要进入参数为 \"appid \"的网址。{{ \"www.example.com/#\" + currentRow.appid }}",
+        "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
+        "timeline_direction": "切换时间轴的方向。",
+        "timeline_pending": "是否显示一个待处理状态的节点。",
+        "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
+        "file_types": "允许上传的文件拓展名数组。为空时所有类型的文件均可以上传",
+        "file_list": "在上传组件下方显示所选文件的列表。 上传组件的高度会根据文件的数量动态变化。",
+        "parse_value": "尝试解析所选文件，支持 JSON、CSV、TSV、Excel 和 TXT 文件。 解析后的数据可以通过 {{uploader1.parsedValue}} 访问。 无法解析的文件在数组中将为空。 无论此选项如何，所有文件都可作为值数组中的 base64 编码字符串使用。",
+        "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
+        "scale": "缩放每个页面以填充组件的宽度或高度。",
+        "scroll": "滚动时自动定位到每页的开头。",
+        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接或视频文件的base64编码数据。 例如：{{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "折叠面板列表：列表模式，每项的组件样式一致，可通过{{ currentItem.columnName }}指定每个项中组件的数据；折叠面板：各个面板独立，可分别指定每项的组件样式和数据。",
+          "items": "项目数量",
+          "accordin_mode": "在手风琴模式下，当一个项目展开时，其他项目将折叠。"
+        },
+        "message": "从数据源中的某一特定字段检索消息内容， 比如content字段，您可以设置为 {{item.content}}。",
+        "message_type": "根据数据源中的特定字段设置内容类型， 例如type字段，你可以设置为 {{item.type}}。 我们支持这些类型：文本、图像、视频和音频。 ",
+        "message_id": "为每条消息设置的唯一ID，您可以从数据源中的一个特定字段获取它。 如果您想从 id 字段检索它，您可以将它设置为 {{item.id}}。",
+        "replayMessageId": "如果它正在回复指定的消息，请使用此字段设置要回复的消息。",
+        "expandAll": "是否展开所有节点",
+        "sendTime": "设置发送时间。 例如，在您的数据源中，发送时间是sendAt字段，您可以将字段设置为 {{item.sendAt}}。",
+        "senderName": "设置发送方名称。 例如，在您的数据源中，发送方名称是sendName字段，您可以将字段设置为 {{item.sendName}}。",
+        "currentSenderId": "设置当前发件人ID。我们使用此字段来确定哪个用户发送信息显示在右侧。",
+        "senderId": "设置发送方ID。 例如，在您的数据源中，发送方ID是sendID字段，您可以将字段设置为 {{item.sendID}}。",
+        "sendTimeFormat": "设置发送时间的格式。例如，hh:MM:ss.",
+        "showAvatar": "设置是否显示头像",
+        "showName": "设置是否显示名称",
+        "showSendTime": "设置是否显示发送时间",
+        "showFooter": "设置是否显示页脚",
+        "senderAvatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
+        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。",
+        "export_setting": "用于设置是否允许用户导出筛选后的数据",
+        "filter_setting": "用于设置是否展示筛选器，允许用户筛选数据"
+      },
+      "tab_title": "属性",
+      "unselected_tip1": "没有组件被选中。",
+      "unselected_tip2": "请点击组件以选中。",
+      "setter": {
+        "click_mask_close": "点击遮罩关闭modal",
+        "modal": {
+          "blank": "无图标"
+        }
+      },
+      "setter_tips": {
+        "chat": {
+          "data_source": "聊天组件的数据源。使用 {{actionName.data}} 来使用您的数据库或 API 的数据",
+          "enable_message_selec": "设置是否允许选择一条消息",
+          "selection_type": "设定如何选择消息，左键点击或右键点击。当在移动设备上使用时，会点击它来触发选择。 ",
+          "loading_when_sending": "设置是否在发送或接收消息时显示加载状态。 如果您的消息被发送到Action1，您可以将其设置为 {{action1.isRunning}}， Action1运行时将显示加载状态。",
+          "image_background": "设置图像背景。支持Base64和图像 URL"
+        },
+        "carousel_tips": "使用 {{ item }} 从数据源中获取值。 例如，数据源中有两个属性。 它们是 imageUrl 和 url。 如果您想在点击图片时转到不同的 url，请使用 {{ item.url }} 设置 url。",
+        "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
+        "img_url_array": "使用 {{ item.attributeName }} 从数据源获取图像 URL",
+        "carousel": {
+          "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
+        },
+        "file_download": {
+          "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
+        },
+        "variable": {
+          "available_in_objects": "在对象和数组中可用。 要以对象格式设置变量的值，请使用 attributeName。 例如，要更改 {\"a\":1, \"b\":2} 中 \"b\" 的值，路径\n  应该是b。\n\n要以数组格式设置变量的值，请使用 {{index}}。 例如，要将 \"d\" 更改为 \"t\" [\"a\",\"b\",\"c\",\"d\"]，路径应为 {{ 3 }} 或 {{globalData.state1.indexOf(\"d “）}}。",
+          "the_target_value": "目标值"
+        },
+        "slider": {
+          "default_value": "滑块的初始值。 您可以通过在 {{}} 中键入 JavaScript 来动态更改初始值。",
+          "minimum": "滑块的最小值",
+          "maximum": "滑块的最大值",
+          "step_size": "滑块的最小变化单位",
+          "label": "显示给用户的字段名称",
+          "caption": "用于详细描述字段的标题",
+          "hide_label": "设置是否显示标签",
+          "allow_wrapping": "设置是否允许标签换行",
+          "position": "设置标签相对于组件的位置",
+          "alignment": "设置标签的对齐方式",
+          "width": "当标签在组件左侧时，设置标签的宽度比例",
+          "prefix_icon": "显示在组件前面的图标",
+          "suffix_icon": "组件后显示的图标",
+          "hide_output": "设置滑动时是否隐藏值"
+        },
+        "switch_group": {
+          "label": "选项的标签",
+          "value": "一个包含在{{中的数组。例如 {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "值重复。请使用唯一的值来避免错误。",
+          "caption": "标签下显示的标题",
+          "disabled": "是否禁用此选项",
+          "datasource": "切换组的数据源。使用 {{actionName.data}} 来使用您的数据库或 API 的数据",
+          "default_value": "包含 {{ }}的数组。例如， {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "允许选择的最小项目",
+          "choose_up_to": "允许选择的最大项目",
+          "option_label_alignment": "标签位置"
+        },
+        "step": {
+          "default_step": "默认步骤",
+          "show_step_number": "显示步骤数值",
+          "indicate_completed_steps": "标明完成步骤"
+        },
+        "range_slider": {
+          "start_value": "设置范围的最小值",
+          "end_value": "设置范围的最大值"
+        },
+        "audio": {
+          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务或音频文件的 base64 编码数据。 例如：{{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "在地图上设置标记。 标记应该是与默认标记具有相同属性的对象数组。",
+          "initial_location": "初始化地图时，默认居中显示位置",
+          "default_markers": "初始化地图时显示的默认标记。 您可以使用 {{}} 中的 JavaScript 对其进行动态设置。",
+          "latitude_field_name": "纬度取自初始位置和默认标记对象的哪个属性。",
+          "longitude_field_name": "经度取自初始位置和默认标记对象的哪个属性。",
+          "zoom": "设置地图缩放",
+          "enable_add_markers": "是否允许用户通过点击地图添加标记",
+          "enable_search_locati": "是否允许用户搜索位置",
+          "enable_clustering": "地图缩小时是否允许多个标记聚合"
+        },
+        "time_picker": {
+          "format": "一个有效的时间格式字符串。 有关格式的更多信息：[dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "分钟的跨度",
+          "show_a_clear_button_": "当鼠标悬停在组件上时显示一个清除按钮。"
+        },
+        "time_range": {
+          "start_time": "组件初始化时填入的开始时间",
+          "end_time": "组件初始化时填入的结束时间",
+          "start_placeholder": "当没有输入开始时间时，展示的信息。",
+          "end_placeholder": "当没有输入结束时间时，展示的信息。"
+        },
+        "eventCalendar": {
+          "event_value": "使用包含在 {{ 中的对象来设置事件值。 例如，{{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "用于标识事件的唯一 ID",
+          "title": "活动名称",
+          "description": "事件描述",
+          "start": "活动开始时间",
+          "end": "活动结束时间",
+          "resource_id": "资源可以是人、会议室等。您可以设置资源 ID 并将其连接到事件。",
+          "resource_title": "资源网格中显示的资源名称",
+          "all_day": "是否全天活动",
+          "data_source": "事件的数据源。 数据源应该是一个对象数组, 每个对象都是一个事件。 例如，{{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description “：“描述”} ]}}",
+          "default_date": "启动应用程序时显示的默认日期",
+          "resource_grid": "是否显示资源网格",
+          "default_view": "启动应用程序时的默认视图",
+          "show_current_time": "设置是否显示当前时间线",
+          "calendar_background": "设置日历的背景色",
+          "calendar_border": "设置边框颜色",
+          "calendar_text": "设置文字颜色",
+          "event_background": "设置事件卡片的背景",
+          "event_text": "设置事件卡片的文字颜色",
+          "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。",
+          "draggable": "是否允许用户通过拖动移动事件来更新事件时间范围",
+          "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度",
+          "custom_message_draggable": "拖动被禁用后，当用户拖动事件时，消息将会显示。",
+          "custom_message_resizable": "调整大小被禁用后，当用户调整事件大小时，信息将会显示。"
+        },
+        "table": {
+          "page_index": "您要选择的页面的索引",
+          "index": "您要选择的行的索引。 索引应该是一个数组，可用于指定多行。",
+          "scroll_to_the_select": "是否滚动到该行。",
+          "show_thousands_separ": "是否显示千位分隔符",
+          "tag_label": "设置标签标签。数组将被分隔为多个标签。",
+          "tag_color": "设定标签的颜色。使用 {voir 写一个条件语句来设置每个标签在不同条件下显示的颜色。",
+          "variant": "按钮的样式",
+          "icon": "表中显示的图标",
+          "color": "设置颜色",
+          "sort_by_mapped_value": "是否按映射值排序。如果选择否，我们将根据原始数据排序。",
+          "background": "设定列的背景。使用{{写一个条件语句来设置每个单元格在不同条件下显示的颜色。",
+          "alignment": "设置列对齐。",
+          "column_width": "用数字设定列宽度。您也可以通过拖动帧来调整列宽度。 调整后，此配置项的值也将相应改变",
+          "width": "设置列宽度的调整方法.",
+          "disable_user_selecti": "是否禁用用户选择。 如果禁用，您可以通过事件处理程序控制表组件来选择行。",
+          "default_selected_row": "默认选择的行。  ",
+          "refresh": "是否显示刷新图标。 ",
+          "download_row_data": "是否显示下载原始数据图标。",
+          "column_setting": "是否显示列设置。 列设置将允许用户设置要显示的列和列排序。 此设置不会更改表数据。",
+          "cell_overflow": "当单元格溢出时如何显示。 ",
+          "enable_server_side_p": "是否启用服务器分页",
+          "pagination_type": "分页类型。 ",
+          "total_row_count": "用于计算页码的行数。",
+          "next_cursor": "用于定位一组数据的下一个起点的标识符，以便分页并检索分批数据",
+          "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
+          "filters": "一个包含在 {{ }}中的对象数组。 例如：{{{\"**id**\":\"name of the line to filter\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}。 我们支持这些过滤器: \"equalto\", \"notEqualTo\", \"contains\", \"does NotContain\", \"lessThan\", \"notLessThan\", \"motMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
+          "filter_mode": "过滤器的模式，and或or。",
+          "currency_code": "USD",
+          "whether_allow_users_": "是否允许用户选中一个单元格",
+          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。",
+          "density_setting": "用于设置行高密集与否",
+          "refresh_setting": "用于设置是否展示刷新按钮",
+          "export_raw_data_setting": "用于设置是否允许用户导出未经筛选的原始数据"
+        },
+        "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
+        "input": {
+          "type": "设置输入类型",
+          "show_visible_button": "设置是否显示可见按钮"
+        },
+        "recording": {
+          "start_button_text": "录制未开始时按钮上显示的文本",
+          "stop_button_text": "录制中按钮上显示的文本",
+          "clear_button_text": "录制完成后按钮上显示的文本",
+          "min_duration": "录制的最小持续时间",
+          "max_duration": "录制的最大持续时间"
+        },
+        "leftMessageColor": "设置左侧消息的颜色",
+        "rightMessageColor": "设置右侧消息的颜色",
+        "toolbar-replay": "设置选择消息时是否显示回复按钮。",
+        "toolbar-delete": "设置选择消息时是否显示删除按钮。",
+        "tabs": {
+          "variant": "设置标签页的样式"
+        },
+        "drive_builder": {
+          "allow_public_use": "设置是否在公开项目中使用。当在公开项目中使用时，为了保护您的文件安全，将只能访问PublicAccess文件夹",
+          "illa_drive_folder": "用于指定文件夹，用户只能从您指定的文件夹里选择文件",
+          "generate_signed_url": "设置是否生成签名URL。所有用户都可以通过签名URL访问文件。这通常用于您需要在您的网站上展示内容或允许用户下载内容的场景",
+          "expired_time": "设置过期时间。过期后，签名URL将不可访问",
+          "time": "使用以秒为单位的数字类型来设置过期时间。例如，{{300}}，即300秒或5分钟",
+          "turn_on_hotlink": "设置是否开启防盗链。如果开启，文件将只能通过illacloud.com下的网站访问",
+          "button_text": "设置button上显示的文本",
+          "selection_type": "设置允许用户选择多个文件还是单个文件",
+          "allowed_file_types": "使用字符串数组设置允许的文件类型，如只允许jpg和png，填入{{[\".jpg\", \".png\"]}}。留空时允许全部文件类型",
+          "file_list": "设置是否展示已选择的文件列表",
+          "min_size": "设置允许选择的最小文件大小",
+          "max_size": "设置允许选择的最大文件大小",
+          "min_file_num": "设置允许选择的最少文件数量",
+          "max_file_num": "设置允许选择的最大文件数量",
+          "file_name_duplicatio": "设置如何处理重复的文件名。 如果同时保留两者，上传的文件名中将添加一个随机字符串。",
+          "fileData": "使用对象数组设置文件数据，对象的格式为{\"fileName\":\"名称\",\"FileID\":\"ID\"}。 您可以使用ILLA Drive文件选择器组件选择文件并直接通过 {{filePciker1.value}} 设置该值。",
+          "downloadZIP": "设置是否允许将文件下载为一个ZIP"
+        },
+        "list": {
+          "table_disallowed": "Table不能被放入List"
+        },
+        "menu": {
+          "logo": "使用URL设置您的logo",
+          "title": "在此设置标题，如公司名称",
+          "only_show_icon": "隐藏菜单的文案，只显示icon"
+        },
+        "statistics": {
+          "title": "设置数值的标题"
+        },
+        "page": {
+          "default_view": "当用户输错URL时，我们会自动重定向到默认子页面。当没有默认子页面，我们会将列表里第一个子页面作默认子页面。"
+        },
+        "chart": {
+          "direction": "设置图表方向 ",
+          "y-axis_value": "设置Y轴的值",
+          "stack_grouped_data": "具有相同X轴值的不同组别的值将被堆叠在堆叠图表中。 可使用堆积图来比较不同类别或组的总体大小。",
+          "x-axis_type": "设置图表类型以提高数据可读性。",
+          "format": "一个符合规范的时间格式，请参考 [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "legend_position": "设置图例的位置",
+          "grid_line": "设置网格线的颜色",
+          "y-axis_type": "设置图表类型以提高数据可读性。"
+        },
+        "grid_list": {
+          "column_adaptation": "在自动模式下，列数保持不变，列宽将自适应。调整浏览器窗口的大小将相应改变列宽度。\n在固定模式下，列数不是固定的，而列宽保持不变。 调整浏览器窗口的大小将更改列数。",
+          "column_count": "用来配置列数，它决定每行显示多少格子。",
+          "row_height": "用来配置每行的高度。在自动模式下，高度自适应，行高由当前行中最高的格子决定。 在固定模式下，行高是固定的，所有格子的高度相同。",
+          "item_radius": "用来配置每个格子的圆角",
+          "item_shadow": "用来配置每个格子的阴影大小",
+          "item_spacing": "用于配置格子之间的间距",
+          "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。"
+        },
+        "primary_key": "用于标识行的唯一键值"
+      },
+      "setter_option": {
+        "fixed": "固定高度",
+        "auto_limited": "受限制的自动高度",
+        "auto_height": "自动高度",
+        "text_ellipsis": "省略",
+        "text_scroll": "滚动",
+        "text_clip": "裁切",
+        "scale_height": "高度",
+        "scale_width": "宽度",
+        "collapse": {
+          "collapsible_panel": "折叠面板"
+        },
+        "file_download": {
+          "auto": "自动",
+          "plain_text": "纯文本",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "无",
+          "large": "大",
+          "medium": "中",
+          "small": "小"
+        },
+        "eventCalendar": {
+          "sunday": "周日",
+          "monday": "周一",
+          "tuesday": "周二",
+          "wednesday": "周三",
+          "thursday": "周四",
+          "friday": "周五",
+          "saturday": "周六",
+          "month": "月",
+          "week": "星期",
+          "day": "天",
+          "agenda": "议程"
+        },
+        "table": {
+          "set_sort": "设置排序",
+          "column": "列",
+          "number": "数值",
+          "percent": "百分比",
+          "currency": "货币",
+          "text": "文本",
+          "tag": "标签",
+          "button_group": "按钮组",
+          "date": "日期",
+          "time": "时间",
+          "date_time": "日期时间",
+          "link": "链接",
+          "rating": "评分",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "按钮",
+          "icon": "图标",
+          "solid": "实心",
+          "outline": "描边",
+          "auto": "自适应",
+          "limited": "限制",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor"
+        },
+        "input": {
+          "input": "输入",
+          "password": "密码",
+          "search": "搜索"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "左键点击",
+            "right-click": "右键点击"
+          }
+        },
+        "tab": {
+          "line": "线性",
+          "card": "卡片"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "永久有效",
+            "customer": "自定义"
+          },
+          "single_file": "单个文件",
+          "multiple_files": "多个文件",
+          "anonymous_modal": {
+            "title": "允许公开用户访问ILLA Drive？",
+            "desc": "开启后，仅这个项目的Public apps access文件夹可以访问。当项目被设置为公开是，所有用户都可以访问这个文件夹。",
+            "cancelBtn": "取消",
+            "submitBtn": "开启"
+          },
+          "file_name_duplicatio": {
+            "replace": "替换",
+            "keepboth": "保留两者"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "环状图",
+            "Radar": "雷达图"
+          },
+          "direction": {
+            "horizontal": "横向",
+            "vertical": "纵向"
+          },
+          "x-axis_type": {
+            "Default": "默认",
+            "Date": "日期"
+          }
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "无限制",
+        "volume": "2",
+        "statistics": {
+          "decimal": "2",
+          "prefix_text": "¥",
+          "suffix_text": "%",
+          "positive_color": "正向颜色",
+          "negative_color": "负向颜色"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "{{ new_data.csv }}"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "货币代码定义[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "表单的JSON Schema. \n\n示例\n{{action1.data }}\n\n了解如何写JSON Schema: [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "表单的UI Schema。查看 [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)了解uiSchema的属性。\n\n示例\n{{action1.data }}",
+          "default_form_data": "表单的默认数据。查看 [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)了解formData属性。\n\n示例\n{{action1.data }}",
+          "hidden_submit_button": "设置是否隐藏提交按钮",
+          "submit_button_full_w": "设置提交按钮是否全宽",
+          "submit_button_text": "甚至提交按钮的文案"
+        }
+      },
+      "setter_tootip": {
+        "volume": "0到1之间的数字"
+      },
+      "setter_message": {
+        "choose_at_least": "请至少选择 {{ min }} 个选项。",
+        "choose_up_to": "请最多选择 {{max}} 个选项。",
+        "map": {
+          "zoom": "请设置一个介于 1 和 22 之间的值"
+        },
+        "upload": {
+          "size_exceed": "超过 500 MB 的文件可能无法解析。",
+          "single_file": "只允许一个文件。",
+          "file": "已移除不支持的文件类型",
+          "directory": "只允许目录。"
+        },
+        "recording": {
+          "recording_permission": "需要录音权限",
+          "cannot_set_value_dur": "无法在录制过程中设置值",
+          "min_duration": "请至少录制 {{minimum}}秒",
+          "max_duration": "请最多录制 {{maximum}}秒"
+        },
+        "drive_builder": {
+          "min_size": "请选择大小不小于{{min}}的文件",
+          "max_size": "请选择大小不超过{{max}}的文件",
+          "min_files": "请至少选择{{min}}个文件",
+          "max_files": "请最多选择{{max}}个文件"
+        },
+        "uploadsuc": "上传成功",
+        "uploadfail": "上传失败",
+        "noStorage": "存储空间不足，上传失败",
+        "noTraffic": "流量不足，下载失败"
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "在这里写下你的代码。 在 {{ }} 中使用 JavaScript"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "当输入中没有值时，展示的信息。"
+        }
+      },
+      "widget": {
+        "reply": "回复：",
+        "reply_image": "[图片]",
+        "reply_video": "[视频]",
+        "reply_audio": "[音频]"
+      },
+      "page": {
+        "blank_view": "无子页面"
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "新建",
+        "body": "主体",
+        "default_view": "默认子页面",
+        "edit_view": "编辑子页面",
+        "footer": "页脚",
+        "header": "页头",
+        "key": "键值",
+        "left_panel": "左侧面板",
+        "preset": "预设",
+        "right_panel": "右侧面板",
+        "set_as_homepage": "设置为主页",
+        "show_fold_icon": "显示折叠按钮",
+        "view_path": "名称",
+        "views": "子页面",
+        "width": "宽度",
+        "height": "高度",
+        "columns": "列数",
+        "set_as_default_subpage": "设置为默认子页面",
+        "delete-page": "删除页面",
+        "delete-sub-page": "删除子页面"
+      },
+      "model_tips": {
+        "cancel_button": "取消",
+        "change_layout_message": "改变布局将清空所有数据，该操作无法恢复，请确认",
+        "delete_section_message": "隐藏后，这个部分的数据会被清空，该操作无法恢复，请确认",
+        "ok_button": "确认"
+      },
+      "panel_bar_title": {
+        "basic": "基础",
+        "frame": "布局"
+      },
+      "tab_title": "页面",
+      "tooltips": {
+        "show_fold_icon": "显示一个按钮，用于收起或展开面板",
+        "view_path": "要配置访问该页面的链接，您需要调整名称。 例如，如果您将路径更改为“**newPage**”，并将其添加为主页的子页面。 然后可以通过以下 URL 访问此页面：cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**。",
+        "auto_canvas_width": "页面宽度占浏览器宽度的百分比。"
+      },
+      "message": {
+        "new_path": "未匹配到子页面。已为您添加新的子页面。"
+      }
+    },
+    "validate_message": {
+      "email": "请输入有效的电子邮箱",
+      "max_length": "请输入最多{{ number }}个字符",
+      "max_value": "请输入不大于{{ number }}的值",
+      "min_length": "请输入至少{{ number }}个字符",
+      "min_value": "请输入不小于{{ number }} 的值",
+      "regex": "请按照要求的格式填写",
+      "required": "必填",
+      "url": "请输入有效的URL",
+      "max_size": "文件大小不能超过 {{maxSize }} {{ type }}。",
+      "min_files": "要求至少 {{ minFiles }} 个文件。",
+      "max_files": "支持最多 {{ maxFiles }} 个文件。",
+      "min_size": "文件大小不能小于{{minSize }} {{ type }}。",
+      "min_max_size": "最小～最大文件大小"
+    },
+    "widget_picker": {
+      "empty_tip": "抱歉，没有搜索结果",
+      "search_placeholder": "搜索",
+      "sessions": {
+        "calendar": "日历类组件",
+        "commonly": "常用组件",
+        "container": "容器类组件",
+        "data": "数据类组件",
+        "inputs": "输入类组件",
+        "navigation": "导航类组件",
+        "presentation": "展示类组件",
+        "selects": "选择类组件",
+        "drive": "ILLA Drive"
+      },
+      "tab_title": "组件"
+    },
+    "method": {
+      "set_hidden": "设置隐藏",
+      "set_file_url": "Set file URL",
+      "play": "播放",
+      "pause": "暂停",
+      "seek_to": {
+        "time": "时间",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "视频数据源"
+      },
+      "speed": {
+        "speed": "倍速",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "停止",
+      "mute": "静音",
+      "loop": "循环播放",
+      "show_controls": "Show Controls",
+      "set_volumn": "设置音量",
+      "set_volume": {
+        "volume": "音量",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "设置主要数值",
+        "reset_primary_value": "重置主要数值",
+        "primary_value": "主要数值"
+      },
+      "collapse": {
+        "expand_all_items": "展开所有项目",
+        "collapse_all_items": "折叠所有项目"
+      },
+      "carousel": {
+        "showNext": "显示下一个可见图像",
+        "showPrevious": "显示上一个可见图像"
+      },
+      "file_download": {
+        "download": "下载",
+        "message": {
+          "suc": "开始下载",
+          "fail": "请求失败",
+          "download_failed": "下载失败"
+        }
+      },
+      "setGlobalData": "设置全局变量",
+      "setLocalStorage": "设置本地存储数据",
+      "audio": {
+        "set_audio_url": "设置音频数据源"
+      },
+      "map": {
+        "marker_selected": "选择标记",
+        "marker_created": "创建标记",
+        "markers_changed": "更改标记"
+      },
+      "time_range": {
+        "setstarttime": "设置开始时间",
+        "setendtime": "设置结束时间"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "清除过滤器",
+        "clear_column_setting": "清除列设置",
+        "refresh": "刷新",
+        "select_page": "选择页面",
+        "select_row": "选择行",
+        "clear_selection": "清除选择",
+        "set_filters": "设置过滤器",
+        "onFreeTimeDragOrClick": "点击空闲时间"
+      },
+      "clearReplyMessage": "清除回复消息"
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "教程"
+          },
+          "title": {
+            "tutorial": "教程",
+            "templates": "使用教程"
+          },
+          "onboarding_app": {
+            "name": "新手引导",
+            "description": "跟着 ILLA 的教程学习如何构建应用程序",
+            "action": "开始"
+          },
+          "templates_action": {
+            "fork": "创建",
+            "fork_description": "使用此模板创建一个应用"
+          },
+          "templates_name": {
+            "table": "仪表板",
+            "form": "调查问卷",
+            "list": "管理面板",
+            "table_guide": "表格使用教程",
+            "custom_login": "自定义登录",
+            "run_script": "运行Script",
+            "calendar_guide": "日历使用教程",
+            "chat_guide": "对话组件教程",
+            "custom_login_with_sc": "用Script自定义登录"
+          },
+          "templates_description": {
+            "table": "使用表格和其他组件创建仪表板。",
+            "form": "使用表单和输入组件创建表单，例如满意度调查、预售表单等",
+            "list": "使用列表组件显示和管理信息",
+            "table_guide": "表格支持的功能和使用方法",
+            "custom_login": "限制只有您数据库里的用户可以访问您的公开项目",
+            "run_script": "使用Script灵活处理事件",
+            "calendar_guide": "使用日历组件做事项管理和查看",
+            "custom_login_with_sc": "使用Script限制只有您数据库里的用户可以访问您的公开APP"
+          },
+          "modal": {
+            "title": "复制并部署",
+            "placeholder": "应用名称",
+            "cancel": "取消",
+            "fork": "复制并部署"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "第 1 步：将输入组件拖到此处",
+          "drag_button": "第 2 步：将按钮组件拖到此处",
+          "drag_table": "第 3 步：将表格组件拖到此处",
+          "exit": "中止",
+          "do_it": "帮我完成",
+          "drag_title": "将组件拖到画布中",
+          "modify_action_title": "修改动作",
+          "modify_action_description_modify": "修改动作以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "单击保存，然后单击运行",
+          "display_data_title": "在表格中显示数据",
+          "display_data_description_select": "选择画布中的表格",
+          "display_data_description_modify": "修改右侧面板上的数据源。 我们可以使用 {{postgresql1.data}} 来获取数据。",
+          "event_handler_title": "点击按钮触发动作",
+          "event_handler_description_1": "选择画布里的按钮",
+          "event_handler_description_2": "添加事件处理器",
+          "event_handler_description_3": "点击事件处理器",
+          "event_handler_description_4": "将操作改为触发动作",
+          "event_handler_description_5": "将查询更改为postgre1",
+          "test_it_title": "测试一下",
+          "test_it_description": "输入您要搜索的用户名，然后点击按钮",
+          "test_it_button": "下一步",
+          "congratulations_title": "恭喜🎉",
+          "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
+          "congratulations_button": "完成",
+          "event_handler_description_all": "1. 添加事件处理器\n2. 点击事件处理器\n3. 将触发的行为改为触发动作\n4. 更改Action为postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "数据大小超出限制（当前大小：{{current_size}} 字节，限制： {{limit_size}} 字节）"
+    },
+    "general": {
+      "length_limit": "当前输入内容太长，我们已经停止自动计算数据，您仍然可以继续输入，这不会影响您的使用。"
+    },
+    "history": {
+      "operation": {
+        "Added": "增加 {{operationTargetName}}",
+        "Deleted": "删除 {{operationTargetName}}",
+        "Updated": "更新 {{operationTargetName}}",
+        "Moved": "移动 {{operationTargetName}}",
+        "Reseted": "重置 {{operationTargetName}}",
+        "Restored": "恢复到 {{versionName}}"
+      },
+      "save": "保存为历史记录",
+      "history": "历史记录",
+      "more": "更多",
+      "save_keyboard": {
+        "cmds": "⌘ S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "当前",
+        "manual": "手动保存",
+        "January": "1月",
+        "February": "2月",
+        "March": "3月",
+        "April": "4月",
+        "May": "5月",
+        "June": "6月",
+        "July": "7月",
+        "August": "8月",
+        "September": "9月",
+        "October": "10月",
+        "November": "11月",
+        "December": "12月",
+        "final_node": "没有更多历史记录",
+        "label": "只读"
+      },
+      "restore": "恢复到该版本",
+      "message": {
+        "version_change": "当前应用版本已发生变更",
+        "suc": {
+          "save": "当前版本已成功保存为历史记录",
+          "restore": "恢复成功",
+          "preview": "历史记录加载成功"
+        },
+        "fail": {
+          "save": "保存失败",
+          "restore": "恢复失败",
+          "preview": "历史记录加载失败"
+        }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "name": "名称",
+        "desc": "描述",
+        "mode": "模式",
+        "prompt": "Prompt",
+        "variable": "参数",
+        "welcome": "初始消息",
+        "model": "模型",
+        "temperature": "Temperature",
+        "max-token": "最大Token",
+        "icon": "图标"
+      },
+      "placeholder": {
+        "name": "为Agent命名",
+        "desc": "简要描述该Agent的用途。",
+        "prompt": "输入 {{ 使用变量",
+        "variable": {
+          "key": "变量名",
+          "value": "值"
+        },
+        "welcome": "提供一个初始消息，在用户开始使用这个agent时展示",
+        "icon": "上传",
+        "send": "向Agent发送内容"
+      },
+      "tips": {
+        "mode": "在聊天模式下，发送的每条消息时都会带上对话历史记录一起请求，这可以使结果更优，但会消耗更多的Token； 在文本模式下，发送的每条消息不包含对话历史记录，与聊天模式相比，这个模式的结果可能不够好，但可以节省Token。",
+        "not-start": "完成Agent配置并点击开始运行",
+        "not-start-run": "请点击左侧的开始按钮。",
+        "temperature": "0到1之间的值，值越小结果约优",
+        "max-token": "用于限制单次运行的最大数量限制"
+      },
+      "option": {
+        "mode": {
+          "chat": "对话",
+          "text": "文本生成"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "新增",
+      "save": "保存",
+      "start": "开始",
+      "restart": "重新开始",
+      "contribute": "贡献到Marketplace",
+      "button": {
+        "send": "发送",
+        "generating": "正在生成"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "对话",
+        "text": "生成文本"
+      },
+      "message": {
+        "click-start": "点击开始按钮触发运行",
+        "insufficient_token": "Token不足",
+        "start-failed": "开始失败，请重试。",
+        "reconnect": "连接已断开，正在重连",
+        "token-not-enough": "运行已达模型上限，请重新开始。",
+        "token": "The Max token is smaller than the number of tokens occupied by the prompt or exceeds the model's limit.",
+        "purchase-required": "Colla不足无法运行，请充值",
+        "leave": "有未保存的内容，确认要离开吗？",
+        "generating": "请等待生成结束或中断生成后再切换",
+        "model-unavailable": "当前模型不可用"
+      },
+      "title": "编辑AI Agent",
+      "generate-desc": {
+        "button": "AI生成",
+        "tooltips": "基于您的Prompt，使用AI生成描述信息",
+        "failed": "生成失败，请稍后重试",
+        "blank": "请先填入Prompt"
+      },
+      "generate-icon": {
+        "tooltips": "基于Agent的名称和描述，使用AI生成icon",
+        "blank": "请先填写名称字段"
+      },
+      "title-preview": {
+        "chat": "运行结果预览",
+        "text-generation": "运行结果预览"
+      }
+    },
+    "common": {
+      "required": "必填"
+    }
+  },
+  "dashboard": {
+    "app_market": "模板",
+    "market": "从模板创建",
+    "app": {
+      "all_apps": "所有项目",
+      "create_app": "创建App",
+      "duplicate_fail": "复制失败",
+      "duplicate_placeholder": "请输入项目名称",
+      "edited_time": "由 {{ user }} 在 {{ time }} 编辑",
+      "name_empty": "请输入项目名称",
+      "name_existed": "名称已被占用",
+      "rename_app": "重命名项目",
+      "rename_fail": "重命名失败",
+      "rename_success": "修改成功",
+      "trash_failure": "删除失败",
+      "trash_success": "删除成功"
+    },
+    "common": {
+      "cancel": "取消",
+      "delete": "删除",
+      "delete_cancel_text": "取消",
+      "delete_content": "删除后将无法通过任何方式访问和恢复，请确认",
+      "delete_ok_text": "删除",
+      "delete_title": "确认",
+      "error_button": "重试",
+      "error_description": "请求错误",
+      "error_title": "错误",
+      "marketplace": "Marketplace",
+      "run": "运行",
+      "fork": "Fork",
+      "duplicate": "复制",
+      "share": "分享",
+      "edit": "编辑",
+      "launch": "运行"
+    },
+    "resource": {
+      "create_resource": "创建资源",
+      "created": "创建时间",
+      "dbname": "数据库名",
+      "delete_fail": "删除失败",
+      "delete_success": "删除成功",
+      "resource_name": "名称",
+      "resource_type": "类型",
+      "save_fail": "保存失败",
+      "save_success": "保存成功",
+      "test_fail": "测试失败",
+      "test_success": "测试成功"
+    },
+    "list-type": {
+      "team": "Team's",
+      "marketplace": "社区"
+    },
+    "sort-type": {
+      "popular": "最受欢迎",
+      "recent": "最近更新",
+      "star": "已收藏"
+    },
+    "search": "搜索",
+    "no-result": "没有结果。请刷新或更改搜索条件。",
+    "message": {
+      "next-page-error": "下一页加载失败，请重试",
+      "create-failed": "Agent保存失败，请重试",
+      "sort-failed": "筛选类型过滤失败，请重试",
+      "detail-load-failed": "详细信息查询失败，请重试",
+      "fork-failed": "复制失败，请重试。",
+      "create-suc": "创建成功",
+      "fork-suc": "复制成功",
+      "delete-failed": "删除失败，请重试",
+      "delete-suc": "删除成功",
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
+    },
+    "create": "创建",
+    "market_view": "社区内容"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "已部署",
+      "undeploy": "未部署"
+    },
+    "desc": {
+      "no_description": "暂无描述",
+      "blank": "无内容",
+      "blank-agent": "无AI Agent"
+    },
+    "app_setting": {
+      "app_setting": "项目设置",
+      "app_name": "项目名称",
+      "description": "描述",
+      "save": "保存",
+      "placeholder": {
+        "description": "输入项目描述",
+        "app_name": "输入项目名称"
+      }
+    },
+    "access": {
+      "public": "公开",
+      "private": "私密"
+    },
+    "message": {
+      "update_failed": "更新失败",
+      "update_suc": "更新成功"
+    },
+    "button": {
+      "blank": "新建",
+      "blank-agent": "创建AI Agent"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "私密项目",
+      "public_app": "公开项目"
+    },
+    "desc": {
+      "private_app": "仅团队成员可以访问",
+      "public_app": "任何获取到项目链接的人都可以访问"
+    },
+    "button": {
+      "public": "公开部署"
+    }
+  },
+  "ai-agents": "AI Agents",
+  "marketplace": {
+    "star": "Star",
+    "fork": "Fork"
+  },
+  "load": {
+    "before": "加载更多"
+  },
+  "resources": "资源",
+  "- user_management": {
+    "modal": {
+      "tab": {
+        "with_team": "和团队成员分享"
+      }
+    }
+  },
+  "contribute": {
+    "tag": {
+      "recommended": "推荐",
+      "add_tag": "添加标签",
+      "tag": "标签",
+      "failed_to_save": "保存失败"
+    },
+    "first_time_modal": {
+      "title": "贡献到社区",
+      "button": "贡献"
+    },
+    "update": "编辑标签",
+    "copy_link": "复制链接",
+    "update_modal": {
+      "button": "更新",
+      "title": "编辑"
+    }
+  },
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "了解如何在 5 分钟内构建应用程序",
+          "description": "按照 ILLA 的教程学习如何构建应用程序，这大约需要 5 分钟。",
+          "cancel": "取消",
+          "take": "开始教程"
+        }
+      }
+    }
+  },
+  "dayjs": {
+    "just_now": "刚刚"
+  }
+}

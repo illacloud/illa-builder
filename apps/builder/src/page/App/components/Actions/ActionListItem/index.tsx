@@ -36,7 +36,7 @@ import {
   GlobalDataActionContent,
 } from "@/redux/currentApp/action/actionState"
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"

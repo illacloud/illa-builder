@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
+import { SectionViewShape } from "@/redux/currentApp/components/componentsState"
 
 export let viewNameSet = new Set<string>()
 

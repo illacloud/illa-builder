@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { RootState } from "@/store"
-import { getGlobalDataToActionList } from "../editor/components/componentsSelector"
+import { getGlobalDataToActionList } from "../components/componentsSelector"
 
 export const getActionList = (state: RootState) => state.currentApp.action
 

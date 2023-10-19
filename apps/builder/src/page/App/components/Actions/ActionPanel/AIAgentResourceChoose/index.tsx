@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Option, Select, TriggerProvider } from "@illa-design/react"
 import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
+import { getDashboardTeamAIAgentList } from "@/redux/aiAgent/dashboardTeamAIAgentSelector"
 import {
   getCachedAction,
   getSelectedAction,
@@ -16,7 +17,6 @@ import {
   IAdvancedConfig,
 } from "@/redux/currentApp/action/actionState"
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
-import { getDashboardTeamAIAgentList } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   itemContainer,
