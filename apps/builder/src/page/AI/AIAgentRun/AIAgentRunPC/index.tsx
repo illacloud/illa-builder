@@ -36,9 +36,10 @@ import {
 import {
   formatNumForAgent,
   getAgentPublicLink,
+  getAuthToken,
   getILLABuilderURL,
+  getILLACloudURL,
 } from "@illa-public/utils"
-import { getAuthToken } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -485,7 +486,11 @@ export const AIAgentRunPC: FC = () => {
             <div
               css={backMenuStyle}
               onClick={() => {
-                navigate(-1)
+                if (document.referrer) {
+                  navigate(-1)
+                } else {
+                  location.href = getILLACloudURL()
+                }
               }}
             >
               <PreviousIcon fs="16px" />
