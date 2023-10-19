@@ -32,7 +32,6 @@ export const ResourceCreate: FC = () => {
     >
       <div css={innerContainerStyle}>
         <Header resourceType={resourceType as ResourceType} />
-
         <div css={containerStyle}>
           <ConfigElement
             resourceType={resourceType as ResourceType}

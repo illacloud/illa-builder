@@ -1,5 +1,16 @@
 import { MobileAppCardItem, TeamContentEmpty } from "@illa-public/dashboard"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getPlanUtils,
+} from "@illa-public/user-data"
+import {
+  ACTION_ACCESS,
+  ATTRIBUTE_GROUP,
+  canAccess,
+} from "@illa-public/user-role-utils"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { Divider, Search } from "@illa-design/react"
 import { FullSectionLoading } from "@/components/FullSectionLoading"
 import { MobileDashboardHeader } from "@/page/workspace/components/Header"
@@ -9,7 +20,14 @@ import { useDividerLine } from "../../layout/hook"
 import { appContainerStyle, cardContainerStyle } from "./style"
 
 export const MobileAppWorkspace = () => {
-  const { data, isLoading } = useAppList()
+  const currentTeamInfo = useSelector(getCurrentTeamInfo)
+  const canAccessApps = canAccess(
+    currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.APP,
+    getPlanUtils(currentTeamInfo),
+    ACTION_ACCESS.VIEW,
+  )
+  const { data, isLoading } = useAppList(canAccessApps)
   const { t } = useTranslation()
 
   const [appList, handleChangeSearch] = useSearch(data ?? [], [

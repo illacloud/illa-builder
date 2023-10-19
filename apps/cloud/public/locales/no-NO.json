@@ -873,7 +873,7 @@
         "invite_title": "Inviter via e-post",
         "invite": "Inviter",
         "placeholder": "Skriv inn e-postadresse",
-        "invited": "Har invitert",
+        "invited": "Denne brukeren er allerede i teamet.",
         "in_list": "Denne brukeren er allerede i teamet ditt.",
         "duplicate": "{{ email }} er duplisert",
         "notmail": "{{ email }} er ikke en e-post",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "Inviter",
-        "public": "Offentlig"
+        "public": "Offentlig",
+        "with_team": "Del med team"
       },
       "custom_copy_text": "{{userName}} inviterer deg til å bli med i 「{{teamName}}」. Klikk på lenken for å bli med i teamet: {{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}} har delt deg en app av 「{{teamName}}」. Klikk på lenken for å bli med i teamet og sjekk APP: {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "Etter at du har bidratt med appen til samfunnet, kan andre brukere se grensesnittet, kjøre handlingene dens og gaffke den. Når du har lagt til en app, er ikke ressurskonfigurasjonsinformasjonen inkludert, så det er ikke nødvendig å bekymre deg om utlevering av informasjon om ressurskonfigurasjon."
         },
-        "desc": "Etter å ha bidratt til fellesskapet, kan alle brukere kjøre, stjerne, og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine."
+        "desc": "Etter å ha bidratt til fellesskapet, kan alle brukere kjøre, stjerne, og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine.",
+        "default_text": {
+          "agent": "Jeg oppdaget nettopp en imponerende AI Agent kalt {{ agentName }}. Sjekk det: {{ agentLink }}",
+          "app": "Jeg oppdaget en imponerende app som heter {{ appName }}. Sjekk den: {{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "Del på sosiale medier"
-      }
+        "label": "Del på sosiale medier",
+        "default_text": {
+          "agent": "Jeg oppdaget nettopp en imponerende AI-Agent kalt {{ agentName }}",
+          "app": "Jeg oppdaget nettopp en imponerende app som heter {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} deler deg en AI Agent fra ########{{ teamName }}ε. Bli med på laget og kontroller den: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invitert vellykket",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "Maler",
-    "market": "Markedsplass",
+    "market": "Opprett fra mal",
     "app": {
       "all_apps": "Alle apper",
       "create_app": "Lag App",
@@ -4375,5 +4385,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "Nå nettopp"
   }
 }

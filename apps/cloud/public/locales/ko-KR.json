@@ -873,7 +873,7 @@
         "invite_title": "이메일로 초대",
         "invite": "초대",
         "placeholder": "이메일 입력",
-        "invited": "초대했다",
+        "invited": "This user is already on your team.",
         "in_list": "이 사용자는 이미 팀에 있습니다.",
         "duplicate": "{{ email }} 는 중복 이메일 주소입니다.",
         "notmail": "{{ email }} 는 이메일이 아닙니다.",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "멤버 초대",
-        "public": "공개"
+        "public": "공개",
+        "with_team": "Share with team"
       },
       "custom_copy_text": "{{userName}}님이 귀하를 「{{teamName}}」 에 초대했습니다. 팀에 합류하려면 링크를 클릭하십시오: {{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}}님이 「{{teamName}}」 앱을 공유했습니다. 링크를 클릭하여 팀에 합류하고 앱을 확인하세요: {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "After contributing your app to the community, other users can view its interface, run its actions, and fork it. When forking an app, the resource configuration information is not included, so there is no need to worry about the disclosure of resource configuration information."
         },
-        "desc": "After contributing to the community, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+        "desc": "After contributing to the community, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
+        "default_text": {
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}",
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "Share on social media"
-      }
+        "label": "Share on social media",
+        "default_text": {
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}",
+          "app": "I just discovered an impressive app called {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "초대 성공",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "Templates",
-    "market": "Marketplace",
+    "market": "Create from template",
     "app": {
       "all_apps": "All Apps",
       "create_app": "Create App",
@@ -4375,5 +4385,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "Just now"
   }
 }

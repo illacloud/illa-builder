@@ -1,6 +1,17 @@
 import { ResourceCard, TeamContentEmpty } from "@illa-public/dashboard"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getPlanUtils,
+} from "@illa-public/user-data"
+import {
+  ACTION_ACCESS,
+  ATTRIBUTE_GROUP,
+  canAccess,
+} from "@illa-public/user-role-utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { Divider, Search } from "@illa-design/react"
 import { FullSectionLoading } from "@/components/FullSectionLoading"
 import { MobileDashboardHeader } from "@/page/workspace/components/Header"
@@ -12,7 +23,15 @@ import { cardContainerStyle, resourceContainerStyle } from "./style"
 
 export const MobileResourcesWorkspace: FC = () => {
   const { t } = useTranslation()
-  const { data, isLoading } = useResourceList()
+  const currentTeamInfo = useSelector(getCurrentTeamInfo)
+
+  const canAccessResourceList = canAccess(
+    currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.RESOURCE,
+    getPlanUtils(currentTeamInfo),
+    ACTION_ACCESS.VIEW,
+  )
+  const { data, isLoading } = useResourceList(canAccessResourceList)
   const [dividerShown, onContainerScroll] = useDividerLine()
 
   const [resourceList, handleChangeSearch] = useSearch(data ?? [], [
