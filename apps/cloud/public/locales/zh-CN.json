@@ -873,7 +873,7 @@
         "invite_title": "通过电子邮件邀请",
         "invite": "邀请",
         "placeholder": "请输入电子邮件地址",
-        "invited": "已邀请",
+        "invited": "该用户已在成员列表",
         "in_list": "该用户已加入您的团队",
         "duplicate": "{{ email }} 是重复的电子邮件地址",
         "notmail": "{{ email }} 不是一个邮箱地址",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "邀请",
-        "public": "公开"
+        "public": "公开",
+        "with_team": "和团队共享"
       },
       "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}} 分享了一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的动作并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
         },
-        "desc": "贡献到社区之后，所有用户都可以运行、Star和Fork您的Agent。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
+        "desc": "贡献到社区之后，所有用户都可以运行、Star和Fork您的Agent。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
+        "default_text": {
+          "agent": "我刚发现了一个有意思的AI Agent：  {{ agentName }}. 通过链接查看: {{ agentLink }}",
+          "app": "我刚发现了一个有意思的app： {{ appName }}，通过链接查看：{{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "分享到社交媒体"
-      }
+        "label": "分享到社交媒体",
+        "default_text": {
+          "agent": "我刚发现了一个有意思的AI Agent： {{ agentName }}",
+          "app": "我刚发现了一个有意思的app： {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} 分享给你一个来自 「{{ teamName }}」的AI Agent。加入团队并查看: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "模板",
-    "market": "社区内容",
+    "market": "从模板创建",
     "app": {
       "all_apps": "所有项目",
       "create_app": "创建App",
@@ -4375,5 +4385,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "刚刚"
   }
 }
