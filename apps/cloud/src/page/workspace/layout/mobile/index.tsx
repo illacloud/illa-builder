@@ -62,6 +62,7 @@ export const MobileDashBoardLayout: FC = () => {
       {isLogin && <Outlet />}
       {inviteModalVisible && (
         <InviteMemberMobile
+          itemID={currentTeamInfo!.id}
           redirectURL=""
           onClose={() => setInviteModalVisible(false)}
           canInvite={canManageInvite(
