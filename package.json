@@ -28,7 +28,7 @@
     "react-i18next": "^13.2.2",
     "i18next": "^23.5.1",
     "dayjs": "^1.11.10",
-    "turbo": "^1.10.14"
+    "turbo": "^1.10.15"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
