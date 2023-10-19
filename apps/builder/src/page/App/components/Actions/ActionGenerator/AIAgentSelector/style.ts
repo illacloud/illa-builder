@@ -10,14 +10,7 @@ export const bodyContainerStyle = css`
   display: flex;
   flex-direction: column;
   gap: 16px;
-`
-
-export const footerStyle = css`
-  height: 80px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding-bottom: 16px;
 `
 
 export const resourceItemSelectedStyle = css`
