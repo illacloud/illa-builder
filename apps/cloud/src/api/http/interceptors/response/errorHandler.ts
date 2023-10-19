@@ -1,4 +1,4 @@
-import { removeAuthToken } from "@illa-public/utils"
+import { getILLACloudURL, removeAuthToken } from "@illa-public/utils"
 import { AxiosError } from "axios"
 
 export const errorHandlerInterceptor = (error: AxiosError) => {
@@ -11,7 +11,7 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
   switch (status) {
     case 401: {
       removeAuthToken()
-      window.location.pathname = "/login"
+      window.location.href = `${getILLACloudURL()}/login`
       break
     }
     default: {
