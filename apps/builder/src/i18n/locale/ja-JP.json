@@ -76,7 +76,8 @@
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
       "delete-suc": "正常に削除しました。 ",
-      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。"
+      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。",
+      "save_resource": "保存に成功しました。ページは3秒で閉じられます..."
     },
     "create": "作成"
   },
@@ -4387,7 +4388,24 @@
     "before": "さらに読み込む"
   },
   "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
-  "contribute": "貢献",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "タグを追加",
+      "tag": "タグ",
+      "failed_to_save": "保存に失敗しました"
+    },
+    "update": "タグを編集",
+    "copy_link": "リンクをコピー",
+    "first_time_modal": {
+      "title": "コミュニティに貢献する",
+      "button": "貢献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "編集"
+    }
+  },
   "error_page": {
     "fobidden": "アクセス権限がありません"
   }

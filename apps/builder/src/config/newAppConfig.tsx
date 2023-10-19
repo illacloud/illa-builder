@@ -10,7 +10,7 @@ import {
   PADDING_MODE,
   SECTION_POSITION,
   SectionNode,
-} from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsState"
 
 export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   displayName: "bodySection1",

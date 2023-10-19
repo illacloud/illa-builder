@@ -3,7 +3,7 @@ import { cloneDeep, flatten, get, set, toPath, unset } from "lodash"
 import toposort from "toposort"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import {
   DependenciesState,
   ErrorShape,
