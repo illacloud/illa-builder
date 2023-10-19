@@ -4394,6 +4394,16 @@
       "add_tag": "Lägg till taggar",
       "tag": "Tagg",
       "failed_to_save": "Det gick inte att spara"
+    },
+    "update": "Redigera taggar",
+    "copy_link": "Kopiera länk",
+    "first_time_modal": {
+      "title": "Bidra till gemenskap",
+      "button": "Bidra"
+    },
+    "update_modal": {
+      "button": "Uppdatera",
+      "title": "Redigera"
     }
   },
   "error_page": {

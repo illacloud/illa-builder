@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+} from "@/redux/currentApp/components/componentsSelector"
 import {
   getRootNodeExecutionResult,
   getSectionExecutionResultArray,

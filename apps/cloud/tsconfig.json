@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "tsconfig/react.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@assets/*": ["./src/assets/*"]
+    },
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "node",
+      "@illa-design/table/src/react-table.d.ts",
+      "@illa-public/utils/types/gtag.d.ts"
+    ]
+  },
+  "include": [
+    "./src/**/*.tsx",
+    "./src/**/*.ts",
+    "./src/assets/animationForLottie/*.json"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

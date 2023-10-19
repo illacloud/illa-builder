@@ -32,7 +32,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
   const recordList = useMemo(() => {
     return (
       <>
-        {records.map((record, index) => {
+        {records?.map((record, index) => {
           if (customRender) {
             return (
               <div css={recordStyle} key={index}>

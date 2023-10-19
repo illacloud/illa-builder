@@ -17,13 +17,13 @@ import {
   openShareAppModal,
 } from "@illa-public/user-role-utils"
 import { getMarketLinkTemplate } from "@illa-public/utils"
+import { getAuthToken } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, ContributeIcon, getColor } from "@illa-design/react"
 import { ContributeButtonProps } from "@/page/App/components/PageNavBar/ContributeButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 

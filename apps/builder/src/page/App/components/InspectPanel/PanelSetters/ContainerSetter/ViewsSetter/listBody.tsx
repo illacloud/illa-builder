@@ -12,8 +12,8 @@ import { useDispatch } from "react-redux"
 import { ViewListSetterContext } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
 import { ViewItemShape } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/InspectPanel/PanelSetters/TableSetter/ColumnSetter/style"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { ListItem } from "./listItem"
 
 interface ItemsProps extends ViewItemShape {

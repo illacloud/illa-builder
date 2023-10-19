@@ -4394,6 +4394,16 @@
       "add_tag": "Přidat štítky",
       "tag": "Značka",
       "failed_to_save": "Uložení se nezdařilo"
+    },
+    "update": "Upravit štítky",
+    "copy_link": "Kopírovat odkaz",
+    "first_time_modal": {
+      "title": "Přispět do komunity",
+      "button": "Přispějte"
+    },
+    "update_modal": {
+      "button": "Aktualizovat",
+      "title": "Upravit"
     }
   },
   "error_page": {

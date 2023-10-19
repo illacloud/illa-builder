@@ -16,7 +16,7 @@ import {
 } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
+import { SECTION_POSITION } from "@/redux/currentApp/components/componentsState"
 import {
   getCurrentPageExecutionResult,
   getPageLoadingActions,
@@ -327,8 +327,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     const abortController = new AbortController()
     const rootState = store.getState()
     const pageLoadingActions = getPageLoadingActions(rootState)
-    const currentPageActions = pageLoadingActions.filter((action) =>
-      action.config?.advancedConfig.pages.includes(currentPageDisplayName),
+    const currentPageActions = pageLoadingActions.filter(
+      (action) =>
+        action.config?.advancedConfig.pages.includes(currentPageDisplayName),
     )
     const canShowPageActions = currentPageActions.filter(
       (action) => action?.config.advancedConfig.displayLoadingPage,

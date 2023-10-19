@@ -1,11 +1,11 @@
 import { AnyAction } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
-import { UpdateComponentContainerPayload } from "@/redux/currentApp/editor/components/componentsPayload"
+import { UpdateComponentContainerPayload } from "@/redux/currentApp/components/componentsPayload"
 import {
   getCanvas,
   searchDSLByDisplayName,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 

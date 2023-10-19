@@ -4394,6 +4394,16 @@
       "add_tag": "Lisää tunnisteita",
       "tag": "Tunniste",
       "failed_to_save": "Tallennus epäonnistui"
+    },
+    "update": "Muokkaa tageja",
+    "copy_link": "Kopioi linkki",
+    "first_time_modal": {
+      "title": "Osallistu yhteisölle",
+      "button": "Osallistu"
+    },
+    "update_modal": {
+      "button": "Päivitä",
+      "title": "Muokkaa"
     }
   },
   "error_page": {
