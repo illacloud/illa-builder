@@ -6,6 +6,8 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -77,7 +79,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
         }}
         leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
       >
-        {t("contribute")}
+        {t("contribute.first_time_modal.button")}
       </Button>
       <MixpanelTrackProvider
         basicTrack={track}
@@ -85,6 +87,36 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
       >
         {shareModalVisible && (
           <ShareAppPC
+            itemID={appInfo.appId}
+            onInvitedChange={(userList) => {
+              const memberListInfo: MemberInfo[] = userList.map((user) => {
+                return {
+                  ...user,
+                  userID: "",
+                  nickname: "",
+                  avatar: "",
+                  userStatus: USER_STATUS.PENDING,
+                  permission: {},
+                  createdAt: "",
+                  updatedAt: "",
+                }
+              })
+              dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
+            }}
+            appDesc={appInfo.config.description}
+            appName={appInfo.appName}
+            onAppInfoUpdate={(appName, appDesc) => {
+              dispatch(
+                appInfoActions.updateAppInfoReducer({
+                  ...appInfo,
+                  appName,
+                  config: {
+                    ...appInfo.config,
+                    description: appDesc,
+                  },
+                }),
+              )
+            }}
             isDeployed={appInfo.deployed}
             title={t("user_management.modal.social_media.default_text.app", {
               appName: appInfo.appName,
