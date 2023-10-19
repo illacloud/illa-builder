@@ -15,7 +15,6 @@ import {
 } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
-  container,
   divider,
   errorIconStyle,
   errorMsgStyle,
@@ -39,6 +38,7 @@ import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const ClickhouseConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props

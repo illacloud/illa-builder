@@ -17,7 +17,6 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  container,
   divider,
   footerStyle,
   labelContainer,
@@ -34,6 +33,7 @@ import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
+import { container } from "../style"
 import { RedisLikeConfigElementProps } from "./interface"
 
 const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {

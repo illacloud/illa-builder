@@ -17,7 +17,6 @@ import { APIKeyAuthPanel } from "@/page/App/components/Actions/ResourceGenerator
 import { BasicAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/BearerAuthPanel"
 import {
-  container,
   divider,
   footerStyle,
   optionLabelStyle,
@@ -39,6 +38,7 @@ import { urlValidate, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props

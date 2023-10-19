@@ -6,7 +6,6 @@ import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
 import { BasicAuthConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/BasicAuthConfig"
 import { KeyPairConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/KeyPairConfig"
 import {
-  container,
   divider,
   footerStyle,
   optionLabelStyle,
@@ -25,6 +24,7 @@ import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 
