@@ -1,8 +1,8 @@
 import { isCloudVersion } from "@illa-public/utils"
+import { removeAuthToken } from "@illa-public/utils"
 import { AxiosError } from "axios"
 import { cloudRedirect } from "@/router/constant"
 import { getQS } from "@/router/utils/translateQS"
-import { removeAuthToken } from "@/utils/auth"
 import { commonBillingErrorHandler } from "@/utils/billing/errorHandler"
 
 const getRedirectPathWhen401 = (searchParams: URLSearchParams) => {

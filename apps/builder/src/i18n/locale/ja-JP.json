@@ -76,7 +76,8 @@
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
       "delete-suc": "正常に削除しました。 ",
-      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。"
+      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。",
+      "save_resource": "保存に成功しました。ページは3秒で閉じられます..."
     },
     "create": "作成"
   },
@@ -1837,7 +1838,15 @@
         "page_size_options": "ページサイズオプション",
         "export_setting": "エクスポート",
         "filter_setting": "フィルター",
-        "primary_key": "プライマリーキー"
+        "primary_key": "プライマリーキー",
+        "allow_row_selection": "行の選択を許可",
+        "selection_mode": "選択モード",
+        "pin_column": "列をピン留めする",
+        "enable_users_to_sort": "ユーザーの並び替えを有効にする",
+        "enable_users_to_pin": "ユーザーのピン留めを有効にする",
+        "enable_users_to_filter": "フィルタを有効にする",
+        "enable_users_to_hide": "ユーザーの非表示を有効にする",
+        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2126,7 +2135,16 @@
           "item_spacing": "グリッド間の間隔を設定するために使用",
           "max_column_count": "グリッドリストコンポーネントに表示できる最大列数を、幅が大きくなるにつれて設定します。 列の最大数に達し、キャンバスの幅が増加し続ける場合。 レイアウトに合わせて列幅を増やし、列数がさらに増えることはありません。"
         },
-        "primary_key": "行を識別するためのユニークなキー"
+        "primary_key": "行を識別するためのユニークなキー",
+        "selection_mode": "複数行の選択または単一行の選択を設定するために使用されます",
+        "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用",
+        "pin_column": "すべてのユーザーに列を固定するために使用",
+        "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
+        "enable_users_to_pin": "ユーザーが列を固定することを許可するかどうかを設定するために使用",
+        "enable_users_to_filter": "このカラムをフィルタリングできるかどうかを設定するために使用します。",
+        "enable_users_to_hide": "ユーザーが列を非表示にするかどうかを設定するために使用します。",
+        "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
+        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 "
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -2331,6 +2349,10 @@
       },
       "page": {
         "blank_view": "サブページがありません"
+      },
+      "setter_options": {
+        "single_row_selection": "単一選択",
+        "multiple_row_selection": "複数選択"
       }
     },
     "page": {
@@ -3024,7 +3046,7 @@
       "export": {
         "title": "エクスポート",
         "csv": "CSV形式でエクスポート",
-        "excel": "Excel としてエクスポート",
+        "excel": "Export as excel",
         "print": "印刷"
       }
     },
@@ -3541,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "行の選択変更"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "ユーザーの集計を有効にする"
       }
     }
   },
@@ -4363,7 +4388,24 @@
     "before": "さらに読み込む"
   },
   "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
-  "contribute": "貢献",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "タグを追加",
+      "tag": "タグ",
+      "failed_to_save": "保存に失敗しました"
+    },
+    "update": "タグを編集",
+    "copy_link": "リンクをコピー",
+    "first_time_modal": {
+      "title": "コミュニティに貢献する",
+      "button": "貢献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "編集"
+    }
+  },
   "error_page": {
     "fobidden": "アクセス権限がありません"
   }

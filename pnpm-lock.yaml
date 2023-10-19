@@ -214,15 +214,24 @@ importers:
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MixpanelUtils
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/publicTypes
       '@illa-public/record-editor':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/RecordEditor
+      '@illa-public/resource-generator':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/ResourceGenerator
       '@illa-public/select':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Select
       '@illa-public/sso-module':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/SSOModule
+      '@illa-public/text-link':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/TextLink
       '@illa-public/upgrade-modal':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/UpgradeModal
@@ -400,9 +409,6 @@ importers:
       react-use-measure:
         specifier: ^2.1.1
         version: 2.1.1(react-dom@18.2.0)(react@18.2.0)
-      react-virtualized-auto-sizer:
-        specifier: ^1.0.20
-        version: 1.0.20(react-dom@18.2.0)(react@18.2.0)
       react-virtuoso:
         specifier: ^4.3.11
         version: 4.3.11(react-dom@18.2.0)(react@18.2.0)
@@ -544,6 +550,133 @@ importers:
         version: 0.6.2(eslint@8.50.0)(typescript@5.2.2)(vite@4.4.9)
       vite-plugin-svgr:
         specifier: ^3.3.0
+        version: 3.3.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
+
+  apps/cloud:
+    dependencies:
+      '@emotion/cache':
+        specifier: ^11.10.5
+        version: 11.11.0
+      '@emotion/core':
+        specifier: ^11.0.0
+        version: 11.0.0
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../packages/illa-design/packages/react
+      '@illa-design/table':
+        specifier: workspace:*
+        version: link:../../packages/illa-design/packages/table
+      '@illa-public/avatar':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/Avatar
+      '@illa-public/cloud-dashboard-layout':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/CloudDashboardLayout
+      '@illa-public/cropper':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/Cropper
+      '@illa-public/dashboard':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/Dashboard
+      '@illa-public/icon':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/Icon
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/ILLANet
+      '@illa-public/illa-storage':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/ILLAStorage
+      '@illa-public/invite-modal':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/InviteModal
+      '@illa-public/layout-auto-change':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/LayoutAutoChange
+      '@illa-public/member-page':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/MemberPage
+      '@illa-public/public-configs':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/publicConfig
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/publicTypes
+      '@illa-public/resource-generator':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/ResourceGenerator
+      '@illa-public/sso-module':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/SSOModule
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/UserData
+      '@illa-public/user-role-utils':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/UserRoleUtils
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/utils
+      axios:
+        specifier: ^0.26.1
+        version: 0.26.1
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
+      fuse.js:
+        specifier: ^6.6.2
+        version: 6.6.2
+      i18next-browser-languagedetector:
+        specifier: ^7.0.1
+        version: 7.0.1
+      i18next-http-backend:
+        specifier: ^2.2.2
+        version: 2.2.2
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      react-hook-form:
+        specifier: ^7.40.0
+        version: 7.43.1(react@18.2.0)
+      stylis:
+        specifier: ^4.1.3
+        version: 4.2.0
+      swr:
+        specifier: ^2.2.4
+        version: 2.2.4(react@18.2.0)
+      uuid:
+        specifier: ^9.0.0
+        version: 9.0.1
+    devDependencies:
+      '@types/lodash':
+        specifier: ^4.14.194
+        version: 4.14.199
+      '@types/stylis':
+        specifier: ^4.0.2
+        version: 4.0.2
+      '@types/uuid':
+        specifier: ^9.0.0
+        version: 9.0.6
+      '@vitejs/plugin-basic-ssl':
+        specifier: ^1.0.1
+        version: 1.0.1(vite@4.4.9)
+      '@vitejs/plugin-react-swc':
+        specifier: ^3.3.2
+        version: 3.4.0(vite@4.4.9)
+      eslint-config-illa:
+        specifier: workspace:*
+        version: link:../../packages/eslint-config-illa
+      rollup-plugin-visualizer:
+        specifier: ^5.9.0
+        version: 5.9.2(rollup@3.28.1)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+      vite-plugin-checker:
+        specifier: ^0.6.0
+        version: 0.6.2(eslint@8.50.0)(typescript@5.2.2)(vite@4.4.9)
+      vite-plugin-svgr:
+        specifier: ^3.2.0
         version: 3.3.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
 
   apps/playwright:
@@ -2262,6 +2395,13 @@ importers:
       react-use:
         specifier: ^17.4.0
         version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
+      uuid:
+        specifier: ^8.3.2
+        version: 8.3.2
+    devDependencies:
+      '@types/uuid':
+        specifier: ^8.3.4
+        version: 8.3.4
 
   packages/illa-design/packages/tag:
     dependencies:
@@ -2538,6 +2678,61 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/illa-public-component/CloudDashboardLayout:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.1
+        version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../illa-design/packages/react
+      '@illa-public/avatar':
+        specifier: workspace:*
+        version: link:../Avatar
+      '@illa-public/invite-modal':
+        specifier: workspace:*
+        version: link:../InviteModal
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../UserData
+      '@illa-public/user-role-utils':
+        specifier: workspace:*
+        version: link:../UserRoleUtils
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.2.22
+        version: 18.2.22
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.7
+      i18next:
+        specifier: ^23.5.1
+        version: 23.5.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-i18next:
+        specifier: ^13.2.2
+        version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+      react-redux:
+        specifier: ^8.1.2
+        version: 8.1.2(@types/react-dom@18.2.7)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-router-dom:
+        specifier: ^6.16.0
+        version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+      vite-plugin-svgr:
+        specifier: ^2.1.0
+        version: 2.4.0(vite@4.4.9)
+
   packages/illa-public-component/CodeEditor:
     dependencies:
       '@codemirror/autocomplete':
@@ -2628,6 +2823,70 @@ importers:
       react-i18next:
         specifier: ^13.2.2
         version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+      vite-plugin-svgr:
+        specifier: ^2.1.0
+        version: 2.4.0(vite@4.4.9)
+
+  packages/illa-public-component/Dashboard:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.1
+        version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../illa-design/packages/react
+      '@illa-public/avatar':
+        specifier: workspace:*
+        version: link:../Avatar
+      '@illa-public/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../ILLANet
+      '@illa-public/invite-modal':
+        specifier: workspace:*
+        version: link:../InviteModal
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:*
+        version: link:../MixpanelUtils
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      '@illa-public/upgrade-modal':
+        specifier: workspace:*
+        version: link:../UpgradeModal
+      '@illa-public/upgrade-tag':
+        specifier: workspace:*
+        version: link:../UpgradeTag
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../UserData
+      '@illa-public/user-role-utils':
+        specifier: workspace:*
+        version: link:../UserRoleUtils
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.2.22
+        version: 18.2.22
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.7
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.40.0
+        version: 7.43.1(react@18.2.0)
     devDependencies:
       tsconfig:
         specifier: workspace:*
@@ -3028,6 +3287,49 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/illa-public-component/ResourceGenerator:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.1
+        version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../illa-design/packages/react
+      '@illa-public/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../ILLANet
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:*
+        version: link:../MixpanelUtils
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.2.22
+        version: 18.2.22
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.7
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+      vite-plugin-svgr:
+        specifier: ^2.1.0
+        version: 2.4.0(vite@4.4.9)
+
   packages/illa-public-component/RoleSelector:
     dependencies:
       '@emotion/react':
@@ -3264,6 +3566,40 @@ importers:
         specifier: ^2.1.0
         version: 2.4.0(vite@4.4.9)
 
+  packages/illa-public-component/UpgradeTag:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.1
+        version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../illa-design/packages/react
+      '@illa-public/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.2.22
+        version: 18.2.22
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.7
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+      vite-plugin-svgr:
+        specifier: ^2.1.0
+        version: 2.4.0(vite@4.4.9)
+
   packages/illa-public-component/UsageCard:
     dependencies:
       '@emotion/react':
@@ -3342,11 +3678,45 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/illa-public-component/publicConfig:
+    dependencies:
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      uuid:
+        specifier: ^9.0.0
+        version: 9.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^18.14.4
+        version: 18.17.19
+      '@types/uuid':
+        specifier: ^9.0.5
+        version: 9.0.6
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/illa-public-component/publicTypes:
+    devDependencies:
+      '@types/node':
+        specifier: ^18.14.4
+        version: 18.17.19
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/illa-public-component/utils:
     dependencies:
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
+      '@illa-public/illa-storage':
+        specifier: workspace:*
+        version: link:../ILLAStorage
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../UserData
       '@types/react':
         specifier: ^18.2.22
         version: 18.2.22
@@ -3359,9 +3729,15 @@ importers:
       copy-to-clipboard:
         specifier: ^3.3.2
         version: 3.3.3
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       fnv-plus:
         specifier: ^1.3.1
         version: 1.3.1
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3371,16 +3747,19 @@ importers:
       react-i18next:
         specifier: ^13.2.2
         version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+      react-use:
+        specifier: ^17.4.0
+        version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@illa-public/user-data':
-        specifier: workspace:*
-        version: link:../UserData
       '@types/chroma-js':
         specifier: ^2.1.4
         version: 2.1.5
       '@types/fnv-plus':
         specifier: ^1.3.0
         version: 1.3.0
+      '@types/lodash':
+        specifier: ^4.14.194
+        version: 4.14.199
       '@types/node':
         specifier: ^18.14.4
         version: 18.14.5
@@ -3617,7 +3996,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
-    dev: false
 
   /@babel/template@7.20.7:
     resolution: {integrity: sha512-8SegXApWe6VoNw0r9JHpSteLKTpTiLZ4rMlGIm9JQ18KiCtyQiAMEazujAHrUS5flrcqYZa75ukev3P6QmUwUw==}
@@ -4512,6 +4890,10 @@ packages:
       '@emotion/weak-memoize': 0.3.1
       stylis: 4.2.0
 
+  /@emotion/core@11.0.0:
+    resolution: {integrity: sha512-w4sE3AmHmyG6RDKf6mIbtHpgJUSJ2uGvPQb8VXFL7hFjMPibE8IiehG8cMX3Ztm4svfCQV6KqusQbeIOkurBcA==}
+    dev: false
+
   /@emotion/hash@0.9.1:
     resolution: {integrity: sha512-gJB6HLm5rYwSLI6PQa+X1t5CFGrv1J1TWG+sOyMCeKz2ojaj6Fnl/rZEspogG+cvqbt4AE/2eIyD2QfLKTBNlQ==}
 
@@ -4547,7 +4929,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.1
       '@emotion/babel-plugin': 11.11.0
       '@emotion/cache': 11.11.0
       '@emotion/serialize': 1.1.2
@@ -5690,6 +6072,7 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
+    dev: true
 
   /@rollup/pluginutils@5.0.4(rollup@3.28.1):
     resolution: {integrity: sha512-0KJnIoRI8A+a1dqOYLxH8vBf8bphDmty5QvIm2hqm7oFCFYKCAZWWd2hXgMibaPsNDhI0AtpYfQZJG47pt/k4g==}
@@ -5704,7 +6087,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
-    dev: true
 
   /@scena/dragscroll@1.4.0:
     resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==, tarball: https://registry.yarnpkg.com/@scena/dragscroll/-/dragscroll-1.4.0.tgz}
@@ -6629,7 +7011,6 @@ packages:
 
   /@types/prop-types@15.7.8:
     resolution: {integrity: sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==}
-    dev: false
 
   /@types/qs@6.9.8:
     resolution: {integrity: sha512-u95svzDlTysU5xecFNTgfFG5RUWu1A9P0VzgpcIiGZA9iraHOdSzcxMxQ55DyeRaGCSxQi7LxXDI4rzq/MYfdg==}
@@ -6691,7 +7072,7 @@ packages:
   /@types/react@18.2.22:
     resolution: {integrity: sha512-60fLTOLqzarLED2O3UQImc/lsNRgG0jE/a1mPW9KjMemY0LMITWEsbS4VvZ4p6rorEHd5YKxxmMKSDK505GHpA==}
     dependencies:
-      '@types/prop-types': 15.7.5
+      '@types/prop-types': 15.7.8
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
 
@@ -6753,6 +7134,10 @@ packages:
 
   /@types/uuid@9.0.4:
     resolution: {integrity: sha512-zAuJWQflfx6dYJM62vna+Sn5aeSWhh3OB+wfUEACNcqUSc0AGc5JKl+ycL1vrH7frGTXhJchYjE1Hak8L819dA==}
+    dev: true
+
+  /@types/uuid@9.0.6:
+    resolution: {integrity: sha512-BT2Krtx4xaO6iwzwMFUYvWBWkV2pr37zD68Vmp1CDV196MzczBRxuEpD6Pr395HAgebC/co7hOphs53r8V7jew==}
     dev: true
 
   /@types/warning@3.0.0:
@@ -7760,7 +8145,7 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.1
       cosmiconfig: 7.1.0
       resolve: 1.22.2
 
@@ -8105,6 +8490,10 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
+  /client-only@0.0.1:
+    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: false
+
   /cliui@6.0.0:
     resolution: {integrity: sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ==}
     dependencies:
@@ -8443,6 +8832,14 @@ packages:
     dependencies:
       cross-spawn: 7.0.3
     dev: true
+
+  /cross-fetch@3.1.6:
+    resolution: {integrity: sha512-riRvo06crlE8HiqOwIpQhxwdOk4fOeR7FVM/wXoxchFEqMNUjvbs3bfo4OTgMEMHzppd4DxFBDbyySj8Cv781g==}
+    dependencies:
+      node-fetch: 2.6.12
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /cross-spawn@5.1.0:
     resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
@@ -10479,10 +10876,18 @@ packages:
       '@babel/runtime': 7.20.13
     dev: false
 
+  /i18next-http-backend@2.2.2:
+    resolution: {integrity: sha512-mJu4ZqzDtBiU3O4GV9AbK5ekEqoDMdMnCl3pkdXmb5b8yoIH//u8FsmIe6C5qXb3teZu+j6VMi20tjUgzeABiw==}
+    dependencies:
+      cross-fetch: 3.1.6
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /i18next@23.5.1:
     resolution: {integrity: sha512-JelYzcaCoFDaa+Ysbfz2JsGAKkrHiMG6S61+HLBUEIPaF40WMwW9hCPymlQGrP+wWawKxKPuSuD71WZscCsWHg==}
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.1
     dev: false
 
   /iconv-lite@0.4.24:
@@ -12335,7 +12740,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: true
 
   /node-fetch@2.6.9:
     resolution: {integrity: sha512-DJm/CJkZkRjKKj4Zi4BsKVZh3ValV5IR5s7LVZnW+6YMh0W1BfNA8XSs6DLMGYlId5F3KnA70uu2qepcR08Qqg==}
@@ -13313,7 +13717,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.1
       html-parse-stringify: 3.0.1
       i18next: 23.5.1
       react: 18.2.0
@@ -13443,7 +13847,7 @@ packages:
       redux:
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.1
       '@types/hoist-non-react-statics': 3.3.1
       '@types/react': 18.2.22
       '@types/react-dom': 18.2.7
@@ -13637,16 +14041,6 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /react-virtualized-auto-sizer@1.0.20(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-OdIyHwj4S4wyhbKHOKM1wLSj/UDXm839Z3Cvfg2a9j+He6yDa6i5p0qQvEiCnyQlGO/HyfSnigQwuxvYalaAXA==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /react-virtuoso@4.3.11(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-0YrCvQ5GsIKRcN34GxrzhSJGuMNI+hGxWci5cTVuPQ8QWTEsrKfCyqm7YNBMmV3pu7onG1YVUBo86CyCXdejXg==}
     engines: {node: '>=10'}
@@ -13788,7 +14182,6 @@ packages:
 
   /regenerator-runtime@0.14.0:
     resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
-    dev: false
 
   /regexp.prototype.flags@1.4.3:
     resolution: {integrity: sha512-fjggEOO3slI6Wvgjwflkc4NFRCTZAu5CnNfBd5qOMYhWdn67nJBBu34/TkD++eeFmd8C9r9jfXJ27+nSiRkSUA==}
@@ -14078,7 +14471,7 @@ packages:
   /rtl-css-js@1.16.1:
     resolution: {integrity: sha512-lRQgou1mu19e+Ya0LsTvKrVJ5TYUbqCVPAiImX3UfLTenarvPUl1QFdvu5Z3PYmHT9RCcwIfbjRQBntExyj3Zg==}
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.1
     dev: false
 
   /run-async@2.4.1:
@@ -14692,6 +15085,16 @@ packages:
   /svg-parser@2.0.4:
     resolution: {integrity: sha512-e4hG1hRwoOdRb37cIMSgzNsxyzKfayW6VOflrwvR+/bzrkyxY/31WkbgnQpgtrNp1SdpJvpUAGTa/ZoiPNDuRQ==}
 
+  /swr@2.2.4(react@18.2.0):
+    resolution: {integrity: sha512-njiZ/4RiIhoOlAaLYDqwz5qH/KZXVilRLvomrx83HjzCWTfa+InyfAjv05PSFxnmLzZkNO9ZfvgoqzAaEI4sGQ==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      client-only: 0.0.1
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
   /synckit@0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -14862,7 +15265,6 @@ packages:
 
   /tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-    dev: true
 
   /traverse@0.3.9:
     resolution: {integrity: sha512-iawgk0hLP3SxGKDfnDJf8wTz4p2qImnyihM5Hh/sGvQ3K37dPi/w8sRhdNIxYA1TwFwc5mDhIJq+O0RsvXBKdQ==}
@@ -15374,6 +15776,11 @@ packages:
     hasBin: true
     dev: false
 
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
+
   /uvu@0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}
     engines: {node: '>=8'}
@@ -15540,7 +15947,7 @@ packages:
     peerDependencies:
       vite: ^4.4.9
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.28.1)
+      '@rollup/pluginutils': 5.0.4(rollup@3.28.1)
       '@svgr/core': 6.5.1
       vite: 4.4.9(@types/node@18.17.19)
     transitivePeerDependencies:
@@ -15676,7 +16083,6 @@ packages:
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-    dev: true
 
   /webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
@@ -15731,7 +16137,6 @@ packages:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
-    dev: true
 
   /which-boxed-primitive@1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}

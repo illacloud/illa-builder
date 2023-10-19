@@ -76,7 +76,8 @@
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. ",
-      "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen."
+      "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen.",
+      "save_resource": "Lagre vellykket, siden vil lukkes om 3 sekunder..."
     },
     "create": "Opprett"
   },
@@ -1837,7 +1838,15 @@
         "page_size_options": "Alternativer for sidestørrelse",
         "export_setting": "Eksporter",
         "filter_setting": "Filtrer",
-        "primary_key": "Primær nøkkel"
+        "primary_key": "Primær nøkkel",
+        "allow_row_selection": "Tillat radmarkering",
+        "selection_mode": "Utvalg modus",
+        "pin_column": "Fest kolonne",
+        "enable_users_to_sort": "Tillat brukere å sortere",
+        "enable_users_to_pin": "Tillat brukere å feste",
+        "enable_users_to_filter": "Aktiver brukere for å filtrere",
+        "enable_users_to_hide": "Aktivere brukere å skjule",
+        "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2126,7 +2135,16 @@
           "item_spacing": "Brukes til å konfigurere mellomrom mellom tabeller",
           "max_column_count": "Angi maksimalt antall kolonner som kan vises i rutenettlistekomponenten når den øker bredden. Når det største antallet kolonner nås, og lerretsbredden fortsetter å øke, kolonnebredden vil økes for å romme opplegget, og antall kolonner vil ikke øke ytterligere."
         },
-        "primary_key": "En unik nøkkel for å identifisere en rad"
+        "primary_key": "En unik nøkkel for å identifisere en rad",
+        "selection_mode": "Brukes til å angi valg av flere rader eller enkeltradvalg",
+        "allow_row_selection": "Brukes for å angi om eller ikke tillater brukere å velge rad",
+        "pin_column": "Brukes til å feste kolonnen til alle brukere",
+        "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
+        "enable_users_to_pin": "Brukes for å angi om brukere tillater å feste kolonnen",
+        "enable_users_to_filter": "Brukes for å angi om brukere kan filtrere i denne kolonnen",
+        "enable_users_to_hide": "Brukes for å angi om brukere tillater å skjule kolonnen",
+        "enable_users_to_aggregate": "Brukes for å angi om brukerne skal kunne aggregere data i denne kolonnen eller ikke.",
+        "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2331,6 +2349,10 @@
       },
       "page": {
         "blank_view": "Ingen underside"
+      },
+      "setter_options": {
+        "single_row_selection": "Enkelt valg",
+        "multiple_row_selection": "Flere valg"
       }
     },
     "page": {
@@ -3024,7 +3046,7 @@
       "export": {
         "title": "Eksporter",
         "csv": "Eksporter som csv",
-        "excel": "Eksporter som Excel",
+        "excel": "Export as excel",
         "print": "Utskrift"
       }
     },
@@ -3541,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Velg rad endring"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Tillat brukere å aggregere"
       }
     }
   },
@@ -4363,7 +4388,24 @@
     "before": "Last mer"
   },
   "size_exceed_copied_tips": "Innholdet er for langt for kopiering. (gjeldende størrelse: {{current_size}} bytes, begrensing: {{limit_size}} bytes)",
-  "contribute": "Bidra",
+  "contribute": {
+    "tag": {
+      "recommended": "Anbefalt",
+      "add_tag": "Legg til tagger",
+      "tag": "Tagg",
+      "failed_to_save": "Kunne ikke lagre"
+    },
+    "update": "Rediger tagger",
+    "copy_link": "Kopier lenke",
+    "first_time_modal": {
+      "title": "Bidra til samfunnet",
+      "button": "Bidra"
+    },
+    "update_modal": {
+      "button": "Oppdater",
+      "title": "Rediger"
+    }
+  },
   "error_page": {
     "fobidden": "Ingen tilgang"
   }

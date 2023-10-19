@@ -1,39 +1,20 @@
+import { getILLACloudURL } from "@illa-public/utils"
 import { lazy } from "react"
 import { redirect } from "react-router-dom"
 import { FullPageLoading } from "@/components/FullPageLoading"
 import { agentLoader } from "@/router/loader/agentLoader"
 import { agentRunLoader } from "@/router/loader/agentRunLoader"
 import { historyLoader } from "@/router/loader/historyLoader"
-import { cloudUrl } from "../constant"
 import { RoutesObjectPro } from "../interface"
 import { lazyLoad } from "../utils/lazyLoad"
-import {
-  publicDashboardChildrenRouter,
-  publicRouterConfig,
-  publicTeamChildrenRouter,
-} from "./public"
+import { publicRouterConfig, publicTeamChildrenRouter } from "./public"
 
 export const cloudRouter: RoutesObjectPro[] = [
   {
     index: true,
     loader: async () => {
-      return redirect(cloudUrl)
+      return redirect(getILLACloudURL())
     },
-  },
-  {
-    path: "/:teamIdentifier/dashboard",
-    element: lazyLoad(lazy(() => import("@/page/Dashboard"))),
-    children: [
-      ...publicDashboardChildrenRouter,
-      {
-        path: "ai-agents",
-        element: lazyLoad(
-          lazy(() => import("@/page/Dashboard/DashboardAIAgent")),
-          <FullPageLoading />,
-        ),
-        needLogin: true,
-      },
-    ],
   },
   {
     path: "/:teamIdentifier/appHistory/:appId",

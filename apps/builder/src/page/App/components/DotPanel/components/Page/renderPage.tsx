@@ -16,7 +16,7 @@ import {
 } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
+import { SECTION_POSITION } from "@/redux/currentApp/components/componentsState"
 import {
   getCurrentPageExecutionResult,
   getPageLoadingActions,

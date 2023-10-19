@@ -76,7 +76,8 @@
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. ",
-      "mobile-fork-suc": "Pomyślnie sforkowano. Proszę edytować na pulpicie."
+      "mobile-fork-suc": "Pomyślnie sforkowano. Proszę edytować na pulpicie.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Utwórz"
   },
@@ -1837,7 +1838,15 @@
         "page_size_options": "Page size options",
         "export_setting": "Export",
         "filter_setting": "Filter",
-        "primary_key": "Primary key"
+        "primary_key": "Primary key",
+        "allow_row_selection": "Allow row selection",
+        "selection_mode": "Selection mode",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter",
+        "enable_users_to_hide": "Enable users to hide",
+        "enable_users_to_set_group_by": "Enable users to set group by"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -2126,7 +2135,16 @@
           "item_spacing": "Używane do konfigurowania odstępów między siatkami",
           "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         },
-        "primary_key": "A unique key for identifying a row"
+        "primary_key": "A unique key for identifying a row",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
+        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
+        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
+        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. "
       },
       "setter_option": {
         "fixed": "Naprawione",
@@ -2331,6 +2349,10 @@
       },
       "page": {
         "blank_view": "Brak podstrony"
+      },
+      "setter_options": {
+        "single_row_selection": "Single selection",
+        "multiple_row_selection": "Multiple selection"
       }
     },
     "page": {
@@ -3024,7 +3046,7 @@
       "export": {
         "title": "Export",
         "csv": "Export as csv",
-        "excel": "Export as Excel",
+        "excel": "Export as excel",
         "print": "Print"
       }
     },
@@ -3541,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Wybierz wiersz"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Enable users to aggregate"
       }
     }
   },
@@ -4363,7 +4388,24 @@
     "before": "Załaduj więcej"
   },
   "size_exceed_copied_tips": "Zawartość jest zbyt długa do skopiowania. (aktualny rozmiar: {{current_size}} bajtów, limit: {{limit_size}} bajtów)",
-  "contribute": "Wesprzyj",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link",
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
+    }
+  },
   "error_page": {
     "fobidden": "Brak uprawnień dostępu"
   }

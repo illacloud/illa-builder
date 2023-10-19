@@ -76,7 +76,8 @@
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. ",
-      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop."
+      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop.",
+      "save_resource": "Salvare reușită, pagina se va închide în 3 secunde..."
     },
     "create": "Crează"
   },
@@ -1837,7 +1838,15 @@
         "page_size_options": "Opțiuni pentru dimensiunea paginii",
         "export_setting": "Exportă",
         "filter_setting": "Filtrare",
-        "primary_key": "Cheie principală"
+        "primary_key": "Cheie principală",
+        "allow_row_selection": "Permite selecția rândului",
+        "selection_mode": "Mod selecţie",
+        "pin_column": "Fixează coloana",
+        "enable_users_to_sort": "Permite utilizatorilor să sorteze",
+        "enable_users_to_pin": "Permite utilizatorilor să fixeze",
+        "enable_users_to_filter": "Permite utilizatorilor să filtreze",
+        "enable_users_to_hide": "Permite utilizatorilor să ascundă",
+        "enable_users_to_set_group_by": "Permite utilizatorilor să seteze gruparea după"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2126,7 +2135,16 @@
           "item_spacing": "Folosit pentru a configura distanța dintre grile",
           "max_column_count": "Setați numărul maxim de coloane care pot fi afișate în componenta listă pe măsură ce lățimea crește. (Automatic Translation) Când se atinge numărul maxim de coloane şi lăţimea pânzei continuă să crească, lățimea coloanei va fi mărită pentru a accepta aspectul și numărul de coloane nu va crește mai mult."
         },
-        "primary_key": "O cheie unică pentru identificarea unui rând"
+        "primary_key": "O cheie unică pentru identificarea unui rând",
+        "selection_mode": "Folosit pentru a seta selecția mai multor rânduri sau selecția unui singur rând",
+        "allow_row_selection": "Folosit pentru a seta dacă permite sau nu utilizatorilor să selecteze rândul",
+        "pin_column": "Folosit pentru a fixa coloana pentru toţi utilizatorii",
+        "enable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. ",
+        "enable_users_to_pin": "Folosit pentru a seta dacă permite sau nu utilizatorilor să fixeze coloana",
+        "enable_users_to_filter": "Folosit pentru a seta dacă permite sau nu utilizatorilor să filtreze pe această coloană",
+        "enable_users_to_hide": "Folosit pentru a seta dacă permite sau nu utilizatorilor să ascundă coloana",
+        "enable_users_to_aggregate": "Folosit pentru a seta dacă permite sau nu utilizatorilor să efectueze agregarea de date pe această coloană.",
+        "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. "
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -2331,6 +2349,10 @@
       },
       "page": {
         "blank_view": "Nicio subpagină"
+      },
+      "setter_options": {
+        "single_row_selection": "Selecţie unică",
+        "multiple_row_selection": "Selecție multiplă"
       }
     },
     "page": {
@@ -3024,7 +3046,7 @@
       "export": {
         "title": "Exportă",
         "csv": "Exportă ca csv",
-        "excel": "Exportă ca Excel",
+        "excel": "Export as excel",
         "print": "Tipărește"
       }
     },
@@ -3541,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Rând selectare modificare"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Permite utilizatorilor să agrege"
       }
     }
   },
@@ -4363,7 +4388,24 @@
     "before": "Încarcă mai mult"
   },
   "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)",
-  "contribute": "Contribuie",
+  "contribute": {
+    "tag": {
+      "recommended": "Recomandat",
+      "add_tag": "Adaugă etichete",
+      "tag": "Etichetă",
+      "failed_to_save": "Salvarea nu a reușit"
+    },
+    "update": "Editare etichete",
+    "copy_link": "Copiază link-ul",
+    "first_time_modal": {
+      "title": "Contribuie la comunitate",
+      "button": "Contribuie"
+    },
+    "update_modal": {
+      "button": "Actualizare",
+      "title": "Editare"
+    }
+  },
   "error_page": {
     "fobidden": "Fără permisiune de acces"
   }

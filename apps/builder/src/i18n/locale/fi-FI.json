@@ -76,7 +76,8 @@
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. ",
-      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä."
+      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä.",
+      "save_resource": "Tallennus onnistui, sivu suljetaan 3 sekunnin kuluttua..."
     },
     "create": "Luo"
   },
@@ -1837,7 +1838,15 @@
         "page_size_options": "Sivun kokoasetukset",
         "export_setting": "Vie",
         "filter_setting": "Suodatin",
-        "primary_key": "Ensisijainen avain"
+        "primary_key": "Ensisijainen avain",
+        "allow_row_selection": "Salli rivin valinta",
+        "selection_mode": "Valintatapa",
+        "pin_column": "Kiinnitä sarake",
+        "enable_users_to_sort": "Salli käyttäjien lajitella",
+        "enable_users_to_pin": "Salli käyttäjien kiinnitys",
+        "enable_users_to_filter": "Salli käyttäjien suodatus",
+        "enable_users_to_hide": "Salli käyttäjien piilottaa",
+        "enable_users_to_set_group_by": "Salli käyttäjien asettaa ryhmä"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2126,7 +2135,16 @@
           "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
           "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
         },
-        "primary_key": "Yksilöllinen avain rivin tunnistamiseen"
+        "primary_key": "Yksilöllinen avain rivin tunnistamiseen",
+        "selection_mode": "Käytetään useamman rivin valinnan tai yhden rivin valinnan asettamiseen",
+        "allow_row_selection": "Käytetään määritettäessä, sallivatko käyttäjät valita rivin",
+        "pin_column": "Käytetään sarakkeen kiinnittämiseen kaikille käyttäjille",
+        "enable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. ",
+        "enable_users_to_pin": "Käytetään määritettäessä, sallivatko käyttäjät kiinnittää sarakkeen",
+        "enable_users_to_filter": "Käytetään määritettäessä, sallivatko käyttäjät suodattaa tämän sarakkeen",
+        "enable_users_to_hide": "Käytetään määritettäessä, sallivatko käyttäjät piilottaa sarakkeen",
+        "enable_users_to_aggregate": "Käytetään määritettäessä, sallivatko käyttäjät suorittaa tietojen yhdistämisen tähän sarakkeeseen.",
+        "enable_users_to_set_group_by": "Käytetään määritettäessä, sallivatko käyttäjät asettaa tietoryhmänäytön vai eivät. "
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -2331,6 +2349,10 @@
       },
       "page": {
         "blank_view": "Ei alasivua"
+      },
+      "setter_options": {
+        "single_row_selection": "Yksi valinta",
+        "multiple_row_selection": "Useita valintoja"
       }
     },
     "page": {
@@ -3024,7 +3046,7 @@
       "export": {
         "title": "Vie",
         "csv": "Vie csv:nä",
-        "excel": "Vie Excelinä",
+        "excel": "Export as excel",
         "print": "Tulosta"
       }
     },
@@ -3541,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Rivin Valinnan Muutos"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Salli käyttäjien koota yhteen"
       }
     }
   },
@@ -4363,7 +4388,24 @@
     "before": "Lataa lisää"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Osallistu",
+  "contribute": {
+    "tag": {
+      "recommended": "Suositeltu",
+      "add_tag": "Lisää tunnisteita",
+      "tag": "Tunniste",
+      "failed_to_save": "Tallennus epäonnistui"
+    },
+    "update": "Muokkaa tageja",
+    "copy_link": "Kopioi linkki",
+    "first_time_modal": {
+      "title": "Osallistu yhteisölle",
+      "button": "Osallistu"
+    },
+    "update_modal": {
+      "button": "Päivitä",
+      "title": "Muokkaa"
+    }
+  },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
   }
