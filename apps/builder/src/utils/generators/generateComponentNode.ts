@@ -5,7 +5,7 @@ import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/w
 import {
   CONTAINER_TYPE,
   ComponentNode,
-} from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { WidgetConfig } from "@/widgetLibrary/interface"

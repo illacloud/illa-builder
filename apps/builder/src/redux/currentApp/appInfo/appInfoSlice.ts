@@ -7,10 +7,7 @@ import {
   updateAppNameReducer,
   updateAppPublicReducer,
 } from "@/redux/currentApp/appInfo/appInfoReducer"
-import {
-  DashboardApp,
-  DashboardAppInitialState,
-} from "@/redux/dashboard/apps/dashboardAppState"
+import { DashboardApp, DashboardAppInitialState } from "./appInfoState"
 
 const appInfoSlice = createSlice<
   DashboardApp,

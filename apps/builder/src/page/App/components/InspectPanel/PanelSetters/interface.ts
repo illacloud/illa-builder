@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSetter {
