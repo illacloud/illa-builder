@@ -60,6 +60,7 @@ export const DotPanel: FC = () => {
     pageName,
     pageSortedKey,
   ])
+
   const canRenders = !!executionResult.root
 
   useEffect(() => {
