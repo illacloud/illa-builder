@@ -4292,7 +4292,8 @@
       "delete-suc": "Successfully deleted. ",
       "mobile-fork-suc": "Forked successfully. Please edit on desktop."
     },
-    "create": "Create"
+    "create": "Create",
+    "market_view": "Community"
   },
   "new_dashboard": {
     "status": {

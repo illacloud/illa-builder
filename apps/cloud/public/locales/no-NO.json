@@ -4292,7 +4292,8 @@
       "delete-suc": "Sletting vellykket. ",
       "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen."
     },
-    "create": "Opprett"
+    "create": "Opprett",
+    "market_view": "Fellesskap"
   },
   "new_dashboard": {
     "status": {

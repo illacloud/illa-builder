@@ -4292,7 +4292,8 @@
       "delete-suc": "Poistettu onnistuneesti. ",
       "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä."
     },
-    "create": "Luo"
+    "create": "Luo",
+    "market_view": "Yhteisö"
   },
   "new_dashboard": {
     "status": {
