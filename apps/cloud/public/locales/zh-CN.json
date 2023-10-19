@@ -4291,7 +4291,7 @@
     },
     "desc": {
       "no_description": "暂无描述",
-      "blank": "没有项目",
+      "blank": "无内容",
       "blank-agent": "无AI Agent"
     },
     "app_setting": {
@@ -4352,6 +4352,16 @@
       "add_tag": "添加标签",
       "tag": "标签",
       "failed_to_save": "保存失败"
+    },
+    "first_time_modal": {
+      "title": "贡献到社区",
+      "button": "贡献"
+    },
+    "update": "编辑标签",
+    "copy_link": "复制链接",
+    "update_modal": {
+      "button": "更新",
+      "title": "编辑"
     }
   },
   "tutorial": {
