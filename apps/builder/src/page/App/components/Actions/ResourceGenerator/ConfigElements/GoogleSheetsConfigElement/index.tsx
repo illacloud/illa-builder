@@ -15,7 +15,6 @@ import { ReactComponent as GoogleLogoIcon } from "@/assets/googlesheets/google-l
 import { useOAuthRefresh } from "@/hooks/useOAuthRefresh"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import {
-  container,
   footerStyle,
   getOAuthStatusContentStyle,
   oAuthErrorIconStyle,
@@ -33,6 +32,7 @@ import { getOAuthAccessToken, redirectToGoogleOAuth } from "@/services/resource"
 import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 import { googleIconStyle, googleSheetsButtonStyle } from "./style"
 
 const GoogleSheetsConfigElement: FC<BaseConfigElementProps> = (props) => {

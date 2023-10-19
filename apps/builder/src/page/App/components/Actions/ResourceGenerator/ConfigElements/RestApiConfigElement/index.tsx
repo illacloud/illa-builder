@@ -17,7 +17,6 @@ import {
   VerificationModeOptions,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/values"
 import {
-  container,
   divider,
   footerStyle,
   optionLabelStyle,
@@ -34,6 +33,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const RestApiAuthTypeComponentMap = {
   none: null,

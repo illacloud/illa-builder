@@ -873,7 +873,7 @@
         "invite_title": "Per E-Mail einladen",
         "invite": "Einladen",
         "placeholder": "E-Mail-Adresse eingeben",
-        "invited": "Haben eingeladen",
+        "invited": "This user is already on your team.",
         "in_list": "Dieser Benutzer ist bereits in Ihrem Team.",
         "duplicate": "{{ email }} ist dupliziert",
         "notmail": "{{ email }} ist keine E-Mail",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "Einladen",
-        "public": "Öffentlich"
+        "public": "Öffentlich",
+        "with_team": "Share with team"
       },
       "custom_copy_text": "{{userName}} lädt Sie ein, 「{{teamName}}」beizutreten. Klicken Sie auf den Link, um dem Team beizutreten: {{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}} hat dir eine App von 「{{teamName}}」geteilt. Klicke auf den Link, um dem Team beizutreten und überprüfe die APP: {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "After contributing your app to the community, other users can view its interface, run its actions, and fork it. When forking an app, the resource configuration information is not included, so there is no need to worry about the disclosure of resource configuration information."
         },
-        "desc": "After contributing to the community, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+        "desc": "After contributing to the community, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
+        "default_text": {
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}",
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "Share on social media"
-      }
+        "label": "Share on social media",
+        "default_text": {
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}",
+          "app": "I just discovered an impressive app called {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Erfolgreich eingeladen",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "Vorlagen",
-    "market": "Marktplatz",
+    "market": "Create from template",
     "app": {
       "all_apps": "All Apps",
       "create_app": "Create App",
@@ -4282,7 +4292,8 @@
       "delete-suc": "Successfully deleted. ",
       "mobile-fork-suc": "Forked successfully. Please edit on desktop."
     },
-    "create": "Create"
+    "create": "Create",
+    "market_view": "Community"
   },
   "new_dashboard": {
     "status": {
@@ -4375,5 +4386,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "Just now"
   }
 }

@@ -1,5 +1,16 @@
 import { MobileAppCardItem, TeamContentEmpty } from "@illa-public/dashboard"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getPlanUtils,
+} from "@illa-public/user-data"
+import {
+  ACTION_ACCESS,
+  ATTRIBUTE_GROUP,
+  canAccess,
+} from "@illa-public/user-role-utils"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { Divider, Search } from "@illa-design/react"
 import { FullSectionLoading } from "@/components/FullSectionLoading"
 import { MobileDashboardHeader } from "@/page/workspace/components/Header"
@@ -9,10 +20,18 @@ import { useDividerLine } from "../../layout/hook"
 import { appContainerStyle, cardContainerStyle } from "./style"
 
 export const MobileAppWorkspace = () => {
-  const { data, isLoading } = useAppList()
+  const currentTeamInfo = useSelector(getCurrentTeamInfo)
+  const canAccessApps = canAccess(
+    currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.APP,
+    getPlanUtils(currentTeamInfo),
+    ACTION_ACCESS.VIEW,
+  )
+  const { data: appList = [], isLoading } = useAppList(canAccessApps)
   const { t } = useTranslation()
+  const appListFilter = appList.filter((app) => app.deployed)
 
-  const [appList, handleChangeSearch] = useSearch(data ?? [], [
+  const [appListResult, handleChangeSearch] = useSearch(appListFilter ?? [], [
     "appName",
     "config.description",
   ])
@@ -37,11 +56,11 @@ export const MobileAppWorkspace = () => {
       />
       {isLoading ? (
         <FullSectionLoading />
-      ) : appList.length > 0 ? (
+      ) : appListResult.length > 0 ? (
         <>
           {dividerShown && <Divider direction="horizontal" />}
           <div css={cardContainerStyle} onScroll={onContainerScroll}>
-            {appList.map((appInfo) => (
+            {appListResult.map((appInfo) => (
               <MobileAppCardItem
                 key={appInfo.appId}
                 appName={appInfo.appName}
