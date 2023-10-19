@@ -44,6 +44,7 @@ import {
   getAgentPublicLink,
   getAuthToken,
   getILLABuilderURL,
+  getILLACloudURL,
   sendTagEvent,
 } from "@illa-public/utils"
 import { isEqual } from "lodash"
@@ -327,7 +328,11 @@ export const AIAgent: FC = () => {
             <div
               css={leftPanelTitleTextStyle}
               onClick={() => {
-                navigate(-1)
+                if (document.referrer) {
+                  navigate(-1)
+                } else {
+                  location.href = getILLACloudURL()
+                }
               }}
             >
               <PreviousIcon fs="16px" />

@@ -36,9 +36,10 @@ import {
 import {
   formatNumForAgent,
   getAgentPublicLink,
+  getAuthToken,
   getILLABuilderURL,
+  getILLACloudURL,
 } from "@illa-public/utils"
-import { getAuthToken } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -616,7 +617,11 @@ export const AIAgentRunMobile: FC = () => {
                   <div
                     css={shareContainerStyle}
                     onClick={() => {
-                      navigate(-1)
+                      if (document.referrer) {
+                        navigate(-1)
+                      } else {
+                        location.href = getILLACloudURL()
+                      }
                     }}
                   >
                     <PreviousIcon fs="24px" />

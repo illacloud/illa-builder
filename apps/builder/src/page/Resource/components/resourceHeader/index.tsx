@@ -9,6 +9,7 @@ import { ResourceHeaderProps } from "./interface"
 import {
   buttonContainerStyle,
   headerContainerStyle,
+  headerOuterContainerStyle,
   titleContainerStyle,
   titleNameContainerStyle,
   titleNameStyle,
@@ -22,28 +23,30 @@ export const Header: FC<ResourceHeaderProps> = (props) => {
   }
 
   return (
-    <div css={headerContainerStyle}>
-      <div>
-        <Button
-          leftIcon={<PreviousIcon />}
-          variant="text"
-          colorScheme="gray"
-          type="button"
-          onClick={handleClickBack}
-        >
-          {t("back")}
-        </Button>
-      </div>
-      <div css={titleContainerStyle}>
-        <div css={titleNameContainerStyle}>
-          {getIconFromResourceType(resourceType, "24px")}
-          <h1 css={titleNameStyle}>
-            {getResourceNameFromResourceType(resourceType)}
-          </h1>
+    <div css={headerOuterContainerStyle}>
+      <div css={headerContainerStyle}>
+        <div>
+          <Button
+            leftIcon={<PreviousIcon />}
+            variant="text"
+            colorScheme="gray"
+            type="button"
+            onClick={handleClickBack}
+          >
+            {t("back")}
+          </Button>
         </div>
-        <div css={buttonContainerStyle}>
-          <TestConnectButton resourceType={resourceType} />
-          <CreateButton />
+        <div css={titleContainerStyle}>
+          <div css={titleNameContainerStyle}>
+            {getIconFromResourceType(resourceType, "24px")}
+            <h1 css={titleNameStyle}>
+              {getResourceNameFromResourceType(resourceType)}
+            </h1>
+          </div>
+          <div css={buttonContainerStyle}>
+            <TestConnectButton resourceType={resourceType} />
+            <CreateButton />
+          </div>
         </div>
       </div>
     </div>

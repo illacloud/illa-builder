@@ -1,6 +1,8 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { Trigger } from "@illa-design/react"
+import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { MSSQLGUIMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLGUIMode"
 import { MSSQLSqlMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLSqlMode"
@@ -23,6 +25,13 @@ import {
   MicrosoftSqlActionSqlModeInitial,
   MicrosoftSqlActionType,
 } from "@/redux/currentApp/action/microsoftSqlAction"
+import { SQLModeSelector } from "../pulicComponent/SQLModeSelector"
+import {
+  labelContainerStyle,
+  labelStyle,
+  labelTipsStyle,
+  modeContainerStyle,
+} from "./style"
 
 const ConfigTypeOptions = [
   {
@@ -108,10 +117,14 @@ const MicrosoftSqlPanel: FC = () => {
           title={t("editor.action.panel.mssql.config_type")}
           forceEqualWidth={true}
           onChange={handleValueChange}
-          value={content.mode}
+          value={
+            content.mode === "sql" || content.mode === "sql-safe"
+              ? "sql"
+              : "gui"
+          }
           radioOptions={ConfigTypeOptions}
         />
-        {content.mode === "sql" ? (
+        {content.mode === "sql" || content.mode === "sql-safe" ? (
           <MSSQLSqlMode
             modeContent={sqlModeInitial}
             onChange={handleQueryChange}
@@ -122,6 +135,30 @@ const MicrosoftSqlPanel: FC = () => {
             onChange={handleQueryChange}
             resourceID={cachedAction.resourceID}
           />
+        )}
+        {(content.mode === "sql" || content.mode === "sql-safe") && (
+          <div css={modeContainerStyle}>
+            <div css={labelContainerStyle}>
+              <Trigger
+                content={
+                  <ILLAMarkdown
+                    textString={t(
+                      "editor.action.panel.label.tips.general.safe_mode",
+                    )}
+                  />
+                }
+                trigger="hover"
+                position="left"
+                maxW="240px"
+              >
+                <span css={labelStyle}>
+                  {t("editor.action.panel.label.general.safe_mode")}
+                  <span css={labelTipsStyle} />
+                </span>
+              </Trigger>
+            </div>
+            <SQLModeSelector />
+          </div>
         )}
         <TransformerComponent />
       </div>
