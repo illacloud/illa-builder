@@ -1729,7 +1729,7 @@
           "icon": "Symbol",
           "color": "Farbe",
           "sort_by_mapped_value": "Nach zugeordnetem Wert sortieren",
-          "background": "Rückwärts gehen der Zellen",
+          "background": "Hintergrund",
           "alignment": "Ausrichtung",
           "column_width": "Spaltenbreite",
           "width": "Width",
