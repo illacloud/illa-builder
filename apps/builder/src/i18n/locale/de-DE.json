@@ -76,7 +76,8 @@
       "fork-suc": "Erfolgreich geforkt.",
       "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
       "delete-suc": "Erfolgreich gelöscht. ",
-      "mobile-fork-suc": "Erfolgreich abgewiesen. Bitte bearbeiten Sie auf dem Desktop."
+      "mobile-fork-suc": "Erfolgreich abgewiesen. Bitte bearbeiten Sie auf dem Desktop.",
+      "save_resource": "Speichern erfolgreich, die Seite wird in 3 Sekunden geschlossen..."
     },
     "create": "Anlegen"
   },
@@ -4387,7 +4388,24 @@
     "before": "Mehr laden"
   },
   "size_exceed_copied_tips": "Der Inhalt ist zu lang zum Kopieren. (aktuelle Größe: {{current_size}} Bytes, Limit: {{limit_size}} Bytes)",
-  "contribute": "Mitwirken",
+  "contribute": {
+    "tag": {
+      "recommended": "Empfohlen",
+      "add_tag": "Tags hinzufügen",
+      "tag": "Markierung",
+      "failed_to_save": "Speichern fehlgeschlagen"
+    },
+    "update": "Tags bearbeiten",
+    "copy_link": "Link kopieren",
+    "first_time_modal": {
+      "title": "Zur Community beitragen",
+      "button": "Mitwirken"
+    },
+    "update_modal": {
+      "button": "Aktualisieren",
+      "title": "Bearbeiten"
+    }
+  },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
   }

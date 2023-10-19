@@ -31,7 +31,7 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { startAppListening } from "@/store"

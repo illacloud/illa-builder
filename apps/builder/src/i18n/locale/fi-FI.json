@@ -76,7 +76,8 @@
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. ",
-      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä."
+      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä.",
+      "save_resource": "Tallennus onnistui, sivu suljetaan 3 sekunnin kuluttua..."
     },
     "create": "Luo"
   },
@@ -4387,7 +4388,24 @@
     "before": "Lataa lisää"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Osallistu",
+  "contribute": {
+    "tag": {
+      "recommended": "Suositeltu",
+      "add_tag": "Lisää tunnisteita",
+      "tag": "Tunniste",
+      "failed_to_save": "Tallennus epäonnistui"
+    },
+    "update": "Muokkaa tageja",
+    "copy_link": "Kopioi linkki",
+    "first_time_modal": {
+      "title": "Osallistu yhteisölle",
+      "button": "Osallistu"
+    },
+    "update_modal": {
+      "button": "Päivitä",
+      "title": "Muokkaa"
+    }
+  },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
   }
