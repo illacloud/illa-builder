@@ -1729,7 +1729,7 @@
           "icon": "Kuvake",
           "color": "Väri",
           "sort_by_mapped_value": "Järjestä kartoitetun arvon mukaan",
-          "background": "Tausta",
+          "background": "Solujen tausta",
           "alignment": "Tasaus",
           "column_width": "Sarakkeen leveys",
           "width": "Width",
@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "Salli käyttäjien kiinnitys",
         "enable_users_to_filter": "Salli käyttäjien suodatus",
         "enable_users_to_hide": "Salli käyttäjien piilottaa",
-        "enable_users_to_set_group_by": "Salli käyttäjien asettaa ryhmä"
+        "enable_users_to_set_group_by": "Salli käyttäjien asettaa ryhmä",
+        "column_description": "Kuvaus"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "Käytetään määritettäessä, sallivatko käyttäjät suodattaa tämän sarakkeen",
         "enable_users_to_hide": "Käytetään määritettäessä, sallivatko käyttäjät piilottaa sarakkeen",
         "enable_users_to_aggregate": "Käytetään määritettäessä, sallivatko käyttäjät suorittaa tietojen yhdistämisen tähän sarakkeeseen.",
-        "enable_users_to_set_group_by": "Käytetään määritettäessä, sallivatko käyttäjät asettaa tietoryhmänäytön vai eivät. "
+        "enable_users_to_set_group_by": "Käytetään määritettäessä, sallivatko käyttäjät asettaa tietoryhmänäytön vai eivät. ",
+        "column_description": "Käytetään tämän sarakkeen kuvauksen asettamiseen"
       },
       "setter_option": {
         "fixed": "Kiinteä",

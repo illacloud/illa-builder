@@ -1729,7 +1729,7 @@
           "icon": "Іконка",
           "color": "Колір",
           "sort_by_mapped_value": "Сортувати за значенням",
-          "background": "Фон",
+          "background": "Cells' backgound",
           "alignment": "Вирівнювання",
           "column_width": "Ширина стовпця",
           "width": "Width",
@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "Enable users to pin",
         "enable_users_to_filter": "Enable users to filter",
         "enable_users_to_hide": "Enable users to hide",
-        "enable_users_to_set_group_by": "Enable users to set group by"
+        "enable_users_to_set_group_by": "Enable users to set group by",
+        "column_description": "Description"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
         "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
         "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
-        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. "
+        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
+        "column_description": "Used to set a description of this column"
       },
       "setter_option": {
         "fixed": "Виправлена",
