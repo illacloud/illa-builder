@@ -4,8 +4,8 @@ import { useSelector } from "react-redux"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { PageNode } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { PageNode } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { BaseSelectSetterProps } from "./interface"

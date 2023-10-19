@@ -7,22 +7,25 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import { canAccessManage } from "@illa-public/user-role-utils"
-import { isCloudVersion, sendConfigEvent } from "@illa-public/utils"
+import {
+  getILLACloudURL,
+  isCloudVersion,
+  sendConfigEvent,
+  setAuthToken,
+} from "@illa-public/utils"
+import { getAuthToken } from "@illa-public/utils"
 import { LoaderFunction, redirect } from "react-router-dom"
 import i18n from "@/i18n/config"
-import { cloudUrl } from "@/router/constant"
 import { fetchMyTeamsInfo } from "@/services/team"
 import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
-import { getAuthToken } from "@/utils/auth"
-import { ILLABuilderStorage } from "@/utils/storage"
 
 export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
   const url = new URL(args.request.url)
   const searchParams = url.searchParams
   const token = searchParams.get("token")
   if (token) {
-    ILLABuilderStorage.setLocalStorage("token", token, -1)
+    setAuthToken(token)
   }
   return null
 }
@@ -92,7 +95,9 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
         currentTeamInfo.totalTeamLicense.teamLicenseAllPaid,
       )
     ) {
-      return redirect(`${cloudUrl}/workspace/${currentTeamInfo.identifier}`)
+      return redirect(
+        `${getILLACloudURL()}/workspace/${currentTeamInfo.identifier}`,
+      )
     }
     return null
   }

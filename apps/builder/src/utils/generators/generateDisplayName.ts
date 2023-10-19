@@ -5,7 +5,7 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"
