@@ -1,4 +1,4 @@
-export type OracleDBActionModeType = "sql" | "gui"
+export type OracleDBActionModeType = "sql" | "gui" | "sql-safe"
 
 export interface OracleDBActionSQLMode {
   raw: string
@@ -18,6 +18,6 @@ export interface OracleDBAction<T extends OracleDBActionType> {
 }
 
 export const OracleDBActionInitial: OracleDBAction<OracleDBActionType> = {
-  mode: "sql",
+  mode: "sql-safe",
   opts: OracleDBActionSQLModeInitial,
 }

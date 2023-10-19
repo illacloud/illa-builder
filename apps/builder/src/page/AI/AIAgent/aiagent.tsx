@@ -36,6 +36,7 @@ import {
 import {
   getAgentPublicLink,
   getILLABuilderURL,
+  getILLACloudURL,
   sendTagEvent,
 } from "@illa-public/utils"
 import { getAuthToken } from "@illa-public/utils"
@@ -317,7 +318,11 @@ export const AIAgent: FC = () => {
             <div
               css={leftPanelTitleTextStyle}
               onClick={() => {
-                navigate(-1)
+                if (document.referrer) {
+                  navigate(-1)
+                } else {
+                  location.href = getILLACloudURL()
+                }
               }}
             >
               <PreviousIcon fs="16px" />
