@@ -1729,7 +1729,7 @@
           "icon": "Symbol",
           "color": "Farbe",
           "sort_by_mapped_value": "Nach zugeordnetem Wert sortieren",
-          "background": "Hintergrund",
+          "background": "Rückwärts gehen der Zellen",
           "alignment": "Ausrichtung",
           "column_width": "Spaltenbreite",
           "width": "Width",
@@ -1853,7 +1853,8 @@
         "enable_users_to_pin": "Benutzer zum Pin aktivieren",
         "enable_users_to_filter": "Benutzer zum Filtern aktivieren",
         "enable_users_to_hide": "Benutzer zum Verbergen aktivieren",
-        "enable_users_to_set_group_by": "Benutzern erlauben, Gruppe zu setzen von"
+        "enable_users_to_set_group_by": "Benutzern erlauben, Gruppe zu setzen von",
+        "column_description": "Beschreibung"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2151,7 +2152,8 @@
         "enable_users_to_filter": "Wird verwendet, um festzulegen, ob Benutzer in dieser Spalte filtern dürfen oder nicht",
         "enable_users_to_hide": "Wird verwendet, um festzulegen, ob Benutzer die Spalte ausblenden dürfen oder nicht",
         "enable_users_to_aggregate": "Wird verwendet, um festzulegen, ob Benutzer die Daten-Aggregation in dieser Spalte durchführen können oder nicht.",
-        "enable_users_to_set_group_by": "Wird verwendet, um festzulegen, ob Benutzer die Anzeige für die Datengruppierung einrichten können oder nicht. "
+        "enable_users_to_set_group_by": "Wird verwendet, um festzulegen, ob Benutzer die Anzeige für die Datengruppierung einrichten können oder nicht. ",
+        "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen"
       },
       "setter_option": {
         "fixed": "Feste",
