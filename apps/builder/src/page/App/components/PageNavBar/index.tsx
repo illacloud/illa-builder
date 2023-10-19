@@ -5,7 +5,12 @@ import {
   canUseUpgradeFeature,
   showShareAppModal,
 } from "@illa-public/user-role-utils"
-import { getILLACloudURL, isCloudVersion } from "@illa-public/utils"
+import {
+  getILLABuilderURL,
+  getILLACloudURL,
+  isCloudVersion,
+} from "@illa-public/utils"
+import { fromNow } from "@illa-public/utils"
 import {
   FC,
   MouseEvent,
@@ -63,7 +68,6 @@ import {
   updateWaterMarkConfig,
 } from "@/services/apps"
 import { takeSnapShot } from "@/services/history"
-import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { isMAC } from "@/utils/userAgent"
@@ -145,7 +149,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         dispatch(appInfoActions.updateAppDeployedReducer(true))
         dispatch(appInfoActions.updateAppPublicReducer(isPublic))
         window.open(
-          `${window.location.origin}/${teamIdentifier}/deploy/app/${appId}`,
+          `${getILLABuilderURL()}/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
         )
         onSuccess?.()
