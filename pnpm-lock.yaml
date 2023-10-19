@@ -1624,7 +1624,7 @@ importers:
         specifier: ^2.8.1
         version: 2.9.3(@types/react@18.2.22)(react@18.2.0)
       react-hotkeys-hook:
-        specifier: ^4.4.0
+        specifier: ^4.4.1
         version: 4.4.1(react-dom@18.2.0)(react@18.2.0)
       uuid:
         specifier: ^8.3.2
