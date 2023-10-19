@@ -3,7 +3,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   CONTAINER_TYPE,
   ComponentNode,
-} from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsState"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
 import { SessionType } from "../page/App/components/ComponentPanel/componentListBuilder"
 

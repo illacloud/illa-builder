@@ -4395,8 +4395,16 @@
       "tag": "Ετικέτα",
       "failed_to_save": "Αποτυχία αποθήκευσης"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link"
+    "update": "Επεξεργασία ετικετών",
+    "copy_link": "Αντιγραφή συνδέσμου",
+    "first_time_modal": {
+      "title": "Συνεισφέρετε στην κοινότητα",
+      "button": "Συνεισφέρετε"
+    },
+    "update_modal": {
+      "button": "Ενημέρωση",
+      "title": "Επεξεργασία"
+    }
   },
   "error_page": {
     "fobidden": "Δεν υπάρχει δικαίωμα πρόσβασης"

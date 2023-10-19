@@ -7,7 +7,7 @@ import {
   getAllComponentDisplayNameMapProps,
   getOriginalGlobalData,
   getPageNameMapDescendantNodeDisplayNames,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+} from "@/redux/currentApp/components/componentsSelector"
 import { RootState } from "@/store"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 

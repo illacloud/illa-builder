@@ -4395,8 +4395,16 @@
       "tag": "Etichetă",
       "failed_to_save": "Salvarea nu a reușit"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link"
+    "update": "Editare etichete",
+    "copy_link": "Copiază link-ul",
+    "first_time_modal": {
+      "title": "Contribuie la comunitate",
+      "button": "Contribuie"
+    },
+    "update_modal": {
+      "button": "Actualizare",
+      "title": "Editare"
+    }
   },
   "error_page": {
     "fobidden": "Fără permisiune de acces"
