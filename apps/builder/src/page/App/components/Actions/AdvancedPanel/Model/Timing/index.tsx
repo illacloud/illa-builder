@@ -16,7 +16,7 @@ import {
   ACTION_RUN_TIME,
   IAdvancedConfig,
 } from "@/redux/currentApp/action/actionState"
-import { getCurrentAppPageNames } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getCurrentAppPageNames } from "@/redux/currentApp/components/componentsSelector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const RUN_TIME_OPTIONS = [

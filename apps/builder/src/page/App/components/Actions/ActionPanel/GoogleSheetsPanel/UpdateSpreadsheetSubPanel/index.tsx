@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"
@@ -19,7 +20,6 @@ import {
   updateEditorValueContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/style"
 import { InputEditor } from "@/page/App/components/InputEditor"
-import { TextLink } from "@/page/User/components/TextLink"
 import { GoogleSheetsActionUpdateOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
