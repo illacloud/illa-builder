@@ -1,7 +1,12 @@
 import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
-import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
+import {
+  ContributeAgentPC,
+  HASHTAG_REQUEST_TYPE,
+  ShareAgentPC,
+  ShareAgentTab,
+} from "@illa-public/invite-modal"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
@@ -37,11 +42,11 @@ import {
 } from "@illa-public/user-role-utils"
 import {
   getAgentPublicLink,
+  getAuthToken,
   getILLABuilderURL,
   getILLACloudURL,
   sendTagEvent,
 } from "@illa-public/utils"
-import { getAuthToken } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -151,6 +156,9 @@ export const AIAgent: FC = () => {
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
   const [contributedDialogVisible, setContributedDialogVisible] =
     useState(false)
+  const [defaultShareTag, setDefaultShareTag] = useState<ShareAgentTab>(
+    ShareAgentTab.SHARE_WITH_TEAM,
+  )
 
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
@@ -1091,6 +1099,7 @@ export const AIAgent: FC = () => {
                             })
                             return
                           }
+                          setDefaultShareTag(ShareAgentTab.SHARE_WITH_TEAM)
                           setShareDialogVisible(true)
                           track(
                             ILLA_MIXPANEL_EVENT_TYPE.SHOW,
@@ -1102,19 +1111,40 @@ export const AIAgent: FC = () => {
                           )
                         }}
                         onShowContributeDialog={() => {
-                          if (
-                            !openShareAgentModal(
-                              currentTeamInfo,
-                              currentTeamInfo.myRole,
-                              contributeField.value,
+                          if (contributeField.value) {
+                            if (
+                              !openShareAgentModalOnlyForShare(currentTeamInfo)
+                            ) {
+                              upgradeModal({
+                                modalType: "upgrade",
+                              })
+                              return
+                            }
+                            setDefaultShareTag(ShareAgentTab.TO_MARKETPLACE)
+                            setShareDialogVisible(true)
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "share_modal",
+                                parameter5: data.agent.aiAgentID,
+                              },
                             )
-                          ) {
-                            upgradeModal({
-                              modalType: "upgrade",
-                            })
-                            return
+                          } else {
+                            if (
+                              !openShareAgentModal(
+                                currentTeamInfo,
+                                currentTeamInfo.myRole,
+                                contributeField.value,
+                              )
+                            ) {
+                              upgradeModal({
+                                modalType: "upgrade",
+                              })
+                              return
+                            }
+                            setContributedDialogVisible(true)
                           }
-                          setContributedDialogVisible(true)
                         }}
                       />
                     </div>
@@ -1143,7 +1173,7 @@ export const AIAgent: FC = () => {
                     basicTrack={track}
                     pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT}
                   >
-                    {(shareDialogVisible || contributedDialogVisible) && (
+                    {shareDialogVisible && (
                       <ShareAgentPC
                         itemID={idField.value}
                         onInvitedChange={(userList) => {
@@ -1184,7 +1214,6 @@ export const AIAgent: FC = () => {
                         }/ai-agent/${idField.value}`}
                         onClose={() => {
                           setShareDialogVisible(false)
-                          setContributedDialogVisible(false)
                         }}
                         canInvite={canManageInvite(
                           currentTeamInfo.myRole,
@@ -1193,11 +1222,7 @@ export const AIAgent: FC = () => {
                           currentTeamInfo.permission
                             .allowViewerManageTeamMember,
                         )}
-                        defaultTab={
-                          contributedDialogVisible
-                            ? ShareAgentTab.TO_MARKETPLACE
-                            : ShareAgentTab.SHARE_WITH_TEAM
-                        }
+                        defaultTab={defaultShareTag}
                         defaultInviteUserRole={USER_ROLE.VIEWER}
                         teamID={currentTeamInfo.id}
                         currentUserRole={currentTeamInfo.myRole}
@@ -1294,6 +1319,27 @@ export const AIAgent: FC = () => {
                           )
                         }}
                         teamPlan={getPlanUtils(currentTeamInfo)}
+                      />
+                    )}
+                    {contributedDialogVisible && (
+                      <ContributeAgentPC
+                        onContributed={(isAgentContributed) => {
+                          field.onChange(isAgentContributed)
+                          if (isAgentContributed) {
+                            const newUrl = new URL(
+                              getAgentPublicLink(idField.value),
+                            )
+                            newUrl.searchParams.set("token", getAuthToken())
+                            window.open(newUrl, "_blank")
+                          }
+                        }}
+                        teamID={currentTeamInfo.id}
+                        onClose={() => {
+                          setContributedDialogVisible(false)
+                        }}
+                        productID={idField.value}
+                        productType={HASHTAG_REQUEST_TYPE.UNIT_TYPE_AI_AGENT}
+                        productContributed={field.value}
                       />
                     )}
                   </MixpanelTrackProvider>
