@@ -610,7 +610,9 @@
               "global-data": "Καθολικά δεδομένα",
               "ai-agent": "AI Agent",
               "more": "Περισσότερα",
-              "create-resource": "Δημιουργία από πόρους"
+              "create-resource": "Δημιουργία από πόρους",
+              "unsafe": "Μη Ασφαλής",
+              "safe": "Ασφαλές"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "Χρήση αυτών των καθολικών δεδομένων από το {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "Σύνδεση στη βάση δεδομένων ή στο api",
-            "more-type": "Περισσότερος τύπος πηγών δεδομένων"
+            "more-type": "Περισσότερος τύπος πηγών δεδομένων",
+            "safe_mode": "Λειτουργία"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "Επιλογή αντικειμένου",
           "on_menu_select": "Επιλέξτε στοιχείο μενού",
           "pageChange": "Αλλαγή σελίδας",
-          "clickItem": "Κάντε κλικ στο στοιχείο"
+          "clickItem": "Κάντε κλικ στο στοιχείο",
+          "columnVisibilityChange": "Αλλαγή ορατότητας στήλης"
         },
         "image_list": {
           "title": "Εικόνες",
