@@ -116,6 +116,7 @@ export const PCDashBoardLayout: FC = () => {
       )}
       {inviteModalVisible && (
         <InviteMemberPC
+          itemID={currentTeamInfo!.id}
           redirectURL=""
           onClose={() => setInviteModalVisible(false)}
           canInvite={canManageInvite(
