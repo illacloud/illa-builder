@@ -45,12 +45,7 @@ import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  useAsyncValue,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom"
+import { useAsyncValue, useParams, useSearchParams } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -107,7 +102,6 @@ export const AIAgentRunMobile: FC = () => {
     agent: Agent
     marketplace: MarketAIAgent | undefined
   }
-  const navigate = useNavigate()
 
   const [currentMarketplaceInfo, setCurrentMarketplaceInfo] = useState<
     MarketAIAgent | undefined
@@ -143,7 +137,7 @@ export const AIAgentRunMobile: FC = () => {
     currentMarketplaceInfo?.marketplace.numStars ?? 0,
   )
 
-  const { ownerTeamIdentifier } = useParams()
+  const { ownerTeamIdentifier, agentID } = useParams()
   const [searchParams] = useSearchParams()
 
   const { t } = useTranslation()
@@ -617,11 +611,24 @@ export const AIAgentRunMobile: FC = () => {
                   <div
                     css={shareContainerStyle}
                     onClick={() => {
-                      if (document.referrer) {
-                        navigate(-1)
-                      } else {
-                        location.href = getILLACloudURL()
+                      if (
+                        document.referrer.includes(
+                          import.meta.env.ILLA_CLOUD_URL,
+                        )
+                      ) {
+                        return (location.href = `${getILLACloudURL()}/workspace/${ownerTeamIdentifier}/ai-agents`)
                       }
+                      if (
+                        document.referrer.includes(
+                          import.meta.env.ILLA_MARKET_URL,
+                        ) &&
+                        agentID
+                      ) {
+                        return (location.href = `${
+                          import.meta.env.ILLA_MARKET_URL
+                        }/ai-agent/${agentID}/detail`)
+                      }
+                      return (location.href = getILLACloudURL())
                     }}
                   >
                     <PreviousIcon fs="24px" />
