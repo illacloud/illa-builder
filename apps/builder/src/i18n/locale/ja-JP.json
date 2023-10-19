@@ -4395,8 +4395,16 @@
       "tag": "タグ",
       "failed_to_save": "保存に失敗しました"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link"
+    "update": "タグを編集",
+    "copy_link": "リンクをコピー",
+    "first_time_modal": {
+      "title": "コミュニティに貢献する",
+      "button": "貢献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "編集"
+    }
   },
   "error_page": {
     "fobidden": "アクセス権限がありません"
