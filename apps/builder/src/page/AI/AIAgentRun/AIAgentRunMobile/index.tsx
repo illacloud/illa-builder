@@ -1,6 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
-import { ShareAgentMobile, ShareAgentTab } from "@illa-public/invite-modal"
+import { ShareAgentMobile } from "@illa-public/invite-modal"
 import {
   AI_AGENT_TYPE,
   Agent,
@@ -17,7 +17,9 @@ import {
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
   USER_ROLE,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -30,14 +32,14 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
   openShareAgentModal,
-  showShareAgentModal,
 } from "@illa-public/user-role-utils"
 import {
   formatNumForAgent,
   getAgentPublicLink,
+  getAuthToken,
   getILLABuilderURL,
+  getILLACloudURL,
 } from "@illa-public/utils"
-import { getAuthToken } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -158,7 +160,6 @@ export const AIAgentRunMobile: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
-  const teamInfo = useSelector(getCurrentTeamInfo)!!
   const dispatch = useDispatch()
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
@@ -215,12 +216,8 @@ export const AIAgentRunMobile: FC = () => {
         >
           {shareDialogVisible && (
             <ShareAgentMobile
-              canUseBillingFeature={canUseUpgradeFeature(
-                teamInfo.myRole,
-                getPlanUtils(teamInfo),
-                teamInfo.totalTeamLicense.teamLicensePurchased,
-                teamInfo.totalTeamLicense.teamLicenseAllPaid,
-              )}
+              canUseBillingFeature={canUseBillingFeature}
+              itemID={agent.aiAgentID}
               title={t(
                 "user_management.modal.social_media.default_text.agent",
                 {
@@ -234,22 +231,23 @@ export const AIAgentRunMobile: FC = () => {
                 setShareDialogVisible(false)
               }}
               canInvite={canManageInvite(
-                teamInfo.myRole,
-                teamInfo.permission.allowEditorManageTeamMember,
-                teamInfo.permission.allowViewerManageTeamMember,
+                currentTeamInfo.myRole,
+                currentTeamInfo.permission.allowEditorManageTeamMember,
+                currentTeamInfo.permission.allowViewerManageTeamMember,
               )}
-              defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
               defaultInviteUserRole={USER_ROLE.VIEWER}
-              teamID={teamInfo.id}
-              currentUserRole={teamInfo.myRole}
-              defaultBalance={teamInfo.currentTeamLicense.balance}
-              defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+              teamID={currentTeamInfo.id}
+              currentUserRole={currentTeamInfo.myRole}
+              defaultBalance={currentTeamInfo.currentTeamLicense.balance}
+              defaultAllowInviteLink={
+                currentTeamInfo.permission.inviteLinkEnabled
+              }
               onInviteLinkStateChange={(enableInviteLink) => {
                 dispatch(
                   teamActions.updateTeamMemberPermissionReducer({
-                    teamID: teamInfo.id,
+                    teamID: currentTeamInfo.id,
                     newPermission: {
-                      ...teamInfo.permission,
+                      ...currentTeamInfo.permission,
                       inviteLinkEnabled: enableInviteLink,
                     },
                   }),
@@ -266,6 +264,8 @@ export const AIAgentRunMobile: FC = () => {
                   )
                   newUrl.searchParams.set("token", getAuthToken())
                   window.open(newUrl, "_blank")
+                } else {
+                  setCurrentMarketplaceInfo(undefined)
                 }
                 field.onChange(isAgentContributed)
               }}
@@ -281,7 +281,7 @@ export const AIAgentRunMobile: FC = () => {
                 copyToClipboard(
                   t("user_management.modal.custom_copy_text_agent_invite", {
                     userName: currentUserInfo.nickname,
-                    teamName: teamInfo.name,
+                    teamName: currentTeamInfo.name,
                     inviteLink: link,
                   }),
                 )
@@ -311,9 +311,9 @@ export const AIAgentRunMobile: FC = () => {
               onBalanceChange={(balance) => {
                 dispatch(
                   teamActions.updateTeamMemberSubscribeReducer({
-                    teamID: teamInfo.id,
+                    teamID: currentTeamInfo.id,
                     subscribeInfo: {
-                      ...teamInfo.currentTeamLicense,
+                      ...currentTeamInfo.currentTeamLicense,
                       balance: balance,
                     },
                   }),
@@ -330,6 +330,21 @@ export const AIAgentRunMobile: FC = () => {
                     parameter5: agent.aiAgentID,
                   },
                 )
+              }}
+              onInvitedChange={(userList) => {
+                const memberListInfo: MemberInfo[] = userList.map((user) => {
+                  return {
+                    ...user,
+                    userID: "",
+                    nickname: "",
+                    avatar: "",
+                    userStatus: USER_STATUS.PENDING,
+                    permission: {},
+                    createdAt: "",
+                    updatedAt: "",
+                  }
+                })
+                dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
               }}
             />
           )}
@@ -602,7 +617,11 @@ export const AIAgentRunMobile: FC = () => {
                   <div
                     css={shareContainerStyle}
                     onClick={() => {
-                      navigate(-1)
+                      if (document.referrer) {
+                        navigate(-1)
+                      } else {
+                        location.href = getILLACloudURL()
+                      }
                     }}
                   >
                     <PreviousIcon fs="24px" />
@@ -691,13 +710,7 @@ export const AIAgentRunMobile: FC = () => {
                       )}
                     </div>
                   )}
-                  {showShareAgentModal(
-                    teamInfo,
-                    agent.teamID === teamInfo.id
-                      ? teamInfo.myRole
-                      : USER_ROLE.GUEST,
-                    field.value,
-                  ) && (
+                  {(canUseBillingFeature || field.value) && (
                     <div
                       css={shareContainerStyle}
                       onClick={() => {
@@ -711,7 +724,7 @@ export const AIAgentRunMobile: FC = () => {
                         )
                         if (
                           !openShareAgentModal(
-                            teamInfo,
+                            currentTeamInfo,
                             currentTeamInfo.id === agent.teamID
                               ? currentTeamInfo.myRole
                               : USER_ROLE.GUEST,

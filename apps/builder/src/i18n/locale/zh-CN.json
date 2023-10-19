@@ -610,7 +610,9 @@
               "global-data": "全局变量",
               "ai-agent": "AI Agent",
               "more": "更多",
-              "create-resource": "从数据源创建"
+              "create-resource": "从数据源创建",
+              "unsafe": "不安全",
+              "safe": "安全"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "通过{{globalData.state1}}来使用这个全局变量"
+            },
+            "general": {
+              "safe_mode": "使用safe模式时，您的SQL只能在变量的位置引用变量，例如where name = '{{input1.value}}'。这使得使用者无法通过在input1中输入 ; drop table; 等方式来破坏您的数据库；使用Unsafe模式时，SQL语法词也可以替换为变量，如where {{input1.value}} {{input2.value}} '{{input3.value}}'，但这样一来数据库可能被用户输入的内容破坏，不建议您使用"
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "连接到数据库或API",
-            "more-type": "更多连接方式"
+            "more-type": "更多连接方式",
+            "safe_mode": "模式"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "选中菜单项",
           "on_menu_select": "选择菜单项",
           "pageChange": "页面更改",
-          "clickItem": "点击项目"
+          "clickItem": "点击项目",
+          "columnVisibilityChange": "变更列是否可见"
         },
         "image_list": {
           "title": "图片",
@@ -1722,7 +1729,7 @@
           "icon": "图标",
           "color": "颜色",
           "sort_by_mapped_value": "按映射值排序",
-          "background": "背景色",
+          "background": "单元格背景色",
           "alignment": "对齐方式",
           "column_width": "列宽",
           "width": "宽度",
@@ -1846,7 +1853,8 @@
         "enable_users_to_pin": "允许用户冻结列",
         "enable_users_to_filter": "允许用户筛选",
         "enable_users_to_hide": "允许用户隐藏列",
-        "enable_users_to_set_group_by": "允许用户设置分组显示"
+        "enable_users_to_set_group_by": "允许用户设置分组显示",
+        "column_description": "描述"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2144,7 +2152,8 @@
         "enable_users_to_filter": "用于设置是否允许用户筛选数据",
         "enable_users_to_hide": "用于设置是否允许用户隐藏列",
         "enable_users_to_aggregate": "用于设置是否允许用户聚合这列数据",
-        "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示"
+        "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示",
+        "column_description": "用于设置这列的描述信息"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -3168,6 +3177,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "数据表"
     }
   },
   "page": {

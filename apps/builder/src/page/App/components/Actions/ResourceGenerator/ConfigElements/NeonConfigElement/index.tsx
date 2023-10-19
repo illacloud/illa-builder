@@ -19,7 +19,6 @@ import {
   configItem,
   connectType,
   connectTypeStyle,
-  container,
   divider,
   errorIconStyle,
   errorMsgStyle,
@@ -40,6 +39,7 @@ import { isURL } from "@/utils/typeHelper"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const getParsedStringValue = (inputString: string) => {
   const regex = /^postgres:\/\/([^:]+)(?::([^@]*))?@([^\/]+)\/(.+)$/

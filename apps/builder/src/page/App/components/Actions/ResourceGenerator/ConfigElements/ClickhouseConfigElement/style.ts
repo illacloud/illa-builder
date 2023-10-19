@@ -1,12 +1,6 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
-export const container = css`
-  width: 100%;
-  max-height: 685px;
-  overflow-y: auto;
-`
-
 export const footerStyle = css`
   height: 80px;
   padding: 24px;

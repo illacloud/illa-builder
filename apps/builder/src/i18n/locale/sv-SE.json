@@ -610,7 +610,9 @@
               "global-data": "Globala data",
               "ai-agent": "AI Agent",
               "more": "Mer",
-              "create-resource": "Skapa från resurs"
+              "create-resource": "Skapa från resurs",
+              "unsafe": "Osäker",
+              "safe": "Säker"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "Använd denna globala data av {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "När du använder felsäkert läge kan din SQL endast referera variabler i stället för variabler, till exempel där namn = '{{input1.value}}'. Detta förhindrar användare från att kompromettera din databas genom att lägga in påståenden som \"; släpp tabell\" i input1. När du använder det osäkra läget kan SQL syntax ord också ersättas med variabler, t.ex. var {{input1.value}} {{input2.value}} '{{input3.value}}'. I detta fall kan dock databasen äventyras av det innehåll som användaren angett. Det rekommenderas inte att du använder det här läget."
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "Anslut till databas eller api",
-            "more-type": "Fler typer av datakällor"
+            "more-type": "Fler typer av datakällor",
+            "safe_mode": "Läge"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "Välj objekt",
           "on_menu_select": "Välj menyobjekt",
           "pageChange": "Ändrad sida",
-          "clickItem": "Klicka på objekt"
+          "clickItem": "Klicka på objekt",
+          "columnVisibilityChange": "Ändra kolumnsynlighet"
         },
         "image_list": {
           "title": "Bilder",
@@ -1722,7 +1729,7 @@
           "icon": "Ikon",
           "color": "Färg",
           "sort_by_mapped_value": "Sortera efter mappat värde",
-          "background": "Bakgrund",
+          "background": "Cellernas bakgound",
           "alignment": "Justering",
           "column_width": "Kolumnens bredd",
           "width": "Width",
@@ -1846,7 +1853,8 @@
         "enable_users_to_pin": "Aktivera användare att fästa",
         "enable_users_to_filter": "Aktivera användare att filtrera",
         "enable_users_to_hide": "Aktivera användare att dölja",
-        "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av"
+        "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av",
+        "column_description": "Beskrivning"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2144,7 +2152,8 @@
         "enable_users_to_filter": "Används för att ställa in om användare tillåts filtrera på denna kolumn",
         "enable_users_to_hide": "Används för att ställa in om användare tillåts dölja kolumnen",
         "enable_users_to_aggregate": "Används för att ställa in om användare ska tillåta att data aggregering görs på den här kolumnen.",
-        "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. "
+        "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
+        "column_description": "Används för att ange en beskrivning av denna kolumn"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -3168,6 +3177,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Data rutnät"
     }
   },
   "page": {

@@ -6,13 +6,17 @@ import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Input, Select, useMessage } from "@illa-design/react"
+import { Button, Input, Select, Trigger, useMessage } from "@illa-design/react"
 import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
   actionItemContainer,
+  labelStyle,
+  labelTipsStyle,
+  modeContainerStyle,
   mysqlContainerStyle,
   sqlInputStyle,
   sqlTransStyle,
@@ -28,6 +32,7 @@ import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { SQLModeSelector } from "../pulicComponent/SQLModeSelector"
 
 const MysqlLikePanel: FC = () => {
   const currentAction = useSelector(getCachedAction)!!
@@ -232,6 +237,28 @@ const MysqlLikePanel: FC = () => {
             onBlur={onBlurOnCodeMirror}
           />
         </div>
+        {(mysqlContent.mode === "sql" || mysqlContent.mode === "sql-safe") && (
+          <div css={modeContainerStyle}>
+            <Trigger
+              content={
+                <ILLAMarkdown
+                  textString={t(
+                    "editor.action.panel.label.tips.general.safe_mode",
+                  )}
+                />
+              }
+              trigger="hover"
+              position="left"
+              maxW="240px"
+            >
+              <span css={labelStyle}>
+                {t("editor.action.panel.label.general.safe_mode")}
+                <span css={labelTipsStyle} />
+              </span>
+            </Trigger>
+            <SQLModeSelector />
+          </div>
+        )}
         <TransformerComponent fullWidth />
       </div>
       <ActionEventHandler />

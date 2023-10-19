@@ -7,6 +7,8 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -17,7 +19,11 @@ import {
   canUseUpgradeFeature,
   openShareAppModal,
 } from "@illa-public/user-role-utils"
-import { getMarketLinkTemplate, isCloudVersion } from "@illa-public/utils"
+import {
+  getILLABuilderURL,
+  getMarketLinkTemplate,
+  isCloudVersion,
+} from "@illa-public/utils"
 import { getAuthToken } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -87,12 +93,46 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
       >
         {shareModalVisible && (
           <ShareAppPC
+            itemID={appInfo.appId}
+            onInvitedChange={(userList) => {
+              const memberListInfo: MemberInfo[] = userList.map((user) => {
+                return {
+                  ...user,
+                  userID: "",
+                  nickname: "",
+                  avatar: "",
+                  userStatus: USER_STATUS.PENDING,
+                  permission: {},
+                  createdAt: "",
+                  updatedAt: "",
+                }
+              })
+              dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
+            }}
+            appDesc={appInfo.config.description}
+            appName={appInfo.appName}
+            onAppInfoUpdate={(appName, appDesc) => {
+              dispatch(
+                appInfoActions.updateAppInfoReducer({
+                  ...appInfo,
+                  appName,
+                  config: {
+                    ...appInfo.config,
+                    description: appDesc,
+                  },
+                }),
+              )
+            }}
             isDeployed={appInfo.deployed}
             title={t("user_management.modal.social_media.default_text.app", {
               appName: appInfo.appName,
             })}
-            editRedirectURL={`${window.location.origin}/${teamInfo.identifier}/app/${appInfo.appId}`}
-            useRedirectURL={`${window.location.origin}/${teamInfo.identifier}/deploy/app/${appInfo.appId}`}
+            editRedirectURL={`${getILLABuilderURL()}/${
+              teamInfo.identifier
+            }/app/${appInfo.appId}`}
+            useRedirectURL={`${getILLABuilderURL()}/${
+              teamInfo.identifier
+            }/deploy/app/${appInfo.appId}`}
             defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
             onInviteLinkStateChange={(enableInviteLink) => {
               dispatch(

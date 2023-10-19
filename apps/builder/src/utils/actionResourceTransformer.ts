@@ -1,12 +1,6 @@
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
 
-export function getActionTypeFromResourceType(
-  resourceType: ResourceType | null | undefined,
-): ActionType | null {
-  return resourceType as ActionType
-}
-
 export function getActionSubTitleFromActionType(
   actionType: ActionType | null | undefined,
 ): string {

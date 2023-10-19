@@ -1,5 +1,4 @@
 import { builderRequest } from "@illa-public/illa-net"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
@@ -42,6 +41,5 @@ export const createAction = async (
     },
     { teamID: getCurrentTeamID() },
   )
-  store.dispatch(actionActions.addActionItemReducer(response.data))
   return response.data.actionID
 }
