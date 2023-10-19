@@ -1,19 +1,8 @@
-import { templateConfig } from "@/config/template/index"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
-
-export type TemplateName = keyof typeof templateConfig
-
-export interface TemplateSetting {
-  type: TemplateName
-  nameKey: string
-  descKey: string
-  appId: string
-  icon: string
-}
 
 export type TemplateResources = {
   resourceName: string

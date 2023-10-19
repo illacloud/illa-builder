@@ -9,12 +9,12 @@ import {
   UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
   UpdateComponentSlicePropsPayload,
-} from "@/redux/currentApp/editor/components/componentsPayload"
-import { getNeedChangeViewDisplayNames } from "@/redux/currentApp/editor/components/componentsReducer"
+} from "@/redux/currentApp/components/componentsPayload"
+import { getNeedChangeViewDisplayNames } from "@/redux/currentApp/components/componentsReducer"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+} from "@/redux/currentApp/components/componentsSelector"
 import {
   AddModalComponentPayload,
   AddSectionViewPayload,
@@ -34,7 +34,7 @@ import {
   UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
-} from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
 
 export const componentsAsync = (

@@ -7,8 +7,8 @@ import { DEFAULT_MAX_HEIGHT } from "@/page/App/components/ScaleSquare/components
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 

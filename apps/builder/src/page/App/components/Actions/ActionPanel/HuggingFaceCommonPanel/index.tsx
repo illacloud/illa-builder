@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { Namespace, TFunction } from "i18next"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
@@ -19,7 +20,6 @@ import {
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/InputEditor"
-import { TextLink } from "@/page/User/components/TextLink"
 import {
   getCachedAction,
   getSelectedAction,

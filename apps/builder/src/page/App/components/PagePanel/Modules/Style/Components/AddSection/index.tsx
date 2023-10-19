@@ -8,7 +8,7 @@ import {
   getColor,
 } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageExecutionResult,
   getCurrentPageFooterSection,

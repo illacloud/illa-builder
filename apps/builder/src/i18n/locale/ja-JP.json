@@ -610,7 +610,9 @@
               "global-data": "グローバルデータ",
               "ai-agent": "AI Agent",
               "more": "もっと見る",
-              "create-resource": "リソースから作成"
+              "create-resource": "リソースから作成",
+              "unsafe": "危険です",
+              "safe": "安全"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "このグローバルデータを {{globalData.state1}}で使用する"
+            },
+            "general": {
+              "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "データベースまたは api に接続します",
-            "more-type": "More type of data source"
+            "more-type": "More type of data source",
+            "safe_mode": "モード"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "アイテムを選択",
           "on_menu_select": "メニュー項目を選択",
           "pageChange": "ページ変更",
-          "clickItem": "アイテムをクリックします"
+          "clickItem": "アイテムをクリックします",
+          "columnVisibilityChange": "列の表示の変更"
         },
         "image_list": {
           "title": "イメージ",
@@ -1722,7 +1729,7 @@
           "icon": "アイコン",
           "color": "色",
           "sort_by_mapped_value": "マップ値でソート",
-          "background": "背景色",
+          "background": "セルの背景",
           "alignment": "アラインメント",
           "column_width": "列幅",
           "width": "幅",
@@ -1846,7 +1853,8 @@
         "enable_users_to_pin": "ユーザーのピン留めを有効にする",
         "enable_users_to_filter": "フィルタを有効にする",
         "enable_users_to_hide": "ユーザーの非表示を有効にする",
-        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする"
+        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする",
+        "column_description": "説明"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2144,7 +2152,8 @@
         "enable_users_to_filter": "このカラムをフィルタリングできるかどうかを設定するために使用します。",
         "enable_users_to_hide": "ユーザーが列を非表示にするかどうかを設定するために使用します。",
         "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
-        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 "
+        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 ",
+        "column_description": "この列の説明を設定するために使用"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -3168,6 +3177,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "データグリッド"
     }
   },
   "page": {

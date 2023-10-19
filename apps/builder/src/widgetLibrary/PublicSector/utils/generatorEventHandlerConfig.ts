@@ -272,7 +272,8 @@ export const generatorEventHandlerConfig = (
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        shown: (widgetMethod) => widgetMethod === "setImageUrl",
+        shown: (widgetMethod) =>
+          widgetMethod === "setImageUrl" || widgetMethod === "setSrc",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-pageIndex`,

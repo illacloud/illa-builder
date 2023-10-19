@@ -1,4 +1,4 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { clamWidgetShape, combineWidgetInfos } from "./getDragShadow"
 

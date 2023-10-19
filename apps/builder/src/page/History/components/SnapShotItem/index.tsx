@@ -1,4 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
+import { getILLABuilderURL } from "@illa-public/utils"
+import { formatDate } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
@@ -10,7 +12,6 @@ import {
   SnapshotTriggerMode,
 } from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot, recoverSnapShotWS } from "@/services/history"
-import { formatDate } from "@/utils/dayjs"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { ReactComponent as SaveIcon } from "./assets/save.svg"
 import {
@@ -125,7 +126,9 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
       await recoverSnapShot(snapshot.appID, snapshot.snapshotID)
       await recoverSnapShotWS(snapshot.appID)
       message.success({ content: t("editor.history.message.suc.restore") })
-      window.location.href = `/${teamIdentifier}/app/${snapshot.appID}`
+      window.location.href = `${getILLABuilderURL()}/${teamIdentifier}/app/${
+        snapshot.appID
+      }`
     } catch (error) {
       if (isILLAAPiError(error)) {
         message.error({ content: t("editor.history.message.fail.restore") })

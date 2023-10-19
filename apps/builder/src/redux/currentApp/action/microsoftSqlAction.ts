@@ -1,6 +1,6 @@
 import { Events } from "./actionState"
 
-export type MicrosoftSqlActionMode = "gui" | "sql"
+export type MicrosoftSqlActionMode = "gui" | "sql" | "sql-safe"
 
 export type MicrosoftSqlActionSqlMode = {
   sql: string
@@ -34,6 +34,6 @@ export const MicrosoftSqlActionGUIModeInitial: MicrosoftSqlActionGUIMode = {
 
 export const MicrosoftSqlActionInitial: MicrosoftSqlAction<MicrosoftSqlActionType> =
   {
-    mode: "sql",
+    mode: "sql-safe",
     query: MicrosoftSqlActionSqlModeInitial,
   }
