@@ -1,4 +1,8 @@
-import { ShareAppPC } from "@illa-public/invite-modal"
+import {
+  ContributeAppPC,
+  HASHTAG_REQUEST_TYPE,
+  ShareAppPC,
+} from "@illa-public/invite-modal"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -44,6 +48,8 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
 
   const [shareModalVisible, setShareModalVisible] = useState(false)
 
+  const [contributedModalVisible, setContributedModalVisible] = useState(false)
+
   const showInvite = canManageInvite(
     teamInfo.myRole,
     teamInfo?.permission?.allowEditorManageTeamMember,
@@ -75,7 +81,9 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
             })
             return
           }
-          setShareModalVisible(true)
+          appInfo.config.publishedToMarketplace
+            ? setShareModalVisible(true)
+            : setContributedModalVisible(true)
         }}
         leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
       >
@@ -232,6 +240,43 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
                   parameter5: appInfo.appId,
                 },
               )
+            }}
+          />
+        )}
+        {contributedModalVisible && (
+          <ContributeAppPC
+            productID={appInfo.appId}
+            productContributed={appInfo.config.publishedToMarketplace}
+            onContributed={(isContributed) => {
+              dispatch(appInfoActions.updateAppContributeReducer(isContributed))
+              if (isContributed) {
+                dispatch(appInfoActions.updateAppDeployedReducer(true))
+                const newUrl = new URL(getMarketLinkTemplate(appInfo.appId))
+                newUrl.searchParams.set("token", getAuthToken())
+                window.open(newUrl, "_blank")
+              }
+            }}
+            productType={HASHTAG_REQUEST_TYPE.UNIT_TYPE_APP}
+            appDesc={appInfo.config.description}
+            appName={appInfo.appName}
+            onAppInfoUpdate={(appName, appDesc) => {
+              dispatch(
+                appInfoActions.updateAppInfoReducer({
+                  ...appInfo,
+                  appName,
+                  config: {
+                    ...appInfo.config,
+                    description: appDesc,
+                  },
+                }),
+              )
+            }}
+            onClose={() => {
+              setContributedModalVisible(false)
+            }}
+            teamID={teamInfo.id}
+            onAppPublic={(isPublic) => {
+              dispatch(appInfoActions.updateAppPublicReducer(isPublic))
             }}
           />
         )}
