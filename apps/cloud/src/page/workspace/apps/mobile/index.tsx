@@ -27,10 +27,11 @@ export const MobileAppWorkspace = () => {
     getPlanUtils(currentTeamInfo),
     ACTION_ACCESS.VIEW,
   )
-  const { data, isLoading } = useAppList(canAccessApps)
+  const { data: appList = [], isLoading } = useAppList(canAccessApps)
   const { t } = useTranslation()
+  const appListFilter = appList.filter((app) => app.deployed)
 
-  const [appList, handleChangeSearch] = useSearch(data ?? [], [
+  const [appListResult, handleChangeSearch] = useSearch(appListFilter ?? [], [
     "appName",
     "config.description",
   ])
@@ -55,11 +56,11 @@ export const MobileAppWorkspace = () => {
       />
       {isLoading ? (
         <FullSectionLoading />
-      ) : appList.length > 0 ? (
+      ) : appListResult.length > 0 ? (
         <>
           {dividerShown && <Divider direction="horizontal" />}
           <div css={cardContainerStyle} onScroll={onContainerScroll}>
-            {appList.map((appInfo) => (
+            {appListResult.map((appInfo) => (
               <MobileAppCardItem
                 key={appInfo.appId}
                 appName={appInfo.appName}
