@@ -873,7 +873,7 @@
         "invite_title": "Kutsu sähköpostitse",
         "invite": "Kutsu",
         "placeholder": "Syötä sähköpostiosoite",
-        "invited": "Kutsuttu",
+        "invited": "Tämä käyttäjä on jo tiimissäsi.",
         "in_list": "Tämä käyttäjä on jo tiimissäsi.",
         "duplicate": "{{ email }} on kopioitu",
         "notmail": "{{ email }} ei ole sähköposti",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "Kutsu",
-        "public": "Julkinen"
+        "public": "Julkinen",
+        "with_team": "Jaa tiimin kanssa"
       },
       "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}} on jakanut sinulle sovelluksen 「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin ja tarkista APP: {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "Kun olet lisännyt sovelluksesi yhteisöön, muut käyttäjät voivat tarkastella sen käyttöliittymää, suorittaa sen toimintoja ja fork se. Sovelluksen haarautuessa resurssikonfiguraatiotietoja ei ole otettu mukaan, joten ei ole tarpeen huolehtia resurssikonfiguraation tietojen paljastamisesta."
         },
-        "desc": "Kun olet osallistunut yhteisöön, kaikki käyttäjät voivat juosta, tähden ja haaraudu Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
+        "desc": "Kun olet osallistunut yhteisöön, kaikki käyttäjät voivat juosta, tähden ja haaraudu Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja.",
+        "default_text": {
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}",
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "Jaa sosiaalisessa mediassa"
-      }
+        "label": "Jaa sosiaalisessa mediassa",
+        "default_text": {
+          "agent": "Löysin juuri vaikuttavan tekoälyagentin nimeltä {{ agentName }}",
+          "app": "Löysin juuri vaikuttavan sovelluksen nimeltä {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "Mallit",
-    "market": "Kauppapaikka",
+    "market": "Luo mallista",
     "app": {
       "all_apps": "Kaikki Sovellukset",
       "create_app": "Luo Sovellus",
@@ -4375,5 +4385,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "Juuri nyt"
   }
 }

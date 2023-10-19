@@ -10,8 +10,10 @@ import {
   getPlanUtils,
 } from "@illa-public/user-data"
 import {
+  ACTION_ACCESS,
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
+  canAccess,
   canManage,
 } from "@illa-public/user-role-utils"
 import {
@@ -49,7 +51,13 @@ export const PCAppWorkspace = () => {
   const currentTeamID = useSelector(getCurrentId)!
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const userInfo = useSelector(getCurrentUser)
-  const { data: appList, isLoading } = useAppList()
+  const canAccessApps = canAccess(
+    currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.APP,
+    getPlanUtils(currentTeamInfo),
+    ACTION_ACCESS.VIEW,
+  )
+  const { data: appList, isLoading } = useAppList(canAccessApps)
   const { t } = useTranslation()
   const [createLoading, setCreateLoading] = useState(false)
   const { teamIdentifier } = useParams()

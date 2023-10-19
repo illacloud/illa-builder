@@ -69,8 +69,7 @@ export const connectTypeStyle = css`
 
 export const container = css`
   width: 100%;
-  max-height: 685px;
-  overflow-y: auto;
+  overflow: auto;
 `
 
 export const footerStyle = css`

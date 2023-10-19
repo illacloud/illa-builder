@@ -873,7 +873,7 @@
         "invite_title": "Invită prin e-mail",
         "invite": "Invită",
         "placeholder": "Introduceți adresa de e-mail",
-        "invited": "Au invitat",
+        "invited": "Acest utilizator este deja în echipa dvs.",
         "in_list": "Acest utilizator este deja în echipa dvs.",
         "duplicate": "{{ email }} este duplicat",
         "notmail": "{{ email }} nu este un e-mail",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "Invită",
-        "public": "Publice"
+        "public": "Publice",
+        "with_team": "Partajează cu echipa"
       },
       "custom_copy_text": "{{userName}} vă invită să vă alăturați「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei: {{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}} v-a distribuit o aplicație de 「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei și verificați APP: {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "După ce a contribuit aplicația ta la comunitate, alți utilizatori își pot vizualiza interfața, pot executa acțiunile și îl pot furca. Atunci când forjezi o aplicație, informațiile de configurare a resurselor nu sunt incluse, deci nu este nevoie să îți faci griji cu privire la publicarea informațiilor de configurare a resurselor."
         },
-        "desc": "Dupa ce contribuie la comunitate, toti utilizatorii pot rula, steaua si furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
+        "desc": "Dupa ce contribuie la comunitate, toti utilizatorii pot rula, steaua si furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele.",
+        "default_text": {
+          "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}. Verificați: {{ agentLink }}",
+          "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}. Verificați: {{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "Distribuie pe rețelele sociale"
-      }
+        "label": "Distribuie pe rețelele sociale",
+        "default_text": {
+          "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}",
+          "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vă partajează un AI Agent din …………{{ teamName }}yet. Alăturați-vă echipei și verificați: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invitat cu succes",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "Şabloane",
-    "market": "Piață",
+    "market": "Creați din șablon",
     "app": {
       "all_apps": "Toate aplicațiile",
       "create_app": "Creare aplicație",
@@ -4375,5 +4385,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "Chiar acum"
   }
 }
