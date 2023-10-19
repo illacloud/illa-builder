@@ -22,5 +22,5 @@ export const modeContainerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 12px 16px;
 `

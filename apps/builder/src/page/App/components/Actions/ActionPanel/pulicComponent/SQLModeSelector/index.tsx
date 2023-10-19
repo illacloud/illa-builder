@@ -54,9 +54,10 @@ export const SQLModeSelector: FC = () => {
   return (
     <RadioGroup
       colorScheme="gray"
-      ml="16px"
+      w="184px"
+      size="small"
       type="button"
-      forceEqualWidth={true}
+      forceEqualWidth
       onChange={handleOnChangeSqlMode}
       value={cachedAction.content.mode}
       options={sqlModeOptions}

@@ -117,10 +117,14 @@ const MicrosoftSqlPanel: FC = () => {
           title={t("editor.action.panel.mssql.config_type")}
           forceEqualWidth={true}
           onChange={handleValueChange}
-          value={content.mode}
+          value={
+            content.mode === "sql" || content.mode === "sql-safe"
+              ? "sql"
+              : "gui"
+          }
           radioOptions={ConfigTypeOptions}
         />
-        {content.mode === "sql" ? (
+        {content.mode === "sql" || content.mode === "sql-safe" ? (
           <MSSQLSqlMode
             modeContent={sqlModeInitial}
             onChange={handleQueryChange}
