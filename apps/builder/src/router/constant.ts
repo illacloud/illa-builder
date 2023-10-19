@@ -1,6 +1,6 @@
-export const cloudUrl = `${import.meta.env.ILLA_CLOUD_URL}`
+import { getILLACloudURL } from "@illa-public/utils"
 
-export const cloudRedirect = `${cloudUrl}?redirectURL=${encodeURIComponent(
+export const cloudRedirect = `${getILLACloudURL()}?redirectURL=${encodeURIComponent(
   location.origin + location.pathname,
 )}`
 

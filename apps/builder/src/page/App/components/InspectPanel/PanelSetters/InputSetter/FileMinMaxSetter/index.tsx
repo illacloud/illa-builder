@@ -18,7 +18,7 @@ import {
   realInputValueWithList,
 } from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/util"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { FileMinMaxSetterProps } from "./interface"
 import {

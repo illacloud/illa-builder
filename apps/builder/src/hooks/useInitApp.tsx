@@ -10,10 +10,10 @@ import { configActions } from "@/redux/config/configSlice"
 import { IllaMode } from "@/redux/config/configState"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { DashboardAppInitialState } from "@/redux/currentApp/appInfo/appInfoState"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
-import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
+// import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { fetchTeamAgent } from "@/services/agent"
 import { fetchPrivateAppInitData } from "@/services/apps"
@@ -86,11 +86,11 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           .then((res) => {
             dispatch(resourceActions.updateResourceListReducer(res[1].data))
             handleCurrentApp(res[0].data)
-            dispatch(
-              dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
-                res[2].data.aiAgentList,
-              ),
-            )
+            // dispatch(
+            //   dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
+            //     res[2].data.aiAgentList,
+            //   ),
+            // )
           })
           .catch(() => {
             setErrorState(true)
