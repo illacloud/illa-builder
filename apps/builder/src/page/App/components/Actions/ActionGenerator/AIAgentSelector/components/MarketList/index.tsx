@@ -7,7 +7,7 @@ import { FC, useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
 import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
-import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
+import { aiAgentActions } from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
 import { forkAIAgentToTeam } from "@/services/agent"
 import { AGENT_LIST_HEIGHT, MARKET_AGENT_ITEM_HEIGHT } from "../../constants"
 import { ListEmptyState } from "../ListEmptyState"
@@ -31,7 +31,7 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
     async (agent: Agent) => {
       const response = await forkAIAgentToTeam(agent.aiAgentID)
       dispatch(
-        dashboardTeamAIAgentActions.addTeamAIAgentReducer({
+        aiAgentActions.addTeamAIAgentReducer({
           aiAgent: response.data,
         }),
       )

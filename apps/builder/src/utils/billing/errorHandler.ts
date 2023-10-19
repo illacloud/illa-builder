@@ -1,11 +1,9 @@
 import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
-import { isCloudVersion } from "@illa-public/utils"
+import { getILLACloudURL, isCloudVersion } from "@illa-public/utils"
 import { matchPath } from "react-router-dom"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { cloudUrl } from "@/router/constant"
 import { isILLAAPiError } from "@/utils/typeHelper"
-
 
 const message = createMessage()
 export const commonBillingErrorHandler = (error: unknown) => {
@@ -17,8 +15,8 @@ export const commonBillingErrorHandler = (error: unknown) => {
         const match = matchPath("/:teamIdentifier/*", location.pathname)
         const teamIdentifier = match?.params?.teamIdentifier
         window.location.href = teamIdentifier
-          ? `${cloudUrl}/workspace/${teamIdentifier}`
-          : cloudUrl
+          ? `${getILLACloudURL()}/workspace/${teamIdentifier}`
+          : getILLACloudURL()
         break
     }
   }

@@ -33,7 +33,12 @@ import {
   canUseUpgradeFeature,
   openShareAgentModal,
 } from "@illa-public/user-role-utils"
-import { formatNumForAgent, getAgentPublicLink } from "@illa-public/utils"
+import {
+  formatNumForAgent,
+  getAgentPublicLink,
+  getILLABuilderURL,
+} from "@illa-public/utils"
+import { getAuthToken } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -67,7 +72,6 @@ import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interfa
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
-import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
@@ -219,9 +223,7 @@ export const AIAgentRunMobile: FC = () => {
                   agentName: agent.name,
                 },
               )}
-              redirectURL={`${
-                import.meta.env.ILLA_BUILDER_URL
-              }/${ownerTeamIdentifier}/ai-agent/${
+              redirectURL={`${getILLABuilderURL()}/${ownerTeamIdentifier}/ai-agent/${
                 agent.aiAgentID
               }/run?myTeamIdentifier=${searchParams.get("myTeamIdentifier")}`}
               onClose={() => {

@@ -7,9 +7,9 @@ import { ReactComponent as CustomIcon } from "@/assets/appSize/filter.svg"
 import { ReactComponent as FluidIcon } from "@/assets/appSize/fluid.svg"
 import { ReactComponent as TabletIcon } from "@/assets/appSize/tablet.svg"
 import { PreviewPopContent } from "@/page/App/components/PageNavBar/PreviewPopContent"
-import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ViewportSizeType } from "@/redux/currentApp/editor/components/componentsState"
+import { getViewportSizeSelector } from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { ViewportSizeType } from "@/redux/currentApp/components/componentsState"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   appSizeContainerStyle,
