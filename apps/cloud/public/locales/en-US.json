@@ -944,7 +944,8 @@
       "current-user": "You"
     },
     "settings": {
-      "allow_editors_invite": "Allow editors and viewers to manage members"
+      "allow_editors_invite": "Allow editors and viewers to manage members",
+      "allow_register": "Allow users to register via link"
     }
   },
   "homepage": {
@@ -4290,7 +4291,7 @@
     },
     "desc": {
       "no_description": "No description",
-      "blank": "No application",
+      "blank": "No items",
       "blank-agent": "No AI Agent here"
     },
     "app_setting": {
@@ -4351,6 +4352,16 @@
       "add_tag": "Add tags",
       "tag": "Tag",
       "failed_to_save": "Failed to save"
+    },
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link",
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
     }
   },
   "tutorial": {

@@ -944,7 +944,8 @@
       "current-user": "Du"
     },
     "settings": {
-      "allow_editors_invite": "Tillåt redaktörer och tittare att hantera medlemmar"
+      "allow_editors_invite": "Tillåt redaktörer och tittare att hantera medlemmar",
+      "allow_register": "Tillåt användare att registrera sig via länk"
     }
   },
   "homepage": {
@@ -4290,7 +4291,7 @@
     },
     "desc": {
       "no_description": "Ingen beskrivning",
-      "blank": "Ingen applikation",
+      "blank": "Inga objekt",
       "blank-agent": "Ingen AI-agent här"
     },
     "app_setting": {
@@ -4351,6 +4352,16 @@
       "add_tag": "Lägg till taggar",
       "tag": "Tagg",
       "failed_to_save": "Det gick inte att spara"
+    },
+    "first_time_modal": {
+      "title": "Bidra till gemenskap",
+      "button": "Bidra"
+    },
+    "update": "Redigera taggar",
+    "copy_link": "Kopiera länk",
+    "update_modal": {
+      "button": "Uppdatera",
+      "title": "Redigera"
     }
   },
   "tutorial": {

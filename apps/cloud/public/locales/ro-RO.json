@@ -944,7 +944,8 @@
       "current-user": "Tu"
     },
     "settings": {
-      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii"
+      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
+      "allow_register": "Permite utilizatorilor să se înregistreze prin link"
     }
   },
   "homepage": {
@@ -4290,7 +4291,7 @@
     },
     "desc": {
       "no_description": "Nici o descriere",
-      "blank": "Nicio cerere",
+      "blank": "Niciun articol",
       "blank-agent": "Niciun agent AI aici"
     },
     "app_setting": {
@@ -4351,6 +4352,16 @@
       "add_tag": "Adaugă etichete",
       "tag": "Etichetă",
       "failed_to_save": "Salvarea nu a reușit"
+    },
+    "first_time_modal": {
+      "title": "Contribuie la comunitate",
+      "button": "Contribuie"
+    },
+    "update": "Editare etichete",
+    "copy_link": "Copiază link-ul",
+    "update_modal": {
+      "button": "Actualizare",
+      "title": "Editare"
     }
   },
   "tutorial": {

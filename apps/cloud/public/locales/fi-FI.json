@@ -944,7 +944,8 @@
       "current-user": "Sinä"
     },
     "settings": {
-      "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä"
+      "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä",
+      "allow_register": "Salli käyttäjien rekisteröityä linkin kautta"
     }
   },
   "homepage": {
@@ -4290,7 +4291,7 @@
     },
     "desc": {
       "no_description": "Ei kuvausta",
-      "blank": "Ei sovellusta",
+      "blank": "Ei kohteita",
       "blank-agent": "Ei tekoälyagenttia tässä"
     },
     "app_setting": {
@@ -4351,6 +4352,16 @@
       "add_tag": "Lisää tunnisteita",
       "tag": "Tunniste",
       "failed_to_save": "Tallennus epäonnistui"
+    },
+    "first_time_modal": {
+      "title": "Osallistu yhteisölle",
+      "button": "Osallistu"
+    },
+    "update": "Muokkaa tageja",
+    "copy_link": "Kopioi linkki",
+    "update_modal": {
+      "button": "Päivitä",
+      "title": "Muokkaa"
     }
   },
   "tutorial": {
