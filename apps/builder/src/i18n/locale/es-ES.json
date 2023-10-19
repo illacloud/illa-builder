@@ -1729,7 +1729,7 @@
           "icon": "Icono",
           "color": "Color",
           "sort_by_mapped_value": "Ordenar por valor mapeado",
-          "background": "Cells' backgound",
+          "background": "Fondo",
           "alignment": "Alineación",
           "column_width": "Ancho de columna",
           "width": "Width",

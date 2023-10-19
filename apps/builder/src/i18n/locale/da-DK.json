@@ -1729,7 +1729,7 @@
           "icon": "Ikon",
           "color": "Farve",
           "sort_by_mapped_value": "Sorter efter kortlagt værdi",
-          "background": "Cells' backgound",
+          "background": "Baggrund",
           "alignment": "Justering",
           "column_width": "Kolonne bredde",
           "width": "Width",

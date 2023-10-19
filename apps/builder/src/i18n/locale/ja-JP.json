@@ -1729,7 +1729,7 @@
           "icon": "アイコン",
           "color": "色",
           "sort_by_mapped_value": "マップ値でソート",
-          "background": "セルの背景",
+          "background": "背景色",
           "alignment": "アラインメント",
           "column_width": "列幅",
           "width": "幅",

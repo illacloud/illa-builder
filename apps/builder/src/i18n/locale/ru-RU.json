@@ -1729,7 +1729,7 @@
           "icon": "Иконка",
           "color": "Цвет",
           "sort_by_mapped_value": "Сортировать по сопоставленному значению",
-          "background": "Фон ячеек",
+          "background": "Фон",
           "alignment": "Выравнивание",
           "column_width": "Ширина колонки",
           "width": "Ширина",
