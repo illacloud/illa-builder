@@ -610,7 +610,9 @@
               "global-data": "Globální data",
               "ai-agent": "AI Agent",
               "more": "Více",
-              "create-resource": "Vytvořit ze zdroje"
+              "create-resource": "Vytvořit ze zdroje",
+              "unsafe": "Nebezpečný",
+              "safe": "Bezpečné"
             }
           },
           "restapi": {
@@ -655,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "Použít tato globální data {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "Při používání bezpečného režimu může vaše SQL pouze referenční proměnné v místě proměnných, například kde název = '{{input1.value}}'. To zabraňuje uživatelům v kompromitování vaší databáze zadáním příkazů jako '; drop table;' do input1. Pokud používáte nebezpečný režim, mohou být syntaxová slova SQL nahrazena proměnnými, jako je kde {{input1.value}} {{input2.value}} '{{input3.value}}'. V tomto případě však může být databáze ohrožena obsahem zadaným uživatelem. Není doporučeno používat tento režim."
             }
           },
           "advanced": {
@@ -695,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "Připojit k databázi nebo api",
-            "more-type": "Další typ zdrojů údajů"
+            "more-type": "Další typ zdrojů údajů",
+            "safe_mode": "Režim"
           }
         },
         "menu": {
@@ -1295,7 +1301,8 @@
           "onMenuSelect": "Vybrat položku",
           "on_menu_select": "Vyberte položku nabídky",
           "pageChange": "Změna stránky",
-          "clickItem": "Klepněte na položku"
+          "clickItem": "Klepněte na položku",
+          "columnVisibilityChange": "Změna viditelnosti sloupců"
         },
         "image_list": {
           "title": "Obrázky",
