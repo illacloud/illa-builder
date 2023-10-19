@@ -4292,7 +4292,8 @@
       "delete-suc": "Úspěšně smazáno. ",
       "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači."
     },
-    "create": "Vytvořit"
+    "create": "Vytvořit",
+    "market_view": "Komunita"
   },
   "new_dashboard": {
     "status": {

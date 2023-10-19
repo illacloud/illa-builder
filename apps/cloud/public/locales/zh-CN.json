@@ -4292,7 +4292,8 @@
       "delete-suc": "删除成功",
       "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
     },
-    "create": "创建"
+    "create": "创建",
+    "market_view": "社区内容"
   },
   "new_dashboard": {
     "status": {

@@ -4292,7 +4292,8 @@
       "delete-suc": "Eliminat cu succes. ",
       "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop."
     },
-    "create": "Crează"
+    "create": "Crează",
+    "market_view": "Comunitate"
   },
   "new_dashboard": {
     "status": {

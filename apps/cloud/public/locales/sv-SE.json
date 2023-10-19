@@ -4292,7 +4292,8 @@
       "delete-suc": "Raderades framgångsrikt. ",
       "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet."
     },
-    "create": "Skapa"
+    "create": "Skapa",
+    "market_view": "Gemenskap"
   },
   "new_dashboard": {
     "status": {
