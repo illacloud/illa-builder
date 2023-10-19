@@ -1729,7 +1729,7 @@
           "icon": "Pictogram",
           "color": "Kleur",
           "sort_by_mapped_value": "Sorteren op toegewezen waarde",
-          "background": "Cells' backgound",
+          "background": "Achtergrond",
           "alignment": "Uitlijning",
           "column_width": "Kolom breedte",
           "width": "Width",
