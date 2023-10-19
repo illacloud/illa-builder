@@ -76,7 +76,8 @@
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功",
-      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑",
+      "save_resource": "保存成功，页面将在3s后关闭"
     },
     "create": "创建"
   },
@@ -609,7 +610,9 @@
               "global-data": "全局变量",
               "ai-agent": "AI Agent",
               "more": "更多",
-              "create-resource": "从数据源创建"
+              "create-resource": "从数据源创建",
+              "unsafe": "不安全",
+              "safe": "安全"
             }
           },
           "restapi": {
@@ -654,6 +657,9 @@
             },
             "global-data": {
               "how-to-use": "通过{{globalData.state1}}来使用这个全局变量"
+            },
+            "general": {
+              "safe_mode": "使用safe模式时，您的SQL只能在变量的位置引用变量，例如where name = '{{input1.value}}'。这使得使用者无法通过在input1中输入 ; drop table; 等方式来破坏您的数据库；使用Unsafe模式时，SQL语法词也可以替换为变量，如where {{input1.value}} {{input2.value}} '{{input3.value}}'，但这样一来数据库可能被用户输入的内容破坏，不建议您使用"
             }
           },
           "advanced": {
@@ -694,7 +700,8 @@
           },
           "general": {
             "connect-data-source": "连接到数据库或API",
-            "more-type": "更多连接方式"
+            "more-type": "更多连接方式",
+            "safe_mode": "模式"
           }
         },
         "menu": {
@@ -1294,7 +1301,8 @@
           "onMenuSelect": "选中菜单项",
           "on_menu_select": "选择菜单项",
           "pageChange": "页面更改",
-          "clickItem": "点击项目"
+          "clickItem": "点击项目",
+          "columnVisibilityChange": "变更列是否可见"
         },
         "image_list": {
           "title": "图片",
@@ -1319,7 +1327,10 @@
         "filterChange": "过滤器更改",
         "sortChange": "更改排序",
         "pageChange": "修改页面",
-        "refresh": "刷新"
+        "refresh": "刷新",
+        "density_setting": "行密集显示",
+        "column_setting": "列设置",
+        "refresh_setting": "刷新"
       },
       "setter_default_value": {
         "fill": "填充",
@@ -1718,7 +1729,7 @@
           "icon": "图标",
           "color": "颜色",
           "sort_by_mapped_value": "按映射值排序",
-          "background": "背景色",
+          "background": "单元格背景色",
           "alignment": "对齐方式",
           "column_width": "列宽",
           "width": "宽度",
@@ -1735,7 +1746,9 @@
           "has_next_page": "是否有下一页",
           "currency_code": "货币代码",
           "cell_selection": "选中单元格",
-          "click_outside_to_des": "点击外部取消选择"
+          "click_outside_to_des": "点击外部取消选择",
+          "page": "默认页面索引",
+          "export_all_data_setting": "导出全部"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -1828,7 +1841,20 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "源"
+        "src": "源",
+        "page_size_options": "每页显示数量选项",
+        "export_setting": "导出",
+        "filter_setting": "筛选",
+        "primary_key": "主键",
+        "allow_row_selection": "允许选中行",
+        "selection_mode": "选择模式",
+        "pin_column": "冻结列",
+        "enable_users_to_sort": "允许用户排序",
+        "enable_users_to_pin": "允许用户冻结列",
+        "enable_users_to_filter": "允许用户筛选",
+        "enable_users_to_hide": "允许用户隐藏列",
+        "enable_users_to_set_group_by": "允许用户设置分组显示",
+        "column_description": "描述"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1889,7 +1915,9 @@
         "showSendTime": "设置是否显示发送时间",
         "showFooter": "设置是否显示页脚",
         "senderAvatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
-        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。"
+        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。",
+        "export_setting": "用于设置是否允许用户导出筛选后的数据",
+        "filter_setting": "用于设置是否展示筛选器，允许用户筛选数据"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -2039,7 +2067,10 @@
           "filter_mode": "过滤器的模式，and或or。",
           "currency_code": "USD",
           "whether_allow_users_": "是否允许用户选中一个单元格",
-          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。"
+          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。",
+          "density_setting": "用于设置行高密集与否",
+          "refresh_setting": "用于设置是否展示刷新按钮",
+          "export_raw_data_setting": "用于设置是否允许用户导出未经筛选的原始数据"
         },
         "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
@@ -2111,7 +2142,18 @@
           "item_shadow": "用来配置每个格子的阴影大小",
           "item_spacing": "用于配置格子之间的间距",
           "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。"
-        }
+        },
+        "primary_key": "用于标识行的唯一键值",
+        "selection_mode": "用于设置多行选择还是单行选择",
+        "allow_row_selection": "用于设置是否允许用户选中行",
+        "pin_column": "用于冻结列",
+        "enable_users_to_sort": "用于设置是否允许用户更改排序",
+        "enable_users_to_pin": "用于设置是否允许用户冻结列",
+        "enable_users_to_filter": "用于设置是否允许用户筛选数据",
+        "enable_users_to_hide": "用于设置是否允许用户隐藏列",
+        "enable_users_to_aggregate": "用于设置是否允许用户聚合这列数据",
+        "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示",
+        "column_description": "用于设置这列的描述信息"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -2316,6 +2358,10 @@
       },
       "page": {
         "blank_view": "无子页面"
+      },
+      "setter_options": {
+        "single_row_selection": "单选",
+        "multiple_row_selection": "多选"
       }
     },
     "page": {
@@ -3002,7 +3048,16 @@
       "descend": "降序",
       "name": "表格",
       "pagination": "翻页",
-      "scroll": "滚动"
+      "scroll": "滚动",
+      "default": "默认",
+      "export_all_data": "导出全部",
+      "refresh": "刷新",
+      "export": {
+        "title": "导出",
+        "csv": "导出为CSV",
+        "excel": "导出为Excel",
+        "print": "打印"
+      }
     },
     "tabs": {
       "name": "选项卡"
@@ -3122,6 +3177,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "数据表"
     }
   },
   "page": {
@@ -3517,6 +3575,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "行选择变更"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "允许用户聚合"
       }
     }
   },
@@ -4339,7 +4400,24 @@
     "before": "加载更多"
   },
   "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
-  "contribute": "贡献",
+  "contribute": {
+    "tag": {
+      "recommended": "推荐",
+      "add_tag": "添加标签",
+      "tag": "标签",
+      "failed_to_save": "保存失败"
+    },
+    "update": "编辑标签",
+    "copy_link": "复制链接",
+    "first_time_modal": {
+      "title": "贡献到社区",
+      "button": "贡献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "编辑"
+    }
+  },
   "error_page": {
     "fobidden": "没有访问权限"
   }

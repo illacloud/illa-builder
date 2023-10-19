@@ -21,19 +21,16 @@ export const applyLabelAndComponentWrapperStyle = (
   return css``
 }
 
-export const applyWrapperSlider = (): SerializedStyles => {
-  return css`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
-  `
-}
+export const applyWrapperSlider = css`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0 8px;
+  gap: 8px;
+  align-items: center;
+`
 
-export const applyIcon = (): SerializedStyles => {
-  return css`
-    height: 16px;
-    width: 16px;
-  `
-}
+export const applyIcon = css`
+  height: 16px;
+  width: 16px;
+`

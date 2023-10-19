@@ -12,7 +12,7 @@ import {
 import { sendShadowMessageHandler } from "@/page/App/components/DotPanel/utils/sendBinaryMessage"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import {

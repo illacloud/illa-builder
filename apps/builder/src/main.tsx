@@ -1,12 +1,11 @@
 import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
-import { initDateReport } from "@illa-public/utils"
+import { initDateReport, initDayjs } from "@illa-public/utils"
 import * as Sentry from "@sentry/react"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import "@/api/http/base"
 import "@/i18n/config"
-import "@/utils/dayjs"
 import App from "./App"
 import store from "./store"
 
@@ -27,6 +26,7 @@ if (
 
 initDateReport()
 ILLAMixpanel.setDeviceID()
+initDayjs()
 
 const root = createRoot(document.getElementById("root")!!)
 

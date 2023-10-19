@@ -38,6 +38,8 @@ export const WrappedInputNumber = forwardRef<
     colorScheme,
     displayName,
     handleOnChange,
+    handleOnBlur,
+    handleOnFocus,
     handleUpdateMultiExecutionResult,
     getValidateMessage,
   } = props
@@ -75,6 +77,8 @@ export const WrappedInputNumber = forwardRef<
       suffix={loading ? <LoadingIcon spin /> : suffix}
       mode="button"
       onChange={changeValue}
+      onBlur={handleOnBlur}
+      onFocus={handleOnFocus}
       colorScheme={colorScheme}
     />
   )

@@ -3,13 +3,14 @@ import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
   GlobalDataActionContent,
 } from "@/redux/currentApp/action/actionState"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
 import { neonSSLInitialValue } from "@/redux/resource/neonResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
@@ -33,7 +34,6 @@ import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isILLAAPiError } from "@/utils/typeHelper"
-import { configActions } from "../../../../redux/config/configSlice"
 
 const message = createMessage()
 
@@ -429,7 +429,6 @@ export function onActionConfigElementSubmit(
   resourceID: string | undefined,
   resourceType: ResourceType,
   finishedHandler: (resourceID: string) => void,
-  loadingHandler: (value: boolean) => void,
 ) {
   const isUpdate = resourceID != undefined
 
@@ -449,7 +448,6 @@ export function onActionConfigElementSubmit(
       resourceType: resourceType,
       content,
     }
-    loadingHandler(true)
 
     try {
       if (isUpdate) {
@@ -476,7 +474,6 @@ export function onActionConfigElementSubmit(
         })
       }
     }
-    loadingHandler(false)
   })
 }
 

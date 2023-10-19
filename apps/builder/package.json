@@ -5,7 +5,7 @@
   "private": true,
   "author": "ILLA Cloud <opensource@illasoft.com>",
   "license": "Apache-2.0",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "scripts": {
     "dev": "vite --strictPort --force",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode cloud",
@@ -91,7 +91,6 @@
     "react-slick": "^0.29.0",
     "react-use": "^17.4.0",
     "react-use-measure": "^2.1.1",
-    "react-virtualized-auto-sizer": "^1.0.20",
     "react-virtuoso": "^4.3.11",
     "react-window": "^1.8.9",
     "react-window-infinite-loader": "^1.0.9",
@@ -124,7 +123,10 @@
     "@illa-public/invite-modal": "workspace:*",
     "@illa-public/illa-net": "workspace:*",
     "@illa-public/member-page": "workspace:*",
-    "@illa-public/upgrade-modal": "workspace:*"
+    "@illa-public/upgrade-modal": "workspace:*",
+    "@illa-public/text-link": "workspace:*",
+    "@illa-public/resource-generator": "workspace:*",
+    "@illa-public/public-types": "workspace:*"
   },
   "devDependencies": {
     "@mdx-js/rollup": "^2.3.0",

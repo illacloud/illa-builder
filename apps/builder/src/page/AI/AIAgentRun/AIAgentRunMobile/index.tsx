@@ -1,6 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
-import { ShareAgentMobile, ShareAgentTab } from "@illa-public/invite-modal"
+import { ShareAgentMobile } from "@illa-public/invite-modal"
 import {
   AI_AGENT_TYPE,
   Agent,
@@ -17,7 +17,9 @@ import {
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
   USER_ROLE,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -30,20 +32,20 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
   openShareAgentModal,
-  showShareAgentModal,
 } from "@illa-public/user-role-utils"
-import { formatNumForAgent, getAgentPublicLink } from "@illa-public/utils"
+import {
+  formatNumForAgent,
+  getAgentPublicLink,
+  getAuthToken,
+  getILLABuilderURL,
+  getILLACloudURL,
+} from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  useAsyncValue,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom"
+import { useAsyncValue, useParams, useSearchParams } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -66,7 +68,6 @@ import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interfa
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
-import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
@@ -101,7 +102,6 @@ export const AIAgentRunMobile: FC = () => {
     agent: Agent
     marketplace: MarketAIAgent | undefined
   }
-  const navigate = useNavigate()
 
   const [currentMarketplaceInfo, setCurrentMarketplaceInfo] = useState<
     MarketAIAgent | undefined
@@ -137,7 +137,7 @@ export const AIAgentRunMobile: FC = () => {
     currentMarketplaceInfo?.marketplace.numStars ?? 0,
   )
 
-  const { ownerTeamIdentifier } = useParams()
+  const { ownerTeamIdentifier, agentID } = useParams()
   const [searchParams] = useSearchParams()
 
   const { t } = useTranslation()
@@ -154,7 +154,6 @@ export const AIAgentRunMobile: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
-  const teamInfo = useSelector(getCurrentTeamInfo)!!
   const dispatch = useDispatch()
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
@@ -211,43 +210,38 @@ export const AIAgentRunMobile: FC = () => {
         >
           {shareDialogVisible && (
             <ShareAgentMobile
-              canUseBillingFeature={canUseUpgradeFeature(
-                teamInfo.myRole,
-                getPlanUtils(teamInfo),
-                teamInfo.totalTeamLicense.teamLicensePurchased,
-                teamInfo.totalTeamLicense.teamLicenseAllPaid,
-              )}
+              canUseBillingFeature={canUseBillingFeature}
+              itemID={agent.aiAgentID}
               title={t(
                 "user_management.modal.social_media.default_text.agent",
                 {
                   agentName: agent.name,
                 },
               )}
-              redirectURL={`${
-                import.meta.env.ILLA_BUILDER_URL
-              }/${ownerTeamIdentifier}/ai-agent/${
+              redirectURL={`${getILLABuilderURL()}/${ownerTeamIdentifier}/ai-agent/${
                 agent.aiAgentID
               }/run?myTeamIdentifier=${searchParams.get("myTeamIdentifier")}`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
               canInvite={canManageInvite(
-                teamInfo.myRole,
-                teamInfo.permission.allowEditorManageTeamMember,
-                teamInfo.permission.allowViewerManageTeamMember,
+                currentTeamInfo.myRole,
+                currentTeamInfo.permission.allowEditorManageTeamMember,
+                currentTeamInfo.permission.allowViewerManageTeamMember,
               )}
-              defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
               defaultInviteUserRole={USER_ROLE.VIEWER}
-              teamID={teamInfo.id}
-              currentUserRole={teamInfo.myRole}
-              defaultBalance={teamInfo.currentTeamLicense.balance}
-              defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+              teamID={currentTeamInfo.id}
+              currentUserRole={currentTeamInfo.myRole}
+              defaultBalance={currentTeamInfo.currentTeamLicense.balance}
+              defaultAllowInviteLink={
+                currentTeamInfo.permission.inviteLinkEnabled
+              }
               onInviteLinkStateChange={(enableInviteLink) => {
                 dispatch(
                   teamActions.updateTeamMemberPermissionReducer({
-                    teamID: teamInfo.id,
+                    teamID: currentTeamInfo.id,
                     newPermission: {
-                      ...teamInfo.permission,
+                      ...currentTeamInfo.permission,
                       inviteLinkEnabled: enableInviteLink,
                     },
                   }),
@@ -264,6 +258,8 @@ export const AIAgentRunMobile: FC = () => {
                   )
                   newUrl.searchParams.set("token", getAuthToken())
                   window.open(newUrl, "_blank")
+                } else {
+                  setCurrentMarketplaceInfo(undefined)
                 }
                 field.onChange(isAgentContributed)
               }}
@@ -279,7 +275,7 @@ export const AIAgentRunMobile: FC = () => {
                 copyToClipboard(
                   t("user_management.modal.custom_copy_text_agent_invite", {
                     userName: currentUserInfo.nickname,
-                    teamName: teamInfo.name,
+                    teamName: currentTeamInfo.name,
                     inviteLink: link,
                   }),
                 )
@@ -309,9 +305,9 @@ export const AIAgentRunMobile: FC = () => {
               onBalanceChange={(balance) => {
                 dispatch(
                   teamActions.updateTeamMemberSubscribeReducer({
-                    teamID: teamInfo.id,
+                    teamID: currentTeamInfo.id,
                     subscribeInfo: {
-                      ...teamInfo.currentTeamLicense,
+                      ...currentTeamInfo.currentTeamLicense,
                       balance: balance,
                     },
                   }),
@@ -328,6 +324,21 @@ export const AIAgentRunMobile: FC = () => {
                     parameter5: agent.aiAgentID,
                   },
                 )
+              }}
+              onInvitedChange={(userList) => {
+                const memberListInfo: MemberInfo[] = userList.map((user) => {
+                  return {
+                    ...user,
+                    userID: "",
+                    nickname: "",
+                    avatar: "",
+                    userStatus: USER_STATUS.PENDING,
+                    permission: {},
+                    createdAt: "",
+                    updatedAt: "",
+                  }
+                })
+                dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
               }}
             />
           )}
@@ -600,7 +611,24 @@ export const AIAgentRunMobile: FC = () => {
                   <div
                     css={shareContainerStyle}
                     onClick={() => {
-                      navigate(-1)
+                      if (
+                        document.referrer.includes(
+                          import.meta.env.ILLA_CLOUD_URL,
+                        )
+                      ) {
+                        return (location.href = `${getILLACloudURL()}/workspace/${ownerTeamIdentifier}/ai-agents`)
+                      }
+                      if (
+                        document.referrer.includes(
+                          import.meta.env.ILLA_MARKET_URL,
+                        ) &&
+                        agentID
+                      ) {
+                        return (location.href = `${
+                          import.meta.env.ILLA_MARKET_URL
+                        }/ai-agent/${agentID}/detail`)
+                      }
+                      return (location.href = getILLACloudURL())
                     }}
                   >
                     <PreviousIcon fs="24px" />
@@ -689,13 +717,7 @@ export const AIAgentRunMobile: FC = () => {
                       )}
                     </div>
                   )}
-                  {showShareAgentModal(
-                    teamInfo,
-                    agent.teamID === teamInfo.id
-                      ? teamInfo.myRole
-                      : USER_ROLE.GUEST,
-                    field.value,
-                  ) && (
+                  {(canUseBillingFeature || field.value) && (
                     <div
                       css={shareContainerStyle}
                       onClick={() => {
@@ -709,7 +731,7 @@ export const AIAgentRunMobile: FC = () => {
                         )
                         if (
                           !openShareAgentModal(
-                            teamInfo,
+                            currentTeamInfo,
                             currentTeamInfo.id === agent.teamID
                               ? currentTeamInfo.myRole
                               : USER_ROLE.GUEST,
