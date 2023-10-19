@@ -76,7 +76,8 @@
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. ",
-      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop."
+      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop.",
+      "save_resource": "Salvare reușită, pagina se va închide în 3 secunde..."
     },
     "create": "Crează"
   },
@@ -1319,7 +1320,10 @@
         "filterChange": "filtruSchimbați",
         "sortChange": "sortare",
         "pageChange": "paginăSchimbați",
-        "refresh": "Reîmprospătare"
+        "refresh": "Reîmprospătare",
+        "density_setting": "Densitate",
+        "column_setting": "Coloane",
+        "refresh_setting": "Împrospătează"
       },
       "setter_default_value": {
         "fill": "Completează",
@@ -1735,7 +1739,9 @@
           "has_next_page": "Are pagina următoare",
           "currency_code": "Codul valutei",
           "cell_selection": "Selecție celulă",
-          "click_outside_to_des": "Click afară pentru a deselecta"
+          "click_outside_to_des": "Click afară pentru a deselecta",
+          "page": "Indexul implicit al paginii",
+          "export_all_data_setting": "Exportă tot"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
@@ -1828,7 +1834,19 @@
           "max_column_count": "Numărul maxim de coloane",
           "min_column_count": "Număr minim de coloane"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Opțiuni pentru dimensiunea paginii",
+        "export_setting": "Exportă",
+        "filter_setting": "Filtrare",
+        "primary_key": "Cheie principală",
+        "allow_row_selection": "Permite selecția rândului",
+        "selection_mode": "Mod selecţie",
+        "pin_column": "Fixează coloana",
+        "enable_users_to_sort": "Permite utilizatorilor să sorteze",
+        "enable_users_to_pin": "Permite utilizatorilor să fixeze",
+        "enable_users_to_filter": "Permite utilizatorilor să filtreze",
+        "enable_users_to_hide": "Permite utilizatorilor să ascundă",
+        "enable_users_to_set_group_by": "Permite utilizatorilor să seteze gruparea după"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1889,7 +1907,9 @@
         "showSendTime": "Setează dacă se afișează ora trimiterii",
         "showFooter": "Setează dacă să afișeze subsolul",
         "senderAvatar": "Setează avatarul expeditorului. De exemplu, în sursa de date, avatarul expeditorului este câmpul sendAvatar și puteți seta câmpul {{item.sendAvatar}}.",
-        "receiving": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1."
+        "receiving": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
+        "export_setting": "Folosit pentru a seta dacă utilizatorilor li se permite sau nu să exporte date filtrate.",
+        "filter_setting": "Folosit pentru a seta dacă să afișeze sau nu filtre, permițând utilizatorilor să filtreze datele în tabel."
       },
       "tab_title": "Inspectează",
       "unselected_tip1": "Nicio componentă selectată.",
@@ -2039,7 +2059,10 @@
           "filter_mode": "Modul filtre. ŞI sau SAU.",
           "currency_code": "USD",
           "whether_allow_users_": "Dacă permiteți utilizatorilor să selecteze o celulă",
-          "supported_in_the_row": "Acceptat în modul de selecţie simplă a rândului. După activare, faceţi clic pe o altă zonă decât tabelul pentru a dezselecta rândul."
+          "supported_in_the_row": "Acceptat în modul de selecţie simplă a rândului. După activare, faceţi clic pe o altă zonă decât tabelul pentru a dezselecta rândul.",
+          "density_setting": "Folosit pentru a seta densitatea de înălţime a rândului. ",
+          "refresh_setting": "Folosit pentru a seta dacă se afișează o pictogramă de reîmprospătare",
+          "export_raw_data_setting": "Folosit pentru a seta dacă utilizatorilor li se permite sau nu să exporte date brute nefiltrate."
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2111,7 +2134,17 @@
           "item_shadow": "Folosit pentru a configura dimensiunea umbrei pentru fiecare grilă",
           "item_spacing": "Folosit pentru a configura distanța dintre grile",
           "max_column_count": "Setați numărul maxim de coloane care pot fi afișate în componenta listă pe măsură ce lățimea crește. (Automatic Translation) Când se atinge numărul maxim de coloane şi lăţimea pânzei continuă să crească, lățimea coloanei va fi mărită pentru a accepta aspectul și numărul de coloane nu va crește mai mult."
-        }
+        },
+        "primary_key": "O cheie unică pentru identificarea unui rând",
+        "selection_mode": "Folosit pentru a seta selecția mai multor rânduri sau selecția unui singur rând",
+        "allow_row_selection": "Folosit pentru a seta dacă permite sau nu utilizatorilor să selecteze rândul",
+        "pin_column": "Folosit pentru a fixa coloana pentru toţi utilizatorii",
+        "enable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. ",
+        "enable_users_to_pin": "Folosit pentru a seta dacă permite sau nu utilizatorilor să fixeze coloana",
+        "enable_users_to_filter": "Folosit pentru a seta dacă permite sau nu utilizatorilor să filtreze pe această coloană",
+        "enable_users_to_hide": "Folosit pentru a seta dacă permite sau nu utilizatorilor să ascundă coloana",
+        "enable_users_to_aggregate": "Folosit pentru a seta dacă permite sau nu utilizatorilor să efectueze agregarea de date pe această coloană.",
+        "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. "
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -2316,6 +2349,10 @@
       },
       "page": {
         "blank_view": "Nicio subpagină"
+      },
+      "setter_options": {
+        "single_row_selection": "Selecţie unică",
+        "multiple_row_selection": "Selecție multiplă"
       }
     },
     "page": {
@@ -3002,7 +3039,16 @@
       "descend": "Desc",
       "name": "Tabel",
       "pagination": "Paginare",
-      "scroll": "Derulează"
+      "scroll": "Derulează",
+      "default": "Implicit",
+      "export_all_data": "Exportă tot",
+      "refresh": "Împrospătează",
+      "export": {
+        "title": "Exportă",
+        "csv": "Exportă ca csv",
+        "excel": "Export as excel",
+        "print": "Tipărește"
+      }
     },
     "tabs": {
       "name": "Tabs"
@@ -3517,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Rând selectare modificare"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Permite utilizatorilor să agrege"
       }
     }
   },
@@ -4339,7 +4388,24 @@
     "before": "Încarcă mai mult"
   },
   "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)",
-  "contribute": "Contribuie",
+  "contribute": {
+    "tag": {
+      "recommended": "Recomandat",
+      "add_tag": "Adaugă etichete",
+      "tag": "Etichetă",
+      "failed_to_save": "Salvarea nu a reușit"
+    },
+    "update": "Editare etichete",
+    "copy_link": "Copiază link-ul",
+    "first_time_modal": {
+      "title": "Contribuie la comunitate",
+      "button": "Contribuie"
+    },
+    "update_modal": {
+      "button": "Actualizare",
+      "title": "Editare"
+    }
+  },
   "error_page": {
     "fobidden": "Fără permisiune de acces"
   }

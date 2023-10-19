@@ -33,10 +33,10 @@ The core team is monitoring for pull requests. We will review your pull request 
 
 ## Development Workflow
 
-After cloning Illa-builder, run `pnpm install`to fetch its dependencies.After this,you need input the following to `apps/builder/.env.development.local`
+After cloning Illa-builder, run `pnpm install` to fetch its dependencies. After this, you need input the following to `apps/builder/.env.development.local`
 
 ```
-ILLA_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
+ILLA_API_BASE_URL=localhost:9999  # this is your backend address, if not has this line, it will use the default backend address, location.origin
 ILLA_INSTANCE_ID=SELF_HOST_CLOUD
 ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=development
@@ -53,7 +53,7 @@ Then, you can run several commands:
 If you need to run the production version, you need input the following to `apps/builder/env.self`
 
 ```
-ILLA_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
+ILLA_API_BASE_URL=localhost:9999  # this is your backend address, if not has this line, it will use the default backend address, location.origin
 ILLA_INSTANCE_ID=SELF_HOST_CLOUD
 ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=production
@@ -79,7 +79,7 @@ ILLA_USE_HTTPS=false
 
 #### If you not have rust
 
-You can use Docker pull image:`docker pull illasoft/illa-builder:latest`,and then you can run `docker run -d -p 9345:2022 illasoft/illa-builder:latest`,this means you will deploy illa-builder-backend at port 9345. And then you can modify your `.env.development.local`
+You can use Docker pull image: `docker pull illasoft/illa-builder:latest`, and then you can run `docker run -d -p 9345:2022 illasoft/illa-builder:latest`, this means you will deploy illa-builder-backend at port 9345. And then you can modify your `.env.development.local`
 
 
 
