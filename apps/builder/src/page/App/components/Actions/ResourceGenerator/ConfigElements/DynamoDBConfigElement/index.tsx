@@ -15,7 +15,6 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  container,
   divider,
   footerStyle,
   labelContainer,
@@ -32,6 +31,7 @@ import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const DynamoDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props

@@ -10,7 +10,6 @@ import {
   PreviousIcon,
 } from "@illa-design/react"
 import {
-  container,
   docContainerStyle,
   docItemStyle,
   docsItemContainerStyle,
@@ -26,6 +25,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const HuggingFaceConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props

@@ -67,11 +67,6 @@ export const connectTypeStyle = css`
   margin-left: 16px;
 `
 
-export const container = css`
-  width: 100%;
-  overflow: auto;
-`
-
 export const footerStyle = css`
   height: 80px;
   padding: 24px;
