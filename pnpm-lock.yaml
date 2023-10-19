@@ -3723,7 +3723,7 @@ importers:
         version: 18.17.19
       '@types/uuid':
         specifier: ^9.0.5
-        version: 9.0.5
+        version: 9.0.6
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -5774,6 +5774,7 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
+    dev: true
 
   /@rollup/pluginutils@5.0.4(rollup@3.28.1):
     resolution: {integrity: sha512-0KJnIoRI8A+a1dqOYLxH8vBf8bphDmty5QvIm2hqm7oFCFYKCAZWWd2hXgMibaPsNDhI0AtpYfQZJG47pt/k4g==}
@@ -5788,7 +5789,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
-    dev: true
 
   /@scena/dragscroll@1.4.0:
     resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==, tarball: https://registry.yarnpkg.com/@scena/dragscroll/-/dragscroll-1.4.0.tgz}
@@ -6823,6 +6823,10 @@ packages:
 
   /@types/uuid@9.0.5:
     resolution: {integrity: sha512-xfHdwa1FMJ082prjSJpoEI57GZITiQz10r3vEJCHa2khEFQjKy91aWKz6+zybzssCvXUwE1LQWgWVwZ4nYUvHQ==}
+    dev: true
+
+  /@types/uuid@9.0.6:
+    resolution: {integrity: sha512-BT2Krtx4xaO6iwzwMFUYvWBWkV2pr37zD68Vmp1CDV196MzczBRxuEpD6Pr395HAgebC/co7hOphs53r8V7jew==}
     dev: true
 
   /@types/warning@3.0.0:
@@ -15471,7 +15475,7 @@ packages:
     peerDependencies:
       vite: ^4.4.9
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.28.1)
+      '@rollup/pluginutils': 5.0.4(rollup@3.28.1)
       '@svgr/core': 6.5.1
       vite: 4.4.9(@types/node@18.17.19)
     transitivePeerDependencies:
