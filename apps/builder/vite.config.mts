@@ -30,6 +30,8 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
 
   const useHttps = env.ILLA_USE_HTTPS === "true"
+  const isBuildSelfHost =
+    env.ILLA_INSTANCE_ID === "SELF_HOST_CLOUD" && command === "build"
   const BASIC_PLUGIN = [
     mdx(),
     react({
@@ -81,6 +83,7 @@ export default defineConfig(({ command, mode }) => {
   writeFileSync("./public/appInfo.json", `{"version":${version}}`)
 
   return {
+    base: isBuildSelfHost ? "/build" : "/",
     plugins: plugin,
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },

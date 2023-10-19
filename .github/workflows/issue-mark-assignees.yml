@@ -1,0 +1,16 @@
+name: Issue Mark Assignees
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  mark-assignees:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mark-assignees
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'mark-assignees'
+          token: ${{ secrets.ILLA_BOT_TOKEN }}
+          require-permission: "read"

@@ -1,4 +1,4 @@
-import { PanelFieldConfig } from "../../interface"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface StyleContainerSetterProps {
   childrenSetter?: PanelFieldConfig[]

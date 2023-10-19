@@ -1,0 +1,28 @@
+name: "Has AI-Agent idea"
+description: "AI-Agent idea request"
+labels: ["ILLA with AI"]
+title: "[AI Agent idea] "
+body:
+  - type: "markdown"
+    attributes:
+      value: |
+        Thanks for creating an issue 😄!
+
+        Please search open/closed issues before submitting. Someone
+        might have asked the same thing before 😉!
+
+        If you want to discuss sth, please go to the [Discussion](https://github.com/illacloud/discussions)
+
+  - type: "input"
+    id: "description"
+    attributes:
+      label: "Description"
+      description: "A brief description of the idea."
+    validations:
+      required: true
+  - type: "textarea"
+    id: "additional-information"
+    attributes:
+      label: "Additional Information"
+      description: |
+        Use this section to provide any additional information you might have like notes, or links to ideas.

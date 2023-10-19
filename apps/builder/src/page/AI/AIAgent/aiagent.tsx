@@ -29,10 +29,16 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
   openShareAgentModal,
+  openShareAgentModalOnlyForShare,
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
-import { getAgentPublicLink, sendTagEvent } from "@illa-public/utils"
+import {
+  getAgentPublicLink,
+  getILLABuilderURL,
+  sendTagEvent,
+} from "@illa-public/utils"
+import { getAuthToken } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -62,8 +68,8 @@ import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
+import { aiAgentActions } from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import {
   createAgent,
   generateDescription,
@@ -71,7 +77,6 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
-import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../components/ChatContext"
@@ -904,7 +909,7 @@ export const AIAgent: FC = () => {
                   })
                   sendTagEvent("create_agent", currentUserInfo.userID)
                   dispatch(
-                    dashboardTeamAIAgentActions.addTeamAIAgentReducer({
+                    aiAgentActions.addTeamAIAgentReducer({
                       aiAgent: resp.data,
                     }),
                   )
@@ -924,7 +929,7 @@ export const AIAgent: FC = () => {
                     ),
                   })
                   dispatch(
-                    dashboardTeamAIAgentActions.modifyTeamAIAgentReducer({
+                    aiAgentActions.modifyTeamAIAgentReducer({
                       aiAgentID: resp.data.aiAgentID,
                       modifiedProps: resp.data,
                     }),
@@ -1072,11 +1077,7 @@ export const AIAgent: FC = () => {
                         }}
                         onShowShareDialog={() => {
                           if (
-                            !openShareAgentModal(
-                              currentTeamInfo,
-                              currentTeamInfo.myRole,
-                              contributeField.value,
-                            )
+                            !openShareAgentModalOnlyForShare(currentTeamInfo)
                           ) {
                             upgradeModal({
                               modalType: "upgrade",
@@ -1149,7 +1150,7 @@ export const AIAgent: FC = () => {
                             agentName: nameField.value,
                           },
                         )}
-                        redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+                        redirectURL={`${getILLABuilderURL()}/${
                           currentTeamInfo.identifier
                         }/ai-agent/${idField.value}`}
                         onClose={() => {
