@@ -1,10 +1,165 @@
+import {
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalStartIcon,
+} from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import {
+  PanelConfig,
+  PanelFieldConfig,
+} from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DataGridCommunityWidget"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "dataGridPremium"
+
+export const DATA_GRID_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
+  {
+    id: `${baseWidgetName}-column-headerName`,
+    labelName: i18n.t("editor.inspect.setter_label.column_title"),
+    attrName: "headerName",
+    setterType: "INPUT_SETTER",
+    expectedType: VALIDATION_TYPES.STRING,
+  },
+  {
+    id: `${baseWidgetName}-column-columnType`,
+    labelName: i18n.t("editor.inspect.setter_label.column_title"),
+    attrName: "columnType",
+    setterType: "SEARCH_SELECT_SETTER",
+    options: [
+      {
+        label: i18n.t("editor.inspect.setter_option.table.limit_offset_based"),
+        value: "limitOffsetBased",
+      },
+      {
+        label: i18n.t("editor.inspect.setter_option.table.cursor_based"),
+        value: "cursorBased",
+      },
+    ],
+    expectedType: VALIDATION_TYPES.STRING,
+  },
+  {
+    id: `${baseWidgetName}-column-description`,
+    labelName: i18n.t("editor.inspect.setter_label.column_description"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.column_description"),
+    attrName: "description",
+    setterType: "INPUT_SETTER",
+    expectedType: VALIDATION_TYPES.STRING,
+  },
+  {
+    id: `${baseWidgetName}-column-sortable`,
+    labelName: i18n.t("editor.inspect.setter_label.enable_users_to_sort"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_sort"),
+    attrName: "sortable",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    defaultValue: true,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-pinnable`,
+    labelName: i18n.t("editor.inspect.setter_label.enable_users_to_pin"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_pin"),
+    attrName: "pinnable",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    defaultValue: true,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-filterable`,
+    labelName: i18n.t("editor.inspect.setter_label.enable_users_to_filter"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_filter"),
+    attrName: "filterable",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    defaultValue: true,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-hideable`,
+    labelName: i18n.t("editor.inspect.setter_label.enable_users_to_hide"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_hide"),
+    attrName: "hideable",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    defaultValue: true,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-aggregable`,
+    labelName: i18n.t("editor.inspect.setter_label.enable_users_to_aggregate"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_aggregate"),
+    attrName: "aggregable",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    defaultValue: true,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-groupable`,
+    labelName: i18n.t(
+      "editor.inspect.setter_label.enable_users_to_set_group_by",
+    ),
+    labelDesc: i18n.t(
+      "editor.inspect.setter_tips.enable_users_to_set_group_by",
+    ),
+    attrName: "groupable",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    defaultValue: true,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-resizable`,
+    labelName: i18n.t("editor.inspect.setter_label.enable_users_to_resize"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_resize"),
+    attrName: "resizable",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    defaultValue: true,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-disableReorder`,
+    labelName: i18n.t("editor.inspect.setter_label.disable_users_to_sort"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.disable_users_to_sort"),
+    attrName: "disableReorder",
+    setterType: "DYNAMIC_SWITCH_SETTER",
+    expectedType: VALIDATION_TYPES.BOOLEAN,
+    openDynamic: true,
+    useCustomLayout: true,
+  },
+  {
+    id: `${baseWidgetName}-column-headerAlign`,
+    setterType: "RADIO_GROUP_SETTER",
+    labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
+    attrName: "headerAlign",
+    defaultValue: "left",
+    options: [
+      {
+        label: <HorizontalStartIcon />,
+        value: "left",
+      },
+      {
+        label: <HorizontalCenterIcon />,
+        value: "center",
+      },
+      {
+        label: <HorizontalEndIcon />,
+        value: "right",
+      },
+    ],
+  },
+]
 export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,

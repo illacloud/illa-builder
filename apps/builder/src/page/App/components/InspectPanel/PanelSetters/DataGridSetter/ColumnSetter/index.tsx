@@ -1,12 +1,32 @@
-import { AnimatePresence, Reorder } from "framer-motion"
-import { get } from "lodash"
+import {
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core"
+import {
+  restrictToVerticalAxis,
+  restrictToWindowEdges,
+} from "@dnd-kit/modifiers"
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable"
+import { get, isEqual } from "lodash"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
+import { v4 } from "uuid"
 import { AddIcon, Button, Empty } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { DATA_GRID_COLUMN_SETTER_CONFIG } from "@/widgetLibrary/DataGridPremiumWidget/panelConfig"
+import { Column } from "./components/Column"
 import { ColumnConfig, ColumnListSetterProps } from "./interface"
 import {
   columnLabelStyle,
@@ -17,12 +37,44 @@ import {
   optionListLabelStyle,
 } from "./style"
 
-function generateDefColumnConfig(key: string, isCalc: boolean): ColumnConfig {
+function generateManualColumnConfig(
+  key: string,
+  isCalc: boolean,
+): ColumnConfig {
   return {
-    field: key,
+    field: v4(),
+    headerName: `${key}`,
     width: 150,
-    resizable: false,
     isCalc: isCalc,
+    description: "",
+    sortable: true,
+    pinnable: true,
+    filterable: true,
+    hideable: true,
+    aggregable: true,
+    groupable: true,
+    resizable: true,
+    disableReorder: false,
+    headerAlign: "left",
+  }
+}
+
+function generateCalcColumnConfig(key: string, isCalc: boolean): ColumnConfig {
+  return {
+    field: `${key}`,
+    headerName: `${key}`,
+    width: 150,
+    isCalc: isCalc,
+    description: "",
+    sortable: true,
+    pinnable: true,
+    filterable: true,
+    hideable: true,
+    aggregable: true,
+    groupable: true,
+    resizable: true,
+    disableReorder: false,
+    headerAlign: "left",
   }
 }
 
@@ -43,6 +95,19 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
     },
   )
 
+  const columnVisibilityModel = get(
+    targetComponentProps,
+    "columnVisibilityModel",
+    undefined,
+  )
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  )
+
   const calculateColumns: ColumnConfig[] = useMemo(() => {
     const dataSourceMode = get(
       targetComponentProps,
@@ -61,7 +126,7 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       return []
     } else {
       return Object.keys(arrayData[0]).map((key) => {
-        return generateDefColumnConfig(key, true)
+        return generateCalcColumnConfig(key, true)
       })
     }
   }, [targetComponentProps])
@@ -74,15 +139,20 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       })
       if (index >= 0) {
         mixedColumns[index] = {
-          ...item,
+          ...mixedColumns[index],
           isCalc: true,
         }
       } else {
         mixedColumns.push(item)
       }
     })
+    if (!isEqual(mixedColumns, value)) {
+      handleUpdateMultiAttrDSL?.({
+        [attrName]: mixedColumns,
+      })
+    }
     return mixedColumns
-  }, [calculateColumns, value])
+  }, [attrName, calculateColumns, handleUpdateMultiAttrDSL, value])
 
   return (
     <>
@@ -101,7 +171,7 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
             handleUpdateMultiAttrDSL?.({
               [attrName]: [
                 ...mixedColumns,
-                generateDefColumnConfig(
+                generateManualColumnConfig(
                   `column${mixedColumns.length + 1}`,
                   false,
                 ),
@@ -119,25 +189,61 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
           </div>
         </div>
         {mixedColumns && mixedColumns.length > 0 ? (
-          <AnimatePresence>
-            <Reorder.Group
-              axis="y"
-              values={mixedColumns}
-              onReorder={(newOrder) => {
-                handleUpdateMultiAttrDSL?.({
-                  [attrName]: [...newOrder],
-                })
-              }}
-            >
-              {mixedColumns.map((item) => {
-                return (
-                  <Reorder.Item key={item.field} id={item.field} value={item}>
-                    {item.field}
-                  </Reorder.Item>
+          <DndContext
+            modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={(event) => {
+              const { active, over } = event
+              if (active && over && active.id !== over.id) {
+                const oldIndex = mixedColumns.findIndex(
+                  (item) => item.field === active.id,
                 )
-              })}
-            </Reorder.Group>
-          </AnimatePresence>
+                const newIndex = mixedColumns.findIndex(
+                  (item) => item.field === over.id,
+                )
+                const finalColumns = arrayMove(mixedColumns, oldIndex, newIndex)
+                handleUpdateMultiAttrDSL?.({
+                  [attrName]: finalColumns,
+                })
+                return finalColumns
+              }
+            }}
+          >
+            <SortableContext
+              items={mixedColumns.map((item) => item.field)}
+              strategy={verticalListSortingStrategy}
+            >
+              {mixedColumns.map((config, index) => (
+                <Column
+                  onDelete={(id) => {
+                    const finalColumns = mixedColumns.filter(
+                      (item) => item.field !== id,
+                    )
+                    handleUpdateMultiAttrDSL?.({
+                      [attrName]: finalColumns,
+                    })
+                  }}
+                  childrenSetter={DATA_GRID_COLUMN_SETTER_CONFIG}
+                  showDelete={!config.isCalc}
+                  attrPath={`${attrName}.${index}`}
+                  widgetDisplayName={widgetDisplayName}
+                  key={config.field}
+                  id={config.field}
+                  label={config.headerName ?? config.field}
+                  visibility={columnVisibilityModel?.[config.field] ?? true}
+                  onVisibilityChange={(visibility) => {
+                    handleUpdateMultiAttrDSL?.({
+                      ["columnVisibilityModel"]: {
+                        ...columnVisibilityModel,
+                        [config.field]: visibility,
+                      },
+                    })
+                  }}
+                />
+              ))}
+            </SortableContext>
+          </DndContext>
         ) : (
           <div css={emptyBodyStyle}>
             <Empty />

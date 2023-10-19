@@ -33,10 +33,17 @@ export const DATA_GRID_PREMIUM_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       ),
       value: "onRowSelectionModelChange",
     },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.columnVisibilityChange",
+      ),
+      value: "onColumnVisibilityModel",
+    },
   ],
   methods: [
     "refresh",
     "setFilterModel",
+    "setColumnVisibilityModel",
     "setPage",
     "setPageSize",
     "setSelectedRows",

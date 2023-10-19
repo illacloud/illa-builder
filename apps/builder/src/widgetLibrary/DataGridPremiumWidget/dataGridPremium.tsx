@@ -30,6 +30,7 @@ import {
 import { useTranslation } from "react-i18next"
 import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
+import { blockContainer } from "@/widgetLibrary/DataGridPremiumWidget/style"
 import { ExportAllSetting } from "./ExportAllSetting"
 import { BaseDataGridProps } from "./interface"
 
@@ -65,6 +66,7 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
     filterModel,
     selectedRowsPrimaryKeys,
     excludeHiddenColumns,
+    columnVisibilityModel,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     columns,
@@ -153,6 +155,17 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
         ])
         triggerEventHandler("onFilterModelChange")
       },
+      setColumnVisibilityModel: (model: unknown) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              columnVisibilityModel: model,
+            },
+          },
+        ])
+        triggerEventHandler("onColumnVisibilityChange")
+      },
       setPage: (page: unknown) => {
         if (isNumber(page)) {
           handleUpdateMultiExecutionResult([
@@ -220,131 +233,159 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
   const ref = useRef<GridApiPremium>() as MutableRefObject<GridApiPremium>
 
   return (
-    <StyledEngineProvider injectFirst>
-      <DataGridPremium
-        apiRef={ref}
-        getRowId={(row) => {
-          if (primaryKey === undefined || primaryKey === "—") {
-            return v4()
-          } else {
-            if (primaryKey in row) {
-              return get(row, primaryKey)
+    <div
+      css={blockContainer}
+      onMouseDown={(e) => {
+        e.stopPropagation()
+      }}
+      onMouseEnter={(e) => {
+        e.stopPropagation()
+      }}
+      onMouseUp={(e) => {
+        e.stopPropagation()
+      }}
+      onMouseLeave={(e) => {
+        e.stopPropagation()
+      }}
+    >
+      <StyledEngineProvider injectFirst>
+        <DataGridPremium
+          apiRef={ref}
+          getRowId={(row) => {
+            if (primaryKey === undefined || primaryKey === "—") {
+              return v4()
+            } else {
+              if (primaryKey in row) {
+                return get(row, primaryKey)
+              }
             }
+          }}
+          filterModel={
+            filterModel !== undefined
+              ? {
+                  ...filterModel,
+                  quickFilterExcludeHiddenColumns:
+                    filterModel.quickFilterExcludeHiddenColumns ??
+                    excludeHiddenColumns,
+                }
+              : undefined
           }
-        }}
-        filterModel={
-          filterModel !== undefined
-            ? {
-                ...filterModel,
-                quickFilterExcludeHiddenColumns:
-                  filterModel.quickFilterExcludeHiddenColumns ??
-                  excludeHiddenColumns,
-              }
-            : undefined
-        }
-        onFilterModelChange={(model) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                filterModel: model,
+          onFilterModelChange={(model) => {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  filterModel: model,
+                },
               },
-            },
-          ])
-          triggerEventHandler("onFilterModelChange")
-        }}
-        rowSelectionModel={rowSelection ? selectedRowsPrimaryKeys : undefined}
-        rowSelection={rowSelection}
-        onRowSelectionModelChange={(model) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                selectedRowsPrimaryKeys: model,
-                selectedRows: Array.from(
-                  ref.current.getSelectedRows().values(),
-                ),
+            ])
+            triggerEventHandler("onFilterModelChange")
+          }}
+          rowSelectionModel={rowSelection ? selectedRowsPrimaryKeys : undefined}
+          rowSelection={rowSelection}
+          onColumnVisibilityModelChange={(model) => {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  columnVisibilityModel: model,
+                },
               },
-            },
-          ])
-          triggerEventHandler("onRowSelectionModelChange")
-        }}
-        sortModel={
-          sortKey != undefined && sortOrder != undefined
-            ? [
+            ])
+            triggerEventHandler("onColumnVisibilityChange")
+          }}
+          columnVisibilityModel={columnVisibilityModel}
+          onRowSelectionModelChange={(model) => {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  selectedRowsPrimaryKeys: model,
+                  selectedRows: Array.from(
+                    ref.current.getSelectedRows().values(),
+                  ),
+                },
+              },
+            ])
+            triggerEventHandler("onRowSelectionModelChange")
+          }}
+          sortModel={
+            sortKey != undefined && sortOrder != undefined
+              ? [
+                  {
+                    field: sortKey,
+                    sort: sortOrder === "default" ? null : sortOrder,
+                  },
+                ]
+              : []
+          }
+          pagination={overFlow === "pagination"}
+          pageSizeOptions={isArray(pageSizeOptions) ? pageSizeOptions : []}
+          autoPageSize={pageSize === undefined}
+          paginationModel={
+            pageSize !== undefined
+              ? {
+                  pageSize: pageSize ?? 0,
+                  page: page ?? 0,
+                }
+              : undefined
+          }
+          onPaginationModelChange={(model) => {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  page: model.page,
+                  pageSize: model.pageSize,
+                },
+              },
+            ])
+            triggerEventHandler("onPaginationModelChange")
+          }}
+          onSortModelChange={(model) => {
+            if (model.length > 0) {
+              handleUpdateMultiExecutionResult([
                 {
-                  field: sortKey,
-                  sort: sortOrder === "default" ? null : sortOrder,
+                  displayName,
+                  value: {
+                    sortKey: model[0].field,
+                    sortOrder: model[0].sort,
+                  },
                 },
-              ]
-            : []
-        }
-        pagination={overFlow === "pagination"}
-        pageSizeOptions={isArray(pageSizeOptions) ? pageSizeOptions : []}
-        autoPageSize={pageSize === undefined}
-        paginationModel={
-          pageSize !== undefined
-            ? {
-                pageSize: pageSize ?? 0,
-                page: page ?? 0,
-              }
-            : undefined
-        }
-        onPaginationModelChange={(model) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                page: model.page,
-                pageSize: model.pageSize,
-              },
-            },
-          ])
-          triggerEventHandler("onPaginationModelChange")
-        }}
-        onSortModelChange={(model) => {
-          if (model.length > 0) {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  sortKey: model[0].field,
-                  sortOrder: model[0].sort,
+              ])
+            } else {
+              handleUpdateMultiExecutionResult([
+                {
+                  displayName,
+                  value: {
+                    sortKey: undefined,
+                    sortOrder: undefined,
+                  },
                 },
-              },
-            ])
-          } else {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  sortKey: undefined,
-                  sortOrder: undefined,
-                },
-              },
-            ])
+              ])
+            }
+            triggerEventHandler("onSortModelChange")
+          }}
+          disableMultipleRowSelection={
+            rowSelectionMode === "single" || !rowSelection
           }
-          triggerEventHandler("onSortModelChange")
-        }}
-        disableMultipleRowSelection={
-          rowSelectionMode === "single" || !rowSelection
-        }
-        checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
-        rows={arrayData}
-        columns={columns ?? []}
-        paginationMode={enableServerSidePagination ? "server" : "client"}
-        rowCount={
-          totalRowCount !== undefined
-            ? Math.ceil(totalRowCount / (pageSize ?? 1))
-            : undefined
-        }
-        keepNonExistentRowsSelected={enableServerSidePagination}
-        loading={loading}
-        slots={{
-          toolbar: toolbar,
-        }}
-      />
-    </StyledEngineProvider>
+          checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
+          rows={arrayData}
+          columns={columns ?? []}
+          paginationMode={enableServerSidePagination ? "server" : "client"}
+          rowCount={
+            totalRowCount !== undefined
+              ? Math.ceil(totalRowCount / (pageSize ?? 1))
+              : undefined
+          }
+          keepNonExistentRowsSelected={enableServerSidePagination}
+          loading={loading}
+          slots={{
+            toolbar: toolbar,
+          }}
+        />
+      </StyledEngineProvider>
+    </div>
   )
 }
 
