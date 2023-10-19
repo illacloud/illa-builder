@@ -11,14 +11,7 @@ import {
   isCloudVersion,
 } from "@illa-public/utils"
 import { fromNow } from "@illa-public/utils"
-import {
-  FC,
-  MouseEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import { FC, MouseEvent, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router-dom"
@@ -322,19 +315,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [canUseBillingFeature, upgradeModal])
 
-  const PreviewButton = useMemo(
-    () => (
-      <Button
-        colorScheme="grayBlue"
-        leftIcon={isEditMode ? <FullScreenIcon /> : <ExitIcon />}
-        variant="fill"
-        bdRadius="8px"
-        onClick={handlePreviewButtonClick}
-      >
-        {previewButtonText}
-      </Button>
-    ),
-    [handlePreviewButtonClick, isEditMode, previewButtonText],
+  const PreviewButton = (
+    <Button
+      colorScheme="grayBlue"
+      leftIcon={isEditMode ? <FullScreenIcon /> : <ExitIcon />}
+      variant="fill"
+      bdRadius="8px"
+      onClick={handlePreviewButtonClick}
+    >
+      {previewButtonText}
+    </Button>
   )
 
   return (
@@ -494,7 +484,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             </ButtonGroup>
           </div>
         ) : (
-          <>{PreviewButton}</>
+          PreviewButton
         )}
       </div>
     </div>
