@@ -29,6 +29,7 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
   openShareAgentModal,
+  openShareAgentModalOnlyForShare,
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
@@ -1076,11 +1077,7 @@ export const AIAgent: FC = () => {
                         }}
                         onShowShareDialog={() => {
                           if (
-                            !openShareAgentModal(
-                              currentTeamInfo,
-                              currentTeamInfo.myRole,
-                              contributeField.value,
-                            )
+                            !openShareAgentModalOnlyForShare(currentTeamInfo)
                           ) {
                             upgradeModal({
                               modalType: "upgrade",

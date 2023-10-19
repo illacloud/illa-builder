@@ -76,7 +76,8 @@
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. ",
-      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet."
+      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
     "create": "Opret"
   },
@@ -1319,7 +1320,10 @@
         "filterChange": "filterSkift",
         "sortChange": "sortSkift",
         "pageChange": "sideSkift",
-        "refresh": "opfrisk"
+        "refresh": "opfrisk",
+        "density_setting": "Density",
+        "column_setting": "Columns",
+        "refresh_setting": "Refresh"
       },
       "setter_default_value": {
         "fill": "Udfyld",
@@ -1735,7 +1739,9 @@
           "has_next_page": "Har næste side",
           "currency_code": "Valuta kode",
           "cell_selection": "Valg af celler",
-          "click_outside_to_des": "Klik udenfor for at fravælge"
+          "click_outside_to_des": "Klik udenfor for at fravælge",
+          "page": "Default page index",
+          "export_all_data_setting": "Export all"
         },
         "previous_cursor": "Forrige markør",
         "input": {
@@ -1828,7 +1834,19 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options",
+        "export_setting": "Export",
+        "filter_setting": "Filter",
+        "primary_key": "Primary key",
+        "allow_row_selection": "Allow row selection",
+        "selection_mode": "Selection mode",
+        "pin_column": "Pin column",
+        "enable_users_to_sort": "Enable users to sort",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter",
+        "enable_users_to_hide": "Enable users to hide",
+        "enable_users_to_set_group_by": "Enable users to set group by"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1889,7 +1907,9 @@
         "showSendTime": "Angiv, om sendetiden skal vises",
         "showFooter": "Angiv, om footeren skal vises",
         "senderAvatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
-        "receiving": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører."
+        "receiving": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
+        "export_setting": "Used to set whether or not users are allowed to export filtered data.",
+        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table."
       },
       "tab_title": "Inspicer",
       "unselected_tip1": "Ingen komponenter valgt.",
@@ -2039,7 +2059,10 @@
           "filter_mode": "Filtertilstand. OG eller OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Om det er tilladt for brugere at vælge en celle",
-          "supported_in_the_row": "Understøttet i rækken enkelt markeringstilstand. Når du har aktiveret det, skal du klikke på et andet område end tabellen for at fravælge rækken."
+          "supported_in_the_row": "Understøttet i rækken enkelt markeringstilstand. Når du har aktiveret det, skal du klikke på et andet område end tabellen for at fravælge rækken.",
+          "density_setting": "Used to set the row height density or not. ",
+          "refresh_setting": "Used to set whether to show a refresh icon",
+          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data."
         },
         "previous_cursor": "Brug handlingsdata til at indstille den forrige markør. For eksempel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2111,7 +2134,17 @@
           "item_shadow": "Bruges til at konfigurere skyggestørrelsen for hvert gitter",
           "item_spacing": "Bruges til at konfigurere afstanden mellem gitre",
           "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
-        }
+        },
+        "primary_key": "A unique key for identifying a row",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
+        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
+        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
+        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2316,6 +2349,10 @@
       },
       "page": {
         "blank_view": "Ingen underside"
+      },
+      "setter_options": {
+        "single_row_selection": "Single selection",
+        "multiple_row_selection": "Multiple selection"
       }
     },
     "page": {
@@ -3002,7 +3039,16 @@
       "descend": "Desc",
       "name": "Tabel",
       "pagination": "Sideinddeling",
-      "scroll": "Rul"
+      "scroll": "Rul",
+      "default": "Default",
+      "export_all_data": "Export all",
+      "refresh": "Refresh",
+      "export": {
+        "title": "Export",
+        "csv": "Export as csv",
+        "excel": "Export as excel",
+        "print": "Print"
+      }
     },
     "tabs": {
       "name": "Tabs"
@@ -3517,6 +3563,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Række Vælg Ændring"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Enable users to aggregate"
       }
     }
   },
@@ -4339,7 +4388,24 @@
     "before": "Indlæs mere"
   },
   "size_exceed_copied_tips": "Indholdet er for langt til at kopiere. (nuværende størrelse: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Bidrag",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link",
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
+    }
+  },
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
   }

@@ -4,9 +4,16 @@ export const containerStyle = css`
   display: flex;
   justify-content: center;
   gap: 32px;
+  width: 1032px;
+`
+
+export const outerContainerStyle = css`
+  display: flex;
+  width: 100%;
+  justify-content: center;
 `
 
 export const innerContainerStyle = css`
-  width: 1032px;
+  width: 100%;
   height: 100%;
 `
