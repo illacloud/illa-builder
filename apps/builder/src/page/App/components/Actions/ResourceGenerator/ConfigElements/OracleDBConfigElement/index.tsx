@@ -18,7 +18,6 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  container,
   divider,
   errorIconStyle,
   errorMsgStyle,
@@ -37,6 +36,7 @@ import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID, onBack, hasFooter = true } = props

@@ -15,7 +15,6 @@ import {
   errorMsgStyle,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ClickhouseConfigElement/style"
 import {
-  container,
   docContainerStyle,
   docItemStyle,
   docsItemContainerStyle,
@@ -31,6 +30,7 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const HuggingFaceEndpointConfigElement: FC<BaseConfigElementProps> = (
   props,

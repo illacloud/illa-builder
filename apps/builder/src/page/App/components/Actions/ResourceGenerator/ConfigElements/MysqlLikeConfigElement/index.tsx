@@ -17,7 +17,6 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  container,
   divider,
   footerStyle,
   labelContainer,
@@ -34,6 +33,7 @@ import { isContainLocalPath, validate } from "@/utils/form"
 import { handleLinkOpen } from "@/utils/navigate"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
+import { container } from "../style"
 import { MysqlLikeConfigElementProps } from "./interface"
 
 const getResourceDefaultPort = (resourceType: string) => {

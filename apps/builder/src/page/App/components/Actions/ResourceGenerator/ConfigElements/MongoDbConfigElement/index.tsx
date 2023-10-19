@@ -6,7 +6,6 @@ import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
 import { MongoDbGuiMode } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/MongoDbGuiMode"
 import { MongoDbUriMode } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/MongoDbUriMode"
 import {
-  container,
   divider,
   footerStyle,
   optionLabelStyle,
@@ -22,6 +21,7 @@ import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const MongoDbConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props
