@@ -52,15 +52,10 @@ import {
   CONTAINER_WIDGET_CONFIG,
 } from "@/widgetLibrary/ContainerWidget"
 import {
-  DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG,
-  DATA_GRID_COMMUNITY_PANEL_CONFIG,
-  DATA_GRID_COMMUNITY_WIDGET_CONFIG,
-} from "@/widgetLibrary/DataGridCommunityWidget"
-import {
-  DATA_GRID_PREMIUM_EVENT_HANDLER_CONFIG,
-  DATA_GRID_PREMIUM_PANEL_CONFIG,
-  DATA_GRID_PREMIUM_WIDGET_CONFIG,
-} from "@/widgetLibrary/DataGridPremiumWidget"
+  DATA_GRID_EVENT_HANDLER_CONFIG,
+  DATA_GRID_PANEL_CONFIG,
+  DATA_GRID_WIDGET_CONFIG,
+} from "@/widgetLibrary/DataGridWidget"
 import {
   DATE_RANGE_EVENT_HANDLER_CONFIG,
   DATE_RANGE_PANEL_CONFIG,
@@ -430,6 +425,12 @@ export const WidgetConfigMap: Record<
     widget: lazy(() => import("@/widgetLibrary/DateTimeWidget/dateTime")),
   },
   // data
+  DATA_GRID_WIDGET: {
+    config: DATA_GRID_WIDGET_CONFIG,
+    panelConfig: DATA_GRID_PANEL_CONFIG,
+    eventHandlerConfig: DATA_GRID_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/DataGridWidget/dataGrid")),
+  },
   CHART_WIDGET: {
     config: CHART_WIDGET_V2_CONFIG,
     panelConfig: CHART_PANEL_CONFIG,
@@ -610,14 +611,6 @@ if (isCloudVersion) {
     eventHandlerConfig: DRIVE_PICKER_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/DrivePickerWidget/drivePicker")),
   }
-  WidgetConfigMap["DATA_GRID_PREMIUM_WIDGET"] = {
-    config: DATA_GRID_PREMIUM_WIDGET_CONFIG,
-    panelConfig: DATA_GRID_PREMIUM_PANEL_CONFIG,
-    eventHandlerConfig: DATA_GRID_PREMIUM_EVENT_HANDLER_CONFIG,
-    widget: lazy(
-      () => import("@/widgetLibrary/DataGridPremiumWidget/dataGridPremium"),
-    ),
-  }
   if (import.meta.env.ILLA_GOOGLE_MAP_KEY) {
     WidgetConfigMap["MAP_WIDGET"] = {
       config: MAP_WIDGET_CONFIG,
@@ -625,15 +618,6 @@ if (isCloudVersion) {
       eventHandlerConfig: MAP_EVENT_HANDLER_CONFIG,
       widget: lazy(() => import("@/widgetLibrary/MapBoxWidget/map")),
     }
-  }
-} else {
-  WidgetConfigMap["DATA_GRID_COMMUNITY_WIDGET"] = {
-    config: DATA_GRID_COMMUNITY_WIDGET_CONFIG,
-    panelConfig: DATA_GRID_COMMUNITY_PANEL_CONFIG,
-    eventHandlerConfig: DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG,
-    widget: lazy(
-      () => import("@/widgetLibrary/DataGridCommunityWidget/dataGridCommunity"),
-    ),
   }
 }
 

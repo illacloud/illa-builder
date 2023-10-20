@@ -9,10 +9,11 @@ import {
   PanelFieldConfig,
 } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DataGridCommunityWidget"
+import { DATA_GRID_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DataGridWidget/eventHandlerConfig"
+import { ColumnTypeList } from "@/widgetLibrary/DataGridWidget/interface"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
-const baseWidgetName = "dataGridPremium"
+const baseWidgetName = "dataGrid"
 
 export const DATA_GRID_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
   {
@@ -24,19 +25,10 @@ export const DATA_GRID_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
   },
   {
     id: `${baseWidgetName}-column-columnType`,
-    labelName: i18n.t("editor.inspect.setter_label.column_title"),
+    labelName: i18n.t("editor.inspect.setter_label.column_type"),
     attrName: "columnType",
     setterType: "SEARCH_SELECT_SETTER",
-    options: [
-      {
-        label: i18n.t("editor.inspect.setter_option.table.limit_offset_based"),
-        value: "limitOffsetBased",
-      },
-      {
-        label: i18n.t("editor.inspect.setter_option.table.cursor_based"),
-        value: "cursorBased",
-      },
-    ],
+    options: ColumnTypeList,
     expectedType: VALIDATION_TYPES.STRING,
   },
   {
@@ -160,7 +152,7 @@ export const DATA_GRID_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     ],
   },
 ]
-export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
+export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,
     groupName: i18n.t("editor.inspect.setter_group.data"),
@@ -507,7 +499,7 @@ export const DATA_GRID_PREMIUM_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          DATA_GRID_COMMUNITY_EVENT_HANDLER_CONFIG.events,
+          DATA_GRID_EVENT_HANDLER_CONFIG.events,
         ),
       },
     ],

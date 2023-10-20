@@ -25,7 +25,7 @@ import { AddIcon, Button, Empty } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { DATA_GRID_COLUMN_SETTER_CONFIG } from "@/widgetLibrary/DataGridPremiumWidget/panelConfig"
+import { DATA_GRID_COLUMN_SETTER_CONFIG } from "@/widgetLibrary/DataGridWidget/panelConfig"
 import { Column } from "./components/Column"
 import { ColumnConfig, ColumnListSetterProps } from "./interface"
 import {
@@ -37,12 +37,13 @@ import {
   optionListLabelStyle,
 } from "./style"
 
-function generateManualColumnConfig(
+function generateCalcColumnConfig(
   key: string,
   isCalc: boolean,
+  randomKey: boolean,
 ): ColumnConfig {
   return {
-    field: v4(),
+    field: randomKey ? v4() : `${key}`,
     headerName: `${key}`,
     width: 150,
     isCalc: isCalc,
@@ -53,26 +54,9 @@ function generateManualColumnConfig(
     hideable: true,
     aggregable: true,
     groupable: true,
+    type: "actions",
     resizable: true,
-    disableReorder: false,
-    headerAlign: "left",
-  }
-}
-
-function generateCalcColumnConfig(key: string, isCalc: boolean): ColumnConfig {
-  return {
-    field: `${key}`,
-    headerName: `${key}`,
-    width: 150,
-    isCalc: isCalc,
-    description: "",
-    sortable: true,
-    pinnable: true,
-    filterable: true,
-    hideable: true,
-    aggregable: true,
-    groupable: true,
-    resizable: true,
+    columnType: "auto",
     disableReorder: false,
     headerAlign: "left",
   }
@@ -126,7 +110,7 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       return []
     } else {
       return Object.keys(arrayData[0]).map((key) => {
-        return generateCalcColumnConfig(key, true)
+        return generateCalcColumnConfig(key, true, false)
       })
     }
   }, [targetComponentProps])
@@ -171,9 +155,10 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
             handleUpdateMultiAttrDSL?.({
               [attrName]: [
                 ...mixedColumns,
-                generateManualColumnConfig(
+                generateCalcColumnConfig(
                   `column${mixedColumns.length + 1}`,
                   false,
+                  true,
                 ),
               ],
             })

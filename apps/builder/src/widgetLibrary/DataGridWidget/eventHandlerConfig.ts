@@ -1,7 +1,7 @@
 import i18n from "i18next"
 import { EventHandlerConfig } from "@/widgetLibrary/interface"
 
-export const DATA_GRID_PREMIUM_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
+export const DATA_GRID_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   events: [
     {
       label: i18n.t(

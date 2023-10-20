@@ -3,6 +3,7 @@ import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/inte
 
 export interface ColumnConfig extends GridBaseColDef {
   isCalc?: boolean
+  columnType: string
 }
 
 export interface ColumnListSetterProps extends BaseSetter {

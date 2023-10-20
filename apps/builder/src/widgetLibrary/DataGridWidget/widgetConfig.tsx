@@ -25,9 +25,9 @@ const originData = [
   },
 ]
 
-export const DATA_GRID_PREMIUM_WIDGET_CONFIG: WidgetConfig = {
+export const DATA_GRID_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
-  type: "DATA_GRID_PREMIUM_WIDGET",
+  type: "DATA_GRID_WIDGET",
   displayName: "dataGrid",
   widgetName: i18n.t("widget.data_grid.name"),
   icon: <TableWidgetIcon />,

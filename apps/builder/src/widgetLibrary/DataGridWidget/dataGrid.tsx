@@ -30,13 +30,13 @@ import {
 import { useTranslation } from "react-i18next"
 import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
-import { blockContainer } from "@/widgetLibrary/DataGridPremiumWidget/style"
 import { ExportAllSetting } from "./ExportAllSetting"
 import { BaseDataGridProps } from "./interface"
+import { blockContainer } from "./style"
 
 LicenseInfo.setLicenseKey(import.meta.env.ILLA_MUI_LICENSE)
 
-export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
+export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   const {
     loading,
     triggerEventHandler,
@@ -389,5 +389,5 @@ export const DataGridPremiumWidget: FC<BaseDataGridProps> = (props) => {
   )
 }
 
-DataGridPremiumWidget.displayName = "DataGridPremiumWidget"
-export default DataGridPremiumWidget
+DataGridWidget.displayName = "DataGridWidget"
+export default DataGridWidget
