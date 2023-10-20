@@ -2229,7 +2229,27 @@
           "limited": "Begrenzt",
           "limit_offset_based": "Limit-Offset basierend",
           "cursor_based": "Cursor-basiert",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Auto",
+            "text": "Text",
+            "date": "Datum",
+            "tag": "Markierung",
+            "time": "Zeit",
+            "datetime": "Datumszeit",
+            "number": "Nummer",
+            "percent": "Prozent",
+            "link": "Link",
+            "button": "Button",
+            "buttongroup": "Schaltflächengruppe",
+            "boolean": "Boolean",
+            "image": "Bild",
+            "icongroup": "Symbolgruppe",
+            "rating": "Bewertung",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Währung"
+          }
         },
         "input": {
           "input": "Input",
