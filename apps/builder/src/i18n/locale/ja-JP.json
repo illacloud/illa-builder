@@ -2229,7 +2229,27 @@
           "limited": "制限",
           "limit_offset_based": "リミットオフセットベース",
           "cursor_based": "カーソルベース",
-          "graphql_relay_cursor": "GraphQLリレーカーソル"
+          "graphql_relay_cursor": "GraphQLリレーカーソル",
+          "column_type": {
+            "auto": "自動",
+            "text": "テキスト",
+            "date": "日付",
+            "tag": "タグ",
+            "time": "時刻",
+            "datetime": "日付",
+            "number": "数値",
+            "percent": "割合",
+            "link": "リンク",
+            "button": "ボタン",
+            "buttongroup": "ボタングループ",
+            "boolean": "Boolean",
+            "image": "画像",
+            "icongroup": "アイコングループ",
+            "rating": "評価",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "通貨"
+          }
         },
         "input": {
           "input": "入力",
