@@ -1317,7 +1317,6 @@ export const AIAgent: FC = () => {
                             }),
                           )
                         }}
-                        teamPlan={getPlanUtils(currentTeamInfo)}
                         onShare={(platform) => {
                           track(
                             ILLA_MIXPANEL_EVENT_TYPE.CLICK,
@@ -1329,6 +1328,28 @@ export const AIAgent: FC = () => {
                             },
                           )
                         }}
+                        teamPlan={getPlanUtils(currentTeamInfo)}
+                      />
+                    )}
+                    {contributedDialogVisible && (
+                      <ContributeAgentPC
+                        onContributed={(isAgentContributed) => {
+                          field.onChange(isAgentContributed)
+                          if (isAgentContributed) {
+                            const newUrl = new URL(
+                              getAgentPublicLink(idField.value),
+                            )
+                            newUrl.searchParams.set("token", getAuthToken())
+                            window.open(newUrl, "_blank")
+                          }
+                        }}
+                        teamID={currentTeamInfo.id}
+                        onClose={() => {
+                          setContributedDialogVisible(false)
+                        }}
+                        productID={idField.value}
+                        productType={HASHTAG_REQUEST_TYPE.UNIT_TYPE_AI_AGENT}
+                        productContributed={field.value}
                       />
                     )}
                     {contributedDialogVisible && (
