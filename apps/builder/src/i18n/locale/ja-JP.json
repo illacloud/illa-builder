@@ -79,7 +79,13 @@
       "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。",
       "save_resource": "保存に成功しました。ページは3秒で閉じられます..."
     },
-    "create": "作成"
+    "create": "作成",
+    "pwa": {
+      "guide": {
+        "title": "ILLA クラウドをデスクトップに追加",
+        "desc": "デスクトップに追加すると、ワークスペースにすばやくアクセスできます。効率が向上します。 "
+      }
+    }
   },
   "dayjs": {
     "just_now": "ただ"
@@ -1849,12 +1855,14 @@
         "allow_row_selection": "行の選択を許可",
         "selection_mode": "選択モード",
         "pin_column": "列をピン留めする",
-        "enable_users_to_sort": "ユーザーの並び替えを有効にする",
         "enable_users_to_pin": "ユーザーのピン留めを有効にする",
         "enable_users_to_filter": "フィルタを有効にする",
         "enable_users_to_hide": "ユーザーの非表示を有効にする",
         "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする",
-        "column_description": "説明"
+        "column_description": "説明",
+        "enable_users_to_aggregate": "ユーザーの集計を有効にする",
+        "disable_users_to_sort": "ユーザーの並び替えを有効にする",
+        "enable_users_to_resize": "ユーザーのサイズ変更を有効にする"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2147,13 +2155,13 @@
         "selection_mode": "複数行の選択または単一行の選択を設定するために使用されます",
         "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用",
         "pin_column": "すべてのユーザーに列を固定するために使用",
-        "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
         "enable_users_to_pin": "ユーザーが列を固定することを許可するかどうかを設定するために使用",
         "enable_users_to_filter": "このカラムをフィルタリングできるかどうかを設定するために使用します。",
         "enable_users_to_hide": "ユーザーが列を非表示にするかどうかを設定するために使用します。",
         "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
         "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 ",
-        "column_description": "この列の説明を設定するために使用"
+        "column_description": "この列の説明を設定するために使用",
+        "disable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 "
       },
       "setter_option": {
         "fixed": "固定高さ",
