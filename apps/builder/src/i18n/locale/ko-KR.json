@@ -1729,7 +1729,7 @@
           "icon": "상",
           "color": "색깔",
           "sort_by_mapped_value": "매핑된 값으로 정렬",
-          "background": "Cells' backgound",
+          "background": "배경색",
           "alignment": "조정",
           "column_width": "열 너비",
           "width": "너비",

@@ -1729,7 +1729,7 @@
           "icon": "Εικονίδιο",
           "color": "Χρώμα",
           "sort_by_mapped_value": "Ταξινόμηση κατά αντιστοιχισμένη τιμή",
-          "background": "Πίσω κελιών",
+          "background": "Φόντο",
           "alignment": "Ευθυγράμμιση",
           "column_width": "Πλάτος στήλης",
           "width": "Width",

@@ -1651,8 +1651,8 @@ importers:
         specifier: ^2.8.1
         version: 2.9.3(@types/react@18.2.22)(react@18.2.0)
       react-hotkeys-hook:
-        specifier: ^4.4.0
-        version: 4.4.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^4.4.1
+        version: 4.4.1(react-dom@18.2.0)(react@18.2.0)
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
@@ -13811,16 +13811,6 @@ packages:
       react: ^18.2.0
     dependencies:
       react: 18.2.0
-    dev: false
-
-  /react-hotkeys-hook@4.4.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-wOaCWLwgT/f895CMJrR9hmzVf+gfL8IpjWDXWXKngBp9i6Xqzf0tvLv4VI8l3Vlsg/cc4C/Iik3Ck76L/Hj0tw==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-hotkeys-hook@4.4.1(react-dom@18.2.0)(react@18.2.0):
