@@ -82,8 +82,8 @@
     "create": "Create",
     "pwa": {
       "guide": {
-        "title": "Add ILLA Cloud to your desktop",
-        "desc": "Add to your desktop to access to your workspace quickly. Boost your efficiency. "
+        "title": "Add shortcut to your device",
+        "desc": "Add to your device to access to your workspace quickly. Boost your efficiency. "
       }
     }
   },
@@ -4330,6 +4330,12 @@
       "canceled": "Canceled",
       "expired": "Expired",
       "paused": "Paused"
+    },
+    "component": {
+      "expired": {
+        "title": "Your subscription has been expired",
+        "desc": "The components used the Premium features have been disabled. Please upgrade."
+      }
     }
   },
   "network": {
