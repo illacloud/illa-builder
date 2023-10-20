@@ -1,5 +1,5 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import { FC, Suspense, useCallback } from "react"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import {
   getActionNameFromActionType,
   getActionSubTitleFromActionType,
@@ -28,7 +28,7 @@ export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
 
   return (
     <div css={applyItemStyle} onClick={onClickCard}>
-      <Suspense> {getIconFromActionType(actionType, "24px")}</Suspense>
+      <Suspense> {getIconFromResourceType(actionType, "24px")}</Suspense>
       <div css={titleContainerStyle}>
         <div css={nameStyle}>{getActionNameFromActionType(actionType)}</div>
         {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}

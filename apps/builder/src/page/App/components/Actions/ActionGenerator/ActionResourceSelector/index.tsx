@@ -1,3 +1,4 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -13,7 +14,6 @@ import {
   List,
   PreviousIcon,
 } from "@illa-design/react"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { track } from "@/utils/mixpanelHelper"
@@ -102,7 +102,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
               }}
             >
               <Suspense>
-                {getIconFromActionType(r.resourceType, "24px")}
+                {getIconFromResourceType(r.resourceType, "24px")}
               </Suspense>
               <span css={resourceItemTitleStyle}>{r.resourceName}</span>
               <span css={resourceItemTimeStyle}>
