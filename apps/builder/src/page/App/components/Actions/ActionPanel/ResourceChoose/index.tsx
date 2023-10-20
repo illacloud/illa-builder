@@ -1,3 +1,4 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { FC, Suspense, useState } from "react"
@@ -15,7 +16,6 @@ import {
 } from "@illa-design/react"
 import { ResourceGenerator } from "@/page/App/components/Actions/ResourceGenerator"
 import { ResourceCreator } from "@/page/App/components/Actions/ResourceGenerator/ResourceCreator"
-import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import {
   getCachedAction,
   getSelectedAction,

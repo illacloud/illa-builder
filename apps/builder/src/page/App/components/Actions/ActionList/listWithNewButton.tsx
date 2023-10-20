@@ -1,3 +1,4 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import { isCloudVersion } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useContext, useState } from "react"
@@ -37,10 +38,7 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import AIAgentIcon from "../../Icons/aiAgent"
 import DatabaseIcon from "../../Icons/database"
-import GlobalDataIcon from "../../Icons/globalData"
-import TransformerIcon from "../../Icons/transformer"
 import { ActionGenerator } from "../ActionGenerator"
 import { ActionListItem } from "../ActionListItem"
 import { onCopyActionItem } from "../api"
@@ -173,7 +171,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
               title={
                 <div css={createDropListItemContainerStyle}>
                   <span css={prefixIconContainerStyle}>
-                    <TransformerIcon />
+                    {getIconFromResourceType("transformer", "24px")}
                   </span>
                   {t("editor.action.panel.label.option.general.js")}
                 </div>
@@ -186,7 +184,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
               title={
                 <div css={createDropListItemContainerStyle}>
                   <span css={prefixIconContainerStyle}>
-                    <GlobalDataIcon />
+                    {getIconFromResourceType("globalData", "24px")}
                   </span>
                   {t("editor.action.panel.label.option.general.global-data")}
                 </div>
@@ -200,7 +198,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
                 title={
                   <div css={createDropListItemContainerStyle}>
                     <span css={prefixIconContainerStyle}>
-                      <AIAgentIcon />
+                      {getIconFromResourceType("aiagent", "24px")}
                     </span>
                     {t("editor.action.panel.label.option.general.ai-agent")}
                   </div>
