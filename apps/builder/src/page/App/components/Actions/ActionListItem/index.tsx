@@ -1,3 +1,4 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { isEqual } from "lodash"
 import {
@@ -21,10 +22,7 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
-import {
-  getAgentIcon,
-  getIconFromActionType,
-} from "@/page/App/components/Actions/getIcon"
+import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
 import {
   getCachedAction,
   getIsILLAGuideMode,
@@ -282,7 +280,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
                         ?.virtualResource,
                       "16px",
                     )
-                  : getIconFromActionType(action.actionType, "16px")}
+                  : getIconFromResourceType(action.actionType, "16px")}
               </Suspense>
               {error && <WarningCircleIcon css={warningCircleStyle} />}
             </div>
