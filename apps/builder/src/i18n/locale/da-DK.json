@@ -2229,7 +2229,27 @@
           "limited": "Begrænset",
           "limit_offset_based": "Begræns offset baseret",
           "cursor_based": "Markør baseret",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Auto",
+            "text": "Text",
+            "date": "Date",
+            "tag": "Tag",
+            "time": "Time",
+            "datetime": "Date time",
+            "number": "Number",
+            "percent": "Percent",
+            "link": "Link",
+            "button": "Button",
+            "buttongroup": "Button group",
+            "boolean": "Boolean",
+            "image": "Image",
+            "icongroup": "Icon group",
+            "rating": "Rating",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Currency"
+          }
         },
         "input": {
           "input": "Input",
