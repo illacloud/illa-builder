@@ -1,13 +1,10 @@
 import SaveAltIcon from "@mui/icons-material/SaveAlt"
 import { Button, Menu, MenuItem } from "@mui/material"
-import {
-  gridSortedRowIdsSelector,
-  useGridApiContext,
-} from "@mui/x-data-grid-premium"
+import { gridSortedRowIdsSelector, useGridApiContext } from "@mui/x-data-grid"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 
-export const ExportAllSetting: FC = () => {
+export const CommunityExportAllSetting: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const apiRef = useGridApiContext()
@@ -53,17 +50,9 @@ export const ExportAllSetting: FC = () => {
         >
           {t("")}
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            apiRef.current.exportDataAsExcel({
-              getRowsToExport: (params) =>
-                gridSortedRowIdsSelector(params.apiRef),
-            })
-          }}
-        >
-          {t("")}
-        </MenuItem>
       </Menu>
     </>
   )
 }
+
+CommunityExportAllSetting.displayName = "CommunityExportAllSetting"

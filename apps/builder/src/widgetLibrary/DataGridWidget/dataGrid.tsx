@@ -1,36 +1,13 @@
-import FilterAltIcon from "@mui/icons-material/FilterAlt"
-import RefreshIcon from "@mui/icons-material/Refresh"
-import { Button, StyledEngineProvider } from "@mui/material"
-import {
-  DataGridPremium,
-  GridGetRowsToExportParams,
-  GridToolbarColumnsButton,
-  GridToolbarContainer,
-  GridToolbarDensitySelector,
-  GridToolbarExport,
-  GridToolbarFilterButton,
-  GridToolbarQuickFilter,
-  LicenseInfo,
-  gridPaginatedVisibleSortedGridRowIdsSelector,
-} from "@mui/x-data-grid-premium"
-import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
-import {
-  GridCsvGetRowsToExportParams,
-  GridPrintGetRowsToExportParams,
-} from "@mui/x-data-grid/models/gridExport"
+import { isCloudVersion } from "@illa-public/utils"
+import { StyledEngineProvider } from "@mui/material"
+import { useGridApiContext } from "@mui/x-data-grid"
+import { DataGridPremium, LicenseInfo } from "@mui/x-data-grid-premium"
 import { get, isArray, isNumber } from "lodash"
-import {
-  FC,
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react"
-import { useTranslation } from "react-i18next"
+import { FC, useEffect, useMemo } from "react"
 import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
-import { ExportAllSetting } from "./ExportAllSetting"
+import { CommunityToolbar } from "@/widgetLibrary/DataGridWidget/Toolbar/CommunityToolbar"
+import { PremiumToolbar } from "@/widgetLibrary/DataGridWidget/Toolbar/PremiumToolbar"
 import { BaseDataGridProps } from "./interface"
 import { blockContainer } from "./style"
 
@@ -72,8 +49,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     columns,
   } = props
 
-  const { t } = useTranslation()
-
   const rawData = useMemo(() => {
     return dataSourceMode === "dynamic" ? dataSourceJS : dataSource
   }, [dataSource, dataSourceJS, dataSourceMode])
@@ -82,62 +57,35 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     return dealRawData2ArrayData(rawData)
   }, [rawData])
 
-  const toolbar = useCallback(() => {
-    return (
-      <GridToolbarContainer>
-        {columnSetting && <GridToolbarColumnsButton />}
-        {filterSetting && (
-          <GridToolbarFilterButton
-            componentsProps={{
-              button: {
-                startIcon: <FilterAltIcon />,
-              },
-            }}
-          />
-        )}
-        {densitySetting && <GridToolbarDensitySelector />}
-        {exportSetting && (
-          <GridToolbarExport
-            excelOptions={{
-              getRowsToExport: (params: GridGetRowsToExportParams) =>
-                gridPaginatedVisibleSortedGridRowIdsSelector(params.apiRef),
-            }}
-            csvOptions={{
-              getRowsToExport: (params: GridCsvGetRowsToExportParams) =>
-                gridPaginatedVisibleSortedGridRowIdsSelector(params.apiRef),
-            }}
-            printOptions={{
-              getRowsToExport: (params: GridPrintGetRowsToExportParams) =>
-                gridPaginatedVisibleSortedGridRowIdsSelector(params.apiRef),
-            }}
-          />
-        )}
-        {exportAllSetting && <ExportAllSetting />}
-        {refreshSetting && (
-          <Button
-            startIcon={<RefreshIcon />}
-            size="small"
-            onClick={() => {
-              triggerEventHandler("onRefresh")
-            }}
-          >
-            {t("widget.table.refresh")}
-          </Button>
-        )}
-        {quickFilterSetting && <GridToolbarQuickFilter />}
-      </GridToolbarContainer>
+  const toolbar = () => {
+    return isCloudVersion ? (
+      <PremiumToolbar
+        columnSetting={columnSetting}
+        densitySetting={densitySetting}
+        exportSetting={exportSetting}
+        exportAllSetting={exportAllSetting}
+        filterSetting={filterSetting}
+        quickFilterSetting={quickFilterSetting}
+        refreshSetting={refreshSetting}
+        onRefresh={() => {
+          triggerEventHandler("onRefresh")
+        }}
+      />
+    ) : (
+      <CommunityToolbar
+        columnSetting={columnSetting}
+        densitySetting={densitySetting}
+        exportSetting={exportSetting}
+        exportAllSetting={exportAllSetting}
+        filterSetting={filterSetting}
+        quickFilterSetting={quickFilterSetting}
+        refreshSetting={refreshSetting}
+        onRefresh={() => {
+          triggerEventHandler("onRefresh")
+        }}
+      />
     )
-  }, [
-    columnSetting,
-    filterSetting,
-    densitySetting,
-    exportSetting,
-    exportAllSetting,
-    refreshSetting,
-    t,
-    quickFilterSetting,
-    triggerEventHandler,
-  ])
+  }
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -230,7 +178,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     displayName,
   ])
 
-  const ref = useRef<GridApiPremium>() as MutableRefObject<GridApiPremium>
+  const apiRef = useGridApiContext()
 
   return (
     <div
@@ -250,7 +198,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     >
       <StyledEngineProvider injectFirst>
         <DataGridPremium
-          apiRef={ref}
           getRowId={(row) => {
             if (primaryKey === undefined || primaryKey === "—") {
               return v4()
@@ -302,7 +249,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
                 value: {
                   selectedRowsPrimaryKeys: model,
                   selectedRows: Array.from(
-                    ref.current.getSelectedRows().values(),
+                    apiRef.current.getSelectedRows().values(),
                   ),
                 },
               },
