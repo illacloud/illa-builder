@@ -48,7 +48,7 @@ export const CommunityExportAllSetting: FC = () => {
             })
           }}
         >
-          {t("")}
+          {t("widget.table.export.csv")}
         </MenuItem>
       </Menu>
     </>

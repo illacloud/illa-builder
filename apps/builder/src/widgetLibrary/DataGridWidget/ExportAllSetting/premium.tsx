@@ -51,7 +51,7 @@ export const PremiumExportAllSetting: FC = () => {
             })
           }}
         >
-          {t("")}
+          {t("widget.table.export.csv")}
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -61,7 +61,7 @@ export const PremiumExportAllSetting: FC = () => {
             })
           }}
         >
-          {t("")}
+          {t("widget.table.export.excel")}
         </MenuItem>
       </Menu>
     </>
