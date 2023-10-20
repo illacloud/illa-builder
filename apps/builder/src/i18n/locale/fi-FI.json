@@ -2229,7 +2229,27 @@
           "limited": "Rajoitettu",
           "limit_offset_based": "Raja poikkeama perustuu",
           "cursor_based": "Kohdistin pohjautuu",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automaattinen",
+            "text": "Teksti",
+            "date": "Päivämäärä",
+            "tag": "Tunniste",
+            "time": "Aika",
+            "datetime": "Päivämäärän aika",
+            "number": "Numero",
+            "percent": "Prosenttia",
+            "link": "Linkki",
+            "button": "Painike",
+            "buttongroup": "Painikkeiden ryhmä",
+            "boolean": "Boolean",
+            "image": "Kuva",
+            "icongroup": "Kuvakkeen ryhmä",
+            "rating": "Arvostelu",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Valuutta"
+          }
         },
         "input": {
           "input": "Input",
