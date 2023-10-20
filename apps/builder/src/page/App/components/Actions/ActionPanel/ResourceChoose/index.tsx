@@ -1,3 +1,4 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { FC, Suspense, useState } from "react"
@@ -6,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   AddIcon,
   Modal,
-  Option,
   PenIcon,
   Select,
   Space,
@@ -16,7 +16,6 @@ import {
 } from "@illa-design/react"
 import { ResourceGenerator } from "@/page/App/components/Actions/ResourceGenerator"
 import { ResourceCreator } from "@/page/App/components/Actions/ResourceGenerator/ResourceCreator"
-import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import {
   getCachedAction,
   getSelectedAction,
@@ -56,6 +55,34 @@ export const ResourceChoose: FC = () => {
     (r) => r.resourceID === action.resourceID,
   )
 
+  const options = resourceList.map((item) => ({
+    label: (
+      <div css={itemContainer}>
+        <span css={itemLogo}>
+          <Suspense>
+            {getIconFromResourceType(item.resourceType, "14px")}
+          </Suspense>
+        </span>
+        <span css={itemText}>{item.resourceName}</span>
+      </div>
+    ),
+    value: item.resourceID,
+  }))
+  options.unshift({
+    label: (
+      <Space
+        size="8px"
+        direction="horizontal"
+        alignItems="center"
+        css={createNewStyle}
+      >
+        <AddIcon size="14px" />
+        {t("editor.action.panel.option.resource.new")}
+      </Space>
+    ),
+    value: "create",
+  })
+
   return (
     <TriggerProvider renderInBody zIndex={10}>
       <div css={resourceChooseContainerStyle}>
@@ -64,12 +91,17 @@ export const ResourceChoose: FC = () => {
           <Select
             w="360px"
             colorScheme="techPurple"
+            options={options}
             value={
               currentSelectResource
                 ? action.resourceID
                 : t("editor.action.resource_choose.deleted")
             }
             onChange={(value) => {
+              if (value === "create") {
+                setGeneratorVisible(true)
+                return
+              }
               const resource = resourceList.find((r) => r.resourceID === value)
               if (resource != undefined) {
                 dispatch(
@@ -102,40 +134,8 @@ export const ResourceChoose: FC = () => {
                 }}
               />
             }
-          >
-            <Option
-              key="create"
-              value="create"
-              isSelectOption={false}
-              onClick={() => {
-                setGeneratorVisible(true)
-              }}
-            >
-              <Space
-                size="8px"
-                direction="horizontal"
-                alignItems="center"
-                css={createNewStyle}
-              >
-                <AddIcon size="14px" />
-                {t("editor.action.panel.option.resource.new")}
-              </Space>
-            </Option>
-            {resourceList.map((item) => {
-              return (
-                <Option value={item.resourceID} key={item.resourceID}>
-                  <div css={itemContainer}>
-                    <span css={itemLogo}>
-                      <Suspense>
-                        {getIconFromResourceType(item.resourceType, "14px")}
-                      </Suspense>
-                    </span>
-                    <span css={itemText}>{item.resourceName}</span>
-                  </div>
-                </Option>
-              )
-            })}
-          </Select>
+          />
+
           <Select
             ml="8px"
             w="360px"
@@ -176,14 +176,17 @@ export const ResourceChoose: FC = () => {
                 element: "action_edit_auto_run",
               })
             }}
-          >
-            <Option value="manually" key="manually">
-              {t("editor.action.panel.option.trigger.manually")}
-            </Option>
-            <Option value="automate" key="automate">
-              {t("editor.action.panel.option.trigger.on_change")}
-            </Option>
-          </Select>
+            options={[
+              {
+                label: t("editor.action.panel.option.trigger.manually"),
+                value: "manually",
+              },
+              {
+                label: t("editor.action.panel.option.trigger.on_change"),
+                value: "automate",
+              },
+            ]}
+          />
         </div>
       </div>
       <Modal
