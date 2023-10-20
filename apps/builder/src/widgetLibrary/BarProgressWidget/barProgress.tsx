@@ -17,7 +17,7 @@ export const WrappedBarProgress: FC<WrappedBarProgressProps> = (props) => {
     <Progress
       type="line"
       percent={value}
-      showText={showText}
+      showText={!showText}
       color={color}
       w="100%"
       trailColor={trailColor}
