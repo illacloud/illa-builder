@@ -2229,7 +2229,27 @@
           "limited": "Ограниченный",
           "limit_offset_based": "Ограниченное смещение на основе",
           "cursor_based": "На основе курсора",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Авто",
+            "text": "Текст",
+            "date": "Дата",
+            "tag": "Тег",
+            "time": "Время",
+            "datetime": "Дата и время",
+            "number": "Номер",
+            "percent": "Процент",
+            "link": "Ссылка",
+            "button": "Кнопка",
+            "buttongroup": "Группа кнопок",
+            "boolean": "Boolean",
+            "image": "Изображение",
+            "icongroup": "Группа иконок",
+            "rating": "Рейтинг",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Валюта"
+          }
         },
         "input": {
           "input": "Input",
