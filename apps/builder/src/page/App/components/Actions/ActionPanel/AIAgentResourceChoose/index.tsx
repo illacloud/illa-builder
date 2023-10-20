@@ -2,7 +2,7 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Option, Select, TriggerProvider } from "@illa-design/react"
+import { Select, TriggerProvider } from "@illa-design/react"
 import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
 import { getDashboardTeamAIAgentList } from "@/redux/aiAgent/dashboardTeamAIAgentSelector"
 import {
@@ -39,6 +39,18 @@ export const AIAgentResourceChoose: FC = () => {
     (r) => r.aiAgentID === action.resourceID,
   )
 
+  const options = agentList.map((item) => ({
+    label: (
+      <>
+        <div css={itemContainer}>
+          {getAgentIcon(item, "14px")}
+          <span css={itemText}>{item.name}</span>
+        </div>
+      </>
+    ),
+    value: item.aiAgentID,
+  }))
+
   return (
     <TriggerProvider renderInBody zIndex={10}>
       <div css={resourceChooseContainerStyle}>
@@ -69,18 +81,8 @@ export const AIAgentResourceChoose: FC = () => {
                 )
               }
             }}
-          >
-            {agentList.map((item) => {
-              return (
-                <Option value={item.aiAgentID} key={item.aiAgentID}>
-                  <div css={itemContainer}>
-                    {getAgentIcon(item, "14px")}
-                    <span css={itemText}>{item.name}</span>
-                  </div>
-                </Option>
-              )
-            })}
-          </Select>
+            options={options}
+          />
           <Select
             ml="8px"
             w="360px"
@@ -121,14 +123,17 @@ export const AIAgentResourceChoose: FC = () => {
                 element: "action_edit_auto_run",
               })
             }}
-          >
-            <Option value="manually" key="manually">
-              {t("editor.action.panel.option.trigger.manually")}
-            </Option>
-            <Option value="automate" key="automate">
-              {t("editor.action.panel.option.trigger.on_change")}
-            </Option>
-          </Select>
+            options={[
+              {
+                label: t("editor.action.panel.option.trigger.manually"),
+                value: "manually",
+              },
+              {
+                label: t("editor.action.panel.option.trigger.on_change"),
+                value: "automate",
+              },
+            ]}
+          />
         </div>
       </div>
     </TriggerProvider>
