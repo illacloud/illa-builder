@@ -54,7 +54,6 @@ function generateCalcColumnConfig(
     hideable: true,
     aggregable: true,
     groupable: true,
-    type: "actions",
     resizable: true,
     columnType: "auto",
     disableReorder: false,

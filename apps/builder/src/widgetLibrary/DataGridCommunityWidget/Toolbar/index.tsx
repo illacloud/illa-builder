@@ -14,10 +14,10 @@ import {
 import { GridCsvGetRowsToExportParams } from "@mui/x-data-grid/models/gridExport"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { CommunityExportAllSetting } from "@/widgetLibrary/DataGridWidget/ExportAllSetting/community"
 import { ToolbarProps } from "@/widgetLibrary/DataGridWidget/Toolbar/interface"
+import { ExportAllSetting } from "../ExportAllSetting"
 
-export const CommunityToolbar: FC<ToolbarProps> = (props) => {
+export const Toolbar: FC<ToolbarProps> = (props) => {
   const {
     columnSetting,
     filterSetting,
@@ -56,7 +56,7 @@ export const CommunityToolbar: FC<ToolbarProps> = (props) => {
           }}
         />
       )}
-      {exportAllSetting && <CommunityExportAllSetting />}
+      {exportAllSetting && <ExportAllSetting />}
       {refreshSetting && (
         <Button
           startIcon={<RefreshIcon />}
@@ -73,4 +73,4 @@ export const CommunityToolbar: FC<ToolbarProps> = (props) => {
   )
 }
 
-CommunityToolbar.displayName = "CommunityToolbar"
+Toolbar.displayName = "Toolbar"

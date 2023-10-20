@@ -7,7 +7,7 @@ import {
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 
-export const PremiumExportAllSetting: FC = () => {
+export const ExportAllSetting: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const apiRef = useGridApiContext()
@@ -68,4 +68,4 @@ export const PremiumExportAllSetting: FC = () => {
   )
 }
 
-PremiumExportAllSetting.displayName = "PremiumExportAllSetting"
+ExportAllSetting.displayName = "ExportAllSetting"

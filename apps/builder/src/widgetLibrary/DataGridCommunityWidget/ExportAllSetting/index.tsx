@@ -4,7 +4,7 @@ import { gridSortedRowIdsSelector, useGridApiContext } from "@mui/x-data-grid"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 
-export const CommunityExportAllSetting: FC = () => {
+export const ExportAllSetting: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const apiRef = useGridApiContext()
@@ -55,4 +55,4 @@ export const CommunityExportAllSetting: FC = () => {
   )
 }
 
-CommunityExportAllSetting.displayName = "CommunityExportAllSetting"
+ExportAllSetting.displayName = "ExportAllSetting"

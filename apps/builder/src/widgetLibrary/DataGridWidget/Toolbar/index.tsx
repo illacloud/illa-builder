@@ -17,10 +17,10 @@ import {
 } from "@mui/x-data-grid/models/gridExport"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { PremiumExportAllSetting } from "@/widgetLibrary/DataGridWidget/ExportAllSetting/premium"
-import { ToolbarProps } from "@/widgetLibrary/DataGridWidget/Toolbar/interface"
+import { ExportAllSetting } from "../ExportAllSetting"
+import { ToolbarProps } from "./interface"
 
-export const PremiumToolbar: FC<ToolbarProps> = (props) => {
+export const Toolbar: FC<ToolbarProps> = (props) => {
   const {
     columnSetting,
     filterSetting,
@@ -63,7 +63,7 @@ export const PremiumToolbar: FC<ToolbarProps> = (props) => {
           }}
         />
       )}
-      {exportAllSetting && <PremiumExportAllSetting />}
+      {exportAllSetting && <ExportAllSetting />}
       {refreshSetting && (
         <Button
           startIcon={<RefreshIcon />}
@@ -80,4 +80,4 @@ export const PremiumToolbar: FC<ToolbarProps> = (props) => {
   )
 }
 
-PremiumToolbar.displayName = "PremiumToolbar"
+Toolbar.displayName = "Toolbar"

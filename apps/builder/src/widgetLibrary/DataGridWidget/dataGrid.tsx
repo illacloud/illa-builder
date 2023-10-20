@@ -1,13 +1,11 @@
-import { isCloudVersion } from "@illa-public/utils"
 import { StyledEngineProvider } from "@mui/material"
-import { useGridApiContext } from "@mui/x-data-grid"
 import { DataGridPremium, LicenseInfo } from "@mui/x-data-grid-premium"
+import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber } from "lodash"
-import { FC, useEffect, useMemo } from "react"
+import { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
 import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
-import { CommunityToolbar } from "@/widgetLibrary/DataGridWidget/Toolbar/CommunityToolbar"
-import { PremiumToolbar } from "@/widgetLibrary/DataGridWidget/Toolbar/PremiumToolbar"
+import { Toolbar } from "./Toolbar"
 import { BaseDataGridProps } from "./interface"
 import { blockContainer } from "./style"
 
@@ -57,22 +55,11 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     return dealRawData2ArrayData(rawData)
   }, [rawData])
 
+  const ref = useRef<GridApiPremium>(null) as MutableRefObject<GridApiPremium>
+
   const toolbar = () => {
-    return isCloudVersion ? (
-      <PremiumToolbar
-        columnSetting={columnSetting}
-        densitySetting={densitySetting}
-        exportSetting={exportSetting}
-        exportAllSetting={exportAllSetting}
-        filterSetting={filterSetting}
-        quickFilterSetting={quickFilterSetting}
-        refreshSetting={refreshSetting}
-        onRefresh={() => {
-          triggerEventHandler("onRefresh")
-        }}
-      />
-    ) : (
-      <CommunityToolbar
+    return (
+      <Toolbar
         columnSetting={columnSetting}
         densitySetting={densitySetting}
         exportSetting={exportSetting}
@@ -178,8 +165,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     displayName,
   ])
 
-  const apiRef = useGridApiContext()
-
   return (
     <div
       css={blockContainer}
@@ -198,6 +183,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     >
       <StyledEngineProvider injectFirst>
         <DataGridPremium
+          apiRef={ref}
           getRowId={(row) => {
             if (primaryKey === undefined || primaryKey === "—") {
               return v4()
@@ -249,7 +235,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
                 value: {
                   selectedRowsPrimaryKeys: model,
                   selectedRows: Array.from(
-                    apiRef.current.getSelectedRows().values(),
+                    ref.current.getSelectedRows().values(),
                   ),
                 },
               },
