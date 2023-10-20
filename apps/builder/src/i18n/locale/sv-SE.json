@@ -79,7 +79,13 @@
       "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet.",
       "save_resource": "Sparandet lyckades, sidan kommer att stängas om 3 sekunder..."
     },
-    "create": "Skapa"
+    "create": "Skapa",
+    "pwa": {
+      "guide": {
+        "title": "Lägg till ILLA Cloud på skrivbordet",
+        "desc": "Lägg till ditt skrivbord för att få tillgång till din arbetsyta snabbt. Öka din effektivitet. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Just nu"
@@ -1849,12 +1855,14 @@
         "allow_row_selection": "Tillåt radval",
         "selection_mode": "Markeringsläge",
         "pin_column": "Fäst kolumn",
-        "enable_users_to_sort": "Tillåt användare att sortera",
         "enable_users_to_pin": "Aktivera användare att fästa",
         "enable_users_to_filter": "Aktivera användare att filtrera",
         "enable_users_to_hide": "Aktivera användare att dölja",
         "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av",
-        "column_description": "Beskrivning"
+        "column_description": "Beskrivning",
+        "enable_users_to_aggregate": "Aktivera användare att aggregera",
+        "disable_users_to_sort": "Tillåt användare att sortera",
+        "enable_users_to_resize": "Tillåt användare att ändra storlek"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2147,13 +2155,13 @@
         "selection_mode": "Används för att ställa in flera radval eller val av enstaka rader",
         "allow_row_selection": "Används för att ställa in om användare tillåts välja rad",
         "pin_column": "Används för att fästa kolumnen på alla användare",
-        "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
         "enable_users_to_pin": "Används för att ställa in om användare tillåts fästa kolumnen",
         "enable_users_to_filter": "Används för att ställa in om användare tillåts filtrera på denna kolumn",
         "enable_users_to_hide": "Används för att ställa in om användare tillåts dölja kolumnen",
         "enable_users_to_aggregate": "Används för att ställa in om användare ska tillåta att data aggregering görs på den här kolumnen.",
         "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
-        "column_description": "Används för att ange en beskrivning av denna kolumn"
+        "column_description": "Används för att ange en beskrivning av denna kolumn",
+        "disable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2221,7 +2229,27 @@
           "limited": "Begränsad",
           "limit_offset_based": "Begränsa offset baserat",
           "cursor_based": "Markör baserad",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Auto",
+            "text": "Text",
+            "date": "Date",
+            "tag": "Tag",
+            "time": "Time",
+            "datetime": "Date time",
+            "number": "Number",
+            "percent": "Percent",
+            "link": "Link",
+            "button": "Button",
+            "buttongroup": "Button group",
+            "boolean": "Boolean",
+            "image": "Image",
+            "icongroup": "Icon group",
+            "rating": "Rating",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Currency"
+          }
         },
         "input": {
           "input": "Input",

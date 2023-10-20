@@ -79,7 +79,13 @@
       "mobile-fork-suc": "Fork成功，请前往桌面版编辑",
       "save_resource": "保存成功，页面将在3s后关闭"
     },
-    "create": "创建"
+    "create": "创建",
+    "pwa": {
+      "guide": {
+        "title": "将ILLA Cloud添加到您的桌面",
+        "desc": "添加到桌面以快速访问您的工作区。提高您的效率。 "
+      }
+    }
   },
   "dayjs": {
     "just_now": "刚刚"
@@ -1849,12 +1855,14 @@
         "allow_row_selection": "允许选中行",
         "selection_mode": "选择模式",
         "pin_column": "冻结列",
-        "enable_users_to_sort": "允许用户排序",
         "enable_users_to_pin": "允许用户冻结列",
         "enable_users_to_filter": "允许用户筛选",
         "enable_users_to_hide": "允许用户隐藏列",
         "enable_users_to_set_group_by": "允许用户设置分组显示",
-        "column_description": "描述"
+        "column_description": "描述",
+        "enable_users_to_aggregate": "Enable users to aggregate",
+        "disable_users_to_sort": "允许用户排序",
+        "enable_users_to_resize": "Enable users to resize"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2147,13 +2155,13 @@
         "selection_mode": "用于设置多行选择还是单行选择",
         "allow_row_selection": "用于设置是否允许用户选中行",
         "pin_column": "用于冻结列",
-        "enable_users_to_sort": "用于设置是否允许用户更改排序",
         "enable_users_to_pin": "用于设置是否允许用户冻结列",
         "enable_users_to_filter": "用于设置是否允许用户筛选数据",
         "enable_users_to_hide": "用于设置是否允许用户隐藏列",
         "enable_users_to_aggregate": "用于设置是否允许用户聚合这列数据",
         "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示",
-        "column_description": "用于设置这列的描述信息"
+        "column_description": "用于设置这列的描述信息",
+        "disable_users_to_sort": "用于设置是否允许用户更改排序"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -2221,7 +2229,27 @@
           "limited": "限制",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
-          "graphql_relay_cursor": "GraphQL Relay cursor"
+          "graphql_relay_cursor": "GraphQL Relay cursor",
+          "column_type": {
+            "auto": "自动",
+            "text": "文本",
+            "date": "日期",
+            "tag": "标签",
+            "time": "时间",
+            "datetime": "日期时间",
+            "number": "数值",
+            "percent": "百分比",
+            "link": "链接",
+            "button": "按钮",
+            "buttongroup": "按钮组",
+            "boolean": "布尔值",
+            "image": "图片",
+            "icongroup": "图标组",
+            "rating": "评分",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "货币"
+          }
         },
         "input": {
           "input": "输入",
