@@ -20,6 +20,7 @@ import { fetchPrivateAppInitData } from "@/services/apps"
 import { fetchResources } from "@/services/resource"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { aiAgentActions } from "../redux/aiAgent/dashboardTeamAIAgentSlice"
 import { fixedActionToNewAction } from "./utils/fixedAction"
 import { fixedComponentsToNewComponents } from "./utils/fixedComponents"
 
@@ -86,11 +87,11 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           .then((res) => {
             dispatch(resourceActions.updateResourceListReducer(res[1].data))
             handleCurrentApp(res[0].data)
-            // dispatch(
-            //   dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
-            //     res[2].data.aiAgentList,
-            //   ),
-            // )
+            dispatch(
+              aiAgentActions.updateTeamAIAgentListReducer(
+                res[2].data.aiAgentList,
+              ),
+            )
           })
           .catch(() => {
             setErrorState(true)
