@@ -79,7 +79,13 @@
       "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači.",
       "save_resource": "Úspěšně uloženo, stránka se zavře za 3 sekundy..."
     },
-    "create": "Vytvořit"
+    "create": "Vytvořit",
+    "pwa": {
+      "guide": {
+        "title": "Přidat ILLA Cloud do vaší plochy",
+        "desc": "Pro rychlý přístup k pracovnímu prostoru přidejte na plochu. Zvyšte svou efektivitu. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Právě teď"
@@ -1849,12 +1855,14 @@
         "allow_row_selection": "Povolit výběr řádků",
         "selection_mode": "Režim výběru",
         "pin_column": "PINový sloupec",
-        "enable_users_to_sort": "Povolit řazení uživatelů",
         "enable_users_to_pin": "Povolit uživatele pro pin",
         "enable_users_to_filter": "Povolit uživatelům filtrovat",
         "enable_users_to_hide": "Povolit uživatelům skrýt",
         "enable_users_to_set_group_by": "Povolit uživatelům nastavit skupinu podle",
-        "column_description": "L 343, 22.12.2009, s. 1)."
+        "column_description": "L 343, 22.12.2009, s. 1).",
+        "enable_users_to_aggregate": "Povolit uživatelům agregovat",
+        "disable_users_to_sort": "Povolit řazení uživatelů",
+        "enable_users_to_resize": "Povolit uživatelům změnit velikost"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2147,13 +2155,13 @@
         "selection_mode": "Používá se k nastavení výběru více řádků nebo výběru jednoho řádku",
         "allow_row_selection": "Slouží k nastavení, zda povolit nebo zakázat uživatelům vybrat řádek",
         "pin_column": "Sloupec připnut všem uživatelům",
-        "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
         "enable_users_to_pin": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům připnutí sloupce",
         "enable_users_to_filter": "Slouží k nastavení, zda povolit uživatelům filtrovat v tomto sloupci",
         "enable_users_to_hide": "Slouží k nastavení, zda povolit nebo zakázat uživatelům skrýt sloupec",
         "enable_users_to_aggregate": "Slouží k nastavení, zda umožnit nebo neumožnit uživatelům provést agregaci údajů v tomto sloupci.",
         "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. ",
-        "column_description": "Slouží k nastavení popisu tohoto sloupce"
+        "column_description": "Slouží k nastavení popisu tohoto sloupce",
+        "disable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. "
       },
       "setter_option": {
         "fixed": "Fixní",
