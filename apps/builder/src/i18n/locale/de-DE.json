@@ -79,7 +79,13 @@
       "mobile-fork-suc": "Erfolgreich abgewiesen. Bitte bearbeiten Sie auf dem Desktop.",
       "save_resource": "Speichern erfolgreich, die Seite wird in 3 Sekunden geschlossen..."
     },
-    "create": "Anlegen"
+    "create": "Anlegen",
+    "pwa": {
+      "guide": {
+        "title": "ILLA Cloud zu Ihrem Desktop hinzufügen",
+        "desc": "Fügen Sie Ihrem Desktop hinzu, um schnell auf Ihren Arbeitsbereich zuzugreifen. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Gerade jetzt"
@@ -1849,12 +1855,14 @@
         "allow_row_selection": "Zeilenauswahl erlauben",
         "selection_mode": "Auswahlmodus",
         "pin_column": "Spalte anheften",
-        "enable_users_to_sort": "Benutzer zum Sortieren aktivieren",
         "enable_users_to_pin": "Benutzer zum Pin aktivieren",
         "enable_users_to_filter": "Benutzer zum Filtern aktivieren",
         "enable_users_to_hide": "Benutzer zum Verbergen aktivieren",
         "enable_users_to_set_group_by": "Benutzern erlauben, Gruppe zu setzen von",
-        "column_description": "Beschreibung"
+        "column_description": "Beschreibung",
+        "enable_users_to_aggregate": "Benutzer zum Sammeln aktivieren",
+        "disable_users_to_sort": "Benutzer zum Sortieren aktivieren",
+        "enable_users_to_resize": "Benutzer können die Größe ändern"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2147,13 +2155,13 @@
         "selection_mode": "Wird verwendet, um mehrere Zeilen oder eine einzelne Zeilenauswahl zu setzen",
         "allow_row_selection": "Wird verwendet, um festzulegen, ob Benutzer die Zeile auswählen dürfen oder nicht",
         "pin_column": "Wird verwendet, um die Spalte an alle Benutzer anzupinnen",
-        "enable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. ",
         "enable_users_to_pin": "Wird verwendet, um festzulegen, ob Benutzer die Spalte anpinnen können oder nicht",
         "enable_users_to_filter": "Wird verwendet, um festzulegen, ob Benutzer in dieser Spalte filtern dürfen oder nicht",
         "enable_users_to_hide": "Wird verwendet, um festzulegen, ob Benutzer die Spalte ausblenden dürfen oder nicht",
         "enable_users_to_aggregate": "Wird verwendet, um festzulegen, ob Benutzer die Daten-Aggregation in dieser Spalte durchführen können oder nicht.",
         "enable_users_to_set_group_by": "Wird verwendet, um festzulegen, ob Benutzer die Anzeige für die Datengruppierung einrichten können oder nicht. ",
-        "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen"
+        "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen",
+        "disable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. "
       },
       "setter_option": {
         "fixed": "Feste",
