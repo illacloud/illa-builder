@@ -8,7 +8,7 @@ import Select from "@illa-public/select"
 import { debounce } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Button, PreviousIcon, RadioGroup, Search } from "@illa-design/react"
+import { RadioGroup, Search } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { track } from "@/utils/mixpanelHelper"
 import { MarketAgentList } from "./components/MarketList"
@@ -17,7 +17,6 @@ import { ActionResourceSelectorProps } from "./interface"
 import {
   bodyContainerStyle,
   containerStyle,
-  footerStyle,
   headerContainerStyle,
 } from "./style"
 
@@ -37,8 +36,7 @@ const sortOptions = [
 ]
 
 export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
-  const { actionType, canBack, onBack, onCreateAction, handleCreateAction } =
-    props
+  const { actionType, onCreateAction, handleCreateAction } = props
 
   const { t } = useTranslation()
   const [agentType, setAgentType] = useState("team")
@@ -144,21 +142,6 @@ export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
             key={`${searchKeywords}-${sortedBy}`}
             sortBy={sortedBy}
           />
-        )}
-      </div>
-
-      <div css={footerStyle}>
-        {canBack && (
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            onClick={() => {
-              onBack("select")
-            }}
-          >
-            {t("back")}
-          </Button>
         )}
       </div>
     </div>

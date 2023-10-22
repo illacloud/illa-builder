@@ -7,9 +7,8 @@ export const generateUrlParams = () => {
   const query = href.split("?")[1]
   const queryArray = parse(query)
   let appURL = href
-  const appUrlArray = window.location.pathname.split("/")
   if (getIsILLAProductMode(store.getState())) {
-    appURL = window.location.origin + appUrlArray.slice(0, 5).join("/")
+    appURL = window.location.origin + window.location.pathname
   }
   return {
     query: queryArray,

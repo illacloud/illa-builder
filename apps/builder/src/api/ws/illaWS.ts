@@ -1,4 +1,5 @@
 import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getAuthToken } from "@illa-public/utils"
 import { getTextMessagePayload } from "@/api/ws/index"
 import {
   Callback,
@@ -16,7 +17,6 @@ import {
   REMOVE_DISPLAY_NAME,
   UPDATE_DISPLAY_NAME,
 } from "@/utils/generators/generateDisplayName"
-import { ILLABuilderStorage } from "@/utils/storage"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
 const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
@@ -212,7 +212,7 @@ export class ILLAWebsocket {
             uid,
             [
               {
-                authToken: ILLABuilderStorage.getLocalStorage("token"),
+                authToken: getAuthToken(),
               },
             ],
           ),

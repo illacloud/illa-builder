@@ -76,9 +76,16 @@
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. ",
-      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači."
+      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači.",
+      "save_resource": "Úspěšně uloženo, stránka se zavře za 3 sekundy..."
     },
-    "create": "Vytvořit"
+    "create": "Vytvořit",
+    "pwa": {
+      "guide": {
+        "title": "Přidat ILLA Cloud do vaší plochy",
+        "desc": "Pro rychlý přístup k pracovnímu prostoru přidejte na plochu. Zvyšte svou efektivitu. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Právě teď"
@@ -609,7 +616,9 @@
               "global-data": "Globální data",
               "ai-agent": "AI Agent",
               "more": "Více",
-              "create-resource": "Vytvořit ze zdroje"
+              "create-resource": "Vytvořit ze zdroje",
+              "unsafe": "Nebezpečný",
+              "safe": "Bezpečné"
             }
           },
           "restapi": {
@@ -654,6 +663,9 @@
             },
             "global-data": {
               "how-to-use": "Použít tato globální data {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "Při používání bezpečného režimu může vaše SQL pouze referenční proměnné v místě proměnných, například kde název = '{{input1.value}}'. To zabraňuje uživatelům v kompromitování vaší databáze zadáním příkazů jako '; drop table;' do input1. Pokud používáte nebezpečný režim, mohou být syntaxová slova SQL nahrazena proměnnými, jako je kde {{input1.value}} {{input2.value}} '{{input3.value}}'. V tomto případě však může být databáze ohrožena obsahem zadaným uživatelem. Není doporučeno používat tento režim."
             }
           },
           "advanced": {
@@ -694,7 +706,8 @@
           },
           "general": {
             "connect-data-source": "Připojit k databázi nebo api",
-            "more-type": "Další typ zdrojů údajů"
+            "more-type": "Další typ zdrojů údajů",
+            "safe_mode": "Režim"
           }
         },
         "menu": {
@@ -1294,7 +1307,8 @@
           "onMenuSelect": "Vybrat položku",
           "on_menu_select": "Vyberte položku nabídky",
           "pageChange": "Změna stránky",
-          "clickItem": "Klepněte na položku"
+          "clickItem": "Klepněte na položku",
+          "columnVisibilityChange": "Změna viditelnosti sloupců"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1319,7 +1333,10 @@
         "filterChange": "změna filtru",
         "sortChange": "sortZměnit",
         "pageChange": "Změna stránky",
-        "refresh": "obnovit"
+        "refresh": "obnovit",
+        "density_setting": "Hustota",
+        "column_setting": "Sloupce",
+        "refresh_setting": "Aktualizovat"
       },
       "setter_default_value": {
         "fill": "Vyplnit",
@@ -1735,7 +1752,9 @@
           "has_next_page": "Má další stránku",
           "currency_code": "Kód měny",
           "cell_selection": "Výběr buňky",
-          "click_outside_to_des": "Klikněte vně pro zrušení výběru"
+          "click_outside_to_des": "Klikněte vně pro zrušení výběru",
+          "page": "Výchozí index stránky",
+          "export_all_data_setting": "Exportovat vše"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
@@ -1828,7 +1847,22 @@
           "max_column_count": "Maximální počet sloupců",
           "min_column_count": "Minimální počet sloupců"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Možnosti velikosti stránky",
+        "export_setting": "Exportovat",
+        "filter_setting": "Filtr",
+        "primary_key": "Primární klíč",
+        "allow_row_selection": "Povolit výběr řádků",
+        "selection_mode": "Režim výběru",
+        "pin_column": "PINový sloupec",
+        "enable_users_to_pin": "Povolit uživatele pro pin",
+        "enable_users_to_filter": "Povolit uživatelům filtrovat",
+        "enable_users_to_hide": "Povolit uživatelům skrýt",
+        "enable_users_to_set_group_by": "Povolit uživatelům nastavit skupinu podle",
+        "column_description": "L 343, 22.12.2009, s. 1).",
+        "enable_users_to_aggregate": "Povolit uživatelům agregovat",
+        "disable_users_to_sort": "Povolit řazení uživatelů",
+        "enable_users_to_resize": "Povolit uživatelům změnit velikost"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1889,7 +1923,9 @@
         "showSendTime": "Nastavte, zda zobrazit čas odeslání",
         "showFooter": "Nastavte, zda zobrazit zápatí",
         "senderAvatar": "Nastavte avatar odesílatele. Například ve vašem zdroji dat je avatar odesílatele pole sendAvatar a toto pole můžete nastavit na {{item.sendAvatar}}.",
-        "receiving": "Nastavte, zda se zobrazí načítání při přijímání zpráv. Pokud je vaše zpráva přijata z akce 1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1."
+        "receiving": "Nastavte, zda se zobrazí načítání při přijímání zpráv. Pokud je vaše zpráva přijata z akce 1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1.",
+        "export_setting": "Používá se pro nastavení, zda mají uživatelé povoleno exportovat filtrovaná data.",
+        "filter_setting": "Slouží k nastavení, zda se mají filtry zobrazovat či nikoli, což umožňuje uživatelům filtrovat data v tabulce."
       },
       "tab_title": "Kontrolovat",
       "unselected_tip1": "Nebyly vybrány žádné komponenty.",
@@ -2039,7 +2075,10 @@
           "filter_mode": "Režim filtru. A nebo OR.",
           "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:",
           "whether_allow_users_": "Určuje, zda povolit uživatelům vybrat buňku",
-          "supported_in_the_row": "Podporováno v režimu jediného výběru. Po jeho povolení klikněte na jinou oblast než tabulku pro zrušení výběru řádku."
+          "supported_in_the_row": "Podporováno v režimu jediného výběru. Po jeho povolení klikněte na jinou oblast než tabulku pro zrušení výběru řádku.",
+          "density_setting": "Používá se k nastavení hustoty výšky řádku nebo ne. ",
+          "refresh_setting": "Slouží k nastavení, zda zobrazit ikonu obnovení",
+          "export_raw_data_setting": "Používá se k nastavení, zda mohou uživatelé exportovat nefiltrovaná nezpracovaná data."
         },
         "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
         "input": {
@@ -2111,7 +2150,18 @@
           "item_shadow": "Používá se ke konfiguraci stínu každé mřížky",
           "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami",
           "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
-        }
+        },
+        "primary_key": "Jedinečný klíč pro identifikaci řádku",
+        "selection_mode": "Používá se k nastavení výběru více řádků nebo výběru jednoho řádku",
+        "allow_row_selection": "Slouží k nastavení, zda povolit nebo zakázat uživatelům vybrat řádek",
+        "pin_column": "Sloupec připnut všem uživatelům",
+        "enable_users_to_pin": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům připnutí sloupce",
+        "enable_users_to_filter": "Slouží k nastavení, zda povolit uživatelům filtrovat v tomto sloupci",
+        "enable_users_to_hide": "Slouží k nastavení, zda povolit nebo zakázat uživatelům skrýt sloupec",
+        "enable_users_to_aggregate": "Slouží k nastavení, zda umožnit nebo neumožnit uživatelům provést agregaci údajů v tomto sloupci.",
+        "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. ",
+        "column_description": "Slouží k nastavení popisu tohoto sloupce",
+        "disable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. "
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -2179,7 +2229,27 @@
           "limited": "Omezeno",
           "limit_offset_based": "Limit na základě posunu",
           "cursor_based": "Na základě kurzoru",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automaticky",
+            "text": "Text",
+            "date": "Datum:",
+            "tag": "Značka",
+            "time": "Čas",
+            "datetime": "Datum a čas",
+            "number": "Číslo",
+            "percent": "Procento",
+            "link": "Odkaz",
+            "button": "Tlačítko",
+            "buttongroup": "Skupina tlačítek",
+            "boolean": "Boolean",
+            "image": "Obrázek",
+            "icongroup": "Skupina ikon",
+            "rating": "Hodnocení",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Měna"
+          }
         },
         "input": {
           "input": "Input",
@@ -2316,6 +2386,10 @@
       },
       "page": {
         "blank_view": "Žádná podstránka"
+      },
+      "setter_options": {
+        "single_row_selection": "Jediný výběr",
+        "multiple_row_selection": "Vícenásobný výběr"
       }
     },
     "page": {
@@ -3002,7 +3076,16 @@
       "descend": "Desc",
       "name": "Stupeň úvěrové kvality 1",
       "pagination": "Stránkování",
-      "scroll": "Posunout"
+      "scroll": "Posunout",
+      "default": "Výchozí",
+      "export_all_data": "Exportovat vše",
+      "refresh": "Aktualizovat",
+      "export": {
+        "title": "Exportovat",
+        "csv": "Exportovat jako csv",
+        "excel": "Export as excel",
+        "print": "Tisk"
+      }
     },
     "tabs": {
       "name": "Tabs"
@@ -3122,6 +3205,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Datová síť"
     }
   },
   "page": {
@@ -3517,6 +3603,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Změna počtu řádků"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Povolit uživatelům agregovat"
       }
     }
   },
@@ -4339,7 +4428,24 @@
     "before": "Načíst více"
   },
   "size_exceed_copied_tips": "Obsah je příliš dlouhý na kopírování. (aktuální velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)",
-  "contribute": "Přispějte",
+  "contribute": {
+    "tag": {
+      "recommended": "Doporučené",
+      "add_tag": "Přidat štítky",
+      "tag": "Značka",
+      "failed_to_save": "Uložení se nezdařilo"
+    },
+    "update": "Upravit štítky",
+    "copy_link": "Kopírovat odkaz",
+    "first_time_modal": {
+      "title": "Přispět do komunity",
+      "button": "Přispějte"
+    },
+    "update_modal": {
+      "button": "Aktualizovat",
+      "title": "Upravit"
+    }
+  },
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
   }

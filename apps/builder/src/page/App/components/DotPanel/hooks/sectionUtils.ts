@@ -7,7 +7,7 @@ export const getCurrentDisplayName = (
   currentViewIndex: number,
 ) => {
   if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
-    return "View 1"
+    return "sub-page1"
   const defaultedViewConfig = sectionViewConfigs.find(
     (item) => item.key === defaultViewKey,
   )

@@ -9,7 +9,7 @@ import {
   labelContainerStyle,
   sectionContainerStyle,
 } from "@/page/App/components/PagePanel/Modules/Style/style"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageExecutionResult,
   getCurrentPageFooterSection,

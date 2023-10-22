@@ -3,7 +3,7 @@ import { cloneDeep, flatten, get, set, toPath, unset } from "lodash"
 import toposort from "toposort"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import {
   DependenciesState,
   ErrorShape,
@@ -11,7 +11,7 @@ import {
   ExecutionState,
 } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { evaluateDynamicStringAndGetCalcContext } from "@/utils/evaluateDynamicString"
 import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import {
   getDisplayNameAndAttrPath,
@@ -647,11 +647,20 @@ export class ExecutionTreeFactory {
           const requiredEval = hasDynamicStringSnippet(widgetOrActionAttribute)
           if (requiredEval) {
             try {
-              evaluateValue = evaluateDynamicString(
-                attrPath,
-                widgetOrActionAttribute,
-                current,
-              )
+              const { result, context } =
+                evaluateDynamicStringAndGetCalcContext(
+                  attrPath,
+                  widgetOrActionAttribute,
+                  current,
+                )
+              evaluateValue = result
+
+              const currentContext = get(current, `${displayName}.$context`, {})
+
+              Object.keys(context).forEach((key) => {
+                const value = context[key] ?? ""
+                currentContext[key] = value
+              })
 
               if (typeof evaluateValue === "function") {
                 set(current, fullPath, undefined)
