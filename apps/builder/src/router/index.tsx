@@ -5,10 +5,7 @@ import { RoutesObjectPro } from "@/router/interface"
 import { routerConfig } from "@/router/routerConfig"
 import { beautifyURLLoader } from "./loader/beautifyURLLoader"
 import { setTokenToLocalStorageLoader } from "./loader/cloudAuthLoader"
-import {
-  combineCloudAuthLoader,
-  combineSelfHostAuthLoader,
-} from "./loader/index"
+import { combineCloudAuthLoader } from "./loader/index"
 
 const wrappedRouter = (
   routesConfig: RoutesObjectPro[],
@@ -31,27 +28,17 @@ const wrappedRouter = (
       newRouteItem.element = <>{element}</>
     }
     newRouteItem.loader = async (args) => {
-      if (isCloudVersion) {
-        await setTokenToLocalStorageLoader(args)
-        const beautifyURLResponse = await beautifyURLLoader(args)
-        if (beautifyURLResponse) {
-          return beautifyURLResponse
-        }
-        let authLoaderResponse
-        if (needLogin) {
-          authLoaderResponse = await combineCloudAuthLoader(args)
-        }
-        if (authLoaderResponse) {
-          return authLoaderResponse
-        }
-      } else {
-        let authLoaderResponse
-        if (needLogin) {
-          authLoaderResponse = await combineSelfHostAuthLoader(args)
-        }
-        if (authLoaderResponse) {
-          return authLoaderResponse
-        }
+      await setTokenToLocalStorageLoader(args)
+      const beautifyURLResponse = await beautifyURLLoader(args)
+      if (beautifyURLResponse) {
+        return beautifyURLResponse
+      }
+      let authLoaderResponse
+      if (needLogin) {
+        authLoaderResponse = await combineCloudAuthLoader(args)
+      }
+      if (authLoaderResponse) {
+        return authLoaderResponse
       }
       if (originLoader) {
         return await originLoader(args)
@@ -66,4 +53,6 @@ const wrappedRouter = (
   })
 }
 
-export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig))
+export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig), {
+  basename: import.meta.env.PROD && !isCloudVersion ? "/build" : "/",
+})

@@ -76,9 +76,16 @@
       "fork-suc": "성공적으로 포크되었습니다.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. ",
-      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
-    "create": "Create"
+    "create": "Create",
+    "pwa": {
+      "guide": {
+        "title": "Add ILLA Cloud to your desktop",
+        "desc": "Add to your desktop to access to your workspace quickly. Boost your efficiency. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "단지"
@@ -609,7 +616,9 @@
               "global-data": "Global data",
               "ai-agent": "AI Agent",
               "more": "More",
-              "create-resource": "Create from resource"
+              "create-resource": "Create from resource",
+              "unsafe": "Unsafe",
+              "safe": "Safe"
             }
           },
           "restapi": {
@@ -654,6 +663,9 @@
             },
             "global-data": {
               "how-to-use": "Use this global data by {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
             }
           },
           "advanced": {
@@ -694,7 +706,8 @@
           },
           "general": {
             "connect-data-source": "Connect to database or api",
-            "more-type": "More type of data sources"
+            "more-type": "More type of data sources",
+            "safe_mode": "Mode"
           }
         },
         "menu": {
@@ -1294,7 +1307,8 @@
           "onMenuSelect": "Select item",
           "on_menu_select": "Select menu item",
           "pageChange": "Page change",
-          "clickItem": "Click item"
+          "clickItem": "Click item",
+          "columnVisibilityChange": "Column visibility change"
         },
         "image_list": {
           "title": "이미지",
@@ -1839,7 +1853,16 @@
         "filter_setting": "Filter",
         "primary_key": "Primary key",
         "allow_row_selection": "Allow row selection",
-        "selection_mode": "Selection mode"
+        "selection_mode": "Selection mode",
+        "pin_column": "Pin column",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter",
+        "enable_users_to_hide": "Enable users to hide",
+        "enable_users_to_set_group_by": "Enable users to set group by",
+        "column_description": "Description",
+        "enable_users_to_aggregate": "Enable users to aggregate",
+        "disable_users_to_sort": "Enable users to sort",
+        "enable_users_to_resize": "Enable users to resize"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -2130,7 +2153,15 @@
         },
         "primary_key": "A unique key for identifying a row",
         "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
+        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
+        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
+        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
+        "column_description": "Used to set a description of this column",
+        "disable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. "
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -2198,7 +2229,27 @@
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
-          "graphql_relay_cursor": "GraphQL Relay cursor"
+          "graphql_relay_cursor": "GraphQL Relay cursor",
+          "column_type": {
+            "auto": "Auto",
+            "text": "Text",
+            "date": "Date",
+            "tag": "Tag",
+            "time": "Time",
+            "datetime": "Date time",
+            "number": "Number",
+            "percent": "Percent",
+            "link": "Link",
+            "button": "Button",
+            "buttongroup": "Button group",
+            "boolean": "Boolean",
+            "image": "Image",
+            "icongroup": "Icon group",
+            "rating": "Rating",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Currency"
+          }
         },
         "input": {
           "input": "입력",
@@ -3154,6 +3205,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Data grid"
     }
   },
   "page": {
@@ -3549,6 +3603,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "행 선택 변경"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Enable users to aggregate"
       }
     }
   },
@@ -4371,7 +4428,24 @@
     "before": "Load more"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Contribute",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link",
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
+    }
+  },
   "error_page": {
     "fobidden": "No access permission"
   }

@@ -76,9 +76,16 @@
       "fork-suc": "Erfolgreich geforkt.",
       "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
       "delete-suc": "Erfolgreich gelöscht. ",
-      "mobile-fork-suc": "Erfolgreich abgewiesen. Bitte bearbeiten Sie auf dem Desktop."
+      "mobile-fork-suc": "Erfolgreich abgewiesen. Bitte bearbeiten Sie auf dem Desktop.",
+      "save_resource": "Speichern erfolgreich, die Seite wird in 3 Sekunden geschlossen..."
     },
-    "create": "Anlegen"
+    "create": "Anlegen",
+    "pwa": {
+      "guide": {
+        "title": "ILLA Cloud zu Ihrem Desktop hinzufügen",
+        "desc": "Fügen Sie Ihrem Desktop hinzu, um schnell auf Ihren Arbeitsbereich zuzugreifen. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Gerade jetzt"
@@ -609,7 +616,9 @@
               "global-data": "Globale Daten",
               "ai-agent": "AI Agent",
               "more": "Mehr",
-              "create-resource": "Aus Ressource erstellen"
+              "create-resource": "Aus Ressource erstellen",
+              "unsafe": "Unsicher",
+              "safe": "Sicher"
             }
           },
           "restapi": {
@@ -654,6 +663,9 @@
             },
             "global-data": {
               "how-to-use": "Diese globalen Daten von {{globalData.state1}} verwenden"
+            },
+            "general": {
+              "safe_mode": "Wenn Sie den Safe Mode verwenden, kann Ihr SQL nur Variablen an der Stelle von Variablen referenzieren, zum Beispiel wo Name = '{{input1.value}}'. Dies hindert Benutzer daran, Ihre Datenbank zu kompromittieren, indem Anweisungen wie '; Drop Tabelle;' in input1 eingegeben werden. Wenn Sie den unsicheren Modus verwenden, können SQL-Syntaxwörter auch durch Variablen ersetzt werden zum Beispiel wo {{input1.value}} {{input2.value}} '{{input3.value}}'. In diesem Fall kann die Datenbank jedoch durch die vom Benutzer eingegebenen Inhalte kompromittiert werden. Es wird nicht empfohlen, diesen Modus zu verwenden."
             }
           },
           "advanced": {
@@ -694,7 +706,8 @@
           },
           "general": {
             "connect-data-source": "Mit Datenbank oder Api verbinden",
-            "more-type": "Weitere Datenquellentypen"
+            "more-type": "Weitere Datenquellentypen",
+            "safe_mode": "Modus"
           }
         },
         "menu": {
@@ -1294,7 +1307,8 @@
           "onMenuSelect": "Element auswählen",
           "on_menu_select": "Menüpunkt auswählen",
           "pageChange": "Seitenänderung",
-          "clickItem": "Element anklicken"
+          "clickItem": "Element anklicken",
+          "columnVisibilityChange": "Spaltensichtbarkeit ändern"
         },
         "image_list": {
           "title": "Bilder",
@@ -1839,7 +1853,16 @@
         "filter_setting": "Filtern",
         "primary_key": "Primärschlüssel",
         "allow_row_selection": "Zeilenauswahl erlauben",
-        "selection_mode": "Auswahlmodus"
+        "selection_mode": "Auswahlmodus",
+        "pin_column": "Spalte anheften",
+        "enable_users_to_pin": "Benutzer zum Pin aktivieren",
+        "enable_users_to_filter": "Benutzer zum Filtern aktivieren",
+        "enable_users_to_hide": "Benutzer zum Verbergen aktivieren",
+        "enable_users_to_set_group_by": "Benutzern erlauben, Gruppe zu setzen von",
+        "column_description": "Beschreibung",
+        "enable_users_to_aggregate": "Benutzer zum Sammeln aktivieren",
+        "disable_users_to_sort": "Benutzer zum Sortieren aktivieren",
+        "enable_users_to_resize": "Benutzer können die Größe ändern"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2129,8 +2152,16 @@
           "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen."
         },
         "primary_key": "Ein eindeutiger Schlüssel zur Identifizierung einer Zeile",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row"
+        "selection_mode": "Wird verwendet, um mehrere Zeilen oder eine einzelne Zeilenauswahl zu setzen",
+        "allow_row_selection": "Wird verwendet, um festzulegen, ob Benutzer die Zeile auswählen dürfen oder nicht",
+        "pin_column": "Wird verwendet, um die Spalte an alle Benutzer anzupinnen",
+        "enable_users_to_pin": "Wird verwendet, um festzulegen, ob Benutzer die Spalte anpinnen können oder nicht",
+        "enable_users_to_filter": "Wird verwendet, um festzulegen, ob Benutzer in dieser Spalte filtern dürfen oder nicht",
+        "enable_users_to_hide": "Wird verwendet, um festzulegen, ob Benutzer die Spalte ausblenden dürfen oder nicht",
+        "enable_users_to_aggregate": "Wird verwendet, um festzulegen, ob Benutzer die Daten-Aggregation in dieser Spalte durchführen können oder nicht.",
+        "enable_users_to_set_group_by": "Wird verwendet, um festzulegen, ob Benutzer die Anzeige für die Datengruppierung einrichten können oder nicht. ",
+        "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen",
+        "disable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. "
       },
       "setter_option": {
         "fixed": "Feste",
@@ -2198,7 +2229,27 @@
           "limited": "Begrenzt",
           "limit_offset_based": "Limit-Offset basierend",
           "cursor_based": "Cursor-basiert",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Auto",
+            "text": "Text",
+            "date": "Datum",
+            "tag": "Markierung",
+            "time": "Zeit",
+            "datetime": "Datumszeit",
+            "number": "Nummer",
+            "percent": "Prozent",
+            "link": "Link",
+            "button": "Button",
+            "buttongroup": "Schaltflächengruppe",
+            "boolean": "Boolean",
+            "image": "Bild",
+            "icongroup": "Symbolgruppe",
+            "rating": "Bewertung",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Währung"
+          }
         },
         "input": {
           "input": "Input",
@@ -3154,6 +3205,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Datenraster"
     }
   },
   "page": {
@@ -3549,6 +3603,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Zeilenauswahl Änderung"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Benutzer zum Sammeln aktivieren"
       }
     }
   },
@@ -4371,7 +4428,24 @@
     "before": "Mehr laden"
   },
   "size_exceed_copied_tips": "Der Inhalt ist zu lang zum Kopieren. (aktuelle Größe: {{current_size}} Bytes, Limit: {{limit_size}} Bytes)",
-  "contribute": "Mitwirken",
+  "contribute": {
+    "tag": {
+      "recommended": "Empfohlen",
+      "add_tag": "Tags hinzufügen",
+      "tag": "Markierung",
+      "failed_to_save": "Speichern fehlgeschlagen"
+    },
+    "update": "Tags bearbeiten",
+    "copy_link": "Link kopieren",
+    "first_time_modal": {
+      "title": "Zur Community beitragen",
+      "button": "Mitwirken"
+    },
+    "update_modal": {
+      "button": "Aktualisieren",
+      "title": "Bearbeiten"
+    }
+  },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
   }

@@ -76,9 +76,16 @@
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功",
-      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑",
+      "save_resource": "保存成功，页面将在3s后关闭"
     },
-    "create": "创建"
+    "create": "创建",
+    "pwa": {
+      "guide": {
+        "title": "将ILLA Cloud添加到您的桌面",
+        "desc": "添加到桌面以快速访问您的工作区。提高您的效率。 "
+      }
+    }
   },
   "dayjs": {
     "just_now": "刚刚"
@@ -609,7 +616,9 @@
               "global-data": "全局变量",
               "ai-agent": "AI Agent",
               "more": "更多",
-              "create-resource": "从数据源创建"
+              "create-resource": "从数据源创建",
+              "unsafe": "不安全",
+              "safe": "安全"
             }
           },
           "restapi": {
@@ -654,6 +663,9 @@
             },
             "global-data": {
               "how-to-use": "通过{{globalData.state1}}来使用这个全局变量"
+            },
+            "general": {
+              "safe_mode": "使用safe模式时，您的SQL只能在变量的位置引用变量，例如where name = '{{input1.value}}'。这使得使用者无法通过在input1中输入 ; drop table; 等方式来破坏您的数据库；使用Unsafe模式时，SQL语法词也可以替换为变量，如where {{input1.value}} {{input2.value}} '{{input3.value}}'，但这样一来数据库可能被用户输入的内容破坏，不建议您使用"
             }
           },
           "advanced": {
@@ -694,7 +706,8 @@
           },
           "general": {
             "connect-data-source": "连接到数据库或API",
-            "more-type": "更多连接方式"
+            "more-type": "更多连接方式",
+            "safe_mode": "模式"
           }
         },
         "menu": {
@@ -1294,7 +1307,8 @@
           "onMenuSelect": "选中菜单项",
           "on_menu_select": "选择菜单项",
           "pageChange": "页面更改",
-          "clickItem": "点击项目"
+          "clickItem": "点击项目",
+          "columnVisibilityChange": "变更列是否可见"
         },
         "image_list": {
           "title": "图片",
@@ -1721,7 +1735,7 @@
           "icon": "图标",
           "color": "颜色",
           "sort_by_mapped_value": "按映射值排序",
-          "background": "背景色",
+          "background": "单元格背景色",
           "alignment": "对齐方式",
           "column_width": "列宽",
           "width": "宽度",
@@ -1839,7 +1853,16 @@
         "filter_setting": "筛选",
         "primary_key": "主键",
         "allow_row_selection": "允许选中行",
-        "selection_mode": "选择模式"
+        "selection_mode": "选择模式",
+        "pin_column": "冻结列",
+        "enable_users_to_pin": "允许用户冻结列",
+        "enable_users_to_filter": "允许用户筛选",
+        "enable_users_to_hide": "允许用户隐藏列",
+        "enable_users_to_set_group_by": "允许用户设置分组显示",
+        "column_description": "描述",
+        "enable_users_to_aggregate": "Enable users to aggregate",
+        "disable_users_to_sort": "允许用户排序",
+        "enable_users_to_resize": "Enable users to resize"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2130,7 +2153,15 @@
         },
         "primary_key": "用于标识行的唯一键值",
         "selection_mode": "用于设置多行选择还是单行选择",
-        "allow_row_selection": "用于设置是否允许用户选中行"
+        "allow_row_selection": "用于设置是否允许用户选中行",
+        "pin_column": "用于冻结列",
+        "enable_users_to_pin": "用于设置是否允许用户冻结列",
+        "enable_users_to_filter": "用于设置是否允许用户筛选数据",
+        "enable_users_to_hide": "用于设置是否允许用户隐藏列",
+        "enable_users_to_aggregate": "用于设置是否允许用户聚合这列数据",
+        "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示",
+        "column_description": "用于设置这列的描述信息",
+        "disable_users_to_sort": "用于设置是否允许用户更改排序"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -2198,7 +2229,27 @@
           "limited": "限制",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
-          "graphql_relay_cursor": "GraphQL Relay cursor"
+          "graphql_relay_cursor": "GraphQL Relay cursor",
+          "column_type": {
+            "auto": "自动",
+            "text": "文本",
+            "date": "日期",
+            "tag": "标签",
+            "time": "时间",
+            "datetime": "日期时间",
+            "number": "数值",
+            "percent": "百分比",
+            "link": "链接",
+            "button": "按钮",
+            "buttongroup": "按钮组",
+            "boolean": "布尔值",
+            "image": "图片",
+            "icongroup": "图标组",
+            "rating": "评分",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "货币"
+          }
         },
         "input": {
           "input": "输入",
@@ -3154,6 +3205,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "数据表"
     }
   },
   "page": {
@@ -3549,6 +3603,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "行选择变更"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "允许用户聚合"
       }
     }
   },
@@ -4371,7 +4428,24 @@
     "before": "加载更多"
   },
   "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
-  "contribute": "贡献",
+  "contribute": {
+    "tag": {
+      "recommended": "推荐",
+      "add_tag": "添加标签",
+      "tag": "标签",
+      "failed_to_save": "保存失败"
+    },
+    "update": "编辑标签",
+    "copy_link": "复制链接",
+    "first_time_modal": {
+      "title": "贡献到社区",
+      "button": "贡献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "编辑"
+    }
+  },
   "error_page": {
     "fobidden": "没有访问权限"
   }

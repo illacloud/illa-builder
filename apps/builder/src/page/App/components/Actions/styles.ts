@@ -67,18 +67,13 @@ export const connectTypeStyle = css`
   margin-left: 16px;
 `
 
-export const container = css`
-  width: 100%;
-  max-height: 685px;
-  overflow-y: auto;
-`
-
 export const footerStyle = css`
   height: 80px;
   padding: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 `
 
 export const divider = css`

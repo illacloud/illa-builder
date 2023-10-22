@@ -1,6 +1,9 @@
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
-import { canManage } from "@illa-public/user-role-utils"
-import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
@@ -31,7 +34,7 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { startAppListening } from "@/store"

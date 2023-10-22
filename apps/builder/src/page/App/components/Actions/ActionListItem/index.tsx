@@ -1,3 +1,4 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { isEqual } from "lodash"
 import {
@@ -21,10 +22,7 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
-import {
-  getAgentIcon,
-  getIconFromActionType,
-} from "@/page/App/components/Actions/getIcon"
+import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
 import {
   getCachedAction,
   getIsILLAGuideMode,
@@ -36,7 +34,7 @@ import {
   GlobalDataActionContent,
 } from "@/redux/currentApp/action/actionState"
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
@@ -282,7 +280,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
                         ?.virtualResource,
                       "16px",
                     )
-                  : getIconFromActionType(action.actionType, "16px")}
+                  : getIconFromResourceType(action.actionType, "16px")}
               </Suspense>
               {error && <WarningCircleIcon css={warningCircleStyle} />}
             </div>
