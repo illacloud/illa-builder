@@ -1861,8 +1861,9 @@
         "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av",
         "column_description": "Beskrivning",
         "enable_users_to_aggregate": "Aktivera användare att aggregera",
-        "disable_users_to_sort": "Tillåt användare att sortera",
-        "enable_users_to_resize": "Tillåt användare att ändra storlek"
+        "enable_users_to_resize": "Tillåt användare att ändra storlek",
+        "enable_users_to_sort": "Tillåt användare att sortera",
+        "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2161,7 +2162,8 @@
         "enable_users_to_aggregate": "Används för att ställa in om användare ska tillåta att data aggregering görs på den här kolumnen.",
         "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
         "column_description": "Används för att ange en beskrivning av denna kolumn",
-        "disable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. "
+        "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
+        "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna"
       },
       "setter_option": {
         "fixed": "Fast",
