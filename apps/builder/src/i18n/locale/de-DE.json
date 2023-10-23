@@ -1861,8 +1861,9 @@
         "enable_users_to_set_group_by": "Benutzern erlauben, Gruppe zu setzen von",
         "column_description": "Beschreibung",
         "enable_users_to_aggregate": "Benutzer zum Sammeln aktivieren",
-        "disable_users_to_sort": "Benutzer zum Sortieren aktivieren",
-        "enable_users_to_resize": "Benutzer können die Größe ändern"
+        "enable_users_to_resize": "Benutzer können die Größe ändern",
+        "enable_users_to_sort": "Benutzer zum Sortieren aktivieren",
+        "disable_users_to_reorder": "Benutzer deaktivieren, um Spalten neu zu sortieren"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2161,7 +2162,8 @@
         "enable_users_to_aggregate": "Wird verwendet, um festzulegen, ob Benutzer die Daten-Aggregation in dieser Spalte durchführen können oder nicht.",
         "enable_users_to_set_group_by": "Wird verwendet, um festzulegen, ob Benutzer die Anzeige für die Datengruppierung einrichten können oder nicht. ",
         "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen",
-        "disable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. "
+        "enable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. ",
+        "disable_users_to_reorder": "Wird verwendet, um festzulegen, ob Benutzer zum Neuordnen der Spalten deaktiviert werden"
       },
       "setter_option": {
         "fixed": "Feste",
