@@ -59,7 +59,9 @@ const MicrosoftSqlPanel: FC = () => {
   const dispatch = useDispatch()
 
   const sqlModeInitial =
-    content.mode === "sql" ? content.query : MicrosoftSqlActionSqlModeInitial
+    content.mode === "sql" || content.mode === "sql-safe"
+      ? content.query
+      : MicrosoftSqlActionSqlModeInitial
   const guiModeInitial =
     content.mode === "gui" ? content.query : MicrosoftSqlActionGUIModeInitial
 

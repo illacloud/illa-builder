@@ -79,7 +79,13 @@
       "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen.",
       "save_resource": "Lagre vellykket, siden vil lukkes om 3 sekunder..."
     },
-    "create": "Opprett"
+    "create": "Opprett",
+    "pwa": {
+      "guide": {
+        "title": "Legg til ILLA Sky til skrivebordet ditt",
+        "desc": "Legg til skrivebordet for å få tilgang til arbeidsområdet raskt. Øk effektiviteten. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Nå nettopp"
@@ -1849,12 +1855,14 @@
         "allow_row_selection": "Tillat radmarkering",
         "selection_mode": "Utvalg modus",
         "pin_column": "Fest kolonne",
-        "enable_users_to_sort": "Tillat brukere å sortere",
         "enable_users_to_pin": "Tillat brukere å feste",
         "enable_users_to_filter": "Aktiver brukere for å filtrere",
         "enable_users_to_hide": "Aktivere brukere å skjule",
         "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av",
-        "column_description": "Beskrivelse"
+        "column_description": "Beskrivelse",
+        "enable_users_to_aggregate": "Tillat brukere å aggregere",
+        "disable_users_to_sort": "Tillat brukere å sortere",
+        "enable_users_to_resize": "Tillat brukere å endre størrelse"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2147,13 +2155,13 @@
         "selection_mode": "Brukes til å angi valg av flere rader eller enkeltradvalg",
         "allow_row_selection": "Brukes for å angi om eller ikke tillater brukere å velge rad",
         "pin_column": "Brukes til å feste kolonnen til alle brukere",
-        "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
         "enable_users_to_pin": "Brukes for å angi om brukere tillater å feste kolonnen",
         "enable_users_to_filter": "Brukes for å angi om brukere kan filtrere i denne kolonnen",
         "enable_users_to_hide": "Brukes for å angi om brukere tillater å skjule kolonnen",
         "enable_users_to_aggregate": "Brukes for å angi om brukerne skal kunne aggregere data i denne kolonnen eller ikke.",
         "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. ",
-        "column_description": "Brukes til å angi en beskrivelse av denne kolonnen"
+        "column_description": "Brukes til å angi en beskrivelse av denne kolonnen",
+        "disable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2221,7 +2229,27 @@
           "limited": "Begrenset",
           "limit_offset_based": "Grense forskjøvet basert",
           "cursor_based": "Markør basert",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automatisk",
+            "text": "Tekst",
+            "date": "Dato",
+            "tag": "Tagg",
+            "time": "Tid",
+            "datetime": "Dato klokkeslett",
+            "number": "Nummer",
+            "percent": "Prosent",
+            "link": "Lenke",
+            "button": "Knapp",
+            "buttongroup": "Knappegruppe",
+            "boolean": "Boolean",
+            "image": "Bilde",
+            "icongroup": "Ikongruppe",
+            "rating": "Vurdering",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Valuta"
+          }
         },
         "input": {
           "input": "Input",

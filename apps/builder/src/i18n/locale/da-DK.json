@@ -77,9 +77,15 @@
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. ",
       "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet.",
-      "save_resource": "Save successful, the page will be closing in 3 seconds..."
+      "save_resource": "Gemning lykkedes, siden lukkes om 3 sekunder..."
     },
-    "create": "Opret"
+    "create": "Opret",
+    "pwa": {
+      "guide": {
+        "title": "Add ILLA Cloud to your desktop",
+        "desc": "Add to your desktop to access to your workspace quickly. Boost your efficiency. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Lige nu"
@@ -607,12 +613,12 @@
             },
             "general": {
               "js": "Transformer",
-              "global-data": "Global data",
+              "global-data": "Globale data",
               "ai-agent": "AI Agent",
-              "more": "More",
-              "create-resource": "Create from resource",
-              "unsafe": "Unsafe",
-              "safe": "Safe"
+              "more": "Mere",
+              "create-resource": "Opret fra ressource",
+              "unsafe": "Usikker",
+              "safe": "Sikker"
             }
           },
           "restapi": {
@@ -656,10 +662,10 @@
               "user_locales": "<0>Klik her</0> for at tjekke alle understøttede lokaler. "
             },
             "global-data": {
-              "how-to-use": "Use this global data by {{globalData.state1}}"
+              "how-to-use": "Brug disse globale data af {{globalData.state1}}"
             },
             "general": {
-              "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
+              "safe_mode": "Når du bruger sikkerhedstilstand, kan din SQL kun referere variabler på stedet for variabler, for eksempel, hvor navn = '{{input1.value}}'. Dette forhindrer brugere i at kompromittere din database ved at indtaste udsagn som '; drop tabel;' i input1. Når du bruger den usikre tilstand, kan SQL syntaksord også erstattes med variabler, saasom hvor {{input1.value}} {{input2.value}} '{{input3.value}}'. Men i dette tilfælde kan databasen blive kompromitteret af indholdet indtastet af brugeren. Det anbefales ikke at du bruger denne tilstand."
             }
           },
           "advanced": {
@@ -699,9 +705,9 @@
             "max-token": "Maks. token"
           },
           "general": {
-            "connect-data-source": "Connect to database or api",
-            "more-type": "More type of data sources",
-            "safe_mode": "Mode"
+            "connect-data-source": "Opret forbindelse til database eller api",
+            "more-type": "Mere type datakilder",
+            "safe_mode": "Tilstand"
           }
         },
         "menu": {
@@ -905,7 +911,7 @@
         },
         "title": {
           "general": {
-            "initial-title": "Connect to your data source and create an action to perform CRUD"
+            "initial-title": "Opret forbindelse til din datakilde og opret en handling for at udføre CRUD"
           }
         }
       },
@@ -1302,7 +1308,7 @@
           "on_menu_select": "Vælg menupunkt",
           "pageChange": "Side ændring",
           "clickItem": "Klik på element",
-          "columnVisibilityChange": "Column visibility change"
+          "columnVisibilityChange": "Ændring af søjlesynlighed"
         },
         "image_list": {
           "title": "Billeder",
@@ -1328,9 +1334,9 @@
         "sortChange": "sortSkift",
         "pageChange": "sideSkift",
         "refresh": "opfrisk",
-        "density_setting": "Density",
-        "column_setting": "Columns",
-        "refresh_setting": "Refresh"
+        "density_setting": "Tæthed",
+        "column_setting": "Kolonner",
+        "refresh_setting": "Opdater"
       },
       "setter_default_value": {
         "fill": "Udfyld",
@@ -1414,9 +1420,9 @@
         "event": "Begivenhed",
         "MESSAGE": "BESKYTTELSE",
         "Toolbar": "TOOLBAR",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Indre skillevæg",
+        "shadow": "Indre skygge",
+        "background": "Baggrund",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -1707,7 +1713,7 @@
           "background": "Baggrund",
           "calendar_background": "Baggrund",
           "calendar_border": "Border",
-          "calendar_text": "Secondary text",
+          "calendar_text": "Sekundær tekst",
           "event_background": "Baggrund",
           "event_text": "Tekst",
           "draggable": "Trækbar",
@@ -1747,8 +1753,8 @@
           "currency_code": "Valuta kode",
           "cell_selection": "Valg af celler",
           "click_outside_to_des": "Klik udenfor for at fravælge",
-          "page": "Default page index",
-          "export_all_data_setting": "Export all"
+          "page": "Standard sideindeks",
+          "export_all_data_setting": "Eksporter alle"
         },
         "previous_cursor": "Forrige markør",
         "input": {
@@ -1838,23 +1844,25 @@
           "item_radius": "Element radius",
           "item_shadow": "Element skygge",
           "item_spacing": "Element afstand",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Maks. antal kolonner",
+          "min_column_count": "Min. antal kolonner"
         },
         "src": "src",
-        "page_size_options": "Page size options",
-        "export_setting": "Export",
-        "filter_setting": "Filter",
-        "primary_key": "Primary key",
-        "allow_row_selection": "Allow row selection",
-        "selection_mode": "Selection mode",
-        "pin_column": "Pin column",
-        "enable_users_to_sort": "Enable users to sort",
-        "enable_users_to_pin": "Enable users to pin",
-        "enable_users_to_filter": "Enable users to filter",
-        "enable_users_to_hide": "Enable users to hide",
-        "enable_users_to_set_group_by": "Enable users to set group by",
-        "column_description": "Description"
+        "page_size_options": "Indstillinger for sidestørrelse",
+        "export_setting": "Eksporter",
+        "filter_setting": "Filtrer",
+        "primary_key": "Primær nøgle",
+        "allow_row_selection": "Tillad valg af række",
+        "selection_mode": "Markering tilstand",
+        "pin_column": "Fastgør kolonne",
+        "enable_users_to_pin": "Aktivér brugere for at fastgøre",
+        "enable_users_to_filter": "Aktivér brugere for at filtrere",
+        "enable_users_to_hide": "Aktivér brugere for at skjule",
+        "enable_users_to_set_group_by": "Aktivér brugere for at indstille gruppe af",
+        "column_description": "Varebeskrivelse",
+        "enable_users_to_aggregate": "Aktivér brugere for at aggregere",
+        "disable_users_to_sort": "Gør det muligt for brugere at sortere",
+        "enable_users_to_resize": "Aktivér brugere for at ændre størrelse"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1916,8 +1924,8 @@
         "showFooter": "Angiv, om footeren skal vises",
         "senderAvatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
         "receiving": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
-        "export_setting": "Used to set whether or not users are allowed to export filtered data.",
-        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table."
+        "export_setting": "Bruges til at angive, om brugere har tilladelse til at eksportere filtrerede data.",
+        "filter_setting": "Bruges til at angive, om filtre skal vises eller ej, så brugerne kan filtrere data i tabellen."
       },
       "tab_title": "Inspicer",
       "unselected_tip1": "Ingen komponenter valgt.",
@@ -2068,9 +2076,9 @@
           "currency_code": "USD",
           "whether_allow_users_": "Om det er tilladt for brugere at vælge en celle",
           "supported_in_the_row": "Understøttet i rækken enkelt markeringstilstand. Når du har aktiveret det, skal du klikke på et andet område end tabellen for at fravælge rækken.",
-          "density_setting": "Used to set the row height density or not. ",
-          "refresh_setting": "Used to set whether to show a refresh icon",
-          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data."
+          "density_setting": "Bruges til at indstille rækkens højde tæthed eller ej. ",
+          "refresh_setting": "Bruges til at angive, om et opfrisk ikon skal vises",
+          "export_raw_data_setting": "Bruges til at angive, om brugere har tilladelse til at eksportere ufiltrerede rådata."
         },
         "previous_cursor": "Brug handlingsdata til at indstille den forrige markør. For eksempel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2141,19 +2149,19 @@
           "item_radius": "Bruges til at konfigurere hjørneradius for hvert gitter",
           "item_shadow": "Bruges til at konfigurere skyggestørrelsen for hvert gitter",
           "item_spacing": "Bruges til at konfigurere afstanden mellem gitre",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component component as its width increases (Automatic Copy) Når det maksimale antal kolonner er nået, og lærredets bredde fortsætter med at stige, kolonnens bredde vil blive øget for at rumme layoutet, og antallet af kolonner vil ikke stige yderligere."
         },
-        "primary_key": "A unique key for identifying a row",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row",
-        "pin_column": "Used to pin the column to all users",
-        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
-        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
-        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
-        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
-        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
-        "column_description": "Used to set a description of this column"
+        "primary_key": "En unik nøgle til identifikation af en række",
+        "selection_mode": "Bruges til at indstille flere række valg eller enkelt række valg",
+        "allow_row_selection": "Bruges til at angive, om brugere kan vælge række eller ej",
+        "pin_column": "Bruges til at fastgøre kolonnen til alle brugere",
+        "enable_users_to_pin": "Bruges til at angive, om brugerne kan fastgøre kolonnen eller ej",
+        "enable_users_to_filter": "Bruges til at angive, om brugere kan filtrere på denne kolonne eller ej",
+        "enable_users_to_hide": "Bruges til at angive, om brugere kan skjule kolonnen eller ej",
+        "enable_users_to_aggregate": "Bruges til at angive, om brugere skal tillade brugere at udføre dataaggregering på denne kolonne.",
+        "enable_users_to_set_group_by": "Bruges til at angive, om brugere skal tillade brugere at opsætte skærmen med datagruppering. ",
+        "column_description": "Bruges til at angive en beskrivelse af denne kolonne",
+        "disable_users_to_sort": "Bruges til at angive, om brugere kan ændre sorteringen af denne kolonne. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2221,7 +2229,27 @@
           "limited": "Begrænset",
           "limit_offset_based": "Begræns offset baseret",
           "cursor_based": "Markør baseret",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automatisk",
+            "text": "Tekst",
+            "date": "Dato",
+            "tag": "Mærke",
+            "time": "Tid",
+            "datetime": "Dato tid",
+            "number": "Nummer",
+            "percent": "Procent",
+            "link": "Link",
+            "button": "Knap",
+            "buttongroup": "Knap gruppe",
+            "boolean": "Boolean",
+            "image": "Billede",
+            "icongroup": "Ikon gruppe",
+            "rating": "Bedømmelse",
+            "markdown": "Markdown",
+            "html": "HTML-kode",
+            "currency": "Valuta"
+          }
         },
         "input": {
           "input": "Input",
@@ -2360,8 +2388,8 @@
         "blank_view": "Ingen underside"
       },
       "setter_options": {
-        "single_row_selection": "Single selection",
-        "multiple_row_selection": "Multiple selection"
+        "single_row_selection": "Enkelt valg",
+        "multiple_row_selection": "Flere valg"
       }
     },
     "page": {
@@ -3049,14 +3077,14 @@
       "name": "Tabel",
       "pagination": "Sideinddeling",
       "scroll": "Rul",
-      "default": "Default",
-      "export_all_data": "Export all",
-      "refresh": "Refresh",
+      "default": "Standard",
+      "export_all_data": "Eksporter alle",
+      "refresh": "Opdater",
       "export": {
-        "title": "Export",
-        "csv": "Export as csv",
+        "title": "Eksporter",
+        "csv": "Eksportér som CSV",
         "excel": "Export as excel",
-        "print": "Print"
+        "print": "Udskriv"
       }
     },
     "tabs": {
@@ -3173,13 +3201,13 @@
       "name": "Gitter liste"
     },
     "frame": {
-      "initial-title": "Drag a component to add it to the frame"
+      "initial-title": "Træk en komponent for at tilføje den til rammen"
     },
     "iframe": {
       "name": "IFrame"
     },
     "data_grid": {
-      "name": "Data grid"
+      "name": "Data gitter"
     }
   },
   "page": {
@@ -3577,7 +3605,7 @@
         }
       },
       "setter_label": {
-        "enable_users_to_aggregate": "Enable users to aggregate"
+        "enable_users_to_aggregate": "Aktivér brugere for at aggregere"
       }
     }
   },
@@ -3771,9 +3799,9 @@
     "plus-btn": "Prøv den gratis version",
     "enterprise-btn": "Kontakt os",
     "menu": {
-      "overview": "Overview",
-      "pricing": "Pricing",
-      "balance": "Balance",
+      "overview": "Oversigt",
+      "pricing": "Priser",
+      "balance": "Saldo",
       "billing": "Fakturering",
       "license": "Licens",
       "drive": "Drev",
@@ -3784,35 +3812,35 @@
     },
     "pricing": {
       "premium": {
-        "desc": "Upgrade your team to access advanced features",
+        "desc": "Opgrader dit team for at få adgang til avancerede funktioner",
         "feature": {
           "builder": {
-            "viewer": "FREE for unlimited viewers",
-            "audit_log": "Audit logs",
-            "public": "App public",
+            "viewer": "GRATIS for ubegrænset seere",
+            "audit_log": "Revision logs",
+            "public": "Offentlig app",
             "sql": "AI SQL Generation",
-            "history": "Backup editing history & restore",
-            "theme": "Custom themes for your apps",
-            "multi_environment": "Multi-environment ( coming soon )",
-            "deployed_version": "Keep deployed versions & revert ( coming soon )"
+            "history": "Sikkerhedskopiér redigering af historik og gendannelse",
+            "theme": "Brugerdefinerede temaer til dine apps",
+            "multi_environment": "Multi-miljø ( kommer snart )",
+            "deployed_version": "Behold implementerede versioner & tilbage ( kommer snart )"
           },
           "agent": {
-            "gpt": "Access to more models such as GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "gpt": "Adgang til flere modeller såsom GPT-4, GPT-3.5 ...",
+            "colla": "2. 5k Colla / måned"
           }
         },
-        "price": "/month/editor"
+        "price": "/måned/editor"
       },
       "colla": {
-        "desc": "Used for payment of fees incurred for value-added services within ILLA Cloud, including the following services",
+        "desc": "Bruges til betaling af gebyrer for tillægstjenester i ILLA Cloud, herunder følgende tjenester",
         "feature": {
-          "storage": "File storage. Used to storage files on ILLA Drive.",
-          "traffic": "Traffic. Used to download files from ILLA Drive.",
-          "token": "AI Agent token. Used to run AI Agents.",
+          "storage": "Fillagring. Bruges til lagring af filer på ILLA Drev.",
+          "traffic": "Trafik. Bruges til at downloade filer fra ILLA Drive.",
+          "token": "AI Agent token. Bruges til at køre AI Agents.",
           "conversion": {
             "1": "10k Colla",
-            "2": "5GB storage",
-            "3": "5GB traffic",
+            "2": "5 GB lagerplads",
+            "3": "5 GB trafik",
             "4": "50k token"
           }
         },
@@ -3826,35 +3854,35 @@
       "drive": "Drev",
       "colla": "Colla",
       "appsumo": "Appsumo",
-      "overview": "Overview",
-      "pricing": "Pricing",
-      "balance": "Balance",
-      "colla_usage": "Colla usage"
+      "overview": "Oversigt",
+      "pricing": "Priser",
+      "balance": "Saldo",
+      "colla_usage": "Brug af kolla"
     },
     "colla_usage": {
-      "used": "Used",
+      "used": "Brugt",
       "token": "Token",
-      "storage": "Storage",
-      "traffic": "Traffic"
+      "storage": "Lagerplads",
+      "traffic": "Trafik"
     },
     "subscription_general": {
       "team_type": {
-        "free": "Free",
+        "free": "Gratis",
         "plus": "Plus",
         "premium": "Premium"
       },
       "colla": {
-        "desc": "Used for payment of fees incurred for value-added services within ILLA Cloud, including storage for ILLA Drive, traffic for ILLA Drive and token for AI Agent.",
+        "desc": "Bruges til betaling af gebyrer for merværdiydelser i ILLA Cloud herunder opbevaring til ILLA Drive, trafik til ILLA Drive og token for AI Agent.",
         "table_title": {
           "colla": "Colla",
-          "seats": "Seats"
+          "seats": "Sæder"
         },
         "table_desc": {
-          "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla."
+          "bouns": "Når din nuværende cyklus Colla saldo er utilstrækkelig, vil vi automatisk tilføje Colla til dig. Bonus Colla er et ekstra gebyr og er ikke inkluderet i abonnementet for cyklussen. Når dit abonnement automatisk fornyes i den næste cyklus, vil det ikke omfatte Bonus Colla."
         },
         "table_button": {
-          "seats": "Manage seats",
-          "colla": "Manage Colla"
+          "seats": "Administrer pladser",
+          "colla": "Administrer Colla"
         }
       },
       "plan": {
@@ -3877,9 +3905,9 @@
         "storage": "Lagerplads",
         "traffic": "Trafik",
         "colla": "Colla",
-        "colla_unsub": "Balance",
+        "colla_unsub": "Saldo",
         "colla_sub": "Colla",
-        "seats": "Seats",
+        "seats": "Sæder",
         "bouns": "Bouns Colla"
       },
       "period": {
@@ -3887,15 +3915,15 @@
         "next": "Næste"
       },
       "cycle": {
-        "month": "/ month",
-        "year": "/ year"
+        "month": "/ måned",
+        "year": "/ år"
       },
       "table_desc": {
-        "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla. "
+        "bouns": "Når din nuværende cyklus Colla saldo er utilstrækkelig, vil vi automatisk tilføje Colla til dig. Bonus Colla er et ekstra gebyr og er ikke inkluderet i abonnementet for cyklussen. Når dit abonnement automatisk fornyes i den næste cyklus, vil det ikke omfatte Bonus Colla. "
       },
       "table_button": {
-        "seats": "Manage seats",
-        "colla": "Manage Colla"
+        "seats": "Administrer pladser",
+        "colla": "Administrer Colla"
       }
     },
     "subscription_card": {
@@ -4012,8 +4040,8 @@
       },
       "colla": {
         "1": "{{purchaseNum}} Colla",
-        "2": "{{storageNum}} storage",
-        "3": "{{trafficNum}} traffic",
+        "2": "{{storageNum}} lagerplads",
+        "3": "{{trafficNum}} trafik",
         "4": "{{tokenNum}} token"
       },
       "description_title": {
@@ -4092,47 +4120,47 @@
       "unsubscription_fail": "Mislykkedes at annullere abonnementet. Prøv igen senere.",
       "failed_to_update": "Mislykkedes at opdatere abonnementet. Prøv venligst igen. ",
       "update_suc": "Abonnement opdateret",
-      "no_storage": "Insufficient storage. Please contact the administrator to increase Colla.",
-      "no_traffic": "Insufficient traffic. Please contact the administrator to increase Colla.",
-      "no_token": "Insufficient token. Please contact the administrator to increase Colla."
+      "no_storage": "Utilstrækkelig lagerplads. Kontakt venligst administratoren for at øge Colla.",
+      "no_traffic": "Utilstrækkelig trafik. Kontakt venligst administratoren for at øge Colla.",
+      "no_token": "Utilstrækkelig token. Kontakt venligst administratoren for at øge Colla."
     },
     "modal": {
       "colla_insufficient_modal": {
         "storage": {
-          "title": "Insufficient storage",
+          "title": "Utilstrækkelig lagerplads",
           "desc": {
-            "1": "Your storage is insufficient. Please subscribe to Colla to increase your storage.",
-            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+            "1": "Din lagerplads er utilstrækkelig. Abonner på Colla for at øge din lagerplads.",
+            "2": "Når du har abonneret på Colla, kan din Colla bruges til at øge lagerpladsen, øge trafikken, og augment token, som automatisk vil blive allokeret baseret på dine behov."
           }
         },
         "traffic": {
-          "title": "Insufficient traffic",
+          "title": "Utilstrækkelig trafik",
           "desc": {
-            "1": "Your traffic is insufficient. Please subscribe to Colla to increase your traffic.",
-            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+            "1": "Din trafik er utilstrækkelig. Tilmeld dig Colla for at øge din trafik.",
+            "2": "Når du har abonneret på Colla, kan din Colla bruges til at øge lagerpladsen, øge trafikken, og augment token, som automatisk vil blive allokeret baseret på dine behov."
           }
         },
         "token": {
-          "title": "Insufficient token",
+          "title": "Utilstrækkelig token",
           "desc": {
-            "1": "Your token is insufficient. Please subscribe to Colla to increase your token.",
-            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+            "1": "Dit token er utilstrækkeligt. Abonnér venligst på Colla for at øge dit token.",
+            "2": "Når du har abonneret på Colla, kan din Colla bruges til at øge lagerpladsen, øge trafikken, og augment token, som automatisk vil blive allokeret baseret på dine behov."
           }
         },
-        "button": "Increase Colla",
+        "button": "Forøg Colla",
         "cycle": "/monthly/10k Colla",
         "failed": {
-          "title": "Failed to increase Colla",
+          "title": "Kunne ikke øge Colla",
           "storage": {
-            "desc": "Your Colla balance is insufficient to cover the current storage requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+            "desc": "Din Colla-saldo er utilstrækkelig til at dække det aktuelle opbevaringskrav. Og vi stødte på nogle problemer, mens vi øgede din Colla. Forøg venligst Colla manuelt."
           },
           "traffic": {
-            "desc": "Your Colla balance is insufficient to cover the current traffic requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+            "desc": "Din Colla-saldo er utilstrækkelig til at dække det aktuelle trafikbehov. Og vi stødte på nogle problemer, mens vi øgede din Colla. Forøg venligst Colla manuelt."
           },
           "token": {
-            "desc": "Your Colla balance is insufficient to cover the current token requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+            "desc": "Din Colla-saldo er utilstrækkelig til at dække det aktuelle token-krav. Og vi stødte på nogle problemer, mens vi øgede din Colla. Forøg venligst Colla manuelt."
           },
-          "button": "Increase Colla"
+          "button": "Forøg Colla"
         }
       },
       "storage_insufficient_modal": {
@@ -4225,9 +4253,9 @@
         "string2": "For at bruge den, skal du opgradere til Premium. Ved at opgradere til Premium, vil du også have adgang til følgende funktioner. "
       },
       "upgrade_now_not_admin": {
-        "upgrade_title": "This model is for Premium teams",
-        "upgrade_desc": "To use this model, please contact the admin to upgrade your team.",
-        "upgrade_button": "OK"
+        "upgrade_title": "Denne model er til Premium teams",
+        "upgrade_desc": "For at bruge denne model bedes du kontakte administratoren for at opgradere dit team.",
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -4299,9 +4327,9 @@
       "feature": "Fjern vandmærke"
     },
     "label": {
-      "canceled": "Canceled",
-      "expired": "Expired",
-      "paused": "Paused"
+      "canceled": "Annulleret",
+      "expired": "Udløbet",
+      "paused": "Pauset"
     }
   },
   "network": {
@@ -4402,20 +4430,20 @@
   "size_exceed_copied_tips": "Indholdet er for langt til at kopiere. (nuværende størrelse: {{current_size}} bytes, limit: {{limit_size}} bytes)",
   "contribute": {
     "tag": {
-      "recommended": "Recommended",
-      "add_tag": "Add tags",
-      "tag": "Tag",
-      "failed_to_save": "Failed to save"
+      "recommended": "Anbefalet",
+      "add_tag": "Tilføj tags",
+      "tag": "Mærke",
+      "failed_to_save": "Kunne ikke gemme"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link",
+    "update": "Rediger tags",
+    "copy_link": "Kopiér link",
     "first_time_modal": {
-      "title": "Contribute to community",
-      "button": "Contribute"
+      "title": "Bidrag til fællesskab",
+      "button": "Bidrag"
     },
     "update_modal": {
-      "button": "Update",
-      "title": "Edit"
+      "button": "Opdater",
+      "title": "Rediger"
     }
   },
   "error_page": {

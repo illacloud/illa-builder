@@ -79,7 +79,13 @@
       "mobile-fork-suc": "Успішно відгалужено. Будь ласка, відредагуйте на робочому столі.",
       "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
-    "create": "Створити"
+    "create": "Створити",
+    "pwa": {
+      "guide": {
+        "title": "Add ILLA Cloud to your desktop",
+        "desc": "Add to your desktop to access to your workspace quickly. Boost your efficiency. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Щойно"
@@ -1849,12 +1855,14 @@
         "allow_row_selection": "Allow row selection",
         "selection_mode": "Selection mode",
         "pin_column": "Pin column",
-        "enable_users_to_sort": "Enable users to sort",
         "enable_users_to_pin": "Enable users to pin",
         "enable_users_to_filter": "Enable users to filter",
         "enable_users_to_hide": "Enable users to hide",
         "enable_users_to_set_group_by": "Enable users to set group by",
-        "column_description": "Description"
+        "column_description": "Description",
+        "enable_users_to_aggregate": "Enable users to aggregate",
+        "disable_users_to_sort": "Enable users to sort",
+        "enable_users_to_resize": "Enable users to resize"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -2147,13 +2155,13 @@
         "selection_mode": "Used to set multiple row selection or single row selection",
         "allow_row_selection": "Used to set whether or not allow users to select row",
         "pin_column": "Used to pin the column to all users",
-        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
         "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
         "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
         "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
         "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
         "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
-        "column_description": "Used to set a description of this column"
+        "column_description": "Used to set a description of this column",
+        "disable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. "
       },
       "setter_option": {
         "fixed": "Виправлена",
@@ -2221,7 +2229,27 @@
           "limited": "Обмежений",
           "limit_offset_based": "Обмежити відступ на основі",
           "cursor_based": "На основі курсору",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Auto",
+            "text": "Text",
+            "date": "Date",
+            "tag": "Tag",
+            "time": "Time",
+            "datetime": "Date time",
+            "number": "Number",
+            "percent": "Percent",
+            "link": "Link",
+            "button": "Button",
+            "buttongroup": "Button group",
+            "boolean": "Boolean",
+            "image": "Image",
+            "icongroup": "Icon group",
+            "rating": "Rating",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Currency"
+          }
         },
         "input": {
           "input": "Input",
