@@ -9,6 +9,8 @@ export interface OracleResource {
   name: string
   password: string
   username: string
+  // TODO: wait api
+  version?: "9i" | "9i above"
 }
 
 export const OracleResourceInitial: OracleResource = {

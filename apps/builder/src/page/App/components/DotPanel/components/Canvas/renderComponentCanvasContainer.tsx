@@ -391,6 +391,7 @@ const RenderComponentCanvasContainer: FC<
     if (isFinite(maxHeight) && prevMaxHeight.current > maxHeight) {
       return
     }
+
     if (canResizeCanvas) {
       if (isFinite(maxHeight)) {
         setCanvasHeight(maxHeight * UNIT_HEIGHT)
@@ -420,8 +421,6 @@ const RenderComponentCanvasContainer: FC<
     setCanvasHeight(maxHeight * UNIT_HEIGHT)
   }, [
     canResizeCanvas,
-    childWidgetLayoutInfo,
-    displayName,
     fixedBounds.height,
     isEditMode,
     isRootCanvas,
@@ -532,6 +531,7 @@ const RenderComponentCanvasContainer: FC<
         data-column-number={columnNumber}
         data-unit-width={unitWidth}
         data-is-dragging-over={false}
+        className="scroll-container"
       >
         <div
           ref={(node) => {
