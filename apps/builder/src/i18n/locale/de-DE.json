@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Datenbankname behandeln als",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle-Version"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Dienstname"
             },
-            "ssl": "SSL verwenden, wenn verfügbar"
+            "ssl": "SSL verwenden, wenn verfügbar",
+            "version": {
+              "below": "9i oder darunter",
+              "above": "9 i oben"
+            }
           },
           "couchdb": {
             "ssl": "SSL/TLS verwenden, wenn verfügbar"
