@@ -1868,7 +1868,8 @@
         "enable_users_to_aggregate": "Povolit uživatelům agregovat",
         "enable_users_to_resize": "Povolit uživatelům změnit velikost",
         "enable_users_to_sort": "Povolit řazení uživatelů",
-        "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců"
+        "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců",
+        "locale": "Místní prostředí"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2168,7 +2169,8 @@
         "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. ",
         "column_description": "Slouží k nastavení popisu tohoto sloupce",
         "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
-        "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců"
+        "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců",
+        "locale": "Například cs-CZ"
       },
       "setter_option": {
         "fixed": "Fixní",
