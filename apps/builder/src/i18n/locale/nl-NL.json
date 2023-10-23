@@ -1868,7 +1868,8 @@
         "enable_users_to_aggregate": "Enable users to aggregate",
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "Enable users to sort",
-        "disable_users_to_reorder": "Disable users to reorder columns"
+        "disable_users_to_reorder": "Disable users to reorder columns",
+        "locale": "Locale"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -2168,7 +2169,8 @@
         "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
         "column_description": "Used to set a description of this column",
         "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns"
+        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
+        "locale": "For example, en-US"
       },
       "setter_option": {
         "fixed": "Opgelost",
