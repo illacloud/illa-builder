@@ -29,7 +29,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
-import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
+import RenderChildrenCanvas from "../PublicSector/RenderChildrenCanvas"
 import { FormWidgetProps } from "./interface"
 import {
   formBodyStyle,
@@ -389,42 +389,6 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
 
   const canResizeCanvas = dynamicHeight !== "fixed"
 
-  const renderHeader = useMemo(() => {
-    const headerComponentNode = childrenNode[0]
-    return (
-      <RenderChildrenCanvas
-        currentComponentNode={headerComponentNode}
-        columnNumber={columnNumber}
-        handleUpdateHeight={handleUpdateHeight}
-        canResizeCanvas={canResizeCanvas}
-      />
-    )
-  }, [canResizeCanvas, childrenNode, columnNumber, handleUpdateHeight])
-
-  const renderBody = useMemo(() => {
-    const bodyComponentNode = childrenNode[1]
-    return (
-      <RenderChildrenCanvas
-        currentComponentNode={bodyComponentNode}
-        columnNumber={columnNumber}
-        handleUpdateHeight={handleUpdateHeight}
-        canResizeCanvas={canResizeCanvas}
-      />
-    )
-  }, [canResizeCanvas, childrenNode, columnNumber, handleUpdateHeight])
-
-  const renderFooter = useMemo(() => {
-    const footerComponentNode = childrenNode[2]
-    return (
-      <RenderChildrenCanvas
-        currentComponentNode={footerComponentNode}
-        columnNumber={columnNumber}
-        handleUpdateHeight={handleUpdateHeight}
-        canResizeCanvas={canResizeCanvas}
-      />
-    )
-  }, [canResizeCanvas, childrenNode, columnNumber, handleUpdateHeight])
-
   const resizeTopHandler = useMemo(() => {
     return {
       bottom: (
@@ -564,14 +528,34 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           onResizeStart={handleResizeStart}
           onResizeStop={handleOnResizeTopStop}
         >
-          <div css={formHeaderStyle}>{renderHeader}</div>
+          <div css={formHeaderStyle}>
+            <RenderChildrenCanvas
+              displayName={childrenNode[0].displayName}
+              hasChildrenNode={
+                Array.isArray(childrenNode[0].childrenNode) &&
+                childrenNode[0].childrenNode.length > 0
+              }
+              columnNumber={columnNumber}
+              handleUpdateHeight={handleUpdateHeight}
+              canResizeCanvas={canResizeCanvas}
+            />
+          </div>
           {isMouseHover && !isDraggingActive && isEditMode && (
             <div css={applyDashedLineStyle(false, true, false)} />
           )}
         </Resizable>
       )}
       <div css={formBodyStyle}>
-        {renderBody}
+        <RenderChildrenCanvas
+          displayName={childrenNode[1].displayName}
+          hasChildrenNode={
+            Array.isArray(childrenNode[1].childrenNode) &&
+            childrenNode[1].childrenNode.length > 0
+          }
+          columnNumber={columnNumber}
+          handleUpdateHeight={handleUpdateHeight}
+          canResizeCanvas={canResizeCanvas}
+        />
         {isMouseHover && !isDraggingActive && isEditMode && (
           <div css={applyXDirectionDashedLineStyle(false, true, false)} />
         )}
@@ -595,7 +579,18 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           onResizeStart={handleResizeStart}
           onResizeStop={handleOnResizeBottomStop}
         >
-          <div css={formHeaderStyle}>{renderFooter}</div>
+          <div css={formHeaderStyle}>
+            <RenderChildrenCanvas
+              hasChildrenNode={
+                Array.isArray(childrenNode[2].childrenNode) &&
+                childrenNode[2].childrenNode.length > 0
+              }
+              displayName={childrenNode[2].displayName}
+              columnNumber={columnNumber}
+              handleUpdateHeight={handleUpdateHeight}
+              canResizeCanvas={canResizeCanvas}
+            />
+          </div>
           {isMouseHover && !isDraggingActive && isEditMode && (
             <div
               css={applyDashedLineStyle(false, true, false, footerMaxHeight)}
