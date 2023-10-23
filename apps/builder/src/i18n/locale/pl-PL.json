@@ -1861,8 +1861,9 @@
         "enable_users_to_set_group_by": "Enable users to set group by",
         "column_description": "Description",
         "enable_users_to_aggregate": "Enable users to aggregate",
-        "disable_users_to_sort": "Enable users to sort",
-        "enable_users_to_resize": "Enable users to resize"
+        "enable_users_to_resize": "Enable users to resize",
+        "enable_users_to_sort": "Enable users to sort",
+        "disable_users_to_reorder": "Disable users to reorder columns"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -2161,7 +2162,8 @@
         "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
         "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
         "column_description": "Used to set a description of this column",
-        "disable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. "
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns"
       },
       "setter_option": {
         "fixed": "Naprawione",
