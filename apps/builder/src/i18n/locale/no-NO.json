@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Behandle databasenavn som",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle versjon"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Tjeneste navn"
             },
-            "ssl": "Bruk SSL når tilgjengelig"
+            "ssl": "Bruk SSL når tilgjengelig",
+            "version": {
+              "below": "9i eller under",
+              "above": "9i over"
+            }
           },
           "couchdb": {
             "ssl": "Bruk SSL/TLS når tilgjengelig"
@@ -1861,8 +1866,9 @@
         "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av",
         "column_description": "Beskrivelse",
         "enable_users_to_aggregate": "Tillat brukere å aggregere",
-        "disable_users_to_sort": "Tillat brukere å sortere",
-        "enable_users_to_resize": "Tillat brukere å endre størrelse"
+        "enable_users_to_resize": "Tillat brukere å endre størrelse",
+        "enable_users_to_sort": "Tillat brukere å sortere",
+        "disable_users_to_reorder": "Deaktiver brukere for å endre rekkefølgen av kolonner"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2161,7 +2167,8 @@
         "enable_users_to_aggregate": "Brukes for å angi om brukerne skal kunne aggregere data i denne kolonnen eller ikke.",
         "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. ",
         "column_description": "Brukes til å angi en beskrivelse av denne kolonnen",
-        "disable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. "
+        "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
+        "disable_users_to_reorder": "Brukes til å angi om eller ikke deaktivere brukere for å reorganisere kolonner"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2231,24 +2238,24 @@
           "cursor_based": "Markør basert",
           "graphql_relay_cursor": "GraphQL Relay cursor-based",
           "column_type": {
-            "auto": "Auto",
-            "text": "Text",
-            "date": "Date",
-            "tag": "Tag",
-            "time": "Time",
-            "datetime": "Date time",
-            "number": "Number",
-            "percent": "Percent",
-            "link": "Link",
-            "button": "Button",
-            "buttongroup": "Button group",
+            "auto": "Automatisk",
+            "text": "Tekst",
+            "date": "Dato",
+            "tag": "Tagg",
+            "time": "Tid",
+            "datetime": "Dato klokkeslett",
+            "number": "Nummer",
+            "percent": "Prosent",
+            "link": "Lenke",
+            "button": "Knapp",
+            "buttongroup": "Knappegruppe",
             "boolean": "Boolean",
-            "image": "Image",
-            "icongroup": "Icon group",
-            "rating": "Rating",
+            "image": "Bilde",
+            "icongroup": "Ikongruppe",
+            "rating": "Vurdering",
             "markdown": "Markdown",
             "html": "Html",
-            "currency": "Currency"
+            "currency": "Valuta"
           }
         },
         "input": {

@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Behandla databasens namn som",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle version"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Tjänstens namn"
             },
-            "ssl": "Använd SSL när tillgängligt"
+            "ssl": "Använd SSL när tillgängligt",
+            "version": {
+              "below": "9i eller under",
+              "above": "9i över"
+            }
           },
           "couchdb": {
             "ssl": "Använd SSL/TLS när tillgängligt"
@@ -1861,8 +1866,9 @@
         "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av",
         "column_description": "Beskrivning",
         "enable_users_to_aggregate": "Aktivera användare att aggregera",
-        "disable_users_to_sort": "Tillåt användare att sortera",
-        "enable_users_to_resize": "Tillåt användare att ändra storlek"
+        "enable_users_to_resize": "Tillåt användare att ändra storlek",
+        "enable_users_to_sort": "Tillåt användare att sortera",
+        "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2161,7 +2167,8 @@
         "enable_users_to_aggregate": "Används för att ställa in om användare ska tillåta att data aggregering görs på den här kolumnen.",
         "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
         "column_description": "Används för att ange en beskrivning av denna kolumn",
-        "disable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. "
+        "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
+        "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2231,24 +2238,24 @@
           "cursor_based": "Markör baserad",
           "graphql_relay_cursor": "GraphQL Relay cursor-based",
           "column_type": {
-            "auto": "Auto",
+            "auto": "Automatiskt",
             "text": "Text",
-            "date": "Date",
-            "tag": "Tag",
-            "time": "Time",
-            "datetime": "Date time",
-            "number": "Number",
-            "percent": "Percent",
-            "link": "Link",
-            "button": "Button",
-            "buttongroup": "Button group",
+            "date": "Datum",
+            "tag": "Tagg",
+            "time": "Tid",
+            "datetime": "Datum tid",
+            "number": "Nummer",
+            "percent": "Procent",
+            "link": "Länk",
+            "button": "Knapp",
+            "buttongroup": "Knapp grupp",
             "boolean": "Boolean",
-            "image": "Image",
-            "icongroup": "Icon group",
-            "rating": "Rating",
+            "image": "Bild",
+            "icongroup": "Ikon grupp",
+            "rating": "Betyg",
             "markdown": "Markdown",
             "html": "Html",
-            "currency": "Currency"
+            "currency": "Valuta"
           }
         },
         "input": {

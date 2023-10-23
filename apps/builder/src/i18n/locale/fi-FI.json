@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Käsittele tietokannan nimeä nimellä",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle versio"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Palvelun Nimi"
             },
-            "ssl": "Käytä SSL:ää kun käytettävissä"
+            "ssl": "Käytä SSL:ää kun käytettävissä",
+            "version": {
+              "below": "vähintään 9i",
+              "above": "9i yläpuolella"
+            }
           },
           "couchdb": {
             "ssl": "Käytä SSL/TLS kun käytettävissä"
@@ -1861,8 +1866,9 @@
         "enable_users_to_set_group_by": "Salli käyttäjien asettaa ryhmä",
         "column_description": "Kuvaus",
         "enable_users_to_aggregate": "Salli käyttäjien koota yhteen",
-        "disable_users_to_sort": "Salli käyttäjien lajitella",
-        "enable_users_to_resize": "Salli käyttäjien koon muuttaminen"
+        "enable_users_to_resize": "Salli käyttäjien koon muuttaminen",
+        "enable_users_to_sort": "Salli käyttäjien lajitella",
+        "disable_users_to_reorder": "Poista käyttäjät tilataksesi sarakkeita uudelleen"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2161,7 +2167,8 @@
         "enable_users_to_aggregate": "Käytetään määritettäessä, sallivatko käyttäjät suorittaa tietojen yhdistämisen tähän sarakkeeseen.",
         "enable_users_to_set_group_by": "Käytetään määritettäessä, sallivatko käyttäjät asettaa tietoryhmänäytön vai eivät. ",
         "column_description": "Käytetään tämän sarakkeen kuvauksen asettamiseen",
-        "disable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. "
+        "enable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. ",
+        "disable_users_to_reorder": "Käytetään määritettäessä, onko käyttäjä poistettu käytöstä järjestääksesi sarakkeet uudelleen"
       },
       "setter_option": {
         "fixed": "Kiinteä",

@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "将数据库名称视为",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle版本"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "服务名称"
             },
-            "ssl": "可用时使用 SSL"
+            "ssl": "可用时使用 SSL",
+            "version": {
+              "below": "9i及以下版本",
+              "above": "9i以上版本"
+            }
           },
           "couchdb": {
             "ssl": "可用时使用 SSL/TLS"
@@ -1861,8 +1866,9 @@
         "enable_users_to_set_group_by": "允许用户设置分组显示",
         "column_description": "描述",
         "enable_users_to_aggregate": "Enable users to aggregate",
-        "disable_users_to_sort": "允许用户排序",
-        "enable_users_to_resize": "Enable users to resize"
+        "enable_users_to_resize": "Enable users to resize",
+        "enable_users_to_sort": "允许用户排序",
+        "disable_users_to_reorder": "禁止用户调整列排序"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2161,7 +2167,8 @@
         "enable_users_to_aggregate": "用于设置是否允许用户聚合这列数据",
         "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示",
         "column_description": "用于设置这列的描述信息",
-        "disable_users_to_sort": "用于设置是否允许用户更改排序"
+        "enable_users_to_sort": "用于设置是否允许用户更改排序",
+        "disable_users_to_reorder": "用于设置是否禁止用户调整列排序"
       },
       "setter_option": {
         "fixed": "固定高度",
