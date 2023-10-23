@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import { useSelector } from "react-redux"
 import RenderComponentCanvasContainer from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
 import {
@@ -10,24 +10,19 @@ import { getIsILLAEditMode, isShowDot } from "@/redux/config/configSelector"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { IRenderChildrenCanvasProps } from "./interface"
 
-export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
+const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
   const {
-    currentComponentNode,
     columnNumber,
     canResizeCanvas = false,
     handleUpdateHeight,
     containerPadding,
+    displayName,
+    hasChildrenNode,
   } = props
   const isEditMode = useSelector(getIsILLAEditMode)
   const canShowDots = useSelector(isShowDot)
 
-  if (
-    isEditMode &&
-    ((!canShowDots &&
-      Array.isArray(currentComponentNode.childrenNode) &&
-      currentComponentNode.childrenNode.length === 0) ||
-      !currentComponentNode.displayName)
-  ) {
+  if (isEditMode && ((!canShowDots && !hasChildrenNode) || !displayName)) {
     return (
       <ContainerEmptyState
         handleUpdateHeight={handleUpdateHeight}
@@ -38,7 +33,7 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
 
   return (
     <RenderComponentCanvasContainer
-      displayName={currentComponentNode.displayName}
+      displayName={displayName}
       containerPadding={containerPadding ?? `${LIKE_CONTAINER_WIDGET_PADDING}`}
       columnNumber={columnNumber}
       handleUpdateHeight={handleUpdateHeight}
@@ -48,3 +43,5 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
     />
   )
 }
+
+export default memo(RenderChildrenCanvas)
