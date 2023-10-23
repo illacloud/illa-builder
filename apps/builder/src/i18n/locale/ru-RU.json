@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Считать имя базы данных как",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Версия Oracle"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Имя сервиса"
             },
-            "ssl": "Использовать SSL при наличии"
+            "ssl": "Использовать SSL при наличии",
+            "version": {
+              "below": "9i или ниже",
+              "above": "9i выше"
+            }
           },
           "couchdb": {
             "ssl": "Использовать SSL/TLS при наличии"
