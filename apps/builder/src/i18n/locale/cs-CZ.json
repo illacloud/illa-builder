@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Považovat název databáze za",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Verze Oracle"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Název služby"
             },
-            "ssl": "Použít SSL, pokud je k dispozici"
+            "ssl": "Použít SSL, pokud je k dispozici",
+            "version": {
+              "below": "9i nebo méně",
+              "above": "9i výše"
+            }
           },
           "couchdb": {
             "ssl": "Použít SSL/TLS, pokud je k dispozici"
