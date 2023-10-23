@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "データベース名",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracleバージョン"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "サービス名"
             },
-            "ssl": "可能な場合は SSL を使用する"
+            "ssl": "可能な場合は SSL を使用する",
+            "version": {
+              "below": "9i 以下",
+              "above": "9i 以上"
+            }
           },
           "couchdb": {
             "ssl": "可能な場合は SSL/TLS を使用する"
