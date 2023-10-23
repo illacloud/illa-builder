@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Tratează numele bazei de date ca",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Versiune Oracle"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Nume Serviciu"
             },
-            "ssl": "Utilizează SSL atunci când este disponibil"
+            "ssl": "Utilizează SSL atunci când este disponibil",
+            "version": {
+              "below": "9i sau mai puțin",
+              "above": "9i peste"
+            }
           },
           "couchdb": {
             "ssl": "Utilizați SSL/TLS atunci când este disponibil"
