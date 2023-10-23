@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "데이터베이스 이름",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle version"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "서비스 명"
             },
-            "ssl": "가능한 경우 SSL 사용"
+            "ssl": "가능한 경우 SSL 사용",
+            "version": {
+              "below": "9i or below",
+              "above": "9i above"
+            }
           },
           "couchdb": {
             "ssl": "가능한 경우 SSL/TLS 사용"
