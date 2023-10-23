@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "将数据库名称视为",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle版本"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "服务名称"
             },
-            "ssl": "可用时使用 SSL"
+            "ssl": "可用时使用 SSL",
+            "version": {
+              "below": "9i及以下版本",
+              "above": "9i以上版本"
+            }
           },
           "couchdb": {
             "ssl": "可用时使用 SSL/TLS"
