@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Behandle databasenavn som",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle versjon"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Tjeneste navn"
             },
-            "ssl": "Bruk SSL når tilgjengelig"
+            "ssl": "Bruk SSL når tilgjengelig",
+            "version": {
+              "below": "9i eller under",
+              "above": "9i over"
+            }
           },
           "couchdb": {
             "ssl": "Bruk SSL/TLS når tilgjengelig"
