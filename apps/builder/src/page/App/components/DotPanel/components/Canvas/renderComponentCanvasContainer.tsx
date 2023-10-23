@@ -531,6 +531,7 @@ const RenderComponentCanvasContainer: FC<
         data-column-number={columnNumber}
         data-unit-width={unitWidth}
         data-is-dragging-over={false}
+        className="scroll-container"
       >
         <div
           ref={(node) => {
