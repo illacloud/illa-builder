@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Tratează numele bazei de date ca",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Versiune Oracle"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Nume Serviciu"
             },
-            "ssl": "Utilizează SSL atunci când este disponibil"
+            "ssl": "Utilizează SSL atunci când este disponibil",
+            "version": {
+              "below": "9i sau mai puțin",
+              "above": "9i peste"
+            }
           },
           "couchdb": {
             "ssl": "Utilizați SSL/TLS atunci când este disponibil"
@@ -1861,8 +1866,9 @@
         "enable_users_to_set_group_by": "Permite utilizatorilor să seteze gruparea după",
         "column_description": "Descriere",
         "enable_users_to_aggregate": "Permite utilizatorilor să agrege",
-        "disable_users_to_sort": "Permite utilizatorilor să sorteze",
-        "enable_users_to_resize": "Permite utilizatorilor să redimensioneze"
+        "enable_users_to_resize": "Permite utilizatorilor să redimensioneze",
+        "enable_users_to_sort": "Permite utilizatorilor să sorteze",
+        "disable_users_to_reorder": "Dezactivează utilizatorii pentru a reordona coloanele"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2161,7 +2167,8 @@
         "enable_users_to_aggregate": "Folosit pentru a seta dacă permite sau nu utilizatorilor să efectueze agregarea de date pe această coloană.",
         "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. ",
         "column_description": "Folosit pentru a seta o descriere a acestei coloane",
-        "disable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. "
+        "enable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. ",
+        "disable_users_to_reorder": "Folosit pentru a seta dacă dezactivează sau nu utilizatorii pentru a reordona coloanele"
       },
       "setter_option": {
         "fixed": "Fixat",
