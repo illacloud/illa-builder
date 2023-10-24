@@ -55,6 +55,11 @@ const getResourceDefaultPort = (resourceType: string) => {
   }
 }
 
+const checkIsValidConnectionString = (connectionString: string) => {
+  const pattern = /^(mysql|postgres):\/\/([^:]+):([^@]+)@([^/]+)\/(.+)$/
+  return pattern.test(connectionString)
+}
+
 function getPortFromConnectionString(scheme: string): string {
   switch (scheme) {
     case "postgres":
@@ -66,11 +71,6 @@ function getPortFromConnectionString(scheme: string): string {
   }
 }
 
-const checkIsValidConnectionString = (connectionString: string) => {
-  const pattern = /^(mysql|postgres):\/\/([^:]+):([^@]+)@([^/]+)\/(.+)$/
-  return pattern.test(connectionString)
-}
-
 function parseDatabaseConnectionString(
   connectionString: string,
 ): Omit<MysqlLikeResource, "ssl"> | undefined {
@@ -78,17 +78,21 @@ function parseDatabaseConnectionString(
   const match = connectionString.match(regex)
 
   if (match) {
-    const databaseType = match[1]
     const databaseUsername = match[2]
     const databasePassword = match[3]
-    const host = match[4]
+    const hostAndPort = match[4].split(":")
+    const host = hostAndPort[0]
+    const port =
+      hostAndPort.length > 1
+        ? hostAndPort[1]
+        : getPortFromConnectionString(match[1])
     const databaseName = match[5]
 
     return {
       databaseUsername,
       databasePassword,
       host,
-      port: getPortFromConnectionString(databaseType),
+      port,
       databaseName,
     }
   } else {
