@@ -1869,7 +1869,8 @@
         "enable_users_to_resize": "Aktivér brugere for at ændre størrelse",
         "enable_users_to_sort": "Gør det muligt for brugere at sortere",
         "disable_users_to_reorder": "Deaktivér brugere for at omarrangere kolonner",
-        "locale": "Landestandard"
+        "locale": "Landestandard",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -2170,7 +2171,9 @@
         "column_description": "Bruges til at angive en beskrivelse af denne kolonne",
         "enable_users_to_sort": "Bruges til at angive, om brugere kan ændre sorteringen af denne kolonne. ",
         "disable_users_to_reorder": "Bruges til at angive, om brugere skal deaktivere eller ej for at omarrangere kolonnerne",
-        "locale": "For eksempel en-US"
+        "locale": "For eksempel en-US",
+        "default_width": "Bruges til at indstille standardbredden af kolonnen",
+        "max_count": "Bruges til at indstille maks antal stjerner"
       },
       "setter_option": {
         "fixed": "Fast",
