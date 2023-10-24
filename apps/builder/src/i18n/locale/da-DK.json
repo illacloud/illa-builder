@@ -82,8 +82,8 @@
     "create": "Opret",
     "pwa": {
       "guide": {
-        "title": "Add ILLA Cloud to your desktop",
-        "desc": "Add to your desktop to access to your workspace quickly. Boost your efficiency. "
+        "title": "Tilføj ILLA Cloud til dit skrivebord",
+        "desc": "Føj til dit skrivebord for at få adgang til dit arbejdsområde hurtigt. Øg din effektivitet. "
       }
     }
   },
@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Behandl databasenavn som",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle version"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Tjenestens Navn"
             },
-            "ssl": "Brug SSL når tilgængeligt"
+            "ssl": "Brug SSL når tilgængeligt",
+            "version": {
+              "below": "9i eller derunder",
+              "above": "9i over"
+            }
           },
           "couchdb": {
             "ssl": "Brug SSL/TLS når det er tilgængeligt"
@@ -1861,8 +1866,9 @@
         "enable_users_to_set_group_by": "Aktivér brugere for at indstille gruppe af",
         "column_description": "Varebeskrivelse",
         "enable_users_to_aggregate": "Aktivér brugere for at aggregere",
-        "disable_users_to_sort": "Gør det muligt for brugere at sortere",
-        "enable_users_to_resize": "Aktivér brugere for at ændre størrelse"
+        "enable_users_to_resize": "Aktivér brugere for at ændre størrelse",
+        "enable_users_to_sort": "Gør det muligt for brugere at sortere",
+        "disable_users_to_reorder": "Deaktivér brugere for at omarrangere kolonner"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -2161,7 +2167,8 @@
         "enable_users_to_aggregate": "Bruges til at angive, om brugere skal tillade brugere at udføre dataaggregering på denne kolonne.",
         "enable_users_to_set_group_by": "Bruges til at angive, om brugere skal tillade brugere at opsætte skærmen med datagruppering. ",
         "column_description": "Bruges til at angive en beskrivelse af denne kolonne",
-        "disable_users_to_sort": "Bruges til at angive, om brugere kan ændre sorteringen af denne kolonne. "
+        "enable_users_to_sort": "Bruges til at angive, om brugere kan ændre sorteringen af denne kolonne. ",
+        "disable_users_to_reorder": "Bruges til at angive, om brugere skal deaktivere eller ej for at omarrangere kolonnerne"
       },
       "setter_option": {
         "fixed": "Fast",
