@@ -1,7 +1,6 @@
 import { ResourceType } from "@illa-public/public-types"
 import { FieldValues } from "react-hook-form"
 import { generateGraphQLAuthContent } from "@/page/App/components/Actions/api"
-import { neonSSLInitialValue } from "@/redux/resource/neonResource"
 import { generateSSLConfig } from "@/redux/resource/resourceState"
 import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
 
@@ -23,7 +22,7 @@ export const formatTestConnectValues = (
         host: data.host.trim(),
         port: +data.port,
         username: data.username,
-        password: data.password,
+        password: encodeURIComponent(data.password),
         databaseName: data.databaseName,
         ssl: generateSSLConfig(data.ssl, data, "clickhouse"),
       }
@@ -46,7 +45,7 @@ export const formatTestConnectValues = (
         host: data.host.trim(),
         port: data.port.toString(),
         username: data.username,
-        password: data.password,
+        password: encodeURIComponent(data.password),
       }
     }
     case "firebase": {
@@ -73,7 +72,7 @@ export const formatTestConnectValues = (
         port: data.port.toString(),
         databaseName: data.databaseName,
         username: data.username,
-        password: data.password,
+        password: encodeURIComponent(data.password),
         connectionOpts: data.connectionOpts,
         ssl: generateSSLConfig(data.ssl, data, "mssql"),
       }
@@ -97,7 +96,7 @@ export const formatTestConnectValues = (
                 connectionFormat: data.connectionFormat,
                 databaseName: data.databaseName,
                 databaseUsername: data.databaseUsername,
-                databasePassword: data.databasePassword,
+                databasePassword: encodeURIComponent(data.databasePassword),
               }
             : { uri: data.uri.trim() },
       }
@@ -107,6 +106,7 @@ export const formatTestConnectValues = (
     case "mariadb":
     case "mysql":
     case "hydra":
+    case "neon":
     case "postgresql": {
       return {
         host: data.host.trim(),
@@ -117,16 +117,6 @@ export const formatTestConnectValues = (
         ssl: generateSSLConfig(data.ssl, data),
       }
     }
-    case "neon": {
-      return {
-        host: data.host.trim(),
-        port: data.port.toString(),
-        databaseName: data.databaseName,
-        databaseUsername: data.databaseUsername,
-        databasePassword: encodeURIComponent(data.databasePassword),
-        ssl: neonSSLInitialValue,
-      }
-    }
     case "upstash":
     case "redis": {
       return {
@@ -134,7 +124,7 @@ export const formatTestConnectValues = (
         port: data.port.toString(),
         databaseIndex: DATABASE_INDEX,
         databaseUsername: DEFAULT_NAME,
-        databasePassword: data.databasePassword,
+        databasePassword: encodeURIComponent(data.databasePassword),
         ssl: data.ssl,
       }
     }
@@ -174,7 +164,7 @@ export const formatTestConnectValues = (
           data.authentication === "basic"
             ? {
                 username: data.username,
-                password: data.password,
+                password: encodeURIComponent(data.password),
               }
             : {
                 username: data.username,
