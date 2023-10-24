@@ -185,14 +185,9 @@ const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
           control={control}
           defaultValue=""
           rules={{
-            validate: (value) => {
-              return checkIsValidConnectionString(value)
-            },
+            required: false,
           }}
-          render={({
-            field: { value, onChange, onBlur },
-            fieldState: { error },
-          }) => (
+          render={({ field: { value, onChange, onBlur } }) => (
             <div css={configItem}>
               <div css={labelContainer}>
                 <span
@@ -205,13 +200,13 @@ const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
                 <Input
                   onBlur={onBlur}
                   onChange={onChange}
-                  error={error !== undefined}
+                  error={!checkIsValidConnectionString(value) && value !== ""}
                   value={value}
                   colorScheme="techPurple"
                   placeholder="xxxxxx://myuser:mypassword@localhost:5432/mydb"
                 />
                 <Button
-                  disabled={error !== undefined}
+                  disabled={!checkIsValidConnectionString(value)}
                   onClick={() => {
                     const db = parseDatabaseConnectionString(value)
                     if (db !== undefined) {
