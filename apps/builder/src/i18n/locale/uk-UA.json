@@ -1869,7 +1869,8 @@
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "Enable users to sort",
         "disable_users_to_reorder": "Disable users to reorder columns",
-        "locale": "Locale"
+        "locale": "Locale",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -2170,7 +2171,9 @@
         "column_description": "Used to set a description of this column",
         "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
         "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
-        "locale": "For example, en-US"
+        "locale": "For example, en-US",
+        "default_width": "Used to set the default width of the column",
+        "max_count": "Used to set the max count of stars"
       },
       "setter_option": {
         "fixed": "Виправлена",
