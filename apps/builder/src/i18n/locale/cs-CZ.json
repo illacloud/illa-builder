@@ -1869,7 +1869,8 @@
         "enable_users_to_resize": "Povolit uživatelům změnit velikost",
         "enable_users_to_sort": "Povolit řazení uživatelů",
         "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců",
-        "locale": "Místní prostředí"
+        "locale": "Místní prostředí",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2170,7 +2171,9 @@
         "column_description": "Slouží k nastavení popisu tohoto sloupce",
         "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
         "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců",
-        "locale": "Například cs-CZ"
+        "locale": "Například cs-CZ",
+        "default_width": "Použít k nastavení výchozí šířky sloupce",
+        "max_count": "Používá se k nastavení maximálního počtu hvězdiček"
       },
       "setter_option": {
         "fixed": "Fixní",
