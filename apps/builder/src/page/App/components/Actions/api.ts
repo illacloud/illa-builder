@@ -236,7 +236,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         databaseIndex: DATABASE_INDEX,
         databaseUsername: DEFAULT_NAME,
         databasePassword: encodeURIComponent(data.databasePassword),
-        ssl: true,
+        ssl: data.ssl,
       }
     case "firebase":
       return {
