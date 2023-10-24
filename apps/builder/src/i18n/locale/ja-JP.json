@@ -1869,7 +1869,8 @@
         "enable_users_to_resize": "ユーザーのサイズ変更を有効にする",
         "enable_users_to_sort": "ユーザーの並び替えを有効にする",
         "disable_users_to_reorder": "列の並び替えを無効にする",
-        "locale": "ロケール"
+        "locale": "ロケール",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2170,7 +2171,9 @@
         "column_description": "この列の説明を設定するために使用",
         "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
         "disable_users_to_reorder": "列の順序を変更するためにユーザーを無効にするかどうかを設定するために使用",
-        "locale": "例: ja-JP"
+        "locale": "例: ja-JP",
+        "default_width": "列の既定の幅を設定するために使用",
+        "max_count": "星の最大数を設定するために使用"
       },
       "setter_option": {
         "fixed": "固定高さ",
