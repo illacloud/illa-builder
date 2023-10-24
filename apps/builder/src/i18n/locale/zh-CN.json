@@ -1849,7 +1849,7 @@
           "item_radius": "格子的圆角",
           "item_shadow": "格子的阴影",
           "item_spacing": "格子间距",
-          "max_column_count": "Max number of columns",
+          "max_column_count": "最大列数",
           "min_column_count": "Min number of columns"
         },
         "src": "源",
@@ -1869,7 +1869,8 @@
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "允许用户排序",
         "disable_users_to_reorder": "禁止用户调整列排序",
-        "locale": "本地化"
+        "locale": "本地化",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2170,7 +2171,9 @@
         "column_description": "用于设置这列的描述信息",
         "enable_users_to_sort": "用于设置是否允许用户更改排序",
         "disable_users_to_reorder": "用于设置是否禁止用户调整列排序",
-        "locale": "例如，en-US"
+        "locale": "例如，en-US",
+        "default_width": "Used to set the default width of the column",
+        "max_count": "用于设置星星的最大数量"
       },
       "setter_option": {
         "fixed": "固定高度",
