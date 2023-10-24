@@ -24,6 +24,8 @@ export const Column: FC<ColumnProps> = (props) => {
     showDelete,
     widgetDisplayName,
     label,
+    showVisible,
+    extraElement,
     onVisibilityChange,
   } = props
 
@@ -65,6 +67,7 @@ export const Column: FC<ColumnProps> = (props) => {
             attrPath={attrPath}
             widgetDisplayName={widgetDisplayName}
             childrenSetter={childrenSetter}
+            extraElement={extraElement}
             handleCloseModal={() => {
               setTriggerVisible(false)
             }}
@@ -76,13 +79,15 @@ export const Column: FC<ColumnProps> = (props) => {
       >
         <div css={columnLabelStyle}>{label}</div>
       </Trigger>
-      <IconHotSpot
-        onClick={() => {
-          onVisibilityChange(!visibility)
-        }}
-      >
-        {visibility ? <EyeOnIcon /> : <EyeOffIcon />}
-      </IconHotSpot>
+      {showVisible && (
+        <IconHotSpot
+          onClick={() => {
+            onVisibilityChange(!visibility)
+          }}
+        >
+          {visibility ? <EyeOnIcon /> : <EyeOffIcon />}
+        </IconHotSpot>
+      )}
       {showDelete && (
         <IconHotSpot
           onClick={() => {

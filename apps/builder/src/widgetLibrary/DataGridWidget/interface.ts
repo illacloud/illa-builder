@@ -7,7 +7,7 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 export interface BaseDataGridProps extends BaseWidgetProps {
   dataSource?: any
   dataSourceJS?: any
-  dataSourceMode?: "dynamic" | "select"
+  dataSourceMode?: "dynamic" | "static"
   loading?: boolean
   emptyState?: string
   sortKey?: string

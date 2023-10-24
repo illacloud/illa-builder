@@ -13,6 +13,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { DATA_GRID_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DataGridWidget/eventHandlerConfig"
 import { ColumnTypeList } from "@/widgetLibrary/DataGridWidget/interface"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { generatorTableEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorTableEventHandlerConfig"
 
 const baseWidgetName = "dataGrid"
 
@@ -39,7 +40,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           id: `${baseWidgetName}-column-format`,
           labelName: i18n.t("editor.inspect.setter_label.format"),
           attrName: "format",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           defaultValue: "YYYY-MM-DD",
           expectedType: VALIDATION_TYPES.STRING,
         },
@@ -50,7 +51,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           id: `${baseWidgetName}-column-tagColor`,
           labelName: i18n.t("editor.inspect.setter_label.table.tag_color"),
           labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           attrName: "tagColor",
         },
       ]
@@ -60,7 +61,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           id: `${baseWidgetName}-column-format`,
           labelName: i18n.t("editor.inspect.setter_label.format"),
           attrName: "format",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           defaultValue: "YYYY-MM-DD HH:mm:ss",
           expectedType: VALIDATION_TYPES.STRING,
         },
@@ -72,7 +73,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
           attrName: "decimalPlaces",
           placeholder: "{{ 0 }}",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.NUMBER,
         },
         {
@@ -84,7 +85,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
             "editor.inspect.setter_tips.table.show_thousands_separ",
           ),
           attrName: "showThousandsSeparator",
-          setterType: "DYNAMIC_SWITCH_SETTER",
+          setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
           expectedType: VALIDATION_TYPES.BOOLEAN,
           openDynamic: true,
           useCustomLayout: true,
@@ -109,7 +110,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
           attrName: "decimalPlaces",
           placeholder: "{{ 0 }}",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.NUMBER,
         },
         {
@@ -121,7 +122,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
             "editor.inspect.setter_tips.table.show_thousands_separ",
           ),
           attrName: "showThousandsSeparator",
-          setterType: "DYNAMIC_SWITCH_SETTER",
+          setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
           expectedType: VALIDATION_TYPES.BOOLEAN,
           openDynamic: true,
           useCustomLayout: true,
@@ -131,7 +132,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelName: i18n.t("editor.inspect.setter_label.table.locale"),
           labelDesc: i18n.t("editor.inspect.setter_tips.table.locale"),
           attrName: "locale",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.STRING,
           bindAttrName: ["showThousandsSeparator"],
           shown: (value) => value,
@@ -144,8 +145,30 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
     case "link":
       return []
     case "button":
+      return [
+        {
+          ...generatorTableEventHandlerConfig(baseWidgetName, []),
+        },
+        {
+          id: `${baseWidgetName}-column-disabled`,
+          labelName: i18n.t("editor.inspect.setter_label.disabled"),
+          labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
+          placeholder: "{{false}}",
+          attrName: "disabled",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+        },
+        {
+          id: `${baseWidgetName}-column-colorScheme`,
+          labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+          setterType: "COLOR_PICKER_SETTER",
+          labelSize: "medium",
+          attrName: "colorScheme",
+          defaultValue: "blue",
+        },
+      ]
     case "buttongroup":
     case "icongroup":
+      return []
     case "boolean":
       return []
     case "image":
@@ -166,7 +189,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelName: i18n.t("editor.inspect.setter_label.max_count"),
           attrName: "maxCount",
           placeholder: "{{ 5 }}",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.NUMBER,
         },
       ]
@@ -182,7 +205,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
             "editor.inspect.setter_placeholder.table.currency_code",
           ),
           attrName: "currencyCode",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.STRING,
         },
         {
@@ -190,7 +213,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
           attrName: "decimalPlaces",
           placeholder: "{{ 0 }}",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.NUMBER,
         },
         {
@@ -202,7 +225,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
             "editor.inspect.setter_tips.table.show_thousands_separ",
           ),
           attrName: "showThousandsSeparator",
-          setterType: "DYNAMIC_SWITCH_SETTER",
+          setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
           expectedType: VALIDATION_TYPES.BOOLEAN,
           openDynamic: true,
           useCustomLayout: true,
@@ -212,7 +235,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelName: i18n.t("editor.inspect.setter_label.table.locale"),
           labelDesc: i18n.t("editor.inspect.setter_tips.table.locale"),
           attrName: "locale",
-          setterType: "INPUT_SETTER",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.STRING,
           bindAttrName: ["showThousandsSeparator"],
           shown: (value) => value,
@@ -230,7 +253,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     id: `${baseWidgetName}-column-headerName`,
     labelName: i18n.t("editor.inspect.setter_label.column_title"),
     attrName: "headerName",
-    setterType: "INPUT_SETTER",
+    setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
     expectedType: VALIDATION_TYPES.STRING,
   },
   {
@@ -242,19 +265,35 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     expectedType: VALIDATION_TYPES.STRING,
   },
   {
+    id: `${baseWidgetName}-column-mappedValue`,
+    labelName: i18n.t("editor.inspect.setter_label.mapped_value"),
+    labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
+    attrName: "mappedValue",
+    setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+    placeholder: "{{currentRow}}",
+  },
+  {
     id: `${baseWidgetName}-column-description`,
     labelName: i18n.t("editor.inspect.setter_label.column_description"),
     labelDesc: i18n.t("editor.inspect.setter_tips.column_description"),
     attrName: "description",
-    setterType: "INPUT_SETTER",
+    setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
     expectedType: VALIDATION_TYPES.STRING,
+  },
+  {
+    id: `${baseWidgetName}-column-width`,
+    labelName: i18n.t("editor.inspect.setter_label.width"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.width"),
+    attrName: "width",
+    setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+    expectedType: VALIDATION_TYPES.NUMBER,
   },
   {
     id: `${baseWidgetName}-column-sortable`,
     labelName: i18n.t("editor.inspect.setter_label.enable_users_to_sort"),
     labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_sort"),
     attrName: "sortable",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     defaultValue: true,
     openDynamic: true,
@@ -265,7 +304,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     labelName: i18n.t("editor.inspect.setter_label.enable_users_to_pin"),
     labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_pin"),
     attrName: "pinnable",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     defaultValue: true,
     openDynamic: true,
@@ -276,7 +315,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     labelName: i18n.t("editor.inspect.setter_label.enable_users_to_filter"),
     labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_filter"),
     attrName: "filterable",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     defaultValue: true,
     openDynamic: true,
@@ -287,7 +326,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     labelName: i18n.t("editor.inspect.setter_label.enable_users_to_hide"),
     labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_hide"),
     attrName: "hideable",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     defaultValue: true,
     openDynamic: true,
@@ -298,7 +337,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     labelName: i18n.t("editor.inspect.setter_label.enable_users_to_aggregate"),
     labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_aggregate"),
     attrName: "aggregable",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     defaultValue: true,
     openDynamic: true,
@@ -313,7 +352,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
       "editor.inspect.setter_tips.enable_users_to_set_group_by",
     ),
     attrName: "groupable",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     defaultValue: true,
     openDynamic: true,
@@ -324,7 +363,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     labelName: i18n.t("editor.inspect.setter_label.enable_users_to_resize"),
     labelDesc: i18n.t("editor.inspect.setter_tips.enable_users_to_resize"),
     attrName: "resizable",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     defaultValue: true,
     openDynamic: true,
@@ -335,7 +374,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     labelName: i18n.t("editor.inspect.setter_label.disable_users_to_reorder"),
     labelDesc: i18n.t("editor.inspect.setter_tips.disable_users_to_reorder"),
     attrName: "disableReorder",
-    setterType: "DYNAMIC_SWITCH_SETTER",
+    setterType: "DATA_GRID_COLUMN_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,
     openDynamic: true,
     useCustomLayout: true,

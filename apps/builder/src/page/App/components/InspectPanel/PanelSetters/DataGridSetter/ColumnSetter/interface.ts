@@ -23,7 +23,6 @@ export type ColumnType =
 export interface ColumnConfig extends GridBaseColDef {
   isCalc?: boolean
   columnType: ColumnType
-  format?: string
 }
 
 export interface ColumnListSetterProps extends BaseSetter {

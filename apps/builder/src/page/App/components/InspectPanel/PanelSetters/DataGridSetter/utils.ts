@@ -1,4 +1,5 @@
 import { isObject } from "lodash"
+import { stringToJS } from "@/utils/evaluateDynamicString/utils"
 
 export function dealRawData2ArrayData(rawData: unknown): object[] {
   if (rawData === undefined || rawData === "" || rawData === null) {
@@ -244,4 +245,18 @@ export function getPreColor(index: number) {
     "techPink",
   ]
   return colors[index % colors.length]
+}
+
+export const getNeedComputedValueWithDataList = (
+  value: string,
+  widgetDisplayName: string,
+  dataSourceMode: "dynamic" | "select",
+) => {
+  const stringToCanEvaluate = stringToJS(value)
+  if (stringToCanEvaluate === "") {
+    return stringToCanEvaluate
+  }
+  return `{{${widgetDisplayName}.${
+    dataSourceMode === "select" ? "dataSource" : "dataSourceJS"
+  }.map((currentRow) => (${stringToCanEvaluate}))}}`
 }

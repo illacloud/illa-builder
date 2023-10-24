@@ -1,5 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { isString } from "lodash"
+import { get, isString } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -7,18 +7,19 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { getNeedComputedValueWithDataList } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import {
-  getNeedComputedValueWithList,
-  realInputValueWithList,
-} from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/util"
+  applyInputSetterWrapperStyle,
+  setterContainerStyle,
+} from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/BaseInput/style"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/components/componentsSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { NewBaseInputSetterProps } from "./interface"
-import { applyInputSetterWrapperStyle, setterContainerStyle } from "./style"
+import { ColumnMappedInputProps } from "./interface"
 
-const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
+const ColumnMappedInput: FC<ColumnMappedInputProps> = (props) => {
   const {
     isSetterSingleRow,
     placeholder,
@@ -37,64 +38,64 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
     onlyHasSetter = false,
   } = props
 
-  const listWidgets = useSelector(
-    getContainerListDisplayNameMappedChildrenNodeDisplayName,
+  const targetComponentProps = useSelector<RootState, Record<string, any>>(
+    (rootState) => {
+      const executionTree = getExecutionResult(rootState)
+      return get(executionTree, widgetDisplayName, {})
+    },
   )
 
-  const currentListDisplayName = useMemo(() => {
-    const listWidgetDisplayNames = Object.keys(listWidgets)
-    for (let i = 0; i < listWidgetDisplayNames.length; i++) {
-      if (listWidgets[listWidgetDisplayNames[i]].includes(widgetDisplayName)) {
-        return listWidgetDisplayNames[i]
-      }
-    }
-    return ""
-  }, [listWidgets, widgetDisplayName])
+  const dataSourceMode = get(targetComponentProps, "dataSourceMode", "dynamic")
 
   const finalWrapperCode = useMemo(() => {
     if (
-      currentListDisplayName &&
       hasDynamicStringSnippet(value ?? "") &&
-      value?.includes("currentItem")
+      isString(value) &&
+      value?.includes("currentRow")
     ) {
       return (value: string) => {
-        return getNeedComputedValueWithList(value, currentListDisplayName)
+        return getNeedComputedValueWithDataList(
+          value,
+          widgetDisplayName,
+          dataSourceMode,
+        )
       }
     }
     return wrappedCodeFunc
-  }, [currentListDisplayName, value, wrappedCodeFunc])
+  }, [value, wrappedCodeFunc, widgetDisplayName, dataSourceMode])
 
   const finalValue = useMemo(() => {
-    if (currentListDisplayName) {
-      return realInputValueWithList(
-        value ?? defaultValue,
-        currentListDisplayName,
-      )
-    }
-
     if (value === undefined && defaultValue === undefined) {
       return undefined
     }
-
     if (!isString(value ?? defaultValue)) {
       return `{{ ${value ?? defaultValue} }}`
     }
     return (value ?? defaultValue) || ""
-  }, [currentListDisplayName, defaultValue, value])
+  }, [value, defaultValue])
 
   const onChange = useCallback(
     (value: string) => {
       let output = value
       if (
-        currentListDisplayName &&
         hasDynamicStringSnippet(value ?? "") &&
-        value.includes("currentItem")
+        value.includes("currentRow")
       ) {
-        output = getNeedComputedValueWithList(value, currentListDisplayName)
+        output = getNeedComputedValueWithDataList(
+          value,
+          widgetDisplayName,
+          dataSourceMode,
+        )
+        handleUpdateDsl(attrName, output)
+      } else {
+        if (output === "") {
+          handleUpdateDsl(attrName, undefined)
+        } else {
+          handleUpdateDsl(attrName, output)
+        }
       }
-      handleUpdateDsl(attrName, output)
     },
-    [attrName, currentListDisplayName, handleUpdateDsl],
+    [attrName, dataSourceMode, handleUpdateDsl, widgetDisplayName],
   )
 
   const onFocus = useCallback(() => {
@@ -135,7 +136,7 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
           onChange={onChange}
           showLineNumbers={false}
           placeholder={placeholder}
-          expectValueType={currentListDisplayName ? undefined : expectedType}
+          expectValueType={expectedType}
           lang={CODE_LANG.JAVASCRIPT}
           maxHeight="208px"
           maxWidth="100%"
@@ -151,5 +152,5 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
   )
 }
 
-BaseInput.displayName = "BaseInput"
-export default BaseInput
+ColumnMappedInput.displayName = "ColumnMappedInput"
+export default ColumnMappedInput

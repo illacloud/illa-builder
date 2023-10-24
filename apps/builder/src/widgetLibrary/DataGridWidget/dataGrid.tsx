@@ -1,39 +1,17 @@
 import { StyledEngineProvider } from "@mui/material"
-import {
-  DataGridPremium,
-  GridRenderCellParams,
-  GridValueGetterParams,
-  LicenseInfo,
-} from "@mui/x-data-grid-premium"
+import { DataGridPremium, LicenseInfo } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
-import dayjs from "dayjs"
-import { get, isArray, isNumber, isObject } from "lodash"
+import { get, isArray, isNumber } from "lodash"
 import React, { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
-import ReactMarkdown from "react-markdown"
 import { useDispatch } from "react-redux"
-import rehypeRaw from "rehype-raw"
-import rehypeSanitize from "rehype-sanitize"
-import remarkGfm from "remark-gfm"
 import { v4 } from "uuid"
-import {
-  Image,
-  Link,
-  Paragraph,
-  Rate,
-  SingleDatePicker,
-  Space,
-  Tag,
-  TimePicker,
-} from "@illa-design/react"
-import {
-  CurrencyCode,
-  dealRawData2ArrayData,
-  getHashCode,
-  getPreColor,
-  isValidLocale,
-} from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
+import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
+import {
+  getColumnFromType,
+  getColumnTypeFromValue,
+  getSafeColumn,
+} from "@/widgetLibrary/DataGridWidget/columnDeal"
 import { Toolbar } from "./Toolbar"
 import { BaseDataGridProps } from "./interface"
 
@@ -195,241 +173,17 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
 
   const renderColumns = useMemo(() => {
     return columns?.map((column) => {
-      switch (column.columnType) {
-        case "auto":
-        case "button":
-        case "buttongroup":
-        case "icongroup":
-        case "text":
-          return {
-            ...column,
-            type: "string",
-          }
-        case "rating":
-          return {
-            ...column,
-            type: "number",
-            renderCell: (params: GridRenderCellParams) => {
-              const maxCount = isNumber(get(params.colDef, "maxCount"))
-                ? get(params.colDef, "maxCount")
-                : 5
-              const num = isNumber(params.value) ? params.value : 0
-              return <Rate count={maxCount} allowHalf readonly value={num} />
-            },
-          }
-        case "percent":
-          return {
-            ...column,
-            type: "number",
-            renderCell: (params: GridRenderCellParams) => {
-              const decimalPlaces = get(params.colDef, "decimalPlaces")
-              const locale = isValidLocale(
-                get(params.colDef, "locale") ?? "en-US",
-              )
-                ? get(params.colDef, "locale")
-                : "en-US"
-              const showThousandsSeparator = get(
-                params.colDef,
-                "showThousandsSeparator",
-              )
-              if (isNumber(decimalPlaces)) {
-                return showThousandsSeparator
-                  ? `${Number(
-                      Number(params.value * 100).toFixed(decimalPlaces),
-                    ).toLocaleString(locale)}%`
-                  : `${Number(params.value * 100).toFixed(decimalPlaces)}%`
-              } else {
-                return showThousandsSeparator
-                  ? `${Number(params.value * 100).toLocaleString(locale)}%`
-                  : `${params.value * 100}%`
-              }
-            },
-          }
-        case "html":
-        case "markdown":
-          return {
-            ...column,
-            type: "string",
-            renderCell: (params: GridRenderCellParams) => {
-              return (
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[
-                    rehypeRaw,
-                    [
-                      rehypeSanitize,
-                      {
-                        allowedTags: HTMLTags,
-                      },
-                    ],
-                  ]}
-                  components={{
-                    a: ({ href, children }) => (
-                      <Link href={href} target="_blank" colorScheme="blue">
-                        {children}
-                      </Link>
-                    ),
-                    p: ({ children }) => <Paragraph>{children}</Paragraph>,
-                  }}
-                >
-                  {isObject(params.value)
-                    ? JSON.stringify(params.value)
-                    : params.value}
-                </ReactMarkdown>
-              )
-            },
-          }
-        case "currency":
-          return {
-            ...column,
-            type: "number",
-            renderCell: (params: GridRenderCellParams) => {
-              const decimalPlaces = get(params.colDef, "decimalPlaces")
-              const locale = isValidLocale(
-                get(params.colDef, "locale") ?? "en-US",
-              )
-                ? get(params.colDef, "locale")
-                : "en-US"
-              const currencyCode = get(params.colDef, "currencyCode") ?? "USD"
-              const showThousandsSeparator = get(
-                params.colDef,
-                "showThousandsSeparator",
-              )
-              if (isNumber(decimalPlaces)) {
-                return showThousandsSeparator
-                  ? `${CurrencyCode[currencyCode] ?? "USD"}${Number(
-                      Number(params.value).toFixed(decimalPlaces),
-                    ).toLocaleString(locale)}`
-                  : `${CurrencyCode[currencyCode ?? "USD"]}${Number(
-                      params.value,
-                    ).toFixed(decimalPlaces)}`
-              } else {
-                return showThousandsSeparator
-                  ? `${CurrencyCode[currencyCode ?? "USD"]}${Number(
-                      params.value,
-                    ).toLocaleString(locale)}`
-                  : `${CurrencyCode[currencyCode ?? "USD"]}${params.value}`
-              }
-            },
-          }
-        case "tag":
-          return {
-            ...column,
-            type: "string",
-            renderCell: (params: GridRenderCellParams) => {
-              const tagColor = get(params.colDef, "tagColor")
-              const tagLabelArray = isArray(params.value)
-                ? params.value
-                : [params.value]
-              const tagColorMap = isObject(tagColor) ? tagColor : {}
-              return (
-                <Space>
-                  {tagLabelArray.map((label, index) => {
-                    const l = isObject(label) ? JSON.stringify(label) : label
-                    const c = get(tagColorMap, l) ?? getPreColor(getHashCode(l))
-                    return (
-                      <Tag key={`${l}:${index}`} colorScheme={c}>
-                        {l}
-                      </Tag>
-                    )
-                  })}
-                </Space>
-              )
-            },
-          }
-        case "image":
-          return {
-            ...column,
-            type: "string",
-            renderCell: (params: GridRenderCellParams) => {
-              const objectFit = get(params.colDef, "objectFit")
-              return <Image src={params.value} objectFit={objectFit} />
-            },
-          }
-        case "number":
-          return {
-            ...column,
-            type: "number",
-            renderCell: (params: GridRenderCellParams) => {
-              const decimalPlaces = get(params.colDef, "decimalPlaces")
-              const locale = isValidLocale(
-                get(params.colDef, "locale") ?? "en-US",
-              )
-                ? get(params.colDef, "locale")
-                : "en-US"
-              const showThousandsSeparator = get(
-                params.colDef,
-                "showThousandsSeparator",
-              )
-              if (isNumber(decimalPlaces)) {
-                return showThousandsSeparator
-                  ? Number(
-                      Number(params.value).toFixed(decimalPlaces),
-                    ).toLocaleString(locale)
-                  : Number(params.value).toFixed(decimalPlaces)
-              } else {
-                return showThousandsSeparator
-                  ? Number(params.value).toLocaleString(locale)
-                  : params.value
-              }
-            },
-          }
-        case "boolean":
-          return {
-            ...column,
-            type: "boolean",
-          }
-        case "date":
-          return {
-            ...column,
-            type: "date",
-            renderCell: (params: GridRenderCellParams) => {
-              return (
-                <SingleDatePicker
-                  colorScheme="techPurple"
-                  editable={false}
-                  allowClear={false}
-                  value={params.value}
-                />
-              )
-            },
-            valueGetter: (params: GridValueGetterParams) => {
-              return dayjs(params.value, get(params.colDef, "format")).toDate()
-            },
-          }
-        case "datetime":
-          return {
-            ...column,
-            type: "datetime",
-            renderCell: (params: GridRenderCellParams) => {
-              return (
-                <TimePicker
-                  colorScheme="techPurple"
-                  editable={false}
-                  allowClear={false}
-                  value={params.value}
-                />
-              )
-            },
-            valueGetter: (params: GridValueGetterParams) => {
-              return dayjs(params.value, get(params.colDef, "format")).toDate()
-            },
-          }
-        case "link":
-          return {
-            ...column,
-            type: "string",
-            renderCell: (params: GridRenderCellParams) => {
-              return (
-                <Link href={params.value} target="_blank">
-                  {params.value}
-                </Link>
-              )
-            },
-          }
-      }
+      const safeColumn = getSafeColumn(column)
+      return safeColumn.columnType === "auto"
+        ? getColumnFromType({
+            ...safeColumn,
+            columnType: getColumnTypeFromValue(
+              get(arrayData[0], safeColumn.field),
+            ),
+          })
+        : getColumnFromType(safeColumn)
     })
-  }, [columns])
+  }, [arrayData, columns])
 
   return (
     <StyledEngineProvider injectFirst>
