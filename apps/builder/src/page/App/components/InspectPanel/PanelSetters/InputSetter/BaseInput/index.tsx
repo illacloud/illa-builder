@@ -28,6 +28,7 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
     widgetDisplayName,
     labelName,
     detailedDescription,
+    defaultValue,
     labelDesc,
     widgetType,
     wrappedCodeFunc,
@@ -64,10 +65,13 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
 
   const finalValue = useMemo(() => {
     if (currentListDisplayName) {
-      return realInputValueWithList(value, currentListDisplayName)
+      return realInputValueWithList(
+        value ?? defaultValue,
+        currentListDisplayName,
+      )
     }
-    return value || ""
-  }, [currentListDisplayName, value])
+    return (value ?? defaultValue) || ""
+  }, [currentListDisplayName, defaultValue, value])
 
   const onChange = useCallback(
     (value: string) => {

@@ -16,7 +16,8 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable"
-import { get, isEqual } from "lodash"
+import { isDeepEqual } from "@mui/x-data-grid/internals"
+import { get } from "lodash"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -25,7 +26,7 @@ import { AddIcon, Button, Empty } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { DATA_GRID_COLUMN_SETTER_CONFIG } from "@/widgetLibrary/DataGridWidget/panelConfig"
+import { getColumnsTypeSetter } from "@/widgetLibrary/DataGridWidget/panelConfig"
 import { Column } from "./components/Column"
 import { ColumnConfig, ColumnListSetterProps } from "./interface"
 import {
@@ -115,21 +116,31 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   }, [targetComponentProps])
 
   const mixedColumns: ColumnConfig[] = useMemo(() => {
-    const mixedColumns = [...value]
-    calculateColumns.forEach((item) => {
-      const index = mixedColumns.findIndex((column) => {
+    const dealColumns = [...calculateColumns]
+    let mixedColumns = value.map((item) => {
+      const index = dealColumns.findIndex((column) => {
         return column.field === item.field
       })
       if (index >= 0) {
-        mixedColumns[index] = {
-          ...mixedColumns[index],
+        dealColumns.splice(index, 1)
+        return {
+          ...item,
           isCalc: true,
         }
       } else {
-        mixedColumns.push(item)
+        return {
+          ...item,
+          isCalc: false,
+        }
       }
     })
-    if (!isEqual(mixedColumns, value)) {
+    dealColumns.forEach((item) => {
+      mixedColumns.push({
+        ...item,
+        isCalc: true,
+      })
+    })
+    if (!isDeepEqual(mixedColumns, value)) {
       handleUpdateMultiAttrDSL?.({
         [attrName]: mixedColumns,
       })
@@ -208,7 +219,7 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
                       [attrName]: finalColumns,
                     })
                   }}
-                  childrenSetter={DATA_GRID_COLUMN_SETTER_CONFIG}
+                  childrenSetter={getColumnsTypeSetter(config.columnType)}
                   showDelete={!config.isCalc}
                   attrPath={`${attrName}.${index}`}
                   widgetDisplayName={widgetDisplayName}

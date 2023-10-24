@@ -4,6 +4,7 @@ import {
   HorizontalStartIcon,
 } from "@illa-design/react"
 import i18n from "@/i18n/config"
+import { ColumnType } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter/interface"
 import {
   PanelConfig,
   PanelFieldConfig,
@@ -15,7 +16,216 @@ import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/
 
 const baseWidgetName = "dataGrid"
 
-export const DATA_GRID_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
+export function getColumnsTypeSetter(type: ColumnType): PanelFieldConfig[] {
+  return [
+    ...DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.slice(0, 4),
+    ...getColumnsTypeSubSetter(type),
+    ...DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.slice(
+      5,
+      DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.length,
+    ),
+  ]
+}
+
+export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
+  switch (type) {
+    case "auto":
+      return []
+    case "text":
+      return []
+    case "date":
+      return [
+        {
+          id: `${baseWidgetName}-column-format`,
+          labelName: i18n.t("editor.inspect.setter_label.format"),
+          attrName: "format",
+          setterType: "INPUT_SETTER",
+          defaultValue: "YYYY-MM-DD",
+          expectedType: VALIDATION_TYPES.STRING,
+        },
+      ]
+    case "tag":
+      return [
+        {
+          id: `${baseWidgetName}-column-tagColor`,
+          labelName: i18n.t("editor.inspect.setter_label.table.tag_color"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
+          setterType: "INPUT_SETTER",
+          attrName: "tagColor",
+        },
+      ]
+    case "datetime":
+      return [
+        {
+          id: `${baseWidgetName}-column-format`,
+          labelName: i18n.t("editor.inspect.setter_label.format"),
+          attrName: "format",
+          setterType: "INPUT_SETTER",
+          defaultValue: "YYYY-MM-DD HH:mm:ss",
+          expectedType: VALIDATION_TYPES.STRING,
+        },
+      ]
+    case "number":
+      return [
+        {
+          id: `${baseWidgetName}-column-decimalPlaces`,
+          labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
+          attrName: "decimalPlaces",
+          placeholder: "{{ 0 }}",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.NUMBER,
+        },
+        {
+          id: `${baseWidgetName}-column-showThousandsSeparator`,
+          labelName: i18n.t(
+            "editor.inspect.setter_label.table.show_thousands_separ",
+          ),
+          labelDesc: i18n.t(
+            "editor.inspect.setter_tips.table.show_thousands_separ",
+          ),
+          attrName: "showThousandsSeparator",
+          setterType: "DYNAMIC_SWITCH_SETTER",
+          expectedType: VALIDATION_TYPES.BOOLEAN,
+          openDynamic: true,
+          useCustomLayout: true,
+        },
+        {
+          id: `${baseWidgetName}-column-locale`,
+          labelName: i18n.t("editor.inspect.setter_label.table.locale"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.table.locale"),
+          attrName: "locale",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.STRING,
+          bindAttrName: ["showThousandsSeparator"],
+          shown: (value) => value,
+          openDynamic: true,
+          useCustomLayout: true,
+        },
+      ]
+    case "percent":
+      return [
+        {
+          id: `${baseWidgetName}-column-decimalPlaces`,
+          labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
+          attrName: "decimalPlaces",
+          placeholder: "{{ 0 }}",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.NUMBER,
+        },
+        {
+          id: `${baseWidgetName}-column-showThousandsSeparator`,
+          labelName: i18n.t(
+            "editor.inspect.setter_label.table.show_thousands_separ",
+          ),
+          labelDesc: i18n.t(
+            "editor.inspect.setter_tips.table.show_thousands_separ",
+          ),
+          attrName: "showThousandsSeparator",
+          setterType: "DYNAMIC_SWITCH_SETTER",
+          expectedType: VALIDATION_TYPES.BOOLEAN,
+          openDynamic: true,
+          useCustomLayout: true,
+        },
+        {
+          id: `${baseWidgetName}-column-locale`,
+          labelName: i18n.t("editor.inspect.setter_label.table.locale"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.table.locale"),
+          attrName: "locale",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.STRING,
+          bindAttrName: ["showThousandsSeparator"],
+          shown: (value) => value,
+          openDynamic: true,
+          useCustomLayout: true,
+        },
+      ]
+    case "html":
+      return []
+    case "link":
+      return []
+    case "button":
+    case "buttongroup":
+    case "icongroup":
+    case "boolean":
+      return []
+    case "image":
+      return [
+        {
+          id: `${baseWidgetName}-column-scaleType`,
+          labelName: i18n.t("editor.inspect.setter_label.scale_type"),
+          attrName: "objectFit",
+          defaultValue: "scale-down",
+          setterType: "SEARCH_SELECT_SETTER",
+          options: ["container", "cover", "fill", "none", "scale-down"],
+        },
+      ]
+    case "rating":
+      return [
+        {
+          id: `${baseWidgetName}-column-maxCount`,
+          labelName: i18n.t("editor.inspect.setter_label.max_count"),
+          attrName: "maxCount",
+          placeholder: "{{ 5 }}",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.NUMBER,
+        },
+      ]
+    case "markdown":
+      return []
+    case "currency":
+      return [
+        {
+          id: `${baseWidgetName}-column-currencyCode`,
+          labelName: i18n.t("editor.inspect.setter_label.table.currency_code"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.table.currency_code"),
+          placeholder: i18n.t(
+            "editor.inspect.setter_placeholder.table.currency_code",
+          ),
+          attrName: "currencyCode",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.STRING,
+        },
+        {
+          id: `${baseWidgetName}-column-decimalPlaces`,
+          labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
+          attrName: "decimalPlaces",
+          placeholder: "{{ 0 }}",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.NUMBER,
+        },
+        {
+          id: `${baseWidgetName}-column-showThousandsSeparator`,
+          labelName: i18n.t(
+            "editor.inspect.setter_label.table.show_thousands_separ",
+          ),
+          labelDesc: i18n.t(
+            "editor.inspect.setter_tips.table.show_thousands_separ",
+          ),
+          attrName: "showThousandsSeparator",
+          setterType: "DYNAMIC_SWITCH_SETTER",
+          expectedType: VALIDATION_TYPES.BOOLEAN,
+          openDynamic: true,
+          useCustomLayout: true,
+        },
+        {
+          id: `${baseWidgetName}-column-locale`,
+          labelName: i18n.t("editor.inspect.setter_label.table.locale"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.table.locale"),
+          attrName: "locale",
+          setterType: "INPUT_SETTER",
+          expectedType: VALIDATION_TYPES.STRING,
+          bindAttrName: ["showThousandsSeparator"],
+          shown: (value) => value,
+          openDynamic: true,
+          useCustomLayout: true,
+        },
+      ]
+    default:
+      return []
+  }
+}
+
+export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
   {
     id: `${baseWidgetName}-column-headerName`,
     labelName: i18n.t("editor.inspect.setter_label.column_title"),
@@ -122,8 +332,8 @@ export const DATA_GRID_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
   },
   {
     id: `${baseWidgetName}-column-disableReorder`,
-    labelName: i18n.t("editor.inspect.setter_label.disable_users_to_sort"),
-    labelDesc: i18n.t("editor.inspect.setter_tips.disable_users_to_sort"),
+    labelName: i18n.t("editor.inspect.setter_label.disable_users_to_reorder"),
+    labelDesc: i18n.t("editor.inspect.setter_tips.disable_users_to_reorder"),
     attrName: "disableReorder",
     setterType: "DYNAMIC_SWITCH_SETTER",
     expectedType: VALIDATION_TYPES.BOOLEAN,

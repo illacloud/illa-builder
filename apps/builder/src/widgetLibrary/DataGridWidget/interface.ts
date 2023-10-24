@@ -53,10 +53,6 @@ export const ColumnTypeList = [
     value: "tag",
   },
   {
-    label: i18n.t("editor.inspect.setter_option.table.column_type.time"),
-    value: "time",
-  },
-  {
     label: i18n.t("editor.inspect.setter_option.table.column_type.datetime"),
     value: "datetime",
   },
@@ -69,7 +65,7 @@ export const ColumnTypeList = [
     value: "percent",
   },
   {
-    label: i18n.t("editor.inspect.setter_option.table.column_type.action"),
+    label: i18n.t("editor.inspect.setter_option.table.column_type.link"),
     value: "link",
   },
   {
