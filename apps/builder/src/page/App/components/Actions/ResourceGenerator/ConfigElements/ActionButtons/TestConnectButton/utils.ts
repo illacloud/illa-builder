@@ -2,7 +2,7 @@ import { ResourceType } from "@illa-public/public-types"
 import { FieldValues } from "react-hook-form"
 import { generateGraphQLAuthContent } from "@/page/App/components/Actions/api"
 import { generateSSLConfig } from "@/redux/resource/resourceState"
-import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
+import { DATABASE_INDEX } from "@/redux/resource/upstashResource"
 
 export const formatTestConnectValues = (
   data: FieldValues,
@@ -117,13 +117,22 @@ export const formatTestConnectValues = (
         ssl: generateSSLConfig(data.ssl, data),
       }
     }
-    case "upstash":
     case "redis": {
       return {
         host: data.host.trim(),
         port: data.port.toString(),
+        databaseIndex: data.databaseIndex,
+        databaseUsername: data.databaseUsername,
+        databasePassword: encodeURIComponent(data.databasePassword),
+        ssl: data.ssl,
+      }
+    }
+    case "upstash": {
+      return {
+        host: data.host.trim(),
+        port: data.port.toString(),
         databaseIndex: DATABASE_INDEX,
-        databaseUsername: DEFAULT_NAME,
+        databaseUsername: data.databaseUsername,
         databasePassword: encodeURIComponent(data.databasePassword),
         ssl: data.ssl,
       }
