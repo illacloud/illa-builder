@@ -113,7 +113,7 @@ export const formatTestConnectValues = (
         port: data.port.toString(),
         databaseName: data.databaseName,
         databaseUsername: data.databaseUsername,
-        databasePassword: data.databasePassword,
+        databasePassword: encodeURIComponent(data.databasePassword),
         ssl: generateSSLConfig(data.ssl, data),
       }
     }
@@ -123,10 +123,11 @@ export const formatTestConnectValues = (
         port: data.port.toString(),
         databaseName: data.databaseName,
         databaseUsername: data.databaseUsername,
-        databasePassword: data.databasePassword,
+        databasePassword: encodeURIComponent(data.databasePassword),
         ssl: neonSSLInitialValue,
       }
     }
+    case "upstash":
     case "redis": {
       return {
         host: data.host.trim(),
@@ -158,7 +159,7 @@ export const formatTestConnectValues = (
         host: data.host.trim(),
         port: +data.port,
         username: data.username,
-        password: data.password,
+        password: encodeURIComponent(data.password),
       }
     }
     case "snowflake": {
