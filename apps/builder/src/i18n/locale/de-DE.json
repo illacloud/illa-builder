@@ -1869,7 +1869,8 @@
         "enable_users_to_resize": "Benutzer können die Größe ändern",
         "enable_users_to_sort": "Benutzer zum Sortieren aktivieren",
         "disable_users_to_reorder": "Benutzer deaktivieren, um Spalten neu zu sortieren",
-        "locale": "Lokal"
+        "locale": "Lokal",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2170,7 +2171,9 @@
         "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen",
         "enable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. ",
         "disable_users_to_reorder": "Wird verwendet, um festzulegen, ob Benutzer zum Neuordnen der Spalten deaktiviert werden",
-        "locale": "Zum Beispiel de-US"
+        "locale": "Zum Beispiel de-US",
+        "default_width": "Verwendet um die Standardbreite der Spalte zu setzen",
+        "max_count": "Verwendet um die maximale Anzahl von Sternen zu setzen"
       },
       "setter_option": {
         "fixed": "Feste",
