@@ -11,8 +11,8 @@ import {
   getCanvas,
   searchDSLByDisplayName,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+} from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
@@ -22,8 +22,8 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
+import { ComponentNode } from "../components/componentsState"
 import { cursorActions } from "../cursor/cursorSlice"
-import { ComponentNode } from "../editor/components/componentsState"
 import {
   BatchUpdateWidgetLayoutInfoPayload,
   WidgetLayoutInfo,

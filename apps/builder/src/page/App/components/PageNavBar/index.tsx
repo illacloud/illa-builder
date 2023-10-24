@@ -5,18 +5,16 @@ import {
   canUseUpgradeFeature,
   showShareAppModal,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
 import {
-  FC,
-  MouseEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+  getILLABuilderURL,
+  getILLACloudURL,
+  isCloudVersion,
+} from "@illa-public/utils"
+import { fromNow } from "@illa-public/utils"
+import { FC, MouseEvent, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import {
   Badge,
   BugIcon,
@@ -43,7 +41,7 @@ import { DeployButtonGroup } from "@/page/App/components/PageNavBar/DeloyButtonG
 import { ShareAppButton } from "@/page/App/components/PageNavBar/ShareAppButton"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
-import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
+import { duplicateApp } from "@/page/App/components/PageNavBar/utils"
 import {
   getIsILLAEditMode,
   getIsILLAGuideMode,
@@ -57,14 +55,12 @@ import {
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import {
   fetchDeployApp,
   forkCurrentApp,
   updateWaterMarkConfig,
 } from "@/services/apps"
 import { takeSnapShot } from "@/services/history"
-import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { isMAC } from "@/utils/userAgent"
@@ -142,23 +138,24 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     ) => {
       setDeployLoading(true)
       try {
+        // TODO: wait API
+        // html2canvas(document.querySelector("#html2canvas")!, {
+        //   onclone(document, element) {
+        //     const a = element.querySelectorAll(".scroll-container")
+        //     Array.from(a).forEach((item) => {
+        //       item.scrollTop = 0
+        //     })
+        //   },
+        // }).then((canvas) => {
+        //   canvas.toBlob((blob) => {
+        //     console.log("blob", blob)
+        //   }, "image/png")
+        // })
         await fetchDeployApp(appId, isPublic)
         dispatch(appInfoActions.updateAppDeployedReducer(true))
-        dispatch(
-          dashboardAppActions.updateDashboardAppDeployedReducer({
-            appId,
-            deployed: true,
-          }),
-        )
         dispatch(appInfoActions.updateAppPublicReducer(isPublic))
-        dispatch(
-          dashboardAppActions.updateDashboardAppPublicReducer({
-            appId,
-            isPublic,
-          }),
-        )
         window.open(
-          `${window.location.origin}/${teamIdentifier}/deploy/app/${appId}`,
+          `${getILLABuilderURL()}/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
         )
         onSuccess?.()
@@ -195,11 +192,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [
     appInfo.appId,
-    appInfo.config.public,
     appInfo.appName,
-    isGuideMode,
+    appInfo.config.public,
     deployApp,
     forkGuideAppAndDeploy,
+    isGuideMode,
   ])
 
   const handleClickDeployMenu = useCallback(
@@ -275,9 +272,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     setDuplicateLoading(true)
     try {
       const response = await duplicateApp(appInfo.appId, appInfo.appName)
-      dispatch(
-        dashboardAppActions.addDashboardAppReducer({ app: response.data }),
-      )
       navigate(`/${teamIdentifier}/app/${response.data.appId}`)
     } catch (error) {
       if (isILLAAPiError(error)) {
@@ -334,31 +328,25 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [canUseBillingFeature, upgradeModal])
 
-  const PreviewButton = useMemo(
-    () => (
-      <Button
-        colorScheme="grayBlue"
-        leftIcon={isEditMode ? <FullScreenIcon /> : <ExitIcon />}
-        variant="fill"
-        bdRadius="8px"
-        onClick={handlePreviewButtonClick}
-      >
-        {previewButtonText}
-      </Button>
-    ),
-    [handlePreviewButtonClick, isEditMode, previewButtonText],
+  const PreviewButton = (
+    <Button
+      colorScheme="grayBlue"
+      leftIcon={isEditMode ? <FullScreenIcon /> : <ExitIcon />}
+      variant="fill"
+      bdRadius="8px"
+      onClick={handlePreviewButtonClick}
+    >
+      {previewButtonText}
+    </Button>
   )
 
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <Logo
-          width="34px"
-          onClick={() => {
-            navigate(`/${teamIdentifier}/dashboard/apps`)
-          }}
-          css={logoCursorStyle}
-        />
+        <Link to={getILLACloudURL()}>
+          <Logo width="34px" css={logoCursorStyle} />
+        </Link>
+
         <div css={informationStyle}>
           <AppName appInfo={appInfo} />
           {isOnline ? (
@@ -509,7 +497,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             </ButtonGroup>
           </div>
         ) : (
-          <>{PreviewButton}</>
+          PreviewButton
         )}
       </div>
     </div>

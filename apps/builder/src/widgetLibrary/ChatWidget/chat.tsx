@@ -19,7 +19,7 @@ import {
   addOrDelLoading,
   formatEventOptions,
 } from "@/widgetLibrary/ChatWidget/utils"
-import { RenderChildrenCanvas } from "@/widgetLibrary/PublicSector/RenderChildrenCanvas"
+import RenderChildrenCanvas from "@/widgetLibrary/PublicSector/RenderChildrenCanvas"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { emptyMessage } from "./constants"
 
@@ -210,7 +210,11 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
             <div css={resizeLineStyle} />
             <div css={footerStyle}>
               <RenderChildrenCanvas
-                currentComponentNode={childrenNode[0]}
+                displayName={childrenNode[0].displayName}
+                hasChildrenNode={
+                  Array.isArray(childrenNode[0].childrenNode) &&
+                  childrenNode[0].childrenNode.length > 0
+                }
                 columnNumber={columnNumber}
                 handleUpdateHeight={() => {}}
               />

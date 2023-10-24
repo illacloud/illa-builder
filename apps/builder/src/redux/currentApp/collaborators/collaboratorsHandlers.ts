@@ -3,7 +3,7 @@ import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import store, { AppListenerEffectAPI } from "@/store"
 
 export const getDisattachedComponents = (

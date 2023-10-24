@@ -76,9 +76,16 @@
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. ",
-      "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen."
+      "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen.",
+      "save_resource": "Lagre vellykket, siden vil lukkes om 3 sekunder..."
     },
-    "create": "Opprett"
+    "create": "Opprett",
+    "pwa": {
+      "guide": {
+        "title": "Legg til ILLA Sky til skrivebordet ditt",
+        "desc": "Legg til skrivebordet for å få tilgang til arbeidsområdet raskt. Øk effektiviteten. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Nå nettopp"
@@ -203,7 +210,8 @@
           },
           "oracle": {
             "sid": "Behandle databasenavn som",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle versjon"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -352,7 +360,11 @@
               "sid": "SID",
               "service": "Tjeneste navn"
             },
-            "ssl": "Bruk SSL når tilgjengelig"
+            "ssl": "Bruk SSL når tilgjengelig",
+            "version": {
+              "below": "9i eller under",
+              "above": "9i over"
+            }
           },
           "couchdb": {
             "ssl": "Bruk SSL/TLS når tilgjengelig"
@@ -609,7 +621,9 @@
               "global-data": "Globale data",
               "ai-agent": "AI Agent",
               "more": "Mer",
-              "create-resource": "Opprett fra ressurs"
+              "create-resource": "Opprett fra ressurs",
+              "unsafe": "Usikker",
+              "safe": "Sikker"
             }
           },
           "restapi": {
@@ -654,6 +668,9 @@
             },
             "global-data": {
               "how-to-use": "Bruk disse globale dataene av {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "Når du bruker sikker modus, kan SQL bare referere til variabler i stedet for variabler, for eksempel, der navn = '{{input1.value}}'. Dette hindrer brukere i å kompromittere databasen ved å angi erklæringer som '; slipp-tabell;' i input1. Ved bruk av usikker modus, kan SQL-syntaksord også erstattes med variabler, slikt som der {{input1.value}} {{input2.value}} '{{input3.value}}'. I dette tilfellet kan databasen imidlertid bli kompromittert av innholdet som brukeren har angitt. Det er ikke anbefalt for deg å bruke denne modus."
             }
           },
           "advanced": {
@@ -694,7 +711,8 @@
           },
           "general": {
             "connect-data-source": "Koble til database eller api",
-            "more-type": "Mer type datakilder"
+            "more-type": "Mer type datakilder",
+            "safe_mode": "Modus"
           }
         },
         "menu": {
@@ -1294,7 +1312,8 @@
           "onMenuSelect": "Velg element",
           "on_menu_select": "Velg menypunkt",
           "pageChange": "Side endring",
-          "clickItem": "Klikk pÃ¥ element"
+          "clickItem": "Klikk pÃ¥ element",
+          "columnVisibilityChange": "Kolonne synlighet endring"
         },
         "image_list": {
           "title": "Bilder",
@@ -1841,11 +1860,15 @@
         "allow_row_selection": "Tillat radmarkering",
         "selection_mode": "Utvalg modus",
         "pin_column": "Fest kolonne",
-        "enable_users_to_sort": "Tillat brukere å sortere",
         "enable_users_to_pin": "Tillat brukere å feste",
         "enable_users_to_filter": "Aktiver brukere for å filtrere",
         "enable_users_to_hide": "Aktivere brukere å skjule",
-        "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av"
+        "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av",
+        "column_description": "Beskrivelse",
+        "enable_users_to_aggregate": "Tillat brukere å aggregere",
+        "enable_users_to_resize": "Tillat brukere å endre størrelse",
+        "enable_users_to_sort": "Tillat brukere å sortere",
+        "disable_users_to_reorder": "Deaktiver brukere for å endre rekkefølgen av kolonner"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2138,12 +2161,14 @@
         "selection_mode": "Brukes til å angi valg av flere rader eller enkeltradvalg",
         "allow_row_selection": "Brukes for å angi om eller ikke tillater brukere å velge rad",
         "pin_column": "Brukes til å feste kolonnen til alle brukere",
-        "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
         "enable_users_to_pin": "Brukes for å angi om brukere tillater å feste kolonnen",
         "enable_users_to_filter": "Brukes for å angi om brukere kan filtrere i denne kolonnen",
         "enable_users_to_hide": "Brukes for å angi om brukere tillater å skjule kolonnen",
         "enable_users_to_aggregate": "Brukes for å angi om brukerne skal kunne aggregere data i denne kolonnen eller ikke.",
-        "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. "
+        "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. ",
+        "column_description": "Brukes til å angi en beskrivelse av denne kolonnen",
+        "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
+        "disable_users_to_reorder": "Brukes til å angi om eller ikke deaktivere brukere for å reorganisere kolonner"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2211,7 +2236,27 @@
           "limited": "Begrenset",
           "limit_offset_based": "Grense forskjøvet basert",
           "cursor_based": "Markør basert",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automatisk",
+            "text": "Tekst",
+            "date": "Dato",
+            "tag": "Tagg",
+            "time": "Tid",
+            "datetime": "Dato klokkeslett",
+            "number": "Nummer",
+            "percent": "Prosent",
+            "link": "Lenke",
+            "button": "Knapp",
+            "buttongroup": "Knappegruppe",
+            "boolean": "Boolean",
+            "image": "Bilde",
+            "icongroup": "Ikongruppe",
+            "rating": "Vurdering",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Valuta"
+          }
         },
         "input": {
           "input": "Input",
@@ -3167,6 +3212,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Datatrutenett"
     }
   },
   "page": {
@@ -4387,7 +4435,24 @@
     "before": "Last mer"
   },
   "size_exceed_copied_tips": "Innholdet er for langt for kopiering. (gjeldende størrelse: {{current_size}} bytes, begrensing: {{limit_size}} bytes)",
-  "contribute": "Bidra",
+  "contribute": {
+    "tag": {
+      "recommended": "Anbefalt",
+      "add_tag": "Legg til tagger",
+      "tag": "Tagg",
+      "failed_to_save": "Kunne ikke lagre"
+    },
+    "update": "Rediger tagger",
+    "copy_link": "Kopier lenke",
+    "first_time_modal": {
+      "title": "Bidra til samfunnet",
+      "button": "Bidra"
+    },
+    "update_modal": {
+      "button": "Oppdater",
+      "title": "Rediger"
+    }
+  },
   "error_page": {
     "fobidden": "Ingen tilgang"
   }

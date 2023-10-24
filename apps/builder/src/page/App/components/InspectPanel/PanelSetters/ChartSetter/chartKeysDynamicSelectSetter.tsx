@@ -9,7 +9,7 @@ import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import {
   getCanvas,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+} from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"

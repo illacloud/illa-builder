@@ -1,4 +1,4 @@
-import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
+import { CONTAINER_TYPE } from "@/redux/currentApp/components/componentsState"
 
 export const BasicContainerConfig = {
   type: "CANVAS",

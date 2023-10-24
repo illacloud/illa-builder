@@ -76,9 +76,16 @@
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. ",
-      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači."
+      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači.",
+      "save_resource": "Úspěšně uloženo, stránka se zavře za 3 sekundy..."
     },
-    "create": "Vytvořit"
+    "create": "Vytvořit",
+    "pwa": {
+      "guide": {
+        "title": "Přidat ILLA Cloud do vaší plochy",
+        "desc": "Pro rychlý přístup k pracovnímu prostoru přidejte na plochu. Zvyšte svou efektivitu. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Právě teď"
@@ -203,7 +210,8 @@
           },
           "oracle": {
             "sid": "Považovat název databáze za",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Verze Oracle"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -352,7 +360,11 @@
               "sid": "SID",
               "service": "Název služby"
             },
-            "ssl": "Použít SSL, pokud je k dispozici"
+            "ssl": "Použít SSL, pokud je k dispozici",
+            "version": {
+              "below": "9i nebo méně",
+              "above": "9i výše"
+            }
           },
           "couchdb": {
             "ssl": "Použít SSL/TLS, pokud je k dispozici"
@@ -609,7 +621,9 @@
               "global-data": "Globální data",
               "ai-agent": "AI Agent",
               "more": "Více",
-              "create-resource": "Vytvořit ze zdroje"
+              "create-resource": "Vytvořit ze zdroje",
+              "unsafe": "Nebezpečný",
+              "safe": "Bezpečné"
             }
           },
           "restapi": {
@@ -654,6 +668,9 @@
             },
             "global-data": {
               "how-to-use": "Použít tato globální data {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "Při používání bezpečného režimu může vaše SQL pouze referenční proměnné v místě proměnných, například kde název = '{{input1.value}}'. To zabraňuje uživatelům v kompromitování vaší databáze zadáním příkazů jako '; drop table;' do input1. Pokud používáte nebezpečný režim, mohou být syntaxová slova SQL nahrazena proměnnými, jako je kde {{input1.value}} {{input2.value}} '{{input3.value}}'. V tomto případě však může být databáze ohrožena obsahem zadaným uživatelem. Není doporučeno používat tento režim."
             }
           },
           "advanced": {
@@ -694,7 +711,8 @@
           },
           "general": {
             "connect-data-source": "Připojit k databázi nebo api",
-            "more-type": "Další typ zdrojů údajů"
+            "more-type": "Další typ zdrojů údajů",
+            "safe_mode": "Režim"
           }
         },
         "menu": {
@@ -1294,7 +1312,8 @@
           "onMenuSelect": "Vybrat položku",
           "on_menu_select": "Vyberte položku nabídky",
           "pageChange": "Změna stránky",
-          "clickItem": "Klepněte na položku"
+          "clickItem": "Klepněte na položku",
+          "columnVisibilityChange": "Změna viditelnosti sloupců"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1841,11 +1860,15 @@
         "allow_row_selection": "Povolit výběr řádků",
         "selection_mode": "Režim výběru",
         "pin_column": "PINový sloupec",
-        "enable_users_to_sort": "Povolit řazení uživatelů",
         "enable_users_to_pin": "Povolit uživatele pro pin",
         "enable_users_to_filter": "Povolit uživatelům filtrovat",
         "enable_users_to_hide": "Povolit uživatelům skrýt",
-        "enable_users_to_set_group_by": "Povolit uživatelům nastavit skupinu podle"
+        "enable_users_to_set_group_by": "Povolit uživatelům nastavit skupinu podle",
+        "column_description": "L 343, 22.12.2009, s. 1).",
+        "enable_users_to_aggregate": "Povolit uživatelům agregovat",
+        "enable_users_to_resize": "Povolit uživatelům změnit velikost",
+        "enable_users_to_sort": "Povolit řazení uživatelů",
+        "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2138,12 +2161,14 @@
         "selection_mode": "Používá se k nastavení výběru více řádků nebo výběru jednoho řádku",
         "allow_row_selection": "Slouží k nastavení, zda povolit nebo zakázat uživatelům vybrat řádek",
         "pin_column": "Sloupec připnut všem uživatelům",
-        "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
         "enable_users_to_pin": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům připnutí sloupce",
         "enable_users_to_filter": "Slouží k nastavení, zda povolit uživatelům filtrovat v tomto sloupci",
         "enable_users_to_hide": "Slouží k nastavení, zda povolit nebo zakázat uživatelům skrýt sloupec",
         "enable_users_to_aggregate": "Slouží k nastavení, zda umožnit nebo neumožnit uživatelům provést agregaci údajů v tomto sloupci.",
-        "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. "
+        "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. ",
+        "column_description": "Slouží k nastavení popisu tohoto sloupce",
+        "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
+        "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců"
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -2211,7 +2236,27 @@
           "limited": "Omezeno",
           "limit_offset_based": "Limit na základě posunu",
           "cursor_based": "Na základě kurzoru",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automaticky",
+            "text": "Text",
+            "date": "Datum:",
+            "tag": "Značka",
+            "time": "Čas",
+            "datetime": "Datum a čas",
+            "number": "Číslo",
+            "percent": "Procento",
+            "link": "Odkaz",
+            "button": "Tlačítko",
+            "buttongroup": "Skupina tlačítek",
+            "boolean": "Boolean",
+            "image": "Obrázek",
+            "icongroup": "Skupina ikon",
+            "rating": "Hodnocení",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Měna"
+          }
         },
         "input": {
           "input": "Input",
@@ -3167,6 +3212,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Datová síť"
     }
   },
   "page": {
@@ -4387,7 +4435,24 @@
     "before": "Načíst více"
   },
   "size_exceed_copied_tips": "Obsah je příliš dlouhý na kopírování. (aktuální velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)",
-  "contribute": "Přispějte",
+  "contribute": {
+    "tag": {
+      "recommended": "Doporučené",
+      "add_tag": "Přidat štítky",
+      "tag": "Značka",
+      "failed_to_save": "Uložení se nezdařilo"
+    },
+    "update": "Upravit štítky",
+    "copy_link": "Kopírovat odkaz",
+    "first_time_modal": {
+      "title": "Přispět do komunity",
+      "button": "Přispějte"
+    },
+    "update_modal": {
+      "button": "Aktualizovat",
+      "title": "Upravit"
+    }
+  },
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
   }

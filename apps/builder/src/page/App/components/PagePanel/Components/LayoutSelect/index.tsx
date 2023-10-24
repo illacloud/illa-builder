@@ -9,7 +9,7 @@ import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/pr
 import { ReactComponent as PresetCIcon } from "@/assets/rightPagePanel/layout/preset-c.svg"
 import { ReactComponent as PresetDIcon } from "@/assets/rightPagePanel/layout/preset-d.svg"
 import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/preset-e.svg"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   LayoutOptionItemProps,

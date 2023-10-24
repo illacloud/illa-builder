@@ -1,3 +1,4 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, Suspense, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -15,12 +16,11 @@ import {
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { fetchCreateAction } from "@/services/action"
 import { getActionNameFromActionType } from "@/utils/actionResourceTransformer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionGenerator } from "../ActionGenerator"
-import { getIconFromActionType } from "../getIcon"
 import { MORE_DATA_TYPE, RECOMMEND_RESOURCES } from "./constans"
 import {
   basicButtonStyle,
@@ -137,7 +137,7 @@ export const ActionGuidePanel: FC = () => {
                 key={type}
                 onClick={handleClickActionType(type)}
               >
-                <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
+                <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
                 <span css={categoryItemNameStyle}>
                   {getActionNameFromActionType(type)}
                 </span>
@@ -169,7 +169,7 @@ export const ActionGuidePanel: FC = () => {
                 key={type}
                 onClick={handleClickActionType(type)}
               >
-                <Suspense>{getIconFromActionType(type, "24px")}</Suspense>
+                <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
                 <span css={categoryItemNameStyle}>
                   {getActionNameFromActionType(type)}
                 </span>

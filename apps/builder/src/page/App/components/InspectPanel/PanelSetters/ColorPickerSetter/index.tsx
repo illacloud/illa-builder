@@ -1,6 +1,6 @@
 import { FC } from "react"
 import ColorSetter from "@/components/ColorSetter"
-import { PanelLabel } from "../../components/Label"
+import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { ColorPickerSetterProps } from "./interface"
 import { setterContainerStyle } from "./style"
 

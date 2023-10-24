@@ -76,9 +76,16 @@
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. ",
-      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop."
+      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop.",
+      "save_resource": "Salvare reușită, pagina se va închide în 3 secunde..."
     },
-    "create": "Crează"
+    "create": "Crează",
+    "pwa": {
+      "guide": {
+        "title": "Adaugă ILLA Cloud pe desktop",
+        "desc": "Adăugați pe desktop pentru a accesa rapid spațiul de lucru. Crește-ți eficiența. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Chiar acum"
@@ -203,7 +210,8 @@
           },
           "oracle": {
             "sid": "Tratează numele bazei de date ca",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Versiune Oracle"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -352,7 +360,11 @@
               "sid": "SID",
               "service": "Nume Serviciu"
             },
-            "ssl": "Utilizează SSL atunci când este disponibil"
+            "ssl": "Utilizează SSL atunci când este disponibil",
+            "version": {
+              "below": "9i sau mai puțin",
+              "above": "9i peste"
+            }
           },
           "couchdb": {
             "ssl": "Utilizați SSL/TLS atunci când este disponibil"
@@ -609,7 +621,9 @@
               "global-data": "Date globale",
               "ai-agent": "AI Agent",
               "more": "Mai",
-              "create-resource": "Creează din resurse"
+              "create-resource": "Creează din resurse",
+              "unsafe": "Nesigur",
+              "safe": "Sigur"
             }
           },
           "restapi": {
@@ -654,6 +668,9 @@
             },
             "global-data": {
               "how-to-use": "Utilizați aceste date globale de către {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "Când utilizați modul de siguranță, SQL poate doar variabilele de referință în locul variabilelor, de exemplu, unde numele = '{{input1.value}}'. Acest lucru îi împiedică pe utilizatori să compromită baza de date prin introducerea unor declarații ca \"tabelul de renunțare\". La utilizarea modului nesigur, cuvintele de sintaxă SQL pot fi de asemenea înlocuite cu variabile, cum ar fi unde {{input1.value}} {{input2.value}} '{{input3.value}}'. Cu toate acestea, în acest caz, baza de date poate fi compromisă de conținutul introdus de utilizator. Nu este recomandat să utilizaţi acest mod."
             }
           },
           "advanced": {
@@ -694,7 +711,8 @@
           },
           "general": {
             "connect-data-source": "Conectează-te la baza de date sau API",
-            "more-type": "Mai multe tipuri de surse de date"
+            "more-type": "Mai multe tipuri de surse de date",
+            "safe_mode": "Mod"
           }
         },
         "menu": {
@@ -1294,7 +1312,8 @@
           "onMenuSelect": "Selectare element",
           "on_menu_select": "Selectați elementul de meniu",
           "pageChange": "Modificare pagină",
-          "clickItem": "Elementul clic"
+          "clickItem": "Elementul clic",
+          "columnVisibilityChange": "Schimbare vizibilitate coloană"
         },
         "image_list": {
           "title": "Imagini",
@@ -1841,11 +1860,15 @@
         "allow_row_selection": "Permite selecția rândului",
         "selection_mode": "Mod selecţie",
         "pin_column": "Fixează coloana",
-        "enable_users_to_sort": "Permite utilizatorilor să sorteze",
         "enable_users_to_pin": "Permite utilizatorilor să fixeze",
         "enable_users_to_filter": "Permite utilizatorilor să filtreze",
         "enable_users_to_hide": "Permite utilizatorilor să ascundă",
-        "enable_users_to_set_group_by": "Permite utilizatorilor să seteze gruparea după"
+        "enable_users_to_set_group_by": "Permite utilizatorilor să seteze gruparea după",
+        "column_description": "Descriere",
+        "enable_users_to_aggregate": "Permite utilizatorilor să agrege",
+        "enable_users_to_resize": "Permite utilizatorilor să redimensioneze",
+        "enable_users_to_sort": "Permite utilizatorilor să sorteze",
+        "disable_users_to_reorder": "Dezactivează utilizatorii pentru a reordona coloanele"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2138,12 +2161,14 @@
         "selection_mode": "Folosit pentru a seta selecția mai multor rânduri sau selecția unui singur rând",
         "allow_row_selection": "Folosit pentru a seta dacă permite sau nu utilizatorilor să selecteze rândul",
         "pin_column": "Folosit pentru a fixa coloana pentru toţi utilizatorii",
-        "enable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. ",
         "enable_users_to_pin": "Folosit pentru a seta dacă permite sau nu utilizatorilor să fixeze coloana",
         "enable_users_to_filter": "Folosit pentru a seta dacă permite sau nu utilizatorilor să filtreze pe această coloană",
         "enable_users_to_hide": "Folosit pentru a seta dacă permite sau nu utilizatorilor să ascundă coloana",
         "enable_users_to_aggregate": "Folosit pentru a seta dacă permite sau nu utilizatorilor să efectueze agregarea de date pe această coloană.",
-        "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. "
+        "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. ",
+        "column_description": "Folosit pentru a seta o descriere a acestei coloane",
+        "enable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. ",
+        "disable_users_to_reorder": "Folosit pentru a seta dacă dezactivează sau nu utilizatorii pentru a reordona coloanele"
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -2211,7 +2236,27 @@
           "limited": "Limitat",
           "limit_offset_based": "Limită offset bazat pe",
           "cursor_based": "Bazat pe cursor",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automat",
+            "text": "Text",
+            "date": "Data",
+            "tag": "Etichetă",
+            "time": "Timp",
+            "datetime": "Data orei",
+            "number": "Număr",
+            "percent": "Procent",
+            "link": "Link-ul",
+            "button": "Buton",
+            "buttongroup": "Grup butoane",
+            "boolean": "Boolean",
+            "image": "Imagine",
+            "icongroup": "Grup pictograme",
+            "rating": "Clasificare",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Monedă"
+          }
         },
         "input": {
           "input": "Input",
@@ -3167,6 +3212,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Grila de date"
     }
   },
   "page": {
@@ -4387,7 +4435,24 @@
     "before": "Încarcă mai mult"
   },
   "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)",
-  "contribute": "Contribuie",
+  "contribute": {
+    "tag": {
+      "recommended": "Recomandat",
+      "add_tag": "Adaugă etichete",
+      "tag": "Etichetă",
+      "failed_to_save": "Salvarea nu a reușit"
+    },
+    "update": "Editare etichete",
+    "copy_link": "Copiază link-ul",
+    "first_time_modal": {
+      "title": "Contribuie la comunitate",
+      "button": "Contribuie"
+    },
+    "update_modal": {
+      "button": "Actualizare",
+      "title": "Editare"
+    }
+  },
   "error_page": {
     "fobidden": "Fără permisiune de acces"
   }

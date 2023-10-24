@@ -76,9 +76,16 @@
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
       "delete-suc": "正常に削除しました。 ",
-      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。"
+      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。",
+      "save_resource": "保存に成功しました。ページは3秒で閉じられます..."
     },
-    "create": "作成"
+    "create": "作成",
+    "pwa": {
+      "guide": {
+        "title": "ILLA クラウドをデスクトップに追加",
+        "desc": "デスクトップに追加すると、ワークスペースにすばやくアクセスできます。効率が向上します。 "
+      }
+    }
   },
   "dayjs": {
     "just_now": "ただ"
@@ -203,7 +210,8 @@
           },
           "oracle": {
             "sid": "データベース名",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracleバージョン"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -352,7 +360,11 @@
               "sid": "SID",
               "service": "サービス名"
             },
-            "ssl": "可能な場合は SSL を使用する"
+            "ssl": "可能な場合は SSL を使用する",
+            "version": {
+              "below": "9i 以下",
+              "above": "9i 以上"
+            }
           },
           "couchdb": {
             "ssl": "可能な場合は SSL/TLS を使用する"
@@ -609,7 +621,9 @@
               "global-data": "グローバルデータ",
               "ai-agent": "AI Agent",
               "more": "もっと見る",
-              "create-resource": "リソースから作成"
+              "create-resource": "リソースから作成",
+              "unsafe": "危険です",
+              "safe": "安全"
             }
           },
           "restapi": {
@@ -654,6 +668,9 @@
             },
             "global-data": {
               "how-to-use": "このグローバルデータを {{globalData.state1}}で使用する"
+            },
+            "general": {
+              "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
             }
           },
           "advanced": {
@@ -694,7 +711,8 @@
           },
           "general": {
             "connect-data-source": "データベースまたは api に接続します",
-            "more-type": "More type of data source"
+            "more-type": "More type of data source",
+            "safe_mode": "モード"
           }
         },
         "menu": {
@@ -1294,7 +1312,8 @@
           "onMenuSelect": "アイテムを選択",
           "on_menu_select": "メニュー項目を選択",
           "pageChange": "ページ変更",
-          "clickItem": "アイテムをクリックします"
+          "clickItem": "アイテムをクリックします",
+          "columnVisibilityChange": "列の表示の変更"
         },
         "image_list": {
           "title": "イメージ",
@@ -1841,11 +1860,15 @@
         "allow_row_selection": "行の選択を許可",
         "selection_mode": "選択モード",
         "pin_column": "列をピン留めする",
-        "enable_users_to_sort": "ユーザーの並び替えを有効にする",
         "enable_users_to_pin": "ユーザーのピン留めを有効にする",
         "enable_users_to_filter": "フィルタを有効にする",
         "enable_users_to_hide": "ユーザーの非表示を有効にする",
-        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする"
+        "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする",
+        "column_description": "説明",
+        "enable_users_to_aggregate": "ユーザーの集計を有効にする",
+        "enable_users_to_resize": "ユーザーのサイズ変更を有効にする",
+        "enable_users_to_sort": "ユーザーの並び替えを有効にする",
+        "disable_users_to_reorder": "列の並び替えを無効にする"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2138,12 +2161,14 @@
         "selection_mode": "複数行の選択または単一行の選択を設定するために使用されます",
         "allow_row_selection": "ユーザーが行を選択できるかどうかを設定するために使用",
         "pin_column": "すべてのユーザーに列を固定するために使用",
-        "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
         "enable_users_to_pin": "ユーザーが列を固定することを許可するかどうかを設定するために使用",
         "enable_users_to_filter": "このカラムをフィルタリングできるかどうかを設定するために使用します。",
         "enable_users_to_hide": "ユーザーが列を非表示にするかどうかを設定するために使用します。",
         "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
-        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 "
+        "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 ",
+        "column_description": "この列の説明を設定するために使用",
+        "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
+        "disable_users_to_reorder": "列の順序を変更するためにユーザーを無効にするかどうかを設定するために使用"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -2211,7 +2236,27 @@
           "limited": "制限",
           "limit_offset_based": "リミットオフセットベース",
           "cursor_based": "カーソルベース",
-          "graphql_relay_cursor": "GraphQLリレーカーソル"
+          "graphql_relay_cursor": "GraphQLリレーカーソル",
+          "column_type": {
+            "auto": "自動",
+            "text": "テキスト",
+            "date": "日付",
+            "tag": "タグ",
+            "time": "時刻",
+            "datetime": "日付",
+            "number": "数値",
+            "percent": "割合",
+            "link": "リンク",
+            "button": "ボタン",
+            "buttongroup": "ボタングループ",
+            "boolean": "Boolean",
+            "image": "画像",
+            "icongroup": "アイコングループ",
+            "rating": "評価",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "通貨"
+          }
         },
         "input": {
           "input": "入力",
@@ -3167,6 +3212,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "データグリッド"
     }
   },
   "page": {
@@ -4387,7 +4435,24 @@
     "before": "さらに読み込む"
   },
   "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
-  "contribute": "貢献",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "タグを追加",
+      "tag": "タグ",
+      "failed_to_save": "保存に失敗しました"
+    },
+    "update": "タグを編集",
+    "copy_link": "リンクをコピー",
+    "first_time_modal": {
+      "title": "コミュニティに貢献する",
+      "button": "貢献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "編集"
+    }
+  },
   "error_page": {
     "fobidden": "アクセス権限がありません"
   }
