@@ -1203,7 +1203,8 @@
           "tooltips": "개체 또는 기본 값을 지원합니다. 예: { 개수: 0 }",
           "placeholder": "{ count: 0 }"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "배포 실패"
@@ -1868,7 +1869,9 @@
         "enable_users_to_aggregate": "Enable users to aggregate",
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "Enable users to sort",
-        "disable_users_to_reorder": "Disable users to reorder columns"
+        "disable_users_to_reorder": "Disable users to reorder columns",
+        "locale": "Locale",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -2168,7 +2171,10 @@
         "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
         "column_description": "Used to set a description of this column",
         "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns"
+        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
+        "locale": "For example, en-US",
+        "default_width": "Used to set the default width of the column",
+        "max_count": "Used to set the max count of stars"
       },
       "setter_option": {
         "fixed": "고정 높이",
