@@ -12,6 +12,3 @@ export const DefaultClearText = i18n.t(
 export const RecordPermission = i18n.t(
   "editor.inspect.setter_message.recording.recording_permission",
 )
-export const SetValueMessage = i18n.t(
-  "editor.inspect.setter_message.recording.cannot_set_value_dur",
-)
