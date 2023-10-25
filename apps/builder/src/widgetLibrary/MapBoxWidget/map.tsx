@@ -23,7 +23,7 @@ export const WrapperMap: FC<WrappedMapProps> = (props) => {
           {
             displayName,
             value: {
-              markers: markers || DefaultMarkers,
+              markers: markers || [],
             },
           },
         ])
