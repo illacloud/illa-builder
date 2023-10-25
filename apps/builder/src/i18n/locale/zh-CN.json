@@ -1203,7 +1203,8 @@
           "tooltips": "支持对象或原始值。 示例：{ 计数：0 }",
           "placeholder": "{ count: 0 }"
         }
-      }
+      },
+      "library": "库"
     },
     "deploy": {
       "fail": "部署失败"
