@@ -1203,7 +1203,8 @@
           "tooltips": "Understøtter objekter eller primitive værdier. Eksempel: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Mislykkedes at implementere"
