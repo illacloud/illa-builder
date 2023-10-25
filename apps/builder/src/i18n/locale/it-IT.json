@@ -1203,7 +1203,8 @@
           "tooltips": "Supporta oggetti o valori primitivi. Esempio: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Impossibile implementare"
