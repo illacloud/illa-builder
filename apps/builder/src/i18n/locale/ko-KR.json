@@ -1203,7 +1203,8 @@
           "tooltips": "개체 또는 기본 값을 지원합니다. 예: { 개수: 0 }",
           "placeholder": "{ count: 0 }"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "배포 실패"
