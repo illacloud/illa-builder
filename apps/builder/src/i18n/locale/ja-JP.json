@@ -1203,7 +1203,8 @@
           "tooltips": "オブジェクトまたはプリミティブ値をサポートします。 例: { カウント: 0 }",
           "placeholder": "{ count: 0 }"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "展開に失敗しました"
