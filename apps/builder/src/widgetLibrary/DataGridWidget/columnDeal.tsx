@@ -47,10 +47,15 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
     const index = params.api.getAllRowIds().findIndex((id) => id === params.id)
     if (index !== -1) {
       const mappedValue = get(params.colDef, "mappedValue")
-      if (isArray(mappedValue)) {
-        return mappedValue[index]
-      } else {
+      if (mappedValue === undefined) {
         return params.value
+      }
+      if (isArray(mappedValue)) {
+        return isObject(mappedValue[index])
+          ? JSON.stringify(mappedValue[index])
+          : mappedValue[index]
+      } else {
+        return isObject(mappedValue) ? JSON.stringify(mappedValue) : mappedValue
       }
     } else {
       return params.value
@@ -59,16 +64,20 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
 
   const commonDateValueGetter = (params: GridValueGetterParams) => {
     const index = params.api.getAllRowIds().findIndex((id) => id === params.id)
+    let v = params.value
     if (index !== -1) {
       const mappedValue = get(params.colDef, "mappedValue")
-      if (isArray(mappedValue)) {
-        return dayjs(mappedValue[index], get(params.colDef, "format")).toDate()
-      } else {
-        return dayjs(params.value, get(params.colDef, "format")).toDate()
+      if (mappedValue !== undefined) {
+        if (isArray(mappedValue)) {
+          v = isObject(mappedValue[index])
+            ? JSON.stringify(mappedValue[index])
+            : mappedValue[index]
+        } else {
+          v = isObject(mappedValue) ? JSON.stringify(mappedValue) : mappedValue
+        }
       }
-    } else {
-      return dayjs(params.value, get(params.colDef, "format")).toDate()
     }
+    return dayjs(v, get(params.colDef, "format")).toDate()
   }
 
   switch (column.columnType) {
@@ -107,7 +116,9 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
                   .getAllRowIds()
                   .findIndex((id) => id === params.id)
                 if (isArray(label) && index !== -1) {
-                  label = label[index]
+                  label = isObject(label[index])
+                    ? JSON.stringify(label[index])
+                    : label[index]
                 }
                 if (isObject(label)) {
                   label = JSON.stringify(label)
