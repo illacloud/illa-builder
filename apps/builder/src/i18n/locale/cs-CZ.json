@@ -1203,7 +1203,8 @@
           "tooltips": "Podporuje objekty nebo primitivní hodnoty. Příklad: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Nepodařilo se nasadit"
