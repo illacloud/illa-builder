@@ -1203,7 +1203,8 @@
           "tooltips": "Tukee objekteja tai alkeellisia arvoja. Esimerkki: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Ei voitu ottaa käyttöön"
