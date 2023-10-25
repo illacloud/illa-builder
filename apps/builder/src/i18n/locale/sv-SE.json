@@ -1203,7 +1203,8 @@
           "tooltips": "Stöder objekt eller primitiva värden. Exempel: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Det gick inte att distribuera"
