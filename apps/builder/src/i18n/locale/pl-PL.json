@@ -1203,7 +1203,8 @@
           "tooltips": "Obsługuje obiekty lub prymitywne wartości. Przykład: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Nie udało się wdrożyć"
