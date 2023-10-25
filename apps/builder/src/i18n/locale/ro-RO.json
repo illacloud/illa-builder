@@ -1203,7 +1203,8 @@
           "tooltips": "Suportă obiecte sau valori primitive. Exemplu: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Lansarea a eșuat"
