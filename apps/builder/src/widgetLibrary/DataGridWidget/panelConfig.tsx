@@ -424,7 +424,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     id: `${baseWidgetName}-column-columnType`,
     labelName: i18n.t("editor.inspect.setter_label.column_type"),
     attrName: "columnType",
-    setterType: "SEARCH_SELECT_SETTER",
+    setterType: "DATA_GRID_TYPE_SELECT_SETTER",
     options: ColumnTypeList,
     expectedType: VALIDATION_TYPES.STRING,
   },

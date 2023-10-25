@@ -9,6 +9,6 @@ export interface ColumnButtonGroupSetterProps extends BaseSetter {
 export interface GroupButton {
   id: string
   mappedValue: string
-  disabled: boolean
+  disabled?: boolean
   colorScheme: string
 }
