@@ -1203,7 +1203,8 @@
           "tooltips": "Tukee objekteja tai alkeellisia arvoja. Esimerkki: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Ei voitu ottaa käyttöön"
@@ -1868,7 +1869,9 @@
         "enable_users_to_aggregate": "Salli käyttäjien koota yhteen",
         "enable_users_to_resize": "Salli käyttäjien koon muuttaminen",
         "enable_users_to_sort": "Salli käyttäjien lajitella",
-        "disable_users_to_reorder": "Poista käyttäjät tilataksesi sarakkeita uudelleen"
+        "disable_users_to_reorder": "Poista käyttäjät tilataksesi sarakkeita uudelleen",
+        "locale": "Lokaatio",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2168,7 +2171,10 @@
         "enable_users_to_set_group_by": "Käytetään määritettäessä, sallivatko käyttäjät asettaa tietoryhmänäytön vai eivät. ",
         "column_description": "Käytetään tämän sarakkeen kuvauksen asettamiseen",
         "enable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. ",
-        "disable_users_to_reorder": "Käytetään määritettäessä, onko käyttäjä poistettu käytöstä järjestääksesi sarakkeet uudelleen"
+        "disable_users_to_reorder": "Käytetään määritettäessä, onko käyttäjä poistettu käytöstä järjestääksesi sarakkeet uudelleen",
+        "locale": "Esimerkiksi fi-FI",
+        "default_width": "Käytetään määritettäessä sarakkeen oletusleveyttä",
+        "max_count": "Käytetään asettamaan suurin määrä tähtiä"
       },
       "setter_option": {
         "fixed": "Kiinteä",

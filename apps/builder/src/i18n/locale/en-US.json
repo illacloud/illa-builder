@@ -1203,7 +1203,8 @@
           "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
           "placeholder": "{{ { count: 0 } }}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Failed to deploy"
@@ -1868,7 +1869,9 @@
         "enable_users_to_aggregate": "Enable users to aggregate",
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "Enable users to sort",
-        "disable_users_to_reorder": "Disable users to reorder columns"
+        "disable_users_to_reorder": "Disable users to reorder columns",
+        "locale": "Locale",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -2057,7 +2060,7 @@
           "scroll_to_the_select": "Whether to scroll to the row.",
           "show_thousands_separ": "Whether to show the thousands separator",
           "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "tag_color": "Used to set the color of tags. Use {{ to write an object to define the colors for different tag values. For example, {{{\"beautiful\": \"red\", \"cute\": \"#123456\" }}}",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
           "color": "Set the color.",
@@ -2168,7 +2171,10 @@
         "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
         "column_description": "Used to set a description of this column",
         "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns"
+        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
+        "locale": "For example, en-US",
+        "default_width": "Used to set the default width of the column",
+        "max_count": "Used to set the max count of stars"
       },
       "setter_option": {
         "fixed": "Fixed",
