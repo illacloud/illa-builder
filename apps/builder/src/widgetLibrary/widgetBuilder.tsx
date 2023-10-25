@@ -1,5 +1,6 @@
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, LazyExoticComponent, lazy } from "react"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   AUDIO_EVENT_HANDLER_CONFIG,
   AUDIO_PANEL_CONFIG,
@@ -50,6 +51,11 @@ import {
   CONTAINER_PANEL_CONFIG,
   CONTAINER_WIDGET_CONFIG,
 } from "@/widgetLibrary/ContainerWidget"
+import {
+  DATA_GRID_EVENT_HANDLER_CONFIG,
+  DATA_GRID_PANEL_CONFIG,
+  DATA_GRID_WIDGET_CONFIG,
+} from "@/widgetLibrary/DataGridWidget"
 import {
   DATE_RANGE_EVENT_HANDLER_CONFIG,
   DATE_RANGE_PANEL_CONFIG,
@@ -259,7 +265,6 @@ import {
   VIDEO_PANEL_CONFIG,
   VIDEO_WIDGET_CONFIG,
 } from "@/widgetLibrary/VideoWidget"
-import { PanelConfig } from "../page/App/components/InspectPanel/interface"
 import { IFRAME_EVENT_HANDLER_CONFIG } from "./IFrameWidget/eventHandlerConfig"
 import { EventHandlerConfig, WidgetConfig } from "./interface"
 
@@ -420,6 +425,12 @@ export const WidgetConfigMap: Record<
     widget: lazy(() => import("@/widgetLibrary/DateTimeWidget/dateTime")),
   },
   // data
+  DATA_GRID_WIDGET: {
+    config: DATA_GRID_WIDGET_CONFIG,
+    panelConfig: DATA_GRID_PANEL_CONFIG,
+    eventHandlerConfig: DATA_GRID_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/DataGridWidget/dataGrid")),
+  },
   CHART_WIDGET: {
     config: CHART_WIDGET_V2_CONFIG,
     panelConfig: CHART_PANEL_CONFIG,

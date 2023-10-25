@@ -1,13 +1,13 @@
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export interface NewBaseInputSetterProps {
+export interface ColumnMappedInputProps {
   isSetterSingleRow?: boolean
   placeholder?: string
   attrName: string
   defaultValue?: any
   handleUpdateDsl: (attrPath: string, value: any) => void
   expectedType?: VALIDATION_TYPES
-  value?: string
+  value?: unknown
   widgetDisplayName: string
   labelName?: string
   detailedDescription?: string

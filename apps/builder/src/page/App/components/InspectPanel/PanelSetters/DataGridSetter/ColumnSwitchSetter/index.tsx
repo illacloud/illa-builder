@@ -2,18 +2,18 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { get } from "lodash"
 import { FC, useCallback } from "react"
 import { Switch } from "@illa-design/react"
+import ColumnMappedInput from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnMappedInput"
 import { DynamicIcon } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/DynamicIcon"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import BaseInput from "../InputSetter/BaseInput"
-import { DynamicSwitchProps } from "./interface"
+import { ColumnSwitchSetterProps } from "./interface"
 import {
   applyLabelWrapperStyle,
   customAndSwitchWrapperStyle,
   dynamicSwitchWrapperStyle,
 } from "./style"
 
-const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
+const ColumnSwitchSetter: FC<ColumnSwitchSetterProps> = (props) => {
   const {
     attrName,
     labelName,
@@ -81,16 +81,16 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
                   parameter2: attrName,
                 })
               }}
-              checked={value as boolean}
+              checked={Boolean(value)}
               colorScheme="techPurple"
             />
           )}
         </div>
       </div>
       {customSelected && (
-        <BaseInput
+        <ColumnMappedInput
           {...props}
-          value={value as string}
+          value={value}
           isSetterSingleRow
           detailedDescription={detailedDescription ?? labelDesc}
           onlyHasSetter={true}
@@ -100,6 +100,6 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   )
 }
 
-DynamicSwitchSetter.displayName = "DynamicSwitchSetter"
+ColumnSwitchSetter.displayName = "ColumnSwitchSetter"
 
-export default DynamicSwitchSetter
+export default ColumnSwitchSetter
