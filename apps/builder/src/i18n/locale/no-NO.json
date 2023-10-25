@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "Behandle databasenavn som",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle versjon"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "Tjeneste navn"
             },
-            "ssl": "Bruk SSL når tilgjengelig"
+            "ssl": "Bruk SSL når tilgjengelig",
+            "version": {
+              "below": "9i eller under",
+              "above": "9i over"
+            }
           },
           "couchdb": {
             "ssl": "Bruk SSL/TLS når tilgjengelig"
@@ -1198,7 +1203,8 @@
           "tooltips": "Støtter objekter eller primitive verdier. Eksempel: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Kunne ikke distribuere"
@@ -1861,8 +1867,11 @@
         "enable_users_to_set_group_by": "Tillat brukere å angi gruppe av",
         "column_description": "Beskrivelse",
         "enable_users_to_aggregate": "Tillat brukere å aggregere",
-        "disable_users_to_sort": "Tillat brukere å sortere",
-        "enable_users_to_resize": "Tillat brukere å endre størrelse"
+        "enable_users_to_resize": "Tillat brukere å endre størrelse",
+        "enable_users_to_sort": "Tillat brukere å sortere",
+        "disable_users_to_reorder": "Deaktiver brukere for å endre rekkefølgen av kolonner",
+        "locale": "Språk",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2161,7 +2170,11 @@
         "enable_users_to_aggregate": "Brukes for å angi om brukerne skal kunne aggregere data i denne kolonnen eller ikke.",
         "enable_users_to_set_group_by": "Brukes til å angi om brukerne skal tillate å sette opp datagruppevisning. ",
         "column_description": "Brukes til å angi en beskrivelse av denne kolonnen",
-        "disable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. "
+        "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
+        "disable_users_to_reorder": "Brukes til å angi om eller ikke deaktivere brukere for å reorganisere kolonner",
+        "locale": "For eksempel nb-NO",
+        "default_width": "Brukt til å angi standard bredde i kolonnen",
+        "max_count": "Brukes til å angi maks antall stjerner"
       },
       "setter_option": {
         "fixed": "Fast",

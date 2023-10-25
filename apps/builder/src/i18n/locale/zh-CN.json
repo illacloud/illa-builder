@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "将数据库名称视为",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle版本"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "服务名称"
             },
-            "ssl": "可用时使用 SSL"
+            "ssl": "可用时使用 SSL",
+            "version": {
+              "below": "9i及以下版本",
+              "above": "9i以上版本"
+            }
           },
           "couchdb": {
             "ssl": "可用时使用 SSL/TLS"
@@ -1198,7 +1203,8 @@
           "tooltips": "支持对象或原始值。 示例：{ 计数：0 }",
           "placeholder": "{ count: 0 }"
         }
-      }
+      },
+      "library": "库"
     },
     "deploy": {
       "fail": "部署失败"
@@ -1844,7 +1850,7 @@
           "item_radius": "格子的圆角",
           "item_shadow": "格子的阴影",
           "item_spacing": "格子间距",
-          "max_column_count": "Max number of columns",
+          "max_column_count": "最大列数",
           "min_column_count": "Min number of columns"
         },
         "src": "源",
@@ -1861,8 +1867,11 @@
         "enable_users_to_set_group_by": "允许用户设置分组显示",
         "column_description": "描述",
         "enable_users_to_aggregate": "Enable users to aggregate",
-        "disable_users_to_sort": "允许用户排序",
-        "enable_users_to_resize": "Enable users to resize"
+        "enable_users_to_resize": "Enable users to resize",
+        "enable_users_to_sort": "允许用户排序",
+        "disable_users_to_reorder": "禁止用户调整列排序",
+        "locale": "本地化",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2050,8 +2059,8 @@
           "index": "您要选择的行的索引。 索引应该是一个数组，可用于指定多行。",
           "scroll_to_the_select": "是否滚动到该行。",
           "show_thousands_separ": "是否显示千位分隔符",
-          "tag_label": "设置标签标签。数组将被分隔为多个标签。",
-          "tag_color": "设定标签的颜色。使用 {voir 写一个条件语句来设置每个标签在不同条件下显示的颜色。",
+          "tag_label": "设置标签。数组将被分隔为多个标签。",
+          "tag_color": "设置标签的颜色。使用 {{ 写一个对象，来定义不同tag值的颜色。如{{\"beautiful\": \"red\", \"cute\": \"#123456\" }}",
           "variant": "按钮的样式",
           "icon": "表中显示的图标",
           "color": "设置颜色",
@@ -2161,7 +2170,11 @@
         "enable_users_to_aggregate": "用于设置是否允许用户聚合这列数据",
         "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示",
         "column_description": "用于设置这列的描述信息",
-        "disable_users_to_sort": "用于设置是否允许用户更改排序"
+        "enable_users_to_sort": "用于设置是否允许用户更改排序",
+        "disable_users_to_reorder": "用于设置是否禁止用户调整列排序",
+        "locale": "例如，en-US",
+        "default_width": "Used to set the default width of the column",
+        "max_count": "用于设置星星的最大数量"
       },
       "setter_option": {
         "fixed": "固定高度",

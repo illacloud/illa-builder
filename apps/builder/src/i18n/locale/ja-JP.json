@@ -210,7 +210,8 @@
           },
           "oracle": {
             "sid": "データベース名",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracleバージョン"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -359,7 +360,11 @@
               "sid": "SID",
               "service": "サービス名"
             },
-            "ssl": "可能な場合は SSL を使用する"
+            "ssl": "可能な場合は SSL を使用する",
+            "version": {
+              "below": "9i 以下",
+              "above": "9i 以上"
+            }
           },
           "couchdb": {
             "ssl": "可能な場合は SSL/TLS を使用する"
@@ -1198,7 +1203,8 @@
           "tooltips": "オブジェクトまたはプリミティブ値をサポートします。 例: { カウント: 0 }",
           "placeholder": "{ count: 0 }"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "展開に失敗しました"
@@ -1861,8 +1867,11 @@
         "enable_users_to_set_group_by": "グループを設定するユーザーを有効にする",
         "column_description": "説明",
         "enable_users_to_aggregate": "ユーザーの集計を有効にする",
-        "disable_users_to_sort": "ユーザーの並び替えを有効にする",
-        "enable_users_to_resize": "ユーザーのサイズ変更を有効にする"
+        "enable_users_to_resize": "ユーザーのサイズ変更を有効にする",
+        "enable_users_to_sort": "ユーザーの並び替えを有効にする",
+        "disable_users_to_reorder": "列の並び替えを無効にする",
+        "locale": "ロケール",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2161,7 +2170,11 @@
         "enable_users_to_aggregate": "ユーザーがこの列でデータ集計を実行できるかどうかを設定します。",
         "enable_users_to_set_group_by": "ユーザーがデータグループ表示を設定できるようにするかどうかを設定します。 ",
         "column_description": "この列の説明を設定するために使用",
-        "disable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 "
+        "enable_users_to_sort": "この列の並べ替えを変更するかどうかを設定します。 ",
+        "disable_users_to_reorder": "列の順序を変更するためにユーザーを無効にするかどうかを設定するために使用",
+        "locale": "例: ja-JP",
+        "default_width": "列の既定の幅を設定するために使用",
+        "max_count": "星の最大数を設定するために使用"
       },
       "setter_option": {
         "fixed": "固定高さ",
