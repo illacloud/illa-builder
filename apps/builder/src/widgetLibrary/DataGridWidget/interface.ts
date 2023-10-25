@@ -85,10 +85,6 @@ export const ColumnTypeList = [
     value: "image",
   },
   {
-    label: i18n.t("editor.inspect.setter_option.table.column_type.icongroup"),
-    value: "icongroup",
-  },
-  {
     label: i18n.t("editor.inspect.setter_option.table.column_type.rating"),
     value: "rating",
   },

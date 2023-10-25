@@ -1,5 +1,5 @@
 import { isObject } from "lodash"
-import { stringToJS } from "@/utils/evaluateDynamicString/utils"
+import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
 
 export function dealRawData2ArrayData(rawData: unknown): object[] {
   if (rawData === undefined || rawData === "" || rawData === null) {
@@ -245,6 +245,36 @@ export function getPreColor(index: number) {
     "techPink",
   ]
   return colors[index % colors.length]
+}
+
+export const realInputValueWithDataList = (
+  attrValue: string | undefined,
+  widgetDisplayName: string,
+) => {
+  if (attrValue === "" || attrValue == undefined) return undefined
+  let value = attrValue
+  if (
+    attrValue.includes(
+      `{{${widgetDisplayName}.dataSource.map((currentRow) => (`,
+    )
+  ) {
+    value = `${attrValue.substring(
+      `{{${widgetDisplayName}.dataSource.map((currentRow) => (`.length,
+      attrValue.length - 4,
+    )}`
+    return JSToString(value)
+  } else if (
+    attrValue.includes(
+      `{{${widgetDisplayName}.dataSourceJS.map((currentRow) => (`,
+    )
+  ) {
+    value = `${attrValue.substring(
+      `{{${widgetDisplayName}.dataSourceJS.map((currentRow) => (`.length,
+      attrValue.length - 4,
+    )}`
+    return JSToString(value)
+  }
+  return value
 }
 
 export const getNeedComputedValueWithDataList = (

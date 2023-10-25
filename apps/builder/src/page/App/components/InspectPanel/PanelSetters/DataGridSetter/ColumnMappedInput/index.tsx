@@ -7,7 +7,10 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { getNeedComputedValueWithDataList } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
+import {
+  getNeedComputedValueWithDataList,
+  realInputValueWithDataList,
+} from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import {
   applyInputSetterWrapperStyle,
   setterContainerStyle,
@@ -65,6 +68,15 @@ const ColumnMappedInput: FC<ColumnMappedInputProps> = (props) => {
   }, [value, wrappedCodeFunc, widgetDisplayName, dataSourceMode])
 
   const finalValue = useMemo(() => {
+    const v = value ?? defaultValue
+
+    if (widgetDisplayName && isString(v) && v.includes("currentRow")) {
+      return realInputValueWithDataList(
+        value ?? defaultValue,
+        widgetDisplayName,
+      )
+    }
+
     if (value === undefined && defaultValue === undefined) {
       return undefined
     }
@@ -72,7 +84,7 @@ const ColumnMappedInput: FC<ColumnMappedInputProps> = (props) => {
       return `{{ ${value ?? defaultValue} }}`
     }
     return (value ?? defaultValue) || ""
-  }, [value, defaultValue])
+  }, [widgetDisplayName, value, defaultValue])
 
   const onChange = useCallback(
     (value: string) => {

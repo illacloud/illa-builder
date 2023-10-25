@@ -194,7 +194,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
             return v4()
           } else {
             if (primaryKey in row) {
-              return get(row, primaryKey)
+              return get(row, primaryKey) ?? v4()
             }
           }
         }}

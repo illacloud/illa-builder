@@ -14,7 +14,6 @@ export type ColumnType =
   | "buttongroup"
   | "boolean"
   | "image"
-  | "icongroup"
   | "rating"
   | "markdown"
   | "html"
@@ -25,6 +24,6 @@ export interface ColumnConfig extends GridBaseColDef {
   columnType: ColumnType
 }
 
-export interface ColumnListSetterProps extends BaseSetter {
+export interface ColumnSetterProps extends BaseSetter {
   value: ColumnConfig[]
 }

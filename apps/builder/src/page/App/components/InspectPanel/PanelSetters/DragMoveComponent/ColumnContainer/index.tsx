@@ -23,7 +23,12 @@ import {
   columnNumStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter/style"
 import { ColumnContainerProps } from "./interface"
-import { listStyle, optionListHeaderStyle, optionListLabelStyle } from "./style"
+import {
+  containerStyle,
+  listStyle,
+  optionListHeaderStyle,
+  optionListLabelStyle,
+} from "./style"
 
 export const ColumnContainer: FC<ColumnContainerProps> = (props) => {
   const { onDragEnd, hideTitle, onClickNew, columnNum, children, items } = props
@@ -38,7 +43,7 @@ export const ColumnContainer: FC<ColumnContainerProps> = (props) => {
   )
 
   return (
-    <>
+    <div css={containerStyle}>
       <div css={columnLabelStyle}>
         <div css={columnNumStyle}>
           {t("editor.inspect.setter_content.column_setter.label", {
@@ -76,6 +81,6 @@ export const ColumnContainer: FC<ColumnContainerProps> = (props) => {
           </SortableContext>
         </DndContext>
       </div>
-    </>
+    </div>
   )
 }

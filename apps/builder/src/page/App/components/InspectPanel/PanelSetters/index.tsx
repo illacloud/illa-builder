@@ -118,6 +118,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter"
       ),
   ),
+  DATA_GRID_COLUMN_BUTTON_GROUP_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnButtonGroupSetter"
+      ),
+  ),
   DATA_GRID_MAPPED_INPUT_SETTER: lazy(
     () =>
       import(

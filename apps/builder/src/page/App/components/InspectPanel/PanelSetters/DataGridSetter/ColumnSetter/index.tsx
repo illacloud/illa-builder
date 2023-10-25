@@ -1,3 +1,4 @@
+import { arrayMove } from "@dnd-kit/sortable"
 import { isDeepEqual } from "@mui/x-data-grid/internals"
 import { get } from "lodash"
 import { FC, useMemo } from "react"
@@ -10,7 +11,7 @@ import { RootState } from "@/store"
 import { getColumnsTypeSetter } from "@/widgetLibrary/DataGridWidget/panelConfig"
 import { Column } from "../../DragMoveComponent/Column"
 import { ColumnEmpty } from "../../DragMoveComponent/Empty"
-import { ColumnConfig, ColumnListSetterProps } from "./interface"
+import { ColumnConfig, ColumnSetterProps } from "./interface"
 
 function generateCalcColumnConfig(
   key: string,
@@ -36,7 +37,7 @@ function generateCalcColumnConfig(
   }
 }
 
-const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
+const ColumnSetter: FC<ColumnSetterProps> = (props) => {
   const {
     attrName,
     handleUpdateMultiAttrDSL,
@@ -116,6 +117,22 @@ const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   return (
     <ColumnContainer
       columnNum={mixedColumns.length}
+      onDragEnd={(event) => {
+        const { active, over } = event
+        if (active && over && active.id !== over.id) {
+          const oldIndex = mixedColumns.findIndex(
+            (item) => item.field === active.id,
+          )
+          const newIndex = mixedColumns.findIndex(
+            (item) => item.field === over.id,
+          )
+          const finalColumns = arrayMove(mixedColumns, oldIndex, newIndex)
+          handleUpdateMultiAttrDSL?.({
+            [attrName]: finalColumns,
+          })
+          return finalColumns
+        }
+      }}
       onClickNew={() => {
         handleUpdateMultiAttrDSL?.({
           [attrName]: [

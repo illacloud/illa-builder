@@ -82,7 +82,7 @@ export const Column: FC<ColumnProps> = (props) => {
       {showVisible && (
         <IconHotSpot
           onClick={() => {
-            onVisibilityChange(!visibility)
+            onVisibilityChange?.(!visibility)
           }}
         >
           {visibility ? <EyeOnIcon /> : <EyeOffIcon />}

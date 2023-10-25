@@ -25,10 +25,8 @@ export const listStyle = css`
   border-radius: 8px;
 `
 
-export const emptyBodyStyle = css`
+export const containerStyle = css`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 200px;
+  flex-direction: column;
+  padding: 8px 0;
 `
