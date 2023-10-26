@@ -2784,7 +2784,7 @@
         "prompt": "Indtast venligst prompten",
         "description": "Indtast venligst beskrivelsen",
         "icon": "Upload eller generér et ikon",
-        "variable_value": "Angiv venligst en værdi som eksempel. ",
+        "variable_value": "Sørg for, at både nøglen og værdien er tom eller ikke tom.",
         "variable_key": "Indtast nøglen eller slet værdien. ",
         "temperature": "Indtast venligst temperaturen mellem 0,1 og 2",
         "max_token": "Indtast venligst den maksimale token ikke mindre end 1"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "Indtast venligst temperaturen mellem 0,1 og 2",
         "max_token": "Indtast venligst den maksimale token ikke mindre end 1"
+      },
+      "group": {
+        "advanced_settings": "Avancerede indstillinger",
+        "information": "Grundlæggende oplysninger"
       }
     },
     "common": {
