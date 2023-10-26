@@ -2774,6 +2774,15 @@
       "title-preview": {
         "chat": "Чат",
         "text-generation": "Генерация текста"
+      },
+      "validation_blank": {
+        "name": "Please enter a name",
+        "prompt": "Please enter the prompt",
+        "description": "Please enter the description",
+        "icon": "Please upload or generate an icon",
+        "variable_value": "Please enter a value as an example. ",
+        "variable_key": "Please enter the key or delete the value. ",
+        "temperature": "Please enter the temperature between 0.1 to 2"
       }
     },
     "common": {
@@ -4461,5 +4470,6 @@
   },
   "error_page": {
     "fobidden": "Нет разрешения на доступ"
-  }
+  },
+  "show_states": "Show states"
 }
