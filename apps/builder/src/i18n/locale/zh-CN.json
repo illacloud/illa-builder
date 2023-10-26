@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "允许用户排序",
         "disable_users_to_reorder": "禁止用户调整列排序",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "快速筛选",
+        "exclude_hidden_columns": "不包含隐藏列"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
         "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。",
         "export_setting": "用于设置是否允许用户导出筛选后的数据",
-        "filter_setting": "用于设置是否展示筛选器，允许用户筛选数据"
+        "filter_setting": "用于设置是否展示筛选器，允许用户筛选数据",
+        "quick_filter_setting": "用于设置是否启用快速筛选",
+        "exclude_hidden_columns": "用于设置是否在快速筛选时不包含隐藏列"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -2776,13 +2780,21 @@
         "text-generation": "运行结果预览"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. ",
-        "temperature": "Please enter the temperature between 0.1 to 2"
+        "name": "请输入名称",
+        "prompt": "请输入Prompt",
+        "description": "请输入描述",
+        "icon": "请上传或生成icon",
+        "variable_value": "请输入一个值作为示例",
+        "variable_key": "请输入key或删除值",
+        "temperature": "请输入temperature，值在0.1到2之间",
+        "max_token": "请输入max token，值不小于1"
+      },
+      "length_invalid": {
+        "description": "请将字符数量限制在160以内"
+      },
+      "value_invalid": {
+        "temperature": "请输入temperature，值在0.1到2之间",
+        "max_token": "请输入max token，值不小于1"
       }
     },
     "common": {
