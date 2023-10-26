@@ -11,10 +11,11 @@ import {
 } from "./style"
 
 export const AIAgentBlock: FC<AIAgentBlockProps> = (props) => {
-  const { title, tips, children, subtitle, subtitleTips, required } = props
+  const { title, tips, children, subtitle, subtitleTips, required, scrollId } =
+    props
 
   return (
-    <div css={agentBlockStyle}>
+    <div css={agentBlockStyle} data-scroll-id={scrollId}>
       <div css={blockTitleContainer}>
         {title && (
           <Trigger
