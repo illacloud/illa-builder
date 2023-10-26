@@ -1760,7 +1760,8 @@
           "cell_selection": "Valg af celler",
           "click_outside_to_des": "Klik udenfor for at fravælge",
           "page": "Standard sideindeks",
-          "export_all_data_setting": "Eksporter alle"
+          "export_all_data_setting": "Eksporter alle",
+          "locale": "Landestandard"
         },
         "previous_cursor": "Forrige markør",
         "input": {
@@ -1870,7 +1871,6 @@
         "enable_users_to_resize": "Aktivér brugere for at ændre størrelse",
         "enable_users_to_sort": "Gør det muligt for brugere at sortere",
         "disable_users_to_reorder": "Deaktivér brugere for at omarrangere kolonner",
-        "locale": "Landestandard",
         "default_width": "Default width"
       },
       "setter_tooltip": {
@@ -2087,7 +2087,8 @@
           "supported_in_the_row": "Understøttet i rækken enkelt markeringstilstand. Når du har aktiveret det, skal du klikke på et andet område end tabellen for at fravælge rækken.",
           "density_setting": "Bruges til at indstille rækkens højde tæthed eller ej. ",
           "refresh_setting": "Bruges til at angive, om et opfrisk ikon skal vises",
-          "export_raw_data_setting": "Bruges til at angive, om brugere har tilladelse til at eksportere ufiltrerede rådata."
+          "export_raw_data_setting": "Bruges til at angive, om brugere har tilladelse til at eksportere ufiltrerede rådata.",
+          "locale": "For eksempel en-US"
         },
         "previous_cursor": "Brug handlingsdata til at indstille den forrige markør. For eksempel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2172,7 +2173,6 @@
         "column_description": "Bruges til at angive en beskrivelse af denne kolonne",
         "enable_users_to_sort": "Bruges til at angive, om brugere kan ændre sorteringen af denne kolonne. ",
         "disable_users_to_reorder": "Bruges til at angive, om brugere skal deaktivere eller ej for at omarrangere kolonnerne",
-        "locale": "For eksempel en-US",
         "default_width": "Bruges til at indstille standardbredden af kolonnen",
         "max_count": "Bruges til at indstille maks antal stjerner"
       },
