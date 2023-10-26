@@ -1204,7 +1204,7 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Knihovny"
     },
     "deploy": {
       "fail": "Nepodařilo se nasadit"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Povolit uživatelům změnit velikost",
         "enable_users_to_sort": "Povolit řazení uživatelů",
         "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Rychlý filtr",
+        "exclude_hidden_columns": "Vyloučit skryté sloupce"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Nastavte avatar odesílatele. Například ve vašem zdroji dat je avatar odesílatele pole sendAvatar a toto pole můžete nastavit na {{item.sendAvatar}}.",
         "receiving": "Nastavte, zda se zobrazí načítání při přijímání zpráv. Pokud je vaše zpráva přijata z akce 1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1.",
         "export_setting": "Používá se pro nastavení, zda mají uživatelé povoleno exportovat filtrovaná data.",
-        "filter_setting": "Slouží k nastavení, zda se mají filtry zobrazovat či nikoli, což umožňuje uživatelům filtrovat data v tabulce."
+        "filter_setting": "Slouží k nastavení, zda se mají filtry zobrazovat či nikoli, což umožňuje uživatelům filtrovat data v tabulce.",
+        "quick_filter_setting": "Slouží k nastavení, zda povolit rychlý filtr",
+        "exclude_hidden_columns": "Nastavte zda chcete zobrazit skryté sloupce při použití rychlého filtru. "
       },
       "tab_title": "Kontrolovat",
       "unselected_tip1": "Nebyly vybrány žádné komponenty.",
@@ -2776,12 +2780,21 @@
         "text-generation": "Generování textu"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "name": "Zadejte název",
+        "prompt": "Zadejte prosím výzvu",
+        "description": "Zadejte prosím popis",
+        "icon": "Prosím nahrajte nebo vygenerujte ikonu",
+        "variable_value": "Zadejte hodnotu jako příklad. ",
+        "variable_key": "Zadejte prosím klíč nebo smažte hodnotu. ",
+        "temperature": "Zadejte prosím teplotu v rozmezí od 0.1 do 2",
+        "max_token": "Zadejte prosím maximální token ne méně než 1"
+      },
+      "length_invalid": {
+        "description": "Prosím omezte počet znaků na 160 nebo méně"
+      },
+      "value_invalid": {
+        "temperature": "Zadejte prosím teplotu v rozmezí od 0.1 do 2",
+        "max_token": "Zadejte prosím maximální token ne méně než 1"
       }
     },
     "common": {
@@ -4470,5 +4483,5 @@
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
   },
-  "show_states": "Show states"
+  "show_states": "Zobrazit stavy"
 }
