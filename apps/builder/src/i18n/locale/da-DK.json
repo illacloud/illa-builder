@@ -1204,7 +1204,7 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Biblioteker"
     },
     "deploy": {
       "fail": "Mislykkedes at implementere"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Aktivér brugere for at ændre størrelse",
         "enable_users_to_sort": "Gør det muligt for brugere at sortere",
         "disable_users_to_reorder": "Deaktivér brugere for at omarrangere kolonner",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Hurtigt filter",
+        "exclude_hidden_columns": "Udeluk skjulte kolonner"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
         "receiving": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
         "export_setting": "Bruges til at angive, om brugere har tilladelse til at eksportere filtrerede data.",
-        "filter_setting": "Bruges til at angive, om filtre skal vises eller ej, så brugerne kan filtrere data i tabellen."
+        "filter_setting": "Bruges til at angive, om filtre skal vises eller ej, så brugerne kan filtrere data i tabellen.",
+        "quick_filter_setting": "Bruges til at indstille om hurtigfilter skal aktiveres",
+        "exclude_hidden_columns": "Bruges til at angive, om de skjulte kolonner skal lukkes, når du bruger hurtigfilter. "
       },
       "tab_title": "Inspicer",
       "unselected_tip1": "Ingen komponenter valgt.",
@@ -2776,12 +2780,21 @@
         "text-generation": "Tekst generation"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "name": "Indtast et navn",
+        "prompt": "Indtast venligst prompten",
+        "description": "Indtast venligst beskrivelsen",
+        "icon": "Upload eller generér et ikon",
+        "variable_value": "Angiv venligst en værdi som eksempel. ",
+        "variable_key": "Indtast nøglen eller slet værdien. ",
+        "temperature": "Indtast venligst temperaturen mellem 0,1 og 2",
+        "max_token": "Indtast venligst den maksimale token ikke mindre end 1"
+      },
+      "length_invalid": {
+        "description": "Begræns antallet af tegn til 160 eller mindre"
+      },
+      "value_invalid": {
+        "temperature": "Indtast venligst temperaturen mellem 0,1 og 2",
+        "max_token": "Indtast venligst den maksimale token ikke mindre end 1"
       }
     },
     "common": {
@@ -4470,5 +4483,5 @@
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
   },
-  "show_states": "Show states"
+  "show_states": "Vis tilstande"
 }
