@@ -1760,7 +1760,8 @@
           "cell_selection": "选中单元格",
           "click_outside_to_des": "点击外部取消选择",
           "page": "默认页面索引",
-          "export_all_data_setting": "导出全部"
+          "export_all_data_setting": "导出全部",
+          "locale": "本地化"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -1870,7 +1871,6 @@
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "允许用户排序",
         "disable_users_to_reorder": "禁止用户调整列排序",
-        "locale": "本地化",
         "default_width": "Default width"
       },
       "setter_tooltip": {
@@ -2087,7 +2087,8 @@
           "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。",
           "density_setting": "用于设置行高密集与否",
           "refresh_setting": "用于设置是否展示刷新按钮",
-          "export_raw_data_setting": "用于设置是否允许用户导出未经筛选的原始数据"
+          "export_raw_data_setting": "用于设置是否允许用户导出未经筛选的原始数据",
+          "locale": "例如，en-US"
         },
         "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
@@ -2172,7 +2173,6 @@
         "column_description": "用于设置这列的描述信息",
         "enable_users_to_sort": "用于设置是否允许用户更改排序",
         "disable_users_to_reorder": "用于设置是否禁止用户调整列排序",
-        "locale": "例如，en-US",
         "default_width": "Used to set the default width of the column",
         "max_count": "用于设置星星的最大数量"
       },
