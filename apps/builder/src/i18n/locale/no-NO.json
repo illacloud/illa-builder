@@ -1204,7 +1204,7 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Biblioteker"
     },
     "deploy": {
       "fail": "Kunne ikke distribuere"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Tillat brukere å endre størrelse",
         "enable_users_to_sort": "Tillat brukere å sortere",
         "disable_users_to_reorder": "Deaktiver brukere for å endre rekkefølgen av kolonner",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Raskt filter",
+        "exclude_hidden_columns": "Ekskluder skjulte kolonner"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Angi avsenderens profilbilde. For eksempel, i datakilden, er avsender avataren et sendAvatar felt, og du kan sette feltet til {{item.sendAvatar}}.",
         "receiving": "Angi om du vil vise lasting når du mottar meldinger. (Automatic Translation) Hvis meldingen mottas fra handling, kan du sette den til {{action1.isRunning}}, og lastestatusen vil vises når action1 kjører.",
         "export_setting": "Brukes til å angi om brukere har lov til å eksportere filtrerte data.",
-        "filter_setting": "Brukes til å angi om du skal vise filtre, tillater brukere å filtrere data i tabellen."
+        "filter_setting": "Brukes til å angi om du skal vise filtre, tillater brukere å filtrere data i tabellen.",
+        "quick_filter_setting": "Brukes for å angi om det skal aktiveres hurtigfilter",
+        "exclude_hidden_columns": "Brukes til å angi om de gjemte kolonnene skal fjernes når du bruker hurtigfilter. "
       },
       "tab_title": "Undersøk",
       "unselected_tip1": "Ingen komponenter er valgt.",
@@ -2776,12 +2780,21 @@
         "text-generation": "Generering av tekst"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "name": "Vennligst skriv inn et navn",
+        "prompt": "Vennligst skriv inn ledeteksten",
+        "description": "Vennligst skriv inn beskrivelsen",
+        "icon": "Vennligst last opp eller generere et ikon",
+        "variable_value": "Angi en verdi som eksempel. (Automatic Translation) ",
+        "variable_key": "Skriv inn nøkkelen eller slett verdien. ",
+        "temperature": "Angi temperaturen mellom 0,1 og 2",
+        "max_token": "Vennligst skriv inn maks token ikke mindre enn 1"
+      },
+      "length_invalid": {
+        "description": "Du må begrense antall tegn til 160 eller mindre."
+      },
+      "value_invalid": {
+        "temperature": "Angi temperaturen mellom 0,1 og 2",
+        "max_token": "Vennligst skriv inn maks token ikke mindre enn 1"
       }
     },
     "common": {
@@ -4470,5 +4483,5 @@
   "error_page": {
     "fobidden": "Ingen tilgang"
   },
-  "show_states": "Show states"
+  "show_states": "Vis tilstander"
 }
