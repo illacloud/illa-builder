@@ -2784,7 +2784,7 @@
         "prompt": "Vennligst skriv inn ledeteksten",
         "description": "Vennligst skriv inn beskrivelsen",
         "icon": "Vennligst last opp eller generere et ikon",
-        "variable_value": "Angi en verdi som eksempel. (Automatic Translation) ",
+        "variable_value": "Vennligst forsikre deg om at både nøkkelen og verdien er tom eller ikke tom.",
         "variable_key": "Skriv inn nøkkelen eller slett verdien. ",
         "temperature": "Angi temperaturen mellom 0,1 og 2",
         "max_token": "Vennligst skriv inn maks token ikke mindre enn 1"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "Angi temperaturen mellom 0,1 og 2",
         "max_token": "Vennligst skriv inn maks token ikke mindre enn 1"
+      },
+      "group": {
+        "advanced_settings": "Avanserte innstillinger",
+        "information": "Grunnleggende informasjon"
       }
     },
     "common": {
