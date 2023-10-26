@@ -1204,7 +1204,7 @@
           "placeholder": "{ count: 0 }"
         }
       },
-      "library": "Libraries"
+      "library": "ライブラリ"
     },
     "deploy": {
       "fail": "展開に失敗しました"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "ユーザーのサイズ変更を有効にする",
         "enable_users_to_sort": "ユーザーの並び替えを有効にする",
         "disable_users_to_reorder": "列の並び替えを無効にする",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "クイックフィルタ",
+        "exclude_hidden_columns": "非表示の列を除外"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "送信者アバターを設定します。 たとえば、データソースでは、送信者のアバターはsendAvatarフィールドで、 {{item.sendAvatar}}に設定できます。",
         "receiving": "メッセージの受信時に読み込みを表示するかどうかを設定します。 アクション1からメッセージを受信した場合は、 {{action1.isRunning}}に設定できます。 そしてロード状態は action1 が実行されているときに表示されます。",
         "export_setting": "フィルタリングされたデータをエクスポートできるかどうかを設定します。",
-        "filter_setting": "フィルターを表示するかどうかを設定するために使用します。"
+        "filter_setting": "フィルターを表示するかどうかを設定するために使用します。",
+        "quick_filter_setting": "クイックフィルターを有効にするかどうかの設定",
+        "exclude_hidden_columns": "クイックフィルターを使用するときに、隠し列を除外するかどうかを設定するために使用します。 "
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -2776,12 +2780,21 @@
         "text-generation": "テキストの生成"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "name": "名前を入力してください",
+        "prompt": "プロンプトを入力してください",
+        "description": "説明を入力してください",
+        "icon": "アイコンをアップロードまたは生成してください",
+        "variable_value": "例として値を入力してください。 ",
+        "variable_key": "キーを入力するか、値を削除してください。 ",
+        "temperature": "0.1から2までの温度を入力してください",
+        "max_token": "最大トークンを1未満で入力してください"
+      },
+      "length_invalid": {
+        "description": "キャラクター数を 160 以下に制限してください"
+      },
+      "value_invalid": {
+        "temperature": "0.1から2までの温度を入力してください",
+        "max_token": "最大トークンを1未満で入力してください"
       }
     },
     "common": {
@@ -4470,5 +4483,5 @@
   "error_page": {
     "fobidden": "アクセス権限がありません"
   },
-  "show_states": "Show states"
+  "show_states": "州を表示"
 }
