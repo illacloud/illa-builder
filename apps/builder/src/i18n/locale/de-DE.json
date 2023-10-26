@@ -1204,7 +1204,7 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Bibliotheken"
     },
     "deploy": {
       "fail": "Deploy fehlgeschlagen"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Benutzer können die Größe ändern",
         "enable_users_to_sort": "Benutzer zum Sortieren aktivieren",
         "disable_users_to_reorder": "Benutzer deaktivieren, um Spalten neu zu sortieren",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Schnellfilter",
+        "exclude_hidden_columns": "Versteckte Spalten ausschließen"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Setze den Avatar des Absenders. Zum Beispiel ist in Ihrer Datenquelle der Avatar des Absenders das sendAvatar-Feld und Sie können das Feld auf {{item.sendAvatar}} setzen.",
         "receiving": "Legen Sie fest, ob beim Empfang von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht von action1 empfangen wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird.",
         "export_setting": "Wird verwendet, um festzulegen, ob Benutzer gefilterte Daten exportieren dürfen oder nicht.",
-        "filter_setting": "Wird verwendet, um festzulegen, ob Filter angezeigt werden sollen oder nicht, was es Benutzern erlaubt, Daten in der Tabelle zu filtern."
+        "filter_setting": "Wird verwendet, um festzulegen, ob Filter angezeigt werden sollen oder nicht, was es Benutzern erlaubt, Daten in der Tabelle zu filtern.",
+        "quick_filter_setting": "Wird verwendet, um den Schnellfilter zu aktivieren",
+        "exclude_hidden_columns": "Wird verwendet, um bei Verwendung des Schnellfilters die versteckten Spalten zu verdrängen. "
       },
       "tab_title": "Prüfen",
       "unselected_tip1": "Keine Komponenten ausgewählt.",
@@ -2776,12 +2780,21 @@
         "text-generation": "Textgenerierung"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "name": "Bitte geben Sie einen Namen ein",
+        "prompt": "Bitte geben Sie die Prompt ein",
+        "description": "Bitte geben Sie die Beschreibung ein",
+        "icon": "Bitte ein Icon hochladen oder generieren",
+        "variable_value": "Bitte geben Sie als Beispiel einen Wert ein. ",
+        "variable_key": "Bitte geben Sie den Schlüssel ein oder löschen Sie den Wert. ",
+        "temperature": "Bitte geben Sie die Temperatur zwischen 0,1 und 2 ein",
+        "max_token": "Bitte geben Sie das maximale Token nicht weniger als 1 ein"
+      },
+      "length_invalid": {
+        "description": "Bitte beschränken Sie die Anzahl der Zeichen auf 160 oder weniger"
+      },
+      "value_invalid": {
+        "temperature": "Bitte geben Sie die Temperatur zwischen 0,1 und 2 ein",
+        "max_token": "Bitte geben Sie das maximale Token nicht weniger als 1 ein"
       }
     },
     "common": {
@@ -4470,5 +4483,5 @@
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
   },
-  "show_states": "Show states"
+  "show_states": "Status anzeigen"
 }
