@@ -1204,7 +1204,7 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Biblioteci"
     },
     "deploy": {
       "fail": "Lansarea a eșuat"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Permite utilizatorilor să redimensioneze",
         "enable_users_to_sort": "Permite utilizatorilor să sorteze",
         "disable_users_to_reorder": "Dezactivează utilizatorii pentru a reordona coloanele",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Filtru rapid",
+        "exclude_hidden_columns": "Exclude coloanele ascunse"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Setează avatarul expeditorului. De exemplu, în sursa de date, avatarul expeditorului este câmpul sendAvatar și puteți seta câmpul {{item.sendAvatar}}.",
         "receiving": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
         "export_setting": "Folosit pentru a seta dacă utilizatorilor li se permite sau nu să exporte date filtrate.",
-        "filter_setting": "Folosit pentru a seta dacă să afișeze sau nu filtre, permițând utilizatorilor să filtreze datele în tabel."
+        "filter_setting": "Folosit pentru a seta dacă să afișeze sau nu filtre, permițând utilizatorilor să filtreze datele în tabel.",
+        "quick_filter_setting": "Folosit pentru a seta dacă se activează filtrul rapid",
+        "exclude_hidden_columns": "Folosit pentru a seta dacă să exluze coloanele ascunse atunci când utilizați un filtru rapid. "
       },
       "tab_title": "Inspectează",
       "unselected_tip1": "Nicio componentă selectată.",
@@ -2776,12 +2780,21 @@
         "text-generation": "Generare text"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "name": "Te rugăm să introduci un nume",
+        "prompt": "Vă rugăm să introduceţi solicitarea",
+        "description": "Vă rugăm să introduceţi descrierea",
+        "icon": "Vă rugăm să încărcați sau să generați o pictogramă",
+        "variable_value": "Vă rugăm să introduceţi o valoare ca exemplu. ",
+        "variable_key": "Vă rugăm să introduceți cheia sau ștergeți valoarea. ",
+        "temperature": "Introduceți temperatura între 0,1 și 2",
+        "max_token": "Vă rugăm să introduceți token-ul maxim cel puțin 1"
+      },
+      "length_invalid": {
+        "description": "Vă rugăm să limitați numărul de caractere la 160 sau mai puțin"
+      },
+      "value_invalid": {
+        "temperature": "Introduceți temperatura între 0,1 și 2",
+        "max_token": "Vă rugăm să introduceți token-ul maxim cel puțin 1"
       }
     },
     "common": {
@@ -4470,5 +4483,5 @@
   "error_page": {
     "fobidden": "Fără permisiune de acces"
   },
-  "show_states": "Show states"
+  "show_states": "Arată județele"
 }
