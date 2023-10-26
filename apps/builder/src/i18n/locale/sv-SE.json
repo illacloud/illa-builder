@@ -2784,7 +2784,7 @@
         "prompt": "Ange prompten",
         "description": "Ange beskrivningen",
         "icon": "Ladda upp eller generera en ikon",
-        "variable_value": "Ange ett värde som exempel. ",
+        "variable_value": "Se till att både nyckeln och värdet är antingen tomt eller inte.",
         "variable_key": "Ange nyckeln eller ta bort värdet. ",
         "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
         "max_token": "Vänligen ange max token inte mindre än 1"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
         "max_token": "Vänligen ange max token inte mindre än 1"
+      },
+      "group": {
+        "advanced_settings": "Avancerade inställningar",
+        "information": "Grundläggande information"
       }
     },
     "common": {
