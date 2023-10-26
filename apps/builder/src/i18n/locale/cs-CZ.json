@@ -2784,7 +2784,7 @@
         "prompt": "Zadejte prosím výzvu",
         "description": "Zadejte prosím popis",
         "icon": "Prosím nahrajte nebo vygenerujte ikonu",
-        "variable_value": "Zadejte hodnotu jako příklad. ",
+        "variable_value": "Ujistěte se, že klíč i hodnota jsou buď prázdné, nebo nejsou prázdné.",
         "variable_key": "Zadejte prosím klíč nebo smažte hodnotu. ",
         "temperature": "Zadejte prosím teplotu v rozmezí od 0.1 do 2",
         "max_token": "Zadejte prosím maximální token ne méně než 1"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "Zadejte prosím teplotu v rozmezí od 0.1 do 2",
         "max_token": "Zadejte prosím maximální token ne méně než 1"
+      },
+      "group": {
+        "advanced_settings": "Pokročilé nastavení",
+        "information": "Základní informace"
       }
     },
     "common": {
