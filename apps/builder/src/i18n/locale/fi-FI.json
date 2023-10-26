@@ -2784,7 +2784,7 @@
         "prompt": "Syötä kehotus",
         "description": "Ole hyvä ja anna kuvaus",
         "icon": "Lataa tai luo kuvake",
-        "variable_value": "Ole hyvä ja syötä arvo esimerkkinä. ",
+        "variable_value": "Varmista, että sekä avain että arvo ovat joko tyhjiä tai tyhjiä.",
         "variable_key": "Syötä avain tai poista arvo. ",
         "temperature": "Syötä lämpötila välillä 0,1 - 2",
         "max_token": "Syötä max tunnus vähintään 1"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "Syötä lämpötila välillä 0,1 - 2",
         "max_token": "Syötä max tunnus vähintään 1"
+      },
+      "group": {
+        "advanced_settings": "Edistyneet asetukset",
+        "information": "Perustiedot"
       }
     },
     "common": {
