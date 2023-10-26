@@ -2784,7 +2784,7 @@
         "prompt": "Vă rugăm să introduceţi solicitarea",
         "description": "Vă rugăm să introduceţi descrierea",
         "icon": "Vă rugăm să încărcați sau să generați o pictogramă",
-        "variable_value": "Vă rugăm să introduceţi o valoare ca exemplu. ",
+        "variable_value": "Asigurați-vă că atât cheia cât și valoarea sunt goale sau nu sunt goale.",
         "variable_key": "Vă rugăm să introduceți cheia sau ștergeți valoarea. ",
         "temperature": "Introduceți temperatura între 0,1 și 2",
         "max_token": "Vă rugăm să introduceți token-ul maxim cel puțin 1"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "Introduceți temperatura între 0,1 și 2",
         "max_token": "Vă rugăm să introduceți token-ul maxim cel puțin 1"
+      },
+      "group": {
+        "advanced_settings": "Setări avansate",
+        "information": "Informatii de baza"
       }
     },
     "common": {
