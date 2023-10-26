@@ -1203,7 +1203,8 @@
           "tooltips": "Stöder objekt eller primitiva värden. Exempel: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Det gick inte att distribuera"
@@ -1868,7 +1869,9 @@
         "enable_users_to_aggregate": "Aktivera användare att aggregera",
         "enable_users_to_resize": "Tillåt användare att ändra storlek",
         "enable_users_to_sort": "Tillåt användare att sortera",
-        "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner"
+        "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner",
+        "locale": "Lokalt",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2168,7 +2171,10 @@
         "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
         "column_description": "Används för att ange en beskrivning av denna kolumn",
         "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
-        "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna"
+        "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna",
+        "locale": "Till exempel, en-US",
+        "default_width": "Används för att ställa in standardbredden på kolumnen",
+        "max_count": "Används för att ställa in max antal stjärnor"
       },
       "setter_option": {
         "fixed": "Fast",

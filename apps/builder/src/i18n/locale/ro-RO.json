@@ -1203,7 +1203,8 @@
           "tooltips": "Suportă obiecte sau valori primitive. Exemplu: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
-      }
+      },
+      "library": "Libraries"
     },
     "deploy": {
       "fail": "Lansarea a eșuat"
@@ -1868,7 +1869,9 @@
         "enable_users_to_aggregate": "Permite utilizatorilor să agrege",
         "enable_users_to_resize": "Permite utilizatorilor să redimensioneze",
         "enable_users_to_sort": "Permite utilizatorilor să sorteze",
-        "disable_users_to_reorder": "Dezactivează utilizatorii pentru a reordona coloanele"
+        "disable_users_to_reorder": "Dezactivează utilizatorii pentru a reordona coloanele",
+        "locale": "Localizare",
+        "default_width": "Default width"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2168,7 +2171,10 @@
         "enable_users_to_set_group_by": "Folosit pentru a seta dacă să permită sau nu utilizatorilor să configureze afişajul de grupare de date. ",
         "column_description": "Folosit pentru a seta o descriere a acestei coloane",
         "enable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. ",
-        "disable_users_to_reorder": "Folosit pentru a seta dacă dezactivează sau nu utilizatorii pentru a reordona coloanele"
+        "disable_users_to_reorder": "Folosit pentru a seta dacă dezactivează sau nu utilizatorii pentru a reordona coloanele",
+        "locale": "De exemplu, ro-RO",
+        "default_width": "Folosit pentru a seta lățimea implicită a coloanei",
+        "max_count": "Folosit pentru a seta numărul maxim de stele"
       },
       "setter_option": {
         "fixed": "Fixat",
