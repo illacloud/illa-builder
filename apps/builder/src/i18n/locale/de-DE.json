@@ -1760,7 +1760,8 @@
           "cell_selection": "Zellenauswahl",
           "click_outside_to_des": "Zum Abwählen ausserhalb klicken",
           "page": "Standardseitenindex",
-          "export_all_data_setting": "Alle exportieren"
+          "export_all_data_setting": "Alle exportieren",
+          "locale": "Lokal"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
@@ -1870,7 +1871,6 @@
         "enable_users_to_resize": "Benutzer können die Größe ändern",
         "enable_users_to_sort": "Benutzer zum Sortieren aktivieren",
         "disable_users_to_reorder": "Benutzer deaktivieren, um Spalten neu zu sortieren",
-        "locale": "Lokal",
         "default_width": "Default width"
       },
       "setter_tooltip": {
@@ -2087,7 +2087,8 @@
           "supported_in_the_row": "Wird im Zeilen-Einzelauswahlmodus unterstützt. Nach dem Aktivieren klicken Sie auf einen anderen Bereich als die Tabelle, um die Zeilenauswahl zu deaktivieren.",
           "density_setting": "Wird verwendet, um die Zeilenhöhe zu bestimmen oder nicht. ",
           "refresh_setting": "Wird verwendet, um ein Aktualisierungs-Symbol anzuzeigen",
-          "export_raw_data_setting": "Wird verwendet, um festzulegen, ob Benutzer ungefilterte Rohdaten exportieren dürfen oder nicht."
+          "export_raw_data_setting": "Wird verwendet, um festzulegen, ob Benutzer ungefilterte Rohdaten exportieren dürfen oder nicht.",
+          "locale": "Zum Beispiel de-US"
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2172,7 +2173,6 @@
         "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen",
         "enable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. ",
         "disable_users_to_reorder": "Wird verwendet, um festzulegen, ob Benutzer zum Neuordnen der Spalten deaktiviert werden",
-        "locale": "Zum Beispiel de-US",
         "default_width": "Verwendet um die Standardbreite der Spalte zu setzen",
         "max_count": "Verwendet um die maximale Anzahl von Sternen zu setzen"
       },
