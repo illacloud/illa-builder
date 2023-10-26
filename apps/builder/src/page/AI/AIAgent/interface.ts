@@ -25,3 +25,11 @@ export const AgentInitial: Agent = {
   updatedAt: "",
   editedBy: [],
 }
+
+export enum SCROLL_ID {
+  PROMPT = "prompt",
+  VARIABLES = "variables",
+  NAME = "name",
+  DESCRIPTION = "description",
+  ICON = "icon",
+}
