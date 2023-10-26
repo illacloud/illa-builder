@@ -2774,6 +2774,13 @@
       "title-preview": {
         "chat": "Preview window",
         "text-generation": "Preview window"
+      },
+      "validation_blank": {
+        "name": "Please enter a name",
+        "prompt": "Please enter the prompt",
+        "description": "Please enter the description",
+        "icon": "Please upload or generate an icon",
+        "variable_value": "Please enter a value as an example. "
       }
     },
     "common": {
@@ -4461,5 +4468,6 @@
   },
   "error_page": {
     "fobidden": "No access permission"
-  }
+  },
+  "show_states": "Show states"
 }
