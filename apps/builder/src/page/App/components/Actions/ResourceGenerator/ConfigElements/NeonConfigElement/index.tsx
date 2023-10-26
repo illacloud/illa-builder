@@ -13,7 +13,6 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -24,12 +23,13 @@ import {
   errorMsgStyle,
   footerStyle,
   labelContainer,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   configItemTip,
   hostInputContainer,
-} from "@/page/App/components/ControlledElement/style"
+} from "@/page/App/components/Actions/ControlledElement/style"
+import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import { NeonResource, neonDefaultPort } from "@/redux/resource/neonResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"

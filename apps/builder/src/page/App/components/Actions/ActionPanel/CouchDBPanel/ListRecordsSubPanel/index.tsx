@@ -3,7 +3,7 @@ import { CouchDBSubPanelProps } from "@/page/App/components/Actions/ActionPanel/
 import { ListRecordsInfo } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/values"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { SingleComponentType } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent/interface"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { ListRecords } from "@/redux/currentApp/action/couchDBAction"
 
 export const ListRecordsSubPanel: FC<CouchDBSubPanelProps> = (props) => {

@@ -1,6 +1,6 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { Variants } from "framer-motion"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 const getPanelBarHeaderHeight = (size: "default" | "small") => {
   switch (size) {
@@ -75,7 +75,7 @@ export const applyPanelBarTitleStyle = (
 ): SerializedStyles => {
   const fontStyle = getPanelTitleFontStyle(size)
   return css`
-    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    color: ${getColor("grayBlue", "02")};
     ${fontStyle};
   `
 }
@@ -120,6 +120,7 @@ export const panelBarItemContentStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   position: relative;
   height: auto;
+  padding-bottom: 4px;
 `
 
 export const panelBarItemContainerAnimationVariants: Variants = {
