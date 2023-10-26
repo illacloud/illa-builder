@@ -1760,7 +1760,8 @@
           "cell_selection": "Val av cell",
           "click_outside_to_des": "Klicka utanför för att avmarkera",
           "page": "Förvalt sidindex",
-          "export_all_data_setting": "Exportera alla"
+          "export_all_data_setting": "Exportera alla",
+          "locale": "Lokalt"
         },
         "previous_cursor": "Föregående markör",
         "input": {
@@ -1870,7 +1871,6 @@
         "enable_users_to_resize": "Tillåt användare att ändra storlek",
         "enable_users_to_sort": "Tillåt användare att sortera",
         "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner",
-        "locale": "Lokalt",
         "default_width": "Default width"
       },
       "setter_tooltip": {
@@ -2087,7 +2087,8 @@
           "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden.",
           "density_setting": "Används för att ställa in radens höjd densitet eller inte. ",
           "refresh_setting": "Används för att ställa in om en uppdateringsikon ska visas",
-          "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata."
+          "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata.",
+          "locale": "Till exempel, en-US"
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2172,7 +2173,6 @@
         "column_description": "Används för att ange en beskrivning av denna kolumn",
         "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
         "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna",
-        "locale": "Till exempel, en-US",
         "default_width": "Används för att ställa in standardbredden på kolumnen",
         "max_count": "Används för att ställa in max antal stjärnor"
       },
