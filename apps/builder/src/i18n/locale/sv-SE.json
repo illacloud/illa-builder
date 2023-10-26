@@ -1204,7 +1204,7 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Bibliotek"
     },
     "deploy": {
       "fail": "Det gick inte att distribuera"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Tillåt användare att ändra storlek",
         "enable_users_to_sort": "Tillåt användare att sortera",
         "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Snabb filter",
+        "exclude_hidden_columns": "Exkludera dolda kolumner"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
         "receiving": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
         "export_setting": "Används för att ställa in om användare får exportera filtrerad data eller inte.",
-        "filter_setting": "Används för att ställa in om du vill visa filter eller inte, vilket tillåter användare att filtrera data i tabellen."
+        "filter_setting": "Används för att ställa in om du vill visa filter eller inte, vilket tillåter användare att filtrera data i tabellen.",
+        "quick_filter_setting": "Används för att ställa in om du vill aktivera snabbfilter",
+        "exclude_hidden_columns": "Används för att ställa in om du vill exludera de dolda kolumnerna när du använder snabbfilter. "
       },
       "tab_title": "Inspektera",
       "unselected_tip1": "Inga komponenter valda.",
@@ -2776,13 +2780,21 @@
         "text-generation": "Generering av text"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. ",
-        "temperature": "Please enter the temperature between 0.1 to 2"
+        "name": "Ange ett namn",
+        "prompt": "Ange prompten",
+        "description": "Ange beskrivningen",
+        "icon": "Ladda upp eller generera en ikon",
+        "variable_value": "Ange ett värde som exempel. ",
+        "variable_key": "Ange nyckeln eller ta bort värdet. ",
+        "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
+        "max_token": "Vänligen ange max token inte mindre än 1"
+      },
+      "length_invalid": {
+        "description": "Begränsa antalet tecken till 160 eller mindre"
+      },
+      "value_invalid": {
+        "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
+        "max_token": "Vänligen ange max token inte mindre än 1"
       }
     },
     "common": {
@@ -4471,5 +4483,5 @@
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
   },
-  "show_states": "Show states"
+  "show_states": "Visa delstater"
 }
