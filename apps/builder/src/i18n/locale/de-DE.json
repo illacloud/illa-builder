@@ -2784,7 +2784,7 @@
         "prompt": "Bitte geben Sie die Prompt ein",
         "description": "Bitte geben Sie die Beschreibung ein",
         "icon": "Bitte ein Icon hochladen oder generieren",
-        "variable_value": "Bitte geben Sie als Beispiel einen Wert ein. ",
+        "variable_value": "Bitte stellen Sie sicher, dass sowohl der Schlüssel als auch der Wert leer sind oder nicht leer sind.",
         "variable_key": "Bitte geben Sie den Schlüssel ein oder löschen Sie den Wert. ",
         "temperature": "Bitte geben Sie die Temperatur zwischen 0,1 und 2 ein",
         "max_token": "Bitte geben Sie das maximale Token nicht weniger als 1 ein"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "Bitte geben Sie die Temperatur zwischen 0,1 und 2 ein",
         "max_token": "Bitte geben Sie das maximale Token nicht weniger als 1 ein"
+      },
+      "group": {
+        "advanced_settings": "Erweiterte Einstellungen",
+        "information": "Grundlegende Informationen"
       }
     },
     "common": {
