@@ -2784,7 +2784,7 @@
         "prompt": "プロンプトを入力してください",
         "description": "説明を入力してください",
         "icon": "アイコンをアップロードまたは生成してください",
-        "variable_value": "例として値を入力してください。 ",
+        "variable_value": "キーと値の両方が空かどうかを確認してください。",
         "variable_key": "キーを入力するか、値を削除してください。 ",
         "temperature": "0.1から2までの温度を入力してください",
         "max_token": "最大トークンを1未満で入力してください"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "0.1から2までの温度を入力してください",
         "max_token": "最大トークンを1未満で入力してください"
+      },
+      "group": {
+        "advanced_settings": "詳細設定",
+        "information": "基本情報"
       }
     },
     "common": {
