@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "Enable users to sort",
         "disable_users_to_reorder": "Disable users to reorder columns",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Quick filter",
+        "exclude_hidden_columns": "Exclude hidden columns"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Встановіть аватар. Наприклад, у вашому джерелі даних аватар відправник - це поле відправника \"Аватар\", і ви можете встановити поле {{item.sendAvatar}}.",
         "receiving": "Виберіть, чи показувати завантаження при отриманні повідомлень. Якщо ваше повідомлення отримано від дії 1, ви можете встановити його в {{action1.isRunning}}, і статус завантаження буде відображений при запуску action1.",
         "export_setting": "Used to set whether or not users are allowed to export filtered data.",
-        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table."
+        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table.",
+        "quick_filter_setting": "Used to set whether to enable quick filter",
+        "exclude_hidden_columns": "Used to set whether to exlude the hidden columns when use quick filter. "
       },
       "tab_title": "Оглянути",
       "unselected_tip1": "Немає вибраних компонентів.",
@@ -2782,7 +2786,15 @@
         "icon": "Please upload or generate an icon",
         "variable_value": "Please enter a value as an example. ",
         "variable_key": "Please enter the key or delete the value. ",
-        "temperature": "Please enter the temperature between 0.1 to 2"
+        "temperature": "Please enter the temperature between 0.1 to 2",
+        "max_token": "Please enter the max token not less than 1"
+      },
+      "length_invalid": {
+        "description": "Please limit the character count to 160 or less"
+      },
+      "value_invalid": {
+        "temperature": "Please enter the temperature between 0.1 to 2",
+        "max_token": "Please enter the max token not less than 1"
       }
     },
     "common": {
