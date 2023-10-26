@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "Enable users to sort",
         "disable_users_to_reorder": "Disable users to reorder columns",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Quick filter",
+        "exclude_hidden_columns": "Exclude hidden columns"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Définir l'avatar de l'expéditeur. Par exemple, dans votre source de données, l'avatar de l'expéditeur est le champ sendAvatar et vous pouvez définir le champ à {{item.sendAvatar}}.",
         "receiving": "Définit s'il faut afficher le chargement lors de la réception de messages. Si votre message est reçu de l'action 1, vous pouvez le définir à {{action1.isRunning}}, et le statut de chargement sera affiché lorsque l'action 1 est en cours d'exécution.",
         "export_setting": "Used to set whether or not users are allowed to export filtered data.",
-        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table."
+        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table.",
+        "quick_filter_setting": "Used to set whether to enable quick filter",
+        "exclude_hidden_columns": "Used to set whether to exlude the hidden columns when use quick filter. "
       },
       "tab_title": "Inspecter",
       "unselected_tip1": "Aucun composant sélectionné.",
@@ -2781,7 +2785,16 @@
         "description": "Please enter the description",
         "icon": "Please upload or generate an icon",
         "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "variable_key": "Please enter the key or delete the value. ",
+        "temperature": "Please enter the temperature between 0.1 to 2",
+        "max_token": "Please enter the max token not less than 1"
+      },
+      "length_invalid": {
+        "description": "Please limit the character count to 160 or less"
+      },
+      "value_invalid": {
+        "temperature": "Please enter the temperature between 0.1 to 2",
+        "max_token": "Please enter the max token not less than 1"
       }
     },
     "common": {
