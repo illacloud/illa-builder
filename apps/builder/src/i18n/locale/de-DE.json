@@ -2774,6 +2774,14 @@
       "title-preview": {
         "chat": "Chat",
         "text-generation": "Textgenerierung"
+      },
+      "validation_blank": {
+        "name": "Please enter a name",
+        "prompt": "Please enter the prompt",
+        "description": "Please enter the description",
+        "icon": "Please upload or generate an icon",
+        "variable_value": "Please enter a value as an example. ",
+        "variable_key": "Please enter the key or delete the value. "
       }
     },
     "common": {
@@ -4461,5 +4469,6 @@
   },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
-  }
+  },
+  "show_states": "Show states"
 }
