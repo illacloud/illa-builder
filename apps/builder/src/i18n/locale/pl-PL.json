@@ -1760,7 +1760,8 @@
           "cell_selection": "Wybór komórki",
           "click_outside_to_des": "Kliknij na zewnątrz, aby odznaczyć",
           "page": "Default page index",
-          "export_all_data_setting": "Export all"
+          "export_all_data_setting": "Export all",
+          "locale": "Locale"
         },
         "previous_cursor": "Poprzedni kursor",
         "input": {
@@ -1870,7 +1871,6 @@
         "enable_users_to_resize": "Enable users to resize",
         "enable_users_to_sort": "Enable users to sort",
         "disable_users_to_reorder": "Disable users to reorder columns",
-        "locale": "Locale",
         "default_width": "Default width"
       },
       "setter_tooltip": {
@@ -2087,7 +2087,8 @@
           "supported_in_the_row": "Obsługiwane w trybie pojedynczego wyboru wiersza. Po włączeniu go kliknij obszar inny niż tabela, aby odznaczyć wiersz.",
           "density_setting": "Used to set the row height density or not. ",
           "refresh_setting": "Used to set whether to show a refresh icon",
-          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data."
+          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data.",
+          "locale": "For example, en-US"
         },
         "previous_cursor": "Użyj danych akcji, aby ustawić poprzedni kursor. Na przykład,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2172,7 +2173,6 @@
         "column_description": "Used to set a description of this column",
         "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
         "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
-        "locale": "For example, en-US",
         "default_width": "Used to set the default width of the column",
         "max_count": "Used to set the max count of stars"
       },
