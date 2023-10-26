@@ -2784,7 +2784,7 @@
         "prompt": "请输入Prompt",
         "description": "请输入描述",
         "icon": "请上传或生成icon",
-        "variable_value": "请输入一个值作为示例",
+        "variable_value": "请确保key和value都为空或都不为空",
         "variable_key": "请输入key或删除值",
         "temperature": "请输入temperature，值在0.1到2之间",
         "max_token": "请输入max token，值不小于1"
@@ -2795,6 +2795,10 @@
       "value_invalid": {
         "temperature": "请输入temperature，值在0.1到2之间",
         "max_token": "请输入max token，值不小于1"
+      },
+      "group": {
+        "advanced_settings": "高级设置",
+        "information": "基本信息"
       }
     },
     "common": {
