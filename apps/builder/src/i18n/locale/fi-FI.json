@@ -1204,7 +1204,7 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Kirjastot"
     },
     "deploy": {
       "fail": "Ei voitu ottaa käyttöön"
@@ -1871,7 +1871,9 @@
         "enable_users_to_resize": "Salli käyttäjien koon muuttaminen",
         "enable_users_to_sort": "Salli käyttäjien lajitella",
         "disable_users_to_reorder": "Poista käyttäjät tilataksesi sarakkeita uudelleen",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Nopea suodatin",
+        "exclude_hidden_columns": "Jätä piilotetut sarakkeet pois"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1934,7 +1936,9 @@
         "senderAvatar": "Aseta lähettäjän avatari. Esimerkiksi tietolähteessäsi lähettäjän avatar on sendAvatar kenttä ja voit asettaa kentän arvoon {{item.sendAvatar}}.",
         "receiving": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
         "export_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodatettuja tietoja.",
-        "filter_setting": "Käytetään sen määrittämiseen, näyttääkö suodattimet vai ei, jolloin käyttäjät voivat suodattaa tiedot taulukossa."
+        "filter_setting": "Käytetään sen määrittämiseen, näyttääkö suodattimet vai ei, jolloin käyttäjät voivat suodattaa tiedot taulukossa.",
+        "quick_filter_setting": "Käytetään määritettäessä, ottaako pikanäppäin käyttöön",
+        "exclude_hidden_columns": "Käytetään määritettäessä, onko piilotettuja sarakkeita puristettu, kun käytetään nopeaa suodatinta. "
       },
       "tab_title": "Tutki",
       "unselected_tip1": "Komponentteja ei ole valittu.",
@@ -2776,12 +2780,21 @@
         "text-generation": "Tekstin luonti"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please enter a value as an example. ",
-        "variable_key": "Please enter the key or delete the value. "
+        "name": "Anna nimi",
+        "prompt": "Syötä kehotus",
+        "description": "Ole hyvä ja anna kuvaus",
+        "icon": "Lataa tai luo kuvake",
+        "variable_value": "Ole hyvä ja syötä arvo esimerkkinä. ",
+        "variable_key": "Syötä avain tai poista arvo. ",
+        "temperature": "Syötä lämpötila välillä 0,1 - 2",
+        "max_token": "Syötä max tunnus vähintään 1"
+      },
+      "length_invalid": {
+        "description": "Ole hyvä ja rajoita merkin määrä 160 tai vähemmän"
+      },
+      "value_invalid": {
+        "temperature": "Syötä lämpötila välillä 0,1 - 2",
+        "max_token": "Syötä max tunnus vähintään 1"
       }
     },
     "common": {
@@ -4470,5 +4483,5 @@
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
   },
-  "show_states": "Show states"
+  "show_states": "Näytä tilat"
 }
