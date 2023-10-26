@@ -1760,7 +1760,8 @@
           "cell_selection": "Výběr buňky",
           "click_outside_to_des": "Klikněte vně pro zrušení výběru",
           "page": "Výchozí index stránky",
-          "export_all_data_setting": "Exportovat vše"
+          "export_all_data_setting": "Exportovat vše",
+          "locale": "Místní prostředí"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
@@ -1870,7 +1871,6 @@
         "enable_users_to_resize": "Povolit uživatelům změnit velikost",
         "enable_users_to_sort": "Povolit řazení uživatelů",
         "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců",
-        "locale": "Místní prostředí",
         "default_width": "Default width"
       },
       "setter_tooltip": {
@@ -2087,7 +2087,8 @@
           "supported_in_the_row": "Podporováno v režimu jediného výběru. Po jeho povolení klikněte na jinou oblast než tabulku pro zrušení výběru řádku.",
           "density_setting": "Používá se k nastavení hustoty výšky řádku nebo ne. ",
           "refresh_setting": "Slouží k nastavení, zda zobrazit ikonu obnovení",
-          "export_raw_data_setting": "Používá se k nastavení, zda mohou uživatelé exportovat nefiltrovaná nezpracovaná data."
+          "export_raw_data_setting": "Používá se k nastavení, zda mohou uživatelé exportovat nefiltrovaná nezpracovaná data.",
+          "locale": "Například cs-CZ"
         },
         "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
         "input": {
@@ -2172,7 +2173,6 @@
         "column_description": "Slouží k nastavení popisu tohoto sloupce",
         "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
         "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců",
-        "locale": "Například cs-CZ",
         "default_width": "Použít k nastavení výchozí šířky sloupce",
         "max_count": "Používá se k nastavení maximálního počtu hvězdiček"
       },
