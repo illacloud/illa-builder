@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Ταυτοποίηση"
-          }
+          },
+          "old_oracle": "9i ή κάτω",
+          "new_oracle": "9θ παραπάνω"
         },
         "placeholder": {
           "url": "Εισάγετε εδώ το URL αιτήματος",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Επιλέξτε στοιχείο μενού",
           "pageChange": "Αλλαγή σελίδας",
           "clickItem": "Κάντε κλικ στο στοιχείο",
-          "columnVisibilityChange": "Αλλαγή ορατότητας στήλης"
+          "columnVisibilityChange": "Αλλαγή ορατότητας στήλης",
+          "onPaginationModelChange": "Αλλαγή σελίδας",
+          "onRefresh": "Ανανέωση",
+          "onFilterModelChange": "Αλλαγή φίλτρου",
+          "onRowSelectionModelChange": "Αλλαγή γραμμής επιλογής",
+          "onColumnVisibilityModel": "Αλλαγή ορατότητας στήλης",
+          "onSortModelChange": "Αλλαγή ταξινόμησης"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1342,7 +1350,10 @@
         "refresh": "ανανέωση",
         "density_setting": "Πυκνότητα",
         "column_setting": "Στήλες",
-        "refresh_setting": "Ανανέωση"
+        "refresh_setting": "Ανανέωση",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Αλλαγή ταξινόμησης"
+        }
       },
       "setter_default_value": {
         "fill": "Γέμισμα",
