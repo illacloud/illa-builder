@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Todennus"
-          }
+          },
+          "old_oracle": "vähintään 9i",
+          "new_oracle": "9i yläpuolella"
         },
         "placeholder": {
           "url": "Syötä pyynnön URL tähän",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Valitse valikon kohta",
           "pageChange": "Sivun muutos",
           "clickItem": "Napsauta kohdetta",
-          "columnVisibilityChange": "Sarakkeen näkyvyyden muutos"
+          "columnVisibilityChange": "Sarakkeen näkyvyyden muutos",
+          "onPaginationModelChange": "Sivun muutos",
+          "onRefresh": "Päivitä",
+          "onFilterModelChange": "Suodata muutos",
+          "onRowSelectionModelChange": "Rivin valinnan muutos",
+          "onColumnVisibilityModel": "Sarakkeen näkyvyyden muutos",
+          "onSortModelChange": "Lajittele muutos"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1342,7 +1350,10 @@
         "refresh": "päivitä",
         "density_setting": "Tiheys",
         "column_setting": "Sarakkeet",
-        "refresh_setting": "Päivitä"
+        "refresh_setting": "Päivitä",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Lajittele muutos"
+        }
       },
       "setter_default_value": {
         "fill": "Täytä",
