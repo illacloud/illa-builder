@@ -9,4 +9,5 @@ export interface BaseDataItemProps {
   selectedDisplayNames?: string[]
   onClick?: (displayName: string, type: string) => void
   dataType: "globalData" | "action" | "widget"
+  onFocus?: (displayName: string) => void
 }

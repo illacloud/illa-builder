@@ -17,6 +17,7 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
+import { BaseDataItemContextProvider } from "../BaseDataItem/context"
 import { dividerStyle } from "./style"
 
 export const ComponentSpaceTree: FC = () => {
@@ -47,6 +48,13 @@ export const ComponentSpaceTree: FC = () => {
     [dispatch],
   )
 
+  const handleOnFocus = useCallback((displayName: string) => {
+    const dom = document.querySelector(`#${displayName}`)
+    if (dom) {
+      dom.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [])
+
   return (
     <PanelBar
       title={t("editor.data_work_space.components_title")}
@@ -55,9 +63,53 @@ export const ComponentSpaceTree: FC = () => {
       }}
       destroyChildrenWhenClose
     >
-      {modalSectionTree.length > 0 && (
-        <WorkSpaceTreeGroup title="Modal">
-          {modalSectionTree.map((tree) => (
+      <BaseDataItemContextProvider>
+        {modalSectionTree.length > 0 && (
+          <WorkSpaceTreeGroup title="Modal">
+            {modalSectionTree.map((tree) => (
+              <BaseDataItem
+                key={tree.displayName}
+                title={tree.displayName}
+                value={tree}
+                level={0}
+                dataType="widget"
+                type={tree.$widgetType as string}
+                canExpand
+                haveMoreAction
+                canFocused
+                onClick={handleOnClick}
+                selectedDisplayNames={selectedComponent}
+                onFocus={handleOnFocus}
+              />
+            ))}
+          </WorkSpaceTreeGroup>
+        )}
+        {headerSectionTree.length > 0 && (
+          <>
+            <Divider css={dividerStyle} />
+            <WorkSpaceTreeGroup title="Header">
+              {headerSectionTree.map((tree) => (
+                <BaseDataItem
+                  key={tree.displayName}
+                  title={tree.displayName}
+                  value={tree}
+                  level={0}
+                  dataType="widget"
+                  type={tree.$widgetType as string}
+                  canExpand={tree.$childrenNode.length > 0}
+                  canFocused
+                  onClick={handleOnClick}
+                  selectedDisplayNames={selectedComponent}
+                  onFocus={handleOnFocus}
+                />
+              ))}
+            </WorkSpaceTreeGroup>
+          </>
+        )}
+
+        <Divider css={dividerStyle} />
+        <WorkSpaceTreeGroup title="Body">
+          {bodySectionTree.map((tree) => (
             <BaseDataItem
               key={tree.displayName}
               title={tree.displayName}
@@ -65,125 +117,89 @@ export const ComponentSpaceTree: FC = () => {
               level={0}
               dataType="widget"
               type={tree.$widgetType as string}
-              canExpand
+              canExpand={tree.$childrenNode.length > 0}
               haveMoreAction
               canFocused
               onClick={handleOnClick}
               selectedDisplayNames={selectedComponent}
+              onFocus={handleOnFocus}
             />
           ))}
         </WorkSpaceTreeGroup>
-      )}
-      {headerSectionTree.length > 0 && (
-        <>
-          <Divider css={dividerStyle} />
-          <WorkSpaceTreeGroup title="Header">
-            {headerSectionTree.map((tree) => (
-              <BaseDataItem
-                key={tree.displayName}
-                title={tree.displayName}
-                value={tree}
-                level={0}
-                dataType="widget"
-                type={tree.$widgetType as string}
-                canExpand={tree.$childrenNode.length > 0}
-                canFocused
-                onClick={handleOnClick}
-                selectedDisplayNames={selectedComponent}
-              />
-            ))}
-          </WorkSpaceTreeGroup>
-        </>
-      )}
 
-      <Divider css={dividerStyle} />
-      <WorkSpaceTreeGroup title="Body">
-        {bodySectionTree.map((tree) => (
-          <BaseDataItem
-            key={tree.displayName}
-            title={tree.displayName}
-            value={tree}
-            level={0}
-            dataType="widget"
-            type={tree.$widgetType as string}
-            canExpand={tree.$childrenNode.length > 0}
-            haveMoreAction
-            canFocused
-            onClick={handleOnClick}
-            selectedDisplayNames={selectedComponent}
-          />
-        ))}
-      </WorkSpaceTreeGroup>
+        {leftSectionTree.length > 0 && (
+          <>
+            <Divider css={dividerStyle} />
+            <WorkSpaceTreeGroup title="Left Panel">
+              {leftSectionTree.map((tree) => (
+                <BaseDataItem
+                  key={tree.displayName}
+                  title={tree.displayName}
+                  value={tree}
+                  level={0}
+                  dataType="widget"
+                  type={tree.$widgetType as string}
+                  canExpand={tree.$childrenNode.length > 0}
+                  haveMoreAction
+                  canFocused
+                  onClick={handleOnClick}
+                  selectedDisplayNames={selectedComponent}
+                  onFocus={handleOnFocus}
+                />
+              ))}
+            </WorkSpaceTreeGroup>
+          </>
+        )}
 
-      {leftSectionTree.length > 0 && (
-        <>
-          <Divider css={dividerStyle} />
-          <WorkSpaceTreeGroup title="Left Panel">
-            {leftSectionTree.map((tree) => (
-              <BaseDataItem
-                key={tree.displayName}
-                title={tree.displayName}
-                value={tree}
-                level={0}
-                dataType="widget"
-                type={tree.$widgetType as string}
-                canExpand={tree.$childrenNode.length > 0}
-                haveMoreAction
-                canFocused
-                onClick={handleOnClick}
-                selectedDisplayNames={selectedComponent}
-              />
-            ))}
-          </WorkSpaceTreeGroup>
-        </>
-      )}
+        {rightSectionTree.length > 0 && (
+          <>
+            <Divider css={dividerStyle} />
+            <WorkSpaceTreeGroup title="Right Panel">
+              {rightSectionTree.map((tree) => (
+                <BaseDataItem
+                  key={tree.displayName}
+                  title={tree.displayName}
+                  value={tree}
+                  level={0}
+                  dataType="widget"
+                  type={tree.$widgetType as string}
+                  canExpand={tree.$childrenNode.length > 0}
+                  haveMoreAction
+                  canFocused
+                  onClick={handleOnClick}
+                  selectedDisplayNames={selectedComponent}
+                  onFocus={handleOnFocus}
+                />
+              ))}
+            </WorkSpaceTreeGroup>
+          </>
+        )}
 
-      {rightSectionTree.length > 0 && (
-        <>
-          <Divider css={dividerStyle} />
-          <WorkSpaceTreeGroup title="Right Panel">
-            {rightSectionTree.map((tree) => (
-              <BaseDataItem
-                key={tree.displayName}
-                title={tree.displayName}
-                value={tree}
-                level={0}
-                dataType="widget"
-                type={tree.$widgetType as string}
-                canExpand={tree.$childrenNode.length > 0}
-                haveMoreAction
-                canFocused
-                onClick={handleOnClick}
-                selectedDisplayNames={selectedComponent}
-              />
-            ))}
-          </WorkSpaceTreeGroup>
-        </>
-      )}
+        {footerSectionTree.length > 0 && (
+          <>
+            <Divider css={dividerStyle} />
 
-      {footerSectionTree.length > 0 && (
-        <>
-          <Divider css={dividerStyle} />
-
-          <WorkSpaceTreeGroup title="Footer Panel">
-            {footerSectionTree.map((tree) => (
-              <BaseDataItem
-                key={tree.displayName}
-                title={tree.displayName}
-                value={tree}
-                level={0}
-                dataType="widget"
-                type={tree.$widgetType as string}
-                canExpand={tree.$childrenNode.length > 0}
-                haveMoreAction
-                canFocused
-                onClick={handleOnClick}
-                selectedDisplayNames={selectedComponent}
-              />
-            ))}
-          </WorkSpaceTreeGroup>
-        </>
-      )}
+            <WorkSpaceTreeGroup title="Footer Panel">
+              {footerSectionTree.map((tree) => (
+                <BaseDataItem
+                  key={tree.displayName}
+                  title={tree.displayName}
+                  value={tree}
+                  level={0}
+                  dataType="widget"
+                  type={tree.$widgetType as string}
+                  canExpand={tree.$childrenNode.length > 0}
+                  haveMoreAction
+                  canFocused
+                  onClick={handleOnClick}
+                  selectedDisplayNames={selectedComponent}
+                  onFocus={handleOnFocus}
+                />
+              ))}
+            </WorkSpaceTreeGroup>
+          </>
+        )}
+      </BaseDataItemContextProvider>
     </PanelBar>
   )
 }

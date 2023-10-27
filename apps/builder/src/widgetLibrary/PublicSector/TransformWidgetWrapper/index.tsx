@@ -385,6 +385,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
               shadow,
               widgetType,
             )}
+            id={displayName}
           >
             <Suspense
               fallback={

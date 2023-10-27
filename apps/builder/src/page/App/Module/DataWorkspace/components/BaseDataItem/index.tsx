@@ -1,19 +1,22 @@
 import { getIconFromWidgetType } from "@illa-public/icon"
-import { FC, useState } from "react"
-import useMeasure from "react-use-measure"
+import { AnimatePresence, motion } from "framer-motion"
+import { FC, useContext, useState } from "react"
 import { CaretRightIcon, getColor } from "@illa-design/react"
 import { ReactComponent as LocateIcon } from "@/assets/dataWorkspace/locate.svg"
 import { ReactComponent as StateIcon } from "@/assets/dataWorkspace/state.svg"
 import IconHotSpot from "@/components/IconHotSpot"
 import { MovableModal } from "@/components/Modal/movableModal"
+import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
 import { MoreAction } from "../MoreAction"
 import { WorkSpaceTreeNode } from "../WorkSpaceTreeItem/WorkSpaceTreeNode"
+import { BaseDataItemContext } from "./context"
 import { BaseDataItemProps } from "./interface"
 import {
   applyExpandIconStyle,
   expendContainerStyle,
   iconContainerStyle,
   itemContainerStyle,
+  itemContentStyle,
   modalBodyContainerStyle,
   outerContainerStyle,
   rectangleStyle,
@@ -31,11 +34,15 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
     haveMoreAction,
     value,
     onClick,
+    onFocus,
     dataType,
     selectedDisplayNames,
   } = props
   const [isOpenCodeModal, setIsOpenCodeModal] = useState(false)
-  const [measureRef, rect] = useMeasure()
+  const { handleUpdateExpandedWidget, expandedStatus } =
+    useContext(BaseDataItemContext)
+  const isExpanded =
+    (canExpand ?? false) && (expandedStatus.get(title) ?? false)
 
   const isSelected = selectedDisplayNames?.includes(title) ?? false
 
@@ -43,16 +50,28 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
     onClick?.(title, type ?? "")
   }
 
+  const handleOnFocus = () => {
+    onFocus?.(title)
+  }
+
+  const handleClickOnExpandIcon = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    handleUpdateExpandedWidget(title, isExpanded)
+  }
+
   return (
     <>
       <div
         css={outerContainerStyle(isSelected)}
-        ref={measureRef}
         onClick={handleClickOnContainer}
+        id={`${title}-baseDataItemContainer`}
       >
         <div css={itemContainerStyle(level)}>
           <div css={expendContainerStyle}>
-            <span css={applyExpandIconStyle(false, !!canExpand)}>
+            <span
+              css={applyExpandIconStyle(isExpanded, !!canExpand)}
+              onClick={handleClickOnExpandIcon}
+            >
               <CaretRightIcon />
             </span>
             {!!type && level >= 1 && <div css={rectangleStyle} />}
@@ -63,7 +82,10 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
           </div>
           <div css={iconContainerStyle} id="action-bar">
             {canFocused && (
-              <IconHotSpot inactiveColor={getColor("grayBlue", "02")}>
+              <IconHotSpot
+                inactiveColor={getColor("grayBlue", "02")}
+                onClick={handleOnFocus}
+              >
                 <LocateIcon />
               </IconHotSpot>
             )}
@@ -76,23 +98,36 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
           </div>
         </div>
       </div>
-      {dataType === "widget" &&
-        Array.isArray(value.$childrenNode) &&
-        value.$childrenNode.map((item) => (
-          <BaseDataItem
-            key={item.displayName}
-            title={item.displayName}
-            value={item}
-            level={level + 1}
-            dataType="widget"
-            type={item.$widgetType as string}
-            canExpand={item.$childrenNode.length > 0}
-            haveMoreAction={item.$widgetType.endsWith("_WIDGET")}
-            canFocused={item.$widgetType.endsWith("_WIDGET")}
-            selectedDisplayNames={selectedDisplayNames}
-            onClick={onClick}
-          />
-        ))}
+
+      {dataType === "widget" && Array.isArray(value.$childrenNode) && (
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              css={itemContentStyle}
+              variants={panelBarItemContainerAnimationVariants}
+              animate={isExpanded ? "enter" : "exit"}
+              transition={{ duration: 0.2 }}
+              exit="exit"
+            >
+              {value.$childrenNode.map((item) => (
+                <BaseDataItem
+                  key={item.displayName}
+                  title={item.displayName}
+                  value={item}
+                  level={level + 1}
+                  dataType="widget"
+                  type={item.$widgetType as string}
+                  canExpand={item.$childrenNode.length > 0}
+                  haveMoreAction={item.$widgetType.endsWith("_WIDGET")}
+                  canFocused={item.$widgetType.endsWith("_WIDGET")}
+                  selectedDisplayNames={selectedDisplayNames}
+                  onClick={onClick}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
       {isOpenCodeModal && (
         <MovableModal
           title={title}
@@ -119,8 +154,14 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
           }}
           docLink={`${value.type}` ?? ""}
           defaultPosition={{
-            x: rect.right,
-            y: rect.top,
+            x:
+              document
+                .querySelector(`#${title}-baseDataItemContainer`)
+                ?.getBoundingClientRect().right ?? 0,
+            y:
+              document
+                .querySelector(`#${title}-baseDataItemContainer`)
+                ?.getBoundingClientRect().top ?? 0,
             width: 320,
             height: 214,
           }}
