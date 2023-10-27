@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Godkendelse"
-          }
+          },
+          "old_oracle": "9i eller derunder",
+          "new_oracle": "9i over"
         },
         "placeholder": {
           "url": "Angiv forespørgsels-URL her",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Vælg menupunkt",
           "pageChange": "Side ændring",
           "clickItem": "Klik på element",
-          "columnVisibilityChange": "Ændring af søjlesynlighed"
+          "columnVisibilityChange": "Ændring af søjlesynlighed",
+          "onPaginationModelChange": "Side ændring",
+          "onRefresh": "Opdater",
+          "onFilterModelChange": "Filtrer ændring",
+          "onRowSelectionModelChange": "Ændring af række valg",
+          "onColumnVisibilityModel": "Ændring af søjlesynlighed",
+          "onSortModelChange": "Sorter ændring"
         },
         "image_list": {
           "title": "Billeder",
@@ -1342,7 +1350,10 @@
         "refresh": "opfrisk",
         "density_setting": "Tæthed",
         "column_setting": "Kolonner",
-        "refresh_setting": "Opdater"
+        "refresh_setting": "Opdater",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Sorter ændring"
+        }
       },
       "setter_default_value": {
         "fill": "Udfyld",
