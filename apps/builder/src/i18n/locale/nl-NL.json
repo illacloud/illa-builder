@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "Disable users to reorder columns",
         "default_width": "Default width",
         "quick_filter_setting": "Quick filter",
-        "exclude_hidden_columns": "Exclude hidden columns"
+        "exclude_hidden_columns": "Exclude hidden columns",
+        "allow_users_select": "Allow row selection"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
         "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
         "default_width": "Used to set the default width of the column",
-        "max_count": "Used to set the max count of stars"
+        "max_count": "Used to set the max count of stars",
+        "allow_users_select": "Used to set whether allow users to select row. "
       },
       "setter_option": {
         "fixed": "Opgelost",
