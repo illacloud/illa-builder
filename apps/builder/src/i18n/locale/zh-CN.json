@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "禁止用户调整列排序",
         "default_width": "Default width",
         "quick_filter_setting": "快速筛选",
-        "exclude_hidden_columns": "不包含隐藏列"
+        "exclude_hidden_columns": "不包含隐藏列",
+        "allow_users_select": "允许选中行"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "用于设置是否允许用户更改排序",
         "disable_users_to_reorder": "用于设置是否禁止用户调整列排序",
         "default_width": "Used to set the default width of the column",
-        "max_count": "用于设置星星的最大数量"
+        "max_count": "用于设置星星的最大数量",
+        "allow_users_select": "用于设置是否允许用户选中行. "
       },
       "setter_option": {
         "fixed": "固定高度",
