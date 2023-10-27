@@ -1206,7 +1206,10 @@
           "placeholder": "{ count: 0 }"
         }
       },
-      "library": "ライブラリ"
+      "library": "ライブラリ",
+      "component_layer": {
+        "floating": "モーダル語"
+      }
     },
     "deploy": {
       "fail": "展開に失敗しました"
