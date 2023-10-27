@@ -372,6 +372,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
         ...column,
         type: "string",
         valueGetter: commonValueGetter,
+        renderCell: undefined,
       }
   }
 }
@@ -413,6 +414,7 @@ export function getSafeColumn(column: ColumnConfig): ColumnConfig {
   if (!isBoolean(newColum.disableReorder)) {
     newColum.disableReorder = false
   }
+
   return newColum
 }
 
