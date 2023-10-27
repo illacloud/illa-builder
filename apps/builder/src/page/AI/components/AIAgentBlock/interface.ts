@@ -7,4 +7,5 @@ export interface AIAgentBlockProps {
   children?: ReactNode
   subtitleTips?: string
   required?: boolean
+  scrollId?: string
 }
