@@ -1206,7 +1206,10 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Kirjastot"
+      "library": "Kirjastot",
+      "component_layer": {
+        "floating": "Modaali"
+      }
     },
     "deploy": {
       "fail": "Ei voitu ottaa käyttöön"
