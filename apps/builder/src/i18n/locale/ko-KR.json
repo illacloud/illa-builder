@@ -1206,7 +1206,10 @@
           "placeholder": "{ count: 0 }"
         }
       },
-      "library": "Libraries"
+      "library": "Libraries",
+      "component_layer": {
+        "floating": "Modal"
+      }
     },
     "deploy": {
       "fail": "배포 실패"
