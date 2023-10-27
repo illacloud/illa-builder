@@ -513,7 +513,7 @@ export const AIAgent: FC = () => {
                 <span css={backTextStyle}>{t("editor.ai-agent.title")}</span>
               </div>
               <Link
-                href="www.illacloud.com"
+                href="https://docs.illacloud.com/ai-agent"
                 target="__blank"
                 colorScheme="techPurple"
                 hoverable={false}
