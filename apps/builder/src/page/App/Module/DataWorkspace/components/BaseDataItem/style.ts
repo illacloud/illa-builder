@@ -84,3 +84,8 @@ export const modalBodyContainerStyle = css`
   flex-direction: column;
   gap: 4px;
 `
+
+export const itemContentStyle = css`
+  font-family: "Fira Code", monospace;
+  height: 0;
+`
