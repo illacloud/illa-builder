@@ -2799,7 +2799,8 @@
       "group": {
         "advanced_settings": "高级设置",
         "information": "基本信息"
-      }
+      },
+      "doc": "文档"
     },
     "common": {
       "required": "必填"
