@@ -4,7 +4,7 @@ import { getColor } from "@illa-design/react"
 export const itemContainerStyle = css`
   display: flex;
   flex-direction: column;
-  padding: 0 10px 0 16px;
+  padding: 0 16px;
 `
 
 export const titleContainerStyle = css`

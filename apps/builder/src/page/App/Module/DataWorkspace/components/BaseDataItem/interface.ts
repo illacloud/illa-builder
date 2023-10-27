@@ -1,5 +1,6 @@
 export interface BaseDataItemProps {
   level: number
+  fakeTitle?: string
   title: string
   type?: string
   canExpand?: boolean

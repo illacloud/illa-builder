@@ -1,7 +1,10 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const outerContainerStyle = (isSelected: boolean) => css`
+export const outerContainerStyle = (
+  isSelected: boolean,
+  canExpand: boolean,
+) => css`
   width: 100%;
   background-color: ${isSelected
     ? getColor("techPurple", "07")
@@ -12,6 +15,9 @@ export const outerContainerStyle = (isSelected: boolean) => css`
     background-color: ${getColor("techPurple", "07")};
     #action-bar {
       visibility: visible;
+    }
+    #expand-icon {
+      visibility: ${canExpand ? "visible" : "hidden"};
     }
   }
   #action-bar {
@@ -69,6 +75,7 @@ export const applyExpandIconStyle = (
   justify-content: center;
   flex: none;
   visibility: ${canExpand ? "visible" : "hidden"};
+  visibility: hidden;
 `
 
 export const iconContainerStyle = css`

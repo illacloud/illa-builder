@@ -55,14 +55,16 @@ const getPanelTitleFontStyle = (size: "default" | "small") => {
   switch (size) {
     case "small": {
       return css`
+        color: ${getColor("grayBlue", "03")};
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 500;
         font-family: "Inter", serif;
       `
     }
     case "default":
     default: {
       return css`
+        color: ${getColor("grayBlue", "02")};
         font-weight: 500;
         font-size: 14px;
       `
@@ -73,10 +75,10 @@ const getPanelTitleFontStyle = (size: "default" | "small") => {
 export const applyPanelBarTitleStyle = (
   size: "default" | "small",
 ): SerializedStyles => {
-  const fontStyle = getPanelTitleFontStyle(size)
   return css`
-    color: ${getColor("grayBlue", "02")};
-    ${fontStyle};
+    ${getPanelTitleFontStyle(size)};
+    overflow: hidden;
+    text-overflow: ellipsis;
   `
 }
 
