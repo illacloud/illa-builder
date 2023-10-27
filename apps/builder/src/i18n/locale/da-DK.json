@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "Deaktivér brugere for at omarrangere kolonner",
         "default_width": "Default width",
         "quick_filter_setting": "Hurtigt filter",
-        "exclude_hidden_columns": "Udeluk skjulte kolonner"
+        "exclude_hidden_columns": "Udeluk skjulte kolonner",
+        "allow_users_select": "Tillad valg af række"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "Bruges til at angive, om brugere kan ændre sorteringen af denne kolonne. ",
         "disable_users_to_reorder": "Bruges til at angive, om brugere skal deaktivere eller ej for at omarrangere kolonnerne",
         "default_width": "Bruges til at indstille standardbredden af kolonnen",
-        "max_count": "Bruges til at indstille maks antal stjerner"
+        "max_count": "Bruges til at indstille maks antal stjerner",
+        "allow_users_select": "Bruges til at angive, om det er tilladt brugere at vælge række. "
       },
       "setter_option": {
         "fixed": "Fast",
