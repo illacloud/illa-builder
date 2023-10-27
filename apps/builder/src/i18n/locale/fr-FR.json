@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Authentification"
-          }
+          },
+          "old_oracle": "9i or below",
+          "new_oracle": "9i above"
         },
         "placeholder": {
           "url": "Entrez l'URL de la requête ici",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Sélectionner un élément de menu",
           "pageChange": "Changement de page",
           "clickItem": "Cliquer sur un élément",
-          "columnVisibilityChange": "Column visibility change"
+          "columnVisibilityChange": "Column visibility change",
+          "onPaginationModelChange": "Page change",
+          "onRefresh": "Refresh",
+          "onFilterModelChange": "Filter change",
+          "onRowSelectionModelChange": "Row selection change",
+          "onColumnVisibilityModel": "Column visibility change",
+          "onSortModelChange": "Sort change"
         },
         "image_list": {
           "title": "Images",
@@ -1342,7 +1350,10 @@
         "refresh": "Actualiser",
         "density_setting": "Density",
         "column_setting": "Columns",
-        "refresh_setting": "Refresh"
+        "refresh_setting": "Refresh",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Sort change"
+        }
       },
       "setter_default_value": {
         "fill": "Remplir",
