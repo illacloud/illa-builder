@@ -2799,7 +2799,8 @@
       "group": {
         "advanced_settings": "Avancerede indstillinger",
         "information": "Grundlæggende oplysninger"
-      }
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Påkrævet"
