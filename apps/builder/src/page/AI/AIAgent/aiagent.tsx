@@ -360,9 +360,10 @@ export const AIAgent: FC = () => {
   }
 
   const handleScrollToElement = (scrollId: string) => {
-    document
-      .querySelector(`[data-scroll-id=${scrollId}]`)
-      ?.scrollIntoView({ block: "center" })
+    const el = document.querySelector(`[data-scroll-id=${scrollId}]`)
+    setTimeout(() => {
+      el?.scrollIntoView({ behavior: "smooth", block: "center" })
+    }, 30)
   }
   const handleSubmitSave = async (data: Agent) => {
     track(
