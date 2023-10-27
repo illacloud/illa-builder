@@ -32,7 +32,14 @@ export const ComponentSpaceTree: FC = () => {
   const modalSectionTree = useSelector(getCurrentPageModalWidgetTree)
   const selectedComponent = useSelector(getSelectedComponentDisplayNames)
 
-  const handleOnClick = useCallback(
+  const baseClickHandler = useCallback(
+    (displayName: string) => {
+      dispatch(configActions.updateSelectedComponent([displayName]))
+    },
+    [dispatch],
+  )
+
+  const handleClickOnModalSection = useCallback(
     (displayName: string, type: string) => {
       if (!type.endsWith("_WIDGET")) return
       if (type === "MODAL_WIDGET") {
@@ -43,17 +50,50 @@ export const ComponentSpaceTree: FC = () => {
           }),
         )
       }
-      dispatch(configActions.updateSelectedComponent([displayName]))
+      baseClickHandler(displayName)
     },
-    [dispatch],
+    [baseClickHandler, dispatch],
   )
 
-  const handleOnFocus = useCallback((displayName: string) => {
-    const dom = document.querySelector(`#${displayName}`)
-    if (dom) {
-      dom.scrollIntoView({ behavior: "smooth" })
-    }
-  }, [])
+  const handleClickOnHeaderSection = useCallback(
+    (displayName: string, type: string) => {
+      if (!type.endsWith("_WIDGET")) return
+      baseClickHandler(displayName)
+    },
+    [baseClickHandler],
+  )
+
+  const handleClickOnBodySection = useCallback(
+    (displayName: string, type: string) => {
+      if (!type.endsWith("_WIDGET")) return
+      baseClickHandler(displayName)
+    },
+    [baseClickHandler],
+  )
+
+  const handleClickOnLeftSection = useCallback(
+    (displayName: string, type: string) => {
+      if (!type.endsWith("_WIDGET")) return
+      baseClickHandler(displayName)
+    },
+    [baseClickHandler],
+  )
+
+  const handleClickOnRightSection = useCallback(
+    (displayName: string, type: string) => {
+      if (!type.endsWith("_WIDGET")) return
+      baseClickHandler(displayName)
+    },
+    [baseClickHandler],
+  )
+
+  const handleClickOnFooterSection = useCallback(
+    (displayName: string, type: string) => {
+      if (!type.endsWith("_WIDGET")) return
+      baseClickHandler(displayName)
+    },
+    [baseClickHandler],
+  )
 
   return (
     <PanelBar
@@ -64,25 +104,42 @@ export const ComponentSpaceTree: FC = () => {
       destroyChildrenWhenClose
     >
       <BaseDataItemContextProvider>
+        <WorkSpaceTreeGroup title="Body">
+          {bodySectionTree.map((tree) => (
+            <BaseDataItem
+              key={tree.displayName}
+              title={tree.displayName}
+              value={tree}
+              level={0}
+              dataType="widget"
+              type={tree.$widgetType as string}
+              canExpand={tree.$childrenNode.length > 0}
+              haveMoreAction
+              onClick={handleClickOnBodySection}
+              selectedDisplayNames={selectedComponent}
+            />
+          ))}
+        </WorkSpaceTreeGroup>
         {modalSectionTree.length > 0 && (
-          <WorkSpaceTreeGroup title="Modal">
-            {modalSectionTree.map((tree) => (
-              <BaseDataItem
-                key={tree.displayName}
-                title={tree.displayName}
-                value={tree}
-                level={0}
-                dataType="widget"
-                type={tree.$widgetType as string}
-                canExpand
-                haveMoreAction
-                canFocused
-                onClick={handleOnClick}
-                selectedDisplayNames={selectedComponent}
-                onFocus={handleOnFocus}
-              />
-            ))}
-          </WorkSpaceTreeGroup>
+          <>
+            <Divider css={dividerStyle} />
+            <WorkSpaceTreeGroup title="Modal">
+              {modalSectionTree.map((tree) => (
+                <BaseDataItem
+                  key={tree.displayName}
+                  title={tree.displayName}
+                  value={tree}
+                  level={0}
+                  dataType="widget"
+                  type={tree.$widgetType as string}
+                  canExpand
+                  haveMoreAction
+                  onClick={handleClickOnModalSection}
+                  selectedDisplayNames={selectedComponent}
+                />
+              ))}
+            </WorkSpaceTreeGroup>
+          </>
         )}
         {headerSectionTree.length > 0 && (
           <>
@@ -97,35 +154,13 @@ export const ComponentSpaceTree: FC = () => {
                   dataType="widget"
                   type={tree.$widgetType as string}
                   canExpand={tree.$childrenNode.length > 0}
-                  canFocused
-                  onClick={handleOnClick}
+                  onClick={handleClickOnHeaderSection}
                   selectedDisplayNames={selectedComponent}
-                  onFocus={handleOnFocus}
                 />
               ))}
             </WorkSpaceTreeGroup>
           </>
         )}
-
-        <Divider css={dividerStyle} />
-        <WorkSpaceTreeGroup title="Body">
-          {bodySectionTree.map((tree) => (
-            <BaseDataItem
-              key={tree.displayName}
-              title={tree.displayName}
-              value={tree}
-              level={0}
-              dataType="widget"
-              type={tree.$widgetType as string}
-              canExpand={tree.$childrenNode.length > 0}
-              haveMoreAction
-              canFocused
-              onClick={handleOnClick}
-              selectedDisplayNames={selectedComponent}
-              onFocus={handleOnFocus}
-            />
-          ))}
-        </WorkSpaceTreeGroup>
 
         {leftSectionTree.length > 0 && (
           <>
@@ -141,10 +176,8 @@ export const ComponentSpaceTree: FC = () => {
                   type={tree.$widgetType as string}
                   canExpand={tree.$childrenNode.length > 0}
                   haveMoreAction
-                  canFocused
-                  onClick={handleOnClick}
+                  onClick={handleClickOnLeftSection}
                   selectedDisplayNames={selectedComponent}
-                  onFocus={handleOnFocus}
                 />
               ))}
             </WorkSpaceTreeGroup>
@@ -165,10 +198,8 @@ export const ComponentSpaceTree: FC = () => {
                   type={tree.$widgetType as string}
                   canExpand={tree.$childrenNode.length > 0}
                   haveMoreAction
-                  canFocused
-                  onClick={handleOnClick}
+                  onClick={handleClickOnRightSection}
                   selectedDisplayNames={selectedComponent}
-                  onFocus={handleOnFocus}
                 />
               ))}
             </WorkSpaceTreeGroup>
@@ -190,10 +221,8 @@ export const ComponentSpaceTree: FC = () => {
                   type={tree.$widgetType as string}
                   canExpand={tree.$childrenNode.length > 0}
                   haveMoreAction
-                  canFocused
-                  onClick={handleOnClick}
+                  onClick={handleClickOnFooterSection}
                   selectedDisplayNames={selectedComponent}
-                  onFocus={handleOnFocus}
                 />
               ))}
             </WorkSpaceTreeGroup>

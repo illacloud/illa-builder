@@ -205,29 +205,6 @@ const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
           control={control}
           placeholders={[t("editor.action.form.placeholder.oracle.password")]}
         />
-        {/* <ControlledElement
-          isRequired
-          title={t("editor.action.form.label.oracle.version")}
-          defaultValue="9i above"
-          name="version"
-          controlledType={["select"]}
-          control={control}
-          rules={[
-            {
-              validate,
-            },
-          ]}
-          options={[
-            {
-              label: t("editor.action.form.option.oracle.version.below"),
-              value: "9i",
-            },
-            {
-              label: t("editor.action.form.option.oracle.version.above"),
-              value: "9i above",
-            },
-          ]}
-        /> */}
         {isCloudVersion && (
           <>
             <div css={configItemTip}>

@@ -37,6 +37,7 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return MysqlLikeActionInitial
     case "mssql":
       return MicrosoftSqlActionInitial
+    case "oracle9i":
     case "oracle":
       return OracleDBActionInitial
     case "restapi":
