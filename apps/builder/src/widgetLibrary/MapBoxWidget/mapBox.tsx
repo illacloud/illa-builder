@@ -9,7 +9,6 @@ import { SearchInput } from "./SearchInput"
 import {
   ContainerStyle,
   DefaultCenter,
-  DefaultMarkers,
   DefaultZoom,
   LatitudeFieldName,
   Libraries,
@@ -24,7 +23,7 @@ export const MapBox: FC<MapProps> = ({
   latitudeFieldName = LatitudeFieldName,
   longitudeFieldName = LongitudeFieldName,
   zoom = DefaultZoom,
-  markers = DefaultMarkers,
+  markers = "",
   enableAddMark = true,
   enableSearch = true,
   enableClustering = false,

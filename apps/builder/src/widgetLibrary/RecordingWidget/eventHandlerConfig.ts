@@ -10,5 +10,5 @@ export const RECORDING_HANDLER_CONFIG: EventHandlerConfig = {
       value: "change",
     },
   ],
-  methods: ["setValue", "clearValue", "validate", "clearValidation"],
+  methods: ["clearValue", "validate", "clearValidation"],
 }

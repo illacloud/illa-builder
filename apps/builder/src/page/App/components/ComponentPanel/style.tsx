@@ -18,6 +18,7 @@ export const sessionListContainerStyle = css`
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding-bottom: 40px;
 `
 
 export const sessionContainerStyle = css`

@@ -5,7 +5,6 @@ import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { BaseRecorder } from "@/widgetLibrary/RecordingWidget/baseRecord"
-import { SetValueMessage } from "@/widgetLibrary/RecordingWidget/constants"
 import {
   AudioRecorderWidgetProps,
   WrappedAudioRecorderProps,
@@ -131,25 +130,6 @@ export const RecordingWidget: FC<AudioRecorderWidgetProps> = (props) => {
 
   useEffect(() => {
     updateComponentRuntimeProps({
-      setValue: (value: unknown) => {
-        if (isRecording) {
-          messageModal.info({
-            content: SetValueMessage,
-          })
-          return
-        }
-        if (typeof value !== "string") {
-          return
-        }
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              value: value,
-            },
-          },
-        ])
-      },
       clearValue: () => {
         handleUpdateMultiExecutionResult([
           {
