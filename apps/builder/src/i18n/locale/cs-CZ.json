@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Ověření"
-          }
+          },
+          "old_oracle": "9i nebo méně",
+          "new_oracle": "9i výše"
         },
         "placeholder": {
           "url": "Zde zadejte adresu URL požadavku",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Vyberte položku nabídky",
           "pageChange": "Změna stránky",
           "clickItem": "Klepněte na položku",
-          "columnVisibilityChange": "Změna viditelnosti sloupců"
+          "columnVisibilityChange": "Změna viditelnosti sloupců",
+          "onPaginationModelChange": "Změna stránky",
+          "onRefresh": "Aktualizovat",
+          "onFilterModelChange": "Změna filtru",
+          "onRowSelectionModelChange": "Změna výběru řádků",
+          "onColumnVisibilityModel": "Změna viditelnosti sloupců",
+          "onSortModelChange": "Seřadit změnu"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1342,7 +1350,10 @@
         "refresh": "obnovit",
         "density_setting": "Hustota",
         "column_setting": "Sloupce",
-        "refresh_setting": "Aktualizovat"
+        "refresh_setting": "Aktualizovat",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Seřadit změnu"
+        }
       },
       "setter_default_value": {
         "fill": "Vyplnit",
