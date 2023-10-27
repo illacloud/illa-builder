@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Автентифікація"
-          }
+          },
+          "old_oracle": "9i or below",
+          "new_oracle": "9i above"
         },
         "placeholder": {
           "url": "Введіть URL запит",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Виберіть пункт меню",
           "pageChange": "Зміна сторінки",
           "clickItem": "Натиснути предмет",
-          "columnVisibilityChange": "Column visibility change"
+          "columnVisibilityChange": "Column visibility change",
+          "onPaginationModelChange": "Page change",
+          "onRefresh": "Refresh",
+          "onFilterModelChange": "Filter change",
+          "onRowSelectionModelChange": "Row selection change",
+          "onColumnVisibilityModel": "Column visibility change",
+          "onSortModelChange": "Sort change"
         },
         "image_list": {
           "title": "Малюнки",
@@ -1342,7 +1350,10 @@
         "refresh": "оновити",
         "density_setting": "Density",
         "column_setting": "Columns",
-        "refresh_setting": "Refresh"
+        "refresh_setting": "Refresh",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Sort change"
+        }
       },
       "setter_default_value": {
         "fill": "Заливка рядка",
