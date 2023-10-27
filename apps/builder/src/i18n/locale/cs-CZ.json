@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců",
         "default_width": "Default width",
         "quick_filter_setting": "Rychlý filtr",
-        "exclude_hidden_columns": "Vyloučit skryté sloupce"
+        "exclude_hidden_columns": "Vyloučit skryté sloupce",
+        "allow_users_select": "Povolit výběr řádků"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
         "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců",
         "default_width": "Použít k nastavení výchozí šířky sloupce",
-        "max_count": "Používá se k nastavení maximálního počtu hvězdiček"
+        "max_count": "Používá se k nastavení maximálního počtu hvězdiček",
+        "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. "
       },
       "setter_option": {
         "fixed": "Fixní",
