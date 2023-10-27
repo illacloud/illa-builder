@@ -533,7 +533,6 @@ export const getCurrentPageRightWidgetTree = createSelector(
 export const getCurrentPageModalWidgetTree = createSelector(
   [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
   (currentPageWidgets, widgets) => {
-    console.log("currentPageWidgets", currentPageWidgets)
     return buildForest(
       getTargetSectionWidget(
         "modalSection",

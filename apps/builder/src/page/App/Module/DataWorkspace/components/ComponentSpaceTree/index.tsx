@@ -16,7 +16,6 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
-import { BaseDataItemContextProvider } from "../BaseDataItem/context"
 
 export const ComponentSpaceTree: FC = () => {
   const { t } = useTranslation()
@@ -101,129 +100,127 @@ export const ComponentSpaceTree: FC = () => {
       }}
       destroyChildrenWhenClose
     >
-      <BaseDataItemContextProvider>
-        {modalSectionTree.length > 0 && (
-          <>
-            <WorkSpaceTreeGroup
-              title={t("editor.data_work_space.component_layer.floating")}
-            >
-              {modalSectionTree.map((tree) => (
-                <BaseDataItem
-                  key={tree.displayName}
-                  title={tree.displayName}
-                  value={tree}
-                  level={0}
-                  dataType="widget"
-                  type={tree.$widgetType as string}
-                  canExpand
-                  haveMoreAction
-                  onClick={handleClickOnModalSection}
-                  selectedDisplayNames={selectedComponent}
-                />
-              ))}
-            </WorkSpaceTreeGroup>
-          </>
-        )}
-        <WorkSpaceTreeGroup title={t("editor.page.label_name.body")}>
-          {bodySectionTree.map((tree) => (
-            <BaseDataItem
-              key={tree.displayName}
-              title={tree.displayName}
-              value={tree}
-              level={0}
-              dataType="widget"
-              type={tree.$widgetType as string}
-              canExpand={tree.$childrenNode.length > 0}
-              haveMoreAction
-              onClick={handleClickOnBodySection}
-              selectedDisplayNames={selectedComponent}
-            />
-          ))}
-        </WorkSpaceTreeGroup>
+      {modalSectionTree.length > 0 && (
+        <>
+          <WorkSpaceTreeGroup
+            title={t("editor.data_work_space.component_layer.floating")}
+          >
+            {modalSectionTree.map((tree) => (
+              <BaseDataItem
+                key={tree.displayName}
+                title={tree.displayName}
+                value={tree}
+                level={0}
+                dataType="widget"
+                type={tree.$widgetType as string}
+                canExpand
+                haveMoreAction
+                onClick={handleClickOnModalSection}
+                selectedDisplayNames={selectedComponent}
+              />
+            ))}
+          </WorkSpaceTreeGroup>
+        </>
+      )}
+      <WorkSpaceTreeGroup title={t("editor.page.label_name.body")}>
+        {bodySectionTree.map((tree) => (
+          <BaseDataItem
+            key={tree.displayName}
+            title={tree.displayName}
+            value={tree}
+            level={0}
+            dataType="widget"
+            type={tree.$widgetType as string}
+            canExpand={tree.$childrenNode.length > 0}
+            haveMoreAction
+            onClick={handleClickOnBodySection}
+            selectedDisplayNames={selectedComponent}
+          />
+        ))}
+      </WorkSpaceTreeGroup>
 
-        {headerSectionTree.length > 0 && (
-          <>
-            <WorkSpaceTreeGroup title={t("editor.page.label_name.header")}>
-              {headerSectionTree.map((tree) => (
-                <BaseDataItem
-                  key={tree.displayName}
-                  title={tree.displayName}
-                  value={tree}
-                  level={0}
-                  dataType="widget"
-                  type={tree.$widgetType as string}
-                  canExpand={tree.$childrenNode.length > 0}
-                  onClick={handleClickOnHeaderSection}
-                  selectedDisplayNames={selectedComponent}
-                />
-              ))}
-            </WorkSpaceTreeGroup>
-          </>
-        )}
+      {headerSectionTree.length > 0 && (
+        <>
+          <WorkSpaceTreeGroup title={t("editor.page.label_name.header")}>
+            {headerSectionTree.map((tree) => (
+              <BaseDataItem
+                key={tree.displayName}
+                title={tree.displayName}
+                value={tree}
+                level={0}
+                dataType="widget"
+                type={tree.$widgetType as string}
+                canExpand={tree.$childrenNode.length > 0}
+                onClick={handleClickOnHeaderSection}
+                selectedDisplayNames={selectedComponent}
+              />
+            ))}
+          </WorkSpaceTreeGroup>
+        </>
+      )}
 
-        {leftSectionTree.length > 0 && (
-          <>
-            <WorkSpaceTreeGroup title={t("editor.page.label_name.left_panel")}>
-              {leftSectionTree.map((tree) => (
-                <BaseDataItem
-                  key={tree.displayName}
-                  title={tree.displayName}
-                  value={tree}
-                  level={0}
-                  dataType="widget"
-                  type={tree.$widgetType as string}
-                  canExpand={tree.$childrenNode.length > 0}
-                  haveMoreAction
-                  onClick={handleClickOnLeftSection}
-                  selectedDisplayNames={selectedComponent}
-                />
-              ))}
-            </WorkSpaceTreeGroup>
-          </>
-        )}
+      {leftSectionTree.length > 0 && (
+        <>
+          <WorkSpaceTreeGroup title={t("editor.page.label_name.left_panel")}>
+            {leftSectionTree.map((tree) => (
+              <BaseDataItem
+                key={tree.displayName}
+                title={tree.displayName}
+                value={tree}
+                level={0}
+                dataType="widget"
+                type={tree.$widgetType as string}
+                canExpand={tree.$childrenNode.length > 0}
+                haveMoreAction
+                onClick={handleClickOnLeftSection}
+                selectedDisplayNames={selectedComponent}
+              />
+            ))}
+          </WorkSpaceTreeGroup>
+        </>
+      )}
 
-        {rightSectionTree.length > 0 && (
-          <>
-            <WorkSpaceTreeGroup title={t("editor.page.label_name.right_panel")}>
-              {rightSectionTree.map((tree) => (
-                <BaseDataItem
-                  key={tree.displayName}
-                  title={tree.displayName}
-                  value={tree}
-                  level={0}
-                  dataType="widget"
-                  type={tree.$widgetType as string}
-                  canExpand={tree.$childrenNode.length > 0}
-                  haveMoreAction
-                  onClick={handleClickOnRightSection}
-                  selectedDisplayNames={selectedComponent}
-                />
-              ))}
-            </WorkSpaceTreeGroup>
-          </>
-        )}
+      {rightSectionTree.length > 0 && (
+        <>
+          <WorkSpaceTreeGroup title={t("editor.page.label_name.right_panel")}>
+            {rightSectionTree.map((tree) => (
+              <BaseDataItem
+                key={tree.displayName}
+                title={tree.displayName}
+                value={tree}
+                level={0}
+                dataType="widget"
+                type={tree.$widgetType as string}
+                canExpand={tree.$childrenNode.length > 0}
+                haveMoreAction
+                onClick={handleClickOnRightSection}
+                selectedDisplayNames={selectedComponent}
+              />
+            ))}
+          </WorkSpaceTreeGroup>
+        </>
+      )}
 
-        {footerSectionTree.length > 0 && (
-          <>
-            <WorkSpaceTreeGroup title={t("editor.page.label_name.footer")}>
-              {footerSectionTree.map((tree) => (
-                <BaseDataItem
-                  key={tree.displayName}
-                  title={tree.displayName}
-                  value={tree}
-                  level={0}
-                  dataType="widget"
-                  type={tree.$widgetType as string}
-                  canExpand={tree.$childrenNode.length > 0}
-                  haveMoreAction
-                  onClick={handleClickOnFooterSection}
-                  selectedDisplayNames={selectedComponent}
-                />
-              ))}
-            </WorkSpaceTreeGroup>
-          </>
-        )}
-      </BaseDataItemContextProvider>
+      {footerSectionTree.length > 0 && (
+        <>
+          <WorkSpaceTreeGroup title={t("editor.page.label_name.footer")}>
+            {footerSectionTree.map((tree) => (
+              <BaseDataItem
+                key={tree.displayName}
+                title={tree.displayName}
+                value={tree}
+                level={0}
+                dataType="widget"
+                type={tree.$widgetType as string}
+                canExpand={tree.$childrenNode.length > 0}
+                haveMoreAction
+                onClick={handleClickOnFooterSection}
+                selectedDisplayNames={selectedComponent}
+              />
+            ))}
+          </WorkSpaceTreeGroup>
+        </>
+      )}
     </PanelBar>
   )
 }
