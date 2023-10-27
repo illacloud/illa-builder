@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Проверка подлинности"
-          }
+          },
+          "old_oracle": "9i или ниже",
+          "new_oracle": "9i выше"
         },
         "placeholder": {
           "url": "Введите URL запроса здесь",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Выберите пункт меню",
           "pageChange": "Изменение страницы",
           "clickItem": "Щелкните по элементу",
-          "columnVisibilityChange": "Изменение видимости столбцов"
+          "columnVisibilityChange": "Изменение видимости столбцов",
+          "onPaginationModelChange": "Изменение страницы",
+          "onRefresh": "Обновить",
+          "onFilterModelChange": "Изменение фильтра",
+          "onRowSelectionModelChange": "Изменение выбора строки",
+          "onColumnVisibilityModel": "Изменение видимости столбцов",
+          "onSortModelChange": "Изменить сортировку"
         },
         "image_list": {
           "title": "Изображения",
@@ -1342,7 +1350,10 @@
         "refresh": "обновить",
         "density_setting": "Плотность",
         "column_setting": "Столбцы",
-        "refresh_setting": "Обновить"
+        "refresh_setting": "Обновить",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Изменить сортировку"
+        }
       },
       "setter_default_value": {
         "fill": "Заполнить",
