@@ -1,5 +1,5 @@
+import { ResourceType } from "@illa-public/public-types"
 import i18n from "@/i18n/config"
-import { ResourceType } from "@/redux/resource/resourceState"
 
 export interface ResourceDataItem {
   resourceType: ResourceType

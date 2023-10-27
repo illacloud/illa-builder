@@ -1,8 +1,7 @@
 import { getIconFromWidgetType } from "@illa-public/icon"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useContext, useState } from "react"
-import { CaretRightIcon, getColor } from "@illa-design/react"
-import { ReactComponent as LocateIcon } from "@/assets/dataWorkspace/locate.svg"
+import { CaretRightIcon } from "@illa-design/react"
 import { ReactComponent as StateIcon } from "@/assets/dataWorkspace/state.svg"
 import IconHotSpot from "@/components/IconHotSpot"
 import { MovableModal } from "@/components/Modal/movableModal"
@@ -30,11 +29,9 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
     type,
     level,
     canExpand,
-    canFocused,
     haveMoreAction,
     value,
     onClick,
-    onFocus,
     dataType,
     selectedDisplayNames,
   } = props
@@ -48,10 +45,7 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
 
   const handleClickOnContainer = () => {
     onClick?.(title, type ?? "")
-  }
-
-  const handleOnFocus = () => {
-    onFocus?.(title)
+    handleUpdateExpandedWidget(title, isExpanded)
   }
 
   const handleClickOnExpandIcon = (e: React.MouseEvent) => {
@@ -81,14 +75,6 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
             </div>
           </div>
           <div css={iconContainerStyle} id="action-bar">
-            {canFocused && (
-              <IconHotSpot
-                inactiveColor={getColor("grayBlue", "02")}
-                onClick={handleOnFocus}
-              >
-                <LocateIcon />
-              </IconHotSpot>
-            )}
             <IconHotSpot onClick={() => setIsOpenCodeModal(true)}>
               <StateIcon />
             </IconHotSpot>
@@ -119,7 +105,6 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
                   type={item.$widgetType as string}
                   canExpand={item.$childrenNode.length > 0}
                   haveMoreAction={item.$widgetType.endsWith("_WIDGET")}
-                  canFocused={item.$widgetType.endsWith("_WIDGET")}
                   selectedDisplayNames={selectedDisplayNames}
                   onClick={onClick}
                 />
