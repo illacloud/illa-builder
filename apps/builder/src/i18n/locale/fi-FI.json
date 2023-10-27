@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Todennus"
-          }
+          },
+          "old_oracle": "vähintään 9i",
+          "new_oracle": "9i yläpuolella"
         },
         "placeholder": {
           "url": "Syötä pyynnön URL tähän",
@@ -1204,7 +1206,10 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries"
+      "library": "Kirjastot",
+      "component_layer": {
+        "floating": "Modaali"
+      }
     },
     "deploy": {
       "fail": "Ei voitu ottaa käyttöön"
@@ -1314,7 +1319,13 @@
           "on_menu_select": "Valitse valikon kohta",
           "pageChange": "Sivun muutos",
           "clickItem": "Napsauta kohdetta",
-          "columnVisibilityChange": "Sarakkeen näkyvyyden muutos"
+          "columnVisibilityChange": "Sarakkeen näkyvyyden muutos",
+          "onPaginationModelChange": "Sivun muutos",
+          "onRefresh": "Päivitä",
+          "onFilterModelChange": "Suodata muutos",
+          "onRowSelectionModelChange": "Rivin valinnan muutos",
+          "onColumnVisibilityModel": "Sarakkeen näkyvyyden muutos",
+          "onSortModelChange": "Lajittele muutos"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1342,7 +1353,10 @@
         "refresh": "päivitä",
         "density_setting": "Tiheys",
         "column_setting": "Sarakkeet",
-        "refresh_setting": "Päivitä"
+        "refresh_setting": "Päivitä",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Lajittele muutos"
+        }
       },
       "setter_default_value": {
         "fill": "Täytä",
@@ -1760,7 +1774,8 @@
           "cell_selection": "Solun valinta",
           "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan",
           "page": "Oletussivun indeksi",
-          "export_all_data_setting": "Vie kaikki"
+          "export_all_data_setting": "Vie kaikki",
+          "locale": "Lokaatio"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
@@ -1870,8 +1885,10 @@
         "enable_users_to_resize": "Salli käyttäjien koon muuttaminen",
         "enable_users_to_sort": "Salli käyttäjien lajitella",
         "disable_users_to_reorder": "Poista käyttäjät tilataksesi sarakkeita uudelleen",
-        "locale": "Lokaatio",
-        "default_width": "Default width"
+        "default_width": "Default width",
+        "quick_filter_setting": "Nopea suodatin",
+        "exclude_hidden_columns": "Jätä piilotetut sarakkeet pois",
+        "allow_users_select": "Salli rivin valinta"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1934,7 +1951,9 @@
         "senderAvatar": "Aseta lähettäjän avatari. Esimerkiksi tietolähteessäsi lähettäjän avatar on sendAvatar kenttä ja voit asettaa kentän arvoon {{item.sendAvatar}}.",
         "receiving": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
         "export_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodatettuja tietoja.",
-        "filter_setting": "Käytetään sen määrittämiseen, näyttääkö suodattimet vai ei, jolloin käyttäjät voivat suodattaa tiedot taulukossa."
+        "filter_setting": "Käytetään sen määrittämiseen, näyttääkö suodattimet vai ei, jolloin käyttäjät voivat suodattaa tiedot taulukossa.",
+        "quick_filter_setting": "Käytetään määritettäessä, ottaako pikanäppäin käyttöön",
+        "exclude_hidden_columns": "Käytetään määritettäessä, onko piilotettuja sarakkeita puristettu, kun käytetään nopeaa suodatinta. "
       },
       "tab_title": "Tutki",
       "unselected_tip1": "Komponentteja ei ole valittu.",
@@ -2087,7 +2106,8 @@
           "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan.",
           "density_setting": "Käytetään rivin korkeuden määrittämiseen tai ei. ",
           "refresh_setting": "Käytetään määritettäessä, näyttääkö virkistävä kuvake",
-          "export_raw_data_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodattamatonta raakatietoa."
+          "export_raw_data_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodattamatonta raakatietoa.",
+          "locale": "Esimerkiksi fi-FI"
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2172,9 +2192,9 @@
         "column_description": "Käytetään tämän sarakkeen kuvauksen asettamiseen",
         "enable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. ",
         "disable_users_to_reorder": "Käytetään määritettäessä, onko käyttäjä poistettu käytöstä järjestääksesi sarakkeet uudelleen",
-        "locale": "Esimerkiksi fi-FI",
         "default_width": "Käytetään määritettäessä sarakkeen oletusleveyttä",
-        "max_count": "Käytetään asettamaan suurin määrä tähtiä"
+        "max_count": "Käytetään asettamaan suurin määrä tähtiä",
+        "allow_users_select": "Käytetään määritettäessä, salliko käyttäjien valita rivi. "
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -2774,7 +2794,29 @@
       "title-preview": {
         "chat": "Keskustelu",
         "text-generation": "Tekstin luonti"
-      }
+      },
+      "validation_blank": {
+        "name": "Anna nimi",
+        "prompt": "Syötä kehotus",
+        "description": "Ole hyvä ja anna kuvaus",
+        "icon": "Lataa tai luo kuvake",
+        "variable_value": "Varmista, että sekä avain että arvo ovat joko tyhjiä tai tyhjiä.",
+        "variable_key": "Syötä avain tai poista arvo. ",
+        "temperature": "Syötä lämpötila välillä 0,1 - 2",
+        "max_token": "Syötä max tunnus vähintään 1"
+      },
+      "length_invalid": {
+        "description": "Ole hyvä ja rajoita merkin määrä 160 tai vähemmän"
+      },
+      "value_invalid": {
+        "temperature": "Syötä lämpötila välillä 0,1 - 2",
+        "max_token": "Syötä max tunnus vähintään 1"
+      },
+      "group": {
+        "advanced_settings": "Edistyneet asetukset",
+        "information": "Perustiedot"
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Pakollinen"
@@ -4461,5 +4503,6 @@
   },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
-  }
+  },
+  "show_states": "Näytä tilat"
 }

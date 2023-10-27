@@ -25,7 +25,6 @@ import {
   Paragraph,
   Rate,
   SingleDatePicker,
-  Space,
   Tag,
   TimePicker,
 } from "@illa-design/react"
@@ -40,6 +39,10 @@ import {
   getPreColor,
   isValidLocale,
 } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
+import {
+  cellContainer,
+  currencyContainerStyle,
+} from "@/widgetLibrary/DataGridWidget/style"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
 
 export function getColumnFromType(column: ColumnConfig): ColumnConfig {
@@ -109,7 +112,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
           const buttonGroup: GroupButton[] =
             get(params.colDef, "buttonGroup") ?? []
           return (
-            <ButtonGroup spacing="8px">
+            <ButtonGroup css={cellContainer} spacing="8px">
               {buttonGroup.map((button) => {
                 let label = button.mappedValue
                 const index = params.api
@@ -167,17 +170,19 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
             params.colDef,
             "showThousandsSeparator",
           )
+          let finalResult = ""
           if (isNumber(decimalPlaces)) {
-            return showThousandsSeparator
-              ? `${Number(
-                  Number(params.value * 100).toFixed(decimalPlaces),
-                ).toLocaleString(locale)}%`
+            finalResult = showThousandsSeparator
+              ? `${Number(params.value * 100).toLocaleString(locale, {
+                  minimumFractionDigits: decimalPlaces,
+                })}%`
               : `${Number(params.value * 100).toFixed(decimalPlaces)}%`
           } else {
-            return showThousandsSeparator
+            finalResult = showThousandsSeparator
               ? `${Number(params.value * 100).toLocaleString(locale)}%`
               : `${params.value * 100}%`
           }
+          return <span css={currencyContainerStyle}>{finalResult}</span>
         },
         valueGetter: commonValueGetter,
       }
@@ -230,21 +235,25 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
             params.colDef,
             "showThousandsSeparator",
           )
+          let finalResult = ""
           if (isNumber(decimalPlaces)) {
-            return showThousandsSeparator
+            finalResult = showThousandsSeparator
               ? `${CurrencyCode[currencyCode] ?? "USD"}${Number(
-                  Number(params.value).toFixed(decimalPlaces),
-                ).toLocaleString(locale)}`
+                  params.value,
+                ).toLocaleString(locale, {
+                  minimumFractionDigits: decimalPlaces,
+                })}`
               : `${CurrencyCode[currencyCode ?? "USD"]}${Number(
                   params.value,
                 ).toFixed(decimalPlaces)}`
           } else {
-            return showThousandsSeparator
+            finalResult = showThousandsSeparator
               ? `${CurrencyCode[currencyCode ?? "USD"]}${Number(
                   params.value,
                 ).toLocaleString(locale)}`
               : `${CurrencyCode[currencyCode ?? "USD"]}${params.value}`
           }
+          return <span css={currencyContainerStyle}>{finalResult}</span>
         },
         valueGetter: commonValueGetter,
       }
@@ -259,7 +268,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
             : [params.value]
           const tagColorMap = isObject(tagColor) ? tagColor : {}
           return (
-            <Space>
+            <div css={cellContainer}>
               {tagLabelArray.map((label, index) => {
                 const l = isObject(label) ? JSON.stringify(label) : label
                 const c = get(tagColorMap, l) ?? getPreColor(getHashCode(l))
@@ -269,7 +278,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
                   </Tag>
                 )
               })}
-            </Space>
+            </div>
           )
         },
         valueGetter: commonValueGetter,
@@ -301,9 +310,9 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
           )
           if (isNumber(decimalPlaces)) {
             return showThousandsSeparator
-              ? Number(
-                  Number(params.value).toFixed(decimalPlaces),
-                ).toLocaleString(locale)
+              ? Number(params.value).toLocaleString(locale, {
+                  minimumFractionDigits: decimalPlaces,
+                })
               : Number(params.value).toFixed(decimalPlaces)
           } else {
             return showThousandsSeparator
@@ -328,6 +337,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
         renderCell: (params: GridRenderCellParams) => {
           return (
             <SingleDatePicker
+              readonly
               colorScheme="techPurple"
               editable={false}
               allowClear={false}
@@ -344,6 +354,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
         renderCell: (params: GridRenderCellParams) => {
           return (
             <TimePicker
+              readonly
               colorScheme="techPurple"
               editable={false}
               allowClear={false}
@@ -372,6 +383,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
         ...column,
         type: "string",
         valueGetter: commonValueGetter,
+        renderCell: undefined,
       }
   }
 }
@@ -413,6 +425,9 @@ export function getSafeColumn(column: ColumnConfig): ColumnConfig {
   if (!isBoolean(newColum.disableReorder)) {
     newColum.disableReorder = false
   }
+
+  newColum.align = newColum.headerAlign
+
   return newColum
 }
 

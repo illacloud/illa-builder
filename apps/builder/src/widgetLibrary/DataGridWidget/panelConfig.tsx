@@ -10,10 +10,12 @@ import {
   PanelFieldConfig,
 } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { DATA_GRID_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DataGridWidget/eventHandlerConfig"
+import {
+  DATA_GRID_BUTTON_EVENT_HANDLER_CONFIG,
+  DATA_GRID_EVENT_HANDLER_CONFIG,
+} from "@/widgetLibrary/DataGridWidget/eventHandlerConfig"
 import { ColumnTypeList } from "@/widgetLibrary/DataGridWidget/interface"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { generatorTableEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorTableEventHandlerConfig"
 
 const baseWidgetName = "dataGrid"
 
@@ -147,8 +149,6 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           attrName: "locale",
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.STRING,
-          bindAttrName: ["showThousandsSeparator"],
-          shown: (value) => value,
           openDynamic: true,
           useCustomLayout: true,
         },
@@ -231,7 +231,10 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           placeholder: "{{currentRow}}",
         },
         {
-          ...generatorTableEventHandlerConfig(baseWidgetName, []),
+          ...generatorEventHandlerConfig(
+            baseWidgetName,
+            DATA_GRID_BUTTON_EVENT_HANDLER_CONFIG.events,
+          ),
         },
         {
           id: `${baseWidgetName}-column-disabled`,
@@ -269,7 +272,10 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
               placeholder: "{{currentRow}}",
             },
             {
-              ...generatorTableEventHandlerConfig(baseWidgetName, []),
+              ...generatorEventHandlerConfig(
+                baseWidgetName,
+                DATA_GRID_BUTTON_EVENT_HANDLER_CONFIG.events,
+              ),
             },
             {
               id: `${baseWidgetName}-column-disabled`,
@@ -424,7 +430,7 @@ export const DATA_GRID_COMMON_COLUMN_SETTER_CONFIG: PanelFieldConfig[] = [
     id: `${baseWidgetName}-column-columnType`,
     labelName: i18n.t("editor.inspect.setter_label.column_type"),
     attrName: "columnType",
-    setterType: "SEARCH_SELECT_SETTER",
+    setterType: "DATA_GRID_TYPE_SELECT_SETTER",
     options: ColumnTypeList,
     expectedType: VALIDATION_TYPES.STRING,
   },
@@ -636,8 +642,8 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-basic-rowSelection`,
-        labelName: i18n.t(" editor.inspect.setter_label.allow_row_selection"),
-        labelDesc: i18n.t(" editor.inspect.setter_tips.allow_row_selection"),
+        labelName: i18n.t("editor.inspect.setter_label.allow_users_select"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.allow_users_select"),
         attrName: "rowSelection",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -650,7 +656,8 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.selection_mode"),
         attrName: "rowSelectionMode",
         setterType: "RADIO_GROUP_SETTER",
-        useCustomLayout: true,
+        defaultValue: "single",
+        isSetterSingleRow: true,
         bindAttrName: ["rowSelection"],
         shown: (value) => value,
         options: [

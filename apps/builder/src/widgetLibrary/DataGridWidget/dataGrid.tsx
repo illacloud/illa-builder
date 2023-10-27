@@ -1,10 +1,11 @@
-import { StyledEngineProvider } from "@mui/material"
+import { StyledEngineProvider, ThemeProvider, createTheme } from "@mui/material"
 import { DataGridPremium, LicenseInfo } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber } from "lodash"
 import React, { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { v4 } from "uuid"
+import { getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import {
@@ -187,149 +188,161 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <DataGridPremium
-        apiRef={ref}
-        getRowId={(row) => {
-          if (primaryKey === undefined || primaryKey === "—") {
-            return v4()
-          } else {
-            if (primaryKey in row) {
-              return get(row, primaryKey) ?? v4()
+      <ThemeProvider
+        theme={createTheme({
+          palette: {
+            primary: { main: getColor("blue", "03") },
+          },
+        })}
+      >
+        <DataGridPremium
+          apiRef={ref}
+          getRowId={(row) => {
+            if (primaryKey === undefined || primaryKey === "—") {
+              return v4()
+            } else {
+              if (primaryKey in row) {
+                console.log("longbo", get(row, primaryKey) ?? v4())
+                return get(row, primaryKey) ?? v4()
+              }
             }
+          }}
+          filterModel={
+            filterModel !== undefined
+              ? {
+                  ...filterModel,
+                  quickFilterExcludeHiddenColumns:
+                    filterModel.quickFilterExcludeHiddenColumns ??
+                    excludeHiddenColumns,
+                }
+              : undefined
           }
-        }}
-        filterModel={
-          filterModel !== undefined
-            ? {
-                ...filterModel,
-                quickFilterExcludeHiddenColumns:
-                  filterModel.quickFilterExcludeHiddenColumns ??
-                  excludeHiddenColumns,
-              }
-            : undefined
-        }
-        onFilterModelChange={(model) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                filterModel: model,
+          onFilterModelChange={(model) => {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  filterModel: model,
+                },
               },
-            },
-          ])
-          triggerEventHandler("onFilterModelChange")
-        }}
-        rowSelectionModel={rowSelection ? selectedRowsPrimaryKeys : undefined}
-        rowSelection={rowSelection}
-        onColumnVisibilityModelChange={(model) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                columnVisibilityModel: model,
+            ])
+            triggerEventHandler("onFilterModelChange")
+          }}
+          rowSelectionModel={rowSelection ? selectedRowsPrimaryKeys : undefined}
+          rowSelection={rowSelection}
+          onColumnVisibilityModelChange={(model) => {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  columnVisibilityModel: model,
+                },
               },
-            },
-          ])
-          triggerEventHandler("onColumnVisibilityChange")
-        }}
-        columnVisibilityModel={columnVisibilityModel}
-        onRowSelectionModelChange={(model) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                selectedRowsPrimaryKeys: model,
-                selectedRows: Array.from(
-                  ref.current.getSelectedRows().values(),
-                ),
-              },
-            },
-          ])
-          triggerEventHandler("onRowSelectionModelChange")
-        }}
-        sortModel={
-          sortKey != undefined && sortOrder != undefined
-            ? [
+            ])
+            triggerEventHandler("onColumnVisibilityChange")
+          }}
+          columnVisibilityModel={columnVisibilityModel}
+          onRowSelectionModelChange={(model) => {
+            // because of mui getSelectedRows not update real time
+            setTimeout(() => {
+              handleUpdateMultiExecutionResult([
                 {
-                  field: sortKey,
-                  sort: sortOrder === "default" ? null : sortOrder,
+                  displayName,
+                  value: {
+                    selectedRowsPrimaryKeys: model,
+                    selectedRows: Array.from(
+                      ref.current.getSelectedRows().values(),
+                    ),
+                  },
                 },
-              ]
-            : []
-        }
-        pagination={overFlow === "pagination"}
-        pageSizeOptions={isArray(pageSizeOptions) ? pageSizeOptions : []}
-        autoPageSize={pageSize === undefined}
-        paginationModel={
-          pageSize !== undefined
-            ? {
-                pageSize: pageSize ?? 0,
-                page: page ?? 0,
-              }
-            : undefined
-        }
-        onPaginationModelChange={(model) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                page: model.page,
-                pageSize: model.pageSize,
-              },
-            },
-          ])
-          triggerEventHandler("onPaginationModelChange")
-        }}
-        onSortModelChange={(model) => {
-          if (model.length > 0) {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  sortKey: model[0].field,
-                  sortOrder: model[0].sort,
-                },
-              },
-            ])
-          } else {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  sortKey: undefined,
-                  sortOrder: undefined,
-                },
-              },
-            ])
+              ])
+              triggerEventHandler("onRowSelectionModelChange")
+            })
+          }}
+          sortModel={
+            sortKey != undefined && sortOrder != undefined
+              ? [
+                  {
+                    field: sortKey,
+                    sort: sortOrder === "default" ? null : sortOrder,
+                  },
+                ]
+              : []
           }
-          triggerEventHandler("onSortModelChange")
-        }}
-        disableMultipleRowSelection={
-          rowSelectionMode === "single" || !rowSelection
-        }
-        checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
-        rows={arrayData}
-        columns={renderColumns ?? []}
-        paginationMode={enableServerSidePagination ? "server" : "client"}
-        rowCount={
-          totalRowCount !== undefined
-            ? Math.ceil(totalRowCount / (pageSize ?? 1))
-            : undefined
-        }
-        keepNonExistentRowsSelected={enableServerSidePagination}
-        loading={loading}
-        slots={{
-          toolbar: toolbar,
-        }}
-        onColumnHeaderEnter={() => {
-          dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
-          isInnerDragging.current = true
-        }}
-        onColumnHeaderLeave={() => {
-          dispatch(executionActions.setResizingNodeIDsReducer([]))
-          isInnerDragging.current = false
-        }}
-      />
+          pagination={overFlow === "pagination"}
+          pageSizeOptions={isArray(pageSizeOptions) ? pageSizeOptions : []}
+          autoPageSize={pageSize === undefined}
+          paginationModel={
+            pageSize !== undefined
+              ? {
+                  pageSize: pageSize ?? 0,
+                  page: page ?? 0,
+                }
+              : undefined
+          }
+          onPaginationModelChange={(model) => {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  page: model.page,
+                  pageSize: model.pageSize,
+                },
+              },
+            ])
+            triggerEventHandler("onPaginationModelChange")
+          }}
+          onSortModelChange={(model) => {
+            if (model.length > 0) {
+              handleUpdateMultiExecutionResult([
+                {
+                  displayName,
+                  value: {
+                    sortKey: model[0].field,
+                    sortOrder: model[0].sort,
+                  },
+                },
+              ])
+            } else {
+              handleUpdateMultiExecutionResult([
+                {
+                  displayName,
+                  value: {
+                    sortKey: undefined,
+                    sortOrder: undefined,
+                  },
+                },
+              ])
+            }
+            triggerEventHandler("onSortModelChange")
+          }}
+          disableMultipleRowSelection={
+            rowSelectionMode === "single" || !rowSelection
+          }
+          checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
+          rows={arrayData}
+          columns={renderColumns ?? []}
+          paginationMode={enableServerSidePagination ? "server" : "client"}
+          rowCount={
+            totalRowCount !== undefined
+              ? Math.ceil(totalRowCount / (pageSize ?? 1))
+              : undefined
+          }
+          keepNonExistentRowsSelected={enableServerSidePagination}
+          loading={loading}
+          slots={{
+            toolbar: toolbar,
+          }}
+          onColumnHeaderEnter={() => {
+            dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+            isInnerDragging.current = true
+          }}
+          onColumnHeaderLeave={() => {
+            dispatch(executionActions.setResizingNodeIDsReducer([]))
+            isInnerDragging.current = false
+          }}
+        />
+      </ThemeProvider>
     </StyledEngineProvider>
   )
 }

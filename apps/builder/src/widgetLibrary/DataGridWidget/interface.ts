@@ -65,6 +65,10 @@ export const ColumnTypeList = [
     value: "percent",
   },
   {
+    label: i18n.t("editor.inspect.setter_option.table.column_type.currency"),
+    value: "currency",
+  },
+  {
     label: i18n.t("editor.inspect.setter_option.table.column_type.link"),
     value: "link",
   },
@@ -95,9 +99,5 @@ export const ColumnTypeList = [
   {
     label: i18n.t("editor.inspect.setter_option.table.column_type.html"),
     value: "html",
-  },
-  {
-    label: i18n.t("editor.inspect.setter_option.table.column_type.currency"),
-    value: "currency",
   },
 ]

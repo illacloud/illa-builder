@@ -41,7 +41,6 @@ const ColumnButtonGroupSetter: FC<ColumnButtonGroupSetterProps> = (props) => {
               id: v4(),
               mappedValue: "Button",
               colorScheme: "blue",
-              disabled: false,
             } as GroupButton,
           ],
         })
