@@ -1,4 +1,5 @@
 import { getIconFromResourceType } from "@illa-public/icon"
+import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, Suspense, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -18,7 +19,6 @@ import {
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { fetchCreateAction } from "@/services/action"
-import { getActionNameFromActionType } from "@/utils/actionResourceTransformer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionGenerator } from "../ActionGenerator"
 import { MORE_DATA_TYPE, RECOMMEND_RESOURCES } from "./constans"
@@ -139,7 +139,7 @@ export const ActionGuidePanel: FC = () => {
               >
                 <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
                 <span css={categoryItemNameStyle}>
-                  {getActionNameFromActionType(type)}
+                  {getResourceNameFromResourceType(type)}
                 </span>
               </button>
             ))}
@@ -171,7 +171,7 @@ export const ActionGuidePanel: FC = () => {
               >
                 <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
                 <span css={categoryItemNameStyle}>
-                  {getActionNameFromActionType(type)}
+                  {getResourceNameFromResourceType(type)}
                 </span>
               </button>
             ))}

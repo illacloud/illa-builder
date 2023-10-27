@@ -19,7 +19,7 @@ import {
   updateEditorKeyContainerStyle,
   updateEditorValueContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/style"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { GoogleSheetsActionUpdateOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { MicrosoftSqlActionSqlMode } from "@/redux/currentApp/action/microsoftSqlAction"
 
 export const MSSQLSqlMode: FC<MSSQLModeProps> = (props) => {

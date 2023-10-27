@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { validate } from "@/utils/form"
 import { BearerAuthPanelProps } from "./interface"
 

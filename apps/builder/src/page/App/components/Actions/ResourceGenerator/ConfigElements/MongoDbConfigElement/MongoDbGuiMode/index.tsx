@@ -4,15 +4,15 @@ import { FC, useCallback, useState } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Alert, getColor } from "@illa-design/react"
-import { MongoDbConfigModeProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/interface"
 import {
   applyConfigItemLabelText,
   configItem,
   configItemTip,
   connectTypeStyle,
   labelContainer,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { MongoDbConfigModeProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/interface"
 import {
   MongoDbGuiConfigContent,
   MongoDbGuiConfigContentInitial,

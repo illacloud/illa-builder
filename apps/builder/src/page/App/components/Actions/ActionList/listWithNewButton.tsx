@@ -171,7 +171,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
               title={
                 <div css={createDropListItemContainerStyle}>
                   <span css={prefixIconContainerStyle}>
-                    {getIconFromResourceType("transformer", "24px")}
+                    {getIconFromResourceType("transformer", "16px")}
                   </span>
                   {t("editor.action.panel.label.option.general.js")}
                 </div>
@@ -184,7 +184,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
               title={
                 <div css={createDropListItemContainerStyle}>
                   <span css={prefixIconContainerStyle}>
-                    {getIconFromResourceType("globalData", "24px")}
+                    {getIconFromResourceType("globalData", "16px")}
                   </span>
                   {t("editor.action.panel.label.option.general.global-data")}
                 </div>
@@ -198,7 +198,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
                 title={
                   <div css={createDropListItemContainerStyle}>
                     <span css={prefixIconContainerStyle}>
-                      {getIconFromResourceType("aiagent", "24px")}
+                      {getIconFromResourceType("aiagent", "16px")}
                     </span>
                     {t("editor.action.panel.label.option.general.ai-agent")}
                   </div>

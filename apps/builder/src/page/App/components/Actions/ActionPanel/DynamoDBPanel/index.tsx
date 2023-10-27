@@ -16,7 +16,7 @@ import {
   actionItemContainer,
   panelContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import {
   getCachedAction,
   getSelectedAction,
