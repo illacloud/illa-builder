@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "认证"
-          }
+          },
+          "old_oracle": "9i及以下版本",
+          "new_oracle": "9i以上版本"
         },
         "placeholder": {
           "url": "在此处输入请求 URL",
@@ -1280,13 +1282,13 @@
           "change": "内容改变",
           "click": "单击",
           "clickMenuItem": "单击",
-          "columnFiltersChange": "行筛选改变",
+          "columnFiltersChange": "过滤器变更",
           "fail": "失败后",
           "focus": "聚焦",
           "invalid": "校验失败",
-          "paginationChange": "翻页配置改变",
-          "row_select": "选择行",
-          "sortingChange": "排序方式改变",
+          "paginationChange": "页面变更",
+          "row_select": "行选择变更",
+          "sortingChange": "排序方式变更",
           "submit": "提交",
           "success": "成功后",
           "onOpenModal": "打开对话框",
@@ -1295,14 +1297,14 @@
           "pause": "暂停",
           "ended": "已结束",
           "loaded": "已载入",
-          "rowSelect": "选择行",
+          "rowSelect": "行选择变更",
           "markerSelected": "选中点",
           "markerCreated": "创建点",
           "select": "选择",
           "DragOrClickNoEventArea": "拖拽或点击无事件区域",
           "rowClick": "点击行",
           "refresh": "刷新",
-          "filtersChange": "行筛选改变",
+          "filtersChange": "过滤器变更",
           "rowSelectChange": "行选择变更",
           "onCellSelect": "选中单元格",
           "delete": "删除",
@@ -1312,9 +1314,15 @@
           "uploadFailed": "上传失败",
           "onMenuSelect": "选中菜单项",
           "on_menu_select": "选择菜单项",
-          "pageChange": "页面更改",
+          "pageChange": "页面变更",
           "clickItem": "点击项目",
-          "columnVisibilityChange": "变更列是否可见"
+          "columnVisibilityChange": "列是否可见变更",
+          "onPaginationModelChange": "页面变更",
+          "onRefresh": "刷新",
+          "onFilterModelChange": "过滤器变更",
+          "onRowSelectionModelChange": "行选择变更",
+          "onColumnVisibilityModel": "列是否可见变更",
+          "onSortModelChange": "排序方式变更"
         },
         "image_list": {
           "title": "图片",
@@ -1342,7 +1350,10 @@
         "refresh": "刷新",
         "density_setting": "行密集显示",
         "column_setting": "列设置",
-        "refresh_setting": "刷新"
+        "refresh_setting": "刷新",
+        "widget_action_type_naame": {
+          "onSortModelChange": "排序方式变更"
+        }
       },
       "setter_default_value": {
         "fill": "填充",
@@ -1543,7 +1554,7 @@
         "new_tab": "在新标签中打开",
         "only_run_when": "先决条件",
         "overFlow": "翻页方式",
-        "page": "页面",
+        "page": "默认页面",
         "pageSize": "每页行数",
         "pattern": "模式",
         "pending": "待处理节点",
