@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Autentificare"
-          }
+          },
+          "old_oracle": "9i sau mai puțin",
+          "new_oracle": "9i peste"
         },
         "placeholder": {
           "url": "Introduceți aici URL-ul solicitării",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Selectați elementul de meniu",
           "pageChange": "Modificare pagină",
           "clickItem": "Elementul clic",
-          "columnVisibilityChange": "Schimbare vizibilitate coloană"
+          "columnVisibilityChange": "Schimbare vizibilitate coloană",
+          "onPaginationModelChange": "Modificare pagină",
+          "onRefresh": "Împrospătează",
+          "onFilterModelChange": "Modificare filtru",
+          "onRowSelectionModelChange": "Modificare selecţie rând",
+          "onColumnVisibilityModel": "Schimbare vizibilitate coloană",
+          "onSortModelChange": "Modificare de sortare"
         },
         "image_list": {
           "title": "Imagini",
@@ -1342,7 +1350,10 @@
         "refresh": "Reîmprospătare",
         "density_setting": "Densitate",
         "column_setting": "Coloane",
-        "refresh_setting": "Împrospătează"
+        "refresh_setting": "Împrospătează",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Modificare de sortare"
+        }
       },
       "setter_default_value": {
         "fill": "Completează",
