@@ -354,6 +354,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
         renderCell: (params: GridRenderCellParams) => {
           return (
             <TimePicker
+              readonly
               colorScheme="techPurple"
               editable={false}
               allowClear={false}

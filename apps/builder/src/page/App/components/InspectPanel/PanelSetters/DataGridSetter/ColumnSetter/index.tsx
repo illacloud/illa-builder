@@ -82,29 +82,22 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
   }, [targetComponentProps])
 
   const mixedColumns: ColumnConfig[] = useMemo(() => {
-    const dealColumns = [...calculateColumns]
-    let mixedColumns = value.map((item) => {
-      const index = dealColumns.findIndex((column) => {
-        return column.field === item.field
-      })
-      if (index >= 0) {
-        dealColumns.splice(index, 1)
-        return {
-          ...item,
-          isCalc: true,
-        }
+    if (calculateColumns.length === 0) {
+      return value
+    }
+    const mixedColumns: ColumnConfig[] = []
+    calculateColumns.forEach((config) => {
+      const index = value.findIndex((item) => item.field === config.field)
+      if (index !== -1) {
+        mixedColumns.push(value[index])
       } else {
-        return {
-          ...item,
-          isCalc: false,
-        }
+        mixedColumns.push(config)
       }
     })
-    dealColumns.forEach((item) => {
-      mixedColumns.push({
-        ...item,
-        isCalc: true,
-      })
+    value.forEach((config) => {
+      if (!config.isCalc) {
+        mixedColumns.push(config)
+      }
     })
     if (!isDeepEqual(mixedColumns, value)) {
       handleUpdateMultiAttrDSL?.({
@@ -164,6 +157,7 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
             widgetDisplayName={widgetDisplayName}
             key={config.field}
             id={config.field}
+            showVisible={true}
             label={config.headerName ?? config.field}
             visibility={columnVisibilityModel?.[config.field] ?? true}
             onVisibilityChange={(visibility) => {
