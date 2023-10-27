@@ -86,18 +86,22 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
       return value
     }
     const mixedColumns: ColumnConfig[] = []
-    calculateColumns.forEach((config) => {
-      const index = value.findIndex((item) => item.field === config.field)
+
+    value.forEach((config) => {
+      const index = calculateColumns.findIndex(
+        (item) => item.field === config.field,
+      )
       if (index !== -1) {
-        mixedColumns.push(value[index])
-      } else {
+        calculateColumns.splice(index, 1)
         mixedColumns.push(config)
+      } else {
+        if (!config.isCalc) {
+          mixedColumns.push(config)
+        }
       }
     })
-    value.forEach((config) => {
-      if (!config.isCalc) {
-        mixedColumns.push(config)
-      }
+    calculateColumns.forEach((config) => {
+      mixedColumns.push(config)
     })
     if (!isDeepEqual(mixedColumns, value)) {
       handleUpdateMultiAttrDSL?.({
