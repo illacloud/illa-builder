@@ -145,7 +145,7 @@ export const ConfigElement: FC<ConfigElementProps> = (props) => {
       return <MicrosoftSqlConfigElement {...props} />
     case "oracle":
     case "oracle9i":
-      return <OracleDBConfigElement {...props} />
+      return <OracleDBConfigElement {...props} resourceType={resourceType} />
     case "restapi":
       return <RestApiConfigElement {...props} />
     case "mongodb":
