@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "Poista käyttäjät tilataksesi sarakkeita uudelleen",
         "default_width": "Default width",
         "quick_filter_setting": "Nopea suodatin",
-        "exclude_hidden_columns": "Jätä piilotetut sarakkeet pois"
+        "exclude_hidden_columns": "Jätä piilotetut sarakkeet pois",
+        "allow_users_select": "Salli rivin valinta"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. ",
         "disable_users_to_reorder": "Käytetään määritettäessä, onko käyttäjä poistettu käytöstä järjestääksesi sarakkeet uudelleen",
         "default_width": "Käytetään määritettäessä sarakkeen oletusleveyttä",
-        "max_count": "Käytetään asettamaan suurin määrä tähtiä"
+        "max_count": "Käytetään asettamaan suurin määrä tähtiä",
+        "allow_users_select": "Käytetään määritettäessä, salliko käyttäjien valita rivi. "
       },
       "setter_option": {
         "fixed": "Kiinteä",
