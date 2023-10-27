@@ -1206,7 +1206,10 @@
           "placeholder": "{ count: 0 }"
         }
       },
-      "library": "库"
+      "library": "库",
+      "component_layer": {
+        "floating": "模态框"
+      }
     },
     "deploy": {
       "fail": "部署失败"
