@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "Dezactivează utilizatorii pentru a reordona coloanele",
         "default_width": "Default width",
         "quick_filter_setting": "Filtru rapid",
-        "exclude_hidden_columns": "Exclude coloanele ascunse"
+        "exclude_hidden_columns": "Exclude coloanele ascunse",
+        "allow_users_select": "Permite selecția rândului"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "Folosit pentru a seta dacă permite sau nu utilizatorilor să modifice sortarea acestei coloane. ",
         "disable_users_to_reorder": "Folosit pentru a seta dacă dezactivează sau nu utilizatorii pentru a reordona coloanele",
         "default_width": "Folosit pentru a seta lățimea implicită a coloanei",
-        "max_count": "Folosit pentru a seta numărul maxim de stele"
+        "max_count": "Folosit pentru a seta numărul maxim de stele",
+        "allow_users_select": "Folosit pentru a seta dacă permite utilizatorilor să selecteze rândul. "
       },
       "setter_option": {
         "fixed": "Fixat",
