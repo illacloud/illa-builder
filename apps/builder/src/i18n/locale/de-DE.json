@@ -2799,7 +2799,8 @@
       "group": {
         "advanced_settings": "Erweiterte Einstellungen",
         "information": "Grundlegende Informationen"
-      }
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Benötigt"
