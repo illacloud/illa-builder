@@ -642,8 +642,8 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-basic-rowSelection`,
-        labelName: i18n.t(" editor.inspect.setter_label.allow_users_select"),
-        labelDesc: i18n.t(" editor.inspect.setter_tips.allow_users_select"),
+        labelName: i18n.t("editor.inspect.setter_label.allow_users_select"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.allow_users_select"),
         attrName: "rowSelection",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
