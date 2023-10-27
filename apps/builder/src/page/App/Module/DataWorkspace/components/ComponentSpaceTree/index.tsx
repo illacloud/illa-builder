@@ -1,9 +1,11 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
 import { WorkSpaceTreeGroup } from "@/page/App/Module/DataWorkspace/components/WorkSpaceTreeGroup"
+import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import {
   getCurrentPageBodyWidgetTree,
   getCurrentPageFooterWidgetTree,
@@ -12,49 +14,38 @@ import {
   getCurrentPageModalWidgetTree,
   getCurrentPageRightWidgetTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
 import { dividerStyle } from "./style"
 
 export const ComponentSpaceTree: FC = () => {
   const { t } = useTranslation()
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // const modalWidgetExecutionArray = useSelector(
-  //   getCurrentPageModalWidgetExecutionResultArray,
-  // )
   const footerSectionTree = useSelector(getCurrentPageFooterWidgetTree)
-
   const leftSectionTree = useSelector(getCurrentPageLeftWidgetTree)
-
   const rightSectionTree = useSelector(getCurrentPageRightWidgetTree)
-
   const headerSectionTree = useSelector(getCurrentPageHeaderWidgetTree)
-
   const bodySectionTree = useSelector(getCurrentPageBodyWidgetTree)
   const modalSectionTree = useSelector(getCurrentPageModalWidgetTree)
-  console.log("modalSectionTree", modalSectionTree)
-  // const selectedComponents = useSelector(getSelectedComponentDisplayNames)
+  const selectedComponent = useSelector(getSelectedComponentDisplayNames)
 
-  // const handleGeneralComponentSelect = useCallback(
-  //   (selectedKeys: string[]) => {
-  //     dispatch(configActions.updateSelectedComponent(selectedKeys))
-  //   },
-  //   [dispatch],
-  // )
-
-  // const handleModalComponentSelect = useCallback(
-  //   (selectedKeys: string[]) => {
-  //     dispatch(
-  //       executionActions.updateModalDisplayReducer({
-  //         displayName: selectedKeys[0],
-  //         display: true,
-  //       }),
-  //     )
-  //     dispatch(configActions.updateSelectedComponent(selectedKeys))
-  //   },
-  //   [dispatch],
-  // )
+  const handleOnClick = useCallback(
+    (displayName: string, type: string) => {
+      if (!type.endsWith("_WIDGET")) return
+      if (type === "MODAL_WIDGET") {
+        dispatch(
+          executionActions.updateModalDisplayReducer({
+            displayName,
+            display: true,
+          }),
+        )
+      }
+      dispatch(configActions.updateSelectedComponent([displayName]))
+    },
+    [dispatch],
+  )
 
   return (
     <PanelBar
@@ -77,6 +68,8 @@ export const ComponentSpaceTree: FC = () => {
               canExpand
               haveMoreAction
               canFocused
+              onClick={handleOnClick}
+              selectedDisplayNames={selectedComponent}
             />
           ))}
         </WorkSpaceTreeGroup>
@@ -95,6 +88,8 @@ export const ComponentSpaceTree: FC = () => {
                 type={tree.$widgetType as string}
                 canExpand={tree.$childrenNode.length > 0}
                 canFocused
+                onClick={handleOnClick}
+                selectedDisplayNames={selectedComponent}
               />
             ))}
           </WorkSpaceTreeGroup>
@@ -114,6 +109,8 @@ export const ComponentSpaceTree: FC = () => {
             canExpand={tree.$childrenNode.length > 0}
             haveMoreAction
             canFocused
+            onClick={handleOnClick}
+            selectedDisplayNames={selectedComponent}
           />
         ))}
       </WorkSpaceTreeGroup>
@@ -133,6 +130,8 @@ export const ComponentSpaceTree: FC = () => {
                 canExpand={tree.$childrenNode.length > 0}
                 haveMoreAction
                 canFocused
+                onClick={handleOnClick}
+                selectedDisplayNames={selectedComponent}
               />
             ))}
           </WorkSpaceTreeGroup>
@@ -154,6 +153,8 @@ export const ComponentSpaceTree: FC = () => {
                 canExpand={tree.$childrenNode.length > 0}
                 haveMoreAction
                 canFocused
+                onClick={handleOnClick}
+                selectedDisplayNames={selectedComponent}
               />
             ))}
           </WorkSpaceTreeGroup>
@@ -176,6 +177,8 @@ export const ComponentSpaceTree: FC = () => {
                 canExpand={tree.$childrenNode.length > 0}
                 haveMoreAction
                 canFocused
+                onClick={handleOnClick}
+                selectedDisplayNames={selectedComponent}
               />
             ))}
           </WorkSpaceTreeGroup>

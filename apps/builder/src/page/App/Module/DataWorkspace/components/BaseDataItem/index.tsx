@@ -30,15 +30,17 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
     canFocused,
     haveMoreAction,
     value,
-    isSelected = false,
     onClick,
     dataType,
+    selectedDisplayNames,
   } = props
   const [isOpenCodeModal, setIsOpenCodeModal] = useState(false)
   const [measureRef, rect] = useMeasure()
 
+  const isSelected = selectedDisplayNames?.includes(title) ?? false
+
   const handleClickOnContainer = () => {
-    onClick?.(title)
+    onClick?.(title, type ?? "")
   }
 
   return (
@@ -87,6 +89,8 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
             canExpand={item.$childrenNode.length > 0}
             haveMoreAction={item.$widgetType.endsWith("_WIDGET")}
             canFocused={item.$widgetType.endsWith("_WIDGET")}
+            selectedDisplayNames={selectedDisplayNames}
+            onClick={onClick}
           />
         ))}
       {isOpenCodeModal && (
