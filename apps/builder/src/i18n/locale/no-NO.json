@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "Deaktiver brukere for å endre rekkefølgen av kolonner",
         "default_width": "Default width",
         "quick_filter_setting": "Raskt filter",
-        "exclude_hidden_columns": "Ekskluder skjulte kolonner"
+        "exclude_hidden_columns": "Ekskluder skjulte kolonner",
+        "allow_users_select": "Tillat radmarkering"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "Brukes til å angi om brukerne skal endre sorteringen av denne kolonnen eller ikke. ",
         "disable_users_to_reorder": "Brukes til å angi om eller ikke deaktivere brukere for å reorganisere kolonner",
         "default_width": "Brukt til å angi standard bredde i kolonnen",
-        "max_count": "Brukes til å angi maks antall stjerner"
+        "max_count": "Brukes til å angi maks antall stjerner",
+        "allow_users_select": "Brukes til å angi om tillate brukere å velge rad. "
       },
       "setter_option": {
         "fixed": "Fast",
