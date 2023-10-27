@@ -2799,7 +2799,8 @@
       "group": {
         "advanced_settings": "Pokročilé nastavení",
         "information": "Základní informace"
-      }
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Požadováno"
