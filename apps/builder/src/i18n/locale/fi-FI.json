@@ -2799,7 +2799,8 @@
       "group": {
         "advanced_settings": "Edistyneet asetukset",
         "information": "Perustiedot"
-      }
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Pakollinen"
