@@ -2799,7 +2799,8 @@
       "group": {
         "advanced_settings": "Setări avansate",
         "information": "Informatii de baza"
-      }
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Necesar"
