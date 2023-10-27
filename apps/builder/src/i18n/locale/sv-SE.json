@@ -1206,7 +1206,10 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Bibliotek"
+      "library": "Bibliotek",
+      "component_layer": {
+        "floating": "Modal"
+      }
     },
     "deploy": {
       "fail": "Det gick inte att distribuera"
