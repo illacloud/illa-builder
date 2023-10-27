@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "認証"
-          }
+          },
+          "old_oracle": "9i 以下",
+          "new_oracle": "9i 以上"
         },
         "placeholder": {
           "url": "URL をここに入力",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "メニュー項目を選択",
           "pageChange": "ページ変更",
           "clickItem": "アイテムをクリックします",
-          "columnVisibilityChange": "列の表示の変更"
+          "columnVisibilityChange": "列の表示の変更",
+          "onPaginationModelChange": "ページ変更",
+          "onRefresh": "更新",
+          "onFilterModelChange": "フィルタの変更",
+          "onRowSelectionModelChange": "行選択の変更",
+          "onColumnVisibilityModel": "列の表示の変更",
+          "onSortModelChange": "並べ替え変更"
         },
         "image_list": {
           "title": "イメージ",
@@ -1342,7 +1350,10 @@
         "refresh": "更新",
         "density_setting": "解像度:",
         "column_setting": "列",
-        "refresh_setting": "更新"
+        "refresh_setting": "更新",
+        "widget_action_type_naame": {
+          "onSortModelChange": "並べ替え変更"
+        }
       },
       "setter_default_value": {
         "fill": "充填",
