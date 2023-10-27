@@ -5,7 +5,6 @@ import { PanelBar } from "@/components/PanelBar"
 import { getGlobalInfoExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
-import { BaseDataItemContextProvider } from "../BaseDataItem/context"
 
 export const GlobalsSpaceTree: FC = () => {
   const { t } = useTranslation()
@@ -22,17 +21,15 @@ export const GlobalsSpaceTree: FC = () => {
       }}
       destroyChildrenWhenClose
     >
-      <BaseDataItemContextProvider>
-        {Object.keys(globalInfoList).map((key) => (
-          <BaseDataItem
-            key={key}
-            title={key}
-            level={0}
-            value={globalInfoList[key] as Record<string, unknown>}
-            dataType="globalData"
-          />
-        ))}
-      </BaseDataItemContextProvider>
+      {Object.keys(globalInfoList).map((key) => (
+        <BaseDataItem
+          key={key}
+          title={key}
+          level={0}
+          value={globalInfoList[key] as Record<string, unknown>}
+          dataType="globalData"
+        />
+      ))}
     </PanelBar>
   )
 }

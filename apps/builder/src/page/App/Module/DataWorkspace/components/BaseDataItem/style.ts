@@ -61,6 +61,7 @@ export const titleStyle = css`
 export const applyExpandIconStyle = (
   isExpanded: boolean,
   canExpand: boolean,
+  isSelected: boolean,
 ) => css`
   font-size: 8px;
   line-height: 0;
@@ -74,8 +75,7 @@ export const applyExpandIconStyle = (
   align-items: center;
   justify-content: center;
   flex: none;
-  visibility: ${canExpand ? "visible" : "hidden"};
-  visibility: hidden;
+  visibility: ${canExpand ? (isSelected ? "visible" : "hidden") : "hidden"};
 `
 
 export const iconContainerStyle = css`

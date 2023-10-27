@@ -1,15 +1,17 @@
 import { getIconFromWidgetType } from "@illa-public/icon"
 import { AnimatePresence, motion } from "framer-motion"
-import { FC, useContext, useState } from "react"
+import { FC, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon } from "@illa-design/react"
 import { ReactComponent as StateIcon } from "@/assets/dataWorkspace/state.svg"
 import IconHotSpot from "@/components/IconHotSpot"
 import { MovableModal } from "@/components/Modal/movableModal"
 import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
-import { ViewItemShape } from "../../../../components/InspectPanel/PanelSetters/TabsSetter/TabListSetter/interface"
+import { ViewItemShape } from "@/page/App/components/InspectPanel/PanelSetters/TabsSetter/TabListSetter/interface"
+import { getExpandedWidgets } from "@/redux/config/configSelector"
+import { configActions } from "../../../../../../redux/config/configSlice"
 import { MoreAction } from "../MoreAction"
 import { WorkSpaceTreeNode } from "../WorkSpaceTreeItem/WorkSpaceTreeNode"
-import { BaseDataItemContext } from "./context"
 import { BaseDataItemProps } from "./interface"
 import {
   applyExpandIconStyle,
@@ -55,21 +57,22 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
     selectedDisplayNames,
   } = props
   const [isOpenCodeModal, setIsOpenCodeModal] = useState(false)
-  const { handleUpdateExpandedWidget, expandedStatus } =
-    useContext(BaseDataItemContext)
-  const isExpanded =
-    (canExpand ?? false) && (expandedStatus.get(title) ?? false)
+  const expandedStatus = useSelector(getExpandedWidgets)
+  const isExpanded = (canExpand ?? false) && (expandedStatus?.[title] ?? false)
 
   const isSelected = selectedDisplayNames?.includes(title) ?? false
-
+  const dispatch = useDispatch()
   const handleClickOnContainer = () => {
     onClick?.(title, type ?? "")
-    handleUpdateExpandedWidget(title, isExpanded)
   }
 
   const handleClickOnExpandIcon = (e: React.MouseEvent) => {
     e.stopPropagation()
-    handleUpdateExpandedWidget(title, isExpanded)
+    if (!isExpanded) {
+      dispatch(configActions.addExpandedWidgetReducer([title]))
+    } else {
+      dispatch(configActions.removeExpandWidgetReducer([title]))
+    }
   }
 
   return (
@@ -82,7 +85,7 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
         <div css={itemContainerStyle(level)}>
           <div css={expendContainerStyle}>
             <span
-              css={applyExpandIconStyle(isExpanded, !!canExpand)}
+              css={applyExpandIconStyle(isExpanded, !!canExpand, isSelected)}
               onClick={handleClickOnExpandIcon}
               id="expand-icon"
             >

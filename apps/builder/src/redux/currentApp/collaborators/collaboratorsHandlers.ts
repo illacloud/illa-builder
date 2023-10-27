@@ -5,6 +5,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import store, { AppListenerEffectAPI } from "@/store"
+import { getExecutionWidgetLayoutInfo } from "../executionTree/executionSelector"
 
 export const getDisattachedComponents = (
   currentAttached: Record<string, CollaboratorsInfo[]>,
@@ -76,6 +77,24 @@ export const handleUpdateSelectedComponentExecution = (
 ) => {
   const currentComponentsAttachedUsers =
     listenerApi.getState().currentApp.collaborators.components
+  const widgetLayoutInfo = getExecutionWidgetLayoutInfo(listenerApi.getState())
+
+  function searchParent(displayName: string): string[] {
+    const parent = widgetLayoutInfo[displayName]?.parentNode
+    if (parent) {
+      return [parent, ...searchParent(parent)]
+    }
+    return []
+  }
+
+  const needExpandDisplayName = action.payload
+    .map((displayName) => {
+      return searchParent(displayName)
+    })
+    .flat()
+  listenerApi.dispatch(
+    configActions.addExpandedWidgetReducer(needExpandDisplayName),
+  )
   updateCurrentAllComponentsAttachedUsers(
     action.payload,
     currentComponentsAttachedUsers,

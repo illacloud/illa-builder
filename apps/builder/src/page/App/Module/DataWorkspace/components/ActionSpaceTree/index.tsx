@@ -8,7 +8,6 @@ import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getActionExecutionResultWithOutIgnoreKey } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
-import { BaseDataItemContextProvider } from "../BaseDataItem/context"
 
 export const ActionSpaceTree: FC = () => {
   const { t } = useTranslation()
@@ -36,22 +35,18 @@ export const ActionSpaceTree: FC = () => {
       }}
       destroyChildrenWhenClose
     >
-      <BaseDataItemContextProvider>
-        {Object.keys(actionExecution).map((actionDisplayName) => (
-          <BaseDataItem
-            key={actionDisplayName}
-            title={actionDisplayName}
-            level={0}
-            value={
-              actionExecution[actionDisplayName] as Record<string, unknown>
-            }
-            haveMoreAction
-            selectedDisplayNames={[selectedAction?.displayName ?? ""]}
-            onClick={handleActionSelect}
-            dataType="action"
-          />
-        ))}
-      </BaseDataItemContextProvider>
+      {Object.keys(actionExecution).map((actionDisplayName) => (
+        <BaseDataItem
+          key={actionDisplayName}
+          title={actionDisplayName}
+          level={0}
+          value={actionExecution[actionDisplayName] as Record<string, unknown>}
+          haveMoreAction
+          selectedDisplayNames={[selectedAction?.displayName ?? ""]}
+          onClick={handleActionSelect}
+          dataType="action"
+        />
+      ))}
     </PanelBar>
   )
 }

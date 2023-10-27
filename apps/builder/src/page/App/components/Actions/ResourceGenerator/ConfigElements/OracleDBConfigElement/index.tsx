@@ -35,11 +35,11 @@ import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
-import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
+import { OracleDBConfigElementProps } from "./interface"
 
-const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { resourceID, onBack, hasFooter = true } = props
+const OracleDBConfigElement: FC<OracleDBConfigElementProps> = (props) => {
+  const { resourceID, onBack, hasFooter = true, resourceType } = props
   const { t } = useTranslation()
   const { control, formState } = useFormContext()
 
@@ -257,7 +257,7 @@ const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
             {t("back")}
           </Button>
           <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="oracle" />
+            <TestConnectButton resourceType={resourceType} />
             <CreateButton />
           </ButtonGroup>
         </div>
