@@ -1206,7 +1206,10 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Biblioteci"
+      "library": "Biblioteci",
+      "component_layer": {
+        "floating": "Modale"
+      }
     },
     "deploy": {
       "fail": "Lansarea a eșuat"
