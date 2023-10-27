@@ -2799,7 +2799,8 @@
       "group": {
         "advanced_settings": "詳細設定",
         "information": "基本情報"
-      }
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "必須"
