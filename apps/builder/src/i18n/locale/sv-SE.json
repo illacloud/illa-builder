@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Autentisering"
-          }
+          },
+          "old_oracle": "9i eller under",
+          "new_oracle": "9i över"
         },
         "placeholder": {
           "url": "Ange begärans URL här",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Välj menyobjekt",
           "pageChange": "Ändrad sida",
           "clickItem": "Klicka på objekt",
-          "columnVisibilityChange": "Ändra kolumnsynlighet"
+          "columnVisibilityChange": "Ändra kolumnsynlighet",
+          "onPaginationModelChange": "Ändrad sida",
+          "onRefresh": "Uppdatera",
+          "onFilterModelChange": "Filtrera ändring",
+          "onRowSelectionModelChange": "Ändra val av rad",
+          "onColumnVisibilityModel": "Ändra kolumnsynlighet",
+          "onSortModelChange": "Ändra sortering"
         },
         "image_list": {
           "title": "Bilder",
@@ -1342,7 +1350,10 @@
         "refresh": "Uppdatera",
         "density_setting": "Densitet",
         "column_setting": "Kolumner",
-        "refresh_setting": "Uppdatera"
+        "refresh_setting": "Uppdatera",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Ändra sortering"
+        }
       },
       "setter_default_value": {
         "fill": "Fyll",
