@@ -488,7 +488,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
             attrName: "shadow",
             setterType: "SHADOW_SELECT_SETTER",
             useCustomLayout: true,
-            defaultValue: "small",
+            defaultValue: "none",
           },
         ],
       },

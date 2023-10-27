@@ -72,6 +72,6 @@ export function initChartWidgetDefaultProps() {
     dateFormat: "YYYY-MM-DD",
     radius: "4px",
     backgroundColor: "#ffffffff",
-    shadow: "small",
+    shadow: "none",
   }
 }
