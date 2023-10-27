@@ -42,7 +42,7 @@ export const ActionSpaceTree: FC = () => {
           level={0}
           value={actionExecution[actionDisplayName] as Record<string, unknown>}
           haveMoreAction
-          isSelected={selectedAction?.displayName === actionDisplayName}
+          selectedDisplayNames={[selectedAction?.displayName ?? ""]}
           onClick={handleActionSelect}
           dataType="action"
         />
