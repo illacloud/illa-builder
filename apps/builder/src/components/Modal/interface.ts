@@ -1,18 +1,25 @@
 import { ReactNode } from "react"
 
-export interface ModalProps {
+export interface BaseModalProps {
   title: string
   bodyContent: ReactNode
   footerContent?: ReactNode
-  canMove?: boolean
-  w?: number
-  h?: number
+  docLink?: string
   onClose: () => void
 }
 
-export interface MovableModalProps {
-  title: string
-  bodyContent: ReactNode
-  footerContent?: ReactNode
-  onClose: () => void
+export interface ModalProps extends BaseModalProps {
+  docLink?: string
+  canMove?: boolean
+  w?: number
+  h?: number
+}
+
+export interface MovableModalProps extends BaseModalProps {
+  defaultPosition?: {
+    x: number
+    y: number
+    width: number
+    height: number
+  }
 }

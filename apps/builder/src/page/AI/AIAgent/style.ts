@@ -64,7 +64,6 @@ export const buttonContainerStyle = css`
 `
 
 export const leftPanelTitleTextStyle = css`
-  padding: 16px 24px 24px;
   cursor: pointer;
   color: ${getColor("grayBlue", "02")};
   font-size: 18px;
@@ -188,3 +187,59 @@ export const temperatureStyle = css`
   line-height: 22px;
   text-transform: capitalize;
 `
+
+export const docTextContainerStyle = css`
+  text-decoration: none;
+`
+export const docTextStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`
+
+export const leftPanelHeaderStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 16px 24px;
+  text-decoration: none;
+`
+
+export const advancedSettingHeaderStyle = css`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 8px 24px;
+  color: ${getColor("grayBlue", "04")};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+`
+
+export const advancedSettingStyle = css`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`
+
+export const promptContainerStyle = css`
+  width: 100%;
+  height: 100%;
+`
+export const codeEditorErrorStyle = (isError: boolean) => {
+  let style
+  if (isError) {
+    style = css`
+      .cm-editor,
+      .cm-editor:hover,
+      .cm-editor.cm-focused {
+        border-color: ${getColor("red", "03")}!important;
+      }
+    `
+  }
+  return style
+}

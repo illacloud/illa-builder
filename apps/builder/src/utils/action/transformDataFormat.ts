@@ -5,6 +5,7 @@ import {
   AirtableActionConfigType,
   AirtableCreateRecord,
   AirtableDeleteMultipleRecords,
+  AirtableDeleteRecord,
   AirtableListRecord,
   AirtableUpdateMultipleRecords,
   AirtableUpdateRecord,
@@ -229,6 +230,16 @@ export const transformDataFormat = (
                 listConfig.maxRecords === "" ? -1 : listConfig.maxRecords,
               pageSize: listConfig.pageSize === "" ? -1 : listConfig.pageSize,
               sort: listConfig.sort === "" ? [] : listConfig.sort,
+            },
+          }
+        case "delete":
+          const deleteConfig = contents.config as AirtableDeleteRecord
+          return {
+            ...contents,
+            config: {
+              ...deleteConfig,
+              recordID:
+                deleteConfig.recordID === "" ? "" : deleteConfig.recordID,
             },
           }
         case "create":

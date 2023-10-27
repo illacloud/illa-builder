@@ -3,14 +3,14 @@ import { useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
-import { MongoDbGuiMode } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/MongoDbGuiMode"
-import { MongoDbUriMode } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/MongoDbUriMode"
 import {
   divider,
   footerStyle,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { MongoDbGuiMode } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/MongoDbGuiMode"
+import { MongoDbUriMode } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/MongoDbUriMode"
 import {
   MongoDbConfig,
   MongoDbResource,

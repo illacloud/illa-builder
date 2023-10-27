@@ -1,7 +1,7 @@
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useMemo } from "react"
-import { useFormContext } from "react-hook-form"
+import { Controller, useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -9,11 +9,13 @@ import {
   Button,
   ButtonGroup,
   Divider,
+  Input,
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
+  configItem,
   configItemTip,
   connectType,
   connectTypeStyle,
@@ -21,8 +23,9 @@ import {
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { hostInputContainer } from "@/page/App/components/Actions/ControlledElement/style"
 import {
   MysqlLikeResource,
   tiDBServertCertDefaultValue,
@@ -52,11 +55,56 @@ const getResourceDefaultPort = (resourceType: string) => {
   }
 }
 
+const checkIsValidConnectionString = (connectionString: string) => {
+  const pattern = /^(mysql|postgres):\/\/([^:]+):([^@]+)@([^/]+)\/(.+)$/
+  return pattern.test(connectionString)
+}
+
+function getPortFromConnectionString(scheme: string): string {
+  switch (scheme) {
+    case "postgres":
+      return "5432"
+    case "mysql":
+      return "3306"
+    default:
+      return ""
+  }
+}
+
+function parseDatabaseConnectionString(
+  connectionString: string,
+): Omit<MysqlLikeResource, "ssl"> | undefined {
+  const regex = /^(mysql|postgres):\/\/([^:]+):([^@]+)@([^/]+)\/(.+)$/
+  const match = connectionString.match(regex)
+
+  if (match) {
+    const databaseUsername = match[2]
+    const databasePassword = match[3]
+    const hostAndPort = match[4].split(":")
+    const host = hostAndPort[0]
+    const port =
+      hostAndPort.length > 1
+        ? hostAndPort[1]
+        : getPortFromConnectionString(match[1])
+    const databaseName = match[5]
+
+    return {
+      databaseUsername,
+      databasePassword,
+      host,
+      port,
+      databaseName,
+    }
+  } else {
+    return undefined // 无法解析的连接字符串
+  }
+}
+
 const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
   const { onBack, resourceType, resourceID, hasFooter = true } = props
 
   const { t } = useTranslation()
-  const { control, watch } = useFormContext()
+  const { control, setValue, watch } = useFormContext()
 
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
@@ -137,6 +185,53 @@ const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
+        <Controller
+          control={control}
+          defaultValue=""
+          rules={{
+            required: false,
+          }}
+          render={({ field: { value, onChange, onBlur } }) => (
+            <div css={configItem}>
+              <div css={labelContainer}>
+                <span
+                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
+                >
+                  {t("editor.action.form.option.neon.connection_string")}
+                </span>
+              </div>
+              <div css={hostInputContainer}>
+                <Input
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  error={!checkIsValidConnectionString(value) && value !== ""}
+                  value={value}
+                  colorScheme="techPurple"
+                  placeholder="xxxxxx://myuser:mypassword@localhost:5432/mydb"
+                />
+                <Button
+                  disabled={!checkIsValidConnectionString(value)}
+                  onClick={() => {
+                    const db = parseDatabaseConnectionString(value)
+                    if (db !== undefined) {
+                      setValue("host", db.host)
+                      setValue("port", db.port)
+                      setValue("databaseName", db.databaseName)
+                      setValue("databaseUsername", db.databaseUsername)
+                      setValue("databasePassword", db.databasePassword)
+                      onChange("")
+                    }
+                  }}
+                  colorScheme="techPurple"
+                  h="32px"
+                >
+                  {t("editor.action.form.option.neon.parse")}
+                </Button>
+              </div>
+            </div>
+          )}
+          name="connectionString"
+        />
         <ControlledElement
           title={t("editor.action.resource.db.label.hostname_port")}
           defaultValue={[resource?.content.host, resource?.content.port]}

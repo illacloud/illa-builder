@@ -1,7 +1,7 @@
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useMemo, useState } from "react"
-import { useFormContext } from "react-hook-form"
+import { Controller, useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -9,11 +9,13 @@ import {
   Button,
   ButtonGroup,
   Divider,
+  Input,
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
+  configItem,
   configItemTip,
   connectType,
   connectTypeStyle,
@@ -21,9 +23,10 @@ import {
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { ControlledType } from "@/page/App/components/ControlledElement/interface"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { ControlledType } from "@/page/App/components/Actions/ControlledElement/interface"
+import { hostInputContainer } from "@/page/App/components/Actions/ControlledElement/style"
 import {
   RedisResource,
   RedisResourceInitial,
@@ -36,10 +39,35 @@ import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { container } from "../style"
 import { RedisLikeConfigElementProps } from "./interface"
 
+function parseDatabaseConnectionString(
+  connectionString: string,
+): Omit<RedisResource, "ssl" | "databaseIndex"> | undefined {
+  const regex = /^redis:\/\/([^:]+):([^@]+)@([^:]+):(\d+)$/
+  const match = connectionString.match(regex)
+
+  if (!match || match.length !== 5) {
+    return undefined
+  }
+
+  const [, databaseUsername, databasePassword, host, port] = match
+
+  return {
+    databaseUsername,
+    databasePassword,
+    host,
+    port,
+  }
+}
+
+const checkIsValidConnectionString = (connectionString: string) => {
+  const pattern = /^redis:\/\/([^:]+):([^@]+)@([^:]+):(\d+)$/
+  return pattern.test(connectionString)
+}
+
 const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
   const { onBack, resourceID, resourceType, hasFooter = true } = props
   const { t } = useTranslation()
-  const { control } = useFormContext()
+  const { control, setValue } = useFormContext()
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceID === resourceID)
   })
@@ -54,27 +82,17 @@ const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
   const userNameOrPassword = useMemo(() => {
-    if (resourceType === "redis") {
-      return {
-        title: t("editor.action.resource.db.label.username_password"),
-        controlledType: ["input", "password"] as ControlledType[],
-        name: ["databaseUsername", "databasePassword"],
-        defaultValue: [content.databaseUsername, content.databasePassword],
-        placeholders: [
-          t("editor.action.resource.db.placeholder.username"),
-          t("editor.action.resource.db.placeholder.password"),
-        ],
-      }
-    } else {
-      return {
-        title: t("editor.action.resource.db.label.password"),
-        controlledType: "password" as ControlledType,
-        name: "databasePassword",
-        defaultValue: content.databasePassword,
-        placeholders: [t("editor.action.resource.db.placeholder.password")],
-      }
+    return {
+      title: t("editor.action.resource.db.label.username_password"),
+      controlledType: ["input", "password"] as ControlledType[],
+      name: ["databaseUsername", "databasePassword"],
+      defaultValue: [content.databaseUsername, content.databasePassword],
+      placeholders: [
+        t("editor.action.resource.db.placeholder.username"),
+        t("editor.action.resource.db.placeholder.password"),
+      ],
     }
-  }, [content.databasePassword, content.databaseUsername, resourceType, t])
+  }, [content.databasePassword, content.databaseUsername, t])
 
   const handleHostValidate = useCallback(
     (value: string) => {
@@ -117,7 +135,52 @@ const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
-
+        <Controller
+          control={control}
+          defaultValue=""
+          rules={{
+            required: false,
+          }}
+          render={({ field: { value, onChange, onBlur } }) => (
+            <div css={configItem}>
+              <div css={labelContainer}>
+                <span
+                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
+                >
+                  {t("editor.action.form.option.neon.connection_string")}
+                </span>
+              </div>
+              <div css={hostInputContainer}>
+                <Input
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  error={!checkIsValidConnectionString(value) && value !== ""}
+                  value={value}
+                  colorScheme="techPurple"
+                  placeholder="redis://myuser:mypassword@localhost:6379"
+                />
+                <Button
+                  disabled={!checkIsValidConnectionString(value)}
+                  onClick={() => {
+                    const db = parseDatabaseConnectionString(value)
+                    if (db !== undefined) {
+                      setValue("host", db.host)
+                      setValue("port", db.port)
+                      setValue("databaseUsername", db.databaseUsername)
+                      setValue("databasePassword", db.databasePassword)
+                      onChange("")
+                    }
+                  }}
+                  colorScheme="techPurple"
+                  h="32px"
+                >
+                  {t("editor.action.form.option.neon.parse")}
+                </Button>
+              </div>
+            </div>
+          )}
+          name="connectionString"
+        />
         <ControlledElement
           defaultValue={[content.host, content.port]}
           title={t("editor.action.resource.db.label.hostname_port")}

@@ -9,6 +9,13 @@ import {
   Divider,
   PreviousIcon,
 } from "@illa-design/react"
+import {
+  divider,
+  footerStyle,
+  optionLabelStyle,
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { InputRecordEditor } from "@/page/App/components/Actions/InputRecordEditor"
 import { BasicAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/BearerAuthPanel"
 import { DigestAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/DigestAuthPanel"
@@ -16,13 +23,6 @@ import {
   AuthenticationOptions,
   VerificationModeOptions,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/values"
-import {
-  divider,
-  footerStyle,
-  optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { Resource } from "@/redux/resource/resourceState"
 import {
   RestApiAuth,
