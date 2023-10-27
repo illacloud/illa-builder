@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Autentisering"
-          }
+          },
+          "old_oracle": "9i eller under",
+          "new_oracle": "9i over"
         },
         "placeholder": {
           "url": "Skriv inn forespørselens URL her",
@@ -1314,7 +1316,13 @@
           "on_menu_select": "Velg menypunkt",
           "pageChange": "Side endring",
           "clickItem": "Klikk pÃ¥ element",
-          "columnVisibilityChange": "Kolonne synlighet endring"
+          "columnVisibilityChange": "Kolonne synlighet endring",
+          "onPaginationModelChange": "Side endring",
+          "onRefresh": "Oppdater",
+          "onFilterModelChange": "Endre filter",
+          "onRowSelectionModelChange": "Endring av radutvalg",
+          "onColumnVisibilityModel": "Kolonne synlighet endring",
+          "onSortModelChange": "Endre sortering"
         },
         "image_list": {
           "title": "Bilder",
@@ -1342,7 +1350,10 @@
         "refresh": "oppdater",
         "density_setting": "Tetthet",
         "column_setting": "Kolonner",
-        "refresh_setting": "Oppdater"
+        "refresh_setting": "Oppdater",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Endre sortering"
+        }
       },
       "setter_default_value": {
         "fill": "Fyll",
