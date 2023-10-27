@@ -58,7 +58,7 @@ export const ComponentSpaceTree: FC = () => {
 
   return (
     <PanelBar
-      title={t("editor.data_work_space.components_title") + `(${0})`}
+      title={t("editor.data_work_space.components_title")}
       onIllaFocus={() => {
         FocusManager.switchFocus("data_component")
       }}
