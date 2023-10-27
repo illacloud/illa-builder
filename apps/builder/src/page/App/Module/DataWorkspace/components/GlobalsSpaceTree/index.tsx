@@ -12,7 +12,6 @@ export const GlobalsSpaceTree: FC = () => {
 
   const globalInfoList = useSelector(getGlobalInfoExecutionResult)
 
-  console.log("globalInfoList", globalInfoList)
   return (
     <PanelBar
       title={`${t("editor.data_work_space.globals_title")}(${

@@ -1,7 +1,6 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Divider } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
 import { WorkSpaceTreeGroup } from "@/page/App/Module/DataWorkspace/components/WorkSpaceTreeGroup"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
@@ -18,7 +17,6 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
 import { BaseDataItemContextProvider } from "../BaseDataItem/context"
-import { dividerStyle } from "./style"
 
 export const ComponentSpaceTree: FC = () => {
   const { t } = useTranslation()
@@ -104,26 +102,11 @@ export const ComponentSpaceTree: FC = () => {
       destroyChildrenWhenClose
     >
       <BaseDataItemContextProvider>
-        <WorkSpaceTreeGroup title="Body">
-          {bodySectionTree.map((tree) => (
-            <BaseDataItem
-              key={tree.displayName}
-              title={tree.displayName}
-              value={tree}
-              level={0}
-              dataType="widget"
-              type={tree.$widgetType as string}
-              canExpand={tree.$childrenNode.length > 0}
-              haveMoreAction
-              onClick={handleClickOnBodySection}
-              selectedDisplayNames={selectedComponent}
-            />
-          ))}
-        </WorkSpaceTreeGroup>
         {modalSectionTree.length > 0 && (
           <>
-            <Divider css={dividerStyle} />
-            <WorkSpaceTreeGroup title="Modal">
+            <WorkSpaceTreeGroup
+              title={t("editor.data_work_space.component_layer.floating")}
+            >
               {modalSectionTree.map((tree) => (
                 <BaseDataItem
                   key={tree.displayName}
@@ -141,10 +124,26 @@ export const ComponentSpaceTree: FC = () => {
             </WorkSpaceTreeGroup>
           </>
         )}
+        <WorkSpaceTreeGroup title={t("editor.page.label_name.body")}>
+          {bodySectionTree.map((tree) => (
+            <BaseDataItem
+              key={tree.displayName}
+              title={tree.displayName}
+              value={tree}
+              level={0}
+              dataType="widget"
+              type={tree.$widgetType as string}
+              canExpand={tree.$childrenNode.length > 0}
+              haveMoreAction
+              onClick={handleClickOnBodySection}
+              selectedDisplayNames={selectedComponent}
+            />
+          ))}
+        </WorkSpaceTreeGroup>
+
         {headerSectionTree.length > 0 && (
           <>
-            <Divider css={dividerStyle} />
-            <WorkSpaceTreeGroup title="Header">
+            <WorkSpaceTreeGroup title={t("editor.page.label_name.header")}>
               {headerSectionTree.map((tree) => (
                 <BaseDataItem
                   key={tree.displayName}
@@ -164,8 +163,7 @@ export const ComponentSpaceTree: FC = () => {
 
         {leftSectionTree.length > 0 && (
           <>
-            <Divider css={dividerStyle} />
-            <WorkSpaceTreeGroup title="Left Panel">
+            <WorkSpaceTreeGroup title={t("editor.page.label_name.left_panel")}>
               {leftSectionTree.map((tree) => (
                 <BaseDataItem
                   key={tree.displayName}
@@ -186,8 +184,7 @@ export const ComponentSpaceTree: FC = () => {
 
         {rightSectionTree.length > 0 && (
           <>
-            <Divider css={dividerStyle} />
-            <WorkSpaceTreeGroup title="Right Panel">
+            <WorkSpaceTreeGroup title={t("editor.page.label_name.right_panel")}>
               {rightSectionTree.map((tree) => (
                 <BaseDataItem
                   key={tree.displayName}
@@ -208,9 +205,7 @@ export const ComponentSpaceTree: FC = () => {
 
         {footerSectionTree.length > 0 && (
           <>
-            <Divider css={dividerStyle} />
-
-            <WorkSpaceTreeGroup title="Footer Panel">
+            <WorkSpaceTreeGroup title={t("editor.page.label_name.footer")}>
               {footerSectionTree.map((tree) => (
                 <BaseDataItem
                   key={tree.displayName}

@@ -1,8 +1,7 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { CopyIcon, DocsIcon } from "@illa-design/react"
+import { DocsIcon } from "@illa-design/react"
 import IconHotSpot from "@/components/IconHotSpot"
-import { copyToClipboard } from "@/utils/copyToClipboard"
 import { LibrariesItemProps } from "./interface"
 import {
   actionGroupContainerStyle,
@@ -19,13 +18,6 @@ export const LibrariesItem: FC<LibrariesItemProps> = (props) => {
       <div css={titleContainerStyle}>
         <span css={titleStyle}>{title}</span>
         <div css={actionGroupContainerStyle}>
-          <IconHotSpot
-            onClick={() => {
-              copyToClipboard(`{{${alias ?? title}}}`)
-            }}
-          >
-            <CopyIcon />
-          </IconHotSpot>
           <Link to={docLink} target="_blank">
             <IconHotSpot>
               <DocsIcon />
