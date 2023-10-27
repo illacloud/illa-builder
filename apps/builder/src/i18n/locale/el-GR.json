@@ -1206,7 +1206,10 @@
           "placeholder": "{Şos. { count: 0 }}}"
         }
       },
-      "library": "Βιβλιοθήκες"
+      "library": "Βιβλιοθήκες",
+      "component_layer": {
+        "floating": "Μοντάλ"
+      }
     },
     "deploy": {
       "fail": "Αποτυχία ανάπτυξης"
