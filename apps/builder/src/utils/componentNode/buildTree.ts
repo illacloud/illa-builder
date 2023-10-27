@@ -1,3 +1,5 @@
+import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+
 export interface NeedBuildNode {
   displayName: string
   $parentNode: string
@@ -12,22 +14,27 @@ interface BuildedNode {
   [key: string]: unknown
 }
 
-export function buildForest(nodes: NeedBuildNode[]): BuildedNode[] {
-  // 用于存储构建好的节点
+export function buildForest(
+  nodes: NeedBuildNode[],
+  layoutInfos: Record<string, WidgetLayoutInfo>,
+): BuildedNode[] {
   const builtNodes: { [key: string]: BuildedNode } = {}
   const calcContext: Record<string, NeedBuildNode> = {}
-  nodes.forEach((node) => {
-    calcContext[node.displayName] = node
+  const needBuildNode = nodes.map((node) => {
+    const mixedNode = {
+      ...node,
+      $parentNode: layoutInfos[node.displayName].parentNode,
+      $childrenNode: layoutInfos[node.displayName].childrenNode,
+    }
+    calcContext[node.displayName] = mixedNode
+    return mixedNode
   })
 
-  // 构建节点
   function buildNode(node: NeedBuildNode): BuildedNode {
-    // 如果已经构建过该节点，直接返回
     if (builtNodes[node.displayName]) {
       return builtNodes[node.displayName]
     }
 
-    // 构建子节点
     const children: BuildedNode[] = (node.$childrenNode || []).map(
       (childName) => {
         const childNode = calcContext[childName]
@@ -35,23 +42,45 @@ export function buildForest(nodes: NeedBuildNode[]): BuildedNode[] {
       },
     )
 
-    // 构建当前节点
     const builtNode: BuildedNode = {
       ...node,
       displayName: node.displayName,
       $parentNode: node.$parentNode,
-      $childrenNode: children,
+      $childrenNode: children.sort((nodeA, nodeB) => {
+        const displayNameA = nodeA.displayName
+        const displayNameB = nodeB.displayName
+        const layoutInfoA = layoutInfos[displayNameA]
+        const layoutInfoB = layoutInfos[displayNameB]
+        if (!layoutInfoA || !layoutInfoB) {
+          return 0
+        }
+        if (layoutInfoA.layoutInfo.y === layoutInfoB.layoutInfo.y) {
+          return layoutInfoA.layoutInfo.x - layoutInfoB.layoutInfo.x
+        }
+        return layoutInfoA.layoutInfo.y - layoutInfoB.layoutInfo.y
+      }),
     }
 
-    // 将当前节点添加到已构建节点的缓存中
     builtNodes[node.displayName] = builtNode
 
     return builtNode
   }
 
-  // 构建整个森林
-  const forest: BuildedNode[] = nodes
-    .filter((node) => !calcContext[node.$parentNode]) // 找到根节点
+  const forest: BuildedNode[] = needBuildNode
+    .filter((node) => !calcContext[node.$parentNode])
+    .sort((nodeA, nodeB) => {
+      const displayNameA = nodeA.displayName
+      const displayNameB = nodeB.displayName
+      const layoutInfoA = layoutInfos[displayNameA]
+      const layoutInfoB = layoutInfos[displayNameB]
+      if (!layoutInfoA || !layoutInfoB) {
+        return 0
+      }
+      if (layoutInfoA.layoutInfo.y === layoutInfoB.layoutInfo.y) {
+        return layoutInfoA.layoutInfo.x - layoutInfoB.layoutInfo.x
+      }
+      return layoutInfoA.layoutInfo.y - layoutInfoB.layoutInfo.y
+    })
     .map((rootNode) => buildNode(rootNode))
 
   return forest

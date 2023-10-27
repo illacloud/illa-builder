@@ -11,6 +11,7 @@ import IconHotSpot from "@/components/IconHotSpot"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import store from "@/store"
+import { CopyManager } from "@/utils/copyManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { MoreActionProps } from "./interface"
 
@@ -36,6 +37,8 @@ export const MoreAction: FC<MoreActionProps> = (props) => {
         break
       }
       case "widget": {
+        CopyManager.copyComponentNodeByDisplayName([displayName])
+        CopyManager.paste("duplicate")
         break
       }
     }

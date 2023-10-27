@@ -410,25 +410,57 @@ const getTargetSectionWidget = (
   )
   const targetSectionMapHasNodeDisplayNames: Record<string, string[]> = {}
   if (targetSection) {
-    const currentViewIndex = targetSection.currentViewIndex as number
-    const viewDisplayNames = targetSection.$childrenNode
-    const currentViewDisplayName = viewDisplayNames[currentViewIndex]
+    switch (targetSectionName) {
+      case "modalSection": {
+        const childrenModalWidgets = targetSection.$childrenNode
+        childrenModalWidgets.forEach((displayName: string) => {
+          const viewWidget = widgets[displayName]
+          if (viewWidget) {
+            const descendantNodeDisplayNames =
+              getAllDescendantNodeDisplayNamesByExecution(viewWidget, widgets)
+            targetSectionMapHasNodeDisplayNames[displayName] =
+              descendantNodeDisplayNames
+          }
+        })
 
-    viewDisplayNames.forEach((displayName: string) => {
-      const viewWidget = widgets[displayName]
-      if (viewWidget) {
-        const descendantNodeDisplayNames =
-          getAllDescendantNodeDisplayNamesByExecution(viewWidget, widgets)
-        targetSectionMapHasNodeDisplayNames[displayName] =
-          descendantNodeDisplayNames
+        const result: NeedBuildNode[] = []
+        Object.values(targetSectionMapHasNodeDisplayNames).forEach(
+          (displayNames) => {
+            displayNames.forEach((displayName) => {
+              const widget = currentPageWidgets.find((widget) => {
+                return widget.displayName === displayName
+              })
+              if (widget) {
+                result.push(widget)
+              }
+            })
+          },
+        )
+        return result
       }
-    })
-    const currentSectionWidgets =
-      targetSectionMapHasNodeDisplayNames[currentViewDisplayName]
-    return currentPageWidgets.filter((widget) =>
-      currentSectionWidgets.includes(widget.displayName),
-    )
+      default: {
+        const currentViewIndex = targetSection.currentViewIndex as number
+        const viewDisplayNames = targetSection.$childrenNode
+        const currentViewDisplayName = viewDisplayNames[currentViewIndex]
+
+        viewDisplayNames.forEach((displayName: string) => {
+          const viewWidget = widgets[displayName]
+          if (viewWidget) {
+            const descendantNodeDisplayNames =
+              getAllDescendantNodeDisplayNamesByExecution(viewWidget, widgets)
+            targetSectionMapHasNodeDisplayNames[displayName] =
+              descendantNodeDisplayNames
+          }
+        })
+        const currentSectionWidgets =
+          targetSectionMapHasNodeDisplayNames[currentViewDisplayName]
+        return currentPageWidgets.filter((widget) =>
+          currentSectionWidgets.includes(widget.displayName),
+        )
+      }
+    }
   }
+
   return []
 }
 
@@ -441,6 +473,7 @@ export const getCurrentPageBodyWidgetTree = createSelector(
         currentPageWidgets as NeedBuildNode[],
         widgets,
       ),
+      widgets,
     )
   },
 )
@@ -454,6 +487,7 @@ export const getCurrentPageFooterWidgetTree = createSelector(
         currentPageWidgets as NeedBuildNode[],
         widgets,
       ),
+      widgets,
     )
   },
 )
@@ -466,6 +500,7 @@ export const getCurrentPageLeftWidgetTree = createSelector(
         currentPageWidgets as NeedBuildNode[],
         widgets,
       ),
+      widgets,
     )
   },
 )
@@ -478,6 +513,7 @@ export const getCurrentPageHeaderWidgetTree = createSelector(
         currentPageWidgets as NeedBuildNode[],
         widgets,
       ),
+      widgets,
     )
   },
 )
@@ -490,6 +526,21 @@ export const getCurrentPageRightWidgetTree = createSelector(
         currentPageWidgets as NeedBuildNode[],
         widgets,
       ),
+      widgets,
+    )
+  },
+)
+export const getCurrentPageModalWidgetTree = createSelector(
+  [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
+  (currentPageWidgets, widgets) => {
+    console.log("currentPageWidgets", currentPageWidgets)
+    return buildForest(
+      getTargetSectionWidget(
+        "modalSection",
+        currentPageWidgets as NeedBuildNode[],
+        widgets,
+      ),
+      widgets,
     )
   },
 )

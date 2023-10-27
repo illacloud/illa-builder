@@ -9,6 +9,7 @@ import {
   getCurrentPageFooterWidgetTree,
   getCurrentPageHeaderWidgetTree,
   getCurrentPageLeftWidgetTree,
+  getCurrentPageModalWidgetTree,
   getCurrentPageRightWidgetTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
@@ -31,6 +32,8 @@ export const ComponentSpaceTree: FC = () => {
   const headerSectionTree = useSelector(getCurrentPageHeaderWidgetTree)
 
   const bodySectionTree = useSelector(getCurrentPageBodyWidgetTree)
+  const modalSectionTree = useSelector(getCurrentPageModalWidgetTree)
+  console.log("modalSectionTree", modalSectionTree)
   // const selectedComponents = useSelector(getSelectedComponentDisplayNames)
 
   // const handleGeneralComponentSelect = useCallback(
@@ -61,21 +64,23 @@ export const ComponentSpaceTree: FC = () => {
       }}
       destroyChildrenWhenClose
     >
-      {/* <WorkSpaceTreeGroup title="Modal">
-        {bodySectionTree.map((tree) => (
-          <BaseDataItem
-            key={tree.displayName}
-            title={tree.displayName}
-            value={tree}
-            level={0}
-            dataType="widget"
-            type={tree.$widgetType as string}
-            canExpand
-            haveMoreAction
-            canFocused
-          />
-        ))}
-      </WorkSpaceTreeGroup> */}
+      {modalSectionTree.length > 0 && (
+        <WorkSpaceTreeGroup title="Modal">
+          {modalSectionTree.map((tree) => (
+            <BaseDataItem
+              key={tree.displayName}
+              title={tree.displayName}
+              value={tree}
+              level={0}
+              dataType="widget"
+              type={tree.$widgetType as string}
+              canExpand
+              haveMoreAction
+              canFocused
+            />
+          ))}
+        </WorkSpaceTreeGroup>
+      )}
       {headerSectionTree.length > 0 && (
         <>
           <Divider css={dividerStyle} />
