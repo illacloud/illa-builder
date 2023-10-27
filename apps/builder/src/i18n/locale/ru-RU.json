@@ -1206,7 +1206,10 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Библиотеки"
+      "library": "Библиотеки",
+      "component_layer": {
+        "floating": "Модаль"
+      }
     },
     "deploy": {
       "fail": "Не удалось развернуть"
