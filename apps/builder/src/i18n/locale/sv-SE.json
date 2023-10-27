@@ -1873,7 +1873,8 @@
         "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner",
         "default_width": "Default width",
         "quick_filter_setting": "Snabb filter",
-        "exclude_hidden_columns": "Exkludera dolda kolumner"
+        "exclude_hidden_columns": "Exkludera dolda kolumner",
+        "allow_users_select": "Tillåt radval"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2178,7 +2179,8 @@
         "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
         "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna",
         "default_width": "Används för att ställa in standardbredden på kolumnen",
-        "max_count": "Används för att ställa in max antal stjärnor"
+        "max_count": "Används för att ställa in max antal stjärnor",
+        "allow_users_select": "Används för att ställa in om användare kan välja rad. "
       },
       "setter_option": {
         "fixed": "Fast",
