@@ -1206,7 +1206,10 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Biblioteker"
+      "library": "Biblioteker",
+      "component_layer": {
+        "floating": "Modal"
+      }
     },
     "deploy": {
       "fail": "Mislykkedes at implementere"
