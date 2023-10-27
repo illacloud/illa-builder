@@ -40,4 +40,12 @@ export const ILLA_UTILS_DESC: Record<string, IILLAUtilsDesc> = {
     desc: "",
     usage: `utils.setGlobalDataValue({key:string,value:any})`,
   },
+  setLocalStorage: {
+    desc: "",
+    usage: `utils.setLocalStorage({key:string,value:any})`,
+  },
+  clearLocalStorage: {
+    desc: "",
+    usage: `utils.clearLocalStorage()`,
+  },
 }

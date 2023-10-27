@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { RestApiAuthPanelProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/interface"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { BearerAuth } from "@/redux/resource/restapiResource"
 import { validate } from "@/utils/form"
 

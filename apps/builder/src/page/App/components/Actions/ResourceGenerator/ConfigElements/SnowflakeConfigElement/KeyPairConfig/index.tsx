@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Control } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { SnowflakeKeyAuthenticationType } from "@/redux/resource/snowflakeResource"
 import { validate } from "@/utils/form"
 

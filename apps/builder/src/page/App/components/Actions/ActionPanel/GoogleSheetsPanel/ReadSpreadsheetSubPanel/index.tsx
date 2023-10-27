@@ -9,7 +9,7 @@ import {
   spreadsheetContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/style"
 import { ReadGoogleSheetsActionOptions } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/values"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { GoogleSheetsActionReadOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
