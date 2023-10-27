@@ -126,9 +126,13 @@ const ChartKeysDynamicSelectSetter: FC<ChartDataSourceSetterProps> = (
   })
 
   const isDynamic = useMemo(() => {
-    const dataSourceMode = get(targetComponentProps, "keySelectMode", "select")
+    const dataSourceMode = get(
+      targetComponentProps,
+      `${widgetDisplayName}.${attrName}JS`,
+      "select",
+    )
     return dataSourceMode === "dynamic"
-  }, [targetComponentProps])
+  }, [attrName, targetComponentProps, widgetDisplayName])
 
   const finalValue = useMemo(() => {
     return get(panelConfig, attrName, "")
@@ -137,19 +141,26 @@ const ChartKeysDynamicSelectSetter: FC<ChartDataSourceSetterProps> = (
   const handleClickFxButton = useCallback(() => {
     const isInOption = selectedOptions.some((value) => value === finalValue)
     if (isDynamic) {
-      handleUpdateDsl("keySelectMode", "select")
+      handleUpdateDsl(`${widgetDisplayName}.${attrName}JS`, "select")
       if (!isInOption) {
         handleUpdateDsl(attrName, "")
       } else {
         handleUpdateDsl(attrName, finalValue)
       }
     } else {
-      handleUpdateDsl("keySelectMode", "dynamic")
+      handleUpdateDsl(`${widgetDisplayName}.${attrName}JS`, "dynamic")
       if (isInOption) {
         handleUpdateDsl(attrName, finalValue)
       }
     }
-  }, [selectedOptions, isDynamic, finalValue, handleUpdateDsl, attrName])
+  }, [
+    selectedOptions,
+    isDynamic,
+    finalValue,
+    handleUpdateDsl,
+    widgetDisplayName,
+    attrName,
+  ])
 
   const handleChangeSelect = useCallback(
     (value: string) => {
