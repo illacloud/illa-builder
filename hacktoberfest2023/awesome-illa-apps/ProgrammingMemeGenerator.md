@@ -7,7 +7,7 @@ We have used this [API](https://rapidapi.com/kaushalsharma880-GAglnDIvTy/api/pro
 ### How to Use?
 Click on the Generate button and it will generate funny programming meme for you.
 
-### Why Dialogue Generator?
+### Why Programming Memes Generator?
 Because every programmer loves to visualize memes related to coding and tech to have fun!
 
 Thank you for choosing Programming Memes Generator. Where programming meets the world of memes and fun.
