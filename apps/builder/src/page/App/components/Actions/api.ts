@@ -12,7 +12,6 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
-import { neonSSLInitialValue } from "@/redux/resource/neonResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   ResourceContent,
@@ -200,7 +199,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
                 connectionFormat: data.connectionFormat,
                 databaseName: data.databaseName,
                 databaseUsername: data.databaseUsername,
-                databasePassword: data.databasePassword,
+                databasePassword: encodeURIComponent(data.databasePassword),
               }
             : {
                 uri: data.uri.trim(),
@@ -212,12 +211,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "mysql":
     case "postgresql":
     case "hydra":
+    case "neon":
       return {
         host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         databaseUsername: data.databaseUsername,
-        databasePassword: data.databasePassword,
+        databasePassword: encodeURIComponent(data.databasePassword),
         ssl: generateSSLConfig(data.ssl, data),
       }
     case "redis":
@@ -226,7 +226,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         port: data.port.toString(),
         databaseIndex: data.databaseIndex ?? 0,
         databaseUsername: data.databaseUsername,
-        databasePassword: data.databasePassword,
+        databasePassword: encodeURIComponent(data.databasePassword),
         ssl: data.ssl,
       }
     case "upstash":
@@ -235,8 +235,8 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         port: data.port.toString(),
         databaseIndex: DATABASE_INDEX,
         databaseUsername: DEFAULT_NAME,
-        databasePassword: data.databasePassword,
-        ssl: true,
+        databasePassword: encodeURIComponent(data.databasePassword),
+        ssl: data.ssl,
       }
     case "firebase":
       return {
@@ -249,7 +249,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         host: data.host.trim(),
         port: data.port.toString(),
         username: data.username,
-        password: data.password,
+        password: encodeURIComponent(data.password),
       }
     case "s3":
       return {
@@ -276,7 +276,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         host: data.host.trim(),
         port: +data.port,
         username: data.username,
-        password: data.password,
+        password: encodeURIComponent(data.password),
         databaseName: data.databaseName,
         ssl: generateSSLConfig(!!data.ssl, data, "clickhouse"),
       }
@@ -296,7 +296,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         port: data.port.toString(),
         databaseName: data.databaseName,
         username: data.username,
-        password: data.password,
+        password: encodeURIComponent(data.password),
         connectionOpts: data.connectionOpts,
         ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
       }
@@ -328,7 +328,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
           data.authentication === "basic"
             ? {
                 username: data.username,
-                password: data.password,
+                password: encodeURIComponent(data.password),
               }
             : {
                 username: data.username,
@@ -398,21 +398,6 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
           ...oAuthOpts,
         },
       }
-    case "neon": {
-      const {
-        resourceName: _neonResourceName,
-        connectionString: _connectionString,
-        host,
-        port,
-        ...otherNeonParams
-      } = data
-      return {
-        ...otherNeonParams,
-        host: host.trim(),
-        port: port.toString(),
-        ssl: neonSSLInitialValue,
-      }
-    }
     case "airtable": {
       return {
         authenticationType: "personalToken",

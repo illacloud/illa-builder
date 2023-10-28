@@ -18,7 +18,12 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
     }
 
     return (
-      <div {...otherProps} ref={ref} css={applyScaleContainerStyle(isEditMode)}>
+      <div
+        {...otherProps}
+        ref={ref}
+        css={applyScaleContainerStyle(isEditMode)}
+        id="html2canvas"
+      >
         <DotPanel />
       </div>
     )

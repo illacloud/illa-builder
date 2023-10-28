@@ -1,9 +1,9 @@
+import { getIconFromResourceType } from "@illa-public/icon"
 import {
   getResourceNameFromResourceType,
   getResourceSubTitleFromResourceType,
 } from "@illa-public/resource-generator"
 import { FC, Suspense } from "react"
-import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceCardSelectorProps } from "./interface"
 import {
   applyItemStyle,

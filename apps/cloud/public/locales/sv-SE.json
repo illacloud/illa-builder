@@ -873,7 +873,7 @@
         "invite_title": "Bjud in via e-post",
         "invite": "Bjud in",
         "placeholder": "Ange e-postadress",
-        "invited": "Har bjudit in",
+        "invited": "Den här användaren är redan i ditt team.",
         "in_list": "Den här användaren är redan i ditt team.",
         "duplicate": "{{ email }} är duplicerad",
         "notmail": "{{ email }} är inte en e-postadress",
@@ -887,7 +887,8 @@
       },
       "tab": {
         "invite": "Bjud in",
-        "public": "Publik"
+        "public": "Publik",
+        "with_team": "Dela med team"
       },
       "custom_copy_text": "{{userName}} bjuder in dig att gå med i 「{{teamName}}」. Klicka på länken för att gå med i teamet: {{inviteLink}}",
       "custom_copy_text_app_invite": "{{userName}} har delat dig med en app på 「{{teamName}}」. Klicka på länken för att gå med i teamet och kontrollera APP: {{inviteLink}}",
@@ -901,11 +902,20 @@
         "app": {
           "desc": "Efter att ha bidragit med din app till gemenskapen, kan andra användare se dess gränssnitt, köra sina åtgärder och forka den. När du forsar en app inkluderas inte informationen om resurskonfigurationen, så det finns ingen anledning att oroa sig för utlämnandet av information om resurskonfiguration."
         },
-        "desc": "Efter att ha bidragit till gemenskapen, alla användare kan köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser."
+        "desc": "Efter att ha bidragit till gemenskapen, alla användare kan köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser.",
+        "default_text": {
+          "agent": "Jag upptäckte precis en imponerande AI-agent som heter {{ agentName }}. Kontrollera det: {{ agentLink }}",
+          "app": "Jag upptäckte just en imponerande app som heter {{ appName }}. Kontrollera det: {{ appLink }}"
+        }
       },
       "social_media": {
-        "label": "Dela på sociala medier"
-      }
+        "label": "Dela på sociala medier",
+        "default_text": {
+          "agent": "Jag upptäckte just en imponerande AI-agent som heter {{ agentName }}",
+          "app": "Jag upptäckte just en imponerande app som heter {{ appName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} delar dig en AI-agent från <unk>{{ teamName }}<unk> . Gå med i teamet och kontrollera det: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Inbjuden lyckades",
@@ -4213,7 +4223,7 @@
   },
   "dashboard": {
     "app_market": "Mallar",
-    "market": "Marknadsplats",
+    "market": "Skapa från mall",
     "app": {
       "all_apps": "Alla appar",
       "create_app": "Skapa app",
@@ -4282,7 +4292,8 @@
       "delete-suc": "Raderades framgångsrikt. ",
       "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet."
     },
-    "create": "Skapa"
+    "create": "Skapa",
+    "market_view": "Gemenskap"
   },
   "new_dashboard": {
     "status": {
@@ -4375,5 +4386,8 @@
         }
       }
     }
+  },
+  "dayjs": {
+    "just_now": "Just nu"
   }
 }

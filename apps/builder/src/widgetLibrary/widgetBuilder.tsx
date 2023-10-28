@@ -260,6 +260,7 @@ import {
   VIDEO_WIDGET_CONFIG,
 } from "@/widgetLibrary/VideoWidget"
 import { PanelConfig } from "../page/App/components/InspectPanel/interface"
+import { IFRAME_EVENT_HANDLER_CONFIG } from "./IFrameWidget/eventHandlerConfig"
 import { EventHandlerConfig, WidgetConfig } from "./interface"
 
 export const WidgetConfigMap: Record<
@@ -587,6 +588,7 @@ export const WidgetConfigMap: Record<
   IFRAME_WIDGET: {
     config: IFRAME_WIDGET_CONFIG,
     panelConfig: IFRAME_PANEL_CONFIG,
+    eventHandlerConfig: IFRAME_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/IFrameWidget/iframe")),
   },
 }

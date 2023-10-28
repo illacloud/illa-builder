@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, PreviousIcon } from "@illa-design/react"
-import { container, footerStyle } from "@/page/App/components/Actions/styles"
+import { footerStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   AirtableResource,
@@ -15,6 +15,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
+import { container } from "../style"
 
 const AirtableConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { onBack, resourceID, hasFooter = true } = props

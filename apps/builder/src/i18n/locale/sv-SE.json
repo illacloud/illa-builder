@@ -79,7 +79,13 @@
       "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet.",
       "save_resource": "Sparandet lyckades, sidan kommer att stängas om 3 sekunder..."
     },
-    "create": "Skapa"
+    "create": "Skapa",
+    "pwa": {
+      "guide": {
+        "title": "Lägg till ILLA Cloud på skrivbordet",
+        "desc": "Lägg till ditt skrivbord för att få tillgång till din arbetsyta snabbt. Öka din effektivitet. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Just nu"
@@ -204,7 +210,8 @@
           },
           "oracle": {
             "sid": "Behandla databasens namn som",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle version"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -242,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Autentisering"
-          }
+          },
+          "old_oracle": "9i eller under",
+          "new_oracle": "9i över"
         },
         "placeholder": {
           "url": "Ange begärans URL här",
@@ -353,7 +362,11 @@
               "sid": "SID",
               "service": "Tjänstens namn"
             },
-            "ssl": "Använd SSL när tillgängligt"
+            "ssl": "Använd SSL när tillgängligt",
+            "version": {
+              "below": "9i eller under",
+              "above": "9i över"
+            }
           },
           "couchdb": {
             "ssl": "Använd SSL/TLS när tillgängligt"
@@ -610,7 +623,9 @@
               "global-data": "Globala data",
               "ai-agent": "AI Agent",
               "more": "Mer",
-              "create-resource": "Skapa från resurs"
+              "create-resource": "Skapa från resurs",
+              "unsafe": "Osäker",
+              "safe": "Säker"
             }
           },
           "restapi": {
@@ -655,6 +670,9 @@
             },
             "global-data": {
               "how-to-use": "Använd denna globala data av {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "När du använder felsäkert läge kan din SQL endast referera variabler i stället för variabler, till exempel där namn = '{{input1.value}}'. Detta förhindrar användare från att kompromettera din databas genom att lägga in påståenden som \"; släpp tabell\" i input1. När du använder det osäkra läget kan SQL syntax ord också ersättas med variabler, t.ex. var {{input1.value}} {{input2.value}} '{{input3.value}}'. I detta fall kan dock databasen äventyras av det innehåll som användaren angett. Det rekommenderas inte att du använder det här läget."
             }
           },
           "advanced": {
@@ -695,7 +713,8 @@
           },
           "general": {
             "connect-data-source": "Anslut till databas eller api",
-            "more-type": "Fler typer av datakällor"
+            "more-type": "Fler typer av datakällor",
+            "safe_mode": "Läge"
           }
         },
         "menu": {
@@ -1186,6 +1205,10 @@
           "tooltips": "Stöder objekt eller primitiva värden. Exempel: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
+      },
+      "library": "Bibliotek",
+      "component_layer": {
+        "floating": "Modal"
       }
     },
     "deploy": {
@@ -1295,7 +1318,14 @@
           "onMenuSelect": "Välj objekt",
           "on_menu_select": "Välj menyobjekt",
           "pageChange": "Ändrad sida",
-          "clickItem": "Klicka på objekt"
+          "clickItem": "Klicka på objekt",
+          "columnVisibilityChange": "Ändra kolumnsynlighet",
+          "onPaginationModelChange": "Ändrad sida",
+          "onRefresh": "Uppdatera",
+          "onFilterModelChange": "Filtrera ändring",
+          "onRowSelectionModelChange": "Ändra val av rad",
+          "onColumnVisibilityModel": "Ändra kolumnsynlighet",
+          "onSortModelChange": "Ändra sortering"
         },
         "image_list": {
           "title": "Bilder",
@@ -1323,7 +1353,10 @@
         "refresh": "Uppdatera",
         "density_setting": "Densitet",
         "column_setting": "Kolumner",
-        "refresh_setting": "Uppdatera"
+        "refresh_setting": "Uppdatera",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Ändra sortering"
+        }
       },
       "setter_default_value": {
         "fill": "Fyll",
@@ -1741,7 +1774,8 @@
           "cell_selection": "Val av cell",
           "click_outside_to_des": "Klicka utanför för att avmarkera",
           "page": "Förvalt sidindex",
-          "export_all_data_setting": "Exportera alla"
+          "export_all_data_setting": "Exportera alla",
+          "locale": "Lokalt"
         },
         "previous_cursor": "Föregående markör",
         "input": {
@@ -1842,11 +1876,19 @@
         "allow_row_selection": "Tillåt radval",
         "selection_mode": "Markeringsläge",
         "pin_column": "Fäst kolumn",
-        "enable_users_to_sort": "Tillåt användare att sortera",
         "enable_users_to_pin": "Aktivera användare att fästa",
         "enable_users_to_filter": "Aktivera användare att filtrera",
         "enable_users_to_hide": "Aktivera användare att dölja",
-        "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av"
+        "enable_users_to_set_group_by": "Aktivera användare att ställa in grupp av",
+        "column_description": "Beskrivning",
+        "enable_users_to_aggregate": "Aktivera användare att aggregera",
+        "enable_users_to_resize": "Tillåt användare att ändra storlek",
+        "enable_users_to_sort": "Tillåt användare att sortera",
+        "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner",
+        "default_width": "Default width",
+        "quick_filter_setting": "Snabb filter",
+        "exclude_hidden_columns": "Exkludera dolda kolumner",
+        "allow_users_select": "Tillåt radval"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1909,7 +1951,9 @@
         "senderAvatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
         "receiving": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
         "export_setting": "Används för att ställa in om användare får exportera filtrerad data eller inte.",
-        "filter_setting": "Används för att ställa in om du vill visa filter eller inte, vilket tillåter användare att filtrera data i tabellen."
+        "filter_setting": "Används för att ställa in om du vill visa filter eller inte, vilket tillåter användare att filtrera data i tabellen.",
+        "quick_filter_setting": "Används för att ställa in om du vill aktivera snabbfilter",
+        "exclude_hidden_columns": "Används för att ställa in om du vill exludera de dolda kolumnerna när du använder snabbfilter. "
       },
       "tab_title": "Inspektera",
       "unselected_tip1": "Inga komponenter valda.",
@@ -2062,7 +2106,8 @@
           "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden.",
           "density_setting": "Används för att ställa in radens höjd densitet eller inte. ",
           "refresh_setting": "Används för att ställa in om en uppdateringsikon ska visas",
-          "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata."
+          "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata.",
+          "locale": "Till exempel, en-US"
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2139,12 +2184,17 @@
         "selection_mode": "Används för att ställa in flera radval eller val av enstaka rader",
         "allow_row_selection": "Används för att ställa in om användare tillåts välja rad",
         "pin_column": "Används för att fästa kolumnen på alla användare",
-        "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
         "enable_users_to_pin": "Används för att ställa in om användare tillåts fästa kolumnen",
         "enable_users_to_filter": "Används för att ställa in om användare tillåts filtrera på denna kolumn",
         "enable_users_to_hide": "Används för att ställa in om användare tillåts dölja kolumnen",
         "enable_users_to_aggregate": "Används för att ställa in om användare ska tillåta att data aggregering görs på den här kolumnen.",
-        "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. "
+        "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
+        "column_description": "Används för att ange en beskrivning av denna kolumn",
+        "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
+        "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna",
+        "default_width": "Används för att ställa in standardbredden på kolumnen",
+        "max_count": "Används för att ställa in max antal stjärnor",
+        "allow_users_select": "Används för att ställa in om användare kan välja rad. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2212,7 +2262,27 @@
           "limited": "Begränsad",
           "limit_offset_based": "Begränsa offset baserat",
           "cursor_based": "Markör baserad",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automatiskt",
+            "text": "Text",
+            "date": "Datum",
+            "tag": "Tagg",
+            "time": "Tid",
+            "datetime": "Datum tid",
+            "number": "Nummer",
+            "percent": "Procent",
+            "link": "Länk",
+            "button": "Knapp",
+            "buttongroup": "Knapp grupp",
+            "boolean": "Boolean",
+            "image": "Bild",
+            "icongroup": "Ikon grupp",
+            "rating": "Betyg",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Valuta"
+          }
         },
         "input": {
           "input": "Input",
@@ -2724,7 +2794,29 @@
       "title-preview": {
         "chat": "Chatt",
         "text-generation": "Generering av text"
-      }
+      },
+      "validation_blank": {
+        "name": "Ange ett namn",
+        "prompt": "Ange prompten",
+        "description": "Ange beskrivningen",
+        "icon": "Ladda upp eller generera en ikon",
+        "variable_value": "Se till att både nyckeln och värdet är antingen tomt eller inte.",
+        "variable_key": "Ange nyckeln eller ta bort värdet. ",
+        "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
+        "max_token": "Vänligen ange max token inte mindre än 1"
+      },
+      "length_invalid": {
+        "description": "Begränsa antalet tecken till 160 eller mindre"
+      },
+      "value_invalid": {
+        "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
+        "max_token": "Vänligen ange max token inte mindre än 1"
+      },
+      "group": {
+        "advanced_settings": "Avancerade inställningar",
+        "information": "Grundläggande information"
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Krävs"
@@ -3168,6 +3260,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Data rutnät"
     }
   },
   "page": {
@@ -4408,5 +4503,6 @@
   },
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
-  }
+  },
+  "show_states": "Visa delstater"
 }
