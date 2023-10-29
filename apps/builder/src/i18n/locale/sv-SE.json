@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Autentisering"
-          }
+          },
+          "old_oracle": "9i eller under",
+          "new_oracle": "9i över"
         },
         "placeholder": {
           "url": "Ange begärans URL här",
@@ -1203,6 +1205,10 @@
           "tooltips": "Stöder objekt eller primitiva värden. Exempel: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
+      },
+      "library": "Bibliotek",
+      "component_layer": {
+        "floating": "Modal"
       }
     },
     "deploy": {
@@ -1313,7 +1319,13 @@
           "on_menu_select": "Välj menyobjekt",
           "pageChange": "Ändrad sida",
           "clickItem": "Klicka på objekt",
-          "columnVisibilityChange": "Ändra kolumnsynlighet"
+          "columnVisibilityChange": "Ändra kolumnsynlighet",
+          "onPaginationModelChange": "Ändrad sida",
+          "onRefresh": "Uppdatera",
+          "onFilterModelChange": "Filtrera ändring",
+          "onRowSelectionModelChange": "Ändra val av rad",
+          "onColumnVisibilityModel": "Ändra kolumnsynlighet",
+          "onSortModelChange": "Ändra sortering"
         },
         "image_list": {
           "title": "Bilder",
@@ -1341,7 +1353,10 @@
         "refresh": "Uppdatera",
         "density_setting": "Densitet",
         "column_setting": "Kolumner",
-        "refresh_setting": "Uppdatera"
+        "refresh_setting": "Uppdatera",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Ändra sortering"
+        }
       },
       "setter_default_value": {
         "fill": "Fyll",
@@ -1759,7 +1774,8 @@
           "cell_selection": "Val av cell",
           "click_outside_to_des": "Klicka utanför för att avmarkera",
           "page": "Förvalt sidindex",
-          "export_all_data_setting": "Exportera alla"
+          "export_all_data_setting": "Exportera alla",
+          "locale": "Lokalt"
         },
         "previous_cursor": "Föregående markör",
         "input": {
@@ -1868,7 +1884,11 @@
         "enable_users_to_aggregate": "Aktivera användare att aggregera",
         "enable_users_to_resize": "Tillåt användare att ändra storlek",
         "enable_users_to_sort": "Tillåt användare att sortera",
-        "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner"
+        "disable_users_to_reorder": "Inaktivera användare för att ändra ordning på kolumner",
+        "default_width": "Default width",
+        "quick_filter_setting": "Snabb filter",
+        "exclude_hidden_columns": "Exkludera dolda kolumner",
+        "allow_users_select": "Tillåt radval"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1931,7 +1951,9 @@
         "senderAvatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
         "receiving": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
         "export_setting": "Används för att ställa in om användare får exportera filtrerad data eller inte.",
-        "filter_setting": "Används för att ställa in om du vill visa filter eller inte, vilket tillåter användare att filtrera data i tabellen."
+        "filter_setting": "Används för att ställa in om du vill visa filter eller inte, vilket tillåter användare att filtrera data i tabellen.",
+        "quick_filter_setting": "Används för att ställa in om du vill aktivera snabbfilter",
+        "exclude_hidden_columns": "Används för att ställa in om du vill exludera de dolda kolumnerna när du använder snabbfilter. "
       },
       "tab_title": "Inspektera",
       "unselected_tip1": "Inga komponenter valda.",
@@ -2084,7 +2106,8 @@
           "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden.",
           "density_setting": "Används för att ställa in radens höjd densitet eller inte. ",
           "refresh_setting": "Används för att ställa in om en uppdateringsikon ska visas",
-          "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata."
+          "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata.",
+          "locale": "Till exempel, en-US"
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2168,7 +2191,10 @@
         "enable_users_to_set_group_by": "Används för att ställa in om användare ska kunna konfigurera datagrupperingen eller inte. ",
         "column_description": "Används för att ange en beskrivning av denna kolumn",
         "enable_users_to_sort": "Används för att ställa in om användare tillåts att ändra sorteringen av denna kolumn. ",
-        "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna"
+        "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna",
+        "default_width": "Används för att ställa in standardbredden på kolumnen",
+        "max_count": "Används för att ställa in max antal stjärnor",
+        "allow_users_select": "Används för att ställa in om användare kan välja rad. "
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2768,7 +2794,29 @@
       "title-preview": {
         "chat": "Chatt",
         "text-generation": "Generering av text"
-      }
+      },
+      "validation_blank": {
+        "name": "Ange ett namn",
+        "prompt": "Ange prompten",
+        "description": "Ange beskrivningen",
+        "icon": "Ladda upp eller generera en ikon",
+        "variable_value": "Se till att både nyckeln och värdet är antingen tomt eller inte.",
+        "variable_key": "Ange nyckeln eller ta bort värdet. ",
+        "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
+        "max_token": "Vänligen ange max token inte mindre än 1"
+      },
+      "length_invalid": {
+        "description": "Begränsa antalet tecken till 160 eller mindre"
+      },
+      "value_invalid": {
+        "temperature": "Vänligen ange temperaturen mellan 0,1 till 2",
+        "max_token": "Vänligen ange max token inte mindre än 1"
+      },
+      "group": {
+        "advanced_settings": "Avancerade inställningar",
+        "information": "Grundläggande information"
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Krävs"
@@ -4455,5 +4503,6 @@
   },
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
-  }
+  },
+  "show_states": "Visa delstater"
 }
