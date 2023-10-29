@@ -98,7 +98,7 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
 </p>
 
 #### 🔌 Step 3: Connect to your data
-Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
+Connect to MySQL or REST API through our GUI data connectors. We will add more than 10 databases and APIs soon.
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
@@ -106,7 +106,7 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
 </p>
 
 #### 🚀 Step 4: Deploy your app
-Deploy your app and self host it. 
+Deploy your app and self-host it. 
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
@@ -122,7 +122,7 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 
 ## 🌱 Contributing
 
-Thinking about contributing? All kind of contributions to ILLA are greatly appreciated and welcomed! Check out our [Contribution Guide](./CONTRIBUTING.md) for details about how you can get involved.
+Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out our [Contribution Guide](./CONTRIBUTING.md) for details about how you can get involved.
 <p>Appreciate all the contributions from our ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">Contributors!</a></p>
 
 ## 📢 Translating
