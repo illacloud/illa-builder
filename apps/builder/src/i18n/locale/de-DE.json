@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Authentifizierung"
-          }
+          },
+          "old_oracle": "9i oder darunter",
+          "new_oracle": "9 i oben"
         },
         "placeholder": {
           "url": "URL hier eingeben",
@@ -1203,6 +1205,10 @@
           "tooltips": "Unterstützt Objekte oder primitive Werte. Beispiel: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
+      },
+      "library": "Bibliotheken",
+      "component_layer": {
+        "floating": "Modal"
       }
     },
     "deploy": {
@@ -1313,7 +1319,13 @@
           "on_menu_select": "Menüpunkt auswählen",
           "pageChange": "Seitenänderung",
           "clickItem": "Element anklicken",
-          "columnVisibilityChange": "Spaltensichtbarkeit ändern"
+          "columnVisibilityChange": "Spaltensichtbarkeit ändern",
+          "onPaginationModelChange": "Seitenänderung",
+          "onRefresh": "Aktualisieren",
+          "onFilterModelChange": "Filteränderung",
+          "onRowSelectionModelChange": "Zeilenauswahl ändern",
+          "onColumnVisibilityModel": "Spaltensichtbarkeit ändern",
+          "onSortModelChange": "Änderung sortieren"
         },
         "image_list": {
           "title": "Bilder",
@@ -1341,7 +1353,10 @@
         "refresh": "aktualisieren",
         "density_setting": "Dichte",
         "column_setting": "Spalten",
-        "refresh_setting": "Aktualisieren"
+        "refresh_setting": "Aktualisieren",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Änderung sortieren"
+        }
       },
       "setter_default_value": {
         "fill": "Füllen",
@@ -1759,7 +1774,8 @@
           "cell_selection": "Zellenauswahl",
           "click_outside_to_des": "Zum Abwählen ausserhalb klicken",
           "page": "Standardseitenindex",
-          "export_all_data_setting": "Alle exportieren"
+          "export_all_data_setting": "Alle exportieren",
+          "locale": "Lokal"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
@@ -1868,7 +1884,11 @@
         "enable_users_to_aggregate": "Benutzer zum Sammeln aktivieren",
         "enable_users_to_resize": "Benutzer können die Größe ändern",
         "enable_users_to_sort": "Benutzer zum Sortieren aktivieren",
-        "disable_users_to_reorder": "Benutzer deaktivieren, um Spalten neu zu sortieren"
+        "disable_users_to_reorder": "Benutzer deaktivieren, um Spalten neu zu sortieren",
+        "default_width": "Default width",
+        "quick_filter_setting": "Schnellfilter",
+        "exclude_hidden_columns": "Versteckte Spalten ausschließen",
+        "allow_users_select": "Zeilenauswahl erlauben"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1931,7 +1951,9 @@
         "senderAvatar": "Setze den Avatar des Absenders. Zum Beispiel ist in Ihrer Datenquelle der Avatar des Absenders das sendAvatar-Feld und Sie können das Feld auf {{item.sendAvatar}} setzen.",
         "receiving": "Legen Sie fest, ob beim Empfang von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht von action1 empfangen wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird.",
         "export_setting": "Wird verwendet, um festzulegen, ob Benutzer gefilterte Daten exportieren dürfen oder nicht.",
-        "filter_setting": "Wird verwendet, um festzulegen, ob Filter angezeigt werden sollen oder nicht, was es Benutzern erlaubt, Daten in der Tabelle zu filtern."
+        "filter_setting": "Wird verwendet, um festzulegen, ob Filter angezeigt werden sollen oder nicht, was es Benutzern erlaubt, Daten in der Tabelle zu filtern.",
+        "quick_filter_setting": "Wird verwendet, um den Schnellfilter zu aktivieren",
+        "exclude_hidden_columns": "Wird verwendet, um bei Verwendung des Schnellfilters die versteckten Spalten zu verdrängen. "
       },
       "tab_title": "Prüfen",
       "unselected_tip1": "Keine Komponenten ausgewählt.",
@@ -2084,7 +2106,8 @@
           "supported_in_the_row": "Wird im Zeilen-Einzelauswahlmodus unterstützt. Nach dem Aktivieren klicken Sie auf einen anderen Bereich als die Tabelle, um die Zeilenauswahl zu deaktivieren.",
           "density_setting": "Wird verwendet, um die Zeilenhöhe zu bestimmen oder nicht. ",
           "refresh_setting": "Wird verwendet, um ein Aktualisierungs-Symbol anzuzeigen",
-          "export_raw_data_setting": "Wird verwendet, um festzulegen, ob Benutzer ungefilterte Rohdaten exportieren dürfen oder nicht."
+          "export_raw_data_setting": "Wird verwendet, um festzulegen, ob Benutzer ungefilterte Rohdaten exportieren dürfen oder nicht.",
+          "locale": "Zum Beispiel de-US"
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2168,7 +2191,10 @@
         "enable_users_to_set_group_by": "Wird verwendet, um festzulegen, ob Benutzer die Anzeige für die Datengruppierung einrichten können oder nicht. ",
         "column_description": "Wird verwendet, um eine Beschreibung dieser Spalte zu setzen",
         "enable_users_to_sort": "Wird verwendet, um festzulegen, ob Benutzer die Sortierung dieser Spalte ändern können oder nicht. ",
-        "disable_users_to_reorder": "Wird verwendet, um festzulegen, ob Benutzer zum Neuordnen der Spalten deaktiviert werden"
+        "disable_users_to_reorder": "Wird verwendet, um festzulegen, ob Benutzer zum Neuordnen der Spalten deaktiviert werden",
+        "default_width": "Verwendet um die Standardbreite der Spalte zu setzen",
+        "max_count": "Verwendet um die maximale Anzahl von Sternen zu setzen",
+        "allow_users_select": "Wird verwendet, um festzulegen, ob Benutzern die Zeilenauswahl erlaubt ist. "
       },
       "setter_option": {
         "fixed": "Feste",
@@ -2768,7 +2794,29 @@
       "title-preview": {
         "chat": "Chat",
         "text-generation": "Textgenerierung"
-      }
+      },
+      "validation_blank": {
+        "name": "Bitte geben Sie einen Namen ein",
+        "prompt": "Bitte geben Sie die Prompt ein",
+        "description": "Bitte geben Sie die Beschreibung ein",
+        "icon": "Bitte ein Icon hochladen oder generieren",
+        "variable_value": "Bitte stellen Sie sicher, dass sowohl der Schlüssel als auch der Wert leer sind oder nicht leer sind.",
+        "variable_key": "Bitte geben Sie den Schlüssel ein oder löschen Sie den Wert. ",
+        "temperature": "Bitte geben Sie die Temperatur zwischen 0,1 und 2 ein",
+        "max_token": "Bitte geben Sie das maximale Token nicht weniger als 1 ein"
+      },
+      "length_invalid": {
+        "description": "Bitte beschränken Sie die Anzahl der Zeichen auf 160 oder weniger"
+      },
+      "value_invalid": {
+        "temperature": "Bitte geben Sie die Temperatur zwischen 0,1 und 2 ein",
+        "max_token": "Bitte geben Sie das maximale Token nicht weniger als 1 ein"
+      },
+      "group": {
+        "advanced_settings": "Erweiterte Einstellungen",
+        "information": "Grundlegende Informationen"
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Benötigt"
@@ -4455,5 +4503,6 @@
   },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
-  }
+  },
+  "show_states": "Status anzeigen"
 }

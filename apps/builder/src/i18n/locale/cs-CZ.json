@@ -249,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Ověření"
-          }
+          },
+          "old_oracle": "9i nebo méně",
+          "new_oracle": "9i výše"
         },
         "placeholder": {
           "url": "Zde zadejte adresu URL požadavku",
@@ -1203,6 +1205,10 @@
           "tooltips": "Podporuje objekty nebo primitivní hodnoty. Příklad: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
+      },
+      "library": "Knihovny",
+      "component_layer": {
+        "floating": "Modál"
       }
     },
     "deploy": {
@@ -1313,7 +1319,13 @@
           "on_menu_select": "Vyberte položku nabídky",
           "pageChange": "Změna stránky",
           "clickItem": "Klepněte na položku",
-          "columnVisibilityChange": "Změna viditelnosti sloupců"
+          "columnVisibilityChange": "Změna viditelnosti sloupců",
+          "onPaginationModelChange": "Změna stránky",
+          "onRefresh": "Aktualizovat",
+          "onFilterModelChange": "Změna filtru",
+          "onRowSelectionModelChange": "Změna výběru řádků",
+          "onColumnVisibilityModel": "Změna viditelnosti sloupců",
+          "onSortModelChange": "Seřadit změnu"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1341,7 +1353,10 @@
         "refresh": "obnovit",
         "density_setting": "Hustota",
         "column_setting": "Sloupce",
-        "refresh_setting": "Aktualizovat"
+        "refresh_setting": "Aktualizovat",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Seřadit změnu"
+        }
       },
       "setter_default_value": {
         "fill": "Vyplnit",
@@ -1759,7 +1774,8 @@
           "cell_selection": "Výběr buňky",
           "click_outside_to_des": "Klikněte vně pro zrušení výběru",
           "page": "Výchozí index stránky",
-          "export_all_data_setting": "Exportovat vše"
+          "export_all_data_setting": "Exportovat vše",
+          "locale": "Místní prostředí"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
@@ -1868,7 +1884,11 @@
         "enable_users_to_aggregate": "Povolit uživatelům agregovat",
         "enable_users_to_resize": "Povolit uživatelům změnit velikost",
         "enable_users_to_sort": "Povolit řazení uživatelů",
-        "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců"
+        "disable_users_to_reorder": "Zakázat uživatele pro změnu pořadí sloupců",
+        "default_width": "Default width",
+        "quick_filter_setting": "Rychlý filtr",
+        "exclude_hidden_columns": "Vyloučit skryté sloupce",
+        "allow_users_select": "Povolit výběr řádků"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1931,7 +1951,9 @@
         "senderAvatar": "Nastavte avatar odesílatele. Například ve vašem zdroji dat je avatar odesílatele pole sendAvatar a toto pole můžete nastavit na {{item.sendAvatar}}.",
         "receiving": "Nastavte, zda se zobrazí načítání při přijímání zpráv. Pokud je vaše zpráva přijata z akce 1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1.",
         "export_setting": "Používá se pro nastavení, zda mají uživatelé povoleno exportovat filtrovaná data.",
-        "filter_setting": "Slouží k nastavení, zda se mají filtry zobrazovat či nikoli, což umožňuje uživatelům filtrovat data v tabulce."
+        "filter_setting": "Slouží k nastavení, zda se mají filtry zobrazovat či nikoli, což umožňuje uživatelům filtrovat data v tabulce.",
+        "quick_filter_setting": "Slouží k nastavení, zda povolit rychlý filtr",
+        "exclude_hidden_columns": "Nastavte zda chcete zobrazit skryté sloupce při použití rychlého filtru. "
       },
       "tab_title": "Kontrolovat",
       "unselected_tip1": "Nebyly vybrány žádné komponenty.",
@@ -2084,7 +2106,8 @@
           "supported_in_the_row": "Podporováno v režimu jediného výběru. Po jeho povolení klikněte na jinou oblast než tabulku pro zrušení výběru řádku.",
           "density_setting": "Používá se k nastavení hustoty výšky řádku nebo ne. ",
           "refresh_setting": "Slouží k nastavení, zda zobrazit ikonu obnovení",
-          "export_raw_data_setting": "Používá se k nastavení, zda mohou uživatelé exportovat nefiltrovaná nezpracovaná data."
+          "export_raw_data_setting": "Používá se k nastavení, zda mohou uživatelé exportovat nefiltrovaná nezpracovaná data.",
+          "locale": "Například cs-CZ"
         },
         "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
         "input": {
@@ -2168,7 +2191,10 @@
         "enable_users_to_set_group_by": "Nastavení, zda povolit nebo nepovolit uživatelům nastavení zobrazení skupiny dat. ",
         "column_description": "Slouží k nastavení popisu tohoto sloupce",
         "enable_users_to_sort": "Slouží k nastavení, zda povolit nebo nepovolit uživatelům změnit řazení tohoto sloupce. ",
-        "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců"
+        "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců",
+        "default_width": "Použít k nastavení výchozí šířky sloupce",
+        "max_count": "Používá se k nastavení maximálního počtu hvězdiček",
+        "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. "
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -2768,7 +2794,29 @@
       "title-preview": {
         "chat": "Chat",
         "text-generation": "Generování textu"
-      }
+      },
+      "validation_blank": {
+        "name": "Zadejte název",
+        "prompt": "Zadejte prosím výzvu",
+        "description": "Zadejte prosím popis",
+        "icon": "Prosím nahrajte nebo vygenerujte ikonu",
+        "variable_value": "Ujistěte se, že klíč i hodnota jsou buď prázdné, nebo nejsou prázdné.",
+        "variable_key": "Zadejte prosím klíč nebo smažte hodnotu. ",
+        "temperature": "Zadejte prosím teplotu v rozmezí od 0.1 do 2",
+        "max_token": "Zadejte prosím maximální token ne méně než 1"
+      },
+      "length_invalid": {
+        "description": "Prosím omezte počet znaků na 160 nebo méně"
+      },
+      "value_invalid": {
+        "temperature": "Zadejte prosím teplotu v rozmezí od 0.1 do 2",
+        "max_token": "Zadejte prosím maximální token ne méně než 1"
+      },
+      "group": {
+        "advanced_settings": "Pokročilé nastavení",
+        "information": "Základní informace"
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Požadováno"
@@ -4455,5 +4503,6 @@
   },
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
-  }
+  },
+  "show_states": "Zobrazit stavy"
 }
