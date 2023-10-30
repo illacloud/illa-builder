@@ -19,7 +19,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/style"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import {
   getCachedAction,
   getSelectedAction,

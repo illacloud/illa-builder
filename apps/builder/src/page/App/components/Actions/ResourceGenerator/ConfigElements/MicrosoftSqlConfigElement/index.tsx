@@ -24,9 +24,9 @@ import {
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { InputRecordEditor } from "@/page/App/components/Actions/InputRecordEditor"
 import {
   MicrosoftSqlResource,
   MicrosoftSqlResourceInitial,

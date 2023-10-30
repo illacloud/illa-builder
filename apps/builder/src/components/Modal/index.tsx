@@ -7,7 +7,8 @@ import { ModalProps } from "@/components/Modal/interface"
 import { applyModalWrapperStyle } from "@/components/Modal/style"
 
 export const BuilderModal: FC<ModalProps> = (props) => {
-  const { bodyContent, title, footerContent, canMove, w, h, onClose } = props
+  const { bodyContent, title, footerContent, canMove, w, h, onClose, docLink } =
+    props
 
   const hasFooterChildren =
     (Array.isArray(footerContent) && footerContent.length > 0) ||
@@ -17,7 +18,12 @@ export const BuilderModal: FC<ModalProps> = (props) => {
 
   return (
     <div css={applyModalWrapperStyle(w, h)}>
-      <ModalHeader title={title} onClose={onClose} canMove={canMove} />
+      <ModalHeader
+        title={title}
+        onClose={onClose}
+        canMove={canMove}
+        docLink={docLink}
+      />
       <ModalBody footerHeight={rect.height}>{bodyContent}</ModalBody>
       <ModalFooter
         hasFooterChildren={hasFooterChildren}

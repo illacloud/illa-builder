@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { CouchDBSubPanelProps } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/interface"
 import { CreateRecordInfo } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/values"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { CreateRecord } from "@/redux/currentApp/action/couchDBAction"
 
 export const CreateRecordSubPanel: FC<CouchDBSubPanelProps> = (props) => {

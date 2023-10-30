@@ -20,6 +20,7 @@ export interface ConfigState {
   selectedAction: ActionItem<ActionContent> | null
   cachedAction: ActionItem<ActionContent> | null
   expandedKeys: string[]
+  expandedWidgets: Record<string, boolean>
   mode: IllaMode
   canvasHeight: number
   canvasWidth: number
@@ -44,6 +45,7 @@ export const ConfigInitialState: ConfigState = {
   canvasWidth: 1920,
   isOnline: true,
   hoveredComponents: [],
+  expandedWidgets: {},
   wsStatus: {
     [ILLA_WEBSOCKET_CONTEXT.DASHBOARD]: ILLA_WEBSOCKET_STATUS.INIT,
     [ILLA_WEBSOCKET_CONTEXT.APP]: ILLA_WEBSOCKET_STATUS.INIT,

@@ -150,3 +150,8 @@ export const getCachedActionAdvancedConfig = createSelector(
     return cachedAction.config.advancedConfig
   },
 )
+
+export const getExpandedWidgets = createSelector(
+  [getEditorConfig],
+  (config) => config.expandedWidgets,
+)
