@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
         "default_width": "Used to set the default width of the column",
         "max_count": "Used to set the max count of stars",
-        "allow_users_select": "Used to set whether allow users to select row. "
+        "allow_users_select": "Used to set whether allow users to select row. ",
+        "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
+        "table_update_title": "Update"
       },
       "setter_option": {
         "fixed": "Naprawione",
