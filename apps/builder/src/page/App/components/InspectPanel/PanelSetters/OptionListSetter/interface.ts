@@ -1,6 +1,5 @@
-import { ReactElement } from "react"
-import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/interface"
-import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
+import { PanelFieldConfig } from "../../interface"
+import { BaseSetter } from "../interface"
 
 export interface OptionItemShape {
   id: string
@@ -9,45 +8,9 @@ export interface OptionItemShape {
   disabled?: string
 }
 
-export interface HeaderProps {
-  labelName: string
-  handleAddOption: () => void
-}
-
-export interface ListItemProps extends Omit<OptionItemShape, "disabled"> {
-  index: number
-}
-
-export interface DragIconAndLabelProps {
-  index: number
-  label?: string
-}
-
-export interface MoreProps {
-  index: number
-  label?: string
-}
-
 export interface OptionListSetterProps extends BaseSetter {
   value: OptionItemShape[]
   childrenSetter?: PanelFieldConfig[]
   headerName?: string
   itemName?: string
-  emptyNode?: ReactElement
-}
-
-export interface DragItem {
-  index: number
-  id: string
-  type: string
-}
-
-export interface ActionMenuProps {
-  index: number
-  label?: string
-  handleCloseMode: () => void
-}
-
-export interface ListBodyProps {
-  emptyNode?: ReactElement
 }

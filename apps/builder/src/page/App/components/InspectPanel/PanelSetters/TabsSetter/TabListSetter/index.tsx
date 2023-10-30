@@ -1,9 +1,9 @@
 import { FC, memo } from "react"
+import { v4 } from "uuid"
 import { Column } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Column"
 import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
 import { ColumnEmpty } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Empty"
 import { ViewSetterProps } from "./interface"
-import { generateNewViewItem } from "./utils/generateNewOptions"
 
 const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
   const {
@@ -22,7 +22,11 @@ const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
       columnNum={value.length}
       items={value.map((item) => item.id)}
       onClickNew={() => {
-        const newItem = generateNewViewItem(`Tab ${value.length + 1}`)
+        const newItem = {
+          id: `views-${v4()}`,
+          key: `views-${v4()}`,
+          label: `Tab ${value.length + 1}`,
+        }
         handleUpdateMultiAttrDSL?.({
           [attrName]: [...value, newItem],
         })
@@ -33,7 +37,12 @@ const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
           return (
             <Column
               onCopy={() => {
-                const newItem = generateNewViewItem(value[index].label)
+                const newItem = {
+                  id: `views-${v4()}`,
+                  key: `views-${v4()}`,
+                  label: value[index].label,
+                  disabled: value[index].disabled,
+                }
                 const updatedArray = [...value, newItem]
                 handleUpdateMultiAttrDSL?.({
                   [attrName]: updatedArray,
