@@ -47,7 +47,7 @@ export const ComponentSpaceTree: FC = () => {
         const dom = document.querySelector(
           `[data-displayname="${displayName}"]`,
         )
-        dom?.scrollIntoView({ behavior: "smooth" })
+        dom?.scrollIntoView({ behavior: "smooth", block: "center" })
       }, 160)
     },
     [dispatch],
