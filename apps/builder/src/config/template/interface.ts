@@ -1,8 +1,9 @@
+import { ResourceType } from "@illa-public/public-types"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
+import { ResourceContent } from "@/redux/resource/resourceState"
 
 export type TemplateResources = {
   resourceName: string

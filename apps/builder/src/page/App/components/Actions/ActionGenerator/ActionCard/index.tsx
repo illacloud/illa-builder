@@ -1,9 +1,9 @@
 import { getIconFromResourceType } from "@illa-public/icon"
-import { FC, Suspense, useCallback } from "react"
 import {
-  getActionNameFromActionType,
-  getActionSubTitleFromActionType,
-} from "@/utils/actionResourceTransformer"
+  getResourceNameFromResourceType,
+  useResourceTypeToResourceName,
+} from "@illa-public/resource-generator"
+import { FC, Suspense, useCallback } from "react"
 import AIAgentCard from "./components/AIAgentCard"
 import { ActionTypeSelectorCardProps } from "./interface"
 import {
@@ -16,7 +16,7 @@ import {
 export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
   const { actionType, onSelect } = props
 
-  const subTitle = getActionSubTitleFromActionType(actionType)
+  const subTitle = useResourceTypeToResourceName(actionType)
 
   const onClickCard = useCallback(() => {
     onSelect?.(actionType)
@@ -30,7 +30,7 @@ export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
     <div css={applyItemStyle} onClick={onClickCard}>
       <Suspense> {getIconFromResourceType(actionType, "24px")}</Suspense>
       <div css={titleContainerStyle}>
-        <div css={nameStyle}>{getActionNameFromActionType(actionType)}</div>
+        <div css={nameStyle}>{getResourceNameFromResourceType(actionType)}</div>
         {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}
       </div>
     </div>

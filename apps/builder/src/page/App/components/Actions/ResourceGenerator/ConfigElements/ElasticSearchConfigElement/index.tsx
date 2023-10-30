@@ -21,8 +21,8 @@ import {
   errorMsgStyle,
   footerStyle,
   labelContainer,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   ElasticSearchResource,
   ElasticSearchResourceInitial,

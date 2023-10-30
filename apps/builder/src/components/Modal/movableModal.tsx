@@ -8,18 +8,20 @@ import { MovableModalProps } from "@/components/Modal/interface"
 import { getIsDragging } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const MovableModal: FC<MovableModalProps> = (props) => {
-  const { bodyContent, title, footerContent, onClose } = props
+  const { bodyContent, title, footerContent, onClose, defaultPosition } = props
   const { width, height } = useWindowSize()
   const isDraggingInGlobal = useSelector(getIsDragging)
 
   return createPortal(
     <Rnd
-      default={{
-        x: width / 2 - 200,
-        y: height - 300 - 263,
-        width: 400,
-        height: 263,
-      }}
+      default={
+        defaultPosition ?? {
+          x: width / 2 - 200,
+          y: height - 300 - 263,
+          width: 400,
+          height: 263,
+        }
+      }
       style={{
         zIndex: 10,
         pointerEvents: isDraggingInGlobal ? "none" : "auto",

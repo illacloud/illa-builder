@@ -10,6 +10,7 @@ import {
   PreviousIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   errorIconStyle,
   errorMsgStyle,
@@ -23,7 +24,6 @@ import {
   labelStyle,
   tipsStyle,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/HuggingFaceConfigElement/style"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"

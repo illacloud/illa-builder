@@ -23,10 +23,10 @@ import {
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { ControlledType } from "@/page/App/components/ControlledElement/interface"
-import { hostInputContainer } from "@/page/App/components/ControlledElement/style"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { ControlledType } from "@/page/App/components/Actions/ControlledElement/interface"
+import { hostInputContainer } from "@/page/App/components/Actions/ControlledElement/style"
 import {
   RedisResource,
   RedisResourceInitial,

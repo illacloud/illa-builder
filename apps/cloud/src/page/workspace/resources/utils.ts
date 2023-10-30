@@ -68,6 +68,7 @@ export const getDBName = (resource: Resource<ResourceContent>) => {
       dbName = (resource.content as AppWriteResource).databaseID
       break
     case "oracle":
+    case "oracle9i":
       dbName = (resource.content as OracleResource).name
       break
   }
