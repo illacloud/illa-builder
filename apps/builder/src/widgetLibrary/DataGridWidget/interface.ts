@@ -1,5 +1,8 @@
-import { GridColumnVisibilityModel, GridFilterModel } from "@mui/x-data-grid"
-import { GridInputRowSelectionModel } from "@mui/x-data-grid/models/gridRowSelectionModel"
+import {
+  GridColumnVisibilityModel,
+  GridFilterModel,
+  GridInputRowSelectionModel,
+} from "@mui/x-data-grid-premium"
 import i18n from "i18next"
 import { ColumnConfig } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"

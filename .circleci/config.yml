@@ -173,7 +173,7 @@ jobs:
           name: Build and push Docker image
           command: |
             cd ./build-all-in-one-image
-            docker build -f ./dockerfile -t illasoft/illa-builder:${IMAGE_TAG} --build-arg FE=${FE} --build-arg BE=${BE} --build-arg SBE=${SBE} --no-cache --build-arg FE_ILLA_MUI_LICENSE=${ILLA_MUI_LICENSE} .
+            docker build -f ./dockerfile -t illasoft/illa-builder:${IMAGE_TAG} --build-arg FE=${FE} --build-arg BE=${BE} --build-arg SBE=${SBE} --no-cache --build-arg ILLA_MUI_LICENSE=${ILLA_MUI_LICENSE} .
             docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
             docker push illasoft/illa-builder:${IMAGE_TAG}
             if [ << parameters.TAG >> = true ]; then

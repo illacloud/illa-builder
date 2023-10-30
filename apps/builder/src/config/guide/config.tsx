@@ -132,7 +132,7 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.display_data_title",
     descKey:
       "editor.tutorial.panel.onboarding_app.display_data_description_modify",
-    selector: "table-data-source",
+    selector: "dataGrid-data-source",
     doItForMe: () => {
       store.dispatch(
         componentsActions.updateComponentPropsReducer({
