@@ -5,7 +5,6 @@ import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import store, { AppListenerEffectAPI } from "@/store"
-import { getExecutionWidgetLayoutInfo } from "../executionTree/executionSelector"
 
 export const getDisattachedComponents = (
   currentAttached: Record<string, CollaboratorsInfo[]>,
@@ -71,36 +70,6 @@ export const updateCurrentAllComponentsAttachedUsers = (
   }
 }
 
-export const handleUpdateSelectedComponentExecution = (
-  action: ReturnType<typeof configActions.updateSelectedComponent>,
-  listenerApi: AppListenerEffectAPI,
-) => {
-  const currentComponentsAttachedUsers =
-    listenerApi.getState().currentApp.collaborators.components
-  const widgetLayoutInfo = getExecutionWidgetLayoutInfo(listenerApi.getState())
-
-  function searchParent(displayName: string): string[] {
-    const parent = widgetLayoutInfo[displayName]?.parentNode
-    if (parent) {
-      return [parent, ...searchParent(parent)]
-    }
-    return []
-  }
-
-  const needExpandDisplayName = action.payload
-    .map((displayName) => {
-      return searchParent(displayName)
-    })
-    .flat()
-  listenerApi.dispatch(
-    configActions.addExpandedWidgetReducer(needExpandDisplayName),
-  )
-  updateCurrentAllComponentsAttachedUsers(
-    action.payload,
-    currentComponentsAttachedUsers,
-  )
-}
-
 export const handleClearSelectedComponentExecution = (
   action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
   listenerApi: AppListenerEffectAPI,
@@ -117,11 +86,6 @@ export const handleClearSelectedComponentExecution = (
 
 export const AVATAR_WIDTH = 14
 export const AVATAR_GAP = 4
-export const MOVE_BAR_SVG_WIDTH = 12
-export const AVATAR_LIST_MARGIN = 8
-
-// two avatar + one gap + one svg
-export const MIN_MOVE_BAR_WIDTH = 48
 
 export const MIN_DISABLE_MARGIN_WIDTH = 34
 

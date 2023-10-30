@@ -121,6 +121,12 @@ export const applyObjectOrArrayContainerStyle = (level: number) => css`
     .global-state-edit-icon-hot-spot {
       visibility: visible;
     }
+    #copy-icon-hot-spot {
+      visibility: visible;
+    }
+  }
+  #copy-icon-hot-spot {
+    visibility: hidden;
   }
 `
 
@@ -139,9 +145,15 @@ export const applySimpleItemContainerStyle = (
     .global-state-edit-icon-hot-spot {
       visibility: visible;
     }
+    #copy-icon-hot-spot {
+      visibility: visible;
+    }
   }
   :last-child {
     padding-bottom: 4px;
+  }
+  #copy-icon-hot-spot {
+    visibility: hidden;
   }
 `
 

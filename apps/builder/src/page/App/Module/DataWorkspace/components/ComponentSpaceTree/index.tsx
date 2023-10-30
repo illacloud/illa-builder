@@ -14,6 +14,7 @@ import {
   getCurrentPageRightWidgetTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { autoChangeContainersIndexWhenClick } from "@/utils/componentNode/search"
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
 
@@ -29,14 +30,7 @@ export const ComponentSpaceTree: FC = () => {
   const modalSectionTree = useSelector(getCurrentPageModalWidgetTree)
   const selectedComponent = useSelector(getSelectedComponentDisplayNames)
 
-  const baseClickHandler = useCallback(
-    (displayName: string) => {
-      dispatch(configActions.updateSelectedComponent([displayName]))
-    },
-    [dispatch],
-  )
-
-  const handleClickOnModalSection = useCallback(
+  const handleClick = useCallback(
     (displayName: string, type: string) => {
       if (!type.endsWith("_WIDGET")) return
       if (type === "MODAL_WIDGET") {
@@ -47,49 +41,16 @@ export const ComponentSpaceTree: FC = () => {
           }),
         )
       }
-      baseClickHandler(displayName)
+      dispatch(configActions.updateSelectedComponent([displayName]))
+      autoChangeContainersIndexWhenClick(displayName)
+      setTimeout(() => {
+        const dom = document.querySelector(
+          `[data-displayname="${displayName}"]`,
+        )
+        dom?.scrollIntoView({ behavior: "smooth" })
+      }, 160)
     },
-    [baseClickHandler, dispatch],
-  )
-
-  const handleClickOnHeaderSection = useCallback(
-    (displayName: string, type: string) => {
-      if (!type.endsWith("_WIDGET")) return
-      baseClickHandler(displayName)
-    },
-    [baseClickHandler],
-  )
-
-  const handleClickOnBodySection = useCallback(
-    (displayName: string, type: string) => {
-      if (!type.endsWith("_WIDGET")) return
-      baseClickHandler(displayName)
-    },
-    [baseClickHandler],
-  )
-
-  const handleClickOnLeftSection = useCallback(
-    (displayName: string, type: string) => {
-      if (!type.endsWith("_WIDGET")) return
-      baseClickHandler(displayName)
-    },
-    [baseClickHandler],
-  )
-
-  const handleClickOnRightSection = useCallback(
-    (displayName: string, type: string) => {
-      if (!type.endsWith("_WIDGET")) return
-      baseClickHandler(displayName)
-    },
-    [baseClickHandler],
-  )
-
-  const handleClickOnFooterSection = useCallback(
-    (displayName: string, type: string) => {
-      if (!type.endsWith("_WIDGET")) return
-      baseClickHandler(displayName)
-    },
-    [baseClickHandler],
+    [dispatch],
   )
 
   return (
@@ -115,7 +76,7 @@ export const ComponentSpaceTree: FC = () => {
                 type={tree.$widgetType as string}
                 canExpand
                 haveMoreAction
-                onClick={handleClickOnModalSection}
+                onClick={handleClick}
                 selectedDisplayNames={selectedComponent}
               />
             ))}
@@ -133,7 +94,7 @@ export const ComponentSpaceTree: FC = () => {
             type={tree.$widgetType as string}
             canExpand={tree.$childrenNode.length > 0}
             haveMoreAction
-            onClick={handleClickOnBodySection}
+            onClick={handleClick}
             selectedDisplayNames={selectedComponent}
           />
         ))}
@@ -151,7 +112,7 @@ export const ComponentSpaceTree: FC = () => {
                 dataType="widget"
                 type={tree.$widgetType as string}
                 canExpand={tree.$childrenNode.length > 0}
-                onClick={handleClickOnHeaderSection}
+                onClick={handleClick}
                 selectedDisplayNames={selectedComponent}
               />
             ))}
@@ -172,7 +133,7 @@ export const ComponentSpaceTree: FC = () => {
                 type={tree.$widgetType as string}
                 canExpand={tree.$childrenNode.length > 0}
                 haveMoreAction
-                onClick={handleClickOnLeftSection}
+                onClick={handleClick}
                 selectedDisplayNames={selectedComponent}
               />
             ))}
@@ -193,7 +154,7 @@ export const ComponentSpaceTree: FC = () => {
                 type={tree.$widgetType as string}
                 canExpand={tree.$childrenNode.length > 0}
                 haveMoreAction
-                onClick={handleClickOnRightSection}
+                onClick={handleClick}
                 selectedDisplayNames={selectedComponent}
               />
             ))}
@@ -214,7 +175,7 @@ export const ComponentSpaceTree: FC = () => {
                 type={tree.$widgetType as string}
                 canExpand={tree.$childrenNode.length > 0}
                 haveMoreAction
-                onClick={handleClickOnFooterSection}
+                onClick={handleClick}
                 selectedDisplayNames={selectedComponent}
               />
             ))}

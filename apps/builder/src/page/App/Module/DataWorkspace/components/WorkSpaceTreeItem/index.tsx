@@ -65,6 +65,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
                 `{{${convertPathToString(toPath(`${parentKey}.${title}`))}}}`,
               )
             }}
+            id="copy-icon-hot-spot"
           >
             <CopyIcon />
           </IconHotSpot>
