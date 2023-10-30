@@ -1,4 +1,3 @@
-import { arrayMove } from "@dnd-kit/sortable"
 import { get, isString } from "lodash"
 import { FC } from "react"
 import { useSelector } from "react-redux"
@@ -45,21 +44,9 @@ const ColumnButtonGroupSetter: FC<ColumnButtonGroupSetterProps> = (props) => {
           ],
         })
       }}
-      onDragEnd={(event) => {
-        if (value === undefined) {
-          return
-        }
-        const { active, over } = event
-        if (active && over && active.id !== over.id) {
-          const oldIndex = value.findIndex((item) => item.id === active.id)
-          const newIndex = value.findIndex((item) => item.id === over.id)
-          const finalColumns = arrayMove(value, oldIndex, newIndex)
-          handleUpdateMultiAttrDSL?.({
-            [attrName]: finalColumns,
-          })
-          return finalColumns
-        }
-      }}
+      attrName={attrName}
+      value={value}
+      handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
       items={value?.map((v) => v.id) ?? []}
     >
       {value && value.length > 0 ? (

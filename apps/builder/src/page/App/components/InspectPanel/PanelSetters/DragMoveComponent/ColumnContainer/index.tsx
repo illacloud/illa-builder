@@ -12,6 +12,7 @@ import {
 } from "@dnd-kit/modifiers"
 import {
   SortableContext,
+  arrayMove,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable"
@@ -31,7 +32,17 @@ import {
 } from "./style"
 
 export const ColumnContainer: FC<ColumnContainerProps> = (props) => {
-  const { onDragEnd, hideTitle, onClickNew, columnNum, children, items } = props
+  const {
+    onDragEnd,
+    handleUpdateMultiAttrDSL,
+    attrName,
+    value,
+    hideTitle,
+    onClickNew,
+    columnNum,
+    children,
+    items,
+  } = props
 
   const { t } = useTranslation()
 
@@ -74,7 +85,29 @@ export const ColumnContainer: FC<ColumnContainerProps> = (props) => {
           modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
           sensors={sensors}
           collisionDetection={closestCenter}
-          onDragEnd={onDragEnd}
+          onDragEnd={
+            onDragEnd
+              ? onDragEnd
+              : (event) => {
+                  if (value === undefined || attrName == undefined) {
+                    return
+                  }
+                  const { active, over } = event
+                  if (active && over && active.id !== over.id) {
+                    const oldIndex = value.findIndex(
+                      (item) => item.id === active.id,
+                    )
+                    const newIndex = value.findIndex(
+                      (item) => item.id === over.id,
+                    )
+                    const finalColumns = arrayMove(value, oldIndex, newIndex)
+                    handleUpdateMultiAttrDSL?.({
+                      [attrName]: finalColumns,
+                    })
+                    return finalColumns
+                  }
+                }
+          }
         >
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
             {children}

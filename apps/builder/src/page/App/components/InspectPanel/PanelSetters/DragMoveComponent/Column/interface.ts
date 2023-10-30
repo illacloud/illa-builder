@@ -5,6 +5,8 @@ export interface ColumnProps {
   id: string
   label?: string
   showDelete?: boolean
+  showCopy?: boolean
+  onCopy?: () => void
   showVisible?: boolean
   widgetDisplayName: string
   onVisibilityChange?: (visibility: boolean) => void

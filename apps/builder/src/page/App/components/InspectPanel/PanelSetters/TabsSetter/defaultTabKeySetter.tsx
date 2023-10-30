@@ -1,5 +1,5 @@
 import { get } from "lodash"
-import { FC, useCallback, useMemo } from "react"
+import { FC, useCallback } from "react"
 import { useSelector } from "react-redux"
 import { ViewItemShape } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import BaseInput from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/BaseInput"
@@ -17,9 +17,7 @@ const TabsDefaultKeySetter: FC<TabsDefaultKeySetterProps> = (props) => {
     },
   )
 
-  const tabList = useMemo(() => {
-    return get(targetComponentProps, "tabList", []) as ViewItemShape[]
-  }, [targetComponentProps])
+  const tabList = get(targetComponentProps, "tabList", []) as ViewItemShape[]
 
   const handleUpdateDefaultTab = useCallback(
     (attrPath: string, value: string) => {
