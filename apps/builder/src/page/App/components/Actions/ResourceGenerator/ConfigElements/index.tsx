@@ -1,4 +1,6 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, lazy } from "react"
+import { useNavigate } from "react-router-dom"
 import { ConfigElementProps } from "./interface"
 
 const AirtableConfigElement = lazy(
@@ -131,6 +133,8 @@ const SnowflakeConfigElement = lazy(
 export const ConfigElement: FC<ConfigElementProps> = (props) => {
   const { resourceType } = props
 
+  const navigate = useNavigate()
+
   switch (resourceType) {
     case "supabasedb":
     case "tidb":
@@ -144,8 +148,15 @@ export const ConfigElement: FC<ConfigElementProps> = (props) => {
     case "mssql":
       return <MicrosoftSqlConfigElement {...props} />
     case "oracle":
-    case "oracle9i":
       return <OracleDBConfigElement {...props} resourceType={resourceType} />
+    case "oracle9i": {
+      if (isCloudVersion) {
+        return <OracleDBConfigElement {...props} resourceType={resourceType} />
+      } else {
+        navigate("/404")
+        return null
+      }
+    }
     case "restapi":
       return <RestApiConfigElement {...props} />
     case "mongodb":
