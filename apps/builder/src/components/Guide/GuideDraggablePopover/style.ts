@@ -58,7 +58,7 @@ export const applyPopoverStyle = (
 
   return css`
     cursor: move;
-    z-index: 2;
+    z-index: 11;
     position: absolute;
     background-color: ${getColor("techPurple", "01")};
     color: ${getColor("white", "01")};
