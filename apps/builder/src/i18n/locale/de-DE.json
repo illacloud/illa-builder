@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Wird verwendet, um festzulegen, ob Benutzer zum Neuordnen der Spalten deaktiviert werden",
         "default_width": "Verwendet um die Standardbreite der Spalte zu setzen",
         "max_count": "Verwendet um die maximale Anzahl von Sternen zu setzen",
-        "allow_users_select": "Wird verwendet, um festzulegen, ob Benutzern die Zeilenauswahl erlaubt ist. "
+        "allow_users_select": "Wird verwendet, um festzulegen, ob Benutzern die Zeilenauswahl erlaubt ist. ",
+        "table_update_content": "Die Tabellenkomponente wird nicht mehr gepflegt. Um einen ununterbrochenen Zugriff auf neue Funktionen sicherzustellen, migrieren Sie bitte Ihre Daten in die Datenraster-Komponente.",
+        "table_update_title": "Aktualisieren"
       },
       "setter_option": {
         "fixed": "Feste",
