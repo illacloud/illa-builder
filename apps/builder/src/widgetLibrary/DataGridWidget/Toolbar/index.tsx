@@ -14,7 +14,7 @@ import {
 import {
   GridCsvGetRowsToExportParams,
   GridPrintGetRowsToExportParams,
-} from "@mui/x-data-grid/models/gridExport"
+} from "@mui/x-data-grid-premium"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { ExportAllSetting } from "../ExportAllSetting"

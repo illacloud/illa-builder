@@ -1,5 +1,9 @@
 import { StyledEngineProvider, ThemeProvider, createTheme } from "@mui/material"
-import { DataGridPremium, LicenseInfo } from "@mui/x-data-grid-premium"
+import {
+  DataGridPremium,
+  GridColDef,
+  LicenseInfo,
+} from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber } from "lodash"
 import React, { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
@@ -321,7 +325,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           }
           checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
           rows={arrayData}
-          columns={renderColumns ?? []}
+          columns={(renderColumns as GridColDef[]) ?? []}
           paginationMode={enableServerSidePagination ? "server" : "client"}
           rowCount={
             totalRowCount !== undefined

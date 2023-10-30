@@ -1,6 +1,5 @@
 import { arrayMove } from "@dnd-kit/sortable"
-import { isDeepEqual } from "@mui/x-data-grid/internals"
-import { get } from "lodash"
+import { get, isEqual } from "lodash"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
@@ -103,7 +102,7 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     calculateColumns.forEach((config) => {
       mixedColumns.push(config)
     })
-    if (!isDeepEqual(mixedColumns, value)) {
+    if (!isEqual(mixedColumns, value)) {
       handleUpdateMultiAttrDSL?.({
         [attrName]: mixedColumns,
       })

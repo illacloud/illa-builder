@@ -262,9 +262,6 @@ importers:
       '@mui/material':
         specifier: ^5.14.13
         version: 5.14.14(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)
-      '@mui/x-data-grid':
-        specifier: ^6.16.3
-        version: 6.16.3(@mui/material@5.14.14)(@mui/system@5.14.14)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)
       '@mui/x-data-grid-premium':
         specifier: ^6.16.3
         version: 6.16.3(@mui/material@5.14.14)(@mui/system@5.14.14)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)
