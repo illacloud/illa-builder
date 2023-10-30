@@ -20,9 +20,9 @@ export const SELECT_WIDGET_ITEM = {
     highlightIcon: ButtonHighlightIcon,
     ...WidgetConfigMap["BUTTON_WIDGET"].config,
   },
-  TABLE_WIDGET: {
+  DATA_GRID_WIDGET: {
     highlightIcon: TableHighlightIcon,
-    ...WidgetConfigMap["TABLE_WIDGET"].config,
+    ...WidgetConfigMap["DATA_GRID_WIDGET"].config,
   },
 }
 
@@ -75,7 +75,7 @@ export const GUIDE_STEP = [
     titleKey: "",
     descKey: "",
     selector: "",
-    widgetType: "TABLE_WIDGET",
+    widgetType: "DATA_GRID_WIDGET",
     reduxAction: "components/addComponentReducer",
   },
   {
@@ -120,11 +120,11 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.display_data_title",
     descKey:
       "editor.tutorial.panel.onboarding_app.display_data_description_select",
-    selector: `[data-displayname="table1"]`,
-    displayName: `table1`,
+    selector: `[data-displayname="dataGrid1"]`,
+    displayName: `dataGrid1`,
     reduxAction: "config/updateSelectedComponent",
     doItForMe: () => {
-      store.dispatch(configActions.updateSelectedComponent(["table1"]))
+      store.dispatch(configActions.updateSelectedComponent(["dataGrid1"]))
     },
   },
   {
@@ -136,7 +136,7 @@ export const GUIDE_STEP = [
     doItForMe: () => {
       store.dispatch(
         componentsActions.updateComponentPropsReducer({
-          displayName: "table1",
+          displayName: "dataGrid1",
           updateSlice: {
             dataSourceJS: "{{postgresql1.data}}",
           },

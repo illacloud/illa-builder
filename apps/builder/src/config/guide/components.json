@@ -1,17 +1,16 @@
 [
   {
+    "version": 0,
     "displayName": "input1",
     "parentNode": "bodySection1-bodySectionContainer1",
     "showName": "input",
     "childrenNode": null,
     "type": "INPUT_WIDGET",
     "containerType": "EDITOR_SCALE_SQUARE",
-
     "h": 6,
     "w": 8,
     "minH": 3,
     "minW": 1,
-
     "x": 9,
     "y": 17,
     "z": 0,
@@ -29,135 +28,197 @@
     }
   },
   {
+    "version": 0,
     "displayName": "button1",
     "parentNode": "bodySection1-bodySectionContainer1",
     "showName": "button",
-
     "childrenNode": null,
     "type": "BUTTON_WIDGET",
     "containerType": "EDITOR_SCALE_SQUARE",
-
     "h": 5,
     "w": 6,
     "minH": 3,
     "minW": 1,
-
     "x": 17,
     "y": 17,
     "z": 0,
     "props": {
       "$dynamicAttrPaths": [],
       "colorScheme": "blue",
+      "events": [
+        {
+          "actionType": "datasource",
+          "eventType": "click",
+          "id": "events-dc33da8b-1dec-49ea-b4b6-44d7570e6ec9",
+          "queryID": "postgresql1"
+        }
+      ],
       "hidden": false,
       "text": "Button",
       "variant": "fill"
     }
   },
   {
-    "displayName": "table1",
+    "version": 0,
+    "displayName": "dataGrid1",
     "parentNode": "bodySection1-bodySectionContainer1",
-    "showName": "table",
-
+    "showName": "dataGrid",
     "childrenNode": null,
-    "type": "TABLE_WIDGET",
+    "type": "DATA_GRID_WIDGET",
     "containerType": "EDITOR_SCALE_SQUARE",
-
     "h": 38,
     "w": 14,
     "minH": 3,
     "minW": 1,
-
     "x": 9,
     "y": 25,
     "z": 0,
     "props": {
-      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
-      "columnMapper": {
-        "incomes": {
-          "accessorKey": "incomes",
-          "columnIndex": 2,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "incomes",
-          "id": "incomes",
-          "type": "text",
-          "visible": true
-        },
-        "month": {
-          "accessorKey": "month",
-          "columnIndex": 0,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "month",
-          "id": "month",
-          "type": "text",
-          "visible": true
-        },
-        "users": {
-          "accessorKey": "users",
-          "columnIndex": 1,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "users",
-          "id": "users",
-          "type": "text",
-          "visible": true
-        }
-      },
-      "columnNameIndices": {
-        "0": "month",
-        "1": "users",
-        "2": "incomes"
-      },
-      "columnVisibility": {
-        "incomes": true,
-        "month": true,
-        "users": true
-      },
+      "$dynamicAttrPaths": ["dataSourceJS"],
       "columns": [
         {
-          "accessorKey": "month",
-          "columnIndex": 0,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "month",
-          "id": "month",
-          "type": "text",
-          "visible": true
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "charge",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "charge",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
         },
         {
-          "accessorKey": "users",
-          "columnIndex": 1,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "users",
-          "id": "users",
-          "type": "text",
-          "visible": true
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "email",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "email",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
         },
         {
-          "accessorKey": "incomes",
-          "columnIndex": 2,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "incomes",
-          "id": "incomes",
-          "type": "text",
-          "visible": true
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "expired_time",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "expired_time",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
+        },
+        {
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "feature_flag",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "feature_flag",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
+        },
+        {
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "id",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "id",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
+        },
+        {
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "img",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "img",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
+        },
+        {
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "name",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "name",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
+        },
+        {
+          "aggregable": true,
+          "columnType": "auto",
+          "description": "",
+          "disableReorder": false,
+          "field": "start_time",
+          "filterable": true,
+          "groupable": true,
+          "headerAlign": "left",
+          "headerName": "start_time",
+          "hideable": true,
+          "isCalc": true,
+          "pinnable": true,
+          "resizable": true,
+          "sortable": true,
+          "width": 170
         }
       ],
-      "customColumnIndices": {},
-      "dataSourceJS": "{{[\n  {\n    \"month\": \"April\",\n    \"users\": 3700,\n    \"incomes\": 4000\n  },\n  {\n    \"month\": \"May\",\n    \"users\": 5400,\n    \"incomes\": 8700\n  },\n  {\n    \"month\": \"June\",\n    \"users\": 6000,\n    \"incomes\": 12000\n  },\n  {\n    \"month\": \"July\",\n    \"users\": 8000,\n    \"incomes\": 14000\n  }\n]}}",
+      "dataSource": [],
+      "dataSourceJS": "{{postgresql1.data}}",
       "dataSourceMode": "dynamic",
-      "defaultSortKey": "default",
-      "defaultSortOrder": "ascend",
-      "download": false,
-      "emptyState": "No rows found",
-      "filter": false,
-      "overFlow": "pagination",
-      "pageSize": "{{10}}",
-      "renamedColumnNames": {},
-      "rowEvents": {}
+      "excludeHiddenColumns": true,
+      "overFlow": "scroll",
+      "sortOrder": "default"
     }
   }
 ]
