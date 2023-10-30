@@ -2,6 +2,7 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const dragIconStyle = css`
+  visibility: hidden;
   cursor: grab;
   &:active {
     cursor: grabbing;
@@ -15,6 +16,11 @@ export const columnContainerStyle = css`
   display: flex;
   align-items: center;
   flex-direction: row;
+  &:hover {
+    .dragIcon {
+      visibility: visible;
+    }
+  }
 `
 export const columnLabelStyle = css`
   color: ${getColor("grayBlue", "02")};

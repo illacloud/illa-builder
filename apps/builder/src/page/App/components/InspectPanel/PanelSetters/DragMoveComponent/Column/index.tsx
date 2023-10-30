@@ -2,6 +2,7 @@ import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import { FC, useState } from "react"
 import {
+  CopyIcon,
   DragPointIcon,
   EyeOffIcon,
   EyeOnIcon,
@@ -26,6 +27,8 @@ export const Column: FC<ColumnProps> = (props) => {
     label,
     showVisible,
     extraElement,
+    showCopy,
+    onCopy,
     onVisibilityChange,
   } = props
 
@@ -47,6 +50,7 @@ export const Column: FC<ColumnProps> = (props) => {
       {...attributes}
     >
       <DragPointIcon
+        className="dragIcon"
         css={dragIconStyle}
         fs="16px"
         c={getColor("grayBlue", "04")}
@@ -79,6 +83,15 @@ export const Column: FC<ColumnProps> = (props) => {
       >
         <div css={columnLabelStyle}>{label}</div>
       </Trigger>
+      {showCopy && (
+        <IconHotSpot
+          onClick={() => {
+            onCopy?.()
+          }}
+        >
+          <CopyIcon />
+        </IconHotSpot>
+      )}
       {showVisible && (
         <IconHotSpot
           onClick={() => {
