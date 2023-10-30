@@ -45,7 +45,7 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
               {renderJsonValue(value)}
             </label>
           </div>
-          <IconHotSpot onClick={handleClickCopy}>
+          <IconHotSpot onClick={handleClickCopy} id="copy-icon-hot-spot">
             <CopyIcon />
           </IconHotSpot>
         </div>
