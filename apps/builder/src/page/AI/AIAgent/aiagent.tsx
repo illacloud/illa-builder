@@ -100,6 +100,7 @@ import {
 } from "../components/PreviewChat/interface"
 import { SCROLL_ID } from "./interface"
 import {
+  advancedDivideStyle,
   advancedSettingHeaderStyle,
   advancedSettingStyle,
   aiAgentContainerStyle,
@@ -756,7 +757,9 @@ export const AIAgent: FC = () => {
                   </AIAgentBlock>
                 )}
               />
-              <Divider mt="8px" />
+              <div css={advancedDivideStyle}>
+                <Divider />
+              </div>
               <div
                 css={advancedSettingHeaderStyle}
                 onClick={() => setExpanded(!expanded)}

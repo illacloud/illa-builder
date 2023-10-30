@@ -243,3 +243,8 @@ export const codeEditorErrorStyle = (isError: boolean) => {
   }
   return style
 }
+
+export const advancedDivideStyle = css`
+  margin-top: 8px;
+  padding: 0 24px;
+`
