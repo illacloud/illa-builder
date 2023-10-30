@@ -151,7 +151,7 @@ const SetterTypeMapSetter = {
   TABS_DEFAULT_KEY_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/TabsSetter/defaultTabKeySetter"
+        "@/page/App/components/InspectPanel/PanelSetters/TabsSetter/DefaultTabKeySetter"
       ),
   ),
   TABS_CONTAINER_SELECT_SETTER: lazy(

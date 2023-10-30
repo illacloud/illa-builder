@@ -3,7 +3,7 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { ChartDataSourceSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/interface"
 import { getAllContainerWidget } from "@/redux/currentApp/components/componentsSelector"
-import SearchSelectSetter from "../SelectSetter/searchSelect"
+import SearchSelectSetter from "../../SelectSetter/searchSelect"
 
 const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (props) => {
   const {
