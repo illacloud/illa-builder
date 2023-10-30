@@ -1,11 +1,8 @@
-import { get } from "lodash"
 import { FC, memo } from "react"
-import { useSelector } from "react-redux"
 import { Column } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Column"
 import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
 import { ColumnEmpty } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Empty"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { ViewItemShape, ViewSetterProps } from "./interface"
+import { ViewSetterProps } from "./interface"
 import { generateNewViewItem } from "./utils/generateNewOptions"
 
 const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
@@ -16,13 +13,6 @@ const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
     childrenSetter,
     handleUpdateMultiAttrDSL,
   } = props
-  const executionResult = useSelector(getExecutionResult)
-
-  const allViews = get(
-    executionResult,
-    `${widgetDisplayName}.${attrName}`,
-    [],
-  ) as ViewItemShape[]
 
   return (
     <ColumnContainer
@@ -32,7 +22,7 @@ const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
       columnNum={value.length}
       items={value.map((item) => item.id)}
       onClickNew={() => {
-        const newItem = generateNewViewItem(allViews.map((view) => view.key))
+        const newItem = generateNewViewItem(`Tab ${value.length + 1}`)
         handleUpdateMultiAttrDSL?.({
           [attrName]: [...value, newItem],
         })
@@ -43,9 +33,7 @@ const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
           return (
             <Column
               onCopy={() => {
-                const newItem = generateNewViewItem(
-                  allViews.map((view) => view.key),
-                )
+                const newItem = generateNewViewItem(value[index].label)
                 const updatedArray = [...value, newItem]
                 handleUpdateMultiAttrDSL?.({
                   [attrName]: updatedArray,
