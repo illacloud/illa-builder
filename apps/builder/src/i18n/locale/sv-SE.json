@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna",
         "default_width": "Används för att ställa in standardbredden på kolumnen",
         "max_count": "Används för att ställa in max antal stjärnor",
-        "allow_users_select": "Används för att ställa in om användare kan välja rad. "
+        "allow_users_select": "Används för att ställa in om användare kan välja rad. ",
+        "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
+        "table_update_title": "Update"
       },
       "setter_option": {
         "fixed": "Fast",
