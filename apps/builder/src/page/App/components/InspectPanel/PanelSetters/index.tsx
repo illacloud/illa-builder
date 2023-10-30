@@ -96,14 +96,12 @@ const SetterTypeMapSetter = {
   ),
   STEPS_LIST_SETTER: lazy(
     () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/StepsListSetter"
-      ),
+      import("@/page/App/components/InspectPanel/PanelSetters/StepsListSetter"),
   ),
   CAROUSEL_LIST_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/CarouselListSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/CarouselListSetter"
       ),
   ),
   DATA_GRID_COLUMNS_SELECT_SETTER: lazy(
@@ -289,7 +287,7 @@ const SetterTypeMapSetter = {
   CALENDAR_EVENT_LIST_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/CalendarEventListSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/CalendarEventListSetter"
       ),
   ),
   EVENT_CALENDAR_SELECT: lazy(

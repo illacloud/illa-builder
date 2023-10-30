@@ -3,16 +3,15 @@ import { v4 } from "uuid"
 import { Column } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Column"
 import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
 import { ColumnEmpty } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Empty"
-import { OptionListSetterProps } from "./interface"
+import { CarouselListSetterProps } from "./interface"
 
-const OptionListSetter: FC<OptionListSetterProps> = (props) => {
+const CarouselListSetter: FC<CarouselListSetterProps> = (props) => {
   const {
     value,
     attrName,
     widgetDisplayName,
     childrenSetter,
     handleUpdateMultiAttrDSL,
-    itemName,
   } = props
 
   return (
@@ -24,9 +23,9 @@ const OptionListSetter: FC<OptionListSetterProps> = (props) => {
       items={value.map((item) => item.id)}
       onClickNew={() => {
         const newItem = {
-          id: `${itemName}-${v4()}`,
-          key: `${itemName}-${v4()}`,
-          label: `${itemName} ${value.length + 1}`,
+          id: `views-${v4()}`,
+          key: `views-${v4()}`,
+          label: `Image ${value.length + 1}`,
         }
         handleUpdateMultiAttrDSL?.({
           [attrName]: [...value, newItem],
@@ -40,8 +39,8 @@ const OptionListSetter: FC<OptionListSetterProps> = (props) => {
               onCopy={() => {
                 const newItem = {
                   ...value[index],
-                  id: `${itemName}-${v4()}`,
-                  key: `${itemName}-${v4()}`,
+                  id: `views-${v4()}`,
+                  key: `views-${v4()}`,
                 }
                 const updatedArray = [...value, newItem]
                 handleUpdateMultiAttrDSL?.({
@@ -72,5 +71,5 @@ const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   )
 }
 
-OptionListSetter.displayName = "OptionListSetter"
-export default OptionListSetter
+CarouselListSetter.displayName = "CarouselListSetter"
+export default CarouselListSetter
