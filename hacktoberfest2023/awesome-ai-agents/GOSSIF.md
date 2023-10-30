@@ -1,3 +1,5 @@
+# GOSSIF: Github Open Source Softwares Info Finder
+
 # What does this AI Agent do?
 AI-powered project finder that locates exceptional open source projects on GitHub within the specified category.
 
