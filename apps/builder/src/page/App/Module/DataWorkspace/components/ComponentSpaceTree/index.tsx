@@ -14,7 +14,10 @@ import {
   getCurrentPageRightWidgetTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { autoChangeContainersIndexWhenClick } from "@/utils/componentNode/search"
+import {
+  autoChangeContainersIndexWhenClick,
+  autoChangeWhenClickOnCanvas,
+} from "@/utils/componentNode/search"
 import { FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
 
@@ -32,7 +35,10 @@ export const ComponentSpaceTree: FC = () => {
 
   const handleClick = useCallback(
     (displayName: string, type: string) => {
-      if (!type.endsWith("_WIDGET")) return
+      console.log("type", type)
+      if (type === "CANVAS") {
+        displayName = autoChangeWhenClickOnCanvas(displayName)
+      }
       if (type === "MODAL_WIDGET") {
         dispatch(
           executionActions.updateModalDisplayReducer({
