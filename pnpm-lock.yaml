@@ -2726,6 +2726,9 @@ importers:
       '@illa-public/invite-modal':
         specifier: workspace:*
         version: link:../InviteModal
+      '@illa-public/public-configs':
+        specifier: workspace:*
+        version: link:../publicConfig
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData
