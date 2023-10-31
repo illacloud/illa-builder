@@ -47,9 +47,9 @@ export const DATA_GRID_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.onColumnVisibilityModel",
+        "editor.inspect.setter_content.widget_action_type_name.onColumnVisibilityModelChange",
       ),
-      value: "onColumnVisibilityModel",
+      value: "onColumnVisibilityModelChange",
     },
   ],
   methods: [
