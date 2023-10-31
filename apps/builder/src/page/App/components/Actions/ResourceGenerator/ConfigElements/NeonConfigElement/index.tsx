@@ -18,7 +18,6 @@ import {
   configItem,
   connectType,
   connectTypeStyle,
-  divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
@@ -136,7 +135,6 @@ const NeonConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

@@ -1,4 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { getDocLink } from "@illa-public/public-configs"
 import { isEqual } from "lodash"
 import {
   FC,
@@ -10,8 +11,10 @@ import {
 } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import {
   Button,
+  DocsIcon,
   DropList,
   DropListItem,
   Dropdown,
@@ -148,7 +151,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const selectedAction = useSelector(getSelectedAction)! ?? {}
   const cachedAction = useSelector(getCachedAction)!
-
+  const docLink = getDocLink("action", cachedAction.actionType)
   const selectedActionExecutionResult = useSelector<
     RootState,
     Record<string, any>
@@ -484,6 +487,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         </div>
         <div css={runResultAndRunContainerStyle}>
           {renderResult && (runError ? failBlock : successBlock)}
+          {docLink && (
+            <Link to={docLink} target="_blank">
+              <Button
+                colorScheme="grayBlue"
+                leftIcon={<DocsIcon size="14px" />}
+              />
+            </Link>
+          )}
           <Dropdown
             position="bottom-end"
             trigger="click"
@@ -521,7 +532,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             <Button
               pos="relative"
               className={`${cachedAction.displayName}-run`}
-              ml="8px"
               colorScheme="techPurple"
               variant={isChanged ? "fill" : "light"}
               size="medium"

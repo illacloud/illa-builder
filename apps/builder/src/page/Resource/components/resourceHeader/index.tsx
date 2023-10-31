@@ -17,10 +17,7 @@ import {
 
 export const Header: FC<ResourceHeaderProps> = (props) => {
   const { t } = useTranslation()
-  const { resourceType } = props
-  const handleClickBack = () => {
-    window.close()
-  }
+  const { resourceType, onClickBack } = props
 
   return (
     <div css={headerOuterContainerStyle}>
@@ -31,7 +28,7 @@ export const Header: FC<ResourceHeaderProps> = (props) => {
             variant="text"
             colorScheme="gray"
             type="button"
-            onClick={handleClickBack}
+            onClick={onClickBack}
           >
             {t("back")}
           </Button>

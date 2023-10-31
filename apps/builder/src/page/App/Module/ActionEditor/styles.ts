@@ -76,10 +76,6 @@ export const footerStyle = css`
   width: 100%;
 `
 
-export const divider = css`
-  height: 16px;
-`
-
 export function applyConfigItemLabelText(
   color: string,
   margin?: boolean,

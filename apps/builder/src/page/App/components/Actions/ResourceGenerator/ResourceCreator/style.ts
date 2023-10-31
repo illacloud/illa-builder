@@ -5,4 +5,6 @@ export const resourceCreatorContainerStyle = css`
   max-height: 685px;
   display: flex;
   flex-direction: column;
+  padding: 24px;
+  overflow-y: hidden;
 `

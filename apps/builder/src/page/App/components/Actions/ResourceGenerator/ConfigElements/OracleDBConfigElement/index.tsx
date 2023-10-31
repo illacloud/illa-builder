@@ -18,7 +18,6 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
@@ -62,7 +61,6 @@ const OracleDBConfigElement: FC<OracleDBConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

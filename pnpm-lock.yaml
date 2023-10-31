@@ -211,6 +211,9 @@ importers:
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MixpanelUtils
+      '@illa-public/public-configs':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/publicConfig
       '@illa-public/public-types':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/publicTypes

@@ -18,7 +18,6 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
@@ -75,7 +74,6 @@ const MicrosoftSqlConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

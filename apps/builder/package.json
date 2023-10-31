@@ -53,6 +53,7 @@
     "@illa-public/member-page": "workspace:*",
     "@illa-public/mixpanel-utils": "workspace:*",
     "@illa-public/public-types": "workspace:*",
+    "@illa-public/public-configs": "workspace:*",
     "@illa-public/record-editor": "workspace:*",
     "@illa-public/resource-generator": "workspace:*",
     "@illa-public/select": "workspace:*",

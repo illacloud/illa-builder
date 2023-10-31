@@ -87,4 +87,5 @@ export const tabsContainerStyle = css`
 
 export const runResultAndRunContainerStyle = css`
   display: flex;
+  gap: 8px;
 `

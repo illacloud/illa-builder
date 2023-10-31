@@ -1,6 +1,5 @@
 import { getIconFromResourceType } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { FC, Suspense, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -28,8 +27,8 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { ACTION_MODAL_WIDTH } from "../../ActionGenerator"
 import {
   createNewStyle,
   itemContainer,
@@ -190,18 +189,13 @@ export const ResourceChoose: FC = () => {
         </div>
       </div>
       <Modal
-        w="696px"
+        w={`${ACTION_MODAL_WIDTH}px`}
         visible={editorVisible}
         footer={false}
         closable
         withoutLine
         withoutPadding
         maskClosable={false}
-        title={t("editor.action.form.title.configure", {
-          name: getResourceNameFromResourceType(
-            getResourceTypeFromActionType(action.actionType),
-          ),
-        })}
         onCancel={() => {
           setEditorVisible(false)
         }}

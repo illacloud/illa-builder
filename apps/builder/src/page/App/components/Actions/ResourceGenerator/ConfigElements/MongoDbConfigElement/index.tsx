@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
 import {
-  divider,
   footerStyle,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -46,7 +45,6 @@ const MongoDbConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired
