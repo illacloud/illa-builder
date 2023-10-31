@@ -21,7 +21,7 @@ export const titleStyle = css`
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: calc(100% - 64px);
+  max-width: calc(100% - 64px);
   flex: none;
 `
 
@@ -33,7 +33,7 @@ export const dragIconStyle = css`
 
 export const headerContainerStyle = css`
   display: flex;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   width: calc(100% - 32px);
 `
