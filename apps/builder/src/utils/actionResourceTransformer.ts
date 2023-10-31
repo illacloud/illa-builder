@@ -1,19 +1,5 @@
+import { ResourceType } from "@illa-public/public-types"
 import { ActionType } from "@/redux/currentApp/action/actionState"
-import { ResourceType } from "@/redux/resource/resourceState"
-
-export function getActionSubTitleFromActionType(
-  actionType: ActionType | null | undefined,
-): string {
-  if (actionType) {
-    switch (actionType) {
-      case "huggingface":
-        return "Inference API"
-      case "hfendpoint":
-        return "Inference Endpoint"
-    }
-  }
-  return ""
-}
 
 export function getActionNameFromActionType(actionType: ActionType): string {
   if (actionType) {
@@ -24,6 +10,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "MySQL"
       case "mssql":
         return "Microsoft SQL"
+      case "oracle9i":
+        return "Oracle DB 9i"
       case "oracle":
         return "Oracle DB"
       case "restapi":

@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { requestWhiteListIP } from "@/services/resource"
 import {
-  containerStyle,
   descriptionContainerStyle,
   headerContainerStyle,
   ipItemStyle,
@@ -23,7 +22,7 @@ export const WhiteList: FC = () => {
   }, [])
 
   return (
-    <div css={containerStyle}>
+    <>
       <div css={headerContainerStyle}>
         <h6 css={titleContainerStyle}>
           {t("editor.action.resource.tip.allowlist.title")}
@@ -39,6 +38,6 @@ export const WhiteList: FC = () => {
           </p>
         ))}
       </div>
-    </div>
+    </>
   )
 }

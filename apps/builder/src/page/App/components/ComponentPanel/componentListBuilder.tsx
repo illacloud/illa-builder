@@ -11,6 +11,8 @@ import {
   widgetBuilder,
 } from "@/widgetLibrary/widgetBuilder"
 
+export const DEPRECATED_WIDGETS = ["CHART", "TABLE_WIDGET"]
+
 export type SessionType = keyof typeof sessionTypeMapSessionNameKey
 
 export const sessionTypeMapSessionNameKey = {
@@ -26,7 +28,7 @@ export const sessionTypeMapSessionNameKey = {
 }
 
 const COMMONLY_WIDGET = new Set([
-  "TABLE_WIDGET",
+  "DATA_GRID_WIDGET",
   "TEXT_WIDGET",
   "BUTTON_WIDGET",
   "INPUT_WIDGET",
@@ -78,7 +80,9 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
 }
 
 export const buildComponentConfigs = () => {
-  return WidgetTypeList.filter((type) => type !== "CHART").map((item) => {
+  return WidgetTypeList.filter(
+    (type) => !DEPRECATED_WIDGETS.includes(type),
+  ).map((item) => {
     return getListItemConfig(item) as WidgetConfig
   }) as WidgetConfig[]
 }

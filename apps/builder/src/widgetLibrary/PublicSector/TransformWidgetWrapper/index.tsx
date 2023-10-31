@@ -269,6 +269,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           path,
           otherCalcContext,
         )
+
+        console.log("longbo", needRunEvents)
+
         dynamicPaths?.forEach((path: string) => {
           const realPath = isFunction(formatPath)
             ? formatPath(path)
@@ -385,6 +388,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
               shadow,
               widgetType,
             )}
+            id={displayName}
           >
             <Suspense
               fallback={

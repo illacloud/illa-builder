@@ -45,7 +45,7 @@ Learn more 👉: https://www.illacloud.com/hacktoberfest2023
 1. Click the "Submit PR" button in the Community, and we will help you copy the information and automatically redirect you to the specified page.
 ![image](https://cdn.illacloud.com/official-website/img/github/6.png)
 
-2. Create a new file and name it as: {{Your created content name}}.md
+2. Create a new file in the 'hacktoberfest2023 > awesome-ai-agents` directory and name it as: {{Your created content name}}.md
 
 3. Paste the copied content as the file content.
 

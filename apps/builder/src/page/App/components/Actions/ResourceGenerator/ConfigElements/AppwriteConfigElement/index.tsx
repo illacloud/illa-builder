@@ -16,14 +16,13 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   AppWriteResource,
   AppWriteResourceInitial,
@@ -56,7 +55,6 @@ const AppWriteConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

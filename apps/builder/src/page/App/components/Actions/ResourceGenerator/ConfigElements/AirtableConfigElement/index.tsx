@@ -4,8 +4,8 @@ import { useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, PreviousIcon } from "@illa-design/react"
-import { footerStyle } from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { footerStyle } from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   AirtableResource,
   AirtableResourceInitial,

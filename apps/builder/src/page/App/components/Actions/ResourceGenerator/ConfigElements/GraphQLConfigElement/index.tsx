@@ -10,19 +10,18 @@ import {
   WarningCircleIcon,
 } from "@illa-design/react"
 import {
+  footerStyle,
+  optionLabelStyle,
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { InputRecordEditor } from "@/page/App/components/Actions/InputRecordEditor"
+import {
   errorIconStyle,
   errorMsgStyle,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ClickhouseConfigElement/style"
 import { APIKeyAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/APIKeyAuthPanel"
 import { BasicAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/BearerAuthPanel"
-import {
-  divider,
-  footerStyle,
-  optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import {
   ApiKeyAuth,
   BasicAuth,
@@ -77,7 +76,6 @@ const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

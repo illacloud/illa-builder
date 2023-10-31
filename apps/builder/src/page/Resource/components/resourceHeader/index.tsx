@@ -15,12 +15,17 @@ import {
   titleNameStyle,
 } from "./style"
 
+const NOT_NEED_TEST_CONNECT_RESOURCE_TYPE = [
+  "restapi",
+  "googlesheets",
+  "airtable",
+  "huggingface",
+  "hfendpoint",
+]
+
 export const Header: FC<ResourceHeaderProps> = (props) => {
   const { t } = useTranslation()
-  const { resourceType } = props
-  const handleClickBack = () => {
-    window.close()
-  }
+  const { resourceType, onClickBack } = props
 
   return (
     <div css={headerOuterContainerStyle}>
@@ -31,7 +36,7 @@ export const Header: FC<ResourceHeaderProps> = (props) => {
             variant="text"
             colorScheme="gray"
             type="button"
-            onClick={handleClickBack}
+            onClick={onClickBack}
           >
             {t("back")}
           </Button>
@@ -44,7 +49,9 @@ export const Header: FC<ResourceHeaderProps> = (props) => {
             </h1>
           </div>
           <div css={buttonContainerStyle}>
-            <TestConnectButton resourceType={resourceType} />
+            {!NOT_NEED_TEST_CONNECT_RESOURCE_TYPE.includes(resourceType) && (
+              <TestConnectButton resourceType={resourceType} />
+            )}
             <CreateButton />
           </div>
         </div>

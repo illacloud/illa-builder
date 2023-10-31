@@ -84,6 +84,7 @@ export type ActionType =
   | "mysql"
   | "mssql"
   | "oracle"
+  | "oracle9i"
   | "restapi"
   | "graphql"
   | "mongodb"

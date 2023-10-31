@@ -1,4 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { EVENT_HANDLER_DOC_LINK } from "@illa-public/public-configs"
 import { get } from "lodash"
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -75,6 +76,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
           attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}
           childrenSetter={childrenSetter}
+          docLink={EVENT_HANDLER_DOC_LINK}
         />
       }
       trigger="click"

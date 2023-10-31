@@ -5,4 +5,5 @@ export const applyModalBodyWrapperStyle = (footerHeight: number) => css`
   height: calc(100% - 48px - ${`${footerHeight}px`});
   cursor: auto;
   padding: 0 16px;
+  overflow-y: auto;
 `

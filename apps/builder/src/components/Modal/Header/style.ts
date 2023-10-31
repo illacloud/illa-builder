@@ -6,39 +6,34 @@ export const headerWrapperStyle = css`
   height: 48px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   flex: none;
   padding: 16px;
+  padding-left: 4px;
+  padding-bottom: 8px;
   position: relative;
 `
 
-export const applyTitleStyle = (canMove?: boolean) => css`
+export const titleStyle = css`
   font-size: 16px;
   font-weight: 600;
   color: ${getColor("grayBlue", "02")};
-  padding-left: ${canMove ? "8px" : "0px"};
   display: inline-block;
-  width: calc(100% - 32px);
   overflow: hidden;
   text-overflow: ellipsis;
-`
-
-export const closeButtonHotSpotStyle = css`
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  position: absolute;
-  right: 16px;
-  color: ${getColor("grayBlue", "02")};
+  max-width: calc(100% - 64px);
+  flex: none;
 `
 
 export const dragIconStyle = css`
-  position: absolute;
-  left: 4px;
   color: ${getColor("grayBlue", "04")};
   font-size: 16px;
+  flex: none;
+`
+
+export const headerContainerStyle = css`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  width: calc(100% - 32px);
 `

@@ -14,6 +14,7 @@ const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
   const {
     value,
     options,
+    defaultValue,
     isSetterSingleRow = false,
     attrName,
     widgetType,
@@ -45,6 +46,7 @@ const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
           }}
           forceEqualWidth={true}
           value={value}
+          defaultValue={defaultValue}
           options={options}
           type="button"
           size="medium"
