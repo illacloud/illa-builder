@@ -10,13 +10,19 @@ import { linkContainerStyle, tipsPanelContainerStyle } from "./style"
 
 export const TipPanel: FC<TipPanelProps> = (props) => {
   const { resourceType } = props
+
   const docLink = getDocLink("action", resourceType)
   const { t } = useTranslation()
   return (
     <div css={tipsPanelContainerStyle}>
       {docLink && (
         <Link to={docLink} css={linkContainerStyle} target="_blank">
-          <Button leftIcon={<DocsIcon />} colorScheme="grayBlue" w="100%">
+          <Button
+            leftIcon={<DocsIcon />}
+            colorScheme="grayBlue"
+            w="100%"
+            type="button"
+          >
             {t("editor.inspect.header.action_menu.view_documentation")}
           </Button>
         </Link>
