@@ -14,9 +14,12 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const finalResourceType = resource ? resource.resourceType : resourceType
   const handleBack = useCallback(() => onBack("select"), [onBack])
 
-  const handleClickFinish = useCallback(() => {
-    onFinished(resourceID)
-  }, [onFinished, resourceID])
+  const handleClickFinish = useCallback(
+    (resourceID: string) => {
+      onFinished(resourceID)
+    },
+    [onFinished],
+  )
 
   return (
     <Suspense>

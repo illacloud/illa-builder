@@ -15,6 +15,14 @@ import {
   titleNameStyle,
 } from "./style"
 
+const NOT_NEED_TEST_CONNECT_RESOURCE_TYPE = [
+  "restapi",
+  "googlesheets",
+  "airtable",
+  "huggingface",
+  "hfendpoint",
+]
+
 export const Header: FC<ResourceHeaderProps> = (props) => {
   const { t } = useTranslation()
   const { resourceType, onClickBack } = props
@@ -41,7 +49,9 @@ export const Header: FC<ResourceHeaderProps> = (props) => {
             </h1>
           </div>
           <div css={buttonContainerStyle}>
-            <TestConnectButton resourceType={resourceType} />
+            {!NOT_NEED_TEST_CONNECT_RESOURCE_TYPE.includes(resourceType) && (
+              <TestConnectButton resourceType={resourceType} />
+            )}
             <CreateButton />
           </div>
         </div>
