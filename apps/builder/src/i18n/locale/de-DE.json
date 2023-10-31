@@ -1324,8 +1324,8 @@
           "onRefresh": "Aktualisieren",
           "onFilterModelChange": "Filteränderung",
           "onRowSelectionModelChange": "Zeilenauswahl ändern",
-          "onColumnVisibilityModel": "Spaltensichtbarkeit ändern",
-          "onSortModelChange": "Änderung sortieren"
+          "onSortModelChange": "Änderung sortieren",
+          "onColumnVisibilityModelChange": "Spaltensichtbarkeit ändern"
         },
         "image_list": {
           "title": "Bilder",
