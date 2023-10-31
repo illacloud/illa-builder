@@ -45,6 +45,10 @@ export const ActionSpaceTree: FC = () => {
           selectedDisplayNames={[selectedAction?.displayName ?? ""]}
           onClick={handleActionSelect}
           dataType="action"
+          type={
+            (actionExecution[actionDisplayName] as Record<string, unknown>)
+              .actionType as string
+          }
         />
       ))}
     </PanelBar>

@@ -4,13 +4,13 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import Select from "@illa-public/select"
 import { debounce } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { RadioGroup, Search } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { track } from "@/utils/mixpanelHelper"
+import AgentTypeSelect from "./components/AgentTypeSelect"
 import { MarketAgentList } from "./components/MarketList"
 import { TeamAgentList } from "./components/TeamAgentList"
 import { ActionResourceSelectorProps } from "./interface"
@@ -20,7 +20,7 @@ import {
   headerContainerStyle,
 } from "./style"
 
-const sortOptions = [
+export const sortOptions = [
   {
     label: i18n.t("dashboard.sort-type.popular"),
     value: MARKET_AGENT_SORTED_OPTIONS.POPULAR,
@@ -118,10 +118,9 @@ export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
             onChange={setAgentType}
           />
           {agentType === "community" && (
-            <Select
+            <AgentTypeSelect
               value={sortedBy}
               options={sortOptions}
-              triggerPosition="bottom"
               onChange={(value) => {
                 setSortedBy(value as MARKET_AGENT_SORTED_OPTIONS)
               }}

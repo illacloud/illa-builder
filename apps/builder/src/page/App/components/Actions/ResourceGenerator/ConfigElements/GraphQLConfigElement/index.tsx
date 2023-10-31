@@ -10,7 +10,6 @@ import {
   WarningCircleIcon,
 } from "@illa-design/react"
 import {
-  divider,
   footerStyle,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -77,7 +76,6 @@ const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

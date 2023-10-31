@@ -8,7 +8,14 @@ import { MovableModalProps } from "@/components/Modal/interface"
 import { getIsDragging } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const MovableModal: FC<MovableModalProps> = (props) => {
-  const { bodyContent, title, footerContent, onClose, defaultPosition } = props
+  const {
+    bodyContent,
+    title,
+    footerContent,
+    onClose,
+    defaultPosition,
+    docLink,
+  } = props
   const { width, height } = useWindowSize()
   const isDraggingInGlobal = useSelector(getIsDragging)
 
@@ -37,6 +44,7 @@ export const MovableModal: FC<MovableModalProps> = (props) => {
         onClose={onClose}
         footerContent={footerContent}
         canMove
+        docLink={docLink}
       />
     </Rnd>,
     document.body,

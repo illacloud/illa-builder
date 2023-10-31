@@ -12,6 +12,7 @@ export const outerContainerStyle = css`
   width: 100%;
   justify-content: center;
   overflow: hidden;
+  padding-top: 16px;
 `
 
 export const innerContainerStyle = css`

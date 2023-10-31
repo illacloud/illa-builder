@@ -1,15 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const containerStyle = css`
-  width: 273px;
-  display: flex;
-  padding: 8px 0;
-  flex-direction: column;
-  gap: 16px;
-  flex: none;
-`
-
 export const headerContainerStyle = css`
   width: 100%;
   display: flex;

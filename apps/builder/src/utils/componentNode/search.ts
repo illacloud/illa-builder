@@ -128,3 +128,28 @@ export const autoChangeContainersIndexWhenClick = (
 
   return canvasForeFatherDisplayNames
 }
+
+export const autoChangeWhenClickOnCanvas = (canvasDisplayName: string) => {
+  const rootState = store.getState()
+  const widgetsLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+  const parentContainerDisplayName =
+    widgetsLayoutInfo[canvasDisplayName]?.parentNode
+  const indexOfCanvas =
+    widgetsLayoutInfo[parentContainerDisplayName]?.childrenNode.indexOf(
+      canvasDisplayName,
+    )
+  const firstChildDisplayName =
+    widgetsLayoutInfo[canvasDisplayName]?.childrenNode?.length > 0
+      ? widgetsLayoutInfo[canvasDisplayName]?.childrenNode[0]
+      : ""
+  if (firstChildDisplayName)
+    store.dispatch(
+      executionActions.updateExecutionByMultiDisplayNameReducer([
+        {
+          displayName: parentContainerDisplayName,
+          value: { currentIndex: indexOfCanvas },
+        },
+      ]),
+    )
+  return firstChildDisplayName
+}

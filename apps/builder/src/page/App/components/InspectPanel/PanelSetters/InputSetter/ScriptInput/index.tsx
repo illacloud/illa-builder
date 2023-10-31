@@ -1,6 +1,10 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { RUN_SCRIPT_DOC_LINK } from "@illa-public/public-configs"
 import { FC, useCallback, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+import { Button, DocsIcon } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import {
   CODE_LANG,
@@ -19,12 +23,14 @@ import {
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { BaseInputSetterProps } from "../interface"
-import { applyInputSetterWrapperStyle } from "./style"
+import {
+  applyInputSetterWrapperStyle,
+  docComponentContainerStyle,
+} from "./style"
 
 const ScriptInput: FC<BaseInputSetterProps> = (props) => {
   const {
     className,
-    isSetterSingleRow,
     placeholder,
     attrName,
     handleUpdateDsl,
@@ -35,6 +41,8 @@ const ScriptInput: FC<BaseInputSetterProps> = (props) => {
     labelDesc,
     widgetType,
   } = props
+
+  const { t } = useTranslation()
 
   const listWidgets = useSelector(
     getContainerListDisplayNameMappedChildrenNodeDisplayName,
@@ -95,7 +103,19 @@ const ScriptInput: FC<BaseInputSetterProps> = (props) => {
   )
 
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
+    <div css={applyInputSetterWrapperStyle}>
+      <div css={docComponentContainerStyle}>
+        <Link to={RUN_SCRIPT_DOC_LINK} target="_blank">
+          <Button
+            leftIcon={<DocsIcon />}
+            colorScheme="grayBlue"
+            variant="text"
+            size="small"
+          >
+            {t("editor.inspect.header.action_menu.view_documentation")}
+          </Button>
+        </Link>
+      </div>
       <CodeEditor
         scopeOfAutoComplete="page"
         className={className}

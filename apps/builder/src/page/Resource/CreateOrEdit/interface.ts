@@ -1,6 +1,6 @@
 import { ResourceType } from "@illa-public/public-types"
 
-export interface ResourceHeaderProps {
+export interface ResourceCreateOrEditPanelProps {
   resourceType: ResourceType
-  onClickBack: () => void
+  resourceID?: string
 }
