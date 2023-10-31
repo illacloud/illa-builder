@@ -1324,8 +1324,8 @@
           "onRefresh": "Обновить",
           "onFilterModelChange": "Изменение фильтра",
           "onRowSelectionModelChange": "Изменение выбора строки",
-          "onColumnVisibilityModel": "Изменение видимости столбцов",
-          "onSortModelChange": "Изменить сортировку"
+          "onSortModelChange": "Изменить сортировку",
+          "onColumnVisibilityModelChange": "Изменение видимости столбцов"
         },
         "image_list": {
           "title": "Изображения",
