@@ -1324,8 +1324,8 @@
           "onRefresh": "Oppdater",
           "onFilterModelChange": "Endre filter",
           "onRowSelectionModelChange": "Endring av radutvalg",
-          "onColumnVisibilityModel": "Kolonne synlighet endring",
-          "onSortModelChange": "Endre sortering"
+          "onSortModelChange": "Endre sortering",
+          "onColumnVisibilityModelChange": "Kolonne synlighet endring"
         },
         "image_list": {
           "title": "Bilder",

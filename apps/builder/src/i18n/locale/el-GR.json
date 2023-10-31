@@ -1324,8 +1324,8 @@
           "onRefresh": "Ανανέωση",
           "onFilterModelChange": "Αλλαγή φίλτρου",
           "onRowSelectionModelChange": "Αλλαγή γραμμής επιλογής",
-          "onColumnVisibilityModel": "Αλλαγή ορατότητας στήλης",
-          "onSortModelChange": "Αλλαγή ταξινόμησης"
+          "onSortModelChange": "Αλλαγή ταξινόμησης",
+          "onColumnVisibilityModelChange": "Αλλαγή ορατότητας στήλης"
         },
         "image_list": {
           "title": "Εικόνες",

@@ -1324,8 +1324,8 @@
           "onRefresh": "Päivitä",
           "onFilterModelChange": "Suodata muutos",
           "onRowSelectionModelChange": "Rivin valinnan muutos",
-          "onColumnVisibilityModel": "Sarakkeen näkyvyyden muutos",
-          "onSortModelChange": "Lajittele muutos"
+          "onSortModelChange": "Lajittele muutos",
+          "onColumnVisibilityModelChange": "Sarakkeen näkyvyyden muutos"
         },
         "image_list": {
           "title": "Kuvat",
