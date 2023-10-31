@@ -35,7 +35,6 @@ export const ComponentSpaceTree: FC = () => {
 
   const handleClick = useCallback(
     (displayName: string, type: string) => {
-      console.log("type", type)
       if (type === "CANVAS") {
         displayName = autoChangeWhenClickOnCanvas(displayName)
       }
@@ -47,14 +46,16 @@ export const ComponentSpaceTree: FC = () => {
           }),
         )
       }
-      dispatch(configActions.updateSelectedComponent([displayName]))
-      autoChangeContainersIndexWhenClick(displayName)
-      setTimeout(() => {
-        const dom = document.querySelector(
-          `[data-displayname="${displayName}"]`,
-        )
-        dom?.scrollIntoView({ behavior: "smooth", block: "center" })
-      }, 160)
+      if (displayName) {
+        dispatch(configActions.updateSelectedComponent([displayName]))
+        autoChangeContainersIndexWhenClick(displayName)
+        setTimeout(() => {
+          const dom = document.querySelector(
+            `[data-displayname="${displayName}"]`,
+          )
+          dom?.scrollIntoView({ behavior: "smooth", block: "center" })
+        }, 160)
+      }
     },
     [dispatch],
   )
