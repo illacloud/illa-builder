@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "Click outside to deselect",
           "page": "Default page index",
           "export_all_data_setting": "Export all",
-          "locale": "Locale"
+          "locale": "Locale",
+          "column_field": "Column field"
         },
         "previous_cursor": "Previous cursor",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Used to set the row height density or not. ",
           "refresh_setting": "Used to set whether to show a refresh icon",
           "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data.",
-          "locale": "For example, en-US"
+          "locale": "For example, en-US",
+          "column_field": "Used to set the column"
         },
         "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}",
         "input": {
