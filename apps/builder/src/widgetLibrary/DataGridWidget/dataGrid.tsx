@@ -8,7 +8,6 @@ import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber } from "lodash"
 import React, { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
 import { useDispatch } from "react-redux"
-import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -110,7 +109,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
             },
           },
         ])
-        triggerEventHandler("onColumnVisibilityChange")
+        triggerEventHandler("onColumnVisibilityModelChange")
       },
       setPage: (page: unknown) => {
         if (isNumber(page)) {
@@ -188,11 +187,10 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
               ),
             },
             triggerEventHandler,
-            displayName,
           )
-        : getColumnFromType(safeColumn, triggerEventHandler, displayName)
+        : getColumnFromType(safeColumn, triggerEventHandler)
     })
-  }, [arrayData, columns, displayName, triggerEventHandler])
+  }, [arrayData, columns, triggerEventHandler])
 
   return (
     <StyledEngineProvider injectFirst>
@@ -204,13 +202,18 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         })}
       >
         <DataGridPremium
+          key={displayName + ":" + primaryKey}
           apiRef={ref}
           getRowId={(row) => {
             if (primaryKey === undefined || primaryKey === "—") {
-              return v4()
+              return (
+                get(row, "id") ??
+                get(row, get(columns, "[0].field") ?? "") ??
+                ""
+              )
             } else {
               if (primaryKey in row) {
-                return get(row, primaryKey) ?? v4()
+                return get(row, primaryKey)
               }
             }
           }}
@@ -246,7 +249,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
                 },
               },
             ])
-            triggerEventHandler("onColumnVisibilityChange")
+            triggerEventHandler("onColumnVisibilityModelChange")
           }}
           columnVisibilityModel={columnVisibilityModel}
           onRowSelectionModelChange={(model) => {

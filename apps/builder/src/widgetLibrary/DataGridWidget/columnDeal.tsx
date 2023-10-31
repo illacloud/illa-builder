@@ -53,7 +53,6 @@ export function getColumnFromType(
     otherCalcContext?: Record<string, any>,
     formatPath?: (path: string) => string,
   ) => void,
-  displayName: string,
 ): ColumnConfig {
   const commonValueGetter = (params: GridValueGetterParams) => {
     const index = params.api.getAllRowIds().findIndex((id) => id === params.id)
