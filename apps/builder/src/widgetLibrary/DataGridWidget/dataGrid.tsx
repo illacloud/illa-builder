@@ -206,7 +206,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
               return v4()
             } else {
               if (primaryKey in row) {
-                console.log("longbo", get(row, primaryKey) ?? v4())
                 return get(row, primaryKey) ?? v4()
               }
             }
@@ -247,21 +246,18 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           }}
           columnVisibilityModel={columnVisibilityModel}
           onRowSelectionModelChange={(model) => {
-            // because of mui getSelectedRows not update real time
-            setTimeout(() => {
-              handleUpdateMultiExecutionResult([
-                {
-                  displayName,
-                  value: {
-                    selectedRowsPrimaryKeys: model,
-                    selectedRows: Array.from(
-                      ref.current.getSelectedRows().values(),
-                    ),
-                  },
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  selectedRowsPrimaryKeys: model,
+                  selectedRows: model.map((id) =>
+                    ref.current.getRowModels().get(id),
+                  ),
                 },
-              ])
-              triggerEventHandler("onRowSelectionModelChange")
-            })
+              },
+            ])
+            triggerEventHandler("onRowSelectionModelChange")
           }}
           sortModel={
             sortKey != undefined && sortOrder != undefined

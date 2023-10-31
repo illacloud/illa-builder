@@ -129,7 +129,7 @@
     "ts-key-enum": "^2.0.12",
     "uuid": "^8.3.2",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz",
-    "@mui/x-data-grid-premium": "^6.16.3",
+    "@mui/x-data-grid-premium": "^6.17.0",
     "@mui/material": "^5.14.13",
     "@mui/icons-material": "^5.14.13",
     "@dnd-kit/sortable": "^7.0.2",
