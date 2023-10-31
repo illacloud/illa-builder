@@ -20,6 +20,7 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     labelDesc,
     panelConfig,
     handleUpdateDsl,
+    defaultValue,
     handleUpdateMultiAttrDSL,
     value,
     openDynamic,
@@ -71,6 +72,7 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           )}
           {!customSelected && (
             <Switch
+              defaultValue={defaultValue}
               onChange={(value) => {
                 handleUpdateDsl(attrName, value)
                 trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {

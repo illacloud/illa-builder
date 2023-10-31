@@ -1,6 +1,7 @@
 import { FC, memo, useCallback } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Divider } from "@illa-design/react"
+import { Alert, Divider } from "@illa-design/react"
 import { PanelHeader } from "@/page/App/components/InspectPanel/components/Header"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { panelBuilder } from "@/page/App/components/InspectPanel/utils/panelBuilder"
@@ -15,6 +16,7 @@ import {
 
 const SingleSelectedPanel: FC = () => {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const singleSelectedComponentNode = useSelector(
     getComponentNodeBySingleSelected,
   )
@@ -83,6 +85,13 @@ const SingleSelectedPanel: FC = () => {
         <div css={singleSelectedPanelWrapperStyle}>
           <PanelHeader />
           <Divider />
+          {widgetType === "TABLE_WIDGET" && (
+            <Alert
+              type="warning"
+              title={t("editor.inspect.setter_tips.table_update_title")}
+              content={t("editor.inspect.setter_tips.table_update_content")}
+            />
+          )}
           <div css={singleSelectedPanelSetterWrapperStyle}>
             <FieldFactory
               panelConfig={builderPanelConfig}

@@ -1,66 +1,86 @@
-import { get } from "lodash"
-import { FC, memo, useCallback, useMemo } from "react"
-import { useTranslation } from "react-i18next"
+import { get, isString } from "lodash"
+import { FC, memo } from "react"
 import { useSelector } from "react-redux"
+import { v4 } from "uuid"
+import { Column } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Column"
+import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
+import { ColumnEmpty } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Empty"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { TabListSetterProvider } from "./context/tabListContext"
-import { Header } from "./header"
-import { ViewItemShape, ViewSetterProps } from "./interface"
-import { ListBody } from "./listBody"
-import { setterPublicWrapper, viewSetterWrapperStyle } from "./style"
-import { generateNewViewItem } from "./utils/generateNewOptions"
+import { ViewSetterProps } from "./interface"
 
 const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
   const {
     value,
-    handleUpdateDsl,
     attrName,
     widgetDisplayName,
     childrenSetter,
     handleUpdateMultiAttrDSL,
   } = props
-  const { t } = useTranslation()
-  const executionResult = useSelector(getExecutionResult)
 
-  const allViews = useMemo(() => {
-    return get(
-      executionResult,
-      `${widgetDisplayName}.${attrName}`,
-      [],
-    ) as ViewItemShape[]
-  }, [attrName, executionResult, widgetDisplayName])
-
-  const allViewsKeys = useMemo(() => {
-    return allViews.map((view) => view.key)
-  }, [allViews])
-
-  const handleAddViewItem = useCallback(() => {
-    const newItem = generateNewViewItem(allViewsKeys)
-    handleUpdateMultiAttrDSL?.({
-      [attrName]: [...value, newItem],
-    })
-  }, [allViewsKeys, handleUpdateMultiAttrDSL, attrName, value])
+  const execResult = useSelector(getExecutionResult)
+  const executeValue = get(execResult, `${widgetDisplayName}.${attrName}`, [])
 
   return (
-    <TabListSetterProvider
-      list={value}
-      childrenSetter={childrenSetter || []}
-      handleUpdateDsl={handleUpdateDsl}
-      widgetDisplayName={widgetDisplayName}
-      attrPath={attrName}
+    <ColumnContainer
+      attrName={attrName}
+      value={value}
       handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+      columnNum={value.length}
+      items={value.map((item) => item.id)}
+      onClickNew={() => {
+        const newItem = {
+          id: `views-${v4()}`,
+          key: `views-${v4()}`,
+          label: `Tab ${value.length + 1}`,
+        }
+        handleUpdateMultiAttrDSL?.({
+          [attrName]: [...value, newItem],
+        })
+      }}
     >
-      <div css={setterPublicWrapper}>
-        <div css={viewSetterWrapperStyle}>
-          <Header
-            labelName={t("editor.inspect.setter_content.tabs_setter.tabs")}
-            addAction={handleAddViewItem}
-            hasAddAction
-          />
-          <ListBody />
-        </div>
-      </div>
-    </TabListSetterProvider>
+      {value.length > 0 ? (
+        value.map((item, index) => {
+          return (
+            <Column
+              onCopy={() => {
+                const newItem = {
+                  id: `views-${v4()}`,
+                  key: `views-${v4()}`,
+                  label: value[index].label,
+                  disabled: value[index].disabled,
+                }
+                const updatedArray = [...value, newItem]
+                handleUpdateMultiAttrDSL?.({
+                  [attrName]: updatedArray,
+                })
+              }}
+              onDelete={(id) => {
+                const newV = value.filter((item) => item.id !== id)
+                handleUpdateMultiAttrDSL?.({
+                  [attrName]: newV,
+                  currentIndex: 0,
+                  currentKey: newV[0]?.key,
+                })
+              }}
+              showCopy
+              showDelete
+              key={item.id}
+              id={item.id}
+              label={
+                isString(get(executeValue, `${index}.label`))
+                  ? get(executeValue, `${index}.label`)
+                  : JSON.stringify(get(executeValue, `${index}.label`))
+              }
+              widgetDisplayName={widgetDisplayName}
+              childrenSetter={childrenSetter}
+              attrPath={`${attrName}.${index}`}
+            />
+          )
+        })
+      ) : (
+        <ColumnEmpty />
+      )}
+    </ColumnContainer>
   )
 })
 

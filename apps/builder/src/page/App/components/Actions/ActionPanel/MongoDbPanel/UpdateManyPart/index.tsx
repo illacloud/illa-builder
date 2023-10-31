@@ -50,7 +50,14 @@ export const UpdateManyPart: FC<MongoDbActionPartProps> = (props) => {
         onChange={handleValueChange("filter")}
         mode={CODE_LANG.JAVASCRIPT}
         expectedType={VALIDATION_TYPES.STRING}
-        placeholder={'{"type":"cheese"}'}
+        placeholder={
+          "{\n" +
+          '  "type":"cheese",\n' +
+          '  "_id": {\n' +
+          '    "$oid":"646385ae462e929b7a3d86bc"\n' +
+          "  }\n" +
+          "}"
+        }
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.update")}

@@ -1,5 +1,44 @@
 import { lazy } from "react"
 
+const DeprecatedSetterTypeMapSetter = {
+  COLUMN_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/ColumnSetter"
+      ),
+  ),
+  COLUMN_TYPE_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/columnTypeSelectSetter"
+      ),
+  ),
+  COLUMNS_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/columsSelectSetter"
+      ),
+  ),
+  TABLE_MAPPED_VALUE_INPUT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/tableMappedValueInputSetter"
+      ),
+  ),
+  TABLE_DATASOURCE_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/tableDataSourceSelectSetter"
+      ),
+  ),
+  CELL_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/CellSetter"
+      ),
+  ),
+}
+
 const SetterTypeMapSetter = {
   INPUT_SETTER: lazy(
     () =>
@@ -57,38 +96,48 @@ const SetterTypeMapSetter = {
   ),
   STEPS_LIST_SETTER: lazy(
     () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/StepsListSetter"
-      ),
+      import("@/page/App/components/InspectPanel/PanelSetters/StepsListSetter"),
   ),
   CAROUSEL_LIST_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/CarouselListSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/CarouselListSetter"
       ),
   ),
-  CELL_SETTER: lazy(
+  DATA_GRID_COLUMNS_SELECT_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/CellSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnsSelectSetter"
       ),
   ),
-  COLUMN_SETTER: lazy(
+  DATA_GRID_COLUMN_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/ColumnSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter"
       ),
   ),
-  COLUMN_TYPE_SELECT_SETTER: lazy(
+  DATA_GRID_COLUMN_BUTTON_GROUP_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/columnTypeSelectSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnButtonGroupSetter"
       ),
   ),
-  COLUMNS_SELECT_SETTER: lazy(
+  DATA_GRID_MAPPED_INPUT_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/columsSelectSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnMappedInput"
+      ),
+  ),
+  DATA_GRID_COLUMN_SWITCH_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSwitchSetter"
+      ),
+  ),
+  DATA_GRID_TYPE_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnTypeSelectSetter"
       ),
   ),
   TABS_LIST_SETTER: lazy(
@@ -100,25 +149,13 @@ const SetterTypeMapSetter = {
   TABS_DEFAULT_KEY_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/TabsSetter/defaultTabKeySetter"
+        "@/page/App/components/InspectPanel/PanelSetters/TabsSetter/DefaultTabKeySetter"
       ),
   ),
   TABS_CONTAINER_SELECT_SETTER: lazy(
     () =>
       import(
         "@/page/App/components/InspectPanel/PanelSetters/TabsSetter/TabsContainerSelectSetter"
-      ),
-  ),
-  TABLE_MAPPED_VALUE_INPUT_SETTER: lazy(
-    () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/tableMappedValueInputSetter"
-      ),
-  ),
-  TABLE_DATASOURCE_SELECT_SETTER: lazy(
-    () =>
-      import(
-        "@/page/App/components/InspectPanel/PanelSetters/TableSetter/tableDataSourceSelectSetter"
       ),
   ),
   OPTION_MAPPED_SETTER: lazy(
@@ -250,7 +287,7 @@ const SetterTypeMapSetter = {
   CALENDAR_EVENT_LIST_SETTER: lazy(
     () =>
       import(
-        "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/CalendarEventListSetter"
+        "@/page/App/components/InspectPanel/PanelSetters/CalendarEventListSetter"
       ),
   ),
   EVENT_CALENDAR_SELECT: lazy(
@@ -299,6 +336,7 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/InputSetter/FileMinMaxSetter"
       ),
   ),
+  ...DeprecatedSetterTypeMapSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

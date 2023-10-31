@@ -1,5 +1,5 @@
 import { FC, ReactNode, createContext, useCallback } from "react"
-import { generateOptionItemId } from "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/utils/generateNewOptions"
+import { v4 } from "uuid"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 interface ProviderProps {
@@ -44,7 +44,7 @@ export const BaseEventHandlerProvider: FC<ProviderProps> = (props) => {
       if (!targetEventItem) return
       targetEventItem = {
         ...targetEventItem,
-        id: generateOptionItemId(),
+        id: `option-${v4()}`,
       }
       const updatedArray = [...eventItems, targetEventItem]
       handleUpdateDsl(attrPath, updatedArray)
