@@ -19,7 +19,6 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  divider,
   footerStyle,
   labelContainer,
   optionLabelStyle,
@@ -158,7 +157,6 @@ const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

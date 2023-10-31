@@ -3,10 +3,7 @@ import {
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
 import { ResourceType } from "@illa-public/public-types"
-import {
-  ResourceTypeSelector,
-  getResourceNameFromResourceType,
-} from "@illa-public/resource-generator"
+import { ResourceTypeSelector } from "@illa-public/resource-generator"
 import { FC, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Modal } from "@illa-design/react"
@@ -15,6 +12,7 @@ import {
   ResourceCreatorPage,
   ResourceGeneratorProps,
 } from "@/page/App/components/Actions/ResourceGenerator/interface"
+import { ACTION_MODAL_WIDTH } from "../ActionGenerator"
 import { modalContentStyle } from "./style"
 
 export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
@@ -61,19 +59,12 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
     case "select":
       title = t("editor.action.form.title.select")
       break
-    case "createResource":
-      if (currentResource != null) {
-        title = t("editor.action.form.title.configure", {
-          name: getResourceNameFromResourceType(currentResource),
-        })
-      }
-      break
   }
   const isMaskCloseable = currentStep === "select"
 
   return (
     <Modal
-      w="1080px"
+      w={`${ACTION_MODAL_WIDTH}px`}
       visible={visible}
       footer={false}
       closable

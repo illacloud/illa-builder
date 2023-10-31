@@ -1,4 +1,5 @@
 import { getIconFromWidgetType } from "@illa-public/icon"
+import { getDocLink } from "@illa-public/public-configs"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,7 +10,7 @@ import { MovableModal } from "@/components/Modal/movableModal"
 import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
 import { ViewItemShape } from "@/page/App/components/InspectPanel/PanelSetters/TabsSetter/TabListSetter/interface"
 import { getExpandedWidgets } from "@/redux/config/configSelector"
-import { configActions } from "../../../../../../redux/config/configSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { MoreAction } from "../MoreAction"
 import { WorkSpaceTreeNode } from "../WorkSpaceTreeItem/WorkSpaceTreeNode"
 import { BaseDataItemProps } from "./interface"
@@ -222,7 +223,7 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
           onClose={() => {
             setIsOpenCodeModal(false)
           }}
-          docLink={`${value.type}` ?? ""}
+          docLink={getDocLink(dataType, type)}
           defaultPosition={{
             x:
               document
