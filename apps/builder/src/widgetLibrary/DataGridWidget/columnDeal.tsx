@@ -45,7 +45,16 @@ import {
 } from "@/widgetLibrary/DataGridWidget/style"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
 
-export function getColumnFromType(column: ColumnConfig): ColumnConfig {
+export function getColumnFromType(
+  column: ColumnConfig,
+  triggerEventHandler: (
+    eventType: string,
+    path?: string,
+    otherCalcContext?: Record<string, any>,
+    formatPath?: (path: string) => string,
+  ) => void,
+  displayName: string,
+): ColumnConfig {
   const commonValueGetter = (params: GridValueGetterParams) => {
     const index = params.api.getAllRowIds().findIndex((id) => id === params.id)
     if (index !== -1) {
@@ -97,7 +106,17 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
             ? JSON.stringify(params.value)
             : params.value
           return (
-            <Button fullWidth disabled={disabled} colorScheme={colorScheme}>
+            <Button
+              fullWidth
+              disabled={disabled}
+              colorScheme={colorScheme}
+              onClick={() => {
+                triggerEventHandler(
+                  "click",
+                  `columns[${params.api.getColumnIndex(params.field)}].events`,
+                )
+              }}
+            >
               {renderValue}
             </Button>
           )
@@ -113,7 +132,7 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
             get(params.colDef, "buttonGroup") ?? []
           return (
             <ButtonGroup css={cellContainer} spacing="8px">
-              {buttonGroup.map((button) => {
+              {buttonGroup.map((button, buttonIndex) => {
                 let label = button.mappedValue
                 const index = params.api
                   .getAllRowIds()
@@ -134,6 +153,14 @@ export function getColumnFromType(column: ColumnConfig): ColumnConfig {
                     key={button.id}
                     colorScheme={button.colorScheme}
                     disabled={disabled}
+                    onClick={() => {
+                      triggerEventHandler(
+                        "click",
+                        `columns[${params.api.getColumnIndex(
+                          params.field,
+                        )}].buttonGroup[${buttonIndex}].events`,
+                      )
+                    }}
                   >
                     {label}
                   </Button>
