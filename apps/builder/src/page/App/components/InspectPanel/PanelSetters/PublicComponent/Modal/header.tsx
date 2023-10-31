@@ -1,14 +1,30 @@
 import { FC } from "react"
-import { CloseIcon } from "@illa-design/react"
+import { Link } from "react-router-dom"
+import { CloseIcon, DocsIcon } from "@illa-design/react"
+import IconHotSpot from "@/components/IconHotSpot"
 import { HeaderProps } from "./interface"
-import { closeIconStyle, headerStyle, modalHeaderText } from "./style"
+import {
+  closeIconStyle,
+  headerStyle,
+  modalHeaderText,
+  titleContainerStyle,
+} from "./style"
 
 export const ModalHeader: FC<HeaderProps> = (props) => {
-  const { title, handleCloseModal } = props
+  const { title, handleCloseModal, docLink } = props
 
   return (
     <div css={headerStyle}>
-      <div css={modalHeaderText}>{title}</div>
+      <div css={titleContainerStyle}>
+        <div css={modalHeaderText}>{title}</div>
+        {docLink && (
+          <Link to={docLink} target="_blank">
+            <IconHotSpot>
+              <DocsIcon />
+            </IconHotSpot>
+          </Link>
+        )}
+      </div>
       <div css={closeIconStyle} onClick={handleCloseModal}>
         <CloseIcon />
       </div>
