@@ -2,6 +2,17 @@
   <h2>Hacktoberfest 2023 with ILLA Cloud</h2>
 </div>
 
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=socialflat-square&)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Formatting (pre-commit)](https://github.com/ros-planning/moveit2/actions/workflows/format.yaml/badge.svg?branch=main)](https://github.com/illacloud/illa-builder/actions/workflows/format.yaml?query=branch%3Amain)
+[![CI (Rolling and Humble)](https://github.com/ros-planning/moveit2/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/illacloud/illa-builder/actions/workflows/ci.yaml?query=branch%3Amain)
+[![Code Coverage](https://codecov.io/gh/ros-planning/moveit2/branch/main/graph/badge.svg?token=W7uHKcY0ly)](https://codecov.io/gh/illacloud/illa-builder)
+[![Stars](https://img.shields.io/github/stars/ros-planning/moveit2.svg?style=flat)](https://github.com/illacloud/illa-builder/stars)
+[![Issues](https://img.shields.io/github/issues/ros-planning/moveit2.svg?style=flat)](https://github.com/illacloud/illa-builder/issues)
+[![Forks](https://img.shields.io/github/forks/ros-planning/moveit2.svg?style=flat)](https://github.com/illacloud/illa-builder/forks)
+[![PR:s Welcome](https://img.shields.io/badge/PR:s-welcome-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
+[![First Contributors](https://img.shields.io/badge/first-contributors-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
+![GitHub repo size](https://img.shields.io/github/repo-size/illacloud/illa-builder)
+
 By contributing AI Agents or ILLA Apps to the ILLA community and submitting a pull request to ILLA, you have the opportunity to receive a Digital Reward Kit from Hacktoberfest and Swags from ILLA Cloud.
 
 <a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202979.png"></a>
