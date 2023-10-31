@@ -1324,8 +1324,8 @@
           "onRefresh": "Refresh",
           "onFilterModelChange": "Filter change",
           "onRowSelectionModelChange": "Row selection change",
-          "onColumnVisibilityModel": "Column visibility change",
-          "onSortModelChange": "Sort change"
+          "onSortModelChange": "Sort change",
+          "onColumnVisibilityModelChange": "Column visibility change"
         },
         "image_list": {
           "title": "Imagens",
