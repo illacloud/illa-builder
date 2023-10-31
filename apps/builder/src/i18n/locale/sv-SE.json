@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "Klicka utanför för att avmarkera",
           "page": "Förvalt sidindex",
           "export_all_data_setting": "Exportera alla",
-          "locale": "Lokalt"
+          "locale": "Lokalt",
+          "column_field": "Kolumn fält"
         },
         "previous_cursor": "Föregående markör",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Används för att ställa in radens höjd densitet eller inte. ",
           "refresh_setting": "Används för att ställa in om en uppdateringsikon ska visas",
           "export_raw_data_setting": "Används för att ställa in om användare tillåts exportera ofiltrerad rådata.",
-          "locale": "Till exempel, en-US"
+          "locale": "Till exempel, en-US",
+          "column_field": "Används för att ställa in kolumnen"
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
