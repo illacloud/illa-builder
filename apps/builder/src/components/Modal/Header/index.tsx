@@ -1,6 +1,11 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { CloseIcon, DocsIcon, DragPointIcon } from "@illa-design/react"
+import {
+  CloseIcon,
+  DocsIcon,
+  DragPointIcon,
+  getColor,
+} from "@illa-design/react"
 import IconHotSpot from "@/components/IconHotSpot"
 import { HeaderProps } from "@/components/Modal/Header/interface"
 import {
@@ -25,7 +30,7 @@ export const ModalHeader: FC<HeaderProps> = (props) => {
           </Link>
         )}
       </div>
-      <IconHotSpot onClick={onClose}>
+      <IconHotSpot onClick={onClose} inactiveColor={getColor("grayBlue", "02")}>
         <CloseIcon />
       </IconHotSpot>
     </div>

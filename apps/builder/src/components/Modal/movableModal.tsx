@@ -19,7 +19,6 @@ export const MovableModal: FC<MovableModalProps> = (props) => {
   const { width, height } = useWindowSize()
   const isDraggingInGlobal = useSelector(getIsDragging)
 
-  console.log("docLink1", docLink)
   return createPortal(
     <Rnd
       default={
