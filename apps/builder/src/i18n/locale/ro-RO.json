@@ -1324,8 +1324,8 @@
           "onRefresh": "Împrospătează",
           "onFilterModelChange": "Modificare filtru",
           "onRowSelectionModelChange": "Modificare selecţie rând",
-          "onColumnVisibilityModel": "Schimbare vizibilitate coloană",
-          "onSortModelChange": "Modificare de sortare"
+          "onSortModelChange": "Modificare de sortare",
+          "onColumnVisibilityModelChange": "Schimbare vizibilitate coloană"
         },
         "image_list": {
           "title": "Imagini",

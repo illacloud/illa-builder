@@ -1223,7 +1223,7 @@
         "action_menu": {
           "delete": "Delete",
           "reset_state": "Reset state",
-          "view_documentation": "View documentation"
+          "view_documentation": "Documentation"
         }
       },
       "multi_selected_header": "{{ number }} components selected",
@@ -1324,8 +1324,8 @@
           "onRefresh": "Refresh",
           "onFilterModelChange": "Filter change",
           "onRowSelectionModelChange": "Row selection change",
-          "onColumnVisibilityModel": "Column visibility change",
-          "onSortModelChange": "Sort change"
+          "onSortModelChange": "Sort change",
+          "onColumnVisibilityModelChange": "Column visibility change"
         },
         "image_list": {
           "title": "Images",

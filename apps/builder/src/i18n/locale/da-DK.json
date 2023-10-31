@@ -1324,8 +1324,8 @@
           "onRefresh": "Opdater",
           "onFilterModelChange": "Filtrer ændring",
           "onRowSelectionModelChange": "Ændring af række valg",
-          "onColumnVisibilityModel": "Ændring af søjlesynlighed",
-          "onSortModelChange": "Sorter ændring"
+          "onSortModelChange": "Sorter ændring",
+          "onColumnVisibilityModelChange": "Ændring af søjlesynlighed"
         },
         "image_list": {
           "title": "Billeder",
