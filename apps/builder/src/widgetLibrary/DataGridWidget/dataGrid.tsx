@@ -90,6 +90,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         triggerEventHandler("onRefresh")
       },
       setFilterModel: (model: unknown) => {
+        console.log("longbo", "filterModel", model)
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -137,26 +138,16 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           triggerEventHandler("onPaginationModelChange")
         }
       },
-      setSelectedRows: (rows: unknown) => {
+      setRowSelection: (rows: unknown) => {
         if (isArray(rows)) {
           handleUpdateMultiExecutionResult([
             {
               displayName,
               value: {
-                selectedRows: rows,
-              },
-            },
-          ])
-          triggerEventHandler("onRowSelectionModelChange")
-        }
-      },
-      selectedRowsPrimaryKeys: (ids: unknown) => {
-        if (isArray(ids)) {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                selectedRowsPrimaryKeys: ids,
+                selectedRowsPrimaryKeys: rows,
+                selectedRows: rows.map((id) =>
+                  ref.current.getRowModels().get(id),
+                ),
               },
             },
           ])

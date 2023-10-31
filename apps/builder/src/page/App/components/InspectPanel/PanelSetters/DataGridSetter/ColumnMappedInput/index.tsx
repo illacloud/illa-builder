@@ -83,7 +83,7 @@ const ColumnMappedInput: FC<ColumnMappedInputProps> = (props) => {
     if (!isString(value ?? defaultValue)) {
       return `{{ ${value ?? defaultValue} }}`
     }
-    return (value ?? defaultValue) || ""
+    return value ?? defaultValue
   }, [widgetDisplayName, value, defaultValue])
 
   const onChange = useCallback(
