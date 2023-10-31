@@ -180,15 +180,19 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     return columns?.map((column) => {
       const safeColumn = getSafeColumn(column)
       return safeColumn.columnType === "auto"
-        ? getColumnFromType({
-            ...safeColumn,
-            columnType: getColumnTypeFromValue(
-              get(arrayData[0], safeColumn.field),
-            ),
-          })
-        : getColumnFromType(safeColumn)
+        ? getColumnFromType(
+            {
+              ...safeColumn,
+              columnType: getColumnTypeFromValue(
+                get(arrayData[0], safeColumn.field),
+              ),
+            },
+            triggerEventHandler,
+            displayName,
+          )
+        : getColumnFromType(safeColumn, triggerEventHandler, displayName)
     })
-  }, [arrayData, columns])
+  }, [arrayData, columns, displayName, triggerEventHandler])
 
   return (
     <StyledEngineProvider injectFirst>
