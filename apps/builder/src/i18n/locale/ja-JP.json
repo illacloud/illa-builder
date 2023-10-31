@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "外をクリックして選択を解除",
           "page": "既定のページインデックス",
           "export_all_data_setting": "すべてエクスポート",
-          "locale": "ロケール"
+          "locale": "ロケール",
+          "column_field": "列フィールド"
         },
         "previous_cursor": "前のカーソル",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "行の高さの密度を設定するかどうかに使用します。 ",
           "refresh_setting": "更新アイコンを表示するかどうかを設定するために使用",
           "export_raw_data_setting": "フィルターされていない生データをエクスポートできるかどうかを設定します。",
-          "locale": "例: ja-JP"
+          "locale": "例: ja-JP",
+          "column_field": "列を設定するために使用"
         },
         "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
         "input": {
