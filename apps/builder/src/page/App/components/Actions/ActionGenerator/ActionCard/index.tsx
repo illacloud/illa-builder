@@ -1,21 +1,22 @@
+import { getIconFromResourceType } from "@illa-public/icon"
+import {
+  getResourceNameFromResourceType,
+  useResourceTypeToResourceName,
+} from "@illa-public/resource-generator"
 import { FC, Suspense, useCallback } from "react"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import {
-  subTitleStyle,
-  titleContainerStyle,
-} from "@/page/Dashboard/components/ResourceGenerator/ResourceCard/style"
-import {
-  getActionNameFromActionType,
-  getActionSubTitleFromActionType,
-} from "@/utils/actionResourceTransformer"
 import AIAgentCard from "./components/AIAgentCard"
 import { ActionTypeSelectorCardProps } from "./interface"
-import { applyItemStyle, nameStyle } from "./style"
+import {
+  applyItemStyle,
+  nameStyle,
+  subTitleStyle,
+  titleContainerStyle,
+} from "./style"
 
 export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
   const { actionType, onSelect } = props
 
-  const subTitle = getActionSubTitleFromActionType(actionType)
+  const subTitle = useResourceTypeToResourceName(actionType)
 
   const onClickCard = useCallback(() => {
     onSelect?.(actionType)
@@ -27,9 +28,9 @@ export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
 
   return (
     <div css={applyItemStyle} onClick={onClickCard}>
-      <Suspense> {getIconFromActionType(actionType, "24px")}</Suspense>
+      <Suspense> {getIconFromResourceType(actionType, "24px")}</Suspense>
       <div css={titleContainerStyle}>
-        <div css={nameStyle}>{getActionNameFromActionType(actionType)}</div>
+        <div css={nameStyle}>{getResourceNameFromResourceType(actionType)}</div>
         {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}
       </div>
     </div>

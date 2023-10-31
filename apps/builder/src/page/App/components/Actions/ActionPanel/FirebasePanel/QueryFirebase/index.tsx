@@ -4,8 +4,8 @@ import { CollectionInput } from "@/page/App/components/Actions/ActionPanel/Fireb
 import { CollectionRecordEditor } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
 import { checkboxContainer } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
-import { CheckboxInput } from "@/page/App/components/CheckboxInput"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { CheckboxInput } from "@/page/App/components/Actions/CheckboxInput"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import {
   CollectionType,
   QueryFirebase,

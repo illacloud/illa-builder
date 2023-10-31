@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
+import RenderChildrenCanvas from "../PublicSector/RenderChildrenCanvas"
 import { ContainerEmptyState } from "./emptyState"
 import { applyContainerWrapperStyle } from "./style"
 
@@ -178,7 +178,11 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       <div css={applyContainerWrapperStyle} onClick={handleOnClick}>
         {Array.isArray(childrenNode) && currentIndex < childrenNode.length ? (
           <RenderChildrenCanvas
-            currentComponentNode={childrenNode[currentIndex]}
+            displayName={childrenNode[currentIndex].displayName}
+            hasChildrenNode={
+              Array.isArray(childrenNode[currentIndex].childrenNode) &&
+              childrenNode[currentIndex].childrenNode.length > 0
+            }
             columnNumber={columnNumber}
             handleUpdateHeight={handleUpdateHeight}
             canResizeCanvas={enableAutoHeight}

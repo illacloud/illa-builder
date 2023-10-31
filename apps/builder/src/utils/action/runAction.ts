@@ -68,6 +68,7 @@ const fetchActionResult = async (
   appId: string,
   actionID: string,
   actionContent: ActionContent,
+  actionContext: Record<string, unknown> = {},
   abortSignal?: AbortSignal,
 ) => {
   const canSendRequest = checkCanSendRequest(actionType, actionContent)
@@ -80,6 +81,7 @@ const fetchActionResult = async (
     actionType,
     displayName,
     content: actionContent,
+    context: actionContext,
   }
   return await fetchActionRunResult(
     appId,
@@ -93,6 +95,7 @@ const fetchActionResult = async (
 export interface IExecutionActions extends ActionItem<ActionContent> {
   $actionID: string
   $resourceID: string
+  $context: Record<string, unknown>
 }
 
 export const runActionWithExecutionResult = async (
@@ -103,7 +106,8 @@ export const runActionWithExecutionResult = async (
   const { displayName } = action as ActionItem<
     MysqlLikeAction | RestApiAction<BodyContent>
   >
-  const { content, $actionID, $resourceID, actionType, transformer } = action
+  const { content, $actionID, $resourceID, actionType, transformer, $context } =
+    action
   const originActionList = getActionList(store.getState())
   const originAction = originActionList.find(
     (item) => item.displayName === displayName,
@@ -163,6 +167,7 @@ export const runActionWithExecutionResult = async (
       appId,
       currentActionId,
       actionContent,
+      $context,
       abortSignal,
     )) as AxiosResponse<
       IActionRunResultResponseData<Record<string, any>[]>,
@@ -250,21 +255,24 @@ export const runActionWithDelay = (
   const { advancedConfig } = config
   const { delayWhenLoaded } = advancedConfig
   return new Promise((resolve, reject) => {
-    const timeoutID = window.setTimeout(async () => {
-      window.clearTimeout(timeoutID)
+    const timeoutID = window.setTimeout(
+      async () => {
+        window.clearTimeout(timeoutID)
 
-      try {
-        const result = await runActionWithExecutionResult(
-          action,
-          true,
-          abortSignal,
-        )
-        return resolve(result)
-      } catch (e) {
-        console.log("e", e)
-        return reject(e)
-      }
-    }, delayWhenLoaded as unknown as number)
+        try {
+          const result = await runActionWithExecutionResult(
+            action,
+            true,
+            abortSignal,
+          )
+          return resolve(result)
+        } catch (e) {
+          console.log("e", e)
+          return reject(e)
+        }
+      },
+      delayWhenLoaded as unknown as number,
+    )
   })
 }
 
@@ -282,9 +290,12 @@ export const registerActionPeriod = (action: IExecutionActions) => {
     return
   }
   removeActionPeriod(action.$actionID)
-  const timeID = window.setInterval(() => {
-    runActionWithExecutionResult(action)
-  }, (config.advancedConfig.periodInterval as unknown as number) * 1000)
+  const timeID = window.setInterval(
+    () => {
+      runActionWithExecutionResult(action)
+    },
+    (config.advancedConfig.periodInterval as unknown as number) * 1000,
+  )
   actionIDMapTimerID[action.$actionID] = timeID
 }
 

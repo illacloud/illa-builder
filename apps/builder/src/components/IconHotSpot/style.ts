@@ -16,6 +16,7 @@ export const iconHotSpotContainerStyle = (
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: none;
   :hover {
     color: ${activeColor};
     background-color: ${getColor("grayBlue", "09")};

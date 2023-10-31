@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Loading, TriggerProvider, useMessage } from "@illa-design/react"
 import { updateCurrentAppInfo } from "@/hooks/useInitApp"
-import { CanvasPanel } from "@/page/App/components/CanvasPanel"
+import { CanvasPanel } from "@/page/App/Module/CanvasPanel"
 import {
   centerPanelStyle,
   contentStyle,
@@ -22,11 +22,11 @@ import { SnapShotList } from "@/page/History/components/SnapShotList"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { DashboardAppInitialState } from "@/redux/currentApp/appInfo/appInfoState"
+import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentAppSnapshotID } from "@/redux/currentAppHistory/currentAppHistorySelector"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
-import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { fetchSnapShot } from "@/services/history"
 import { startAppListening } from "@/store"
 

@@ -3,7 +3,7 @@ import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import store, { AppListenerEffectAPI } from "@/store"
 
 export const getDisattachedComponents = (
@@ -70,18 +70,6 @@ export const updateCurrentAllComponentsAttachedUsers = (
   }
 }
 
-export const handleUpdateSelectedComponentExecution = (
-  action: ReturnType<typeof configActions.updateSelectedComponent>,
-  listenerApi: AppListenerEffectAPI,
-) => {
-  const currentComponentsAttachedUsers =
-    listenerApi.getState().currentApp.collaborators.components
-  updateCurrentAllComponentsAttachedUsers(
-    action.payload,
-    currentComponentsAttachedUsers,
-  )
-}
-
 export const handleClearSelectedComponentExecution = (
   action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
   listenerApi: AppListenerEffectAPI,
@@ -98,11 +86,6 @@ export const handleClearSelectedComponentExecution = (
 
 export const AVATAR_WIDTH = 14
 export const AVATAR_GAP = 4
-export const MOVE_BAR_SVG_WIDTH = 12
-export const AVATAR_LIST_MARGIN = 8
-
-// two avatar + one gap + one svg
-export const MIN_MOVE_BAR_WIDTH = 48
 
 export const MIN_DISABLE_MARGIN_WIDTH = 34
 

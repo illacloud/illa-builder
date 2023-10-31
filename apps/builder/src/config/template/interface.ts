@@ -1,19 +1,9 @@
-import { templateConfig } from "@/config/template/index"
+import { ResourceType } from "@illa-public/public-types"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
-
-export type TemplateName = keyof typeof templateConfig
-
-export interface TemplateSetting {
-  type: TemplateName
-  nameKey: string
-  descKey: string
-  appId: string
-  icon: string
-}
+import { ResourceContent } from "@/redux/resource/resourceState"
 
 export type TemplateResources = {
   resourceName: string

@@ -6,7 +6,7 @@ import { Unsubscribe } from "@reduxjs/toolkit"
 import { AxiosResponse } from "axios"
 import { FC, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { useAsyncValue, useBeforeUnload } from "react-router-dom"
+import { useAsyncValue, useBeforeUnload, useParams } from "react-router-dom"
 import { TriggerProvider } from "@illa-design/react"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { fixedActionToNewAction } from "@/hooks/utils/fixedAction"
@@ -15,8 +15,8 @@ import { WaterMark } from "@/page/Deploy/Watermark"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { startAppListening } from "@/store"
@@ -25,7 +25,7 @@ import {
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import { CanvasPanel } from "../App/components/CanvasPanel"
+import { CanvasPanel } from "../App/Module/CanvasPanel"
 import { CurrentAppResp } from "../App/resp/currentAppResp"
 
 interface IDeployContentAsyncValue {
@@ -36,6 +36,8 @@ interface IDeployContentAsyncValue {
 export const DeployContent: FC = () => {
   const asyncValue = useAsyncValue() as IDeployContentAsyncValue
   const dispatch = useDispatch()
+
+  let { pageName } = useParams()
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
@@ -51,16 +53,46 @@ export const DeployContent: FC = () => {
       document.title = appInfo.data.appInfo.appName
       dispatch(configActions.updateIllaMode("production"))
       dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
-      const fixedComponents = fixedComponentsToNewComponents(
-        appInfo.data.components,
-      )
+      const canvasTree = appInfo.data.components
+      if (canvasTree.props) {
+        const { homepageDisplayName, pageSortedKey, currentPageIndex } =
+          canvasTree.props
+        let defaultPageIndex: number | undefined
+        const pageIndex = pageSortedKey?.findIndex(
+          (name: string) => name === pageName,
+        )
+        if (pageIndex != undefined && pageIndex !== -1) {
+          defaultPageIndex = pageIndex
+        }
+
+        const homePageIndex = pageSortedKey?.findIndex(
+          (name: string) => name === homepageDisplayName,
+        )
+        if (
+          defaultPageIndex == undefined &&
+          homePageIndex != undefined &&
+          homePageIndex !== -1
+        ) {
+          defaultPageIndex = homePageIndex
+        }
+
+        if (defaultPageIndex == undefined && currentPageIndex != undefined) {
+          defaultPageIndex = currentPageIndex
+        }
+        if (defaultPageIndex == undefined) {
+          defaultPageIndex = 0
+        }
+
+        canvasTree.props.currentPageIndex = defaultPageIndex
+      }
+      const fixedComponents = fixedComponentsToNewComponents(canvasTree)
       dispatch(componentsActions.initComponentReducer(fixedComponents))
       const fixedActions = fixedActionToNewAction(appInfo.data.actions)
       dispatch(actionActions.initActionListReducer(fixedActions))
       dispatch(executionActions.startExecutionReducer())
     }
     initApp()
-  }, [asyncValue, dispatch])
+  }, [asyncValue, dispatch, pageName])
 
   useDestroyApp()
 

@@ -1,12 +1,11 @@
 import { builderRequest } from "@illa-public/illa-net"
 import { createAction } from "@/api/actions"
-import { DeployResp } from "@/page/App/components/PageNavBar/resp"
+import { DeployResp } from "@/page/App/Module/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
+import { getCanvas } from "@/redux/currentApp/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import store from "@/store"
 import { getCurrentTeamID } from "../utils/team"
 
@@ -103,19 +102,6 @@ export const fetchChangeAppSetting = (
   )
 }
 
-export const fetchTeamAppList = (signal?: AbortSignal) => {
-  return builderRequest<DashboardApp[]>(
-    {
-      url: "/apps",
-      method: "GET",
-      signal: signal,
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
-  )
-}
-
 interface IAppCreateRequestData {
   appName: string
   initScheme: ComponentNode
@@ -139,21 +125,6 @@ export const fetchDeleteApp = (appID: string) => {
       method: "DELETE",
     },
     { teamID: getCurrentTeamID() },
-  )
-}
-
-export const fetchCopyApp = (appID: string, name: string) => {
-  return builderRequest<DashboardApp>(
-    {
-      url: `/apps/${appID}/duplication`,
-      method: "POST",
-      data: {
-        appName: name,
-      },
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
   )
 }
 
@@ -218,11 +189,6 @@ export const updateAppConfig = async (
 export const createApp = async (appName: string, initScheme: ComponentNode) => {
   const requestData = { appName, initScheme }
   const response = await fetchCreateApp(requestData)
-  store.dispatch(
-    dashboardAppActions.addDashboardAppReducer({
-      app: response.data,
-    }),
-  )
   return response.data.appId
 }
 
@@ -238,4 +204,19 @@ export const forkCurrentApp = async (appName: string) => {
     }),
   )
   return appId
+}
+
+export const fetchCopyApp = (appID: string, name: string) => {
+  return builderRequest<DashboardApp>(
+    {
+      url: `/apps/${appID}/duplication`,
+      method: "POST",
+      data: {
+        appName: name,
+      },
+    },
+    {
+      teamID: getCurrentTeamID(),
+    },
+  )
 }

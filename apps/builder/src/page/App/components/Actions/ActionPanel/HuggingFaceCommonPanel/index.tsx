@@ -1,3 +1,4 @@
+import { TextLink } from "@illa-public/text-link"
 import { Namespace, TFunction } from "i18next"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
@@ -18,8 +19,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/style"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { InputEditor } from "@/page/App/components/InputEditor"
-import { TextLink } from "@/page/User/components/TextLink"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import {
   getCachedAction,
   getSelectedAction,

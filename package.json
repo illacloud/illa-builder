@@ -7,9 +7,10 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {
-    "dev": "turbo run dev --filter=illa-builder",
+    "dev": "turbo run dev --filter=illa-builder ",
+    "dev:self": "turbo run dev --filter=illa-builder --filter=illa-cloud-fe",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288 turbo run build-cloud --filter=illa-builder",
-    "build-self": "NODE_OPTIONS=--max-old-space-size=12288 turbo run build-self --filter=illa-builder",
+    "build-self": "NODE_OPTIONS=--max-old-space-size=12288 turbo run build-self --filter=illa-builder --filter=illa-cloud-fe",
     "prepare": "husky install",
     "format": "prettier --write \"apps/**/*.{ts,tsx}\"",
     "lint": "eslint \"apps/**/src/**/**.{ts,tsx}\" --config \".eslintrc.js\"",
@@ -27,7 +28,7 @@
     "react-i18next": "^13.2.2",
     "i18next": "^23.5.1",
     "dayjs": "^1.11.10",
-    "turbo": "^1.10.14"
+    "turbo": "^1.10.15"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",

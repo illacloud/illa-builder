@@ -9,7 +9,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/CopySpreadSheetSubPanel/style"
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { GoogleSheetsActionCopyOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

@@ -76,9 +76,16 @@
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. ",
-      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä."
+      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä.",
+      "save_resource": "Tallennus onnistui, sivu suljetaan 3 sekunnin kuluttua..."
     },
-    "create": "Luo"
+    "create": "Luo",
+    "pwa": {
+      "guide": {
+        "title": "Lisää ILLA Cloud työpöydälle",
+        "desc": "Lisää työpöydälle päästäksesi työtilaasi nopeasti. Tehosta tehokkuuttasi. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Juuri nyt"
@@ -203,7 +210,8 @@
           },
           "oracle": {
             "sid": "Käsittele tietokannan nimeä nimellä",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle versio"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -241,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Todennus"
-          }
+          },
+          "old_oracle": "vähintään 9i",
+          "new_oracle": "9i yläpuolella"
         },
         "placeholder": {
           "url": "Syötä pyynnön URL tähän",
@@ -352,7 +362,11 @@
               "sid": "SID",
               "service": "Palvelun Nimi"
             },
-            "ssl": "Käytä SSL:ää kun käytettävissä"
+            "ssl": "Käytä SSL:ää kun käytettävissä",
+            "version": {
+              "below": "vähintään 9i",
+              "above": "9i yläpuolella"
+            }
           },
           "couchdb": {
             "ssl": "Käytä SSL/TLS kun käytettävissä"
@@ -609,7 +623,9 @@
               "global-data": "Globaalit tiedot",
               "ai-agent": "AI Agent",
               "more": "Lisää",
-              "create-resource": "Luo resurssista"
+              "create-resource": "Luo resurssista",
+              "unsafe": "Epäturvallinen",
+              "safe": "Turvallinen"
             }
           },
           "restapi": {
@@ -654,6 +670,9 @@
             },
             "global-data": {
               "how-to-use": "Käytä näitä yleisiä tietoja {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
             }
           },
           "advanced": {
@@ -694,7 +713,8 @@
           },
           "general": {
             "connect-data-source": "Yhdistä tietokantaan tai apiin",
-            "more-type": "Enemmän tietolähteitä"
+            "more-type": "Enemmän tietolähteitä",
+            "safe_mode": "Tila"
           }
         },
         "menu": {
@@ -1185,6 +1205,10 @@
           "tooltips": "Tukee objekteja tai alkeellisia arvoja. Esimerkki: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
+      },
+      "library": "Kirjastot",
+      "component_layer": {
+        "floating": "Modaali"
       }
     },
     "deploy": {
@@ -1294,7 +1318,14 @@
           "onMenuSelect": "Valitse kohde",
           "on_menu_select": "Valitse valikon kohta",
           "pageChange": "Sivun muutos",
-          "clickItem": "Napsauta kohdetta"
+          "clickItem": "Napsauta kohdetta",
+          "columnVisibilityChange": "Sarakkeen näkyvyyden muutos",
+          "onPaginationModelChange": "Sivun muutos",
+          "onRefresh": "Päivitä",
+          "onFilterModelChange": "Suodata muutos",
+          "onRowSelectionModelChange": "Rivin valinnan muutos",
+          "onColumnVisibilityModel": "Sarakkeen näkyvyyden muutos",
+          "onSortModelChange": "Lajittele muutos"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1319,7 +1350,13 @@
         "filterChange": "suodatinmuutos",
         "sortChange": "sortChange",
         "pageChange": "Sivumuutos",
-        "refresh": "päivitä"
+        "refresh": "päivitä",
+        "density_setting": "Tiheys",
+        "column_setting": "Sarakkeet",
+        "refresh_setting": "Päivitä",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Lajittele muutos"
+        }
       },
       "setter_default_value": {
         "fill": "Täytä",
@@ -1735,7 +1772,10 @@
           "has_next_page": "On seuraava sivu",
           "currency_code": "Valuutan koodi",
           "cell_selection": "Solun valinta",
-          "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan"
+          "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan",
+          "page": "Oletussivun indeksi",
+          "export_all_data_setting": "Vie kaikki",
+          "locale": "Lokaatio"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
@@ -1828,7 +1868,27 @@
           "max_column_count": "Maksimi määrä sarakkeita",
           "min_column_count": "Sarakkeiden vähimmäismäärä"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Sivun kokoasetukset",
+        "export_setting": "Vie",
+        "filter_setting": "Suodatin",
+        "primary_key": "Ensisijainen avain",
+        "allow_row_selection": "Salli rivin valinta",
+        "selection_mode": "Valintatapa",
+        "pin_column": "Kiinnitä sarake",
+        "enable_users_to_pin": "Salli käyttäjien kiinnitys",
+        "enable_users_to_filter": "Salli käyttäjien suodatus",
+        "enable_users_to_hide": "Salli käyttäjien piilottaa",
+        "enable_users_to_set_group_by": "Salli käyttäjien asettaa ryhmä",
+        "column_description": "Kuvaus",
+        "enable_users_to_aggregate": "Salli käyttäjien koota yhteen",
+        "enable_users_to_resize": "Salli käyttäjien koon muuttaminen",
+        "enable_users_to_sort": "Salli käyttäjien lajitella",
+        "disable_users_to_reorder": "Poista käyttäjät tilataksesi sarakkeita uudelleen",
+        "default_width": "Default width",
+        "quick_filter_setting": "Nopea suodatin",
+        "exclude_hidden_columns": "Jätä piilotetut sarakkeet pois",
+        "allow_users_select": "Salli rivin valinta"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1889,7 +1949,11 @@
         "showSendTime": "Aseta näytetäänkö lähetysaika @ info: whatsthis",
         "showFooter": "Määritä näytetäänkö alatunniste",
         "senderAvatar": "Aseta lähettäjän avatari. Esimerkiksi tietolähteessäsi lähettäjän avatar on sendAvatar kenttä ja voit asettaa kentän arvoon {{item.sendAvatar}}.",
-        "receiving": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä."
+        "receiving": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
+        "export_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodatettuja tietoja.",
+        "filter_setting": "Käytetään sen määrittämiseen, näyttääkö suodattimet vai ei, jolloin käyttäjät voivat suodattaa tiedot taulukossa.",
+        "quick_filter_setting": "Käytetään määritettäessä, ottaako pikanäppäin käyttöön",
+        "exclude_hidden_columns": "Käytetään määritettäessä, onko piilotettuja sarakkeita puristettu, kun käytetään nopeaa suodatinta. "
       },
       "tab_title": "Tutki",
       "unselected_tip1": "Komponentteja ei ole valittu.",
@@ -2039,7 +2103,11 @@
           "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Salli käyttäjien valita solu",
-          "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan."
+          "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan.",
+          "density_setting": "Käytetään rivin korkeuden määrittämiseen tai ei. ",
+          "refresh_setting": "Käytetään määritettäessä, näyttääkö virkistävä kuvake",
+          "export_raw_data_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodattamatonta raakatietoa.",
+          "locale": "Esimerkiksi fi-FI"
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2111,7 +2179,24 @@
           "item_shadow": "Käytetään kunkin ruudukon varjon koon määrittämiseen",
           "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
           "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
-        }
+        },
+        "primary_key": "Yksilöllinen avain rivin tunnistamiseen",
+        "selection_mode": "Käytetään useamman rivin valinnan tai yhden rivin valinnan asettamiseen",
+        "allow_row_selection": "Käytetään määritettäessä, sallivatko käyttäjät valita rivin",
+        "pin_column": "Käytetään sarakkeen kiinnittämiseen kaikille käyttäjille",
+        "enable_users_to_pin": "Käytetään määritettäessä, sallivatko käyttäjät kiinnittää sarakkeen",
+        "enable_users_to_filter": "Käytetään määritettäessä, sallivatko käyttäjät suodattaa tämän sarakkeen",
+        "enable_users_to_hide": "Käytetään määritettäessä, sallivatko käyttäjät piilottaa sarakkeen",
+        "enable_users_to_aggregate": "Käytetään määritettäessä, sallivatko käyttäjät suorittaa tietojen yhdistämisen tähän sarakkeeseen.",
+        "enable_users_to_set_group_by": "Käytetään määritettäessä, sallivatko käyttäjät asettaa tietoryhmänäytön vai eivät. ",
+        "column_description": "Käytetään tämän sarakkeen kuvauksen asettamiseen",
+        "enable_users_to_sort": "Käytetään määritettäessä, sallivatko käyttäjät muuttaa tämän sarakkeen lajittelua. ",
+        "disable_users_to_reorder": "Käytetään määritettäessä, onko käyttäjä poistettu käytöstä järjestääksesi sarakkeet uudelleen",
+        "default_width": "Käytetään määritettäessä sarakkeen oletusleveyttä",
+        "max_count": "Käytetään asettamaan suurin määrä tähtiä",
+        "allow_users_select": "Käytetään määritettäessä, salliko käyttäjien valita rivi. ",
+        "table_update_content": "Taulukon komponenttia ei enää ylläpidetä. Jotta voidaan varmistaa keskeytymätön pääsy uusiin ominaisuuksiin, siirrä tietosi Data Grid -komponenttiin.",
+        "table_update_title": "Päivitä"
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -2179,7 +2264,27 @@
           "limited": "Rajoitettu",
           "limit_offset_based": "Raja poikkeama perustuu",
           "cursor_based": "Kohdistin pohjautuu",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Automaattinen",
+            "text": "Teksti",
+            "date": "Päivämäärä",
+            "tag": "Tunniste",
+            "time": "Aika",
+            "datetime": "Päivämäärän aika",
+            "number": "Numero",
+            "percent": "Prosenttia",
+            "link": "Linkki",
+            "button": "Painike",
+            "buttongroup": "Painikkeiden ryhmä",
+            "boolean": "Boolean",
+            "image": "Kuva",
+            "icongroup": "Kuvakkeen ryhmä",
+            "rating": "Arvostelu",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Valuutta"
+          }
         },
         "input": {
           "input": "Input",
@@ -2316,6 +2421,10 @@
       },
       "page": {
         "blank_view": "Ei alasivua"
+      },
+      "setter_options": {
+        "single_row_selection": "Yksi valinta",
+        "multiple_row_selection": "Useita valintoja"
       }
     },
     "page": {
@@ -2687,7 +2796,29 @@
       "title-preview": {
         "chat": "Keskustelu",
         "text-generation": "Tekstin luonti"
-      }
+      },
+      "validation_blank": {
+        "name": "Anna nimi",
+        "prompt": "Syötä kehotus",
+        "description": "Ole hyvä ja anna kuvaus",
+        "icon": "Lataa tai luo kuvake",
+        "variable_value": "Varmista, että sekä avain että arvo ovat joko tyhjiä tai tyhjiä.",
+        "variable_key": "Syötä avain tai poista arvo. ",
+        "temperature": "Syötä lämpötila välillä 0,1 - 2",
+        "max_token": "Syötä max tunnus vähintään 1"
+      },
+      "length_invalid": {
+        "description": "Ole hyvä ja rajoita merkin määrä 160 tai vähemmän"
+      },
+      "value_invalid": {
+        "temperature": "Syötä lämpötila välillä 0,1 - 2",
+        "max_token": "Syötä max tunnus vähintään 1"
+      },
+      "group": {
+        "advanced_settings": "Edistyneet asetukset",
+        "information": "Perustiedot"
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Pakollinen"
@@ -3002,7 +3133,16 @@
       "descend": "Desc",
       "name": "Taulukko",
       "pagination": "Sivutus",
-      "scroll": "Vieritä"
+      "scroll": "Vieritä",
+      "default": "Oletus",
+      "export_all_data": "Vie kaikki",
+      "refresh": "Päivitä",
+      "export": {
+        "title": "Vie",
+        "csv": "Vie csv:nä",
+        "excel": "Export as excel",
+        "print": "Tulosta"
+      }
     },
     "tabs": {
       "name": "Tabs"
@@ -3122,6 +3262,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Dataruudukko"
     }
   },
   "page": {
@@ -3517,6 +3660,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Rivin Valinnan Muutos"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Salli käyttäjien koota yhteen"
       }
     }
   },
@@ -4339,8 +4485,26 @@
     "before": "Lataa lisää"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Osallistu",
+  "contribute": {
+    "tag": {
+      "recommended": "Suositeltu",
+      "add_tag": "Lisää tunnisteita",
+      "tag": "Tunniste",
+      "failed_to_save": "Tallennus epäonnistui"
+    },
+    "update": "Muokkaa tageja",
+    "copy_link": "Kopioi linkki",
+    "first_time_modal": {
+      "title": "Osallistu yhteisölle",
+      "button": "Osallistu"
+    },
+    "update_modal": {
+      "button": "Päivitä",
+      "title": "Muokkaa"
+    }
+  },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
-  }
+  },
+  "show_states": "Näytä tilat"
 }

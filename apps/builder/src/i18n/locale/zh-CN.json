@@ -76,9 +76,16 @@
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功",
-      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑",
+      "save_resource": "保存成功，页面将在3s后关闭"
     },
-    "create": "创建"
+    "create": "创建",
+    "pwa": {
+      "guide": {
+        "title": "将ILLA Cloud添加到您的桌面",
+        "desc": "添加到桌面以快速访问您的工作区。提高您的效率。 "
+      }
+    }
   },
   "dayjs": {
     "just_now": "刚刚"
@@ -203,7 +210,8 @@
           },
           "oracle": {
             "sid": "将数据库名称视为",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle版本"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -241,7 +249,9 @@
           },
           "airtable": {
             "authentication": "认证"
-          }
+          },
+          "old_oracle": "9i及以下版本",
+          "new_oracle": "9i以上版本"
         },
         "placeholder": {
           "url": "在此处输入请求 URL",
@@ -352,7 +362,11 @@
               "sid": "SID",
               "service": "服务名称"
             },
-            "ssl": "可用时使用 SSL"
+            "ssl": "可用时使用 SSL",
+            "version": {
+              "below": "9i及以下版本",
+              "above": "9i以上版本"
+            }
           },
           "couchdb": {
             "ssl": "可用时使用 SSL/TLS"
@@ -609,7 +623,9 @@
               "global-data": "全局变量",
               "ai-agent": "AI Agent",
               "more": "更多",
-              "create-resource": "从数据源创建"
+              "create-resource": "从数据源创建",
+              "unsafe": "不安全",
+              "safe": "安全"
             }
           },
           "restapi": {
@@ -654,6 +670,9 @@
             },
             "global-data": {
               "how-to-use": "通过{{globalData.state1}}来使用这个全局变量"
+            },
+            "general": {
+              "safe_mode": "使用safe模式时，您的SQL只能在变量的位置引用变量，例如where name = '{{input1.value}}'。这使得使用者无法通过在input1中输入 ; drop table; 等方式来破坏您的数据库；使用Unsafe模式时，SQL语法词也可以替换为变量，如where {{input1.value}} {{input2.value}} '{{input3.value}}'，但这样一来数据库可能被用户输入的内容破坏，不建议您使用"
             }
           },
           "advanced": {
@@ -694,7 +713,8 @@
           },
           "general": {
             "connect-data-source": "连接到数据库或API",
-            "more-type": "更多连接方式"
+            "more-type": "更多连接方式",
+            "safe_mode": "模式"
           }
         },
         "menu": {
@@ -1185,6 +1205,10 @@
           "tooltips": "支持对象或原始值。 示例：{ 计数：0 }",
           "placeholder": "{ count: 0 }"
         }
+      },
+      "library": "库",
+      "component_layer": {
+        "floating": "模态框"
       }
     },
     "deploy": {
@@ -1261,13 +1285,13 @@
           "change": "内容改变",
           "click": "单击",
           "clickMenuItem": "单击",
-          "columnFiltersChange": "行筛选改变",
+          "columnFiltersChange": "过滤器变更",
           "fail": "失败后",
           "focus": "聚焦",
           "invalid": "校验失败",
-          "paginationChange": "翻页配置改变",
-          "row_select": "选择行",
-          "sortingChange": "排序方式改变",
+          "paginationChange": "页面变更",
+          "row_select": "行选择变更",
+          "sortingChange": "排序方式变更",
           "submit": "提交",
           "success": "成功后",
           "onOpenModal": "打开对话框",
@@ -1276,14 +1300,14 @@
           "pause": "暂停",
           "ended": "已结束",
           "loaded": "已载入",
-          "rowSelect": "选择行",
+          "rowSelect": "行选择变更",
           "markerSelected": "选中点",
           "markerCreated": "创建点",
           "select": "选择",
           "DragOrClickNoEventArea": "拖拽或点击无事件区域",
           "rowClick": "点击行",
           "refresh": "刷新",
-          "filtersChange": "行筛选改变",
+          "filtersChange": "过滤器变更",
           "rowSelectChange": "行选择变更",
           "onCellSelect": "选中单元格",
           "delete": "删除",
@@ -1293,8 +1317,15 @@
           "uploadFailed": "上传失败",
           "onMenuSelect": "选中菜单项",
           "on_menu_select": "选择菜单项",
-          "pageChange": "页面更改",
-          "clickItem": "点击项目"
+          "pageChange": "页面变更",
+          "clickItem": "点击项目",
+          "columnVisibilityChange": "列是否可见变更",
+          "onPaginationModelChange": "页面变更",
+          "onRefresh": "刷新",
+          "onFilterModelChange": "过滤器变更",
+          "onRowSelectionModelChange": "行选择变更",
+          "onColumnVisibilityModel": "列是否可见变更",
+          "onSortModelChange": "排序方式变更"
         },
         "image_list": {
           "title": "图片",
@@ -1319,7 +1350,13 @@
         "filterChange": "过滤器更改",
         "sortChange": "更改排序",
         "pageChange": "修改页面",
-        "refresh": "刷新"
+        "refresh": "刷新",
+        "density_setting": "行密集显示",
+        "column_setting": "列设置",
+        "refresh_setting": "刷新",
+        "widget_action_type_naame": {
+          "onSortModelChange": "排序方式变更"
+        }
       },
       "setter_default_value": {
         "fill": "填充",
@@ -1520,7 +1557,7 @@
         "new_tab": "在新标签中打开",
         "only_run_when": "先决条件",
         "overFlow": "翻页方式",
-        "page": "页面",
+        "page": "默认页面",
         "pageSize": "每页行数",
         "pattern": "模式",
         "pending": "待处理节点",
@@ -1718,7 +1755,7 @@
           "icon": "图标",
           "color": "颜色",
           "sort_by_mapped_value": "按映射值排序",
-          "background": "背景色",
+          "background": "单元格背景色",
           "alignment": "对齐方式",
           "column_width": "列宽",
           "width": "宽度",
@@ -1735,7 +1772,10 @@
           "has_next_page": "是否有下一页",
           "currency_code": "货币代码",
           "cell_selection": "选中单元格",
-          "click_outside_to_des": "点击外部取消选择"
+          "click_outside_to_des": "点击外部取消选择",
+          "page": "默认页面索引",
+          "export_all_data_setting": "导出全部",
+          "locale": "本地化"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -1825,10 +1865,30 @@
           "item_radius": "格子的圆角",
           "item_shadow": "格子的阴影",
           "item_spacing": "格子间距",
-          "max_column_count": "Max number of columns",
+          "max_column_count": "最大列数",
           "min_column_count": "Min number of columns"
         },
-        "src": "源"
+        "src": "源",
+        "page_size_options": "每页显示数量选项",
+        "export_setting": "导出",
+        "filter_setting": "筛选",
+        "primary_key": "主键",
+        "allow_row_selection": "允许选中行",
+        "selection_mode": "选择模式",
+        "pin_column": "冻结列",
+        "enable_users_to_pin": "允许用户冻结列",
+        "enable_users_to_filter": "允许用户筛选",
+        "enable_users_to_hide": "允许用户隐藏列",
+        "enable_users_to_set_group_by": "允许用户设置分组显示",
+        "column_description": "描述",
+        "enable_users_to_aggregate": "Enable users to aggregate",
+        "enable_users_to_resize": "Enable users to resize",
+        "enable_users_to_sort": "允许用户排序",
+        "disable_users_to_reorder": "禁止用户调整列排序",
+        "default_width": "Default width",
+        "quick_filter_setting": "快速筛选",
+        "exclude_hidden_columns": "不包含隐藏列",
+        "allow_users_select": "允许选中行"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1889,7 +1949,11 @@
         "showSendTime": "设置是否显示发送时间",
         "showFooter": "设置是否显示页脚",
         "senderAvatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
-        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。"
+        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。",
+        "export_setting": "用于设置是否允许用户导出筛选后的数据",
+        "filter_setting": "用于设置是否展示筛选器，允许用户筛选数据",
+        "quick_filter_setting": "用于设置是否启用快速筛选",
+        "exclude_hidden_columns": "用于设置是否在快速筛选时不包含隐藏列"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -2014,8 +2078,8 @@
           "index": "您要选择的行的索引。 索引应该是一个数组，可用于指定多行。",
           "scroll_to_the_select": "是否滚动到该行。",
           "show_thousands_separ": "是否显示千位分隔符",
-          "tag_label": "设置标签标签。数组将被分隔为多个标签。",
-          "tag_color": "设定标签的颜色。使用 {voir 写一个条件语句来设置每个标签在不同条件下显示的颜色。",
+          "tag_label": "设置标签。数组将被分隔为多个标签。",
+          "tag_color": "设置标签的颜色。使用 {{ 写一个对象，来定义不同tag值的颜色。如{{\"beautiful\": \"red\", \"cute\": \"#123456\" }}",
           "variant": "按钮的样式",
           "icon": "表中显示的图标",
           "color": "设置颜色",
@@ -2039,7 +2103,11 @@
           "filter_mode": "过滤器的模式，and或or。",
           "currency_code": "USD",
           "whether_allow_users_": "是否允许用户选中一个单元格",
-          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。"
+          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。",
+          "density_setting": "用于设置行高密集与否",
+          "refresh_setting": "用于设置是否展示刷新按钮",
+          "export_raw_data_setting": "用于设置是否允许用户导出未经筛选的原始数据",
+          "locale": "例如，en-US"
         },
         "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
@@ -2111,7 +2179,24 @@
           "item_shadow": "用来配置每个格子的阴影大小",
           "item_spacing": "用于配置格子之间的间距",
           "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。"
-        }
+        },
+        "primary_key": "用于标识行的唯一键值",
+        "selection_mode": "用于设置多行选择还是单行选择",
+        "allow_row_selection": "用于设置是否允许用户选中行",
+        "pin_column": "用于冻结列",
+        "enable_users_to_pin": "用于设置是否允许用户冻结列",
+        "enable_users_to_filter": "用于设置是否允许用户筛选数据",
+        "enable_users_to_hide": "用于设置是否允许用户隐藏列",
+        "enable_users_to_aggregate": "用于设置是否允许用户聚合这列数据",
+        "enable_users_to_set_group_by": "用于设置是否允许用户将这列数组分组显示",
+        "column_description": "用于设置这列的描述信息",
+        "enable_users_to_sort": "用于设置是否允许用户更改排序",
+        "disable_users_to_reorder": "用于设置是否禁止用户调整列排序",
+        "default_width": "Used to set the default width of the column",
+        "max_count": "用于设置星星的最大数量",
+        "allow_users_select": "用于设置是否允许用户选中行. ",
+        "table_update_content": "表格组件将不再被维护。为了确保不间断地访问新功能，请将您的数据迁移到数据表组件中。",
+        "table_update_title": "更新"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -2179,7 +2264,27 @@
           "limited": "限制",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
-          "graphql_relay_cursor": "GraphQL Relay cursor"
+          "graphql_relay_cursor": "GraphQL Relay cursor",
+          "column_type": {
+            "auto": "自动",
+            "text": "文本",
+            "date": "日期",
+            "tag": "标签",
+            "time": "时间",
+            "datetime": "日期时间",
+            "number": "数值",
+            "percent": "百分比",
+            "link": "链接",
+            "button": "按钮",
+            "buttongroup": "按钮组",
+            "boolean": "布尔值",
+            "image": "图片",
+            "icongroup": "图标组",
+            "rating": "评分",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "货币"
+          }
         },
         "input": {
           "input": "输入",
@@ -2316,6 +2421,10 @@
       },
       "page": {
         "blank_view": "无子页面"
+      },
+      "setter_options": {
+        "single_row_selection": "单选",
+        "multiple_row_selection": "多选"
       }
     },
     "page": {
@@ -2687,7 +2796,29 @@
       "title-preview": {
         "chat": "运行结果预览",
         "text-generation": "运行结果预览"
-      }
+      },
+      "validation_blank": {
+        "name": "请输入名称",
+        "prompt": "请输入Prompt",
+        "description": "请输入描述",
+        "icon": "请上传或生成icon",
+        "variable_value": "请确保key和value都为空或都不为空",
+        "variable_key": "请输入key或删除值",
+        "temperature": "请输入temperature，值在0.1到2之间",
+        "max_token": "请输入max token，值不小于1"
+      },
+      "length_invalid": {
+        "description": "请将字符数量限制在160以内"
+      },
+      "value_invalid": {
+        "temperature": "请输入temperature，值在0.1到2之间",
+        "max_token": "请输入max token，值不小于1"
+      },
+      "group": {
+        "advanced_settings": "高级设置",
+        "information": "基本信息"
+      },
+      "doc": "文档"
     },
     "common": {
       "required": "必填"
@@ -3002,7 +3133,16 @@
       "descend": "降序",
       "name": "表格",
       "pagination": "翻页",
-      "scroll": "滚动"
+      "scroll": "滚动",
+      "default": "默认",
+      "export_all_data": "导出全部",
+      "refresh": "刷新",
+      "export": {
+        "title": "导出",
+        "csv": "导出为CSV",
+        "excel": "导出为Excel",
+        "print": "打印"
+      }
     },
     "tabs": {
       "name": "选项卡"
@@ -3122,6 +3262,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "数据表"
     }
   },
   "page": {
@@ -3517,6 +3660,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "行选择变更"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "允许用户聚合"
       }
     }
   },
@@ -4339,8 +4485,26 @@
     "before": "加载更多"
   },
   "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
-  "contribute": "贡献",
+  "contribute": {
+    "tag": {
+      "recommended": "推荐",
+      "add_tag": "添加标签",
+      "tag": "标签",
+      "failed_to_save": "保存失败"
+    },
+    "update": "编辑标签",
+    "copy_link": "复制链接",
+    "first_time_modal": {
+      "title": "贡献到社区",
+      "button": "贡献"
+    },
+    "update_modal": {
+      "button": "更新",
+      "title": "编辑"
+    }
+  },
   "error_page": {
     "fobidden": "没有访问权限"
-  }
+  },
+  "show_states": "Show states"
 }

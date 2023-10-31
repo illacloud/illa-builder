@@ -10,8 +10,8 @@ import {
 import {
   getCanvas,
   getViewportSizeSelector,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { RootComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { RootComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getAppLoadedActions,
   getExecutionResult,
@@ -60,6 +60,7 @@ export const DotPanel: FC = () => {
     pageName,
     pageSortedKey,
   ])
+
   const canRenders = !!executionResult.root
 
   useEffect(() => {

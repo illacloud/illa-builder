@@ -10,17 +10,16 @@ import {
 import { logger } from "redux-logger"
 import { guideAsync } from "@/middleware/guideAsync"
 import { reduxAsync } from "@/middleware/reduxAsync"
+import aiAgent from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/config/configSlice"
 import actionReducer from "@/redux/currentApp/action/actionSlice"
 import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import collaboratorsReducer from "@/redux/currentApp/collaborators/collaboratorsSlice"
+import componentsReducer from "@/redux/currentApp/components/componentsSlice"
 import dragShadowReducer from "@/redux/currentApp/dragShadow/dragShadowSlice"
-import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentAppHistoryReducer from "@/redux/currentAppHistory/currentAppHistorySlice"
-import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
-import dashboardTeamAIAgentReducer from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import guideReducer from "@/redux/guide/guideSlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
@@ -29,23 +28,14 @@ import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
 
 const listenerMiddleware = createListenerMiddleware()
 
-const editorReducer = combineReducers({
-  components: componentsReducer,
-})
-
 const appReducer = combineReducers({
-  editor: editorReducer,
+  components: componentsReducer,
   action: actionReducer,
   appInfo: appInfoReducer,
   collaborators: collaboratorsReducer,
   execution: executionReducer,
   cursor: cursorSlice,
   dragShadow: dragShadowReducer,
-})
-
-const dashboardReducer = combineReducers({
-  dashboardApps: dashboardAppReducer,
-  dashboardTeamAIAgents: dashboardTeamAIAgentReducer,
 })
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]
@@ -62,13 +52,13 @@ const store = configureStore({
   reducer: {
     config: configReducer,
     currentApp: appReducer,
-    dashboard: dashboardReducer,
     currentAppHistory: currentAppHistoryReducer,
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
     guide: guideReducer,
     currentUser: currentUserReducer,
     team: teamReducer,
+    aiAgent: aiAgent,
   },
   devTools: import.meta.env.ILLA_APP_ENV === "development",
   middleware: (getDefaultMiddleware) =>

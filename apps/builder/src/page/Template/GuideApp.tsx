@@ -1,19 +1,22 @@
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
-import { canManage } from "@illa-public/user-role-utils"
-import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { TriggerProvider } from "@illa-design/react"
 import { Guide } from "@/components/Guide"
 import { useInitGuideApp } from "@/hooks/useInitGuideApp"
-import { ActionEditor } from "@/page/App/components/Actions"
+import { ActionEditor } from "@/page/App/Module/ActionEditor"
+import { CanvasPanel } from "@/page/App/Module/CanvasPanel"
+import ComponentsManager from "@/page/App/Module/ComponentManager"
+import { DataWorkspace } from "@/page/App/Module/DataWorkspace"
+import { PageNavBar } from "@/page/App/Module/PageNavBar"
 import { AppLoading } from "@/page/App/components/AppLoading"
-import { CanvasPanel } from "@/page/App/components/CanvasPanel"
-import ComponentsManager from "@/page/App/components/ComponentManager"
-import { DataWorkspace } from "@/page/App/components/DataWorkspace"
 import { Debugger } from "@/page/App/components/Debugger"
-import { PageNavBar } from "@/page/App/components/PageNavBar"
 import {
   bottomPanelStyle,
   centerPanelStyle,
@@ -31,7 +34,7 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { startAppListening } from "@/store"

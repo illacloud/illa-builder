@@ -8,14 +8,14 @@ import {
   WIDGET_PADDING,
   WIDGET_SCALE_SQUARE_BORDER_WIDTH,
 } from "@/page/App/components/ScaleSquare/constant/widget"
-import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
+import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
 import {
   getCanvas,
   getContainerListDisplayNameMappedChildrenNodeDisplayName,
   searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+} from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
@@ -385,6 +385,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
               shadow,
               widgetType,
             )}
+            id={displayName}
           >
             <Suspense
               fallback={

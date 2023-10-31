@@ -13,7 +13,7 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import store from "@/store"

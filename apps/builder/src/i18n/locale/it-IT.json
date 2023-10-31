@@ -76,9 +76,16 @@
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
       "delete-suc": "Eliminato con successo. ",
-      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop.",
+      "save_resource": "Save successful, the page will be closing in 3 seconds..."
     },
-    "create": "Crea"
+    "create": "Crea",
+    "pwa": {
+      "guide": {
+        "title": "Add ILLA Cloud to your desktop",
+        "desc": "Add to your desktop to access to your workspace quickly. Boost your efficiency. "
+      }
+    }
   },
   "dayjs": {
     "just_now": "Proprio ora"
@@ -203,7 +210,8 @@
           },
           "oracle": {
             "sid": "Tratta il nome del database come",
-            "ssl": "SSL"
+            "ssl": "SSL",
+            "version": "Oracle version"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -241,7 +249,9 @@
           },
           "airtable": {
             "authentication": "Autenticazione"
-          }
+          },
+          "old_oracle": "9i or below",
+          "new_oracle": "9i above"
         },
         "placeholder": {
           "url": "Inserisci qui l'URL della richiesta",
@@ -352,7 +362,11 @@
               "sid": "SID",
               "service": "Nome Servizio"
             },
-            "ssl": "Usa SSL quando disponibile"
+            "ssl": "Usa SSL quando disponibile",
+            "version": {
+              "below": "9i or below",
+              "above": "9i above"
+            }
           },
           "couchdb": {
             "ssl": "Usa SSL/TLS quando disponibile"
@@ -609,7 +623,9 @@
               "global-data": "Global data",
               "ai-agent": "AI Agent",
               "more": "More",
-              "create-resource": "Create from resource"
+              "create-resource": "Create from resource",
+              "unsafe": "Unsafe",
+              "safe": "Safe"
             }
           },
           "restapi": {
@@ -654,6 +670,9 @@
             },
             "global-data": {
               "how-to-use": "Use this global data by {{globalData.state1}}"
+            },
+            "general": {
+              "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
             }
           },
           "advanced": {
@@ -694,7 +713,8 @@
           },
           "general": {
             "connect-data-source": "Connect to database or api",
-            "more-type": "More type of data sources"
+            "more-type": "More type of data sources",
+            "safe_mode": "Mode"
           }
         },
         "menu": {
@@ -1185,6 +1205,10 @@
           "tooltips": "Supporta oggetti o valori primitivi. Esempio: { count: 0 }",
           "placeholder": "{{ { count: 0 }}}"
         }
+      },
+      "library": "Libraries",
+      "component_layer": {
+        "floating": "Modal"
       }
     },
     "deploy": {
@@ -1294,7 +1318,14 @@
           "onMenuSelect": "Seleziona elemento",
           "on_menu_select": "Seleziona voce di menu",
           "pageChange": "Modifica pagina",
-          "clickItem": "Clic elemento"
+          "clickItem": "Clic elemento",
+          "columnVisibilityChange": "Column visibility change",
+          "onPaginationModelChange": "Page change",
+          "onRefresh": "Refresh",
+          "onFilterModelChange": "Filter change",
+          "onRowSelectionModelChange": "Row selection change",
+          "onColumnVisibilityModel": "Column visibility change",
+          "onSortModelChange": "Sort change"
         },
         "image_list": {
           "title": "Immagini",
@@ -1319,7 +1350,13 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "aggiorna"
+        "refresh": "aggiorna",
+        "density_setting": "Density",
+        "column_setting": "Columns",
+        "refresh_setting": "Refresh",
+        "widget_action_type_naame": {
+          "onSortModelChange": "Sort change"
+        }
       },
       "setter_default_value": {
         "fill": "Riempi",
@@ -1735,7 +1772,10 @@
           "has_next_page": "Ha la pagina successiva",
           "currency_code": "Codice valuta",
           "cell_selection": "Selezione celle",
-          "click_outside_to_des": "Clicca fuori per deselezionare"
+          "click_outside_to_des": "Clicca fuori per deselezionare",
+          "page": "Default page index",
+          "export_all_data_setting": "Export all",
+          "locale": "Locale"
         },
         "previous_cursor": "Cursore precedente",
         "input": {
@@ -1828,7 +1868,27 @@
           "max_column_count": "Max number of columns",
           "min_column_count": "Min number of columns"
         },
-        "src": "src"
+        "src": "src",
+        "page_size_options": "Page size options",
+        "export_setting": "Export",
+        "filter_setting": "Filter",
+        "primary_key": "Primary key",
+        "allow_row_selection": "Allow row selection",
+        "selection_mode": "Selection mode",
+        "pin_column": "Pin column",
+        "enable_users_to_pin": "Enable users to pin",
+        "enable_users_to_filter": "Enable users to filter",
+        "enable_users_to_hide": "Enable users to hide",
+        "enable_users_to_set_group_by": "Enable users to set group by",
+        "column_description": "Description",
+        "enable_users_to_aggregate": "Enable users to aggregate",
+        "enable_users_to_resize": "Enable users to resize",
+        "enable_users_to_sort": "Enable users to sort",
+        "disable_users_to_reorder": "Disable users to reorder columns",
+        "default_width": "Default width",
+        "quick_filter_setting": "Quick filter",
+        "exclude_hidden_columns": "Exclude hidden columns",
+        "allow_users_select": "Allow row selection"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1889,7 +1949,11 @@
         "showSendTime": "Imposta se mostrare il tempo di invio",
         "showFooter": "Imposta se mostrare il piè di pagina",
         "senderAvatar": "Imposta l'avatar del mittente. Ad esempio, nella sorgente dei dati, l'avatar del mittente è il campo sendAvatar e puoi impostare il campo su {{item.sendAvatar}}.",
-        "receiving": "Imposta se visualizzare il caricamento durante la ricezione dei messaggi. Se il tuo messaggio viene ricevuto dall'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione."
+        "receiving": "Imposta se visualizzare il caricamento durante la ricezione dei messaggi. Se il tuo messaggio viene ricevuto dall'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione.",
+        "export_setting": "Used to set whether or not users are allowed to export filtered data.",
+        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table.",
+        "quick_filter_setting": "Used to set whether to enable quick filter",
+        "exclude_hidden_columns": "Used to set whether to exlude the hidden columns when use quick filter. "
       },
       "tab_title": "Esamina",
       "unselected_tip1": "Nessun componente selezionato.",
@@ -2039,7 +2103,11 @@
           "filter_mode": "La modalità filtro. AND o OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Indica se consentire agli utenti di selezionare una cella",
-          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga."
+          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga.",
+          "density_setting": "Used to set the row height density or not. ",
+          "refresh_setting": "Used to set whether to show a refresh icon",
+          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data.",
+          "locale": "For example, en-US"
         },
         "previous_cursor": "Usa i dati di azione per impostare il cursore precedente. Per esempio,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2111,7 +2179,24 @@
           "item_shadow": "Usato per configurare la dimensione dell'ombra di ogni griglia",
           "item_spacing": "Usato per configurare la spaziatura tra le griglie",
           "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
-        }
+        },
+        "primary_key": "A unique key for identifying a row",
+        "selection_mode": "Used to set multiple row selection or single row selection",
+        "allow_row_selection": "Used to set whether or not allow users to select row",
+        "pin_column": "Used to pin the column to all users",
+        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
+        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
+        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
+        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
+        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
+        "column_description": "Used to set a description of this column",
+        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
+        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
+        "default_width": "Used to set the default width of the column",
+        "max_count": "Used to set the max count of stars",
+        "allow_users_select": "Used to set whether allow users to select row. ",
+        "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
+        "table_update_title": "Update"
       },
       "setter_option": {
         "fixed": "Fisso",
@@ -2179,7 +2264,27 @@
           "limited": "Limitato",
           "limit_offset_based": "Limite offset basato",
           "cursor_based": "Cursore basato",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based",
+          "column_type": {
+            "auto": "Auto",
+            "text": "Text",
+            "date": "Date",
+            "tag": "Tag",
+            "time": "Time",
+            "datetime": "Date time",
+            "number": "Number",
+            "percent": "Percent",
+            "link": "Link",
+            "button": "Button",
+            "buttongroup": "Button group",
+            "boolean": "Boolean",
+            "image": "Image",
+            "icongroup": "Icon group",
+            "rating": "Rating",
+            "markdown": "Markdown",
+            "html": "Html",
+            "currency": "Currency"
+          }
         },
         "input": {
           "input": "Input",
@@ -2316,6 +2421,10 @@
       },
       "page": {
         "blank_view": "Nessuna sotto-pagina"
+      },
+      "setter_options": {
+        "single_row_selection": "Single selection",
+        "multiple_row_selection": "Multiple selection"
       }
     },
     "page": {
@@ -2687,7 +2796,29 @@
       "title-preview": {
         "chat": "Chat",
         "text-generation": "Generazione testo"
-      }
+      },
+      "validation_blank": {
+        "name": "Please enter a name",
+        "prompt": "Please enter the prompt",
+        "description": "Please enter the description",
+        "icon": "Please upload or generate an icon",
+        "variable_value": "Please ensure that both the key and value are either empty or not empty.",
+        "variable_key": "Please enter the key or delete the value. ",
+        "temperature": "Please enter the temperature between 0.1 to 2",
+        "max_token": "Please enter the max token not less than 1"
+      },
+      "length_invalid": {
+        "description": "Please limit the character count to 160 or less"
+      },
+      "value_invalid": {
+        "temperature": "Please enter the temperature between 0.1 to 2",
+        "max_token": "Please enter the max token not less than 1"
+      },
+      "group": {
+        "advanced_settings": "Advanced settings",
+        "information": "Basic information"
+      },
+      "doc": "Doc"
     },
     "common": {
       "required": "Richiesto"
@@ -3002,7 +3133,16 @@
       "descend": "Desc",
       "name": "Tabella",
       "pagination": "Paginazione",
-      "scroll": "Scorrimento"
+      "scroll": "Scorrimento",
+      "default": "Default",
+      "export_all_data": "Export all",
+      "refresh": "Refresh",
+      "export": {
+        "title": "Export",
+        "csv": "Export as csv",
+        "excel": "Export as excel",
+        "print": "Print"
+      }
     },
     "tabs": {
       "name": "Tabs"
@@ -3122,6 +3262,9 @@
     },
     "iframe": {
       "name": "IFrame"
+    },
+    "data_grid": {
+      "name": "Data grid"
     }
   },
   "page": {
@@ -3517,6 +3660,9 @@
         "widget_action_type_name": {
           "rowSelectChange": "Modifica Selezione Riga"
         }
+      },
+      "setter_label": {
+        "enable_users_to_aggregate": "Enable users to aggregate"
       }
     }
   },
@@ -4339,8 +4485,26 @@
     "before": "Carica altro"
   },
   "size_exceed_copied_tips": "Il contenuto è troppo lungo per copiare. (dimensione corrente: {{current_size}} byte, limite: {{limit_size}} bytes)",
-  "contribute": "Contribuisci",
+  "contribute": {
+    "tag": {
+      "recommended": "Recommended",
+      "add_tag": "Add tags",
+      "tag": "Tag",
+      "failed_to_save": "Failed to save"
+    },
+    "update": "Edit tags",
+    "copy_link": "Copy link",
+    "first_time_modal": {
+      "title": "Contribute to community",
+      "button": "Contribute"
+    },
+    "update_modal": {
+      "button": "Update",
+      "title": "Edit"
+    }
+  },
   "error_page": {
     "fobidden": "Nessuna autorizzazione di accesso"
-  }
+  },
+  "show_states": "Show states"
 }

@@ -1,7 +1,12 @@
 import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
-import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
+import {
+  ContributeAgentPC,
+  HASHTAG_REQUEST_TYPE,
+  ShareAgentPC,
+  ShareAgentTab,
+} from "@illa-public/invite-modal"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
@@ -19,7 +24,9 @@ import {
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  MemberInfo,
   USER_ROLE,
+  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -29,22 +36,33 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
   openShareAgentModal,
+  openShareAgentModalOnlyForShare,
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
-import { getAgentPublicLink, sendTagEvent } from "@illa-public/utils"
+import {
+  getAgentPublicLink,
+  getAuthToken,
+  getILLABuilderURL,
+  getILLACloudURL,
+  sendTagEvent,
+} from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue, useNavigate } from "react-router-dom"
+import { useAsyncValue, useParams } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
+  Divider,
+  DocsIcon,
+  DownIcon,
   Image,
   Input,
   InputNumber,
+  Link,
   PlayFillIcon,
   PlusIcon,
   PreviousIcon,
@@ -53,6 +71,7 @@ import {
   Select,
   Slider,
   TextArea,
+  UpIcon,
   getColor,
   useMessage,
 } from "@illa-design/react"
@@ -62,8 +81,8 @@ import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
+import { aiAgentActions } from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import {
   createAgent,
   generateDescription,
@@ -71,20 +90,26 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
-import { getAuthToken } from "@/utils/auth"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../components/ChatContext"
+import { ErrorText } from "../components/ErrorText"
 import {
   ChatSendRequestPayload,
   SenderType,
 } from "../components/PreviewChat/interface"
+import { SCROLL_ID } from "./interface"
 import {
+  advancedSettingHeaderStyle,
+  advancedSettingStyle,
   aiAgentContainerStyle,
   backTextStyle,
   buttonContainerStyle,
+  codeEditorErrorStyle,
   descContainerStyle,
   descTextStyle,
+  docTextContainerStyle,
+  docTextStyle,
   labelLogoStyle,
   labelStyle,
   labelTextStyle,
@@ -92,6 +117,7 @@ import {
   leftPanelContainerStyle,
   leftPanelContentContainerStyle,
   leftPanelCoverContainer,
+  leftPanelHeaderStyle,
   leftPanelTitleTextStyle,
   premiumContainerStyle,
   rightPanelContainerStyle,
@@ -107,10 +133,18 @@ export const AIAgent: FC = () => {
   const data = useAsyncValue() as {
     agent: Agent
   }
-  const navigate = useNavigate()
 
-  const { control, handleSubmit, getValues, reset } = useForm<Agent>({
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    reset,
+    clearErrors,
+    setError,
+    trigger,
+  } = useForm<Agent>({
     mode: "onSubmit",
+    reValidateMode: "onSubmit",
     defaultValues: {
       ...data.agent,
       variables:
@@ -120,7 +154,9 @@ export const AIAgent: FC = () => {
     },
   })
 
-  const { isSubmitting, isValid, isDirty } = useFormState({
+  const { agentID, teamIdentifier } = useParams()
+
+  const { isSubmitting, isDirty, errors } = useFormState({
     control,
   })
 
@@ -143,6 +179,10 @@ export const AIAgent: FC = () => {
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
   const [contributedDialogVisible, setContributedDialogVisible] =
     useState(false)
+  const [defaultShareTag, setDefaultShareTag] = useState<ShareAgentTab>(
+    ShareAgentTab.SHARE_WITH_TEAM,
+  )
+  const [expanded, setExpanded] = useState(false)
 
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
@@ -304,23 +344,339 @@ export const AIAgent: FC = () => {
       },
     })
 
+  const handleClickBack = () => {
+    if (document.referrer.includes(import.meta.env.ILLA_CLOUD_URL)) {
+      return (location.href = `${getILLACloudURL()}/workspace/${teamIdentifier}/ai-agents`)
+    }
+    if (
+      document.referrer.includes(import.meta.env.ILLA_MARKET_URL) &&
+      agentID
+    ) {
+      return (location.href = `${
+        import.meta.env.ILLA_MARKET_URL
+      }/ai-agent/${agentID}/detail`)
+    }
+    return (location.href = getILLACloudURL())
+  }
+
+  const handleScrollToElement = (scrollId: string) => {
+    const el = document.querySelector(`[data-scroll-id=${scrollId}]`)
+    setTimeout(() => {
+      el?.scrollIntoView({ behavior: "smooth", block: "center" })
+    }, 30)
+  }
+  const handleSubmitSave = async (data: Agent) => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+      {
+        element: "save",
+        parameter1: agentData2JSONReport(data),
+        parameter5: data.aiAgentID || "-1",
+      },
+    )
+    try {
+      let updateIconURL = data.icon
+      if (data.icon !== undefined && data.icon !== "") {
+        const iconURL = new URL(data.icon)
+        if (iconURL.protocol !== "http:" && iconURL.protocol !== "https:") {
+          updateIconURL = await uploadAgentIcon(data.icon)
+        }
+      }
+      if (data.aiAgentID === undefined || data.aiAgentID === "") {
+        const resp = await createAgent({
+          ...data,
+          icon: updateIconURL,
+          variables: data.variables.filter(
+            (v) => v.key !== "" && v.value !== "",
+          ),
+        })
+        sendTagEvent("create_agent", currentUserInfo.userID)
+        dispatch(
+          aiAgentActions.addTeamAIAgentReducer({
+            aiAgent: resp.data,
+          }),
+        )
+        reset({
+          ...resp.data,
+          variables:
+            resp.data.variables.length === 0
+              ? [{ key: "", value: "" }]
+              : resp.data.variables,
+        })
+      } else {
+        const resp = await putAgentDetail(data.aiAgentID, {
+          ...data,
+          icon: updateIconURL,
+          variables: data.variables.filter(
+            (v) => v.key !== "" && v.value !== "",
+          ),
+        })
+        dispatch(
+          aiAgentActions.modifyTeamAIAgentReducer({
+            aiAgentID: resp.data.aiAgentID,
+            modifiedProps: resp.data,
+          }),
+        )
+        reset({
+          ...resp.data,
+          variables:
+            resp.data.variables.length === 0
+              ? [{ key: "", value: "" }]
+              : resp.data.variables,
+        })
+      }
+      message.success({
+        content: t("dashboard.message.create-suc"),
+      })
+    } catch (e) {
+      message.error({
+        content: t("dashboard.message.create-failed"),
+      })
+    }
+  }
+
+  const handleVerifyOnSave = () => {
+    trigger().then(() => {
+      if (!!errors.prompt) {
+        handleScrollToElement(SCROLL_ID.PROMPT)
+      } else if (!!errors.variables) {
+        handleScrollToElement(SCROLL_ID.VARIABLES)
+      } else if (!!errors.name) {
+        handleScrollToElement(SCROLL_ID.NAME)
+      } else if (!!errors.description) {
+        handleScrollToElement(SCROLL_ID.DESCRIPTION)
+      } else if (!!errors.icon) {
+        handleScrollToElement(SCROLL_ID.ICON)
+      }
+    })
+  }
+
+  const handleVerifyOnStart = () => {
+    clearErrors()
+    if (!getValues("prompt")) {
+      setError("prompt", {
+        type: "required",
+        message: t("editor.ai-agent.validation_blank.prompt"),
+      })
+      handleScrollToElement(SCROLL_ID.PROMPT)
+      return false
+    } else if (
+      !getValues("variables").every(
+        (param) =>
+          (param.key === "" && param.value === "") ||
+          (param.key !== "" && param.value !== ""),
+      )
+    ) {
+      setError("variables", {
+        type: "validate",
+        message: t("editor.ai-agent.validation_blank.variable_value"),
+      })
+      handleScrollToElement(SCROLL_ID.VARIABLES)
+      return false
+    }
+    return true
+  }
+
+  const handleClickStart = async () => {
+    if (!handleVerifyOnStart()) {
+      return
+    }
+    if (isPremiumModel(getValues("model")) && !canUseBillingFeature) {
+      upgradeModal({
+        modalType: "agent",
+      })
+      return
+    }
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+      {
+        element: isRunning ? "restart" : "start",
+        parameter1: agentData2JSONReport(getValues()),
+        parameter5: getValues("aiAgentID") || "-1",
+      },
+    )
+    isRunning
+      ? await reconnect(getValues("aiAgentID"), getValues("agentType"))
+      : await connect(getValues("aiAgentID"), getValues("agentType"))
+  }
+
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
       <div css={aiAgentContainerStyle}>
         <div css={leftPanelContainerStyle}>
           <div css={leftPanelCoverContainer}>
-            <div
-              css={leftPanelTitleTextStyle}
-              onClick={() => {
-                navigate(-1)
-              }}
-            >
-              <PreviousIcon fs="16px" />
-              <span css={backTextStyle}>{t("editor.ai-agent.title")}</span>
+            <div css={leftPanelHeaderStyle}>
+              <div css={leftPanelTitleTextStyle} onClick={handleClickBack}>
+                <PreviousIcon fs="16px" />
+                <span css={backTextStyle}>{t("editor.ai-agent.title")}</span>
+              </div>
+              <Link
+                href="https://docs.illacloud.com/ai-agent"
+                target="__blank"
+                colorScheme="techPurple"
+                hoverable={false}
+                css={docTextContainerStyle}
+              >
+                <span css={docTextStyle}>
+                  <DocsIcon size="16" />
+                  <span>{t("editor.ai-agent.doc")}</span>
+                </span>
+              </Link>
             </div>
             <div css={leftPanelContentContainerStyle}>
               <Controller
-                name="icon"
+                name="agentType"
+                control={control}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.mode")}
+                    tips={t("editor.ai-agent.tips.mode")}
+                    required
+                  >
+                    <RadioGroup
+                      colorScheme={getColor("grayBlue", "02")}
+                      w="100%"
+                      value={field.value}
+                      type="button"
+                      forceEqualWidth={true}
+                      options={[
+                        {
+                          value: AI_AGENT_TYPE.CHAT,
+                          label: t("editor.ai-agent.option.mode.chat"),
+                        },
+                        {
+                          value: AI_AGENT_TYPE.TEXT_GENERATION,
+                          label: t("editor.ai-agent.option.mode.text"),
+                        },
+                      ]}
+                      onChange={(value) => {
+                        if (isReceiving || isConnecting) {
+                          message.info({
+                            content: t("editor.ai-agent.message.generating"),
+                          })
+                          return
+                        }
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                          {
+                            element: "mode_radio_button",
+                            parameter1: value,
+                            parameter5: data.agent.aiAgentID || "-1",
+                          },
+                        )
+                        field.onChange(value)
+                      }}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="prompt"
+                control={control}
+                rules={{
+                  required: t("editor.ai-agent.validation_blank.prompt"),
+                }}
+                shouldUnregister={false}
+                render={({ field: promptField }) => (
+                  <AIAgentBlock
+                    title={"Prompt"}
+                    required
+                    scrollId={SCROLL_ID.PROMPT}
+                  >
+                    <Controller
+                      name="variables"
+                      control={control}
+                      render={({ field: variables }) => (
+                        <div>
+                          <CodeEditor
+                            {...promptField}
+                            css={codeEditorErrorStyle(!!errors.prompt)}
+                            placeholder={t(
+                              "editor.ai-agent.placeholder.prompt",
+                            )}
+                            minHeight="200px"
+                            completionOptions={variables.value}
+                          />
+                          {errors.prompt?.message && (
+                            <ErrorText errorMessage={errors.prompt?.message} />
+                          )}
+                        </div>
+                      )}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+
+              <Controller
+                name="variables"
+                control={control}
+                rules={{
+                  validate: (value) => {
+                    const isValidate = value.every(
+                      (param) =>
+                        (param.key === "" && param.value === "") ||
+                        (param.key !== "" && param.value !== ""),
+                    )
+                    return isValidate
+                      ? isValidate
+                      : t(
+                          "Please ensure that both the key and value are either empty or not empty.",
+                        )
+                  },
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.variable")}
+                    scrollId={SCROLL_ID.VARIABLES}
+                  >
+                    <RecordEditor
+                      records={field.value}
+                      onAdd={() => {
+                        field.onChange([
+                          ...field.value,
+                          {
+                            key: "",
+                            value: "",
+                          },
+                        ])
+                      }}
+                      onChangeKey={(index, key) => {
+                        const newVariables = [...field.value]
+                        newVariables[index].key = key
+                        field.onChange(newVariables)
+                      }}
+                      onChangeValue={(index, _, value) => {
+                        const newVariables = [...field.value]
+                        newVariables[index].value = value
+                        field.onChange(newVariables)
+                      }}
+                      onDelete={(index) => {
+                        const newVariables = [...field.value]
+                        newVariables.splice(index, 1)
+                        if (newVariables.length === 0) {
+                          newVariables.push({
+                            key: "",
+                            value: "",
+                          })
+                        }
+                        field.onChange(newVariables)
+                      }}
+                      label={""}
+                    />
+                    {errors.variables?.message && (
+                      <ErrorText errorMessage={errors.variables?.message} />
+                    )}
+                  </AIAgentBlock>
+                )}
+              />
+
+              <Controller
+                name="model"
                 control={control}
                 rules={{
                   required: true,
@@ -328,8 +684,349 @@ export const AIAgent: FC = () => {
                 shouldUnregister={false}
                 render={({ field }) => (
                   <AIAgentBlock
+                    title={t("editor.ai-agent.label.model")}
+                    required
+                  >
+                    <Select
+                      {...field}
+                      onClick={() => {
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                          {
+                            element: "model",
+                            parameter1: field.value,
+                            parameter5: data.agent.aiAgentID || "-1",
+                          },
+                        )
+                      }}
+                      onChange={(value) => {
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                          {
+                            element: "model",
+                            parameter1: value,
+                            parameter5: data.agent.aiAgentID || "-1",
+                          },
+                        )
+                        if (
+                          isPremiumModel(value as AI_AGENT_MODEL) &&
+                          !canUseBillingFeature
+                        ) {
+                          upgradeModal({
+                            modalType: "agent",
+                          })
+                          return
+                        }
+                        field.onChange(value)
+                      }}
+                      colorScheme={"techPurple"}
+                      options={[
+                        ...freeModelList.map((model) => {
+                          return {
+                            label: (
+                              <div css={labelStyle}>
+                                <span css={labelLogoStyle}>{model.logo}</span>
+                                <span css={labelTextStyle}>{model.name}</span>
+                              </div>
+                            ),
+                            value: model.value,
+                          }
+                        }),
+                        ...premiumModelList.map((model) => {
+                          return {
+                            label: (
+                              <div css={labelStyle}>
+                                <span css={labelLogoStyle}>{model.logo}</span>
+                                <span css={labelTextStyle}>{model.name}</span>
+                                {!canUseBillingFeature && (
+                                  <div css={premiumContainerStyle}>
+                                    <UpgradeIcon />
+                                    <div style={{ marginLeft: 4 }}>Premium</div>
+                                  </div>
+                                )}
+                              </div>
+                            ),
+                            value: model.value,
+                          }
+                        }),
+                      ]}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Divider mt="8px" />
+              <div
+                css={advancedSettingHeaderStyle}
+                onClick={() => setExpanded(!expanded)}
+              >
+                <span>{t("editor.ai-agent.group.advanced_settings")}</span>
+                {expanded ? <UpIcon /> : <DownIcon />}
+              </div>
+              {expanded && (
+                <div css={advancedSettingStyle}>
+                  <Controller
+                    control={control}
+                    name={"model"}
+                    render={({ field: modelField }) => (
+                      <AIAgentBlock
+                        title={"Max Token"}
+                        tips={t("editor.ai-agent.tips.max-token")}
+                        required
+                      >
+                        <Controller
+                          name={"modelConfig.maxTokens"}
+                          control={control}
+                          rules={{
+                            required: t(
+                              "editor.ai-agent.validation_blank.max_token",
+                            ),
+                            validate: (value) => {
+                              const isValidate =
+                                value > 0 &&
+                                value <= (getLLM(modelField.value)?.limit ?? 1)
+                              return isValidate
+                                ? isValidate
+                                : t("editor.ai-agent.value_invalid.max_token")
+                            },
+                          }}
+                          shouldUnregister={false}
+                          render={({ field }) => (
+                            <InputNumber
+                              value={field.value}
+                              onChange={(value) => {
+                                track(
+                                  ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                                  {
+                                    element: "max_token",
+                                    parameter1: value,
+                                    parameter5: data.agent.aiAgentID || "-1",
+                                  },
+                                )
+                                field.onChange(value)
+                              }}
+                              colorScheme={"techPurple"}
+                              mode="button"
+                              min={1}
+                              max={getLLM(modelField.value)?.limit ?? 1}
+                            />
+                          )}
+                        />
+                      </AIAgentBlock>
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name={"model"}
+                    render={({ field: modelField }) => (
+                      <Controller
+                        name="modelConfig.temperature"
+                        control={control}
+                        rules={{
+                          required: t(
+                            "editor.ai-agent.validation_blank.temperature",
+                          ),
+                          validate: (value) => {
+                            const isValidate =
+                              value >=
+                                (getLLM(modelField.value)
+                                  ?.temperatureRange[0] ?? 0.1) &&
+                              value <=
+                                (getLLM(modelField.value)
+                                  ?.temperatureRange[1] ?? 1)
+                            return isValidate
+                              ? isValidate
+                              : t("editor.ai-agent.value_invalid.temperature")
+                          },
+                        }}
+                        shouldUnregister={false}
+                        render={({ field }) => (
+                          <AIAgentBlock
+                            title={"Temperature"}
+                            tips={t("editor.ai-agent.tips.temperature")}
+                            required
+                          >
+                            <div css={temperatureContainerStyle}>
+                              <Slider
+                                {...field}
+                                colorScheme={getColor("grayBlue", "02")}
+                                step={0.1}
+                                min={
+                                  getLLM(modelField.value)?.temperatureRange[0]
+                                }
+                                max={
+                                  getLLM(modelField.value)?.temperatureRange[1]
+                                }
+                                onAfterChange={(v) => {
+                                  track(
+                                    ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
+                                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                                    {
+                                      element: "temporature",
+                                      parameter1: v,
+                                      parameter5: data.agent.aiAgentID || "-1",
+                                    },
+                                  )
+                                }}
+                              />
+                              <span css={temperatureStyle}>{field.value}</span>
+                            </div>
+                          </AIAgentBlock>
+                        )}
+                      />
+                    )}
+                  />
+                </div>
+              )}
+
+              <Divider
+                mt="8px"
+                text={t("editor.ai-agent.group.information")}
+                colorScheme="grayBlue"
+              />
+              <Controller
+                name="name"
+                control={control}
+                rules={{
+                  required: t("editor.ai-agent.validation_blank.name"),
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.name")}
+                    required
+                    scrollId={SCROLL_ID.NAME}
+                  >
+                    <Input
+                      {...field}
+                      placeholder={t("editor.ai-agent.placeholder.name")}
+                      colorScheme={"techPurple"}
+                      error={!!errors.name}
+                      maxLength={60}
+                      onChange={(value) => {
+                        field.onChange(value)
+                        setInRoomUsers(updateLocalName(value, inRoomUsers))
+                      }}
+                    />
+                    {errors.name?.message && (
+                      <ErrorText errorMessage={errors.name?.message} />
+                    )}
+                  </AIAgentBlock>
+                )}
+              />
+
+              <Controller
+                name="description"
+                control={control}
+                rules={{
+                  required: t("editor.ai-agent.validation_blank.description"),
+                  maxLength: {
+                    value: 160,
+                    message: t("editor.ai-agent.length_invalid.description"),
+                  },
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.desc")}
+                    subtitleTips={t("editor.ai-agent.generate-desc.tooltips")}
+                    required
+                    scrollId={SCROLL_ID.DESCRIPTION}
+                    subtitle={
+                      <div
+                        css={descContainerStyle}
+                        onClick={async () => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                            {
+                              element: "desc_generate",
+                              parameter1: getValues("prompt") ? true : false,
+                              parameter5: data.agent.aiAgentID || "-1",
+                            },
+                          )
+                          const currentTime = performance.now()
+                          if (!getValues("prompt")) {
+                            message.error({
+                              content: t("editor.ai-agent.generate-desc.blank"),
+                            })
+                            return
+                          }
+                          setGenerateDescLoading(true)
+                          try {
+                            const desc = await generateDescription(
+                              getValues("prompt"),
+                            )
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "desc_generate",
+                                consume: performance.now() - currentTime,
+                                parameter2: "suc",
+                              },
+                            )
+                            field.onChange(desc.data.payload)
+                          } catch (e) {
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "desc_generate",
+                                consume: performance.now() - currentTime,
+                                parameter2: "failed",
+                              },
+                            )
+                            message.error({
+                              content: t(
+                                "editor.ai-agent.generate-desc.failed",
+                              ),
+                            })
+                          } finally {
+                            setGenerateDescLoading(false)
+                          }
+                        }}
+                      >
+                        {generateDescLoading ? (
+                          <AILoading spin={true} size="12px" />
+                        ) : (
+                          <AIIcon />
+                        )}
+                        <div css={descTextStyle}>
+                          {t("editor.ai-agent.generate-desc.button")}
+                        </div>
+                      </div>
+                    }
+                  >
+                    <TextArea
+                      {...field}
+                      minH="120px"
+                      showWordLimit={true}
+                      error={!!errors.description}
+                      maxLength={160}
+                      placeholder={t("editor.ai-agent.placeholder.desc")}
+                      colorScheme={"techPurple"}
+                    />
+                    {errors.description?.message && (
+                      <ErrorText errorMessage={errors.description?.message} />
+                    )}
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="icon"
+                control={control}
+                rules={{
+                  required: t("editor.ai-agent.validation_blank.icon"),
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
                     title={t("editor.ai-agent.label.icon")}
                     required
+                    scrollId={SCROLL_ID.ICON}
                     subtitle={
                       <div
                         css={descContainerStyle}
@@ -451,420 +1148,10 @@ export const AIAgent: FC = () => {
                         </div>
                       </AvatarUpload>
                     </MixpanelTrackProvider>
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="name"
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={t("editor.ai-agent.label.name")}
-                    required
-                  >
-                    <Input
-                      {...field}
-                      placeholder={t("editor.ai-agent.placeholder.name")}
-                      colorScheme={"techPurple"}
-                      maxLength={60}
-                      onChange={(value) => {
-                        field.onChange(value)
-                        setInRoomUsers(updateLocalName(value, inRoomUsers))
-                      }}
-                    />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="description"
-                control={control}
-                rules={{
-                  required: true,
-                  maxLength: 160,
-                }}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={t("editor.ai-agent.label.desc")}
-                    subtitleTips={t("editor.ai-agent.generate-desc.tooltips")}
-                    required
-                    subtitle={
-                      <div
-                        css={descContainerStyle}
-                        onClick={async () => {
-                          track(
-                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                            {
-                              element: "desc_generate",
-                              parameter1: getValues("prompt") ? true : false,
-                              parameter5: data.agent.aiAgentID || "-1",
-                            },
-                          )
-                          const currentTime = performance.now()
-                          if (!getValues("prompt")) {
-                            message.error({
-                              content: t("editor.ai-agent.generate-desc.blank"),
-                            })
-                            return
-                          }
-                          setGenerateDescLoading(true)
-                          try {
-                            const desc = await generateDescription(
-                              getValues("prompt"),
-                            )
-                            track(
-                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
-                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                              {
-                                element: "desc_generate",
-                                consume: performance.now() - currentTime,
-                                parameter2: "suc",
-                              },
-                            )
-                            field.onChange(desc.data.payload)
-                          } catch (e) {
-                            track(
-                              ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
-                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                              {
-                                element: "desc_generate",
-                                consume: performance.now() - currentTime,
-                                parameter2: "failed",
-                              },
-                            )
-                            message.error({
-                              content: t(
-                                "editor.ai-agent.generate-desc.failed",
-                              ),
-                            })
-                          } finally {
-                            setGenerateDescLoading(false)
-                          }
-                        }}
-                      >
-                        {generateDescLoading ? (
-                          <AILoading spin={true} size="12px" />
-                        ) : (
-                          <AIIcon />
-                        )}
-                        <div css={descTextStyle}>
-                          {t("editor.ai-agent.generate-desc.button")}
-                        </div>
-                      </div>
-                    }
-                  >
-                    <TextArea
-                      {...field}
-                      minH="120px"
-                      showWordLimit={true}
-                      error={field.value.length > 160}
-                      maxLength={160}
-                      placeholder={t("editor.ai-agent.placeholder.desc")}
-                      colorScheme={"techPurple"}
-                    />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="agentType"
-                control={control}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={t("editor.ai-agent.label.mode")}
-                    tips={t("editor.ai-agent.tips.mode")}
-                    required
-                  >
-                    <RadioGroup
-                      colorScheme={getColor("grayBlue", "02")}
-                      w="100%"
-                      value={field.value}
-                      type="button"
-                      forceEqualWidth={true}
-                      options={[
-                        {
-                          value: AI_AGENT_TYPE.CHAT,
-                          label: t("editor.ai-agent.option.mode.chat"),
-                        },
-                        {
-                          value: AI_AGENT_TYPE.TEXT_GENERATION,
-                          label: t("editor.ai-agent.option.mode.text"),
-                        },
-                      ]}
-                      onChange={(value) => {
-                        if (isReceiving || isConnecting) {
-                          message.info({
-                            content: t("editor.ai-agent.message.generating"),
-                          })
-                          return
-                        }
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                          {
-                            element: "mode_radio_button",
-                            parameter1: value,
-                            parameter5: data.agent.aiAgentID || "-1",
-                          },
-                        )
-                        field.onChange(value)
-                      }}
-                    />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="prompt"
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                shouldUnregister={false}
-                render={({ field: promptField }) => (
-                  <AIAgentBlock title={"Prompt"} required>
-                    <Controller
-                      name="variables"
-                      control={control}
-                      render={({ field: variables }) => (
-                        <CodeEditor
-                          {...promptField}
-                          placeholder={t("editor.ai-agent.placeholder.prompt")}
-                          minHeight="200px"
-                          completionOptions={variables.value}
-                        />
-                      )}
-                    />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="variables"
-                control={control}
-                rules={{
-                  validate: (value) =>
-                    value.every(
-                      (param) =>
-                        (param.key !== "" && param.value !== "") ||
-                        (param.key === "" && param.value === ""),
-                    ),
-                }}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
-                    <RecordEditor
-                      records={field.value}
-                      onAdd={() => {
-                        field.onChange([
-                          ...field.value,
-                          {
-                            key: "",
-                            value: "",
-                          },
-                        ])
-                      }}
-                      onChangeKey={(index, key) => {
-                        const newVariables = [...field.value]
-                        newVariables[index].key = key
-                        field.onChange(newVariables)
-                      }}
-                      onChangeValue={(index, _, value) => {
-                        const newVariables = [...field.value]
-                        newVariables[index].value = value
-                        field.onChange(newVariables)
-                      }}
-                      onDelete={(index) => {
-                        const newVariables = [...field.value]
-                        newVariables.splice(index, 1)
-                        if (newVariables.length === 0) {
-                          newVariables.push({
-                            key: "",
-                            value: "",
-                          })
-                        }
-                        field.onChange(newVariables)
-                      }}
-                      label={""}
-                    />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="model"
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={t("editor.ai-agent.label.model")}
-                    required
-                  >
-                    <Select
-                      {...field}
-                      onClick={() => {
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                          {
-                            element: "model",
-                            parameter1: field.value,
-                            parameter5: data.agent.aiAgentID || "-1",
-                          },
-                        )
-                      }}
-                      onChange={(value) => {
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                          {
-                            element: "model",
-                            parameter1: value,
-                            parameter5: data.agent.aiAgentID || "-1",
-                          },
-                        )
-                        if (
-                          isPremiumModel(value as AI_AGENT_MODEL) &&
-                          !canUseBillingFeature
-                        ) {
-                          upgradeModal({
-                            modalType: "agent",
-                          })
-                          return
-                        }
-                        field.onChange(value)
-                      }}
-                      colorScheme={"techPurple"}
-                      options={[
-                        ...freeModelList.map((model) => {
-                          return {
-                            label: (
-                              <div css={labelStyle}>
-                                <span css={labelLogoStyle}>{model.logo}</span>
-                                <span css={labelTextStyle}>{model.name}</span>
-                              </div>
-                            ),
-                            value: model.value,
-                          }
-                        }),
-                        ...premiumModelList.map((model) => {
-                          return {
-                            label: (
-                              <div css={labelStyle}>
-                                <span css={labelLogoStyle}>{model.logo}</span>
-                                <span css={labelTextStyle}>{model.name}</span>
-                                {!canUseBillingFeature && (
-                                  <div css={premiumContainerStyle}>
-                                    <UpgradeIcon />
-                                    <div style={{ marginLeft: 4 }}>Premium</div>
-                                  </div>
-                                )}
-                              </div>
-                            ),
-                            value: model.value,
-                          }
-                        }),
-                      ]}
-                    />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                control={control}
-                name={"model"}
-                render={({ field: modelField }) => (
-                  <AIAgentBlock
-                    title={"Max Token"}
-                    tips={t("editor.ai-agent.tips.max-token")}
-                    required
-                  >
-                    <Controller
-                      name={"modelConfig.maxTokens"}
-                      control={control}
-                      rules={{
-                        required: true,
-                        validate: (value) =>
-                          value > 0 &&
-                          value <= (getLLM(modelField.value)?.limit ?? 1),
-                      }}
-                      shouldUnregister={false}
-                      render={({ field }) => (
-                        <InputNumber
-                          value={field.value}
-                          onChange={(value) => {
-                            track(
-                              ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
-                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                              {
-                                element: "max_token",
-                                parameter1: value,
-                                parameter5: data.agent.aiAgentID || "-1",
-                              },
-                            )
-                            field.onChange(value)
-                          }}
-                          colorScheme={"techPurple"}
-                          mode="button"
-                          min={1}
-                          max={getLLM(modelField.value)?.limit ?? 1}
-                        />
-                      )}
-                    />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                control={control}
-                name={"model"}
-                render={({ field: modelField }) => (
-                  <Controller
-                    name="modelConfig.temperature"
-                    control={control}
-                    rules={{
-                      required: true,
-                      validate: (value) =>
-                        value >=
-                          (getLLM(modelField.value)?.temperatureRange[0] ??
-                            0.1) &&
-                        value <=
-                          (getLLM(modelField.value)?.temperatureRange[1] ?? 1),
-                    }}
-                    shouldUnregister={false}
-                    render={({ field }) => (
-                      <AIAgentBlock
-                        title={"Temperature"}
-                        tips={t("editor.ai-agent.tips.temperature")}
-                        required
-                      >
-                        <div css={temperatureContainerStyle}>
-                          <Slider
-                            {...field}
-                            colorScheme={getColor("grayBlue", "02")}
-                            step={0.1}
-                            min={getLLM(modelField.value)?.temperatureRange[0]}
-                            max={getLLM(modelField.value)?.temperatureRange[1]}
-                            onAfterChange={(v) => {
-                              track(
-                                ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
-                                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                                {
-                                  element: "temporature",
-                                  parameter1: v,
-                                  parameter5: data.agent.aiAgentID || "-1",
-                                },
-                              )
-                            }}
-                          />
-                          <span css={temperatureStyle}>{field.value}</span>
-                        </div>
-                      </AIAgentBlock>
+                    {errors.icon?.message && (
+                      <ErrorText errorMessage={errors.icon?.message} />
                     )}
-                  />
+                  </AIAgentBlock>
                 )}
               />
             </div>
@@ -872,87 +1159,13 @@ export const AIAgent: FC = () => {
               <div css={leftLoadingCoverStyle} />
             )}
           </div>
-          <form
-            onSubmit={handleSubmit(async (data) => {
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                {
-                  element: "save",
-                  parameter1: agentData2JSONReport(data),
-                  parameter5: data.aiAgentID || "-1",
-                },
-              )
-              try {
-                let updateIconURL = data.icon
-                if (data.icon !== undefined && data.icon !== "") {
-                  const iconURL = new URL(data.icon)
-                  if (
-                    iconURL.protocol !== "http:" &&
-                    iconURL.protocol !== "https:"
-                  ) {
-                    updateIconURL = await uploadAgentIcon(data.icon)
-                  }
-                }
-                if (data.aiAgentID === undefined || data.aiAgentID === "") {
-                  const resp = await createAgent({
-                    ...data,
-                    icon: updateIconURL,
-                    variables: data.variables.filter(
-                      (v) => v.key !== "" && v.value !== "",
-                    ),
-                  })
-                  sendTagEvent("create_agent", currentUserInfo.userID)
-                  dispatch(
-                    dashboardTeamAIAgentActions.addTeamAIAgentReducer({
-                      aiAgent: resp.data,
-                    }),
-                  )
-                  reset({
-                    ...resp.data,
-                    variables:
-                      resp.data.variables.length === 0
-                        ? [{ key: "", value: "" }]
-                        : resp.data.variables,
-                  })
-                } else {
-                  const resp = await putAgentDetail(data.aiAgentID, {
-                    ...data,
-                    icon: updateIconURL,
-                    variables: data.variables.filter(
-                      (v) => v.key !== "" && v.value !== "",
-                    ),
-                  })
-                  dispatch(
-                    dashboardTeamAIAgentActions.modifyTeamAIAgentReducer({
-                      aiAgentID: resp.data.aiAgentID,
-                      modifiedProps: resp.data,
-                    }),
-                  )
-                  reset({
-                    ...resp.data,
-                    variables:
-                      resp.data.variables.length === 0
-                        ? [{ key: "", value: "" }]
-                        : resp.data.variables,
-                  })
-                }
-                message.success({
-                  content: t("dashboard.message.create-suc"),
-                })
-              } catch (e) {
-                message.error({
-                  content: t("dashboard.message.create-failed"),
-                })
-              }
-            })}
-          >
+          <form onSubmit={handleSubmit(handleSubmitSave)}>
             <div css={buttonContainerStyle}>
               <Button
                 id="save-button"
                 flex="1"
                 colorScheme="grayBlue"
-                disabled={!isValid || !isDirty}
+                onClick={handleVerifyOnSave}
                 size="large"
                 loading={isSubmitting}
               >
@@ -962,40 +1175,11 @@ export const AIAgent: FC = () => {
                 flex="1"
                 size="large"
                 type="button"
-                disabled={!isValid}
                 loading={isConnecting}
                 ml="8px"
                 colorScheme={getColor("grayBlue", "02")}
                 leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
-                onClick={async () => {
-                  if (
-                    isPremiumModel(getValues("model")) &&
-                    !canUseBillingFeature
-                  ) {
-                    upgradeModal({
-                      modalType: "agent",
-                    })
-                    return
-                  }
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                    {
-                      element: isRunning ? "restart" : "start",
-                      parameter1: agentData2JSONReport(getValues()),
-                      parameter5: getValues("aiAgentID") || "-1",
-                    },
-                  )
-                  isRunning
-                    ? await reconnect(
-                        getValues("aiAgentID"),
-                        getValues("agentType"),
-                      )
-                    : await connect(
-                        getValues("aiAgentID"),
-                        getValues("agentType"),
-                      )
-                }}
+                onClick={handleClickStart}
               >
                 {!isRunning
                   ? t("editor.ai-agent.start")
@@ -1072,17 +1256,14 @@ export const AIAgent: FC = () => {
                         }}
                         onShowShareDialog={() => {
                           if (
-                            !openShareAgentModal(
-                              currentTeamInfo,
-                              currentTeamInfo.myRole,
-                              contributeField.value,
-                            )
+                            !openShareAgentModalOnlyForShare(currentTeamInfo)
                           ) {
                             upgradeModal({
                               modalType: "upgrade",
                             })
                             return
                           }
+                          setDefaultShareTag(ShareAgentTab.SHARE_WITH_TEAM)
                           setShareDialogVisible(true)
                           track(
                             ILLA_MIXPANEL_EVENT_TYPE.SHOW,
@@ -1094,19 +1275,40 @@ export const AIAgent: FC = () => {
                           )
                         }}
                         onShowContributeDialog={() => {
-                          if (
-                            !openShareAgentModal(
-                              currentTeamInfo,
-                              currentTeamInfo.myRole,
-                              contributeField.value,
+                          if (contributeField.value) {
+                            if (
+                              !openShareAgentModalOnlyForShare(currentTeamInfo)
+                            ) {
+                              upgradeModal({
+                                modalType: "upgrade",
+                              })
+                              return
+                            }
+                            setDefaultShareTag(ShareAgentTab.TO_MARKETPLACE)
+                            setShareDialogVisible(true)
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "share_modal",
+                                parameter5: data.agent.aiAgentID,
+                              },
                             )
-                          ) {
-                            upgradeModal({
-                              modalType: "upgrade",
-                            })
-                            return
+                          } else {
+                            if (
+                              !openShareAgentModal(
+                                currentTeamInfo,
+                                currentTeamInfo.myRole,
+                                contributeField.value,
+                              )
+                            ) {
+                              upgradeModal({
+                                modalType: "upgrade",
+                              })
+                              return
+                            }
+                            setContributedDialogVisible(true)
                           }
-                          setContributedDialogVisible(true)
                         }}
                       />
                     </div>
@@ -1135,8 +1337,30 @@ export const AIAgent: FC = () => {
                     basicTrack={track}
                     pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT}
                   >
-                    {(shareDialogVisible || contributedDialogVisible) && (
+                    {shareDialogVisible && (
                       <ShareAgentPC
+                        itemID={idField.value}
+                        onInvitedChange={(userList) => {
+                          const memberListInfo: MemberInfo[] = userList.map(
+                            (user) => {
+                              return {
+                                ...user,
+                                userID: "",
+                                nickname: "",
+                                avatar: "",
+                                userStatus: USER_STATUS.PENDING,
+                                permission: {},
+                                createdAt: "",
+                                updatedAt: "",
+                              }
+                            },
+                          )
+                          dispatch(
+                            teamActions.updateInvitedUserReducer(
+                              memberListInfo,
+                            ),
+                          )
+                        }}
                         canUseBillingFeature={canUseUpgradeFeature(
                           currentTeamInfo.myRole,
                           getPlanUtils(currentTeamInfo),
@@ -1149,12 +1373,11 @@ export const AIAgent: FC = () => {
                             agentName: nameField.value,
                           },
                         )}
-                        redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+                        redirectURL={`${getILLABuilderURL()}/${
                           currentTeamInfo.identifier
                         }/ai-agent/${idField.value}`}
                         onClose={() => {
                           setShareDialogVisible(false)
-                          setContributedDialogVisible(false)
                         }}
                         canInvite={canManageInvite(
                           currentTeamInfo.myRole,
@@ -1163,11 +1386,7 @@ export const AIAgent: FC = () => {
                           currentTeamInfo.permission
                             .allowViewerManageTeamMember,
                         )}
-                        defaultTab={
-                          contributedDialogVisible
-                            ? ShareAgentTab.TO_MARKETPLACE
-                            : ShareAgentTab.SHARE_WITH_TEAM
-                        }
+                        defaultTab={defaultShareTag}
                         defaultInviteUserRole={USER_ROLE.VIEWER}
                         teamID={currentTeamInfo.id}
                         currentUserRole={currentTeamInfo.myRole}
@@ -1264,6 +1483,27 @@ export const AIAgent: FC = () => {
                             },
                           )
                         }}
+                      />
+                    )}
+                    {contributedDialogVisible && (
+                      <ContributeAgentPC
+                        onContributed={(isAgentContributed) => {
+                          field.onChange(isAgentContributed)
+                          if (isAgentContributed) {
+                            const newUrl = new URL(
+                              getAgentPublicLink(idField.value),
+                            )
+                            newUrl.searchParams.set("token", getAuthToken())
+                            window.open(newUrl, "_blank")
+                          }
+                        }}
+                        teamID={currentTeamInfo.id}
+                        onClose={() => {
+                          setContributedDialogVisible(false)
+                        }}
+                        productID={idField.value}
+                        productType={HASHTAG_REQUEST_TYPE.UNIT_TYPE_AI_AGENT}
+                        productContributed={field.value}
                       />
                     )}
                   </MixpanelTrackProvider>

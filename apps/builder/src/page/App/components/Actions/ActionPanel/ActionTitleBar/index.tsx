@@ -12,11 +12,11 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
-  CaretRightIcon,
   DropList,
   DropListItem,
   Dropdown,
   MoreIcon,
+  PlayFillIcon,
   SuccessCircleIcon,
   UpIcon,
   WarningCircleIcon,
@@ -46,7 +46,7 @@ import {
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
@@ -526,7 +526,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               variant={isChanged ? "fill" : "light"}
               size="medium"
               loading={isRunning || saveLoading}
-              leftIcon={<CaretRightIcon />}
+              leftIcon={<PlayFillIcon />}
               onClick={handleActionOperation}
             >
               {t(`editor.action.panel.btn.${runMode}`)}

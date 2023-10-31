@@ -2,10 +2,12 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { get } from "lodash"
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { BaseEventHandlerContext } from "@/page/App/components/InspectPanel/PanelSetters/EventHandlerSetter/context"
 import { BaseModal } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/Modal"
+import { isOpenLeftPanel } from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { EventAndMethodLabelProps } from "./interface"
 import {
@@ -43,6 +45,7 @@ const getMethodName = (
 }
 
 export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
+  const leftPanelVisible = useSelector(isOpenLeftPanel)
   const { index } = props
   const { t } = useTranslation()
   const [modalVisible, setModalVisible] = useState(false)
@@ -76,7 +79,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       }
       trigger="click"
       showArrow={false}
-      position="left-start"
+      position={leftPanelVisible ? "left-start" : "top-start"}
       clickOutsideToClose
       onVisibleChange={(visible) => {
         if (visible) {

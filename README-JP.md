@@ -134,6 +134,6 @@ ILLA コミュニティに参加して、アイデア、提案、質問を共有
 
 お問い合わせ: hr@illasoft.com
 
-## 免許証
+## ライセンス
 
 このプロジェクトは [Apache License 2.0](./LICENSE) です。

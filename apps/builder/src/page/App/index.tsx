@@ -22,10 +22,10 @@ import {
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
-import { ActionEditor } from "@/page/App/components/Actions"
+import { ActionEditor } from "@/page/App/Module/ActionEditor"
+import { CanvasPanel } from "@/page/App/Module/CanvasPanel"
+import { ComponentsManager } from "@/page/App/Module/ComponentManager"
 import { AppLoading } from "@/page/App/components/AppLoading"
-import { CanvasPanel } from "@/page/App/components/CanvasPanel"
-import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import { Debugger } from "@/page/App/components/Debugger"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import {
@@ -39,7 +39,7 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { fetchAppBinaryWsUrl, fetchAppTextWsUrl } from "@/services/public"
 import { startAppListening } from "@/store"
@@ -49,8 +49,8 @@ import {
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
 import { Shortcut } from "@/utils/shortcut"
-import { DataWorkspace } from "./components/DataWorkspace"
-import { PageNavBar } from "./components/PageNavBar"
+import { DataWorkspace } from "./Module/DataWorkspace"
+import { PageNavBar } from "./Module/PageNavBar"
 import { useResize } from "./components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
 import {
   bottomPanelStyle,
