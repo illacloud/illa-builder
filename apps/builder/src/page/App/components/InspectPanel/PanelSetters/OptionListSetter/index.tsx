@@ -1,8 +1,11 @@
+import { get, isString } from "lodash"
 import { FC } from "react"
+import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Column } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Column"
 import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
 import { ColumnEmpty } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Empty"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { OptionListSetterProps } from "./interface"
 
 const OptionListSetter: FC<OptionListSetterProps> = (props) => {
@@ -14,6 +17,9 @@ const OptionListSetter: FC<OptionListSetterProps> = (props) => {
     handleUpdateMultiAttrDSL,
     itemName,
   } = props
+
+  const execResult = useSelector(getExecutionResult)
+  const executeValue = get(execResult, `${widgetDisplayName}.${attrName}`, [])
 
   return (
     <ColumnContainer
@@ -58,7 +64,11 @@ const OptionListSetter: FC<OptionListSetterProps> = (props) => {
               showDelete
               key={item.id}
               id={item.id}
-              label={item.label}
+              label={
+                isString(get(executeValue, `${index}.label`))
+                  ? get(executeValue, `${index}.label`)
+                  : JSON.stringify(get(executeValue, `${index}.label`))
+              }
               widgetDisplayName={widgetDisplayName}
               childrenSetter={childrenSetter}
               attrPath={`${attrName}.${index}`}
