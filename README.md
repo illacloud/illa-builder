@@ -60,8 +60,7 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 
 
 ## 🚀Get Started
-To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). To obtain an invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible.
-To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/illacloud), where you can obtain an invitation code faster.
+To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). 
 
 You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
 
@@ -83,7 +82,7 @@ You can also deploy and [self-host](https://github.com/illacloud/illa-builder#se
 
 ## Self-hosted
     
-The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://www.illacloud.com/docs/illa-cli) for more details.
+The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://docs.illacloud.com/self-hosted-deployment) for more details.
 After successfully deployed, you can register with email address or log in with the following information: 
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
