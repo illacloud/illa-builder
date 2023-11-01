@@ -851,14 +851,6 @@ export const generatorEventHandlerConfig = (
         shown: (type) => type === "downloadFromILLADrive",
       },
       {
-        id: `${baseWidgetName}-interaction-event-handler-enabled`,
-        labelName: i18n.t("editor.inspect.setter_label.only_run_when"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.only_run_when"),
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-        attrName: "enabled",
-      },
-      {
         id: `${baseWidgetName}-interaction-event-handler-setFilterModel`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
@@ -897,6 +889,14 @@ export const generatorEventHandlerConfig = (
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         shown: (method) => method === "setRowSelection",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-enabled`,
+        labelName: i18n.t("editor.inspect.setter_label.only_run_when"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.only_run_when"),
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        attrName: "enabled",
       },
     ],
   }
