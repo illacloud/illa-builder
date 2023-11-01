@@ -4,6 +4,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, PreviousIcon } from "@illa-design/react"
 import { CreateButton } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ActionButtons/CreateButton"
+import GoogleCreateButton from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ActionButtons/GoogleCreateButton"
 import { TestConnectButton } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ActionButtons/TestConnectButton"
 import { ResourceHeaderProps } from "./interface"
 import {
@@ -52,7 +53,11 @@ export const Header: FC<ResourceHeaderProps> = (props) => {
             {!NOT_NEED_TEST_CONNECT_RESOURCE_TYPE.includes(resourceType) && (
               <TestConnectButton resourceType={resourceType} />
             )}
-            <CreateButton />
+            {resourceType === "googlesheets" ? (
+              <GoogleCreateButton />
+            ) : (
+              <CreateButton />
+            )}
           </div>
         </div>
       </div>
