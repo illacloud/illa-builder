@@ -69,7 +69,7 @@ AI エージェントまたは ILLA アプリを ILLA コミュニティに貢�
 6. 🎨 **[ILLA Design](https://github.com/illacloud/illa-design) を利用:** コンポーネントによって想像力が制約されることはありません。
 ## Self-hosted
     
-ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開できます。 [ここをクリック](https://www.illacloud.com/docs/illa-cli) 詳細については。
+ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開できます。 [ここをクリック](https://docs.illacloud.com/self-hosted-deployment) 詳細については。
 デプロイが正常に完了したら、電子メール アドレスで登録するか、次の情報でログインできます。
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
