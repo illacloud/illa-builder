@@ -150,7 +150,6 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.STRING,
           openDynamic: true,
-          useCustomLayout: true,
         },
       ]
     case "percent":

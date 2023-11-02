@@ -72,7 +72,7 @@
 
 ## 本地部署
     
-ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此处](https://www.illacloud.com/docs/illa-cli) 了解更多详细信息。
+ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此处](https://docs.illacloud.com/self-hosted-deployment) 了解更多详细信息。
 </br>部署成功后，您可以使用邮箱注册或使用以下信息登录：
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>

@@ -58,7 +58,6 @@ export const DATA_GRID_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     "setColumnVisibilityModel",
     "setPage",
     "setPageSize",
-    "setSelectedRows",
-    "selectedRowsPrimaryKeys",
+    "setRowSelection",
   ],
 }

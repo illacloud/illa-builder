@@ -79,7 +79,7 @@ const BaseInput: FC<NewBaseInputSetterProps> = (props) => {
     if (!isString(value ?? defaultValue)) {
       return `{{ ${value ?? defaultValue} }}`
     }
-    return (value ?? defaultValue) || ""
+    return value ?? defaultValue
   }, [currentListDisplayName, defaultValue, value])
 
   const onChange = useCallback(

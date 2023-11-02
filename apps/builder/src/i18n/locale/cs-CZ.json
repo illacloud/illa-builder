@@ -1324,8 +1324,8 @@
           "onRefresh": "Aktualizovat",
           "onFilterModelChange": "Změna filtru",
           "onRowSelectionModelChange": "Změna výběru řádků",
-          "onColumnVisibilityModel": "Změna viditelnosti sloupců",
-          "onSortModelChange": "Seřadit změnu"
+          "onSortModelChange": "Seřadit změnu",
+          "onColumnVisibilityModelChange": "Změna viditelnosti sloupců"
         },
         "image_list": {
           "title": "Obrázky",
