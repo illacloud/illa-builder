@@ -434,6 +434,7 @@ export function setupExecutionListeners(
       matcher: isAnyOf(
         componentsActions.addComponentReducer,
         componentsActions.updateComponentPropsReducer,
+        componentsActions.setComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
         componentsActions.batchUpdateMultiComponentSlicePropsReducer,
         componentsActions.updateMultiComponentPropsReducer,
