@@ -125,3 +125,8 @@ export const keyTextStyle = css`
   line-height: 22px;
   text-transform: capitalize;
 `
+
+export const shareButtonGroupStyle = css`
+  display: flex;
+  gap: 8px;
+`
