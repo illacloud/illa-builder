@@ -75,6 +75,7 @@ import {
   rightContentStyle,
   rowCenter,
   saveFailedTipStyle,
+  shareButtonGroupStyle,
   spaceBetweenStyle,
   upgradeStyle,
   viewControlStyle,
@@ -367,7 +368,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       </div>
       <div css={rightContentStyle}>
         {!isGuideMode && (
-          <>
+          <div css={shareButtonGroupStyle}>
             <CollaboratorsList />
             {showShareAppModal(
               teamInfo,
@@ -376,7 +377,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               appInfo.config.publishedToMarketplace,
               appInfo.deployed,
             ) && <ShareAppButton appInfo={appInfo} />}
-          </>
+          </div>
         )}
         {isEditMode ? (
           <div css={buttonGroupStyle}>
