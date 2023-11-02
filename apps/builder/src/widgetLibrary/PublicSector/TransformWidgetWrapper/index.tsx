@@ -144,7 +144,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         }
 
         const newH = Math.max(
-          Math.round(
+          Math.ceil(
             (newHeight +
               (WIDGET_PADDING + WIDGET_SCALE_SQUARE_BORDER_WIDTH) * 2) /
               UNIT_HEIGHT,
