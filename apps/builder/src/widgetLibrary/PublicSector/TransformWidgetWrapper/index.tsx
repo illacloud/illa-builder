@@ -241,9 +241,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           "$dynamicAttrPaths",
           [],
         )
-        const needRunEvents = cloneDeep(originEvents).filter((originEvent) => {
-          return originEvent.eventType === eventType
-        })
+
+        const needRunEvents = cloneDeep(originEvents)
+          .filter((originEvent) => {
+            return originEvent.eventType === eventType
+          })
+          .map((originEvent) => {
+            return {
+              ...originEvent,
+              originEnable: originEvent.enabled,
+            }
+          })
         const finalContext =
           ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext(
             otherCalcContext,
@@ -269,8 +277,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           path,
           otherCalcContext,
         )
-
-        console.log("longbo", needRunEvents)
 
         dynamicPaths?.forEach((path: string) => {
           const realPath = isFunction(formatPath)

@@ -435,7 +435,12 @@ export const runEventHandler = (
   const eventObj = transformEvents(scriptObj, globalData)
   if (!eventObj) return
   const { script, enabled } = eventObj
-  if (enabled || enabled == undefined || enabled == "")
+
+  if (
+    (typeof enabled === "boolean" && enabled) ||
+    scriptObj.originEnable == undefined ||
+    scriptObj.originEnable === ""
+  ) {
     if (typeof script === "string" && hasDynamicStringSnippet(script)) {
       try {
         evaluateDynamicString("events", script, globalData)
@@ -446,7 +451,8 @@ export const runEventHandler = (
       }
       return
     }
-  if (typeof script === "function") {
-    script()
+    if (typeof script === "function") {
+      script()
+    }
   }
 }

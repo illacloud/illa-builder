@@ -90,7 +90,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         triggerEventHandler("onRefresh")
       },
       setFilterModel: (model: unknown) => {
-        console.log("longbo", "filterModel", model)
         handleUpdateMultiExecutionResult([
           {
             displayName,
