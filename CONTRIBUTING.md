@@ -162,7 +162,7 @@ Compared to the cloud, you can use ILLA products more securely and reliably, and
 
 Latest version of Node.js LTS and pnpm are installed/ running. Install from links above following instructions.
 
-Clone the illa-builder repository, and run `pnpm install` to fetch its dependencies. Customize your language parameter, i.e. NEXT.js, and create a development workflow environment; input the following to `apps/builder/.env.development.local`
+Clone the illa-builder repository, and run `pnpm install` to fetch its dependencies. Customize your language parameter, i.e. NEXT.js, and create a development workflow environment; input the following to `apps/builder/.env.development.local` And `apps/cloud/.env.development.local`
 
 ```
 ILLA_API_BASE_URL=localhost:<PORT>  # this is your backend address, if this is not present, it will use the default backend address, location.origin, update <PORT> to port number
@@ -170,6 +170,8 @@ ILLA_INSTANCE_ID=SELF_HOST_CLOUD
 ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=development
 ILLA_USE_HTTPS=false
+ILLA_BUILDER_URL=http://localhost:3000
+ILLA_CLOUD_URL=http://localhost:5173
 ```
 
 
