@@ -2,9 +2,13 @@ import { css } from "@emotion/react"
 
 export const singleSelectedPanelWrapperStyle = css`
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `
 
 export const singleSelectedPanelSetterWrapperStyle = css`
-  max-height: calc(100vh - 150px);
+  height: 100%;
   overflow-y: auto;
 `

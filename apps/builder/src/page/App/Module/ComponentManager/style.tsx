@@ -30,7 +30,10 @@ export const applyTabItemStyle = (isActive: boolean) => css`
 export const containerStyle = css`
   box-sizing: border-box;
   width: ${RIGHT_PANEL_WIDTH}px;
-  min-width: ${RIGHT_PANEL_WIDTH}px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   height: 100%;
   border-left: 1px solid ${getColor("grayBlue", "08")};
   background: ${getColor("white", "01")};

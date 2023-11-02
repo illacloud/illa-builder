@@ -5,7 +5,6 @@ export const avatarContainerStyle = css`
   display: flex;
   position: relative;
   gap: 8px;
-  margin-right: 8px;
 `
 
 export const moreIconStyle = css`
