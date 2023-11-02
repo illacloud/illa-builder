@@ -136,7 +136,8 @@ Once illa-builder-backend services are running, you can utilize several commands
 - `pnpm build-self` creates a self-host production version for the illa-builder frontend repository.
 - `pnpm lint` checks the code style.
 - `pnpm format` format your code with prettier
-- `pnpm dev` preview in real time while coding
+- `pnpm dev` preview in real time while coding with cloud version
+- `pnpm dev:self` preview in real time while coding with self-host version
 - `pnpm build-cloud` creates a cloud production version with illa-builder.
 
 For more information on contributing to illa-builder-frontend check out our [Build All-In-One-Image Dockerfile](https://github.com/illacloud/build-all-in-one-image/blob/main/dockerfile).
