@@ -38,6 +38,7 @@ import { setupComponentsListeners } from "@/redux/currentApp/components/componen
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { startAppListening } from "@/store"
+import { MediaSourceLoadProvider } from "@/utils/mediaSourceLoad"
 import { Shortcut } from "@/utils/shortcut"
 import { useResize } from "../App/components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
 
@@ -86,25 +87,27 @@ const GuideApp: FC = () => {
       {loadingState && <AppLoading />}
       {!loadingState && (
         <Shortcut>
-          {isOpen && <Guide canvasRef={canvasRef} />}
-          <TriggerProvider renderInBody zIndex={10}>
-            <PageNavBar css={navbarStyle} />
-          </TriggerProvider>
-          <div css={contentStyle}>
-            {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
-            <div css={middlePanelStyle}>
-              <TriggerProvider renderInBody zIndex={10}>
-                <CanvasPanel ref={canvasRef} css={centerPanelStyle} />
-              </TriggerProvider>
-              {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
-              {showDebugger && <Debugger css={bottomPanelStyle} />}
+          <MediaSourceLoadProvider>
+            {isOpen && <Guide canvasRef={canvasRef} />}
+            <TriggerProvider renderInBody zIndex={10}>
+              <PageNavBar css={navbarStyle} />
+            </TriggerProvider>
+            <div css={contentStyle}>
+              {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
+              <div css={middlePanelStyle}>
+                <TriggerProvider renderInBody zIndex={10}>
+                  <CanvasPanel ref={canvasRef} css={centerPanelStyle} />
+                </TriggerProvider>
+                {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
+                {showDebugger && <Debugger css={bottomPanelStyle} />}
+              </div>
+              {showRightPanel && (
+                <TriggerProvider renderInBody zIndex={10}>
+                  <ComponentsManager />
+                </TriggerProvider>
+              )}
             </div>
-            {showRightPanel && (
-              <TriggerProvider renderInBody zIndex={10}>
-                <ComponentsManager />
-              </TriggerProvider>
-            )}
-          </div>
+          </MediaSourceLoadProvider>
         </Shortcut>
       )}
     </div>

@@ -4,6 +4,7 @@ import {
   FC,
   forwardRef,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -19,6 +20,7 @@ import {
   NextIcon,
   PreviousIcon,
 } from "@illa-design/react"
+import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import { ToolButton } from "@/widgetLibrary/PdfWidget/button"
 import {
   applyHiddenStyle,
@@ -49,6 +51,8 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const [hasButtonClicked, setButtonClick] = useState(false)
   const hasScrollRef = useRef(false)
   const timeoutRef = useRef<number | null>(null)
+
+  const { sourceLoadErrorHandler } = useContext(MediaSourceLoadContext)
 
   const { scaleWidth, scaleHeight } = useMemo(() => {
     if (scaleMode === "width") {
@@ -175,6 +179,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
           }}
           onLoadError={(error) => {
             console.error(error)
+            sourceLoadErrorHandler?.(url)
             setLoading(false)
             setError(true)
           }}

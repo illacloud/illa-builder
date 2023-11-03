@@ -1,5 +1,13 @@
-import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+} from "react"
 import { Image } from "@illa-design/react"
+import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -7,7 +15,14 @@ import { ImageWidgetProps, WrappedImageProps } from "./interface"
 
 export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
   (props, ref) => {
-    const { imageSrc, altText, radius, objectFit, handleOnClick } = props
+    const {
+      imageSrc,
+      altText,
+      radius,
+      objectFit,
+      handleOnClick,
+      sourceLoadErrorHandle,
+    } = props
 
     return (
       <Image
@@ -21,6 +36,9 @@ export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
         css={ImageWrapperStyle}
         draggable={false}
         onClick={handleOnClick}
+        onError={() => {
+          sourceLoadErrorHandle?.(imageSrc)
+        }}
       />
     )
   },
@@ -39,6 +57,8 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     tooltipText,
     triggerEventHandler,
   } = props
+
+  const { sourceLoadErrorHandler } = useContext(MediaSourceLoadContext)
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -87,6 +107,7 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
           radius={finalRadius}
           objectFit={objectFit}
           handleOnClick={handleOnClick}
+          sourceLoadErrorHandle={sourceLoadErrorHandler}
         />
       </div>
     </TooltipWrapper>
