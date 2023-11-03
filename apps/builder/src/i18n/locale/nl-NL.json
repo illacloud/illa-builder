@@ -3732,7 +3732,8 @@
       "start_upload": "Beginnen met uploaden",
       "start_download": "Download starten",
       "create_suc": "Successfully created",
-      "create_failed": "Failed to create"
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
     },
     "create_modal": {
       "title": {
@@ -4482,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Bekijk deze geweldige AI Agent [{{promptName}}]",
-        "linkedin": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
-        "facebook": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
-        "whatsapp": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
         "hackernews": "Vereenvoudig je werkdruk met [{{promptName}}] - De AI Agent die de Job Gereed krijgt"
-      },
-      "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
+      }
     },
     "button": {
       "share_contribute": "Kopiëren & delen",
