@@ -28,7 +28,6 @@ export const ResourceCreatePanel: FC<ResourceCreatePanelProps> = (props) => {
             <ConfigElement
               resourceType={resourceType}
               resourceID={resourceID}
-              hasFooter={false}
             />
             <TipPanel resourceType={resourceType} />
           </div>

@@ -3730,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Starta uppladdning",
-      "start_download": "Starta nedladdning"
+      "start_download": "Starta nedladdning",
+      "create_suc": "Skapades framgångsrikt",
+      "create_failed": "Det gick inte att skapa",
+      "generate_url_fail": "Det gick inte att generera webbadressen. Välj filen manuellt. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Skapa en mapp",
+        "create": "Skapa",
+        "cancel": "Avbryt"
+      },
+      "validate": "Bokstäver, siffror och -~_=: är tillåtna",
+      "validate_failed": "Endast bokstäver, siffror och -~_=: är tillåtna. Gränsen är 255 tecken eller mindre"
+    },
+    "move_modal": {
+      "no_folders": "Inga filer här"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Filen med samma namn finns redan i den här mappen eller laddas upp till den här mappen. Vill du ersätta den?",
+      "keep_both": "Behåll båda",
+      "replace": "Ersätt"
+    },
+    "upload": {
+      "modal": {
+        "title": "Välj en mapp att ladda upp till",
+        "upload_to": "Ladda upp till",
+        "all": "Rot",
+        "create_folder": "Skapa ny mapp",
+        "cancel": "Avbryt",
+        "file_upload": "Ladda upp"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Kolla in denna fantastiska AI-agent [{{promptName}}]",
-        "linkedin": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
-        "facebook": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
-        "whatsapp": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
         "hackernews": "Förenkla din arbetsbelastning med [{{promptName}}] - AI-agenten som får jobbet klart"
-      },
-      "contribute": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!"
+      }
     },
     "button": {
       "share_contribute": "Kopiera & dela",

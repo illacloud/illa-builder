@@ -3730,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Upload starten",
-      "start_download": "Download starten"
+      "start_download": "Download starten",
+      "create_suc": "Erfolgreich erstellt",
+      "create_failed": "Fehler beim Erstellen",
+      "generate_url_fail": "Fehler beim Generieren der URL. Bitte wählen Sie die Datei manuell. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Ordner erstellen",
+        "create": "Anlegen",
+        "cancel": "Abbrechen"
+      },
+      "validate": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen",
+      "validate_failed": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen"
+    },
+    "move_modal": {
+      "no_folders": "Keine Dateien hier"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?",
+      "keep_both": "Beides behalten",
+      "replace": "Ersetzen"
+    },
+    "upload": {
+      "modal": {
+        "title": "Ordner zum Hochladen auswählen",
+        "upload_to": "Hochladen nach",
+        "all": "Wurzel",
+        "create_folder": "Neuen Ordner erstellen",
+        "cancel": "Abbrechen",
+        "file_upload": "Hochladen"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Schau dir diesen erstaunlichen KI Agent [{{promptName}} ] an",
-        "linkedin": "Achten Sie auf alle KI-Enthusiasten und Profis, die ihre Produktivität steigern wollen! Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
-        "facebook": "Achten Sie auf alle KI-Enthusiasten und Profis, die ihre Produktivität steigern wollen! Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
-        "whatsapp": "Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
         "hackernews": "Vereinfachen Sie Ihre Arbeitsbelastung mit [{{promptName}}] - Der KI-Agent, der die Aufgabe erledigt"
-      },
-      "contribute": "Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!"
+      }
     },
     "button": {
       "share_contribute": "Kopieren & Teilen",
