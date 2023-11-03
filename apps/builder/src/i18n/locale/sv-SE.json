@@ -3730,7 +3730,36 @@
   "drive": {
     "message": {
       "start_upload": "Starta uppladdning",
-      "start_download": "Starta nedladdning"
+      "start_download": "Starta nedladdning",
+      "create_suc": "Skapades framgångsrikt",
+      "create_failed": "Det gick inte att skapa"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Skapa en mapp",
+        "create": "Skapa",
+        "cancel": "Avbryt"
+      },
+      "validate": "Bokstäver, siffror och -~_=: är tillåtna",
+      "validate_failed": "Endast bokstäver, siffror och -~_=: är tillåtna. Gränsen är 255 tecken eller mindre"
+    },
+    "move_modal": {
+      "no_folders": "Inga filer här"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Filen med samma namn finns redan i den här mappen eller laddas upp till den här mappen. Vill du ersätta den?",
+      "keep_both": "Behåll båda",
+      "replace": "Ersätt"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
