@@ -3766,6 +3766,9 @@
         "create_folder": "Luo uusi kansio",
         "cancel": "Peruuta",
         "file_upload": "Lähetä"
+      },
+      "select": {
+        "confirm_button": "Valitse"
       }
     }
   },
