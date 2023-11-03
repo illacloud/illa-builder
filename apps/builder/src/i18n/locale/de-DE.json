@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Legen Sie fest, ob die Schaltfläche \"Absenden\" ausblenden soll",
           "submit_button_full_w": "Legen Sie fest, ob die Schaltfläche \"Absenden\" die volle Breite hat.",
           "submit_button_text": "Setze den Text der Schaltfläche \"Absenden\""
-        }
+        },
+        "choose_image": "Bild auswählen",
+        "choose_pdf": "PDF auswählen",
+        "choose_video": "Video auswählen",
+        "choose_audio": "Audio auswählen"
       },
       "setter_tootip": {
         "volume": "Eine Zahl zwischen 0 und 1"
@@ -3111,7 +3115,9 @@
       "right": "Rechts",
       "select_options": {
         "manual": "Manuell",
-        "mapped": "Zugeordnet"
+        "mapped": "Zugeordnet",
+        "url": "URL",
+        "upload": "Hochladen"
       },
       "top": "Oben"
     },
