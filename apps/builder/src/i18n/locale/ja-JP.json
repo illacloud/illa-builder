@@ -3730,7 +3730,36 @@
   "drive": {
     "message": {
       "start_upload": "アップロードを開始",
-      "start_download": "ダウンロードを開始"
+      "start_download": "ダウンロードを開始",
+      "create_suc": "作成に成功しました",
+      "create_failed": "作成に失敗しました"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "フォルダを作成",
+        "create": "作成",
+        "cancel": "キャンセル"
+      },
+      "validate": "文字、数字、-~_=: は使用できます",
+      "validate_failed": "文字、数字、-~_= : のみが使用できます。制限は 255 文字以下です。"
+    },
+    "move_modal": {
+      "no_folders": "ここにファイルはありません"
+    },
+    "same_name_modal": {
+      "this_folder_already": "同じ名前のファイルが既にこのフォルダに存在するか、このフォルダにアップロードされています。置き換えますか？",
+      "keep_both": "両方を保持",
+      "replace": "置換"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
