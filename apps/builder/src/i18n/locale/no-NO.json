@@ -3732,7 +3732,8 @@
       "start_upload": "Start opplasting",
       "start_download": "Start nedlasting",
       "create_suc": "Opprettet",
-      "create_failed": "Kunne ikke opprette"
+      "create_failed": "Kunne ikke opprette",
+      "generate_url_fail": "Mislyktes i å generere URL-en. Velg filen manuelt. "
     },
     "create_modal": {
       "title": {
@@ -3753,12 +3754,12 @@
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
-        "upload_to": "Upload to",
-        "all": "Root",
-        "create_folder": "Create new folder",
-        "cancel": "Cancel",
-        "file_upload": "Upload"
+        "title": "Velg en mappe å laste opp",
+        "upload_to": "Last opp til",
+        "all": "Rot",
+        "create_folder": "Opprett ny mappe",
+        "cancel": "Avbryt",
+        "file_upload": "Last opp"
       }
     }
   },
@@ -4482,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Sjekk ut denne fantastiske AI-agenten [{{promptName}}]",
-        "linkedin": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
-        "facebook": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
-        "whatsapp": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
         "hackernews": "Forenkle arbeidsmengde med [{{promptName}}] - AI-agenten gjør jobben ferdig"
-      },
-      "contribute": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!"
+      }
     },
     "button": {
       "share_contribute": "Kopier og Del",
