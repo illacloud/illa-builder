@@ -3732,7 +3732,8 @@
       "start_upload": "Începe încărcarea",
       "start_download": "Începe descărcarea",
       "create_suc": "Creat cu succes",
-      "create_failed": "Crearea a eșuat"
+      "create_failed": "Crearea a eșuat",
+      "generate_url_fail": "Esuare generare URL. Te rugam sa selectezi fisierul manual. "
     },
     "create_modal": {
       "title": {
@@ -3753,12 +3754,12 @@
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
-        "upload_to": "Upload to",
-        "all": "Root",
-        "create_folder": "Create new folder",
-        "cancel": "Cancel",
-        "file_upload": "Upload"
+        "title": "Selectați un folder pentru a încărca la",
+        "upload_to": "Încărcaţi la",
+        "all": "Rădăcină",
+        "create_folder": "Creați un dosar nou",
+        "cancel": "Anulează",
+        "file_upload": "Incarca"
       }
     }
   },
@@ -4482,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Uită-te la acest uimitor Agent AI [{{promptName}}]",
-        "linkedin": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
-        "facebook": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
-        "whatsapp": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
         "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
-      },
-      "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
+      }
     },
     "button": {
       "share_contribute": "Copiază & Partajează",
