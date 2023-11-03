@@ -3730,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_download": "Start download",
+      "create_suc": "Oprettet succesfuldt",
+      "create_failed": "Kunne ikke oprette",
+      "generate_url_fail": "Kunne ikke generere URL'en. Vælg venligst filen manuelt. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Opret en mappe",
+        "create": "Opret",
+        "cancel": "Annuller"
+      },
+      "validate": "Kun bogstaver, tal og -~_=: er tilladt. Grænsen er 255 tegn eller mindre",
+      "validate_failed": "Kun bogstaver, tal og -~_=: er tilladt. Grænsen er 255 tegn eller mindre"
+    },
+    "move_modal": {
+      "no_folders": "Ingen filer her"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?",
+      "keep_both": "Behold begge",
+      "replace": "Erstat"
+    },
+    "upload": {
+      "modal": {
+        "title": "Vælg en mappe at uploade til",
+        "upload_to": "Upload til",
+        "all": "Rod",
+        "create_folder": "Opret ny mappe",
+        "cancel": "Annuller",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Tjek denne fantastiske AI Agent [{{promptName}}]",
-        "linkedin": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
-        "facebook": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
-        "whatsapp": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
         "hackernews": "Forenkle din arbejdsbyrde med [{{promptName}}] - AI Agent, der Får det færdige job"
-      },
-      "contribute": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!"
+      }
     },
     "button": {
       "share_contribute": "Kopiér & Del",

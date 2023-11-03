@@ -3730,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Rozpocznij wysyłanie",
-      "start_download": "Rozpocznij pobieranie"
+      "start_download": "Rozpocznij pobieranie",
+      "create_suc": "Successfully created",
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "create": "Create",
+        "cancel": "Cancel"
+      },
+      "validate": "Letters, numbers and -~_=: are allowed",
+      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+    },
+    "move_modal": {
+      "no_folders": "No files here"
+    },
+    "same_name_modal": {
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "keep_both": "Keep both",
+      "replace": "Replace"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Sprawdź tego niesamowitego agenta AI [{{promptName}}]",
-        "linkedin": "Zwróć uwagę na wszystkich entuzjastów i profesjonalistów, którzy chcą zwiększyć swoją wydajność! Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!",
-        "facebook": "Zwróć uwagę na wszystkich entuzjastów i profesjonalistów, którzy chcą zwiększyć swoją wydajność! Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!",
-        "whatsapp": "Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!",
         "hackernews": "Uprość obciążenie zadaniami z [{{promptName}}] - Agent AI, który wykonuje zadanie"
-      },
-      "contribute": "Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!"
+      }
     },
     "button": {
       "share_contribute": "Kopiuj i udostępnij",
