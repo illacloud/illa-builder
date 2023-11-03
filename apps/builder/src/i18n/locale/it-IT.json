@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Imposta se nascondere il pulsante Invia",
           "submit_button_full_w": "Imposta se il pulsante Invia è a piena larghezza.",
           "submit_button_text": "Imposta il testo del pulsante Invia"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Un numero compreso tra 0 e 1"
@@ -3111,7 +3115,9 @@
       "right": "Destra",
       "select_options": {
         "manual": "Manuale",
-        "mapped": "Mappato"
+        "mapped": "Mappato",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Alto"
     },
