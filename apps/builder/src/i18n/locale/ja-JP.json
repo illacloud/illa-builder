@@ -3766,6 +3766,9 @@
         "create_folder": "新しいフォルダを作成",
         "cancel": "キャンセル",
         "file_upload": "アップロード"
+      },
+      "select": {
+        "confirm_button": "選択"
       }
     }
   },
