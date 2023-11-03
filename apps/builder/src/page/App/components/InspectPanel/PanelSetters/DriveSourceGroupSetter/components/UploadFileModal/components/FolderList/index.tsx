@@ -49,7 +49,6 @@ const FolderList: FC<FolderListProps> = (props) => {
       onScroll={onScroll}
     >
       {(item: IILLAFileInfo) => {
-        console.log("item", item)
         return (
           <div
             css={listItemContainerStyle}
