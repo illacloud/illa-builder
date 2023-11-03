@@ -1,10 +1,10 @@
+import { EXPIRATION_TYPE } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { forwardRef, useContext } from "react"
 import { Button } from "@illa-design/react"
 import FilesModal from "@/components/DriveFileSelect"
 import { DriveFileSelectContext } from "@/components/DriveFileSelect/context"
 import { FileToPanel } from "@/components/DriveFileSelect/interface"
-import { EXPIRATION_TYPE } from "@/services/drive"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { DEFAULT_EXPIRED_TIME } from "./constants"
 import {

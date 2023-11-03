@@ -1,13 +1,12 @@
+import { AnonymousIcon, FolderIcon } from "@illa-public/icon"
+import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@illa-public/public-types"
 import VirtualList from "rc-virtual-list"
 import { FC, useCallback, useContext, useRef } from "react"
-import { ReactComponent as AnonymousFolderIcon } from "@/assets/drive/anonymous.svg"
-import { ReactComponent as FolderIcon } from "@/assets/drive/folder.svg"
 import {
   FOLDER_LIST_CONTAINER_HEIGHT,
   FOLDER_LIST_ITEM_HEIGHT,
 } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
 import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
-import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@/services/drive"
 import { FolderListProps } from "./interface"
 import {
   folderIconStyle,
@@ -55,7 +54,7 @@ const FolderList: FC<FolderListProps> = (props) => {
             onClick={handleClickItem(item.name)}
           >
             {item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER ? (
-              <AnonymousFolderIcon css={folderIconStyle} />
+              <AnonymousIcon css={folderIconStyle} />
             ) : (
               <FolderIcon css={folderIconStyle} />
             )}

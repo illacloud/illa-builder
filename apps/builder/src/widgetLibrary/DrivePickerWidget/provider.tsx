@@ -2,6 +2,11 @@ import {
   HTTP_REQUEST_PUBLIC_BASE_URL,
   PUBLIC_DRIVE_REQUEST_PREFIX,
 } from "@illa-public/illa-net/constant"
+import {
+  DRIVE_FILE_TYPE,
+  EXPIRATION_TYPE,
+  IILLAFileInfo,
+} from "@illa-public/public-types"
 import { FC, ReactNode, useCallback, useState } from "react"
 import { useSelector } from "react-redux"
 import { removeSuffixPath, usePath } from "@/components/DriveFileSelect"
@@ -9,9 +14,6 @@ import { DriveFileSelectContext } from "@/components/DriveFileSelect/context"
 import { FileToPanel } from "@/components/DriveFileSelect/interface"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
-  DRIVE_FILE_TYPE,
-  EXPIRATION_TYPE,
-  IILLAFileInfo,
   fetchAnonymousFileList,
   fetchBatchAnonymousGenerateTinyUrl,
   fetchBatchGenerateTinyUrl,

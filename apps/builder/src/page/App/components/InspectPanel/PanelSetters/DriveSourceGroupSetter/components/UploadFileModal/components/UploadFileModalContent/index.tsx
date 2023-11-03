@@ -5,6 +5,13 @@ import {
   isILLAAPiError,
 } from "@illa-public/illa-net"
 import {
+  DRIVE_FILE_TYPE,
+  EXPIRATION_TYPE,
+  IILLAFileInfo,
+  SORTED_TYPE,
+  UPLOAD_FILE_STATUS,
+} from "@illa-public/public-types"
+import {
   CollarModalType,
   handleCollaPurchaseError,
 } from "@illa-public/upgrade-modal"
@@ -30,15 +37,7 @@ import { FOLDER_LIST_LIMIT_IN_MODAL } from "@/page/App/components/InspectPanel/P
 import { ROOT_PATH } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
 import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
 import { getUploadAccept } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/utils"
-import {
-  DRIVE_FILE_TYPE,
-  EXPIRATION_TYPE,
-  IILLAFileInfo,
-  SORTED_TYPE,
-  UPLOAD_FILE_STATUS,
-  fetchFileList,
-  fetchGenerateTinyUrl,
-} from "@/services/drive"
+import { fetchFileList, fetchGenerateTinyUrl } from "@/services/drive"
 import {
   getNewSignedUrl,
   updateFilesToDrive,
@@ -100,10 +99,6 @@ const UploadFileModalContent: FC = () => {
       }
     })
   }, [currentFolderPath, t])
-
-  const accept = useMemo(() => {
-    return getUploadAccept(widgetType)
-  }, [widgetType])
 
   const handleFetchFileList = useCallback(
     (pageIndex: number = 1, path: string) => {
@@ -330,7 +325,7 @@ const UploadFileModalContent: FC = () => {
               <input
                 style={{ display: "none" }}
                 type="file"
-                accept={accept}
+                accept={getUploadAccept(widgetType)}
                 ref={uploadFileRef}
                 onChange={onChangeFiles}
               />

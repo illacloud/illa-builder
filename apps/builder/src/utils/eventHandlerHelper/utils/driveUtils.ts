@@ -1,4 +1,5 @@
 import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
+import { UPLOAD_FILE_STATUS } from "@illa-public/public-types"
 import {
   CollarModalType,
   handleCollaPurchaseError,
@@ -7,7 +8,7 @@ import { Zip, ZipPassThrough } from "fflate"
 import { createWriteStream } from "streamsaver"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { UPLOAD_FILE_STATUS, fetchDownloadURLByTinyURL } from "@/services/drive"
+import { fetchDownloadURLByTinyURL } from "@/services/drive"
 import {
   getUploadToDriveSingedURL,
   updateFilesToDrive,

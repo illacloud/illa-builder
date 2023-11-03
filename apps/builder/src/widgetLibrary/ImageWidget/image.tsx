@@ -37,7 +37,7 @@ export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
         draggable={false}
         onClick={handleOnClick}
         onError={() => {
-          sourceLoadErrorHandle(imageSrc)
+          sourceLoadErrorHandle?.(imageSrc)
         }}
       />
     )

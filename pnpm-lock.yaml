@@ -2961,9 +2961,6 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../illa-design/packages/react
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
       '@types/react':
         specifier: ^18.2.22
         version: 18.2.22
@@ -3741,9 +3738,18 @@ importers:
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../illa-design/packages/react
+      '@illa-public/icon':
+        specifier: workspace:*
+        version: link:../Icon
       '@illa-public/illa-storage':
         specifier: workspace:*
         version: link:../ILLAStorage
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData

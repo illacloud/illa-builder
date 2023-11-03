@@ -76,7 +76,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
           onPause={onPause}
           onEnded={onEnded}
           onError={() => {
-            sourceLoadErrorHandler(url)
+            sourceLoadErrorHandler?.(url)
             setLoading(false)
             setError(true)
           }}
