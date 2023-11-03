@@ -3730,7 +3730,36 @@
   "drive": {
     "message": {
       "start_upload": "Aloita lähetys",
-      "start_download": "Aloita lataus"
+      "start_download": "Aloita lataus",
+      "create_suc": "Onnistuneesti luotu",
+      "create_failed": "Ei voitu luoda"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Luo kansio",
+        "create": "Luo",
+        "cancel": "Peruuta"
+      },
+      "validate": "Vain kirjaimet, numerot ja -~_=: ovat sallittuja. Raja on 255 merkkiä tai vähemmän",
+      "validate_failed": "Vain kirjaimet, numerot ja -~_=: ovat sallittuja. Raja on 255 merkkiä tai vähemmän"
+    },
+    "move_modal": {
+      "no_folders": "Ei tiedostoja täällä"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Samanniminen tiedosto on jo olemassa tässä kansiossa tai sitä ladataan tähän kansioon. Haluatko korvata sen?",
+      "keep_both": "Pidä molemmat",
+      "replace": "Korvaa"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
