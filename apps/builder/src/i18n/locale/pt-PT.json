@@ -3732,7 +3732,8 @@
       "start_upload": "Iniciar upload",
       "start_download": "Iniciar download",
       "create_suc": "Successfully created",
-      "create_failed": "Failed to create"
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
     },
     "create_modal": {
       "title": {
@@ -4482,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Confira este incrível Agente IA [{{promptName}}]",
-        "linkedin": "Atenção a todos os entusiastas e profissionais da IA procurando aumentar a sua produtividade! Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!",
-        "facebook": "Atenção a todos os entusiastas e profissionais da IA procurando aumentar a sua produtividade! Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!",
-        "whatsapp": "Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!",
         "hackernews": "Simplifique sua carga de trabalho com [{{promptName}}] - O Agente IA que Obtém o Trabalho Concluído"
-      },
-      "contribute": "Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!"
+      }
     },
     "button": {
       "share_contribute": "Copiar e Compartilhar",
