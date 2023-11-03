@@ -13,7 +13,10 @@ import {
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/components/componentsState"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecution,
+  getExecutionWidgetLayoutInfo,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -101,6 +104,32 @@ export class CopyManager {
       case "canvas":
         if (this.currentCopyComponentNodes != null) {
           const clickPosition = FocusManager.getClickPosition()
+          const needCopyModalComponents = this.currentCopyComponentNodes
+            .filter((item) => item.type === "MODAL_WIDGET")
+            .map((needCopyComponent) => {
+              const targetNodeParentNode = searchDSLByDisplayName(
+                needCopyComponent.parentNode!,
+              )
+              return this.copyComponent(
+                needCopyComponent,
+                targetNodeParentNode!,
+                needCopyComponent.x,
+                needCopyComponent.y,
+              )
+            })
+          const needCopyOtherComponents = this.currentCopyComponentNodes
+            .filter((item) => item.type !== "MODAL_WIDGET")
+            .map((node) => {
+              const layoutInfo = widgetLayoutInfos[node.displayName]
+              return {
+                ...node,
+                x: layoutInfo.layoutInfo.x,
+                y: layoutInfo.layoutInfo.y,
+                w: layoutInfo.layoutInfo.w,
+                h: layoutInfo.layoutInfo.h,
+              }
+            })
+          const copyResult = [...needCopyModalComponents]
           if (clickPosition) {
             switch (clickPosition.type) {
               case "component":
@@ -118,108 +147,111 @@ export class CopyManager {
                     h: targetLayoutInfo.layoutInfo.h,
                   }
                 }
-                if (targetNode?.type === "MODAL_WIDGET") {
-                  const targetParentNode = searchDSLByDisplayName(
-                    targetNode.childrenNode[1].displayName,
-                  )
-                  const columnNumber =
-                    getCurrentSectionColumnNumberByChildDisplayName(
-                      targetNode.displayName,
-                    )
-                  if (targetParentNode) {
-                    const originCopyComponents =
-                      this.currentCopyComponentNodes.map((node) => {
-                        const layoutInfo = widgetLayoutInfos[node.displayName]
-                        const needCopyComponent = {
-                          ...node,
-                          x: layoutInfo.layoutInfo.x,
-                          y: layoutInfo.layoutInfo.y,
-                          w: layoutInfo.layoutInfo.w,
-                          h: layoutInfo.layoutInfo.h,
-                        }
-                        if (needCopyComponent.type === "MODAL_WIDGET") {
-                          const targetNodeParentNode = searchDSLByDisplayName(
-                            needCopyComponent.parentNode!,
-                          )
-                          return this.copyComponent(
-                            needCopyComponent,
-                            targetNodeParentNode!,
-                            needCopyComponent.x,
-                            needCopyComponent.y,
-                          )
-                        }
-                        console.log("needCopyComponent", needCopyComponent)
-                        return this.copyComponent(
-                          needCopyComponent,
-                          targetParentNode,
-                          0,
-                          0,
-                        )
-                      })
-                    doPaste(
-                      originCopyComponents,
-                      this.copiedColumnNumber,
-                      columnNumber,
-                      sources,
-                    )
-                  }
-
-                  return
-                }
                 if (targetNode && targetNode.parentNode) {
                   const columnNumber =
                     getCurrentSectionColumnNumberByChildDisplayName(
                       targetNode.displayName,
                     )
-                  const targetParentNode = searchDSLByDisplayName(
-                    targetNode.parentNode,
-                  )
-                  if (targetParentNode) {
-                    let leftTopX = Number.MAX_SAFE_INTEGER
-                    let leftTopY = Number.MAX_SAFE_INTEGER
-                    this.currentCopyComponentNodes.forEach((node) => {
-                      leftTopX = Math.min(leftTopX, node.x)
-                      leftTopY = Math.min(leftTopY, node.y)
-                    })
-
-                    const originCopyComponents =
-                      this.currentCopyComponentNodes.map((node) => {
-                        const layoutInfo = widgetLayoutInfos[node.displayName]
-                        const needCopyComponent = {
-                          ...node,
-                          x: layoutInfo.layoutInfo.x,
-                          y: layoutInfo.layoutInfo.y,
-                          w: layoutInfo.layoutInfo.w,
-                          h: layoutInfo.layoutInfo.h,
-                        }
-                        if (needCopyComponent.type === "MODAL_WIDGET") {
-                          const targetNodeParentNode = searchDSLByDisplayName(
-                            needCopyComponent.parentNode!,
-                          )
-                          return this.copyComponent(
-                            needCopyComponent,
-                            targetNodeParentNode!,
-                            needCopyComponent.x,
-                            needCopyComponent.y,
-                          )
-                        }
-                        return this.copyComponent(
-                          needCopyComponent,
-                          targetParentNode,
-                          targetNode!.x + needCopyComponent.x - leftTopX,
-                          targetNode!.y +
-                            targetNode!.h +
-                            needCopyComponent.y -
-                            leftTopY,
+                  switch (targetNode.type) {
+                    case "FORM_WIDGET":
+                    case "MODAL_WIDGET": {
+                      const targetParentNode = searchDSLByDisplayName(
+                        targetNode.childrenNode[1].displayName,
+                      )
+                      if (targetParentNode) {
+                        let prevY = 0
+                        copyResult.push(
+                          ...needCopyOtherComponents.map((node) => {
+                            const newNode = this.copyComponent(
+                              node,
+                              targetParentNode,
+                              0,
+                              prevY,
+                            )
+                            prevY += node.h
+                            return newNode
+                          }),
                         )
-                      })
-                    doPaste(
-                      originCopyComponents,
-                      this.copiedColumnNumber,
-                      columnNumber,
-                      sources,
-                    )
+                      }
+                      break
+                    }
+                    case "CONTAINER_WIDGET": {
+                      const executionTree = getExecution(
+                        store.getState(),
+                      ).result
+                      const { currentIndex } =
+                        executionTree[targetNode.displayName]
+                      const targetParentNode = searchDSLByDisplayName(
+                        targetNode.childrenNode[currentIndex].displayName,
+                      )
+                      if (targetParentNode) {
+                        let prevY = 0
+                        copyResult.push(
+                          ...needCopyOtherComponents.map((node) => {
+                            const newNode = this.copyComponent(
+                              node,
+                              targetParentNode,
+                              0,
+                              prevY,
+                            )
+                            prevY += node.h
+                            return newNode
+                          }),
+                        )
+                      }
+                      break
+                    }
+                    case "LIST_WIDGET": {
+                      const targetParentNode = searchDSLByDisplayName(
+                        targetNode.childrenNode[0].displayName,
+                      )
+                      if (targetParentNode) {
+                        let prevY = 0
+                        copyResult.push(
+                          ...needCopyOtherComponents.map((node) => {
+                            const newNode = this.copyComponent(
+                              node,
+                              targetParentNode,
+                              0,
+                              prevY,
+                            )
+                            prevY += node.h
+                            return newNode
+                          }),
+                        )
+                      }
+                      break
+                    }
+                    default: {
+                      const targetParentNode = searchDSLByDisplayName(
+                        targetNode.parentNode,
+                      )
+                      if (targetParentNode) {
+                        let leftTopX = Number.MAX_SAFE_INTEGER
+                        let leftTopY = Number.MAX_SAFE_INTEGER
+                        needCopyOtherComponents.forEach((node) => {
+                          leftTopX = Math.min(leftTopX, node.x)
+                          leftTopY = Math.min(leftTopY, node.y)
+                        })
+                        copyResult.push(
+                          ...needCopyOtherComponents.map((node) => {
+                            return this.copyComponent(
+                              node,
+                              targetParentNode,
+                              targetNode!.x + node.x - leftTopX,
+                              targetNode!.y + targetNode!.h + node.y - leftTopY,
+                            )
+                          }),
+                        )
+                      }
+                    }
                   }
+                  doPaste(
+                    copyResult,
+                    this.copiedColumnNumber,
+                    columnNumber,
+                    sources,
+                  )
                 } else {
                   message.normal({
                     content: i18n.t("frame.paste_no_aimed"),
