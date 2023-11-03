@@ -3766,6 +3766,9 @@
         "create_folder": "Neuen Ordner erstellen",
         "cancel": "Abbrechen",
         "file_upload": "Hochladen"
+      },
+      "select": {
+        "confirm_button": "Auswählen"
       }
     }
   },
