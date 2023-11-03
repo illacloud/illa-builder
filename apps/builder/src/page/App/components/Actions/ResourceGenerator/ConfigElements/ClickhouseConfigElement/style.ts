@@ -1,40 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
-
-export const footerStyle = css`
-  height: 80px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`
-
-export const labelContainer = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  min-width: 176px;
-`
-
-export const configItem = css`
-  display: flex;
-  min-height: 48px;
-  align-items: center;
-  flex-direction: row;
-`
-
-export const divider = css`
-  height: 16px;
-`
-
-export const hostInputContainer = css`
-  display: flex;
-  margin-left: 16px;
-  margin-right: 24px;
-  flex-direction: row;
-  width: 100%;
-`
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export function applyConfigItemLabelText(
   color: string,
@@ -53,34 +18,6 @@ export function applyConfigItemLabelText(
     ${marginLeft};
   `
 }
-
-export const configItemTip = css`
-  font-size: 14px;
-  margin-left: 192px;
-  padding-bottom: 6px;
-  color: ${getColor("grayBlue", "04")};
-`
-
-export const connectTypeStyle = css`
-  font-size: 14px;
-  color: ${getColor("grayBlue", "02")};
-  margin-left: 16px;
-`
-
-export const sslStyle = css`
-  font-size: 14px;
-  color: ${getColor("grayBlue", "02")};
-  margin-left: 8px;
-`
-
-export const optionLabelStyle = css`
-  height: 38px;
-  display: flex;
-  font-size: 14px;
-  color: ${getColor("grayBlue", "04")};
-  align-items: center;
-  padding-left: 24px;
-`
 
 export const errorMsgStyle: SerializedStyles = css`
   position: relative;

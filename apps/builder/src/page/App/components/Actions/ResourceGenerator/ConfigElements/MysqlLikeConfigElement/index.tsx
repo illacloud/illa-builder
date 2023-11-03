@@ -4,22 +4,13 @@ import { FC, useMemo } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  Divider,
-  Input,
-  PreviousIcon,
-  getColor,
-} from "@illa-design/react"
+import { Alert, Button, Divider, Input, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItem,
   configItemTip,
   connectType,
   connectTypeStyle,
-  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -33,8 +24,6 @@ import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { handleLinkOpen } from "@/utils/navigate"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { container } from "../style"
 import { MysqlLikeConfigElementProps } from "./interface"
 
@@ -100,7 +89,7 @@ function parseDatabaseConnectionString(
 }
 
 const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
-  const { onBack, resourceType, resourceID, hasFooter = true } = props
+  const { resourceType, resourceID } = props
 
   const { t } = useTranslation()
   const { control, setValue, watch } = useFormContext()
@@ -406,23 +395,6 @@ const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (props) => {
           </>
         )}
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType={resourceType} />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

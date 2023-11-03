@@ -3,18 +3,12 @@ import { FC } from "react"
 import { useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  FileDefaultIcon,
-  PreviousIcon,
-} from "@illa-design/react"
+import { FileDefaultIcon } from "@illa-design/react"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   docContainerStyle,
   docItemStyle,
   docsItemContainerStyle,
-  footerStyle,
   labelContainer,
   labelStyle,
   tipsStyle,
@@ -23,12 +17,11 @@ import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 const HuggingFaceConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { onBack, resourceID, hasFooter = true } = props
+  const { resourceID } = props
   const { t } = useTranslation()
 
   const { control } = useFormContext()
@@ -113,22 +106,6 @@ const HuggingFaceConfigElement: FC<BaseConfigElementProps> = (props) => {
           tipsStyle={tipsStyle}
         />
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

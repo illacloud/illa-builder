@@ -3,14 +3,7 @@ import { FC } from "react"
 import { useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  PreviousIcon,
-  WarningCircleIcon,
-  getColor,
-} from "@illa-design/react"
+import { Divider, WarningCircleIcon, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItemTip,
@@ -18,7 +11,6 @@ import {
   connectTypeStyle,
   errorIconStyle,
   errorMsgStyle,
-  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -29,13 +21,11 @@ import {
 } from "@/redux/resource/couchdbResource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 const CouchDBConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { resourceID, onBack, hasFooter = true } = props
+  const { resourceID } = props
   const { t } = useTranslation()
   const { control, formState } = useFormContext()
   const resource = useSelector((state: RootState) => {
@@ -176,23 +166,6 @@ const CouchDBConfigElement: FC<BaseConfigElementProps> = (props) => {
           contentLabel={t("editor.action.form.option.couchdb.ssl")}
         />
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="couchdb" />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }
