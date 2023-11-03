@@ -3766,6 +3766,9 @@
         "create_folder": "Skapa ny mapp",
         "cancel": "Avbryt",
         "file_upload": "Ladda upp"
+      },
+      "select": {
+        "confirm_button": "Välj"
       }
     }
   },
