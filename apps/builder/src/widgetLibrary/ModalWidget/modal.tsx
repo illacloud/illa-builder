@@ -120,7 +120,6 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   const isEditMode = useSelector(getIsILLAEditMode)
 
   const handleUpdateHeight = useCallback((_height: number) => {
-    // console.log("height", height)
     // TODO: auto height
   }, [])
 

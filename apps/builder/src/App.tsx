@@ -4,6 +4,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
 } from "@illa-public/mixpanel-utils"
+import { px2Rem } from "@illa-public/styleis-plugin"
 import { UpgradeModalGroup } from "@illa-public/upgrade-modal"
 import { getCurrentTranslateLanguage } from "@illa-public/user-data"
 import { useEffect, useMemo } from "react"
@@ -26,7 +27,6 @@ import {
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { ILLARoute } from "@/router"
-import { px2Rem } from "@/utils/stylis-plugin/px2rem"
 import { globalStyle } from "./style"
 import { track } from "./utils/mixpanelHelper"
 

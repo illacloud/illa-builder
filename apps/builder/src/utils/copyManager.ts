@@ -1,5 +1,6 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import i18n from "i18next"
+import { cloneDeep, set } from "lodash"
 import { createMessage } from "@illa-design/react"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
@@ -17,6 +18,8 @@ import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/e
 import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getActionMixedList } from "../redux/currentApp/action/actionSelector"
+import { copyWidgetHelper } from "./changeDisplayNameHelper"
 import { getCurrentSectionColumnNumberByChildDisplayName } from "./componentNode/search"
 import { trackInEditor } from "./mixpanelHelper"
 
@@ -59,8 +62,16 @@ export class CopyManager {
 
   static currentCopyAction: ActionItem<ActionContent> | null = null
 
-  static copyAction(action: ActionItem<ActionContent>) {
-    this.currentCopyAction = action
+  static copyActionByActionID(actionID: string) {
+    const actionList = getActionMixedList(store.getState())
+    const targetAction = actionList.find((item) => {
+      return item.actionID === actionID
+    })
+    if (targetAction) {
+      this.currentCopyAction = targetAction
+    } else {
+      this.currentCopyAction = null
+    }
   }
 
   static copyComponentNodeByDisplayName(displayNames: string[]) {
@@ -76,17 +87,6 @@ export class CopyManager {
     }
   }
 
-  static copyComponentNode(node: ComponentNode[]) {
-    this.currentCopyComponentNodes = node
-    if (node.length > 0) {
-      const widgetLayoutInfos = getExecutionWidgetLayoutInfo(store.getState())
-      illaSnapshot.setSnapshot(widgetLayoutInfos)
-      const copiedColumnNumber =
-        getCurrentSectionColumnNumberByChildDisplayName(node[0].displayName)
-      this.copiedColumnNumber = copiedColumnNumber
-    }
-  }
-
   static paste(sources: "keyboard" | "duplicate") {
     const widgetLayoutInfos = getExecutionWidgetLayoutInfo(store.getState())
     illaSnapshot.setSnapshot(widgetLayoutInfos)
@@ -98,31 +98,6 @@ export class CopyManager {
         }
         break
       case "data_component":
-        if (this.currentCopyComponentNodes != null) {
-          const originCopyComponents = this.currentCopyComponentNodes
-            .filter((node) => {
-              return node.parentNode && searchDSLByDisplayName(node.parentNode)
-            })
-            .map((node) => {
-              const parentNode = searchDSLByDisplayName(node.parentNode!!)!!
-              return this.copyComponent(
-                node,
-                parentNode,
-                node.x,
-                node.y + node.h,
-              )
-            })
-          const columnNumber = getCurrentSectionColumnNumberByChildDisplayName(
-            originCopyComponents[0].displayName,
-          )
-          doPaste(
-            originCopyComponents,
-            this.copiedColumnNumber,
-            columnNumber,
-            sources,
-          )
-        }
-        break
       case "canvas":
         if (this.currentCopyComponentNodes != null) {
           const clickPosition = FocusManager.getClickPosition()
@@ -132,6 +107,40 @@ export class CopyManager {
                 const targetNode = searchDSLByDisplayName(
                   clickPosition.displayName,
                 )
+                if (targetNode?.type === "MODAL_WIDGET") {
+                  const targetParentNode = searchDSLByDisplayName(
+                    targetNode.childrenNode[1].displayName,
+                  )
+                  const columnNumber =
+                    getCurrentSectionColumnNumberByChildDisplayName(
+                      targetNode.displayName,
+                    )
+                  if (targetParentNode) {
+                    const originCopyComponents =
+                      this.currentCopyComponentNodes.map((node) => {
+                        if (node.type === "MODAL_WIDGET") {
+                          const targetNodeParentNode = searchDSLByDisplayName(
+                            node.parentNode!,
+                          )
+                          return this.copyComponent(
+                            node,
+                            targetNodeParentNode!,
+                            node.x,
+                            node.y,
+                          )
+                        }
+                        return this.copyComponent(node, targetParentNode, 0, 0)
+                      })
+                    doPaste(
+                      originCopyComponents,
+                      this.copiedColumnNumber,
+                      columnNumber,
+                      sources,
+                    )
+                  }
+
+                  return
+                }
                 if (targetNode && targetNode.parentNode) {
                   const columnNumber =
                     getCurrentSectionColumnNumberByChildDisplayName(
@@ -310,18 +319,31 @@ export class CopyManager {
     rawX: number,
     rawY: number,
   ): ComponentNode {
-    const newNode = {
+    const newDisplayName = DisplayNameGenerator.generateDisplayName(
+      node.type,
+      node.showName,
+    )
+
+    const updatePathsMapValue = copyWidgetHelper(
+      node.displayName,
+      newDisplayName,
+    )
+
+    const newNode = cloneDeep({
       ...node,
-      displayName: DisplayNameGenerator.generateDisplayName(
-        node.type,
-        node.showName,
-      ),
+      props: node.props ?? {},
+      displayName: newDisplayName,
       x: rawX,
       y: rawY,
       w: node.w,
       h: node.h,
       parentNode: newParentNode.displayName,
-    } as ComponentNode
+    } as ComponentNode)
+
+    Object.keys(updatePathsMapValue).forEach((key) => {
+      set(newNode, `props.${key}`, updatePathsMapValue[key])
+    })
+
     if (Array.isArray(node.childrenNode)) {
       newNode.childrenNode = node.childrenNode.map((n) =>
         this.copyComponent(n, newNode, n.x, n.y),

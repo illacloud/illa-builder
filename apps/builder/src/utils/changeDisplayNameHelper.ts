@@ -1,6 +1,11 @@
 import { get, toPath } from "lodash"
 import { UpdateActionSlicePropsPayload } from "@/redux/currentApp/action/actionState"
 import { UpdateComponentSlicePropsPayload } from "@/redux/currentApp/components/componentsPayload"
+import {
+  getInDependenciesMap,
+  getRawTree,
+} from "../redux/currentApp/executionTree/executionSelector"
+import store from "../store"
 import { hasDynamicStringSnippet } from "./evaluateDynamicString/utils"
 import {
   convertPathToString,
@@ -34,7 +39,6 @@ export const changeDisplayNameHelper = (
         finalUsedPathArray.splice(0, 1, displayName)
         const finalUsedPath = convertPathToString(finalUsedPathArray)
         const maybeDynamicStringValue = get(seeds, finalUsedPath)
-
         if (hasDynamicStringSnippet(maybeDynamicStringValue)) {
           const newDynamicStringValue = maybeDynamicStringValue.replace(
             oldDisplayName,
@@ -65,4 +69,37 @@ export const changeDisplayNameHelper = (
   })
 
   return { updateWidgetSlice, updateActionSlice }
+}
+
+export const copyWidgetHelper = (
+  oldDisplayName: string,
+  newDisplayName: string,
+) => {
+  const rootState = store.getState()
+  const independenciesMap = getInDependenciesMap(rootState)
+  const seeds = getRawTree(rootState)
+  const updatePathsMapValue: Record<string, unknown> = {}
+  Object.keys(independenciesMap).forEach((inDepPath) => {
+    const usedPaths = independenciesMap[inDepPath]
+    usedPaths.forEach((usedPath) => {
+      const usedPathArray = toPath(usedPath)
+      const displayName = usedPathArray[0]
+      if (displayName !== oldDisplayName) {
+        return
+      }
+      const finalUsedPathArray = [...usedPathArray]
+      const finalUsedPath = convertPathToString(finalUsedPathArray)
+      const maybeDynamicStringValue = get(seeds, finalUsedPath)
+      if (hasDynamicStringSnippet(maybeDynamicStringValue)) {
+        const newDynamicStringValue = maybeDynamicStringValue.replace(
+          oldDisplayName,
+          newDisplayName,
+        )
+        const propsPath = convertPathToString(usedPathArray.slice(1))
+        updatePathsMapValue[propsPath] = newDynamicStringValue
+      }
+    })
+  })
+
+  return updatePathsMapValue
 }
