@@ -1,4 +1,4 @@
-import { ResourceType } from "@illa-public/public-types"
+import { AccessType, ResourceType } from "@illa-public/public-types"
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
@@ -26,6 +26,8 @@ import {
   fetchDeleteAction,
 } from "@/services/action"
 import {
+  getOAuthAccessToken,
+  redirectToGoogleOAuth,
   requestCreateResource,
   requestUpdateResource,
 } from "@/services/resource"
@@ -418,6 +420,24 @@ export function onActionConfigElementSubmit(
 ) {
   const isUpdate = resourceID != undefined
 
+  const googleAuthMethod = async (
+    resourceID: string,
+    accessType: AccessType,
+  ) => {
+    const response = await getOAuthAccessToken(
+      resourceID,
+      `${window.location.origin}${location.pathname}`,
+      accessType,
+    )
+    const { accessToken } = response.data
+    if (accessToken) {
+      const res = await redirectToGoogleOAuth(resourceID, accessToken)
+      if (res.data.url) {
+        window.location.assign(res.data.url)
+      }
+    }
+  }
+
   return handleSubmit(async (data: FieldValues) => {
     let content
     try {
@@ -439,10 +459,16 @@ export function onActionConfigElementSubmit(
       if (isUpdate) {
         const response = await requestUpdateResource(resourceID, requestData)
         store.dispatch(resourceActions.updateResourceItemReducer(response.data))
+        if (resourceType === "googlesheets") {
+          googleAuthMethod(response.data.resourceID, data.accessType)
+        }
         finishedHandler(response.data.resourceID)
       } else {
         const response = await requestCreateResource(requestData)
         store.dispatch(resourceActions.addResourceItemReducer(response.data))
+        if (resourceType === "googlesheets") {
+          googleAuthMethod(response.data.resourceID, data.accessType)
+        }
         finishedHandler(response.data.resourceID)
       }
       message.success({

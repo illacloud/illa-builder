@@ -136,7 +136,8 @@ Once illa-builder-backend services are running, you can utilize several commands
 - `pnpm build-self` creates a self-host production version for the illa-builder frontend repository.
 - `pnpm lint` checks the code style.
 - `pnpm format` format your code with prettier
-- `pnpm dev` preview in real time while coding
+- `pnpm dev` preview in real time while coding with cloud version
+- `pnpm dev:self` preview in real time while coding with self-host version
 - `pnpm build-cloud` creates a cloud production version with illa-builder.
 
 For more information on contributing to illa-builder-frontend check out our [Build All-In-One-Image Dockerfile](https://github.com/illacloud/build-all-in-one-image/blob/main/dockerfile).
@@ -161,7 +162,7 @@ Compared to the cloud, you can use ILLA products more securely and reliably, and
 
 Latest version of Node.js LTS and pnpm are installed/ running. Install from links above following instructions.
 
-Clone the illa-builder repository, and run `pnpm install` to fetch its dependencies. Customize your language parameter, i.e. NEXT.js, and create a development workflow environment; input the following to `apps/builder/.env.development.local`
+Clone the illa-builder repository, and run `pnpm install` to fetch its dependencies. Customize your language parameter, i.e. NEXT.js, and create a development workflow environment; input the following to `apps/builder/.env.development.local` And `apps/cloud/.env.development.local`
 
 ```
 ILLA_API_BASE_URL=localhost:<PORT>  # this is your backend address, if this is not present, it will use the default backend address, location.origin, update <PORT> to port number
@@ -169,6 +170,8 @@ ILLA_INSTANCE_ID=SELF_HOST_CLOUD
 ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=development
 ILLA_USE_HTTPS=false
+ILLA_BUILDER_URL=http://localhost:3000
+ILLA_CLOUD_URL=http://localhost:5173
 ```
 
 

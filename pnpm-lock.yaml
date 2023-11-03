@@ -235,6 +235,9 @@ importers:
       '@illa-public/sso-module':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/SSOModule
+      '@illa-public/styleis-plugin':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/styleis-plugin
       '@illa-public/text-link':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/TextLink
@@ -442,9 +445,6 @@ importers:
       streamsaver:
         specifier: ^2.0.6
         version: 2.0.6
-      stylis:
-        specifier: ^4.1.3
-        version: 4.1.3
       tern:
         specifier: ^0.24.3
         version: 0.24.3
@@ -518,9 +518,6 @@ importers:
       '@types/streamsaver':
         specifier: ^2.0.1
         version: 2.0.1
-      '@types/stylis':
-        specifier: ^4.0.2
-        version: 4.0.2
       '@types/tern':
         specifier: ^0.23.5
         version: 0.23.5
@@ -617,6 +614,9 @@ importers:
       '@illa-public/sso-module':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/SSOModule
+      '@illa-public/styleis-plugin':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/styleis-plugin
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/UserData
@@ -647,9 +647,6 @@ importers:
       react-hook-form:
         specifier: ^7.40.0
         version: 7.43.1(react@18.2.0)
-      stylis:
-        specifier: ^4.1.3
-        version: 4.2.0
       swr:
         specifier: ^2.2.4
         version: 2.2.4(react@18.2.0)
@@ -660,9 +657,6 @@ importers:
       '@types/lodash':
         specifier: ^4.14.194
         version: 4.14.199
-      '@types/stylis':
-        specifier: ^4.0.2
-        version: 4.0.2
       '@types/uuid':
         specifier: ^9.0.0
         version: 9.0.5
@@ -7089,7 +7083,6 @@ packages:
 
   /@types/prop-types@15.7.9:
     resolution: {integrity: sha512-n1yyPsugYNSmHgxDFjicaI2+gCNjsBck8UX9kuofAKlc0h1bL+20oSF72KeNaW2DUlesbEVCFgyV2dPGTiY42g==}
-    dev: false
 
   /@types/qs@6.9.8:
     resolution: {integrity: sha512-u95svzDlTysU5xecFNTgfFG5RUWu1A9P0VzgpcIiGZA9iraHOdSzcxMxQ55DyeRaGCSxQi7LxXDI4rzq/MYfdg==}
@@ -7157,7 +7150,7 @@ packages:
   /@types/react@18.2.22:
     resolution: {integrity: sha512-60fLTOLqzarLED2O3UQImc/lsNRgG0jE/a1mPW9KjMemY0LMITWEsbS4VvZ4p6rorEHd5YKxxmMKSDK505GHpA==}
     dependencies:
-      '@types/prop-types': 15.7.5
+      '@types/prop-types': 15.7.9
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
 
@@ -8235,7 +8228,7 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.2
       cosmiconfig: 7.1.0
       resolve: 1.22.2
 
@@ -14704,7 +14697,7 @@ packages:
   /rtl-css-js@1.16.1:
     resolution: {integrity: sha512-lRQgou1mu19e+Ya0LsTvKrVJ5TYUbqCVPAiImX3UfLTenarvPUl1QFdvu5Z3PYmHT9RCcwIfbjRQBntExyj3Zg==}
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.2
     dev: false
 
   /run-async@2.4.1:
@@ -15301,10 +15294,6 @@ packages:
       shallowequal: 1.1.0
       stylis: 4.3.0
       tslib: 2.6.2
-    dev: false
-
-  /stylis@4.1.3:
-    resolution: {integrity: sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==}
     dev: false
 
   /stylis@4.2.0:

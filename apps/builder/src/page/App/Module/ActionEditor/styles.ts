@@ -67,15 +67,6 @@ export const connectTypeStyle = css`
   margin-left: 16px;
 `
 
-export const footerStyle = css`
-  height: 80px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`
-
 export function applyConfigItemLabelText(
   color: string,
   margin?: boolean,

@@ -4,15 +4,7 @@ import { FC, useCallback, useState } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  Divider,
-  PreviousIcon,
-  WarningCircleIcon,
-  getColor,
-} from "@illa-design/react"
+import { Alert, Divider, WarningCircleIcon, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItemTip,
@@ -20,7 +12,6 @@ import {
   connectTypeStyle,
   errorIconStyle,
   errorMsgStyle,
-  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -33,13 +24,11 @@ import {
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 const MicrosoftSqlConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { onBack, resourceID, hasFooter = true } = props
+  const { resourceID } = props
   const { t } = useTranslation()
 
   const { control, formState, watch } = useFormContext()
@@ -315,23 +304,6 @@ const MicrosoftSqlConfigElement: FC<BaseConfigElementProps> = (props) => {
           </>
         )}
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="mssql" />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

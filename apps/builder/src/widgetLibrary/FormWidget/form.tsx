@@ -71,25 +71,6 @@ function getLikeInputChildrenNode(
   }
 }
 
-// function getAllChildrenNode(
-//   componentNode: ComponentNode,
-//   displayNames: string[],
-// ) {
-//   if (componentNode.containerType !== "EDITOR_DOT_PANEL") {
-//     displayNames.push(componentNode.displayName)
-//     if (Array.isArray(componentNode.childrenNode)) {
-//       componentNode.childrenNode.forEach((node) => {
-//         getAllChildrenNode(node, displayNames)
-//       })
-//     }
-//   } else {
-//     if (Array.isArray(componentNode.childrenNode)) {
-//       componentNode.childrenNode.forEach((node) => {
-//         getAllChildrenNode(node, displayNames)
-//       })
-//     }
-//   }
-// }
 interface DragCollection {
   isDraggingActive: boolean
 }

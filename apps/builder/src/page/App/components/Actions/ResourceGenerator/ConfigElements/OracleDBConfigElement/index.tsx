@@ -4,15 +4,7 @@ import { FC, useCallback, useState } from "react"
 import { useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  Divider,
-  PreviousIcon,
-  WarningCircleIcon,
-  getColor,
-} from "@illa-design/react"
+import { Alert, Divider, WarningCircleIcon, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItemTip,
@@ -20,7 +12,6 @@ import {
   connectTypeStyle,
   errorIconStyle,
   errorMsgStyle,
-  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -32,13 +23,11 @@ import {
 } from "@/redux/resource/oracleResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { container } from "../style"
 import { OracleDBConfigElementProps } from "./interface"
 
 const OracleDBConfigElement: FC<OracleDBConfigElementProps> = (props) => {
-  const { resourceID, onBack, hasFooter = true, resourceType } = props
+  const { resourceID } = props
   const { t } = useTranslation()
   const { control, formState } = useFormContext()
 
@@ -243,23 +232,6 @@ const OracleDBConfigElement: FC<OracleDBConfigElementProps> = (props) => {
           contentLabel={t("editor.action.form.option.oracle.ssl")}
         />
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType={resourceType} />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

@@ -3,6 +3,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { ResourceType } from "@illa-public/public-types"
 import { ResourceTypeSelector } from "@illa-public/resource-generator"
 import { FC, useCallback, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -26,7 +27,6 @@ import {
 } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { fetchCreateAction } from "@/services/action"
-import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { INIT_ACTION_ADVANCED_CONFIG } from "../AdvancedPanel/constant"
 import { ResourceCreator } from "../ResourceGenerator/ResourceCreator"
@@ -56,10 +56,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const allResource = useSelector(getAllResources)
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const { track } = useContext(MixpanelTrackContext)
-
-  const transformResource = currentActionType
-    ? getResourceTypeFromActionType(currentActionType)
-    : null
 
   useEffect(() => {
     if (currentStep === "createAction") {
@@ -188,13 +184,13 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         ILLA_MIXPANEL_EVENT_TYPE.CLICK,
         {
           element: "resource_configure_back",
-          parameter5: transformResource,
+          parameter5: currentActionType,
         },
         "both",
       )
       setCurrentStep(page)
     },
-    [track, transformResource],
+    [track, currentActionType],
   )
 
   const handleCancelModal = useCallback(() => {
@@ -206,14 +202,14 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       ILLA_MIXPANEL_EVENT_TYPE.CLICK,
       {
         element,
-        parameter5: transformResource,
+        parameter5: currentActionType,
       },
       "both",
     )
     onClose()
     setCurrentStep("select")
     setCurrentActionType(null)
-  }, [currentStep, onClose, track, transformResource])
+  }, [currentStep, onClose, track, currentActionType])
 
   const handleActionTypeSelect = useCallback(
     (actionType: ActionType) => {
@@ -243,7 +239,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         ILLA_MIXPANEL_EVENT_TYPE.CLICK,
         {
           element: "resource_configure_save",
-          parameter5: transformResource,
+          parameter5: currentActionType,
         },
         "both",
       )
@@ -253,20 +249,20 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         onClose()
       })
     },
-    [handleDirectCreateAction, onClose, track, transformResource],
+    [handleDirectCreateAction, onClose, track, currentActionType],
   )
   useEffect(() => {
-    if (currentStep === "createResource" && transformResource && visible) {
+    if (currentStep === "createResource" && currentActionType && visible) {
       track?.(
         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
         {
           element: "resource_configure_modal",
-          parameter5: transformResource,
+          parameter5: currentActionType,
         },
         "both",
       )
     }
-  }, [currentStep, track, transformResource, visible])
+  }, [currentStep, track, currentActionType, visible])
 
   useEffect(() => {
     if (currentStep === "select" && visible) {
@@ -274,12 +270,12 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
         {
           element: "resource_type_modal",
-          parameter5: transformResource,
+          parameter5: currentActionType,
         },
         "both",
       )
     }
-  }, [currentStep, track, currentActionType, visible, transformResource])
+  }, [currentStep, track, currentActionType, visible])
 
   const isMaskClosable = currentStep !== "createResource"
 
@@ -343,9 +339,9 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
               />
             </>
           ))}
-        {currentStep === "createResource" && transformResource && (
+        {currentStep === "createResource" && currentActionType && (
           <ResourceCreator
-            resourceType={transformResource}
+            resourceType={currentActionType as ResourceType}
             onBack={handleBack}
             onFinished={handleFinishCreateNewResource}
           />

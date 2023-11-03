@@ -17,9 +17,10 @@ export const ContainerEmptyState: FC<{
   const paddings = getPaddingShape(containerPadding)
 
   const paddingTopBottom = paddings.paddingTop + paddings.paddingBottom
+
   useEffect(() => {
     if (handleUpdateHeight) {
-      handleUpdateHeight(14 * UNIT_HEIGHT + paddingTopBottom)
+      handleUpdateHeight(13 * UNIT_HEIGHT + paddingTopBottom)
     }
   }, [handleUpdateHeight, paddingTopBottom])
 
