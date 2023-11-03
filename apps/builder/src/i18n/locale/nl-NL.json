@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Stel in of de verzendknop moet worden verborgen",
           "submit_button_full_w": "Stel in of de verzendknop volledige breedte heeft.",
           "submit_button_text": "Stel de tekst van de verzendknop in"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Een getal tussen 0 en 1"
@@ -3111,7 +3115,9 @@
       "right": "Rechterkant",
       "select_options": {
         "manual": "Handleiding",
-        "mapped": "Toegewezen"
+        "mapped": "Toegewezen",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Bovenkant"
     },
