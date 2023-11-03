@@ -3766,6 +3766,9 @@
         "create_folder": "新建文件夹",
         "cancel": "取消",
         "file_upload": "上传"
+      },
+      "select": {
+        "confirm_button": "选择"
       }
     }
   },
