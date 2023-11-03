@@ -3733,7 +3733,7 @@
       "start_download": "Zahájit stahování",
       "create_suc": "Úspěšně vytvořeno",
       "create_failed": "Vytvoření se nezdařilo",
-      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+      "generate_url_fail": "Generování URL se nezdařilo. Vyberte soubor ručně. "
     },
     "create_modal": {
       "title": {
@@ -3754,12 +3754,12 @@
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
-        "upload_to": "Upload to",
+        "title": "Vyberte složku k nahrání",
+        "upload_to": "Nahrát do",
         "all": "Root",
-        "create_folder": "Create new folder",
-        "cancel": "Cancel",
-        "file_upload": "Upload"
+        "create_folder": "Vytvořit novou složku",
+        "cancel": "Zrušit",
+        "file_upload": "Nahrát"
       }
     }
   },
@@ -4483,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Podívejte se na tento úžasný AI agenta [{{promptName}}]",
-        "linkedin": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
-        "facebook": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
-        "whatsapp": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
         "hackernews": "Zjednodušit pracovní zatížení pomocí [{{promptName}}] - AI agenta, který práci dokončil"
-      },
-      "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
+      }
     },
     "button": {
       "share_contribute": "Kopírovat a sdílet",
