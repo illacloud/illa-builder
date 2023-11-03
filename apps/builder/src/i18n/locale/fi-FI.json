@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan",
           "page": "Oletussivun indeksi",
           "export_all_data_setting": "Vie kaikki",
-          "locale": "Lokaatio"
+          "locale": "Lokaatio",
+          "column_field": "Sarakkeen kenttä"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Käytetään rivin korkeuden määrittämiseen tai ei. ",
           "refresh_setting": "Käytetään määritettäessä, näyttääkö virkistävä kuvake",
           "export_raw_data_setting": "Käytetään määritettäessä, onko käyttäjät sallittuja viemään suodattamatonta raakatietoa.",
-          "locale": "Esimerkiksi fi-FI"
+          "locale": "Esimerkiksi fi-FI",
+          "column_field": "Käytetään sarakkeen asettamiseen"
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {

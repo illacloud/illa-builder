@@ -21,7 +21,6 @@ import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSele
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
-  getSelectedComponentNode,
   searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
@@ -46,7 +45,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const isEditMode = useSelector(getIsILLAEditMode)
   const currentSelectedComponent = useSelector(getSelectedComponentDisplayNames)
-  const currentSelectedComponentNode = useSelector(getSelectedComponentNode)
   const currentSelectedAction = useSelector(getSelectedAction)
   const canvasRootNode = useSelector(getCanvas)
   const executionResult = useSelector(getExecutionResult)
@@ -260,7 +258,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [canvasRootNode, dispatch, executionResult])
 
-  const copySomethingHandler = useCallback(() => {
+  const copySomethingHandler = () => {
     switch (FocusManager.getFocus()) {
       case "data_page":
         break
@@ -272,15 +270,15 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       case "data_component":
         if (
           currentSelectedComponent != null &&
-          currentSelectedComponentNode.length > 0
+          currentSelectedComponent.length > 0
         ) {
-          CopyManager.copyComponentNode(currentSelectedComponentNode)
+          CopyManager.copyComponentNodeByDisplayName(currentSelectedComponent)
         }
         break
       case "data_action":
       case "action":
         if (currentSelectedAction != null) {
-          CopyManager.copyAction(currentSelectedAction)
+          CopyManager.copyActionByActionID(currentSelectedAction.actionID)
         }
         break
       case "widget_picker":
@@ -290,13 +288,9 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       case "page_config":
         break
     }
-  }, [
-    currentSelectedAction,
-    currentSelectedComponent,
-    currentSelectedComponentNode,
-  ])
+  }
 
-  const copyAndPasteHandler = useCallback(() => {
+  const copyAndPasteHandler = () => {
     switch (FocusManager.getFocus()) {
       case "data_page":
         break
@@ -308,15 +302,15 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       case "data_component":
         if (
           currentSelectedComponent != null &&
-          currentSelectedComponentNode.length > 0
+          currentSelectedComponent.length > 0
         ) {
-          CopyManager.copyComponentNode(currentSelectedComponentNode)
+          CopyManager.copyComponentNodeByDisplayName(currentSelectedComponent)
         }
         break
       case "data_action":
       case "action":
         if (currentSelectedAction != null) {
-          CopyManager.copyAction(currentSelectedAction)
+          CopyManager.copyActionByActionID(currentSelectedAction.actionID)
         }
         break
       case "widget_picker":
@@ -327,11 +321,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
         break
     }
     CopyManager.paste("keyboard")
-  }, [
-    currentSelectedAction,
-    currentSelectedComponent,
-    currentSelectedComponentNode,
-  ])
+  }
 
   const showDotHandler = useCallback(
     (keyboardEventType: string) => {
@@ -444,6 +434,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     [selectAllBodyComponentsHandler],
   )
+
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+c`,
     (keyboardEvent) => {
