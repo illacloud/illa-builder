@@ -3766,6 +3766,9 @@
         "create_folder": "Opprett ny mappe",
         "cancel": "Avbryt",
         "file_upload": "Last opp"
+      },
+      "select": {
+        "confirm_button": "Velg"
       }
     }
   },
