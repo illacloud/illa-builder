@@ -1,10 +1,12 @@
-import axios from "axios"
-import { ILLARoute } from "@/router"
 import {
   DRIVE_FILE_TYPE,
   GCS_OBJECT_TYPE,
   UPLOAD_FILE_DUPLICATION_HANDLER,
   UPLOAD_FILE_STATUS,
+} from "@illa-public/public-types"
+import axios from "axios"
+import { ILLARoute } from "@/router"
+import {
   fetchFileList,
   fetchGetUploadFileURL,
   fetchUpdateFileStatus,

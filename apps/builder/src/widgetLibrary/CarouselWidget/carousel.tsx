@@ -92,7 +92,7 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
               width="100%"
               css={fullImageStyle}
               onError={() => {
-                sourceLoadErrorHandler(url)
+                sourceLoadErrorHandler?.(url)
               }}
             />
           </div>

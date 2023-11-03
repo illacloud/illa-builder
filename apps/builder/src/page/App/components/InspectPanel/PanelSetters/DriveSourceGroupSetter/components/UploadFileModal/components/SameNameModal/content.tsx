@@ -1,7 +1,7 @@
+import { DUPLICATION_HANDLER } from "@illa-public/public-types"
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/react"
-import { DUPLICATION_HANDLER } from "@/services/drive"
 import { SameNameModalContentProps } from "./interface"
 import { controlContainer } from "./style"
 

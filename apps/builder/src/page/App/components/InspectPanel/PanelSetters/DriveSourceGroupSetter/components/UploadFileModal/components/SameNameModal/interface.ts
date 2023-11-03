@@ -1,4 +1,4 @@
-import { DUPLICATION_HANDLER } from "@/services/drive"
+import { DUPLICATION_HANDLER } from "@illa-public/public-types"
 
 export interface SameNameModalProps {
   sameModalVisible: boolean

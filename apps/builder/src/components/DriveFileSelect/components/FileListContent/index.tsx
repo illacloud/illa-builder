@@ -232,10 +232,10 @@ const FilesModalContent: FC = () => {
           loading={isConfirmLoading}
         >
           {singleSelect
-            ? t("widget.drive_picker.modal.confirm", {
+            ? t("drive.upload.select.confirm_button")
+            : t("widget.drive_picker.modal.confirm", {
                 fileNum: selectItems.length,
-              })
-            : "确定"}
+              })}
         </Button>
       </div>
     </>

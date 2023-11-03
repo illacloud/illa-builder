@@ -1,11 +1,10 @@
+import { DUPLICATION_HANDLER, GCS_OBJECT_TYPE } from "@illa-public/public-types"
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Modal, useMessage } from "@illa-design/react"
 import { Input } from "@illa-design/react"
 import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
 import {
-  DUPLICATION_HANDLER,
-  GCS_OBJECT_TYPE,
   fetchCheckFileExist,
   fetchGCSUploadPresignedURL,
 } from "@/services/drive"

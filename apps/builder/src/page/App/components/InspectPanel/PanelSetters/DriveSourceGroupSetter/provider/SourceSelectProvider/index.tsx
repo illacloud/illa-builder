@@ -3,6 +3,12 @@ import {
   PUBLIC_DRIVE_REQUEST_PREFIX,
 } from "@illa-public/illa-net/constant"
 import {
+  DRIVE_FILE_TYPE,
+  EXPIRATION_TYPE,
+  FILE_CATEGORY,
+  IILLAFileInfo,
+} from "@illa-public/public-types"
+import {
   CollarModalType,
   handleCollaPurchaseError,
 } from "@illa-public/upgrade-modal"
@@ -15,14 +21,7 @@ import {
   PAGESIZE,
   ROOT_PATH,
 } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
-import {
-  DRIVE_FILE_TYPE,
-  EXPIRATION_TYPE,
-  FILE_CATEGORY,
-  IILLAFileInfo,
-  fetchFileList,
-  fetchGenerateTinyUrl,
-} from "@/services/drive"
+import { fetchFileList, fetchGenerateTinyUrl } from "@/services/drive"
 
 interface Props {
   widgetType: string

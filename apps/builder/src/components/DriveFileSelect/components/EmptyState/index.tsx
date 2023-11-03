@@ -1,6 +1,6 @@
+import { FolderIcon } from "@illa-public/icon"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as FolderIcon } from "@/assets/drive/folder.svg"
 import { emptyContainerStyle } from "./style"
 
 const EmptyState: FC = () => {

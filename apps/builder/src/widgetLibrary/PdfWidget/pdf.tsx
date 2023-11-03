@@ -179,7 +179,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
           }}
           onLoadError={(error) => {
             console.error(error)
-            sourceLoadErrorHandler(url)
+            sourceLoadErrorHandler?.(url)
             setLoading(false)
             setError(true)
           }}
