@@ -1,5 +1,6 @@
 import { get } from "lodash"
 import { FC, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import FilesModal from "@/components/DriveFileSelect"
@@ -31,9 +32,17 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
     handleUpdateDsl,
   } = props
 
+  const { t } = useTranslation()
+
   const options = [
-    { label: "URL", value: DRIVE_SOURCE_MODE.URL },
-    { label: "Upload", value: DRIVE_SOURCE_MODE.UPLOAD },
+    {
+      label: t("widget.public.select_options.url"),
+      value: DRIVE_SOURCE_MODE.URL,
+    },
+    {
+      label: t("widget.public.select_options.upload"),
+      value: DRIVE_SOURCE_MODE.UPLOAD,
+    },
   ]
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(

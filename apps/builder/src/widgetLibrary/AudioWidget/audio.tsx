@@ -1,7 +1,16 @@
 import { isBoolean } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import ReactPlayer from "react-player"
 import { Loading, isNumber, isString } from "@illa-design/react"
+import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import {
   audioWrapperStyle,
   fullStyle,
@@ -29,6 +38,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
     } = props
     const [loading, setLoading] = useState(true)
     const [_error, setError] = useState(false)
+    const { sourceLoadErrorHandler } = useContext(MediaSourceLoadContext)
 
     return (
       <>
@@ -66,6 +76,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
           onPause={onPause}
           onEnded={onEnded}
           onError={() => {
+            sourceLoadErrorHandler(url)
             setLoading(false)
             setError(true)
           }}

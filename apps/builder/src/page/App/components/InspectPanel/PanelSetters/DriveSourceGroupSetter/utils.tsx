@@ -9,22 +9,22 @@ export const getUploadModeInfo = (widgetType: string) => {
     case "IMAGE_WIDGET":
     case "CAROUSEL_WIDGET":
       return {
-        name: i18n.t("choose a image"),
+        name: i18n.t("editor.inspect.setter_placeholder.choose_image"),
         icon: <ImageIcon />,
       }
     case "PDF_WIDGET":
       return {
-        name: i18n.t("choose a pdf"),
+        name: i18n.t("editor.inspect.setter_placeholder.choose_pdf"),
         icon: <PdfIcon />,
       }
     case "VIDEO_WIDGET":
       return {
-        name: i18n.t("choose a video"),
+        name: i18n.t("editor.inspect.setter_placeholder.choose_video"),
         icon: <VideoIcon />,
       }
     case "AUDIO_WIDGET":
       return {
-        name: i18n.t("choose a audio"),
+        name: i18n.t("editor.inspect.setter_placeholder.choose_audio"),
         icon: <AudioIcon />,
       }
   }
