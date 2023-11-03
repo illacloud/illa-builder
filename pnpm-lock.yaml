@@ -3448,6 +3448,9 @@ importers:
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../MixpanelUtils
+      '@illa-public/public-configs':
+        specifier: workspace:*
+        version: link:../publicConfig
       '@illa-public/text-link':
         specifier: workspace:*
         version: link:../TextLink
