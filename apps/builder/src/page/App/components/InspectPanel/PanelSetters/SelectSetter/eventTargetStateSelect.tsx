@@ -10,10 +10,12 @@ const EventtargetStateSelect: FC<BaseSelectSetterProps> = (props) => {
   const globalDataResult = useSelector(getGlobalDataExecutionResult)
 
   const finalOptions = useMemo(() => {
-    return Object.keys(globalDataResult).map((key) => ({
-      label: key,
-      value: key,
-    }))
+    return Object.keys(globalDataResult)
+      .filter((key) => !key.startsWith("$"))
+      .map((key) => ({
+        label: key,
+        value: key,
+      }))
   }, [globalDataResult])
 
   const finalValue = useMemo(() => {

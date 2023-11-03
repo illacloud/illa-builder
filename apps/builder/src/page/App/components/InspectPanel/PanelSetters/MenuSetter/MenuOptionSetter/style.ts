@@ -34,6 +34,11 @@ export const optionSubItemStyle = css`
   flex-direction: row;
 `
 
+export const setterSubMenuAllContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+`
+
 export const setterSubMenuContainerStyle = css`
   height: 40px;
   width: 100%;

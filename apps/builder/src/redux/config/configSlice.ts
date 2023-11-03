@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
+  addExpandedWidgetReducer,
   changeSelectedAction,
   clearSelectedComponent,
   minusScale,
   plusScale,
+  removeExpandWidgetReducer,
   removeExpandedKey,
   resetConfig,
   resetSelectedActionReducer,
@@ -49,6 +51,8 @@ const configSlice = createSlice({
     updateWSStatusReducer,
     updateHoveredComponent,
     resetSelectedActionReducer,
+    addExpandedWidgetReducer,
+    removeExpandWidgetReducer,
   },
 })
 

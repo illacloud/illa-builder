@@ -4,13 +4,14 @@ import {
   builderRequest,
 } from "@illa-public/illa-net"
 import { BUILDER_REQUEST_PREFIX } from "@illa-public/illa-net/constant"
+import { ResourceType } from "@illa-public/public-types"
 import { AxiosRequestConfig, Method } from "axios"
 import {
   ActionContent,
   ActionItem,
   ActionType,
 } from "@/redux/currentApp/action/actionState"
-import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
+import { ResourceContent } from "@/redux/resource/resourceState"
 import { getParamsFromIllaRoute } from "@/utils/routerHelper"
 import { getCurrentTeamID, getCurrentTeamIdentifier } from "../utils/team"
 

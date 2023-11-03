@@ -1,19 +1,30 @@
-import { Reorder } from "framer-motion"
-import { get, isEqual, isString } from "lodash"
+import {
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core"
+import {
+  restrictToVerticalAxis,
+  restrictToWindowEdges,
+} from "@dnd-kit/modifiers"
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable"
+import { get, isString } from "lodash"
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { MenuItemProps, MenuItemType, SubMenuProps } from "@illa-design/react"
-import { NewButton } from "@/page/App/components/InspectPanel/PanelSetters/MenuSetter/MenuOptionSetter/newButton"
 import { SetterMenuItem } from "@/page/App/components/InspectPanel/PanelSetters/MenuSetter/MenuOptionSetter/setterMenuItem"
 import { SetterSubMenu } from "@/page/App/components/InspectPanel/PanelSetters/MenuSetter/MenuOptionSetter/setterSubMenu"
-import {
-  menuOptionSetterContainerStyle,
-  optionListHeaderStyle,
-  removeNativeStyle,
-} from "@/page/App/components/InspectPanel/PanelSetters/MenuSetter/MenuOptionSetter/style"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ColumnContainer } from "../../DragMoveComponent/ColumnContainer"
 import { MenuOptionSetterProps } from "./interface"
 
 function getDifferentLabelFromValue(
@@ -47,181 +58,185 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
   const {
     handleUpdateMultiAttrDSL,
     attrName,
+    value,
     childrenSetter,
     widgetDisplayName,
   } = props
 
   const execResult = useSelector(getExecutionResult)
-  const values = get(
+  const executeValue = get(
     execResult,
     `${widgetDisplayName}.${attrName}`,
     [],
   ) as MenuItemType[]
 
-  const { t } = useTranslation()
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  )
 
   return (
-    <div css={menuOptionSetterContainerStyle}>
-      <div css={optionListHeaderStyle}>
-        {t("editor.inspect.setter_content.menu_setter.label", {
-          number: values.length,
-        })}
-        <NewButton
-          title={t("editor.inspect.setter_content.column_setter.new")}
-          onClick={() => {
+    <ColumnContainer
+      attrName={attrName}
+      value={value}
+      handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+      items={value.map((item) => item.id!)}
+      columnNum={value.length}
+      onClickNew={() => {
+        handleUpdateMultiAttrDSL?.({
+          [attrName]: [
+            ...value,
+            {
+              id: v4(),
+              label: getDifferentLabelFromValue(value, "Menu "),
+              value: getDifferentValueFromValue(value, "", "menu"),
+            },
+          ],
+        })
+      }}
+    >
+      {value.map((item, index) => (
+        <SetterSubMenu
+          id={item.id!}
+          key={item.id}
+          onDelete={() => {
+            const newValues: MenuItemProps[] = value.filter(
+              (_, i) => i !== index,
+            )
             handleUpdateMultiAttrDSL?.({
-              [attrName]: [
-                ...values,
-                {
-                  id: v4(),
-                  label: getDifferentLabelFromValue(values, "Menu "),
-                  value: getDifferentValueFromValue(values, "", "menu"),
-                },
-              ],
+              [attrName]: newValues,
             })
           }}
-        />
-      </div>
-      <Reorder.Group
-        axis="y"
-        onDragEnd={() => {
-          handleUpdateMultiAttrDSL?.({
-            [attrName]: [...values],
-          })
-        }}
-        values={values}
-        onReorder={(newOrder) => {
-          if (isEqual(values, newOrder)) return
-          handleUpdateMultiAttrDSL?.({
-            [attrName]: [...newOrder],
-          })
-        }}
-        css={removeNativeStyle}
-      >
-        {values.map((item, index) => (
-          <Reorder.Item key={item.id} value={item}>
-            <SetterSubMenu
-              onDelete={() => {
-                const newValues: MenuItemProps[] = values.filter(
-                  (_, i) => i !== index,
+          value={item.value}
+          label={
+            isString(executeValue[index].label)
+              ? (executeValue[index].label as string)
+              : JSON.stringify(executeValue[index].label)
+          }
+          onClickAdd={() => {
+            const newValues = value.map((i) => {
+              if (i.value === item.value) {
+                if ("subItems" in i) {
+                  return {
+                    ...i,
+                    subItems: [
+                      ...(i.subItems ?? []),
+                      {
+                        id: v4(),
+                        label: getDifferentLabelFromValue(
+                          i.subItems!!,
+                          "Sub Menu ",
+                        ),
+                        value: getDifferentValueFromValue(
+                          i.subItems!!,
+                          `${item.value}:`,
+                          "subMenu",
+                        ),
+                      },
+                    ],
+                  }
+                } else {
+                  return {
+                    ...i,
+                    subItems: [
+                      {
+                        id: v4(),
+                        label: "Sub Menu 0",
+                        value: `${item.value}:subMenu0`,
+                      },
+                    ],
+                  }
+                }
+              } else {
+                return i
+              }
+            })
+            handleUpdateMultiAttrDSL?.({
+              [attrName]: [...newValues],
+            })
+          }}
+          attrPath={`${attrName}.${index}`}
+          childrenSetter={childrenSetter}
+          widgetDisplayName={widgetDisplayName}
+        >
+          <DndContext
+            modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={(event) => {
+              const value = (item as SubMenuProps).subItems
+              if (value === undefined) {
+                return
+              }
+              const { active, over } = event
+              if (active && over && active.id !== over.id) {
+                const oldIndex = value.findIndex(
+                  (item) => item.id === active.id,
                 )
+                const newIndex = value.findIndex((item) => item.id === over.id)
+                const finalColumns = arrayMove(value, oldIndex, newIndex)
                 handleUpdateMultiAttrDSL?.({
-                  [attrName]: newValues,
+                  [`${attrName}.${index}.subItems`]: finalColumns,
                 })
-              }}
-              value={item.value}
-              label={item.label as string}
-              onClickAdd={() => {
-                const newValues = values.map((i) => {
-                  if (i.value === item.value) {
-                    if ("subItems" in i) {
-                      return {
-                        ...i,
-                        subItems: [
-                          ...(i.subItems ?? []),
-                          {
-                            id: v4(),
-                            label: getDifferentLabelFromValue(
-                              i.subItems!!,
-                              "Sub Menu ",
-                            ),
-                            value: getDifferentValueFromValue(
-                              i.subItems!!,
-                              `${item.value}:`,
-                              "subMenu",
-                            ),
-                          },
-                        ],
-                      }
-                    } else {
-                      return {
-                        ...i,
-                        subItems: [
-                          {
-                            id: v4(),
-                            label: "Sub Menu 0",
-                            value: `${item.value}:subMenu0`,
-                          },
-                        ],
-                      }
-                    }
-                  } else {
-                    return i
-                  }
-                })
-                handleUpdateMultiAttrDSL?.({
-                  [attrName]: [...newValues],
-                })
-              }}
-              attrPath={`${attrName}.${index}`}
-              childrenSetter={childrenSetter}
-              widgetDisplayName={widgetDisplayName}
+                return finalColumns
+              }
+            }}
+          >
+            <SortableContext
+              items={
+                (item as SubMenuProps).subItems?.map((child) => child.id!) ?? []
+              }
+              strategy={verticalListSortingStrategy}
             >
-              <Reorder.Group
-                axis="y"
-                values={"subItems" in item ? item.subItems ?? [] : []}
-                onReorder={(newItems) => {
-                  if (isEqual(item, newItems)) return
-                  const newValues = [...values]
-                  newValues[index] = {
-                    ...newValues[index],
-                    subItems: newItems,
-                  }
-                  handleUpdateMultiAttrDSL?.({
-                    [attrName]: [...newValues],
-                  })
-                }}
-                css={removeNativeStyle}
-                onDragEnd={() => {
-                  handleUpdateMultiAttrDSL?.({
-                    [attrName]: [...values],
-                  })
-                }}
-              >
-                {"subItems" in item &&
-                  ((item as SubMenuProps).subItems?.length ?? 0) > 0 &&
-                  (item as SubMenuProps).subItems?.map((child, i) => (
-                    <Reorder.Item key={child.id} value={child}>
-                      <SetterMenuItem
-                        onDelete={() => {
-                          const newValues: MenuItemProps[] = [...values]
-                          const newSubItems =
-                            item.subItems?.filter(
-                              (subItem, subIndex) => subIndex !== i,
-                            ) ?? []
-                          if (newSubItems.length !== 0) {
-                            newValues[index] = {
-                              ...item,
-                              subItems: newSubItems,
-                            } as SubMenuProps
-                          } else {
-                            const newItem = { ...item }
-                            delete newItem.subItems
-                            newValues[index] = newItem
-                          }
-                          handleUpdateMultiAttrDSL?.({
-                            [attrName]: newValues,
-                          })
-                        }}
-                        attrPath={`${attrName}.${index}.subItems.${i}`}
-                        childrenSetter={childrenSetter}
-                        widgetDisplayName={widgetDisplayName}
-                        label={
-                          isString(child.label)
-                            ? child.label
-                            : JSON.stringify(child.label)
-                        }
-                        value={child.value}
-                        onClickItem={() => {}}
-                      />
-                    </Reorder.Item>
-                  ))}
-              </Reorder.Group>
-            </SetterSubMenu>
-          </Reorder.Item>
-        ))}
-      </Reorder.Group>
-    </div>
+              {"subItems" in item &&
+                ((item as SubMenuProps).subItems?.length ?? 0) > 0 &&
+                (item as SubMenuProps).subItems?.map((child, i) => (
+                  <SetterMenuItem
+                    id={child.id!}
+                    key={child.id}
+                    onDelete={() => {
+                      const newValues: MenuItemProps[] = [...value]
+                      const newSubItems =
+                        item.subItems?.filter(
+                          (subItem, subIndex) => subIndex !== i,
+                        ) ?? []
+                      if (newSubItems.length !== 0) {
+                        newValues[index] = {
+                          ...item,
+                          subItems: newSubItems,
+                        } as SubMenuProps
+                      } else {
+                        const newItem = { ...item }
+                        delete newItem.subItems
+                        newValues[index] = newItem
+                      }
+                      handleUpdateMultiAttrDSL?.({
+                        [attrName]: newValues,
+                      })
+                    }}
+                    attrPath={`${attrName}.${index}.subItems.${i}`}
+                    childrenSetter={childrenSetter}
+                    widgetDisplayName={widgetDisplayName}
+                    label={
+                      isString(
+                        get(executeValue, `${index}.subItems.${i}.label`),
+                      )
+                        ? get(executeValue, `${index}.subItems.${i}.label`) ??
+                          ""
+                        : JSON.stringify(
+                            get(executeValue, `${index}.subItems.${i}.label`),
+                          )
+                    }
+                    value={child.value}
+                  />
+                ))}
+            </SortableContext>
+          </DndContext>
+        </SetterSubMenu>
+      ))}
+    </ColumnContainer>
   )
 }
 

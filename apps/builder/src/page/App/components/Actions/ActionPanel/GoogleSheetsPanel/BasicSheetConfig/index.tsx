@@ -8,7 +8,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig/style"
 import { BasicSheetConfigProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const BasicSheetConfig: FC<BasicSheetConfigProps> = (props) => {

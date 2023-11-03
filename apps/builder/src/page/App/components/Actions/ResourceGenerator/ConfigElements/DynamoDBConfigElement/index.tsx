@@ -15,12 +15,11 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  divider,
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   DynamoDBResource,
   DynamoDBResourceInitial,
@@ -52,7 +51,6 @@ const DynamoDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

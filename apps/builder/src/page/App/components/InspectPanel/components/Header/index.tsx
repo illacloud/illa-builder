@@ -1,7 +1,9 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { getDocLink } from "@illa-public/public-configs"
 import { FC, useCallback, useContext } from "react"
 import { useDispatch } from "react-redux"
-import { Dropdown, MoreIcon } from "@illa-design/react"
+import { Link } from "react-router-dom"
+import { DocsIcon, Dropdown, MoreIcon } from "@illa-design/react"
 import { EditableText } from "@/components/EditableText"
 import IconHotSpot from "@/components/IconHotSpot"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
@@ -13,6 +15,7 @@ import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
 export const PanelHeader: FC = () => {
   const { widgetDisplayName, widgetType } = useContext(SelectedPanelContext)
   const dispatch = useDispatch()
+  const docLink = getDocLink("widget", widgetType)
 
   const handleUpdateDisplayNameByBlur = useCallback(
     (newDisplayName: string) => {
@@ -74,6 +77,13 @@ export const PanelHeader: FC = () => {
         onValidate={onValidateOnRename}
       />
       <div css={panelHeaderIconWrapperStyle}>
+        {docLink && (
+          <Link to={docLink} target="_blank">
+            <IconHotSpot>
+              <DocsIcon />
+            </IconHotSpot>
+          </Link>
+        )}
         <Dropdown
           position="bottom-end"
           trigger="click"

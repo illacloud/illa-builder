@@ -10,7 +10,12 @@ export const runAllEventHandler = (
 ) => {
   const finalContext =
     ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
-  const needRunEvents = cloneDeep(events)
+  const needRunEvents = cloneDeep(events).map((originEvent) => {
+    return {
+      ...originEvent,
+      originEnable: originEvent.enabled,
+    }
+  })
   dynamicAttrPaths.forEach((path) => {
     const realPath = convertPathToString(toPath(path).slice(1))
     try {

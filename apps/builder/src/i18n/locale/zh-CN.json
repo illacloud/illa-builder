@@ -1223,7 +1223,7 @@
         "action_menu": {
           "delete": "删除",
           "reset_state": "重置状态",
-          "view_documentation": "View documentation"
+          "view_documentation": "文档"
         }
       },
       "multi_selected_header": "已选中 {{ number }} 个组件",
@@ -1324,8 +1324,8 @@
           "onRefresh": "刷新",
           "onFilterModelChange": "过滤器变更",
           "onRowSelectionModelChange": "行选择变更",
-          "onColumnVisibilityModel": "列是否可见变更",
-          "onSortModelChange": "排序方式变更"
+          "onSortModelChange": "排序方式变更",
+          "onColumnVisibilityModelChange": "列是否可见变更"
         },
         "image_list": {
           "title": "图片",
@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "用于设置是否禁止用户调整列排序",
         "default_width": "Used to set the default width of the column",
         "max_count": "用于设置星星的最大数量",
-        "allow_users_select": "用于设置是否允许用户选中行. "
+        "allow_users_select": "用于设置是否允许用户选中行. ",
+        "table_update_content": "表格组件将不再被维护。为了确保不间断地访问新功能，请将您的数据迁移到数据表组件中。",
+        "table_update_title": "更新"
       },
       "setter_option": {
         "fixed": "固定高度",

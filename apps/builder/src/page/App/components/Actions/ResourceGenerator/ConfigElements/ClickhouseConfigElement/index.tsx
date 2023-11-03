@@ -14,20 +14,20 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import {
   applyConfigItemLabelText,
   divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/ClickhouseConfigElement/style"
-import {
-  configItemTip,
-  connectType,
-  connectTypeStyle,
-  labelContainer,
-  optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   ClickhouseResource,
   ClickhouseResourceInitial,

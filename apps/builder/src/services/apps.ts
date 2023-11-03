@@ -1,6 +1,6 @@
 import { builderRequest } from "@illa-public/illa-net"
 import { createAction } from "@/api/actions"
-import { DeployResp } from "@/page/App/components/PageNavBar/resp"
+import { DeployResp } from "@/page/App/Module/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"

@@ -149,6 +149,7 @@ export const ActionPanel: FC = () => {
       case "mssql":
         return <MicrosoftSqlPanel />
       case "oracle":
+      case "oracle9i":
         return <OracleDBPanel />
       case "restapi":
         return <RestApiPanel />

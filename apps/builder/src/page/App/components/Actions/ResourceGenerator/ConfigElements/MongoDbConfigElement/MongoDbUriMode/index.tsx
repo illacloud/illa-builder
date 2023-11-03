@@ -1,8 +1,8 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { MongoDbConfigModeProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/interface"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   MongoDbResource,
   MongoDbUriConfigContent,

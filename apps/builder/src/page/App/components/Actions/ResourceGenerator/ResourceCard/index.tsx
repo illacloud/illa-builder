@@ -1,7 +1,7 @@
 import { getIconFromResourceType } from "@illa-public/icon"
 import {
   getResourceNameFromResourceType,
-  getResourceSubTitleFromResourceType,
+  useResourceTypeToResourceName,
 } from "@illa-public/resource-generator"
 import { FC, Suspense } from "react"
 import { ResourceCardSelectorProps } from "./interface"
@@ -15,7 +15,7 @@ import {
 export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
   const { resourceType, onSelect, isDraft } = props
 
-  const subTitle = getResourceSubTitleFromResourceType(resourceType)
+  const subTitle = useResourceTypeToResourceName(resourceType)
 
   return (
     <div

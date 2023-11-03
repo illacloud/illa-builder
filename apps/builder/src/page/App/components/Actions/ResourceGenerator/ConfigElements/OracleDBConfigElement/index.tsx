@@ -18,14 +18,13 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   ConnectTypeOptions,
   OracleResource,
@@ -35,11 +34,11 @@ import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { CreateButton } from "../ActionButtons/CreateButton"
 import { TestConnectButton } from "../ActionButtons/TestConnectButton"
-import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
+import { OracleDBConfigElementProps } from "./interface"
 
-const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { resourceID, onBack, hasFooter = true } = props
+const OracleDBConfigElement: FC<OracleDBConfigElementProps> = (props) => {
+  const { resourceID, onBack, hasFooter = true, resourceType } = props
   const { t } = useTranslation()
   const { control, formState } = useFormContext()
 
@@ -62,7 +61,6 @@ const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired
@@ -205,29 +203,6 @@ const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
           control={control}
           placeholders={[t("editor.action.form.placeholder.oracle.password")]}
         />
-        {/* <ControlledElement
-          isRequired
-          title={t("editor.action.form.label.oracle.version")}
-          defaultValue="9i above"
-          name="version"
-          controlledType={["select"]}
-          control={control}
-          rules={[
-            {
-              validate,
-            },
-          ]}
-          options={[
-            {
-              label: t("editor.action.form.option.oracle.version.below"),
-              value: "9i",
-            },
-            {
-              label: t("editor.action.form.option.oracle.version.above"),
-              value: "9i above",
-            },
-          ]}
-        /> */}
         {isCloudVersion && (
           <>
             <div css={configItemTip}>
@@ -280,7 +255,7 @@ const OracleDBConfigElement: FC<BaseConfigElementProps> = (props) => {
             {t("back")}
           </Button>
           <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="oracle" />
+            <TestConnectButton resourceType={resourceType} />
             <CreateButton />
           </ButtonGroup>
         </div>

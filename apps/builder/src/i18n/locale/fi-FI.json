@@ -1324,8 +1324,8 @@
           "onRefresh": "Päivitä",
           "onFilterModelChange": "Suodata muutos",
           "onRowSelectionModelChange": "Rivin valinnan muutos",
-          "onColumnVisibilityModel": "Sarakkeen näkyvyyden muutos",
-          "onSortModelChange": "Lajittele muutos"
+          "onSortModelChange": "Lajittele muutos",
+          "onColumnVisibilityModelChange": "Sarakkeen näkyvyyden muutos"
         },
         "image_list": {
           "title": "Kuvat",
@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Käytetään määritettäessä, onko käyttäjä poistettu käytöstä järjestääksesi sarakkeet uudelleen",
         "default_width": "Käytetään määritettäessä sarakkeen oletusleveyttä",
         "max_count": "Käytetään asettamaan suurin määrä tähtiä",
-        "allow_users_select": "Käytetään määritettäessä, salliko käyttäjien valita rivi. "
+        "allow_users_select": "Käytetään määritettäessä, salliko käyttäjien valita rivi. ",
+        "table_update_content": "Taulukon komponenttia ei enää ylläpidetä. Jotta voidaan varmistaa keskeytymätön pääsy uusiin ominaisuuksiin, siirrä tietosi Data Grid -komponenttiin.",
+        "table_update_title": "Päivitä"
       },
       "setter_option": {
         "fixed": "Kiinteä",

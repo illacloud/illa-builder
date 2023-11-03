@@ -8,6 +8,8 @@ import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"
 
 export const searchForefatherSectionNodeDisplayName = (
@@ -73,4 +75,81 @@ export const getCurrentSectionColumnNumberByChildDisplayName = (
       return DEFAULT_BODY_COLUMNS_NUMBER
     }
   }
+}
+
+export function searchParent(
+  displayName: string,
+  widgetLayoutInfo: Record<string, WidgetLayoutInfo>,
+): string[] {
+  const parent = widgetLayoutInfo[displayName]?.parentNode
+  if (parent) {
+    return [parent, ...searchParent(parent, widgetLayoutInfo)]
+  }
+  return []
+}
+
+export const autoChangeContainersIndexWhenClick = (
+  currentDisplayName: string,
+) => {
+  const rootState = store.getState()
+  const widgetsLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+  const canvasForeFatherDisplayNames = searchParent(
+    currentDisplayName,
+    widgetsLayoutInfo,
+  ).filter(
+    (displayName) => widgetsLayoutInfo[displayName]?.widgetType === "CANVAS",
+  )
+  const containerDisplayNames = canvasForeFatherDisplayNames
+    .map((displayName) => ({
+      displayName,
+      parentDisplayName: widgetsLayoutInfo[displayName]?.parentNode,
+    }))
+    .filter(
+      ({ parentDisplayName }) =>
+        widgetsLayoutInfo[parentDisplayName]?.widgetType === "CONTAINER_WIDGET",
+    )
+    .map(({ displayName, parentDisplayName }) => {
+      const childrenNode =
+        widgetsLayoutInfo[parentDisplayName]?.childrenNode ?? []
+      const currentIndex = childrenNode.indexOf(displayName)
+      return {
+        displayName: parentDisplayName,
+        value: {
+          currentIndex,
+        },
+      }
+    })
+
+  store.dispatch(
+    executionActions.updateExecutionByMultiDisplayNameReducer(
+      containerDisplayNames,
+    ),
+  )
+
+  return canvasForeFatherDisplayNames
+}
+
+export const autoChangeWhenClickOnCanvas = (canvasDisplayName: string) => {
+  const rootState = store.getState()
+  const widgetsLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+  const parentContainerDisplayName =
+    widgetsLayoutInfo[canvasDisplayName]?.parentNode
+  const indexOfCanvas =
+    widgetsLayoutInfo[parentContainerDisplayName]?.childrenNode.indexOf(
+      canvasDisplayName,
+    )
+  const firstChildDisplayName =
+    widgetsLayoutInfo[canvasDisplayName]?.childrenNode?.length > 0
+      ? widgetsLayoutInfo[canvasDisplayName]?.childrenNode[0]
+      : ""
+  if (firstChildDisplayName)
+    store.dispatch(
+      executionActions.updateExecutionByMultiDisplayNameReducer([
+        {
+          displayName: parentContainerDisplayName,
+          value: { currentIndex: indexOfCanvas },
+        },
+      ]),
+    )
+  return firstChildDisplayName
 }

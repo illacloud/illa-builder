@@ -44,15 +44,13 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
         ref={containerRef}
       >
         <span css={applyPanelBarTitleStyle(size)}>{title}</span>
-        <span>
-          {customIcon ? (
-            customIcon
-          ) : (
-            <div css={customIconHotpotStyle}>
-              <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState, size)} />
-            </div>
-          )}
-        </span>
+        {customIcon ? (
+          customIcon
+        ) : (
+          <div css={customIconHotpotStyle}>
+            <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState, size)} />
+          </div>
+        )}
       </div>
 
       {destroyChildrenWhenClose ? (

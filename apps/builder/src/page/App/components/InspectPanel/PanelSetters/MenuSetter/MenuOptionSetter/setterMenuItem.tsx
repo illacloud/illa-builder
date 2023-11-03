@@ -1,3 +1,5 @@
+import { useSortable } from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, DragPointIcon, Trigger, getColor } from "@illa-design/react"
@@ -10,15 +12,16 @@ import {
 import { BaseModal } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/Modal"
 
 export const SetterMenuItem: FC<SetterMenuItemProps> = (props) => {
-  const {
-    label,
-    value,
-    onClickItem,
-    onDelete,
-    attrPath,
-    childrenSetter,
-    widgetDisplayName,
-  } = props
+  const { id, label, onDelete, attrPath, childrenSetter, widgetDisplayName } =
+    props
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  }
 
   const [triggerVisible, setTriggerVisible] = useState(false)
 
@@ -27,14 +30,15 @@ export const SetterMenuItem: FC<SetterMenuItemProps> = (props) => {
   return (
     <div
       css={setterMenuItemContainerStyle}
-      onClick={() => {
-        onClickItem(value)
-      }}
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
     >
       <DragPointIcon
         className="dragIcon"
         fs="16px"
         c={getColor("grayBlue", "04")}
+        {...listeners}
       />
       <Trigger
         withoutPadding

@@ -1324,8 +1324,8 @@
           "onRefresh": "Oppdater",
           "onFilterModelChange": "Endre filter",
           "onRowSelectionModelChange": "Endring av radutvalg",
-          "onColumnVisibilityModel": "Kolonne synlighet endring",
-          "onSortModelChange": "Endre sortering"
+          "onSortModelChange": "Endre sortering",
+          "onColumnVisibilityModelChange": "Kolonne synlighet endring"
         },
         "image_list": {
           "title": "Bilder",
@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Brukes til å angi om eller ikke deaktivere brukere for å reorganisere kolonner",
         "default_width": "Brukt til å angi standard bredde i kolonnen",
         "max_count": "Brukes til å angi maks antall stjerner",
-        "allow_users_select": "Brukes til å angi om tillate brukere å velge rad. "
+        "allow_users_select": "Brukes til å angi om tillate brukere å velge rad. ",
+        "table_update_content": "Tabellkomponenten vil ikke lenger vedlikeholdes. For å sikre uavbrutt tilgang til nye funksjoner må du overføre dataene til datablutenett-komponenten.",
+        "table_update_title": "Oppdater"
       },
       "setter_option": {
         "fixed": "Fast",

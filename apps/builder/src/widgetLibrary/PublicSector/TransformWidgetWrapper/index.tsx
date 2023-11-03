@@ -144,7 +144,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         }
 
         const newH = Math.max(
-          Math.round(
+          Math.ceil(
             (newHeight +
               (WIDGET_PADDING + WIDGET_SCALE_SQUARE_BORDER_WIDTH) * 2) /
               UNIT_HEIGHT,
@@ -241,9 +241,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           "$dynamicAttrPaths",
           [],
         )
-        const needRunEvents = cloneDeep(originEvents).filter((originEvent) => {
-          return originEvent.eventType === eventType
-        })
+
+        const needRunEvents = cloneDeep(originEvents)
+          .filter((originEvent) => {
+            return originEvent.eventType === eventType
+          })
+          .map((originEvent) => {
+            return {
+              ...originEvent,
+              originEnable: originEvent.enabled,
+            }
+          })
         const finalContext =
           ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext(
             otherCalcContext,
@@ -269,6 +277,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           path,
           otherCalcContext,
         )
+
         dynamicPaths?.forEach((path: string) => {
           const realPath = isFunction(formatPath)
             ? formatPath(path)
@@ -385,6 +394,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
               shadow,
               widgetType,
             )}
+            id={displayName}
           >
             <Suspense
               fallback={

@@ -1324,8 +1324,8 @@
           "onRefresh": "Aktualizovat",
           "onFilterModelChange": "Změna filtru",
           "onRowSelectionModelChange": "Změna výběru řádků",
-          "onColumnVisibilityModel": "Změna viditelnosti sloupců",
-          "onSortModelChange": "Seřadit změnu"
+          "onSortModelChange": "Seřadit změnu",
+          "onColumnVisibilityModelChange": "Změna viditelnosti sloupců"
         },
         "image_list": {
           "title": "Obrázky",
@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců",
         "default_width": "Použít k nastavení výchozí šířky sloupce",
         "max_count": "Používá se k nastavení maximálního počtu hvězdiček",
-        "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. "
+        "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. ",
+        "table_update_content": "Komponenta tabulky již nebude udržována. Chcete-li zajistit nepřerušený přístup k novým funkcím, převedte prosím data do komponenty datové sítě.",
+        "table_update_title": "Aktualizovat"
       },
       "setter_option": {
         "fixed": "Fixní",

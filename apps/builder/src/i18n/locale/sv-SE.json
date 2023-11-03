@@ -1324,8 +1324,8 @@
           "onRefresh": "Uppdatera",
           "onFilterModelChange": "Filtrera ändring",
           "onRowSelectionModelChange": "Ändra val av rad",
-          "onColumnVisibilityModel": "Ändra kolumnsynlighet",
-          "onSortModelChange": "Ändra sortering"
+          "onSortModelChange": "Ändra sortering",
+          "onColumnVisibilityModelChange": "Ändra kolumnsynlighet"
         },
         "image_list": {
           "title": "Bilder",
@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Används för att ställa in om användare inaktiveras för att ordna om kolumnerna",
         "default_width": "Används för att ställa in standardbredden på kolumnen",
         "max_count": "Används för att ställa in max antal stjärnor",
-        "allow_users_select": "Används för att ställa in om användare kan välja rad. "
+        "allow_users_select": "Används för att ställa in om användare kan välja rad. ",
+        "table_update_content": "Tabellkomponenten kommer inte längre att underhållas. För att säkerställa oavbruten åtkomst till nya funktioner, vänligen migrera dina data till komponenten Data Grid .",
+        "table_update_title": "Uppdatera"
       },
       "setter_option": {
         "fixed": "Fast",

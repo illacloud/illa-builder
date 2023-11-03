@@ -1324,8 +1324,8 @@
           "onRefresh": "更新",
           "onFilterModelChange": "フィルタの変更",
           "onRowSelectionModelChange": "行選択の変更",
-          "onColumnVisibilityModel": "列の表示の変更",
-          "onSortModelChange": "並べ替え変更"
+          "onSortModelChange": "並べ替え変更",
+          "onColumnVisibilityModelChange": "列の表示の変更"
         },
         "image_list": {
           "title": "イメージ",
@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "列の順序を変更するためにユーザーを無効にするかどうかを設定するために使用",
         "default_width": "列の既定の幅を設定するために使用",
         "max_count": "星の最大数を設定するために使用",
-        "allow_users_select": "ユーザーが行を選択できるかどうかを設定するために使用します。 "
+        "allow_users_select": "ユーザーが行を選択できるかどうかを設定するために使用します。 ",
+        "table_update_content": "テーブルコンポーネントは維持されなくなります。新しい機能へのアクセスが中断されないように、データグリッドコンポーネントに移行してください。",
+        "table_update_title": "更新"
       },
       "setter_option": {
         "fixed": "固定高さ",

@@ -1324,8 +1324,8 @@
           "onRefresh": "Opdater",
           "onFilterModelChange": "Filtrer ændring",
           "onRowSelectionModelChange": "Ændring af række valg",
-          "onColumnVisibilityModel": "Ændring af søjlesynlighed",
-          "onSortModelChange": "Sorter ændring"
+          "onSortModelChange": "Sorter ændring",
+          "onColumnVisibilityModelChange": "Ændring af søjlesynlighed"
         },
         "image_list": {
           "title": "Billeder",
@@ -2194,7 +2194,9 @@
         "disable_users_to_reorder": "Bruges til at angive, om brugere skal deaktivere eller ej for at omarrangere kolonnerne",
         "default_width": "Bruges til at indstille standardbredden af kolonnen",
         "max_count": "Bruges til at indstille maks antal stjerner",
-        "allow_users_select": "Bruges til at angive, om det er tilladt brugere at vælge række. "
+        "allow_users_select": "Bruges til at angive, om det er tilladt brugere at vælge række. ",
+        "table_update_content": "Tabel komponenten vil ikke længere blive vedligeholdt. For at sikre uafbrudt adgang til nye funktioner, skal du migrere dine data til Data Gitter komponenten.",
+        "table_update_title": "Opdater"
       },
       "setter_option": {
         "fixed": "Fast",

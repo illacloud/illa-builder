@@ -137,6 +137,7 @@ export const formatTestConnectValues = (
         ssl: data.ssl,
       }
     }
+    case "oracle9i":
     case "oracle": {
       const { resourceName: _resourceName, host, ...otherParams } = data
 

@@ -58,7 +58,7 @@ export const AutoHeightWithLimitedContainer: FC<
 
   const handleUpdateComponentHeight = useCallback(
     (height: number) => {
-      const finalHeight = Math.round(height / UNIT_HEIGHT)
+      const finalHeight = Math.ceil(height / UNIT_HEIGHT)
 
       dispatch(
         componentsActions.updateComponentNodeHeightReducer({

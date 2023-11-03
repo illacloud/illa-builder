@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Loading, TriggerProvider, useMessage } from "@illa-design/react"
 import { updateCurrentAppInfo } from "@/hooks/useInitApp"
-import { CanvasPanel } from "@/page/App/components/CanvasPanel"
+import { CanvasPanel } from "@/page/App/Module/CanvasPanel"
 import {
   centerPanelStyle,
   contentStyle,
