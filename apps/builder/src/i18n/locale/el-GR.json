@@ -3730,7 +3730,36 @@
   "drive": {
     "message": {
       "start_upload": "Έναρξη μεταφόρτωσης",
-      "start_download": "Έναρξη λήψης"
+      "start_download": "Έναρξη λήψης",
+      "create_suc": "Δημιουργήθηκε με επιτυχία",
+      "create_failed": "Αποτυχία δημιουργίας"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Δημιουργία φακέλου",
+        "create": "Δημιουργία",
+        "cancel": "Ακύρωση"
+      },
+      "validate": "Γράμματα, αριθμοί και -~_=: επιτρέπονται",
+      "validate_failed": "Επιτρέπονται μόνο γράμματα, αριθμοί και -~_=. Το όριο είναι 255 χαρακτήρες ή λιγότερο"
+    },
+    "move_modal": {
+      "no_folders": "Δεν υπάρχουν αρχεία εδώ"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Το αρχείο με το ίδιο όνομα υπάρχει ήδη σε αυτόν το φάκελο ή αποστέλλεται σε αυτόν το φάκελο. Θα θέλατε να το αντικαταστήσετε?",
+      "keep_both": "Κρατήστε και τα δύο",
+      "replace": "Αντικατάσταση"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
