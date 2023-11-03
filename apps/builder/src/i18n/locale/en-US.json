@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Set whether to hide the submit button",
           "submit_button_full_w": "Set whether the submit button is full width.",
           "submit_button_text": "Set the text of the submit button"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "A number between 0 and 1"
@@ -3111,7 +3115,9 @@
       "right": "Right",
       "select_options": {
         "manual": "Manual",
-        "mapped": "Mapped"
+        "mapped": "Mapped",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Top"
     },
