@@ -3730,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Upload starten",
-      "start_download": "Download starten"
+      "start_download": "Download starten",
+      "create_suc": "Erfolgreich erstellt",
+      "create_failed": "Fehler beim Erstellen",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Ordner erstellen",
+        "create": "Anlegen",
+        "cancel": "Abbrechen"
+      },
+      "validate": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen",
+      "validate_failed": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen"
+    },
+    "move_modal": {
+      "no_folders": "Keine Dateien hier"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?",
+      "keep_both": "Beides behalten",
+      "replace": "Ersetzen"
+    },
+    "upload": {
+      "modal": {
+        "title": "Ordner zum Hochladen auswählen",
+        "upload_to": "Hochladen nach",
+        "all": "Wurzel",
+        "create_folder": "Neuen Ordner erstellen",
+        "cancel": "Abbrechen",
+        "file_upload": "Hochladen"
+      }
     }
   },
   "frame": {
