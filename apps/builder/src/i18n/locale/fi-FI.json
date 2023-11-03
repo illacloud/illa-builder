@@ -3730,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Aloita lähetys",
-      "start_download": "Aloita lataus"
+      "start_download": "Aloita lataus",
+      "create_suc": "Onnistuneesti luotu",
+      "create_failed": "Ei voitu luoda",
+      "generate_url_fail": "URL-osoitteen luominen epäonnistui. Valitse tiedosto manuaalisesti. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Luo kansio",
+        "create": "Luo",
+        "cancel": "Peruuta"
+      },
+      "validate": "Vain kirjaimet, numerot ja -~_=: ovat sallittuja. Raja on 255 merkkiä tai vähemmän",
+      "validate_failed": "Vain kirjaimet, numerot ja -~_=: ovat sallittuja. Raja on 255 merkkiä tai vähemmän"
+    },
+    "move_modal": {
+      "no_folders": "Ei tiedostoja täällä"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Samanniminen tiedosto on jo olemassa tässä kansiossa tai sitä ladataan tähän kansioon. Haluatko korvata sen?",
+      "keep_both": "Pidä molemmat",
+      "replace": "Korvaa"
+    },
+    "upload": {
+      "modal": {
+        "title": "Valitse kansio johon haluat lähettää",
+        "upload_to": "Lähetä palvelimelle",
+        "all": "Juuri",
+        "create_folder": "Luo uusi kansio",
+        "cancel": "Peruuta",
+        "file_upload": "Lähetä"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Tutustu tähän hämmästyttävään tekoälyn Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "hackernews": "Yksinkertaista työtaakkaa [{{promptName}}] - tekoälyn agentti, joka saa tehtävän valmiiksi."
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      }
     },
     "button": {
       "share_contribute": "Kopioi & Jaa",
