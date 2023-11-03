@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Angi om du vil skjule sendingsknappen",
           "submit_button_full_w": "Angi om «Send inn»-knappen er full bredde.",
           "submit_button_text": "Angi teksten til «Send inn»-knappen"
-        }
+        },
+        "choose_image": "Velg et bilde",
+        "choose_pdf": "Velg en PDF",
+        "choose_video": "Velg en video",
+        "choose_audio": "Velg en lyd"
       },
       "setter_tootip": {
         "volume": "Et tall mellom 0 og 1"
@@ -3111,7 +3115,9 @@
       "right": "Høyre",
       "select_options": {
         "manual": "Manuell",
-        "mapped": "Tilordnet"
+        "mapped": "Tilordnet",
+        "url": "Nettadresse",
+        "upload": "Last opp"
       },
       "top": "Topp"
     },
