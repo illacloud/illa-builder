@@ -3766,6 +3766,9 @@
         "create_folder": "Creați un dosar nou",
         "cancel": "Anulează",
         "file_upload": "Incarca"
+      },
+      "select": {
+        "confirm_button": "Selectare"
       }
     }
   },
