@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Angiv, om knappen Send skal skjules",
           "submit_button_full_w": "Angiv, om send-knappen er fuld bredde.",
           "submit_button_text": "Indstil teksten på knappen Indsend"
-        }
+        },
+        "choose_image": "Vælg et billede",
+        "choose_pdf": "Vælg en PDF",
+        "choose_video": "Vælg en video",
+        "choose_audio": "Vælg en lyd"
       },
       "setter_tootip": {
         "volume": "Et tal mellem 0 og 1"
@@ -3111,7 +3115,9 @@
       "right": "Højre",
       "select_options": {
         "manual": "Manuelt",
-        "mapped": "Tilknyttet"
+        "mapped": "Tilknyttet",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Øverst"
     },
