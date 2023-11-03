@@ -11,7 +11,7 @@ import {
   nameStyle,
   navBarStyle,
   rowCenter,
-} from "@/page/App/components/PageNavBar/style"
+} from "@/page/App/Module/PageNavBar/style"
 import { navDescStyle } from "@/page/History/components/HistoryNavBar/style"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 

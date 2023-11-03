@@ -1324,8 +1324,8 @@
           "onRefresh": "Împrospătează",
           "onFilterModelChange": "Modificare filtru",
           "onRowSelectionModelChange": "Modificare selecţie rând",
-          "onColumnVisibilityModel": "Schimbare vizibilitate coloană",
-          "onSortModelChange": "Modificare de sortare"
+          "onSortModelChange": "Modificare de sortare",
+          "onColumnVisibilityModelChange": "Schimbare vizibilitate coloană"
         },
         "image_list": {
           "title": "Imagini",
@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "Click afară pentru a deselecta",
           "page": "Indexul implicit al paginii",
           "export_all_data_setting": "Exportă tot",
-          "locale": "Localizare"
+          "locale": "Localizare",
+          "column_field": "Câmp coloană"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Folosit pentru a seta densitatea de înălţime a rândului. ",
           "refresh_setting": "Folosit pentru a seta dacă se afișează o pictogramă de reîmprospătare",
           "export_raw_data_setting": "Folosit pentru a seta dacă utilizatorilor li se permite sau nu să exporte date brute nefiltrate.",
-          "locale": "De exemplu, ro-RO"
+          "locale": "De exemplu, ro-RO",
+          "column_field": "Folosit pentru a seta coloana"
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2194,7 +2196,9 @@
         "disable_users_to_reorder": "Folosit pentru a seta dacă dezactivează sau nu utilizatorii pentru a reordona coloanele",
         "default_width": "Folosit pentru a seta lățimea implicită a coloanei",
         "max_count": "Folosit pentru a seta numărul maxim de stele",
-        "allow_users_select": "Folosit pentru a seta dacă permite utilizatorilor să selecteze rândul. "
+        "allow_users_select": "Folosit pentru a seta dacă permite utilizatorilor să selecteze rândul. ",
+        "table_update_content": "Componenta Tabel nu va mai fi menținută. Pentru a asigura acces neîntrerupt la funcții noi, vă rugăm să migrați datele în componenta Grid de date.",
+        "table_update_title": "Actualizare"
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -3726,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Începe încărcarea",
-      "start_download": "Începe descărcarea"
+      "start_download": "Începe descărcarea",
+      "create_suc": "Creat cu succes",
+      "create_failed": "Crearea a eșuat",
+      "generate_url_fail": "Esuare generare URL. Te rugam sa selectezi fisierul manual. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Creează un dosar",
+        "create": "Crează",
+        "cancel": "Anulează"
+      },
+      "validate": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin",
+      "validate_failed": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin"
+    },
+    "move_modal": {
+      "no_folders": "Niciun fișier aici"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?",
+      "keep_both": "Păstrați ambele",
+      "replace": "Înlocuiește"
+    },
+    "upload": {
+      "modal": {
+        "title": "Selectați un folder pentru a încărca la",
+        "upload_to": "Încărcaţi la",
+        "all": "Rădăcină",
+        "create_folder": "Creați un dosar nou",
+        "cancel": "Anulează",
+        "file_upload": "Incarca"
+      }
     }
   },
   "frame": {
@@ -4449,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Uită-te la acest uimitor Agent AI [{{promptName}}]",
-        "linkedin": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
-        "facebook": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
-        "whatsapp": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
         "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
-      },
-      "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
+      }
     },
     "button": {
       "share_contribute": "Copiază & Partajează",

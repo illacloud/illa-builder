@@ -25,7 +25,7 @@ import {
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import { CanvasPanel } from "../App/components/CanvasPanel"
+import { CanvasPanel } from "../App/Module/CanvasPanel"
 import { CurrentAppResp } from "../App/resp/currentAppResp"
 
 interface IDeployContentAsyncValue {

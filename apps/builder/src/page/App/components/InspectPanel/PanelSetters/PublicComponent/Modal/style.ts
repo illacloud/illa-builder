@@ -18,11 +18,17 @@ export const headerStyle = css`
   }
 `
 
-export const modalHeaderText = css`
+export const titleContainerStyle = css`
   flex-grow: 1;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`
+
+export const modalHeaderText = css`
   white-space: nowrap;
   overflow: hidden;
-  margin-right: 8px;
   text-overflow: ellipsis;
 `
 

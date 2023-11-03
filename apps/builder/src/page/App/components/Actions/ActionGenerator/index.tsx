@@ -3,7 +3,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
-import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
+import { ResourceTypeSelector } from "@illa-public/resource-generator"
 import { FC, useCallback, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -30,7 +30,7 @@ import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { INIT_ACTION_ADVANCED_CONFIG } from "../AdvancedPanel/constant"
 import { ResourceCreator } from "../ResourceGenerator/ResourceCreator"
-import { ActionTypeSelector } from "./ActionTypeSelector"
+import { ModalHeader } from "./Header"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 import { modalContentStyle } from "./style"
 
@@ -56,29 +56,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const allResource = useSelector(getAllResources)
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const { track } = useContext(MixpanelTrackContext)
-
-  let title
-  switch (currentStep) {
-    case "select":
-      title = t("editor.action.action_list.action_generator.selector.title")
-      break
-    case "createAction":
-    case "directCreateAction":
-      title = t(
-        "editor.action.action_list.action_generator.title.choose_resource",
-      )
-      break
-    case "createResource":
-      if (currentActionType != null) {
-        const resourceType = getResourceTypeFromActionType(currentActionType)
-        if (resourceType != null) {
-          title = t("editor.action.form.title.configure", {
-            name: getResourceNameFromResourceType(resourceType),
-          })
-        }
-      }
-      break
-  }
 
   const transformResource = currentActionType
     ? getResourceTypeFromActionType(currentActionType)
@@ -261,7 +238,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   }, [onClose])
 
   const handleFinishCreateNewResource = useCallback(
-    (resourceID: string) => {
+    (resourceID?: string) => {
       track?.(
         ILLA_MIXPANEL_EVENT_TYPE.CLICK,
         {
@@ -270,6 +247,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         },
         "both",
       )
+      if (!resourceID) return
       handleDirectCreateAction(resourceID, () => {
         setCurrentStep("select")
         onClose()
@@ -314,32 +292,56 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       maskClosable={isMaskClosable}
       withoutLine
       withoutPadding
-      title={title}
       onCancel={handleCancelModal}
+      focusLock={false}
     >
       <div css={modalContentStyle}>
         {currentStep === "select" && (
-          <ActionTypeSelector onSelect={handleActionTypeSelect} />
+          <>
+            <ModalHeader
+              title={t(
+                "editor.action.action_list.action_generator.selector.title",
+              )}
+              onClickClose={handleCancelModal}
+            />
+            <ResourceTypeSelector onSelect={handleActionTypeSelect} />
+          </>
         )}
         {currentStep === "createAction" &&
           currentActionType &&
           (currentActionType === "aiagent" ? (
-            <AIAgentSelector
-              actionType={currentActionType}
-              onBack={handleBack}
-              handleCreateAction={handleCreateAgentAction}
-              onCreateAction={handleCreateAction}
-              canBack={canBackToSelect}
-            />
+            <>
+              <ModalHeader
+                title={t(
+                  "editor.action.action_list.action_generator.title.choose_resource",
+                )}
+                onClickClose={handleCancelModal}
+              />
+              <AIAgentSelector
+                actionType={currentActionType}
+                onBack={handleBack}
+                handleCreateAction={handleCreateAgentAction}
+                onCreateAction={handleCreateAction}
+                canBack={canBackToSelect}
+              />
+            </>
           ) : (
-            <ActionResourceSelector
-              actionType={currentActionType}
-              onBack={handleBack}
-              handleCreateAction={handleDirectCreateAction}
-              onCreateResource={handleCreateResource}
-              onCreateAction={handleCreateAction}
-              canBack={canBackToSelect}
-            />
+            <>
+              <ModalHeader
+                title={t(
+                  "editor.action.action_list.action_generator.title.choose_resource",
+                )}
+                onClickClose={handleCancelModal}
+              />
+              <ActionResourceSelector
+                actionType={currentActionType}
+                onBack={handleBack}
+                handleCreateAction={handleDirectCreateAction}
+                onCreateResource={handleCreateResource}
+                onCreateAction={handleCreateAction}
+                canBack={canBackToSelect}
+              />
+            </>
           ))}
         {currentStep === "createResource" && transformResource && (
           <ResourceCreator

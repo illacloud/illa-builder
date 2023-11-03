@@ -23,6 +23,7 @@ export enum EVENT_ACTION_TYPE {
   DOWNLOAD_FROM_ILLA_DRIVE = "downloadFromILLADrive",
   SAVE_TO_ILLA_DRIVE = "saveToILLADrive",
 }
+
 const message = createMessage()
 
 export const transformEvents = (
@@ -183,6 +184,11 @@ export const transformEvents = (
           "selectRow",
           "setValueInArray",
           "setSrc",
+          "setFilterModel",
+          "setColumnVisibilityModel",
+          "setPage",
+          "setPageSize",
+          "setRowSelection",
         ].includes(widgetMethod)
       ) {
         const { widgetTargetValue } = event
@@ -429,7 +435,12 @@ export const runEventHandler = (
   const eventObj = transformEvents(scriptObj, globalData)
   if (!eventObj) return
   const { script, enabled } = eventObj
-  if (enabled || enabled == undefined) {
+
+  if (
+    (typeof enabled === "boolean" && enabled) ||
+    scriptObj.originEnable == undefined ||
+    scriptObj.originEnable === ""
+  ) {
     if (typeof script === "string" && hasDynamicStringSnippet(script)) {
       try {
         evaluateDynamicString("events", script, globalData)

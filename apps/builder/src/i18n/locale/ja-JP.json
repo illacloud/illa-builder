@@ -1324,8 +1324,8 @@
           "onRefresh": "更新",
           "onFilterModelChange": "フィルタの変更",
           "onRowSelectionModelChange": "行選択の変更",
-          "onColumnVisibilityModel": "列の表示の変更",
-          "onSortModelChange": "並べ替え変更"
+          "onSortModelChange": "並べ替え変更",
+          "onColumnVisibilityModelChange": "列の表示の変更"
         },
         "image_list": {
           "title": "イメージ",
@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "外をクリックして選択を解除",
           "page": "既定のページインデックス",
           "export_all_data_setting": "すべてエクスポート",
-          "locale": "ロケール"
+          "locale": "ロケール",
+          "column_field": "列フィールド"
         },
         "previous_cursor": "前のカーソル",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "行の高さの密度を設定するかどうかに使用します。 ",
           "refresh_setting": "更新アイコンを表示するかどうかを設定するために使用",
           "export_raw_data_setting": "フィルターされていない生データをエクスポートできるかどうかを設定します。",
-          "locale": "例: ja-JP"
+          "locale": "例: ja-JP",
+          "column_field": "列を設定するために使用"
         },
         "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
         "input": {
@@ -2194,7 +2196,9 @@
         "disable_users_to_reorder": "列の順序を変更するためにユーザーを無効にするかどうかを設定するために使用",
         "default_width": "列の既定の幅を設定するために使用",
         "max_count": "星の最大数を設定するために使用",
-        "allow_users_select": "ユーザーが行を選択できるかどうかを設定するために使用します。 "
+        "allow_users_select": "ユーザーが行を選択できるかどうかを設定するために使用します。 ",
+        "table_update_content": "テーブルコンポーネントは維持されなくなります。新しい機能へのアクセスが中断されないように、データグリッドコンポーネントに移行してください。",
+        "table_update_title": "更新"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -3726,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "アップロードを開始",
-      "start_download": "ダウンロードを開始"
+      "start_download": "ダウンロードを開始",
+      "create_suc": "作成に成功しました",
+      "create_failed": "作成に失敗しました",
+      "generate_url_fail": "URLの生成に失敗しました。手動でファイルを選択してください。 "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "フォルダを作成",
+        "create": "作成",
+        "cancel": "キャンセル"
+      },
+      "validate": "文字、数字、-~_=: は使用できます",
+      "validate_failed": "文字、数字、-~_= : のみが使用できます。制限は 255 文字以下です。"
+    },
+    "move_modal": {
+      "no_folders": "ここにファイルはありません"
+    },
+    "same_name_modal": {
+      "this_folder_already": "同じ名前のファイルが既にこのフォルダに存在するか、このフォルダにアップロードされています。置き換えますか？",
+      "keep_both": "両方を保持",
+      "replace": "置換"
+    },
+    "upload": {
+      "modal": {
+        "title": "アップロードするフォルダを選択",
+        "upload_to": "アップロード先:",
+        "all": "ルート",
+        "create_folder": "新しいフォルダを作成",
+        "cancel": "キャンセル",
+        "file_upload": "アップロード"
+      }
     }
   },
   "frame": {
@@ -4449,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "この AI エージェント [{{promptName}} ] をチェックしてください。",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "hackernews": "[{{promptName}}] で作業負荷を簡素化する - 作業を完了させるAIエージェント"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      }
     },
     "button": {
       "share_contribute": "コピー & 共有",

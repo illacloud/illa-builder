@@ -1324,8 +1324,8 @@
           "onRefresh": "Aktualisieren",
           "onFilterModelChange": "Filteränderung",
           "onRowSelectionModelChange": "Zeilenauswahl ändern",
-          "onColumnVisibilityModel": "Spaltensichtbarkeit ändern",
-          "onSortModelChange": "Änderung sortieren"
+          "onSortModelChange": "Änderung sortieren",
+          "onColumnVisibilityModelChange": "Spaltensichtbarkeit ändern"
         },
         "image_list": {
           "title": "Bilder",
@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "Zum Abwählen ausserhalb klicken",
           "page": "Standardseitenindex",
           "export_all_data_setting": "Alle exportieren",
-          "locale": "Lokal"
+          "locale": "Lokal",
+          "column_field": "Spaltenfeld"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Wird verwendet, um die Zeilenhöhe zu bestimmen oder nicht. ",
           "refresh_setting": "Wird verwendet, um ein Aktualisierungs-Symbol anzuzeigen",
           "export_raw_data_setting": "Wird verwendet, um festzulegen, ob Benutzer ungefilterte Rohdaten exportieren dürfen oder nicht.",
-          "locale": "Zum Beispiel de-US"
+          "locale": "Zum Beispiel de-US",
+          "column_field": "Verwendet um die Spalte zu setzen"
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
@@ -2194,7 +2196,9 @@
         "disable_users_to_reorder": "Wird verwendet, um festzulegen, ob Benutzer zum Neuordnen der Spalten deaktiviert werden",
         "default_width": "Verwendet um die Standardbreite der Spalte zu setzen",
         "max_count": "Verwendet um die maximale Anzahl von Sternen zu setzen",
-        "allow_users_select": "Wird verwendet, um festzulegen, ob Benutzern die Zeilenauswahl erlaubt ist. "
+        "allow_users_select": "Wird verwendet, um festzulegen, ob Benutzern die Zeilenauswahl erlaubt ist. ",
+        "table_update_content": "Die Tabellenkomponente wird nicht mehr gepflegt. Um einen ununterbrochenen Zugriff auf neue Funktionen sicherzustellen, migrieren Sie bitte Ihre Daten in die Datenraster-Komponente.",
+        "table_update_title": "Aktualisieren"
       },
       "setter_option": {
         "fixed": "Feste",
@@ -3726,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Upload starten",
-      "start_download": "Download starten"
+      "start_download": "Download starten",
+      "create_suc": "Erfolgreich erstellt",
+      "create_failed": "Fehler beim Erstellen",
+      "generate_url_fail": "Fehler beim Generieren der URL. Bitte wählen Sie die Datei manuell. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Ordner erstellen",
+        "create": "Anlegen",
+        "cancel": "Abbrechen"
+      },
+      "validate": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen",
+      "validate_failed": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen"
+    },
+    "move_modal": {
+      "no_folders": "Keine Dateien hier"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?",
+      "keep_both": "Beides behalten",
+      "replace": "Ersetzen"
+    },
+    "upload": {
+      "modal": {
+        "title": "Ordner zum Hochladen auswählen",
+        "upload_to": "Hochladen nach",
+        "all": "Wurzel",
+        "create_folder": "Neuen Ordner erstellen",
+        "cancel": "Abbrechen",
+        "file_upload": "Hochladen"
+      }
     }
   },
   "frame": {
@@ -4449,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Schau dir diesen erstaunlichen KI Agent [{{promptName}} ] an",
-        "linkedin": "Achten Sie auf alle KI-Enthusiasten und Profis, die ihre Produktivität steigern wollen! Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
-        "facebook": "Achten Sie auf alle KI-Enthusiasten und Profis, die ihre Produktivität steigern wollen! Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
-        "whatsapp": "Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
         "hackernews": "Vereinfachen Sie Ihre Arbeitsbelastung mit [{{promptName}}] - Der KI-Agent, der die Aufgabe erledigt"
-      },
-      "contribute": "Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!"
+      }
     },
     "button": {
       "share_contribute": "Kopieren & Teilen",

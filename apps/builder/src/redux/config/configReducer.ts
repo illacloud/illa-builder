@@ -184,3 +184,21 @@ export const resetSelectedActionReducer: CaseReducer<
     state.cachedAction = null
   }
 }
+
+export const addExpandedWidgetReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  action.payload.forEach((displayName) => {
+    state.expandedWidgets[displayName] = true
+  })
+}
+
+export const removeExpandWidgetReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  action.payload.forEach((displayName) => {
+    state.expandedWidgets[displayName] = false
+  })
+}

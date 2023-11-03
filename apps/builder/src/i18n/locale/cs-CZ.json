@@ -1324,8 +1324,8 @@
           "onRefresh": "Aktualizovat",
           "onFilterModelChange": "Změna filtru",
           "onRowSelectionModelChange": "Změna výběru řádků",
-          "onColumnVisibilityModel": "Změna viditelnosti sloupců",
-          "onSortModelChange": "Seřadit změnu"
+          "onSortModelChange": "Seřadit změnu",
+          "onColumnVisibilityModelChange": "Změna viditelnosti sloupců"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "Klikněte vně pro zrušení výběru",
           "page": "Výchozí index stránky",
           "export_all_data_setting": "Exportovat vše",
-          "locale": "Místní prostředí"
+          "locale": "Místní prostředí",
+          "column_field": "Pole sloupce"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Používá se k nastavení hustoty výšky řádku nebo ne. ",
           "refresh_setting": "Slouží k nastavení, zda zobrazit ikonu obnovení",
           "export_raw_data_setting": "Používá se k nastavení, zda mohou uživatelé exportovat nefiltrovaná nezpracovaná data.",
-          "locale": "Například cs-CZ"
+          "locale": "Například cs-CZ",
+          "column_field": "Sloupec byl použit"
         },
         "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
         "input": {
@@ -2194,7 +2196,9 @@
         "disable_users_to_reorder": "Slouží k nastavení, zda zakázat uživatele pro změnu pořadí sloupců",
         "default_width": "Použít k nastavení výchozí šířky sloupce",
         "max_count": "Používá se k nastavení maximálního počtu hvězdiček",
-        "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. "
+        "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. ",
+        "table_update_content": "Komponenta tabulky již nebude udržována. Chcete-li zajistit nepřerušený přístup k novým funkcím, převedte prosím data do komponenty datové sítě.",
+        "table_update_title": "Aktualizovat"
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -3726,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Spustit nahrávání",
-      "start_download": "Zahájit stahování"
+      "start_download": "Zahájit stahování",
+      "create_suc": "Úspěšně vytvořeno",
+      "create_failed": "Vytvoření se nezdařilo",
+      "generate_url_fail": "Generování URL se nezdařilo. Vyberte soubor ručně. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Vytvořit složku",
+        "create": "Vytvořit",
+        "cancel": "Zrušit"
+      },
+      "validate": "Jsou povolena pouze písmena, číslice a -~_=. Limit je 255 znaků nebo méně",
+      "validate_failed": "Jsou povolena pouze písmena, číslice a -~_=. Limit je 255 znaků nebo méně"
+    },
+    "move_modal": {
+      "no_folders": "Žádné soubory zde"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Soubor se stejným názvem již v této složce existuje nebo se do této složky nahrává. Chcete jej nahradit?",
+      "keep_both": "Zachovat obojí",
+      "replace": "Nahradit"
+    },
+    "upload": {
+      "modal": {
+        "title": "Vyberte složku k nahrání",
+        "upload_to": "Nahrát do",
+        "all": "Root",
+        "create_folder": "Vytvořit novou složku",
+        "cancel": "Zrušit",
+        "file_upload": "Nahrát"
+      }
     }
   },
   "frame": {
@@ -4449,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Podívejte se na tento úžasný AI agenta [{{promptName}}]",
-        "linkedin": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
-        "facebook": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
-        "whatsapp": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
         "hackernews": "Zjednodušit pracovní zatížení pomocí [{{promptName}}] - AI agenta, který práci dokončil"
-      },
-      "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
+      }
     },
     "button": {
       "share_contribute": "Kopírovat a sdílet",

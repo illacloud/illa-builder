@@ -114,9 +114,16 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
       ) => {
         const originEvents = get(componentNode.props, path, []) as any[]
         const dynamicPaths = get(componentNode.props, "$dynamicAttrPaths", [])
-        const needRunEvents = cloneDeep(originEvents).filter((originEvent) => {
-          return originEvent.eventType === eventType
-        })
+        const needRunEvents = cloneDeep(originEvents)
+          .filter((originEvent) => {
+            return originEvent.eventType === eventType
+          })
+          .map((originEvent) => {
+            return {
+              ...originEvent,
+              originEnable: originEvent.enabled,
+            }
+          })
         const finalContext =
           ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext(
             otherCalcContext,

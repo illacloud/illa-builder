@@ -10,14 +10,14 @@ import {
   WarningCircleIcon,
 } from "@illa-design/react"
 import { useOAuthRefresh } from "@/hooks/useOAuthRefresh"
-import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import {
   footerStyle,
   getOAuthStatusContentStyle,
   oAuthErrorIconStyle,
   oAuthStatusContainerStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import {
   AccessType,
   GoogleSheetAuthStatus,

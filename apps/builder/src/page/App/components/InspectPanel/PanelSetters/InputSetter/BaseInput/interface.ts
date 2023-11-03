@@ -4,6 +4,7 @@ export interface NewBaseInputSetterProps {
   isSetterSingleRow?: boolean
   placeholder?: string
   attrName: string
+  defaultValue?: any
   handleUpdateDsl: (attrPath: string, value: any) => void
   expectedType?: VALIDATION_TYPES
   value?: string

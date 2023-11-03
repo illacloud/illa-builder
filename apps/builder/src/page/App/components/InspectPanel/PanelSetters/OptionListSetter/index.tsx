@@ -1,74 +1,84 @@
-import { get } from "lodash"
-import { FC, useCallback, useMemo } from "react"
-import { useTranslation } from "react-i18next"
+import { get, isString } from "lodash"
+import { FC } from "react"
 import { useSelector } from "react-redux"
-import { OptionListSetterProvider } from "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/context/optionListContext"
-import {
-  generateNewOptionItem,
-  generateOptionItemId,
-} from "@/page/App/components/InspectPanel/PanelSetters/OptionListSetter/utils/generateNewOptions"
+import { v4 } from "uuid"
+import { Column } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Column"
+import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
+import { ColumnEmpty } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/Empty"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { ListBody } from "./body"
-import { OptionListHeader } from "./header"
-import { OptionItemShape, OptionListSetterProps } from "./interface"
-import { ListStyle } from "./style"
+import { OptionListSetterProps } from "./interface"
 
 const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const {
+    value,
     attrName,
-    headerName,
-    itemName,
-    emptyNode,
-    handleUpdateDsl,
-    value = [],
-    childrenSetter,
     widgetDisplayName,
+    childrenSetter,
+    handleUpdateMultiAttrDSL,
+    itemName,
   } = props
-  const { t } = useTranslation()
-  const executionResult = useSelector(getExecutionResult)
 
-  const allViews = useMemo(() => {
-    return get(
-      executionResult,
-      `${widgetDisplayName}.${attrName}`,
-      [],
-    ) as OptionItemShape[]
-  }, [attrName, executionResult, widgetDisplayName])
-
-  const allViewsKeys = useMemo(() => {
-    return allViews.map((view) => view?.value || "")
-  }, [allViews])
-
-  const handleAddOption = useCallback(() => {
-    const newItem = generateNewOptionItem(allViewsKeys, itemName)
-    handleUpdateDsl(attrName, [...value, newItem])
-  }, [allViewsKeys, itemName, handleUpdateDsl, attrName, value])
-
-  if (!Array.isArray(childrenSetter) || childrenSetter.length === 0) {
-    return null
-  }
+  const execResult = useSelector(getExecutionResult)
+  const executeValue = get(execResult, `${widgetDisplayName}.${attrName}`, [])
 
   return (
-    <OptionListSetterProvider
-      childrenSetter={childrenSetter}
-      widgetDisplayName={widgetDisplayName}
-      optionItems={value}
-      itemName={itemName}
-      attrPath={attrName}
-      allViewsKeys={allViewsKeys}
-      handleUpdateDsl={handleUpdateDsl}
-      generateItemId={generateOptionItemId}
+    <ColumnContainer
+      attrName={attrName}
+      value={value}
+      handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+      columnNum={value.length}
+      items={value.map((item) => item.id)}
+      onClickNew={() => {
+        const newItem = {
+          id: `${itemName}-${v4()}`,
+          key: `${itemName}-${v4()}`,
+          label: `${itemName} ${value.length + 1}`,
+        }
+        handleUpdateMultiAttrDSL?.({
+          [attrName]: [...value, newItem],
+        })
+      }}
     >
-      <div css={ListStyle}>
-        <OptionListHeader
-          labelName={
-            headerName ?? t("editor.inspect.setter_content.option_list.title")
-          }
-          handleAddOption={handleAddOption}
-        />
-        <ListBody emptyNode={emptyNode} />
-      </div>
-    </OptionListSetterProvider>
+      {value.length > 0 ? (
+        value.map((item, index) => {
+          return (
+            <Column
+              onCopy={() => {
+                const newItem = {
+                  ...value[index],
+                  id: `${itemName}-${v4()}`,
+                  key: `${itemName}-${v4()}`,
+                }
+                const updatedArray = [...value, newItem]
+                handleUpdateMultiAttrDSL?.({
+                  [attrName]: updatedArray,
+                })
+              }}
+              onDelete={(id) => {
+                const newV = value.filter((item) => item.id !== id)
+                handleUpdateMultiAttrDSL?.({
+                  [attrName]: newV,
+                })
+              }}
+              showCopy
+              showDelete
+              key={item.id}
+              id={item.id}
+              label={
+                isString(get(executeValue, `${index}.label`))
+                  ? get(executeValue, `${index}.label`)
+                  : JSON.stringify(get(executeValue, `${index}.label`))
+              }
+              widgetDisplayName={widgetDisplayName}
+              childrenSetter={childrenSetter}
+              attrPath={`${attrName}.${index}`}
+            />
+          )
+        })
+      ) : (
+        <ColumnEmpty />
+      )}
+    </ColumnContainer>
   )
 }
 

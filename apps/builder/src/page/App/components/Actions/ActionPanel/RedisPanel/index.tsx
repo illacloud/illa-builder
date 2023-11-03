@@ -8,7 +8,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { RedisAction } from "@/redux/currentApp/action/redisAction"

@@ -1223,7 +1223,7 @@
         "action_menu": {
           "delete": "删除",
           "reset_state": "重置状态",
-          "view_documentation": "View documentation"
+          "view_documentation": "文档"
         }
       },
       "multi_selected_header": "已选中 {{ number }} 个组件",
@@ -1324,8 +1324,8 @@
           "onRefresh": "刷新",
           "onFilterModelChange": "过滤器变更",
           "onRowSelectionModelChange": "行选择变更",
-          "onColumnVisibilityModel": "列是否可见变更",
-          "onSortModelChange": "排序方式变更"
+          "onSortModelChange": "排序方式变更",
+          "onColumnVisibilityModelChange": "列是否可见变更"
         },
         "image_list": {
           "title": "图片",
@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "点击外部取消选择",
           "page": "默认页面索引",
           "export_all_data_setting": "导出全部",
-          "locale": "本地化"
+          "locale": "本地化",
+          "column_field": "Column field"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "用于设置行高密集与否",
           "refresh_setting": "用于设置是否展示刷新按钮",
           "export_raw_data_setting": "用于设置是否允许用户导出未经筛选的原始数据",
-          "locale": "例如，en-US"
+          "locale": "例如，en-US",
+          "column_field": "Used to set the column"
         },
         "previous_cursor": "使用动作的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
@@ -2194,7 +2196,9 @@
         "disable_users_to_reorder": "用于设置是否禁止用户调整列排序",
         "default_width": "Used to set the default width of the column",
         "max_count": "用于设置星星的最大数量",
-        "allow_users_select": "用于设置是否允许用户选中行. "
+        "allow_users_select": "用于设置是否允许用户选中行. ",
+        "table_update_content": "表格组件将不再被维护。为了确保不间断地访问新功能，请将您的数据迁移到数据表组件中。",
+        "table_update_title": "更新"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -3726,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "开始上传",
-      "start_download": "开始下载"
+      "start_download": "开始下载",
+      "create_suc": "Successfully created",
+      "create_failed": "Failed to create",
+      "generate_url_fail": "URL生成失败。请手动选择文件。"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "create": "Create",
+        "cancel": "Cancel"
+      },
+      "validate": "Letters, numbers and -~_=: are allowed",
+      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+    },
+    "move_modal": {
+      "no_folders": "No files here"
+    },
+    "same_name_modal": {
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "keep_both": "Keep both",
+      "replace": "Replace"
+    },
+    "upload": {
+      "modal": {
+        "title": "选择一个文件夹",
+        "upload_to": "上传到",
+        "all": "根文件夹",
+        "create_folder": "新建文件夹",
+        "cancel": "取消",
+        "file_upload": "上传"
+      }
     }
   },
   "frame": {
@@ -4449,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      }
     },
     "button": {
       "share_contribute": "复制并分享",

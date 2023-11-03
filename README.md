@@ -2,6 +2,17 @@
   <h2>Hacktoberfest 2023 with ILLA Cloud</h2>
 </div>
 
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=socialflat-square&)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Formatting (pre-commit)](https://github.com/ros-planning/moveit2/actions/workflows/format.yaml/badge.svg?branch=main)](https://github.com/illacloud/illa-builder/actions/workflows/format.yaml?query=branch%3Amain)
+[![CI (Rolling and Humble)](https://github.com/ros-planning/moveit2/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/illacloud/illa-builder/actions/workflows/ci.yaml?query=branch%3Amain)
+[![Code Coverage](https://codecov.io/gh/ros-planning/moveit2/branch/main/graph/badge.svg?token=W7uHKcY0ly)](https://codecov.io/gh/illacloud/illa-builder)
+[![Stars](https://img.shields.io/github/stars/ros-planning/moveit2.svg?style=flat)](https://github.com/illacloud/illa-builder/stars)
+[![Issues](https://img.shields.io/github/issues/ros-planning/moveit2.svg?style=flat)](https://github.com/illacloud/illa-builder/issues)
+[![Forks](https://img.shields.io/github/forks/ros-planning/moveit2.svg?style=flat)](https://github.com/illacloud/illa-builder/forks)
+[![PR:s Welcome](https://img.shields.io/badge/PR:s-welcome-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
+[![First Contributors](https://img.shields.io/badge/first-contributors-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
+![GitHub repo size](https://img.shields.io/github/repo-size/illacloud/illa-builder)
+
 By contributing AI Agents or ILLA Apps to the ILLA community and submitting a pull request to ILLA, you have the opportunity to receive a Digital Reward Kit from Hacktoberfest and Swags from ILLA Cloud.
 
 <a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202979.png"></a>
@@ -49,10 +60,9 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 
 
 ## 🚀Get Started
-To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). To obtain an invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible.
-To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/illacloud), where you can obtain an invitation code faster.
+To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). 
 
-You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
+You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually([Docker](https://www.docker.com/), [docker-compose](https://docs.docker.com/compose/), and [k8s](https://kubernetes.io/)).
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
@@ -72,7 +82,7 @@ You can also deploy and [self-host](https://github.com/illacloud/illa-builder#se
 
 ## Self-hosted
     
-The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://www.illacloud.com/docs/illa-cli) for more details.
+The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://docs.illacloud.com/self-hosted-deployment) for more details.
 After successfully deployed, you can register with email address or log in with the following information: 
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
@@ -98,7 +108,7 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
 </p>
 
 #### 🔌 Step 3: Connect to your data
-Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
+Connect to MySQL or REST API through our GUI data connectors. We will add more than 10 databases and APIs soon.
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
@@ -106,7 +116,7 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
 </p>
 
 #### 🚀 Step 4: Deploy your app
-Deploy your app and self host it. 
+Deploy your app and self-host it. 
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
@@ -122,7 +132,7 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 
 ## 🌱 Contributing
 
-Thinking about contributing? All kind of contributions to ILLA are greatly appreciated and welcomed! Check out our [Contribution Guide](./CONTRIBUTING.md) for details about how you can get involved.
+Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out our [Contribution Guide](./CONTRIBUTING.md) for details about how you can get involved.
 <p>Appreciate all the contributions from our ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">Contributors!</a></p>
 
 ## 📢 Translating

@@ -1324,8 +1324,8 @@
           "onRefresh": "Refresh",
           "onFilterModelChange": "Filter change",
           "onRowSelectionModelChange": "Row selection change",
-          "onColumnVisibilityModel": "Column visibility change",
-          "onSortModelChange": "Sort change"
+          "onSortModelChange": "Sort change",
+          "onColumnVisibilityModelChange": "Column visibility change"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "Haga clic fuera para anular la selección",
           "page": "Default page index",
           "export_all_data_setting": "Export all",
-          "locale": "Locale"
+          "locale": "Locale",
+          "column_field": "Column field"
         },
         "previous_cursor": "Curso anterior",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Used to set the row height density or not. ",
           "refresh_setting": "Used to set whether to show a refresh icon",
           "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data.",
-          "locale": "For example, en-US"
+          "locale": "For example, en-US",
+          "column_field": "Used to set the column"
         },
         "previous_cursor": "Utilice los datos de acción para establecer el cursor anterior. Por ejemplo,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2194,7 +2196,9 @@
         "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
         "default_width": "Used to set the default width of the column",
         "max_count": "Used to set the max count of stars",
-        "allow_users_select": "Used to set whether allow users to select row. "
+        "allow_users_select": "Used to set whether allow users to select row. ",
+        "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
+        "table_update_title": "Update"
       },
       "setter_option": {
         "fixed": "Fijado",
@@ -3726,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Iniciar subida",
-      "start_download": "Iniciar descarga"
+      "start_download": "Iniciar descarga",
+      "create_suc": "Successfully created",
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "create": "Create",
+        "cancel": "Cancel"
+      },
+      "validate": "Letters, numbers and -~_=: are allowed",
+      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+    },
+    "move_modal": {
+      "no_folders": "No files here"
+    },
+    "same_name_modal": {
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "keep_both": "Keep both",
+      "replace": "Replace"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
@@ -4449,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Mira este increible agente de IA [{{promptName}}]",
-        "linkedin": "¡Atención a todos los entusiastas y profesionales de la IA que buscan aumentar su productividad! Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
-        "facebook": "¡Atención a todos los entusiastas y profesionales de la IA que buscan aumentar su productividad! Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
-        "whatsapp": "Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
         "hackernews": "Simplifique su carga de trabajo con [{{promptName}}] - El agente de IA que consigue el trabajo hecho"
-      },
-      "contribute": "Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!"
+      }
     },
     "button": {
       "share_contribute": "Copiar y compartir",

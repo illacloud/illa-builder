@@ -14,7 +14,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import {
   ListDocuments,
   ListDocumentsFilterOptions,

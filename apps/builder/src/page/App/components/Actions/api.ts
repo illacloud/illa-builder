@@ -1,3 +1,4 @@
+import { ResourceType } from "@illa-public/public-types"
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
@@ -15,7 +16,6 @@ import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   ResourceContent,
-  ResourceType,
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RestApiAuth } from "@/redux/resource/restapiResource"
@@ -300,6 +300,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         connectionOpts: data.connectionOpts,
         ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
       }
+    case "oracle9i":
     case "oracle": {
       const { resourceName: _resourceName, host, ...otherParams } = data
       return {

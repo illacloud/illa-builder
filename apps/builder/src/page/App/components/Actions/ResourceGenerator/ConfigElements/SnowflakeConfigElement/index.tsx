@@ -3,14 +3,13 @@ import { useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
-import { BasicAuthConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/BasicAuthConfig"
-import { KeyPairConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/KeyPairConfig"
 import {
-  divider,
   footerStyle,
   optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
+import { BasicAuthConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/BasicAuthConfig"
+import { KeyPairConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/KeyPairConfig"
 import {
   AuthenticationOptions,
   SnowflakeAuthenticationType,
@@ -43,7 +42,6 @@ const SnowflakeConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired

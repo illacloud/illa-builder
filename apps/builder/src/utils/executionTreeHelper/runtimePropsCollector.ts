@@ -26,6 +26,10 @@ import {
   setGlobalDataIn,
   setGlobalDataValue,
 } from "../eventHandlerHelper/utils/globalDataUtils"
+import {
+  clearLocalStorage,
+  setValueLocalStorage,
+} from "../eventHandlerHelper/utils/localStorage"
 
 const THIRD_PARTY_PACKAGES = {
   _: {
@@ -63,6 +67,8 @@ class ILLAEditorRuntimePropsCollector {
         saveToILLADrive,
         setGlobalDataIn,
         setGlobalDataValue,
+        setLocalStorage: setValueLocalStorage,
+        clearLocalStorage,
       },
     }
   }

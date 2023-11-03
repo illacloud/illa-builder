@@ -71,7 +71,7 @@ ILLA를 사용하는 가장 쉬운 방법은 [ILLA Cloud](https://cloud.illaclou
 
 ## 자체 호스팅
     
-ILLA CLI를 사용하면 상상보다 빠르게 ILLA Builder를 배포할 수 있습니다. [여기를 클릭하세요](https://www.illacloud.com/docs/illa-cli) 자세한 사항은.
+ILLA CLI를 사용하면 상상보다 빠르게 ILLA Builder를 배포할 수 있습니다. [여기를 클릭하세요](https://docs.illacloud.com/self-hosted-deployment) 자세한 사항은.
 배포가 완료되면 이메일 주소로 등록하거나 다음 정보로 로그인할 수 있습니다: 
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>

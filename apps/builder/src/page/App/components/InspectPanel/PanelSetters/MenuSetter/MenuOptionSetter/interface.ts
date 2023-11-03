@@ -1,13 +1,15 @@
 import { HTMLAttributes } from "react"
-import { ButtonProps } from "@illa-design/react"
+import { ButtonProps, MenuItemType } from "@illa-design/react"
 import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface MenuOptionSetterProps extends BaseSetter {
+  value: MenuItemType[]
   childrenSetter?: PanelFieldConfig[]
 }
 
 export interface SetterSubMenuProps extends HTMLAttributes<HTMLDivElement> {
+  id: string
   widgetDisplayName: string
   attrPath: string
   value: string
@@ -22,11 +24,11 @@ export interface NewButtonProps extends ButtonProps {
 }
 
 export interface SetterMenuItemProps extends HTMLAttributes<HTMLDivElement> {
+  id: string
   widgetDisplayName: string
   attrPath: string
   childrenSetter?: PanelFieldConfig[]
   value: string
   label: string
-  onClickItem: (value: string) => void
   onDelete: () => void
 }

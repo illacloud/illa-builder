@@ -879,7 +879,7 @@
             "attribute_name": "Expression attribute names",
             "attribute_value": "Expression attribute values",
             "limit": "Limit",
-            "select": "Select",
+            "select": "선택자",
             "item": "Item",
             "condition_expression": "Condition expression",
             "key": "Key",
@@ -960,7 +960,7 @@
             "value": "Value",
             "add_to": "Add to",
             "header_prefix": "Header prefix",
-            "key": "Key",
+            "key": "키",
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "연결 옵션",
@@ -1324,8 +1324,8 @@
           "onRefresh": "Refresh",
           "onFilterModelChange": "Filter change",
           "onRowSelectionModelChange": "Row selection change",
-          "onColumnVisibilityModel": "Column visibility change",
-          "onSortModelChange": "Sort change"
+          "onSortModelChange": "Sort change",
+          "onColumnVisibilityModelChange": "Column visibility change"
         },
         "image_list": {
           "title": "이미지",
@@ -1775,7 +1775,8 @@
           "click_outside_to_des": "바깥쪽을 클릭하여 선택 해제",
           "page": "Default page index",
           "export_all_data_setting": "Export all",
-          "locale": "Locale"
+          "locale": "Locale",
+          "column_field": "Column field"
         },
         "previous_cursor": "이전 커서",
         "input": {
@@ -2107,7 +2108,8 @@
           "density_setting": "Used to set the row height density or not. ",
           "refresh_setting": "Used to set whether to show a refresh icon",
           "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data.",
-          "locale": "For example, en-US"
+          "locale": "For example, en-US",
+          "column_field": "Used to set the column"
         },
         "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}",
         "input": {
@@ -2194,7 +2196,9 @@
         "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
         "default_width": "Used to set the default width of the column",
         "max_count": "Used to set the max count of stars",
-        "allow_users_select": "Used to set whether allow users to select row. "
+        "allow_users_select": "Used to set whether allow users to select row. ",
+        "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
+        "table_update_title": "Update"
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -3726,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_download": "Start download",
+      "create_suc": "Successfully created",
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "create": "Create",
+        "cancel": "Cancel"
+      },
+      "validate": "Letters, numbers and -~_=: are allowed",
+      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+    },
+    "move_modal": {
+      "no_folders": "No files here"
+    },
+    "same_name_modal": {
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "keep_both": "Keep both",
+      "replace": "Replace"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
@@ -4449,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      }
     },
     "button": {
       "share_contribute": "Copy & Share",

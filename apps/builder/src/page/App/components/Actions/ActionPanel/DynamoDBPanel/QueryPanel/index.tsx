@@ -4,7 +4,7 @@ import {
   DynamoDBSubPanelProps,
 } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/interface"
 import { queryPanelItems } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/items"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { QueryStructParams } from "@/redux/currentApp/action/dynamoDBAction"
 
 export const QueryPanel: FC<DynamoDBSubPanelProps> = (props) => {

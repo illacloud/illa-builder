@@ -2,7 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig"
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { GoogleSheetsActionDeleteOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

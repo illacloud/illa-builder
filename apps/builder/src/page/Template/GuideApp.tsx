@@ -10,13 +10,13 @@ import { useSelector } from "react-redux"
 import { TriggerProvider } from "@illa-design/react"
 import { Guide } from "@/components/Guide"
 import { useInitGuideApp } from "@/hooks/useInitGuideApp"
-import { ActionEditor } from "@/page/App/components/Actions"
+import { ActionEditor } from "@/page/App/Module/ActionEditor"
+import { CanvasPanel } from "@/page/App/Module/CanvasPanel"
+import ComponentsManager from "@/page/App/Module/ComponentManager"
+import { DataWorkspace } from "@/page/App/Module/DataWorkspace"
+import { PageNavBar } from "@/page/App/Module/PageNavBar"
 import { AppLoading } from "@/page/App/components/AppLoading"
-import { CanvasPanel } from "@/page/App/components/CanvasPanel"
-import ComponentsManager from "@/page/App/components/ComponentManager"
-import { DataWorkspace } from "@/page/App/components/DataWorkspace"
 import { Debugger } from "@/page/App/components/Debugger"
-import { PageNavBar } from "@/page/App/components/PageNavBar"
 import {
   bottomPanelStyle,
   centerPanelStyle,

@@ -16,15 +16,8 @@ export const BaseModal: FC<ModalProps> = (props) => {
     _css,
     header,
     extraElement,
+    docLink,
   } = props
-
-  const _header = useMemo(() => {
-    return (
-      header ?? (
-        <ModalHeader title={title} handleCloseModal={handleCloseModal} />
-      )
-    )
-  }, [header, title, handleCloseModal])
 
   const renderBody = useMemo(() => {
     if (!childrenSetter || !widgetDisplayName || !attrPath) {
@@ -41,7 +34,13 @@ export const BaseModal: FC<ModalProps> = (props) => {
 
   return (
     <div css={css(modalWrapperStyle, _css)}>
-      {_header}
+      {header ?? (
+        <ModalHeader
+          title={title}
+          handleCloseModal={handleCloseModal}
+          docLink={docLink}
+        />
+      )}
       <Suspense>{renderBody}</Suspense>
       {extraElement}
     </div>

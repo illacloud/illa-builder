@@ -16,13 +16,12 @@ import {
   configItemTip,
   connectType,
   connectTypeStyle,
-  divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
   labelContainer,
-} from "@/page/App/components/Actions/styles"
-import { ControlledElement } from "@/page/App/components/ControlledElement"
+} from "@/page/App/Module/ActionEditor/styles"
+import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   ElasticSearchResource,
   ElasticSearchResourceInitial,
@@ -57,7 +56,6 @@ const ElasticSearchConfigElement: FC<BaseConfigElementProps> = (props) => {
   return (
     <>
       <div css={container}>
-        <div css={divider} />
         <ControlledElement
           controlledType="input"
           isRequired
