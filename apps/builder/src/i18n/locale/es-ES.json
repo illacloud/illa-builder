@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Establecer si ocultar el botón de enviar",
           "submit_button_full_w": "Ajuste si el botón enviar es ancho o no.",
           "submit_button_text": "Establecer el texto del botón de enviar"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Un número entre 0 y 1"
@@ -3111,7 +3115,9 @@
       "right": "Derecha",
       "select_options": {
         "manual": "Manual",
-        "mapped": "Mapeado"
+        "mapped": "Mapeado",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Subir"
     },
