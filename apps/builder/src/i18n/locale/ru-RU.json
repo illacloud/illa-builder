@@ -3766,6 +3766,9 @@
         "create_folder": "Создать новую папку",
         "cancel": "Отмена",
         "file_upload": "Выгрузить"
+      },
+      "select": {
+        "confirm_button": "Выбрать"
       }
     }
   },
