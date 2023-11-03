@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Ustaw czy ukryć przycisk wysyłania",
           "submit_button_full_w": "Ustaw czy przycisk przesyłania ma pełną szerokość.",
           "submit_button_text": "Ustaw tekst przycisku przesyłania"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Liczba pomiędzy 0 a 1"
@@ -3111,7 +3115,9 @@
       "right": "Prawy",
       "select_options": {
         "manual": "Ręcznie",
-        "mapped": "Mapowane"
+        "mapped": "Mapowane",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Góra"
     },
