@@ -3732,7 +3732,8 @@
       "start_upload": "Inizia il caricamento",
       "start_download": "Avvia il download",
       "create_suc": "Successfully created",
-      "create_failed": "Failed to create"
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
     },
     "create_modal": {
       "title": {
@@ -4482,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Dai un'occhiata a questo fantastico agente AI [{{promptName}}]",
-        "linkedin": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
-        "facebook": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
-        "whatsapp": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
         "hackernews": "Semplifica il tuo carico di lavoro con [{{promptName}}] - L'agente AI che ottiene il lavoro fatto"
-      },
-      "contribute": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!"
+      }
     },
     "button": {
       "share_contribute": "Copia & Condividi",
