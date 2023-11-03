@@ -3730,7 +3730,37 @@
   "drive": {
     "message": {
       "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_download": "Start download",
+      "create_suc": "Oprettet succesfuldt",
+      "create_failed": "Kunne ikke oprette",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Opret en mappe",
+        "create": "Opret",
+        "cancel": "Annuller"
+      },
+      "validate": "Kun bogstaver, tal og -~_=: er tilladt. Grænsen er 255 tegn eller mindre",
+      "validate_failed": "Kun bogstaver, tal og -~_=: er tilladt. Grænsen er 255 tegn eller mindre"
+    },
+    "move_modal": {
+      "no_folders": "Ingen filer her"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?",
+      "keep_both": "Behold begge",
+      "replace": "Erstat"
+    },
+    "upload": {
+      "modal": {
+        "title": "Vælg en mappe at uploade til",
+        "upload_to": "Upload til",
+        "all": "Rod",
+        "create_folder": "Opret ny mappe",
+        "cancel": "Annuller",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
