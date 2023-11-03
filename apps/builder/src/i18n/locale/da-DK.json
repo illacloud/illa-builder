@@ -3766,6 +3766,9 @@
         "create_folder": "Opret ny mappe",
         "cancel": "Annuller",
         "file_upload": "Upload"
+      },
+      "select": {
+        "confirm_button": "Vælg"
       }
     }
   },
