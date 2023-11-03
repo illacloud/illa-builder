@@ -14,6 +14,13 @@ export enum GCS_OBJECT_TYPE {
   ANONYMOUS_FOLDER = "anonymousFolder",
 }
 
+export enum FILE_CATEGORY {
+  IMAGE = "image",
+  VIDEO = "video",
+  AUDIO = "audio",
+  PDF = "pdf",
+}
+
 interface IFetchUploadFilesToAnonymousFolderRequest {
   name: string
   type: GCS_OBJECT_TYPE
@@ -188,6 +195,7 @@ export interface IFetchFileListRequestData {
   search?: string
   sortedBy?: string
   sortedType?: SORTED_TYPE
+  fileCategory?: FILE_CATEGORY
 }
 
 export interface IFetchFileListResponseData {
@@ -280,6 +288,23 @@ export const fetchBatchGenerateTinyUrl = async (
   )
 }
 
+export const fetchGenerateTinyUrl = async (
+  data: IFetchGenerateTinyURLRequestData,
+  abortSignal?: AbortSignal,
+) => {
+  return await driveRequest<IFetchGenerateBatchTinyURLResponse>(
+    {
+      url: "/links",
+      method: "POST",
+      data,
+      signal: abortSignal,
+    },
+    {
+      teamID: getCurrentTeamID(),
+    },
+  )
+}
+
 export const fetchBatchAnonymousGenerateTinyUrl = async (
   appID: string,
   data: IFetchGenerateTinyURLRequestData,
@@ -336,4 +361,80 @@ export const fetchCloseAnonymousPermission = async () => {
       teamID: getCurrentTeamID(),
     },
   )
+}
+
+export enum DUPLICATION_HANDLER {
+  COVER = "cover",
+  RENAME = "rename",
+  MANUAL = "manual",
+  SKIP = "SKIP",
+}
+
+interface IFetchCheckFileExistRequestData {
+  folderID: string
+  name: string
+  type: GCS_OBJECT_TYPE
+}
+
+interface IFetchCheckFileExistResponseData {
+  name: string
+  isDuplicated: boolean
+}
+
+export const fetchCheckFileExist = async (
+  data: IFetchCheckFileExistRequestData[],
+  abortSignal?: AbortSignal,
+) => {
+  return await driveRequest<IFetchCheckFileExistResponseData[]>(
+    {
+      url: `/files/duplicate`,
+      method: "POST",
+      data,
+      signal: abortSignal,
+    },
+    {
+      teamID: getCurrentTeamID(),
+    },
+  )
+}
+
+interface IFetchFileDetailRequestData {
+  name: string
+  folderID: string
+  type: GCS_OBJECT_TYPE
+  size: number
+  resumable?: boolean
+  duplicationHandler: DUPLICATION_HANDLER
+  contentType: string
+}
+
+interface IFetchFIleDetailResponseData {
+  id: string
+  name: string
+  type: GCS_OBJECT_TYPE
+  url: string
+  resumable: boolean
+}
+
+export const fetchGCSUploadPresignedURL = async (
+  data: IFetchFileDetailRequestData,
+  abortSignal?: AbortSignal,
+) => {
+  try {
+    const response = await driveRequest<IFetchFIleDetailResponseData>(
+      {
+        url: "/files",
+        method: "POST",
+        data: {
+          resumable: true,
+          ...data,
+        },
+        signal: abortSignal,
+      },
+      { teamID: getCurrentTeamID() },
+    )
+    return Promise.resolve(response)
+  } catch (e) {
+    return Promise.reject(e)
+  }
 }

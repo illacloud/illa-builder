@@ -1,25 +1,32 @@
 import VirtualList from "rc-virtual-list"
 import { FC, MouseEvent, useCallback, useRef } from "react"
 import { Checkbox } from "@illa-design/react"
-import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@/services/drive"
-import { getFileIconByContentType } from "@/widgetLibrary/DrivePickerWidget/utils"
 import {
   FOLDER_LIST_CONTAINER_HEIGHT,
   FOLDER_LIST_ITEM_HEIGHT,
-} from "./constants"
+} from "@/components/DriveFileSelect/constants"
+import { getFileIconByContentType } from "@/components/DriveFileSelect/utils"
+import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@/services/drive"
 import { FileListProps } from "./interface"
-import { fileNameStyle, iconPublicStyle, listItemContainerStyle } from "./style"
+import {
+  fileNameStyle,
+  iconPublicStyle,
+  listItemContainerStyle,
+  singleListItemContainerStyle,
+} from "./style"
 
-export const FileList: FC<FileListProps> = (props) => {
+const FileList: FC<FileListProps> = (props) => {
   const {
     listData,
     totalPath,
     search,
     selectItems,
     colorScheme,
+    singleSelect,
     onChange,
     getFileList,
     updatePath,
+    handleSingleChange,
   } = props
 
   const handleClickItem = useCallback(
@@ -30,9 +37,12 @@ export const FileList: FC<FileListProps> = (props) => {
         item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER
       ) {
         updatePath(`${totalPath}/${item.name}`)
+        return
+      } else if (singleSelect) {
+        handleSingleChange(item)
       }
     },
-    [totalPath, updatePath],
+    [singleSelect, totalPath, updatePath, handleSingleChange],
   )
 
   const currentPageIndexRef = useRef(1)
@@ -45,6 +55,8 @@ export const FileList: FC<FileListProps> = (props) => {
       getFileList(++currentPageIndexRef.current, totalPath, search?.current)
     }
   }
+  singleSelect
+
   return (
     <VirtualList
       height={FOLDER_LIST_CONTAINER_HEIGHT}
@@ -56,21 +68,27 @@ export const FileList: FC<FileListProps> = (props) => {
       {(item: IILLAFileInfo) => {
         return (
           <label
-            css={listItemContainerStyle}
+            css={
+              singleSelect
+                ? singleListItemContainerStyle(selectItems[0]?.id === item.id)
+                : listItemContainerStyle
+            }
             onClick={(e) => handleClickItem(e, item)}
           >
-            <Checkbox
-              colorScheme={colorScheme}
-              disabled={
-                item.type === GCS_OBJECT_TYPE.FOLDER ||
-                item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER
-              }
-              key={item.id}
-              onChange={(v) => onChange(v, item)}
-              defaultChecked={
-                selectItems.findIndex((file) => file.id === item.id) !== -1
-              }
-            />
+            {!singleSelect && (
+              <Checkbox
+                colorScheme={colorScheme}
+                disabled={
+                  item.type === GCS_OBJECT_TYPE.FOLDER ||
+                  item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER
+                }
+                key={item.id}
+                onChange={(v) => onChange(v, item)}
+                defaultChecked={
+                  selectItems.findIndex((file) => file.id === item.id) !== -1
+                }
+              />
+            )}
             {getFileIconByContentType(
               item.type,
               item.contentType,
@@ -83,3 +101,5 @@ export const FileList: FC<FileListProps> = (props) => {
     </VirtualList>
   )
 }
+
+export default FileList

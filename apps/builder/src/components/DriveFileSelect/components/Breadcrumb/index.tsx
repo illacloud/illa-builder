@@ -1,10 +1,15 @@
 import { FC, useCallback, useContext, useMemo } from "react"
 import { Breadcrumb, BreadcrumbItem } from "@illa-design/react"
-import { ROOT_PATH } from "@/widgetLibrary/DrivePickerWidget/constants"
-import { DrivePickerContext } from "@/widgetLibrary/DrivePickerWidget/context"
+import { DriveFileSelectContext } from "@/components/DriveFileSelect"
 
-export const FileBreadCrumb: FC = () => {
-  const { currentPath, totalPath, updatePath } = useContext(DrivePickerContext)
+interface FileBreadCrumbProps {
+  rootPath: string
+}
+
+const FileBreadCrumb: FC<FileBreadCrumbProps> = ({ rootPath }) => {
+  const { currentPath, totalPath, updatePath } = useContext(
+    DriveFileSelectContext,
+  )
 
   const handleClickBreadcrumb = useCallback(
     (path: string, last: boolean) => {
@@ -20,8 +25,8 @@ export const FileBreadCrumb: FC = () => {
     if (!currentPath) {
       return [
         {
-          path: ROOT_PATH,
-          title: ROOT_PATH,
+          path: rootPath,
+          title: rootPath,
           last: true,
         },
       ]
@@ -38,7 +43,7 @@ export const FileBreadCrumb: FC = () => {
         last: isLast,
       }
     })
-  }, [currentPath, totalPath])
+  }, [currentPath, rootPath, totalPath])
 
   return (
     <Breadcrumb
@@ -54,3 +59,5 @@ export const FileBreadCrumb: FC = () => {
     </Breadcrumb>
   )
 }
+
+export default FileBreadCrumb

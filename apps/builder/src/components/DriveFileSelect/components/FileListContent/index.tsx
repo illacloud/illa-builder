@@ -10,19 +10,19 @@ import {
 } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, CloseIcon, Search, useMessage } from "@illa-design/react"
-import i18n from "@/i18n/config"
-import { DrivePickerContext } from "@/widgetLibrary/DrivePickerWidget/context"
-import { FileBreadCrumb } from "../Breadcrumb"
+import { DriveFileSelectContext } from "@/components/DriveFileSelect"
+import FileBreadCrumb from "@/components/DriveFileSelect/components/Breadcrumb"
+import EmptyState from "@/components/DriveFileSelect/components/EmptyState"
+import FileList from "@/components/DriveFileSelect/components/FileList"
+import { LoadingState } from "@/components/DriveFileSelect/components/LoadingState"
 import {
   MAX_FILE_NUM,
   MAX_SIZE_MESSAGE,
   MIN_FILE_NUM,
   MIN_SIZE_MESSAGE,
-} from "./constants"
-import { EmptyState } from "./empty"
-import { FileToPanel } from "./interface"
-import { FileList } from "./list"
-import { LoadingState } from "./loadingState"
+} from "@/components/DriveFileSelect/constants"
+import { FileToPanel } from "@/components/DriveFileSelect/interface"
+import i18n from "@/i18n/config"
 import {
   ModalTitleStyle,
   applyInnerFileListContainerStyle,
@@ -31,8 +31,9 @@ import {
   headerContainerStyle,
 } from "./style"
 
-export const FilesModalContent: FC = () => {
+const FilesModalContent: FC = () => {
   const {
+    rootPath,
     modalVisible,
     fileList,
     totalPath,
@@ -40,13 +41,14 @@ export const FilesModalContent: FC = () => {
     maxSize,
     minFileNum,
     maxFileNum,
-    sizeType,
+    sizeType = "mb",
     colorScheme,
+    singleSelect = false,
     getFileList,
     updatePath,
     submitSelect,
     handleCloseModal,
-  } = useContext(DrivePickerContext)
+  } = useContext(DriveFileSelectContext)
   const { t } = useTranslation()
 
   const [isConfirmLoading, setConfirmLoading] = useState(false)
@@ -128,6 +130,16 @@ export const FilesModalContent: FC = () => {
     [handleBtnDisabled, selectItems],
   )
 
+  const handleSingleChange = useCallback(
+    (item: FileToPanel) => {
+      if (selectItems[0]?.id !== item.id) {
+        setSelectItems([item])
+        setDisabled(false)
+      }
+    },
+    [selectItems],
+  )
+
   const handleClickClose = useCallback(() => {
     handleCloseModal()
     setSelectItems([])
@@ -179,7 +191,7 @@ export const FilesModalContent: FC = () => {
         </span>
       </div>
       <div css={headerContainerStyle}>
-        <FileBreadCrumb />
+        <FileBreadCrumb rootPath={rootPath} />
         <Search
           colorScheme={colorScheme}
           placeholder="search"
@@ -199,6 +211,8 @@ export const FilesModalContent: FC = () => {
               updatePath={updatePath}
               selectItems={selectItems}
               colorScheme={colorScheme}
+              singleSelect={singleSelect}
+              handleSingleChange={handleSingleChange}
             />
           ) : (
             !loading && <EmptyState />
@@ -217,11 +231,15 @@ export const FilesModalContent: FC = () => {
           onClick={handleClickOk}
           loading={isConfirmLoading}
         >
-          {t("widget.drive_picker.modal.confirm", {
-            fileNum: selectItems.length,
-          })}
+          {singleSelect
+            ? t("widget.drive_picker.modal.confirm", {
+                fileNum: selectItems.length,
+              })
+            : "确定"}
         </Button>
       </div>
     </>
   )
 }
+
+export default FilesModalContent

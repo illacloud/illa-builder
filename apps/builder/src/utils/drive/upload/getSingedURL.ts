@@ -123,3 +123,32 @@ export const updateFilesToDriveStatus = async (
     await fetchUploadFilesStatusAnonymous(appID, fileID, uploadFileStatus)
   }
 }
+
+export const getNewSignedUrl = async (
+  file: File,
+  folderID: string,
+  replace: boolean,
+) => {
+  try {
+    const singedURLResponse = await fetchGetUploadFileURL({
+      name: file.webkitRelativePath || file.name,
+      folderID: folderID,
+      type: GCS_OBJECT_TYPE.FILE,
+      size: file.size === 0 ? file.size + 1 : file.size,
+      duplicationHandler: replace
+        ? UPLOAD_FILE_DUPLICATION_HANDLER.COVER
+        : UPLOAD_FILE_DUPLICATION_HANDLER.RENAME,
+      contentType: file.type,
+    })
+    return {
+      url: singedURLResponse.data.url,
+      fileID: singedURLResponse.data.id,
+      fileName: singedURLResponse.data.name,
+    }
+  } catch (e) {
+    if (isILLAAPiError(e)) {
+      return Promise.reject(e)
+    }
+    throw new Error(GET_SINGED_URL_ERROR_CODE.UPLOAD_FAILED)
+  }
+}
