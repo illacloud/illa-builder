@@ -4483,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Découvrez cet incroyable Agent IA [{{promptName}}]",
-        "linkedin": "Attention à tous les passionnés et professionnels de l'IA qui cherchent à augmenter leur productivité! Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
-        "facebook": "Attention à tous les passionnés et professionnels de l'IA qui cherchent à augmenter leur productivité! Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
-        "whatsapp": "Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
         "hackernews": "Simplifiez votre charge de travail avec [{{promptName}}] - L'agent IA qui obtient la tâche terminée"
-      },
-      "contribute": "Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!"
+      }
     },
     "button": {
       "share_contribute": "Copier et partager",
