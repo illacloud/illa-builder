@@ -3732,7 +3732,8 @@
       "start_upload": "アップロードを開始",
       "start_download": "ダウンロードを開始",
       "create_suc": "作成に成功しました",
-      "create_failed": "作成に失敗しました"
+      "create_failed": "作成に失敗しました",
+      "generate_url_fail": "URLの生成に失敗しました。手動でファイルを選択してください。 "
     },
     "create_modal": {
       "title": {
@@ -3753,12 +3754,12 @@
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
-        "upload_to": "Upload to",
-        "all": "Root",
-        "create_folder": "Create new folder",
-        "cancel": "Cancel",
-        "file_upload": "Upload"
+        "title": "アップロードするフォルダを選択",
+        "upload_to": "アップロード先:",
+        "all": "ルート",
+        "create_folder": "新しいフォルダを作成",
+        "cancel": "キャンセル",
+        "file_upload": "アップロード"
       }
     }
   },
@@ -4482,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "この AI エージェント [{{promptName}} ] をチェックしてください。",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "hackernews": "[{{promptName}}] で作業負荷を簡素化する - 作業を完了させるAIエージェント"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      }
     },
     "button": {
       "share_contribute": "コピー & 共有",
