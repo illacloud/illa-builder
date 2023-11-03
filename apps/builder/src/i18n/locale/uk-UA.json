@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Приховувати кнопку відправки",
           "submit_button_full_w": "Виберіть, чи є кнопка надсилання.",
           "submit_button_text": "Задати текст кнопки Відправити"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Число від 0 до 1"
@@ -3111,7 +3115,9 @@
       "right": "Праворуч",
       "select_options": {
         "manual": "Вручну",
-        "mapped": "Зроблено"
+        "mapped": "Зроблено",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Верх"
     },
