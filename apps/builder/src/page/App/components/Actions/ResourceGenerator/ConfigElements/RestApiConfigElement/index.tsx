@@ -2,17 +2,8 @@ import { FC } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  Divider,
-  PreviousIcon,
-} from "@illa-design/react"
-import {
-  footerStyle,
-  optionLabelStyle,
-} from "@/page/App/Module/ActionEditor/styles"
+import { Alert, Divider } from "@illa-design/react"
+import { optionLabelStyle } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/Actions/InputRecordEditor"
 import { BasicAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/BasicAuthPanel"
@@ -30,7 +21,6 @@ import {
 } from "@/redux/resource/restapiResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
@@ -42,7 +32,7 @@ const RestApiAuthTypeComponentMap = {
 }
 
 const RestApiConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { onBack, resourceID, hasFooter = true } = props
+  const { resourceID } = props
 
   const { t } = useTranslation()
   const { control, watch } = useFormContext()
@@ -289,22 +279,6 @@ const RestApiConfigElement: FC<BaseConfigElementProps> = (props) => {
           <SubPanelComponent control={control} auth={content.authContent} />
         )}
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

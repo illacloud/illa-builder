@@ -3,19 +3,12 @@ import { FC, useMemo } from "react"
 import { useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  PreviousIcon,
-  getColor,
-} from "@illa-design/react"
+import { Divider, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItemTip,
   connectType,
   connectTypeStyle,
-  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -27,13 +20,11 @@ import {
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 const DynamoDBConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { resourceID, onBack, hasFooter = true } = props
+  const { resourceID } = props
   const { t } = useTranslation()
   const { control } = useFormContext()
   const resource = useSelector((state: RootState) => {
@@ -143,23 +134,6 @@ const DynamoDBConfigElement: FC<BaseConfigElementProps> = (props) => {
           </>
         )}
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="dynamodb" />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

@@ -4,14 +4,7 @@ import { FC } from "react"
 import { useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  PreviousIcon,
-  WarningCircleIcon,
-  getColor,
-} from "@illa-design/react"
+import { Divider, WarningCircleIcon, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItemTip,
@@ -19,7 +12,6 @@ import {
   connectTypeStyle,
   errorIconStyle,
   errorMsgStyle,
-  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -32,13 +24,11 @@ import {
 } from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 const S3ConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { onBack, resourceID, hasFooter = true } = props
+  const { resourceID } = props
   const { t } = useTranslation()
   const { control, formState, watch } = useFormContext()
 
@@ -217,23 +207,6 @@ const S3ConfigElement: FC<BaseConfigElementProps> = (props) => {
           </>
         )}
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="s3" />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

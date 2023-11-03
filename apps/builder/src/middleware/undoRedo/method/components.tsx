@@ -6,6 +6,7 @@ import {
   searchDSLByDisplayName,
 } from "@/redux/currentApp/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 
@@ -113,20 +114,19 @@ export const componentsSnapShot = (
       break
     }
     case "updateComponentContainerReducer": {
+      const layoutInfos = getExecutionWidgetLayoutInfo(_prevRootState)
       const originNodeLayoutInfos = (
         action.payload as UpdateComponentContainerPayload
-      ).updateSlices
-        .map((item) => {
-          return searchDSLByDisplayName(item.displayName, _prevRootState)
-        })
-        .filter((item) => item !== null) as ComponentNode[]
+      ).updateSlices.map((item) => {
+        return layoutInfos[item.displayName]
+      })
       const newUpdateSlices = originNodeLayoutInfos.map((item) => {
         return {
           displayName: item.displayName,
-          x: item.x,
-          y: item.y,
-          w: item.w,
-          h: item.h,
+          x: item.layoutInfo.x,
+          y: item.layoutInfo.y,
+          w: item.layoutInfo.w,
+          h: item.layoutInfo.h,
         }
       })
       const newAction = {

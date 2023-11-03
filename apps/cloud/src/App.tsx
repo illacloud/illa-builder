@@ -1,5 +1,6 @@
 import createCache from "@emotion/cache"
 import { CacheProvider, Global } from "@emotion/react"
+import { px2Rem } from "@illa-public/styleis-plugin"
 import { getCurrentTranslateLanguage } from "@illa-public/user-data"
 import { FC, useEffect } from "react"
 import { useTranslation } from "react-i18next"
@@ -8,7 +9,6 @@ import { RouterProvider } from "react-router-dom"
 import { MessageGroup, ModalGroup } from "@illa-design/react"
 import { getLocalLanguage } from "@/i18n"
 import { ILLARoute } from "@/router"
-import { px2Rem } from "@/utils/stylis-plugin/px2rem"
 import { globalStyles, messageStyle } from "./style"
 
 const App: FC = () => {

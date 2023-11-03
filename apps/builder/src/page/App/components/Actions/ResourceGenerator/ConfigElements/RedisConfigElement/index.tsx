@@ -4,22 +4,13 @@ import { FC, useCallback, useMemo, useState } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Alert,
-  Button,
-  ButtonGroup,
-  Divider,
-  Input,
-  PreviousIcon,
-  getColor,
-} from "@illa-design/react"
+import { Alert, Button, Divider, Input, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItem,
   configItemTip,
   connectType,
   connectTypeStyle,
-  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
@@ -33,8 +24,6 @@ import {
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { container } from "../style"
 import { RedisLikeConfigElementProps } from "./interface"
 
@@ -64,7 +53,7 @@ const checkIsValidConnectionString = (connectionString: string) => {
 }
 
 const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
-  const { onBack, resourceID, resourceType, hasFooter = true } = props
+  const { resourceID, resourceType } = props
   const { t } = useTranslation()
   const { control, setValue } = useFormContext()
   const findResource = useSelector((state: RootState) => {
@@ -303,23 +292,6 @@ const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
         />
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType={resourceType} />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }
