@@ -2,8 +2,11 @@ import {
   HTTP_REQUEST_PUBLIC_BASE_URL,
   PUBLIC_DRIVE_REQUEST_PREFIX,
 } from "@illa-public/illa-net/constant"
-import { FC, ReactNode, createContext, useCallback, useState } from "react"
+import { FC, ReactNode, useCallback, useState } from "react"
 import { useSelector } from "react-redux"
+import { removeSuffixPath, usePath } from "@/components/DriveFileSelect"
+import { DriveFileSelectContext } from "@/components/DriveFileSelect/context"
+import { FileToPanel } from "@/components/DriveFileSelect/interface"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
   DRIVE_FILE_TYPE,
@@ -14,35 +17,8 @@ import {
   fetchBatchGenerateTinyUrl,
   fetchFileList,
 } from "@/services/drive"
-import { FileToPanel } from "./components/FileModal/interface"
 import { PAGESIZE, ROOT_PATH } from "./constants"
-import { usePath } from "./hooks/usePath"
 import { SelectItemValue } from "./interface"
-import { removeSuffixPath } from "./utils"
-
-interface Injected {
-  modalVisible: boolean
-  fileList: IILLAFileInfo[]
-  currentPath: string
-  totalPath: string
-  sizeType: "kb" | "mb"
-  minSize?: number
-  maxSize?: number
-  minFileNum?: number
-  maxFileNum?: number
-  colorScheme: string
-  updatePath: (changedPath: string) => void
-  submitSelect: (selectIds: FileToPanel[]) => Promise<unknown>
-  setModalVisible: (visible: boolean) => void
-  getFileList: (
-    currentPage: number,
-    totalPath: string,
-    search?: string,
-  ) => Promise<unknown>
-  handleCloseModal: () => void
-}
-
-export const DrivePickerContext = createContext<Injected>({} as Injected)
 
 interface Props {
   path?: string
@@ -182,6 +158,7 @@ export const DrivePickerProvider: FC<Props> = (props) => {
   )
 
   const value = {
+    rootPath: ROOT_PATH,
     modalVisible,
     fileList,
     currentPath,
@@ -200,9 +177,9 @@ export const DrivePickerProvider: FC<Props> = (props) => {
   }
 
   return (
-    <DrivePickerContext.Provider value={value}>
+    <DriveFileSelectContext.Provider value={value}>
       {children}
-    </DrivePickerContext.Provider>
+    </DriveFileSelectContext.Provider>
   )
 }
 

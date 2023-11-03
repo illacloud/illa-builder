@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useState } from "react"
-import { ROOT_PATH } from "@/widgetLibrary/DrivePickerWidget/constants"
+import { useCallback, useContext, useEffect, useState } from "react"
 import {
   getCurrentPath,
   removeSuffixPath,
-} from "@/widgetLibrary/DrivePickerWidget/utils"
+} from "@/components/DriveFileSelect/utils"
+import { DriveFileSelectContext } from "../context"
 
 export const usePath = (
   path: string,
-  allowAnonymousUse: boolean | undefined,
+  allowAnonymousUse?: boolean | undefined,
 ) => {
+  const { rootPath: ROOT_PATH } = useContext(DriveFileSelectContext)
   const [totalPath, setTotalPath] = useState<string>(path || ROOT_PATH)
   const [currentPath, setCurrentPath] = useState<string>(
     getCurrentPath(totalPath),
@@ -31,7 +32,7 @@ export const usePath = (
       setTotalPath(path || ROOT_PATH)
       setCurrentPath(getCurrentPath(path || ROOT_PATH))
     }
-  }, [allowAnonymousUse, path])
+  }, [ROOT_PATH, allowAnonymousUse, path])
 
   return {
     currentPath,

@@ -1,11 +1,11 @@
 import { FC, useContext } from "react"
 import { createPortal } from "react-dom"
 import { Modal } from "@illa-design/react"
-import { DrivePickerContext } from "@/widgetLibrary/DrivePickerWidget/context"
-import { FilesModalContent } from "./content"
+import FilesModalContent from "./components/FileListContent"
+import { DriveFileSelectContext } from "./context"
 
-export const FilesModal: FC = () => {
-  const { modalVisible, handleCloseModal } = useContext(DrivePickerContext)
+const FilesModal: FC = () => {
+  const { modalVisible, handleCloseModal } = useContext(DriveFileSelectContext)
 
   return createPortal(
     <>
@@ -13,6 +13,7 @@ export const FilesModal: FC = () => {
         <Modal
           closable
           maskClosable
+          withoutPadding
           visible
           onCancel={handleCloseModal}
           footer={false}
@@ -24,3 +25,9 @@ export const FilesModal: FC = () => {
     document.body,
   )
 }
+
+export default FilesModal
+export { usePath } from "./hooks/usePath"
+export * from "./utils"
+export * from "./interface"
+export * from "./context"
