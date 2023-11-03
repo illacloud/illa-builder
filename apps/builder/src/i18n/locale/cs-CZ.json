@@ -3766,6 +3766,9 @@
         "create_folder": "Vytvořit novou složku",
         "cancel": "Zrušit",
         "file_upload": "Nahrát"
+      },
+      "select": {
+        "confirm_button": "Vybrat"
       }
     }
   },
