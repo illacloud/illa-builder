@@ -3730,7 +3730,36 @@
   "drive": {
     "message": {
       "start_upload": "Începe încărcarea",
-      "start_download": "Începe descărcarea"
+      "start_download": "Începe descărcarea",
+      "create_suc": "Creat cu succes",
+      "create_failed": "Crearea a eșuat"
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Creează un dosar",
+        "create": "Crează",
+        "cancel": "Anulează"
+      },
+      "validate": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin",
+      "validate_failed": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin"
+    },
+    "move_modal": {
+      "no_folders": "Niciun fișier aici"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?",
+      "keep_both": "Păstrați ambele",
+      "replace": "Înlocuiește"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      }
     }
   },
   "frame": {
