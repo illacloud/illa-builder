@@ -4,6 +4,7 @@ import {
   HTMLAttributes,
   forwardRef,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -15,6 +16,7 @@ import { ReactComponent as NextIcon } from "@/assets/carousel/next-shadow.svg"
 import { ReactComponent as PreviousIcon } from "@/assets/carousel/prev-shadow.svg"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
+import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import {
   applyDisabledStyle,
@@ -49,6 +51,7 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
     draggable,
     radius,
     onChange,
+    sourceLoadErrorHandler,
   } = props
 
   return (
@@ -88,6 +91,9 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
               height="100%"
               width="100%"
               css={fullImageStyle}
+              onError={() => {
+                sourceLoadErrorHandler(url)
+              }}
             />
           </div>
         )
@@ -118,6 +124,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   } = props
   const carouselRef = useRef<Slider>(null)
   const isEditMode = useSelector(getIsILLAEditMode) ?? true
+  const { sourceLoadErrorHandler } = useContext(MediaSourceLoadContext)
 
   const finalRadius = useMemo(() => {
     const reg = /^\d+$/
@@ -202,6 +209,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
           onClickItem={handleOnClickItem}
           onChange={handleOnChange}
           radius={finalRadius}
+          sourceLoadErrorHandler={sourceLoadErrorHandler}
         />
       </div>
     </TooltipWrapper>

@@ -43,6 +43,7 @@ import { setupComponentsListeners } from "@/redux/currentApp/components/componen
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { fetchAppBinaryWsUrl, fetchAppTextWsUrl } from "@/services/public"
 import { startAppListening } from "@/store"
+import { MediaSourceLoadProvider } from "@/utils/mediaSourceLoad"
 import {
   track,
   trackPageDurationEnd,
@@ -196,38 +197,40 @@ export const Editor: FC = () => {
       {combineLoadingState && <AppLoading />}
       {!combineLoadingState && (
         <Shortcut>
-          <TriggerProvider renderInBody zIndex={10}>
-            <PageNavBar css={navbarStyle} />
-          </TriggerProvider>
-          <div css={contentStyle}>
+          <MediaSourceLoadProvider>
             <TriggerProvider renderInBody zIndex={10}>
-              {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
+              <PageNavBar css={navbarStyle} />
             </TriggerProvider>
-            <div css={middlePanelStyle}>
+            <div css={contentStyle}>
               <TriggerProvider renderInBody zIndex={10}>
-                <CanvasPanel css={centerPanelStyle} />
+                {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
               </TriggerProvider>
-              <TriggerProvider renderInBody zIndex={10}>
-                {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
-              </TriggerProvider>
-              {showDebugger && <Debugger css={bottomPanelStyle} />}
+              <div css={middlePanelStyle}>
+                <TriggerProvider renderInBody zIndex={10}>
+                  <CanvasPanel css={centerPanelStyle} />
+                </TriggerProvider>
+                <TriggerProvider renderInBody zIndex={10}>
+                  {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
+                </TriggerProvider>
+                {showDebugger && <Debugger css={bottomPanelStyle} />}
+              </div>
+              {showRightPanel && (
+                <TriggerProvider renderInBody zIndex={10}>
+                  <ComponentsManager />
+                </TriggerProvider>
+              )}
             </div>
-            {showRightPanel && (
-              <TriggerProvider renderInBody zIndex={10}>
-                <ComponentsManager />
-              </TriggerProvider>
+            {!isOnline && (
+              <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>
+                <motion.div css={messageWrapperStyle} animate={controls}>
+                  <WarningCircleIcon css={waringIconStyle} />
+                  {wsStatus === ILLA_WEBSOCKET_STATUS.LOCKING
+                    ? t("editor.history.message.version_change")
+                    : t("not_online_tips")}
+                </motion.div>
+              </div>
             )}
-          </div>
-          {!isOnline && (
-            <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>
-              <motion.div css={messageWrapperStyle} animate={controls}>
-                <WarningCircleIcon css={waringIconStyle} />
-                {wsStatus === ILLA_WEBSOCKET_STATUS.LOCKING
-                  ? t("editor.history.message.version_change")
-                  : t("not_online_tips")}
-              </motion.div>
-            </div>
-          )}
+          </MediaSourceLoadProvider>
         </Shortcut>
       )}
     </div>
