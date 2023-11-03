@@ -4483,12 +4483,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Mira este increible agente de IA [{{promptName}}]",
-        "linkedin": "¡Atención a todos los entusiastas y profesionales de la IA que buscan aumentar su productividad! Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
-        "facebook": "¡Atención a todos los entusiastas y profesionales de la IA que buscan aumentar su productividad! Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
-        "whatsapp": "Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
         "hackernews": "Simplifique su carga de trabajo con [{{promptName}}] - El agente de IA que consigue el trabajo hecho"
-      },
-      "contribute": "Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!"
+      }
     },
     "button": {
       "share_contribute": "Copiar y compartir",
