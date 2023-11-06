@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Nastavte, zda skrýt tlačítko Odeslání",
           "submit_button_full_w": "Nastavte, zda je tlačítko Odeslání celé šířky.",
           "submit_button_text": "Nastavte text tlačítka Odeslání"
-        }
+        },
+        "choose_image": "Vyberte obrázek",
+        "choose_pdf": "Vyberte PDF",
+        "choose_video": "Vyberte video",
+        "choose_audio": "Vyberte zvuk"
       },
       "setter_tootip": {
         "volume": "Číslo mezi 0 a 1"
@@ -3111,7 +3115,9 @@
       "right": "Vpravo",
       "select_options": {
         "manual": "Ruční",
-        "mapped": "Mapováno"
+        "mapped": "Mapováno",
+        "url": "URL",
+        "upload": "Nahrát"
       },
       "top": "Nahoře"
     },
@@ -3760,6 +3766,9 @@
         "create_folder": "Vytvořit novou složku",
         "cancel": "Zrušit",
         "file_upload": "Nahrát"
+      },
+      "select": {
+        "confirm_button": "Vybrat"
       }
     }
   },

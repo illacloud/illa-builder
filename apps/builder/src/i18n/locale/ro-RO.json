@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Setați dacă să ascundeți butonul de trimitere",
           "submit_button_full_w": "Setaţi dacă butonul de adăugare are are lăţimea completă.",
           "submit_button_text": "Setaţi textul butonului de trimitere"
-        }
+        },
+        "choose_image": "Alege o imagine",
+        "choose_pdf": "Alege un PDF",
+        "choose_video": "Alege un videoclip",
+        "choose_audio": "Alegeți un fișier audio"
       },
       "setter_tootip": {
         "volume": "Un număr între 0 și 1"
@@ -3111,7 +3115,9 @@
       "right": "Dreapta",
       "select_options": {
         "manual": "Manual",
-        "mapped": "Mapat"
+        "mapped": "Mapat",
+        "url": "URL",
+        "upload": "Incarca"
       },
       "top": "Sus"
     },
@@ -3760,6 +3766,9 @@
         "create_folder": "Creați un dosar nou",
         "cancel": "Anulează",
         "file_upload": "Incarca"
+      },
+      "select": {
+        "confirm_button": "Selectare"
       }
     }
   },

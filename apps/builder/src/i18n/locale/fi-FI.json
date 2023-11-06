@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Määritä piilottaako lähetys painike",
           "submit_button_full_w": "Määritä, onko lähetyspainike koko leveys.",
           "submit_button_text": "Set the text of the submit button"
-        }
+        },
+        "choose_image": "Valitse kuva",
+        "choose_pdf": "Valitse PDF",
+        "choose_video": "Valitse video",
+        "choose_audio": "Valitse ääni"
       },
       "setter_tootip": {
         "volume": "Numero väliltä 0 ja 1"
@@ -3111,7 +3115,9 @@
       "right": "Oikea",
       "select_options": {
         "manual": "Manuaalinen",
-        "mapped": "Yhdistetty"
+        "mapped": "Yhdistetty",
+        "url": "URL-osoite",
+        "upload": "Lähetä"
       },
       "top": "Ylhäällä"
     },
@@ -3760,6 +3766,9 @@
         "create_folder": "Luo uusi kansio",
         "cancel": "Peruuta",
         "file_upload": "Lähetä"
+      },
+      "select": {
+        "confirm_button": "Valitse"
       }
     }
   },
