@@ -5,8 +5,8 @@ import {
   LicenseInfo,
 } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
-import { get, isArray, isNumber } from "lodash"
-import React, { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
+import { get, isArray, isNumber, isPlainObject } from "lodash"
+import { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
@@ -90,26 +90,34 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         triggerEventHandler("onRefresh")
       },
       setFilterModel: (model: unknown) => {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              filterModel: model,
+        if (
+          isPlainObject(model) &&
+          (model as Record<string, unknown>).hasOwnProperty("items") &&
+          Array.isArray((model as Record<string, unknown>).items)
+        ) {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                filterModel: model,
+              },
             },
-          },
-        ])
-        triggerEventHandler("onFilterModelChange")
+          ])
+          triggerEventHandler("onFilterModelChange")
+        }
       },
       setColumnVisibilityModel: (model: unknown) => {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              columnVisibilityModel: model,
+        if (isPlainObject(model)) {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                columnVisibilityModel: model,
+              },
             },
-          },
-        ])
-        triggerEventHandler("onColumnVisibilityModelChange")
+          ])
+          triggerEventHandler("onColumnVisibilityModelChange")
+        }
       },
       setPage: (page: unknown) => {
         if (isNumber(page)) {
@@ -138,7 +146,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         }
       },
       setRowSelection: (rows: unknown) => {
-        if (isArray(rows)) {
+        if (isArray(rows) && rows.every((row) => !isNaN(row))) {
           handleUpdateMultiExecutionResult([
             {
               displayName,
