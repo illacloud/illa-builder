@@ -2198,7 +2198,8 @@
         "max_count": "星の最大数を設定するために使用",
         "allow_users_select": "ユーザーが行を選択できるかどうかを設定するために使用します。 ",
         "table_update_content": "テーブルコンポーネントは維持されなくなります。新しい機能へのアクセスが中断されないように、データグリッドコンポーネントに移行してください。",
-        "table_update_title": "更新"
+        "table_update_title": "更新",
+        "enable_users_to_resize": "列の幅を調整できるかどうかを設定します。"
       },
       "setter_option": {
         "fixed": "固定高さ",
