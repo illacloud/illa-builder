@@ -54,7 +54,7 @@ ILLA를 사용하는 가장 쉬운 방법은 [ILLA Cloud](https://cloud.illaclou
 또한 ILLA 유틸리티를 수동으로(Docker, docker-compose 및 k8s) 배포 및 [자체 호스팅](https://github.com/illacloud/illa-builder/blob/main/README-KR.md#%EC%9E%90%EC%B2%B4-%ED%98%B8%EC%8A%A4%ED%8C%85)할 수도 있습니다.
 
 <p>
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
+  <a href="https://docs.illacloud.com/self-hosted-deployment/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com/"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 

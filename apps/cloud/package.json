@@ -30,6 +30,7 @@
     "@illa-public/public-types": "workspace:*",
     "@illa-public/resource-generator": "workspace:*",
     "@illa-public/sso-module": "workspace:*",
+    "@illa-public/styleis-plugin": "workspace:*",
     "@illa-public/user-data": "workspace:*",
     "@illa-public/user-role-utils": "workspace:*",
     "@illa-public/utils": "workspace:*",
@@ -40,13 +41,11 @@
     "i18next-http-backend": "^2.2.2",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.40.0",
-    "stylis": "^4.1.3",
     "swr": "^2.2.4",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.194",
-    "@types/stylis": "^4.0.2",
     "@types/uuid": "^9.0.0",
     "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@vitejs/plugin-react-swc": "^3.3.2",

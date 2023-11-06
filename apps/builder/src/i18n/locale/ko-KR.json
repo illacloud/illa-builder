@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Set whether to hide the submit button",
           "submit_button_full_w": "Set whether the submit button is full width.",
           "submit_button_text": "Set the text of the submit button"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "0 과 1 사이의 숫자"
@@ -3111,7 +3115,9 @@
       "right": "오른쪽",
       "select_options": {
         "manual": "자동적 인",
-        "mapped": "수동"
+        "mapped": "수동",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "우수한"
     },
@@ -3730,7 +3736,40 @@
   "drive": {
     "message": {
       "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_download": "Start download",
+      "create_suc": "Successfully created",
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "create": "Create",
+        "cancel": "Cancel"
+      },
+      "validate": "Letters, numbers and -~_=: are allowed",
+      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+    },
+    "move_modal": {
+      "no_folders": "No files here"
+    },
+    "same_name_modal": {
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "keep_both": "Keep both",
+      "replace": "Replace"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      },
+      "select": {
+        "confirm_button": "Select"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4492,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      }
     },
     "button": {
       "share_contribute": "Copy & Share",

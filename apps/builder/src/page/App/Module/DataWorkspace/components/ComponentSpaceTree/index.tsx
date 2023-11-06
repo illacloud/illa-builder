@@ -18,7 +18,7 @@ import {
   autoChangeContainersIndexWhenClick,
   autoChangeWhenClickOnCanvas,
 } from "@/utils/componentNode/search"
-import { FocusManager } from "@/utils/focusManager"
+import { ClickPosition, FocusManager } from "@/utils/focusManager"
 import { BaseDataItem } from "../BaseDataItem"
 
 export const ComponentSpaceTree: FC = () => {
@@ -35,9 +35,17 @@ export const ComponentSpaceTree: FC = () => {
 
   const handleClick = useCallback(
     (displayName: string, type: string) => {
+      const clickPosition: ClickPosition = {
+        displayName,
+        type: "component",
+        clickPosition: [],
+      }
       if (type === "CANVAS") {
         displayName = autoChangeWhenClickOnCanvas(displayName)
+        clickPosition.type = "inner_container"
+        clickPosition.clickPosition = [0, 0]
       }
+      FocusManager.switchFocus("data_component", clickPosition)
       if (type === "MODAL_WIDGET") {
         dispatch(
           executionActions.updateModalDisplayReducer({
@@ -63,9 +71,6 @@ export const ComponentSpaceTree: FC = () => {
   return (
     <PanelBar
       title={t("editor.data_work_space.components_title")}
-      onIllaFocus={() => {
-        FocusManager.switchFocus("data_component")
-      }}
       destroyChildrenWhenClose
     >
       {modalSectionTree.length > 0 && (

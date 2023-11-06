@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLocation } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { GoogleSheetAuthStatus } from "@/redux/resource/googleSheetResource"
@@ -9,12 +9,11 @@ import { GoogleSheetAuthStatus } from "@/redux/resource/googleSheetResource"
 export const useGoogleAuthStatus = (
   finished?: (resourceID: string) => void,
 ) => {
-  const location = useLocation()
   const message = useMessage()
   const actions = useSelector(getActionList)
   const { t } = useTranslation()
+  const [urlParams, setUrlParams] = useSearchParams()
 
-  const urlParams = new URLSearchParams(location.search)
   const status = urlParams.get("status")
   const resourceID = urlParams.get("resourceID")
 
@@ -32,6 +31,18 @@ export const useGoogleAuthStatus = (
         content: t("editor.action.form.tips.gs.failed_to_authentica"),
       })
     }
+    urlParams.delete("status")
+    urlParams.delete("resourceID")
+    setUrlParams(urlParams)
     finished?.(resourceID)
-  }, [actions, finished, message, resourceID, status, t])
+  }, [
+    actions,
+    finished,
+    message,
+    resourceID,
+    setUrlParams,
+    status,
+    t,
+    urlParams,
+  ])
 }

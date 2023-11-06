@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Establecer si ocultar el botón de enviar",
           "submit_button_full_w": "Ajuste si el botón enviar es ancho o no.",
           "submit_button_text": "Establecer el texto del botón de enviar"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Un número entre 0 y 1"
@@ -3111,7 +3115,9 @@
       "right": "Derecha",
       "select_options": {
         "manual": "Manual",
-        "mapped": "Mapeado"
+        "mapped": "Mapeado",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Subir"
     },
@@ -3730,7 +3736,40 @@
   "drive": {
     "message": {
       "start_upload": "Iniciar subida",
-      "start_download": "Iniciar descarga"
+      "start_download": "Iniciar descarga",
+      "create_suc": "Successfully created",
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "create": "Create",
+        "cancel": "Cancel"
+      },
+      "validate": "Letters, numbers and -~_=: are allowed",
+      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+    },
+    "move_modal": {
+      "no_folders": "No files here"
+    },
+    "same_name_modal": {
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "keep_both": "Keep both",
+      "replace": "Replace"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      },
+      "select": {
+        "confirm_button": "Select"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4492,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Mira este increible agente de IA [{{promptName}}]",
-        "linkedin": "¡Atención a todos los entusiastas y profesionales de la IA que buscan aumentar su productividad! Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
-        "facebook": "¡Atención a todos los entusiastas y profesionales de la IA que buscan aumentar su productividad! Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
-        "whatsapp": "Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!",
         "hackernews": "Simplifique su carga de trabajo con [{{promptName}}] - El agente de IA que consigue el trabajo hecho"
-      },
-      "contribute": "Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!"
+      }
     },
     "button": {
       "share_contribute": "Copiar y compartir",

@@ -25,7 +25,6 @@ import {
   getExecutionWidgetLayoutInfo,
   getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { isContainerType } from "@/utils/componentChecker"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -98,13 +97,11 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       if (isResizing) return
-      if (!isContainerType(widgetType)) {
-        FocusManager.switchFocus("canvas", {
-          displayName: displayName,
-          type: "component",
-          clickPosition: [],
-        })
-      }
+      FocusManager.switchFocus("canvas", {
+        displayName: displayName,
+        type: "component",
+        clickPosition: [],
+      })
       if (!isEditMode) return
       e.stopPropagation()
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
@@ -173,7 +170,6 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       isResizing,
       selectedComponents,
       widgetExecutionLayoutInfo,
-      widgetType,
     ],
   )
 

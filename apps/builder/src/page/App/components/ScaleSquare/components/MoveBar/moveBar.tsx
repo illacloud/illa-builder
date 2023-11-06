@@ -24,8 +24,6 @@ import {
   AVATAR_WIDTH,
   MIN_DISABLE_MARGIN_WIDTH,
 } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
-import { isContainerType } from "@/utils/componentChecker"
-import { FocusManager } from "@/utils/focusManager"
 import { MoveBarProps } from "./interface"
 import {
   applyMoveBarWrapperStyle,
@@ -115,19 +113,8 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     bounds.width <=
     (userList.length >= 2 ? MIN_MOVE_BAR_WIDTH : MIN_DISABLE_MARGIN_WIDTH)
 
-  const handleClickOnMoveBar = () => {
-    if (isContainerType(widgetType)) {
-      FocusManager.switchFocus("canvas", {
-        displayName: displayName,
-        type: "component",
-        clickPosition: [],
-      })
-    }
-  }
-
   return (
     <div
-      onClick={handleClickOnMoveBar}
       css={applyMoveBarWrapperStyle(
         maxWidth,
         minWidth,

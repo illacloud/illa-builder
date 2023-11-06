@@ -2,17 +2,8 @@ import { FC } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  PreviousIcon,
-  WarningCircleIcon,
-} from "@illa-design/react"
-import {
-  footerStyle,
-  optionLabelStyle,
-} from "@/page/App/Module/ActionEditor/styles"
+import { Divider, WarningCircleIcon } from "@illa-design/react"
+import { optionLabelStyle } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/Actions/InputRecordEditor"
 import {
@@ -34,13 +25,11 @@ import {
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { onBack, resourceID, hasFooter = true } = props
+  const { resourceID } = props
 
   const { t } = useTranslation()
   const { control, formState, watch } = useFormContext()
@@ -221,24 +210,6 @@ const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
           tips={t("editor.action.resource.db.tip.introspection")}
         />
       </div>
-
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="graphql" />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

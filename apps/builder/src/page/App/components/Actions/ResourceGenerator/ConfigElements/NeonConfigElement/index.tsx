@@ -7,9 +7,7 @@ import { useSelector } from "react-redux"
 import {
   Alert,
   Button,
-  ButtonGroup,
   Input,
-  PreviousIcon,
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
@@ -20,7 +18,6 @@ import {
   connectTypeStyle,
   errorIconStyle,
   errorMsgStyle,
-  footerStyle,
   labelContainer,
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
@@ -35,8 +32,6 @@ import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { handleLinkOpen } from "@/utils/navigate"
 import { isURL } from "@/utils/typeHelper"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
@@ -86,7 +81,7 @@ const handleConnectionStringValidate = (inputString: string) => {
 }
 
 const NeonConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { resourceID, onBack, hasFooter = true } = props
+  const { resourceID } = props
 
   const { t } = useTranslation()
   const { control, reset, getValues, formState, watch } = useFormContext()
@@ -331,23 +326,6 @@ const NeonConfigElement: FC<BaseConfigElementProps> = (props) => {
           </>
         )}
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="neon" />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

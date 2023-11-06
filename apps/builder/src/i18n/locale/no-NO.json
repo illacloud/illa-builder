@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Angi om du vil skjule sendingsknappen",
           "submit_button_full_w": "Angi om «Send inn»-knappen er full bredde.",
           "submit_button_text": "Angi teksten til «Send inn»-knappen"
-        }
+        },
+        "choose_image": "Velg et bilde",
+        "choose_pdf": "Velg en PDF",
+        "choose_video": "Velg en video",
+        "choose_audio": "Velg en lyd"
       },
       "setter_tootip": {
         "volume": "Et tall mellom 0 og 1"
@@ -3111,7 +3115,9 @@
       "right": "Høyre",
       "select_options": {
         "manual": "Manuell",
-        "mapped": "Tilordnet"
+        "mapped": "Tilordnet",
+        "url": "Nettadresse",
+        "upload": "Last opp"
       },
       "top": "Topp"
     },
@@ -3730,7 +3736,40 @@
   "drive": {
     "message": {
       "start_upload": "Start opplasting",
-      "start_download": "Start nedlasting"
+      "start_download": "Start nedlasting",
+      "create_suc": "Opprettet",
+      "create_failed": "Kunne ikke opprette",
+      "generate_url_fail": "Mislyktes i å generere URL-en. Velg filen manuelt. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Opprett en mappe",
+        "create": "Opprett",
+        "cancel": "Avbryt"
+      },
+      "validate": "Kun bokstaver, tall og -~_=: er tillatt. Grensen er 255 tegn, eller mindre",
+      "validate_failed": "Kun bokstaver, tall og -~_=: er tillatt. Grensen er 255 tegn, eller mindre"
+    },
+    "move_modal": {
+      "no_folders": "Ingen filer her"
+    },
+    "same_name_modal": {
+      "this_folder_already": "Filen med samme navn finnes allerede i denne mappen, eller den lastes opp til denne mappen. Vil du erstatte den?",
+      "keep_both": "Behold begge",
+      "replace": "Erstatt"
+    },
+    "upload": {
+      "modal": {
+        "title": "Velg en mappe å laste opp",
+        "upload_to": "Last opp til",
+        "all": "Rot",
+        "create_folder": "Opprett ny mappe",
+        "cancel": "Avbryt",
+        "file_upload": "Last opp"
+      },
+      "select": {
+        "confirm_button": "Velg"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4492,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Sjekk ut denne fantastiske AI-agenten [{{promptName}}]",
-        "linkedin": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
-        "facebook": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
-        "whatsapp": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
         "hackernews": "Forenkle arbeidsmengde med [{{promptName}}] - AI-agenten gjør jobben ferdig"
-      },
-      "contribute": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!"
+      }
     },
     "button": {
       "share_contribute": "Kopier og Del",

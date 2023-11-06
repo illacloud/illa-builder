@@ -53,7 +53,7 @@ AI エージェントまたは ILLA アプリを ILLA コミュニティに貢�
 また、ILLAユーティリティを手動で（Docker、docker-compose、k8s）展開および自己ホストすることもできます。
 
 <p>
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
+  <a href="https://docs.illacloud.com/self-hosted-deployment/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com/"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 

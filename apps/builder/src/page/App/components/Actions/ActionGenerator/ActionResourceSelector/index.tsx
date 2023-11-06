@@ -3,6 +3,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { ResourceType } from "@illa-public/public-types"
 import { fromNow } from "@illa-public/utils"
 import { FC, Suspense, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -15,7 +16,6 @@ import {
   PreviousIcon,
 } from "@illa-design/react"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { track } from "@/utils/mixpanelHelper"
 import { ActionResourceSelectorProps } from "./interface"
 import {
@@ -41,7 +41,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   const { t } = useTranslation()
 
   const resourceList = useSelector(getAllResources)
-    .filter((r) => r.resourceType == getResourceTypeFromActionType(actionType))
+    .filter((r) => r.resourceType === actionType)
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -140,7 +140,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                   parameter1: actionType,
                 },
               )
-              onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
+              onCreateResource?.(actionType as ResourceType)
             }}
           >
             {t("editor.action.action_list.action_generator.btns.new_resource")}

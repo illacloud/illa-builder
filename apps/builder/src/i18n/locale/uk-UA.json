@@ -2371,7 +2371,11 @@
           "hidden_submit_button": "Приховувати кнопку відправки",
           "submit_button_full_w": "Виберіть, чи є кнопка надсилання.",
           "submit_button_text": "Задати текст кнопки Відправити"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Choose a PDF",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Число від 0 до 1"
@@ -3111,7 +3115,9 @@
       "right": "Праворуч",
       "select_options": {
         "manual": "Вручну",
-        "mapped": "Зроблено"
+        "mapped": "Зроблено",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "Верх"
     },
@@ -3730,7 +3736,40 @@
   "drive": {
     "message": {
       "start_upload": "Почати вивантаження",
-      "start_download": "Почати завантаження"
+      "start_download": "Почати завантаження",
+      "create_suc": "Successfully created",
+      "create_failed": "Failed to create",
+      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "create": "Create",
+        "cancel": "Cancel"
+      },
+      "validate": "Letters, numbers and -~_=: are allowed",
+      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+    },
+    "move_modal": {
+      "no_folders": "No files here"
+    },
+    "same_name_modal": {
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "keep_both": "Keep both",
+      "replace": "Replace"
+    },
+    "upload": {
+      "modal": {
+        "title": "Select a folder to upload to",
+        "upload_to": "Upload to",
+        "all": "Root",
+        "create_folder": "Create new folder",
+        "cancel": "Cancel",
+        "file_upload": "Upload"
+      },
+      "select": {
+        "confirm_button": "Select"
+      }
     }
   },
   "frame": {
@@ -4453,12 +4492,8 @@
     "default-text": {
       "social-media": {
         "reddit": "Погляньте на цей чарівний агент ШІ [{{promptName}}]",
-        "linkedin": "Увага, всі ентузіасти та професіонали, які прагнуть підвищити свою продуктивність! Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
-        "facebook": "Увага, всі ентузіасти та професіонали, які прагнуть підвищити свою продуктивність! Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
-        "whatsapp": "Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
         "hackernews": "Спростіть свій Workload з [{{promptName}}] - Agent: AI Agent який отримає завдання Done"
-      },
-      "contribute": "Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!"
+      }
     },
     "button": {
       "share_contribute": "Копіювати та поділитись",
