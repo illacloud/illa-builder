@@ -2198,7 +2198,8 @@
         "max_count": "Used to set the max count of stars",
         "allow_users_select": "Used to set whether allow users to select row. ",
         "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
-        "table_update_title": "Update"
+        "table_update_title": "Update",
+        "enable_users_to_resize": "Used to set whether allow users to adjust width of the column."
       },
       "setter_option": {
         "fixed": "고정 높이",
