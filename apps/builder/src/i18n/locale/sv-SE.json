@@ -2198,7 +2198,8 @@
         "max_count": "Används för att ställa in max antal stjärnor",
         "allow_users_select": "Används för att ställa in om användare kan välja rad. ",
         "table_update_content": "Tabellkomponenten kommer inte längre att underhållas. För att säkerställa oavbruten åtkomst till nya funktioner, vänligen migrera dina data till komponenten Data Grid .",
-        "table_update_title": "Uppdatera"
+        "table_update_title": "Uppdatera",
+        "enable_users_to_resize": "Används för att ställa in om användare kan justera kolumnens bredd."
       },
       "setter_option": {
         "fixed": "Fast",
