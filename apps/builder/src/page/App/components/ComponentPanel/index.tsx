@@ -13,7 +13,7 @@ import {
 } from "./style"
 import { getMatchComponent } from "./utils"
 
-export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
+const ComponentPanel: FC<ComponentPanelProps> = (props) => {
   const { t } = useTranslation()
 
   const defaultList: ComponentSessionProps[] = buildComponentList()
@@ -67,3 +67,4 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
 }
 
 ComponentPanel.displayName = "ComponentPanel"
+export default ComponentPanel

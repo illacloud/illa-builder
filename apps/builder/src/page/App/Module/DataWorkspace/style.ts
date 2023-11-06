@@ -39,3 +39,9 @@ export function applyJsonValueColorStyle(
     padding-right: ${canEdit ? "4px" : "0"};
   `
 }
+
+export const innerContainerStyle = css`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`
