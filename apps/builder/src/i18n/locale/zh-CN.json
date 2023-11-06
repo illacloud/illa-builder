@@ -2198,7 +2198,8 @@
         "max_count": "用于设置星星的最大数量",
         "allow_users_select": "用于设置是否允许用户选中行. ",
         "table_update_content": "表格组件将不再被维护。为了确保不间断地访问新功能，请将您的数据迁移到数据表组件中。",
-        "table_update_title": "更新"
+        "table_update_title": "更新",
+        "enable_users_to_resize": "用于设置是否允许用户调整列宽"
       },
       "setter_option": {
         "fixed": "固定高度",
