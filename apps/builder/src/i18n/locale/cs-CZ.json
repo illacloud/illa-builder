@@ -2198,7 +2198,8 @@
         "max_count": "Používá se k nastavení maximálního počtu hvězdiček",
         "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. ",
         "table_update_content": "Komponenta tabulky již nebude udržována. Chcete-li zajistit nepřerušený přístup k novým funkcím, převedte prosím data do komponenty datové sítě.",
-        "table_update_title": "Aktualizovat"
+        "table_update_title": "Aktualizovat",
+        "enable_users_to_resize": "Slouží k nastavení, zda umožňuje uživatelům přizpůsobit šířku sloupce."
       },
       "setter_option": {
         "fixed": "Fixní",
