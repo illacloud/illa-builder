@@ -2198,7 +2198,8 @@
         "max_count": "Käytetään asettamaan suurin määrä tähtiä",
         "allow_users_select": "Käytetään määritettäessä, salliko käyttäjien valita rivi. ",
         "table_update_content": "Taulukon komponenttia ei enää ylläpidetä. Jotta voidaan varmistaa keskeytymätön pääsy uusiin ominaisuuksiin, siirrä tietosi Data Grid -komponenttiin.",
-        "table_update_title": "Päivitä"
+        "table_update_title": "Päivitä",
+        "enable_users_to_resize": "Käytetään määritettäessä, sallivatko käyttäjät säätää sarakkeen leveyttä."
       },
       "setter_option": {
         "fixed": "Kiinteä",

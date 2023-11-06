@@ -6,7 +6,14 @@ import {
 } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber, isPlainObject } from "lodash"
-import { FC, MutableRefObject, useEffect, useMemo, useRef } from "react"
+import {
+  FC,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react"
 import { useDispatch } from "react-redux"
 import { getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
@@ -67,8 +74,8 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
 
   const isInnerDragging = useRef(false)
 
-  const toolbar = () => {
-    return (
+  const toolbar = useCallback(
+    () => (
       <Toolbar
         columnSetting={columnSetting}
         densitySetting={densitySetting}
@@ -81,8 +88,18 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           triggerEventHandler("onRefresh")
         }}
       />
-    )
-  }
+    ),
+    [
+      columnSetting,
+      densitySetting,
+      exportAllSetting,
+      exportSetting,
+      filterSetting,
+      quickFilterSetting,
+      refreshSetting,
+      triggerEventHandler,
+    ],
+  )
 
   useEffect(() => {
     updateComponentRuntimeProps({

@@ -2198,7 +2198,8 @@
         "max_count": "Brukes til å angi maks antall stjerner",
         "allow_users_select": "Brukes til å angi om tillate brukere å velge rad. ",
         "table_update_content": "Tabellkomponenten vil ikke lenger vedlikeholdes. For å sikre uavbrutt tilgang til nye funksjoner må du overføre dataene til datablutenett-komponenten.",
-        "table_update_title": "Oppdater"
+        "table_update_title": "Oppdater",
+        "enable_users_to_resize": "Brukes for å angi om brukerne skal justere bredden på kolonnen."
       },
       "setter_option": {
         "fixed": "Fast",

@@ -2198,7 +2198,8 @@
         "max_count": "Folosit pentru a seta numărul maxim de stele",
         "allow_users_select": "Folosit pentru a seta dacă permite utilizatorilor să selecteze rândul. ",
         "table_update_content": "Componenta Tabel nu va mai fi menținută. Pentru a asigura acces neîntrerupt la funcții noi, vă rugăm să migrați datele în componenta Grid de date.",
-        "table_update_title": "Actualizare"
+        "table_update_title": "Actualizare",
+        "enable_users_to_resize": "Folosit pentru a seta dacă permite utilizatorilor să ajusteze lăţimea coloanei."
       },
       "setter_option": {
         "fixed": "Fixat",

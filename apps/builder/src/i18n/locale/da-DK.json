@@ -2198,7 +2198,8 @@
         "max_count": "Bruges til at indstille maks antal stjerner",
         "allow_users_select": "Bruges til at angive, om det er tilladt brugere at vælge række. ",
         "table_update_content": "Tabel komponenten vil ikke længere blive vedligeholdt. For at sikre uafbrudt adgang til nye funktioner, skal du migrere dine data til Data Gitter komponenten.",
-        "table_update_title": "Opdater"
+        "table_update_title": "Opdater",
+        "enable_users_to_resize": "Bruges til at angive, om det er muligt for brugere at justere bredden af kolonnen."
       },
       "setter_option": {
         "fixed": "Fast",

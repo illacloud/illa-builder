@@ -3,9 +3,9 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const PagePanelWrapperStyle = css`
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  height: calc(100% - 50px);
+  height: 100%;
   width: 100%;
-  padding-bottom: 16px;
+  padding-bottom: 48px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
