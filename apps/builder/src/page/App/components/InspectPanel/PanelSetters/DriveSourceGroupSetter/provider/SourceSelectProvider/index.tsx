@@ -32,7 +32,7 @@ interface Props {
 
 export const SourceSelectProvider: FC<Props> = (props) => {
   const { path = ROOT_PATH, children, widgetType, handleUpdateResult } = props
-  const { currentPath, updatePath, totalPath } = usePath(path)
+  const { currentPath, updatePath, totalPath } = usePath(path, ROOT_PATH)
   const [fileList, setFileList] = useState<IILLAFileInfo[]>([])
   const [modalVisible, setModalVisible] = useState(false)
 

@@ -101,6 +101,7 @@ const CreateFolderModal: FC<CreateFolderModalProps> = ({ currentFolderID }) => {
           loading: isLoading,
           colorScheme: "techPurple",
         }}
+        enableOnFormTags={[]}
         title={t("drive.create_modal.title.create_a_folder")}
         okText={t("drive.create_modal.title.create")}
         cancelText={t("drive.create_modal.title.cancel")}

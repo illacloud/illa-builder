@@ -60,6 +60,7 @@ export const DrivePickerProvider: FC<Props> = (props) => {
 
   const { currentPath, updatePath, totalPath } = usePath(
     removeSuffixPath(path),
+    ROOT_PATH,
     allowAnonymousUse,
   )
   const [fileList, setFileList] = useState<IILLAFileInfo[]>([])
