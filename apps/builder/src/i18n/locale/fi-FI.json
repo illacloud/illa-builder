@@ -3752,12 +3752,13 @@
       "validate_failed": "Vain kirjaimet, numerot ja -~_=: ovat sallittuja. Raja on 255 merkkiä tai vähemmän"
     },
     "move_modal": {
-      "no_folders": "Ei tiedostoja täällä"
+      "no_folders": "Ei kansioita täällä"
     },
     "same_name_modal": {
       "this_folder_already": "Samanniminen tiedosto on jo olemassa tässä kansiossa tai sitä ladataan tähän kansioon. Haluatko korvata sen?",
       "keep_both": "Pidä molemmat",
-      "replace": "Korvaa"
+      "replace": "Korvaa",
+      "this_folder_already_": "Samanniminen tiedosto on jo olemassa tässä kansiossa tai sitä ladataan tähän kansioon. Haluatko korvata sen?"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "Juuri",
         "create_folder": "Luo uusi kansio",
         "cancel": "Peruuta",
-        "file_upload": "Lähetä"
+        "file_upload": "Valitse tiedosto ja lataa"
       },
       "select": {
         "confirm_button": "Valitse"
