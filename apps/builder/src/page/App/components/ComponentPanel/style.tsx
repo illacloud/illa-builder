@@ -26,7 +26,6 @@ export const sessionListContainerStyle = css`
 `
 
 export const sessionContainerStyle = css`
-  height: 100%;
   width: 100%;
   display: inline-flex;
   flex-direction: column;

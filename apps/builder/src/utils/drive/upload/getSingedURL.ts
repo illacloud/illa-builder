@@ -29,27 +29,34 @@ export const getUploadToDriveSingedURL = async (
     contentType: string
     replace: boolean
   },
+  abortSignal?: AbortSignal,
 ) => {
   if (!allowAnonymous) {
     try {
-      const fileList = await fetchFileList({
-        path: "/root",
-        type: DRIVE_FILE_TYPE.MIX,
-      })
+      const fileList = await fetchFileList(
+        {
+          path: "/root",
+          type: DRIVE_FILE_TYPE.MIX,
+        },
+        abortSignal,
+      )
       if (!fileList.data.currentFolderID)
         throw new Error(GET_SINGED_URL_ERROR_CODE.UPLOAD_FAILED)
-      const singedURLResponse = await fetchGetUploadFileURL({
-        name: folderPath
-          ? `${folderPath}/${fileInfo.fileName}`
-          : fileInfo.fileName,
-        type: GCS_OBJECT_TYPE.FILE,
-        contentType: fileInfo.contentType,
-        size: fileInfo.size,
-        folderID: fileList.data.currentFolderID,
-        duplicationHandler: fileInfo.replace
-          ? UPLOAD_FILE_DUPLICATION_HANDLER.COVER
-          : UPLOAD_FILE_DUPLICATION_HANDLER.RENAME,
-      })
+      const singedURLResponse = await fetchGetUploadFileURL(
+        {
+          name: folderPath
+            ? `${folderPath}/${fileInfo.fileName}`
+            : fileInfo.fileName,
+          type: GCS_OBJECT_TYPE.FILE,
+          contentType: fileInfo.contentType,
+          size: fileInfo.size,
+          folderID: fileList.data.currentFolderID,
+          duplicationHandler: fileInfo.replace
+            ? UPLOAD_FILE_DUPLICATION_HANDLER.COVER
+            : UPLOAD_FILE_DUPLICATION_HANDLER.RENAME,
+        },
+        abortSignal,
+      )
       return {
         url: singedURLResponse.data.url,
         fileID: singedURLResponse.data.id,
@@ -66,15 +73,19 @@ export const getUploadToDriveSingedURL = async (
       if (typeof appID !== "string")
         throw new Error(GET_SINGED_URL_ERROR_CODE.UPLOAD_FAILED)
 
-      const singedURLResponse = await fetchUploadFilesToAnonymous(appID, {
-        name: fileInfo.fileName,
-        type: GCS_OBJECT_TYPE.FILE,
-        contentType: fileInfo.contentType,
-        size: fileInfo.size,
-        duplicationHandler: fileInfo.replace
-          ? UPLOAD_FILE_DUPLICATION_HANDLER.COVER
-          : UPLOAD_FILE_DUPLICATION_HANDLER.RENAME,
-      })
+      const singedURLResponse = await fetchUploadFilesToAnonymous(
+        appID,
+        {
+          name: fileInfo.fileName,
+          type: GCS_OBJECT_TYPE.FILE,
+          contentType: fileInfo.contentType,
+          size: fileInfo.size,
+          duplicationHandler: fileInfo.replace
+            ? UPLOAD_FILE_DUPLICATION_HANDLER.COVER
+            : UPLOAD_FILE_DUPLICATION_HANDLER.RENAME,
+        },
+        abortSignal,
+      )
       return {
         url: singedURLResponse.data.url,
         fileID: singedURLResponse.data.id,
@@ -88,7 +99,12 @@ export const getUploadToDriveSingedURL = async (
   }
 }
 
-export const updateFilesToDrive = async (url: string, uploadFile: File) => {
+export const updateFilesToDrive = async (
+  url: string,
+  uploadFile: File,
+  processCall?: (loaded: number) => void,
+  abortSignal?: AbortSignal,
+) => {
   try {
     const openUploadLink = await axios.post(url, null, {
       headers: {
@@ -96,6 +112,7 @@ export const updateFilesToDrive = async (url: string, uploadFile: File) => {
         "Content-Type": uploadFile.type,
       },
       withCredentials: false,
+      signal: abortSignal,
     })
     if (openUploadLink.headers.location) {
       await axios.put(openUploadLink.headers.location, uploadFile, {
@@ -103,6 +120,10 @@ export const updateFilesToDrive = async (url: string, uploadFile: File) => {
           "Content-Type": uploadFile.type,
         },
         withCredentials: false,
+        signal: abortSignal,
+        onUploadProgress: (progressEvent) => {
+          if (processCall) processCall(progressEvent.loaded)
+        },
       })
       return Promise.resolve(UPLOAD_FILE_STATUS.COMPLETE)
     }

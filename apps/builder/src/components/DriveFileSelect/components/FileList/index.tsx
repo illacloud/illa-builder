@@ -1,3 +1,4 @@
+import { getFileIconByContentType } from "@illa-public/icon"
 import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@illa-public/public-types"
 import VirtualList from "rc-virtual-list"
 import { FC, MouseEvent, useCallback, useRef } from "react"
@@ -6,7 +7,6 @@ import {
   FOLDER_LIST_CONTAINER_HEIGHT,
   FOLDER_LIST_ITEM_HEIGHT,
 } from "@/components/DriveFileSelect/constants"
-import { getFileIconByContentType } from "@/utils/file"
 import { FileListProps } from "./interface"
 import {
   fileNameStyle,

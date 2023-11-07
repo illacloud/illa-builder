@@ -32,6 +32,7 @@ interface IFetchUploadFilesToAnonymousFolderResponse {
 export const fetchUploadFilesToAnonymous = async (
   appID: string,
   requestData: IFetchUploadFilesToAnonymousFolderRequest,
+  abortSignal?: AbortSignal,
 ) => {
   return await driveRequest<IFetchUploadFilesToAnonymousFolderResponse>(
     {
@@ -41,6 +42,7 @@ export const fetchUploadFilesToAnonymous = async (
         ...requestData,
         resumable: true,
       },
+      signal: abortSignal,
     },
     {
       teamIdentifier: getCurrentTeamIdentifier(),
@@ -87,6 +89,7 @@ interface IFetchUploadFileURLResponse {
 
 export const fetchGetUploadFileURL = async (
   requestData: IFetchGetUploadFileURLRequest,
+  abortSignal?: AbortSignal,
 ) => {
   return await driveRequest<IFetchUploadFileURLResponse>(
     {
@@ -96,6 +99,7 @@ export const fetchGetUploadFileURL = async (
         ...requestData,
         resumable: true,
       },
+      signal: abortSignal,
     },
     {
       teamID: getCurrentTeamID(),

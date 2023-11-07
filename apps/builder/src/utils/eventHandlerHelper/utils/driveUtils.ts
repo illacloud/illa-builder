@@ -8,6 +8,8 @@ import { Zip, ZipPassThrough } from "fflate"
 import { createWriteStream } from "streamsaver"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
+import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
+import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
 import { fetchDownloadURLByTinyURL } from "@/services/drive"
 import {
   getUploadToDriveSingedURL,
@@ -126,23 +128,25 @@ export enum FILE_TYPE {
   XLSX = "xlsx",
 }
 
-interface ISaveToILLADriveParams {
+export interface ISaveToILLADriveParams {
   fileName: string
   fileData: string
   fileType: FILE_TYPE
   folder?: string
   allowAnonymous?: boolean
   replace?: boolean
+  queryID?: string
 }
 
 export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
   const {
     fileName,
     fileData,
-    fileType = "auto",
+    fileType = FILE_TYPE.AUTO,
     folder = "",
     allowAnonymous = false,
     replace = false,
+    queryID: paramsQueryID,
   } = params
   if (
     typeof fileName !== "string" ||
@@ -150,6 +154,10 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
     typeof fileData !== "string"
   )
     return
+
+  message.info({
+    content: i18n.t("drive.message.start_upload"),
+  })
   const isBase64 = isBase64Simple(fileData)
 
   const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
@@ -161,9 +169,52 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
   if (!isBase64) {
     tmpData = `data:${contentType};base64,${fileData}`
   }
+  let queryID = paramsQueryID
+  if (!queryID) {
+    queryID = `${fileDownloadName}_${new Date().getTime()}`
+  }
+
+  const abortController = new AbortController()
+
+  if (!paramsQueryID) {
+    updateFileDetailStore.addFileDetailInfo({
+      loaded: 0,
+      total: 0,
+      status: FILE_ITEM_DETAIL_STATUS_IN_UI.WAITING,
+      fileName: fileDownloadName,
+      contentType,
+      queryID: queryID,
+      abortController,
+      saveToILLADriveParams: {
+        fileName,
+        fileData,
+        fileType,
+        folder,
+        allowAnonymous,
+        replace,
+      },
+    })
+  }
+
+  let needUploadFile: File | undefined
+  try {
+    needUploadFile = dataURLtoFile(tmpData, fileDownloadName)
+  } catch (e) {
+    updateFileDetailStore.updateFileDetailInfo(queryID, {
+      status: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
+    })
+    message.error({
+      content: i18n.t("editor.inspect.setter_message.uploadfail"),
+    })
+    return
+  }
 
   try {
-    const needUploadFile = dataURLtoFile(tmpData, fileDownloadName)
+    updateFileDetailStore.updateFileDetailInfo(queryID, {
+      loaded: 0,
+      total: needUploadFile.size,
+      status: FILE_ITEM_DETAIL_STATUS_IN_UI.WAITING,
+    })
     const uploadURLResponse = await getUploadToDriveSingedURL(
       allowAnonymous,
       folder,
@@ -173,16 +224,38 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
         contentType: needUploadFile.type,
         replace,
       },
+      abortController.signal,
     )
+
+    updateFileDetailStore.updateFileDetailInfo(queryID, {
+      loaded: 0,
+      total: needUploadFile.size,
+      status: FILE_ITEM_DETAIL_STATUS_IN_UI.PROCESSING,
+    })
+
+    const processCallback = (loaded: number) => {
+      updateFileDetailStore.updateFileDetailInfo(queryID!, {
+        loaded: loaded,
+        status: FILE_ITEM_DETAIL_STATUS_IN_UI.PROCESSING,
+      })
+    }
     const uploadResult = await updateFilesToDrive(
       uploadURLResponse.url,
       needUploadFile,
+      processCallback,
+      abortController.signal,
     )
     if (uploadResult === UPLOAD_FILE_STATUS.COMPLETE) {
+      updateFileDetailStore.updateFileDetailInfo(queryID, {
+        status: FILE_ITEM_DETAIL_STATUS_IN_UI.SUCCESS,
+      })
       message.success({
         content: i18n.t("editor.inspect.setter_message.uploadsuc"),
       })
     } else {
+      updateFileDetailStore.updateFileDetailInfo(queryID, {
+        status: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
+      })
       message.error({
         content: i18n.t("editor.inspect.setter_message.uploadfail"),
       })
@@ -193,6 +266,9 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
       uploadResult,
     )
   } catch (e) {
+    updateFileDetailStore.updateFileDetailInfo(queryID, {
+      status: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
+    })
     const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
     if (res) return
     if (isILLAAPiError(e)) {
