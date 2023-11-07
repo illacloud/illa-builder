@@ -9,12 +9,9 @@ import {
   getPageNameMapDescendantNodeDisplayNames,
 } from "@/redux/currentApp/components/componentsSelector"
 import { RootState } from "@/store"
+import { NeedBuildNode, buildForest } from "@/utils/componentNode/buildTree"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 import { recursiveDelete } from "@/utils/executionTreeHelper/rrecursiveDelete"
-import {
-  NeedBuildNode,
-  buildForest,
-} from "../../../utils/componentNode/buildTree"
 import { ExecutionState, WidgetLayoutInfo } from "./executionState"
 import { getAllDescendantNodeDisplayNamesByExecution } from "./utils"
 

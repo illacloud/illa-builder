@@ -7,6 +7,7 @@ import { DeployContent } from "./content"
 
 export const Deploy: FC = () => {
   const data = useLoaderData()
+
   return (
     <div css={deployContainerStyle}>
       <Suspense fallback={<FullPageLoading />}>

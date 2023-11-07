@@ -2955,9 +2955,6 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../illa-design/packages/react
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
       '@types/react':
         specifier: ^18.2.22
         version: 18.2.22
@@ -2971,6 +2968,12 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3754,6 +3757,9 @@ importers:
       '@illa-public/illa-storage':
         specifier: workspace:*
         version: link:../ILLAStorage
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData

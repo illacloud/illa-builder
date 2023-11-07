@@ -1,8 +1,8 @@
+import { getFileIconByContentType } from "@illa-public/icon"
 import VirtualList from "rc-virtual-list"
 import { FC, MouseEvent, useCallback, useRef } from "react"
 import { Checkbox } from "@illa-design/react"
 import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@/services/drive"
-import { getFileIconByContentType } from "@/widgetLibrary/DrivePickerWidget/utils"
 import {
   FOLDER_LIST_CONTAINER_HEIGHT,
   FOLDER_LIST_ITEM_HEIGHT,
