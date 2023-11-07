@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Ustaw czy przycisk przesyłania ma pełną szerokość.",
           "submit_button_text": "Ustaw tekst przycisku przesyłania"
         },
-        "choose_image": "Choose an image",
+        "choose_image": "Select a folder and upload",
         "choose_pdf": "Choose a PDF",
         "choose_video": "Choose a video",
-        "choose_audio": "Choose an audio"
+        "choose_audio": "Select a folder and upload"
       },
       "setter_tootip": {
         "volume": "Liczba pomiędzy 0 a 1"
