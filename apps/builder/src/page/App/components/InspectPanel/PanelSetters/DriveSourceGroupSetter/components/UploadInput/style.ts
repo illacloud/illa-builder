@@ -8,8 +8,7 @@ export const uploadContainerStyle = css`
   padding: 4px 12px 4px 8px;
   align-items: center;
   gap: 8px;
-  flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 16px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
 `
