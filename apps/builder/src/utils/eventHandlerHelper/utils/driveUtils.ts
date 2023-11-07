@@ -1,4 +1,5 @@
 import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
+import { UPLOAD_FILE_STATUS } from "@illa-public/public-types"
 import {
   CollarModalType,
   handleCollaPurchaseError,
@@ -9,7 +10,7 @@ import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
 import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
-import { UPLOAD_FILE_STATUS, fetchDownloadURLByTinyURL } from "@/services/drive"
+import { fetchDownloadURLByTinyURL } from "@/services/drive"
 import {
   getUploadToDriveSingedURL,
   updateFilesToDrive,

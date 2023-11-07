@@ -336,6 +336,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/InputSetter/FileMinMaxSetter"
       ),
   ),
+  DRIVE_SOURCE_GROUP_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter"
+      ),
+  ),
   ...DeprecatedSetterTypeMapSetter,
 }
 

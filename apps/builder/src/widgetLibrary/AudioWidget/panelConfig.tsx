@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@illa-public/utils"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -11,12 +12,26 @@ export const AUDIO_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: `${baseWidgetName}-basic-url`,
-        labelName: i18n.t("editor.inspect.setter_label.audio.audio_url"),
-        labelDesc: i18n.t("editor.inspect.setter_tips.audio.audio_url"),
+        id: `${baseWidgetName}-basic-source-self-host`,
         attrName: "url",
         expectedType: VALIDATION_TYPES.STRING,
+        labelName: i18n.t("editor.inspect.setter_label.audio.audio_url"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.audio.audio_url"),
+        isSetterSingleRow: true,
+        bindAttrName: [],
+        shown: () => !isCloudVersion,
         setterType: "INPUT_SETTER",
+      },
+      {
+        id: `${baseWidgetName}-basic-source-cloud-version`,
+        attrName: "url",
+        expectedType: VALIDATION_TYPES.STRING,
+        labelName: i18n.t("editor.inspect.setter_label.audio.audio_url"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.audio.audio_url"),
+        isSetterSingleRow: true,
+        bindAttrName: [],
+        shown: () => isCloudVersion,
+        setterType: "DRIVE_SOURCE_GROUP_SETTER",
       },
       {
         id: `${baseWidgetName}-basic-autoPlay`,

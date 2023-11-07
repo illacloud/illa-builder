@@ -6373,26 +6373,9 @@ packages:
       '@babel/core': 7.21.8
     dev: true
 
-  /@svgr/babel-plugin-remove-jsx-attribute@6.5.0(@babel/core@7.21.8):
-    resolution: {integrity: sha512-8zYdkym7qNyfXpWvu4yq46k41pyNM9SOstoWhKlm+IfdCE1DdnRKeMUPsWIEO/DEkaWxJ8T9esNdG3QwQ93jBA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
-
   /@svgr/babel-plugin-remove-jsx-attribute@8.0.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-BcCkm/STipKvbCl6b7QFrMh/vx00vIP63k2eM66MfHJzPr6O2U0jYEViXkHJWqXqQYjdeA9cuCl5KWmlwjDvbA==}
     engines: {node: '>=14'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
-    dev: true
-
-  /@svgr/babel-plugin-remove-jsx-empty-expression@6.5.0(@babel/core@7.21.8):
-    resolution: {integrity: sha512-NFdxMq3xA42Kb1UbzCVxplUc0iqSyM9X8kopImvFnB+uSDdzIHOdbs1op8ofAvVRtbg4oZiyRl3fTYeKcOe9Iw==}
-    engines: {node: '>=10'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -6405,7 +6388,6 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-    dev: true
 
   /@svgr/babel-plugin-replace-jsx-attribute-value@6.5.1(@babel/core@7.21.8):
     resolution: {integrity: sha512-8DPaVVE3fd5JKuIC29dqyMB54sA6mfgki2H2+swh+zNJoynC8pMPzOkidqHOSc6Wj032fhl8Z0TVn1GiPpAiJg==}
@@ -6500,8 +6482,8 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@svgr/babel-plugin-add-jsx-attribute': 6.5.1(@babel/core@7.21.8)
-      '@svgr/babel-plugin-remove-jsx-attribute': 6.5.0(@babel/core@7.21.8)
-      '@svgr/babel-plugin-remove-jsx-empty-expression': 6.5.0(@babel/core@7.21.8)
+      '@svgr/babel-plugin-remove-jsx-attribute': 8.0.0(@babel/core@7.21.8)
+      '@svgr/babel-plugin-remove-jsx-empty-expression': 8.0.0(@babel/core@7.21.8)
       '@svgr/babel-plugin-replace-jsx-attribute-value': 6.5.1(@babel/core@7.21.8)
       '@svgr/babel-plugin-svg-dynamic-title': 6.5.1(@babel/core@7.21.8)
       '@svgr/babel-plugin-svg-em-dimensions': 6.5.1(@babel/core@7.21.8)

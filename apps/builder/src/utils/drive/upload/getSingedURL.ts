@@ -1,10 +1,12 @@
-import axios from "axios"
-import { ILLARoute } from "@/router"
 import {
   DRIVE_FILE_TYPE,
   GCS_OBJECT_TYPE,
   UPLOAD_FILE_DUPLICATION_HANDLER,
   UPLOAD_FILE_STATUS,
+} from "@illa-public/public-types"
+import axios from "axios"
+import { ILLARoute } from "@/router"
+import {
   fetchFileList,
   fetchGetUploadFileURL,
   fetchUpdateFileStatus,
@@ -142,5 +144,47 @@ export const updateFilesToDriveStatus = async (
     const appID = ILLARoute.state.matches[0].params.appId
     if (typeof appID !== "string") return
     await fetchUploadFilesStatusAnonymous(appID, fileID, uploadFileStatus)
+  }
+}
+
+export const getNewSignedUrl = async (
+  allowAnonymous: boolean,
+  folderPath: string,
+  fileInfo: {
+    fileName: string
+    size: number
+    contentType: string
+    replace: boolean
+  },
+) => {
+  const fileList = await fetchFileList({
+    path: "/root",
+    type: DRIVE_FILE_TYPE.MIX,
+  })
+  if (!fileList.data.currentFolderID)
+    throw new Error(GET_SINGED_URL_ERROR_CODE.UPLOAD_FAILED)
+  try {
+    const singedURLResponse = await fetchGetUploadFileURL({
+      name: folderPath
+        ? `${folderPath}/${fileInfo.fileName}`
+        : fileInfo.fileName,
+      type: GCS_OBJECT_TYPE.FILE,
+      contentType: fileInfo.contentType,
+      size: fileInfo.size,
+      folderID: fileList.data.currentFolderID,
+      duplicationHandler: fileInfo.replace
+        ? UPLOAD_FILE_DUPLICATION_HANDLER.COVER
+        : UPLOAD_FILE_DUPLICATION_HANDLER.RENAME,
+    })
+    return {
+      url: singedURLResponse.data.url,
+      fileID: singedURLResponse.data.id,
+      fileName: singedURLResponse.data.name,
+    }
+  } catch (e) {
+    if (isILLAAPiError(e)) {
+      return Promise.reject(e)
+    }
+    throw new Error(GET_SINGED_URL_ERROR_CODE.UPLOAD_FAILED)
   }
 }

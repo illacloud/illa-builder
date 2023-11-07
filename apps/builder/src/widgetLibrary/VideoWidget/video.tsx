@@ -1,8 +1,17 @@
 import { isBoolean } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import ReactPlayer from "react-player"
 import { Loading, isNumber, isString } from "@illa-design/react"
+import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { fullStyle, loadingStyle } from "@/widgetLibrary/VideoWidget/style"
 import { VideoWidgetProps, WrappedVideoProps } from "./interface"
@@ -27,6 +36,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
     const { t } = useTranslation()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const { sourceLoadErrorHandler } = useContext(MediaSourceLoadContext)
 
     if (url === "") {
       return <div css={loadingStyle}>{t("widget.video.empty")}</div>
@@ -68,6 +78,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           onPause={onPause}
           onEnded={onEnded}
           onError={() => {
+            sourceLoadErrorHandler?.(url)
             setLoading(false)
             setError(true)
           }}

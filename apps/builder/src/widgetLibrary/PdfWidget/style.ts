@@ -70,7 +70,9 @@ export const applyHiddenStyle = (hidden: boolean): SerializedStyles => {
 
 export const buttonStyle = css`
   color: ${getColor("white", "01")};
-  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+  transition:
+    color 200ms ease-in-out,
+    background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -121,4 +123,13 @@ export function applyShape(shape: ToolButtonShape): SerializedStyles {
       border-radius: 8px;
     `
   }
+}
+
+export function applyIframeContainer(isDragging: boolean): SerializedStyles {
+  return css`
+    pointer-events: ${isDragging ? "none" : "auto"};
+    border: none;
+    height: 100%;
+    width: 100%;
+  `
 }
