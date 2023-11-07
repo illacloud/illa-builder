@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Defina se o botão enviar é de largura completa.",
           "submit_button_text": "Definir o texto do botão enviar"
         },
-        "choose_image": "Select a folder and upload",
+        "choose_image": "Choose an image",
         "choose_pdf": "Choose a PDF",
         "choose_video": "Choose a video",
-        "choose_audio": "Select a folder and upload"
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Um número entre 0 e 1"
