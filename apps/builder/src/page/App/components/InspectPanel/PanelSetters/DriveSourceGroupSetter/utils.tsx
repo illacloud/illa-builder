@@ -43,3 +43,11 @@ export const getUploadAccept = (widgetType: string) => {
       return "audio/*"
   }
 }
+
+export const getPathForSignedUrl = (path: string) => {
+  if (path === "root") {
+    return ""
+  } else {
+    return path.replace("root/", "")
+  }
+}

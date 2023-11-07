@@ -127,20 +127,33 @@ export const updateFilesToDriveStatus = async (
 }
 
 export const getNewSignedUrl = async (
-  file: File,
-  folderID: string,
-  replace: boolean,
+  allowAnonymous: boolean,
+  folderPath: string,
+  fileInfo: {
+    fileName: string
+    size: number
+    contentType: string
+    replace: boolean
+  },
 ) => {
+  const fileList = await fetchFileList({
+    path: "/root",
+    type: DRIVE_FILE_TYPE.MIX,
+  })
+  if (!fileList.data.currentFolderID)
+    throw new Error(GET_SINGED_URL_ERROR_CODE.UPLOAD_FAILED)
   try {
     const singedURLResponse = await fetchGetUploadFileURL({
-      name: file.webkitRelativePath || file.name,
-      folderID: folderID,
+      name: folderPath
+        ? `${folderPath}/${fileInfo.fileName}`
+        : fileInfo.fileName,
       type: GCS_OBJECT_TYPE.FILE,
-      size: file.size === 0 ? file.size + 1 : file.size,
-      duplicationHandler: replace
+      contentType: fileInfo.contentType,
+      size: fileInfo.size,
+      folderID: fileList.data.currentFolderID,
+      duplicationHandler: fileInfo.replace
         ? UPLOAD_FILE_DUPLICATION_HANDLER.COVER
         : UPLOAD_FILE_DUPLICATION_HANDLER.RENAME,
-      contentType: file.type,
     })
     return {
       url: singedURLResponse.data.url,
