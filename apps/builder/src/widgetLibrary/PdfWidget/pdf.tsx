@@ -13,18 +13,15 @@ import { useTranslation } from "react-i18next"
 import { Document, Page, pdfjs } from "react-pdf"
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
 import "react-pdf/dist/esm/Page/TextLayer.css"
-import { useSelector } from "react-redux"
 import {
   DownloadIcon,
   Loading,
   NextIcon,
   PreviousIcon,
 } from "@illa-design/react"
-import { getIsResizing } from "@/redux/currentApp/executionTree/executionSelector"
 import { ToolButton } from "@/widgetLibrary/PdfWidget/button"
 import {
   applyHiddenStyle,
-  applyIframeContainer,
   documentInitStyle,
   fullPageStyle,
   pageStyle,
@@ -35,7 +32,6 @@ import {
 } from "@/widgetLibrary/PdfWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { PdfWidgetProps, WrappedPdfProps } from "./interface"
-import { isDriveURL } from "./utils"
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
 
@@ -51,9 +47,6 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const [hasButtonClicked, setButtonClick] = useState(false)
   const hasScrollRef = useRef(false)
   const timeoutRef = useRef<number | null>(null)
-  const [showIframePDF, setShowIframePDF] = useState(false)
-
-  const isResizingGlobal = useSelector(getIsResizing)
 
   const { scaleWidth, scaleHeight } = useMemo(() => {
     if (scaleMode === "width") {
@@ -109,13 +102,6 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
     }
   }
 
-  const handlePDFLoadError = () => {
-    if (!isDriveURL(url!)) {
-      setLoading(false)
-      setError(true)
-    }
-  }
-
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
@@ -124,14 +110,6 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
       }
     }
   }, [])
-
-  useEffect(() => {
-    if (isDriveURL(url!)) {
-      setShowIframePDF(true)
-    } else {
-      setShowIframePDF(false)
-    }
-  }, [url])
 
   if (!url) {
     return <div css={fullPageStyle}>{t("widget.pdf.empty")}</div>
@@ -175,53 +153,44 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
         ref={documentRef}
         onScroll={handleScroll}
       >
-        {showIframePDF ? (
-          <iframe
-            src={url}
-            css={applyIframeContainer(isResizingGlobal)}
-            height="100%"
-            width="100%"
-            onLoad={() => {
+        <Document
+          css={documentInitStyle}
+          loading={
+            <div css={fullPageStyle}>
+              <Loading />
+            </div>
+          }
+          error={<div css={fullPageStyle}>{t("widget.pdf.failed")}</div>}
+          file={url}
+          onLoadSuccess={({ numPages: nextNumPages }) => {
+            setNumPages(nextNumPages)
+            // [TODO] wait react-pdf fix
+            clearTimeout(timeoutRef.current as number)
+            timeoutRef.current = window.setTimeout(() => {
               setLoading(false)
-            }}
-          />
-        ) : (
-          <Document
-            css={documentInitStyle}
-            loading={
-              <div css={fullPageStyle}>
-                <Loading />
-              </div>
-            }
-            error={<div css={fullPageStyle}>{t("widget.pdf.failed")}</div>}
-            file={url}
-            onLoadSuccess={({ numPages: nextNumPages }) => {
-              setNumPages(nextNumPages)
-              // [TODO] wait react-pdf fix
-              clearTimeout(timeoutRef.current as number)
-              timeoutRef.current = window.setTimeout(() => {
-                setLoading(false)
-                setError(false)
-              }, 200)
-            }}
-            onLoadError={handlePDFLoadError}
-          >
-            {Array.from(new Array(numPages), (el, index) => (
-              <Page
-                css={pageStyle}
-                loading={""}
-                width={scaleWidth}
-                height={scaleHeight}
-                key={`page_${index + 1}`}
-                pageNumber={index + 1}
-                inputRef={(el) => {
-                  if (!el) return
-                  pageRef.current[index] = el
-                }}
-              />
-            ))}
-          </Document>
-        )}
+              setError(false)
+            }, 200)
+          }}
+          onLoadError={() => {
+            setLoading(false)
+            setError(true)
+          }}
+        >
+          {Array.from(new Array(numPages), (el, index) => (
+            <Page
+              css={pageStyle}
+              loading={""}
+              width={scaleWidth}
+              height={scaleHeight}
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              inputRef={(el) => {
+                if (!el) return
+                pageRef.current[index] = el
+              }}
+            />
+          ))}
+        </Document>
       </div>
     </div>
   )
