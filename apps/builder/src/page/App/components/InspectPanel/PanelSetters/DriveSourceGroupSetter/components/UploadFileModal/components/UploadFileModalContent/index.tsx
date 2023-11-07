@@ -232,7 +232,7 @@ const UploadFileModalContent: FC = () => {
         const requestParams = {
           ids: selectIds,
           expirationType: EXPIRATION_TYPE.PERSISTENT,
-          hotlinkProtection: true,
+          hotlinkProtection: false,
         }
         const res = await fetchGenerateTinyUrl(requestParams)
         let value = `${HTTP_REQUEST_PUBLIC_BASE_URL}${PUBLIC_DRIVE_REQUEST_PREFIX}/${res.data.tinyURL}`
