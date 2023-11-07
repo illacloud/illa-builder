@@ -2974,6 +2974,12 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3738,9 +3744,6 @@ importers:
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
-      '@illa-public/icon':
-        specifier: workspace:*
-        version: link:../Icon
       '@illa-public/illa-storage':
         specifier: workspace:*
         version: link:../ILLAStorage
