@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Set whether the submit button is full width.",
           "submit_button_text": "Set the text of the submit button"
         },
-        "choose_image": "Choose an image",
+        "choose_image": "Select a folder and upload",
         "choose_pdf": "Choose a PDF",
         "choose_video": "Choose a video",
-        "choose_audio": "Choose an audio"
+        "choose_audio": "Select a folder and upload"
       },
       "setter_tootip": {
         "volume": "0 과 1 사이의 숫자"
