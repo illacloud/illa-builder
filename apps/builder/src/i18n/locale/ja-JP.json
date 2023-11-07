@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "format@@0 ボタンが最大幅であるかどうかを設定します。",
           "submit_button_text": "送信ボタンのテキストを設定します"
         },
-        "choose_image": "フォルダを選択してアップロード",
+        "choose_image": "画像を選択",
         "choose_pdf": "PDFを選択",
         "choose_video": "ビデオを選択",
-        "choose_audio": "フォルダを選択してアップロード"
+        "choose_audio": "音声を選択"
       },
       "setter_tootip": {
         "volume": "0 から 1 までの数値"
