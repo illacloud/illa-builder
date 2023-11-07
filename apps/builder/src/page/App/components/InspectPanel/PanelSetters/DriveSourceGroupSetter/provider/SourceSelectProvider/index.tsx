@@ -62,7 +62,7 @@ export const SourceSelectProvider: FC<Props> = (props) => {
         const requestParams = {
           ids: selectIds,
           expirationType: EXPIRATION_TYPE.PERSISTENT,
-          hotlinkProtection: true,
+          hotlinkProtection: false,
         }
         try {
           const res = await fetchGenerateTinyUrl(requestParams)
