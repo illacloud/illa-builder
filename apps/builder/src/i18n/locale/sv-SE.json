@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Ange om skicka knappen är fullbredd.",
           "submit_button_text": "Ställ in texten på inlämningsknappen"
         },
-        "choose_image": "Välj en bild",
+        "choose_image": "Välj en mapp och ladda upp",
         "choose_pdf": "Välj en PDF",
         "choose_video": "Välj en video",
-        "choose_audio": "Välj ett ljud"
+        "choose_audio": "Välj en mapp och ladda upp"
       },
       "setter_tootip": {
         "volume": "Ett tal mellan 0 och 1"
@@ -3752,12 +3752,13 @@
       "validate_failed": "Endast bokstäver, siffror och -~_=: är tillåtna. Gränsen är 255 tecken eller mindre"
     },
     "move_modal": {
-      "no_folders": "Inga filer här"
+      "no_folders": "Inga mappar här"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samma namn finns redan i den här mappen eller laddas upp till den här mappen. Vill du ersätta den?",
       "keep_both": "Behåll båda",
-      "replace": "Ersätt"
+      "replace": "Ersätt",
+      "this_folder_already_": "Filen med samma namn finns redan i den här mappen eller laddas upp till den här mappen. Vill du ersätta den?"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "Rot",
         "create_folder": "Skapa ny mapp",
         "cancel": "Avbryt",
-        "file_upload": "Ladda upp"
+        "file_upload": "Välj en fil och ladda upp"
       },
       "select": {
         "confirm_button": "Välj"

@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "format@@0 ボタンが最大幅であるかどうかを設定します。",
           "submit_button_text": "送信ボタンのテキストを設定します"
         },
-        "choose_image": "画像を選択",
+        "choose_image": "フォルダを選択してアップロード",
         "choose_pdf": "PDFを選択",
         "choose_video": "ビデオを選択",
-        "choose_audio": "音声を選択"
+        "choose_audio": "フォルダを選択してアップロード"
       },
       "setter_tootip": {
         "volume": "0 から 1 までの数値"
@@ -3752,12 +3752,13 @@
       "validate_failed": "文字、数字、-~_= : のみが使用できます。制限は 255 文字以下です。"
     },
     "move_modal": {
-      "no_folders": "ここにファイルはありません"
+      "no_folders": "フォルダはありません"
     },
     "same_name_modal": {
       "this_folder_already": "同じ名前のファイルが既にこのフォルダに存在するか、このフォルダにアップロードされています。置き換えますか？",
       "keep_both": "両方を保持",
-      "replace": "置換"
+      "replace": "置換",
+      "this_folder_already_": "同じ名前のファイルが既にこのフォルダに存在するか、このフォルダにアップロードされています。置き換えますか？"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "ルート",
         "create_folder": "新しいフォルダを作成",
         "cancel": "キャンセル",
-        "file_upload": "アップロード"
+        "file_upload": "ファイルを選択してアップロード"
       },
       "select": {
         "confirm_button": "選択"

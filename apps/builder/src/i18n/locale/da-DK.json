@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Angiv, om send-knappen er fuld bredde.",
           "submit_button_text": "Indstil teksten på knappen Indsend"
         },
-        "choose_image": "Vælg et billede",
+        "choose_image": "Vælg en mappe og upload",
         "choose_pdf": "Vælg en PDF",
         "choose_video": "Vælg en video",
-        "choose_audio": "Vælg en lyd"
+        "choose_audio": "Vælg en mappe og upload"
       },
       "setter_tootip": {
         "volume": "Et tal mellem 0 og 1"
@@ -3752,12 +3752,13 @@
       "validate_failed": "Kun bogstaver, tal og -~_=: er tilladt. Grænsen er 255 tegn eller mindre"
     },
     "move_modal": {
-      "no_folders": "Ingen filer her"
+      "no_folders": "Ingen mapper her"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?",
       "keep_both": "Behold begge",
-      "replace": "Erstat"
+      "replace": "Erstat",
+      "this_folder_already_": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "Rod",
         "create_folder": "Opret ny mappe",
         "cancel": "Annuller",
-        "file_upload": "Upload"
+        "file_upload": "Vælg en fil og upload"
       },
       "select": {
         "confirm_button": "Vælg"

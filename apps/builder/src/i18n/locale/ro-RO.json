@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Setaţi dacă butonul de adăugare are are lăţimea completă.",
           "submit_button_text": "Setaţi textul butonului de trimitere"
         },
-        "choose_image": "Alege o imagine",
+        "choose_image": "Selectați un dosar și încărcați",
         "choose_pdf": "Alege un PDF",
         "choose_video": "Alege un videoclip",
-        "choose_audio": "Alegeți un fișier audio"
+        "choose_audio": "Selectați un dosar și încărcați"
       },
       "setter_tootip": {
         "volume": "Un număr între 0 și 1"
@@ -3752,12 +3752,13 @@
       "validate_failed": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin"
     },
     "move_modal": {
-      "no_folders": "Niciun fișier aici"
+      "no_folders": "Nu sunt dosare aici"
     },
     "same_name_modal": {
       "this_folder_already": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?",
       "keep_both": "Păstrați ambele",
-      "replace": "Înlocuiește"
+      "replace": "Înlocuiește",
+      "this_folder_already_": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "Rădăcină",
         "create_folder": "Creați un dosar nou",
         "cancel": "Anulează",
-        "file_upload": "Incarca"
+        "file_upload": "Alege un fișier și încarcă"
       },
       "select": {
         "confirm_button": "Selectare"

@@ -2373,7 +2373,7 @@
           "submit_button_full_w": "Legen Sie fest, ob die Schaltfläche \"Absenden\" die volle Breite hat.",
           "submit_button_text": "Setze den Text der Schaltfläche \"Absenden\""
         },
-        "choose_image": "Bild auswählen",
+        "choose_image": "Ordner auswählen und hochladen",
         "choose_pdf": "PDF auswählen",
         "choose_video": "Video auswählen",
         "choose_audio": "Audio auswählen"
@@ -3752,12 +3752,13 @@
       "validate_failed": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen"
     },
     "move_modal": {
-      "no_folders": "Keine Dateien hier"
+      "no_folders": "Keine Ordner hier"
     },
     "same_name_modal": {
       "this_folder_already": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?",
       "keep_both": "Beides behalten",
-      "replace": "Ersetzen"
+      "replace": "Ersetzen",
+      "this_folder_already_": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "Wurzel",
         "create_folder": "Neuen Ordner erstellen",
         "cancel": "Abbrechen",
-        "file_upload": "Hochladen"
+        "file_upload": "Datei auswählen und hochladen"
       },
       "select": {
         "confirm_button": "Auswählen"
