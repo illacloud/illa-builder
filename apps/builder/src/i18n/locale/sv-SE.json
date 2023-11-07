@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Ange om skicka knappen är fullbredd.",
           "submit_button_text": "Ställ in texten på inlämningsknappen"
         },
-        "choose_image": "Välj en mapp och ladda upp",
+        "choose_image": "Välj en bild",
         "choose_pdf": "Välj en PDF",
         "choose_video": "Välj en video",
-        "choose_audio": "Välj en mapp och ladda upp"
+        "choose_audio": "Välj ett ljud"
       },
       "setter_tootip": {
         "volume": "Ett tal mellan 0 och 1"
