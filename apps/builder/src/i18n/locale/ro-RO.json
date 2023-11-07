@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Setaţi dacă butonul de adăugare are are lăţimea completă.",
           "submit_button_text": "Setaţi textul butonului de trimitere"
         },
-        "choose_image": "Selectați un dosar și încărcați",
+        "choose_image": "Alege o imagine",
         "choose_pdf": "Alege un PDF",
         "choose_video": "Alege un videoclip",
-        "choose_audio": "Selectați un dosar și încărcați"
+        "choose_audio": "Alegeți un fișier audio"
       },
       "setter_tootip": {
         "volume": "Un număr între 0 și 1"
