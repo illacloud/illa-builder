@@ -1,18 +1,17 @@
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {
   getCurrentPath,
   removeSuffixPath,
 } from "@/components/DriveFileSelect/utils"
-import { DriveFileSelectContext } from "../context"
 
 export const usePath = (
   path: string,
+  rootPath: string,
   allowAnonymousUse?: boolean | undefined,
 ) => {
-  const { rootPath: ROOT_PATH } = useContext(DriveFileSelectContext)
-  const [totalPath, setTotalPath] = useState<string>(path || ROOT_PATH)
+  const [totalPath, setTotalPath] = useState<string>(path || rootPath)
   const [currentPath, setCurrentPath] = useState<string>(
-    getCurrentPath(totalPath),
+    getCurrentPath(totalPath ?? "root"),
   )
 
   const updatePath = useCallback(
@@ -26,13 +25,13 @@ export const usePath = (
 
   useEffect(() => {
     if (allowAnonymousUse) {
-      setTotalPath(ROOT_PATH)
-      setCurrentPath(ROOT_PATH)
+      setTotalPath(rootPath)
+      setCurrentPath(rootPath)
     } else {
-      setTotalPath(path || ROOT_PATH)
-      setCurrentPath(getCurrentPath(path || ROOT_PATH))
+      setTotalPath(path || rootPath)
+      setCurrentPath(getCurrentPath(path || rootPath))
     }
-  }, [ROOT_PATH, allowAnonymousUse, path])
+  }, [rootPath, allowAnonymousUse, path])
 
   return {
     currentPath,

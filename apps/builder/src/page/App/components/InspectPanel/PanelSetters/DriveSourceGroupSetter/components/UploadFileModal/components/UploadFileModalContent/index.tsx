@@ -252,6 +252,8 @@ const UploadFileModalContent: FC = () => {
         setIsUpLoading(false)
         setUploadModalVisible(false)
       }
+    } else {
+      setIsUpLoading(false)
     }
     e.target.value = ""
   }
