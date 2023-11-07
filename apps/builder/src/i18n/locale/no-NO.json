@@ -3752,12 +3752,13 @@
       "validate_failed": "Kun bokstaver, tall og -~_=: er tillatt. Grensen er 255 tegn, eller mindre"
     },
     "move_modal": {
-      "no_folders": "Ingen filer her"
+      "no_folders": "Ingen mapper her"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samme navn finnes allerede i denne mappen, eller den lastes opp til denne mappen. Vil du erstatte den?",
       "keep_both": "Behold begge",
-      "replace": "Erstatt"
+      "replace": "Erstatt",
+      "this_folder_already_": "Filen med samme navn finnes allerede i denne mappen, eller den lastes opp til denne mappen. Vil du erstatte den?"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "Rot",
         "create_folder": "Opprett ny mappe",
         "cancel": "Avbryt",
-        "file_upload": "Last opp"
+        "file_upload": "Velg en fil og last opp"
       },
       "select": {
         "confirm_button": "Velg"
