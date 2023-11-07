@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Angi om «Send inn»-knappen er full bredde.",
           "submit_button_text": "Angi teksten til «Send inn»-knappen"
         },
-        "choose_image": "Velg et bilde",
+        "choose_image": "Velg en mappe og last opp",
         "choose_pdf": "Velg en PDF",
         "choose_video": "Velg en video",
-        "choose_audio": "Velg en lyd"
+        "choose_audio": "Velg en mappe og last opp"
       },
       "setter_tootip": {
         "volume": "Et tall mellom 0 og 1"
