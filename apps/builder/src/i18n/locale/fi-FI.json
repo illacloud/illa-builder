@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Määritä, onko lähetyspainike koko leveys.",
           "submit_button_text": "Set the text of the submit button"
         },
-        "choose_image": "Valitse kansio ja lataa",
+        "choose_image": "Valitse kuva",
         "choose_pdf": "Valitse PDF",
         "choose_video": "Valitse video",
-        "choose_audio": "Valitse kansio ja lataa"
+        "choose_audio": "Valitse ääni"
       },
       "setter_tootip": {
         "volume": "Numero väliltä 0 ja 1"
