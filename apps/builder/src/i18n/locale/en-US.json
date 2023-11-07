@@ -3772,6 +3772,13 @@
       "select": {
         "confirm_button": "Select"
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Delete this task?",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      }
     }
   },
   "frame": {
