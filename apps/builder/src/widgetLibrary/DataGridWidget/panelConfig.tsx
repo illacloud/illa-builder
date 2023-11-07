@@ -21,7 +21,7 @@ const baseWidgetName = "dataGrid"
 
 export function getColumnsTypeSetter(type: ColumnType): PanelFieldConfig[] {
   return [
-    ...DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.slice(0, 3),
+    ...DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.slice(0, 4),
     ...getColumnsTypeSubSetter(type),
     ...DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.slice(
       4,
