@@ -4,7 +4,6 @@ import {
   FC,
   forwardRef,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -22,7 +21,6 @@ import {
   PreviousIcon,
 } from "@illa-design/react"
 import { getIsResizing } from "@/redux/currentApp/executionTree/executionSelector"
-import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import { ToolButton } from "@/widgetLibrary/PdfWidget/button"
 import {
   applyHiddenStyle,
@@ -55,7 +53,6 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const timeoutRef = useRef<number | null>(null)
   const [showIframePDF, setShowIframePDF] = useState(false)
 
-  const { sourceLoadErrorHandler } = useContext(MediaSourceLoadContext)
   const isResizingGlobal = useSelector(getIsResizing)
 
   const { scaleWidth, scaleHeight } = useMemo(() => {
@@ -186,11 +183,6 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
             width="100%"
             onLoad={() => {
               setLoading(false)
-            }}
-            onError={() => {
-              sourceLoadErrorHandler?.(url)
-              setLoading(false)
-              setError(true)
             }}
           />
         ) : (
