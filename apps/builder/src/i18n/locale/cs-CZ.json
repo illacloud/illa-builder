@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Nastavte, zda je tlačítko Odeslání celé šířky.",
           "submit_button_text": "Nastavte text tlačítka Odeslání"
         },
-        "choose_image": "Vyberte obrázek",
+        "choose_image": "Vyberte složku a nahrajte",
         "choose_pdf": "Vyberte PDF",
         "choose_video": "Vyberte video",
-        "choose_audio": "Vyberte zvuk"
+        "choose_audio": "Vyberte složku a nahrajte"
       },
       "setter_tootip": {
         "volume": "Číslo mezi 0 a 1"
