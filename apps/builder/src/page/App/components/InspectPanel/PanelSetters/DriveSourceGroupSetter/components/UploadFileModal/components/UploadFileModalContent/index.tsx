@@ -36,7 +36,10 @@ import { PlusIcon } from "@illa-design/react"
 import { FOLDER_LIST_LIMIT_IN_MODAL } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
 import { ROOT_PATH } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
 import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
-import { getUploadAccept } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/utils"
+import {
+  getPathForSignedUrl,
+  getUploadAccept,
+} from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/utils"
 import { fetchFileList, fetchGenerateTinyUrl } from "@/services/drive"
 import {
   getNewSignedUrl,
@@ -168,9 +171,14 @@ const UploadFileModalContent: FC = () => {
       if (!file) return
       try {
         const uploadURLResponse = await getNewSignedUrl(
-          file,
-          currentFolderID.current,
           false,
+          getPathForSignedUrl(currentFolderPath),
+          {
+            fileName: file.name,
+            size: file.size,
+            contentType: file.type,
+            replace: false,
+          },
         )
         const uploadResult = await updateFilesToDrive(
           uploadURLResponse.url,
@@ -214,7 +222,7 @@ const UploadFileModalContent: FC = () => {
         })
       }
     },
-    [message, t],
+    [currentFolderPath, message, t],
   )
 
   const onChangeFiles = async (e: React.ChangeEvent<HTMLInputElement>) => {
