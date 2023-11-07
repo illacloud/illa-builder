@@ -3752,12 +3752,13 @@
       "validate_failed": "Kun bogstaver, tal og -~_=: er tilladt. Grænsen er 255 tegn eller mindre"
     },
     "move_modal": {
-      "no_folders": "Ingen filer her"
+      "no_folders": "Ingen mapper her"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?",
       "keep_both": "Behold begge",
-      "replace": "Erstat"
+      "replace": "Erstat",
+      "this_folder_already_": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "Rod",
         "create_folder": "Opret ny mappe",
         "cancel": "Annuller",
-        "file_upload": "Upload"
+        "file_upload": "Vælg en fil og upload"
       },
       "select": {
         "confirm_button": "Vælg"
