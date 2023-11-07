@@ -3752,12 +3752,13 @@
       "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
     },
     "move_modal": {
-      "no_folders": "No files here"
+      "no_folders": "No folders here"
     },
     "same_name_modal": {
-      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "this_folder_already": "同名的文件夹已存在，要替换吗",
       "keep_both": "Keep both",
-      "replace": "Replace"
+      "replace": "Replace",
+      "this_folder_already_": "同名的文件夹已存在，要替换吗"
     },
     "upload": {
       "modal": {
@@ -3766,7 +3767,7 @@
         "all": "根文件夹",
         "create_folder": "新建文件夹",
         "cancel": "取消",
-        "file_upload": "上传"
+        "file_upload": "选择文件并上传"
       },
       "select": {
         "confirm_button": "选择"
