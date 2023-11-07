@@ -44,7 +44,7 @@ export const UploadDetailButton: FC = () => {
                 y: -32,
               }
             : {
-                y: 24,
+                y: 16,
               }
         }
         css={uploadDetailContainerStyle}
@@ -71,7 +71,7 @@ export const UploadDetailButton: FC = () => {
           {getStatusIcon(getAreaStatues(uploadFiles))}
         </div>
         <span
-          css={closeIconStyle}
+          css={closeIconStyle(showButton)}
           onClick={() => {
             setShowButton(false)
           }}
