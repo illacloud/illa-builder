@@ -12,8 +12,8 @@ export const uploadDetailContainerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 130px;
   border: 1px solid ${getColor("grayBlue", "08")};
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.16);
 `
 
 export const controllerAreaContainerStyle = css`
@@ -36,15 +36,16 @@ export const placeholderIconStyle = css`
   height: 12px;
 `
 
-export const closeIconStyle = css`
+export const closeIconStyle = (showButton: boolean) => css`
   width: 12px;
   height: 12px;
-  background-color: ${getColor("grayBlue", "01")};
+  background-color: ${getColor("grayBlue", "06")};
   color: white;
-  display: flex;
+  display: ${showButton ? "flex" : "none"};
   align-items: center;
   font-size: 8px;
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
+  margin-left: 16px;
 `
