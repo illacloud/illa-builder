@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Установка полной ширины кнопки Отправить.",
           "submit_button_text": "Задать текст кнопки Отправить"
         },
-        "choose_image": "Выберите изображение",
+        "choose_image": "Выберите папку и загрузите",
         "choose_pdf": "Выберите PDF",
         "choose_video": "Выберите видео",
-        "choose_audio": "Выберите аудио"
+        "choose_audio": "Выберите папку и загрузите"
       },
       "setter_tootip": {
         "volume": "Число между 0 и 1"
