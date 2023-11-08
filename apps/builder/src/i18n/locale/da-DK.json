@@ -3772,6 +3772,11 @@
       "select": {
         "confirm_button": "Vælg"
       }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "Den \"PublicAccess\" bruges til at gemme filer, der kan tilgås offentligt gennem komponenter i Builder. Adgang til filer i denne mappe kræver ikke godkendelse. For at sikre filsikkerhed, skal du ikke gemme vigtige filer her."
+      }
     }
   },
   "frame": {
