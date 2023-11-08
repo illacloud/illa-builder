@@ -1,5 +1,4 @@
 import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
-import { UPLOAD_FILE_STATUS } from "@illa-public/public-types"
 import {
   CollarModalType,
   handleCollaPurchaseError,
@@ -11,11 +10,7 @@ import i18n from "@/i18n/config"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
 import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
 import { fetchDownloadURLByTinyURL } from "@/services/drive"
-import {
-  getUploadToDriveSingedURL,
-  updateFilesToDrive,
-  updateFilesToDriveStatus,
-} from "@/utils/drive/upload/getSingedURL"
+import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { getContentTypeByFileExtension, getFileName } from "@/utils/file"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { isBase64Simple } from "@/utils/url/base64"
@@ -146,7 +141,6 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
     folder = "",
     allowAnonymous = false,
     replace = false,
-    queryID: paramsQueryID,
   } = params
   if (
     typeof fileName !== "string" ||
@@ -169,36 +163,30 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
   if (!isBase64) {
     tmpData = `data:${contentType};base64,${fileData}`
   }
-  let queryID = paramsQueryID
-  if (!queryID) {
-    queryID = `${fileDownloadName}_${new Date().getTime()}`
-  }
+  const queryID = `${fileDownloadName}_${new Date().getTime()}`
 
   const abortController = new AbortController()
 
-  if (!paramsQueryID) {
-    updateFileDetailStore.addFileDetailInfo({
-      loaded: 0,
-      total: 0,
-      status: FILE_ITEM_DETAIL_STATUS_IN_UI.WAITING,
-      fileName: fileDownloadName,
-      contentType,
-      queryID: queryID,
-      abortController,
-      saveToILLADriveParams: {
-        fileName,
-        fileData,
-        fileType,
-        folder,
-        allowAnonymous,
-        replace,
-      },
-    })
-  }
-
+  updateFileDetailStore.addFileDetailInfo({
+    loaded: 0,
+    total: 0,
+    status: FILE_ITEM_DETAIL_STATUS_IN_UI.WAITING,
+    fileName: fileDownloadName,
+    contentType,
+    queryID: queryID,
+    abortController,
+  })
   let needUploadFile: File | undefined
   try {
     needUploadFile = dataURLtoFile(tmpData, fileDownloadName)
+    updateFileDetailStore.updateFileDetailInfo(queryID, {
+      saveToILLADriveParams: {
+        fileData: needUploadFile,
+        allowAnonymous,
+        folder,
+        replace,
+      },
+    })
   } catch (e) {
     updateFileDetailStore.updateFileDetailInfo(queryID, {
       status: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
@@ -209,78 +197,14 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
     return
   }
 
-  try {
-    updateFileDetailStore.updateFileDetailInfo(queryID, {
-      loaded: 0,
-      total: needUploadFile.size,
-      status: FILE_ITEM_DETAIL_STATUS_IN_UI.WAITING,
-    })
-    const uploadURLResponse = await getUploadToDriveSingedURL(
+  await uploadFileToDrive(
+    queryID,
+    needUploadFile,
+    {
       allowAnonymous,
       folder,
-      {
-        fileName: fileDownloadName,
-        size: needUploadFile.size,
-        contentType: needUploadFile.type,
-        replace,
-      },
-      abortController.signal,
-    )
-
-    updateFileDetailStore.updateFileDetailInfo(queryID, {
-      loaded: 0,
-      total: needUploadFile.size,
-      status: FILE_ITEM_DETAIL_STATUS_IN_UI.PROCESSING,
-    })
-
-    const processCallback = (loaded: number) => {
-      updateFileDetailStore.updateFileDetailInfo(queryID!, {
-        loaded: loaded,
-        status: FILE_ITEM_DETAIL_STATUS_IN_UI.PROCESSING,
-      })
-    }
-    const uploadResult = await updateFilesToDrive(
-      uploadURLResponse.url,
-      needUploadFile,
-      processCallback,
-      abortController.signal,
-    )
-    if (uploadResult === UPLOAD_FILE_STATUS.COMPLETE) {
-      updateFileDetailStore.updateFileDetailInfo(queryID, {
-        status: FILE_ITEM_DETAIL_STATUS_IN_UI.SUCCESS,
-      })
-      message.success({
-        content: i18n.t("editor.inspect.setter_message.uploadsuc"),
-      })
-    } else {
-      updateFileDetailStore.updateFileDetailInfo(queryID, {
-        status: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
-      })
-      message.error({
-        content: i18n.t("editor.inspect.setter_message.uploadfail"),
-      })
-    }
-    await updateFilesToDriveStatus(
-      allowAnonymous,
-      uploadURLResponse.fileID,
-      uploadResult,
-    )
-  } catch (e) {
-    updateFileDetailStore.updateFileDetailInfo(queryID, {
-      status: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
-    })
-    const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
-    if (res) return
-    if (isILLAAPiError(e)) {
-      if (e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_VOLUME) {
-        message.error({
-          content: i18n.t("editor.inspect.setter_message.noStorage"),
-        })
-        return
-      }
-    }
-    message.error({
-      content: i18n.t("editor.inspect.setter_message.uploadfail"),
-    })
-  }
+      replace,
+    },
+    abortController.signal,
+  )
 }

@@ -1,15 +1,12 @@
 import {
-  ERROR_FLAG,
   HTTP_REQUEST_PUBLIC_BASE_URL,
   PUBLIC_DRIVE_REQUEST_PREFIX,
-  isILLAAPiError,
 } from "@illa-public/illa-net"
 import {
   DRIVE_FILE_TYPE,
   EXPIRATION_TYPE,
   IILLAFileInfo,
   SORTED_TYPE,
-  UPLOAD_FILE_STATUS,
 } from "@illa-public/public-types"
 import {
   CollarModalType,
@@ -33,6 +30,8 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { PlusIcon } from "@illa-design/react"
+import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
+import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
 import { FOLDER_LIST_LIMIT_IN_MODAL } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
 import { ROOT_PATH } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
 import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
@@ -41,11 +40,7 @@ import {
   getUploadAccept,
 } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/utils"
 import { fetchFileList, fetchGenerateTinyUrl } from "@/services/drive"
-import {
-  getNewSignedUrl,
-  updateFilesToDrive,
-  updateFilesToDriveStatus,
-} from "@/utils/drive/upload/getSingedURL"
+import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import CreateFolderModal from "../CreateFolderModal"
 import EmptyState from "../Empty"
 import FolderList from "../FolderList"
@@ -166,65 +161,6 @@ const UploadFileModalContent: FC = () => {
     }
   }, [handleInitFIleList])
 
-  const uploadToDrive = useCallback(
-    async (file: File) => {
-      if (!file) return
-      try {
-        const uploadURLResponse = await getNewSignedUrl(
-          false,
-          getPathForSignedUrl(currentFolderPath),
-          {
-            fileName: file.name,
-            size: file.size,
-            contentType: file.type,
-            replace: false,
-          },
-        )
-        const uploadResult = await updateFilesToDrive(
-          uploadURLResponse.url,
-          file,
-        )
-        if (uploadResult === UPLOAD_FILE_STATUS.COMPLETE) {
-          message.success({
-            content: t("editor.inspect.setter_message.uploadsuc"),
-          })
-        } else {
-          message.error({
-            content: t("editor.inspect.setter_message.uploadfail"),
-          })
-        }
-        await updateFilesToDriveStatus(
-          false,
-          uploadURLResponse.fileID,
-          uploadResult,
-        )
-        if (uploadResult === UPLOAD_FILE_STATUS.COMPLETE) {
-          return {
-            id: uploadURLResponse.fileID,
-            name: uploadURLResponse.fileName,
-          }
-        }
-      } catch (e) {
-        const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
-        if (res) return
-        if (isILLAAPiError(e)) {
-          if (
-            e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_VOLUME
-          ) {
-            message.error({
-              content: t("editor.inspect.setter_message.noStorage"),
-            })
-            return
-          }
-        }
-        message.error({
-          content: t("editor.inspect.setter_message.uploadfail"),
-        })
-      }
-    },
-    [currentFolderPath, message, t],
-  )
-
   const onChangeFiles = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
     if (!files) return
@@ -233,7 +169,36 @@ const UploadFileModalContent: FC = () => {
       content: t("drive.message.start_upload"),
     })
     const file = files[0]
-    const uploadRes = await uploadToDrive(file)
+    if (!file) return
+    const queryID = `${file.name}_${new Date().getTime()}`
+
+    const abortController = new AbortController()
+
+    const uploadParams = {
+      folder: getPathForSignedUrl(currentFolderPath),
+      allowAnonymous: false,
+      replace: false,
+    }
+
+    updateFileDetailStore.addFileDetailInfo({
+      loaded: 0,
+      total: 0,
+      status: FILE_ITEM_DETAIL_STATUS_IN_UI.WAITING,
+      fileName: file.name,
+      contentType: file.type,
+      queryID: queryID,
+      abortController,
+      saveToILLADriveParams: {
+        fileData: file,
+        ...uploadParams,
+      },
+    })
+    const uploadRes = await uploadFileToDrive(
+      queryID,
+      file,
+      uploadParams,
+      abortController.signal,
+    )
     if (!!uploadRes) {
       try {
         const selectIds = [uploadRes.id]

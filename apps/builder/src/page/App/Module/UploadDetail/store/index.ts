@@ -1,4 +1,4 @@
-import { saveToILLADrive } from "@/utils/eventHandlerHelper/utils/driveUtils"
+import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { IUploadDetailStore } from "./interface"
 
 export const updateFileDetailStore: IUploadDetailStore = {
@@ -45,11 +45,13 @@ export const updateFileDetailStore: IUploadDetailStore = {
     const uploadInfo = updateFileDetailStore.fileDetailInfos.find(
       (item) => item.queryID === queryID,
     )
-    if (uploadInfo) {
-      saveToILLADrive({
-        ...uploadInfo.saveToILLADriveParams,
+    if (uploadInfo && uploadInfo.saveToILLADriveParams) {
+      uploadFileToDrive(
         queryID,
-      })
+        uploadInfo.saveToILLADriveParams.fileData,
+        uploadInfo.saveToILLADriveParams,
+        uploadInfo.abortController?.signal!,
+      )
       updateFileDetailStore.listeners.forEach((listener) => listener())
     }
   },
