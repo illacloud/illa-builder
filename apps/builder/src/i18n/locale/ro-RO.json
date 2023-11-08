@@ -3772,6 +3772,11 @@
       "select": {
         "confirm_button": "Selectare"
       }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"Accesul public\" este folosit pentru a stoca fișiere care pot fi accesate public prin intermediul componentelor din Constructor. Accesarea fişierelor din acest dosar nu necesită autentificare. Pentru a asigura securitatea fişierelor, vă rugăm să nu păstraţi fişierele importante aici."
+      }
     }
   },
   "frame": {
