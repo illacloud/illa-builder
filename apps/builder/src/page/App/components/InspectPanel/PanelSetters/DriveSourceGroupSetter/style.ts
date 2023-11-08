@@ -4,11 +4,18 @@ import { fixedWidthStyle } from "@/page/App/components/InspectPanel/PanelSetters
 export const applyRadioGroupWrapperStyle = (
   isSetterSingleRow: boolean = false,
 ): SerializedStyles => {
-  return isSetterSingleRow
+  let width = isSetterSingleRow
     ? css`
         width: 100%;
       `
     : fixedWidthStyle
+  return css`
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: 8px;
+    ${width};
+  `
 }
 
 export const radioGroupStyle = css`

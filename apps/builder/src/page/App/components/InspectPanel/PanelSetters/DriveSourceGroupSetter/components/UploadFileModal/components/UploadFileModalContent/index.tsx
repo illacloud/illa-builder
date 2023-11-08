@@ -252,11 +252,7 @@ const UploadFileModalContent: FC = () => {
           }}
         >
           {breadList.map((item, index) => (
-            <BreadcrumbItem
-              key={index}
-              href={item.path}
-              color={item.last ? "#654AEC" : "#999"}
-            >
+            <BreadcrumbItem key={index} href={item.path}>
               <span css={breadItemStyle(item.last)}>{item.title}</span>
             </BreadcrumbItem>
           ))}
