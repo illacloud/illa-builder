@@ -20,3 +20,9 @@ export const folderNameStyle = css`
   color: ${getColor("grayBlue", "02")};
   font-weight: 500;
 `
+
+export const doubtStyle = css`
+  display: flex;
+  width: 16px;
+  height: 16px;
+`

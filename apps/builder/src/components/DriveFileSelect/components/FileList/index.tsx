@@ -2,13 +2,15 @@ import { getFileIconByContentType } from "@illa-public/icon"
 import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@illa-public/public-types"
 import VirtualList from "rc-virtual-list"
 import { FC, MouseEvent, useCallback, useRef } from "react"
-import { Checkbox } from "@illa-design/react"
+import { useTranslation } from "react-i18next"
+import { Checkbox, DoubtIcon, Trigger } from "@illa-design/react"
 import {
   FOLDER_LIST_CONTAINER_HEIGHT,
   FOLDER_LIST_ITEM_HEIGHT,
 } from "@/components/DriveFileSelect/constants"
 import { FileListProps } from "./interface"
 import {
+  doubtStyle,
   fileNameStyle,
   iconPublicStyle,
   listItemContainerStyle,
@@ -28,6 +30,8 @@ const FileList: FC<FileListProps> = (props) => {
     updatePath,
     handleSingleChange,
   } = props
+
+  const { t } = useTranslation()
 
   const handleClickItem = useCallback(
     (e: MouseEvent<HTMLLabelElement>, item: IILLAFileInfo) => {
@@ -94,6 +98,16 @@ const FileList: FC<FileListProps> = (props) => {
               iconPublicStyle,
             )}
             <span css={fileNameStyle}>{item.name}</span>
+            {item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER && (
+              <Trigger
+                position="top"
+                content={t("drive.drive_builder.public_folder.tips")}
+              >
+                <span css={doubtStyle}>
+                  <DoubtIcon size="16px" />
+                </span>
+              </Trigger>
+            )}
           </label>
         )
       }}

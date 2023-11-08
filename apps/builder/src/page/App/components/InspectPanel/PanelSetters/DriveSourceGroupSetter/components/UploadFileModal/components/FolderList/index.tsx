@@ -2,6 +2,8 @@ import { AnonymousIcon, FolderIcon } from "@illa-public/icon"
 import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@illa-public/public-types"
 import VirtualList from "rc-virtual-list"
 import { FC, useCallback, useContext, useRef } from "react"
+import { useTranslation } from "react-i18next"
+import { DoubtIcon, Trigger } from "@illa-design/react"
 import {
   FOLDER_LIST_CONTAINER_HEIGHT,
   FOLDER_LIST_ITEM_HEIGHT,
@@ -9,6 +11,7 @@ import {
 import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
 import { FolderListProps } from "./interface"
 import {
+  doubtStyle,
   folderIconStyle,
   folderNameStyle,
   listItemContainerStyle,
@@ -16,6 +19,7 @@ import {
 
 const FolderList: FC<FolderListProps> = (props) => {
   const { listData, updateListData } = props
+  const { t } = useTranslation()
   const { currentFolderPath, setCurrentFolderPath } =
     useContext(FileUploadContext)
 
@@ -59,6 +63,16 @@ const FolderList: FC<FolderListProps> = (props) => {
               <FolderIcon css={folderIconStyle} />
             )}
             <span css={folderNameStyle}>{item.name}</span>
+            {item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER && (
+              <Trigger
+                position="top"
+                content={t("drive.drive_builder.public_folder.tips")}
+              >
+                <span css={doubtStyle}>
+                  <DoubtIcon size="16px" />
+                </span>
+              </Trigger>
+            )}
           </div>
         )
       }}
