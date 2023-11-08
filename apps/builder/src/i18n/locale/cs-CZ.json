@@ -3777,6 +3777,14 @@
       "public_folder": {
         "tips": "\"PublicAccess\" se používá k ukládání souborů, ke kterým lze přistupovat veřejně prostřednictvím komponent ve staviteli. Přístup k souborům v této složce nevyžaduje autentizaci. Pro zajištění bezpečnosti souboru zde neukládejte důležité soubory."
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Smazat tento úkol?",
+        "cancel": "Zrušit",
+        "delete": "Vymazat",
+        "description": "Jste si jisti, že chcete odstranit tuto úlohu? Po odstranění bude úloha ukončena."
+      }
     }
   },
   "frame": {

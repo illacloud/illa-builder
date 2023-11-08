@@ -3777,6 +3777,14 @@
       "public_folder": {
         "tips": "\"PublicAccess\" används för att lagra filer som kan nås offentligt via komponenter i Builder. Att komma åt filer i den här mappen kräver inte autentisering. För att säkerställa filsäkerhet måste du inte lagra viktiga filer här."
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Ta bort denna uppgift?",
+        "cancel": "Avbryt",
+        "delete": "Radera",
+        "description": "Är du säker på att du vill ta bort denna uppgift? När den har tagits bort kommer uppgiften att avslutas."
+      }
     }
   },
   "frame": {
