@@ -2374,7 +2374,7 @@
           "submit_button_text": "Définir le texte du bouton Soumettre"
         },
         "choose_image": "Choose an image",
-        "choose_pdf": "Choose a PDF",
+        "choose_pdf": "Select a folder and upload",
         "choose_video": "Choose a video",
         "choose_audio": "Choose an audio"
       },
@@ -3755,14 +3755,14 @@
       "no_folders": "No folders here"
     },
     "same_name_modal": {
-      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "this_folder_already": "The folder with the same name already exists. Would you like to replace it?",
       "keep_both": "Keep both",
       "replace": "Replace",
-      "this_folder_already_": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?"
+      "this_folder_already_": "The folder with the same name already exists. Would you like to replace it?"
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
+        "title": "Select a folder",
         "upload_to": "Upload to",
         "all": "Root",
         "create_folder": "Create new folder",
