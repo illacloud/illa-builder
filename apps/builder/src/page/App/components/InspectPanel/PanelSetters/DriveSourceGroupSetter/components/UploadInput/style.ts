@@ -1,9 +1,10 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const uploadContainerStyle = css`
+export const uploadContainerStyle = (isUpLoading: boolean) => css`
+  pointer-events: ${isUpLoading ? "none" : "auto"};
   width: 100%;
-  cursor: pointer;
+  cursor: ${isUpLoading ? "not-allowed" : "pointer"};
   display: flex;
   padding: 3px 12px 3px 8px;
   align-items: center;
@@ -11,6 +12,7 @@ export const uploadContainerStyle = css`
   margin-top: 8px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
+  opacity: ${isUpLoading ? 0.5 : 1};
 `
 
 export const uploadIconStyle = css`
