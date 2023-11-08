@@ -171,6 +171,7 @@ const UploadFileModalContent: FC = () => {
     })
     const file = files[0]
     if (!file) return
+    setUploadModalVisible(false)
     const queryID = `${file.name}_${new Date().getTime()}`
 
     const abortController = new AbortController()
@@ -224,7 +225,6 @@ const UploadFileModalContent: FC = () => {
         }
       } finally {
         setIsUpLoading(false)
-        setUploadModalVisible(false)
       }
     } else {
       setIsUpLoading(false)
