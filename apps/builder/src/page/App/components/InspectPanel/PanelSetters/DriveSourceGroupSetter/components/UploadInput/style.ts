@@ -5,7 +5,7 @@ export const uploadContainerStyle = css`
   width: 100%;
   cursor: pointer;
   display: flex;
-  padding: 4px 12px 4px 8px;
+  padding: 3px 12px 3px 8px;
   align-items: center;
   gap: 8px;
   margin-top: 8px;
@@ -14,7 +14,6 @@ export const uploadContainerStyle = css`
 `
 
 export const uploadIconStyle = css`
-  height: 22px;
   padding: 4px;
   display: inline-flex;
   flex: none;
@@ -28,5 +27,5 @@ export const uploadNameStyle = css`
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 24px;
 `
