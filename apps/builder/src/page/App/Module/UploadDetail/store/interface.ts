@@ -1,6 +1,11 @@
-import { ISaveToILLADriveParams } from "@/utils/eventHandlerHelper/utils/driveUtils"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "../components/DetailList/interface"
 
+interface ISaveToILLADriveParams {
+  fileData: File
+  folder: string
+  allowAnonymous: boolean
+  replace: boolean
+}
 export interface FileDetailInfos {
   loaded: number
   total: number
@@ -9,7 +14,7 @@ export interface FileDetailInfos {
   contentType: string
   queryID: string
   abortController?: AbortController
-  saveToILLADriveParams: ISaveToILLADriveParams
+  saveToILLADriveParams?: ISaveToILLADriveParams
 }
 export interface IUploadDetailStore {
   fileDetailInfos: FileDetailInfos[]
@@ -22,6 +27,7 @@ export interface IUploadDetailStore {
       loaded: number
       total: number
       status: FILE_ITEM_DETAIL_STATUS_IN_UI
+      saveToILLADriveParams: ISaveToILLADriveParams
     }>,
   ) => void
   deleteFileDetailInfo: (queryID: string) => void
