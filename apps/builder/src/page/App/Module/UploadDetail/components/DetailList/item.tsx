@@ -86,6 +86,7 @@ export const FileItemDetail = forwardRef<HTMLDivElement, FileItemDetailProps>(
         modal.show({
           z: 1020,
           title: t("drive.modal.delete_going_on_task.title"),
+          content: t("drive.modal.delete_going_on_task.description"),
           okText: t("drive.modal.delete_going_on_task.delete"),
           cancelText: t("drive.modal.delete_going_on_task.cancel"),
           okButtonProps: {
