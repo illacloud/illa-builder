@@ -23,9 +23,7 @@ export const SameNameModal: FC<SameNameModalProps> = (props) => {
         closable
         visible={sameModalVisible}
         onCancel={onCancel}
-        title={t("drive.same_name_modal.this_folder_already_", {
-          filename: objectName,
-        })}
+        title={t("drive.same_name_modal.this_folder_already")}
         footer={false}
       >
         <SameNameModalContent
