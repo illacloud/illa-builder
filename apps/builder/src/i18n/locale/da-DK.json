@@ -3777,6 +3777,14 @@
       "public_folder": {
         "tips": "Den \"PublicAccess\" bruges til at gemme filer, der kan tilgås offentligt gennem komponenter i Builder. Adgang til filer i denne mappe kræver ikke godkendelse. For at sikre filsikkerhed, skal du ikke gemme vigtige filer her."
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Slet denne opgave?",
+        "cancel": "Annuller",
+        "delete": "Slet",
+        "description": "Er du sikker på, at du vil slette denne opgave? Opgaven vil blive afsluttet, når den er slettet."
+      }
     }
   },
   "frame": {
