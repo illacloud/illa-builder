@@ -3772,6 +3772,11 @@
       "select": {
         "confirm_button": "选择"
       }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "“PublicAccess文件夹”用于存放允许通过Builder中的组件公开访问的文件。访问这个文件夹里的内容不需要校验权限。为了保护您的文件安全，请勿在此存放重要文件。"
+      }
     }
   },
   "frame": {
