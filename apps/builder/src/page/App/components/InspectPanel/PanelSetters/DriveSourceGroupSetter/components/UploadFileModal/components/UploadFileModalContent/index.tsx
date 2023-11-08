@@ -266,8 +266,10 @@ const UploadFileModalContent: FC = () => {
               updateListData={handleFetchFileList}
               key={currentFolderPath}
             />
-          ) : (
+          ) : !isLoading ? (
             <EmptyState />
+          ) : (
+            <></>
           )}
         </div>
         {isLoading && <LoadingState />}
