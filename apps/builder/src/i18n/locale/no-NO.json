@@ -3772,6 +3772,11 @@
       "select": {
         "confirm_button": "Velg"
       }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"Offentlighetstilgangen\" brukes til å lagre filer som kan nås offentlig gjennom komponenter i byggeren. Tilgang til filer i denne mappen krever ikke godkjenning. For å sikre filsikkerhet, vennligst ikke lagre viktige filer her."
+      }
     }
   },
   "frame": {
