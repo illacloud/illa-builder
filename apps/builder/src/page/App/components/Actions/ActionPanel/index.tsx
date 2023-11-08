@@ -14,6 +14,7 @@ import {
   actionContentStyle,
   actionPanelContainerStyle,
   actionPanelStyle,
+  outterActionContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import {
   getCachedAction,
@@ -210,7 +211,9 @@ export const ActionPanel: FC = () => {
         />
         <Suspense fallback={<WidgetLoading />}>
           {activeKey === "general" && (
-            <div css={actionContentStyle}>{panel}</div>
+            <div css={outterActionContainerStyle}>
+              <div css={actionContentStyle}>{panel}</div>
+            </div>
           )}
           {activeKey === "advanced" && (
             <MixpanelTrackProvider
@@ -221,13 +224,15 @@ export const ActionPanel: FC = () => {
             </MixpanelTrackProvider>
           )}
         </Suspense>
-        <ActionResult
-          key={selectedAction?.actionID}
-          visible={resultVisible}
-          onClose={() => {
-            setResultVisible(false)
-          }}
-        />
+        {resultVisible && (
+          <ActionResult
+            key={selectedAction?.actionID}
+            visible={resultVisible}
+            onClose={() => {
+              setResultVisible(false)
+            }}
+          />
+        )}
       </div>
     </div>
   )

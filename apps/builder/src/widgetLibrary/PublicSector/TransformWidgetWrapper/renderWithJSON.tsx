@@ -197,9 +197,7 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
                 set(needRunEvents, realPath, calcValue)
               }
             }
-          } catch (e) {
-            console.log(e)
-          }
+          } catch (_ignore) {}
         })
         needRunEvents.forEach((scriptObj: any) => {
           runEventHandler(scriptObj, finalContext)

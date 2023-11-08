@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
@@ -12,12 +13,24 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: `${baseWidgetName}-basic-source`,
+        id: `${baseWidgetName}-basic-source-self-host`,
         attrName: "imageSrc",
         expectedType: VALIDATION_TYPES.STRING,
         labelName: i18n.t("editor.inspect.setter_label.image_source"),
         isSetterSingleRow: true,
+        bindAttrName: [],
+        shown: () => !isCloudVersion,
         setterType: "INPUT_SETTER",
+      },
+      {
+        id: `${baseWidgetName}-basic-source-cloud-version`,
+        attrName: "imageSrc",
+        expectedType: VALIDATION_TYPES.STRING,
+        labelName: i18n.t("editor.inspect.setter_label.image_source"),
+        isSetterSingleRow: true,
+        bindAttrName: [],
+        shown: () => isCloudVersion,
+        setterType: "DRIVE_SOURCE_GROUP_SETTER",
       },
       {
         id: `${baseWidgetName}-basic-alt-text`,
@@ -31,6 +44,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-scale-type`,
         labelName: i18n.t("editor.inspect.setter_label.scale_type"),
         attrName: "objectFit",
+        shown: () => false,
         setterType: "SEARCH_SELECT_SETTER",
         options: ["container", "cover", "fill", "none", "scale-down"],
       },

@@ -4,6 +4,7 @@ import { ComponentSpaceTree } from "./components/ComponentSpaceTree"
 import { GlobalsSpaceTree } from "./components/GlobalsSpaceTree"
 import { LibrarySpaceTree } from "./components/LibrariesTree"
 import { PageSpaceTree } from "./components/PageSpaceTree"
+import { innerContainerStyle } from "./style"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -12,11 +13,13 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
 
   return (
     <div className={className}>
-      <PageSpaceTree />
-      <ComponentSpaceTree />
-      <ActionSpaceTree />
-      <GlobalsSpaceTree />
-      <LibrarySpaceTree />
+      <div css={innerContainerStyle}>
+        <PageSpaceTree />
+        <ComponentSpaceTree />
+        <ActionSpaceTree />
+        <GlobalsSpaceTree />
+        <LibrarySpaceTree />
+      </div>
     </div>
   )
 }
