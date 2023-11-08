@@ -3772,6 +3772,11 @@
       "select": {
         "confirm_button": "Välj"
       }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"PublicAccess\" används för att lagra filer som kan nås offentligt via komponenter i Builder. Att komma åt filer i den här mappen kräver inte autentisering. För att säkerställa filsäkerhet måste du inte lagra viktiga filer här."
+      }
     }
   },
   "frame": {
