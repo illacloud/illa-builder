@@ -9,6 +9,7 @@ import {
   placeholderIconStyle,
   processingTextStyle,
   uploadDetailContainerStyle,
+  uploadDetailOuterContainerStyle,
 } from "./style"
 import { getAreaStatues, getSuccessFiles } from "./utils"
 
@@ -47,39 +48,42 @@ export const UploadDetailButton: FC = () => {
                 y: 16,
               }
         }
-        css={uploadDetailContainerStyle}
-        onMouseEnter={() => {
-          if (!showButton) {
-            setShowButton(true)
-          }
-        }}
+        css={uploadDetailOuterContainerStyle}
       >
         <div
-          css={controllerAreaContainerStyle}
-          onClick={() => {
-            if (showButton) {
-              setProcessModalVisible(true)
-            } else {
+          css={uploadDetailContainerStyle}
+          onMouseEnter={() => {
+            if (!showButton) {
               setShowButton(true)
             }
           }}
         >
-          <UploadIcon />
-          <span css={processingTextStyle}>
-            {getSuccessFiles(uploadFiles).length}/{uploadFiles.length}
+          <div
+            css={controllerAreaContainerStyle}
+            onClick={() => {
+              if (showButton) {
+                setProcessModalVisible(true)
+              } else {
+                setShowButton(true)
+              }
+            }}
+          >
+            <UploadIcon />
+            <span css={processingTextStyle}>
+              {getSuccessFiles(uploadFiles).length}/{uploadFiles.length}
+            </span>
+            {getStatusIcon(getAreaStatues(uploadFiles))}
+          </div>
+          <span
+            css={closeIconStyle(showButton)}
+            onClick={() => {
+              setShowButton(false)
+            }}
+          >
+            <CloseIcon />
           </span>
-          {getStatusIcon(getAreaStatues(uploadFiles))}
         </div>
-        <span
-          css={closeIconStyle(showButton)}
-          onClick={() => {
-            setShowButton(false)
-          }}
-        >
-          <CloseIcon />
-        </span>
       </motion.div>
-
       <ProcessDetailModal
         open={processModalVisible}
         changeOpen={setProcessModalVisible}

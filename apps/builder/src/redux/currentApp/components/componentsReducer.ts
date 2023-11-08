@@ -316,6 +316,7 @@ export const updateComponentDisplayNameReducer: CaseReducer<
 > = (state, action) => {
   const { displayName, newDisplayName } = action.payload
   DisplayNameGenerator.removeDisplayName(displayName)
+  DisplayNameGenerator.addDisplayNames([newDisplayName])
   changeDisplayName(newDisplayName, displayName, state)
 }
 
