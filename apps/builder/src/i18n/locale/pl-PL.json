@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Ustaw czy przycisk przesyłania ma pełną szerokość.",
           "submit_button_text": "Ustaw tekst przycisku przesyłania"
         },
-        "choose_image": "Select a folder and upload",
-        "choose_pdf": "Choose a PDF",
+        "choose_image": "Choose an image",
+        "choose_pdf": "Select a folder and upload",
         "choose_video": "Choose a video",
-        "choose_audio": "Select a folder and upload"
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Liczba pomiędzy 0 a 1"
@@ -3755,14 +3755,14 @@
       "no_folders": "No folders here"
     },
     "same_name_modal": {
-      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "this_folder_already": "The folder with the same name already exists. Would you like to replace it?",
       "keep_both": "Keep both",
       "replace": "Replace",
-      "this_folder_already_": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?"
+      "this_folder_already_": "The folder with the same name already exists. Would you like to replace it?"
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
+        "title": "Select a folder",
         "upload_to": "Upload to",
         "all": "Root",
         "create_folder": "Create new folder",
@@ -3771,6 +3771,11 @@
       },
       "select": {
         "confirm_button": "Select"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "The \"PublicAccess\" is used to store files that can be accessed publicly through components in the Builder. Accessing files in this folder does not require authentication. To ensure file security, please don't store important files here."
       }
     }
   },

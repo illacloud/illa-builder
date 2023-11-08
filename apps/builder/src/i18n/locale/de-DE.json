@@ -2373,7 +2373,7 @@
           "submit_button_full_w": "Legen Sie fest, ob die Schaltfläche \"Absenden\" die volle Breite hat.",
           "submit_button_text": "Setze den Text der Schaltfläche \"Absenden\""
         },
-        "choose_image": "Ordner auswählen und hochladen",
+        "choose_image": "Bild auswählen",
         "choose_pdf": "PDF auswählen",
         "choose_video": "Video auswählen",
         "choose_audio": "Audio auswählen"
@@ -3771,6 +3771,11 @@
       },
       "select": {
         "confirm_button": "Auswählen"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "Der \"PublicAccess\" wird verwendet, um Dateien zu speichern, die über Komponenten im Builder öffentlich zugänglich sind. Der Zugriff auf Dateien in diesem Ordner erfordert keine Authentifizierung. Um die Sicherheit der Dateien zu gewährleisten, speichern Sie hier keine wichtigen Dateien."
       }
     }
   },

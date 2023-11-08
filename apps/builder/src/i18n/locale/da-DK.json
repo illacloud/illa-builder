@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "Angiv, om send-knappen er fuld bredde.",
           "submit_button_text": "Indstil teksten på knappen Indsend"
         },
-        "choose_image": "Vælg en mappe og upload",
+        "choose_image": "Vælg et billede",
         "choose_pdf": "Vælg en PDF",
         "choose_video": "Vælg en video",
-        "choose_audio": "Vælg en mappe og upload"
+        "choose_audio": "Vælg en lyd"
       },
       "setter_tootip": {
         "volume": "Et tal mellem 0 og 1"
@@ -3771,6 +3771,11 @@
       },
       "select": {
         "confirm_button": "Vælg"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "Den \"PublicAccess\" bruges til at gemme filer, der kan tilgås offentligt gennem komponenter i Builder. Adgang til filer i denne mappe kræver ikke godkendelse. For at sikre filsikkerhed, skal du ikke gemme vigtige filer her."
       }
     }
   },
