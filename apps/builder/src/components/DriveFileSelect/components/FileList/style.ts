@@ -32,3 +32,9 @@ export const singleListItemContainerStyle = (isSelected: boolean) => css`
     ? getColor("techPurple", "07")
     : "transparent"};
 `
+
+export const doubtStyle = css`
+  display: flex;
+  width: 16px;
+  height: 16px;
+`

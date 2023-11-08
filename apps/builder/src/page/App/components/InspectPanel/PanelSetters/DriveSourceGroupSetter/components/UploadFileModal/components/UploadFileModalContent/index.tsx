@@ -47,6 +47,7 @@ import FolderList from "../FolderList"
 import LoadingState from "../LoadingState"
 import {
   applyInnerFolderListContainerStyle,
+  breadItemStyle,
   breadcrumbContainerStyle,
   closeStyle,
   containerStyle,
@@ -251,8 +252,12 @@ const UploadFileModalContent: FC = () => {
           }}
         >
           {breadList.map((item, index) => (
-            <BreadcrumbItem key={index} href={item.path}>
-              {item.title}
+            <BreadcrumbItem
+              key={index}
+              href={item.path}
+              color={item.last ? "#654AEC" : "#999"}
+            >
+              <span css={breadItemStyle(item.last)}>{item.title}</span>
             </BreadcrumbItem>
           ))}
         </Breadcrumb>
