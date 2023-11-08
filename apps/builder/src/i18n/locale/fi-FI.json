@@ -3772,6 +3772,11 @@
       "select": {
         "confirm_button": "Valitse"
       }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "The \"PublicAccess\" is used to store files that can be accessed public through components in the Builder. Tiedostojen käyttö tässä kansiossa ei vaadi todennusta. Varmistaaksesi tiedostojen turvallisuuden, älä säilytä tärkeitä tiedostoja täällä."
+      }
     }
   },
   "frame": {
