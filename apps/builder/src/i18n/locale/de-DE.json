@@ -3777,6 +3777,14 @@
       "public_folder": {
         "tips": "Der \"PublicAccess\" wird verwendet, um Dateien zu speichern, die über Komponenten im Builder öffentlich zugänglich sind. Der Zugriff auf Dateien in diesem Ordner erfordert keine Authentifizierung. Um die Sicherheit der Dateien zu gewährleisten, speichern Sie hier keine wichtigen Dateien."
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Diese Aufgabe löschen?",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "description": "Sind Sie sicher, dass Sie diese Aufgabe löschen möchten? Nach dem Löschen wird die Aufgabe beendet."
+      }
     }
   },
   "frame": {
