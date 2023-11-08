@@ -3772,6 +3772,11 @@
       "select": {
         "confirm_button": "Auswählen"
       }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "Der \"PublicAccess\" wird verwendet, um Dateien zu speichern, die über Komponenten im Builder öffentlich zugänglich sind. Der Zugriff auf Dateien in diesem Ordner erfordert keine Authentifizierung. Um die Sicherheit der Dateien zu gewährleisten, speichern Sie hier keine wichtigen Dateien."
+      }
     }
   },
   "frame": {
