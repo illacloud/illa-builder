@@ -3777,6 +3777,14 @@
       "public_folder": {
         "tips": "\"Accesul public\" este folosit pentru a stoca fișiere care pot fi accesate public prin intermediul componentelor din Constructor. Accesarea fişierelor din acest dosar nu necesită autentificare. Pentru a asigura securitatea fişierelor, vă rugăm să nu păstraţi fişierele importante aici."
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Ștergeți această sarcină?",
+        "cancel": "Anulează",
+        "delete": "Ștergere",
+        "description": "Sunteţi sigur că doriţi să ştergeţi această sarcină? Odată ştearsă, sarcina va fi terminată."
+      }
     }
   },
   "frame": {
