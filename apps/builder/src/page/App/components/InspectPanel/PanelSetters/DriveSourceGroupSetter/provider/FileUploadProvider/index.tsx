@@ -7,6 +7,8 @@ interface Injected {
   createFolderVisible: boolean
   uploadName: string
   widgetType: string
+  isUpLoading: boolean
+  setIsUpLoading: (v: boolean) => void
   setCurrentFolderPath: (path: string) => void
   setUploadModalVisible: (v: boolean) => void
   setCreateFolderVisible: (v: boolean) => void
@@ -30,6 +32,7 @@ export const FileUploadProvider: FC<FileUploadProviderProps> = ({
   const [currentFolderPath, setCurrentFolderPath] = useState(ROOT_PATH)
   const [uploadModalVisible, setUploadModalVisible] = useState(false)
   const [createFolderVisible, setCreateFolderVisible] = useState(false)
+  const [isUpLoading, setIsUpLoading] = useState(false)
   const [uploadName, setUploadName] = useState("")
 
   return (
@@ -40,6 +43,8 @@ export const FileUploadProvider: FC<FileUploadProviderProps> = ({
         currentFolderPath,
         uploadModalVisible,
         createFolderVisible,
+        isUpLoading,
+        setIsUpLoading,
         setUploadName,
         setCreateFolderVisible,
         setCurrentFolderPath,

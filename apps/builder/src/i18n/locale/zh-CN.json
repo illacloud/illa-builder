@@ -2373,10 +2373,10 @@
           "submit_button_full_w": "设置提交按钮是否全宽",
           "submit_button_text": "甚至提交按钮的文案"
         },
-        "choose_image": "选择图片",
-        "choose_pdf": "选择PDF",
-        "choose_video": "选择视频",
-        "choose_audio": "选择音频"
+        "choose_image": "选择文件夹并上传",
+        "choose_pdf": "选择文件夹并上传",
+        "choose_video": "选择文件夹并上传",
+        "choose_audio": "选择文件夹并上传"
       },
       "setter_tootip": {
         "volume": "0到1之间的数字"
@@ -3752,12 +3752,13 @@
       "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
     },
     "move_modal": {
-      "no_folders": "No files here"
+      "no_folders": "无更多文件夹"
     },
     "same_name_modal": {
-      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "this_folder_already": "同名的文件夹已存在，要替换吗",
       "keep_both": "Keep both",
-      "replace": "Replace"
+      "replace": "Replace",
+      "this_folder_already_": "同名的文件夹已存在，要替换吗"
     },
     "upload": {
       "modal": {
@@ -3766,10 +3767,23 @@
         "all": "根文件夹",
         "create_folder": "新建文件夹",
         "cancel": "取消",
-        "file_upload": "上传"
+        "file_upload": "选择文件并上传"
       },
       "select": {
         "confirm_button": "选择"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "“PublicAccess文件夹”用于存放允许通过Builder中的组件公开访问的文件。访问这个文件夹里的内容不需要校验权限。为了保护您的文件安全，请勿在此存放重要文件。"
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "删除此任务？",
+        "cancel": "取消",
+        "delete": "删除",
+        "description": "您确定要删除此任务吗？一旦删除，这个任务将被终止。"
       }
     }
   },

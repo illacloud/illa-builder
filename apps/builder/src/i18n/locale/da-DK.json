@@ -3752,12 +3752,13 @@
       "validate_failed": "Kun bogstaver, tal og -~_=: er tilladt. Grænsen er 255 tegn eller mindre"
     },
     "move_modal": {
-      "no_folders": "Ingen filer her"
+      "no_folders": "Ingen mapper her"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?",
       "keep_both": "Behold begge",
-      "replace": "Erstat"
+      "replace": "Erstat",
+      "this_folder_already_": "Filen med samme navn findes allerede i denne mappe eller uploades til denne mappe. Vil du erstatte den?"
     },
     "upload": {
       "modal": {
@@ -3766,10 +3767,23 @@
         "all": "Rod",
         "create_folder": "Opret ny mappe",
         "cancel": "Annuller",
-        "file_upload": "Upload"
+        "file_upload": "Vælg en fil og upload"
       },
       "select": {
         "confirm_button": "Vælg"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "Den \"PublicAccess\" bruges til at gemme filer, der kan tilgås offentligt gennem komponenter i Builder. Adgang til filer i denne mappe kræver ikke godkendelse. For at sikre filsikkerhed, skal du ikke gemme vigtige filer her."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Slet denne opgave?",
+        "cancel": "Annuller",
+        "delete": "Slet",
+        "description": "Er du sikker på, at du vil slette denne opgave? Opgaven vil blive afsluttet, når den er slettet."
       }
     }
   },

@@ -2374,7 +2374,7 @@
           "submit_button_text": "Establecer el texto del botón de enviar"
         },
         "choose_image": "Choose an image",
-        "choose_pdf": "Choose a PDF",
+        "choose_pdf": "Select a folder and upload",
         "choose_video": "Choose a video",
         "choose_audio": "Choose an audio"
       },
@@ -3752,24 +3752,38 @@
       "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
     },
     "move_modal": {
-      "no_folders": "No files here"
+      "no_folders": "No folders here"
     },
     "same_name_modal": {
-      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "this_folder_already": "The folder with the same name already exists. Would you like to replace it?",
       "keep_both": "Keep both",
-      "replace": "Replace"
+      "replace": "Replace",
+      "this_folder_already_": "The folder with the same name already exists. Would you like to replace it?"
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
+        "title": "Select a folder",
         "upload_to": "Upload to",
         "all": "Root",
         "create_folder": "Create new folder",
         "cancel": "Cancel",
-        "file_upload": "Upload"
+        "file_upload": "Pick a file and upload"
       },
       "select": {
         "confirm_button": "Select"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "The \"PublicAccess\" is used to store files that can be accessed publicly through components in the Builder. Accessing files in this folder does not require authentication. To ensure file security, please don't store important files here."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Delete this task?",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "description": "Are you sure you want to delete this task? Once deleted, the task will be terminated."
       }
     }
   },

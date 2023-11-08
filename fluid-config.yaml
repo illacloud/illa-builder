@@ -1,0 +1,166 @@
+# Description:
+#   Pick a name you like, normally the name of the repository.
+# Example:
+namespace: OWASP
+
+# Description:
+#   Omit if you want pretty-printed results,
+#   Set to a path if you want CSV results.
+# Optional:
+#   Yes
+# Example:
+output:
+  file_path: ./Fluid-Attacks-Results.csv
+  format: CSV
+
+# Description:
+#   Working directory, normally used as the path to the repository.
+# Example:
+working_dir: .
+
+# Description:
+#   SAST for source code.
+# Example:
+path:
+  # Description:
+  #   Target files used in the analysis.
+  # Example:
+  include:
+    # Absolute path
+    - .
+    # Relative path to `working_dir`
+    - .
+
+# Description:
+#  Reversing checks for Android APKs.
+# apk:
+  # Description:
+  #   Target files used in the analysis.
+  # Example:
+  # include:
+    # Absolute paths
+    - /app/app-arm-debug-Android5.apk
+    - /app/app-arm-debug.apk
+    - /app/app-x86-debug-Android5.apk
+    - /app/app-x86-debug.apk
+
+
+# Description:
+#   Findings to analyze.
+#   The complete list of findings can be found here:
+#   https://gitlab.com/fluidattacks/universe/-/blob/trunk/skims/manifests/findings.lst
+# Optional:
+#   Yes, if not present all security findings will be analyzed.
+# Example:
+checks:
+- F001
+- F004
+- F008
+- F009
+- F010
+- F011
+- F012
+- F015
+- F016
+- F017
+- F020
+- F021
+- F022
+- F023
+- F031
+- F034
+- F035
+- F037
+- F042
+- F043
+- F052
+- F055
+- F056
+- F058
+- F073
+- F075
+- F079
+- F080
+- F082
+- F085
+- F086
+- F089
+- F091
+- F092
+- F094
+- F096
+- F098
+- F099
+- F100
+- F103
+- F107
+- F112
+- F120
+- F127
+- F128
+- F129
+- F130
+- F131
+- F132
+- F133
+- F134
+- F143
+- F160
+- F176
+- F177
+- F182
+- F200
+- F203
+- F206
+- F207
+- F211
+- F234
+- F239
+- F246
+- F247
+- F250
+- F252
+- F256
+- F257
+- F258
+- F259
+- F266
+- F267
+- F268
+- F277
+- F281
+- F300
+- F313
+- F320
+- F325
+- F333
+- F335
+- F338
+- F346
+- F363
+- F372
+- F380
+- F381
+- F393
+- F394
+- F396
+- F398
+- F400
+- F401
+- F402
+- F406
+- F407
+- F408
+- F409
+- F411
+- F412
+- F413
+- F414
+- F416
+- F418
+
+# Description:
+#   Language to use, valid values are: EN, ES.
+# Optional:
+#   Yes, defaults to: EN.
+language: EN

@@ -3752,12 +3752,13 @@
       "validate_failed": "文字、数字、-~_= : のみが使用できます。制限は 255 文字以下です。"
     },
     "move_modal": {
-      "no_folders": "ここにファイルはありません"
+      "no_folders": "フォルダはありません"
     },
     "same_name_modal": {
       "this_folder_already": "同じ名前のファイルが既にこのフォルダに存在するか、このフォルダにアップロードされています。置き換えますか？",
       "keep_both": "両方を保持",
-      "replace": "置換"
+      "replace": "置換",
+      "this_folder_already_": "同じ名前のファイルが既にこのフォルダに存在するか、このフォルダにアップロードされています。置き換えますか？"
     },
     "upload": {
       "modal": {
@@ -3766,10 +3767,23 @@
         "all": "ルート",
         "create_folder": "新しいフォルダを作成",
         "cancel": "キャンセル",
-        "file_upload": "アップロード"
+        "file_upload": "ファイルを選択してアップロード"
       },
       "select": {
         "confirm_button": "選択"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "「PublicAccess」は、Builder内のコンポーネントを介して公開されるファイルを格納するために使用されます。 このフォルダ内のファイルにアクセスするには認証は必要ありません。ファイルのセキュリティを確保するため、ここに重要なファイルを保存しないでください。"
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "このタスクを削除しますか？",
+        "cancel": "キャンセル",
+        "delete": "削除",
+        "description": "このタスクを削除してもよろしいですか？削除すると、タスクは終了します。"
       }
     }
   },

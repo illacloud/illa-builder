@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { FC, useState, useSyncExternalStore } from "react"
-import { CloseIcon, Loading, SuccessIcon, UploadIcon } from "@illa-design/react"
+import { ClearIcon, Loading, SuccessIcon, UploadIcon } from "@illa-design/react"
 import { ProcessDetailModal } from "./components/ProcessDetailModal"
 import { updateFileDetailStore } from "./store"
 import {
@@ -18,7 +18,7 @@ const getStatusIcon = (status: "success" | "processing" | "initial") => {
     case "success":
       return <SuccessIcon />
     case "processing":
-      return <Loading colorScheme="white" w="12px" h="12px" />
+      return <Loading colorScheme="grayBlue" />
     case "initial":
     default:
       return <span css={placeholderIconStyle} />
@@ -74,14 +74,12 @@ export const UploadDetailButton: FC = () => {
             </span>
             {getStatusIcon(getAreaStatues(uploadFiles))}
           </div>
-          <span
-            css={closeIconStyle(showButton)}
+          <ClearIcon
             onClick={() => {
               setShowButton(false)
             }}
-          >
-            <CloseIcon />
-          </span>
+            css={closeIconStyle(showButton)}
+          />
         </div>
       </motion.div>
       <ProcessDetailModal

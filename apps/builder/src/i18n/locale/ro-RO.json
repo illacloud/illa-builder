@@ -3752,12 +3752,13 @@
       "validate_failed": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin"
     },
     "move_modal": {
-      "no_folders": "Niciun fișier aici"
+      "no_folders": "Nu sunt dosare aici"
     },
     "same_name_modal": {
       "this_folder_already": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?",
       "keep_both": "Păstrați ambele",
-      "replace": "Înlocuiește"
+      "replace": "Înlocuiește",
+      "this_folder_already_": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?"
     },
     "upload": {
       "modal": {
@@ -3766,10 +3767,23 @@
         "all": "Rădăcină",
         "create_folder": "Creați un dosar nou",
         "cancel": "Anulează",
-        "file_upload": "Incarca"
+        "file_upload": "Alege un fișier și încarcă"
       },
       "select": {
         "confirm_button": "Selectare"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"Accesul public\" este folosit pentru a stoca fișiere care pot fi accesate public prin intermediul componentelor din Constructor. Accesarea fişierelor din acest dosar nu necesită autentificare. Pentru a asigura securitatea fişierelor, vă rugăm să nu păstraţi fişierele importante aici."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Ștergeți această sarcină?",
+        "cancel": "Anulează",
+        "delete": "Ștergere",
+        "description": "Sunteţi sigur că doriţi să ştergeţi această sarcină? Odată ştearsă, sarcina va fi terminată."
       }
     }
   },

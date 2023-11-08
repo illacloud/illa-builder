@@ -1,20 +1,21 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const uploadContainerStyle = css`
+export const uploadContainerStyle = (isUpLoading: boolean) => css`
+  pointer-events: ${isUpLoading ? "none" : "auto"};
   width: 100%;
-  cursor: pointer;
+  cursor: ${isUpLoading ? "not-allowed" : "pointer"};
   display: flex;
-  padding: 4px 12px 4px 8px;
+  padding: 3px 12px 3px 8px;
   align-items: center;
   gap: 8px;
   margin-top: 8px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
+  opacity: ${isUpLoading ? 0.5 : 1};
 `
 
 export const uploadIconStyle = css`
-  height: 22px;
   padding: 4px;
   display: inline-flex;
   flex: none;
@@ -28,5 +29,5 @@ export const uploadNameStyle = css`
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 24px;
 `

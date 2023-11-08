@@ -9,10 +9,14 @@ interface UploadModeProps {
 const UploadMode: FC<UploadModeProps> = ({ widgetType }) => {
   const placeholderInfo = getUploadModeInfo(widgetType)
 
-  const { setUploadModalVisible, uploadName } = useContext(FileUploadContext)
+  const { setUploadModalVisible, uploadName, isUpLoading } =
+    useContext(FileUploadContext)
 
   return (
-    <div css={uploadContainerStyle} onClick={() => setUploadModalVisible(true)}>
+    <div
+      css={uploadContainerStyle(isUpLoading)}
+      onClick={() => setUploadModalVisible(true)}
+    >
       <span css={uploadIconStyle}>{placeholderInfo?.icon}</span>
       <span css={uploadNameStyle}>{uploadName || placeholderInfo?.name}</span>
     </div>

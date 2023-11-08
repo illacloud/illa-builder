@@ -63,6 +63,7 @@ const UploadFileModalContent: FC = () => {
   const {
     currentFolderPath,
     widgetType,
+    setIsUpLoading,
     setCurrentFolderPath,
     setUploadModalVisible,
     setCreateFolderVisible,
@@ -73,7 +74,7 @@ const UploadFileModalContent: FC = () => {
   const message = useMessage()
   const [folderList, setFolderList] = useState<IILLAFileInfo[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isUpLoading, setIsUpLoading] = useState(false)
+
   const totalRef = useRef<number>(0)
   const currentFolderID = useRef("")
 
@@ -171,6 +172,7 @@ const UploadFileModalContent: FC = () => {
     })
     const file = files[0]
     if (!file) return
+    setUploadModalVisible(false)
     const queryID = `${file.name}_${new Date().getTime()}`
 
     const abortController = new AbortController()
@@ -224,7 +226,6 @@ const UploadFileModalContent: FC = () => {
         }
       } finally {
         setIsUpLoading(false)
-        setUploadModalVisible(false)
       }
     } else {
       setIsUpLoading(false)
@@ -297,7 +298,6 @@ const UploadFileModalContent: FC = () => {
             onClick={() => {
               uploadFileRef.current?.click()
             }}
-            loading={isUpLoading}
           >
             <span>
               <input

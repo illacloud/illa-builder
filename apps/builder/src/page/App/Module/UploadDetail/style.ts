@@ -3,7 +3,7 @@ import { getColor } from "@illa-design/react"
 
 export const uploadDetailContainerStyle = css`
   padding: 5px 16px;
-  padding-right: 10px;
+  padding-right: 8px;
   border-radius: 16px;
   background-color: ${getColor("white", "01")};
   color: ${getColor("grayBlue", "02")};
@@ -31,7 +31,6 @@ export const controllerAreaContainerStyle = css`
   align-items: center;
   cursor: pointer;
   user-select: none;
-  font-size: 12px;
 `
 
 export const processingTextStyle = css`
@@ -41,20 +40,14 @@ export const processingTextStyle = css`
 
 export const placeholderIconStyle = css`
   display: inline-block;
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
 `
 
 export const closeIconStyle = (showButton: boolean) => css`
-  width: 12px;
-  height: 12px;
-  background-color: ${getColor("grayBlue", "06")};
-  color: white;
+  color: ${getColor("grayBlue", "06")};
   display: ${showButton ? "flex" : "none"};
-  align-items: center;
-  font-size: 8px;
-  justify-content: center;
-  border-radius: 50%;
   cursor: pointer;
   margin-left: 16px;
+  font-size: 16px;
 `

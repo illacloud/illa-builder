@@ -3752,12 +3752,13 @@
       "validate_failed": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen"
     },
     "move_modal": {
-      "no_folders": "Keine Dateien hier"
+      "no_folders": "Keine Ordner hier"
     },
     "same_name_modal": {
       "this_folder_already": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?",
       "keep_both": "Beides behalten",
-      "replace": "Ersetzen"
+      "replace": "Ersetzen",
+      "this_folder_already_": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?"
     },
     "upload": {
       "modal": {
@@ -3766,10 +3767,23 @@
         "all": "Wurzel",
         "create_folder": "Neuen Ordner erstellen",
         "cancel": "Abbrechen",
-        "file_upload": "Hochladen"
+        "file_upload": "Datei auswählen und hochladen"
       },
       "select": {
         "confirm_button": "Auswählen"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "Der \"PublicAccess\" wird verwendet, um Dateien zu speichern, die über Komponenten im Builder öffentlich zugänglich sind. Der Zugriff auf Dateien in diesem Ordner erfordert keine Authentifizierung. Um die Sicherheit der Dateien zu gewährleisten, speichern Sie hier keine wichtigen Dateien."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Diese Aufgabe löschen?",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "description": "Sind Sie sicher, dass Sie diese Aufgabe löschen möchten? Nach dem Löschen wird die Aufgabe beendet."
       }
     }
   },
