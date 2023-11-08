@@ -3777,6 +3777,14 @@
       "public_folder": {
         "tips": "The \"PublicAccess\" is used to store files that can be accessed publicly through components in the Builder. Accessing files in this folder does not require authentication. To ensure file security, please don't store important files here."
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Delete this task?",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "description": "Are you sure you want to delete this task? Once deleted, the task will be terminated."
+      }
     }
   },
   "frame": {
