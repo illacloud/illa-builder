@@ -3,7 +3,7 @@ import { getColor } from "@illa-design/react"
 import { FOLDER_LIST_CONTAINER_HEIGHT } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
 
 export const containerStyle = css`
-  padding: 24px 32px;
+  padding: 24px;
 `
 
 export const contentHeaderStyle = css`
@@ -76,4 +76,8 @@ export const closeStyle = css`
   justify-content: center;
   padding: 6px;
   cursor: pointer;
+`
+
+export const breadItemStyle = (isLast: boolean) => css`
+  color: ${isLast ? getColor("techPurple", "01") : getColor("gray", "04")};
 `

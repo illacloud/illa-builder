@@ -8,14 +8,16 @@ export const uploadContainerStyle = css`
   padding: 4px 12px 4px 8px;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 8px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
 `
 
 export const uploadIconStyle = css`
-  width: 16px;
-  height: 16px;
+  height: 22px;
+  padding: 4px;
+  display: inline-flex;
+  flex: none;
 `
 
 export const uploadNameStyle = css`

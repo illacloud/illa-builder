@@ -47,6 +47,7 @@ import FolderList from "../FolderList"
 import LoadingState from "../LoadingState"
 import {
   applyInnerFolderListContainerStyle,
+  breadItemStyle,
   breadcrumbContainerStyle,
   closeStyle,
   containerStyle,
@@ -252,7 +253,7 @@ const UploadFileModalContent: FC = () => {
         >
           {breadList.map((item, index) => (
             <BreadcrumbItem key={index} href={item.path}>
-              {item.title}
+              <span css={breadItemStyle(item.last)}>{item.title}</span>
             </BreadcrumbItem>
           ))}
         </Breadcrumb>
@@ -265,8 +266,10 @@ const UploadFileModalContent: FC = () => {
               updateListData={handleFetchFileList}
               key={currentFolderPath}
             />
-          ) : (
+          ) : !isLoading ? (
             <EmptyState />
+          ) : (
+            <></>
           )}
         </div>
         {isLoading && <LoadingState />}
