@@ -3777,6 +3777,14 @@
       "public_folder": {
         "tips": "\"Offentlighetstilgangen\" brukes til å lagre filer som kan nås offentlig gjennom komponenter i byggeren. Tilgang til filer i denne mappen krever ikke godkjenning. For å sikre filsikkerhet, vennligst ikke lagre viktige filer her."
       }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Slett denne oppgaven?",
+        "cancel": "Avbryt",
+        "delete": "Slett",
+        "description": "Er du sikker på at du vil slette oppgaven? Når du er slettet vil oppgaven bli avsluttet."
+      }
     }
   },
   "frame": {
