@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Valoare"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}}",
+              "limit": "{{20}} sau {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -637,6 +643,11 @@
                 "delete": "Şterge 1 fişier",
                 "delete_multi_file": "Ştergeţi mai multe fişiere",
                 "update": "Redenumire fișier"
+              },
+              "file_type": {
+                "none": "Niciunul",
+                "by_id": "După ID",
+                "by_name": "După nume"
               }
             }
           },
@@ -687,7 +698,13 @@
               "safe_mode": "Când utilizați modul de siguranță, SQL poate doar variabilele de referință în locul variabilelor, de exemplu, unde numele = '{{input1.value}}'. Acest lucru îi împiedică pe utilizatori să compromită baza de date prin introducerea unor declarații ca \"tabelul de renunțare\". La utilizarea modului nesigur, cuvintele de sintaxă SQL pot fi de asemenea înlocuite cu variabile, cum ar fi unde {{input1.value}} {{input2.value}} '{{input3.value}}'. Cu toate acestea, în acest caz, baza de date poate fi compromisă de conținutul introdus de utilizator. Nu este recomandat să utilizaţi acest mod."
             },
             "drive": {
-              "method": "Folosit pentru a seta ce acțiuni plănuiți să efectuați pe șofer."
+              "method": "Folosit pentru a seta ce acțiuni plănuiți să efectuați pe șofer.",
+              "filter_type": "Dacă doriți să filtrați fișiere, puteți utiliza această opțiune de configurare pentru a specifica filtrarea după numele fișierului sau ID-ul fișierului. Numele fisierului foloseste potrivire fuzzy, in timp ce ID-ul fisierului foloseste potrivirea exacta.",
+              "file_name": "Folosit pentru fişierele neclare.",
+              "file_id": "Folosit pentru a afișa cu exactitate un fișier specific.",
+              "folder": "Selectați un dosar pentru a funcționa. ",
+              "page": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de pagină pentru a prelua datele. Aceasta este o valoare de index care începe de la 0.",
+              "limit": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de elemente de date care să fie returnate pe pagină."
             }
           },
           "advanced": {
@@ -732,7 +749,13 @@
             "safe_mode": "Mod"
           },
           "drive": {
-            "method": "Metodă"
+            "method": "Metodă",
+            "filter_type": "Tip filtru",
+            "file_name": "Nume fișier",
+            "file_id": "ID fișier",
+            "folder": "Dosar",
+            "page": "Pagină",
+            "limit": "Limită"
           }
         },
         "menu": {
