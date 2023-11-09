@@ -1,3 +1,9 @@
+import {
+  ComponentNode,
+  ModalSectionNode,
+  SECTION_POSITION,
+  SectionNode,
+} from "@illa-public/public-types"
 import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
 import {
@@ -6,13 +12,9 @@ import {
 } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   CONTAINER_TYPE,
-  ComponentNode,
-  ModalSectionNode,
   PADDING_MODE,
   PageNode,
   PageNodeProps,
-  SECTION_POSITION,
-  SectionNode,
 } from "@/redux/currentApp/components/componentsState"
 import { newGenerateComponentNode } from "./generateComponentNode"
 import { DisplayNameGenerator } from "./generateDisplayName"

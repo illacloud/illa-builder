@@ -1,10 +1,10 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { ComponentNode } from "@illa-public/public-types"
 import { PayloadAction } from "@reduxjs/toolkit"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 

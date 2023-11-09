@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
 import { cloneDeep } from "lodash"
@@ -22,7 +23,6 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
-import { ComponentNode } from "../components/componentsState"
 import { cursorActions } from "../cursor/cursorSlice"
 import {
   BatchUpdateWidgetLayoutInfoPayload,

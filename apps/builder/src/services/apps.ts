@@ -1,11 +1,11 @@
 import { builderRequest } from "@illa-public/illa-net"
+import { ComponentNode } from "@illa-public/public-types"
 import { createAction } from "@/api/actions"
 import { DeployResp } from "@/page/App/Module/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
 import { getCanvas } from "@/redux/currentApp/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import store from "@/store"
 import { getCurrentTeamID } from "../utils/team"
 

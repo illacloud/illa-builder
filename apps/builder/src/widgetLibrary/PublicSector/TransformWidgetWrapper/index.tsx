@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -15,7 +16,6 @@ import {
   searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,

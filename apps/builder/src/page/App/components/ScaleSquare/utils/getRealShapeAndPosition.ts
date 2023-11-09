@@ -1,7 +1,7 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 

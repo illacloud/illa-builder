@@ -1,8 +1,8 @@
+import { ComponentNode } from "@illa-public/public-types"
 import {
   clamWidgetShape,
   combineWidgetInfos,
 } from "@/page/App/components/DotPanel/utils/getDragShadow"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export const getComponentLayoutInfosWithRelativeCombineShape = (
   componentNodes: ComponentNode[],

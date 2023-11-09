@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { chunk, cloneDeep, get, isEqual, set, toPath } from "lodash"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -16,7 +17,6 @@ import {
   applyDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecutionResult,
   getRawTree,

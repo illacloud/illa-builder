@@ -1,7 +1,5 @@
-import {
-  ComponentNode,
-  PADDING_MODE,
-} from "@/redux/currentApp/components/componentsState"
+import { ComponentNode } from "@illa-public/public-types"
+import { PADDING_MODE } from "@/redux/currentApp/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface viewListItemShaper {

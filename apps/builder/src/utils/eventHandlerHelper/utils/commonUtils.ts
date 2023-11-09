@@ -1,3 +1,4 @@
+import { SectionViewShape } from "@illa-public/public-types"
 import copy from "copy-to-clipboard"
 import download from "downloadjs"
 import {
@@ -12,7 +13,6 @@ import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
-import { SectionViewShape } from "@/redux/currentApp/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executionTree/executionState"

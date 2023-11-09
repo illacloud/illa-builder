@@ -1,4 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { ComponentNode } from "@illa-public/public-types"
 import i18n from "i18next"
 import { cloneDeep, set } from "lodash"
 import { createMessage } from "@illa-design/react"
@@ -12,7 +13,6 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecution,
   getExecutionWidgetLayoutInfo,

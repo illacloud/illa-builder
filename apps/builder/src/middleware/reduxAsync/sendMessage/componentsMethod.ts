@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { PayloadAction } from "@reduxjs/toolkit"
 import {
   Connection,
@@ -19,7 +20,6 @@ import {
   AddModalComponentPayload,
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
-  ComponentNode,
   DeleteComponentNodePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,

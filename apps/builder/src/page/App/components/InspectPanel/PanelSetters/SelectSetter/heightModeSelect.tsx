@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
@@ -8,7 +9,6 @@ import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 

@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { get } from "lodash"
 import { FC, memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
@@ -19,7 +20,6 @@ import {
   searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store, { RootState } from "@/store"
 import { newGenerateChildrenComponentNode } from "@/utils/generators/generateComponentNode"

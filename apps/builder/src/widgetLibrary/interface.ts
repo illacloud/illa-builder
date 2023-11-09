@@ -1,9 +1,7 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { FC, ReactNode } from "react"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import {
-  CONTAINER_TYPE,
-  ComponentNode,
-} from "@/redux/currentApp/components/componentsState"
+import { CONTAINER_TYPE } from "@/redux/currentApp/components/componentsState"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
 import { SessionType } from "../page/App/components/ComponentPanel/componentListBuilder"
 

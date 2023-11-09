@@ -1,9 +1,9 @@
+import { ComponentNode } from "@illa-public/public-types"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { DependenciesState } from "@/redux/currentApp/executionTree/executionState"
 
 export interface CurrentAppResp {

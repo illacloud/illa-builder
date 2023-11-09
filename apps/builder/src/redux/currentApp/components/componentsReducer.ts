@@ -1,3 +1,8 @@
+import {
+  ComponentNode,
+  ModalSectionNode,
+  SectionViewShape,
+} from "@illa-public/public-types"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { cloneDeep, difference, set, unset } from "lodash"
 import {
@@ -17,7 +22,6 @@ import {
   AddSectionViewByConfigPayload,
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
-  ComponentNode,
   ComponentsInitialState,
   ComponentsState,
   DeleteComponentNodePayload,
@@ -27,10 +31,8 @@ import {
   DeleteSectionViewPayload,
   DeleteSubPageViewNodePayload,
   DeleteTargetPageSectionPayload,
-  ModalSectionNode,
   RootComponentNode,
   RootComponentNodeProps,
-  SectionViewShape,
   SetGlobalStatePayload,
   SortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,

@@ -1,4 +1,4 @@
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { ComponentNode } from "@illa-public/public-types"
 
 export type ScaleSquareType = "error" | "normal" | "production"
 

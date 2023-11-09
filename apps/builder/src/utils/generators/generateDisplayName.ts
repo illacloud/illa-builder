@@ -1,11 +1,11 @@
 // string for component
+import { ComponentNode } from "@illa-public/public-types"
 import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"

@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { AnimatePresence, Reorder } from "framer-motion"
 import { isEqual, omit } from "lodash"
 import {
@@ -13,7 +14,6 @@ import { ViewListSetterContext } from "@/page/App/components/InspectPanel/PanelS
 import { ViewItemShape } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/InspectPanel/PanelSetters/TableSetter/ColumnSetter/style"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { ListItem } from "./listItem"
 
 interface ItemsProps extends ViewItemShape {

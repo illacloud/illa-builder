@@ -1,5 +1,5 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { ReactNode } from "react"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSetter {

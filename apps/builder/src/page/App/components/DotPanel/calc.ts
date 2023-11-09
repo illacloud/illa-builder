@@ -1,4 +1,4 @@
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { ComponentNode } from "@illa-public/public-types"
 
 interface ItemPosition {
   x: number

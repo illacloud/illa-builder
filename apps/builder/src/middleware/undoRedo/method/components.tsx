@@ -1,3 +1,4 @@
+import { ComponentNode } from "@illa-public/public-types"
 import { AnyAction } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import { UpdateComponentContainerPayload } from "@/redux/currentApp/components/componentsPayload"
@@ -5,7 +6,6 @@ import {
   getCanvas,
   searchDSLByDisplayName,
 } from "@/redux/currentApp/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
