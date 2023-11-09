@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Stöd base64-data, rådata, mappade data i tabellen. ",
-          "file_name": "Namnet på filen du vill ladda upp, inklusive filnamnet, till exempel filen. sv. Du kan få detta värde med hjälp av uppladdningskomponenten, som {{upload1.files[0].name}}. "
+          "file_name": "Namnet på filen du vill ladda upp, inklusive filnamnet, till exempel filen. sv. Du kan få detta värde med hjälp av uppladdningskomponenten, som {{upload1.files[0].name}}. ",
+          "file_type": "Typ av fil som ska laddas upp"
         },
         "variable": {
           "available_in_objects": "Finns i objekt och arrayer. Sökvägen till attributet i objektet: {{objectName.attributeName}}. Indexet för värdet i en matris: {{1}}. En matris i objektet: {{objectName.attributeName.1}}",
