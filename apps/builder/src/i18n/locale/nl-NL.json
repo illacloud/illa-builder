@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Steun base64-data, rauwe data, mapped data van tabel. ",
-          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. "
+          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. ",
+          "file_type": "The type of the file to be uploaded"
         },
         "variable": {
           "available_in_objects": "Beschikbaar in objecten en arrays. Het pad van het attribuut in het object: {{objectName.attributeName}}. De index van de waarde in een array: {{1}}. Een array in het object: {{objectName.attributeName.1}}",
