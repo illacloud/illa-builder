@@ -33,7 +33,6 @@ export const containerStyle = css`
   flex: none;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   height: 100%;
   border-left: 1px solid ${getColor("grayBlue", "08")};
   background: ${getColor("white", "01")};
@@ -44,4 +43,5 @@ export const notHasComponentTipsStyle = css`
   position: absolute;
   right: calc(100% + 100px);
   top: 260px;
+  pointer-events: none;
 `
