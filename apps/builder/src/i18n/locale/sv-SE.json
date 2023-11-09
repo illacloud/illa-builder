@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Värde"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}} eller {{dataGrid1.page}}",
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -637,6 +643,11 @@
                 "delete": "Ta bort 1 fil",
                 "delete_multi_file": "Ta bort flera filer",
                 "update": "Döp om fil"
+              },
+              "file_type": {
+                "none": "Ingen",
+                "by_id": "Efter ID",
+                "by_name": "Efter namn"
               }
             }
           },
@@ -687,7 +698,13 @@
               "safe_mode": "När du använder felsäkert läge kan din SQL endast referera variabler i stället för variabler, till exempel där namn = '{{input1.value}}'. Detta förhindrar användare från att kompromettera din databas genom att lägga in påståenden som \"; släpp tabell\" i input1. När du använder det osäkra läget kan SQL syntax ord också ersättas med variabler, t.ex. var {{input1.value}} {{input2.value}} '{{input3.value}}'. I detta fall kan dock databasen äventyras av det innehåll som användaren angett. Det rekommenderas inte att du använder det här läget."
             },
             "drive": {
-              "method": "Används för att ställa in vilka åtgärder du planerar att utföra på enheten."
+              "method": "Används för att ställa in vilka åtgärder du planerar att utföra på enheten.",
+              "filter_type": "Om du vill filtrera filer kan du använda den här konfigurationsalternativet för att ange filtrering med filnamn eller fil-ID. Filnamnet använder luddig matchning, medan fil-ID använder exakt matchning.",
+              "file_name": "Används för luddiga matchande filer.",
+              "file_id": "Används för att exakt lista en specifik fil.",
+              "folder": "Välj en mapp att använda. ",
+              "page": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in sidnumret för de data som ska hämtas. Detta är ett indexvärde som börjar från 0.",
+              "limit": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in antalet dataobjekt som ska returneras per sida."
             }
           },
           "advanced": {
@@ -732,7 +749,13 @@
             "safe_mode": "Läge"
           },
           "drive": {
-            "method": "Metod"
+            "method": "Metod",
+            "filter_type": "Filtertyp",
+            "file_name": "Filnamn",
+            "file_id": "Fil-ID",
+            "folder": "Mapp",
+            "page": "Sida",
+            "limit": "Gräns"
           }
         },
         "menu": {
