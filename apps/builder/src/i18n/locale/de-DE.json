@@ -626,6 +626,18 @@
               "create-resource": "Aus Ressource erstellen",
               "unsafe": "Unsicher",
               "safe": "Sicher"
+            },
+            "drive": {
+              "method": {
+                "list": "Liste",
+                "upload_file": "1 Datei hochladen",
+                "upload_multi_file": "Mehrere Dateien hochladen",
+                "download": "Download",
+                "download_multi_file": "Mehrere Dateien herunterladen",
+                "delete": "Lösche 1 Datei",
+                "delete_multi_file": "Mehrere Dateien löschen",
+                "update": "Datei umbenennen"
+              }
             }
           },
           "restapi": {
@@ -673,6 +685,9 @@
             },
             "general": {
               "safe_mode": "Wenn Sie den Safe Mode verwenden, kann Ihr SQL nur Variablen an der Stelle von Variablen referenzieren, zum Beispiel wo Name = '{{input1.value}}'. Dies hindert Benutzer daran, Ihre Datenbank zu kompromittieren, indem Anweisungen wie '; Drop Tabelle;' in input1 eingegeben werden. Wenn Sie den unsicheren Modus verwenden, können SQL-Syntaxwörter auch durch Variablen ersetzt werden zum Beispiel wo {{input1.value}} {{input2.value}} '{{input3.value}}'. In diesem Fall kann die Datenbank jedoch durch die vom Benutzer eingegebenen Inhalte kompromittiert werden. Es wird nicht empfohlen, diesen Modus zu verwenden."
+            },
+            "drive": {
+              "method": "Wird verwendet, um festzulegen, welche Aktionen Sie auf dem Laufwerk durchführen wollen."
             }
           },
           "advanced": {
@@ -715,6 +730,9 @@
             "connect-data-source": "Mit Datenbank oder Api verbinden",
             "more-type": "Weitere Datenquellentypen",
             "safe_mode": "Modus"
+          },
+          "drive": {
+            "method": "Methode"
           }
         },
         "menu": {
