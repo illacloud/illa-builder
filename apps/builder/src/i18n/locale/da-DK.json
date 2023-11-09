@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Værdi"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}}",
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -637,6 +643,11 @@
                 "delete": "Slet 1 fil",
                 "delete_multi_file": "Slet flere filer",
                 "update": "Omdøb fil"
+              },
+              "file_type": {
+                "none": "Ingen",
+                "by_id": "Efter ID",
+                "by_name": "Efter navn"
               }
             }
           },
@@ -687,7 +698,13 @@
               "safe_mode": "Når du bruger sikkerhedstilstand, kan din SQL kun referere variabler på stedet for variabler, for eksempel, hvor navn = '{{input1.value}}'. Dette forhindrer brugere i at kompromittere din database ved at indtaste udsagn som '; drop tabel;' i input1. Når du bruger den usikre tilstand, kan SQL syntaksord også erstattes med variabler, saasom hvor {{input1.value}} {{input2.value}} '{{input3.value}}'. Men i dette tilfælde kan databasen blive kompromitteret af indholdet indtastet af brugeren. Det anbefales ikke at du bruger denne tilstand."
             },
             "drive": {
-              "method": "Bruges til at angive, hvilke handlinger du planlægger at udføre på drevet."
+              "method": "Bruges til at angive, hvilke handlinger du planlægger at udføre på drevet.",
+              "filter_type": "Hvis du ønsker at filtrere filer, kan du bruge denne indstillingsindstilling til at angive filtrering efter filnavn eller fil- ID. Filnavn bruger fuzzy matching, mens fil-id bruger eksakt matching.",
+              "file_name": "Bruges til uklare matchende filer.",
+              "file_id": "Bruges til præcist at liste en bestemt fil.",
+              "folder": "Vælg en mappe at betjene. ",
+              "page": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille sidenummeret på data at hente. Dette er en indeksværdi, der starter fra 0.",
+              "limit": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille antallet af dataelementer, der skal returneres pr. side."
             }
           },
           "advanced": {
@@ -732,7 +749,13 @@
             "safe_mode": "Tilstand"
           },
           "drive": {
-            "method": "Metode"
+            "method": "Metode",
+            "filter_type": "Filtrer type",
+            "file_name": "Fil navn",
+            "file_id": "Fil ID",
+            "folder": "Mappe",
+            "page": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille sidenummeret på data at hente. Dette er en indeksværdi, der starter fra 0.",
+            "limit": "Grænse"
           }
         },
         "menu": {
