@@ -626,6 +626,18 @@
               "create-resource": "Opprett fra ressurs",
               "unsafe": "Usikker",
               "safe": "Sikker"
+            },
+            "drive": {
+              "method": {
+                "list": "List filer",
+                "upload_file": "Last opp 1 fil",
+                "upload_multi_file": "Last opp flere filer",
+                "download": "Nedlasting",
+                "download_multi_file": "Last ned flere filer",
+                "delete": "Slett 1 fil",
+                "delete_multi_file": "Slett flere filer",
+                "update": "Gi nytt filnavn"
+              }
             }
           },
           "restapi": {
@@ -673,6 +685,9 @@
             },
             "general": {
               "safe_mode": "Når du bruker sikker modus, kan SQL bare referere til variabler i stedet for variabler, for eksempel, der navn = '{{input1.value}}'. Dette hindrer brukere i å kompromittere databasen ved å angi erklæringer som '; slipp-tabell;' i input1. Ved bruk av usikker modus, kan SQL-syntaksord også erstattes med variabler, slikt som der {{input1.value}} {{input2.value}} '{{input3.value}}'. I dette tilfellet kan databasen imidlertid bli kompromittert av innholdet som brukeren har angitt. Det er ikke anbefalt for deg å bruke denne modus."
+            },
+            "drive": {
+              "method": "Brukes til å angi hvilke tiltak du planlegger å utføre på stasjonen."
             }
           },
           "advanced": {
@@ -715,6 +730,9 @@
             "connect-data-source": "Koble til database eller api",
             "more-type": "Mer type datakilder",
             "safe_mode": "Modus"
+          },
+          "drive": {
+            "method": "Metode"
           }
         },
         "menu": {
