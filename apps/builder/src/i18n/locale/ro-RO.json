@@ -626,6 +626,18 @@
               "create-resource": "Creează din resurse",
               "unsafe": "Nesigur",
               "safe": "Sigur"
+            },
+            "drive": {
+              "method": {
+                "list": "Listează fișierele",
+                "upload_file": "Încărcați un fișier",
+                "upload_multi_file": "Încarcă mai multe fișiere",
+                "download": "Descărcare",
+                "download_multi_file": "Descarcă mai multe fișiere",
+                "delete": "Şterge 1 fişier",
+                "delete_multi_file": "Ştergeţi mai multe fişiere",
+                "update": "Redenumire fișier"
+              }
             }
           },
           "restapi": {
@@ -673,6 +685,9 @@
             },
             "general": {
               "safe_mode": "Când utilizați modul de siguranță, SQL poate doar variabilele de referință în locul variabilelor, de exemplu, unde numele = '{{input1.value}}'. Acest lucru îi împiedică pe utilizatori să compromită baza de date prin introducerea unor declarații ca \"tabelul de renunțare\". La utilizarea modului nesigur, cuvintele de sintaxă SQL pot fi de asemenea înlocuite cu variabile, cum ar fi unde {{input1.value}} {{input2.value}} '{{input3.value}}'. Cu toate acestea, în acest caz, baza de date poate fi compromisă de conținutul introdus de utilizator. Nu este recomandat să utilizaţi acest mod."
+            },
+            "drive": {
+              "method": "Folosit pentru a seta ce acțiuni plănuiți să efectuați pe șofer."
             }
           },
           "advanced": {
@@ -715,6 +730,9 @@
             "connect-data-source": "Conectează-te la baza de date sau API",
             "more-type": "Mai multe tipuri de surse de date",
             "safe_mode": "Mod"
+          },
+          "drive": {
+            "method": "Metodă"
           }
         },
         "menu": {
