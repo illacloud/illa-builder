@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Prise en charge des données base64, des données brutes, des données cartographiées de la table. ",
-          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. "
+          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. ",
+          "file_type": "The type of the file to be uploaded"
         },
         "variable": {
           "available_in_objects": "Disponible dans les objets et les tableaux. Le chemin de l'attribut dans l'objet : {{objectName.attributeName}}. L'index de la valeur dans un tableau : {{1}}. Un tableau dans l'objet : {{objectName.attributeName.1}}",
