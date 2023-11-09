@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Unterstützt Base64-Daten, Rohdaten, zugeordnete Tabellendaten. ",
-          "file_name": "Der Name der Datei, die Sie hochladen möchten, inklusive der Dateierweiterung, wie z. B. Datei. sv. Sie können diesen Wert mit der Upload-Komponente erhalten, wie {{upload1.files[0].name}}. "
+          "file_name": "Der Name der Datei, die Sie hochladen möchten, inklusive der Dateierweiterung, wie z. B. Datei. sv. Sie können diesen Wert mit der Upload-Komponente erhalten, wie {{upload1.files[0].name}}. ",
+          "file_type": "Der Dateityp der hochgeladen werden soll"
         },
         "variable": {
           "available_in_objects": "Verfügbar in Objekten und Arrays. Der Pfad des Attributs im Objekt: {{objectName.attributeName}}. Der Index des Wertes in einem Array: {{1}}. Ein Array im Objekt: {{objectName.attributeName.1}}",
