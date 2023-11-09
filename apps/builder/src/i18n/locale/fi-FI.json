@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Tuki base64-tiedot, raaka data, kartoitettu tiedot taulukosta. ",
-          "file_name": "Tiedoston nimi, jonka haluat ladata, mukaan lukien tiedostopääte, kuten tiedosto. sv. Voit saada tämän arvon käyttämällä latauskomponenttia, kuten {{upload1.files[0].name}}. "
+          "file_name": "Tiedoston nimi, jonka haluat ladata, mukaan lukien tiedostopääte, kuten tiedosto. sv. Voit saada tämän arvon käyttämällä latauskomponenttia, kuten {{upload1.files[0].name}}. ",
+          "file_type": "The type of the file to be loaded"
         },
         "variable": {
           "available_in_objects": "Saatavilla kohteissa ja taulukoissa. Attribuutin polku objektissa: {{objectName.attributeName}}. Arvon indeksi taulukossa: {{1}}. An array in the object: {{objectName.attributeName.1}}",
