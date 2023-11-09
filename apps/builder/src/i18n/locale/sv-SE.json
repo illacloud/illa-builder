@@ -626,6 +626,18 @@
               "create-resource": "Skapa från resurs",
               "unsafe": "Osäker",
               "safe": "Säker"
+            },
+            "drive": {
+              "method": {
+                "list": "Lista filer",
+                "upload_file": "Ladda upp 1 fil",
+                "upload_multi_file": "Ladda upp flera filer",
+                "download": "Hämta",
+                "download_multi_file": "Ladda ner flera filer",
+                "delete": "Ta bort 1 fil",
+                "delete_multi_file": "Ta bort flera filer",
+                "update": "Döp om fil"
+              }
             }
           },
           "restapi": {
@@ -673,6 +685,9 @@
             },
             "general": {
               "safe_mode": "När du använder felsäkert läge kan din SQL endast referera variabler i stället för variabler, till exempel där namn = '{{input1.value}}'. Detta förhindrar användare från att kompromettera din databas genom att lägga in påståenden som \"; släpp tabell\" i input1. När du använder det osäkra läget kan SQL syntax ord också ersättas med variabler, t.ex. var {{input1.value}} {{input2.value}} '{{input3.value}}'. I detta fall kan dock databasen äventyras av det innehåll som användaren angett. Det rekommenderas inte att du använder det här läget."
+            },
+            "drive": {
+              "method": "Används för att ställa in vilka åtgärder du planerar att utföra på enheten."
             }
           },
           "advanced": {
@@ -715,6 +730,9 @@
             "connect-data-source": "Anslut till databas eller api",
             "more-type": "Fler typer av datakällor",
             "safe_mode": "Läge"
+          },
+          "drive": {
+            "method": "Metod"
           }
         },
         "menu": {
