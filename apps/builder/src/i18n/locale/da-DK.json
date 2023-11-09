@@ -626,6 +626,18 @@
               "create-resource": "Opret fra ressource",
               "unsafe": "Usikker",
               "safe": "Sikker"
+            },
+            "drive": {
+              "method": {
+                "list": "Liste",
+                "upload_file": "Upload 1 fil",
+                "upload_multi_file": "Upload flere filer",
+                "download": "Hent",
+                "download_multi_file": "Download flere filer",
+                "delete": "Slet 1 fil",
+                "delete_multi_file": "Slet flere filer",
+                "update": "Omdøb fil"
+              }
             }
           },
           "restapi": {
@@ -673,6 +685,9 @@
             },
             "general": {
               "safe_mode": "Når du bruger sikkerhedstilstand, kan din SQL kun referere variabler på stedet for variabler, for eksempel, hvor navn = '{{input1.value}}'. Dette forhindrer brugere i at kompromittere din database ved at indtaste udsagn som '; drop tabel;' i input1. Når du bruger den usikre tilstand, kan SQL syntaksord også erstattes med variabler, saasom hvor {{input1.value}} {{input2.value}} '{{input3.value}}'. Men i dette tilfælde kan databasen blive kompromitteret af indholdet indtastet af brugeren. Det anbefales ikke at du bruger denne tilstand."
+            },
+            "drive": {
+              "method": "Bruges til at angive, hvilke handlinger du planlægger at udføre på drevet."
             }
           },
           "advanced": {
@@ -715,6 +730,9 @@
             "connect-data-source": "Opret forbindelse til database eller api",
             "more-type": "Mere type datakilder",
             "safe_mode": "Tilstand"
+          },
+          "drive": {
+            "method": "Metode"
           }
         },
         "menu": {
