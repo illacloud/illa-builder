@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Støtt base64 data, rå data, kartlagte data for tabellen. ",
-          "file_name": "Navnet på filen du vil laste opp, inkludert filutvidelsen, slik som fil. sv. Du kan få denne verdien ved å bruke opplastings komponenten, som {{upload1.files[0].name}}. "
+          "file_name": "Navnet på filen du vil laste opp, inkludert filutvidelsen, slik som fil. sv. Du kan få denne verdien ved å bruke opplastings komponenten, som {{upload1.files[0].name}}. ",
+          "file_type": "Typen fil som skal lastes opp"
         },
         "variable": {
           "available_in_objects": "Tilgjengelig i objekter og lister. Stien til attributtet i objektet: {{objectName.attributeName}}. Indeksen for verdien i en liste. {{1}}. En liste i objektet: {{objectName.attributeName.1}}",
