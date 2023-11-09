@@ -539,8 +539,13 @@
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
               "page": "{{0}} eller {{dataGrid1.page}}",
-              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
-            }
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} eller {{drivePicker1.value.map(fil => fileID)}}",
+              "target_file_name": "new_file.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} eller {{upload1.files.map(fil =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -704,7 +709,12 @@
               "file_id": "Brukes til nøyaktig å liste en bestemt fil.",
               "folder": "Velg en mappe du vil operere. ",
               "page": "Hvis du trenger en brukerside for serversiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Dette er en indeksverdi som starter fra 0.",
-              "limit": "Hvis du trenger gulegatsidesidering kan du bruke dette konfigurasjonsalternativet for å angi antall data objekter som skal returneres per side."
+              "limit": "Hvis du trenger gulegatsidesidering kan du bruke dette konfigurasjonsalternativet for å angi antall data objekter som skal returneres per side.",
+              "file_name_array": "En liste bestående av navnene på filene du vil laste opp, inkludert filutvidelsene, som [file1.csv, file2. sv]. Du kan hente denne verdien ved å bruke opplastingskomponenten, som {{upload1.files.map(fil => file.name)}}.",
+              "file_data_array": "En rekke med data for filene du vil laste opp. Du kan få den via {{upload1.value}}.",
+              "file_ids": "En liste med fil-IDer du vil laste ned. Du kan hente denne verdien fra Drive Picker komponenten ved å bruke {{drivePicker1. alue.map(fil => fileID)}, eller du kan få det fram gjennom listemetode.",
+              "file_type_array": "En liste av type filer som skal lastes opp. Du kan bruke {{upload1.files.map(fil =>file.type)}} for å få filtypene fra å laste opp komponenten. ",
+              "target_file_name": "Brukes til å angi nytt navn"
             }
           },
           "advanced": {
@@ -755,7 +765,12 @@
             "file_id": "Fil ID",
             "folder": "Mappe",
             "page": "Side",
-            "limit": "Grense"
+            "limit": "Grense",
+            "file_name_array": "Filnavn liste",
+            "file_data_array": "Fildata liste",
+            "file_ids": "Fil ID liste",
+            "file_type_array": "Filtype liste",
+            "target_file_name": "Nytt navn"
           }
         },
         "menu": {
@@ -2004,6 +2019,14 @@
         "click_mask_close": "Klikk på maske for å lukke modal",
         "modal": {
           "blank": "Ingen ikoner"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv eller {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -2021,7 +2044,8 @@
           "data_source": "En datakilde til å definere bildeelementer ved hjelp av en kartlagt evaluering. Bruk enten en liste med verdier eller et objekt med nøkler tilordnet til listen. For eksempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan også bruke dataene i handlinger. For eksempel: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Støtt base64 data, rå data, kartlagte data for tabellen. "
+          "file_data": "Støtt base64 data, rå data, kartlagte data for tabellen. ",
+          "file_name": "Navnet på filen du vil laste opp, inkludert filutvidelsen, slik som fil. sv. Du kan få denne verdien ved å bruke opplastings komponenten, som {{upload1.files[0].name}}. "
         },
         "variable": {
           "available_in_objects": "Tilgjengelig i objekter og lister. Stien til attributtet i objektet: {{objectName.attributeName}}. Indeksen for verdien i en liste. {{1}}. En liste i objektet: {{objectName.attributeName.1}}",
