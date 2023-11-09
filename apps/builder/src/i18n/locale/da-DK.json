@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Understøtter base64-data, rådata, kortlagte data i tabellen. ",
-          "file_name": "Navnet på den fil, du vil uploade, herunder filendelsen, såsom fil. sv. Du kan få denne værdi ved hjælp af upload-komponenten, som {{upload1.files[0].name}}. "
+          "file_name": "Navnet på den fil, du vil uploade, herunder filendelsen, såsom fil. sv. Du kan få denne værdi ved hjælp af upload-komponenten, som {{upload1.files[0].name}}. ",
+          "file_type": "Typen af den fil, der skal uploades"
         },
         "variable": {
           "available_in_objects": "Tilgængelig i objekter og arrays. Stien til attributten i objektet: {{objectName.attributeName}}. Indekset for værdien i et array: {{1}}. Et array i objektet: {{objectName.attributeName.1}}",
