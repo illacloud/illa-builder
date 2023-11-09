@@ -1,6 +1,5 @@
 import { isRunScriptAttr } from "../executionTreeHelper/executionTreeFactory"
 import { getDynamicValue } from "./dynamicConverter"
-import { EVALUATION_TYPE } from "./interface"
 import { hasDynamicStringSnippet } from "./utils"
 import { isWrapperCode, realInputValueWithScript } from "./valueConverter"
 
@@ -8,7 +7,6 @@ export const evaluateDynamicString = (
   keyInDataTree: string,
   dynamicString: string,
   dataTree: Record<string, any>,
-  evaluationType: EVALUATION_TYPE = EVALUATION_TYPE.TEMPLATE,
 ) => {
   const requiresEval = hasDynamicStringSnippet(dynamicString)
   let evalResult
@@ -17,7 +15,7 @@ export const evaluateDynamicString = (
       evalResult = realInputValueWithScript(dynamicString, true)
     } else {
       try {
-        const result = getDynamicValue(dynamicString, dataTree, evaluationType)
+        const result = getDynamicValue(dynamicString, dataTree)
         evalResult = result?.result
       } catch (error) {
         evalResult = undefined
@@ -34,7 +32,6 @@ export const evaluateDynamicStringAndGetCalcContext = (
   keyInDataTree: string,
   dynamicString: string,
   dataTree: Record<string, any>,
-  evaluationType: EVALUATION_TYPE = EVALUATION_TYPE.TEMPLATE,
 ) => {
   const requiresEval = hasDynamicStringSnippet(dynamicString)
   let evalResult
@@ -44,7 +41,7 @@ export const evaluateDynamicStringAndGetCalcContext = (
       evalResult = realInputValueWithScript(dynamicString, true)
     } else {
       try {
-        const result = getDynamicValue(dynamicString, dataTree, evaluationType)
+        const result = getDynamicValue(dynamicString, dataTree)
         evalResult = result?.result
         context = result?.context || {}
       } catch (error) {
