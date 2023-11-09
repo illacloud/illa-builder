@@ -626,6 +626,18 @@
               "create-resource": "从数据源创建",
               "unsafe": "不安全",
               "safe": "安全"
+            },
+            "drive": {
+              "method": {
+                "list": "List files",
+                "upload_file": "Upload 1 file",
+                "upload_multi_file": "Upload multiple files",
+                "download": "Download",
+                "download_multi_file": "Download multiple files",
+                "delete": "Delete 1 file",
+                "delete_multi_file": "Delete multiple files",
+                "update": "Rename file"
+              }
             }
           },
           "restapi": {
@@ -673,6 +685,9 @@
             },
             "general": {
               "safe_mode": "使用safe模式时，您的SQL只能在变量的位置引用变量，例如where name = '{{input1.value}}'。这使得使用者无法通过在input1中输入 ; drop table; 等方式来破坏您的数据库；使用Unsafe模式时，SQL语法词也可以替换为变量，如where {{input1.value}} {{input2.value}} '{{input3.value}}'，但这样一来数据库可能被用户输入的内容破坏，不建议您使用"
+            },
+            "drive": {
+              "method": "Used to set what actions you plan to perform on the drive."
             }
           },
           "advanced": {
@@ -715,6 +730,9 @@
             "connect-data-source": "连接到数据库或API",
             "more-type": "更多连接方式",
             "safe_mode": "模式"
+          },
+          "drive": {
+            "method": "Method"
           }
         },
         "menu": {
