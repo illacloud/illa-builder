@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Verdi"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}} eller {{dataGrid1.page}}",
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -637,6 +643,11 @@
                 "delete": "Slett 1 fil",
                 "delete_multi_file": "Slett flere filer",
                 "update": "Gi nytt filnavn"
+              },
+              "file_type": {
+                "none": "Ingen",
+                "by_id": "Etter ID",
+                "by_name": "Etter navn"
               }
             }
           },
@@ -687,7 +698,13 @@
               "safe_mode": "Når du bruker sikker modus, kan SQL bare referere til variabler i stedet for variabler, for eksempel, der navn = '{{input1.value}}'. Dette hindrer brukere i å kompromittere databasen ved å angi erklæringer som '; slipp-tabell;' i input1. Ved bruk av usikker modus, kan SQL-syntaksord også erstattes med variabler, slikt som der {{input1.value}} {{input2.value}} '{{input3.value}}'. I dette tilfellet kan databasen imidlertid bli kompromittert av innholdet som brukeren har angitt. Det er ikke anbefalt for deg å bruke denne modus."
             },
             "drive": {
-              "method": "Brukes til å angi hvilke tiltak du planlegger å utføre på stasjonen."
+              "method": "Brukes til å angi hvilke tiltak du planlegger å utføre på stasjonen.",
+              "filter_type": "Hvis du vil filtrere filer, kan du bruke dette konfigurasjonsalternativet for å spesifisere filnavn eller fil-ID. Filnavnet bruker uklar samsvarende, mens fil-ID bruker nøyaktig samsvar.",
+              "file_name": "Brukes for fuzzy samsvarende filer.",
+              "file_id": "Brukes til nøyaktig å liste en bestemt fil.",
+              "folder": "Velg en mappe du vil operere. ",
+              "page": "Hvis du trenger en brukerside for serversiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Dette er en indeksverdi som starter fra 0.",
+              "limit": "Hvis du trenger gulegatsidesidering kan du bruke dette konfigurasjonsalternativet for å angi antall data objekter som skal returneres per side."
             }
           },
           "advanced": {
@@ -732,7 +749,13 @@
             "safe_mode": "Modus"
           },
           "drive": {
-            "method": "Metode"
+            "method": "Metode",
+            "filter_type": "Type filter",
+            "file_name": "Fil navn",
+            "file_id": "Fil ID",
+            "folder": "Mappe",
+            "page": "Side",
+            "limit": "Grense"
           }
         },
         "menu": {
