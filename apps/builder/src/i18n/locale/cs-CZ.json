@@ -626,6 +626,18 @@
               "create-resource": "Vytvořit ze zdroje",
               "unsafe": "Nebezpečný",
               "safe": "Bezpečné"
+            },
+            "drive": {
+              "method": {
+                "list": "Seznam souborů",
+                "upload_file": "Nahrát 1 soubor",
+                "upload_multi_file": "Nahrát více souborů",
+                "download": "Stáhnout",
+                "download_multi_file": "Stáhnout více souborů",
+                "delete": "Odstranit 1 soubor",
+                "delete_multi_file": "Odstranit více souborů",
+                "update": "Přejmenovat soubor"
+              }
             }
           },
           "restapi": {
@@ -673,6 +685,9 @@
             },
             "general": {
               "safe_mode": "Při používání bezpečného režimu může vaše SQL pouze referenční proměnné v místě proměnných, například kde název = '{{input1.value}}'. To zabraňuje uživatelům v kompromitování vaší databáze zadáním příkazů jako '; drop table;' do input1. Pokud používáte nebezpečný režim, mohou být syntaxová slova SQL nahrazena proměnnými, jako je kde {{input1.value}} {{input2.value}} '{{input3.value}}'. V tomto případě však může být databáze ohrožena obsahem zadaným uživatelem. Není doporučeno používat tento režim."
+            },
+            "drive": {
+              "method": "Slouží k nastavení akcí, které plánujete provést na disku."
             }
           },
           "advanced": {
@@ -715,6 +730,9 @@
             "connect-data-source": "Připojit k databázi nebo api",
             "more-type": "Další typ zdrojů údajů",
             "safe_mode": "Režim"
+          },
+          "drive": {
+            "method": "Metoda"
           }
         },
         "menu": {
