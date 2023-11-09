@@ -2045,7 +2045,8 @@
         },
         "file_download": {
           "file_data": "Support base64 data, raw data, mapped data of table. ",
-          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. "
+          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. ",
+          "file_type": "The type of the file to be uploaded"
         },
         "variable": {
           "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
