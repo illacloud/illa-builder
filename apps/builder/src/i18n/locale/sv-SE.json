@@ -714,7 +714,8 @@
               "file_data_array": "En samling av data för de filer du vill ladda upp. Du kan få det via {{upload1.value}}.",
               "file_ids": "En array med fil-ID som du vill ladda ner. Du kan hämta detta värde från komponenten Drive Picker med {{drivePicker1. alue.map(fil => fileID)}}, eller så kan du få den via listmetoden.",
               "file_type_array": "En array av typ av filer som ska laddas upp. Du kan använda {{upload1.files.map(file =>file.type)}} för att få filtyperna från uppladdningskomponenten. ",
-              "target_file_name": "Används för att ange det nya namnet"
+              "target_file_name": "Används för att ange det nya namnet",
+              "overwrite": "Om du skriver över kommer vi att ersätta filen med den nya. Om inte skriva över kommer vi att byta namn på den nya filen med en slumpmässig sträng. "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "Fil data array",
             "file_ids": "Fil ID array",
             "file_type_array": "Fil typ array",
-            "target_file_name": "Nytt namn med tillägg"
+            "target_file_name": "Nytt namn med tillägg",
+            "overwrite": "Skriv över när namnet är duplicerat"
           }
         },
         "menu": {
