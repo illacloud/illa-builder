@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}} eller {{dataGrid1.page}}",
+              "page": "{{1}} eller {{dataGrid1.page}}",
               "limit": "{{20}} eller {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -708,7 +708,7 @@
               "file_name": "Används för luddiga matchande filer.",
               "file_id": "Används för att exakt lista en specifik fil.",
               "folder": "Välj en mapp att använda. ",
-              "page": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in sidnumret för de data som ska hämtas. Detta är ett indexvärde som börjar från 0.",
+              "page": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in sidnumret för data som ska hämtas. Det börjar från 1.",
               "limit": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in antalet dataobjekt som ska returneras per sida.",
               "file_name_array": "En matris bestående av namnen på de filer du vill ladda upp, inklusive filtillägg, till exempel [file1.csv, file2. sv]. Du kan direkt hämta detta värde med hjälp av uppladdningskomponenten, som {{upload1.files.map(file => file.name)}}.",
               "file_data_array": "En samling av data för de filer du vill ladda upp. Du kan få det via {{upload1.value}}.",
