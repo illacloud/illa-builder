@@ -714,7 +714,8 @@
               "file_data_array": "En vifte af data for de filer, du vil uploade. Du kan få det via {{upload1.value}}.",
               "file_ids": "En række fil-ID'er, som du vil downloade. Du kan hente denne værdi fra drevvælgerkomponenten ved hjælp af {{drivePicker1. alue.map(file => fileID)}}, eller du kan få den via listemetoden.",
               "file_type_array": "Et array af typen af de filer, der skal uploades. Du kan bruge {{upload1.files.map(file =>file.type)}} til at hente filtyperne fra upload-komponenten. ",
-              "target_file_name": "Bruges til at angive det nye navn"
+              "target_file_name": "Bruges til at angive det nye navn",
+              "overwrite": "Hvis overskrive, vil vi erstatte filen med den nye. Hvis ikke overskrive, vil vi omdøbe den nye fil til en tilfældig streng. "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "Fil data array",
             "file_ids": "Fil ID array",
             "file_type_array": "Array af filtype",
-            "target_file_name": "Nyt navn"
+            "target_file_name": "Nyt navn",
+            "overwrite": "Overskriv når navnet er duplikeret"
           }
         },
         "menu": {

@@ -714,7 +714,8 @@
               "file_data_array": "アップロードしたいファイルのデータの配列。 {{upload1.value}} で取得できます。",
               "file_ids": "ダウンロードするファイルIDの配列。{{drivePicker1を使用して、ドライブピッカーコンポーネントからこの値を取得できます。 alue.map(file => fileID)}}、またはリストメソッドから取得できます。",
               "file_type_array": "An array of type of the files to be uploaded. You can use {{upload1.files.map(file =>file.type)}} to get the file types from upload component. ",
-              "target_file_name": "新しい名前を設定するために使用"
+              "target_file_name": "新しい名前を設定するために使用",
+              "overwrite": "上書きした場合は、ファイルを新しいものに置き換えます。上書きしない場合は、新しいファイルの終わりの名前をランダムな文字列に変更します。 "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "ファイルデータ配列",
             "file_ids": "ファイルID配列",
             "file_type_array": "ファイル型の配列",
-            "target_file_name": "拡張子の新しい名前"
+            "target_file_name": "拡張子の新しい名前",
+            "overwrite": "名前が重複しているときに上書きする"
           }
         },
         "menu": {

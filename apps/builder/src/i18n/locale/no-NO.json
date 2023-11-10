@@ -714,7 +714,8 @@
               "file_data_array": "En rekke med data for filene du vil laste opp. Du kan få den via {{upload1.value}}.",
               "file_ids": "En liste med fil-IDer du vil laste ned. Du kan hente denne verdien fra Drive Picker komponenten ved å bruke {{drivePicker1. alue.map(fil => fileID)}, eller du kan få det fram gjennom listemetode.",
               "file_type_array": "En liste av type filer som skal lastes opp. Du kan bruke {{upload1.files.map(fil =>file.type)}} for å få filtypene fra å laste opp komponenten. ",
-              "target_file_name": "Brukes til å angi nytt navn"
+              "target_file_name": "Brukes til å angi nytt navn",
+              "overwrite": "Om overskriving vil vi erstatte filen med den nye. Om den ikke overskrives vil vi endre navn på den nye filen med en tilfeldig streng. "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "Fildata liste",
             "file_ids": "Fil ID liste",
             "file_type_array": "Filtype liste",
-            "target_file_name": "Nytt navn"
+            "target_file_name": "Nytt navn",
+            "overwrite": "Overskriv når navnet er duplikat"
           }
         },
         "menu": {

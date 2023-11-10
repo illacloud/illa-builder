@@ -714,7 +714,8 @@
               "file_data_array": "您要上传的文件数据数组，可以通过{{upload1.value}}获得",
               "file_ids": "您想要下载的文件ID数组。您可以通过{{drivePicker1.value.map(file => fileID)}}从Drive picker组件中获取此值; 或者您可以通过列出文件的方法获取。",
               "file_type_array": "要上传的文件类型数组。您可以使用 {{upload1.files.map(ile =>file.type)}} 从上传组件获取文件类型。 ",
-              "target_file_name": "用于设置新名称"
+              "target_file_name": "用于设置新名称",
+              "overwrite": "如果覆盖，我们将用新文件替换旧文件；如果不覆盖，我们将为新文件重命名，在名称结尾加随机字符串。"
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "文件数据数组",
             "file_ids": "文件ID数组",
             "file_type_array": "文件类型数组",
-            "target_file_name": "带拓展名的新名称"
+            "target_file_name": "带拓展名的新名称",
+            "overwrite": "名称重复时是否覆盖"
           }
         },
         "menu": {

@@ -714,7 +714,8 @@
               "file_data_array": "Ein Array der Daten der Dateien, die Sie hochladen möchten. Sie können sie über {{upload1.value}} erhalten.",
               "file_ids": "Ein Array mit Datei-IDs, die Sie herunterladen möchten. Sie können diesen Wert von der Drive Picker Komponente mit {{drivePicker1 abrufen. alue.map(file => fileID)}}, oder Sie erhalten es über die Listenmethode.",
               "file_type_array": "Ein Array der Art der Dateien, die hochgeladen werden sollen. Sie können {{upload1.files.map(file =>file.type)}} verwenden, um die Dateitypen von der Komponente hochzuladen. ",
-              "target_file_name": "Verwendet um den neuen Namen zu setzen"
+              "target_file_name": "Verwendet um den neuen Namen zu setzen",
+              "overwrite": "Wenn überschrieben wird, werden wir die Datei durch die neue ersetzen. Wenn nicht überschrieben wird, werden wir die neue Datei mit einem zufälligen String umbenennen. "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "Datei-Datenarray",
             "file_ids": "Datei-ID Array",
             "file_type_array": "Dateity-Array",
-            "target_file_name": "Neuer Name"
+            "target_file_name": "Neuer Name",
+            "overwrite": "Überschreiben, wenn der Name dupliziert ist"
           }
         },
         "menu": {
