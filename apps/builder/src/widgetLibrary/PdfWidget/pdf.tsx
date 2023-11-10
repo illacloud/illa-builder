@@ -34,8 +34,6 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { PdfWidgetProps, WrappedPdfProps } from "./interface"
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
-// or
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const { displayName, width, height, scaleMode, url, showToolBar } = props
@@ -173,8 +171,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
               setError(false)
             }, 200)
           }}
-          onLoadError={(error) => {
-            console.error(error)
+          onLoadError={() => {
             setLoading(false)
             setError(true)
           }}

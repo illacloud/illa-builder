@@ -1,18 +1,18 @@
+import { EXPIRATION_TYPE } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { forwardRef, useContext } from "react"
 import { Button } from "@illa-design/react"
-import { EXPIRATION_TYPE } from "@/services/drive"
+import FilesModal from "@/components/DriveFileSelect"
+import { DriveFileSelectContext } from "@/components/DriveFileSelect/context"
+import { FileToPanel } from "@/components/DriveFileSelect/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { FilesModal } from "./components/FileModal"
-import { FileToPanel } from "./components/FileModal/interface"
 import { DEFAULT_EXPIRED_TIME } from "./constants"
-import { DrivePickerProvider } from "./context"
-import { DrivePickerContext } from "./context"
 import {
   DrivePickerWidgetProps,
   SelectItemValue,
   WrappedDrivePickerProps,
 } from "./interface"
+import { DrivePickerProvider } from "./provider"
 import { wrapperStyle } from "./style"
 
 export const WrappedDrivePicker = forwardRef<
@@ -20,7 +20,7 @@ export const WrappedDrivePicker = forwardRef<
   WrappedDrivePickerProps
 >((props, ref) => {
   const { text, variant, colorScheme, disabled } = props
-  const { setModalVisible } = useContext(DrivePickerContext)
+  const { setModalVisible } = useContext(DriveFileSelectContext)
 
   return (
     <div ref={ref} css={wrapperStyle}>

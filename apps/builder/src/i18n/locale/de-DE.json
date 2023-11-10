@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Wert"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}}",
+              "limit": "{{20}} oder {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Aus Ressource erstellen",
               "unsafe": "Unsicher",
               "safe": "Sicher"
+            },
+            "drive": {
+              "method": {
+                "list": "Liste",
+                "upload_file": "1 Datei hochladen",
+                "upload_multi_file": "Mehrere Dateien hochladen",
+                "download": "Download",
+                "download_multi_file": "Mehrere Dateien herunterladen",
+                "delete": "Lösche 1 Datei",
+                "delete_multi_file": "Mehrere Dateien löschen",
+                "update": "Datei umbenennen"
+              },
+              "file_type": {
+                "none": "Keine",
+                "by_id": "Nach ID",
+                "by_name": "Nach Name"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "Wenn Sie den Safe Mode verwenden, kann Ihr SQL nur Variablen an der Stelle von Variablen referenzieren, zum Beispiel wo Name = '{{input1.value}}'. Dies hindert Benutzer daran, Ihre Datenbank zu kompromittieren, indem Anweisungen wie '; Drop Tabelle;' in input1 eingegeben werden. Wenn Sie den unsicheren Modus verwenden, können SQL-Syntaxwörter auch durch Variablen ersetzt werden zum Beispiel wo {{input1.value}} {{input2.value}} '{{input3.value}}'. In diesem Fall kann die Datenbank jedoch durch die vom Benutzer eingegebenen Inhalte kompromittiert werden. Es wird nicht empfohlen, diesen Modus zu verwenden."
+            },
+            "drive": {
+              "method": "Wird verwendet, um festzulegen, welche Aktionen Sie auf dem Laufwerk durchführen wollen.",
+              "filter_type": "Wenn Sie Dateien filtern möchten, können Sie mit dieser Konfigurationsoption die Filterung nach Dateinamen oder Datei-ID angeben. Dateiname verwendet unscharfe Übereinstimmung, während die Datei-ID exakte Übereinstimmung verwendet.",
+              "file_name": "Wird für verschwommene Dateien verwendet.",
+              "file_id": "Wird verwendet, um eine bestimmte Datei genau aufzulisten.",
+              "folder": "Wählen Sie einen zu bearbeitenden Ordner. ",
+              "page": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der Daten festlegen. Dies ist ein Indexwert, der bei 0 beginnt.",
+              "limit": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption festlegen, wie viele Datenelemente pro Seite zurückgegeben werden sollen."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Mit Datenbank oder Api verbinden",
             "more-type": "Weitere Datenquellentypen",
             "safe_mode": "Modus"
+          },
+          "drive": {
+            "method": "Methode",
+            "filter_type": "Filtertyp",
+            "file_name": "Dateiname",
+            "file_id": "Datei-ID",
+            "folder": "Ordner",
+            "page": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der Daten festlegen. Dies ist ein Indexwert, der bei 0 beginnt.",
+            "limit": "Limit"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "Verwendet um die maximale Anzahl von Sternen zu setzen",
         "allow_users_select": "Wird verwendet, um festzulegen, ob Benutzern die Zeilenauswahl erlaubt ist. ",
         "table_update_content": "Die Tabellenkomponente wird nicht mehr gepflegt. Um einen ununterbrochenen Zugriff auf neue Funktionen sicherzustellen, migrieren Sie bitte Ihre Daten in die Datenraster-Komponente.",
-        "table_update_title": "Aktualisieren"
+        "table_update_title": "Aktualisieren",
+        "enable_users_to_resize": "Wird verwendet, um festzulegen, ob Benutzer die Breite der Spalte anpassen können."
       },
       "setter_option": {
         "fixed": "Feste",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "Legen Sie fest, ob die Schaltfläche \"Absenden\" ausblenden soll",
           "submit_button_full_w": "Legen Sie fest, ob die Schaltfläche \"Absenden\" die volle Breite hat.",
           "submit_button_text": "Setze den Text der Schaltfläche \"Absenden\""
-        }
+        },
+        "choose_image": "Bild auswählen",
+        "choose_pdf": "PDF auswählen",
+        "choose_video": "Video auswählen",
+        "choose_audio": "Audio auswählen"
       },
       "setter_tootip": {
         "volume": "Eine Zahl zwischen 0 und 1"
@@ -3111,7 +3157,9 @@
       "right": "Rechts",
       "select_options": {
         "manual": "Manuell",
-        "mapped": "Zugeordnet"
+        "mapped": "Zugeordnet",
+        "url": "URL",
+        "upload": "Hochladen"
       },
       "top": "Oben"
     },
@@ -3745,12 +3793,13 @@
       "validate_failed": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen"
     },
     "move_modal": {
-      "no_folders": "Keine Dateien hier"
+      "no_folders": "Keine Ordner hier"
     },
     "same_name_modal": {
       "this_folder_already": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?",
       "keep_both": "Beides behalten",
-      "replace": "Ersetzen"
+      "replace": "Ersetzen",
+      "this_folder_already_": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?"
     },
     "upload": {
       "modal": {
@@ -3759,7 +3808,23 @@
         "all": "Wurzel",
         "create_folder": "Neuen Ordner erstellen",
         "cancel": "Abbrechen",
-        "file_upload": "Hochladen"
+        "file_upload": "Datei auswählen und hochladen"
+      },
+      "select": {
+        "confirm_button": "Auswählen"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "Der \"PublicAccess\" wird verwendet, um Dateien zu speichern, die über Komponenten im Builder öffentlich zugänglich sind. Der Zugriff auf Dateien in diesem Ordner erfordert keine Authentifizierung. Um die Sicherheit der Dateien zu gewährleisten, speichern Sie hier keine wichtigen Dateien."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Diese Aufgabe löschen?",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "description": "Sind Sie sicher, dass Sie diese Aufgabe löschen möchten? Nach dem Löschen wird die Aufgabe beendet."
       }
     }
   },

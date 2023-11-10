@@ -12,7 +12,6 @@ import {
   isObject,
   isString,
 } from "lodash"
-import React from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
@@ -289,9 +288,21 @@ export function getColumnFromType(
         type: "string",
         renderCell: (params: GridRenderCellParams) => {
           const tagColor = get(params.colDef, "tagColor")
-          const tagLabelArray = isArray(params.value)
-            ? params.value
-            : [params.value]
+
+          let tagLabelArray: any[] = params.value
+
+          if (typeof params.value === "string") {
+            try {
+              tagLabelArray = JSON.parse(params.value)
+            } catch (e) {
+              tagLabelArray = [params.value]
+            }
+          }
+
+          if (!isArray(tagLabelArray)) {
+            tagLabelArray = [tagLabelArray]
+          }
+
           const tagColorMap = isObject(tagColor) ? tagColor : {}
           return (
             <div css={cellContainer}>

@@ -3,13 +3,7 @@ import { FC } from "react"
 import { useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  FileDefaultIcon,
-  PreviousIcon,
-  WarningCircleIcon,
-} from "@illa-design/react"
+import { FileDefaultIcon, WarningCircleIcon } from "@illa-design/react"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import {
   errorIconStyle,
@@ -19,7 +13,6 @@ import {
   docContainerStyle,
   docItemStyle,
   docsItemContainerStyle,
-  footerStyle,
   labelContainer,
   labelStyle,
   tipsStyle,
@@ -28,14 +21,13 @@ import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoin
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 const HuggingFaceEndpointConfigElement: FC<BaseConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceID, hasFooter = true } = props
+  const { resourceID } = props
   const { t } = useTranslation()
 
   const { control, formState } = useFormContext()
@@ -164,22 +156,6 @@ const HuggingFaceEndpointConfigElement: FC<BaseConfigElementProps> = (
           tipsStyle={tipsStyle}
         />
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

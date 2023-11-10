@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Divider } from "@illa-design/react"
 import { ConfigElement } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements"
-import { ConfigElementProvider } from "../../../App/components/Actions/ResourceGenerator/ConfigElements/provider"
+import { ConfigElementProvider } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/provider"
 import { Header } from "../resourceHeader"
 import { TipPanel } from "../tipPanel"
 import { ResourceCreatePanelProps } from "./interface"
@@ -28,7 +28,6 @@ export const ResourceCreatePanel: FC<ResourceCreatePanelProps> = (props) => {
             <ConfigElement
               resourceType={resourceType}
               resourceID={resourceID}
-              hasFooter={false}
             />
             <TipPanel resourceType={resourceType} />
           </div>

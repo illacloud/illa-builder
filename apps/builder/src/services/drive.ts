@@ -1,18 +1,16 @@
 import { driveRequest, publicDriveRequest } from "@illa-public/illa-net"
+import {
+  DRIVE_FILE_TYPE,
+  DUPLICATION_HANDLER,
+  EXPIRATION_TYPE,
+  FILE_CATEGORY,
+  GCS_OBJECT_TYPE,
+  SORTED_TYPE,
+  UPLOAD_FILE_DUPLICATION_HANDLER,
+  UPLOAD_FILE_STATUS,
+} from "@illa-public/public-types"
 import { stringify } from "qs"
 import { getCurrentTeamID, getCurrentTeamIdentifier } from "../utils/team"
-
-export enum UPLOAD_FILE_DUPLICATION_HANDLER {
-  COVER = "cover",
-  RENAME = "rename",
-  MANUAL = "manual",
-}
-
-export enum GCS_OBJECT_TYPE {
-  FOLDER = "folder",
-  FILE = "file",
-  ANONYMOUS_FOLDER = "anonymousFolder",
-}
 
 interface IFetchUploadFilesToAnonymousFolderRequest {
   name: string
@@ -34,6 +32,7 @@ interface IFetchUploadFilesToAnonymousFolderResponse {
 export const fetchUploadFilesToAnonymous = async (
   appID: string,
   requestData: IFetchUploadFilesToAnonymousFolderRequest,
+  abortSignal?: AbortSignal,
 ) => {
   return await driveRequest<IFetchUploadFilesToAnonymousFolderResponse>(
     {
@@ -43,18 +42,12 @@ export const fetchUploadFilesToAnonymous = async (
         ...requestData,
         resumable: true,
       },
+      signal: abortSignal,
     },
     {
       teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
-}
-
-export enum UPLOAD_FILE_STATUS {
-  COMPLETE = "complete",
-  FAILED = "failed",
-  PAUSED = "paused",
-  CANCELED = "canceled",
 }
 
 export const fetchUploadFilesStatusAnonymous = async (
@@ -96,6 +89,7 @@ interface IFetchUploadFileURLResponse {
 
 export const fetchGetUploadFileURL = async (
   requestData: IFetchGetUploadFileURLRequest,
+  abortSignal?: AbortSignal,
 ) => {
   return await driveRequest<IFetchUploadFileURLResponse>(
     {
@@ -105,6 +99,7 @@ export const fetchGetUploadFileURL = async (
         ...requestData,
         resumable: true,
       },
+      signal: abortSignal,
     },
     {
       teamID: getCurrentTeamID(),
@@ -149,13 +144,6 @@ export const fetchDownloadURLByTinyURL = async (
   })
 }
 
-export enum FILE_UPLOAD_STATUS {
-  COMPLETE = "complete",
-  FAILED = "failed",
-  PAUSED = "paused",
-  CANCELED = "canceled",
-}
-
 // -------------------
 export interface IILLAFileInfo {
   id: string
@@ -169,17 +157,6 @@ export interface IILLAFileInfo {
   owner: string
 }
 
-export enum DRIVE_FILE_TYPE {
-  MIX = 1,
-  FOLDER = 2,
-  FILE = 3,
-}
-
-export enum SORTED_TYPE {
-  ascend = "asc",
-  descend = "desc",
-}
-
 export interface IFetchFileListRequestData {
   path: string
   page?: number
@@ -188,6 +165,7 @@ export interface IFetchFileListRequestData {
   search?: string
   sortedBy?: string
   sortedType?: SORTED_TYPE
+  fileCategory?: FILE_CATEGORY
 }
 
 export interface IFetchFileListResponseData {
@@ -239,11 +217,6 @@ export const fetchAnonymousFileList = async (
   )
 }
 
-export enum EXPIRATION_TYPE {
-  "PERSISTENT" = "persistent",
-  "CUSTOM" = "custom",
-}
-
 interface IFetchGenerateTinyURLRequestData {
   ids: string[]
   expirationType: EXPIRATION_TYPE
@@ -270,6 +243,23 @@ export const fetchBatchGenerateTinyUrl = async (
   return await driveRequest<IFetchGenerateBatchTinyURLResponse[]>(
     {
       url: "/links/batch",
+      method: "POST",
+      data,
+      signal: abortSignal,
+    },
+    {
+      teamID: getCurrentTeamID(),
+    },
+  )
+}
+
+export const fetchGenerateTinyUrl = async (
+  data: IFetchGenerateTinyURLRequestData,
+  abortSignal?: AbortSignal,
+) => {
+  return await driveRequest<IFetchGenerateBatchTinyURLResponse>(
+    {
+      url: "/links",
       method: "POST",
       data,
       signal: abortSignal,
@@ -336,4 +326,73 @@ export const fetchCloseAnonymousPermission = async () => {
       teamID: getCurrentTeamID(),
     },
   )
+}
+
+interface IFetchCheckFileExistRequestData {
+  folderID: string
+  name: string
+  type: GCS_OBJECT_TYPE
+}
+
+interface IFetchCheckFileExistResponseData {
+  name: string
+  isDuplicated: boolean
+}
+
+export const fetchCheckFileExist = async (
+  data: IFetchCheckFileExistRequestData[],
+  abortSignal?: AbortSignal,
+) => {
+  return await driveRequest<IFetchCheckFileExistResponseData[]>(
+    {
+      url: `/files/duplicate`,
+      method: "POST",
+      data,
+      signal: abortSignal,
+    },
+    {
+      teamID: getCurrentTeamID(),
+    },
+  )
+}
+
+interface IFetchFileDetailRequestData {
+  name: string
+  folderID: string
+  type: GCS_OBJECT_TYPE
+  size: number
+  resumable?: boolean
+  duplicationHandler: DUPLICATION_HANDLER
+  contentType: string
+}
+
+interface IFetchFIleDetailResponseData {
+  id: string
+  name: string
+  type: GCS_OBJECT_TYPE
+  url: string
+  resumable: boolean
+}
+
+export const fetchGCSUploadPresignedURL = async (
+  data: IFetchFileDetailRequestData,
+  abortSignal?: AbortSignal,
+) => {
+  try {
+    const response = await driveRequest<IFetchFIleDetailResponseData>(
+      {
+        url: "/files",
+        method: "POST",
+        data: {
+          resumable: true,
+          ...data,
+        },
+        signal: abortSignal,
+      },
+      { teamID: getCurrentTeamID() },
+    )
+    return Promise.resolve(response)
+  } catch (e) {
+    return Promise.reject(e)
+  }
 }

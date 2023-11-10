@@ -1,4 +1,4 @@
-import { EXPIRATION_TYPE } from "@/services/drive"
+import { EXPIRATION_TYPE } from "@illa-public/public-types"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 

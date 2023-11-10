@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Verdi"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}} eller {{dataGrid1.page}}",
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Opprett fra ressurs",
               "unsafe": "Usikker",
               "safe": "Sikker"
+            },
+            "drive": {
+              "method": {
+                "list": "List filer",
+                "upload_file": "Last opp 1 fil",
+                "upload_multi_file": "Last opp flere filer",
+                "download": "Nedlasting",
+                "download_multi_file": "Last ned flere filer",
+                "delete": "Slett 1 fil",
+                "delete_multi_file": "Slett flere filer",
+                "update": "Gi nytt filnavn"
+              },
+              "file_type": {
+                "none": "Ingen",
+                "by_id": "Etter ID",
+                "by_name": "Etter navn"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "Når du bruker sikker modus, kan SQL bare referere til variabler i stedet for variabler, for eksempel, der navn = '{{input1.value}}'. Dette hindrer brukere i å kompromittere databasen ved å angi erklæringer som '; slipp-tabell;' i input1. Ved bruk av usikker modus, kan SQL-syntaksord også erstattes med variabler, slikt som der {{input1.value}} {{input2.value}} '{{input3.value}}'. I dette tilfellet kan databasen imidlertid bli kompromittert av innholdet som brukeren har angitt. Det er ikke anbefalt for deg å bruke denne modus."
+            },
+            "drive": {
+              "method": "Brukes til å angi hvilke tiltak du planlegger å utføre på stasjonen.",
+              "filter_type": "Hvis du vil filtrere filer, kan du bruke dette konfigurasjonsalternativet for å spesifisere filnavn eller fil-ID. Filnavnet bruker uklar samsvarende, mens fil-ID bruker nøyaktig samsvar.",
+              "file_name": "Brukes for fuzzy samsvarende filer.",
+              "file_id": "Brukes til nøyaktig å liste en bestemt fil.",
+              "folder": "Velg en mappe du vil operere. ",
+              "page": "Hvis du trenger en brukerside for serversiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Dette er en indeksverdi som starter fra 0.",
+              "limit": "Hvis du trenger gulegatsidesidering kan du bruke dette konfigurasjonsalternativet for å angi antall data objekter som skal returneres per side."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Koble til database eller api",
             "more-type": "Mer type datakilder",
             "safe_mode": "Modus"
+          },
+          "drive": {
+            "method": "Metode",
+            "filter_type": "Type filter",
+            "file_name": "Fil navn",
+            "file_id": "Fil ID",
+            "folder": "Mappe",
+            "page": "Side",
+            "limit": "Grense"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "Brukes til å angi maks antall stjerner",
         "allow_users_select": "Brukes til å angi om tillate brukere å velge rad. ",
         "table_update_content": "Tabellkomponenten vil ikke lenger vedlikeholdes. For å sikre uavbrutt tilgang til nye funksjoner må du overføre dataene til datablutenett-komponenten.",
-        "table_update_title": "Oppdater"
+        "table_update_title": "Oppdater",
+        "enable_users_to_resize": "Brukes for å angi om brukerne skal justere bredden på kolonnen."
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "Angi om du vil skjule sendingsknappen",
           "submit_button_full_w": "Angi om «Send inn»-knappen er full bredde.",
           "submit_button_text": "Angi teksten til «Send inn»-knappen"
-        }
+        },
+        "choose_image": "Velg et bilde",
+        "choose_pdf": "Velg en PDF",
+        "choose_video": "Velg en video",
+        "choose_audio": "Velg en lyd"
       },
       "setter_tootip": {
         "volume": "Et tall mellom 0 og 1"
@@ -3111,7 +3157,9 @@
       "right": "Høyre",
       "select_options": {
         "manual": "Manuell",
-        "mapped": "Tilordnet"
+        "mapped": "Tilordnet",
+        "url": "Nettadresse",
+        "upload": "Last opp"
       },
       "top": "Topp"
     },
@@ -3745,12 +3793,13 @@
       "validate_failed": "Kun bokstaver, tall og -~_=: er tillatt. Grensen er 255 tegn, eller mindre"
     },
     "move_modal": {
-      "no_folders": "Ingen filer her"
+      "no_folders": "Ingen mapper her"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samme navn finnes allerede i denne mappen, eller den lastes opp til denne mappen. Vil du erstatte den?",
       "keep_both": "Behold begge",
-      "replace": "Erstatt"
+      "replace": "Erstatt",
+      "this_folder_already_": "Filen med samme navn finnes allerede i denne mappen, eller den lastes opp til denne mappen. Vil du erstatte den?"
     },
     "upload": {
       "modal": {
@@ -3759,7 +3808,23 @@
         "all": "Rot",
         "create_folder": "Opprett ny mappe",
         "cancel": "Avbryt",
-        "file_upload": "Last opp"
+        "file_upload": "Velg en fil og last opp"
+      },
+      "select": {
+        "confirm_button": "Velg"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"Offentlighetstilgangen\" brukes til å lagre filer som kan nås offentlig gjennom komponenter i byggeren. Tilgang til filer i denne mappen krever ikke godkjenning. For å sikre filsikkerhet, vennligst ikke lagre viktige filer her."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Slett denne oppgaven?",
+        "cancel": "Avbryt",
+        "delete": "Slett",
+        "description": "Er du sikker på at du vil slette oppgaven? Når du er slettet vil oppgaven bli avsluttet."
       }
     }
   },

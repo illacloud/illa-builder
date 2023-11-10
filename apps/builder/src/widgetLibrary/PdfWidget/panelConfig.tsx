@@ -9,11 +9,12 @@ export const PDF_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: `${baseWidgetName}-basic-url`,
-        labelName: i18n.t("editor.inspect.setter_label.file_url"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.file_url"),
+        id: `${baseWidgetName}-basic-source-self-host`,
         attrName: "url",
         expectedType: VALIDATION_TYPES.STRING,
+        labelName: i18n.t("editor.inspect.setter_label.file_url"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.file_url"),
+        isSetterSingleRow: true,
         setterType: "INPUT_SETTER",
       },
     ],

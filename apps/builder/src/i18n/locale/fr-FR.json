@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Valeur"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}} or {{dataGrid1.page}}",
+              "limit": "{{20}} or {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Create from resource",
               "unsafe": "Unsafe",
               "safe": "Safe"
+            },
+            "drive": {
+              "method": {
+                "list": "List files",
+                "upload_file": "Upload 1 file",
+                "upload_multi_file": "Upload multiple files",
+                "download": "Download 1 file",
+                "download_multi_file": "Download multiple files",
+                "delete": "Delete 1 file",
+                "delete_multi_file": "Delete multiple files",
+                "update": "Rename file"
+              },
+              "file_type": {
+                "none": "None",
+                "by_id": "By ID",
+                "by_name": "By name"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
+            },
+            "drive": {
+              "method": "Used to set what actions you plan to perform on the drive.",
+              "filter_type": "If you want to filter files, you can use this configuration option to specify filtering by file name or file ID. File name uses fuzzy matching, while file ID uses exact matching.",
+              "file_name": "Used for fuzzy matching files.",
+              "file_id": "Used to accurately list a specific file.",
+              "folder": "Select a folder to operate. ",
+              "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. This is an index value that starts from 0.",
+              "limit": "If you need server-side pagination, you can use this configuration option to set the number of data items to be returned per page."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Connect to database or api",
             "more-type": "More type of data sources",
             "safe_mode": "Mode"
+          },
+          "drive": {
+            "method": "Method",
+            "filter_type": "Filter type",
+            "file_name": "File name",
+            "file_id": "File ID",
+            "folder": "Folder",
+            "page": "Page",
+            "limit": "Limit"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "Used to set the max count of stars",
         "allow_users_select": "Used to set whether allow users to select row. ",
         "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
-        "table_update_title": "Update"
+        "table_update_title": "Update",
+        "enable_users_to_resize": "Used to set whether allow users to adjust width of the column."
       },
       "setter_option": {
         "fixed": "Fixe",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "Définir si le bouton d'envoi doit être masqué",
           "submit_button_full_w": "Définit si le bouton d'envoi est en pleine largeur.",
           "submit_button_text": "Définir le texte du bouton Soumettre"
-        }
+        },
+        "choose_image": "Choose an image",
+        "choose_pdf": "Select a folder and upload",
+        "choose_video": "Choose a video",
+        "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
         "volume": "Un nombre entre 0 et 1"
@@ -3111,7 +3157,9 @@
       "right": "Droite",
       "select_options": {
         "manual": "Manuelle",
-        "mapped": "Mappé"
+        "mapped": "Mappé",
+        "url": "URL",
+        "upload": "Upload"
       },
       "top": "En haut"
     },
@@ -3745,21 +3793,38 @@
       "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
     },
     "move_modal": {
-      "no_folders": "No files here"
+      "no_folders": "No folders here"
     },
     "same_name_modal": {
-      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "this_folder_already": "The folder with the same name already exists. Would you like to replace it?",
       "keep_both": "Keep both",
-      "replace": "Replace"
+      "replace": "Replace",
+      "this_folder_already_": "The folder with the same name already exists. Would you like to replace it?"
     },
     "upload": {
       "modal": {
-        "title": "Select a folder to upload to",
+        "title": "Select a folder",
         "upload_to": "Upload to",
         "all": "Root",
         "create_folder": "Create new folder",
         "cancel": "Cancel",
-        "file_upload": "Upload"
+        "file_upload": "Pick a file and upload"
+      },
+      "select": {
+        "confirm_button": "Select"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "The \"PublicAccess\" is used to store files that can be accessed publicly through components in the Builder. Accessing files in this folder does not require authentication. To ensure file security, please don't store important files here."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Delete this task?",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "description": "Are you sure you want to delete this task? Once deleted, the task will be terminated."
       }
     }
   },

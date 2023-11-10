@@ -4,6 +4,11 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 export const componentContainerStyle = css`
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   width: 100%;
+  height: 100%;
+  padding-bottom: 40px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 `
 export const searchWrapperStyle = css`
   padding: 16px 16px 8px 16px;
@@ -13,16 +18,14 @@ export const sessionListContainerStyle = css`
   ${searchWrapperStyle};
   padding-top: 0;
   padding-bottom: 0;
-  max-height: calc(100vh - 158px);
+  height: 100%;
   overflow-y: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
 `
 
 export const sessionContainerStyle = css`
-  height: 100%;
   width: 100%;
   display: inline-flex;
   flex-direction: column;

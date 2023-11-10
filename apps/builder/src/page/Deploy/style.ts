@@ -3,7 +3,8 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const deployContainerStyle = css`
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  position: relative;
 `
 
 export const loadingStyle = css`

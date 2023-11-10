@@ -2,11 +2,8 @@ import { FC } from "react"
 import { useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
-import {
-  footerStyle,
-  optionLabelStyle,
-} from "@/page/App/Module/ActionEditor/styles"
+import { Divider } from "@illa-design/react"
+import { optionLabelStyle } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { BasicAuthConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/BasicAuthConfig"
 import { KeyPairConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/KeyPairConfig"
@@ -20,15 +17,13 @@ import {
 } from "@/redux/resource/snowflakeResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { CreateButton } from "../ActionButtons/CreateButton"
-import { TestConnectButton } from "../ActionButtons/TestConnectButton"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
 
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 
 const SnowflakeConfigElement: FC<BaseConfigElementProps> = (props) => {
-  const { onBack, resourceID, hasFooter = true } = props
+  const { resourceID } = props
   const { t } = useTranslation()
   const { control, watch } = useFormContext()
   const resource = useSelector((state: RootState) => {
@@ -157,23 +152,6 @@ const SnowflakeConfigElement: FC<BaseConfigElementProps> = (props) => {
           />
         )}
       </div>
-      {hasFooter && (
-        <div css={footerStyle}>
-          <Button
-            leftIcon={<PreviousIcon />}
-            variant="text"
-            colorScheme="gray"
-            type="button"
-            onClick={onBack}
-          >
-            {t("back")}
-          </Button>
-          <ButtonGroup spacing="8px">
-            <TestConnectButton resourceType="snowflake" />
-            <CreateButton />
-          </ButtonGroup>
-        </div>
-      )}
     </>
   )
 }

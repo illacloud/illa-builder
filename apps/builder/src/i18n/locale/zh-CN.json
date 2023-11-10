@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "值"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}} or {{dataGrid1.page}}",
+              "limit": "{{20}} or {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "从数据源创建",
               "unsafe": "不安全",
               "safe": "安全"
+            },
+            "drive": {
+              "method": {
+                "list": "List files",
+                "upload_file": "Upload 1 file",
+                "upload_multi_file": "Upload multiple files",
+                "download": "Download 1 file",
+                "download_multi_file": "Download multiple files",
+                "delete": "Delete 1 file",
+                "delete_multi_file": "Delete multiple files",
+                "update": "Rename file"
+              },
+              "file_type": {
+                "none": "None",
+                "by_id": "By ID",
+                "by_name": "By name"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "使用safe模式时，您的SQL只能在变量的位置引用变量，例如where name = '{{input1.value}}'。这使得使用者无法通过在input1中输入 ; drop table; 等方式来破坏您的数据库；使用Unsafe模式时，SQL语法词也可以替换为变量，如where {{input1.value}} {{input2.value}} '{{input3.value}}'，但这样一来数据库可能被用户输入的内容破坏，不建议您使用"
+            },
+            "drive": {
+              "method": "Used to set what actions you plan to perform on the drive.",
+              "filter_type": "If you want to filter files, you can use this configuration option to specify filtering by file name or file ID. File name uses fuzzy matching, while file ID uses exact matching.",
+              "file_name": "Used for fuzzy matching files.",
+              "file_id": "Used to accurately list a specific file.",
+              "folder": "Select a folder to operate. ",
+              "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. This is an index value that starts from 0.",
+              "limit": "If you need server-side pagination, you can use this configuration option to set the number of data items to be returned per page."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "连接到数据库或API",
             "more-type": "更多连接方式",
             "safe_mode": "模式"
+          },
+          "drive": {
+            "method": "Method",
+            "filter_type": "Filter type",
+            "file_name": "File name",
+            "file_id": "File ID",
+            "folder": "Folder",
+            "page": "Page",
+            "limit": "Limit"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "用于设置星星的最大数量",
         "allow_users_select": "用于设置是否允许用户选中行. ",
         "table_update_content": "表格组件将不再被维护。为了确保不间断地访问新功能，请将您的数据迁移到数据表组件中。",
-        "table_update_title": "更新"
+        "table_update_title": "更新",
+        "enable_users_to_resize": "用于设置是否允许用户调整列宽"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "设置是否隐藏提交按钮",
           "submit_button_full_w": "设置提交按钮是否全宽",
           "submit_button_text": "甚至提交按钮的文案"
-        }
+        },
+        "choose_image": "选择文件夹并上传",
+        "choose_pdf": "选择文件夹并上传",
+        "choose_video": "选择文件夹并上传",
+        "choose_audio": "选择文件夹并上传"
       },
       "setter_tootip": {
         "volume": "0到1之间的数字"
@@ -3111,7 +3157,9 @@
       "right": "右",
       "select_options": {
         "manual": "自动",
-        "mapped": "手动"
+        "mapped": "手动",
+        "url": "URL",
+        "upload": "上传"
       },
       "top": "上"
     },
@@ -3745,12 +3793,13 @@
       "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
     },
     "move_modal": {
-      "no_folders": "No files here"
+      "no_folders": "无更多文件夹"
     },
     "same_name_modal": {
-      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
+      "this_folder_already": "同名的文件夹已存在，要替换吗",
       "keep_both": "Keep both",
-      "replace": "Replace"
+      "replace": "Replace",
+      "this_folder_already_": "同名的文件夹已存在，要替换吗"
     },
     "upload": {
       "modal": {
@@ -3759,7 +3808,23 @@
         "all": "根文件夹",
         "create_folder": "新建文件夹",
         "cancel": "取消",
-        "file_upload": "上传"
+        "file_upload": "选择文件并上传"
+      },
+      "select": {
+        "confirm_button": "选择"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "“PublicAccess文件夹”用于存放允许通过Builder中的组件公开访问的文件。访问这个文件夹里的内容不需要校验权限。为了保护您的文件安全，请勿在此存放重要文件。"
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "删除此任务？",
+        "cancel": "取消",
+        "delete": "删除",
+        "description": "您确定要删除此任务吗？一旦删除，这个任务将被终止。"
       }
     }
   },

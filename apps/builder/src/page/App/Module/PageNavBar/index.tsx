@@ -104,10 +104,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 
-  const previewButtonText = isEditMode
-    ? t("preview.button_text")
-    : t("exit_preview")
-
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
     getPlanUtils(teamInfo),
@@ -337,7 +333,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       bdRadius="8px"
       onClick={handlePreviewButtonClick}
     >
-      {previewButtonText}
+      {isEditMode ? t("preview.button_text") : t("exit_preview")}
     </Button>
   )
 

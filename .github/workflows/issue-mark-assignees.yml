@@ -13,4 +13,3 @@ jobs:
         with:
           actions: 'mark-assignees'
           token: ${{ secrets.ILLA_BOT_TOKEN }}
-          require-permission: "read"

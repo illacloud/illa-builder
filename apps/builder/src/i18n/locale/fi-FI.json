@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Arvo"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}}",
+              "limit": "{{20}} or {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Luo resurssista",
               "unsafe": "Epäturvallinen",
               "safe": "Turvallinen"
+            },
+            "drive": {
+              "method": {
+                "list": "Lista",
+                "upload_file": "Lataa 1 tiedosto",
+                "upload_multi_file": "Lataa useita tiedostoja",
+                "download": "Lataa",
+                "download_multi_file": "Lataa useita tiedostoja",
+                "delete": "Poista 1 tiedosto",
+                "delete_multi_file": "Poista useita tiedostoja",
+                "update": "Nimeä tiedosto uudelleen"
+              },
+              "file_type": {
+                "none": "Ei Mitään",
+                "by_id": "Tunnuksen Mukaan",
+                "by_name": "Nimen mukaan"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
+            },
+            "drive": {
+              "method": "Käytetään sen määrittämiseen, mitä toimintoja aiot suorittaa asemalla.",
+              "filter_type": "Jos haluat suodattaa tiedostoja, voit käyttää tätä asetusta määrittääksesi suodatuksen tiedoston nimen tai tiedoston tunnuksen mukaan. Tiedostonimi käyttää fuzzy matching, kun taas tiedoston ID käyttää tarkkaa täsmäämistä.",
+              "file_name": "Käytetään sumeisiin tiedostoihin.",
+              "file_id": "Käytetään tietyn tiedoston täsmälliseen luetteloon.",
+              "folder": "Valitse kansio jota haluat käyttää. ",
+              "page": "Jos tarvitset palvelimen puolella olevaa sivua, voit käyttää tätä asetusta asettaaksesi tietojen sivun numeron noutamaan. Tämä on indeksin arvo, joka alkaa 0.",
+              "limit": "Jos tarvitset palvelinpuolen välimuistin, voit käyttää tätä määritystä asettaaksesi tietoalkioiden määrän joka palautetaan per sivu."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Yhdistä tietokantaan tai apiin",
             "more-type": "Enemmän tietolähteitä",
             "safe_mode": "Tila"
+          },
+          "drive": {
+            "method": "Menetelmä",
+            "filter_type": "Suodattimen tyyppi",
+            "file_name": "Tiedoston nimi",
+            "file_id": "Tiedoston ID",
+            "folder": "Kansio",
+            "page": "Jos tarvitset palvelimen puolella olevaa sivua, voit käyttää tätä asetusta asettaaksesi tietojen sivun numeron noutamaan. Tämä on indeksin arvo, joka alkaa 0.",
+            "limit": "Raja"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "Käytetään asettamaan suurin määrä tähtiä",
         "allow_users_select": "Käytetään määritettäessä, salliko käyttäjien valita rivi. ",
         "table_update_content": "Taulukon komponenttia ei enää ylläpidetä. Jotta voidaan varmistaa keskeytymätön pääsy uusiin ominaisuuksiin, siirrä tietosi Data Grid -komponenttiin.",
-        "table_update_title": "Päivitä"
+        "table_update_title": "Päivitä",
+        "enable_users_to_resize": "Käytetään määritettäessä, sallivatko käyttäjät säätää sarakkeen leveyttä."
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "Määritä piilottaako lähetys painike",
           "submit_button_full_w": "Määritä, onko lähetyspainike koko leveys.",
           "submit_button_text": "Set the text of the submit button"
-        }
+        },
+        "choose_image": "Valitse kuva",
+        "choose_pdf": "Valitse PDF",
+        "choose_video": "Valitse video",
+        "choose_audio": "Valitse ääni"
       },
       "setter_tootip": {
         "volume": "Numero väliltä 0 ja 1"
@@ -3111,7 +3157,9 @@
       "right": "Oikea",
       "select_options": {
         "manual": "Manuaalinen",
-        "mapped": "Yhdistetty"
+        "mapped": "Yhdistetty",
+        "url": "URL-osoite",
+        "upload": "Lähetä"
       },
       "top": "Ylhäällä"
     },
@@ -3745,12 +3793,13 @@
       "validate_failed": "Vain kirjaimet, numerot ja -~_=: ovat sallittuja. Raja on 255 merkkiä tai vähemmän"
     },
     "move_modal": {
-      "no_folders": "Ei tiedostoja täällä"
+      "no_folders": "Ei kansioita täällä"
     },
     "same_name_modal": {
       "this_folder_already": "Samanniminen tiedosto on jo olemassa tässä kansiossa tai sitä ladataan tähän kansioon. Haluatko korvata sen?",
       "keep_both": "Pidä molemmat",
-      "replace": "Korvaa"
+      "replace": "Korvaa",
+      "this_folder_already_": "Samanniminen tiedosto on jo olemassa tässä kansiossa tai sitä ladataan tähän kansioon. Haluatko korvata sen?"
     },
     "upload": {
       "modal": {
@@ -3759,7 +3808,23 @@
         "all": "Juuri",
         "create_folder": "Luo uusi kansio",
         "cancel": "Peruuta",
-        "file_upload": "Lähetä"
+        "file_upload": "Valitse tiedosto ja lataa"
+      },
+      "select": {
+        "confirm_button": "Valitse"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "The \"PublicAccess\" is used to store files that can be accessed public through components in the Builder. Tiedostojen käyttö tässä kansiossa ei vaadi todennusta. Varmistaaksesi tiedostojen turvallisuuden, älä säilytä tärkeitä tiedostoja täällä."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Poista tämä tehtävä?",
+        "cancel": "Peruuta",
+        "delete": "Poista",
+        "description": "Oletko varma, että haluat poistaa tämän tehtävän? Kun se on poistettu, tehtävä lopetetaan."
       }
     }
   },

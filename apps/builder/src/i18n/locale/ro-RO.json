@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Valoare"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}}",
+              "limit": "{{20}} sau {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Creează din resurse",
               "unsafe": "Nesigur",
               "safe": "Sigur"
+            },
+            "drive": {
+              "method": {
+                "list": "Listează fișierele",
+                "upload_file": "Încărcați un fișier",
+                "upload_multi_file": "Încarcă mai multe fișiere",
+                "download": "Descărcare",
+                "download_multi_file": "Descarcă mai multe fișiere",
+                "delete": "Şterge 1 fişier",
+                "delete_multi_file": "Ştergeţi mai multe fişiere",
+                "update": "Redenumire fișier"
+              },
+              "file_type": {
+                "none": "Niciunul",
+                "by_id": "După ID",
+                "by_name": "După nume"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "Când utilizați modul de siguranță, SQL poate doar variabilele de referință în locul variabilelor, de exemplu, unde numele = '{{input1.value}}'. Acest lucru îi împiedică pe utilizatori să compromită baza de date prin introducerea unor declarații ca \"tabelul de renunțare\". La utilizarea modului nesigur, cuvintele de sintaxă SQL pot fi de asemenea înlocuite cu variabile, cum ar fi unde {{input1.value}} {{input2.value}} '{{input3.value}}'. Cu toate acestea, în acest caz, baza de date poate fi compromisă de conținutul introdus de utilizator. Nu este recomandat să utilizaţi acest mod."
+            },
+            "drive": {
+              "method": "Folosit pentru a seta ce acțiuni plănuiți să efectuați pe șofer.",
+              "filter_type": "Dacă doriți să filtrați fișiere, puteți utiliza această opțiune de configurare pentru a specifica filtrarea după numele fișierului sau ID-ul fișierului. Numele fisierului foloseste potrivire fuzzy, in timp ce ID-ul fisierului foloseste potrivirea exacta.",
+              "file_name": "Folosit pentru fişierele neclare.",
+              "file_id": "Folosit pentru a afișa cu exactitate un fișier specific.",
+              "folder": "Selectați un dosar pentru a funcționa. ",
+              "page": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de pagină pentru a prelua datele. Aceasta este o valoare de index care începe de la 0.",
+              "limit": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de elemente de date care să fie returnate pe pagină."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Conectează-te la baza de date sau API",
             "more-type": "Mai multe tipuri de surse de date",
             "safe_mode": "Mod"
+          },
+          "drive": {
+            "method": "Metodă",
+            "filter_type": "Tip filtru",
+            "file_name": "Nume fișier",
+            "file_id": "ID fișier",
+            "folder": "Dosar",
+            "page": "Pagină",
+            "limit": "Limită"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "Folosit pentru a seta numărul maxim de stele",
         "allow_users_select": "Folosit pentru a seta dacă permite utilizatorilor să selecteze rândul. ",
         "table_update_content": "Componenta Tabel nu va mai fi menținută. Pentru a asigura acces neîntrerupt la funcții noi, vă rugăm să migrați datele în componenta Grid de date.",
-        "table_update_title": "Actualizare"
+        "table_update_title": "Actualizare",
+        "enable_users_to_resize": "Folosit pentru a seta dacă permite utilizatorilor să ajusteze lăţimea coloanei."
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "Setați dacă să ascundeți butonul de trimitere",
           "submit_button_full_w": "Setaţi dacă butonul de adăugare are are lăţimea completă.",
           "submit_button_text": "Setaţi textul butonului de trimitere"
-        }
+        },
+        "choose_image": "Alege o imagine",
+        "choose_pdf": "Alege un PDF",
+        "choose_video": "Alege un videoclip",
+        "choose_audio": "Alegeți un fișier audio"
       },
       "setter_tootip": {
         "volume": "Un număr între 0 și 1"
@@ -3111,7 +3157,9 @@
       "right": "Dreapta",
       "select_options": {
         "manual": "Manual",
-        "mapped": "Mapat"
+        "mapped": "Mapat",
+        "url": "URL",
+        "upload": "Incarca"
       },
       "top": "Sus"
     },
@@ -3745,12 +3793,13 @@
       "validate_failed": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin"
     },
     "move_modal": {
-      "no_folders": "Niciun fișier aici"
+      "no_folders": "Nu sunt dosare aici"
     },
     "same_name_modal": {
       "this_folder_already": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?",
       "keep_both": "Păstrați ambele",
-      "replace": "Înlocuiește"
+      "replace": "Înlocuiește",
+      "this_folder_already_": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?"
     },
     "upload": {
       "modal": {
@@ -3759,7 +3808,23 @@
         "all": "Rădăcină",
         "create_folder": "Creați un dosar nou",
         "cancel": "Anulează",
-        "file_upload": "Incarca"
+        "file_upload": "Alege un fișier și încarcă"
+      },
+      "select": {
+        "confirm_button": "Selectare"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"Accesul public\" este folosit pentru a stoca fișiere care pot fi accesate public prin intermediul componentelor din Constructor. Accesarea fişierelor din acest dosar nu necesită autentificare. Pentru a asigura securitatea fişierelor, vă rugăm să nu păstraţi fişierele importante aici."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Ștergeți această sarcină?",
+        "cancel": "Anulează",
+        "delete": "Ștergere",
+        "description": "Sunteţi sigur că doriţi să ştergeţi această sarcină? Odată ştearsă, sarcina va fi terminată."
       }
     }
   },

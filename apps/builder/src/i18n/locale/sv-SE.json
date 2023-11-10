@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Värde"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}} eller {{dataGrid1.page}}",
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Skapa från resurs",
               "unsafe": "Osäker",
               "safe": "Säker"
+            },
+            "drive": {
+              "method": {
+                "list": "Lista filer",
+                "upload_file": "Ladda upp 1 fil",
+                "upload_multi_file": "Ladda upp flera filer",
+                "download": "Hämta",
+                "download_multi_file": "Ladda ner flera filer",
+                "delete": "Ta bort 1 fil",
+                "delete_multi_file": "Ta bort flera filer",
+                "update": "Döp om fil"
+              },
+              "file_type": {
+                "none": "Ingen",
+                "by_id": "Efter ID",
+                "by_name": "Efter namn"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "När du använder felsäkert läge kan din SQL endast referera variabler i stället för variabler, till exempel där namn = '{{input1.value}}'. Detta förhindrar användare från att kompromettera din databas genom att lägga in påståenden som \"; släpp tabell\" i input1. När du använder det osäkra läget kan SQL syntax ord också ersättas med variabler, t.ex. var {{input1.value}} {{input2.value}} '{{input3.value}}'. I detta fall kan dock databasen äventyras av det innehåll som användaren angett. Det rekommenderas inte att du använder det här läget."
+            },
+            "drive": {
+              "method": "Används för att ställa in vilka åtgärder du planerar att utföra på enheten.",
+              "filter_type": "Om du vill filtrera filer kan du använda den här konfigurationsalternativet för att ange filtrering med filnamn eller fil-ID. Filnamnet använder luddig matchning, medan fil-ID använder exakt matchning.",
+              "file_name": "Används för luddiga matchande filer.",
+              "file_id": "Används för att exakt lista en specifik fil.",
+              "folder": "Välj en mapp att använda. ",
+              "page": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in sidnumret för de data som ska hämtas. Detta är ett indexvärde som börjar från 0.",
+              "limit": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in antalet dataobjekt som ska returneras per sida."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Anslut till databas eller api",
             "more-type": "Fler typer av datakällor",
             "safe_mode": "Läge"
+          },
+          "drive": {
+            "method": "Metod",
+            "filter_type": "Filtertyp",
+            "file_name": "Filnamn",
+            "file_id": "Fil-ID",
+            "folder": "Mapp",
+            "page": "Sida",
+            "limit": "Gräns"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "Används för att ställa in max antal stjärnor",
         "allow_users_select": "Används för att ställa in om användare kan välja rad. ",
         "table_update_content": "Tabellkomponenten kommer inte längre att underhållas. För att säkerställa oavbruten åtkomst till nya funktioner, vänligen migrera dina data till komponenten Data Grid .",
-        "table_update_title": "Uppdatera"
+        "table_update_title": "Uppdatera",
+        "enable_users_to_resize": "Används för att ställa in om användare kan justera kolumnens bredd."
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "Ange om du vill dölja skicka in knappen",
           "submit_button_full_w": "Ange om skicka knappen är fullbredd.",
           "submit_button_text": "Ställ in texten på inlämningsknappen"
-        }
+        },
+        "choose_image": "Välj en bild",
+        "choose_pdf": "Välj en PDF",
+        "choose_video": "Välj en video",
+        "choose_audio": "Välj ett ljud"
       },
       "setter_tootip": {
         "volume": "Ett tal mellan 0 och 1"
@@ -3111,7 +3157,9 @@
       "right": "Höger",
       "select_options": {
         "manual": "Manuell",
-        "mapped": "Mappad"
+        "mapped": "Mappad",
+        "url": "URL",
+        "upload": "Ladda upp"
       },
       "top": "Överst"
     },
@@ -3745,12 +3793,13 @@
       "validate_failed": "Endast bokstäver, siffror och -~_=: är tillåtna. Gränsen är 255 tecken eller mindre"
     },
     "move_modal": {
-      "no_folders": "Inga filer här"
+      "no_folders": "Inga mappar här"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samma namn finns redan i den här mappen eller laddas upp till den här mappen. Vill du ersätta den?",
       "keep_both": "Behåll båda",
-      "replace": "Ersätt"
+      "replace": "Ersätt",
+      "this_folder_already_": "Filen med samma namn finns redan i den här mappen eller laddas upp till den här mappen. Vill du ersätta den?"
     },
     "upload": {
       "modal": {
@@ -3759,7 +3808,23 @@
         "all": "Rot",
         "create_folder": "Skapa ny mapp",
         "cancel": "Avbryt",
-        "file_upload": "Ladda upp"
+        "file_upload": "Välj en fil och ladda upp"
+      },
+      "select": {
+        "confirm_button": "Välj"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"PublicAccess\" används för att lagra filer som kan nås offentligt via komponenter i Builder. Att komma åt filer i den här mappen kräver inte autentisering. För att säkerställa filsäkerhet måste du inte lagra viktiga filer här."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Ta bort denna uppgift?",
+        "cancel": "Avbryt",
+        "delete": "Radera",
+        "description": "Är du säker på att du vill ta bort denna uppgift? När den har tagits bort kommer uppgiften att avslutas."
       }
     }
   },

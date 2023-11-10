@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Hodnota"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}}",
+              "limit": "{{20}} nebo {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Vytvořit ze zdroje",
               "unsafe": "Nebezpečný",
               "safe": "Bezpečné"
+            },
+            "drive": {
+              "method": {
+                "list": "Seznam souborů",
+                "upload_file": "Nahrát 1 soubor",
+                "upload_multi_file": "Nahrát více souborů",
+                "download": "Stáhnout",
+                "download_multi_file": "Stáhnout více souborů",
+                "delete": "Odstranit 1 soubor",
+                "delete_multi_file": "Odstranit více souborů",
+                "update": "Přejmenovat soubor"
+              },
+              "file_type": {
+                "none": "Nic",
+                "by_id": "Podle ID",
+                "by_name": "Podle jména"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "Při používání bezpečného režimu může vaše SQL pouze referenční proměnné v místě proměnných, například kde název = '{{input1.value}}'. To zabraňuje uživatelům v kompromitování vaší databáze zadáním příkazů jako '; drop table;' do input1. Pokud používáte nebezpečný režim, mohou být syntaxová slova SQL nahrazena proměnnými, jako je kde {{input1.value}} {{input2.value}} '{{input3.value}}'. V tomto případě však může být databáze ohrožena obsahem zadaným uživatelem. Není doporučeno používat tento režim."
+            },
+            "drive": {
+              "method": "Slouží k nastavení akcí, které plánujete provést na disku.",
+              "filter_type": "Pokud chcete filtrovat soubory, můžete použít tuto možnost konfigurace k určení filtrování podle názvu souboru nebo ID souboru. Název souboru používá fuzzy matching, zatímco ID souboru používá přesnou shodu.",
+              "file_name": "Používá se pro zábavné odpovídající soubory.",
+              "file_id": "Používá se pro přesný seznam konkrétního souboru.",
+              "folder": "Vyberte složku pro operaci. ",
+              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení dat. Toto je indexová hodnota, která začíná od 0.",
+              "limit": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení počtu položek, které mají být vráceny na stránku."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Připojit k databázi nebo api",
             "more-type": "Další typ zdrojů údajů",
             "safe_mode": "Režim"
+          },
+          "drive": {
+            "method": "Metoda",
+            "filter_type": "Typ filtru",
+            "file_name": "Název souboru",
+            "file_id": "ID souboru",
+            "folder": "Složka",
+            "page": "Stránka",
+            "limit": "Limit"
           }
         },
         "menu": {
@@ -2198,7 +2239,8 @@
         "max_count": "Používá se k nastavení maximálního počtu hvězdiček",
         "allow_users_select": "Slouží k nastavení, zda povolit uživatelům vybrat řádek. ",
         "table_update_content": "Komponenta tabulky již nebude udržována. Chcete-li zajistit nepřerušený přístup k novým funkcím, převedte prosím data do komponenty datové sítě.",
-        "table_update_title": "Aktualizovat"
+        "table_update_title": "Aktualizovat",
+        "enable_users_to_resize": "Slouží k nastavení, zda umožňuje uživatelům přizpůsobit šířku sloupce."
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -2371,7 +2413,11 @@
           "hidden_submit_button": "Nastavte, zda skrýt tlačítko Odeslání",
           "submit_button_full_w": "Nastavte, zda je tlačítko Odeslání celé šířky.",
           "submit_button_text": "Nastavte text tlačítka Odeslání"
-        }
+        },
+        "choose_image": "Vyberte obrázek",
+        "choose_pdf": "Vyberte PDF",
+        "choose_video": "Vyberte video",
+        "choose_audio": "Vyberte zvuk"
       },
       "setter_tootip": {
         "volume": "Číslo mezi 0 a 1"
@@ -3111,7 +3157,9 @@
       "right": "Vpravo",
       "select_options": {
         "manual": "Ruční",
-        "mapped": "Mapováno"
+        "mapped": "Mapováno",
+        "url": "URL",
+        "upload": "Nahrát"
       },
       "top": "Nahoře"
     },
@@ -3745,12 +3793,13 @@
       "validate_failed": "Jsou povolena pouze písmena, číslice a -~_=. Limit je 255 znaků nebo méně"
     },
     "move_modal": {
-      "no_folders": "Žádné soubory zde"
+      "no_folders": "Žádné složky zde"
     },
     "same_name_modal": {
       "this_folder_already": "Soubor se stejným názvem již v této složce existuje nebo se do této složky nahrává. Chcete jej nahradit?",
       "keep_both": "Zachovat obojí",
-      "replace": "Nahradit"
+      "replace": "Nahradit",
+      "this_folder_already_": "Soubor se stejným názvem již v této složce existuje nebo se do této složky nahrává. Chcete jej nahradit?"
     },
     "upload": {
       "modal": {
@@ -3759,7 +3808,23 @@
         "all": "Root",
         "create_folder": "Vytvořit novou složku",
         "cancel": "Zrušit",
-        "file_upload": "Nahrát"
+        "file_upload": "Vyberte soubor a nahrajte"
+      },
+      "select": {
+        "confirm_button": "Vybrat"
+      }
+    },
+    "drive_builder": {
+      "public_folder": {
+        "tips": "\"PublicAccess\" se používá k ukládání souborů, ke kterým lze přistupovat veřejně prostřednictvím komponent ve staviteli. Přístup k souborům v této složce nevyžaduje autentizaci. Pro zajištění bezpečnosti souboru zde neukládejte důležité soubory."
+      }
+    },
+    "modal": {
+      "delete_going_on_task": {
+        "title": "Smazat tento úkol?",
+        "cancel": "Zrušit",
+        "delete": "Vymazat",
+        "description": "Jste si jisti, že chcete odstranit tuto úlohu? Po odstranění bude úloha ukončena."
       }
     }
   },

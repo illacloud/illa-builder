@@ -1,15 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const footerStyle = css`
-  height: 80px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`
-
 export const labelContainer = css`
   display: flex;
   flex-direction: row;

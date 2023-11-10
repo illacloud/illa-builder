@@ -5,13 +5,13 @@ import {
 import { FC, useRef } from "react"
 import { useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
+import { ActionGuidePanel } from "@/page/App/components/Actions/ActionGuidePanel"
+import { ActionList } from "@/page/App/components/Actions/ActionList"
+import { ActionPanel } from "@/page/App/components/Actions/ActionPanel"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
 import { getActionMixedList } from "@/redux/currentApp/action/actionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { resourceContextHelper } from "@/utils/mixpanelHelper"
-import { ActionGuidePanel } from "../../components/Actions/ActionGuidePanel"
-import { ActionList } from "../../components/Actions/ActionList"
-import { ActionPanel } from "../../components/Actions/ActionPanel"
 import { applyActionEditorStyle, contentContainerStyle } from "./styles"
 
 const ActionEditorDefaultHeight = 320
