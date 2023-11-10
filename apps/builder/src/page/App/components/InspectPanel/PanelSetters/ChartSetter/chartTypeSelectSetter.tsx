@@ -18,8 +18,8 @@ import {
 } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/style"
 import BaseSelectSetter from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseSelect"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { RootState } from "@/store"
 import { ChartTypeSelectSetterProps } from "./interface"
@@ -98,8 +98,8 @@ const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (props) => {
 
   const insertValues = useSelector<RootState, Record<string, any>>(
     (rootState) => {
-      const targetComponentNode = searchDsl(
-        getCanvas(rootState),
+      const targetComponentNode = searchComponentFromMap(
+        getComponentMap(rootState),
         widgetDisplayName,
       )
       if (!targetComponentNode) return {}

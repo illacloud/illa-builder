@@ -1,3 +1,4 @@
+import { ComponentMapNode } from "@illa-public/public-types"
 import { get, isEqual, set } from "lodash"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import {
@@ -23,12 +24,12 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
+import { getComponentMap } from "../../redux/currentApp/components/componentsSelector"
 import RenderChildrenCanvas from "../PublicSector/RenderChildrenCanvas"
 import { FormWidgetProps } from "./interface"
 import {
@@ -47,10 +48,12 @@ import {
 } from "./widgetConfig"
 
 function getLikeInputChildrenNode(
-  componentNode: ComponentNode,
-  componentNodeResult: ComponentNode[],
+  componentNodeDisplayName: string,
+  componentNodeResult: ComponentMapNode[],
+  components: Record<string, ComponentMapNode>,
   hasForm: boolean,
 ) {
+  const componentNode = components[componentNodeDisplayName]
   if (
     (componentNode.containerType !== "EDITOR_DOT_PANEL" &&
       FORM_CAN_BIND_WIDGET_TYPE.has(componentNode.type)) ||
@@ -58,14 +61,24 @@ function getLikeInputChildrenNode(
   ) {
     componentNodeResult.push(componentNode)
     if (Array.isArray(componentNode.childrenNode)) {
-      componentNode.childrenNode.forEach((node) => {
-        getLikeInputChildrenNode(node, componentNodeResult, hasForm)
+      componentNode.childrenNode.forEach((childDisplayName) => {
+        getLikeInputChildrenNode(
+          childDisplayName,
+          componentNodeResult,
+          components,
+          hasForm,
+        )
       })
     }
   } else {
     if (Array.isArray(componentNode.childrenNode)) {
-      componentNode.childrenNode.forEach((node) => {
-        getLikeInputChildrenNode(node, componentNodeResult, hasForm)
+      componentNode.childrenNode.forEach((childDisplayName) => {
+        getLikeInputChildrenNode(
+          childDisplayName,
+          componentNodeResult,
+          components,
+          hasForm,
+        )
       })
     }
   }
@@ -77,7 +90,7 @@ interface DragCollection {
 
 export const FormWidget: FC<FormWidgetProps> = (props) => {
   const {
-    childrenNode,
+    childrenNode: childrenNodeDisplayNames,
     showFooter,
     showHeader,
     headerHeight,
@@ -106,28 +119,25 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   const [isMouseHover, setIsMouseHover] = useState(false)
   const isEditMode = useSelector(getIsILLAEditMode)
   const executionResult = useSelector(getExecutionResult)
+  const components = useSelector(getComponentMap)
 
   const dispatch = useDispatch()
 
-  const allLikeInputWithFormChildrenNode = useMemo(() => {
-    let componentNodeResult: ComponentNode[] = []
-    childrenNode.forEach((node) => {
-      getLikeInputChildrenNode(node, componentNodeResult, true)
-    })
-    return componentNodeResult
-  }, [childrenNode])
-
   const allLikeInputWithFormChildrenNodeDisplayName = useMemo(() => {
-    return allLikeInputWithFormChildrenNode.map((node) => node.displayName)
-  }, [allLikeInputWithFormChildrenNode])
+    let componentNodeResult: ComponentMapNode[] = []
+    childrenNodeDisplayNames.forEach((node) => {
+      getLikeInputChildrenNode(node, componentNodeResult, components, true)
+    })
+    return componentNodeResult.map((node) => node.displayName)
+  }, [childrenNodeDisplayNames, components])
 
   const allLikeInputChildrenNode = useMemo(() => {
-    let componentNodeResult: ComponentNode[] = []
-    childrenNode.forEach((node) => {
-      getLikeInputChildrenNode(node, componentNodeResult, false)
+    let componentNodeResult: ComponentMapNode[] = []
+    childrenNodeDisplayNames.forEach((node) => {
+      getLikeInputChildrenNode(node, componentNodeResult, components, false)
     })
     return componentNodeResult
-  }, [childrenNode])
+  }, [childrenNodeDisplayNames, components])
 
   const allLikeInputChildrenNodeDisplayName = useMemo(() => {
     return allLikeInputChildrenNode.map((node) => node.displayName)
@@ -196,7 +206,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     prevDisabled.current = disabled
   }, [
     disabled,
-    childrenNode,
+    childrenNodeDisplayNames,
     allLikeInputWithFormChildrenNodeDisplayName,
     dispatch,
   ])
@@ -511,11 +521,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
         >
           <div css={formHeaderStyle}>
             <RenderChildrenCanvas
-              displayName={childrenNode[0].displayName}
-              hasChildrenNode={
-                Array.isArray(childrenNode[0].childrenNode) &&
-                childrenNode[0].childrenNode.length > 0
-              }
+              displayName={childrenNodeDisplayNames[0]}
               columnNumber={columnNumber}
               handleUpdateHeight={handleUpdateHeight}
               canResizeCanvas={canResizeCanvas}
@@ -528,11 +534,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       )}
       <div css={formBodyStyle}>
         <RenderChildrenCanvas
-          displayName={childrenNode[1].displayName}
-          hasChildrenNode={
-            Array.isArray(childrenNode[1].childrenNode) &&
-            childrenNode[1].childrenNode.length > 0
-          }
+          displayName={childrenNodeDisplayNames[1]}
           columnNumber={columnNumber}
           handleUpdateHeight={handleUpdateHeight}
           canResizeCanvas={canResizeCanvas}
@@ -562,11 +564,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
         >
           <div css={formHeaderStyle}>
             <RenderChildrenCanvas
-              hasChildrenNode={
-                Array.isArray(childrenNode[2].childrenNode) &&
-                childrenNode[2].childrenNode.length > 0
-              }
-              displayName={childrenNode[2].displayName}
+              displayName={childrenNodeDisplayNames[2]}
               columnNumber={columnNumber}
               handleUpdateHeight={handleUpdateHeight}
               canResizeCanvas={canResizeCanvas}

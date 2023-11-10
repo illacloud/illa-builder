@@ -21,6 +21,7 @@ import { fetchResources } from "@/services/resource"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { aiAgentActions } from "../redux/aiAgent/dashboardTeamAIAgentSlice"
+import { flatTreeToMap } from "../utils/componentNode/flatTree"
 import { fixedActionToNewAction } from "./utils/fixedAction"
 import { fixedComponentsToNewComponents } from "./utils/fixedComponents"
 
@@ -34,7 +35,9 @@ export const updateCurrentAppInfo = (
   store.dispatch(configActions.updateIllaMode(mode))
   store.dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
   const fixedComponents = fixedComponentsToNewComponents(data.components)
-  store.dispatch(componentsActions.initComponentReducer(fixedComponents))
+  store.dispatch(
+    componentsActions.initComponentReducer(flatTreeToMap(fixedComponents)),
+  )
   const fixedActions = fixedActionToNewAction(data.actions)
   store.dispatch(actionActions.initActionListReducer(fixedActions))
 

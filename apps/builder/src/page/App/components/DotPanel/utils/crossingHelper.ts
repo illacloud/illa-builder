@@ -1,7 +1,4 @@
-import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
-import store from "@/store"
 import { illaSnapshot } from "../constant/snapshotNew"
 
 export interface NodeShape {
@@ -178,26 +175,4 @@ export const getNewPositionWithCrossing = (
     }
     return effectMap
   }
-}
-
-export const getDiffYFromLayoutInfosAndComponentNode = (
-  parentDisplayName: string,
-) => {
-  const rootState = store.getState()
-  const targetNode = searchDSLByDisplayName(parentDisplayName)
-  if (!targetNode) return null
-  const targetChildNode = targetNode.childrenNode ?? []
-  const layoutInfos = getExecutionWidgetLayoutInfo(rootState)
-
-  const result: string[] = []
-
-  targetChildNode.forEach((node) => {
-    const info = layoutInfos[node.displayName]
-    if (!info) return
-    if (info.layoutInfo.y !== node.y) {
-      result.push(node.displayName)
-    }
-  })
-
-  return result
 }

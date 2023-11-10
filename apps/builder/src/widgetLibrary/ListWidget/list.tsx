@@ -1,3 +1,4 @@
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { chunk, cloneDeep, get, isEqual, set, toPath } from "lodash"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -16,7 +17,6 @@ import {
   applyDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecutionResult,
   getRawTree,
@@ -41,11 +41,12 @@ import {
   listParentContainerWithPagination,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
+import { getComponentMap } from "../../redux/currentApp/components/componentsSelector"
 import RenderChildrenCanvas from "../PublicSector/RenderChildrenCanvas"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   const {
-    templateComponentNodes,
+    templateComponentDisplayName,
     columnNumber,
     dynamicHeight,
     templateContainerHeight,
@@ -89,11 +90,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
 
   return (
     <RenderChildrenCanvas
-      hasChildrenNode={
-        Array.isArray(templateComponentNodes?.childrenNode) &&
-        templateComponentNodes?.childrenNode.length > 0
-      }
-      displayName={templateComponentNodes.displayName}
+      displayName={templateComponentDisplayName}
       columnNumber={columnNumber}
       handleUpdateHeight={handleUpdateHeight}
       canResizeCanvas={enableAutoHeight}
@@ -224,7 +221,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
             width: "100%",
             height: itemHeight,
           }}
-          key={childrenNode[0].displayName}
+          key={childrenNode[0]}
           bounds="parent"
           minHeight={48}
           maxHeight={
@@ -253,7 +250,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
             }}
           >
             <RenderTemplateContainer
-              templateComponentNodes={childrenNode[0]}
+              templateComponentDisplayName={childrenNode[0]}
               templateContainerHeight={itemHeight}
               columnNumber={columnNumber}
               dynamicHeight={dynamicHeight}
@@ -404,7 +401,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
           }}
         >
           <RenderTemplateContainer
-            templateComponentNodes={childrenNode[0]}
+            templateComponentDisplayName={childrenNode[0]}
             templateContainerHeight={itemHeight}
             columnNumber={columnNumber}
             dynamicHeight={dynamicHeight}
@@ -464,6 +461,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const propsRef = useRef(props)
   const executionResult = useSelector(getExecutionResult)
   const rawTree = useSelector(getRawTree)
+  const components = useSelector(getComponentMap)
 
   const prevDataSourcesRef = useRef(dataSources)
 
@@ -474,65 +472,79 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   }, [props])
 
   const updateTemplateContainerNodesProps = useCallback(
-    (childrenNodes: ComponentNode[]) => {
-      return childrenNodes.map((itemContainer, index) => {
-        const currentItemContainer = cloneDeep(itemContainer)
-        const currentItems = currentItemContainer.childrenNode
-        if (Array.isArray(currentItems) && currentItems.length > 0) {
-          let newCurrentItems = currentItems.map((currentItem) => {
-            if (
-              currentItem.props &&
-              Array.isArray(currentItem.props.$dynamicAttrPaths)
-            ) {
-              const { displayName } = currentItem
-              const { $dynamicAttrPaths } = currentItem.props
-              $dynamicAttrPaths.forEach((path) => {
-                const finalPath = convertPathToString(toPath(path))
-                const requireEvalString = get(currentItem.props, finalPath, "")
-                let evalResult: unknown
-                try {
-                  evalResult = evaluateDynamicString(
+    (childrenNodeDisplayNames: string[]) => {
+      return childrenNodeDisplayNames.map((itemContainerDisplayName, index) => {
+        const currentItemContainer = cloneDeep(
+          components[itemContainerDisplayName],
+        )
+        const currentItemDisplayNames = currentItemContainer.childrenNode
+        if (
+          Array.isArray(currentItemDisplayNames) &&
+          currentItemDisplayNames.length > 0
+        ) {
+          let newCurrentItems = currentItemDisplayNames.map(
+            (currentItemDisplayName) => {
+              const currentItem = JSON.parse(
+                JSON.stringify(components[currentItemDisplayName]),
+              ) as ComponentTreeNode
+              if (
+                currentItem.props &&
+                Array.isArray(currentItem.props.$dynamicAttrPaths)
+              ) {
+                const { displayName } = currentItem
+                const { $dynamicAttrPaths } = currentItem.props
+                $dynamicAttrPaths.forEach((path) => {
+                  const finalPath = convertPathToString(toPath(path))
+                  const requireEvalString = get(
+                    currentItem.props,
+                    finalPath,
                     "",
-                    requireEvalString,
-                    executionResult,
                   )
-                } catch (e) {
-                  console.log(e)
-                  evalResult = ""
-                }
-                let value = evalResult
-                if (Array.isArray(evalResult) && evalResult.length > index) {
-                  const rawWidget = rawTree[displayName]
-                  if (rawWidget && isObject(rawWidget.$validationPaths)) {
-                    const validationPaths = rawWidget.$validationPaths
-                    const validationType = validationPaths[finalPath]
-                    if (validationType === VALIDATION_TYPES.ARRAY) {
-                      const validationFunc = validationFactory[validationType]
-                      const res = validationFunc?.(evalResult, "")
-                      value = res?.safeValue ?? evalResult
-                    } else {
-                      value = evalResult[index]
-                      const validationFunc = validationFactory[validationType]
-                      const res = validationFunc?.(value, "")
-                      value = res?.safeValue ?? value
+                  let evalResult: unknown
+                  try {
+                    evalResult = evaluateDynamicString(
+                      "",
+                      requireEvalString,
+                      executionResult,
+                    )
+                  } catch (e) {
+                    console.log(e)
+                    evalResult = ""
+                  }
+                  let value = evalResult
+                  if (Array.isArray(evalResult) && evalResult.length > index) {
+                    const rawWidget = rawTree[displayName]
+                    if (rawWidget && isObject(rawWidget.$validationPaths)) {
+                      const validationPaths = rawWidget.$validationPaths
+                      const validationType = validationPaths[finalPath]
+                      if (validationType === VALIDATION_TYPES.ARRAY) {
+                        const validationFunc = validationFactory[validationType]
+                        const res = validationFunc?.(evalResult, "")
+                        value = res?.safeValue ?? evalResult
+                      } else {
+                        value = evalResult[index]
+                        const validationFunc = validationFactory[validationType]
+                        const res = validationFunc?.(value, "")
+                        value = res?.safeValue ?? value
+                      }
                     }
                   }
-                }
-                set(currentItem, `props.${finalPath}`, value)
-              })
-            }
-            if (index !== 0) {
-              set(
-                currentItem,
-                "displayName",
-                `list-child-${index}-${currentItem.displayName}`,
-              )
-              if (disabled != undefined) {
-                set(currentItem, "props.disabled", disabled)
+                  set(currentItem, `props.${finalPath}`, value)
+                })
               }
-            }
-            return currentItem
-          })
+              if (index !== 0) {
+                set(
+                  currentItem,
+                  "displayName",
+                  `list-child-${index}-${currentItemDisplayName}`,
+                )
+                if (disabled != undefined) {
+                  set(currentItem, "props.disabled", disabled)
+                }
+              }
+              return currentItem
+            },
+          )
           newCurrentItems = newCurrentItems.map((item) => {
             const displayName = item.displayName
             const displayNameArray = displayName.split("-")
@@ -559,22 +571,22 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
             `list-widget-container-${index}`,
           )
         }
-        return currentItemContainer
+        return currentItemContainer as unknown as ComponentTreeNode
       })
     },
-    [disabled, executionResult, rawTree],
+    [components, disabled, executionResult, rawTree],
   )
 
   const transTemplateContainerNodes = useCallback(
-    (templateContainerNode: ComponentNode) => {
-      const canvasChildrenArray: ComponentNode[] = []
+    (templateContainerDisplayName: string) => {
+      const canvasChildrenDisplayNames: string[] = []
       if (Array.isArray(dataSources) && dataSources.length > 0) {
         dataSources.forEach((v, index) => {
-          canvasChildrenArray[index] = templateContainerNode
+          canvasChildrenDisplayNames[index] = templateContainerDisplayName
         })
-        return updateTemplateContainerNodesProps(canvasChildrenArray)
+        return updateTemplateContainerNodesProps(canvasChildrenDisplayNames)
       } else {
-        return updateTemplateContainerNodesProps([templateContainerNode])
+        return updateTemplateContainerNodesProps([templateContainerDisplayName])
       }
     },
     [dataSources, updateTemplateContainerNodesProps],
@@ -582,8 +594,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
 
   const getChildrenNodes = useMemo(() => {
     if (childrenNode && childrenNode.length > 0 && dataSources) {
-      let canvas = childrenNode[0]
-      return transTemplateContainerNodes(canvas)
+      let canvasDisplayName = childrenNode[0]
+      return transTemplateContainerNodes(canvasDisplayName)
     }
     return null
   }, [childrenNode, dataSources, transTemplateContainerNodes])

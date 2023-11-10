@@ -4,5 +4,4 @@ export interface IRenderChildrenCanvasProps {
   canResizeCanvas?: boolean
   containerPadding?: string
   displayName: string
-  hasChildrenNode?: boolean
 }

@@ -1,4 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { ComponentMapNode, ComponentTreeNode } from "@illa-public/public-types"
 import i18n from "i18next"
 import { cloneDeep, set } from "lodash"
 import { createMessage } from "@illa-design/react"
@@ -12,7 +13,6 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecution,
   getExecutionWidgetLayoutInfo,
@@ -23,13 +23,14 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getActionMixedList } from "../redux/currentApp/action/actionSelector"
 import { copyWidgetHelper } from "./changeDisplayNameHelper"
 import { getComponentNodeResultByRelativeCombineShape } from "./componentNode/copyHelper"
+import { buildTreeByMapNode } from "./componentNode/flatTree"
 import { getCurrentSectionColumnNumberByChildDisplayName } from "./componentNode/search"
 import { trackInEditor } from "./mixpanelHelper"
 
 const message = createMessage()
 
 const doPaste = (
-  originCopyComponents: ComponentNode[],
+  originCopyComponents: ComponentTreeNode[],
   oldColumnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER,
   newColumnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER,
   sources: "keyboard" | "duplicate",
@@ -60,7 +61,7 @@ const doPaste = (
 }
 
 export class CopyManager {
-  static currentCopyComponentNodes: ComponentNode[] | null = null
+  static currentCopyComponentNodes: ComponentMapNode[] | null = null
   static copiedColumnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER
 
   static currentCopyAction: ActionItem<ActionContent> | null = null
@@ -84,7 +85,7 @@ export class CopyManager {
       const copiedColumnNumber =
         getCurrentSectionColumnNumberByChildDisplayName(displayNames[0])
       this.currentCopyComponentNodes = displayNames.map((displayName) => {
-        return searchDSLByDisplayName(displayName) as ComponentNode
+        return searchDSLByDisplayName(displayName)
       })
       this.copiedColumnNumber = copiedColumnNumber
     }
@@ -110,9 +111,10 @@ export class CopyManager {
               const targetNodeParentNode = searchDSLByDisplayName(
                 needCopyComponent.parentNode!,
               )
+
               return this.copyComponent(
-                needCopyComponent,
-                targetNodeParentNode!,
+                buildTreeByMapNode(needCopyComponent.displayName),
+                buildTreeByMapNode(targetNodeParentNode.displayName),
                 needCopyComponent.x,
                 needCopyComponent.y,
               )
@@ -156,15 +158,15 @@ export class CopyManager {
                     case "FORM_WIDGET":
                     case "MODAL_WIDGET": {
                       const targetParentNode = searchDSLByDisplayName(
-                        targetNode.childrenNode[1].displayName,
+                        targetNode.childrenNode[1],
                       )
                       if (targetParentNode) {
                         let prevY = 0
                         copyResult.push(
                           ...needCopyOtherComponents.map((node) => {
                             const newNode = this.copyComponent(
-                              node,
-                              targetParentNode,
+                              buildTreeByMapNode(node.displayName),
+                              buildTreeByMapNode(targetParentNode.displayName),
                               0,
                               prevY,
                             )
@@ -182,15 +184,15 @@ export class CopyManager {
                       const { currentIndex } =
                         executionTree[targetNode.displayName]
                       const targetParentNode = searchDSLByDisplayName(
-                        targetNode.childrenNode[currentIndex].displayName,
+                        targetNode.childrenNode[currentIndex],
                       )
                       if (targetParentNode) {
                         let prevY = 0
                         copyResult.push(
                           ...needCopyOtherComponents.map((node) => {
                             const newNode = this.copyComponent(
-                              node,
-                              targetParentNode,
+                              buildTreeByMapNode(node.displayName),
+                              buildTreeByMapNode(targetParentNode.displayName),
                               0,
                               prevY,
                             )
@@ -203,15 +205,15 @@ export class CopyManager {
                     }
                     case "LIST_WIDGET": {
                       const targetParentNode = searchDSLByDisplayName(
-                        targetNode.childrenNode[0].displayName,
+                        targetNode.childrenNode[0],
                       )
                       if (targetParentNode) {
                         let prevY = 0
                         copyResult.push(
                           ...needCopyOtherComponents.map((node) => {
                             const newNode = this.copyComponent(
-                              node,
-                              targetParentNode,
+                              buildTreeByMapNode(node.displayName),
+                              buildTreeByMapNode(targetParentNode.displayName),
                               0,
                               prevY,
                             )
@@ -236,8 +238,8 @@ export class CopyManager {
                         copyResult.push(
                           ...needCopyOtherComponents.map((node) => {
                             return this.copyComponent(
-                              node,
-                              targetParentNode,
+                              buildTreeByMapNode(node.displayName),
+                              buildTreeByMapNode(targetParentNode.displayName),
                               targetNode!.x + node.x - leftTopX,
                               targetNode!.y + targetNode!.h + node.y - leftTopY,
                             )
@@ -296,15 +298,15 @@ export class CopyManager {
                           needCopyComponent.parentNode!,
                         )
                         return this.copyComponent(
-                          needCopyComponent,
-                          targetNodeParentNode!,
+                          buildTreeByMapNode(needCopyComponent.displayName),
+                          buildTreeByMapNode(targetNodeParentNode.displayName),
                           needCopyComponent.x,
                           needCopyComponent.y,
                         )
                       }
                       return this.copyComponent(
-                        needCopyComponent,
-                        containerNode,
+                        buildTreeByMapNode(needCopyComponent.displayName),
+                        buildTreeByMapNode(containerNode.displayName),
                         clickPosition.clickPosition[0] +
                           needCopyComponent.x -
                           leftTopX,
@@ -357,15 +359,15 @@ export class CopyManager {
                           needCopyComponent.parentNode!,
                         )
                         return this.copyComponent(
-                          needCopyComponent,
-                          targetNodeParentNode!,
+                          buildTreeByMapNode(needCopyComponent.displayName),
+                          buildTreeByMapNode(targetNodeParentNode.displayName),
                           needCopyComponent.x,
                           needCopyComponent.y,
                         )
                       }
                       return this.copyComponent(
-                        needCopyComponent,
-                        targetParentNode,
+                        buildTreeByMapNode(needCopyComponent.displayName),
+                        buildTreeByMapNode(targetParentNode.displayName),
                         clickPosition.clickPosition[0] +
                           needCopyComponent.x -
                           leftTopX,
@@ -403,11 +405,11 @@ export class CopyManager {
   }
 
   static copyComponent(
-    node: ComponentNode,
-    newParentNode: ComponentNode,
+    node: ComponentTreeNode,
+    newParentNode: ComponentTreeNode,
     rawX: number,
     rawY: number,
-  ): ComponentNode {
+  ): ComponentTreeNode {
     const newDisplayName = DisplayNameGenerator.generateDisplayName(
       node.type,
       node.showName,
@@ -427,7 +429,7 @@ export class CopyManager {
       w: node.w,
       h: node.h,
       parentNode: newParentNode.displayName,
-    } as ComponentNode)
+    } as ComponentTreeNode)
 
     Object.keys(updatePathsMapValue).forEach((key) => {
       set(newNode, `props.${key}`, updatePathsMapValue[key])

@@ -534,6 +534,12 @@
             },
             "ai-agent": {
               "value": "Hodnota"
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{0}}",
+              "limit": "{{20}} nebo {{dataGrid1.pageSize}}"
             }
           },
           "option": {
@@ -626,6 +632,23 @@
               "create-resource": "Vytvořit ze zdroje",
               "unsafe": "Nebezpečný",
               "safe": "Bezpečné"
+            },
+            "drive": {
+              "method": {
+                "list": "Seznam souborů",
+                "upload_file": "Nahrát 1 soubor",
+                "upload_multi_file": "Nahrát více souborů",
+                "download": "Stáhnout",
+                "download_multi_file": "Stáhnout více souborů",
+                "delete": "Odstranit 1 soubor",
+                "delete_multi_file": "Odstranit více souborů",
+                "update": "Přejmenovat soubor"
+              },
+              "file_type": {
+                "none": "Nic",
+                "by_id": "Podle ID",
+                "by_name": "Podle jména"
+              }
             }
           },
           "restapi": {
@@ -673,6 +696,15 @@
             },
             "general": {
               "safe_mode": "Při používání bezpečného režimu může vaše SQL pouze referenční proměnné v místě proměnných, například kde název = '{{input1.value}}'. To zabraňuje uživatelům v kompromitování vaší databáze zadáním příkazů jako '; drop table;' do input1. Pokud používáte nebezpečný režim, mohou být syntaxová slova SQL nahrazena proměnnými, jako je kde {{input1.value}} {{input2.value}} '{{input3.value}}'. V tomto případě však může být databáze ohrožena obsahem zadaným uživatelem. Není doporučeno používat tento režim."
+            },
+            "drive": {
+              "method": "Slouží k nastavení akcí, které plánujete provést na disku.",
+              "filter_type": "Pokud chcete filtrovat soubory, můžete použít tuto možnost konfigurace k určení filtrování podle názvu souboru nebo ID souboru. Název souboru používá fuzzy matching, zatímco ID souboru používá přesnou shodu.",
+              "file_name": "Používá se pro zábavné odpovídající soubory.",
+              "file_id": "Používá se pro přesný seznam konkrétního souboru.",
+              "folder": "Vyberte složku pro operaci. ",
+              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení dat. Toto je indexová hodnota, která začíná od 0.",
+              "limit": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení počtu položek, které mají být vráceny na stránku."
             }
           },
           "advanced": {
@@ -715,6 +747,15 @@
             "connect-data-source": "Připojit k databázi nebo api",
             "more-type": "Další typ zdrojů údajů",
             "safe_mode": "Režim"
+          },
+          "drive": {
+            "method": "Metoda",
+            "filter_type": "Typ filtru",
+            "file_name": "Název souboru",
+            "file_id": "ID souboru",
+            "folder": "Složka",
+            "page": "Stránka",
+            "limit": "Limit"
           }
         },
         "menu": {

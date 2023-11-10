@@ -1,4 +1,4 @@
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { ComponentMapNode } from "@illa-public/public-types"
 
 interface ItemPosition {
   x: number
@@ -119,7 +119,7 @@ export type RectangleType = {
   bottom: number
 }
 
-const sortComponentNodesOnlyY = (componentNodes: ComponentNode[]) => {
+const sortComponentNodesOnlyY = (componentNodes: ComponentMapNode[]) => {
   return componentNodes.sort((node1, node2) => {
     if (node1.y < node2.y) {
       return -1
@@ -131,7 +131,7 @@ const sortComponentNodesOnlyY = (componentNodes: ComponentNode[]) => {
   })
 }
 
-export const sortComponentNodes = (componentNodes: ComponentNode[]) => {
+export const sortComponentNodes = (componentNodes: ComponentMapNode[]) => {
   return componentNodes.sort((node1, node2) => {
     if (node1.y < node2.y) {
       return -1
@@ -151,7 +151,7 @@ export const sortComponentNodes = (componentNodes: ComponentNode[]) => {
   })
 }
 
-const getComponentRect = (component: ComponentNode): RectangleType => {
+const getComponentRect = (component: ComponentMapNode): RectangleType => {
   const { x, y, w, h } = component
   return {
     left: x,
@@ -162,8 +162,8 @@ const getComponentRect = (component: ComponentNode): RectangleType => {
 }
 
 export const isCrossing = (
-  otherNode: ComponentNode,
-  mainNode: ComponentNode,
+  otherNode: ComponentMapNode,
+  mainNode: ComponentMapNode,
 ) => {
   const otherRect = getComponentRect(otherNode)
   const mainRect = getComponentRect(mainNode)
@@ -176,8 +176,8 @@ export const isCrossing = (
 }
 
 export const isNearingAtY = (
-  otherNode: ComponentNode,
-  mainNode: ComponentNode,
+  otherNode: ComponentMapNode,
+  mainNode: ComponentMapNode,
 ) => {
   const otherRect = getComponentRect(otherNode)
   const mainRect = getComponentRect(mainNode)
@@ -188,15 +188,15 @@ export const isNearingAtY = (
 }
 
 export const getCrossingNodeNewPosition = (
-  currentNode: ComponentNode,
-  allComponentNode: ComponentNode[],
+  currentNode: ComponentMapNode,
+  allComponentNode: ComponentMapNode[],
 ) => {
   let otherComponents = allComponentNode.filter(
     (curNode) => curNode.displayName !== currentNode.displayName,
   )
 
-  let res: Map<string, ComponentNode> = new Map(),
-    queue: ComponentNode[] = []
+  let res: Map<string, ComponentMapNode> = new Map(),
+    queue: ComponentMapNode[] = []
 
   queue.push(currentNode)
   while (queue.length !== 0) {
@@ -206,7 +206,7 @@ export const getCrossingNodeNewPosition = (
     )
     const walkedSet = new Set()
     for (let i = 0; i < length; i++) {
-      let node = queue.shift() as ComponentNode
+      let node = queue.shift() as ComponentMapNode
       for (let i = 0; i < otherComponents.length; i++) {
         if (otherComponents[i].displayName === node.displayName) {
           continue
@@ -234,15 +234,15 @@ export const getCrossingNodeNewPosition = (
 }
 
 export const getNearingNodes = (
-  currentNode: ComponentNode,
-  allComponentNode: ComponentNode[],
+  currentNode: ComponentMapNode,
+  allComponentNode: ComponentMapNode[],
 ) => {
   let otherComponents = allComponentNode.filter(
     (cur) => cur.displayName !== currentNode.displayName,
   )
 
-  let res: Map<string, ComponentNode> = new Map(),
-    queue: ComponentNode[] = []
+  let res: Map<string, ComponentMapNode> = new Map(),
+    queue: ComponentMapNode[] = []
 
   queue.push(currentNode)
   while (queue.length !== 0) {
@@ -254,7 +254,7 @@ export const getNearingNodes = (
 
     const walkedSet = new Set()
     for (let i = 0; i < length; i++) {
-      let node = queue.shift() as ComponentNode
+      let node = queue.shift() as ComponentMapNode
       for (let i = 0; i < otherComponents.length; i++) {
         if (otherComponents[i].displayName === node.displayName) {
           continue
@@ -278,20 +278,20 @@ export const getNearingNodes = (
 }
 
 export const applyEffectMapToComponentNodes = (
-  effectMap: Map<string, ComponentNode>,
-  componentNodes: ComponentNode[],
+  effectMap: Map<string, ComponentMapNode>,
+  componentNodes: ComponentMapNode[],
 ) => {
   return componentNodes.map((node) => {
     if (effectMap.has(node.displayName)) {
-      return effectMap.get(node.displayName) as ComponentNode
+      return effectMap.get(node.displayName) as ComponentMapNode
     }
     return node
   })
 }
 
 export const getReflowResult = (
-  currentNode: ComponentNode,
-  allComponentNodes: ComponentNode[],
+  currentNode: ComponentMapNode,
+  allComponentNodes: ComponentMapNode[],
   exceptSelf: boolean = true,
 ) => {
   const sortedComponentNodes = sortComponentNodes(allComponentNodes)
@@ -316,8 +316,8 @@ export const getReflowResult = (
 }
 
 export const getNearComponentNodes = (
-  currentNode: ComponentNode,
-  allComponentNodes: ComponentNode[],
+  currentNode: ComponentMapNode,
+  allComponentNodes: ComponentMapNode[],
 ) => {
   const sortedComponentNodes = sortComponentNodesOnlyY(allComponentNodes)
   return getNearingNodes(currentNode, sortedComponentNodes)

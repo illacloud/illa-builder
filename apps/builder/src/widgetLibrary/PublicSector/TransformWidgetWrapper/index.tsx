@@ -10,12 +10,10 @@ import {
 } from "@/page/App/components/ScaleSquare/constant/widget"
 import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
 import {
-  getCanvas,
   getContainerListDisplayNameMappedChildrenNodeDisplayName,
-  searchDsl,
+  searchDSLByDisplayName,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
@@ -44,12 +42,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       const layoutInfos = getExecutionWidgetLayoutInfo(rootState)
       return layoutInfos[displayName].layoutInfo
     })
-    const originComponentNode = useSelector<RootState, ComponentNode>(
-      (rootState) => {
-        const rootNode = getCanvas(rootState)
-        return searchDsl(rootNode, displayName) as ComponentNode
-      },
-    )
+    const originComponentNode = searchDSLByDisplayName(displayName)
 
     const realProps = useMemo(
       () => displayNameMapProps[displayName] ?? {},

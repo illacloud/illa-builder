@@ -1,7 +1,6 @@
 import { merge } from "lodash"
 import { ILLAEditorRuntimePropsCollectorInstance } from "../executionTreeHelper/runtimePropsCollector"
 import { evalScript } from "./codeSandbox"
-import { EVALUATION_TYPE } from "./interface"
 import { isDynamicStringSnippet } from "./utils"
 import { substituteDynamicBindingWithValues } from "./valueConverter"
 
@@ -66,7 +65,6 @@ export const getSnippets = (
 export const getDynamicValue = (
   dynamicString: string,
   dataTree: Record<string, any>,
-  evaluationType: EVALUATION_TYPE,
 ) => {
   const { jsSnippets, stringSnippets } = getSnippets(dynamicString)
   const calcContext = merge(
@@ -96,7 +94,6 @@ export const getDynamicValue = (
         dynamicString,
         stringSnippets,
         values,
-        evaluationType,
       ),
       context,
     }

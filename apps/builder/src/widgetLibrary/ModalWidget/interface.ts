@@ -1,8 +1,7 @@
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface ModalWidgetProps extends BaseWidgetProps {
-  childrenNode: ComponentNode[]
+  childrenNode: string[]
   showFooter: boolean
   showHeader: boolean
   headerHeight: number

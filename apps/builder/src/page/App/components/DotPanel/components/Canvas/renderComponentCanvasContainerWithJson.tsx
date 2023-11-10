@@ -1,12 +1,12 @@
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { FC, ReactNode, useMemo } from "react"
 import useMeasure from "react-use-measure"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
 import ScaleSquareWithJSON from "@/page/App/components/ScaleSquare/scaleSquareWithJSON"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { outerComponentCanvasContainerWithJsonStyle } from "./style"
 
 export const RenderComponentCanvasWithJson: FC<{
-  componentNode: ComponentNode
+  componentNode: ComponentTreeNode
   containerPadding: number
   columnNumber?: number
   canAutoScroll?: boolean

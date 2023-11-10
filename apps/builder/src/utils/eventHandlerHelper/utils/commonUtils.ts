@@ -1,3 +1,4 @@
+import { SectionViewShape } from "@illa-public/public-types"
 import copy from "copy-to-clipboard"
 import download from "downloadjs"
 import {
@@ -9,10 +10,9 @@ import {
 import i18n from "@/i18n/config"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
-import { SectionViewShape } from "@/redux/currentApp/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executionTree/executionState"
@@ -122,13 +122,14 @@ export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
     },
   ]
   if (viewPath) {
-    const canvas = getCanvas(store.getState())
-    if (!canvas) return
-    const pageNode = searchDsl(canvas, pagePath)
+    const components = getComponentMap(store.getState())
+    if (!components) return
+    const pageNode = searchComponentFromMap(components, pagePath)
     if (!pageNode) return
-    pageNode.childrenNode.forEach((node) => {
-      const sectionViewConfigs = node.props?.sectionViewConfigs || []
-      const viewSortedKey = node.props?.viewSortedKey || []
+    pageNode.childrenNode.forEach((sectionDisplayName) => {
+      const sectionNode = components[sectionDisplayName]
+      const sectionViewConfigs = sectionNode.props?.sectionViewConfigs || []
+      const viewSortedKey = sectionNode.props?.viewSortedKey || []
       const findConfig = sectionViewConfigs.find((config: SectionViewShape) => {
         return config.path === viewPath
       })
@@ -139,7 +140,7 @@ export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
         )
         if (indexOfViewKey !== -1) {
           updateSlice.push({
-            displayName: node.displayName,
+            displayName: sectionDisplayName,
             value: {
               currentViewIndex: indexOfViewKey,
             },

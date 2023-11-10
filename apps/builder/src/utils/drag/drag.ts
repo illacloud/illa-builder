@@ -1,6 +1,4 @@
 import { configActions } from "@/redux/config/configSlice"
-import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"
@@ -34,27 +32,4 @@ export function endDragMultiNodes(
   if (isAddAction && !isDropOnCanvas) {
     DisplayNameGenerator.removeDisplayName(dragWidgetInfos[0].displayName)
   }
-}
-
-export const mergeLayoutInfoToComponent = (
-  executionLayoutInfo: LayoutInfo,
-  originComponentNode: ComponentNode,
-) => {
-  return {
-    ...originComponentNode,
-    ...executionLayoutInfo,
-  }
-}
-
-export const batchMergeLayoutInfoToComponent = (
-  executionResult: Record<string, WidgetLayoutInfo>,
-  originComponentNodes: ComponentNode[],
-) => {
-  return originComponentNodes.map((componentNode) => {
-    if (!executionResult[componentNode.displayName]) return componentNode
-    return mergeLayoutInfoToComponent(
-      executionResult[componentNode.displayName].layoutInfo,
-      componentNode,
-    )
-  })
 }

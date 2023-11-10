@@ -3,7 +3,6 @@ import {
   DEFAULT_BODY_COLUMNS_NUMBER,
 } from "@/page/App/components/DotPanel/constant/canvas"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
@@ -47,9 +46,7 @@ export const getCurrentSectionColumnNumberByChildDisplayName = (
     return DEFAULT_BODY_COLUMNS_NUMBER
   }
 
-  const currentNode = searchDSLByDisplayName(
-    currentSectionDisplayName,
-  ) as ComponentNode
+  const currentNode = searchDSLByDisplayName(currentSectionDisplayName)
 
   const pageProps = executionResult[pageDisplayName]
   switch (currentNode.showName) {

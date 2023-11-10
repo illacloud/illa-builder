@@ -12,7 +12,7 @@ export const getAllDescendantNodeDisplayNamesByExecution = (
     queue.pop()
     if (head.childrenNode && Array.isArray(head.childrenNode)) {
       head.childrenNode.forEach((child) => {
-        if (child) {
+        if (widgets[child]) {
           queue.push(widgets[child])
         }
       })

@@ -25,6 +25,7 @@ import {
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
+import { flatTreeToMap } from "../../utils/componentNode/flatTree"
 import { CanvasPanel } from "../App/Module/CanvasPanel"
 import { CurrentAppResp } from "../App/resp/currentAppResp"
 
@@ -86,7 +87,9 @@ export const DeployContent: FC = () => {
         canvasTree.props.currentPageIndex = defaultPageIndex
       }
       const fixedComponents = fixedComponentsToNewComponents(canvasTree)
-      dispatch(componentsActions.initComponentReducer(fixedComponents))
+      dispatch(
+        componentsActions.initComponentReducer(flatTreeToMap(fixedComponents)),
+      )
       const fixedActions = fixedActionToNewAction(appInfo.data.actions)
       dispatch(actionActions.initActionListReducer(fixedActions))
       dispatch(executionActions.startExecutionReducer())

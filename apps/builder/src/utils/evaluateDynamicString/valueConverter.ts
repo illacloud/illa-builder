@@ -1,6 +1,28 @@
 import { Types, getType, isObject } from "@/utils/typeHelper"
-import { EVALUATION_TYPE } from "./interface"
 import { filterBindingSegmentsAndRemoveQuotes } from "./utils"
+
+export const templateSubstituteDynamicValues = (
+  dynamicString: string,
+  stringSnippets: string[],
+  values: unknown[],
+): string => {
+  let finalValue = dynamicString
+  stringSnippets.forEach((b, i) => {
+    let value = values[i]
+    if (Array.isArray(value) || isObject(value)) {
+      value = JSON.stringify(value)
+    }
+    try {
+      if (typeof value === "string" && JSON.parse(value)) {
+        value = value.replace(/\\([\s\S])|(")/g, "\\$1$2")
+      }
+    } catch (e) {
+      // do nothing
+    }
+    finalValue = finalValue.replace(b, `${value}`)
+  })
+  return finalValue
+}
 
 export const smartSubstituteDynamicValues = (
   originDynamicString: string,
@@ -35,45 +57,12 @@ export const smartSubstituteDynamicValues = (
   return finalBinding
 }
 
-export const templateSubstituteDynamicValues = (
-  dynamicString: string,
-  stringSnippets: string[],
-  values: unknown[],
-): string => {
-  let finalValue = dynamicString
-  stringSnippets.forEach((b, i) => {
-    let value = values[i]
-    if (Array.isArray(value) || isObject(value)) {
-      value = JSON.stringify(value)
-    }
-    try {
-      if (typeof value === "string" && JSON.parse(value)) {
-        value = value.replace(/\\([\s\S])|(")/g, "\\$1$2")
-      }
-    } catch (e) {
-      // do nothing
-    }
-    finalValue = finalValue.replace(b, `${value}`)
-  })
-  return finalValue
-}
-
 export const substituteDynamicBindingWithValues = (
   dynamicString: string,
   stringSnippets: string[],
   values: unknown[],
-  evaluationType: EVALUATION_TYPE,
 ): string => {
-  switch (evaluationType) {
-    case EVALUATION_TYPE.TEMPLATE:
-      return templateSubstituteDynamicValues(
-        dynamicString,
-        stringSnippets,
-        values,
-      )
-    case EVALUATION_TYPE.SMART_SUBSTITUTE:
-      return smartSubstituteDynamicValues(dynamicString, stringSnippets, values)
-  }
+  return smartSubstituteDynamicValues(dynamicString, stringSnippets, values)
 }
 
 const ASYNC_SCRIPT_CODE_INPUT_START_MARKS = "{{(async function (){"

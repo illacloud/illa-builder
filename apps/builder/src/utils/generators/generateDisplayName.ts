@@ -1,11 +1,11 @@
 // string for component
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"
@@ -56,7 +56,7 @@ export class DisplayNameGenerator {
   }
 
   static updateDisplayNameList(
-    componentNode: ComponentNode,
+    componentNode: ComponentTreeNode,
     actionList: ActionItem<ActionContent>[],
   ) {
     this.displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)
@@ -70,7 +70,7 @@ export class DisplayNameGenerator {
     })
   }
 
-  static addComponentDisplayName(componentNode: ComponentNode) {
+  static addComponentDisplayName(componentNode: ComponentTreeNode) {
     this.displayNameList.add(componentNode.displayName)
     componentNode.childrenNode?.forEach((child) => {
       this.addComponentDisplayName(child)

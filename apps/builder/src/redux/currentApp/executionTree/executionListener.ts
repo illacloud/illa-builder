@@ -1,3 +1,4 @@
+import { ComponentMapNode } from "@illa-public/public-types"
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
 import { cloneDeep } from "lodash"
@@ -8,9 +9,9 @@ import {
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   getAllComponentDisplayNameMapLayoutInfo,
-  getCanvas,
+  getComponentMap,
+  searchComponentFromMap,
   searchDSLByDisplayName,
-  searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
@@ -22,7 +23,6 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
-import { ComponentNode } from "../components/componentsState"
 import { cursorActions } from "../cursor/cursorSlice"
 import {
   BatchUpdateWidgetLayoutInfoPayload,
@@ -134,20 +134,23 @@ async function handleUpdateReflowEffect(
 ) {
   const rootState = listenerApi.getState()
   const widgetLayoutInfos = getExecutionWidgetLayoutInfo(rootState)
+  const components = getComponentMap(rootState)
   let updateSlice: BatchUpdateWidgetLayoutInfoPayload[] = []
 
   const { layoutInfo, displayName, parentNode } = action.payload
 
   const originNodes = searchDSLByDisplayName(parentNode)
 
-  let originChildrenNode: ComponentNode[] = []
+  let originChildrenNode: ComponentMapNode[] = []
 
   if (
     originNodes &&
     originNodes.childrenNode &&
     originNodes.childrenNode.length > 0
   ) {
-    originChildrenNode = originNodes.childrenNode
+    originChildrenNode = originNodes.childrenNode.map(
+      (displayName) => components[displayName],
+    )
   }
 
   const mainNodeLayoutInfo = {
@@ -265,12 +268,12 @@ function handleUpdateModalEffect(
   const parentNodeDisplayName = modalComponentNode.parentNode
   if (!parentNodeDisplayName) return
   const rootState = listenerApi.getState()
-  const rootNode = getCanvas(rootState)
+  const rootNode = getComponentMap(rootState)
   if (!rootNode) return
-  const parentNode = searchDsl(rootNode, parentNodeDisplayName)
+  const parentNode = searchComponentFromMap(rootNode, parentNodeDisplayName)
   if (!parentNode || !Array.isArray(parentNode.childrenNode)) return
-  const otherNode = parentNode.childrenNode.filter((node) => {
-    return node.displayName !== modalComponentNode.displayName
+  const otherNode = parentNode.childrenNode.filter((childDisplayName) => {
+    return childDisplayName !== modalComponentNode.displayName
   })
   const updateSlice = [
     {
@@ -280,9 +283,9 @@ function handleUpdateModalEffect(
       },
     },
   ]
-  otherNode.forEach((node) => {
+  otherNode.forEach((otherNodeChildDisplayName) => {
     updateSlice.push({
-      displayName: node.displayName,
+      displayName: otherNodeChildDisplayName,
       value: {
         isVisible: false,
       },
@@ -504,6 +507,7 @@ export function setupExecutionListeners(
         componentsActions.updateSectionViewPropsReducer,
         componentsActions.updateComponentDisplayNameReducer,
         componentsActions.updateComponentContainerReducer,
+        componentsActions.addSubPageReducer,
         executionActions.startExecutionReducer,
       ),
       effect: handleUpdateWidgetPositionInExecutionLayoutInfo,
