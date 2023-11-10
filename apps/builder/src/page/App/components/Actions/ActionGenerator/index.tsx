@@ -21,6 +21,7 @@ import {
   ActionType,
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
+import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import {
   getInitialAgentContent,
   getInitialContent,
@@ -135,11 +136,14 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       const displayName =
         DisplayNameGenerator.generateDisplayName(currentActionType)
       const initalAgentContent = getInitialAgentContent(item)
-      const data: Omit<ActionItem<ActionContent>, "actionID"> = {
+      const data: Omit<ActionItem<AiAgentActionContent>, "actionID"> = {
         actionType: currentActionType,
         displayName,
         resourceID: item.aiAgentID,
-        content: initalAgentContent,
+        content: {
+          ...initalAgentContent,
+          virtualResource: item,
+        },
         isVirtualResource: true,
         ...actionItemInitial,
         config: {
@@ -148,6 +152,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
           icon: item.icon,
         },
       }
+      console.log(item)
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
           ...data,

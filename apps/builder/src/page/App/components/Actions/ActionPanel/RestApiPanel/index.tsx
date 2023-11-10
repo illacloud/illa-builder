@@ -6,7 +6,7 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/components/RecordEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import {
   actionItemContainer,
@@ -102,7 +102,7 @@ const RestApiPanel: FC = () => {
 
   return (
     <div css={restapiPanelContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         <div css={restapiItemStyle}>
           <span css={restapiItemLabelStyle}>
