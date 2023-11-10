@@ -152,7 +152,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
           icon: item.icon,
         },
       }
-      console.log(item)
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
           ...data,
