@@ -714,7 +714,8 @@
               "file_data_array": "O serie de date ale fişierelor pe care doriţi să le încărcaţi. O puteţi obţine prin intermediul {{upload1.value}}.",
               "file_ids": "O serie de ID-uri de fișiere pe care doriți să le descărcați. Puteți prelua această valoare din componenta Drive Picker folosind {{drivePicker1. Ale.map(fișier => fișier)}}, sau îl puteți obține prin metoda de listare.",
               "file_type_array": "O serie de tipuri de fișiere care urmează să fie încărcate. Puteți utiliza {{upload1.files.map(fișier =>file.type)}} pentru a obține tipurile de fișiere din componenta de upload. ",
-              "target_file_name": "Folosit pentru a seta noul nume"
+              "target_file_name": "Folosit pentru a seta noul nume",
+              "overwrite": "Dacă suprascriem, vom înlocui fișierul cu cel nou. Dacă nu îl suprascriem, vom redenumi noul fișier cu un șir aleatoriu. "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "Array date fișiere",
             "file_ids": "Array ID fișier",
             "file_type_array": "Array tip fișier",
-            "target_file_name": "Nume nou"
+            "target_file_name": "Nume nou",
+            "overwrite": "Suprascrie când numele este duplicat"
           }
         },
         "menu": {
