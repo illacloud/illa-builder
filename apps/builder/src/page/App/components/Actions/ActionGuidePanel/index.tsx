@@ -33,7 +33,6 @@ import {
   categoryTitleStyle,
   guidePanelContainerStyle,
   guidePanelOutContainerStyle,
-  headerStyle,
   iconHotSpot,
   loadingContainerStyle,
   moreTipsStyle,
@@ -153,9 +152,6 @@ export const ActionGuidePanel: FC = () => {
     <>
       <div css={guidePanelOutContainerStyle}>
         <div css={guidePanelContainerStyle}>
-          <h5 css={headerStyle}>
-            {t("editor.action.panel.title.general.initial-title")}
-          </h5>
           <h6 css={categoryTitleStyle}>
             {t("editor.action.panel.label.general.connect-data-source")}
           </h6>
@@ -166,7 +162,7 @@ export const ActionGuidePanel: FC = () => {
                 key={type}
                 onClick={handleClickActionType(type)}
               >
-                <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
+                <Suspense>{getIconFromResourceType(type, "16px")}</Suspense>
                 <span css={categoryItemNameStyle}>
                   {getResourceNameFromResourceType(type)}
                 </span>
@@ -199,7 +195,7 @@ export const ActionGuidePanel: FC = () => {
                 key={type}
                 onClick={handleClickActionType(type)}
               >
-                <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
+                <Suspense>{getIconFromResourceType(type, "16px")}</Suspense>
                 <span css={categoryItemNameStyle}>
                   {getResourceNameFromResourceType(type)}
                 </span>
