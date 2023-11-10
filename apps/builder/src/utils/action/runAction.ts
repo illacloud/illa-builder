@@ -205,10 +205,23 @@ export const runActionWithExecutionResult = async (
       error: true,
       message: "An unknown error",
     }
-    runActionErrorForColla(actionType, actionContent, e)
     if (isILLAAPiError(e)) {
       runResult.message = e.data?.errorMessage || "An unknown error"
+      try {
+        if (e.data?.errorMessage.startsWith("run action error: ")) {
+          const arr = e.data?.errorMessage.split("run action error: ")
+          if (arr.length > 1) {
+            const error = JSON.parse(arr[1])
+            const errResponse = {
+              ...e,
+              data: error,
+            }
+            runActionErrorForColla(actionType, actionContent, errResponse)
+          }
+        }
+      } catch (e) {}
     }
+
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,
