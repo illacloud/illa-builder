@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}} or {{dataGrid1.page}}",
+              "page": "{{1}} or {{dataGrid1.page}}",
               "limit": "{{20}} or {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -708,7 +708,7 @@
               "file_name": "用于模糊查询文件",
               "file_id": "用于查询一个特定文件",
               "folder": "选择一个文件夹",
-              "page": "如果你需要服务器端分页，你可以使用此配置选项来设置要检索的数据的页数。 这是一个从0开始的索引值。",
+              "page": "如果你需要服务器端分页，你可以使用此配置选项来设置要检索的数据的页数。 这是一个从1开始的值。",
               "limit": "如果你需要服务器端分页，可以使用此配置选项来设置每页返回的数量。",
               "file_name_array": "一个由您想要上传的文件名组成的数组，包括文件扩展名，例如[file1.csv，file2.csv]。您可以使用上传组件直接获取此值，例如{{upload1.files.map(file => file.name)}。",
               "file_data_array": "您要上传的文件数据数组，可以通过{{upload1.value}}获得",
