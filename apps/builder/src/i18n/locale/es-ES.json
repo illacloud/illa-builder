@@ -714,7 +714,8 @@
               "file_data_array": "An array of the data of the files you want to upload. You can get it via {{upload1.value}}.",
               "file_ids": "An array of file IDs that you want to download. You can retrieve this value from the Drive Picker component using {{drivePicker1.value.map(file => fileID)}}, or you can obtain it through the list method.",
               "file_type_array": "An array of type of the files to be uploaded. You can use {{upload1.files.map(file =>file.type)}} to get the file types from upload component. ",
-              "target_file_name": "Used to set the new name"
+              "target_file_name": "Used to set the new name",
+              "overwrite": "If overwrite, we will replace the file with the new one. If not overwrite, we will rename the new file end with a random string. "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "File data array",
             "file_ids": "File ID array",
             "file_type_array": "File type array",
-            "target_file_name": "New name with extension"
+            "target_file_name": "New name with extension",
+            "overwrite": "Overwrite when the name is duplicate"
           }
         },
         "menu": {
