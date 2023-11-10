@@ -353,7 +353,6 @@ export const handleDownloadFromDriveResource = async (
           }
         }
       } catch (e) {
-        handleCollaPurchaseError(e, CollarModalType.TRAFFIC)
         return Promise.reject(e)
       }
     })
