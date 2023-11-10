@@ -212,7 +212,11 @@ export const runActionWithExecutionResult = async (
           const arr = e.data?.errorMessage.split("run action error: ")
           if (arr.length > 1) {
             const error = JSON.parse(arr[1])
-            runActionErrorForColla(actionType, actionContent, error)
+            const errResponse = {
+              ...e,
+              data: error,
+            }
+            runActionErrorForColla(actionType, actionContent, errResponse)
           }
         }
       } catch (e) {}
