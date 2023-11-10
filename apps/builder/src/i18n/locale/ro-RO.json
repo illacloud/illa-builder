@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}}",
+              "page": "{{1}} sau {{dataGrid1.page}}",
               "limit": "{{20}} sau {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(fișier => fișier.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -708,7 +708,7 @@
               "file_name": "Folosit pentru fişierele neclare.",
               "file_id": "Folosit pentru a afișa cu exactitate un fișier specific.",
               "folder": "Selectați un dosar pentru a funcționa. ",
-              "page": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de pagină pentru a prelua datele. Aceasta este o valoare de index care începe de la 0.",
+              "page": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de pagină pentru a prelua datele. Începe de la 1.",
               "limit": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de elemente de date care să fie returnate pe pagină.",
               "file_name_array": "Un array format din numele fișierelor pe care doriți să le încărcați, inclusiv extensiile fișierului, cum ar fi [file1.csv, fișier2. sv]. Puteți prelua direct această valoare folosind componenta de încărcare, cum ar fi {{upload1.files.map(fișier => fișier.name)}}.",
               "file_data_array": "O serie de date ale fişierelor pe care doriţi să le încărcaţi. O puteţi obţine prin intermediul {{upload1.value}}.",
