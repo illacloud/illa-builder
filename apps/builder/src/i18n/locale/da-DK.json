@@ -538,9 +538,14 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}}",
-              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
-            }
+              "page": "{{1}} eller {{dataGrid1.page}}",
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} eller {{drivePicker1.value.map(file => fileID)}}",
+              "target_file_name": "new_file.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} eller {{upload1.files.map(file =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -703,8 +708,13 @@
               "file_name": "Bruges til uklare matchende filer.",
               "file_id": "Bruges til præcist at liste en bestemt fil.",
               "folder": "Vælg en mappe at betjene. ",
-              "page": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille sidenummeret på data at hente. Dette er en indeksværdi, der starter fra 0.",
-              "limit": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille antallet af dataelementer, der skal returneres pr. side."
+              "page": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille sidenummeret på data til at hente. Det starter fra 1.",
+              "limit": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille antallet af dataelementer, der skal returneres pr. side.",
+              "file_name_array": "Et array bestående af navnene på de filer, du vil uploade, herunder filendelser, såsom [file1.csv, file2. sv]. Du kan direkte hente denne værdi ved hjælp af upload-komponenten, f.eks. {{upload1.files.map(file => file.name)}}.",
+              "file_data_array": "En vifte af data for de filer, du vil uploade. Du kan få det via {{upload1.value}}.",
+              "file_ids": "En række fil-ID'er, som du vil downloade. Du kan hente denne værdi fra drevvælgerkomponenten ved hjælp af {{drivePicker1. alue.map(file => fileID)}}, eller du kan få den via listemetoden.",
+              "file_type_array": "Et array af typen af de filer, der skal uploades. Du kan bruge {{upload1.files.map(file =>file.type)}} til at hente filtyperne fra upload-komponenten. ",
+              "target_file_name": "Bruges til at angive det nye navn"
             }
           },
           "advanced": {
@@ -755,7 +765,12 @@
             "file_id": "Fil ID",
             "folder": "Mappe",
             "page": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille sidenummeret på data at hente. Dette er en indeksværdi, der starter fra 0.",
-            "limit": "Grænse"
+            "limit": "Grænse",
+            "file_name_array": "Fil navn array",
+            "file_data_array": "Fil data array",
+            "file_ids": "Fil ID array",
+            "file_type_array": "Array af filtype",
+            "target_file_name": "Nyt navn"
           }
         },
         "menu": {
@@ -2004,6 +2019,14 @@
         "click_mask_close": "Klik maske for at lukke modal",
         "modal": {
           "blank": "Ingen ikoner"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv eller {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -2021,7 +2044,9 @@
           "data_source": "En datakilde til at definere billedelementer ved brug af kortlagt evaluering. Brug enten en række værdier eller et objekt af nøgler knyttet til arrays. For eksempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan også bruge data i handlinger. For eksempel: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Understøtter base64-data, rådata, kortlagte data i tabellen. "
+          "file_data": "Understøtter base64-data, rådata, kortlagte data i tabellen. ",
+          "file_name": "Navnet på den fil, du vil uploade, herunder filendelsen, såsom fil. sv. Du kan få denne værdi ved hjælp af upload-komponenten, som {{upload1.files[0].name}}. ",
+          "file_type": "Typen af den fil, der skal uploades"
         },
         "variable": {
           "available_in_objects": "Tilgængelig i objekter og arrays. Stien til attributten i objektet: {{objectName.attributeName}}. Indekset for værdien i et array: {{1}}. Et array i objektet: {{objectName.attributeName.1}}",
