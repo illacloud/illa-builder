@@ -1,8 +1,20 @@
 import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
 import { isString } from "@illa-design/react"
-import { ActionType } from "../redux/currentApp/action/actionState"
-import { IActionRunResultResponseData } from "../services/action"
+import {
+  ILLADriveAction,
+  ILLADriveActionTypeContent,
+  ILLA_DRIVE_ACTION_REQUEST_TYPE,
+} from "@/redux/currentApp/action/illaDriveAction"
+import {
+  ClientS3,
+  S3Action,
+  S3ActionTypeContent,
+} from "@/redux/currentApp/action/s3Action"
+import {
+  ActionContent,
+  ActionType,
+} from "../redux/currentApp/action/actionState"
 
 const DISPLAY_NAME_REGEX = /^([a-zA-Z_$])([a-zA-Z0-9_$])*$/
 
@@ -88,122 +100,26 @@ export const isILLAAPiError = (
   )
 }
 
-export const isClientS3ActionResponse = (
+export const isClientS3ActionContent = (
   actionType: ActionType,
-  response: unknown,
-): response is AxiosResponse<BlobPart, unknown> => {
-  if (!Array.isArray(response) && actionType === "s3") {
-    return true
-  }
-  return false
+  actionContent: ActionContent,
+): actionContent is S3Action<S3ActionTypeContent> => {
+  return (
+    actionType === "s3" &&
+    "commands" in actionContent &&
+    ClientS3.includes(actionContent.commands)
+  )
 }
 
-export const isServerS3ActionResponse = (
-  isClientS3: boolean,
-  response: unknown,
-): response is AxiosResponse<
-  IActionRunResultResponseData<Record<string, any>[]>,
-  unknown
-> => {
-  return !isClientS3
-}
-
-export const isS3MultiActionResponse = (
+export const isDriveActionContent = (
   actionType: ActionType,
-  response: unknown,
-): response is (
-  | AxiosResponse<BlobPart, unknown>
-  | AxiosResponse<ILLAApiError, any>
-)[] => {
-  if (Array.isArray(response) && actionType === "s3") {
-    return true
-  }
-  return false
-}
-
-export const isRestApiActionResponse = (
-  actionType: ActionType,
-  response: unknown,
-): response is AxiosResponse<
-  IActionRunResultResponseData<Record<string, any>[]>,
-  unknown
-> => {
-  if (actionType === "restapi") {
-    return true
-  }
-  return false
-}
-
-export const isHuggingFaceActionResponse = (
-  actionType: ActionType,
-  response: unknown,
-): response is AxiosResponse<
-  IActionRunResultResponseData<Record<string, any>[]>,
-  unknown
-> => {
-  if (actionType === "huggingface") {
-    return true
-  }
-  return false
-}
-
-export const isHuggingFaceEndPointActionResponse = (
-  actionType: ActionType,
-  response: unknown,
-): response is AxiosResponse<
-  IActionRunResultResponseData<Record<string, any>[]>,
-  unknown
-> => {
-  if (actionType === "hfendpoint") {
-    return true
-  }
-  return false
-}
-
-export const isLikeRestApiActionResponse = (
-  actionType: ActionType,
-  response: unknown,
-): response is AxiosResponse<
-  IActionRunResultResponseData<Record<string, any>[]>,
-  unknown
-> => {
-  if (
-    isRestApiActionResponse(actionType, response) ||
-    isHuggingFaceActionResponse(actionType, response) ||
-    isHuggingFaceEndPointActionResponse(actionType, response)
-  ) {
-    return true
-  }
-  return false
-}
-
-export const isGraphqlActionResponse = (
-  actionType: ActionType,
-  response: unknown,
-): response is AxiosResponse<
-  IActionRunResultResponseData<Record<string, any>[]>,
-  unknown
-> => {
-  if (actionType === "graphql") {
-    return true
-  }
-  return false
-}
-
-export const isDatabaseActionResponse = (
-  actionType: ActionType,
-  response: unknown,
-): response is AxiosResponse<
-  IActionRunResultResponseData<Record<string, any>[]>,
-  unknown
-> => {
-  if (
-    !isClientS3ActionResponse(actionType, response) &&
-    !isS3MultiActionResponse(actionType, response) &&
-    !isLikeRestApiActionResponse(actionType, response) &&
-    !isGraphqlActionResponse(actionType, response)
-  ) {
-    return true
-  }
-  return false
+  actionContent: ActionContent,
+): actionContent is ILLADriveAction<ILLADriveActionTypeContent> => {
+  return (
+    actionType === "illadrive" &&
+    "operation" in actionContent &&
+    Object.values(ILLA_DRIVE_ACTION_REQUEST_TYPE).includes(
+      actionContent.operation as ILLA_DRIVE_ACTION_REQUEST_TYPE,
+    )
+  )
 }

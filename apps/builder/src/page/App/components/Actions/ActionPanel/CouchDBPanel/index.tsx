@@ -14,7 +14,7 @@ import {
   CouchDBMethodsInitialValueMap,
   CouchDBPanelMethodOptions,
 } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/values"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
@@ -123,7 +123,7 @@ const CouchDBPanel: FC = () => {
 
   return (
     <div css={panelContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         <SingleTypeComponent
           title={t("editor.action.panel.label.couchdb.database")}

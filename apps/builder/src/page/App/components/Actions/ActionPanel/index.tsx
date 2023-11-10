@@ -95,6 +95,10 @@ const GlobalDataPanel = lazy(
   () => import("@/page/App/components/Actions/ActionPanel/GlobalDataPanel"),
 )
 
+const ILLADrivePanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/ILLADrivePanel"),
+)
+
 export const ActionPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction)
   const selectedAction = useSelector(getSelectedAction)!
@@ -189,6 +193,8 @@ export const ActionPanel: FC = () => {
         return <AIAgentPanel />
       case "globalData":
         return <GlobalDataPanel />
+      case "illadrive":
+        return <ILLADrivePanel />
       default:
         return <></>
     }

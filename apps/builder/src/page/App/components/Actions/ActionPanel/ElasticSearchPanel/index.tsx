@@ -7,7 +7,7 @@ import {
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
@@ -108,7 +108,7 @@ const ElasticSearchPanel: FC = () => {
 
   return (
     <div css={esContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         <SingleTypeComponent
           componentType="select"

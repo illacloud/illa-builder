@@ -22,8 +22,13 @@ import {
   BooleanTypes,
   BooleanValueMap,
 } from "@/redux/currentApp/action/huggingFaceAction"
+import {
+  ILLADriveAction,
+  ILLADriveActionTypeContent,
+} from "@/redux/currentApp/action/illaDriveAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { isObject } from "@/utils/typeHelper"
+import { transformDriveData } from "./driveActions"
 
 const getAppwriteFilterValue = (value: string) => {
   const val = value.trim().replace(/^\[|\]$/g, "")
@@ -298,6 +303,11 @@ export const transformDataFormat = (
         variables: contents.variables,
         virtualResource: contents.virtualResource,
       }
+    }
+    case "illadrive": {
+      return transformDriveData(
+        contents as ILLADriveAction<ILLADriveActionTypeContent>,
+      )
     }
     default:
       return contents
