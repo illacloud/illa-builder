@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}} eller {{dataGrid1.page}}",
+              "page": "{{1}} eller {{dataGrid1.page}}",
               "limit": "{{20}} eller {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -708,7 +708,7 @@
               "file_name": "Brukes for fuzzy samsvarende filer.",
               "file_id": "Brukes til nøyaktig å liste en bestemt fil.",
               "folder": "Velg en mappe du vil operere. ",
-              "page": "Hvis du trenger en brukerside for serversiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Dette er en indeksverdi som starter fra 0.",
+              "page": "Hvis du trenger brukersiden på tjenersiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Den starter fra 1.",
               "limit": "Hvis du trenger gulegatsidesidering kan du bruke dette konfigurasjonsalternativet for å angi antall data objekter som skal returneres per side.",
               "file_name_array": "En liste bestående av navnene på filene du vil laste opp, inkludert filutvidelsene, som [file1.csv, file2. sv]. Du kan hente denne verdien ved å bruke opplastingskomponenten, som {{upload1.files.map(fil => file.name)}}.",
               "file_data_array": "En rekke med data for filene du vil laste opp. Du kan få den via {{upload1.value}}.",
