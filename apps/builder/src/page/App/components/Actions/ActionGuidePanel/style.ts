@@ -16,16 +16,6 @@ export const guidePanelContainerStyle = css`
   margin: 0 auto;
 `
 
-export const headerStyle = css`
-  color: ${getColor("grayBlue", "02")};
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
-  width: 552px;
-  margin: 0;
-  padding: 0;
-`
-
 export const categoryTitleStyle = css`
   padding: 0;
   padding-top: 16px;
@@ -47,8 +37,7 @@ export const categoryItemContainerStyle = css`
 export const basicButtonStyle = css`
   display: flex;
   width: 100%;
-  height: 48px;
-  padding: 12px 16px;
+  padding: 8px 16px;
   gap: 12px;
   align-items: center;
   border: 1px solid ${getColor("grayBlue", "08")};
@@ -65,24 +54,24 @@ export const basicButtonStyle = css`
 
 export const iconHotSpot = css`
   font-size: 16px;
-  padding: 4px;
-  display: block;
-  width: 24px;
-  height: 24px;
+  display: flex;
+  flex: none;
+  justify-content: center;
+  align-items: center;
   color: ${getColor("techPurple", "01")};
 `
 
 export const moreTipsStyle = css`
   font-weight: 500;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 20px;
   color: ${getColor("techPurple", "01")};
 `
 
 export const categoryItemNameStyle = css`
   font-weight: 500;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 20px;
   color: ${getColor("grayBlue", "02")};
 `
 

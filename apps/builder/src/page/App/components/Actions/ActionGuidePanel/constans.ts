@@ -12,4 +12,7 @@ export const MORE_DATA_TYPE: ActionType[] = [
   "aiagent",
   "transformer",
   "globalData",
+  "illadrive",
 ]
+
+export const ONLY_CLOUD_MODE_DATA_TYPE: ActionType[] = ["aiagent", "illadrive"]

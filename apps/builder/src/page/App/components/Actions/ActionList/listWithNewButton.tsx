@@ -137,6 +137,40 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
           dispatch(configActions.changeSelectedAction(createActionData))
           break
         }
+        case "illadrive": {
+          const displayName = DisplayNameGenerator.generateDisplayName(type)
+          const initialContent = getInitialContent(type)
+          const data: Omit<ActionItem<ActionContent>, "actionID"> = {
+            actionType: type,
+            displayName,
+            content: initialContent,
+            isVirtualResource: true,
+            ...actionItemInitial,
+          }
+          if (isGuideMode) {
+            const createActionData: ActionItem<ActionContent> = {
+              ...data,
+              actionID: v4(),
+            }
+            dispatch(actionActions.addActionItemReducer(createActionData))
+            dispatch(configActions.changeSelectedAction(createActionData))
+            return
+          }
+          try {
+            const { data: responseData } = await fetchCreateAction(data)
+            message.success({
+              content: t("editor.action.action_list.message.success_created"),
+            })
+            dispatch(actionActions.addActionItemReducer(responseData))
+            dispatch(configActions.changeSelectedAction(responseData))
+          } catch (_e) {
+            message.error({
+              content: t("editor.action.action_list.message.failed"),
+            })
+            DisplayNameGenerator.removeDisplayName(displayName)
+          }
+          break
+        }
         default: {
           setGeneratorVisible(true)
           setCurrentActionType(type)
@@ -192,19 +226,34 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
               onClick={handleClickActionType("globalData")}
             />
             {isCloudVersion && (
-              <DropListItem
-                key="aiagent"
-                value="aiagent"
-                title={
-                  <div css={createDropListItemContainerStyle}>
-                    <span css={prefixIconContainerStyle}>
-                      {getIconFromResourceType("aiagent", "16px")}
-                    </span>
-                    {t("editor.action.panel.label.option.general.ai-agent")}
-                  </div>
-                }
-                onClick={handleClickActionType("aiagent")}
-              />
+              <>
+                <DropListItem
+                  key="aiagent"
+                  value="aiagent"
+                  title={
+                    <div css={createDropListItemContainerStyle}>
+                      <span css={prefixIconContainerStyle}>
+                        {getIconFromResourceType("aiagent", "16px")}
+                      </span>
+                      {t("editor.action.panel.label.option.general.ai-agent")}
+                    </div>
+                  }
+                  onClick={handleClickActionType("aiagent")}
+                />
+                <DropListItem
+                  key="illaDrive"
+                  value="illaDrive"
+                  title={
+                    <div css={createDropListItemContainerStyle}>
+                      <span css={prefixIconContainerStyle}>
+                        {getIconFromResourceType("illadrive", "16px")}
+                      </span>
+                      ILLA Drive
+                    </div>
+                  }
+                  onClick={handleClickActionType("illadrive")}
+                />
+              </>
             )}
           </DropList>
         }

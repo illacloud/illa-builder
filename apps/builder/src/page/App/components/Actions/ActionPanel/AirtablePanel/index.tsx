@@ -13,7 +13,7 @@ import { GetRecordPart } from "@/page/App/components/Actions/ActionPanel/Airtabl
 import { ListRecordsPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/ListRecordsPart"
 import { UpdateMultipleRecordsPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/UpdateMultipleRecordsPart"
 import { UpdateRecordPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/UpdateRecordPart"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
@@ -80,7 +80,7 @@ const AirtablePanel: FC = () => {
 
   return (
     <div css={panelContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         <InputEditor
           title={t("editor.action.panel.label.airtable.base_id")}

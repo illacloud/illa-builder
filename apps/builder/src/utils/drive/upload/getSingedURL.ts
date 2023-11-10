@@ -10,6 +10,8 @@ import {
   handleCollaPurchaseError,
 } from "@illa-public/upgrade-modal"
 import axios from "axios"
+import { Zip, ZipPassThrough } from "fflate"
+import { createWriteStream } from "streamsaver"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
@@ -247,6 +249,118 @@ export const uploadFileToDrive = async (
     }
     message.error({
       content: i18n.t("editor.inspect.setter_message.uploadfail"),
+    })
+  }
+}
+
+export const handleFileToDriveResource = async (
+  queryID: string,
+  fileID: string,
+  uploadURL: string,
+  file: File,
+  abortSignal: AbortSignal,
+) => {
+  try {
+    updateFileDetailStore.updateFileDetailInfo(queryID, {
+      loaded: 0,
+      total: file.size,
+      status: FILE_ITEM_DETAIL_STATUS_IN_UI.PROCESSING,
+    })
+
+    const processCallback = (loaded: number) => {
+      updateFileDetailStore.updateFileDetailInfo(queryID!, {
+        loaded: loaded,
+        status: FILE_ITEM_DETAIL_STATUS_IN_UI.PROCESSING,
+      })
+    }
+    const uploadResult = await updateFilesToDrive(
+      uploadURL,
+      file,
+      processCallback,
+      abortSignal,
+    )
+    return {
+      fileID,
+      status: uploadResult,
+    }
+  } catch (e) {
+    const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
+    if (res) return
+    if (isILLAAPiError(e)) {
+      if (e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_VOLUME) {
+        message.error({
+          content: i18n.t("editor.inspect.setter_message.noStorage"),
+        })
+      }
+    }
+    message.error({
+      content: i18n.t("editor.inspect.setter_message.uploadfail"),
+    })
+    throw e
+  }
+}
+
+export const handleDownloadFromDriveResource = async (
+  downloadInfo: { name: string; downloadURL: string }[],
+  asZip?: boolean,
+) => {
+  if (!Array.isArray(downloadInfo) || downloadInfo.length === 0) {
+    return Promise.reject()
+  }
+  let promise = Promise.resolve()
+  const zip = new Zip()
+  const zipName = `illa_drive_download_${new Date().getTime()}.zip`
+  const zipReadableStream = new ReadableStream({
+    start(controller) {
+      zip.ondata = (error, data, final) => {
+        if (error) {
+          controller.error(error)
+        } else {
+          controller.enqueue(data)
+          if (final) {
+            controller.close()
+          }
+        }
+      }
+    },
+  })
+  if (asZip) {
+    const streamsaver = createWriteStream(zipName)
+    zipReadableStream.pipeTo(streamsaver)
+  }
+
+  for (let i = 0; i < downloadInfo.length; i++) {
+    const { name, downloadURL } = downloadInfo[i]
+    promise = promise.then(async () => {
+      try {
+        const fileResponse = await fetch(downloadURL)
+
+        if (!asZip && window.WritableStream && fileResponse.body?.pipeTo) {
+          const fileStream = createWriteStream(name)
+          return fileResponse.body.pipeTo(fileStream)
+        }
+        if (asZip) {
+          const zipStream = new ZipPassThrough(name)
+          zip.add(zipStream)
+          const fileReader = fileResponse.body?.getReader()
+          while (fileReader) {
+            const { value, done } = await fileReader.read()
+            if (done) {
+              zipStream.push(new Uint8Array(0), true)
+              return Promise.resolve()
+            }
+            zipStream.push(value)
+          }
+        }
+      } catch (e) {
+        handleCollaPurchaseError(e, CollarModalType.TRAFFIC)
+        return Promise.reject(e)
+      }
+    })
+  }
+  if (asZip) {
+    promise.then(() => {
+      zip.end()
     })
   }
 }
