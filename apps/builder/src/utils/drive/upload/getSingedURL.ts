@@ -304,7 +304,7 @@ export const handleDownloadFromDriveResource = async (
   downloadInfo: { name: string; downloadURL: string }[],
   asZip?: boolean,
 ) => {
-  if (!Array.isArray(downloadInfo)) {
+  if (!Array.isArray(downloadInfo) || downloadInfo.length === 0) {
     return Promise.reject()
   }
   let promise = Promise.resolve()

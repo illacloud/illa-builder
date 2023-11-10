@@ -4,7 +4,7 @@ import i18n from "@/i18n/config"
 export enum ILLA_DRIVE_ACTION_REQUEST_TYPE {
   LIST = "ListFiles",
   DOWNLOAD_ONE = "GetDownloadAddress",
-  DOWNLOAD_MULTIPLE = "GetMultipleDownloadAddres",
+  DOWNLOAD_MULTIPLE = "GetMultipleDownloadAddress",
   DELETE_ONE = "DeleteFile",
   DELETE_MULTIPLE = "DeleteMultipleFile",
   UPLOAD = "GetUploadAddress",
