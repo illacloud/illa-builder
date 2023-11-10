@@ -714,7 +714,8 @@
               "file_data_array": "Pole dat souborů, které chcete nahrát. Můžete je získat přes {{upload1.value}}.",
               "file_ids": "Pole ID souborů, které chcete stáhnout. Tuto hodnotu můžete získat z komponenty Výběr disku pomocí {{drivePicker1. alue.map(file => fileID)}}, nebo ji můžete získat pomocí metody seznamu.",
               "file_type_array": "Pole typu souborů, které mají být nahrány. Můžete použít {{upload1.files.map(file =>file.type)}} pro získání typů souborů z nahrávání komponenty. ",
-              "target_file_name": "Používá se k nastavení nového jména"
+              "target_file_name": "Používá se k nastavení nového jména",
+              "overwrite": "Pokud bude soubor přepsán, nahradíme soubor novým. Pokud jej nepřepsáme, přejmenujeme na konec nového souboru náhodným řetězcem. "
             }
           },
           "advanced": {
@@ -770,7 +771,8 @@
             "file_data_array": "Pole dat souboru",
             "file_ids": "Pole ID souboru",
             "file_type_array": "Pole typu souboru",
-            "target_file_name": "Nové jméno"
+            "target_file_name": "Nové jméno",
+            "overwrite": "Přepsat, když je název duplicitní"
           }
         },
         "menu": {
