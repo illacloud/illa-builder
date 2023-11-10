@@ -1,5 +1,5 @@
 import { builderRequest } from "@illa-public/illa-net"
-import { AppInfoShape, ComponentNode } from "@illa-public/public-types"
+import { AppInfoShape, ComponentTreeNode } from "@illa-public/public-types"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { useSelector } from "react-redux"
 import useSWR from "swr"
@@ -71,7 +71,7 @@ export const fetchUpdateAppConfig = async (
 
 interface IAppCreateRequestData {
   appName: string
-  initScheme: ComponentNode
+  initScheme: ComponentTreeNode
 }
 
 export const fetchCreateApp = (data: IAppCreateRequestData, teamID: string) => {
