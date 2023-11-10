@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}}",
+              "page": "{{1}} nebo {{dataGrid1.page}}",
               "limit": "{{20}} nebo {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(soubor => soubor.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -708,7 +708,7 @@
               "file_name": "Používá se pro zábavné odpovídající soubory.",
               "file_id": "Používá se pro přesný seznam konkrétního souboru.",
               "folder": "Vyberte složku pro operaci. ",
-              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení dat. Toto je indexová hodnota, která začíná od 0.",
+              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení. Začíná 1.",
               "limit": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení počtu položek, které mají být vráceny na stránku.",
               "file_name_array": "Pole obsahující názvy souborů, které chcete nahrát, včetně přípony souborů, jako např. [file1.csv, file2. sv]. Tuto hodnotu můžete přímo načíst pomocí nahrání komponenty, jako je {{upload1.files.map(file => file.name)}}.",
               "file_data_array": "Pole dat souborů, které chcete nahrát. Můžete je získat přes {{upload1.value}}.",
