@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}}",
+              "page": "{{1}} oder {{dataGrid1.page}}",
               "limit": "{{20}} oder {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -708,7 +708,7 @@
               "file_name": "Wird für verschwommene Dateien verwendet.",
               "file_id": "Wird verwendet, um eine bestimmte Datei genau aufzulisten.",
               "folder": "Wählen Sie einen zu bearbeitenden Ordner. ",
-              "page": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der Daten festlegen. Dies ist ein Indexwert, der bei 0 beginnt.",
+              "page": "Wenn Sie serverseitige Seitenumgebung benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der zu ermittelnden Daten festlegen. Sie beginnt ab 1.",
               "limit": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption festlegen, wie viele Datenelemente pro Seite zurückgegeben werden sollen.",
               "file_name_array": "Ein Array bestehend aus den Namen der Dateien, die Sie hochladen möchten, inklusive der Dateierweiterungen, wie z.B. [file1.csv, file2. Sie können diesen Wert direkt über die Upload-Komponente wie {{upload1.files.map(file => file.name)}} abrufen.",
               "file_data_array": "Ein Array der Daten der Dateien, die Sie hochladen möchten. Sie können sie über {{upload1.value}} erhalten.",
