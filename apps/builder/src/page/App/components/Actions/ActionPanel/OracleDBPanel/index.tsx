@@ -5,7 +5,7 @@ import { Trigger } from "@illa-design/react"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   actionItemContainer,
@@ -62,7 +62,7 @@ const OracleDBPanel: FC = () => {
 
   return (
     <div css={panelContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         <InputEditor
           style={{ height: "88px" }}

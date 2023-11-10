@@ -534,7 +534,18 @@
             },
             "ai-agent": {
               "value": "Arvo"
-            }
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{1}} or {{dataGrid1.page}}",
+              "limit": "{{20}} or {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} tai {{drivePicker1.value.map(file => fileID)}}",
+              "target_file_name": "new_file.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} tai {{upload1.files.map(file =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -626,6 +637,23 @@
               "create-resource": "Luo resurssista",
               "unsafe": "Epäturvallinen",
               "safe": "Turvallinen"
+            },
+            "drive": {
+              "method": {
+                "list": "Lista",
+                "upload_file": "Lataa 1 tiedosto",
+                "upload_multi_file": "Lataa useita tiedostoja",
+                "download": "Lataa",
+                "download_multi_file": "Lataa useita tiedostoja",
+                "delete": "Poista 1 tiedosto",
+                "delete_multi_file": "Poista useita tiedostoja",
+                "update": "Nimeä tiedosto uudelleen"
+              },
+              "file_type": {
+                "none": "Ei Mitään",
+                "by_id": "Tunnuksen Mukaan",
+                "by_name": "Nimen mukaan"
+              }
             }
           },
           "restapi": {
@@ -673,6 +701,21 @@
             },
             "general": {
               "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
+            },
+            "drive": {
+              "method": "Käytetään sen määrittämiseen, mitä toimintoja aiot suorittaa asemalla.",
+              "filter_type": "Jos haluat suodattaa tiedostoja, voit käyttää tätä asetusta määrittääksesi suodatuksen tiedoston nimen tai tiedoston tunnuksen mukaan. Tiedostonimi käyttää fuzzy matching, kun taas tiedoston ID käyttää tarkkaa täsmäämistä.",
+              "file_name": "Käytetään sumeisiin tiedostoihin.",
+              "file_id": "Käytetään tietyn tiedoston täsmälliseen luetteloon.",
+              "folder": "Valitse kansio jota haluat käyttää. ",
+              "page": "Jos tarvitset palvelinpuolen välimuistin, voit käyttää tätä määritystä asettaaksesi tietojen sivun numeron noutamaan. Se alkaa 1.",
+              "limit": "Jos tarvitset palvelinpuolen välimuistin, voit käyttää tätä määritystä asettaaksesi tietoalkioiden määrän joka palautetaan per sivu.",
+              "file_name_array": "Taulukko, joka koostuu tiedostojen nimistä, jotka haluat ladata, mukaan lukien tiedostopäätteet, kuten [file1.csv, file2. sv]. Voit hakea tämän arvon suoraan latauskomponentin avulla, kuten {{upload1.files.map(file => file.name)}}.",
+              "file_data_array": "Joukko tietoja tiedostoista, joita haluat ladata. Voit saada sen {{upload1.value}} kautta. Voit saada sen kautta",
+              "file_ids": "Joukko tiedostojen tunnuksia, jotka haluat ladata. Voit hakea tämän arvon Drive Picker -komponentista käyttäen {{{drivePicker1. alue.map(file => fileID)}}, tai voit saada sen listan kautta.",
+              "file_type_array": "Joukko tiedostotyyppejä, jotka ladataan. Voit käyttää {{upload1.files.map(file =>file.type)}} saadaksesi tiedostotyypit ladattavan komponentin kautta. ",
+              "target_file_name": "Käytetään uuden nimen asettamiseen",
+              "overwrite": "Jos ylikirjoitus, korvaamme tiedoston uudella tiedostolla. Jos sitä ei ylikirjoiteta, nimetään uusi tiedosto uudelleen satunnaisella merkkijonolla. "
             }
           },
           "advanced": {
@@ -715,6 +758,21 @@
             "connect-data-source": "Yhdistä tietokantaan tai apiin",
             "more-type": "Enemmän tietolähteitä",
             "safe_mode": "Tila"
+          },
+          "drive": {
+            "method": "Menetelmä",
+            "filter_type": "Suodattimen tyyppi",
+            "file_name": "Tiedoston nimi",
+            "file_id": "Tiedoston ID",
+            "folder": "Kansio",
+            "page": "Jos tarvitset palvelimen puolella olevaa sivua, voit käyttää tätä asetusta asettaaksesi tietojen sivun numeron noutamaan. Tämä on indeksin arvo, joka alkaa 0.",
+            "limit": "Raja",
+            "file_name_array": "Tiedoston nimi taulukko",
+            "file_data_array": "Tiedostojen kaavio",
+            "file_ids": "Tiedoston ID taulukko",
+            "file_type_array": "Tiedostotyypin taulukko",
+            "target_file_name": "Uusi nimi",
+            "overwrite": "Korvaa kun nimi on kaksoiskappale"
           }
         },
         "menu": {
@@ -1963,6 +2021,14 @@
         "click_mask_close": "Sulje modaali napsauttamalla maskia",
         "modal": {
           "blank": "Ei kuvakkeita"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv tai {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -1980,7 +2046,9 @@
           "data_source": "Tietolähde kuvan kohteiden määrittämiseksi käyttäen kartoitettua arviointia. Käytä joko array arvoja tai määritystä avaimista, jotka on kartoitettu. Esimerkiksi: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Voit myös käyttää tietoja toiminnoissa. Esimerkiksi: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Tuki base64-tiedot, raaka data, kartoitettu tiedot taulukosta. "
+          "file_data": "Tuki base64-tiedot, raaka data, kartoitettu tiedot taulukosta. ",
+          "file_name": "Tiedoston nimi, jonka haluat ladata, mukaan lukien tiedostopääte, kuten tiedosto. sv. Voit saada tämän arvon käyttämällä latauskomponenttia, kuten {{upload1.files[0].name}}. ",
+          "file_type": "The type of the file to be loaded"
         },
         "variable": {
           "available_in_objects": "Saatavilla kohteissa ja taulukoissa. Attribuutin polku objektissa: {{objectName.attributeName}}. Arvon indeksi taulukossa: {{1}}. An array in the object: {{objectName.attributeName.1}}",

@@ -534,7 +534,18 @@
             },
             "ai-agent": {
               "value": "Цінність"
-            }
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{1}} or {{dataGrid1.page}}",
+              "limit": "{{20}} or {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} or {{drivePicker1.value.map(file => fileID)}}",
+              "target_file_name": "new_file.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} or {{upload1.files.map(file =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -626,6 +637,23 @@
               "create-resource": "Create from resource",
               "unsafe": "Unsafe",
               "safe": "Safe"
+            },
+            "drive": {
+              "method": {
+                "list": "List files",
+                "upload_file": "Upload 1 file",
+                "upload_multi_file": "Upload multiple files",
+                "download": "Download 1 file",
+                "download_multi_file": "Download multiple files",
+                "delete": "Delete 1 file",
+                "delete_multi_file": "Delete multiple files",
+                "update": "Rename file"
+              },
+              "file_type": {
+                "none": "None",
+                "by_id": "By ID",
+                "by_name": "By name"
+              }
             }
           },
           "restapi": {
@@ -673,6 +701,21 @@
             },
             "general": {
               "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
+            },
+            "drive": {
+              "method": "Used to set what actions you plan to perform on the drive.",
+              "filter_type": "If you want to filter files, you can use this configuration option to specify filtering by file name or file ID. File name uses fuzzy matching, while file ID uses exact matching.",
+              "file_name": "Used for fuzzy matching files.",
+              "file_id": "Used to accurately list a specific file.",
+              "folder": "Select a folder to operate. ",
+              "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. It starts from 1.",
+              "limit": "If you need server-side pagination, you can use this configuration option to set the number of data items to be returned per page.",
+              "file_name_array": "An array consisting of the names of the files you want to upload, including the file extensions, such as [file1.csv, file2.csv]. You can directly retrieve this value using the upload component, like {{upload1.files.map(file => file.name)}}.",
+              "file_data_array": "An array of the data of the files you want to upload. You can get it via {{upload1.value}}.",
+              "file_ids": "An array of file IDs that you want to download. You can retrieve this value from the Drive Picker component using {{drivePicker1.value.map(file => fileID)}}, or you can obtain it through the list method.",
+              "file_type_array": "An array of type of the files to be uploaded. You can use {{upload1.files.map(file =>file.type)}} to get the file types from upload component. ",
+              "target_file_name": "Used to set the new name",
+              "overwrite": "If overwrite, we will replace the file with the new one. If not overwrite, we will rename the new file end with a random string. "
             }
           },
           "advanced": {
@@ -715,6 +758,21 @@
             "connect-data-source": "Connect to database or api",
             "more-type": "More type of data sources",
             "safe_mode": "Mode"
+          },
+          "drive": {
+            "method": "Method",
+            "filter_type": "Filter type",
+            "file_name": "File name",
+            "file_id": "File ID",
+            "folder": "Folder",
+            "page": "Page",
+            "limit": "Limit",
+            "file_name_array": "File name array",
+            "file_data_array": "File data array",
+            "file_ids": "File ID array",
+            "file_type_array": "File type array",
+            "target_file_name": "New name with extension",
+            "overwrite": "Overwrite when the name is duplicate"
           }
         },
         "menu": {
@@ -1963,6 +2021,14 @@
         "click_mask_close": "Маска для закриття",
         "modal": {
           "blank": "Без піктограм"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv or {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -1980,7 +2046,9 @@
           "data_source": "Джерело даних для визначення елементів зображення за допомогою зіставленої оцінки. Використовуйте масив значень або об’єкта клавіш, які відображені в масивах. Наприклад: {{[{ x:1, y:1 },{ x:2, y:2 },...]}. Також ви можете використовувати дані в дії. Наприклад: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Підтримка даних base64, необроблені дані, зіставлені дані таблиці. "
+          "file_data": "Підтримка даних base64, необроблені дані, зіставлені дані таблиці. ",
+          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. ",
+          "file_type": "The type of the file to be uploaded"
         },
         "variable": {
           "available_in_objects": "Доступно в об'єктах і масивах. Шлях до атрибуту в об’єкті: {{objectName.attributeName}}. Індекс значення в масиві: {{1}}. Масив в об’єкті: {{objectName.attributeName.1}}",

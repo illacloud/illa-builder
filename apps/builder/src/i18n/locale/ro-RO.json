@@ -534,7 +534,18 @@
             },
             "ai-agent": {
               "value": "Valoare"
-            }
+            },
+            "drive": {
+              "file_name": "illa.png",
+              "file_id": "{{drivePicker1.value[0].fileID}}",
+              "page": "{{1}} sau {{dataGrid1.page}}",
+              "limit": "{{20}} sau {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(fișier => fișier.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} sau {{drivePicker1.value.map(file => fileID)}}",
+              "target_file_name": "fișier_nou.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} sau {{upload1.files.map(fișier =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -626,6 +637,23 @@
               "create-resource": "Creează din resurse",
               "unsafe": "Nesigur",
               "safe": "Sigur"
+            },
+            "drive": {
+              "method": {
+                "list": "Listează fișierele",
+                "upload_file": "Încărcați un fișier",
+                "upload_multi_file": "Încarcă mai multe fișiere",
+                "download": "Descărcare",
+                "download_multi_file": "Descarcă mai multe fișiere",
+                "delete": "Şterge 1 fişier",
+                "delete_multi_file": "Ştergeţi mai multe fişiere",
+                "update": "Redenumire fișier"
+              },
+              "file_type": {
+                "none": "Niciunul",
+                "by_id": "După ID",
+                "by_name": "După nume"
+              }
             }
           },
           "restapi": {
@@ -673,6 +701,21 @@
             },
             "general": {
               "safe_mode": "Când utilizați modul de siguranță, SQL poate doar variabilele de referință în locul variabilelor, de exemplu, unde numele = '{{input1.value}}'. Acest lucru îi împiedică pe utilizatori să compromită baza de date prin introducerea unor declarații ca \"tabelul de renunțare\". La utilizarea modului nesigur, cuvintele de sintaxă SQL pot fi de asemenea înlocuite cu variabile, cum ar fi unde {{input1.value}} {{input2.value}} '{{input3.value}}'. Cu toate acestea, în acest caz, baza de date poate fi compromisă de conținutul introdus de utilizator. Nu este recomandat să utilizaţi acest mod."
+            },
+            "drive": {
+              "method": "Folosit pentru a seta ce acțiuni plănuiți să efectuați pe șofer.",
+              "filter_type": "Dacă doriți să filtrați fișiere, puteți utiliza această opțiune de configurare pentru a specifica filtrarea după numele fișierului sau ID-ul fișierului. Numele fisierului foloseste potrivire fuzzy, in timp ce ID-ul fisierului foloseste potrivirea exacta.",
+              "file_name": "Folosit pentru fişierele neclare.",
+              "file_id": "Folosit pentru a afișa cu exactitate un fișier specific.",
+              "folder": "Selectați un dosar pentru a funcționa. ",
+              "page": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de pagină pentru a prelua datele. Începe de la 1.",
+              "limit": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de elemente de date care să fie returnate pe pagină.",
+              "file_name_array": "Un array format din numele fișierelor pe care doriți să le încărcați, inclusiv extensiile fișierului, cum ar fi [file1.csv, fișier2. sv]. Puteți prelua direct această valoare folosind componenta de încărcare, cum ar fi {{upload1.files.map(fișier => fișier.name)}}.",
+              "file_data_array": "O serie de date ale fişierelor pe care doriţi să le încărcaţi. O puteţi obţine prin intermediul {{upload1.value}}.",
+              "file_ids": "O serie de ID-uri de fișiere pe care doriți să le descărcați. Puteți prelua această valoare din componenta Drive Picker folosind {{drivePicker1. Ale.map(fișier => fișier)}}, sau îl puteți obține prin metoda de listare.",
+              "file_type_array": "O serie de tipuri de fișiere care urmează să fie încărcate. Puteți utiliza {{upload1.files.map(fișier =>file.type)}} pentru a obține tipurile de fișiere din componenta de upload. ",
+              "target_file_name": "Folosit pentru a seta noul nume",
+              "overwrite": "Dacă suprascriem, vom înlocui fișierul cu cel nou. Dacă nu îl suprascriem, vom redenumi noul fișier cu un șir aleatoriu. "
             }
           },
           "advanced": {
@@ -715,6 +758,21 @@
             "connect-data-source": "Conectează-te la baza de date sau API",
             "more-type": "Mai multe tipuri de surse de date",
             "safe_mode": "Mod"
+          },
+          "drive": {
+            "method": "Metodă",
+            "filter_type": "Tip filtru",
+            "file_name": "Nume fișier",
+            "file_id": "ID fișier",
+            "folder": "Dosar",
+            "page": "Pagină",
+            "limit": "Limită",
+            "file_name_array": "Array nume fișier",
+            "file_data_array": "Array date fișiere",
+            "file_ids": "Array ID fișier",
+            "file_type_array": "Array tip fișier",
+            "target_file_name": "Nume nou",
+            "overwrite": "Suprascrie când numele este duplicat"
           }
         },
         "menu": {
@@ -1963,6 +2021,14 @@
         "click_mask_close": "Faceți clic pe mască pentru a închide fereastra",
         "modal": {
           "blank": "Fără pictograme"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "fișier.csv sau {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -1980,7 +2046,9 @@
           "data_source": "O sursă de date pentru a defini elementele imaginii folosind evaluarea cartografiată. Utilizați fie o serie de valori, fie un obiect de chei mapate pe arrays. De exemplu: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . De asemenea, puteți utiliza datele în acțiuni. De exemplu: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Suportă date base64, date brute, date mapate din tabel. "
+          "file_data": "Suportă date base64, date brute, date mapate din tabel. ",
+          "file_name": "Numele fişierului pe care doriţi să-l încărcaţi, inclusiv extensia fişierului, cum ar fi fişierul. sv. Puteți obține această valoare folosind componenta de încărcare, cum ar fi {{upload1.files[0].name}}. ",
+          "file_type": "Tipul fișierului care urmează să fie încărcat"
         },
         "variable": {
           "available_in_objects": "Disponibil în obiecte și matrice. Calea atributului din obiect: {{objectName.attributeName}}. Indexul valorii dintr-un array: {{1}}. Un array în obiect: {{objectName.attributeName.1}}",
