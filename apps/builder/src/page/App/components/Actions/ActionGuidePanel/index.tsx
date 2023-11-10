@@ -21,7 +21,11 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionGenerator } from "../ActionGenerator"
-import { MORE_DATA_TYPE, RECOMMEND_RESOURCES } from "./constans"
+import {
+  MORE_DATA_TYPE,
+  ONLY_CLOUD_MODE_DATA_TYPE,
+  RECOMMEND_RESOURCES,
+} from "./constans"
 import {
   basicButtonStyle,
   categoryItemContainerStyle,
@@ -112,6 +116,31 @@ export const ActionGuidePanel: FC = () => {
 
           break
         }
+        case "illadrive": {
+          const displayName = DisplayNameGenerator.generateDisplayName(type)
+          const initialContent = getInitialContent(type)
+          const data: Omit<ActionItem<ActionContent>, "actionID"> = {
+            actionType: type,
+            displayName,
+            content: initialContent,
+            isVirtualResource: true,
+            ...actionItemInitial,
+          }
+          try {
+            const { data: responseData } = await fetchCreateAction(data)
+            message.success({
+              content: t("editor.action.action_list.message.success_created"),
+            })
+            dispatch(actionActions.addActionItemReducer(responseData))
+            dispatch(configActions.changeSelectedAction(responseData))
+          } catch (_e) {
+            message.error({
+              content: t("editor.action.action_list.message.failed"),
+            })
+            DisplayNameGenerator.removeDisplayName(displayName)
+          }
+          break
+        }
         default: {
           setGeneratorVisible(true)
           setCurrentActionType(type)
@@ -161,7 +190,8 @@ export const ActionGuidePanel: FC = () => {
 
           <section css={categoryItemContainerStyle}>
             {MORE_DATA_TYPE.filter((type) => {
-              if (!isCloudVersion) return type !== "aiagent"
+              if (!isCloudVersion)
+                return !ONLY_CLOUD_MODE_DATA_TYPE.includes(type)
               return type
             }).map((type) => (
               <button

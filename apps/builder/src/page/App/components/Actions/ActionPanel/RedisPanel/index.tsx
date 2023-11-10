@@ -2,11 +2,11 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import {
   actionItemContainer,
   redisContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -46,7 +46,7 @@ const RedisPanel: FC = () => {
 
   return (
     <div css={redisContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         <InputEditor
           style={{ maxHeight: "88px" }}

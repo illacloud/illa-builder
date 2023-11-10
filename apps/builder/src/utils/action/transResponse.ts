@@ -1,13 +1,14 @@
 import { AxiosResponse } from "axios"
-import { ActionType } from "@/redux/currentApp/action/actionState"
 import {
-  isClientS3ActionResponse,
-  isDatabaseActionResponse,
-  isGraphqlActionResponse,
-  isLikeRestApiActionResponse,
-  isS3MultiActionResponse,
-  isServerS3ActionResponse,
-} from "@/utils/typeHelper"
+  ActionContent,
+  ActionType,
+} from "@/redux/currentApp/action/actionState"
+import {
+  ILLADriveAction,
+  ILLADriveActionTypeContent,
+} from "@/redux/currentApp/action/illaDriveAction"
+import { isClientS3ActionContent } from "@/utils/typeHelper"
+import { transformDriveResFormat } from "./driveActions"
 
 const transMaybeFileResponse = (
   header: Record<string, unknown>,
@@ -109,47 +110,40 @@ const transLikeRestApiResponse = (response: AxiosResponse) => {
 
 export const transResponse = (
   actionType: ActionType,
-  response: unknown,
-  isClientS3: boolean,
+  actionContent: ActionContent,
+  response: AxiosResponse,
 ) => {
-  if (actionType === "s3") {
-    if (isClientS3 && isClientS3ActionResponse(actionType, response)) {
-      return transClientS3Response(response)
-    }
-    if (isClientS3 && isS3MultiActionResponse(actionType, response)) {
-      let multiResponse: {
-        responseHeaders: Record<string, unknown>[]
-        data: unknown[]
-      } = {
-        responseHeaders: [],
-        data: [],
+  switch (actionType) {
+    case "s3": {
+      const isClientS3 = isClientS3ActionContent(actionType, actionContent)
+      if (isClientS3) {
+        return transClientS3Response(response)
+      } else {
+        return {
+          data: response.data.Rows,
+        }
       }
-      return response.map((res) => {
-        const { responseHeaders, data } = transClientS3Response(res)
-        multiResponse.responseHeaders.push(responseHeaders)
-        multiResponse.data.push(data)
-      })
     }
-    if (isServerS3ActionResponse(isClientS3, response)) {
+    case "restapi":
+    case "huggingface":
+    case "hfendpoint": {
+      return transLikeRestApiResponse(response)
+    }
+    case "graphql": {
+      return {
+        data: response.data.Rows?.[0],
+      }
+    }
+    case "illadrive": {
+      return transformDriveResFormat(
+        response,
+        actionContent as ILLADriveAction<ILLADriveActionTypeContent>,
+      )
+    }
+    default: {
       return {
         data: response.data.Rows,
       }
     }
-  }
-  if (isLikeRestApiActionResponse(actionType, response)) {
-    return transLikeRestApiResponse(response)
-  }
-  if (isGraphqlActionResponse(actionType, response)) {
-    return {
-      data: response.data.Rows?.[0],
-    }
-  }
-  if (isDatabaseActionResponse(actionType, response)) {
-    return {
-      data: response.data.Rows,
-    }
-  }
-  return {
-    data: response,
   }
 }

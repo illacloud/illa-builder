@@ -21,7 +21,7 @@ import {
   sqlInputStyle,
   sqlTransStyle,
 } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -161,7 +161,7 @@ const MysqlLikePanel: FC = () => {
 
   return (
     <div css={mysqlContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         {isCloudVersion ? (
           <div css={sqlTransStyle}>

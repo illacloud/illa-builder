@@ -1,4 +1,3 @@
-import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
 import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
 import { fetchS3ActionRunResult } from "@/services/action"
@@ -75,12 +74,15 @@ export const fetchS3ClientResult = async (
           )
         })
         const uploadMultipleCommandResponse = await Promise.allSettled(requests)
-        result = uploadMultipleCommandResponse.map((res) => {
+        for (let i = 0; i < uploadMultipleCommandResponse.length; i++) {
+          let res = uploadMultipleCommandResponse[i]
           if (res.status === "fulfilled") {
-            return res.value
+            result = res.value
+          } else {
+            result = res.reason
+            break
           }
-          return res.reason as AxiosResponse<ILLAApiError>
-        })
+        }
         break
       }
       default: {
