@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import {
   ActionContent,
   ActionItem,
@@ -8,7 +8,7 @@ import { DependenciesState } from "@/redux/currentApp/executionTree/executionSta
 
 export interface CurrentAppResp {
   appInfo: DashboardApp
-  components: ComponentNode
+  components: ComponentTreeNode
   actions: ActionItem<ActionContent>[]
   dependenciesState: DependenciesState
   executionState: Record<string, any>

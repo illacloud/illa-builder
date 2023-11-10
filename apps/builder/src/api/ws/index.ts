@@ -1,5 +1,5 @@
 import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@illa-public/illa-net/constant"
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
 import {
@@ -19,7 +19,7 @@ import {
 } from "./interface"
 
 export function transformComponentReduxPayloadToWsPayload(
-  componentNodes: ComponentNode[] | ComponentNode,
+  componentNodes: ComponentTreeNode[] | ComponentTreeNode,
 ): ILLAWebSocketComponentPayload[] {
   if (Array.isArray(componentNodes)) {
     return componentNodes.map((node) => {

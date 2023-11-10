@@ -1,9 +1,13 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { ReduceIcon, Trigger, useMessage } from "@illa-design/react"
 import IconHotSpot from "@/components/IconHotSpot"
-import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
+import {
+  getComponentMap,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/components/componentsSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ItemProps } from "./interface"
 import { LabelNameAndDragIcon } from "./labelName"
@@ -22,10 +26,9 @@ export const Item: FC<ItemProps> = (props) => {
   } = props
   const [modalVisible, setModalVisible] = useState(false)
   const message = useMessage()
+  const components = useSelector(getComponentMap)
 
-  const isDuplicationPath = useMemo(() => {
-    return otherPaths.some((viewKey) => viewKey == path)
-  }, [otherPaths, path])
+  const isDuplicationPath = otherPaths.some((viewKey) => viewKey == path)
 
   const [currentPath, useCurrentPath] = useState(path)
   const { t } = useTranslation()
@@ -39,11 +42,11 @@ export const Item: FC<ItemProps> = (props) => {
     let bodySectionPaths: string[] = []
     if (sectionNode.showName !== "bodySection") {
       const bodySectionNode = pageNode.childrenNode.find(
-        (node) => node.showName === "bodySection",
+        (node) => components[node].showName === "bodySection",
       )
       if (!bodySectionNode) return
       bodySectionPaths =
-        bodySectionNode.props?.sectionViewConfigs.map(
+        components[bodySectionNode].props?.sectionViewConfigs.map(
           (config: Record<string, string>) => config.path,
         ) ?? []
     }
@@ -60,6 +63,7 @@ export const Item: FC<ItemProps> = (props) => {
     handleUpdateItem(`${attrPath}.path`, currentPath)
   }, [
     attrPath,
+    components,
     currentPath,
     handleUpdateItem,
     message,

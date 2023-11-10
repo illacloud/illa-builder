@@ -178,11 +178,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       <div css={applyContainerWrapperStyle} onClick={handleOnClick}>
         {Array.isArray(childrenNode) && currentIndex < childrenNode.length ? (
           <RenderChildrenCanvas
-            displayName={childrenNode[currentIndex].displayName}
-            hasChildrenNode={
-              Array.isArray(childrenNode[currentIndex].childrenNode) &&
-              childrenNode[currentIndex].childrenNode.length > 0
-            }
+            displayName={childrenNode[currentIndex]}
             columnNumber={columnNumber}
             handleUpdateHeight={handleUpdateHeight}
             canResizeCanvas={enableAutoHeight}

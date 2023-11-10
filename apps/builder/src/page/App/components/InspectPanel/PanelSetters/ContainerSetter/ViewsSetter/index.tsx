@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentMapNode } from "@illa-public/public-types"
 import { get } from "lodash"
 import { FC, memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
@@ -16,8 +16,8 @@ import {
 } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/style"
 import { generateNewViewItem } from "@/page/App/components/InspectPanel/PanelSetters/ContainerSetter/ViewsSetter/utils/generateNewOptions"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -99,12 +99,12 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
     if (componentNode.type === "CONTAINER_WIDGET") {
       return componentNode
     }
-    const finalNode = searchDsl(
-      getCanvas(store.getState()),
+    const finalNode = searchComponentFromMap(
+      getComponentMap(store.getState()),
       linkWidgetDisplayName,
     )
     if (finalNode?.type === "CONTAINER_WIDGET") return finalNode
-    return {} as ComponentNode
+    return {} as ComponentMapNode
   }, [componentNode, linkWidgetDisplayName])
 
   const handleAddViewItem = useCallback(() => {

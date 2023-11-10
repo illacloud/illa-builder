@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
@@ -6,7 +6,7 @@ import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/e
 import store from "@/store"
 
 export const getRealShapeAndPosition = (
-  componentNode: ComponentNode,
+  componentNode: ComponentTreeNode,
   unitW: number,
   displayNamePrefix?: string,
 ) => {

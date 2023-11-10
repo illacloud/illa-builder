@@ -1,5 +1,28 @@
-import { Types, getType } from "@/utils/typeHelper"
+import { Types, getType, isObject } from "@/utils/typeHelper"
 import { filterBindingSegmentsAndRemoveQuotes } from "./utils"
+
+export const templateSubstituteDynamicValues = (
+  dynamicString: string,
+  stringSnippets: string[],
+  values: unknown[],
+): string => {
+  let finalValue = dynamicString
+  stringSnippets.forEach((b, i) => {
+    let value = values[i]
+    if (Array.isArray(value) || isObject(value)) {
+      value = JSON.stringify(value)
+    }
+    try {
+      if (typeof value === "string" && JSON.parse(value)) {
+        value = value.replace(/\\([\s\S])|(")/g, "\\$1$2")
+      }
+    } catch (e) {
+      // do nothing
+    }
+    finalValue = finalValue.replace(b, `${value}`)
+  })
+  return finalValue
+}
 
 export const smartSubstituteDynamicValues = (
   originDynamicString: string,

@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentMapNode } from "@illa-public/public-types"
 import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
@@ -13,7 +13,7 @@ export interface ViewItemShape {
 export interface ViewSetterProps extends BaseSetter {
   value: ViewItemShape[]
   childrenSetter?: PanelFieldConfig[]
-  componentNode: ComponentNode
+  componentNode: ComponentMapNode
 }
 
 export interface DragIconAndLabelProps {

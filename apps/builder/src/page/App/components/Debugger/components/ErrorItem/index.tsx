@@ -6,8 +6,8 @@ import { CaretRightIcon, ErrorCircleIcon } from "@illa-design/react"
 import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
 import { configActions } from "@/redux/config/configSlice"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { getDisplayNameAndPropertyPath } from "@/utils/executionTreeHelper/utils"
 import { ErrorItemProps } from "./interface"
@@ -29,7 +29,7 @@ import {
 export const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, pathName } = props
   const dispatch = useDispatch()
-  const root = useSelector(getCanvas)
+  const root = useSelector(getComponentMap)
   const [isExpanded, setIsExpanded] = useState(false)
 
   const { displayName, attrPath } = useMemo(() => {
@@ -37,7 +37,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
   }, [pathName])
 
   const attrValue = useMemo(() => {
-    const node = searchDsl(root, displayName)
+    const node = searchComponentFromMap(root, displayName)
     if (node) {
       return get(node?.props, attrPath)
     }
@@ -45,7 +45,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
   }, [root, displayName, attrPath])
 
   const handleComponentSelect = useCallback(() => {
-    const selectedComponent = searchDsl(root, displayName)
+    const selectedComponent = searchComponentFromMap(root, displayName)
     if (selectedComponent) {
       dispatch(
         configActions.updateSelectedComponent([selectedComponent.displayName]),

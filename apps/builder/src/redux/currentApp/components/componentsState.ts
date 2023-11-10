@@ -1,5 +1,6 @@
 import {
-  ComponentNode,
+  ComponentMapNode,
+  ComponentTreeNode,
   SECTION_POSITION,
   SectionViewShape,
 } from "@illa-public/public-types"
@@ -17,14 +18,13 @@ export interface RootComponentNodeProps {
   currentPageIndex: number
   pageSortedKey: string[]
   homepageDisplayName?: string
-
   viewportWidth?: number
   viewportHeight?: number
   viewportSizeType?: ViewportSizeType
   currentSubPagePath?: string
 }
 
-export interface RootComponentNode extends ComponentNode {
+export interface RootComponentNode extends ComponentMapNode {
   type: "DOT_PANEL"
   props: RootComponentNodeProps
 }
@@ -60,13 +60,13 @@ export interface PageNodeProps {
   footerColumns?: number
 }
 
-export interface PageNode extends ComponentNode {
+export interface PageNode extends ComponentTreeNode {
   type: "PAGE_NODE"
   props: PageNodeProps
 }
 
-export type ComponentsState = ComponentNode | null
-export const ComponentsInitialState: ComponentsState = null
+export type ComponentsState = Record<string, ComponentMapNode>
+export const ComponentsInitialState: ComponentsState = {}
 
 export interface DeleteComponentNodePayload {
   displayNames: string[]
@@ -80,7 +80,7 @@ export interface DeletePageNodePayload {
 
 export interface SortComponentNodeChildrenPayload {
   parentDisplayName: string
-  newChildrenNode: ComponentNode[]
+  newChildrenNode: string[]
 }
 
 export interface UpdateComponentPropsPayload {
@@ -100,7 +100,7 @@ export interface AddContainerComponentViewsReducerPayload {
     disabled?: string
     hidden?: string
   }[]
-  addComponent: ComponentNode
+  addComponent: ComponentTreeNode
 }
 
 export interface DeleteContainerComponentViewsReducerPayload {
@@ -116,7 +116,7 @@ export interface UpdateComponentDisplayNamePayload {
 
 export interface UpdateComponentReflowPayload {
   parentDisplayName: string
-  childNodes: ComponentNode[]
+  childNodes: ComponentMapNode[]
 }
 
 export interface UpdateTargetPageLayoutPayload {
@@ -129,7 +129,7 @@ export interface UpdateTargetPageLayoutPayload {
     | "presetD"
     | "presetE"
     | "Custom"
-  originPageNode?: ComponentNode
+  originPageNode?: ComponentTreeNode
 }
 
 export interface UpdateTargetPagePropsPayload {
@@ -155,7 +155,7 @@ export interface AddTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  originSectionNode?: ComponentNode
+  originSectionNode?: ComponentTreeNode
 }
 
 export interface AddSectionViewPayload {
@@ -166,11 +166,11 @@ export interface AddSectionViewPayload {
     | "headerSection"
     | "footerSection"
     | "bodySection"
-  originChildrenNode?: ComponentNode[]
+  originChildrenNode?: ComponentTreeNode[]
 }
 
 export interface AddSectionViewByConfigPayload extends AddSectionViewPayload {
-  sectionViewNode: ComponentNode
+  sectionViewNode: ComponentTreeNode
   sectionViewConfig: SectionViewShape
 }
 
@@ -187,7 +187,7 @@ export interface UpdateSectionViewPropsPayload {
 
 export interface AddModalComponentPayload {
   currentPageDisplayName: string
-  modalComponentNode: ComponentNode
+  modalComponentNode: ComponentTreeNode
 }
 
 export interface UpdateComponentNodeHeightPayload {

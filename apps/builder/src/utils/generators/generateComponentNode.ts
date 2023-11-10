@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { cloneDeep, get, set } from "lodash"
 import { isObject } from "@illa-design/react"
 import { buildInitDragInfo } from "@/page/App/components/ComponentPanel/componentListBuilder"
@@ -47,8 +47,8 @@ export const generateComponentNodeByWidgetInfo = (
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
 ) => {
-  let baseDSL: ComponentNode
-  let childrenNodeDSL: ComponentNode[] = []
+  let baseDSL: ComponentTreeNode
+  let childrenNodeDSL: ComponentTreeNode[] = []
   const {
     defaults,
     x = 0,
@@ -132,13 +132,13 @@ export const newGenerateChildrenComponentNode = (
   widgetInfo: Omit<WidgetConfig, "icon" | "sessionType" | "keywords">,
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
-): ComponentNode => {
+): ComponentTreeNode => {
   if (widgetInfo.type === "CANVAS") {
     const realDisplayName = DisplayNameGenerator.generateDisplayName(
       widgetInfo.type,
       widgetInfo.displayName,
     )
-    let childrenNodeDSL: ComponentNode[] = []
+    let childrenNodeDSL: ComponentTreeNode[] = []
     if (
       Array.isArray(widgetInfo.childrenNode) &&
       widgetInfo.childrenNode.length > 0
@@ -194,9 +194,9 @@ export const newGenerateComponentNode = (
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
 ) => {
-  let baseDSL: ComponentNode
+  let baseDSL: ComponentTreeNode
   const baseConfig = widgetBuilder(widgetType).config
-  let childrenNodeDSL: ComponentNode[] = []
+  let childrenNodeDSL: ComponentTreeNode[] = []
   const {
     defaults,
     w,
@@ -274,7 +274,7 @@ export const newGenerateComponentNode = (
   return baseDSL
 }
 
-function transformListWidget(baseDSL: ComponentNode) {
+function transformListWidget(baseDSL: ComponentTreeNode) {
   const container = baseDSL.childrenNode[0]
   let templateChildren = container.childrenNode
   templateChildren.map((node) => {

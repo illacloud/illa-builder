@@ -1,13 +1,13 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 
-export const fixedChartComponent = (component: ComponentNode) => {
+export const fixedChartComponent = (component: ComponentTreeNode) => {
   return {
     ...component,
     type: "CHART_WIDGET",
   }
 }
 
-const fixedMenuComponent = (component: ComponentNode) => {
+const fixedMenuComponent = (component: ComponentTreeNode) => {
   if (component.version === 0 || component.version == undefined) {
     return {
       ...component,
@@ -41,7 +41,7 @@ const fixedMenuComponent = (component: ComponentNode) => {
 }
 
 export const fixedComponentsToNewComponents = (
-  componentsTree: ComponentNode,
+  componentsTree: ComponentTreeNode,
 ) => {
   const newComponentsTree = componentsTree ?? {}
   if (Array.isArray(newComponentsTree.childrenNode)) {

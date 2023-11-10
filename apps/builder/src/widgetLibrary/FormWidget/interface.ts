@@ -1,8 +1,6 @@
-import { ComponentNode } from "@illa-public/public-types"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface FormWidgetProps extends BaseWidgetProps {
-  childrenNode: ComponentNode[]
   showFooter: boolean
   showHeader: boolean
   headerHeight: number

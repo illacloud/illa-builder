@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentMapNode } from "@illa-public/public-types"
 import { ReactNode } from "react"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -21,7 +21,7 @@ export interface BaseSetter {
   widgetType: string
   widgetOrAction: "ACTION" | "WIDGET"
   defaultValue?: any
-  componentNode?: ComponentNode
+  componentNode?: ComponentMapNode
   detailedDescription?: string
   labelName?: string
   labelDesc?: string

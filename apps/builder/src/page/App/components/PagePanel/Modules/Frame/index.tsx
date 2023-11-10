@@ -32,8 +32,8 @@ import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadd
 import { optionListWrapperStyle } from "@/page/App/components/PagePanel/style"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { PageNodeProps } from "@/redux/currentApp/components/componentsState"
@@ -74,8 +74,8 @@ export const PageFrame: FC = () => {
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const pageProps = useSelector<RootState>((state) => {
-    const canvas = getCanvas(state)
-    return searchDsl(canvas, currentPageDisplayName)?.props || {}
+    const canvas = getComponentMap(state)
+    return searchComponentFromMap(canvas, currentPageDisplayName)?.props || {}
   }) as PageNodeProps
   const message = useMessage()
 

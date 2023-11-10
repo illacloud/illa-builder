@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentMapNode } from "@illa-public/public-types"
 import { cloneDeep, get } from "lodash"
 import { FC, ReactNode, createContext, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -18,7 +18,7 @@ interface ProviderProps {
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
   attrPath: string
-  componentNode: ComponentNode
+  componentNode: ComponentMapNode
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
   handleUpdateOtherMultiAttrDSL?: (
@@ -74,7 +74,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         },
       )
 
-      const currentChildrenNode = componentNode.childrenNode[index]
+      const currentChildrenNodeDisplayName = componentNode.childrenNode[index]
 
       const updateSlice = {
         [attrPath]: updatedArray,
@@ -96,7 +96,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       handleUpdateMultiAttrDSL?.(updateSlice)
       dispatch(
         componentsActions.deleteComponentNodeReducer({
-          displayNames: [currentChildrenNode.displayName],
+          displayNames: [currentChildrenNodeDisplayName],
         }),
       )
     },

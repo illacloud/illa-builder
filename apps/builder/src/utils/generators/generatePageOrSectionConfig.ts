@@ -1,8 +1,8 @@
 import {
-  ComponentNode,
+  ComponentTreeNode,
   ModalSectionNode,
   SECTION_POSITION,
-  SectionNode,
+  SectionTreeNode,
 } from "@illa-public/public-types"
 import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
@@ -30,7 +30,7 @@ export type SectionNodeType =
 export const generateSectionContainerConfig = (
   parentNode: string,
   showName: string,
-): ComponentNode => {
+): ComponentTreeNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "CONTAINER_NODE",
     `${parentNode}-${showName}`,
@@ -77,7 +77,7 @@ export const generateSectionConfig = (
   parentNode: string,
   showName: SectionNodeType,
   bodySubpaths: string[] = ["sub-page1"],
-): SectionNode => {
+): SectionTreeNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "SECTION_NODE",
     showName,
@@ -108,7 +108,7 @@ export const generateSectionConfig = (
       ? bodySubpaths[0]
       : "sub-page1"
 
-  const result: SectionNode = {
+  const result: SectionTreeNode = {
     displayName: `${displayName}`,
     parentNode: parentNode,
     showName: showName,

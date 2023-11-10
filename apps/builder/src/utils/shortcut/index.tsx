@@ -19,9 +19,8 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import {
-  flattenAllComponentNodeToMap,
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -46,7 +45,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const isEditMode = useSelector(getIsILLAEditMode)
   const currentSelectedComponent = useSelector(getSelectedComponentDisplayNames)
   const currentSelectedAction = useSelector(getSelectedAction)
-  const canvasRootNode = useSelector(getCanvas)
+  const componentsMap = useSelector(getComponentMap)
   const executionResult = useSelector(getExecutionResult)
   const showShadows = useSelector(isShowDot)
   const teamInfo = useSelector(getCurrentTeamInfo)
@@ -215,48 +214,47 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       case "page_config":
         break
       case "canvas": {
-        if (canvasRootNode) {
+        if (componentsMap) {
           const rootNode = executionResult.root
           if (!rootNode) return
           const currentPageDisplayName =
             rootNode.pageSortedKey[rootNode.currentPageIndex]
-          const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
+          const pageNode = searchComponentFromMap(
+            componentsMap,
+            currentPageDisplayName,
+          )
           if (!pageNode) return
           let bodySectionDisplayName: string = ""
-          pageNode.childrenNode.find((sectionNode) => {
-            const displayName = sectionNode.displayName
-            const currentSectionProps = executionResult[displayName]
+          pageNode.childrenNode.find((sectionNodeDisplayName) => {
+            const currentSectionProps = executionResult[sectionNodeDisplayName]
             if (
               currentSectionProps &&
               currentSectionProps.viewSortedKey &&
               currentSectionProps.currentViewIndex >= 0 &&
-              sectionNode.showName === "bodySection"
+              componentsMap[sectionNodeDisplayName].showName === "bodySection"
             ) {
               const { currentViewIndex, viewSortedKey } = currentSectionProps
               bodySectionDisplayName = viewSortedKey[currentViewIndex]
             }
           })
           if (!bodySectionDisplayName) return
-          const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
-          const allChildrenNodes = Array.isArray(
-            componentNodesMap[bodySectionDisplayName].childrenNode,
+          const allChildrenNodeDisplayNames = Array.isArray(
+            componentsMap[bodySectionDisplayName].childrenNode,
           )
-            ? componentNodesMap[bodySectionDisplayName].childrenNode
+            ? componentsMap[bodySectionDisplayName].childrenNode
             : []
-
-          const childNodeDisplayNames = allChildrenNodes.map(
-            (node) => node.displayName,
-          )
 
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
             element: "component",
             parameter1: "keyboard",
           })
-          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
+          dispatch(
+            configActions.updateSelectedComponent(allChildrenNodeDisplayNames),
+          )
         }
       }
     }
-  }, [canvasRootNode, dispatch, executionResult])
+  }, [componentsMap, dispatch, executionResult])
 
   const copySomethingHandler = () => {
     switch (FocusManager.getFocus()) {

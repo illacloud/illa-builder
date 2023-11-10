@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export enum OVERFLOW_TYPE {
@@ -22,7 +22,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
 }
 
 export interface RenderTemplateContainerProps {
-  templateComponentNodes: ComponentNode
+  templateComponentDisplayName: string
   templateContainerHeight: number
   columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"
@@ -35,13 +35,13 @@ export interface RenderTemplateContainerProps {
 }
 
 export interface RenderCopyContainerProps {
-  templateComponentNodes: ComponentNode
+  templateComponentNodes: ComponentTreeNode
   templateContainerHeight: number
   columnNumber: number
   displayNamePrefix: string
 }
 
 export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {
-  copyComponents: ComponentNode[] | null
+  copyComponents: ComponentTreeNode[] | null
   handleUpdateSelectedItem: (index: number) => void
 }

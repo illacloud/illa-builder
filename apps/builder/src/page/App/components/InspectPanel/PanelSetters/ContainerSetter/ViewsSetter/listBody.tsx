@@ -1,4 +1,3 @@
-import { ComponentNode } from "@illa-public/public-types"
 import { AnimatePresence, Reorder } from "framer-motion"
 import { isEqual, omit } from "lodash"
 import {
@@ -17,7 +16,7 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { ListItem } from "./listItem"
 
 interface ItemsProps extends ViewItemShape {
-  childrenNode?: ComponentNode
+  childrenNode?: string
 }
 
 export const ListBody: FC = () => {
@@ -29,11 +28,12 @@ export const ListBody: FC = () => {
     attrPath,
     handleUpdateMultiAttrDSL,
   } = useContext(ViewListSetterContext)
+
   const originItems: ItemsProps[] = viewsList.map((view, index) => {
     if (Array.isArray(componentNode.childrenNode)) {
       return { ...view, childrenNode: componentNode.childrenNode[index] }
     }
-    return { ...view, childrenNode: {} as ComponentNode }
+    return { ...view, childrenNode: "" }
   })
 
   const [items, setItems] = useState<ItemsProps[]>(originItems)
@@ -43,7 +43,7 @@ export const ListBody: FC = () => {
   )
 
   const onDragEnd = useCallback(() => {
-    const newComponentNode: ComponentNode[] = []
+    const newComponentNode: string[] = []
     const newViewList: ViewItemShape[] = []
     items.forEach((item) => {
       item?.childrenNode && newComponentNode.push(item.childrenNode)
@@ -80,7 +80,7 @@ export const ListBody: FC = () => {
           if (Array.isArray(componentNode.childrenNode)) {
             return { ...view, childrenNode: componentNode.childrenNode[index] }
           }
-          return { ...view, childrenNode: {} as ComponentNode }
+          return { ...view, childrenNode: "" }
         }),
       )
     }

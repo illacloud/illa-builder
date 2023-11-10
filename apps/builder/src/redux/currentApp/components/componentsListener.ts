@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentMapNode } from "@illa-public/public-types"
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import {
@@ -12,10 +12,10 @@ import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
-  getCanvas,
+  getComponentMap,
   getGlobalDataToActionList,
+  searchComponentFromMap,
   searchDSLByDisplayName,
-  searchDsl,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
@@ -40,8 +40,8 @@ function handleUpdateComponentDisplayNameEffect(
 ) {
   const { newDisplayName } = action.payload
   const rootState = listenApi.getState()
-  const rootNode = getCanvas(rootState)
-  const newComponent = searchDsl(rootNode, newDisplayName)
+  const rootNode = getComponentMap(rootState)
+  const newComponent = searchComponentFromMap(rootNode, newDisplayName)
   if (
     newComponent &&
     newComponent.containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE
@@ -296,14 +296,16 @@ const handleUpdateHeightEffect = (
 ) => {
   const { displayName, height, oldHeight } = action.payload
   const rootState = listenerApi.getState()
-  const rootNode = getCanvas(rootState)
-  const newItem = searchDsl(rootNode, displayName)
+  const components = getComponentMap(rootState)
+  const newItem = searchComponentFromMap(components, displayName)
   if (!newItem) return
   const parentNodeDisplayName = newItem.parentNode
-  const target = searchDsl(rootNode, parentNodeDisplayName)
-  let allComponents: ComponentNode[] = []
+  const target = searchComponentFromMap(components, parentNodeDisplayName)
+  let allComponents: ComponentMapNode[] = []
   if (target) {
-    allComponents = target.childrenNode
+    allComponents = target.childrenNode.map(
+      (displayName) => components[displayName],
+    )
   }
 
   const cloneDeepAllComponents = allComponents.filter(

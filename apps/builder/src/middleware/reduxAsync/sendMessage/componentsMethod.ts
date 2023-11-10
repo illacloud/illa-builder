@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { PayloadAction } from "@reduxjs/toolkit"
 import {
   Connection,
@@ -11,10 +11,11 @@ import {
   UpdateComponentNodeLayoutInfoPayload,
   UpdateComponentSlicePropsPayload,
 } from "@/redux/currentApp/components/componentsPayload"
-import { getNeedChangeViewDisplayNames } from "@/redux/currentApp/components/componentsReducer"
+import { getNeedDeleteSectionViewDisplayNames } from "@/redux/currentApp/components/componentsReducer"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
+  searchDSLFromTree,
 } from "@/redux/currentApp/components/componentsSelector"
 import {
   AddModalComponentPayload,
@@ -36,6 +37,7 @@ import {
   UpdateTargetPagePropsPayload,
 } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
+import { buildTreeByMapNode } from "@/utils/componentNode/flatTree"
 
 export const componentsAsync = (
   reduxAction: string,
@@ -47,8 +49,10 @@ export const componentsAsync = (
   nextRootState: RootState,
 ) => {
   const { payload } = action
+  const prevComponents = getComponentMap(prevRootState)
+  const nextComponents = getComponentMap(nextRootState)
   switch (reduxAction) {
-    case "addComponentReducer":
+    case "addComponentReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
           TextSignal.CREATE_STATE,
@@ -61,12 +65,14 @@ export const componentsAsync = (
         ),
       )
       break
+    }
     case "addModalComponentReducer": {
       const payload = action.payload as AddModalComponentPayload
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
 
-      const parentNode = searchDsl(
-        getCanvas(nextRootState),
-        payload.modalComponentNode.parentNode,
+      const parentNode = searchDSLFromTree(
+        nextComponentTree,
+        payload.modalComponentNode.parentNode!,
       )
       if (!parentNode) return
       Connection.getTextRoom("app", currentAppID)?.send(
@@ -82,15 +88,22 @@ export const componentsAsync = (
       )
       break
     }
-    case "updateComponentReflowReducer":
+    case "updateComponentReflowReducer": {
       const updateComponentReflowPayload: UpdateComponentReflowPayload[] =
         payload
-      const allEffectComponentNodes: ComponentNode[] =
-        updateComponentReflowPayload.flatMap((payload) => {
-          return payload.childNodes
-        })
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+
+      const allEffectComponentDisplayName: string[] =
+        updateComponentReflowPayload
+          .flatMap((payload) => {
+            return payload.childNodes
+          })
+          .map((node) => node.displayName)
+      const allEffectComponentNode = allEffectComponentDisplayName
+        .map((displayName) => searchDSLFromTree(nextComponentTree, displayName))
+        .filter((node) => node !== null) as ComponentTreeNode[]
       const updateComponentReflowWSPayload =
-        transformComponentReduxPayloadToWsPayload(allEffectComponentNodes)
+        transformComponentReduxPayloadToWsPayload(allEffectComponentNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
           TextSignal.UPDATE_STATE,
@@ -103,26 +116,42 @@ export const componentsAsync = (
         ),
       )
       break
-    case "sortComponentNodeChildrenReducer":
+    }
+    case "sortComponentNodeChildrenReducer": {
       const sortComponentNodeChildrenPayload: SortComponentNodeChildrenPayload =
         payload
-      const sortComponentNodeChildrenWSPayload =
-        transformComponentReduxPayloadToWsPayload(
-          sortComponentNodeChildrenPayload.newChildrenNode,
-        )
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+      const parentNode = searchDSLFromTree(
+        nextComponentTree,
+        sortComponentNodeChildrenPayload.parentDisplayName,
+      )
+      if (!parentNode) return
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          TextSignal.MOVE_STATE,
+          TextSignal.DELETE_STATE,
           TextTarget.COMPONENTS,
           true,
           action,
           teamID,
           uid,
-          sortComponentNodeChildrenWSPayload,
+          [parentNode.displayName!],
+        ),
+      )
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          TextSignal.CREATE_STATE,
+          TextTarget.COMPONENTS,
+          true,
+          action,
+          teamID,
+          uid,
+          [parentNode],
         ),
       )
       break
+    }
     case "updateComponentContainerReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
       const updateComponentContainerPayload: UpdateComponentContainerPayload =
         payload
       const {
@@ -134,9 +163,12 @@ export const componentsAsync = (
       const allNodes = allDisplayNames
         .map(
           (displayName) =>
-            searchDsl(getCanvas(nextRootState), displayName) as ComponentNode,
+            searchDSLFromTree(
+              nextComponentTree,
+              displayName,
+            ) as ComponentTreeNode,
         )
-        .filter((node) => node !== null) as ComponentNode[]
+        .filter((node) => node !== null) as ComponentTreeNode[]
       if (oldParentNodeDisplayName !== newParentNodeDisplayName) {
         Connection.getTextRoom("app", currentAppID)?.send(
           getTextMessagePayload(
@@ -171,10 +203,10 @@ export const componentsAsync = (
       break
     }
     case "setComponentPropsReducer":
-    case "updateComponentPropsReducer":
+    case "updateComponentPropsReducer": {
       const updatePayload: UpdateComponentPropsPayload = payload
-      const finalNode = searchDsl(
-        getCanvas(nextRootState),
+      const finalNode = searchComponentFromMap(
+        nextComponents,
         updatePayload.displayName,
       )
       if (finalNode != null) {
@@ -198,19 +230,18 @@ export const componentsAsync = (
         )
       }
       break
+    }
     case "batchUpdateMultiComponentSlicePropsReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
       const batchUpdatePayload: UpdateComponentSlicePropsPayload[] = payload
       const allDisplayNames = batchUpdatePayload.map(
         ({ displayName }) => displayName,
       )
       const allNodes = allDisplayNames
         .map((displayName) => {
-          return searchDsl(
-            getCanvas(nextRootState),
-            displayName,
-          ) as ComponentNode
+          return searchDSLFromTree(nextComponentTree, displayName)
         })
-        .filter((node) => node !== null) as ComponentNode[]
+        .filter((node) => node != null) as ComponentTreeNode[]
       const wsPayload = transformComponentReduxPayloadToWsPayload(allNodes)
 
       Connection.getTextRoom("app", currentAppID)?.send(
@@ -226,13 +257,14 @@ export const componentsAsync = (
       )
       break
     }
-    case "updateMultiComponentPropsReducer":
+    case "updateMultiComponentPropsReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
       const updateMultiPayload: UpdateComponentPropsPayload[] = payload
       const finalNodes = updateMultiPayload
         .map(({ displayName }) => {
-          return searchDsl(getCanvas(nextRootState), displayName)
+          return searchDSLFromTree(nextComponentTree, displayName)
         })
-        .filter((node) => node !== null) as ComponentNode[]
+        .filter((node) => node !== null) as ComponentTreeNode[]
       if (Array.isArray(finalNodes)) {
         const wsPayload = transformComponentReduxPayloadToWsPayload(finalNodes)
         Connection.getTextRoom("app", currentAppID)?.send(
@@ -248,7 +280,8 @@ export const componentsAsync = (
         )
       }
       break
-    case "deleteComponentNodeReducer":
+    }
+    case "deleteComponentNodeReducer": {
       const deletePayload: DeleteComponentNodePayload = payload
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
@@ -262,13 +295,18 @@ export const componentsAsync = (
         ),
       )
       break
-    case "updateComponentDisplayNameReducer":
+    }
+    case "updateComponentDisplayNameReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+
       const { displayName, newDisplayName } =
         action.payload as UpdateComponentDisplayNamePayload
-      const canvasNode = getCanvas(nextRootState)
-      const findOldNode = searchDsl(canvasNode, newDisplayName)
+      const findOldNode = searchDSLFromTree(nextComponentTree, newDisplayName)
       if (!findOldNode) break
-      const parentNode = searchDsl(canvasNode, findOldNode.parentNode)
+      const parentNode = searchDSLFromTree(
+        nextComponentTree,
+        findOldNode.parentNode!,
+      )
       if (!parentNode) break
       const WSPayload = transformComponentReduxPayloadToWsPayload([
         parentNode,
@@ -297,10 +335,11 @@ export const componentsAsync = (
         ),
       )
       break
+    }
     case "updateTargetPageLayoutReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
       const { pageName } = action.payload as UpdateTargetPageLayoutPayload
-      const canvasNode = getCanvas(nextRootState)
-      const pageNode = searchDsl(canvasNode, pageName)
+      const pageNode = searchDSLFromTree(nextComponentTree, pageName)
       if (!pageNode) break
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
@@ -327,10 +366,12 @@ export const componentsAsync = (
       break
     }
     case "deleteTargetPageSectionReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
       const { pageName, deleteSectionName } =
         action.payload as DeleteTargetPageSectionPayload
-      const originFinalNode = searchDsl(getCanvas(prevRootState), pageName)
-      const finalNode = searchDsl(getCanvas(nextRootState), pageName)
+      const prevComponentTree = buildTreeByMapNode("root", prevComponents)
+      const originFinalNode = searchDSLFromTree(prevComponentTree, pageName)
+      const finalNode = searchDSLFromTree(nextComponentTree, pageName)
 
       if (!finalNode || !originFinalNode) break
       const WSPayload = transformComponentReduxPayloadToWsPayload(finalNode)
@@ -364,9 +405,10 @@ export const componentsAsync = (
       break
     }
     case "addTargetPageSectionReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
       const { pageName, addedSectionName } =
         action.payload as AddTargetPageSectionPayload
-      const pageNode = searchDsl(getCanvas(nextRootState), pageName)
+      const pageNode = searchDSLFromTree(nextComponentTree, pageName)
       if (!pageNode) break
       const addSectionNode = pageNode.childrenNode.find(
         (node) => node.showName === addedSectionName,
@@ -400,8 +442,9 @@ export const componentsAsync = (
       break
     }
     case "updateTargetPagePropsReducer": {
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
       const { pageName } = action.payload as UpdateTargetPagePropsPayload
-      const pageNode = searchDsl(getCanvas(nextRootState), pageName)
+      const pageNode = searchDSLFromTree(nextComponentTree, pageName)
 
       if (!pageNode) break
       const WSPagePayload = transformComponentReduxPayloadToWsPayload(pageNode)
@@ -421,9 +464,9 @@ export const componentsAsync = (
     }
     case "updateViewportSizeReducer":
     case "updateRootNodePropsReducer": {
-      const rootNode = getCanvas(nextRootState)
-      if (!rootNode) break
-      const WSPagePayload = transformComponentReduxPayloadToWsPayload(rootNode)
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+      const WSPagePayload =
+        transformComponentReduxPayloadToWsPayload(nextComponentTree)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
           TextSignal.UPDATE_STATE,
@@ -438,8 +481,8 @@ export const componentsAsync = (
       break
     }
     case "addPageNodeWithSortOrderReducer": {
-      const rootNode = getCanvas(nextRootState)
-      const node = action.payload as ComponentNode
+      const rootNode = buildTreeByMapNode("root", nextComponents)
+      const node = action.payload as ComponentTreeNode
       if (!rootNode || !node) break
       const rootNodeUpdateWSPayload =
         transformComponentReduxPayloadToWsPayload(rootNode)
@@ -469,7 +512,7 @@ export const componentsAsync = (
     }
     case "deletePageNodeReducer": {
       const deletePayload = payload as DeletePageNodePayload
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
       const rootNodeUpdateWSPayload =
         transformComponentReduxPayloadToWsPayload(rootNode)
@@ -500,10 +543,10 @@ export const componentsAsync = (
     case "addSectionViewConfigByConfigReducer":
     case "addSectionViewReducer": {
       const { parentNodeName } = payload as AddSectionViewPayload
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
 
       if (!rootNode) break
-      const targetNode = searchDsl(rootNode, parentNodeName)
+      const targetNode = searchDSLFromTree(rootNode, parentNodeName)
       if (!targetNode) break
       const { props } = targetNode
       const { viewSortedKey } = props as Record<string, any>
@@ -542,9 +585,9 @@ export const componentsAsync = (
     case "deleteSectionViewReducer": {
       const { viewDisplayName, parentNodeName } =
         payload as DeleteSectionViewPayload
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
-      const targetNode = searchDsl(rootNode, parentNodeName)
+      const targetNode = searchDSLFromTree(rootNode, parentNodeName)
       if (!targetNode) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNode)
@@ -574,9 +617,9 @@ export const componentsAsync = (
     }
     case "updateSectionViewPropsReducer": {
       const { parentNodeName } = payload as UpdateSectionViewPropsPayload
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
-      const targetNode = searchDsl(rootNode, parentNodeName)
+      const targetNode = searchDSLFromTree(rootNode, parentNodeName)
       if (!targetNode) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNode)
@@ -595,9 +638,9 @@ export const componentsAsync = (
     }
     case "updateComponentNodeHeightReducer": {
       const { displayName } = payload as UpdateComponentNodeHeightPayload
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
-      const targetNode = searchDsl(rootNode, displayName)
+      const targetNode = searchDSLFromTree(rootNode, displayName)
       if (!targetNode) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNode)
@@ -618,11 +661,11 @@ export const componentsAsync = (
       const displayNames = (
         payload as UpdateComponentNodeLayoutInfoPayload[]
       ).map((item) => item.displayName)
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
       const targetNodes = displayNames
-        .map((displayName) => searchDsl(rootNode, displayName))
-        .filter((node) => node !== null) as ComponentNode[]
+        .map((displayName) => searchDSLFromTree(rootNode, displayName))
+        .filter((node) => node !== null) as ComponentTreeNode[]
       if (targetNodes.length < 1) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNodes)
@@ -643,11 +686,11 @@ export const componentsAsync = (
       const displayNames = (
         payload as UpdateComponentNodeLayoutInfoPayload[]
       ).map((item) => item.displayName)
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
       const targetNodes = displayNames
-        .map((displayName) => searchDsl(rootNode, displayName))
-        .filter((node) => node !== null) as ComponentNode[]
+        .map((displayName) => searchDSLFromTree(rootNode, displayName))
+        .filter((node) => node !== null) as ComponentTreeNode[]
       if (targetNodes.length < 1) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNodes)
@@ -667,9 +710,9 @@ export const componentsAsync = (
     case "updateComponentLayoutInfoReducer": {
       const displayName = (payload as UpdateComponentNodeLayoutInfoPayload)
         .displayName
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
-      const targetNode = searchDsl(rootNode, displayName)
+      const targetNode = searchDSLFromTree(rootNode, displayName)
       if (!targetNode) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNode)
@@ -687,7 +730,7 @@ export const componentsAsync = (
       break
     }
     case "setGlobalStateReducer": {
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(rootNode)
@@ -705,7 +748,7 @@ export const componentsAsync = (
       break
     }
     case "deleteGlobalStateByKeyReducer": {
-      const rootNode = getCanvas(nextRootState)
+      const rootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(rootNode)
@@ -723,22 +766,23 @@ export const componentsAsync = (
       break
     }
     case "deleteSubPageViewNodeReducer": {
-      const rootNode = getCanvas(prevRootState)
-      const nextRootNode = getCanvas(nextRootState)
+      const prevComponentTree = buildTreeByMapNode("root", prevComponents)
+      const rootNode = prevComponentTree
+      const nextRootNode = buildTreeByMapNode("root", nextComponents)
       if (!rootNode) break
       const { pageName, subPagePath } = payload as DeleteSubPageViewNodePayload
-      const deleteDisplayNames = getNeedChangeViewDisplayNames(
-        rootNode,
+      const deleteDisplayNames = getNeedDeleteSectionViewDisplayNames(
+        prevComponents,
         pageName,
         subPagePath,
       )
       const needUpdateParentNode = deleteDisplayNames
         .map((displayName) => {
-          const currentNode = searchDsl(rootNode, displayName)
+          const currentNode = searchDSLFromTree(rootNode, displayName)
           if (!currentNode) return null
-          return searchDsl(nextRootNode, currentNode.parentNode)
+          return searchDSLFromTree(nextRootNode, currentNode.parentNode!)
         })
-        .filter((node) => node !== null) as ComponentNode[]
+        .filter((node) => node !== null) as ComponentTreeNode[]
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(needUpdateParentNode)
       Connection.getTextRoom("app", currentAppID)?.send(
@@ -768,10 +812,9 @@ export const componentsAsync = (
     }
     case "updateSubPagePathReducer":
     case "updateDefaultSubPagePathReducer": {
-      const nextRootNode = getCanvas(nextRootState)
-      if (!nextRootNode) break
       const { pageName } = payload as DeleteSubPageViewNodePayload
-      const pageNode = searchDsl(nextRootNode, pageName)
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+      const pageNode = searchDSLFromTree(nextComponentTree, pageName)
       if (!pageNode) return
       const needUpdateNodes = pageNode.childrenNode?.filter((node) => {
         return node.type !== "MODAL_SECTION_NODE"
@@ -794,9 +837,9 @@ export const componentsAsync = (
     }
     case "addSubPageReducer": {
       const { pageName } = payload as { pageName: string }
-      const nextRootNode = getCanvas(nextRootState)
-      if (!nextRootNode) break
-      const pageNode = searchDsl(nextRootNode, pageName)
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+
+      const pageNode = searchDSLFromTree(nextComponentTree, pageName)
       if (!pageNode) break
       const bodySection = pageNode.childrenNode.find(
         (node) => node.showName === "bodySection",
@@ -835,9 +878,8 @@ export const componentsAsync = (
 
     case "updateCurrentPageStyleReducer": {
       const { pageName, sectionName } = payload as UpdateCurrentPageStylePayload
-      const nextRootNode = getCanvas(nextRootState)
-      if (!nextRootNode) break
-      const pageNode = searchDsl(nextRootNode, pageName)
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+      const pageNode = searchDSLFromTree(nextComponentTree, pageName)
       if (!pageNode) break
       const sectionNode = pageNode.childrenNode.find(
         (node) => node.showName === sectionName,
@@ -860,9 +902,8 @@ export const componentsAsync = (
 
     case "deleteCurrentPageStyleReducer": {
       const { pageName, sectionName } = payload as UpdateCurrentPageStylePayload
-      const nextRootNode = getCanvas(nextRootState)
-      if (!nextRootNode) break
-      const pageNode = searchDsl(nextRootNode, pageName)
+      const nextComponentTree = buildTreeByMapNode("root", nextComponents)
+      const pageNode = searchDSLFromTree(nextComponentTree, pageName)
       if (!pageNode) break
       const sectionNode = pageNode.childrenNode.find(
         (node) => node.showName === sectionName,

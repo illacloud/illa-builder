@@ -1,5 +1,5 @@
 // string for component
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
@@ -56,7 +56,7 @@ export class DisplayNameGenerator {
   }
 
   static updateDisplayNameList(
-    componentNode: ComponentNode,
+    componentNode: ComponentTreeNode,
     actionList: ActionItem<ActionContent>[],
   ) {
     this.displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)
@@ -70,7 +70,7 @@ export class DisplayNameGenerator {
     })
   }
 
-  static addComponentDisplayName(componentNode: ComponentNode) {
+  static addComponentDisplayName(componentNode: ComponentTreeNode) {
     this.displayNameList.add(componentNode.displayName)
     componentNode.childrenNode?.forEach((child) => {
       this.addComponentDisplayName(child)

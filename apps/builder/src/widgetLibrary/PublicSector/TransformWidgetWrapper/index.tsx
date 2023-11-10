@@ -1,4 +1,3 @@
-import { ComponentNode } from "@illa-public/public-types"
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -11,9 +10,8 @@ import {
 } from "@/page/App/components/ScaleSquare/constant/widget"
 import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
 import {
-  getCanvas,
   getContainerListDisplayNameMappedChildrenNodeDisplayName,
-  searchDsl,
+  searchDSLByDisplayName,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
@@ -44,12 +42,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       const layoutInfos = getExecutionWidgetLayoutInfo(rootState)
       return layoutInfos[displayName].layoutInfo
     })
-    const originComponentNode = useSelector<RootState, ComponentNode>(
-      (rootState) => {
-        const rootNode = getCanvas(rootState)
-        return searchDsl(rootNode, displayName) as ComponentNode
-      },
-    )
+    const originComponentNode = searchDSLByDisplayName(displayName)
 
     const realProps = useMemo(
       () => displayNameMapProps[displayName] ?? {},

@@ -1,11 +1,11 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import {
   clamWidgetShape,
   combineWidgetInfos,
 } from "@/page/App/components/DotPanel/utils/getDragShadow"
 
 export const getComponentLayoutInfosWithRelativeCombineShape = (
-  componentNodes: ComponentNode[],
+  componentNodes: ComponentTreeNode[],
 ) => {
   const combineShape = combineWidgetInfos(componentNodes)
 
@@ -19,7 +19,7 @@ export const getComponentLayoutInfosWithRelativeCombineShape = (
 }
 
 export const getComponentNodeResultByRelativeCombineShape = (
-  componentNodes: ComponentNode[],
+  componentNodes: ComponentTreeNode[],
   columnNumber: number,
 ) => {
   const relativeInfos =

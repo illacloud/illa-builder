@@ -1,4 +1,3 @@
-import { ComponentNode } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
@@ -6,17 +5,17 @@ import BaseSelectSetter from "@/page/App/components/InspectPanel/PanelSetters/Se
 import { HeightModeSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/interface"
 import { DEFAULT_MAX_HEIGHT } from "@/page/App/components/ScaleSquare/components/AutoHeightWithLimitedContainer"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { RootState } from "@/store"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 
 const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
   const currentNode = useSelector((state: RootState) => {
-    const rootNode = getCanvas(state) as ComponentNode
-    return searchDsl(rootNode, props.widgetDisplayName) as ComponentNode
-  })
+    const rootNode = getComponentMap(state)
+    return searchComponentFromMap(rootNode, props.widgetDisplayName)
+  })!
   const { handleUpdateMultiAttrDSL, value: heightMode } = props
   const handleUpdateHeightMode = useCallback(
     (attrName: string, value: string) => {

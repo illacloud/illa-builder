@@ -1,4 +1,4 @@
-import { ComponentNode } from "@illa-public/public-types"
+import { ComponentTreeNode } from "@illa-public/public-types"
 
 export type ScaleSquareType = "error" | "normal" | "production"
 
@@ -11,7 +11,7 @@ export interface ScaleSquareProps {
 }
 
 export interface ScaleSquarePropsWithJSON {
-  componentNode: ComponentNode
+  componentNode: ComponentTreeNode
   unitW: number
   columnNumber: number
   displayNamePrefix?: string
