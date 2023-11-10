@@ -248,7 +248,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
                       <span css={prefixIconContainerStyle}>
                         {getIconFromResourceType("illadrive", "16px")}
                       </span>
-                      {t("ILLA Drive")}
+                      ILLA Drive
                     </div>
                   }
                   onClick={handleClickActionType("illadrive")}
