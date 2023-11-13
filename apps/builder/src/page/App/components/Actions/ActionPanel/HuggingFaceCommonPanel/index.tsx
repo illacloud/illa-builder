@@ -9,7 +9,7 @@ import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interfa
 import { RecordEditor } from "@/components/RecordEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { HuggingFaceCommonPanelProps } from "@/page/App/components/Actions/ActionPanel/HuggingFaceCommonPanel/interface"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import {
   bodyChooserStyle,
   bodyEditorContainerStyle,
@@ -300,7 +300,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
 
   return (
     <div css={restapiPanelContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         {!withoutModel && (
           <InputEditor

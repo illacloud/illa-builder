@@ -22,6 +22,7 @@ import { S3ActionInitial } from "@/redux/currentApp/action/s3Action"
 import { SMTPActionInitial } from "@/redux/currentApp/action/smtpAction"
 import { TransformerActionInitial } from "@/redux/currentApp/action/transformerAction"
 import { BaseAiAgentActionContent } from "./aiAgentAction"
+import { ILLDriveActionInitial } from "./illaDriveAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
@@ -72,6 +73,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return CouchDBActionInitial
     case "airtable":
       return AirtableActionConfigInitial
+    case "illadrive":
+      return ILLDriveActionInitial
     default:
       return {} as ActionContent
   }

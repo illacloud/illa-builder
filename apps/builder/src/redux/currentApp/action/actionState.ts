@@ -37,6 +37,11 @@ import {
   OracleDBActionType,
 } from "@/redux/currentApp/action/oracleDBAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
+import {
+  ILLADriveAction,
+  ILLADriveActionTypeContent,
+  ILLADriveUpdateStatusAction,
+} from "./illaDriveAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
 import { RedisAction } from "./redisAction"
@@ -106,6 +111,7 @@ export type ActionType =
   | "airtable"
   | "aiagent"
   | "globalData"
+  | "illadrive"
 
 export type ActionTriggerMode = "manually" | "automate"
 
@@ -189,6 +195,8 @@ export type ActionContent =
   | AirtableAction<AirtableActionConfigType>
   | BaseAiAgentActionContent
   | GlobalDataActionContent
+  | ILLADriveAction<ILLADriveActionTypeContent>
+  | ILLADriveUpdateStatusAction
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 

@@ -1,4 +1,3 @@
-import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
 import { createMessage } from "@illa-design/react"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
@@ -20,23 +19,21 @@ import {
   BodyContent,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
-import {
-  ClientS3,
-  S3Action,
-  S3ActionTypeContent,
-} from "@/redux/currentApp/action/s3Action"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import {
-  IActionRunResultResponseData,
-  fetchActionRunResult,
-} from "@/services/action"
+import { fetchActionRunResult } from "@/services/action"
 import store from "@/store"
 import { transformDataFormat } from "@/utils/action/transformDataFormat"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
-import { isILLAAPiError } from "@/utils/typeHelper"
+import {
+  isClientS3ActionContent,
+  isDriveActionContent,
+  isILLAAPiError,
+} from "@/utils/typeHelper"
+import { fetchILLADriveClientResult } from "./driveActions"
 import { fetchS3ClientResult } from "./fetchS3ClientResult"
+import { runActionErrorForColla } from "./runActionErrorForColla"
 import { runAllEventHandler } from "./runActionEventHandler"
 import { runTransformer } from "./runActionTransformer"
 import { transResponse } from "./transResponse"
@@ -60,7 +57,7 @@ const checkCanSendRequest = (
   return !result
 }
 
-const fetchActionResult = async (
+export const fetchActionResult = async (
   isPublic: boolean,
   resourceID: string,
   actionType: ActionType,
@@ -150,16 +147,7 @@ export const runActionWithExecutionResult = async (
   ) as string
 
   try {
-    let response:
-      | AxiosResponse<
-          IActionRunResultResponseData<Record<string, any>[]>,
-          unknown
-        >
-      | AxiosResponse<BlobPart, unknown>
-      | (
-          | AxiosResponse<BlobPart, unknown>
-          | AxiosResponse<ILLAApiError, any>
-        )[] = (await fetchActionResult(
+    let response: AxiosResponse = await fetchActionResult(
       !isProductionMode ? false : action.config?.public ?? false,
       ($resourceID as string) || "",
       actionType as ActionType,
@@ -169,22 +157,25 @@ export const runActionWithExecutionResult = async (
       actionContent,
       $context,
       abortSignal,
-    )) as AxiosResponse<
-      IActionRunResultResponseData<Record<string, any>[]>,
-      unknown
-    >
-    const isClientS3 =
-      actionType === "s3" &&
-      ClientS3.includes(
-        (actionContent as S3Action<S3ActionTypeContent>).commands,
-      )
-    if (isClientS3) {
+    )
+
+    if (isClientS3ActionContent(actionType, actionContent)) {
       response = await fetchS3ClientResult(response.data.Rows, actionContent)
+    } else if (isDriveActionContent(actionType, actionContent)) {
+      response = await fetchILLADriveClientResult(
+        !isProductionMode ? false : action.config?.public ?? false,
+        ($resourceID as string) || "",
+        displayName,
+        appId,
+        currentActionId,
+        actionContent,
+        response,
+      )
     }
     const illaInnerTransformedResponse = transResponse(
       actionType,
+      actionContent,
       response,
-      isClientS3,
     )
 
     let userTransformedData = runTransformer(
@@ -216,7 +207,21 @@ export const runActionWithExecutionResult = async (
     }
     if (isILLAAPiError(e)) {
       runResult.message = e.data?.errorMessage || "An unknown error"
+      try {
+        if (e.data?.errorMessage.startsWith("run action error: ")) {
+          const arr = e.data?.errorMessage.split("run action error: ")
+          if (arr.length > 1) {
+            const error = JSON.parse(arr[1])
+            const errResponse = {
+              ...e,
+              data: error,
+            }
+            runActionErrorForColla(actionType, actionContent, errResponse)
+          }
+        }
+      } catch (e) {}
     }
+
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,

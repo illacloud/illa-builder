@@ -226,8 +226,8 @@
             "spreadsheet": "电子表格",
             "sheet_name": "工作表名称",
             "data_range": "数据范围",
-            "limit": "Limit",
-            "offset": "Offset",
+            "limit": "限制",
+            "offset": "偏移量",
             "a1_notation": "A1表示法",
             "values_to_append": "待新增的值",
             "filter_by": "筛选条件",
@@ -538,9 +538,14 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}} or {{dataGrid1.page}}",
-              "limit": "{{20}} or {{dataGrid1.pageSize}}"
-            }
+              "page": "{{1}} or {{dataGrid1.page}}",
+              "limit": "{{20}} or {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} 或 {{drivePicker1.value.map(file => fileID)}}",
+              "target_file_name": "new_file.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} or {{upload1.files.map(file =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -635,19 +640,19 @@
             },
             "drive": {
               "method": {
-                "list": "List files",
-                "upload_file": "Upload 1 file",
-                "upload_multi_file": "Upload multiple files",
-                "download": "Download 1 file",
-                "download_multi_file": "Download multiple files",
-                "delete": "Delete 1 file",
-                "delete_multi_file": "Delete multiple files",
-                "update": "Rename file"
+                "list": "列出文件",
+                "upload_file": "上传单个文件",
+                "upload_multi_file": "上传多个文件",
+                "download": "下载单个文件",
+                "download_multi_file": "下载多个文件",
+                "delete": "删除单个文件",
+                "delete_multi_file": "删除多个文件",
+                "update": "重命名文件"
               },
               "file_type": {
-                "none": "None",
-                "by_id": "By ID",
-                "by_name": "By name"
+                "none": "无",
+                "by_id": "按 ID",
+                "by_name": "按名称"
               }
             }
           },
@@ -698,13 +703,19 @@
               "safe_mode": "使用safe模式时，您的SQL只能在变量的位置引用变量，例如where name = '{{input1.value}}'。这使得使用者无法通过在input1中输入 ; drop table; 等方式来破坏您的数据库；使用Unsafe模式时，SQL语法词也可以替换为变量，如where {{input1.value}} {{input2.value}} '{{input3.value}}'，但这样一来数据库可能被用户输入的内容破坏，不建议您使用"
             },
             "drive": {
-              "method": "Used to set what actions you plan to perform on the drive.",
-              "filter_type": "If you want to filter files, you can use this configuration option to specify filtering by file name or file ID. File name uses fuzzy matching, while file ID uses exact matching.",
-              "file_name": "Used for fuzzy matching files.",
-              "file_id": "Used to accurately list a specific file.",
-              "folder": "Select a folder to operate. ",
-              "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. This is an index value that starts from 0.",
-              "limit": "If you need server-side pagination, you can use this configuration option to set the number of data items to be returned per page."
+              "method": "用于设置您计划在drive上执行的操作。",
+              "filter_type": "如果您想要过滤文件，您可以使用此配置选项指定文件名或文件ID过滤。 文件名使用模糊匹配，而文件ID使用精确匹配。",
+              "file_name": "用于模糊查询文件",
+              "file_id": "用于查询一个特定文件",
+              "folder": "用/root指定根目录，/root/x/y指定其他目录",
+              "page": "如果你需要服务器端分页，你可以使用此配置选项来设置要检索的数据的页数。 这是一个从1开始的值。",
+              "limit": "如果你需要服务器端分页，可以使用此配置选项来设置每页返回的数量。",
+              "file_name_array": "一个由您想要上传的文件名组成的数组，包括文件扩展名，例如[file1.csv，file2.csv]。您可以使用上传组件直接获取此值，例如{{upload1.files.map(file => file.name)}。",
+              "file_data_array": "您要上传的文件数据数组，可以通过{{upload1.value}}获得",
+              "file_ids": "您想要下载的文件ID数组。您可以通过{{drivePicker1.value.map(file => fileID)}}从Drive picker组件中获取此值; 或者您可以通过列出文件的方法获取。",
+              "file_type_array": "要上传的文件类型数组。您可以使用 {{upload1.files.map(ile =>file.type)}} 从上传组件获取文件类型。 ",
+              "target_file_name": "用于设置新名称",
+              "overwrite": "如果覆盖，我们将用新文件替换旧文件；如果不覆盖，我们将为新文件重命名，在名称结尾加随机字符串。"
             }
           },
           "advanced": {
@@ -749,13 +760,19 @@
             "safe_mode": "模式"
           },
           "drive": {
-            "method": "Method",
-            "filter_type": "Filter type",
-            "file_name": "File name",
-            "file_id": "File ID",
-            "folder": "Folder",
-            "page": "Page",
-            "limit": "Limit"
+            "method": "方法",
+            "filter_type": "文件类型",
+            "file_name": "文件名称",
+            "file_id": "文件ID",
+            "folder": "文件夹",
+            "page": "页面",
+            "limit": "限制",
+            "file_name_array": "文件名称数组",
+            "file_data_array": "文件数据数组",
+            "file_ids": "文件ID数组",
+            "file_type_array": "文件类型数组",
+            "target_file_name": "带拓展名的新名称",
+            "overwrite": "名称重复时是否覆盖"
           }
         },
         "menu": {
@@ -2004,6 +2021,14 @@
         "click_mask_close": "点击遮罩关闭modal",
         "modal": {
           "blank": "无图标"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv or {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -2021,7 +2046,9 @@
           "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
         },
         "file_download": {
-          "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
+          "file_data": "支持Base64编码数据、表格的原始数据或映射数据",
+          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. ",
+          "file_type": "待上传文件的类型"
         },
         "variable": {
           "available_in_objects": "在对象和数组中可用。 要以对象格式设置变量的值，请使用 attributeName。 例如，要更改 {\"a\":1, \"b\":2} 中 \"b\" 的值，路径\n  应该是b。\n\n要以数组格式设置变量的值，请使用 {{index}}。 例如，要将 \"d\" 更改为 \"t\" [\"a\",\"b\",\"c\",\"d\"]，路径应为 {{ 3 }} 或 {{globalData.state1.indexOf(\"d “）}}。",

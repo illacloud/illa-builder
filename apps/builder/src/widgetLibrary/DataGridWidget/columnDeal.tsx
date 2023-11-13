@@ -11,6 +11,7 @@ import {
   isNumber,
   isObject,
   isString,
+  toPath,
 } from "lodash"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
@@ -38,11 +39,16 @@ import {
   getPreColor,
   isValidLocale,
 } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   cellContainer,
   currencyContainerStyle,
 } from "@/widgetLibrary/DataGridWidget/style"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
+
+function formatDataGridColumnEvent(path: string, prefix: string) {
+  return convertPathToString(toPath(path.replace(prefix, "")).slice(1))
+}
 
 export function getColumnFromType(
   column: ColumnConfig,
@@ -109,10 +115,21 @@ export function getColumnFromType(
               disabled={disabled}
               colorScheme={colorScheme}
               onClick={() => {
-                triggerEventHandler(
-                  "click",
-                  `columns[${params.api.getColumnIndex(params.field)}].events`,
-                )
+                setTimeout(() => {
+                  triggerEventHandler(
+                    "click",
+                    `columns[${params.api.getColumnIndex(
+                      params.field,
+                    )}].events`,
+                    {},
+                    (path) => {
+                      return formatDataGridColumnEvent(
+                        path,
+                        `columns[${params.api.getColumnIndex(params.field)}].`,
+                      )
+                    },
+                  )
+                }, 1)
               }}
             >
               {renderValue}
@@ -152,12 +169,23 @@ export function getColumnFromType(
                     colorScheme={button.colorScheme}
                     disabled={disabled}
                     onClick={() => {
-                      triggerEventHandler(
-                        "click",
-                        `columns[${params.api.getColumnIndex(
-                          params.field,
-                        )}].buttonGroup[${buttonIndex}].events`,
-                      )
+                      setTimeout(() => {
+                        triggerEventHandler(
+                          "click",
+                          `columns[${params.api.getColumnIndex(
+                            params.field,
+                          )}].buttonGroup[${buttonIndex}].events`,
+                          {},
+                          (path) => {
+                            return formatDataGridColumnEvent(
+                              path,
+                              `columns[${params.api.getColumnIndex(
+                                params.field,
+                              )}].buttonGroup[${buttonIndex}].`,
+                            )
+                          },
+                        )
+                      }, 1)
                     }}
                   >
                     {label}

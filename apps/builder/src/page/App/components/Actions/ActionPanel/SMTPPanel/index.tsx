@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
@@ -55,7 +55,7 @@ const SMTPPanel: FC = () => {
 
   return (
     <div css={smtpContainerStyle}>
-      <ResourceChoose />
+      <PanelHeader />
       <div css={actionItemContainer}>
         <InputEditor
           title={t("editor.action.panel.smtp.from_email")}

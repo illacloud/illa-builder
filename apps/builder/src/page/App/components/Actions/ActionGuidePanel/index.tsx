@@ -21,7 +21,11 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionGenerator } from "../ActionGenerator"
-import { MORE_DATA_TYPE, RECOMMEND_RESOURCES } from "./constans"
+import {
+  MORE_DATA_TYPE,
+  ONLY_CLOUD_MODE_DATA_TYPE,
+  RECOMMEND_RESOURCES,
+} from "./constans"
 import {
   basicButtonStyle,
   categoryItemContainerStyle,
@@ -29,7 +33,6 @@ import {
   categoryTitleStyle,
   guidePanelContainerStyle,
   guidePanelOutContainerStyle,
-  headerStyle,
   iconHotSpot,
   loadingContainerStyle,
   moreTipsStyle,
@@ -112,6 +115,31 @@ export const ActionGuidePanel: FC = () => {
 
           break
         }
+        case "illadrive": {
+          const displayName = DisplayNameGenerator.generateDisplayName(type)
+          const initialContent = getInitialContent(type)
+          const data: Omit<ActionItem<ActionContent>, "actionID"> = {
+            actionType: type,
+            displayName,
+            content: initialContent,
+            isVirtualResource: true,
+            ...actionItemInitial,
+          }
+          try {
+            const { data: responseData } = await fetchCreateAction(data)
+            message.success({
+              content: t("editor.action.action_list.message.success_created"),
+            })
+            dispatch(actionActions.addActionItemReducer(responseData))
+            dispatch(configActions.changeSelectedAction(responseData))
+          } catch (_e) {
+            message.error({
+              content: t("editor.action.action_list.message.failed"),
+            })
+            DisplayNameGenerator.removeDisplayName(displayName)
+          }
+          break
+        }
         default: {
           setGeneratorVisible(true)
           setCurrentActionType(type)
@@ -124,9 +152,6 @@ export const ActionGuidePanel: FC = () => {
     <>
       <div css={guidePanelOutContainerStyle}>
         <div css={guidePanelContainerStyle}>
-          <h5 css={headerStyle}>
-            {t("editor.action.panel.title.general.initial-title")}
-          </h5>
           <h6 css={categoryTitleStyle}>
             {t("editor.action.panel.label.general.connect-data-source")}
           </h6>
@@ -137,7 +162,7 @@ export const ActionGuidePanel: FC = () => {
                 key={type}
                 onClick={handleClickActionType(type)}
               >
-                <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
+                <Suspense>{getIconFromResourceType(type, "16px")}</Suspense>
                 <span css={categoryItemNameStyle}>
                   {getResourceNameFromResourceType(type)}
                 </span>
@@ -161,7 +186,8 @@ export const ActionGuidePanel: FC = () => {
 
           <section css={categoryItemContainerStyle}>
             {MORE_DATA_TYPE.filter((type) => {
-              if (!isCloudVersion) return type !== "aiagent"
+              if (!isCloudVersion)
+                return !ONLY_CLOUD_MODE_DATA_TYPE.includes(type)
               return type
             }).map((type) => (
               <button
@@ -169,7 +195,7 @@ export const ActionGuidePanel: FC = () => {
                 key={type}
                 onClick={handleClickActionType(type)}
               >
-                <Suspense>{getIconFromResourceType(type, "24px")}</Suspense>
+                <Suspense>{getIconFromResourceType(type, "16px")}</Suspense>
                 <span css={categoryItemNameStyle}>
                   {getResourceNameFromResourceType(type)}
                 </span>

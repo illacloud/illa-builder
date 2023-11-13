@@ -539,8 +539,13 @@
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
               "page": "{{0}} eller {{dataGrid1.page}}",
-              "limit": "{{20}} eller {{dataGrid1.pageSize}}"
-            }
+              "limit": "{{20}} eller {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} eller {{drivePicker1.value.map(file => fileID)}}",
+              "target_file_name": "new_file.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} eller {{upload1.files.map(file =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -704,7 +709,13 @@
               "file_id": "Används för att exakt lista en specifik fil.",
               "folder": "Välj en mapp att använda. ",
               "page": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in sidnumret för de data som ska hämtas. Detta är ett indexvärde som börjar från 0.",
-              "limit": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in antalet dataobjekt som ska returneras per sida."
+              "limit": "Om du behöver sidnumrering på servern kan du använda den här konfigurationsalternativet för att ställa in antalet dataobjekt som ska returneras per sida.",
+              "file_name_array": "En matris bestående av namnen på de filer du vill ladda upp, inklusive filtillägg, till exempel [file1.csv, file2. sv]. Du kan direkt hämta detta värde med hjälp av uppladdningskomponenten, som {{upload1.files.map(file => file.name)}}.",
+              "file_data_array": "En samling av data för de filer du vill ladda upp. Du kan få det via {{upload1.value}}.",
+              "file_ids": "En array med fil-ID som du vill ladda ner. Du kan hämta detta värde från komponenten Drive Picker med {{drivePicker1. alue.map(fil => fileID)}}, eller så kan du få den via listmetoden.",
+              "file_type_array": "En array av typ av filer som ska laddas upp. Du kan använda {{upload1.files.map(file =>file.type)}} för att få filtyperna från uppladdningskomponenten. ",
+              "target_file_name": "Används för att ange det nya namnet",
+              "overwrite": "Om du skriver över kommer vi att ersätta filen med den nya. Om inte skriva över kommer vi att byta namn på den nya filen med en slumpmässig sträng. "
             }
           },
           "advanced": {
@@ -755,7 +766,13 @@
             "file_id": "Fil-ID",
             "folder": "Mapp",
             "page": "Sida",
-            "limit": "Gräns"
+            "limit": "Gräns",
+            "file_name_array": "Fil namn array",
+            "file_data_array": "Fil data array",
+            "file_ids": "Fil ID array",
+            "file_type_array": "Fil typ array",
+            "target_file_name": "Nytt namn med tillägg",
+            "overwrite": "Skriv över när namnet är duplicerat"
           }
         },
         "menu": {
@@ -2004,6 +2021,14 @@
         "click_mask_close": "Klicka på masken för att stänga modal",
         "modal": {
           "blank": "Inga ikoner"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv eller {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -2021,7 +2046,9 @@
           "data_source": "En datakälla för att definiera bildobjekt med hjälp av mappad utvärdering. Använd antingen en array av värden eller ett objekt med tangenter mappade till arrayer. Till exempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan också använda data i handlingar. Till exempel: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Stöd base64-data, rådata, mappade data i tabellen. "
+          "file_data": "Stöd base64-data, rådata, mappade data i tabellen. ",
+          "file_name": "Namnet på filen du vill ladda upp, inklusive filnamnet, till exempel filen. sv. Du kan få detta värde med hjälp av uppladdningskomponenten, som {{upload1.files[0].name}}. ",
+          "file_type": "Typ av fil som ska laddas upp"
         },
         "variable": {
           "available_in_objects": "Finns i objekt och arrayer. Sökvägen till attributet i objektet: {{objectName.attributeName}}. Indexet för värdet i en matris: {{1}}. En matris i objektet: {{objectName.attributeName.1}}",
@@ -3793,7 +3820,7 @@
       "validate_failed": "Endast bokstäver, siffror och -~_=: är tillåtna. Gränsen är 255 tecken eller mindre"
     },
     "move_modal": {
-      "no_folders": "Inga mappar här"
+      "no_folders": "Inga filer här"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samma namn finns redan i den här mappen eller laddas upp till den här mappen. Vill du ersätta den?",
@@ -3808,7 +3835,7 @@
         "all": "Rot",
         "create_folder": "Skapa ny mapp",
         "cancel": "Avbryt",
-        "file_upload": "Välj en fil och ladda upp"
+        "file_upload": "Ladda upp"
       },
       "select": {
         "confirm_button": "Välj"
