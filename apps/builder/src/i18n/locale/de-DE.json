@@ -538,9 +538,14 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}}",
-              "limit": "{{20}} oder {{dataGrid1.pageSize}}"
-            }
+              "page": "{{1}} oder {{dataGrid1.page}}",
+              "limit": "{{20}} oder {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} oder {{drivePicker1.value.map(file => fileID)}}",
+              "target_file_name": "neu_file.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} oder {{upload1.files.map(file =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -703,8 +708,14 @@
               "file_name": "Wird für verschwommene Dateien verwendet.",
               "file_id": "Wird verwendet, um eine bestimmte Datei genau aufzulisten.",
               "folder": "Wählen Sie einen zu bearbeitenden Ordner. ",
-              "page": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der Daten festlegen. Dies ist ein Indexwert, der bei 0 beginnt.",
-              "limit": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption festlegen, wie viele Datenelemente pro Seite zurückgegeben werden sollen."
+              "page": "Wenn Sie serverseitige Seitenumgebung benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der zu ermittelnden Daten festlegen. Sie beginnt ab 1.",
+              "limit": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption festlegen, wie viele Datenelemente pro Seite zurückgegeben werden sollen.",
+              "file_name_array": "Ein Array bestehend aus den Namen der Dateien, die Sie hochladen möchten, inklusive der Dateierweiterungen, wie z.B. [file1.csv, file2. Sie können diesen Wert direkt über die Upload-Komponente wie {{upload1.files.map(file => file.name)}} abrufen.",
+              "file_data_array": "Ein Array der Daten der Dateien, die Sie hochladen möchten. Sie können sie über {{upload1.value}} erhalten.",
+              "file_ids": "Ein Array mit Datei-IDs, die Sie herunterladen möchten. Sie können diesen Wert von der Drive Picker Komponente mit {{drivePicker1 abrufen. alue.map(file => fileID)}}, oder Sie erhalten es über die Listenmethode.",
+              "file_type_array": "Ein Array der Art der Dateien, die hochgeladen werden sollen. Sie können {{upload1.files.map(file =>file.type)}} verwenden, um die Dateitypen von der Komponente hochzuladen. ",
+              "target_file_name": "Verwendet um den neuen Namen zu setzen",
+              "overwrite": "Wenn überschrieben wird, werden wir die Datei durch die neue ersetzen. Wenn nicht überschrieben wird, werden wir die neue Datei mit einem zufälligen String umbenennen. "
             }
           },
           "advanced": {
@@ -755,7 +766,13 @@
             "file_id": "Datei-ID",
             "folder": "Ordner",
             "page": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der Daten festlegen. Dies ist ein Indexwert, der bei 0 beginnt.",
-            "limit": "Limit"
+            "limit": "Limit",
+            "file_name_array": "Dateinamen-Array",
+            "file_data_array": "Datei-Datenarray",
+            "file_ids": "Datei-ID Array",
+            "file_type_array": "Dateity-Array",
+            "target_file_name": "Neuer Name",
+            "overwrite": "Überschreiben, wenn der Name dupliziert ist"
           }
         },
         "menu": {
@@ -2004,6 +2021,14 @@
         "click_mask_close": "Klickmaske zum Schließen des Modals",
         "modal": {
           "blank": "Keine Symbole"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv oder {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -2021,7 +2046,9 @@
           "data_source": "Eine Datenquelle, um Bildelemente mit zugeordneter Auswertung zu definieren. Verwenden Sie entweder ein Array von Werten oder ein Objekt von Schlüsseln, die Arrays zugeordnet sind. Zum Beispiel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Sie können die Daten auch in Aktionen verwenden. Zum Beispiel: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Unterstützt Base64-Daten, Rohdaten, zugeordnete Tabellendaten. "
+          "file_data": "Unterstützt Base64-Daten, Rohdaten, zugeordnete Tabellendaten. ",
+          "file_name": "Der Name der Datei, die Sie hochladen möchten, inklusive der Dateierweiterung, wie z. B. Datei. sv. Sie können diesen Wert mit der Upload-Komponente erhalten, wie {{upload1.files[0].name}}. ",
+          "file_type": "Der Dateityp der hochgeladen werden soll"
         },
         "variable": {
           "available_in_objects": "Verfügbar in Objekten und Arrays. Der Pfad des Attributs im Objekt: {{objectName.attributeName}}. Der Index des Wertes in einem Array: {{1}}. Ein Array im Objekt: {{objectName.attributeName.1}}",

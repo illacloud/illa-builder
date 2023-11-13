@@ -270,4 +270,4 @@ export const ILLADriveActionList = [
   },
 ]
 
-export const ROOT_PATH = "/root"
+export const ROOT_PATH = "root"
