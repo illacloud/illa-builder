@@ -538,9 +538,14 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{0}}",
-              "limit": "{{20}} nebo {{dataGrid1.pageSize}}"
-            }
+              "page": "{{1}} nebo {{dataGrid1.page}}",
+              "limit": "{{20}} nebo {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(soubor => soubor.name)}}",
+              "file_data_array": "{{upload1.value}}",
+              "file_ids": "{{[\"id1\",\"id2\"]}} nebo {{drivePicker1.value.map(soubor => fileID)}}",
+              "target_file_name": "nový_soubor.csv"
+            },
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} nebo {{upload1.files.map(soubor =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -703,8 +708,14 @@
               "file_name": "Používá se pro zábavné odpovídající soubory.",
               "file_id": "Používá se pro přesný seznam konkrétního souboru.",
               "folder": "Vyberte složku pro operaci. ",
-              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení dat. Toto je indexová hodnota, která začíná od 0.",
-              "limit": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení počtu položek, které mají být vráceny na stránku."
+              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení. Začíná 1.",
+              "limit": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení počtu položek, které mají být vráceny na stránku.",
+              "file_name_array": "Pole obsahující názvy souborů, které chcete nahrát, včetně přípony souborů, jako např. [file1.csv, file2. sv]. Tuto hodnotu můžete přímo načíst pomocí nahrání komponenty, jako je {{upload1.files.map(file => file.name)}}.",
+              "file_data_array": "Pole dat souborů, které chcete nahrát. Můžete je získat přes {{upload1.value}}.",
+              "file_ids": "Pole ID souborů, které chcete stáhnout. Tuto hodnotu můžete získat z komponenty Výběr disku pomocí {{drivePicker1. alue.map(file => fileID)}}, nebo ji můžete získat pomocí metody seznamu.",
+              "file_type_array": "Pole typu souborů, které mají být nahrány. Můžete použít {{upload1.files.map(file =>file.type)}} pro získání typů souborů z nahrávání komponenty. ",
+              "target_file_name": "Používá se k nastavení nového jména",
+              "overwrite": "Pokud bude soubor přepsán, nahradíme soubor novým. Pokud jej nepřepsáme, přejmenujeme na konec nového souboru náhodným řetězcem. "
             }
           },
           "advanced": {
@@ -755,7 +766,13 @@
             "file_id": "ID souboru",
             "folder": "Složka",
             "page": "Stránka",
-            "limit": "Limit"
+            "limit": "Limit",
+            "file_name_array": "Pole názvu souboru",
+            "file_data_array": "Pole dat souboru",
+            "file_ids": "Pole ID souboru",
+            "file_type_array": "Pole typu souboru",
+            "target_file_name": "Nové jméno",
+            "overwrite": "Přepsat, když je název duplicitní"
           }
         },
         "menu": {
@@ -2004,6 +2021,14 @@
         "click_mask_close": "Klepněte na masku pro zavření modálu",
         "modal": {
           "blank": "Žádné ikony"
+        },
+        "placeholder": {
+          "file_download": {
+            "file_name": "file.csv nebo {{upload1.files[0].name}}"
+          },
+          "drive_builder": {
+            "fileData": "{{upload1.value[0]}}"
+          }
         }
       },
       "setter_tips": {
@@ -2021,7 +2046,9 @@
           "data_source": "Zdroj dat pro definování položek obrázku pomocí mapovaného vyhodnocení. Použijte buď pole hodnot nebo objekt klíčů mapovaných pro pole. Například: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Můžete také použít data při akcích. Například: {{ mysql1.data }} "
         },
         "file_download": {
-          "file_data": "Podporovat base64 data, nezpracovaná data, mapovaná data tabulky. "
+          "file_data": "Podporovat base64 data, nezpracovaná data, mapovaná data tabulky. ",
+          "file_name": "Název souboru, který chcete nahrát, včetně přípony souboru, např. souboru. sv. Tuto hodnotu můžete získat pomocí nahrání komponenty, jako je {{upload1.files[0].name}}. ",
+          "file_type": "Typ souboru, který má být nahrán"
         },
         "variable": {
           "available_in_objects": "Dostupné v objektech a polech. Cesta atributu v objektu: {{objectName.attributeName}}. Index hodnoty v poli: {{1}}. Pole v objektu: {{objectName.attributeName.1}}",

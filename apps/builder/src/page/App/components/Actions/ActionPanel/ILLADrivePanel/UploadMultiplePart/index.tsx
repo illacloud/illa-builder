@@ -36,7 +36,7 @@ export const UploadMultiplePart: FC<ILLADriveActionPartProps> = (props) => {
 
       <InputEditor
         title={t("editor.action.panel.label.drive.file_data_array")}
-        tips={t(" editor.action.panel.label.tips.drive.file_data_array")}
+        tips={t("editor.action.panel.label.tips.drive.file_data_array")}
         placeholder={t(
           "editor.action.panel.label.placeholder.drive.file_data_array",
         )}
