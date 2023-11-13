@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{1}} nebo {{dataGrid1.page}}",
+              "page": "{{0}}",
               "limit": "{{20}} nebo {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(soubor => soubor.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -707,8 +707,8 @@
               "filter_type": "Pokud chcete filtrovat soubory, můžete použít tuto možnost konfigurace k určení filtrování podle názvu souboru nebo ID souboru. Název souboru používá fuzzy matching, zatímco ID souboru používá přesnou shodu.",
               "file_name": "Používá se pro zábavné odpovídající soubory.",
               "file_id": "Používá se pro přesný seznam konkrétního souboru.",
-              "folder": "Použijte /root pro určení kořenové složky a /root/x/y pro zadání jiné složky.",
-              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení. Začíná 1.",
+              "folder": "Vyberte složku pro operaci. ",
+              "page": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení čísla stránky pro načtení dat. Toto je indexová hodnota, která začíná od 0.",
               "limit": "Pokud potřebujete stránkování na serveru, můžete použít tuto konfiguraci k nastavení počtu položek, které mají být vráceny na stránku.",
               "file_name_array": "Pole obsahující názvy souborů, které chcete nahrát, včetně přípony souborů, jako např. [file1.csv, file2. sv]. Tuto hodnotu můžete přímo načíst pomocí nahrání komponenty, jako je {{upload1.files.map(file => file.name)}}.",
               "file_data_array": "Pole dat souborů, které chcete nahrát. Můžete je získat přes {{upload1.value}}.",
@@ -3820,7 +3820,7 @@
       "validate_failed": "Jsou povolena pouze písmena, číslice a -~_=. Limit je 255 znaků nebo méně"
     },
     "move_modal": {
-      "no_folders": "Žádné složky zde"
+      "no_folders": "Žádné soubory zde"
     },
     "same_name_modal": {
       "this_folder_already": "Soubor se stejným názvem již v této složce existuje nebo se do této složky nahrává. Chcete jej nahradit?",
@@ -3835,7 +3835,7 @@
         "all": "Root",
         "create_folder": "Vytvořit novou složku",
         "cancel": "Zrušit",
-        "file_upload": "Vyberte soubor a nahrajte"
+        "file_upload": "Nahrát"
       },
       "select": {
         "confirm_button": "Vybrat"
