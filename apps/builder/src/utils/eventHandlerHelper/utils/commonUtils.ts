@@ -101,8 +101,7 @@ export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
   if (typeof pagePath !== "string" || typeof viewPath !== "string") return
   let finalPath = `/${pagePath}`
   finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
-  const originPath = window.location.pathname
-  const originPathArray = originPath.split("/")
+  const originPathArray = ILLARoute.state.location.pathname.split("/")
   const isProductionMode = getIsILLAProductMode(store.getState())
   const rootNodeProps = getRootNodeExecutionResult(store.getState())
   const { pageSortedKey } = rootNodeProps
