@@ -40,8 +40,8 @@ function handleUpdateComponentDisplayNameEffect(
 ) {
   const { newDisplayName } = action.payload
   const rootState = listenApi.getState()
-  const rootNode = getComponentMap(rootState)
-  const newComponent = searchComponentFromMap(rootNode, newDisplayName)
+  const components = getComponentMap(rootState)
+  const newComponent = searchComponentFromMap(components, newDisplayName)
   if (
     newComponent &&
     newComponent.containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE

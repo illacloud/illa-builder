@@ -8,9 +8,9 @@ import {
 } from "@/page/App/components/DotPanel/constant/canvas"
 import { LIKE_CONTAINER_WIDGET_PADDING } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getIsILLAEditMode, isShowDot } from "@/redux/config/configSelector"
+import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
+import { RootState } from "@/store"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
-import { getComponentMap } from "../../../redux/currentApp/components/componentsSelector"
-import { RootState } from "../../../store"
 import { IRenderChildrenCanvasProps } from "./interface"
 
 const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {

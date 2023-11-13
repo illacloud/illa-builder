@@ -29,29 +29,27 @@ import {
 export const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, pathName } = props
   const dispatch = useDispatch()
-  const root = useSelector(getComponentMap)
+  const components = useSelector(getComponentMap)
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const { displayName, attrPath } = useMemo(() => {
-    return getDisplayNameAndPropertyPath(pathName)
-  }, [pathName])
+  const { displayName, attrPath } = getDisplayNameAndPropertyPath(pathName)
 
   const attrValue = useMemo(() => {
-    const node = searchComponentFromMap(root, displayName)
+    const node = searchComponentFromMap(components, displayName)
     if (node) {
       return get(node?.props, attrPath)
     }
     return undefined
-  }, [root, displayName, attrPath])
+  }, [components, displayName, attrPath])
 
   const handleComponentSelect = useCallback(() => {
-    const selectedComponent = searchComponentFromMap(root, displayName)
+    const selectedComponent = searchComponentFromMap(components, displayName)
     if (selectedComponent) {
       dispatch(
         configActions.updateSelectedComponent([selectedComponent.displayName]),
       )
     }
-  }, [root, displayName, dispatch])
+  }, [components, displayName, dispatch])
 
   return (
     <div css={errorContainerStyle}>

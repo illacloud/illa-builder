@@ -24,9 +24,9 @@ const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
 
   const pagePath = get(parentAttr, "pagePath")
   const pageComponent = useSelector<RootState>((state) => {
-    const canvas = getComponentMap(state)
-    if (!canvas) return null
-    return searchComponentFromMap(canvas, pagePath) || null
+    const components = getComponentMap(state)
+    if (!components) return null
+    return searchComponentFromMap(components, pagePath) || null
   }) as PageNode | null
 
   const finalOptions = useMemo(() => {

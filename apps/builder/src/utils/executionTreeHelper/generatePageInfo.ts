@@ -10,6 +10,7 @@ export const generateCurrentPageInfo = () => {
 
 export const generatePageInfos = (widgets: WidgetSeedShape) => {
   const rootNode = widgets.root
+  if (!rootNode) return []
   const pageDisplayNameMapViewDisplayName: Record<string, Set<string>> = {}
   const pageNodes = rootNode.$childrenNode as string[]
   const homepageDisplayName: string =

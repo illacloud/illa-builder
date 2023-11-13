@@ -12,8 +12,8 @@ export function searchDSLByDisplayName(
   displayName: string,
   rootState: RootState = store.getState(),
 ) {
-  const rootNode = getComponentMap(rootState)
-  return rootNode[displayName]
+  const components = getComponentMap(rootState)
+  return components[displayName]
 }
 
 export function searchComponentFromMap(
@@ -78,19 +78,6 @@ export const getRootComponentNode = createSelector(
   (components) => components.root,
 )
 
-export const getAppComponents = (state: RootState) => {
-  return state.currentApp.components?.childrenNode
-}
-
-export const getSelectedComponentNode = createSelector(
-  [getSelectedComponentDisplayNames, getComponentMap],
-  (selectedComponentDisplayNames, components) => {
-    return selectedComponentDisplayNames.map((displayName) => {
-      return components[displayName]
-    })
-  },
-)
-
 export const getComponentNodeBySingleSelected = createSelector(
   [getComponentMap, getSelectedComponentDisplayNames],
   (components, selectedComponentDisplayNames) => {
@@ -143,9 +130,10 @@ export const getCurrentAppPageNames = createSelector(
 export const getPageNameMapDescendantNodeDisplayNames = createSelector(
   [getComponentMap],
   (components) => {
-    const rootNodeProps = components.root.props
+    const rootNode = components.root
+    const rootNodeProps = rootNode?.props
 
-    if (!rootNodeProps || !rootNodeProps.pageSortedKey) return {}
+    if (!rootNode || !rootNodeProps || !rootNodeProps.pageSortedKey) return {}
     const pageDisplayNames = rootNodeProps.pageSortedKey as string[]
     const pageNameMapHasNodeDisplayNames: Record<string, string[]> = {}
     pageDisplayNames.forEach((pageDisplayName) => {
@@ -370,9 +358,8 @@ export const getContainerListDisplayNameMappedChildrenNodeDisplayName =
   )
 
 export const getViewportSizeSelector = createSelector(
-  [getComponentMap],
-  (components) => {
-    const rootComponentNode = components.root
+  [getRootComponentNode],
+  (rootComponentNode) => {
     if (!rootComponentNode || !rootComponentNode.props)
       return {
         viewportWidth: undefined,
@@ -412,18 +399,15 @@ export const getComponentDisplayNameMapDepth = createSelector(
 )
 
 export const getOriginalGlobalData = createSelector(
-  [getComponentMap],
-  (components) => {
-    const rootNode = components.root
+  [getRootComponentNode],
+  (rootNode) => {
     return (rootNode?.props?.globalData ?? {}) as Record<string, string>
   },
 )
 
 export const getGlobalDataToActionList = createSelector(
-  [getComponentMap],
-  (components) => {
-    const rootNode = components.root
-
+  [getRootComponentNode],
+  (rootNode) => {
     const globalData = (rootNode?.props?.globalData ?? {}) as Record<
       string,
       string
@@ -474,9 +458,8 @@ export const getPageDisplayNameMapViewDisplayName = createSelector(
 )
 
 export const getCurrentPageSortedKeys = createSelector(
-  [getComponentMap],
-  (components) => {
-    const rootNode = components.root
+  [getRootComponentNode],
+  (rootNode) => {
     if (!rootNode) return []
     return rootNode.props?.pageSortedKey ?? []
   },
