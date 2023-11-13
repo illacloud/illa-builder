@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{1}} or {{dataGrid1.page}}",
+              "page": "{{0}} or {{dataGrid1.page}}",
               "limit": "{{20}} or {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -707,8 +707,8 @@
               "filter_type": "If you want to filter files, you can use this configuration option to specify filtering by file name or file ID. File name uses fuzzy matching, while file ID uses exact matching.",
               "file_name": "Used for fuzzy matching files.",
               "file_id": "Used to accurately list a specific file.",
-              "folder": "Use /root to specify the root folder, and /root/x/y to specify another folder.",
-              "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. It starts from 1.",
+              "folder": "Select a folder to operate. ",
+              "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. This is an index value that starts from 0.",
               "limit": "If you need server-side pagination, you can use this configuration option to set the number of data items to be returned per page.",
               "file_name_array": "An array consisting of the names of the files you want to upload, including the file extensions, such as [file1.csv, file2.csv]. You can directly retrieve this value using the upload component, like {{upload1.files.map(file => file.name)}}.",
               "file_data_array": "An array of the data of the files you want to upload. You can get it via {{upload1.value}}.",
@@ -3820,22 +3820,22 @@
       "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
     },
     "move_modal": {
-      "no_folders": "No folders here"
+      "no_folders": "No files here"
     },
     "same_name_modal": {
-      "this_folder_already": "The folder with the same name already exists. Would you like to replace it?",
+      "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
       "keep_both": "Keep both",
       "replace": "Replace",
       "this_folder_already_": "The folder with the same name already exists. Would you like to replace it?"
     },
     "upload": {
       "modal": {
-        "title": "Select a folder",
+        "title": "Select a folder to upload to",
         "upload_to": "Upload to",
         "all": "Root",
         "create_folder": "Create new folder",
         "cancel": "Cancel",
-        "file_upload": "Pick a file and upload"
+        "file_upload": "Upload"
       },
       "select": {
         "confirm_button": "Select"
