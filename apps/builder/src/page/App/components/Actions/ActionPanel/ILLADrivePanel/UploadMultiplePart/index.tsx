@@ -5,6 +5,7 @@ import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { UploadMultipleContent } from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { SingleTypeComponent } from "../../SingleTypeComponent"
+import FolderSelect from "../components/FolderSelect"
 import { ILLADriveActionPartProps } from "../interface"
 
 export const UploadMultiplePart: FC<ILLADriveActionPartProps> = (props) => {
@@ -55,14 +56,7 @@ export const UploadMultiplePart: FC<ILLADriveActionPartProps> = (props) => {
         onChange={(value) => handleOptionsValueChange("fileTypeArray", value)}
         expectedType={VALIDATION_TYPES.ARRAY}
       />
-      <InputEditor
-        title={t("editor.action.panel.label.drive.folder")}
-        tips={t("editor.action.panel.label.tips.drive.folder")}
-        mode={CODE_LANG.JAVASCRIPT}
-        value={commandArgs.path}
-        onChange={(value) => handleOptionsValueChange("path", value)}
-        expectedType={VALIDATION_TYPES.STRING}
-      />
+      <FolderSelect value={commandArgs.path} />
     </>
   )
 }

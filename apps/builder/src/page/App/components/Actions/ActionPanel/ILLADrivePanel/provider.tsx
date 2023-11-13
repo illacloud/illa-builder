@@ -2,51 +2,37 @@ import { FC, ReactNode, createContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { FolderOperateModalContext } from "@/components/FolderOperateModal/context"
 import { ROOT_PATH } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
-import UploadOperate from "../../components/UploadOperate"
+import PathOperate from "./components/PathOperate"
 
 interface Injected {
-  uploadName: string
-  widgetType: string
-  isUpLoading: boolean
-  setIsUpLoading: (v: boolean) => void
-  setUploadName: (name: string) => void
-  handleUpdateResult: (value: string) => void
+  handleOptionsValueChange: (name: string, value: string) => void
 }
 
 interface FileUploadProviderProps {
-  widgetType: string
-  handleUpdateResult: (value: string) => void
   children: ReactNode
+  handleOptionsValueChange: (name: string, value: string) => void
 }
 
-export const FileUploadContext = createContext<Injected>({} as Injected)
+export const PathSelectContext = createContext<Injected>({} as Injected)
 
-export const FileUploadProvider: FC<FileUploadProviderProps> = ({
+export const PathSelectProvider: FC<FileUploadProviderProps> = ({
   children,
-  widgetType,
-  handleUpdateResult,
+  handleOptionsValueChange,
 }) => {
+  const { t } = useTranslation()
   const [currentFolderPath, setCurrentFolderPath] = useState(ROOT_PATH)
   const [folderOperateVisible, setFolderOperateVisible] = useState(false)
   const [createFolderVisible, setCreateFolderVisible] = useState(false)
-  const [isUpLoading, setIsUpLoading] = useState(false)
-  const [uploadName, setUploadName] = useState("")
-  const { t } = useTranslation()
 
   return (
-    <FileUploadContext.Provider
+    <PathSelectContext.Provider
       value={{
-        widgetType,
-        handleUpdateResult,
-        isUpLoading,
-        uploadName,
-        setIsUpLoading,
-        setUploadName,
+        handleOptionsValueChange,
       }}
     >
       <FolderOperateModalContext.Provider
         value={{
-          subTitle: t("drive.upload.modal.upload_to"),
+          subTitle: t("drive.upload.modal.select_folder"),
           rootPath: ROOT_PATH,
           currentFolderPath,
           folderOperateVisible,
@@ -54,11 +40,11 @@ export const FileUploadProvider: FC<FileUploadProviderProps> = ({
           setCreateFolderVisible,
           setCurrentFolderPath,
           setFolderOperateVisible,
-          operateChildren: <UploadOperate />,
+          operateChildren: <PathOperate />,
         }}
       >
         {children}
       </FolderOperateModalContext.Provider>
-    </FileUploadContext.Provider>
+    </PathSelectContext.Provider>
   )
 }

@@ -3,11 +3,11 @@ import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Modal, useMessage } from "@illa-design/react"
 import { Input } from "@illa-design/react"
-import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
 import {
   fetchCheckFileExist,
   fetchGCSUploadPresignedURL,
 } from "@/services/drive"
+import { FolderOperateModalContext } from "../../context"
 import { SameNameModal } from "../SameNameModal"
 import { CreateFolderModalProps } from "./interface"
 import { invalidTipsStyle, messageStyle } from "./style"
@@ -24,7 +24,7 @@ const CreateFolderModal: FC<CreateFolderModalProps> = ({ currentFolderID }) => {
     createFolderVisible,
     setCreateFolderVisible,
     setCurrentFolderPath,
-  } = useContext(FileUploadContext)
+  } = useContext(FolderOperateModalContext)
   const { t } = useTranslation()
   const message = useMessage()
   const [folderName, setFolderName] = useState("")
