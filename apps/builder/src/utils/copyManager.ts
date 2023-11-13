@@ -114,7 +114,7 @@ export class CopyManager {
 
               return this.copyComponent(
                 buildTreeByMapNode(needCopyComponent.displayName),
-                buildTreeByMapNode(targetNodeParentNode.displayName),
+                targetNodeParentNode.displayName,
                 needCopyComponent.x,
                 needCopyComponent.y,
               )
@@ -166,7 +166,7 @@ export class CopyManager {
                           ...needCopyOtherComponents.map((node) => {
                             const newNode = this.copyComponent(
                               buildTreeByMapNode(node.displayName),
-                              buildTreeByMapNode(targetParentNode.displayName),
+                              targetParentNode.displayName,
                               0,
                               prevY,
                             )
@@ -192,7 +192,7 @@ export class CopyManager {
                           ...needCopyOtherComponents.map((node) => {
                             const newNode = this.copyComponent(
                               buildTreeByMapNode(node.displayName),
-                              buildTreeByMapNode(targetParentNode.displayName),
+                              targetParentNode.displayName,
                               0,
                               prevY,
                             )
@@ -213,7 +213,7 @@ export class CopyManager {
                           ...needCopyOtherComponents.map((node) => {
                             const newNode = this.copyComponent(
                               buildTreeByMapNode(node.displayName),
-                              buildTreeByMapNode(targetParentNode.displayName),
+                              targetParentNode.displayName,
                               0,
                               prevY,
                             )
@@ -239,7 +239,7 @@ export class CopyManager {
                           ...needCopyOtherComponents.map((node) => {
                             return this.copyComponent(
                               buildTreeByMapNode(node.displayName),
-                              buildTreeByMapNode(targetParentNode.displayName),
+                              targetParentNode.displayName,
                               targetNode!.x + node.x - leftTopX,
                               targetNode!.y + targetNode!.h + node.y - leftTopY,
                             )
@@ -299,14 +299,14 @@ export class CopyManager {
                         )
                         return this.copyComponent(
                           buildTreeByMapNode(needCopyComponent.displayName),
-                          buildTreeByMapNode(targetNodeParentNode.displayName),
+                          targetNodeParentNode.displayName,
                           needCopyComponent.x,
                           needCopyComponent.y,
                         )
                       }
                       return this.copyComponent(
                         buildTreeByMapNode(needCopyComponent.displayName),
-                        buildTreeByMapNode(containerNode.displayName),
+                        containerNode.displayName,
                         clickPosition.clickPosition[0] +
                           needCopyComponent.x -
                           leftTopX,
@@ -360,14 +360,14 @@ export class CopyManager {
                         )
                         return this.copyComponent(
                           buildTreeByMapNode(needCopyComponent.displayName),
-                          buildTreeByMapNode(targetNodeParentNode.displayName),
+                          targetNodeParentNode.displayName,
                           needCopyComponent.x,
                           needCopyComponent.y,
                         )
                       }
                       return this.copyComponent(
                         buildTreeByMapNode(needCopyComponent.displayName),
-                        buildTreeByMapNode(targetParentNode.displayName),
+                        targetParentNode.displayName,
                         clickPosition.clickPosition[0] +
                           needCopyComponent.x -
                           leftTopX,
@@ -406,7 +406,7 @@ export class CopyManager {
 
   static copyComponent(
     node: ComponentTreeNode,
-    newParentNode: ComponentTreeNode,
+    newParentNodeDisplayName: string,
     rawX: number,
     rawY: number,
   ): ComponentTreeNode {
@@ -428,7 +428,7 @@ export class CopyManager {
       y: rawY,
       w: node.w,
       h: node.h,
-      parentNode: newParentNode.displayName,
+      parentNode: newParentNodeDisplayName,
     } as ComponentTreeNode)
 
     Object.keys(updatePathsMapValue).forEach((key) => {
@@ -437,7 +437,7 @@ export class CopyManager {
 
     if (Array.isArray(node.childrenNode)) {
       newNode.childrenNode = node.childrenNode.map((n) =>
-        this.copyComponent(n, newNode, n.x, n.y),
+        this.copyComponent(n, newNode.displayName, n.x, n.y),
       )
     }
     return newNode
