@@ -707,7 +707,7 @@
               "filter_type": "Hvis du ønsker at filtrere filer, kan du bruge denne indstillingsindstilling til at angive filtrering efter filnavn eller fil- ID. Filnavn bruger fuzzy matching, mens fil-id bruger eksakt matching.",
               "file_name": "Bruges til uklare matchende filer.",
               "file_id": "Bruges til præcist at liste en bestemt fil.",
-              "folder": "Vælg en mappe at betjene. ",
+              "folder": "Brug /root til at angive rodmappen, og /root/x/y for at angive en anden mappe.",
               "page": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille sidenummeret på data til at hente. Det starter fra 1.",
               "limit": "Hvis du har brug for side side på serveren, kan du bruge denne indstillingsmulighed til at indstille antallet af dataelementer, der skal returneres pr. side.",
               "file_name_array": "Et array bestående af navnene på de filer, du vil uploade, herunder filendelser, såsom [file1.csv, file2. sv]. Du kan direkte hente denne værdi ved hjælp af upload-komponenten, f.eks. {{upload1.files.map(file => file.name)}}.",

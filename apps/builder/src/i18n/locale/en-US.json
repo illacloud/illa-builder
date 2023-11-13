@@ -707,7 +707,7 @@
               "filter_type": "If you want to filter files, you can use this configuration option to specify filtering by file name or file ID. File name uses fuzzy matching, while file ID uses exact matching.",
               "file_name": "Used for fuzzy matching files.",
               "file_id": "Used to accurately list a specific file.",
-              "folder": "Select a folder to operate. ",
+              "folder": "Use /root to specify the root folder, and /root/x/y to specify another folder.",
               "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. It starts from 1.",
               "limit": "If you need server-side pagination, you can use this configuration option to set the number of data items to be returned per page.",
               "file_name_array": "An array consisting of the names of the files you want to upload, including the file extensions, such as [file1.csv, file2.csv]. You can directly retrieve this value using the upload component, like {{upload1.files.map(file => file.name)}}.",
