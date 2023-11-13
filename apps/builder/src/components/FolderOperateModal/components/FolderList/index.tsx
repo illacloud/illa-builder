@@ -7,8 +7,8 @@ import { DoubtIcon, Trigger } from "@illa-design/react"
 import {
   FOLDER_LIST_CONTAINER_HEIGHT,
   FOLDER_LIST_ITEM_HEIGHT,
-} from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
-import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
+} from "../../constants"
+import { FolderOperateModalContext } from "../../context"
 import { FolderListProps } from "./interface"
 import {
   doubtStyle,
@@ -20,8 +20,9 @@ import {
 const FolderList: FC<FolderListProps> = (props) => {
   const { listData, updateListData } = props
   const { t } = useTranslation()
-  const { currentFolderPath, setCurrentFolderPath } =
-    useContext(FileUploadContext)
+  const { currentFolderPath, setCurrentFolderPath } = useContext(
+    FolderOperateModalContext,
+  )
 
   const handleClickItem = useCallback(
     (name: string) => {
