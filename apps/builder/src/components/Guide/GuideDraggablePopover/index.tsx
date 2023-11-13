@@ -21,8 +21,6 @@ export const GuideDraggablePopover: FC<GuideCurrentMaskProps> = (props) => {
     [currentStep],
   )
 
-  console.log("?????")
-
   const domRect = useMemo(() => {
     if (selector) {
       const element = document.querySelector(selector)
