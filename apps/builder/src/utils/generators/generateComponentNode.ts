@@ -11,6 +11,8 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { WidgetType, widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
+export const TEMPLATE_DISPLAYNAME_KEY = "templateDisplayName"
+
 export const generateWidgetLayoutInfo = (
   type: string,
   baseDisplayName: string,
@@ -272,6 +274,8 @@ export const newGenerateComponentNode = (
   }
   if (baseDSL.type === "LIST_WIDGET") {
     baseDSL = transformListWidget(baseDSL)
+  } else {
+    baseDSL = transFormTemplateDisplayName(baseDSL)
   }
   return baseDSL
 }
@@ -280,18 +284,25 @@ function transformListWidget(baseDSL: ComponentNode) {
   const container = baseDSL.childrenNode[0]
   let templateChildren = container.childrenNode
   templateChildren.map((node) => {
-    const props = node.props
-    if (props && Array.isArray(props.$dynamicAttrPaths)) {
-      props.$dynamicAttrPaths.forEach((path) => {
-        const originValue = get(node, `props.${path}`, "")
-        const finalValue = originValue.replace(
-          "templateDisplayName",
-          baseDSL.displayName,
-        )
-        set(node, `props.${path}`, finalValue)
-      })
-    }
-    return node
+    return transFormTemplateDisplayName(node, baseDSL.displayName)
   })
+  return baseDSL
+}
+
+function transFormTemplateDisplayName(
+  baseDSL: ComponentNode,
+  targetDisplayName: string = baseDSL.displayName,
+) {
+  const props = baseDSL.props
+  if (props && Array.isArray(props.$dynamicAttrPaths)) {
+    props.$dynamicAttrPaths.forEach((path) => {
+      const originValue = get(baseDSL, `props.${path}`, "")
+      const finalValue = originValue.replace(
+        TEMPLATE_DISPLAYNAME_KEY,
+        targetDisplayName,
+      )
+      set(baseDSL, `props.${path}`, finalValue)
+    })
+  }
   return baseDSL
 }
