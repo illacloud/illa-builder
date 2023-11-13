@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{1}} or {{dataGrid1.page}}",
+              "page": "{{0}}",
               "limit": "{{20}} or {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -707,8 +707,8 @@
               "filter_type": "Jos haluat suodattaa tiedostoja, voit käyttää tätä asetusta määrittääksesi suodatuksen tiedoston nimen tai tiedoston tunnuksen mukaan. Tiedostonimi käyttää fuzzy matching, kun taas tiedoston ID käyttää tarkkaa täsmäämistä.",
               "file_name": "Käytetään sumeisiin tiedostoihin.",
               "file_id": "Käytetään tietyn tiedoston täsmälliseen luetteloon.",
-              "folder": "Käytä /root määrittääksesi juurikansion, ja /root/x/y määrittääksesi toisen kansion.",
-              "page": "Jos tarvitset palvelinpuolen välimuistin, voit käyttää tätä määritystä asettaaksesi tietojen sivun numeron noutamaan. Se alkaa 1.",
+              "folder": "Valitse kansio jota haluat käyttää. ",
+              "page": "Jos tarvitset palvelimen puolella olevaa sivua, voit käyttää tätä asetusta asettaaksesi tietojen sivun numeron noutamaan. Tämä on indeksin arvo, joka alkaa 0.",
               "limit": "Jos tarvitset palvelinpuolen välimuistin, voit käyttää tätä määritystä asettaaksesi tietoalkioiden määrän joka palautetaan per sivu.",
               "file_name_array": "Taulukko, joka koostuu tiedostojen nimistä, jotka haluat ladata, mukaan lukien tiedostopäätteet, kuten [file1.csv, file2. sv]. Voit hakea tämän arvon suoraan latauskomponentin avulla, kuten {{upload1.files.map(file => file.name)}}.",
               "file_data_array": "Joukko tietoja tiedostoista, joita haluat ladata. Voit saada sen {{upload1.value}} kautta. Voit saada sen kautta",
@@ -3820,7 +3820,7 @@
       "validate_failed": "Vain kirjaimet, numerot ja -~_=: ovat sallittuja. Raja on 255 merkkiä tai vähemmän"
     },
     "move_modal": {
-      "no_folders": "Ei kansioita täällä"
+      "no_folders": "Ei tiedostoja täällä"
     },
     "same_name_modal": {
       "this_folder_already": "Samanniminen tiedosto on jo olemassa tässä kansiossa tai sitä ladataan tähän kansioon. Haluatko korvata sen?",
@@ -3835,7 +3835,7 @@
         "all": "Juuri",
         "create_folder": "Luo uusi kansio",
         "cancel": "Peruuta",
-        "file_upload": "Valitse tiedosto ja lataa"
+        "file_upload": "Lähetä"
       },
       "select": {
         "confirm_button": "Valitse"

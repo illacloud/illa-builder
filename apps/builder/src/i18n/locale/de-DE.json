@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{1}} oder {{dataGrid1.page}}",
+              "page": "{{0}}",
               "limit": "{{20}} oder {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -707,8 +707,8 @@
               "filter_type": "Wenn Sie Dateien filtern möchten, können Sie mit dieser Konfigurationsoption die Filterung nach Dateinamen oder Datei-ID angeben. Dateiname verwendet unscharfe Übereinstimmung, während die Datei-ID exakte Übereinstimmung verwendet.",
               "file_name": "Wird für verschwommene Dateien verwendet.",
               "file_id": "Wird verwendet, um eine bestimmte Datei genau aufzulisten.",
-              "folder": "Benutzen Sie /root um den Wurzelordner anzugeben, und /root/x/y um einen anderen Ordner anzugeben.",
-              "page": "Wenn Sie serverseitige Seitenumgebung benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der zu ermittelnden Daten festlegen. Sie beginnt ab 1.",
+              "folder": "Wählen Sie einen zu bearbeitenden Ordner. ",
+              "page": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der Daten festlegen. Dies ist ein Indexwert, der bei 0 beginnt.",
               "limit": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption festlegen, wie viele Datenelemente pro Seite zurückgegeben werden sollen.",
               "file_name_array": "Ein Array bestehend aus den Namen der Dateien, die Sie hochladen möchten, inklusive der Dateierweiterungen, wie z.B. [file1.csv, file2. Sie können diesen Wert direkt über die Upload-Komponente wie {{upload1.files.map(file => file.name)}} abrufen.",
               "file_data_array": "Ein Array der Daten der Dateien, die Sie hochladen möchten. Sie können sie über {{upload1.value}} erhalten.",
@@ -3820,7 +3820,7 @@
       "validate_failed": "Nur Buchstaben, Zahlen und -~_=: sind erlaubt. Das Limit ist 255 oder weniger Zeichen"
     },
     "move_modal": {
-      "no_folders": "Keine Ordner hier"
+      "no_folders": "Keine Dateien hier"
     },
     "same_name_modal": {
       "this_folder_already": "Die Datei mit dem gleichen Namen existiert bereits in diesem Ordner oder wird in diesen Ordner hochgeladen. Möchten Sie sie ersetzen?",
@@ -3835,7 +3835,7 @@
         "all": "Wurzel",
         "create_folder": "Neuen Ordner erstellen",
         "cancel": "Abbrechen",
-        "file_upload": "Datei auswählen und hochladen"
+        "file_upload": "Hochladen"
       },
       "select": {
         "confirm_button": "Auswählen"

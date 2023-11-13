@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{1}} sau {{dataGrid1.page}}",
+              "page": "{{0}}",
               "limit": "{{20}} sau {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(fișier => fișier.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -707,8 +707,8 @@
               "filter_type": "Dacă doriți să filtrați fișiere, puteți utiliza această opțiune de configurare pentru a specifica filtrarea după numele fișierului sau ID-ul fișierului. Numele fisierului foloseste potrivire fuzzy, in timp ce ID-ul fisierului foloseste potrivirea exacta.",
               "file_name": "Folosit pentru fişierele neclare.",
               "file_id": "Folosit pentru a afișa cu exactitate un fișier specific.",
-              "folder": "Utilizaţi /root pentru a specifica directorul root, şi /root/x/y pentru a specifica un alt folder.",
-              "page": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de pagină pentru a prelua datele. Începe de la 1.",
+              "folder": "Selectați un dosar pentru a funcționa. ",
+              "page": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de pagină pentru a prelua datele. Aceasta este o valoare de index care începe de la 0.",
               "limit": "Dacă aveţi nevoie de paginare pe partea serverului, puteţi utiliza această opţiune de configurare pentru a seta numărul de elemente de date care să fie returnate pe pagină.",
               "file_name_array": "Un array format din numele fișierelor pe care doriți să le încărcați, inclusiv extensiile fișierului, cum ar fi [file1.csv, fișier2. sv]. Puteți prelua direct această valoare folosind componenta de încărcare, cum ar fi {{upload1.files.map(fișier => fișier.name)}}.",
               "file_data_array": "O serie de date ale fişierelor pe care doriţi să le încărcaţi. O puteţi obţine prin intermediul {{upload1.value}}.",
@@ -3820,7 +3820,7 @@
       "validate_failed": "Doar litere, numere și -~_=: sunt permise. Limita este de 255 de caractere sau mai puțin"
     },
     "move_modal": {
-      "no_folders": "Nu sunt dosare aici"
+      "no_folders": "Niciun fișier aici"
     },
     "same_name_modal": {
       "this_folder_already": "Fişierul cu acelaşi nume există deja în acest dosar sau este încărcat în acest dosar. Doriţi să-l înlocuiţi?",
@@ -3835,7 +3835,7 @@
         "all": "Rădăcină",
         "create_folder": "Creați un dosar nou",
         "cancel": "Anulează",
-        "file_upload": "Alege un fișier și încarcă"
+        "file_upload": "Incarca"
       },
       "select": {
         "confirm_button": "Selectare"
