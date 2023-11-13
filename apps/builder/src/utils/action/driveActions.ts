@@ -55,6 +55,11 @@ const getPathForSignedUrl = (path: string) => {
   }
 }
 
+const removeSuffixPath = (path: string): string => {
+  const regex = /^\/?(.*?)\/?$/
+  return path?.match(regex)?.[1] || path
+}
+
 const scheduler = async (task: (() => Promise<any>)[]) => {
   return new Promise((resolve, reject) => {
     const run = async () => {
@@ -129,7 +134,7 @@ export const transformDriveData = (
       const commandArgs = contents.commandArgs as ListAllContent
       return {
         operation,
-        path: commandArgs.path || ROOT_PATH,
+        path: `/${removeSuffixPath(commandArgs.path) || ROOT_PATH}`,
         limit: commandArgs.limit,
         search:
           commandArgs.filterType === FILTER_TYPE.BY_NAME
@@ -157,7 +162,7 @@ export const transformDriveData = (
       )
       return {
         operation,
-        path: commandArgs.path || ROOT_PATH,
+        path: `/${removeSuffixPath(commandArgs.path) || ROOT_PATH}`,
         overwriteDuplicate: commandArgs.overwriteDuplicate,
         fileName: fileDownloadName,
         fileSize: needUploadFile.size,
@@ -195,7 +200,7 @@ export const transformDriveData = (
 
       return {
         operation,
-        path: commandArgs.path || ROOT_PATH,
+        path: `/${removeSuffixPath(commandArgs.path) || ROOT_PATH}`,
         overwriteDuplicate: commandArgs.overwriteDuplicate,
         files,
       }

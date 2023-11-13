@@ -707,7 +707,7 @@
               "filter_type": "Wenn Sie Dateien filtern möchten, können Sie mit dieser Konfigurationsoption die Filterung nach Dateinamen oder Datei-ID angeben. Dateiname verwendet unscharfe Übereinstimmung, während die Datei-ID exakte Übereinstimmung verwendet.",
               "file_name": "Wird für verschwommene Dateien verwendet.",
               "file_id": "Wird verwendet, um eine bestimmte Datei genau aufzulisten.",
-              "folder": "Wählen Sie einen zu bearbeitenden Ordner. ",
+              "folder": "Benutzen Sie /root um den Wurzelordner anzugeben, und /root/x/y um einen anderen Ordner anzugeben.",
               "page": "Wenn Sie serverseitige Seitenumgebung benötigen, können Sie mit dieser Konfigurationsoption die Seitenzahl der zu ermittelnden Daten festlegen. Sie beginnt ab 1.",
               "limit": "Wenn Sie serverseitige Seiten benötigen, können Sie mit dieser Konfigurationsoption festlegen, wie viele Datenelemente pro Seite zurückgegeben werden sollen.",
               "file_name_array": "Ein Array bestehend aus den Namen der Dateien, die Sie hochladen möchten, inklusive der Dateierweiterungen, wie z.B. [file1.csv, file2. Sie können diesen Wert direkt über die Upload-Komponente wie {{upload1.files.map(file => file.name)}} abrufen.",

@@ -707,7 +707,7 @@
               "filter_type": "Hvis du vil filtrere filer, kan du bruke dette konfigurasjonsalternativet for å spesifisere filnavn eller fil-ID. Filnavnet bruker uklar samsvarende, mens fil-ID bruker nøyaktig samsvar.",
               "file_name": "Brukes for fuzzy samsvarende filer.",
               "file_id": "Brukes til nøyaktig å liste en bestemt fil.",
-              "folder": "Velg en mappe du vil operere. ",
+              "folder": "Bruk /root for å spesifisere rotmappen, og /root/x/y for å velge en annen mappe.",
               "page": "Hvis du trenger brukersiden på tjenersiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Den starter fra 1.",
               "limit": "Hvis du trenger gulegatsidesidering kan du bruke dette konfigurasjonsalternativet for å angi antall data objekter som skal returneres per side.",
               "file_name_array": "En liste bestående av navnene på filene du vil laste opp, inkludert filutvidelsene, som [file1.csv, file2. sv]. Du kan hente denne verdien ved å bruke opplastingskomponenten, som {{upload1.files.map(fil => file.name)}}.",

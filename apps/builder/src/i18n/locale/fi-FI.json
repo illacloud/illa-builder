@@ -707,7 +707,7 @@
               "filter_type": "Jos haluat suodattaa tiedostoja, voit käyttää tätä asetusta määrittääksesi suodatuksen tiedoston nimen tai tiedoston tunnuksen mukaan. Tiedostonimi käyttää fuzzy matching, kun taas tiedoston ID käyttää tarkkaa täsmäämistä.",
               "file_name": "Käytetään sumeisiin tiedostoihin.",
               "file_id": "Käytetään tietyn tiedoston täsmälliseen luetteloon.",
-              "folder": "Valitse kansio jota haluat käyttää. ",
+              "folder": "Käytä /root määrittääksesi juurikansion, ja /root/x/y määrittääksesi toisen kansion.",
               "page": "Jos tarvitset palvelinpuolen välimuistin, voit käyttää tätä määritystä asettaaksesi tietojen sivun numeron noutamaan. Se alkaa 1.",
               "limit": "Jos tarvitset palvelinpuolen välimuistin, voit käyttää tätä määritystä asettaaksesi tietoalkioiden määrän joka palautetaan per sivu.",
               "file_name_array": "Taulukko, joka koostuu tiedostojen nimistä, jotka haluat ladata, mukaan lukien tiedostopäätteet, kuten [file1.csv, file2. sv]. Voit hakea tämän arvon suoraan latauskomponentin avulla, kuten {{upload1.files.map(file => file.name)}}.",
