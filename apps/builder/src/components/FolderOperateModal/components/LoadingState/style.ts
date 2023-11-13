@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { FOLDER_LIST_CONTAINER_HEIGHT } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
+import { FOLDER_LIST_CONTAINER_HEIGHT } from "../../constants"
 
 export const loadingContainerStyle = css`
   height: ${FOLDER_LIST_CONTAINER_HEIGHT}px;

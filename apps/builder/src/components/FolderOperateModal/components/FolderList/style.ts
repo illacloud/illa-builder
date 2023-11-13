@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { FOLDER_LIST_ITEM_HEIGHT } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
+import { FOLDER_LIST_ITEM_HEIGHT } from "../../constants"
 
 export const listItemContainerStyle = css`
   display: flex;

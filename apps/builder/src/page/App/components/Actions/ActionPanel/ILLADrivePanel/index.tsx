@@ -1,6 +1,7 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import FolderOperateModal from "@/components/FolderOperateModal"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
@@ -25,6 +26,7 @@ import {
   UploadOneContentInitial,
 } from "@/redux/currentApp/action/illaDriveAction"
 import TriggerModeChoose from "../PanelHeader/TriggerModeChoose"
+import { PathSelectProvider } from "./provider"
 import {
   actionItemContainer,
   containerStyle,
@@ -112,25 +114,28 @@ const ILLADrivePanel: FC = () => {
   }
 
   return (
-    <div css={containerStyle}>
-      <div css={triggerModeContainerStyle}>
-        <TriggerModeChoose />
+    <PathSelectProvider handleOptionsValueChange={handleOptionsValueChange}>
+      <div css={containerStyle}>
+        <div css={triggerModeContainerStyle}>
+          <TriggerModeChoose />
+        </div>
+        <div css={actionItemContainer}>
+          <SingleTypeComponent
+            title={t("editor.action.panel.label.drive.method")}
+            tips={t("editor.action.panel.label.tips.drive.method")}
+            componentType="select"
+            value={content.operation}
+            showSearch
+            onChange={handleActionChange}
+            options={ILLADriveActionList}
+          />
+          {renderInputBody}
+          <TransformerComponent />
+        </div>
+        <ActionEventHandler />
       </div>
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          title={t("editor.action.panel.label.drive.method")}
-          tips={t("editor.action.panel.label.tips.drive.method")}
-          componentType="select"
-          value={content.operation}
-          showSearch
-          onChange={handleActionChange}
-          options={ILLADriveActionList}
-        />
-        {renderInputBody}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
-    </div>
+      <FolderOperateModal />
+    </PathSelectProvider>
   )
 }
 

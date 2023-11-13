@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import FilesModal from "@/components/DriveFileSelect"
+import FolderOperateModal from "@/components/FolderOperateModal"
 import {
   applyRadioGroupWrapperStyle,
   baseRadioGroupContainerStyle,
@@ -13,7 +14,6 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { RootState } from "@/store"
 import SourceHeader from "./components/SourceHeader"
 import URLModeInput from "./components/URLModeInput"
-import UploadFileModal from "./components/UploadFileModal"
 import UploadMode from "./components/UploadInput"
 import { DRIVE_SOURCE_MODE, ROOT_PATH } from "./constants"
 import { DriveSourceGroupSetterProps } from "./interface"
@@ -127,7 +127,7 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
             )}
           </div>
         </div>
-        <UploadFileModal />
+        <FolderOperateModal />
         <FilesModal />
       </FileUploadProvider>
     </SourceSelectProvider>
