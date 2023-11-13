@@ -538,7 +538,7 @@
             "drive": {
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
-              "page": "{{1}} eller {{dataGrid1.page}}",
+              "page": "{{0}} eller {{dataGrid1.page}}",
               "limit": "{{20}} eller {{dataGrid1.pageSize}}",
               "file_name_array": "{{upload1.files.map(file => file.name)}}",
               "file_data_array": "{{upload1.value}}",
@@ -707,8 +707,8 @@
               "filter_type": "Hvis du vil filtrere filer, kan du bruke dette konfigurasjonsalternativet for å spesifisere filnavn eller fil-ID. Filnavnet bruker uklar samsvarende, mens fil-ID bruker nøyaktig samsvar.",
               "file_name": "Brukes for fuzzy samsvarende filer.",
               "file_id": "Brukes til nøyaktig å liste en bestemt fil.",
-              "folder": "Bruk /root for å spesifisere rotmappen, og /root/x/y for å velge en annen mappe.",
-              "page": "Hvis du trenger brukersiden på tjenersiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Den starter fra 1.",
+              "folder": "Velg en mappe du vil operere. ",
+              "page": "Hvis du trenger en brukerside for serversiden, kan du bruke denne innstillingen til å angi sidenummeret til dataene som skal hentes. Dette er en indeksverdi som starter fra 0.",
               "limit": "Hvis du trenger gulegatsidesidering kan du bruke dette konfigurasjonsalternativet for å angi antall data objekter som skal returneres per side.",
               "file_name_array": "En liste bestående av navnene på filene du vil laste opp, inkludert filutvidelsene, som [file1.csv, file2. sv]. Du kan hente denne verdien ved å bruke opplastingskomponenten, som {{upload1.files.map(fil => file.name)}}.",
               "file_data_array": "En rekke med data for filene du vil laste opp. Du kan få den via {{upload1.value}}.",
@@ -3820,7 +3820,7 @@
       "validate_failed": "Kun bokstaver, tall og -~_=: er tillatt. Grensen er 255 tegn, eller mindre"
     },
     "move_modal": {
-      "no_folders": "Ingen mapper her"
+      "no_folders": "Ingen filer her"
     },
     "same_name_modal": {
       "this_folder_already": "Filen med samme navn finnes allerede i denne mappen, eller den lastes opp til denne mappen. Vil du erstatte den?",
@@ -3835,7 +3835,7 @@
         "all": "Rot",
         "create_folder": "Opprett ny mappe",
         "cancel": "Avbryt",
-        "file_upload": "Velg en fil og last opp"
+        "file_upload": "Last opp"
       },
       "select": {
         "confirm_button": "Velg"
