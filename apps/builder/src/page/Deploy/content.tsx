@@ -20,12 +20,12 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { startAppListening } from "@/store"
+import { flatTreeToMap } from "@/utils/componentNode/flatTree"
 import {
   track,
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import { flatTreeToMap } from "../../utils/componentNode/flatTree"
 import { CanvasPanel } from "../App/Module/CanvasPanel"
 import { CurrentAppResp } from "../App/resp/currentAppResp"
 

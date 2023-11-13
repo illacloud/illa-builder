@@ -17,6 +17,7 @@ import {
   applyDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
+import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
 import {
   getExecutionResult,
   getRawTree,
@@ -41,7 +42,6 @@ import {
   listParentContainerWithPagination,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
-import { getComponentMap } from "../../redux/currentApp/components/componentsSelector"
 import RenderChildrenCanvas from "../PublicSector/RenderChildrenCanvas"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {

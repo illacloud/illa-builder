@@ -11,7 +11,7 @@ import {
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
+import { getRootComponentNode } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { getGuideInfo } from "@/redux/guide/guideSelector"
 import { ILLARoute } from "@/router"
@@ -29,8 +29,7 @@ const getInfoFromUrl = () => {
 
 const getPreviewInfo = () => {
   const rootState = store.getState()
-  const components = getComponentMap(rootState)
-  const rootNode = components.root
+  const rootNode = getRootComponentNode(rootState)
   const isProduction = getIsILLAProductMode(rootState)
   const rootProps = rootNode?.props
   if (!rootProps)

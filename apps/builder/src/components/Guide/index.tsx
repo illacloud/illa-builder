@@ -42,6 +42,9 @@ export const Guide: FC<GuideProps> = (props) => {
     }
   }, [currentStep, selector])
 
+  console.log("currentStep", currentStep)
+  console.log("firstStepElement", firstStepElement)
+
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />

@@ -13,8 +13,8 @@ import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 
 const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
   const currentNode = useSelector((state: RootState) => {
-    const rootNode = getComponentMap(state)
-    return searchComponentFromMap(rootNode, props.widgetDisplayName)
+    const components = getComponentMap(state)
+    return searchComponentFromMap(components, props.widgetDisplayName)
   })!
   const { handleUpdateMultiAttrDSL, value: heightMode } = props
   const handleUpdateHeightMode = useCallback(

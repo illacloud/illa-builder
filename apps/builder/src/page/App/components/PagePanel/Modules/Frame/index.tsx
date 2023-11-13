@@ -74,8 +74,10 @@ export const PageFrame: FC = () => {
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const pageProps = useSelector<RootState>((state) => {
-    const canvas = getComponentMap(state)
-    return searchComponentFromMap(canvas, currentPageDisplayName)?.props || {}
+    const components = getComponentMap(state)
+    return (
+      searchComponentFromMap(components, currentPageDisplayName)?.props || {}
+    )
   }) as PageNodeProps
   const message = useMessage()
 

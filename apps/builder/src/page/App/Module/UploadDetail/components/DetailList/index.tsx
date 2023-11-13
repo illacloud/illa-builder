@@ -1,7 +1,7 @@
 import VirtualList from "rc-virtual-list"
 import { FC, useSyncExternalStore } from "react"
 import { useTranslation } from "react-i18next"
-import { updateFileDetailStore } from "../../store"
+import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
 import {
   PROCESS_DETAIL_ITEM_HEIGHT,
   PROCESS_DETAIL_LIST_HEIGHT,

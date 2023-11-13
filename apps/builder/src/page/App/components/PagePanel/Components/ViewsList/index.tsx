@@ -18,14 +18,13 @@ import { viewsListWrapperStyle } from "./style"
 export const ViewList: FC<ViewListProps> = (props) => {
   const { sectionName } = props
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
-  const components = useSelector(getComponentMap)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
   const sectionNodeExecutionResult = useSelector<RootState>((state) => {
-    const canvas = getComponentMap(state)
+    const components = getComponentMap(state)
     const currentPageNode = searchComponentFromMap(
-      canvas,
+      components,
       currentPageDisplayName,
     )
     if (!currentPageNode) return null
@@ -39,6 +38,7 @@ export const ViewList: FC<ViewListProps> = (props) => {
   }) as Record<string, any>
 
   if (!sectionNodeExecutionResult) return null
+
   return (
     <div css={viewsListWrapperStyle}>
       <ViewListHeader

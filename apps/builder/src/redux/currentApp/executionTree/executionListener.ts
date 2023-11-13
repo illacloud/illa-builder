@@ -268,9 +268,9 @@ function handleUpdateModalEffect(
   const parentNodeDisplayName = modalComponentNode.parentNode
   if (!parentNodeDisplayName) return
   const rootState = listenerApi.getState()
-  const rootNode = getComponentMap(rootState)
-  if (!rootNode) return
-  const parentNode = searchComponentFromMap(rootNode, parentNodeDisplayName)
+  const components = getComponentMap(rootState)
+  if (!components) return
+  const parentNode = searchComponentFromMap(components, parentNodeDisplayName)
   if (!parentNode || !Array.isArray(parentNode.childrenNode)) return
   const otherNode = parentNode.childrenNode.filter((childDisplayName) => {
     return childDisplayName !== modalComponentNode.displayName
