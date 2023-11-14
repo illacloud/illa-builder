@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Suorita toiminto vain, kun käsin laukaistu",
-            "on_change": "Suorita toiminto automaattisesti, kun syötteet muuttuvat"
+            "on_change": "Suorita toiminto automaattisesti, kun syötteet muuttuvat",
+            "label": "Käynnistimen tyyppi"
           }
         },
         "s3": {
