@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Σύνδεση στη βάση δεδομένων ή στο api",
             "more-type": "Περισσότερος τύπος πηγών δεδομένων",
-            "safe_mode": "Λειτουργία"
+            "safe_mode": "Λειτουργία",
+            "ai_agent_title": "Ενσωμάτωση με AI Agent",
+            "integration_title": "Ενσωμάτωση με πηγή δεδομένων"
           },
           "drive": {
             "method": "Μέθοδος",
@@ -3840,7 +3842,8 @@
         "select": "Επιλογή"
       },
       "select": {
-        "confirm_button": "Επιλογή"
+        "confirm_button": "Επιλογή",
+        "select_entry": "Επιλογή"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "Ενημέρωση",
       "title": "Επεξεργασία"
-    }
+    },
+    "checkbox_ai_agent": "Συγχρονισμός του συνδεδεμένου AI παράγοντα στο Marketplace"
   },
   "error_page": {
     "fobidden": "Δεν υπάρχει δικαίωμα πρόσβασης"
