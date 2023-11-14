@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Aktion nur ausführen, wenn manuell ausgelöst",
-            "on_change": "Aktion bei Änderung der Eingaben automatisch ausführen"
+            "on_change": "Aktion bei Änderung der Eingaben automatisch ausführen",
+            "label": "Auslöse-Typ"
           }
         },
         "s3": {
