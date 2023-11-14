@@ -3835,7 +3835,9 @@
         "all": "Rădăcină",
         "create_folder": "Creați un dosar nou",
         "cancel": "Anulează",
-        "file_upload": "Incarca"
+        "file_upload": "Incarca",
+        "select_folder": "Selectaţi dosarul: ",
+        "select": "Selectare"
       },
       "select": {
         "confirm_button": "Selectare"
