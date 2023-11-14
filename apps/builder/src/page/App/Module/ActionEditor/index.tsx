@@ -5,7 +5,7 @@ import {
 import { FC, useRef } from "react"
 import { useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
-import { ActionGuidePanel } from "@/page/App/components/Actions/ActionGuidePanel"
+import ActionGuidePanel from "@/page/App/components/Actions/ActionGuidePanel"
 import { ActionList } from "@/page/App/components/Actions/ActionList"
 import { ActionPanel } from "@/page/App/components/Actions/ActionPanel"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
