@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Actie alleen uitvoeren wanneer handmatig wordt geactiveerd",
-            "on_change": "Actie automatisch uitvoeren wanneer inputs veranderen"
+            "on_change": "Actie automatisch uitvoeren wanneer inputs veranderen",
+            "label": "Trigger type"
           }
         },
         "s3": {
