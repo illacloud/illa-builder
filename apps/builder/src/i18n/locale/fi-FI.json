@@ -3835,7 +3835,9 @@
         "all": "Juuri",
         "create_folder": "Luo uusi kansio",
         "cancel": "Peruuta",
-        "file_upload": "Lähetä"
+        "file_upload": "Lähetä",
+        "select_folder": "Valitse kansio: ",
+        "select": "Valitse"
       },
       "select": {
         "confirm_button": "Valitse"
