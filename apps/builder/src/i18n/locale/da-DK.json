@@ -3835,7 +3835,9 @@
         "all": "Rod",
         "create_folder": "Opret ny mappe",
         "cancel": "Annuller",
-        "file_upload": "Upload"
+        "file_upload": "Upload",
+        "select_folder": "Vælg mappen: ",
+        "select": "Vælg"
       },
       "select": {
         "confirm_button": "Vælg"
