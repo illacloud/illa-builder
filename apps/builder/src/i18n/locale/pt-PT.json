@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Executar ação apenas quando acionado manualmente",
-            "on_change": "Executar ação automaticamente ao alterar as entradas"
+            "on_change": "Executar ação automaticamente ao alterar as entradas",
+            "label": "Trigger type"
           }
         },
         "s3": {
