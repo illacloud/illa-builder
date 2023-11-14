@@ -99,16 +99,18 @@ export const copyToClipboard = (copiedValue: unknown) => {
 export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
   const { pagePath, viewPath = "" } = params
   if (typeof pagePath !== "string" || typeof viewPath !== "string") return
-  let finalPath = `/${pagePath}`
-  finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
-  const originPathArray = ILLARoute.state.location.pathname.split("/")
   const isProductionMode = getIsILLAProductMode(store.getState())
   const rootNodeProps = getRootNodeExecutionResult(store.getState())
   const { pageSortedKey } = rootNodeProps
   const index = pageSortedKey.findIndex((path: string) => path === pagePath)
   if (index === -1) return
-  if (isProductionMode && originPathArray.length >= 5) {
-    ILLARoute.navigate(originPathArray.slice(0, 5).join("/") + finalPath, {
+  const routerMatch = ILLARoute.state.matches[0]
+  if (!routerMatch) return
+  const { appId, teamIdentifier } = routerMatch.params
+  if (isProductionMode) {
+    let finalPath = `/${pagePath}`
+    finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
+    ILLARoute.navigate(`/${teamIdentifier}/deploy/app/${appId}${finalPath}`, {
       replace: true,
     })
   }
