@@ -3835,7 +3835,9 @@
         "all": "Wurzel",
         "create_folder": "Neuen Ordner erstellen",
         "cancel": "Abbrechen",
-        "file_upload": "Hochladen"
+        "file_upload": "Hochladen",
+        "select_folder": "Ordner auswählen: ",
+        "select": "Auswählen"
       },
       "select": {
         "confirm_button": "Auswählen"
