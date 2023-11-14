@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Připojit k databázi nebo api",
             "more-type": "Další typ zdrojů údajů",
-            "safe_mode": "Režim"
+            "safe_mode": "Režim",
+            "ai_agent_title": "Integrovat se agentem AI",
+            "integration_title": "Integrovat se zdrojem dat"
           },
           "drive": {
             "method": "Metoda",
@@ -3840,7 +3842,8 @@
         "select": "Vybrat"
       },
       "select": {
-        "confirm_button": "Vybrat"
+        "confirm_button": "Vybrat",
+        "select_entry": "Vybrat"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "Aktualizovat",
       "title": "Upravit"
-    }
+    },
+    "checkbox_ai_agent": "Synchronizovat přidružený AI agenta do tržiště"
   },
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
