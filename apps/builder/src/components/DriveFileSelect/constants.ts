@@ -8,3 +8,5 @@ export const MAX_FILE_NUM =
   "editor.inspect.setter_message.drive_builder.max_files"
 export const MIN_FILE_NUM =
   "editor.inspect.setter_message.drive_builder.min_files"
+
+export const ROOT_PATH = "root"

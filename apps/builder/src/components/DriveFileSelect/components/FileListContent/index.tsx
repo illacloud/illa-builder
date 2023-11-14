@@ -33,7 +33,6 @@ import {
 
 const FilesModalContent: FC = () => {
   const {
-    rootPath,
     modalVisible,
     fileList,
     totalPath,
@@ -191,7 +190,7 @@ const FilesModalContent: FC = () => {
         </span>
       </div>
       <div css={headerContainerStyle}>
-        <FileBreadCrumb rootPath={rootPath} />
+        <FileBreadCrumb />
         <Search
           colorScheme={colorScheme}
           placeholder="search"

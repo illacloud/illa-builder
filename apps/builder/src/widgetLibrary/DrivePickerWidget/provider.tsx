@@ -9,7 +9,11 @@ import {
 } from "@illa-public/public-types"
 import { FC, ReactNode, useCallback, useState } from "react"
 import { useSelector } from "react-redux"
-import { removeSuffixPath, usePath } from "@/components/DriveFileSelect"
+import {
+  ROOT_PATH,
+  removeSuffixPath,
+  usePath,
+} from "@/components/DriveFileSelect"
 import { DriveFileSelectContext } from "@/components/DriveFileSelect/context"
 import { FileToPanel } from "@/components/DriveFileSelect/interface"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
@@ -19,7 +23,7 @@ import {
   fetchBatchGenerateTinyUrl,
   fetchFileList,
 } from "@/services/drive"
-import { PAGESIZE, ROOT_PATH } from "./constants"
+import { PAGESIZE } from "./constants"
 import { SelectItemValue } from "./interface"
 
 interface Props {
@@ -60,7 +64,6 @@ export const DrivePickerProvider: FC<Props> = (props) => {
 
   const { currentPath, updatePath, totalPath } = usePath(
     removeSuffixPath(path),
-    ROOT_PATH,
     allowAnonymousUse,
   )
   const [fileList, setFileList] = useState<IILLAFileInfo[]>([])
