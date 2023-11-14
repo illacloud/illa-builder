@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Koble til database eller api",
             "more-type": "Mer type datakilder",
-            "safe_mode": "Modus"
+            "safe_mode": "Modus",
+            "ai_agent_title": "Integrer med AI Agent",
+            "integration_title": "Integrer med datakilde"
           },
           "drive": {
             "method": "Metode",
@@ -3840,7 +3842,8 @@
         "select": "Velg"
       },
       "select": {
-        "confirm_button": "Velg"
+        "confirm_button": "Velg",
+        "select_entry": "Velg"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "Oppdater",
       "title": "Rediger"
-    }
+    },
+    "checkbox_ai_agent": "Synkroniser tilknyttede AI Agent til Marketplace"
   },
   "error_page": {
     "fobidden": "Ingen tilgang"
