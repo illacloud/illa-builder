@@ -1,7 +1,9 @@
 import { FC, ReactNode, createContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { FolderOperateModalContext } from "@/components/FolderOperateModal/context"
-import { ROOT_PATH } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
+import {
+  FolderOperateModalContext,
+  ROOT_PATH,
+} from "@/components/FolderOperateModal"
 import UploadOperate from "../../components/UploadOperate"
 
 interface Injected {
@@ -47,7 +49,6 @@ export const FileUploadProvider: FC<FileUploadProviderProps> = ({
       <FolderOperateModalContext.Provider
         value={{
           subTitle: t("drive.upload.modal.upload_to"),
-          rootPath: ROOT_PATH,
           currentFolderPath,
           folderOperateVisible,
           createFolderVisible,

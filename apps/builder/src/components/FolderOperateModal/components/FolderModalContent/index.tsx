@@ -21,7 +21,7 @@ import {
 } from "@illa-design/react"
 import { PlusIcon } from "@illa-design/react"
 import { fetchFileList } from "@/services/drive"
-import { FOLDER_LIST_LIMIT_IN_MODAL } from "../../constants"
+import { FOLDER_LIST_LIMIT_IN_MODAL, ROOT_PATH } from "../../constants"
 import { FolderOperateModalContext } from "../../context"
 import CreateFolderModal from "../CreateFolderModal"
 import EmptyState from "../Empty"
@@ -45,7 +45,6 @@ const FolderModalContent: FC = () => {
   const {
     title,
     subTitle,
-    rootPath,
     currentFolderPath,
     setCurrentFolderPath,
     setFolderOperateVisible,
@@ -67,7 +66,7 @@ const FolderModalContent: FC = () => {
       if (isFirst) {
         return {
           title: t("drive.upload.modal.all"),
-          path: rootPath,
+          path: ROOT_PATH,
           last: isLast,
         }
       }
@@ -77,7 +76,7 @@ const FolderModalContent: FC = () => {
         last: isLast,
       }
     })
-  }, [currentFolderPath, t, rootPath])
+  }, [currentFolderPath, t])
 
   const handleFetchFileList = useCallback(
     (pageIndex: number = 1, path: string) => {

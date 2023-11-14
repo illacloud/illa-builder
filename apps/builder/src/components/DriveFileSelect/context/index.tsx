@@ -3,7 +3,6 @@ import { IILLAFileInfo } from "@/services/drive"
 import { FileToPanel } from "../interface"
 
 interface Injected {
-  rootPath: string
   modalVisible: boolean
   fileList: IILLAFileInfo[]
   currentPath: string

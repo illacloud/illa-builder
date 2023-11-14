@@ -11,7 +11,7 @@ const PathOperate = () => {
   )
   const { t } = useTranslation()
   const handleClick = () => {
-    handleOptionsValueChange("path", currentFolderPath)
+    handleOptionsValueChange("path", `/${currentFolderPath}`)
     setFolderOperateVisible(false)
   }
   return (
