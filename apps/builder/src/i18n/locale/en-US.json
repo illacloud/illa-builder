@@ -3835,7 +3835,9 @@
         "all": "Root",
         "create_folder": "Create new folder",
         "cancel": "Cancel",
-        "file_upload": "Pick a file and upload"
+        "file_upload": "Pick a file and upload",
+        "select_folder": "Select the folder: ",
+        "select": "Select"
       },
       "select": {
         "confirm_button": "Select"

@@ -3835,7 +3835,9 @@
         "all": "根文件夹",
         "create_folder": "新建文件夹",
         "cancel": "取消",
-        "file_upload": "选择文件并上传"
+        "file_upload": "选择文件并上传",
+        "select_folder": "选择一个文件夹: ",
+        "select": "选择"
       },
       "select": {
         "confirm_button": "选择"

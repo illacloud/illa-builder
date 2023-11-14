@@ -55,6 +55,7 @@ export const DeployContent: FC = () => {
       dispatch(configActions.updateIllaMode("production"))
       dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
       const canvasTree = appInfo.data.components
+      let needFixedCanvasTree = canvasTree
       if (canvasTree.props) {
         const { homepageDisplayName, pageSortedKey, currentPageIndex } =
           canvasTree.props
@@ -84,9 +85,16 @@ export const DeployContent: FC = () => {
           defaultPageIndex = 0
         }
 
-        canvasTree.props.currentPageIndex = defaultPageIndex
+        needFixedCanvasTree = {
+          ...canvasTree,
+          props: {
+            ...canvasTree.props,
+            currentPageIndex: defaultPageIndex,
+          },
+        }
       }
-      const fixedComponents = fixedComponentsToNewComponents(canvasTree)
+      const fixedComponents =
+        fixedComponentsToNewComponents(needFixedCanvasTree)
       dispatch(
         componentsActions.initComponentReducer(flatTreeToMap(fixedComponents)),
       )
