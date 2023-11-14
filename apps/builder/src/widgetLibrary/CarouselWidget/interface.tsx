@@ -1,4 +1,4 @@
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
@@ -44,5 +44,5 @@ export interface CarouselWidgetProps
   dataSources?: Array<unknown>
   manualData?: CarouselSettings[]
   mappedData?: MappedCarouselData
-  componentNode: ComponentNode
+  componentNode: ComponentTreeNode
 }

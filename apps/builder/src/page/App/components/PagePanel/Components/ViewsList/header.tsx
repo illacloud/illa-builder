@@ -1,12 +1,15 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { SectionViewShape } from "@illa-public/public-types"
 import { difference } from "lodash"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AddIcon, Link, useMessage } from "@illa-design/react"
-import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
+import {
+  getComponentMap,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { SectionViewShape } from "@/redux/currentApp/components/componentsState"
 import { generateSectionContainerConfig } from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { HeaderProps } from "./interface"
@@ -18,6 +21,7 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
   const dispatch = useDispatch()
   const message = useMessage()
   const { sectionName, parentNodeDisplayName } = props
+  const components = useSelector(getComponentMap)
 
   const handleClickAddButton = useCallback(() => {
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -32,12 +36,12 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
     if (sectionName !== "bodySection") {
       const pageNode = searchDSLByDisplayName(parentNode.parentNode!)
       if (!pageNode) return
-      const bodySectionNode = pageNode.childrenNode.find(
-        (node) => node.showName === "bodySection",
+      const bodySectionNodeDisplayName = pageNode.childrenNode.find(
+        (node) => components[node].showName === "bodySection",
       )
-      if (!bodySectionNode) return
+      if (!bodySectionNodeDisplayName) return
       bodySectionSubPaths =
-        bodySectionNode.props?.sectionViewConfigs.map(
+        components[bodySectionNodeDisplayName].props?.sectionViewConfigs.map(
           (config: Record<string, string>) => config.path,
         ) ?? []
     }
@@ -72,7 +76,7 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
         sectionViewNode: config,
       }),
     )
-  }, [dispatch, message, parentNodeDisplayName, sectionName, t])
+  }, [components, dispatch, message, parentNodeDisplayName, sectionName, t])
 
   return (
     <div css={viewsListHeaderWrapperStyle}>

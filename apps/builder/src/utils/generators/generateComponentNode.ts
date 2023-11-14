@@ -1,15 +1,15 @@
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { cloneDeep, get, set } from "lodash"
 import { isObject } from "@illa-design/react"
 import { buildInitDragInfo } from "@/page/App/components/ComponentPanel/componentListBuilder"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
-import {
-  CONTAINER_TYPE,
-  ComponentNode,
-} from "@/redux/currentApp/components/componentsState"
+import { CONTAINER_TYPE } from "@/redux/currentApp/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { WidgetType, widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+
+export const TEMPLATE_DISPLAYNAME_KEY = "templateDisplayName"
 
 export const generateWidgetLayoutInfo = (
   type: string,
@@ -49,8 +49,8 @@ export const generateComponentNodeByWidgetInfo = (
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
 ) => {
-  let baseDSL: ComponentNode
-  let childrenNodeDSL: ComponentNode[] = []
+  let baseDSL: ComponentTreeNode
+  let childrenNodeDSL: ComponentTreeNode[] = []
   const {
     defaults,
     x = 0,
@@ -134,13 +134,13 @@ export const newGenerateChildrenComponentNode = (
   widgetInfo: Omit<WidgetConfig, "icon" | "sessionType" | "keywords">,
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
-): ComponentNode => {
+): ComponentTreeNode => {
   if (widgetInfo.type === "CANVAS") {
     const realDisplayName = DisplayNameGenerator.generateDisplayName(
       widgetInfo.type,
       widgetInfo.displayName,
     )
-    let childrenNodeDSL: ComponentNode[] = []
+    let childrenNodeDSL: ComponentTreeNode[] = []
     if (
       Array.isArray(widgetInfo.childrenNode) &&
       widgetInfo.childrenNode.length > 0
@@ -196,9 +196,9 @@ export const newGenerateComponentNode = (
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
 ) => {
-  let baseDSL: ComponentNode
+  let baseDSL: ComponentTreeNode
   const baseConfig = widgetBuilder(widgetType).config
-  let childrenNodeDSL: ComponentNode[] = []
+  let childrenNodeDSL: ComponentTreeNode[] = []
   const {
     defaults,
     w,
@@ -272,26 +272,35 @@ export const newGenerateComponentNode = (
   }
   if (baseDSL.type === "LIST_WIDGET") {
     baseDSL = transformListWidget(baseDSL)
+  } else {
+    baseDSL = transFormTemplateDisplayName(baseDSL)
   }
   return baseDSL
 }
 
-function transformListWidget(baseDSL: ComponentNode) {
+function transformListWidget(baseDSL: ComponentTreeNode) {
   const container = baseDSL.childrenNode[0]
   let templateChildren = container.childrenNode
   templateChildren.map((node) => {
-    const props = node.props
-    if (props && Array.isArray(props.$dynamicAttrPaths)) {
-      props.$dynamicAttrPaths.forEach((path) => {
-        const originValue = get(node, `props.${path}`, "")
-        const finalValue = originValue.replace(
-          "templateDisplayName",
-          baseDSL.displayName,
-        )
-        set(node, `props.${path}`, finalValue)
-      })
-    }
-    return node
+    return transFormTemplateDisplayName(node, baseDSL.displayName)
   })
+  return baseDSL
+}
+
+function transFormTemplateDisplayName(
+  baseDSL: ComponentTreeNode,
+  targetDisplayName: string = baseDSL.displayName,
+) {
+  const props = baseDSL.props
+  if (props && Array.isArray(props.$dynamicAttrPaths)) {
+    props.$dynamicAttrPaths.forEach((path) => {
+      const originValue = get(baseDSL, `props.${path}`, "")
+      const finalValue = originValue.replace(
+        TEMPLATE_DISPLAYNAME_KEY,
+        targetDisplayName,
+      )
+      set(baseDSL, `props.${path}`, finalValue)
+    })
+  }
   return baseDSL
 }

@@ -1,174 +1,98 @@
+import { ComponentMapNode, ComponentTreeNode } from "@illa-public/public-types"
 import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store, { RootState } from "@/store"
 import { ActionItem, GlobalDataActionContent } from "../action/actionState"
+import { ComponentsState } from "./componentsState"
 
 export function searchDSLByDisplayName(
   displayName: string,
   rootState: RootState = store.getState(),
 ) {
-  const rootNode = getCanvas(rootState)
-  return searchDsl(rootNode, displayName)
+  const components = getComponentMap(rootState)
+  return components[displayName]
 }
 
-export function searchCurrentPageContainerNode(
-  pageSortedKey?: string[],
-  currentPageIndex?: number,
-): ComponentNode | null {
-  if (!pageSortedKey || !currentPageIndex) {
-    return null
-  }
-
-  const otherPageDisplayName = pageSortedKey[currentPageIndex]
-
-  const pageNode = searchDsl(getCanvas(store.getState()), otherPageDisplayName)
-
-  const groupNode = pageNode?.childrenNode?.find((node) => {
-    return node.showName === "bodySection"
-  })
-
-  if (groupNode) {
-    const { currentViewIndex, viewSortedKey } =
-      store.getState().currentApp.execution.result[groupNode.displayName]
-    const parentNodeDisplayName = viewSortedKey[currentViewIndex]
-    return searchDsl(groupNode, parentNodeDisplayName)
-  }
-  return null
-}
-
-export function searchDsl(
-  rootNode: ComponentNode | null,
+export function searchComponentFromMap(
+  components: Record<string, ComponentMapNode>,
   findDisplayName: string | null,
-): ComponentNode | null {
-  if (rootNode == null || findDisplayName == null) {
+) {
+  if (components == null || findDisplayName == null) {
     return null
   }
-  const queue = [rootNode]
-  while (queue.length > 0) {
-    const head = queue[queue.length - 1]
+  return components[findDisplayName]
+}
 
-    if (head.displayName == findDisplayName) {
+export function searchDSLFromTree(
+  componentTree: ComponentTreeNode,
+  findDisplayName: string,
+) {
+  const queue = [componentTree]
+  while (queue.length > 0) {
+    const head = queue[0]
+    if (head.displayName === findDisplayName) {
       return head
     }
-    queue.pop()
+    queue.shift()
     if (head.childrenNode) {
       head.childrenNode.forEach((child) => {
-        if (child) {
-          queue.push(child)
-        }
+        queue.push(child)
       })
     }
   }
-  return null
 }
 
-export function flattenDslToMapExcludeContainerNode(rootNode: ComponentNode): {
-  [key: string]: ComponentNode
+export function filterContainerNode(components: ComponentsState): {
+  [key: string]: ComponentMapNode
 } {
-  const queue = [rootNode]
   let res = {}
-  while (queue.length > 0) {
-    const head = queue[queue.length - 1]
-    if (head.type !== "CONTAINER_NODE") {
-      res = { ...res, [head.displayName]: head || {} }
+  Object.keys(components).forEach((key) => {
+    if (components[key].type !== "CONTAINER_NODE") {
+      res = { ...res, [key]: components[key] }
     }
-    queue.pop()
-    if (head.childrenNode) {
-      head.childrenNode.forEach((child) => {
-        if (child) {
-          queue.push(child)
-        }
-      })
-    }
-  }
+  })
+
   return res
 }
 
-export function flattenAllComponentNodeToMap(rootNode: ComponentNode): {
-  [key: string]: ComponentNode
-} {
-  const queue = [rootNode]
-  let res = {}
-  while (queue.length > 0) {
-    const head = queue[queue.length - 1]
-    res = { ...res, [head.displayName]: head || {} }
-    queue.pop()
-    if (head.childrenNode) {
-      head.childrenNode.forEach((child) => {
-        if (child) {
-          queue.push(child)
-        }
-      })
+export function flattenDslToArray(componentNodes: ComponentsState) {
+  let res: ComponentMapNode[] = []
+  Object.keys(componentNodes).forEach((key) => {
+    if (componentNodes[key].containerType !== "EDITOR_DOT_PANEL") {
+      res.push(componentNodes[key])
     }
-  }
+  })
+
   return res
 }
 
-export function flattenDslToArray(rootNode: ComponentNode): ComponentNode[] {
-  const queue = [rootNode]
-  let res: ComponentNode[] = []
-  while (queue.length > 0) {
-    const head = queue[queue.length - 1]
-
-    if (head.containerType !== "EDITOR_DOT_PANEL") {
-      res.push(head)
-    }
-    queue.pop()
-    if (head.childrenNode) {
-      head.childrenNode.forEach((child) => {
-        if (child) {
-          queue.push(child)
-        }
-      })
-    }
-  }
-  return res
-}
-
-export const getCanvas = (state: RootState) => {
+export const getComponentMap = (state: RootState) => {
   return state.currentApp.components
 }
 
-export const getAppComponents = (state: RootState) => {
-  return state.currentApp.components?.childrenNode
-}
-
-export const getSelectedComponentNode = createSelector(
-  [getSelectedComponentDisplayNames, getCanvas],
-  (selectedComponentDisplayNames, rootCanvas) => {
-    return selectedComponentDisplayNames
-      .map((displayName) => {
-        return searchDsl(rootCanvas, displayName)
-      })
-      .filter((node) => node != null) as ComponentNode[]
-  },
+export const getRootComponentNode = createSelector(
+  [getComponentMap],
+  (components) => components.root,
 )
 
 export const getComponentNodeBySingleSelected = createSelector(
-  [getCanvas, getSelectedComponentDisplayNames],
-  (rootDsl, selectedComponentDisplayNames) => {
+  [getComponentMap, getSelectedComponentDisplayNames],
+  (components, selectedComponentDisplayNames) => {
     if (selectedComponentDisplayNames.length === 1) {
-      return searchDsl(rootDsl, selectedComponentDisplayNames[0])
+      return components[selectedComponentDisplayNames[0]]
     }
     return null
   },
 )
 
-export const getDisplayNameMapComponent = createSelector(
-  [getCanvas],
-  (rootDSL) => {
-    if (rootDSL == null) {
-      return {}
-    }
-    return flattenDslToMapExcludeContainerNode(rootDSL)
-  },
-)
-
-const getAllDescendantNodeDisplayNames = (node: ComponentNode) => {
+const getAllDescendantNodeDisplayNames = (
+  nodeDisplayName: string,
+  components: ComponentsState,
+) => {
+  const node = components[nodeDisplayName]
   const queue = [node]
   let res: string[] = []
   while (queue.length > 0) {
@@ -177,8 +101,8 @@ const getAllDescendantNodeDisplayNames = (node: ComponentNode) => {
     queue.pop()
     if (head.childrenNode) {
       head.childrenNode.forEach((child) => {
-        if (child) {
-          queue.push(child)
+        if (components[child]) {
+          queue.push(components[child])
         }
       })
     }
@@ -187,14 +111,15 @@ const getAllDescendantNodeDisplayNames = (node: ComponentNode) => {
 }
 
 export const getCurrentAppPageNames = createSelector(
-  [getCanvas],
-  (rootNode) => {
-    if (!rootNode || !rootNode.props || !rootNode.props.pageSortedKey)
+  [getComponentMap],
+  (components) => {
+    const rootNodeProps = components.root.props
+    if (!components || !rootNodeProps || !rootNodeProps.pageSortedKey)
       return [] as string[]
-    const pageDisplayNames = rootNode.props.pageSortedKey as string[]
+    const pageDisplayNames = rootNodeProps.pageSortedKey as string[]
     const passCheckedDisplayNames: string[] = []
     pageDisplayNames.forEach((pageDisplayName) => {
-      const pageNode = searchDsl(rootNode, pageDisplayName)
+      const pageNode = components[pageDisplayName]
       if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
       passCheckedDisplayNames.push(pageNode.displayName)
     })
@@ -203,16 +128,21 @@ export const getCurrentAppPageNames = createSelector(
 )
 
 export const getPageNameMapDescendantNodeDisplayNames = createSelector(
-  [getCanvas],
-  (rootNode) => {
-    if (!rootNode || !rootNode.props || !rootNode.props.pageSortedKey) return {}
-    const pageDisplayNames = rootNode.props.pageSortedKey as string[]
+  [getComponentMap],
+  (components) => {
+    const rootNode = components.root
+    const rootNodeProps = rootNode?.props
+
+    if (!rootNode || !rootNodeProps || !rootNodeProps.pageSortedKey) return {}
+    const pageDisplayNames = rootNodeProps.pageSortedKey as string[]
     const pageNameMapHasNodeDisplayNames: Record<string, string[]> = {}
     pageDisplayNames.forEach((pageDisplayName) => {
-      const pageNode = searchDsl(rootNode, pageDisplayName)
+      const pageNode = components[pageDisplayName]
       if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
-      const descendantNodeDisplayNames =
-        getAllDescendantNodeDisplayNames(pageNode)
+      const descendantNodeDisplayNames = getAllDescendantNodeDisplayNames(
+        pageNode.displayName,
+        components,
+      )
       pageNameMapHasNodeDisplayNames[pageDisplayName] =
         descendantNodeDisplayNames
     })
@@ -221,9 +151,9 @@ export const getPageNameMapDescendantNodeDisplayNames = createSelector(
 )
 
 export const getAllComponentDisplayNameMapProps = createSelector(
-  [getCanvas, getPageNameMapDescendantNodeDisplayNames],
-  (rootDSL, pageNameMapDescendantNodeDisplayNames) => {
-    if (rootDSL == null) {
+  [getComponentMap, getPageNameMapDescendantNodeDisplayNames],
+  (componentsMap, pageNameMapDescendantNodeDisplayNames) => {
+    if (componentsMap == null) {
       return null
     }
     const reversePageNameMapDescendantNodeDisplayNames: Record<string, string> =
@@ -235,20 +165,17 @@ export const getAllComponentDisplayNameMapProps = createSelector(
       })
     })
 
-    const components = flattenDslToMapExcludeContainerNode(rootDSL)
-    if (!components) return
+    const filteredResult = filterContainerNode(componentsMap)
+    if (!filteredResult) return
     const res: Record<string, any> = {}
-    Object.keys(components).forEach((key) => {
-      const childrenNode = Array.isArray(components[key].childrenNode)
-        ? components[key].childrenNode.map((node) => node.displayName)
-        : []
+    Object.keys(filteredResult).forEach((key) => {
       res[key] = {
-        ...components[key].props,
-        displayName: components[key].displayName,
-        $parentNode: components[key].parentNode,
+        ...filteredResult[key].props,
+        displayName: filteredResult[key].displayName,
+        $parentNode: filteredResult[key].parentNode,
         $type: "WIDGET",
-        $widgetType: components[key].type,
-        $childrenNode: childrenNode,
+        $widgetType: filteredResult[key].type,
+        $childrenNode: filteredResult[key].childrenNode,
         $parentPageName: reversePageNameMapDescendantNodeDisplayNames[key],
       }
     })
@@ -257,19 +184,13 @@ export const getAllComponentDisplayNameMapProps = createSelector(
 )
 
 export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
-  [getCanvas],
-  (rootDSL) => {
-    if (rootDSL == null) {
+  [getComponentMap],
+  (components) => {
+    if (components == null) {
       return null
     }
-    const components = flattenAllComponentNodeToMap(rootDSL)
-    if (!components) return
     const res: Record<string, WidgetLayoutInfo> = {}
     Object.keys(components).forEach((key) => {
-      const childrenNode = Array.isArray(components[key].childrenNode)
-        ? components[key].childrenNode.map((node) => node.displayName)
-        : []
-
       const {
         displayName,
         parentNode,
@@ -281,6 +202,7 @@ export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
         w,
         h,
         minH,
+        childrenNode,
       } = components[key]
       res[key] = {
         displayName: displayName,
@@ -303,48 +225,50 @@ export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
   },
 )
 
-export const getAllContainerWidget = createSelector([getCanvas], (rootDSL) => {
-  if (rootDSL == null) {
-    return null
-  }
-  const components = flattenDslToMapExcludeContainerNode(rootDSL)
-  if (!components) return
-  const res: Record<string, any> = {}
-  Object.keys(components).forEach((key) => {
-    if (components[key].type === "CONTAINER_WIDGET") {
-      res[key] = {
-        ...components[key].props,
-        $type: "WIDGET",
-        $widgetType: components[key].type,
+export const getAllContainerWidget = createSelector(
+  [getComponentMap],
+  (components) => {
+    if (!components) return
+    const res: Record<string, any> = {}
+    Object.keys(components).forEach((key) => {
+      if (components[key].type === "CONTAINER_WIDGET") {
+        res[key] = {
+          ...components[key].props,
+          $type: "WIDGET",
+          $widgetType: components[key].type,
+        }
       }
-    }
-  })
-  return res
-})
-
-export const getFlattenArrayComponentNodes = createSelector(
-  [getCanvas],
-  (rootDSL) => {
-    if (rootDSL == null) {
-      return null
-    }
-    const components = flattenDslToArray(rootDSL)
-    return components || []
+    })
+    return res
   },
 )
 
-export const getCurrentPageNode = createSelector([getCanvas], (rootDSL) => {
-  if (rootDSL == null || !rootDSL.props) {
-    return null
-  }
-  const { currentPageIndex, pageSortedKey } = rootDSL.props
-  const currentPageDisplayName = pageSortedKey[currentPageIndex]
-  const currentPage = rootDSL.childrenNode.find(
-    (node) => node.displayName === currentPageDisplayName,
-  )
-  if (!currentPage) return null
-  return currentPage
-})
+export const getFlattenArrayComponentNodes = createSelector(
+  [getComponentMap],
+  (components) => {
+    if (components == null) {
+      return null
+    }
+    return flattenDslToArray(components)
+  },
+)
+
+export const getCurrentPageNode = createSelector(
+  [getComponentMap],
+  (components) => {
+    const rootDSL = components.root
+    if (rootDSL == null || !rootDSL.props) {
+      return null
+    }
+    const { currentPageIndex, pageSortedKey } = rootDSL.props
+    const currentPageDisplayName = pageSortedKey[currentPageIndex]
+    const currentPage = rootDSL.childrenNode.find(
+      (nodeDisplayName) => nodeDisplayName === currentPageDisplayName,
+    )
+    if (!currentPage) return null
+    return components[currentPage]
+  },
+)
 
 export const getCurrentPageProps = createSelector(
   [getCurrentPageNode],
@@ -366,15 +290,18 @@ export const getCurrentPageDisplayName = createSelector(
   },
 )
 
-export const getRootNodeProps = createSelector([getCanvas], (rootNode) => {
-  if (!rootNode)
-    return {
-      currentPageIndex: 0,
-      pageSortedKey: ["page1"],
-      homepageDisplayName: "page1",
-    }
-  return rootNode.props
-})
+export const getRootNodeProps = createSelector(
+  [getComponentMap],
+  (rootNode) => {
+    if (!rootNode)
+      return {
+        currentPageIndex: 0,
+        pageSortedKey: ["page1"],
+        homepageDisplayName: "page1",
+      }
+    return rootNode.props
+  },
+)
 
 export const getContainerListWidget = createSelector(
   [getFlattenArrayComponentNodes],
@@ -389,47 +316,49 @@ export const getContainerListWidget = createSelector(
   },
 )
 
-const dfsWithListNode = (
-  containerNode: ComponentNode,
-  result: Record<string, string[]>,
-  listDisplayName: string,
-) => {
-  containerNode.childrenNode?.forEach((node) => {
-    if (!Array.isArray(get(result, listDisplayName))) {
-      set(result, listDisplayName, [])
-    }
-    result[listDisplayName].push(node.displayName)
-    dfsWithListNode(node, result, listDisplayName)
-  })
-}
-
 export const getContainerListDisplayNameMappedChildrenNodeDisplayName =
-  createSelector([getContainerListWidget], (listNodes) => {
-    const displayNameMappedChildren: Record<string, string[]> = {}
-    if (!listNodes) return displayNameMappedChildren
-    listNodes.forEach((node) => {
-      const containerNode = node.childrenNode[0]
-      if (!Array.isArray(get(displayNameMappedChildren, node.displayName))) {
-        set(displayNameMappedChildren, node.displayName, [])
+  createSelector(
+    [getContainerListWidget, getComponentMap],
+    (listNodes, components) => {
+      const displayNameMappedChildren: Record<string, string[]> = {}
+      if (!listNodes) return displayNameMappedChildren
+      const dfsWithListNode = (
+        containerNode: ComponentMapNode,
+        result: Record<string, string[]>,
+        listDisplayName: string,
+      ) => {
+        containerNode.childrenNode?.forEach((nodeDisplayName) => {
+          if (!Array.isArray(get(result, listDisplayName))) {
+            set(result, listDisplayName, [])
+          }
+          result[listDisplayName].push(nodeDisplayName)
+          dfsWithListNode(components[nodeDisplayName], result, listDisplayName)
+        })
       }
+      listNodes.forEach((node) => {
+        const containerNodeDisplayName = node.childrenNode[0]
+        if (!Array.isArray(get(displayNameMappedChildren, node.displayName))) {
+          set(displayNameMappedChildren, node.displayName, [])
+        }
 
-      if (containerNode) {
-        displayNameMappedChildren[node.displayName].push(
-          containerNode.displayName,
-        )
-        dfsWithListNode(
-          containerNode,
-          displayNameMappedChildren,
-          node.displayName,
-        )
-      }
-    })
+        if (containerNodeDisplayName) {
+          displayNameMappedChildren[node.displayName].push(
+            containerNodeDisplayName,
+          )
+          dfsWithListNode(
+            components[containerNodeDisplayName],
+            displayNameMappedChildren,
+            node.displayName,
+          )
+        }
+      })
 
-    return displayNameMappedChildren
-  })
+      return displayNameMappedChildren
+    },
+  )
 
 export const getViewportSizeSelector = createSelector(
-  [getCanvas],
+  [getRootComponentNode],
   (rootComponentNode) => {
     if (!rootComponentNode || !rootComponentNode.props)
       return {
@@ -447,116 +376,37 @@ export const getViewportSizeSelector = createSelector(
   },
 )
 
-function getNodeDepths(tree: ComponentNode) {
+function getNodeDepths(tree: ComponentsState) {
   const nodeDepths: Record<string, number> = {}
-  function traverse(node: ComponentNode, depth: number) {
+  function traverse(node: ComponentMapNode, depth: number) {
     nodeDepths[node.displayName] = depth
     if (node.childrenNode) {
       for (let i = 0; i < node.childrenNode.length; i++) {
-        traverse(node.childrenNode[i], depth + 1)
+        traverse(tree[node.childrenNode[i]], depth + 1)
       }
     }
   }
-  traverse(tree, 0)
+  traverse(tree.root, 0)
   return nodeDepths
 }
 
 export const getComponentDisplayNameMapDepth = createSelector(
-  [getCanvas],
-  (rootNode) => {
-    if (!rootNode) return {}
-    return getNodeDepths(rootNode)
+  [getComponentMap],
+  (components) => {
+    if (!components) return {}
+    return getNodeDepths(components)
   },
 )
 
-export type RelationMap = Record<
-  string,
-  { parentNode: string; childrenNode: string[]; containerType: string }
->
-const generateRelationMap = (rootNode: ComponentNode) => {
-  const queue = [rootNode]
-  let relationMap: RelationMap = {}
-  while (queue.length > 0) {
-    const head = queue[queue.length - 1]
-    relationMap = {
-      ...relationMap,
-      [head.displayName]: {
-        parentNode: head.parentNode || "",
-        childrenNode:
-          head.childrenNode?.map((child) => child.displayName) ?? [],
-        containerType: head.containerType,
-      },
-    }
-
-    queue.pop()
-    if (head.childrenNode) {
-      head.childrenNode.forEach((child) => {
-        if (child) {
-          queue.push(child)
-        }
-      })
-    }
-  }
-  return relationMap
-}
-
-const findPrevTargetNode = (
-  displayName: string,
-  relationMap: RelationMap,
-): string => {
-  let parentNode = relationMap[displayName]
-
-  if (parentNode.containerType === "EDITOR_SCALE_SQUARE") {
-    return displayName
-  } else {
-    if (parentNode.parentNode === "") return displayName
-    return findPrevTargetNode(parentNode.parentNode, relationMap)
-  }
-}
-
-export const getShowWidgetNameParentMap = createSelector(
-  [getCanvas],
+export const getOriginalGlobalData = createSelector(
+  [getRootComponentNode],
   (rootNode) => {
-    if (!rootNode) return {}
-    const relationMap = generateRelationMap(rootNode)
-    const editorScaleSquareNodeRelationMap: RelationMap = {}
-    Object.keys(relationMap).forEach((key) => {
-      const { containerType } = relationMap[key]
-      if (containerType === "EDITOR_SCALE_SQUARE") {
-        editorScaleSquareNodeRelationMap[key] = relationMap[key]
-      }
-    })
-    Object.keys(editorScaleSquareNodeRelationMap).forEach((key) => {
-      const { parentNode } = editorScaleSquareNodeRelationMap[key]
-      if (parentNode) {
-        editorScaleSquareNodeRelationMap[key] = {
-          ...editorScaleSquareNodeRelationMap[key],
-          parentNode: findPrevTargetNode(parentNode, relationMap),
-          childrenNode: [],
-        }
-      }
-    })
-    Object.keys(editorScaleSquareNodeRelationMap).forEach((key) => {
-      const currentNode = editorScaleSquareNodeRelationMap[key]
-      if (
-        currentNode.parentNode &&
-        editorScaleSquareNodeRelationMap[currentNode.parentNode]
-      ) {
-        editorScaleSquareNodeRelationMap[
-          currentNode.parentNode
-        ].childrenNode.push(key)
-      }
-    })
-    return editorScaleSquareNodeRelationMap
+    return (rootNode?.props?.globalData ?? {}) as Record<string, string>
   },
 )
-
-export const getOriginalGlobalData = createSelector([getCanvas], (rootNode) => {
-  return (rootNode?.props?.globalData ?? {}) as Record<string, string>
-})
 
 export const getGlobalDataToActionList = createSelector(
-  [getCanvas],
+  [getRootComponentNode],
   (rootNode) => {
     const globalData = (rootNode?.props?.globalData ?? {}) as Record<
       string,
@@ -586,20 +436,20 @@ export const getGlobalDataToActionList = createSelector(
 )
 
 export const getPageDisplayNameMapViewDisplayName = createSelector(
-  [getCanvas],
-  (rootNode) => {
+  [getComponentMap],
+  (components) => {
+    const rootNode = components.root
     if (!rootNode) return {}
     const pageDisplayNameMapViewDisplayName: Record<string, Set<string>> = {}
     const pageNodes = rootNode.childrenNode
     pageNodes.forEach((pageNode) => {
-      pageDisplayNameMapViewDisplayName[pageNode.displayName] = new Set()
-      const sectionNodes = pageNode.childrenNode
+      pageDisplayNameMapViewDisplayName[pageNode] = new Set()
+      const sectionNodes = components[pageNode].childrenNode
       sectionNodes.forEach((sectionNode) => {
-        const sectionConfigs = sectionNode.props?.sectionViewConfigs ?? []
+        const sectionConfigs =
+          components[sectionNode].props?.sectionViewConfigs ?? []
         sectionConfigs.forEach((sectionConfig: Record<string, string>) => {
-          pageDisplayNameMapViewDisplayName[pageNode.displayName].add(
-            sectionConfig.path,
-          )
+          pageDisplayNameMapViewDisplayName[pageNode].add(sectionConfig.path)
         })
       })
     })
@@ -608,30 +458,22 @@ export const getPageDisplayNameMapViewDisplayName = createSelector(
 )
 
 export const getCurrentPageSortedKeys = createSelector(
-  [getCanvas],
+  [getRootComponentNode],
   (rootNode) => {
     if (!rootNode) return []
     return rootNode.props?.pageSortedKey ?? []
   },
 )
 
-export const getWidgetCount = createSelector([getCanvas], (rootNode) => {
-  if (!rootNode) return 0
-  const queue = [rootNode]
-  let count = 0
-  while (queue.length > 0) {
-    const head = queue[queue.length - 1]
-    if (head.type.endsWith("_WIDGET")) {
-      count++
-    }
-    queue.pop()
-    if (head.childrenNode) {
-      head.childrenNode.forEach((child) => {
-        if (child) {
-          queue.push(child)
-        }
-      })
-    }
-  }
-  return count
-})
+export const getWidgetCount = createSelector(
+  [getComponentMap],
+  (components) => {
+    let count = 0
+    Object.keys(components).forEach((key) => {
+      if (components[key].type.endsWith("_WIDGET")) {
+        count++
+      }
+    })
+    return count
+  },
+)

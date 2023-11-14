@@ -233,11 +233,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
         >
           <div css={formHeaderStyle}>
             <RenderChildrenCanvas
-              displayName={childrenNode[0].displayName}
-              hasChildrenNode={
-                Array.isArray(childrenNode[0].childrenNode) &&
-                childrenNode[0].childrenNode.length > 0
-              }
+              displayName={childrenNode[0]}
               columnNumber={columnNumber}
               handleUpdateHeight={handleUpdateHeight}
             />
@@ -249,11 +245,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       )}
       <div css={formBodyStyle}>
         <RenderChildrenCanvas
-          displayName={childrenNode[1].displayName}
-          hasChildrenNode={
-            Array.isArray(childrenNode[1].childrenNode) &&
-            childrenNode[1].childrenNode.length > 0
-          }
+          displayName={childrenNode[1]}
           columnNumber={columnNumber}
           handleUpdateHeight={handleUpdateHeight}
         />
@@ -280,11 +272,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
         >
           <div css={formHeaderStyle}>
             <RenderChildrenCanvas
-              hasChildrenNode={
-                Array.isArray(childrenNode[2].childrenNode) &&
-                childrenNode[2].childrenNode.length > 0
-              }
-              displayName={childrenNode[2].displayName}
+              displayName={childrenNode[2]}
               columnNumber={columnNumber}
               handleUpdateHeight={handleUpdateHeight}
             />

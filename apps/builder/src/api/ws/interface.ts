@@ -1,5 +1,5 @@
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
 
 export type RoomType = "dashboard" | "app" | "ai-agent"
 
@@ -28,7 +28,7 @@ export interface ILLAWebSocketComponentPayload {
   before: {
     displayName: string
   }
-  after: ComponentNode
+  after: ComponentTreeNode
 }
 
 export enum ILLA_WEBSOCKET_STATUS {

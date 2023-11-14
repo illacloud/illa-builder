@@ -1,3 +1,4 @@
+import { SectionViewShape } from "@illa-public/public-types"
 import copy from "copy-to-clipboard"
 import download from "downloadjs"
 import {
@@ -9,10 +10,9 @@ import {
 import i18n from "@/i18n/config"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
-import { SectionViewShape } from "@/redux/currentApp/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executionTree/executionState"
@@ -99,17 +99,19 @@ export const copyToClipboard = (copiedValue: unknown) => {
 export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
   const { pagePath, viewPath = "" } = params
   if (typeof pagePath !== "string" || typeof viewPath !== "string") return
-  let finalPath = `/${pagePath}`
-  finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
-  const originPath = window.location.pathname
-  const originPathArray = originPath.split("/")
+
   const isProductionMode = getIsILLAProductMode(store.getState())
   const rootNodeProps = getRootNodeExecutionResult(store.getState())
   const { pageSortedKey } = rootNodeProps
   const index = pageSortedKey.findIndex((path: string) => path === pagePath)
   if (index === -1) return
-  if (isProductionMode && originPathArray.length >= 5) {
-    ILLARoute.navigate(originPathArray.slice(0, 5).join("/") + finalPath, {
+  const routerMatch = ILLARoute.state.matches[0]
+  if (!routerMatch) return
+  const { appId, teamIdentifier } = routerMatch.params
+  if (isProductionMode) {
+    let finalPath = `/${pagePath}`
+    finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
+    ILLARoute.navigate(`/${teamIdentifier}/deploy/app/${appId}${finalPath}`, {
       replace: true,
     })
   }
@@ -122,13 +124,14 @@ export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
     },
   ]
   if (viewPath) {
-    const canvas = getCanvas(store.getState())
-    if (!canvas) return
-    const pageNode = searchDsl(canvas, pagePath)
+    const components = getComponentMap(store.getState())
+    if (!components) return
+    const pageNode = searchComponentFromMap(components, pagePath)
     if (!pageNode) return
-    pageNode.childrenNode.forEach((node) => {
-      const sectionViewConfigs = node.props?.sectionViewConfigs || []
-      const viewSortedKey = node.props?.viewSortedKey || []
+    pageNode.childrenNode.forEach((sectionDisplayName) => {
+      const sectionNode = components[sectionDisplayName]
+      const sectionViewConfigs = sectionNode.props?.sectionViewConfigs || []
+      const viewSortedKey = sectionNode.props?.viewSortedKey || []
       const findConfig = sectionViewConfigs.find((config: SectionViewShape) => {
         return config.path === viewPath
       })
@@ -139,7 +142,7 @@ export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
         )
         if (indexOfViewKey !== -1) {
           updateSlice.push({
-            displayName: node.displayName,
+            displayName: sectionDisplayName,
             value: {
               currentViewIndex: indexOfViewKey,
             },

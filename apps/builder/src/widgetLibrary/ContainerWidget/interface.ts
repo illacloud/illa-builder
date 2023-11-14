@@ -1,7 +1,5 @@
-import {
-  ComponentNode,
-  PADDING_MODE,
-} from "@/redux/currentApp/components/componentsState"
+import { ComponentMapNode } from "@illa-public/public-types"
+import { PADDING_MODE } from "@/redux/currentApp/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface viewListItemShaper {
@@ -14,7 +12,7 @@ export interface viewListItemShaper {
 
 export interface ContainerProps extends BaseWidgetProps {
   currentIndex: number
-  componentNode: ComponentNode
+  componentNode: ComponentMapNode
   viewList: viewListItemShaper[]
   tooltipText?: string
   h: number

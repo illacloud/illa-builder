@@ -7,11 +7,7 @@ import {
   getIllaMode,
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
-import {
-  getCanvas,
-  getViewportSizeSelector,
-} from "@/redux/currentApp/components/componentsSelector"
-import { RootComponentNode } from "@/redux/currentApp/components/componentsState"
+import { getViewportSizeSelector } from "@/redux/currentApp/components/componentsSelector"
 import {
   getAppLoadedActions,
   getExecutionResult,
@@ -32,7 +28,6 @@ import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
 
 export const DotPanel: FC = () => {
-  const canvasTree = useSelector(getCanvas) as RootComponentNode
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
   const executionResult = useSelector(getExecutionResult)
   const mode = useSelector(getIllaMode)
@@ -96,20 +91,8 @@ export const DotPanel: FC = () => {
     }
   })
 
-  if (
-    !canvasTree ||
-    canvasTree.containerType !== "EDITOR_DOT_PANEL" ||
-    canvasTree.type !== "DOT_PANEL" ||
-    canvasTree.displayName !== "root" ||
-    !rootExecutionProps
-  )
-    return null
+  if (!rootExecutionProps) return null
 
-  const currentChildrenNode = canvasTree.childrenNode.find((node) => {
-    return node.displayName === currentDisplayName
-  })
-
-  if (currentChildrenNode == undefined) return null
   return (
     <MouseHoverProvider>
       <MouseMoveProvider>

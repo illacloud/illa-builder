@@ -1,7 +1,9 @@
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
-export const changeDisplayNameHelperWhenUndoRedo = (node: ComponentNode) => {
+export const changeDisplayNameHelperWhenUndoRedo = (
+  node: ComponentTreeNode,
+) => {
   const newDisplayName = DisplayNameGenerator.updateOrGenerateDisplayName(
     node.displayName,
   )

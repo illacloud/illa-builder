@@ -1,4 +1,4 @@
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { ComponentTreeNode } from "@illa-public/public-types"
 
 export interface TransformWidgetProps {
   displayName: string
@@ -8,6 +8,6 @@ export interface TransformWidgetProps {
 }
 
 export interface TransformWidgetWrapperWithJsonProps {
-  componentNode: ComponentNode
+  componentNode: ComponentTreeNode
   unitW: number
 }

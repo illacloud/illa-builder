@@ -1,3 +1,9 @@
+import {
+  ComponentTreeNode,
+  ModalSectionNode,
+  SECTION_POSITION,
+  SectionTreeNode,
+} from "@illa-public/public-types"
 import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
 import {
@@ -6,13 +12,9 @@ import {
 } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   CONTAINER_TYPE,
-  ComponentNode,
-  ModalSectionNode,
   PADDING_MODE,
   PageNode,
   PageNodeProps,
-  SECTION_POSITION,
-  SectionNode,
 } from "@/redux/currentApp/components/componentsState"
 import { newGenerateComponentNode } from "./generateComponentNode"
 import { DisplayNameGenerator } from "./generateDisplayName"
@@ -28,7 +30,7 @@ export type SectionNodeType =
 export const generateSectionContainerConfig = (
   parentNode: string,
   showName: string,
-): ComponentNode => {
+): ComponentTreeNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "CONTAINER_NODE",
     `${parentNode}-${showName}`,
@@ -75,7 +77,7 @@ export const generateSectionConfig = (
   parentNode: string,
   showName: SectionNodeType,
   bodySubpaths: string[] = ["sub-page1"],
-): SectionNode => {
+): SectionTreeNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "SECTION_NODE",
     showName,
@@ -106,7 +108,7 @@ export const generateSectionConfig = (
       ? bodySubpaths[0]
       : "sub-page1"
 
-  const result: SectionNode = {
+  const result: SectionTreeNode = {
     displayName: `${displayName}`,
     parentNode: parentNode,
     showName: showName,

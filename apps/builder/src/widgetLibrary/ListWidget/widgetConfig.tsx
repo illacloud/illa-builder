@@ -1,6 +1,7 @@
 import { v4 } from "uuid"
 import { ReactComponent as ListWidgetIcon } from "@/assets/widgetCover/list.svg"
 import i18n from "@/i18n/config"
+import { TEMPLATE_DISPLAYNAME_KEY } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
 import { IMAGE_WIDGET_CONFIG } from "@/widgetLibrary/ImageWidget"
@@ -30,24 +31,10 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
           y: 0,
           defaults: {
             ...TEXT_WIDGET_CONFIG.defaults,
-            value:
-              "{{templateDisplayName.dataSources.map((currentItem) => ('## ' + currentItem.name))}}",
+            value: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => ('## ' + currentItem.name))}}`,
             $dynamicAttrPaths: ["value"],
           },
         },
-        // {
-        //   ...TEXT_WIDGET_CONFIG,
-        //   w: 20,
-        //   h: 4,
-        //   x: 22,
-        //   y: 10,
-        //   defaults: {
-        //     ...TEXT_WIDGET_CONFIG.defaults,
-        //     value:
-        //       "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.email))}}",
-        //     $dynamicAttrPaths: ["value"],
-        //   },
-        // },
         {
           ...IMAGE_WIDGET_CONFIG,
           w: 8,
@@ -56,8 +43,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
           y: 1,
           defaults: {
             ...IMAGE_WIDGET_CONFIG.defaults,
-            imageSrc:
-              "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.img))}}",
+            imageSrc: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.img))}}`,
             $dynamicAttrPaths: ["imageSrc"],
             radius: "8px",
           },
@@ -76,14 +62,12 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
                 actionType: "showNotification",
                 id: v4(),
                 eventType: "click",
-                title:
-                  "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.name))}}",
-                description:
-                  "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.email))}}",
+                title: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.name))}}`,
+                description: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.email))}}`,
                 notificationType: "success",
               },
             ],
-            $dynamicAttrPaths: ["events.0.title", "events.0.description"],
+            $dynamicAttrPaths: ["events[0].title", "events[0].description"],
           },
         },
       ],

@@ -1,4 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { ComponentMapNode } from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -11,14 +12,11 @@ import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftA
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
 import { VerticalLayout } from "@/page/App/components/PagePanel/Layout/verticalLayout"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import {
-  PageNodeProps,
-  SectionNode,
-} from "@/redux/currentApp/components/componentsState"
+import { PageNodeProps } from "@/redux/currentApp/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -60,16 +58,27 @@ export const PageBasic: FC = () => {
   }, [currentPageIndex])
 
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
+
   const pageProps = useSelector<RootState>((state) => {
-    const canvas = getCanvas(state)
-    return searchDsl(canvas, currentPageDisplayName)?.props || {}
+    const components = getComponentMap(state)
+    return (
+      searchComponentFromMap(components, currentPageDisplayName)?.props || {}
+    )
   }) as PageNodeProps
-  const sectionNodes = useSelector<RootState>((state) => {
-    const canvas = getCanvas(state)
-    const currentPageNode = searchDsl(canvas, currentPageDisplayName)
-    if (!currentPageNode) return null
-    return currentPageNode.childrenNode
-  }) as SectionNode[] | null
+
+  const sectionNodes = useSelector<RootState, ComponentMapNode[] | null>(
+    (state) => {
+      const components = getComponentMap(state)
+      const currentPageNode = searchComponentFromMap(
+        components,
+        currentPageDisplayName,
+      )
+      if (!currentPageNode) return null
+      return currentPageNode.childrenNode.map(
+        (displayName) => components[displayName],
+      )
+    },
+  )
 
   const { hasLeft, hasRight, hasFooter, hasHeader } = pageProps
   const isHomepage = useMemo(() => {
@@ -95,11 +104,11 @@ export const PageBasic: FC = () => {
   const targetDefaultViewValue = useCallback(
     (showName: string) => {
       if (!Array.isArray(sectionNodes)) return ""
-      const targetSectionNode = sectionNodes.find((node) => {
+      const targetSectionNodeDisplayName = sectionNodes.find((node) => {
         return node.showName === showName
       })
-      if (!targetSectionNode) return ""
-      return targetSectionNode.props.defaultViewKey
+      if (!targetSectionNodeDisplayName) return ""
+      return targetSectionNodeDisplayName.props!.defaultViewKey
     },
     [sectionNodes],
   )

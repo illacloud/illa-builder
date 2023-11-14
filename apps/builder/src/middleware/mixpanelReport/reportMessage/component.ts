@@ -1,10 +1,7 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { PayloadAction } from "@reduxjs/toolkit"
-import {
-  getCanvas,
-  searchDsl,
-} from "@/redux/currentApp/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 
@@ -19,7 +16,7 @@ export const componentsOperationReport = (
 ) => {
   switch (reduxAction) {
     case "addComponentReducer": {
-      const payload = action.payload as ComponentNode[]
+      const payload = action.payload as ComponentTreeNode[]
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.ADD, {
         element: "component",
         parameter1: payload.map((node) => node.type),
@@ -29,10 +26,11 @@ export const componentsOperationReport = (
     case "deleteComponentNodeReducer": {
       const payload = action.payload.displayNames as string[]
       const source = action.payload.source
-      const prevCanvas = getCanvas(prevRootState)
       const nodes = payload
-        .map((id) => searchDsl(prevCanvas, id))
-        .filter((node) => node) as ComponentNode[]
+        .map((displayName) =>
+          searchDSLByDisplayName(displayName, prevRootState),
+        )
+        .filter((node) => node)
       const types = nodes.map((node) => node.type)
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DELETE, {
         element: "component",

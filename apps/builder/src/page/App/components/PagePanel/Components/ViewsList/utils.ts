@@ -1,5 +1,5 @@
+import { SectionViewShape } from "@illa-public/public-types"
 import { v4 } from "uuid"
-import { SectionViewShape } from "@/redux/currentApp/components/componentsState"
 
 export let viewNameSet = new Set<string>()
 

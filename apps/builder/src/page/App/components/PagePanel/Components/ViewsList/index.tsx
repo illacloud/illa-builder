@@ -1,8 +1,8 @@
 import { FC } from "react"
 import { useSelector } from "react-redux"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import {
   getRootNodeExecutionResult,
@@ -20,19 +20,25 @@ export const ViewList: FC<ViewListProps> = (props) => {
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
+
   const sectionNodeExecutionResult = useSelector<RootState>((state) => {
-    const canvas = getCanvas(state)
-    const currentPageNode = searchDsl(canvas, currentPageDisplayName)
-    if (!currentPageNode) return null
-    const currentSectionNode = currentPageNode.childrenNode.find(
-      (node) => node.showName === sectionName,
+    const components = getComponentMap(state)
+    const currentPageNode = searchComponentFromMap(
+      components,
+      currentPageDisplayName,
     )
-    if (!currentSectionNode) return null
-    const currentSectionDisplayName = currentSectionNode.displayName
+    if (!currentPageNode) return null
+    const currentSectionNodeDisplayName = currentPageNode.childrenNode.find(
+      (childDisplayName) =>
+        components[childDisplayName].showName === sectionName,
+    )
+    if (!currentSectionNodeDisplayName) return null
     const execution = getSectionExecutionResultArray(state)
-    return execution[currentSectionDisplayName] || null
+    return execution[currentSectionNodeDisplayName] || null
   }) as Record<string, any>
+
   if (!sectionNodeExecutionResult) return null
+
   return (
     <div css={viewsListWrapperStyle}>
       <ViewListHeader

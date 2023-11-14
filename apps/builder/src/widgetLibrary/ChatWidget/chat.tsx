@@ -210,11 +210,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
             <div css={resizeLineStyle} />
             <div css={footerStyle}>
               <RenderChildrenCanvas
-                displayName={childrenNode[0].displayName}
-                hasChildrenNode={
-                  Array.isArray(childrenNode[0].childrenNode) &&
-                  childrenNode[0].childrenNode.length > 0
-                }
+                displayName={childrenNode[0]}
                 columnNumber={columnNumber}
                 handleUpdateHeight={() => {}}
               />

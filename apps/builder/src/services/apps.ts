@@ -1,12 +1,13 @@
 import { builderRequest } from "@illa-public/illa-net"
+import { ComponentTreeNode } from "@illa-public/public-types"
 import { createAction } from "@/api/actions"
 import { DeployResp } from "@/page/App/Module/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
-import { getCanvas } from "@/redux/currentApp/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/components/componentsState"
+import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
 import store from "@/store"
+import { buildTreeByMapNode } from "../utils/componentNode/flatTree"
 import { getCurrentTeamID } from "../utils/team"
 
 interface IAPPPublicStatus {
@@ -104,7 +105,7 @@ export const fetchChangeAppSetting = (
 
 interface IAppCreateRequestData {
   appName: string
-  initScheme: ComponentNode
+  initScheme: ComponentTreeNode
 }
 
 export const fetchCreateApp = (data: IAppCreateRequestData) => {
@@ -186,7 +187,10 @@ export const updateAppConfig = async (
   )
 }
 
-export const createApp = async (appName: string, initScheme: ComponentNode) => {
+export const createApp = async (
+  appName: string,
+  initScheme: ComponentTreeNode,
+) => {
   const requestData = { appName, initScheme }
   const response = await fetchCreateApp(requestData)
   return response.data.appId
@@ -194,9 +198,13 @@ export const createApp = async (appName: string, initScheme: ComponentNode) => {
 
 export const forkCurrentApp = async (appName: string) => {
   const actions = getActionList(store.getState())
-  const rootComponentNode = getCanvas(store.getState()) as ComponentNode
+  const componentsMap = getComponentMap(store.getState())
   // fork app
-  const appId = await createApp(appName, rootComponentNode)
+  // TODO: need check
+  const appId = await createApp(
+    appName,
+    buildTreeByMapNode("root", componentsMap),
+  )
   // fork actions
   await Promise.all(
     actions.map((data) => {

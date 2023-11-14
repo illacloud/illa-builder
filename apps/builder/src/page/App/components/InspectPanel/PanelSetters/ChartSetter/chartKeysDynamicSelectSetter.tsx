@@ -7,8 +7,8 @@ import { ChartDataSourceSetterProps } from "@/page/App/components/InspectPanel/P
 import BaseDynamicSelect from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseDynamicSelect"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
@@ -39,8 +39,8 @@ const ChartKeysDynamicSelectSetter: FC<ChartDataSourceSetterProps> = (
 
   const insertValues = useSelector<RootState, Record<string, any>>(
     (rootState) => {
-      const targetComponentNode = searchDsl(
-        getCanvas(rootState),
+      const targetComponentNode = searchComponentFromMap(
+        getComponentMap(rootState),
         widgetDisplayName,
       )
       if (!targetComponentNode) return {}

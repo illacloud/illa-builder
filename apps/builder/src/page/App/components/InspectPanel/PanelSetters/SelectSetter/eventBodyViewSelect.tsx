@@ -2,8 +2,8 @@ import { get, toPath } from "lodash"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import {
-  getCanvas,
-  searchDsl,
+  getComponentMap,
+  searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { PageNode } from "@/redux/currentApp/components/componentsState"
 import { RootState } from "@/store"
@@ -24,9 +24,9 @@ const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
 
   const pagePath = get(parentAttr, "pagePath")
   const pageComponent = useSelector<RootState>((state) => {
-    const canvas = getCanvas(state)
-    if (!canvas) return null
-    return searchDsl(canvas, pagePath) || null
+    const components = getComponentMap(state)
+    if (!components) return null
+    return searchComponentFromMap(components, pagePath) || null
   }) as PageNode | null
 
   const finalOptions = useMemo(() => {
