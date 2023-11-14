@@ -21,3 +21,12 @@ export const containerStyle = css`
 export const actionItemContainer = css`
   padding: 8px 0;
 `
+
+export const nameStyle = css`
+  display: flex;
+  width: 160px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+`
