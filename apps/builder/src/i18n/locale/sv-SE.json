@@ -3835,7 +3835,9 @@
         "all": "Rot",
         "create_folder": "Skapa ny mapp",
         "cancel": "Avbryt",
-        "file_upload": "Ladda upp"
+        "file_upload": "Ladda upp",
+        "select_folder": "Välj mapp: ",
+        "select": "Välj"
       },
       "select": {
         "confirm_button": "Välj"
