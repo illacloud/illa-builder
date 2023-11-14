@@ -71,7 +71,7 @@ export const PCResourcesWorkspace: FC = () => {
       },
     }
     return mutate(
-      ["/resources", currentTeamID],
+      ["/resources", currentTeamID, canAccessResourceList],
       async (resourceList) => {
         const response = await fetchDeleteResource(resourceID, currentTeamID)
         if (Array.isArray(resourceList))
