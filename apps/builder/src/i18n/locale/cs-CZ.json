@@ -3835,7 +3835,9 @@
         "all": "Root",
         "create_folder": "Vytvořit novou složku",
         "cancel": "Zrušit",
-        "file_upload": "Nahrát"
+        "file_upload": "Nahrát",
+        "select_folder": "Vyberte složku: ",
+        "select": "Vybrat"
       },
       "select": {
         "confirm_button": "Vybrat"
