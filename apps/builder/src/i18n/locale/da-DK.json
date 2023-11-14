@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Kør kun handling ved manuelt udløst",
-            "on_change": "Kør handling automatisk, når inputs ændres"
+            "on_change": "Kør handling automatisk, når inputs ændres",
+            "label": "Udløser type"
           }
         },
         "s3": {
