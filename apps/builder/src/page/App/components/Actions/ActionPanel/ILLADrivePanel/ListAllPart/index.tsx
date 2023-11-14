@@ -12,6 +12,7 @@ import {
   ListAllContent,
 } from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import FolderSelect from "../components/FolderSelect"
 
 export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
@@ -58,14 +59,7 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
           expectedType={VALIDATION_TYPES.STRING}
         />
       )}
-      <InputEditor
-        title={t("editor.action.panel.label.drive.folder")}
-        tips={t("editor.action.panel.label.tips.drive.folder")}
-        mode={CODE_LANG.JAVASCRIPT}
-        value={commandArgs.path}
-        onChange={(value) => handleOptionsValueChange("path", value)}
-        expectedType={VALIDATION_TYPES.STRING}
-      />
+      <FolderSelect value={commandArgs.path} />
 
       <SingleTypeComponent
         title={t("editor.inspect.setter_label.drive_builder.expired_time")}
