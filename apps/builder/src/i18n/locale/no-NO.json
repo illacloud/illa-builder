@@ -3835,7 +3835,9 @@
         "all": "Rot",
         "create_folder": "Opprett ny mappe",
         "cancel": "Avbryt",
-        "file_upload": "Last opp"
+        "file_upload": "Last opp",
+        "select_folder": "Velg mappe: ",
+        "select": "Velg"
       },
       "select": {
         "confirm_button": "Velg"
