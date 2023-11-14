@@ -11,15 +11,6 @@ export const folderSelectStyle = css`
   gap: 8px;
 `
 
-export const nameStyle = css`
-  display: flex;
-  width: 160px;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-`
-
 export const fileSelectContainerStyle = css`
   display: flex;
   padding: 1px 8px;
