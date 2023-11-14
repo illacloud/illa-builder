@@ -1,7 +1,6 @@
 import { get } from "lodash"
 import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import FilesModal, { ROOT_PATH } from "@/components/DriveFileSelect"
 import FolderOperateModal from "@/components/FolderOperateModal"
@@ -10,8 +9,6 @@ import {
   baseRadioGroupContainerStyle,
   radioGroupStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/style"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { RootState } from "@/store"
 import SourceHeader from "./components/SourceHeader"
 import URLModeInput from "./components/URLModeInput"
 import UploadMode from "./components/UploadInput"
@@ -29,6 +26,7 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
     labelName,
     labelDesc,
     widgetDisplayName,
+    componentNode,
     handleUpdateDsl,
   } = props
 
@@ -45,21 +43,15 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
     },
   ]
 
-  const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    (rootState) => {
-      const executionTree = getExecutionResult(rootState)
-      return get(executionTree, widgetDisplayName, {})
-    },
-  )
   const [selectMode, setSelectMode] = useState(DRIVE_SOURCE_MODE.URL)
   const { srcByURL, srcByUpload } = useMemo(() => {
-    const srcByURL = get(targetComponentProps, `${attrName}ByURL`, value)
-    const srcByUpload = get(targetComponentProps, `${attrName}ByUpload`, value)
+    const srcByURL = get(componentNode, `props.${attrName}ByURL`, value)
+    const srcByUpload = get(componentNode, `props.${attrName}ByUpload`, value)
     return {
       srcByURL,
       srcByUpload,
     }
-  }, [attrName, targetComponentProps, value])
+  }, [attrName, componentNode, value])
 
   const handleSelectModeChange = (mode: DRIVE_SOURCE_MODE) => {
     setSelectMode(mode)
