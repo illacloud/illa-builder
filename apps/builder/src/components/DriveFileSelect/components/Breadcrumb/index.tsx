@@ -1,12 +1,8 @@
 import { FC, useCallback, useContext, useMemo } from "react"
 import { Breadcrumb, BreadcrumbItem } from "@illa-design/react"
-import { DriveFileSelectContext } from "@/components/DriveFileSelect"
+import { DriveFileSelectContext, ROOT_PATH } from "@/components/DriveFileSelect"
 
-interface FileBreadCrumbProps {
-  rootPath: string
-}
-
-const FileBreadCrumb: FC<FileBreadCrumbProps> = ({ rootPath }) => {
+const FileBreadCrumb: FC = () => {
   const { currentPath, totalPath, updatePath } = useContext(
     DriveFileSelectContext,
   )
@@ -25,8 +21,8 @@ const FileBreadCrumb: FC<FileBreadCrumbProps> = ({ rootPath }) => {
     if (!currentPath) {
       return [
         {
-          path: rootPath,
-          title: rootPath,
+          path: ROOT_PATH,
+          title: ROOT_PATH,
           last: true,
         },
       ]
@@ -43,7 +39,7 @@ const FileBreadCrumb: FC<FileBreadCrumbProps> = ({ rootPath }) => {
         last: isLast,
       }
     })
-  }, [currentPath, rootPath, totalPath])
+  }, [currentPath, totalPath])
 
   return (
     <Breadcrumb

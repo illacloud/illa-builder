@@ -2,7 +2,6 @@ import { ReactNode, createContext } from "react"
 
 interface Injected {
   title?: string
-  rootPath: string
   subTitle: string
   currentFolderPath: string
   folderOperateVisible: boolean

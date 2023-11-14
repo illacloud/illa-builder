@@ -44,7 +44,7 @@ export const DRIVE_PICKER_PANEL_CONFIG: PanelConfig[] = [
         ),
         attrName: "ILLADriveFolder",
         isSetterSingleRow: true,
-        placeholder: "root/folder/folder",
+        placeholder: "/root/folder/folder",
         bindAttrName: ["allowAnonymousUse"],
         shown: (value) => !value,
         expectedType: VALIDATION_TYPES.STRING,

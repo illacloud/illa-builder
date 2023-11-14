@@ -3,13 +3,13 @@ import {
   getCurrentPath,
   removeSuffixPath,
 } from "@/components/DriveFileSelect/utils"
+import { ROOT_PATH } from "../constants"
 
 export const usePath = (
   path: string,
-  rootPath: string,
   allowAnonymousUse?: boolean | undefined,
 ) => {
-  const [totalPath, setTotalPath] = useState<string>(path || rootPath)
+  const [totalPath, setTotalPath] = useState<string>(path || ROOT_PATH)
   const [currentPath, setCurrentPath] = useState<string>(
     getCurrentPath(totalPath ?? "root"),
   )
@@ -25,13 +25,13 @@ export const usePath = (
 
   useEffect(() => {
     if (allowAnonymousUse) {
-      setTotalPath(rootPath)
-      setCurrentPath(rootPath)
+      setTotalPath(ROOT_PATH)
+      setCurrentPath(ROOT_PATH)
     } else {
-      setTotalPath(path || rootPath)
-      setCurrentPath(getCurrentPath(path || rootPath))
+      setTotalPath(path || ROOT_PATH)
+      setCurrentPath(getCurrentPath(path || ROOT_PATH))
     }
-  }, [rootPath, allowAnonymousUse, path])
+  }, [allowAnonymousUse, path])
 
   return {
     currentPath,

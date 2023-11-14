@@ -13,13 +13,12 @@ import {
   handleCollaPurchaseError,
 } from "@illa-public/upgrade-modal"
 import { FC, ReactNode, useCallback, useMemo, useState } from "react"
-import { usePath } from "@/components/DriveFileSelect"
+import { ROOT_PATH, usePath } from "@/components/DriveFileSelect"
 import { DriveFileSelectContext } from "@/components/DriveFileSelect/context"
 import { FileToPanel } from "@/components/DriveFileSelect/interface"
 import {
   COLOR_SCHEME,
   PAGESIZE,
-  ROOT_PATH,
 } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
 import { fetchFileList, fetchGenerateTinyUrl } from "@/services/drive"
 
@@ -32,7 +31,7 @@ interface Props {
 
 export const SourceSelectProvider: FC<Props> = (props) => {
   const { path = ROOT_PATH, children, widgetType, handleUpdateResult } = props
-  const { currentPath, updatePath, totalPath } = usePath(path, ROOT_PATH)
+  const { currentPath, updatePath, totalPath } = usePath(path)
   const [fileList, setFileList] = useState<IILLAFileInfo[]>([])
   const [modalVisible, setModalVisible] = useState(false)
 
