@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Run action only when manually triggered",
-            "on_change": "Run action automatically when inputs change"
+            "on_change": "Run action automatically when inputs change",
+            "label": "Trigger type"
           }
         },
         "s3": {
