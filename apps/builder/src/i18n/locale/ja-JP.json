@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "データベースまたは api に接続します",
             "more-type": "More type of data source",
-            "safe_mode": "モード"
+            "safe_mode": "モード",
+            "ai_agent_title": "AIエージェントと統合",
+            "integration_title": "データソースと統合"
           },
           "drive": {
             "method": "方法",
@@ -3840,7 +3842,8 @@
         "select": "選択"
       },
       "select": {
-        "confirm_button": "選択"
+        "confirm_button": "選択",
+        "select_entry": "選択"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "更新",
       "title": "編集"
-    }
+    },
+    "checkbox_ai_agent": "関連する AI エージェントをマーケットプレイスに同期"
   },
   "error_page": {
     "fobidden": "アクセス権限がありません"
