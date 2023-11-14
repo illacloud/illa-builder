@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Kjør handling bare når manuelt utløses",
-            "on_change": "Kjør handling automatisk når innstillingene endres"
+            "on_change": "Kjør handling automatisk når innstillingene endres",
+            "label": "Utløser type"
           }
         },
         "s3": {
