@@ -3835,7 +3835,9 @@
         "all": "Ρίζα",
         "create_folder": "Δημιουργία νέου φακέλου",
         "cancel": "Ακύρωση",
-        "file_upload": "Ανέβασμα"
+        "file_upload": "Ανέβασμα",
+        "select_folder": "Επιλέξτε το φάκελο: ",
+        "select": "Επιλογή"
       },
       "select": {
         "confirm_button": "Επιλογή"
