@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Yhdistä tietokantaan tai apiin",
             "more-type": "Enemmän tietolähteitä",
-            "safe_mode": "Tila"
+            "safe_mode": "Tila",
+            "ai_agent_title": "Integrointi tekoälyn kanssa",
+            "integration_title": "Integroi tietolähteeseen"
           },
           "drive": {
             "method": "Menetelmä",
@@ -3840,7 +3842,8 @@
         "select": "Valitse"
       },
       "select": {
-        "confirm_button": "Valitse"
+        "confirm_button": "Valitse",
+        "select_entry": "Valitse"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "Päivitä",
       "title": "Muokkaa"
-    }
+    },
+    "checkbox_ai_agent": "Synkronoi liittyvä AI Agent Marketplaceen"
   },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
