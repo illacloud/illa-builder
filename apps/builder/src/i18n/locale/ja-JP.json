@@ -3835,7 +3835,9 @@
         "all": "ルート",
         "create_folder": "新しいフォルダを作成",
         "cancel": "キャンセル",
-        "file_upload": "アップロード"
+        "file_upload": "アップロード",
+        "select_folder": "フォルダを選択: ",
+        "select": "選択"
       },
       "select": {
         "confirm_button": "選択"
