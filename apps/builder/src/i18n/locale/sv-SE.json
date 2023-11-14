@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Anslut till databas eller api",
             "more-type": "Fler typer av datakällor",
-            "safe_mode": "Läge"
+            "safe_mode": "Läge",
+            "ai_agent_title": "Integrera med AI Agent",
+            "integration_title": "Integrera med datakälla"
           },
           "drive": {
             "method": "Metod",
@@ -3840,7 +3842,8 @@
         "select": "Välj"
       },
       "select": {
-        "confirm_button": "Välj"
+        "confirm_button": "Välj",
+        "select_entry": "Välj"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "Uppdatera",
       "title": "Redigera"
-    }
+    },
+    "checkbox_ai_agent": "Synkronisera den associerade AI-agenten till Marketplace"
   },
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
