@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Uruchom akcję tylko po ręcznym uruchomieniu",
-            "on_change": "Uruchom działanie automatycznie po zmianie danych wejściowych"
+            "on_change": "Uruchom działanie automatycznie po zmianie danych wejściowych",
+            "label": "Trigger type"
           }
         },
         "s3": {
