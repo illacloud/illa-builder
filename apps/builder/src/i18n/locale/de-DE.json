@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Mit Datenbank oder Api verbinden",
             "more-type": "Weitere Datenquellentypen",
-            "safe_mode": "Modus"
+            "safe_mode": "Modus",
+            "ai_agent_title": "Mit KI Agent integrieren",
+            "integration_title": "Mit Datenquelle integrieren"
           },
           "drive": {
             "method": "Methode",
@@ -3840,7 +3842,8 @@
         "select": "Auswählen"
       },
       "select": {
-        "confirm_button": "Auswählen"
+        "confirm_button": "Auswählen",
+        "select_entry": "Auswählen"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "Aktualisieren",
       "title": "Bearbeiten"
-    }
+    },
+    "checkbox_ai_agent": "Verknüpfte KI-Agenten mit Marketplace synchronisieren"
   },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
