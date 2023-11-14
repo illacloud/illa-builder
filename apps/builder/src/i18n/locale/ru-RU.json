@@ -3835,7 +3835,9 @@
         "all": "Корень",
         "create_folder": "Создать новую папку",
         "cancel": "Отмена",
-        "file_upload": "Выгрузить"
+        "file_upload": "Выгрузить",
+        "select_folder": "Выберите папку: ",
+        "select": "Выбрать"
       },
       "select": {
         "confirm_button": "Выбрать"
