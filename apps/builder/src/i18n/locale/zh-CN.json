@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "连接到数据库或API",
             "more-type": "更多连接方式",
-            "safe_mode": "模式"
+            "safe_mode": "模式",
+            "ai_agent_title": "集成AI Agent",
+            "integration_title": "集成数据源"
           },
           "drive": {
             "method": "方法",
@@ -3840,7 +3842,8 @@
         "select": "选择"
       },
       "select": {
-        "confirm_button": "选择"
+        "confirm_button": "选择",
+        "select_entry": "选择"
       }
     },
     "drive_builder": {
@@ -4623,7 +4626,8 @@
     "update_modal": {
       "button": "更新",
       "title": "编辑"
-    }
+    },
+    "checkbox_ai_agent": "将关联的AI Agent同步到Marketplace"
   },
   "error_page": {
     "fobidden": "没有访问权限"
