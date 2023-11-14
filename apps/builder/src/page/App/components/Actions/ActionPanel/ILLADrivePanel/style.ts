@@ -10,6 +10,8 @@ export const triggerModeContainerStyle = css`
   flex-direction: row;
   min-height: 64px;
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
+  justify-content: flex-end;
+  gap: 8px;
 `
 
 export const containerStyle = css`
@@ -19,4 +21,13 @@ export const containerStyle = css`
 
 export const actionItemContainer = css`
   padding: 8px 0;
+`
+
+export const nameStyle = css`
+  display: flex;
+  width: 160px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 `

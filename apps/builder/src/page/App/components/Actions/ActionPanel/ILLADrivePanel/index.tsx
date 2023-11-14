@@ -30,6 +30,7 @@ import { PathSelectProvider } from "./provider"
 import {
   actionItemContainer,
   containerStyle,
+  nameStyle,
   triggerModeContainerStyle,
 } from "./style"
 import { getInputBody } from "./utils"
@@ -117,6 +118,9 @@ const ILLADrivePanel: FC = () => {
     <PathSelectProvider handleOptionsValueChange={handleOptionsValueChange}>
       <div css={containerStyle}>
         <div css={triggerModeContainerStyle}>
+          <span css={nameStyle}>
+            {t("editor.action.panel.option.trigger.label")}
+          </span>
           <TriggerModeChoose />
         </div>
         <div css={actionItemContainer}>
