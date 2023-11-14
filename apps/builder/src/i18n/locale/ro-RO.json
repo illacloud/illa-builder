@@ -805,7 +805,8 @@
           },
           "trigger": {
             "manually": "Execută acțiunea numai când este declanșată manual",
-            "on_change": "Rulează acțiunea automat când se schimbă intrările"
+            "on_change": "Rulează acțiunea automat când se schimbă intrările",
+            "label": "Tip declanșare"
           }
         },
         "s3": {
