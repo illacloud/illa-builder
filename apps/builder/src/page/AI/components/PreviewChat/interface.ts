@@ -61,4 +61,5 @@ export interface PreviewChatProps {
   showContributeDialog: boolean
   onShowShareDialog?: () => void
   onShowContributeDialog?: () => void
+  onClickCreateApp?: () => void
 }

@@ -75,8 +75,10 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
+import { createAction } from "@/api/actions"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
+import { buildActionInfo, buildAppWithAgentSchema } from "@/config/AppWithAgent"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
@@ -90,6 +92,7 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
+import { fetchCreateApp } from "@/services/apps"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../components/ChatContext"
@@ -135,15 +138,7 @@ export const AIAgent: FC = () => {
     agent: Agent
   }
 
-  const {
-    control,
-    handleSubmit,
-    getValues,
-    reset,
-    clearErrors,
-    setError,
-    trigger,
-  } = useForm<Agent>({
+  const methods = useForm<Agent>({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
     defaultValues: {
@@ -154,6 +149,16 @@ export const AIAgent: FC = () => {
           : data.agent.variables,
     },
   })
+
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    reset,
+    clearErrors,
+    setError,
+    trigger,
+  } = methods
 
   const { agentID, teamIdentifier } = useParams()
 
@@ -366,6 +371,7 @@ export const AIAgent: FC = () => {
       el?.scrollIntoView({ behavior: "smooth", block: "center" })
     }, 30)
   }
+
   const handleSubmitSave = async (data: Agent) => {
     track(
       ILLA_MIXPANEL_EVENT_TYPE.CLICK,
@@ -376,6 +382,7 @@ export const AIAgent: FC = () => {
         parameter5: data.aiAgentID || "-1",
       },
     )
+    let agentInfo: Agent
     try {
       let updateIconURL = data.icon
       if (data.icon !== undefined && data.icon !== "") {
@@ -392,6 +399,7 @@ export const AIAgent: FC = () => {
             (v) => v.key !== "" && v.value !== "",
           ),
         })
+
         sendTagEvent("create_agent", currentUserInfo.userID)
         dispatch(
           aiAgentActions.addTeamAIAgentReducer({
@@ -405,6 +413,7 @@ export const AIAgent: FC = () => {
               ? [{ key: "", value: "" }]
               : resp.data.variables,
         })
+        agentInfo = resp.data
       } else {
         const resp = await putAgentDetail(data.aiAgentID, {
           ...data,
@@ -426,10 +435,12 @@ export const AIAgent: FC = () => {
               ? [{ key: "", value: "" }]
               : resp.data.variables,
         })
+        agentInfo = resp.data
       }
       message.success({
         content: t("dashboard.message.create-suc"),
       })
+      return agentInfo
     } catch (e) {
       message.error({
         content: t("dashboard.message.create-failed"),
@@ -437,20 +448,53 @@ export const AIAgent: FC = () => {
     }
   }
 
-  const handleVerifyOnSave = () => {
-    trigger().then(() => {
-      if (!!errors.prompt) {
-        handleScrollToElement(SCROLL_ID.PROMPT)
-      } else if (!!errors.variables) {
-        handleScrollToElement(SCROLL_ID.VARIABLES)
-      } else if (!!errors.name) {
-        handleScrollToElement(SCROLL_ID.NAME)
-      } else if (!!errors.description) {
-        handleScrollToElement(SCROLL_ID.DESCRIPTION)
-      } else if (!!errors.icon) {
-        handleScrollToElement(SCROLL_ID.ICON)
+  const handleVerifyOnSave = async () => {
+    await trigger()
+    let validate = true
+    if (!!errors.prompt) {
+      handleScrollToElement(SCROLL_ID.PROMPT)
+      validate = false
+    } else if (!!errors.variables) {
+      handleScrollToElement(SCROLL_ID.VARIABLES)
+      validate = false
+    } else if (!!errors.name) {
+      handleScrollToElement(SCROLL_ID.NAME)
+      validate = false
+    } else if (!!errors.description) {
+      handleScrollToElement(SCROLL_ID.DESCRIPTION)
+      validate = false
+    } else if (!!errors.icon) {
+      handleScrollToElement(SCROLL_ID.ICON)
+      validate = false
+    }
+    return validate
+  }
+
+  const handleClickCreateApp = async () => {
+    const validate = await handleVerifyOnSave()
+    if (validate) {
+      const agentInfo = await handleSubmitSave(getValues())
+      if (agentInfo) {
+        const variableKeys = agentInfo.variables.map((v) => v.key)
+        const { appInfo, variableKeyMapInputNodeDisplayName } =
+          buildAppWithAgentSchema(variableKeys)
+        const appInfoResp = await fetchCreateApp({
+          appName: "Untitled app",
+          initScheme: appInfo,
+        })
+        const agentActionInfo = buildActionInfo(
+          agentInfo,
+          variableKeyMapInputNodeDisplayName,
+        )
+        await createAction(appInfoResp.data.appId, agentActionInfo)
+        window.open(
+          `${getILLABuilderURL()}/${teamIdentifier}/app/${
+            appInfoResp.data.appId
+          }`,
+          "_blank",
+        )
       }
-    })
+    }
   }
 
   const handleVerifyOnStart = () => {
@@ -1313,6 +1357,7 @@ export const AIAgent: FC = () => {
                             setContributedDialogVisible(true)
                           }
                         }}
+                        onClickCreateApp={handleClickCreateApp}
                       />
                     </div>
                   )}
