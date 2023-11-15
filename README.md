@@ -87,6 +87,10 @@ After successfully deployed, you can register with email address or log in with 
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
 
+You can self-host ILLA in one-click on [Dome](https://app.trydome.io/signup?package=illasoft):
+
+[![Deploy to Dome](https://trydome.io/button.svg)](https://app.trydome.io/signup?package=illasoft)
+    
     
     
 ## How to build your tool
