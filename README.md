@@ -12,6 +12,7 @@
 [![PR:s Welcome](https://img.shields.io/badge/PR:s-welcome-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
 [![First Contributors](https://img.shields.io/badge/first-contributors-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
 ![GitHub repo size](https://img.shields.io/github/repo-size/illacloud/illa-builder)
+[![Deploy to Dome](https://trydome.io/dome-badge.svg)](https://app.trydome.io/signup?package=illasoft)
 
 By contributing AI Agents or ILLA Apps to the ILLA community and submitting a pull request to ILLA, you have the opportunity to receive a Digital Reward Kit from Hacktoberfest and Swags from ILLA Cloud.
 
