@@ -3,14 +3,9 @@ import { getColor } from "@illa-design/react"
 
 export const triggerModeContainerStyle = css`
   display: flex;
+  padding: 8px 16px;
+  justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
-  width: 100%;
-  overflow-x: auto;
-  flex-direction: row;
-  min-height: 64px;
-  border-bottom: 1px solid ${getColor("grayBlue", "08")};
-  justify-content: end;
 `
 
 export const containerStyle = css`
@@ -22,11 +17,13 @@ export const actionItemContainer = css`
   padding: 8px 0;
 `
 
-export const nameStyle = css`
-  display: flex;
-  width: 160px;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
+export const spaceStyle = css`
+  border-bottom: 1px solid ${getColor("grayBlue", "08")};
+`
+
+export const titleStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
 `

@@ -1,6 +1,7 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { Space } from "@illa-design/react"
 import FolderOperateModal from "@/components/FolderOperateModal"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
@@ -30,7 +31,8 @@ import { PathSelectProvider } from "./provider"
 import {
   actionItemContainer,
   containerStyle,
-  nameStyle,
+  spaceStyle,
+  titleStyle,
   triggerModeContainerStyle,
 } from "./style"
 import { getInputBody } from "./utils"
@@ -118,11 +120,12 @@ const ILLADrivePanel: FC = () => {
     <PathSelectProvider handleOptionsValueChange={handleOptionsValueChange}>
       <div css={containerStyle}>
         <div css={triggerModeContainerStyle}>
-          <span css={nameStyle}>
+          <span css={titleStyle}>
             {t("editor.action.panel.option.trigger.label")}
           </span>
           <TriggerModeChoose />
         </div>
+        <Space w="100%" h="8px" css={spaceStyle} disp="block" />
         <div css={actionItemContainer}>
           <SingleTypeComponent
             title={t("editor.action.panel.label.drive.method")}

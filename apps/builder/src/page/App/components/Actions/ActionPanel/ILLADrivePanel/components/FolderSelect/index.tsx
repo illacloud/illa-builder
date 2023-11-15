@@ -6,7 +6,6 @@ import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interfa
 import { FolderOperateModalContext } from "@/components/FolderOperateModal/context"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { PathSelectContext } from "../../provider"
-import { nameStyle } from "../../style"
 import {
   actionItemCodeEditorStyle,
   actionItemTip,
@@ -15,6 +14,7 @@ import {
   folderSelectStyle,
   headerStyle,
   inputContainerStyle,
+  nameStyle,
 } from "./style"
 
 interface FolderSelectProps {
