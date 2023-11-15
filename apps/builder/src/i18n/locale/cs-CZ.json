@@ -814,7 +814,8 @@
             "data_production": "Produkce",
             "data_mock": "bubble raider",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci"
+            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci",
+            "duration": "Trvání běhu (ms)"
           }
         },
         "s3": {
