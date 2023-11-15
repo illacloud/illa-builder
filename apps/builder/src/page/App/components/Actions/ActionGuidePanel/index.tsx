@@ -1,8 +1,11 @@
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, memo, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { Loading } from "@illa-design/react"
-import PanelSection from "./components/ActionSection"
+import { getDashboardTeamAIAgentList } from "@/redux/aiAgent/dashboardTeamAIAgentSelector"
+import ActionPanelSection from "./components/ActionSection"
+import AgentPanelSection from "./components/AgentSection"
 import {
   MORE_DATA_TYPE_SELF_HOST,
   RECOMMEND_RESOURCES_CLOUD,
@@ -17,6 +20,7 @@ import {
 const ActionGuidePanel: FC = () => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
+  const agenList = useSelector(getDashboardTeamAIAgentList)
 
   return (
     <>
@@ -24,7 +28,7 @@ const ActionGuidePanel: FC = () => {
         <div css={guidePanelContainerStyle}>
           {!isCloudVersion ? (
             <>
-              <PanelSection
+              <ActionPanelSection
                 title={t(
                   "editor.action.panel.label.general.connect-data-source",
                 )}
@@ -32,7 +36,7 @@ const ActionGuidePanel: FC = () => {
                 changeLoading={setIsLoading}
                 hasMore
               />
-              <PanelSection
+              <ActionPanelSection
                 title={t("editor.action.panel.label.general.more-type")}
                 actionTypes={MORE_DATA_TYPE_SELF_HOST}
                 changeLoading={setIsLoading}
@@ -41,7 +45,13 @@ const ActionGuidePanel: FC = () => {
             </>
           ) : (
             <>
-              <PanelSection
+              <AgentPanelSection
+                title={t("editor.action.panel.label.general.more-type")}
+                agents={agenList.slice(0, 3)}
+                hasMore
+                changeLoading={setIsLoading}
+              />
+              <ActionPanelSection
                 title={t(
                   "editor.action.panel.label.general.connect-data-source",
                 )}

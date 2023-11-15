@@ -30,7 +30,7 @@ import {
   moreTipsStyle,
 } from "./style"
 
-const PanelSection: FC<PanelSectionProps> = (props) => {
+const ActionPanelSection: FC<PanelSectionProps> = (props) => {
   const { actionTypes, title, hasMore, changeLoading, filterFunc } = props
   const { t } = useTranslation()
 
@@ -182,4 +182,4 @@ const PanelSection: FC<PanelSectionProps> = (props) => {
   )
 }
 
-export default memo(PanelSection)
+export default memo(ActionPanelSection)
