@@ -807,6 +807,14 @@
             "manually": "Esegui azione solo quando viene attivato manualmente",
             "on_change": "Esegui l'azione automaticamente quando gli input cambiano",
             "label": "Trigger type"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Data",
+            "data_production": "Production",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Use the mock JSON outputs on deployed app"
           }
         },
         "s3": {
