@@ -814,7 +814,8 @@
             "data_production": "Producție",
             "data_mock": "Piatră",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Folosește ieșirile mock JSON în aplicația implementată"
+            "on_deploy": "Folosește ieșirile mock JSON în aplicația implementată",
+            "duration": "Durata de derulare (ms)"
           }
         },
         "s3": {
