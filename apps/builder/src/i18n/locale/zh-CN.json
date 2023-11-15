@@ -807,6 +807,14 @@
             "manually": "手动触发时执行",
             "on_change": "当输入更改时自动执行",
             "label": "触发类型"
+          },
+          "mock": {
+            "label": "模拟",
+            "data_label": "数据",
+            "data_production": "生产数据",
+            "data_mock": "模拟数据",
+            "json": "模拟JSON输出",
+            "on_deploy": "在部署应用上也使用模拟JSON输出"
           }
         },
         "s3": {
