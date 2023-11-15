@@ -814,7 +814,8 @@
             "data_production": "Produktion",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Brug mock JSON udgange på implementeret app"
+            "on_deploy": "Brug mock JSON udgange på implementeret app",
+            "duration": "Varighed af køretid"
           }
         },
         "s3": {
