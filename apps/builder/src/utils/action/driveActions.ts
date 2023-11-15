@@ -22,7 +22,7 @@ import {
 } from "../drive/upload/getSingedURL"
 import { getContentTypeByFileExtension, getFileName } from "../file"
 import { isBase64Simple } from "../url/base64"
-import { fetchActionResult } from "./runAction"
+import { fetchCommonActionResult } from "./runAction"
 
 const getFileInfo = (
   fileName: string,
@@ -264,7 +264,7 @@ export const fetchILLADriveClientResult = async (
               fileID: res.fileID,
               status: res.status,
             }
-            result = await fetchActionResult(
+            result = await fetchCommonActionResult(
               isPublic,
               resourceID,
               "illadrive",
@@ -336,7 +336,7 @@ export const fetchILLADriveClientResult = async (
               fileID: res!.fileID,
               status: res!.status,
             }
-            const updateStatusRes = await fetchActionResult(
+            const updateStatusRes = await fetchCommonActionResult(
               isPublic,
               resourceID,
               "illadrive",
