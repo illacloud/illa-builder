@@ -807,6 +807,14 @@
             "manually": "Kör åtgärd endast när manuellt utlöst",
             "on_change": "Kör åtgärden automatiskt när inmatningen ändras",
             "label": "Typ av utlösare"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Data",
+            "data_production": "Produktion",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Använd mock JSON-utgångarna på distribuerad app"
           }
         },
         "s3": {
