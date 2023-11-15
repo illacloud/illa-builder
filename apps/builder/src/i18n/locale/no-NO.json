@@ -807,6 +807,14 @@
             "manually": "Kjør handling bare når manuelt utløses",
             "on_change": "Kjør handling automatisk når innstillingene endres",
             "label": "Utløser type"
+          },
+          "mock": {
+            "label": "Feil",
+            "data_label": "Data",
+            "data_production": "Produksjon",
+            "data_mock": "Feil",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Bruk mock JSON utdata på distribuert app"
           }
         },
         "s3": {
