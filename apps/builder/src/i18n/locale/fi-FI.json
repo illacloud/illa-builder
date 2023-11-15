@@ -807,6 +807,14 @@
             "manually": "Suorita toiminto vain, kun käsin laukaistu",
             "on_change": "Suorita toiminto automaattisesti, kun syötteet muuttuvat",
             "label": "Käynnistimen tyyppi"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Tiedot",
+            "data_production": "Tuotanto",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Käytä pilkata JSON lähdöitä käytössä olevassa sovelluksessa"
           }
         },
         "s3": {
