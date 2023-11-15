@@ -807,6 +807,14 @@
             "manually": "수동 트리거 시 실행",
             "on_change": "입력이 변경되면 자동으로 실행",
             "label": "Trigger type"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Data",
+            "data_production": "Production",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Use the mock JSON outputs on deployed app"
           }
         },
         "s3": {
