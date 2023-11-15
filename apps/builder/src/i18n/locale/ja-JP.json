@@ -814,7 +814,8 @@
             "data_production": "Production",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "デプロイされたアプリでモックJSON出力を使用する"
+            "on_deploy": "デプロイされたアプリでモックJSON出力を使用する",
+            "duration": "ランタイムの継続時間 (ms)"
           }
         },
         "s3": {
