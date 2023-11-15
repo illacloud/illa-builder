@@ -1,17 +1,16 @@
 import { FC, ReactNode, createContext, useState } from "react"
-import { ROOT_PATH } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
+import { useTranslation } from "react-i18next"
+import {
+  FolderOperateModalContext,
+  ROOT_PATH,
+} from "@/components/FolderOperateModal"
+import UploadOperate from "../../components/UploadOperate"
 
 interface Injected {
-  currentFolderPath: string
-  uploadModalVisible: boolean
-  createFolderVisible: boolean
   uploadName: string
   widgetType: string
   isUpLoading: boolean
   setIsUpLoading: (v: boolean) => void
-  setCurrentFolderPath: (path: string) => void
-  setUploadModalVisible: (v: boolean) => void
-  setCreateFolderVisible: (v: boolean) => void
   setUploadName: (name: string) => void
   handleUpdateResult: (value: string) => void
 }
@@ -30,29 +29,37 @@ export const FileUploadProvider: FC<FileUploadProviderProps> = ({
   handleUpdateResult,
 }) => {
   const [currentFolderPath, setCurrentFolderPath] = useState(ROOT_PATH)
-  const [uploadModalVisible, setUploadModalVisible] = useState(false)
+  const [folderOperateVisible, setFolderOperateVisible] = useState(false)
   const [createFolderVisible, setCreateFolderVisible] = useState(false)
   const [isUpLoading, setIsUpLoading] = useState(false)
   const [uploadName, setUploadName] = useState("")
+  const { t } = useTranslation()
 
   return (
     <FileUploadContext.Provider
       value={{
         widgetType,
-        uploadName,
-        currentFolderPath,
-        uploadModalVisible,
-        createFolderVisible,
+        handleUpdateResult,
         isUpLoading,
+        uploadName,
         setIsUpLoading,
         setUploadName,
-        setCreateFolderVisible,
-        setCurrentFolderPath,
-        setUploadModalVisible,
-        handleUpdateResult,
       }}
     >
-      {children}
+      <FolderOperateModalContext.Provider
+        value={{
+          subTitle: t("drive.upload.modal.upload_to"),
+          currentFolderPath,
+          folderOperateVisible,
+          createFolderVisible,
+          setCreateFolderVisible,
+          setCurrentFolderPath,
+          setFolderOperateVisible,
+          operateChildren: <UploadOperate />,
+        }}
+      >
+        {children}
+      </FolderOperateModalContext.Provider>
     </FileUploadContext.Provider>
   )
 }

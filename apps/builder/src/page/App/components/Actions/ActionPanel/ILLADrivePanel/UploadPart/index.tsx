@@ -8,6 +8,7 @@ import {
 } from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { SingleTypeComponent } from "../../SingleTypeComponent"
+import FolderSelect from "../components/FolderSelect"
 import { ILLADriveActionPartProps } from "../interface"
 
 export const UploadPart: FC<ILLADriveActionPartProps> = (props) => {
@@ -56,14 +57,7 @@ export const UploadPart: FC<ILLADriveActionPartProps> = (props) => {
         componentType="select"
         options={FileTypeOptions}
       />
-      <InputEditor
-        title={t("editor.action.panel.label.drive.folder")}
-        tips={t("editor.action.panel.label.tips.drive.folder")}
-        mode={CODE_LANG.JAVASCRIPT}
-        value={commandArgs.path}
-        onChange={(value) => handleOptionsValueChange("path", value)}
-        expectedType={VALIDATION_TYPES.STRING}
-      />
+      <FolderSelect value={commandArgs.path} />
     </>
   )
 }

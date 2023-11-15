@@ -1,17 +1,8 @@
 import {
-  HTTP_REQUEST_PUBLIC_BASE_URL,
-  PUBLIC_DRIVE_REQUEST_PREFIX,
-} from "@illa-public/illa-net"
-import {
   DRIVE_FILE_TYPE,
-  EXPIRATION_TYPE,
   IILLAFileInfo,
   SORTED_TYPE,
 } from "@illa-public/public-types"
-import {
-  CollarModalType,
-  handleCollaPurchaseError,
-} from "@illa-public/upgrade-modal"
 import {
   FC,
   useCallback,
@@ -27,20 +18,11 @@ import {
   BreadcrumbItem,
   Button,
   CloseIcon,
-  useMessage,
 } from "@illa-design/react"
 import { PlusIcon } from "@illa-design/react"
-import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
-import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
-import { FOLDER_LIST_LIMIT_IN_MODAL } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/components/UploadFileModal/constants"
-import { ROOT_PATH } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
-import { FileUploadContext } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/provider/FileUploadProvider"
-import {
-  getPathForSignedUrl,
-  getUploadAccept,
-} from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/utils"
-import { fetchFileList, fetchGenerateTinyUrl } from "@/services/drive"
-import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
+import { fetchFileList } from "@/services/drive"
+import { FOLDER_LIST_LIMIT_IN_MODAL, ROOT_PATH } from "../../constants"
+import { FolderOperateModalContext } from "../../context"
 import CreateFolderModal from "../CreateFolderModal"
 import EmptyState from "../Empty"
 import FolderList from "../FolderList"
@@ -59,26 +41,22 @@ import {
   spanBreadcrumbStyle,
 } from "./style"
 
-const UploadFileModalContent: FC = () => {
+const FolderModalContent: FC = () => {
   const {
+    title,
+    subTitle,
     currentFolderPath,
-    widgetType,
-    setIsUpLoading,
     setCurrentFolderPath,
-    setUploadModalVisible,
+    setFolderOperateVisible,
     setCreateFolderVisible,
-    setUploadName,
-    handleUpdateResult,
-  } = useContext(FileUploadContext)
+    operateChildren,
+  } = useContext(FolderOperateModalContext)
   const { t } = useTranslation()
-  const message = useMessage()
   const [folderList, setFolderList] = useState<IILLAFileInfo[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const totalRef = useRef<number>(0)
   const currentFolderID = useRef("")
-
-  const uploadFileRef = useRef<HTMLInputElement | null>(null)
 
   const breadList = useMemo(() => {
     return currentFolderPath.split("/").map((item, index, array) => {
@@ -163,88 +141,16 @@ const UploadFileModalContent: FC = () => {
     }
   }, [handleInitFIleList])
 
-  const onChangeFiles = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    if (!files) return
-    setIsUpLoading(true)
-    message.info({
-      content: t("drive.message.start_upload"),
-    })
-    const file = files[0]
-    if (!file) return
-    setUploadModalVisible(false)
-    const queryID = `${file.name}_${new Date().getTime()}`
-
-    const abortController = new AbortController()
-
-    const uploadParams = {
-      folder: getPathForSignedUrl(currentFolderPath),
-      allowAnonymous: false,
-      replace: false,
-    }
-
-    updateFileDetailStore.addFileDetailInfo({
-      loaded: 0,
-      total: 0,
-      status: FILE_ITEM_DETAIL_STATUS_IN_UI.WAITING,
-      fileName: file.name,
-      contentType: file.type,
-      queryID: queryID,
-      abortController,
-      saveToILLADriveParams: {
-        fileData: file,
-        ...uploadParams,
-      },
-    })
-    const uploadRes = await uploadFileToDrive(
-      queryID,
-      file,
-      uploadParams,
-      abortController.signal,
-    )
-    if (!!uploadRes) {
-      try {
-        const selectIds = [uploadRes.id]
-        const requestParams = {
-          ids: selectIds,
-          expirationType: EXPIRATION_TYPE.PERSISTENT,
-          hotlinkProtection: false,
-        }
-        const res = await fetchGenerateTinyUrl(requestParams)
-        let value = `${HTTP_REQUEST_PUBLIC_BASE_URL}${PUBLIC_DRIVE_REQUEST_PREFIX}/${res.data.tinyURL}`
-        setUploadName(uploadRes.name)
-        handleUpdateResult(value)
-      } catch (e) {
-        const isCollaPurchaseError = handleCollaPurchaseError(
-          e,
-          CollarModalType.TRAFFIC,
-        )
-        if (!isCollaPurchaseError) {
-          message.error({
-            content: t("drive.message.generate_url_fail"),
-          })
-        }
-      } finally {
-        setIsUpLoading(false)
-      }
-    } else {
-      setIsUpLoading(false)
-    }
-    e.target.value = ""
-  }
-
   return (
     <div css={containerStyle}>
       <div css={contentHeaderStyle}>
-        <span>{t("drive.upload.modal.title")}</span>
-        <span css={closeStyle} onClick={() => setUploadModalVisible(false)}>
+        <span>{title ?? t("drive.upload.modal.title")}</span>
+        <span css={closeStyle} onClick={() => setFolderOperateVisible(false)}>
           <CloseIcon size="12px" />
         </span>
       </div>
       <div css={breadcrumbContainerStyle}>
-        <span css={spanBreadcrumbStyle}>
-          {t("drive.upload.modal.upload_to")}:{" "}
-        </span>
+        <span css={spanBreadcrumbStyle}>{subTitle}: </span>
         <Breadcrumb
           blockRouterChange
           flexWrap="wrap"
@@ -289,27 +195,11 @@ const UploadFileModalContent: FC = () => {
         <div css={footerOperationsContainerStyle}>
           <Button
             colorScheme="grayBlue"
-            onClick={() => setUploadModalVisible(false)}
+            onClick={() => setFolderOperateVisible(false)}
           >
             {t("drive.upload.modal.cancel")}
           </Button>
-          <Button
-            colorScheme="techPurple"
-            onClick={() => {
-              uploadFileRef.current?.click()
-            }}
-          >
-            <span>
-              <input
-                style={{ display: "none" }}
-                type="file"
-                accept={getUploadAccept(widgetType)}
-                ref={uploadFileRef}
-                onChange={onChangeFiles}
-              />
-              {t("drive.upload.modal.file_upload")}
-            </span>
-          </Button>
+          {operateChildren}
         </div>
       </div>
       <CreateFolderModal currentFolderID={currentFolderID.current} />
@@ -317,4 +207,4 @@ const UploadFileModalContent: FC = () => {
   )
 }
 
-export default UploadFileModalContent
+export default FolderModalContent
