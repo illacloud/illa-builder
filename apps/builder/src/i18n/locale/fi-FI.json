@@ -814,7 +814,8 @@
             "data_production": "Tuotanto",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Käytä pilkata JSON lähdöitä käytössä olevassa sovelluksessa"
+            "on_deploy": "Käytä pilkata JSON lähdöitä käytössä olevassa sovelluksessa",
+            "duration": "Ajoajan kesto (ms)"
           }
         },
         "s3": {
