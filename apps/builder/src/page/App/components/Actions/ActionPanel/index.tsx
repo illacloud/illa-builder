@@ -22,6 +22,9 @@ import {
 } from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
+import ActionMockPanel from "./ActionMockPanel"
+import { INIT_ACTION_MOCK_CONFIG } from "./ActionMockPanel/constant"
+import MockOperation from "./PanelHeader/MockOperation"
 
 const AdvancedPanel = lazy(
   () => import("@/page/App/components/Actions/AdvancedPanel"),
@@ -139,6 +142,8 @@ export const ActionPanel: FC = () => {
     }
   }, [cachedAction])
 
+  const mockConfig = cachedAction?.config?.mockConfig ?? INIT_ACTION_MOCK_CONFIG
+
   const panel = useMemo(() => {
     switch (cachedAction?.actionType) {
       case "clickhouse":
@@ -218,7 +223,15 @@ export const ActionPanel: FC = () => {
         <Suspense fallback={<WidgetLoading />}>
           {activeKey === "general" && (
             <div css={outterActionContainerStyle}>
-              <div css={actionContentStyle}>{panel}</div>
+              <MockOperation enableMock={!!mockConfig?.enabled} />
+              {mockConfig?.enabled ? (
+                <ActionMockPanel
+                  enableForReleasedApp={mockConfig.enableForReleasedApp}
+                  mockData={mockConfig.mockData}
+                />
+              ) : (
+                <div css={actionContentStyle}>{panel}</div>
+              )}
             </div>
           )}
           {activeKey === "advanced" && (

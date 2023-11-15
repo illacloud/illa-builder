@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { Modal, TriggerProvider } from "@illa-design/react"
+import { Modal, Space, TriggerProvider } from "@illa-design/react"
 import { ResourceGenerator } from "@/page/App/components/Actions/ResourceGenerator"
 import { ResourceCreator } from "@/page/App/components/Actions/ResourceGenerator/ResourceCreator"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -12,6 +12,7 @@ import {
   resourceChooseContainerStyle,
   resourceEndStyle,
   resourceTitleStyle,
+  spaceStyle,
 } from "./style"
 
 const PanelHeader: FC = () => {
@@ -33,6 +34,7 @@ const PanelHeader: FC = () => {
           <TriggerModeChoose />
         </div>
       </div>
+      <Space w="100%" h="8px" css={spaceStyle} disp="block" />
       <Modal
         w={`${ACTION_MODAL_WIDTH}px`}
         visible={editorVisible}

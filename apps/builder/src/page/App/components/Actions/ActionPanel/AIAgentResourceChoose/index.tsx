@@ -2,7 +2,7 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Select, TriggerProvider } from "@illa-design/react"
+import { Select, Space, TriggerProvider } from "@illa-design/react"
 import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
 import { getDashboardTeamAIAgentList } from "@/redux/aiAgent/dashboardTeamAIAgentSelector"
 import {
@@ -24,6 +24,7 @@ import {
   resourceChooseContainerStyle,
   resourceEndStyle,
   resourceTitleStyle,
+  spaceStyle,
 } from "./style"
 
 export const AIAgentResourceChoose: FC = () => {
@@ -136,6 +137,7 @@ export const AIAgentResourceChoose: FC = () => {
           />
         </div>
       </div>
+      <Space w="100%" h="8px" css={spaceStyle} disp="block" />
     </TriggerProvider>
   )
 }

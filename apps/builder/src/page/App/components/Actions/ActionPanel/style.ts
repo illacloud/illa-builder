@@ -32,6 +32,7 @@ export const outterActionContainerStyle = css`
   width: 100%;
   height: calc(100% - 48px);
   overflow-y: auto;
+  padding-top: 8px;
 `
 
 export const actionItemContainer = css`
