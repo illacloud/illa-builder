@@ -35,7 +35,7 @@ const MockOperation: FC<MockOperationProps> = (props) => {
             value: true,
           },
         ]}
-        size="small"
+        size="medium"
         onChange={handleChangeDataType}
         value={props.enableMock}
         colorScheme="techPurple"

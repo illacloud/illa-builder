@@ -73,7 +73,7 @@ const ActionMockPanel: FC<ActionMockPanelProps> = (props) => {
         </Checkbox>
       </div>
       <TransformerComponent fullWidth />
-
+      <Space w="100%" h="8px" disp="block" />
       <ActionEventHandler />
     </>
   )
