@@ -813,8 +813,8 @@
             "data_label": "Data",
             "data_production": "Production",
             "data_mock": "Mock",
-            "json": "Mock JSON Outputs",
-            "on_deploy": "Use the mock JSON outputs on deployed app"
+            "json": "Mock outputs",
+            "on_deploy": "Use the mock outputs on deployed app"
           }
         },
         "s3": {
