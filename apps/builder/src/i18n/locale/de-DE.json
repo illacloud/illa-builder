@@ -814,7 +814,8 @@
             "data_production": "Produktion",
             "data_mock": "Scherz",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App"
+            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App",
+            "duration": "Laufzeitdauer"
           }
         },
         "s3": {
