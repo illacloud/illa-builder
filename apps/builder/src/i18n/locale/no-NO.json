@@ -814,7 +814,8 @@
             "data_production": "Produksjon",
             "data_mock": "Feil",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Bruk mock JSON utdata på distribuert app"
+            "on_deploy": "Bruk mock JSON utdata på distribuert app",
+            "duration": "Varetid (ms)"
           }
         },
         "s3": {
