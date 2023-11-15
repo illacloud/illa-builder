@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios"
 import { createMessage } from "@illa-design/react"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
@@ -57,7 +56,7 @@ const checkCanSendRequest = (
   return !result
 }
 
-export const fetchActionResult = async (
+export const fetchCommonActionResult = async (
   isPublic: boolean,
   resourceID: string,
   actionType: ActionType,
@@ -89,6 +88,46 @@ export const fetchActionResult = async (
   )
 }
 
+export const fetchActionResult = async (
+  actionType: ActionType,
+  isProductionMode: boolean,
+  isPublic: boolean,
+  resourceID: string,
+  displayName: string,
+  appId: string,
+  currentActionId: string,
+  actionContent: ActionContent,
+  $context: Record<string, unknown>,
+  abortSignal: AbortSignal | undefined,
+) => {
+  let response = await fetchCommonActionResult(
+    !isProductionMode ? false : isPublic,
+    (resourceID as string) || "",
+    actionType as ActionType,
+    displayName,
+    appId,
+    currentActionId,
+    actionContent,
+    $context,
+    abortSignal,
+  )
+
+  if (isClientS3ActionContent(actionType, actionContent)) {
+    response = await fetchS3ClientResult(response.data.Rows, actionContent)
+  } else if (isDriveActionContent(actionType, actionContent)) {
+    response = await fetchILLADriveClientResult(
+      !isProductionMode ? false : isPublic,
+      (resourceID as string) || "",
+      displayName,
+      appId,
+      currentActionId,
+      actionContent,
+      response,
+    )
+  }
+  return transResponse(actionType, actionContent, response)
+}
+
 export interface IExecutionActions extends ActionItem<ActionContent> {
   $actionID: string
   $resourceID: string
@@ -103,8 +142,15 @@ export const runActionWithExecutionResult = async (
   const { displayName } = action as ActionItem<
     MysqlLikeAction | RestApiAction<BodyContent>
   >
-  const { content, $actionID, $resourceID, actionType, transformer, $context } =
-    action
+  const {
+    content,
+    $actionID,
+    $resourceID,
+    actionType,
+    transformer,
+    $context,
+    config,
+  } = action
   const originActionList = getActionList(store.getState())
   const originAction = originActionList.find(
     (item) => item.displayName === displayName,
@@ -120,6 +166,7 @@ export const runActionWithExecutionResult = async (
     ...restContent
   } = content as ActionContent & Events
 
+  const mockConfig = config?.mockConfig!
   const {
     successEvent: originSuccessEvent = [],
     failedEvent: originFailedEvent = [],
@@ -147,36 +194,30 @@ export const runActionWithExecutionResult = async (
   ) as string
 
   try {
-    let response: AxiosResponse = await fetchActionResult(
-      !isProductionMode ? false : action.config?.public ?? false,
-      ($resourceID as string) || "",
-      actionType as ActionType,
-      displayName,
-      appId,
-      currentActionId,
-      actionContent,
-      $context,
-      abortSignal,
-    )
+    let illaInnerTransformedResponse
 
-    if (isClientS3ActionContent(actionType, actionContent)) {
-      response = await fetchS3ClientResult(response.data.Rows, actionContent)
-    } else if (isDriveActionContent(actionType, actionContent)) {
-      response = await fetchILLADriveClientResult(
-        !isProductionMode ? false : action.config?.public ?? false,
+    const mockEnabled = isProductionMode
+      ? mockConfig.enabled && mockConfig.enableForReleasedApp
+      : mockConfig.enabled
+
+    if (mockEnabled) {
+      illaInnerTransformedResponse = {
+        data: mockConfig.mockData,
+      }
+    } else {
+      illaInnerTransformedResponse = await fetchActionResult(
+        actionType,
+        isProductionMode,
+        config?.public ?? false,
         ($resourceID as string) || "",
         displayName,
         appId,
         currentActionId,
         actionContent,
-        response,
+        $context,
+        abortSignal,
       )
     }
-    const illaInnerTransformedResponse = transResponse(
-      actionType,
-      actionContent,
-      response,
-    )
 
     let userTransformedData = runTransformer(
       transformer,

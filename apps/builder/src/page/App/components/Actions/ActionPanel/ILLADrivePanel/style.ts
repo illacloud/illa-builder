@@ -10,6 +10,7 @@ export const triggerModeContainerStyle = css`
   flex-direction: row;
   min-height: 64px;
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
+  justify-content: end;
 `
 
 export const containerStyle = css`

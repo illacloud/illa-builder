@@ -4,11 +4,13 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 export const resourceChooseContainerStyle = css`
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  padding: 8px 16px;
   width: 100%;
   overflow-x: auto;
   flex-direction: row;
-  min-height: 64px;
+`
+
+export const spaceStyle = css`
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 

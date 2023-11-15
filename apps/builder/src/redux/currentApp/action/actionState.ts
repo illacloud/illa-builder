@@ -129,11 +129,17 @@ export interface IAdvancedConfig {
   isPeriodically: boolean
   periodInterval: string
 }
+export interface IMockConfig {
+  enabled: boolean
+  mockData: string
+  enableForReleasedApp: boolean
+}
 
 export interface ActionConfig {
   public: boolean
   advancedConfig?: IAdvancedConfig
   icon?: string
+  mockConfig?: IMockConfig
 }
 
 export interface ActionItem<T extends ActionContent> {
