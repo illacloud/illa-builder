@@ -807,6 +807,14 @@
             "manually": "Execută acțiunea numai când este declanșată manual",
             "on_change": "Rulează acțiunea automat când se schimbă intrările",
             "label": "Tip declanșare"
+          },
+          "mock": {
+            "label": "Piatră",
+            "data_label": "Date",
+            "data_production": "Producție",
+            "data_mock": "Piatră",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Folosește ieșirile mock JSON în aplicația implementată"
           }
         },
         "s3": {
