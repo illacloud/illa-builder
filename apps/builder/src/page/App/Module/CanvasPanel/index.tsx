@@ -24,12 +24,7 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
     }
 
     return (
-      <div
-        {...otherProps}
-        ref={ref}
-        css={applyScaleContainerStyle(isEditMode)}
-        id="html2canvas"
-      >
+      <div {...otherProps} ref={ref} css={applyScaleContainerStyle(isEditMode)}>
         <DotPanel />
         {uploadFiles.length > 0 && <UploadDetailButton />}
       </div>
