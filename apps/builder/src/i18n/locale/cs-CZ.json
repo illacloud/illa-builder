@@ -807,6 +807,14 @@
             "manually": "Spusťte akci pouze při manuálním spuštění",
             "on_change": "Automaticky spustit akci při změně vstupů",
             "label": "Typ spouštěče"
+          },
+          "mock": {
+            "label": "bubble raider",
+            "data_label": "Údaje",
+            "data_production": "Produkce",
+            "data_mock": "bubble raider",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci"
           }
         },
         "s3": {
