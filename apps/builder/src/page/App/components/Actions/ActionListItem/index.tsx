@@ -81,6 +81,9 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
 
     const isRunning: boolean = executionResult[action.displayName]?.isRunning
 
+    const isMocking: boolean =
+      executionResult[action.displayName]?.config?.mockConfig?.enabled
+
     const [currentRunningTime, setCurrentRunningTime] = useState(0)
 
     const dealData = useCallback(() => {
@@ -312,7 +315,9 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             {isChanged && <div css={actionItemDotStyle} />}
           </div>
           <div css={runningTimeStyle}>
-            {isRunning
+            {isMocking
+              ? t("editor.action.panel.option.mock.label")
+              : isRunning
               ? calcLoadingTimeString(currentRunningTime)
               : calcTimeString(startRunningTime, endRunningTime)}
           </div>

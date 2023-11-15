@@ -1,4 +1,5 @@
 import { cloneDeep } from "lodash"
+import { INIT_ACTION_MOCK_CONFIG } from "@/page/App/components/Actions/ActionPanel/ActionMockPanel/constant"
 import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/AdvancedPanel/constant"
 import {
   ACTION_RUN_TIME,
@@ -21,8 +22,10 @@ export const fixedActionToNewAction = (
       return {
         ...action,
         config: {
+          ...action.config,
           public: !!action.config?.public,
           advancedConfig: action.config?.advancedConfig ?? advancedConfig,
+          mockConfig: action.config?.mockConfig ?? INIT_ACTION_MOCK_CONFIG,
         },
       }
     }) ?? []

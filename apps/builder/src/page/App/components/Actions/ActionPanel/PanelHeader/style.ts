@@ -4,12 +4,10 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 export const resourceChooseContainerStyle = css`
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  padding: 8px 16px;
   width: 100%;
   overflow-x: auto;
   flex-direction: row;
-  min-height: 64px;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const resourceTitleStyle = css`
@@ -26,4 +24,8 @@ export const resourceEndStyle = css`
   display: flex;
   flex-shrink: 1;
   flex-direction: row;
+`
+
+export const spaceStyle = css`
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
