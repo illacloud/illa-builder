@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Opret forbindelse til database eller api",
             "more-type": "Mere type datakilder",
-            "safe_mode": "Tilstand"
+            "safe_mode": "Tilstand",
+            "ai_agent_title": "Integrer med AI Agent",
+            "integration_title": "Integrer med datakilde"
           },
           "drive": {
             "method": "Metode",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Kør kun handling ved manuelt udløst",
-            "on_change": "Kør handling automatisk, når inputs ændres"
+            "on_change": "Kør handling automatisk, når inputs ændres",
+            "label": "Udløser type"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Data",
+            "data_production": "Produktion",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Brug mock JSON udgange på implementeret app"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Vælg"
       },
       "select": {
-        "confirm_button": "Vælg"
+        "confirm_button": "Vælg",
+        "select_entry": "Vælg"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Opdater",
       "title": "Rediger"
-    }
+    },
+    "checkbox_ai_agent": "Synkroniser den tilknyttede AI-agent til Marketplace"
   },
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"

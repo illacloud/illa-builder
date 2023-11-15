@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Σύνδεση στη βάση δεδομένων ή στο api",
             "more-type": "Περισσότερος τύπος πηγών δεδομένων",
-            "safe_mode": "Λειτουργία"
+            "safe_mode": "Λειτουργία",
+            "ai_agent_title": "Ενσωμάτωση με AI Agent",
+            "integration_title": "Ενσωμάτωση με πηγή δεδομένων"
           },
           "drive": {
             "method": "Μέθοδος",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Εκτέλεση ενέργειας μόνο όταν ενεργοποιείται χειροκίνητα",
-            "on_change": "Αυτόματη εκτέλεση ενέργειας όταν οι είσοδοι αλλάζουν"
+            "on_change": "Αυτόματη εκτέλεση ενέργειας όταν οι είσοδοι αλλάζουν",
+            "label": "Τύπος ενεργοποίησης"
+          },
+          "mock": {
+            "label": "Μόδα",
+            "data_label": "Δεδομένα",
+            "data_production": "Παραγωγή",
+            "data_mock": "Μόδα",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Χρήση των εικονικών εξόδων JSON στην αναπτυγμένη εφαρμογή"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Επιλογή"
       },
       "select": {
-        "confirm_button": "Επιλογή"
+        "confirm_button": "Επιλογή",
+        "select_entry": "Επιλογή"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Ενημέρωση",
       "title": "Επεξεργασία"
-    }
+    },
+    "checkbox_ai_agent": "Συγχρονισμός του συνδεδεμένου AI παράγοντα στο Marketplace"
   },
   "error_page": {
     "fobidden": "Δεν υπάρχει δικαίωμα πρόσβασης"

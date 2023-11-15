@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Anslut till databas eller api",
             "more-type": "Fler typer av datakällor",
-            "safe_mode": "Läge"
+            "safe_mode": "Läge",
+            "ai_agent_title": "Integrera med AI Agent",
+            "integration_title": "Integrera med datakälla"
           },
           "drive": {
             "method": "Metod",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Kör åtgärd endast när manuellt utlöst",
-            "on_change": "Kör åtgärden automatiskt när inmatningen ändras"
+            "on_change": "Kör åtgärden automatiskt när inmatningen ändras",
+            "label": "Typ av utlösare"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Data",
+            "data_production": "Produktion",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Använd mock JSON-utgångarna på distribuerad app"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Välj"
       },
       "select": {
-        "confirm_button": "Välj"
+        "confirm_button": "Välj",
+        "select_entry": "Välj"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Uppdatera",
       "title": "Redigera"
-    }
+    },
+    "checkbox_ai_agent": "Synkronisera den associerade AI-agenten till Marketplace"
   },
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"

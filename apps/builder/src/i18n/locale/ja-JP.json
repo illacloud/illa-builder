@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "データベースまたは api に接続します",
             "more-type": "More type of data source",
-            "safe_mode": "モード"
+            "safe_mode": "モード",
+            "ai_agent_title": "AIエージェントと統合",
+            "integration_title": "データソースと統合"
           },
           "drive": {
             "method": "方法",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "手動でトリガーされたときに実行されます",
-            "on_change": "入力変化時に自動実行"
+            "on_change": "入力変化時に自動実行",
+            "label": "トリガータイプ"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "データ",
+            "data_production": "Production",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "デプロイされたアプリでモックJSON出力を使用する"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "選択"
       },
       "select": {
-        "confirm_button": "選択"
+        "confirm_button": "選択",
+        "select_entry": "選択"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "更新",
       "title": "編集"
-    }
+    },
+    "checkbox_ai_agent": "関連する AI エージェントをマーケットプレイスに同期"
   },
   "error_page": {
     "fobidden": "アクセス権限がありません"

@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Koble til database eller api",
             "more-type": "Mer type datakilder",
-            "safe_mode": "Modus"
+            "safe_mode": "Modus",
+            "ai_agent_title": "Integrer med AI Agent",
+            "integration_title": "Integrer med datakilde"
           },
           "drive": {
             "method": "Metode",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Kjør handling bare når manuelt utløses",
-            "on_change": "Kjør handling automatisk når innstillingene endres"
+            "on_change": "Kjør handling automatisk når innstillingene endres",
+            "label": "Utløser type"
+          },
+          "mock": {
+            "label": "Feil",
+            "data_label": "Data",
+            "data_production": "Produksjon",
+            "data_mock": "Feil",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Bruk mock JSON utdata på distribuert app"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Velg"
       },
       "select": {
-        "confirm_button": "Velg"
+        "confirm_button": "Velg",
+        "select_entry": "Velg"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Oppdater",
       "title": "Rediger"
-    }
+    },
+    "checkbox_ai_agent": "Synkroniser tilknyttede AI Agent til Marketplace"
   },
   "error_page": {
     "fobidden": "Ingen tilgang"
