@@ -807,6 +807,14 @@
             "manually": "Aktion nur ausführen, wenn manuell ausgelöst",
             "on_change": "Aktion bei Änderung der Eingaben automatisch ausführen",
             "label": "Auslöse-Typ"
+          },
+          "mock": {
+            "label": "Scherz",
+            "data_label": "Daten",
+            "data_production": "Produktion",
+            "data_mock": "Scherz",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App"
           }
         },
         "s3": {
