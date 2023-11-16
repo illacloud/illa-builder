@@ -1959,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Quick filter",
         "exclude_hidden_columns": "Exclude hidden columns",
-        "allow_users_select": "Allow row selection"
+        "allow_users_select": "Allow row selection",
+        "enable_pagination": "Pagination"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
