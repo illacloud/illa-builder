@@ -1959,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Nopea suodatin",
         "exclude_hidden_columns": "Jätä piilotetut sarakkeet pois",
-        "allow_users_select": "Salli rivin valinta"
+        "allow_users_select": "Salli rivin valinta",
+        "enable_pagination": "Sivutus"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
