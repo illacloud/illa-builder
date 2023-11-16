@@ -1,6 +1,6 @@
 import CheckList from "@editorjs/checklist"
 import Code from "@editorjs/code"
-import EditorJS from "@editorjs/editorjs"
+import EditorJS, { OutputData } from "@editorjs/editorjs"
 import Embed from "@editorjs/embed"
 import Header from "@editorjs/header"
 import Image from "@editorjs/image"
@@ -25,6 +25,9 @@ export const useInitConfig = (
   useImperativeHandle(ref, () => ({
     focus: () => {
       editorRef.current?.focus(true)
+    },
+    render: (value: OutputData) => {
+      editorRef.current?.render(value)
     },
   }))
 
@@ -81,7 +84,7 @@ export const useInitConfig = (
           })
           try {
             const html = htmlParser.parse(blocks).join("\n")
-            editorRef.current?.emit("change", html)
+            editorRef.current?.emit("change", [html, blocks])
             MDfromBlocks(blocks.blocks).then((md) => {
               editorRef.current?.emit("mdValue", md)
             })

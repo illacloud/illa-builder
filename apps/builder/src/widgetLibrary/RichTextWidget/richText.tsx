@@ -1,3 +1,4 @@
+import { OutputData } from "@editorjs/editorjs"
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { v4 } from "uuid"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -56,6 +57,12 @@ export const RichTextWidget: FC<RichTextWidgetProps> = (props) => {
       focus: () => {
         editorRef.current?.focus()
       },
+      renderEditor: (block: string) => {
+        try {
+          const blockValue: OutputData = JSON.parse(block || "{}")
+          editorRef.current?.render(blockValue)
+        } catch (e) {}
+      },
     })
     return () => {
       deleteComponentRuntimeProps()
@@ -69,13 +76,15 @@ export const RichTextWidget: FC<RichTextWidgetProps> = (props) => {
 
   const handleOnChange = useCallback(
     (value: unknown) => {
-      if (typeof value !== "string") return
+      if (!Array.isArray(value)) return
+      const [htmlValue, blockValue] = value
       new Promise((resolve) => {
         handleUpdateMultiExecutionResult([
           {
             displayName,
             value: {
-              value,
+              value: htmlValue,
+              blockValue: JSON.stringify(blockValue),
             },
           },
         ])

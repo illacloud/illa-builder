@@ -10,5 +10,5 @@ export const RICH_TEXT_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "change",
     },
   ],
-  methods: ["focus"],
+  methods: ["focus", "renderEditor"],
 }
