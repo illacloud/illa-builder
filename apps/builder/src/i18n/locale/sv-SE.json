@@ -1959,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Snabb filter",
         "exclude_hidden_columns": "Exkludera dolda kolumner",
-        "allow_users_select": "Tillåt radval"
+        "allow_users_select": "Tillåt radval",
+        "enable_pagination": "Sidnumrering"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
