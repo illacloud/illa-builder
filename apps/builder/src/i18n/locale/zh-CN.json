@@ -1959,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "快速筛选",
         "exclude_hidden_columns": "不包含隐藏列",
-        "allow_users_select": "允许选中行"
+        "allow_users_select": "允许选中行",
+        "enable_pagination": "分页"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
