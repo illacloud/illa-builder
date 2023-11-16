@@ -1959,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Hurtigt filter",
         "exclude_hidden_columns": "Udeluk skjulte kolonner",
-        "allow_users_select": "Tillad valg af række"
+        "allow_users_select": "Tillad valg af række",
+        "enable_pagination": "Sideinddeling"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
