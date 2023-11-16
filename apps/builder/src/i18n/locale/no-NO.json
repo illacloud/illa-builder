@@ -1959,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Raskt filter",
         "exclude_hidden_columns": "Ekskluder skjulte kolonner",
-        "allow_users_select": "Tillat radmarkering"
+        "allow_users_select": "Tillat radmarkering",
+        "enable_pagination": "Paginering"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
