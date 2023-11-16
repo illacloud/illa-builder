@@ -189,6 +189,7 @@ export const transformEvents = (
           "setPage",
           "setPageSize",
           "setRowSelection",
+          "renderEditor",
         ].includes(widgetMethod)
       ) {
         const { widgetTargetValue } = event

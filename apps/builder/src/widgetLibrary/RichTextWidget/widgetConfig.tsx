@@ -21,5 +21,6 @@ export const RICH_TEXT_WIDGET_CONFIG: WidgetConfig = {
     radius: "4px",
     shadow: "small",
     markdownValue: "",
+    blockValue: undefined,
   },
 }
