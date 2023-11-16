@@ -1959,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Quick filter",
         "exclude_hidden_columns": "Exclude hidden columns",
-        "allow_users_select": "Allow row selection"
+        "allow_users_select": "Allow row selection",
+        "enable_pagination": "Pagination"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
