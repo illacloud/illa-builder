@@ -1,5 +1,4 @@
 import { Agent } from "@illa-public/market-agent"
-import { BASIC_APP_CONFIG } from "@illa-public/public-configs"
 import {
   CONTAINER_TYPE,
   ComponentTreeNode,
@@ -12,11 +11,10 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { searchDSLFromTree } from "@/redux/currentApp/components/componentsSelector"
+import { TEST_ROOT_NODE } from "./templateNode"
 
-const NODE_START_POSITION_Y = 8
-const NODE_WIDTH = 9
-const NODE_POSITION_X = 12
-const NODE_SPACE_STEP = 5
+const NODE_START_POSITION_Y = 26
+const NODE_SPACE_STEP = 6
 const SEND_CONTENT_LABEL = "Send content"
 
 const buildVariableInput = (
@@ -26,22 +24,22 @@ const buildVariableInput = (
   variableKey: string
   inputNode: ComponentTreeNode
 } => {
-  const baseDisplayName = "input"
+  const displayName = `input${index}`
   return {
     variableKey,
     inputNode: {
-      w: NODE_WIDTH,
+      w: 32,
       h: 5,
       minW: 1,
       minH: 3,
-      x: NODE_POSITION_X,
+      x: 0,
       y: NODE_START_POSITION_Y + index * NODE_SPACE_STEP,
       z: 0,
       showName: "input",
       type: "INPUT_WIDGET",
-      displayName: `${baseDisplayName}${index}`,
+      displayName: `${displayName}`,
       containerType: CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
-      parentNode: "bodySection1-bodySectionContainer1",
+      parentNode: "canvas1",
       childrenNode: [],
       props: {
         value: "",
@@ -51,7 +49,7 @@ const buildVariableInput = (
         labelWidth: "{{33}}",
         colorScheme: "blue",
         hidden: false,
-        formDataKey: `{{${baseDisplayName}${index}.displayName}}`,
+        formDataKey: `{{${displayName}.displayName}}`,
         placeholder: "input sth",
         $dynamicAttrPaths: ["labelWidth", "formDataKey", "showVisibleButton"],
         type: "input",
@@ -66,18 +64,18 @@ const buildRunActionButton = (
   beforeComponentNum: number,
 ): ComponentTreeNode => {
   return {
-    w: NODE_WIDTH,
-    h: 5,
+    w: 32,
+    h: 6,
     minW: 1,
     minH: 3,
-    x: NODE_POSITION_X,
+    x: 0,
     y: NODE_START_POSITION_Y + beforeComponentNum * NODE_SPACE_STEP,
     z: 0,
     showName: "button",
     type: "BUTTON_WIDGET",
     displayName: "button1",
     containerType: CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
-    parentNode: "bodySection1-bodySectionContainer1",
+    parentNode: "canvas1",
     childrenNode: [],
     props: {
       text: "Generate",
@@ -99,60 +97,218 @@ const buildRunActionButton = (
   }
 }
 
-const buildText = (): ComponentTreeNode => {
+const buildResultContainer = (
+  beforeComponentNum: number,
+): ComponentTreeNode => {
   return {
-    w: NODE_WIDTH,
-    h: 5,
-    minW: 1,
-    minH: 3,
-    x: NODE_POSITION_X,
-    y: NODE_START_POSITION_Y,
-    z: 0,
-    showName: "text",
-    type: "TEXT_WIDGET",
-    displayName: "text1",
-    containerType: CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
-    parentNode: "bodySection1-bodySectionContainer1",
-    childrenNode: [],
-    props: {
-      value: "{{aiagent1.data[0].content}}",
-      horizontalAlign: "start",
-      verticalAlign: "center",
-      colorScheme: "grayBlue",
-      disableMarkdown: false,
-      hidden: false,
-      fs: "14px",
-      dynamicHeight: "fixed",
-      resizeDirection: "ALL",
-      $dynamicAttrPaths: ["value"],
-    },
     version: 0,
+    displayName: "container2",
+    parentNode: "canvas1",
+    showName: "container",
+    childrenNode: [
+      {
+        version: 0,
+        displayName: "canvas4",
+        parentNode: "container2",
+        showName: "canvas",
+        childrenNode: [
+          {
+            version: 0,
+            displayName: "text1",
+            parentNode: "canvas4",
+            showName: "text",
+            childrenNode: [],
+            type: "TEXT_WIDGET",
+            containerType: CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+            h: 159,
+            w: 32,
+            minH: 3,
+            minW: 1,
+            x: 0,
+            y: 6,
+            z: 0,
+            props: {
+              $dynamicAttrPaths: ["value"],
+              colorScheme: "grayBlue",
+              disableMarkdown: false,
+              dynamicHeight: "auto",
+              fs: "14px",
+              hidden: false,
+              horizontalAlign: "start",
+              resizeDirection: "HORIZONTAL",
+              value: "{{aiagent1.data[0].content}}",
+              verticalAlign: "center",
+            },
+          },
+          {
+            version: 0,
+            displayName: "text4",
+            parentNode: "canvas4",
+            showName: "text",
+            childrenNode: [],
+            type: "TEXT_WIDGET",
+            containerType: CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+            h: 4,
+            w: 29,
+            minH: 3,
+            minW: 1,
+            x: 0,
+            y: 0,
+            z: 0,
+            props: {
+              $dynamicAttrPaths: [],
+              colorScheme: "grayBlue",
+              disableMarkdown: false,
+              dynamicHeight: "auto",
+              fs: "14px",
+              hidden: false,
+              horizontalAlign: "start",
+              resizeDirection: "HORIZONTAL",
+              value: "**Generated content**",
+              verticalAlign: "center",
+            },
+          },
+          {
+            version: 0,
+            displayName: "icon1",
+            parentNode: "canvas4",
+            showName: "icon",
+            childrenNode: [],
+            type: "ICON_WIDGET",
+            containerType: CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+            h: 4,
+            w: 3,
+            minH: 3,
+            minW: 1,
+            x: 29,
+            y: 0,
+            z: 0,
+            props: {
+              $dynamicAttrPaths: ["hidden", "events[0].copiedValue"],
+              colorScheme: "grayBlue",
+              events: [
+                {
+                  actionType: "copyToClipboard",
+                  copiedValue: "{{text1.value}}",
+                  eventType: "click",
+                  id: "events-ed68fd85-5321-4c1f-9610-be91d66a2bb2",
+                },
+              ],
+              hidden: "{{text1.value == undefined}}",
+              hiddenDynamic: true,
+              iconName: "TbCopy",
+            },
+          },
+        ],
+        type: "CANVAS",
+        containerType: CONTAINER_TYPE.EDITOR_DOT_PANEL,
+        h: 0,
+        w: 0,
+        minH: 0,
+        minW: 1,
+        x: -1,
+        y: -1,
+        z: 0,
+        props: {},
+      },
+      {
+        version: 0,
+        displayName: "canvas5",
+        parentNode: "container2",
+        showName: "canvas",
+        childrenNode: [],
+        type: "CANVAS",
+        containerType: CONTAINER_TYPE.EDITOR_DOT_PANEL,
+        h: 0,
+        w: 0,
+        minH: 0,
+        minW: 1,
+        x: -1,
+        y: -1,
+        z: 0,
+        props: {},
+      },
+      {
+        version: 0,
+        displayName: "canvas6",
+        parentNode: "container2",
+        showName: "canvas",
+        childrenNode: [],
+        type: "CANVAS",
+        containerType: CONTAINER_TYPE.EDITOR_DOT_PANEL,
+        h: 0,
+        w: 0,
+        minH: 0,
+        minW: 1,
+        x: -1,
+        y: -1,
+        z: 0,
+        props: {},
+      },
+    ],
+    type: "CONTAINER_WIDGET",
+    containerType: CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+    h: 17,
+    w: 32,
+    minH: 3,
+    minW: 1,
+    x: 0,
+    y: NODE_START_POSITION_Y + beforeComponentNum * NODE_SPACE_STEP,
+    z: 0,
+    props: {
+      $dynamicAttrPaths: [],
+      backgroundColor: "#f7f4f4ff",
+      currentIndex: 0,
+      currentKey: "View 1",
+      dynamicHeight: "auto",
+      padding: {
+        mode: "all",
+        size: "24",
+      },
+      radius: "4px",
+      resizeDirection: "HORIZONTAL",
+      shadow: "none",
+      viewList: [
+        {
+          id: "cbbe4404-18e0-428f-bc7d-1adaca2f3794",
+          key: "View 1",
+          label: "View 1",
+        },
+        {
+          id: "0769430a-44f3-45e8-97d8-17e51ae2534d",
+          key: "View 2",
+          label: "View 2",
+        },
+        {
+          id: "f81ebc97-ac04-4b6e-b192-e3998d9bc3c9",
+          key: "View 3",
+          label: "View 3",
+        },
+      ],
+    },
   }
 }
 
 export const buildAppWithAgentSchema = (variableKeys: string[]) => {
-  const appInfo = cloneDeep(BASIC_APP_CONFIG)
-  const bodySectionContainerNode = searchDSLFromTree(
-    appInfo,
-    "bodySection1-bodySectionContainer1",
-  )!
+  const appInfo = cloneDeep(TEST_ROOT_NODE)
+  const containerNode = searchDSLFromTree(appInfo, "canvas1")!
 
   const variableKeyInputs = variableKeys.map((variableKey, index) =>
-    buildVariableInput(variableKey, index + 1),
+    buildVariableInput(variableKey, index),
   )
   const sendContentInput = buildVariableInput(
     SEND_CONTENT_LABEL,
-    variableKeys.length + 1,
+    variableKeys.length,
   )
-  const textNode = buildText()
   const inputNodes = variableKeyInputs.map(({ inputNode }) => inputNode)
   const runActionButton = buildRunActionButton(inputNodes.length + 1 + 1)
-  bodySectionContainerNode.childrenNode = [
+  const resultNode = buildResultContainer(inputNodes.length + 1 + 1 + 1)
+  containerNode.childrenNode.push(
     ...inputNodes,
     sendContentInput.inputNode,
     runActionButton,
-    textNode,
-  ]
+    resultNode,
+  )
 
   const variableKeyMapInputNodeDisplayName: Record<string, string> = {}
   ;[...variableKeyInputs, sendContentInput].forEach(
