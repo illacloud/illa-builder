@@ -164,7 +164,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
                 onClickCreateApp?.()
               }}
             >
-              {t("Create.App.new")}
+              {t("marketplace.agent.create_app")}
             </Button>
           )}
         </div>
