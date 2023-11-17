@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "アプリをコミュニティに貢献すると、他のユーザーがインターフェイスを表示したり、アクションを実行したり、フォークしたりできます。 アプリをフォークするとき、リソース構成情報は含まれないため、リソース構成情報の開示を心配する必要はありません。"
         },
-        "contribute_only": "アプリのみに貢献する"
+        "contribute_only": "アプリのみに貢献する",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "共有先：",
