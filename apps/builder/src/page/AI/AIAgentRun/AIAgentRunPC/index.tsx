@@ -66,13 +66,17 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
+import { createAction } from "@/api/actions"
 import { TextSignal } from "@/api/ws/textSignal"
+import { ReactComponent as GridFillIcon } from "@/assets/agent/gridFill.svg"
+import { buildActionInfo, buildAppWithAgentSchema } from "@/config/AppWithAgent"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interface"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
+import { fetchCreateApp } from "@/services/apps"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
@@ -495,6 +499,78 @@ export const AIAgentRunPC: FC = () => {
                 )}
               </Button>
             )}
+          {canManage(
+            currentTeamInfo.myRole,
+            ATTRIBUTE_GROUP.APP,
+            getPlanUtils(currentTeamInfo),
+            ACTION_MANAGE.CREATE_APP,
+          ) && (
+            <Button
+              ml="8px"
+              colorScheme="grayBlue"
+              loading={forkLoading}
+              leftIcon={<GridFillIcon />}
+              onClick={async () => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                  {
+                    element: "fork",
+                    parameter5: agent.aiAgentID,
+                  },
+                )
+                if (agent.teamID === currentTeamInfo.id) {
+                  const variableKeys = agent.variables.map((v) => v.key)
+                  const { appInfo, variableKeyMapInputNodeDisplayName } =
+                    buildAppWithAgentSchema(variableKeys)
+                  const appInfoResp = await fetchCreateApp({
+                    appName: "Untitled app",
+                    initScheme: appInfo,
+                  })
+                  const agentActionInfo = buildActionInfo(
+                    agent,
+                    variableKeyMapInputNodeDisplayName,
+                  )
+                  await createAction(appInfoResp.data.appId, agentActionInfo)
+                  window.open(
+                    `${getILLABuilderURL()}/${currentTeamInfo.identifier}/app/${
+                      appInfoResp.data.appId
+                    }`,
+                    "_blank",
+                  )
+                } else {
+                  try {
+                    const newAgentRes = await forkAIAgentToTeam(agent.aiAgentID)
+                    const agentInfo = newAgentRes.data
+                    const variableKeys = agentInfo.variables.map((v) => v.key)
+                    const { appInfo, variableKeyMapInputNodeDisplayName } =
+                      buildAppWithAgentSchema(variableKeys)
+                    const appInfoResp = await fetchCreateApp({
+                      appName: "Untitled app",
+                      initScheme: appInfo,
+                    })
+                    const agentActionInfo = buildActionInfo(
+                      agentInfo,
+                      variableKeyMapInputNodeDisplayName,
+                    )
+                    await createAction(appInfoResp.data.appId, agentActionInfo)
+                    window.open(
+                      `${getILLABuilderURL()}/${
+                        currentTeamInfo.identifier
+                      }/app/${appInfoResp.data.appId}`,
+                      "_blank",
+                    )
+                  } catch (e) {
+                    message.error({
+                      content: t("dashboard.message.fork-failed"),
+                    })
+                  }
+                }
+              }}
+            >
+              <span>{t("Create.App.new")}</span>
+            </Button>
+          )}
         </div>
       )}
     />

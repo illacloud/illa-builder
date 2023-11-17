@@ -51,6 +51,7 @@ export const PCAppWorkspace = () => {
   const currentTeamID = useSelector(getCurrentId)!
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const userInfo = useSelector(getCurrentUser)
+
   const canAccessApps = canAccess(
     currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
     ATTRIBUTE_GROUP.APP,
@@ -86,7 +87,7 @@ export const PCAppWorkspace = () => {
       },
     }
     return mutate(
-      ["/apps", currentTeamID],
+      ["/apps", currentTeamID, canAccessApps],
       async (appList) => {
         const response = await fetchDeleteApp(appID, currentTeamID)
         if (Array.isArray(appList))
@@ -98,7 +99,7 @@ export const PCAppWorkspace = () => {
   }
 
   const copyApp = (appID: string) => {
-    return mutate(["/apps", currentTeamID], async () => {
+    return mutate(["/apps", currentTeamID, canAccessApps], async () => {
       if (Array.isArray(appListResult)) {
         const targetAppInfo = appListResult?.find(
           (item) => item.appId === appID,
@@ -161,7 +162,7 @@ export const PCAppWorkspace = () => {
       revalidate: false,
     }
     return mutate(
-      ["/apps", currentTeamID],
+      ["/apps", currentTeamID, canAccessApps],
       fetchUpdateAppConfig(appID, currentTeamID, config),
       options,
     )
