@@ -3595,7 +3595,8 @@
         "turn_off": "Beitrag abbrechen",
         "app": {
           "desc": "Nachdem Sie Ihre App zur Community beigetragen haben, können andere Benutzer ihre Schnittstelle einsehen, ihre Aktionen ausführen und sie forken. Beim Forking einer App sind die Informationen zur Ressourcen-Konfiguration nicht enthalten, so dass keine Sorgen um die Offenlegung von Ressourcen-Konfigurationsinformationen bestehen."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Teilen auf",
@@ -4615,7 +4616,10 @@
   "ai-agents": "KI-Agenten",
   "marketplace": {
     "star": "Stern",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "App mit diesem KI-Agent erstellen"
+    }
   },
   "load": {
     "before": "Mehr laden"
