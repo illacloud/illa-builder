@@ -814,7 +814,8 @@
             "data_production": "Production",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "デプロイされたアプリでモックJSON出力を使用する"
+            "on_deploy": "デプロイされたアプリでモックJSON出力を使用する",
+            "duration": "ランタイムの継続時間 (ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "クイックフィルタ",
         "exclude_hidden_columns": "非表示の列を除外",
-        "allow_users_select": "行の選択を許可"
+        "allow_users_select": "行の選択を許可",
+        "enable_pagination": "改ページ"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",

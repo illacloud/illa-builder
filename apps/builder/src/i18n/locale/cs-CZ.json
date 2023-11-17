@@ -814,7 +814,8 @@
             "data_production": "Produkce",
             "data_mock": "bubble raider",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci"
+            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci",
+            "duration": "Trvání běhu (ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Rychlý filtr",
         "exclude_hidden_columns": "Vyloučit skryté sloupce",
-        "allow_users_select": "Povolit výběr řádků"
+        "allow_users_select": "Povolit výběr řádků",
+        "enable_pagination": "Stránkování"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",

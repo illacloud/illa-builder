@@ -814,7 +814,8 @@
             "data_production": "Produktion",
             "data_mock": "Scherz",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App"
+            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App",
+            "duration": "Laufzeitdauer"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Schnellfilter",
         "exclude_hidden_columns": "Versteckte Spalten ausschließen",
-        "allow_users_select": "Zeilenauswahl erlauben"
+        "allow_users_select": "Zeilenauswahl erlauben",
+        "enable_pagination": "Paginierung"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",

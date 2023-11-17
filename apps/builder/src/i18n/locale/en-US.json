@@ -814,7 +814,8 @@
             "data_production": "Production",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Use the mock JSON outputs on deployed app"
+            "on_deploy": "Use the mock JSON outputs on deployed app",
+            "duration": "Runtime duration(ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Quick filter",
         "exclude_hidden_columns": "Exclude hidden columns",
-        "allow_users_select": "Allow row selection"
+        "allow_users_select": "Allow row selection",
+        "enable_pagination": "Pagination"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",

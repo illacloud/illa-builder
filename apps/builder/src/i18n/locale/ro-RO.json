@@ -814,7 +814,8 @@
             "data_production": "Producție",
             "data_mock": "Piatră",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Folosește ieșirile mock JSON în aplicația implementată"
+            "on_deploy": "Folosește ieșirile mock JSON în aplicația implementată",
+            "duration": "Durata de derulare (ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Filtru rapid",
         "exclude_hidden_columns": "Exclude coloanele ascunse",
-        "allow_users_select": "Permite selecția rândului"
+        "allow_users_select": "Permite selecția rândului",
+        "enable_pagination": "Paginare"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
