@@ -1937,7 +1937,7 @@
           "item_shadow": "格子的阴影",
           "item_spacing": "格子间距",
           "max_column_count": "最大列数",
-          "min_column_count": "Min number of columns"
+          "min_column_count": "最小列数"
         },
         "src": "源",
         "page_size_options": "每页显示数量选项",
@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的动作并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
         },
-        "contribute_only": "仅贡献应用"
+        "contribute_only": "仅贡献应用",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "分享到",
