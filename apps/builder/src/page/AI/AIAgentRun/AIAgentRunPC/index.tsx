@@ -69,6 +69,7 @@ import {
 import { createAction } from "@/api/actions"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as GridFillIcon } from "@/assets/agent/gridFill.svg"
+import { FullPageLoading } from "@/components/FullPageLoading"
 import { buildActionInfo, buildAppWithAgentSchema } from "@/config/AppWithAgent"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
@@ -156,6 +157,9 @@ export const AIAgentRunPC: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
+
+  // ui state
+  const [isFullPageLoading, setIsFullPageLoading] = useState(false)
 
   const { t } = useTranslation()
 
@@ -511,16 +515,14 @@ export const AIAgentRunPC: FC = () => {
               loading={forkLoading}
               leftIcon={<GridFillIcon />}
               onClick={async () => {
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
-                  {
-                    element: "fork",
-                    parameter5: agent.aiAgentID,
-                  },
-                )
-                if (agent.teamID === currentTeamInfo.id) {
-                  const variableKeys = agent.variables.map((v) => v.key)
+                try {
+                  setIsFullPageLoading(true)
+                  const finalAgent =
+                    agent.teamID === currentTeamInfo.id
+                      ? agent
+                      : (await forkAIAgentToTeam(agent.aiAgentID)).data
+
+                  const variableKeys = finalAgent.variables.map((v) => v.key)
                   const { appInfo, variableKeyMapInputNodeDisplayName } =
                     buildAppWithAgentSchema(variableKeys)
                   const appInfoResp = await fetchCreateApp({
@@ -538,33 +540,12 @@ export const AIAgentRunPC: FC = () => {
                     }`,
                     "_blank",
                   )
-                } else {
-                  try {
-                    const newAgentRes = await forkAIAgentToTeam(agent.aiAgentID)
-                    const agentInfo = newAgentRes.data
-                    const variableKeys = agentInfo.variables.map((v) => v.key)
-                    const { appInfo, variableKeyMapInputNodeDisplayName } =
-                      buildAppWithAgentSchema(variableKeys)
-                    const appInfoResp = await fetchCreateApp({
-                      appName: "Untitled app",
-                      initScheme: appInfo,
-                    })
-                    const agentActionInfo = buildActionInfo(
-                      agentInfo,
-                      variableKeyMapInputNodeDisplayName,
-                    )
-                    await createAction(appInfoResp.data.appId, agentActionInfo)
-                    window.open(
-                      `${getILLABuilderURL()}/${
-                        currentTeamInfo.identifier
-                      }/app/${appInfoResp.data.appId}`,
-                      "_blank",
-                    )
-                  } catch (e) {
-                    message.error({
-                      content: t("dashboard.message.fork-failed"),
-                    })
-                  }
+                } catch {
+                  message.error({
+                    content: t("create_fail"),
+                  })
+                } finally {
+                  setIsFullPageLoading(false)
                 }
               }}
             >
@@ -908,6 +889,7 @@ export const AIAgentRunPC: FC = () => {
         />
       </div>
       {dialog}
+      {isFullPageLoading && <FullPageLoading hasMask />}
     </ChatContext.Provider>
   )
 }
