@@ -3597,9 +3597,9 @@
           "desc": "После добавления приложения в сообщество, другие пользователи могут просматривать его интерфейс, запускать его действия и форкнуть его. При форке приложения информация о конфигурации ресурса не включена, поэтому нет необходимости беспокоиться о раскрытии информации о конфигурации ресурса."
         },
         "contribute_only": "Внести вклад только в приложение",
-        "contribute_together": "Contribute App and associated AI Agent",
-        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
-        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
+        "contribute_together": "Помочь приложению и связанному с ним агенту ИИ",
+        "contribute_only_tips": "Только для участия в приложении. Если в этом приложении есть ассоциированные агенты ИИ, пользователи не могут форкнуть агенты ИИ.",
+        "contribute_together_tips": "Если в этом приложении есть ассоциированные агенты ИИ, агенты ИИ будут участвовать на бирже вместе. "
       },
       "social_media": {
         "label": "Поделиться на",
