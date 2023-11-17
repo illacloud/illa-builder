@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Kun olet lisännyt sovelluksesi yhteisöön, muut käyttäjät voivat tarkastella sen käyttöliittymää, suorittaa sen toimintoja ja fork se. Sovelluksen haarautuessa resurssikonfiguraatiotietoja ei ole otettu mukaan, joten ei ole tarpeen huolehtia resurssikonfiguraation tietojen paljastamisesta."
         },
-        "contribute_only": "Osallistu vain sovellukseen"
+        "contribute_only": "Osallistu vain sovellukseen",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Jaa päällä",
