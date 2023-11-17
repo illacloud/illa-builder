@@ -3595,7 +3595,8 @@
         "turn_off": "Annuleer bijdrage",
         "app": {
           "desc": "Na het bijdragen van je app aan de community, kunnen andere gebruikers de interface bekijken, de acties uitvoeren en deze forken. Bij het forken van een app wordt de resource configuratie informatie niet opgenomen, dus er is geen reden om je zorgen te maken over de openbaarmaking van de resource configuratie informatie."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Delen op",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AI agenten",
   "marketplace": {
     "star": "Ster",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Meer laden"
