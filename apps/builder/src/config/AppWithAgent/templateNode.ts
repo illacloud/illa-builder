@@ -1577,7 +1577,6 @@ export const TEST_ROOT_NODE: ComponentTreeNode = {
     currentPageIndex: 0,
     homepageDisplayName: "guide",
     pageSortedKey: ["guide"],
-    viewportSizeType: "desktop",
-    viewportWidth: 1280,
+    viewportSizeType: "fluid",
   },
 }
