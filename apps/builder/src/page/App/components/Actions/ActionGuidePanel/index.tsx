@@ -47,7 +47,7 @@ const ActionGuidePanel: FC = () => {
             <>
               <AgentPanelSection
                 title={t("editor.action.panel.label.general.more-type")}
-                agents={agenList.slice(0, 3)}
+                agents={agenList}
                 hasMore
                 changeLoading={setIsLoading}
               />
