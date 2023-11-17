@@ -4,7 +4,7 @@ import { FC, Suspense, memo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
-import { PlusIcon, useMessage } from "@illa-design/react"
+import { Button, NextIcon, useMessage } from "@illa-design/react"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -26,8 +26,7 @@ import {
   categoryItemContainerStyle,
   categoryItemNameStyle,
   categoryTitleStyle,
-  iconHotSpot,
-  moreTipsStyle,
+  headerContainerStyle,
 } from "./style"
 
 const ActionPanelSection: FC<PanelSectionProps> = (props) => {
@@ -144,7 +143,19 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
 
   return (
     <>
-      <h6 css={categoryTitleStyle}>{title}</h6>
+      <div css={headerContainerStyle}>
+        <h6 css={categoryTitleStyle}>{title}</h6>
+        {hasMore && (
+          <Button
+            colorScheme="techPurple"
+            variant="text"
+            rightIcon={<NextIcon />}
+            onClick={handleClickActionType(null)}
+          >
+            {t("editor.action.panel.label.option.general.more")}
+          </Button>
+        )}
+      </div>
       <section css={categoryItemContainerStyle}>
         {actionTypes.filter(filterFunc ?? ((type) => type)).map((type) => (
           <button
@@ -158,16 +169,6 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
             </span>
           </button>
         ))}
-        {hasMore && (
-          <button css={basicButtonStyle} onClick={handleClickActionType(null)}>
-            <span css={iconHotSpot}>
-              <PlusIcon />
-            </span>
-            <span css={moreTipsStyle}>
-              {t("editor.action.panel.label.option.general.more")}
-            </span>
-          </button>
-        )}
       </section>
       {generatorVisible && (
         <ActionGenerator

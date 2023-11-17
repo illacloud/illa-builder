@@ -10,7 +10,13 @@ export const categoryTitleStyle = css`
   font-weight: 500;
   line-height: 22px;
   margin: 0;
-  width: 552px;
+`
+
+export const headerContainerStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 536px;
 `
 
 export const categoryItemContainerStyle = css`

@@ -116,7 +116,8 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
             }}
             appDesc={appInfo.config.description}
             appName={appInfo.appName}
-            onAppInfoUpdate={(appName, appDesc) => {
+            onAppInfoUpdate={(appConfig) => {
+              const { appName, appDesc, publishWithAIAgent } = appConfig
               dispatch(
                 appInfoActions.updateAppInfoReducer({
                   ...appInfo,
@@ -124,6 +125,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
                   config: {
                     ...appInfo.config,
                     description: appDesc,
+                    publishWithAIAgent,
                   },
                 }),
               )
@@ -171,7 +173,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
             }}
             defaultAppPublic={appInfo.config.public}
             defaultAppContribute={appInfo.config.publishedToMarketplace}
-            defaultAppAgentContribute={false}
+            defaultPublishWithAIAgent={appInfo.config.publishWithAIAgent}
             appID={appInfo.appId}
             userRoleForThisApp={teamInfo.myRole}
             ownerTeamID={teamInfo.id}
@@ -263,14 +265,15 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
             productType={HASHTAG_REQUEST_TYPE.UNIT_TYPE_APP}
             appDesc={appInfo.config.description}
             appName={appInfo.appName}
-            onAppInfoUpdate={(appName, appDesc) => {
+            onAppInfoUpdate={(appConfig) => {
               dispatch(
                 appInfoActions.updateAppInfoReducer({
                   ...appInfo,
-                  appName,
+                  appName: appConfig.appName,
                   config: {
                     ...appInfo.config,
-                    description: appDesc,
+                    description: appConfig.appDesc,
+                    publishWithAIAgent: !!appConfig.publishWithAIAgent,
                   },
                 }),
               )

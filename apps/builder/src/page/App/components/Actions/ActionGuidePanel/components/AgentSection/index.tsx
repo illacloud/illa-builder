@@ -1,11 +1,13 @@
-import { Agent } from "@illa-public/market-agent"
-import { FC, memo, useCallback, useMemo } from "react"
+import { Agent, getAIAgentMarketplaceInfo } from "@illa-public/market-agent"
+import { FC, memo, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
-import { useMessage } from "@illa-design/react"
+import { Button, NextIcon, Skeleton, useMessage } from "@illa-design/react"
+import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
 import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/AdvancedPanel/constant"
 import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
+import { aiAgentActions } from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -17,13 +19,16 @@ import {
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { getInitialAgentContent } from "@/redux/currentApp/action/getInitialContent"
 import { fetchCreateAction } from "@/services/action"
+import { forkAIAgentToTeam } from "@/services/agent"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getRecommendAgentID } from "../../constans"
 import { AgentPanelSectionProps } from "./interface"
 import {
   basicButtonStyle,
   categoryItemContainerStyle,
   categoryTitleStyle,
   descStyle,
+  headerContainerStyle,
   titleAndContentContainerStyle,
   titleStyle,
 } from "./style"
@@ -31,20 +36,28 @@ import {
 const AgentPanelSection: FC<AgentPanelSectionProps> = (props) => {
   const { agents, title, hasMore, changeLoading } = props
   const { t } = useTranslation()
-
-  const finalAgents = useMemo(() => {
-    if (agents.length === 0) return []
-
-    return agents
-  }, [agents])
+  const [generatorVisible, setGeneratorVisible] = useState<boolean>()
+  const [recommendAgents, setRecommendAgents] = useState<Agent[]>([])
+  const [isLoadingRecommendAgents, setIsLoadingRecommendAgents] =
+    useState(false)
 
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const dispatch = useDispatch()
   const message = useMessage()
+  const filterAgents = agents.slice(0, 4)
 
   const handleClickAction = useCallback(
-    (item: Agent) => {
+    (item: Agent, fromRecommend?: boolean) => {
       return async () => {
+        if (fromRecommend) {
+          const response = await forkAIAgentToTeam(item.aiAgentID)
+          dispatch(
+            aiAgentActions.addTeamAIAgentReducer({
+              aiAgent: response.data,
+            }),
+          )
+          item = response.data
+        }
         const displayName = DisplayNameGenerator.generateDisplayName("aiagent")
         const initalAgentContent = getInitialAgentContent(item)
         const data: Omit<ActionItem<AiAgentActionContent>, "actionID"> = {
@@ -92,11 +105,51 @@ const AgentPanelSection: FC<AgentPanelSectionProps> = (props) => {
     },
     [changeLoading, dispatch, isGuideMode, message, t],
   )
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    if (filterAgents.length < 4) {
+      const fetchMarketAgentList = async () => {
+        setIsLoadingRecommendAgents(true)
+        const needFetchAgentID = getRecommendAgentID().slice(
+          filterAgents.length,
+        )
+        const needFetches = needFetchAgentID.map((id) =>
+          getAIAgentMarketplaceInfo(id, abortController.signal),
+        )
+        Promise.all(needFetches)
+          .then((res) => {
+            const result = res.map((item) => item.data.aiAgent)
+            setRecommendAgents(result)
+          })
+          .finally(() => setIsLoadingRecommendAgents(false))
+      }
+      fetchMarketAgentList()
+    }
+
+    return () => {
+      abortController.abort()
+      setIsLoadingRecommendAgents(false)
+    }
+  }, [filterAgents.length])
+
   return (
     <>
-      <h6 css={categoryTitleStyle}>{title}</h6>
+      <div css={headerContainerStyle}>
+        <h6 css={categoryTitleStyle}>{title}</h6>
+        {hasMore && (
+          <Button
+            colorScheme="techPurple"
+            variant="text"
+            rightIcon={<NextIcon />}
+            onClick={() => setGeneratorVisible(true)}
+          >
+            {t("editor.action.panel.label.option.general.more")}
+          </Button>
+        )}
+      </div>
       <section css={categoryItemContainerStyle}>
-        {finalAgents.map((agent) => (
+        {filterAgents.map((agent) => (
           <button
             css={basicButtonStyle}
             key={agent.aiAgentID}
@@ -109,7 +162,49 @@ const AgentPanelSection: FC<AgentPanelSectionProps> = (props) => {
             </div>
           </button>
         ))}
+        {filterAgents.length < 4 &&
+          (isLoadingRecommendAgents
+            ? getRecommendAgentID()
+                .slice(4 - filterAgents.length)
+                .map((v) => (
+                  <button css={basicButtonStyle} key={v}>
+                    <Skeleton
+                      text={false}
+                      animation
+                      image={{
+                        shape: "square",
+                        w: "100%",
+                        h: "32px",
+                        mr: "0 !important",
+                      }}
+                      h="32px"
+                      w="100%"
+                    />
+                  </button>
+                ))
+            : recommendAgents.map((agent) => (
+                <button
+                  css={basicButtonStyle}
+                  key={agent.aiAgentID}
+                  onClick={handleClickAction(agent, true)}
+                >
+                  {getAgentIcon(agent, "32px")}
+                  <div css={titleAndContentContainerStyle}>
+                    <span css={titleStyle}>{agent.name}</span>
+                    <span css={descStyle}>{agent.description}</span>
+                  </div>
+                </button>
+              )))}
       </section>
+      {generatorVisible && (
+        <ActionGenerator
+          visible={generatorVisible}
+          onClose={() => setGeneratorVisible(false)}
+          defaultStep="createAction"
+          defaultActionType="aiagent"
+          canBackToSelect={false}
+        />
+      )}
     </>
   )
 }

@@ -10,13 +10,19 @@ export const categoryTitleStyle = css`
   font-weight: 500;
   line-height: 22px;
   margin: 0;
-  width: 552px;
+`
+
+export const headerContainerStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 536px;
 `
 
 export const categoryItemContainerStyle = css`
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(3, 173px);
+  grid-template-columns: repeat(3, 168px);
 `
 
 export const basicButtonStyle = css`
@@ -42,20 +48,4 @@ export const categoryItemNameStyle = css`
   font-size: 12px;
   line-height: 20px;
   color: ${getColor("grayBlue", "02")};
-`
-
-export const iconHotSpot = css`
-  font-size: 16px;
-  display: flex;
-  flex: none;
-  justify-content: center;
-  align-items: center;
-  color: ${getColor("techPurple", "01")};
-`
-
-export const moreTipsStyle = css`
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 20px;
-  color: ${getColor("techPurple", "01")};
 `

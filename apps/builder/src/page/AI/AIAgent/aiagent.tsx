@@ -78,6 +78,7 @@ import {
 import { createAction } from "@/api/actions"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
+import { FullPageLoading } from "@/components/FullPageLoading"
 import { buildActionInfo, buildAppWithAgentSchema } from "@/config/AppWithAgent"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
@@ -202,6 +203,10 @@ export const AIAgent: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
+
+  // ui state
+
+  const [isFullPageLoading, setIsFullPageLoading] = useState(false)
 
   const updateLocalIcon = useCallback(
     (icon: string, newRoomUsers: CollaboratorsInfo[]) => {
@@ -473,26 +478,35 @@ export const AIAgent: FC = () => {
   const handleClickCreateApp = async () => {
     const validate = await handleVerifyOnSave()
     if (validate) {
-      const agentInfo = await handleSubmitSave(getValues())
-      if (agentInfo) {
-        const variableKeys = agentInfo.variables.map((v) => v.key)
-        const { appInfo, variableKeyMapInputNodeDisplayName } =
-          buildAppWithAgentSchema(variableKeys)
-        const appInfoResp = await fetchCreateApp({
-          appName: "Untitled app",
-          initScheme: appInfo,
+      try {
+        setIsFullPageLoading(true)
+        const agentInfo = await handleSubmitSave(getValues())
+        if (agentInfo) {
+          const variableKeys = agentInfo.variables.map((v) => v.key)
+          const { appInfo, variableKeyMapInputNodeDisplayName } =
+            buildAppWithAgentSchema(variableKeys)
+          const appInfoResp = await fetchCreateApp({
+            appName: "Untitled app",
+            initScheme: appInfo,
+          })
+          const agentActionInfo = buildActionInfo(
+            agentInfo,
+            variableKeyMapInputNodeDisplayName,
+          )
+          await createAction(appInfoResp.data.appId, agentActionInfo)
+          window.open(
+            `${getILLABuilderURL()}/${teamIdentifier}/app/${
+              appInfoResp.data.appId
+            }`,
+            "_blank",
+          )
+        }
+      } catch {
+        message.error({
+          content: t("create_fail"),
         })
-        const agentActionInfo = buildActionInfo(
-          agentInfo,
-          variableKeyMapInputNodeDisplayName,
-        )
-        await createAction(appInfoResp.data.appId, agentActionInfo)
-        window.open(
-          `${getILLABuilderURL()}/${teamIdentifier}/app/${
-            appInfoResp.data.appId
-          }`,
-          "_blank",
-        )
+      } finally {
+        setIsFullPageLoading(false)
       }
     }
   }
@@ -1582,6 +1596,7 @@ export const AIAgent: FC = () => {
           />
         )}
       />
+      {isFullPageLoading && <FullPageLoading hasMask />}
     </ChatContext.Provider>
   )
 }

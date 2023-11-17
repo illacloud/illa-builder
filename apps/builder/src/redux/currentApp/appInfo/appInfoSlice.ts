@@ -1,3 +1,4 @@
+import { AppInfoShape } from "@illa-public/public-types"
 import { createSlice } from "@reduxjs/toolkit"
 import { SliceCaseReducers } from "@reduxjs/toolkit/src/createSlice"
 import {
@@ -6,11 +7,11 @@ import {
   updateAppInfoReducer,
   updateAppPublicReducer,
 } from "@/redux/currentApp/appInfo/appInfoReducer"
-import { DashboardApp, DashboardAppInitialState } from "./appInfoState"
+import { DashboardAppInitialState } from "./appInfoState"
 
 const appInfoSlice = createSlice<
-  DashboardApp,
-  SliceCaseReducers<DashboardApp>,
+  AppInfoShape,
+  SliceCaseReducers<AppInfoShape>,
   "appInfo"
 >({
   name: "appInfo",
