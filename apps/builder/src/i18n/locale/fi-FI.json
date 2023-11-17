@@ -3596,7 +3596,7 @@
         "app": {
           "desc": "Kun olet lisännyt sovelluksesi yhteisöön, muut käyttäjät voivat tarkastella sen käyttöliittymää, suorittaa sen toimintoja ja fork se. Sovelluksen haarautuessa resurssikonfiguraatiotietoja ei ole otettu mukaan, joten ei ole tarpeen huolehtia resurssikonfiguraation tietojen paljastamisesta."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Osallistu vain sovellukseen"
       },
       "social_media": {
         "label": "Jaa päällä",

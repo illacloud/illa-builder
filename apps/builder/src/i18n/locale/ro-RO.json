@@ -3596,7 +3596,7 @@
         "app": {
           "desc": "După ce a contribuit aplicația ta la comunitate, alți utilizatori își pot vizualiza interfața, pot executa acțiunile și îl pot furca. Atunci când forjezi o aplicație, informațiile de configurare a resurselor nu sunt incluse, deci nu este nevoie să îți faci griji cu privire la publicarea informațiilor de configurare a resurselor."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Contribuie numai aplicația"
       },
       "social_media": {
         "label": "Distribuie pe",

@@ -3596,7 +3596,7 @@
         "app": {
           "desc": "Etter at du har bidratt med appen til samfunnet, kan andre brukere se grensesnittet, kjøre handlingene dens og gaffke den. Når du har lagt til en app, er ikke ressurskonfigurasjonsinformasjonen inkludert, så det er ikke nødvendig å bekymre deg om utlevering av informasjon om ressurskonfigurasjon."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Bidra kun med appen"
       },
       "social_media": {
         "label": "Del på",

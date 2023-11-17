@@ -3596,7 +3596,7 @@
         "app": {
           "desc": "Nachdem Sie Ihre App zur Community beigetragen haben, können andere Benutzer ihre Schnittstelle einsehen, ihre Aktionen ausführen und sie forken. Beim Forking einer App sind die Informationen zur Ressourcen-Konfiguration nicht enthalten, so dass keine Sorgen um die Offenlegung von Ressourcen-Konfigurationsinformationen bestehen."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Nur App beitragen"
       },
       "social_media": {
         "label": "Teilen auf",

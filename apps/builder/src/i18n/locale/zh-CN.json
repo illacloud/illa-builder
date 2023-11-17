@@ -3596,7 +3596,7 @@
         "app": {
           "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的动作并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "仅贡献应用"
       },
       "social_media": {
         "label": "分享到",
