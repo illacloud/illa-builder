@@ -3595,7 +3595,8 @@
         "turn_off": "Annuller bidrag",
         "app": {
           "desc": "Efter at have bidraget din app til fællesskabet, kan andre brugere se sin grænseflade, køre sine handlinger, og gaffel det. Når en app forges, er ressourcekonfigurationsoplysningerne ikke inkluderet, så der er ingen grund til at bekymre sig om offentliggørelse af ressourcekonfigurationsoplysninger."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Del på",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AI Agenter",
   "marketplace": {
     "star": "Stjerne",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Opret app med denne AI Agent"
+    }
   },
   "load": {
     "before": "Indlæs mere"

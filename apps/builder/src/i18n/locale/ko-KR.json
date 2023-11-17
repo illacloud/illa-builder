@@ -3595,7 +3595,8 @@
         "turn_off": "Cancel contribution",
         "app": {
           "desc": "After contributing your app to the community, other users can view its interface, run its actions, and fork it. When forking an app, the resource configuration information is not included, so there is no need to worry about the disclosure of resource configuration information."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Share on",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AI Agents",
   "marketplace": {
     "star": "Star",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Load more"

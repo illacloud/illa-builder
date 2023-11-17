@@ -3595,7 +3595,8 @@
         "turn_off": "Anuluj wkład",
         "app": {
           "desc": "Po przekazaniu aplikacji do społeczności, inni użytkownicy mogą przeglądać swój interfejs, uruchamiać swoje działania i je rozwikłać. Przy forkowaniu aplikacji informacje o konfiguracji zasobów nie są uwzględniane, więc nie ma potrzeby obawiania się o ujawnienie informacji o konfiguracji zasobów."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Udostępnij na",
@@ -4615,7 +4616,10 @@
   "ai-agents": "Agenci SI",
   "marketplace": {
     "star": "Gwiazdka",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Załaduj więcej"

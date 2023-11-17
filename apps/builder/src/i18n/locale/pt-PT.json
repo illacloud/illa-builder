@@ -3595,7 +3595,8 @@
         "turn_off": "Cancelar contribuição",
         "app": {
           "desc": "Depois de contribuir com seu aplicativo para a comunidade, outros usuários podem ver sua interface, executar suas ações e bifurcá-lo. Ao criar um aplicativo, as informações de configuração de recursos não estão incluídas, não há necessidade de se preocupar com a divulgação das informações de configuração de recursos."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Compartilhar em",
@@ -4615,7 +4616,10 @@
   "ai-agents": "Agentes de IA",
   "marketplace": {
     "star": "Estrela",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Carregue mais"

@@ -3595,7 +3595,8 @@
         "turn_off": "Cancelar contribución",
         "app": {
           "desc": "Después de contribuir con tu aplicación a la comunidad, otros usuarios pueden ver su interfaz, ejecutar sus acciones y bifurcarla. Al bifurcar una aplicación, la información de configuración de recursos no está incluida, por lo que no hay necesidad de preocuparse por la divulgación de información de configuración de recursos."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Compartir en",
@@ -4615,7 +4616,10 @@
   "ai-agents": "Agentes de IA",
   "marketplace": {
     "star": "Estrella",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Cargar más"

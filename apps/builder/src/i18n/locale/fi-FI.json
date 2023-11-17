@@ -3595,7 +3595,8 @@
         "turn_off": "Peruuta lisäys",
         "app": {
           "desc": "Kun olet lisännyt sovelluksesi yhteisöön, muut käyttäjät voivat tarkastella sen käyttöliittymää, suorittaa sen toimintoja ja fork se. Sovelluksen haarautuessa resurssikonfiguraatiotietoja ei ole otettu mukaan, joten ei ole tarpeen huolehtia resurssikonfiguraation tietojen paljastamisesta."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Jaa päällä",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AI Agents",
   "marketplace": {
     "star": "Tähti",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Luo sovellus tällä tekoälyagentilla"
+    }
   },
   "load": {
     "before": "Lataa lisää"
