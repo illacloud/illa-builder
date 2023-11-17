@@ -3597,9 +3597,9 @@
           "desc": "Αφού συνεισφέρετε την εφαρμογή σας στην κοινότητα, άλλοι χρήστες μπορούν να δουν τη διεπαφή της, να εκτελέσει τις ενέργειές της και να την πιρουνίσει. Όταν διχάζετε μια εφαρμογή, οι πληροφορίες διαμόρφωσης πόρων δεν περιλαμβάνονται, οπότε δεν χρειάζεται να ανησυχείτε για την αποκάλυψη πληροφοριών διαμόρφωσης πόρων."
         },
         "contribute_only": "Συνεισφέρετε μόνο εφαρμογή",
-        "contribute_together": "Contribute App and associated AI Agent",
-        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
-        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
+        "contribute_together": "Συνεισφέρετε την εφαρμογή και το συνδεδεμένο AI Agent",
+        "contribute_only_tips": "Για να συνεισφέρετε μόνο την εφαρμογή. Εάν υπάρχουν συνδεδεμένοι παράγοντες τεχνητής νοημοσύνης σε αυτήν την εφαρμογή, οι χρήστες δεν μπορούν να διχάζουν τους πράκτορες τεχνητής νοημοσύνης.",
+        "contribute_together_tips": "Εάν υπάρχουν συνδεδεμένοι AI Agents σε αυτήν την εφαρμογή, οι συνδεδεμένοι AI Agents θα συνεισφέρουν στην αγορά μαζί. "
       },
       "social_media": {
         "label": "Κοινοποίηση στο",
