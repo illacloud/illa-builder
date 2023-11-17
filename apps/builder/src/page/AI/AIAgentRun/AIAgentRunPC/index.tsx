@@ -549,7 +549,7 @@ export const AIAgentRunPC: FC = () => {
                 }
               }}
             >
-              <span>{t("Create.App.new")}</span>
+              <span>{t("marketplace.agent.create_app")}</span>
             </Button>
           )}
         </div>
