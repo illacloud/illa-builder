@@ -3595,7 +3595,8 @@
         "turn_off": "投稿をキャンセル",
         "app": {
           "desc": "アプリをコミュニティに貢献すると、他のユーザーがインターフェイスを表示したり、アクションを実行したり、フォークしたりできます。 アプリをフォークするとき、リソース構成情報は含まれないため、リソース構成情報の開示を心配する必要はありません。"
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "共有先：",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AIエージェント",
   "marketplace": {
     "star": "スター",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "この AI エージェントでアプリを作成"
+    }
   },
   "load": {
     "before": "さらに読み込む"
