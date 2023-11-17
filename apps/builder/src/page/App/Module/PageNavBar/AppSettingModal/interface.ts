@@ -1,7 +1,7 @@
-import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
+import { AppInfoShape } from "@illa-public/public-types"
 
 export interface AppSettingModalProps {
-  appInfo: DashboardApp
+  appInfo: AppInfoShape
   visible: boolean
   onVisibleChange: (visible: boolean) => void
   onSaveEvent: () => void

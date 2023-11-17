@@ -1,31 +1,6 @@
-export interface DashboardAppConfig {
-  public: boolean
-  waterMark: boolean
-  publishedToMarketplace: boolean
-  description?: string
-}
-interface EditorInfo {
-  userID: string
-  nickname: string
-  avatar: string
-  email: string
-  editedAt: string
-}
-export interface DashboardAppActivity {
-  modifier: string
-  modifiedAt: string
-}
-export interface DashboardApp {
-  appId: string
-  appName: string
-  deployed: boolean
-  updatedAt: string
-  updatedBy: string
-  appActivity: DashboardAppActivity
-  config: DashboardAppConfig
-  editedBy?: EditorInfo[]
-}
-export const DashboardAppInitialState: DashboardApp = {
+import { AppInfoShape } from "@illa-public/public-types"
+
+export const DashboardAppInitialState: AppInfoShape = {
   updatedAt: "",
   updatedBy: "",
   appId: "",
@@ -35,6 +10,7 @@ export const DashboardAppInitialState: DashboardApp = {
     public: false,
     waterMark: false,
     publishedToMarketplace: false,
+    publishWithAIAgent: false,
   },
   appActivity: {
     modifier: "",

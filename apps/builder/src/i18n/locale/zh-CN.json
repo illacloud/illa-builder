@@ -814,7 +814,8 @@
             "data_production": "生产数据",
             "data_mock": "模拟数据",
             "json": "模拟JSON输出",
-            "on_deploy": "在部署应用上也使用模拟JSON输出"
+            "on_deploy": "在部署应用上也使用模拟JSON输出",
+            "duration": "运行时长(毫秒)"
           }
         },
         "s3": {
@@ -1936,7 +1937,7 @@
           "item_shadow": "格子的阴影",
           "item_spacing": "格子间距",
           "max_column_count": "最大列数",
-          "min_column_count": "Min number of columns"
+          "min_column_count": "最小列数"
         },
         "src": "源",
         "page_size_options": "每页显示数量选项",
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "快速筛选",
         "exclude_hidden_columns": "不包含隐藏列",
-        "allow_users_select": "允许选中行"
+        "allow_users_select": "允许选中行",
+        "enable_pagination": "分页"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -3593,7 +3595,11 @@
         "turn_off": "取消贡献",
         "app": {
           "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的动作并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
-        }
+        },
+        "contribute_only": "仅贡献应用",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "分享到",
@@ -4613,7 +4619,10 @@
   "ai-agents": "AI Agents",
   "marketplace": {
     "star": "Star",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "加载更多"

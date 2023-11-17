@@ -7,7 +7,7 @@ export const applyScaleContainerStyle = (isEditorMode: boolean) => {
     height: 100%;
     min-height: 280px;
     background: ${isEditorMode ? "#f7f8fa" : "#fff"};
-    overflow: hidden;
+    overflow: auto;
     flex: 1;
     position: relative;
     ${isEditorMode &&

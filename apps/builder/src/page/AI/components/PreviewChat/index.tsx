@@ -8,6 +8,7 @@ import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import { ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
+import { ReactComponent as GridFillIcon } from "@/assets/agent/gridFill.svg"
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
 import AIAgentMessage from "@/page/AI/components/AIAgentMessage"
 import { GenerationMessage } from "@/page/AI/components/GenerationMessage"
@@ -53,6 +54,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     onCancelReceiving,
     onShowShareDialog,
     onShowContributeDialog,
+    onClickCreateApp,
   } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
@@ -151,6 +153,18 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               }}
             >
               {t("editor.ai-agent.contribute")}
+            </Button>
+          )}
+          {editState === "EDIT" && (
+            <Button
+              ml="8px"
+              colorScheme="grayBlue"
+              leftIcon={<GridFillIcon />}
+              onClick={() => {
+                onClickCreateApp?.()
+              }}
+            >
+              {t("marketplace.agent.create_app")}
             </Button>
           )}
         </div>

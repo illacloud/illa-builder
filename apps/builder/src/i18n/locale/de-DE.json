@@ -814,7 +814,8 @@
             "data_production": "Produktion",
             "data_mock": "Scherz",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App"
+            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App",
+            "duration": "Laufzeitdauer"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Schnellfilter",
         "exclude_hidden_columns": "Versteckte Spalten ausschließen",
-        "allow_users_select": "Zeilenauswahl erlauben"
+        "allow_users_select": "Zeilenauswahl erlauben",
+        "enable_pagination": "Paginierung"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -3593,7 +3595,11 @@
         "turn_off": "Beitrag abbrechen",
         "app": {
           "desc": "Nachdem Sie Ihre App zur Community beigetragen haben, können andere Benutzer ihre Schnittstelle einsehen, ihre Aktionen ausführen und sie forken. Beim Forking einer App sind die Informationen zur Ressourcen-Konfiguration nicht enthalten, so dass keine Sorgen um die Offenlegung von Ressourcen-Konfigurationsinformationen bestehen."
-        }
+        },
+        "contribute_only": "Nur App beitragen",
+        "contribute_together": "App und zugehöriger KI-Agent beitragen",
+        "contribute_only_tips": "Nur um die App beizutragen. Wenn es in dieser App zugehörige KI-Agenten gibt, können Benutzer die KI-Agenten nicht forken.",
+        "contribute_together_tips": "Wenn es in dieser App assoziierte KI-Agenten gibt, werden die zugehörigen KI-Agenten gemeinsam zum Marktplatz beitragen. "
       },
       "social_media": {
         "label": "Teilen auf",
@@ -4613,7 +4619,10 @@
   "ai-agents": "KI-Agenten",
   "marketplace": {
     "star": "Stern",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "App mit diesem KI-Agent erstellen"
+    }
   },
   "load": {
     "before": "Mehr laden"

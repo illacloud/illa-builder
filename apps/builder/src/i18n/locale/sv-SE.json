@@ -814,7 +814,8 @@
             "data_production": "Produktion",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Använd mock JSON-utgångarna på distribuerad app"
+            "on_deploy": "Använd mock JSON-utgångarna på distribuerad app",
+            "duration": "Löptid (ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Snabb filter",
         "exclude_hidden_columns": "Exkludera dolda kolumner",
-        "allow_users_select": "Tillåt radval"
+        "allow_users_select": "Tillåt radval",
+        "enable_pagination": "Sidnumrering"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -3593,7 +3595,11 @@
         "turn_off": "Avbryt bidrag",
         "app": {
           "desc": "Efter att ha bidragit med din app till gemenskapen, kan andra användare se dess gränssnitt, köra sina åtgärder och forka den. När du forsar en app inkluderas inte informationen om resurskonfigurationen, så det finns ingen anledning att oroa sig för utlämnandet av information om resurskonfiguration."
-        }
+        },
+        "contribute_only": "Bidra endast med appen",
+        "contribute_together": "Bidra med appen och tillhörande AI Agent",
+        "contribute_only_tips": "För att endast bidra med appen. Om det finns associerade AI-agenter i den här appen kan användare inte forka AI-agenterna.",
+        "contribute_together_tips": "Om det finns associerade AI agenter i den här appen, de associerade AI agenter kommer att bidra till marknadsplats tillsammans. "
       },
       "social_media": {
         "label": "Dela på",
@@ -4613,7 +4619,10 @@
   "ai-agents": "AI agenter",
   "marketplace": {
     "star": "Stjärna",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Skapa app med denna AI-agent"
+    }
   },
   "load": {
     "before": "Ladda mer"

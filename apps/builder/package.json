@@ -5,7 +5,7 @@
   "private": true,
   "author": "ILLA Cloud <opensource@illasoft.com>",
   "license": "Apache-2.0",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "scripts": {
     "dev": "vite --strictPort --force",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode cloud",
@@ -94,7 +94,6 @@
     "fflate": "^0.8.1",
     "framer-motion": "^10.16.4",
     "fuse.js": "^6.6.2",
-    "html2canvas": "^1.4.1",
     "i18next-browser-languagedetector": "^7.0.1",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",

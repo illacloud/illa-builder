@@ -814,7 +814,8 @@
             "data_production": "Production",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Use the mock JSON outputs on deployed app"
+            "on_deploy": "Use the mock JSON outputs on deployed app",
+            "duration": "Runtime duration(ms)"
           }
         },
         "s3": {
@@ -1929,7 +1930,7 @@
           "y-axis_type": "Type d'axe Y"
         },
         "grid_list": {
-          "column_adaptation": "Adaptation des colonnes",
+          "column_adaptation": "Column adaptation",
           "column_count": "Nombre de colonnes",
           "row_height": "Adaptation de ligne",
           "item_radius": "Rayon de l'objet",
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Quick filter",
         "exclude_hidden_columns": "Exclude hidden columns",
-        "allow_users_select": "Allow row selection"
+        "allow_users_select": "Allow row selection",
+        "enable_pagination": "Pagination"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -2253,7 +2255,7 @@
           "y-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données."
         },
         "grid_list": {
-          "column_adaptation": "En mode Automatique, le nombre de colonnes reste fixe lorsque la largeur des colonnes est réglable. Redimensionner la fenêtre du navigateur changera la largeur des colonnes en conséquence.\r\nEn mode fixe, le nombre de colonnes n'est pas fixe tant que la largeur de la colonne reste constante. Redimensionner la fenêtre du navigateur modifiera le nombre de colonnes.",
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
           "column_count": "Utilisé pour configurer le nombre de colonnes, qui détermine le nombre de grilles affichées par ligne.",
           "row_height": "Utilisé pour configurer la hauteur de chaque ligne. En mode Automatique, la hauteur est adaptative et la hauteur de la ligne est déterminée par la grille la plus haute de la ligne courante. En mode Fixe, la hauteur de la ligne est fixée, et toutes les grilles ont la même hauteur.",
           "item_radius": "Utilisé pour configurer le rayon d'angle de chaque grille",
@@ -3593,7 +3595,11 @@
         "turn_off": "Annuler la contribution",
         "app": {
           "desc": "Après avoir contribué à votre application à la communauté, les autres utilisateurs peuvent voir son interface, exécuter ses actions et le forker. Lors du forking d'une application, les informations de configuration de la ressource ne sont pas incluses, il n'y a donc pas lieu de s'inquiéter de la divulgation des informations de configuration des ressources."
-        }
+        },
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Partager sur",
@@ -4613,7 +4619,10 @@
   "ai-agents": "Agents IA",
   "marketplace": {
     "star": "Étoiles",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Charger plus"

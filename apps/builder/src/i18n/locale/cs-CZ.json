@@ -814,7 +814,8 @@
             "data_production": "Produkce",
             "data_mock": "bubble raider",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci"
+            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci",
+            "duration": "Trvání běhu (ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Rychlý filtr",
         "exclude_hidden_columns": "Vyloučit skryté sloupce",
-        "allow_users_select": "Povolit výběr řádků"
+        "allow_users_select": "Povolit výběr řádků",
+        "enable_pagination": "Stránkování"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -3593,7 +3595,11 @@
         "turn_off": "Zrušit příspěvek",
         "app": {
           "desc": "Po přispění vaší aplikace do komunity si ostatní uživatelé mohou prohlédnout její rozhraní, spustit její akce a rozštěpit ji. Při vytváření aplikace nejsou zahrnuty informace o konfiguraci zdrojů, takže není třeba se znepokojovat zveřejněním informací o konfiguraci zdrojů."
-        }
+        },
+        "contribute_only": "Pouze přispět aplikací",
+        "contribute_together": "Přispívat aplikaci a přidružené AI agentovi",
+        "contribute_only_tips": "Chcete-li přispět pouze aplikací. Pokud jsou v této aplikaci přiřazeni AI, uživatelé nemohou rozštěpit AI agenty.",
+        "contribute_together_tips": "Pokud v této aplikaci existují asociovaní AI agenti, přidružené AI agenti budou společně přispívat k tržišti. "
       },
       "social_media": {
         "label": "Sdílet na",
@@ -4613,7 +4619,10 @@
   "ai-agents": "AI agenti",
   "marketplace": {
     "star": "Hvězda",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Vytvořit aplikaci s tímto AI agentem"
+    }
   },
   "load": {
     "before": "Načíst více"

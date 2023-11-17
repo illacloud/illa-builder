@@ -814,7 +814,8 @@
             "data_production": "Production",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Use the mock JSON outputs on deployed app"
+            "on_deploy": "Use the mock JSON outputs on deployed app",
+            "duration": "Runtime duration(ms)"
           }
         },
         "s3": {
@@ -1929,7 +1930,7 @@
           "y-axis_type": "Tipo eje Y"
         },
         "grid_list": {
-          "column_adaptation": "Adaptación a columnas",
+          "column_adaptation": "Column adaptation",
           "column_count": "Número de columnas",
           "row_height": "Adaptación de fila",
           "item_radius": "Radio del artículo",
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Quick filter",
         "exclude_hidden_columns": "Exclude hidden columns",
-        "allow_users_select": "Allow row selection"
+        "allow_users_select": "Allow row selection",
+        "enable_pagination": "Pagination"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -3593,7 +3595,11 @@
         "turn_off": "Cancelar contribución",
         "app": {
           "desc": "Después de contribuir con tu aplicación a la comunidad, otros usuarios pueden ver su interfaz, ejecutar sus acciones y bifurcarla. Al bifurcar una aplicación, la información de configuración de recursos no está incluida, por lo que no hay necesidad de preocuparse por la divulgación de información de configuración de recursos."
-        }
+        },
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Compartir en",
@@ -4613,7 +4619,10 @@
   "ai-agents": "Agentes de IA",
   "marketplace": {
     "star": "Estrella",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Cargar más"

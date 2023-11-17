@@ -135,19 +135,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     ) => {
       setDeployLoading(true)
       try {
-        // TODO: wait API
-        // html2canvas(document.querySelector("#html2canvas")!, {
-        //   onclone(document, element) {
-        //     const a = element.querySelectorAll(".scroll-container")
-        //     Array.from(a).forEach((item) => {
-        //       item.scrollTop = 0
-        //     })
-        //   },
-        // }).then((canvas) => {
-        //   canvas.toBlob((blob) => {
-        //     console.log("blob", blob)
-        //   }, "image/png")
-        // })
         await fetchDeployApp(appId, isPublic)
         dispatch(appInfoActions.updateAppDeployedReducer(true))
         dispatch(appInfoActions.updateAppPublicReducer(isPublic))
