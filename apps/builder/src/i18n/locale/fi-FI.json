@@ -3598,8 +3598,8 @@
         },
         "contribute_only": "Osallistu vain sovellukseen",
         "contribute_together": "Contribute App and associated AI Agent",
-        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
-        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
+        "contribute_only_tips": "Vain sovellukseen osallistumiseksi. Jos sovelluksessa on mukana AI Agentteja, käyttäjät eivät voi forkata AI Agentteja.",
+        "contribute_together_tips": "Jos tässä sovelluksessa on mukana tekoälyn agentteja, niihin liittyvät tekoälyn agentit osallistuvat yhdessä markkinapaikalle. "
       },
       "social_media": {
         "label": "Jaa päällä",
