@@ -3595,7 +3595,8 @@
         "turn_off": "Annulla contributo",
         "app": {
           "desc": "Dopo aver contribuito la tua app alla comunità, altri utenti possono visualizzare la sua interfaccia, eseguire le sue azioni e effettuare il fork. Quando si forgia un'app, le informazioni di configurazione delle risorse non sono incluse, quindi non c'è bisogno di preoccuparsi della divulgazione delle informazioni di configurazione delle risorse."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Condividi su",
@@ -4615,7 +4616,10 @@
   "ai-agents": "Agenti AI",
   "marketplace": {
     "star": "Stella",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "Carica altro"
