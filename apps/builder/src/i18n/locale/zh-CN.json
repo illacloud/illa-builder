@@ -3595,7 +3595,8 @@
         "turn_off": "取消贡献",
         "app": {
           "desc": "在将您的应用程序贡献到社区后，其他用户可以查看它的前端界面，运行它的动作并Fork它。 当Fork一个应用时，不会同时Fork资源的配置信息，因此无需担心资源的配置信息泄露。"
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "分享到",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AI Agents",
   "marketplace": {
     "star": "Star",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Create app with this AI Agent"
+    }
   },
   "load": {
     "before": "加载更多"
