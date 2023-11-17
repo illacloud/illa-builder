@@ -3597,9 +3597,9 @@
           "desc": "Efter at have bidraget din app til fællesskabet, kan andre brugere se sin grænseflade, køre sine handlinger, og gaffel det. Når en app forges, er ressourcekonfigurationsoplysningerne ikke inkluderet, så der er ingen grund til at bekymre sig om offentliggørelse af ressourcekonfigurationsoplysninger."
         },
         "contribute_only": "Bidrag kun til app",
-        "contribute_together": "Contribute App and associated AI Agent",
-        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
-        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
+        "contribute_together": "Bidrag app og tilknyttet AI-agent",
+        "contribute_only_tips": "Kun for at bidrage med appen. Hvis der er tilknyttet AI Agents i denne app, kan brugerne ikke gaffel AI Agenter.",
+        "contribute_together_tips": "Hvis der er tilknyttet AI Agents i denne app, vil de tilknyttede AI Agents blive bidraget til markedspladsen sammen. "
       },
       "social_media": {
         "label": "Del på",
