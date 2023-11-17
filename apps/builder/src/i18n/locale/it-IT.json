@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Connect to database or api",
             "more-type": "More type of data sources",
-            "safe_mode": "Mode"
+            "safe_mode": "Mode",
+            "ai_agent_title": "Integrate with AI Agent",
+            "integration_title": "Integrate with data source"
           },
           "drive": {
             "method": "Method",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Esegui azione solo quando viene attivato manualmente",
-            "on_change": "Esegui l'azione automaticamente quando gli input cambiano"
+            "on_change": "Esegui l'azione automaticamente quando gli input cambiano",
+            "label": "Trigger type"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Data",
+            "data_production": "Production",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Use the mock JSON outputs on deployed app"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Select"
       },
       "select": {
-        "confirm_button": "Select"
+        "confirm_button": "Select",
+        "select_entry": "Select"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Update",
       "title": "Edit"
-    }
+    },
+    "checkbox_ai_agent": "Sync the associated AI Agent to Marketplace"
   },
   "error_page": {
     "fobidden": "Nessuna autorizzazione di accesso"

@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Подключиться к базе данных или api",
             "more-type": "Больше типов источников данных",
-            "safe_mode": "Режим"
+            "safe_mode": "Режим",
+            "ai_agent_title": "Интегрировать с ИИ Агентом",
+            "integration_title": "Интегрировать с источником данных"
           },
           "drive": {
             "method": "Метод",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Выполнять действие только при ручном запуске",
-            "on_change": "Выполнять действие автоматически при смене ввода"
+            "on_change": "Выполнять действие автоматически при смене ввода",
+            "label": "Тип триггера"
+          },
+          "mock": {
+            "label": "Закрепить",
+            "data_label": "Данные",
+            "data_production": "Производство",
+            "data_mock": "Закрепить",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Использовать мак JSON выходы в развернутом приложении"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Выбрать"
       },
       "select": {
-        "confirm_button": "Выбрать"
+        "confirm_button": "Выбрать",
+        "select_entry": "Выбрать"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Обновить",
       "title": "Редактирование"
-    }
+    },
+    "checkbox_ai_agent": "Синхронизация соответствующего Агента ИИ с Marketplace"
   },
   "error_page": {
     "fobidden": "Нет разрешения на доступ"

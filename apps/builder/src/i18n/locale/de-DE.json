@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Mit Datenbank oder Api verbinden",
             "more-type": "Weitere Datenquellentypen",
-            "safe_mode": "Modus"
+            "safe_mode": "Modus",
+            "ai_agent_title": "Mit KI Agent integrieren",
+            "integration_title": "Mit Datenquelle integrieren"
           },
           "drive": {
             "method": "Methode",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Aktion nur ausführen, wenn manuell ausgelöst",
-            "on_change": "Aktion bei Änderung der Eingaben automatisch ausführen"
+            "on_change": "Aktion bei Änderung der Eingaben automatisch ausführen",
+            "label": "Auslöse-Typ"
+          },
+          "mock": {
+            "label": "Scherz",
+            "data_label": "Daten",
+            "data_production": "Produktion",
+            "data_mock": "Scherz",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Verwende die mock JSON-Ausgänge in der installierten App"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Auswählen"
       },
       "select": {
-        "confirm_button": "Auswählen"
+        "confirm_button": "Auswählen",
+        "select_entry": "Auswählen"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Aktualisieren",
       "title": "Bearbeiten"
-    }
+    },
+    "checkbox_ai_agent": "Verknüpfte KI-Agenten mit Marketplace synchronisieren"
   },
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"

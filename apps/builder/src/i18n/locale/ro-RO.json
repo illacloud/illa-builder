@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Conectează-te la baza de date sau API",
             "more-type": "Mai multe tipuri de surse de date",
-            "safe_mode": "Mod"
+            "safe_mode": "Mod",
+            "ai_agent_title": "Integrează cu AI Agent",
+            "integration_title": "Integrează cu sursa datelor"
           },
           "drive": {
             "method": "Metodă",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Execută acțiunea numai când este declanșată manual",
-            "on_change": "Rulează acțiunea automat când se schimbă intrările"
+            "on_change": "Rulează acțiunea automat când se schimbă intrările",
+            "label": "Tip declanșare"
+          },
+          "mock": {
+            "label": "Piatră",
+            "data_label": "Date",
+            "data_production": "Producție",
+            "data_mock": "Piatră",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Folosește ieșirile mock JSON în aplicația implementată"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Selectare"
       },
       "select": {
-        "confirm_button": "Selectare"
+        "confirm_button": "Selectare",
+        "select_entry": "Selectare"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Actualizare",
       "title": "Editare"
-    }
+    },
+    "checkbox_ai_agent": "Sincronizare AI Agent la Marketplace asociat"
   },
   "error_page": {
     "fobidden": "Fără permisiune de acces"

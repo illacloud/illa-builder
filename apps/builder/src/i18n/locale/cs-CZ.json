@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Připojit k databázi nebo api",
             "more-type": "Další typ zdrojů údajů",
-            "safe_mode": "Režim"
+            "safe_mode": "Režim",
+            "ai_agent_title": "Integrovat se agentem AI",
+            "integration_title": "Integrovat se zdrojem dat"
           },
           "drive": {
             "method": "Metoda",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Spusťte akci pouze při manuálním spuštění",
-            "on_change": "Automaticky spustit akci při změně vstupů"
+            "on_change": "Automaticky spustit akci při změně vstupů",
+            "label": "Typ spouštěče"
+          },
+          "mock": {
+            "label": "bubble raider",
+            "data_label": "Údaje",
+            "data_production": "Produkce",
+            "data_mock": "bubble raider",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Použít okouzlující JSON výstupy na nasazené aplikaci"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Vybrat"
       },
       "select": {
-        "confirm_button": "Vybrat"
+        "confirm_button": "Vybrat",
+        "select_entry": "Vybrat"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Aktualizovat",
       "title": "Upravit"
-    }
+    },
+    "checkbox_ai_agent": "Synchronizovat přidružený AI agenta do tržiště"
   },
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"

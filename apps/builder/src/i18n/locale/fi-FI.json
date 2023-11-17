@@ -757,7 +757,9 @@
           "general": {
             "connect-data-source": "Yhdistä tietokantaan tai apiin",
             "more-type": "Enemmän tietolähteitä",
-            "safe_mode": "Tila"
+            "safe_mode": "Tila",
+            "ai_agent_title": "Integrointi tekoälyn kanssa",
+            "integration_title": "Integroi tietolähteeseen"
           },
           "drive": {
             "method": "Menetelmä",
@@ -803,7 +805,16 @@
           },
           "trigger": {
             "manually": "Suorita toiminto vain, kun käsin laukaistu",
-            "on_change": "Suorita toiminto automaattisesti, kun syötteet muuttuvat"
+            "on_change": "Suorita toiminto automaattisesti, kun syötteet muuttuvat",
+            "label": "Käynnistimen tyyppi"
+          },
+          "mock": {
+            "label": "Mock",
+            "data_label": "Tiedot",
+            "data_production": "Tuotanto",
+            "data_mock": "Mock",
+            "json": "Mock JSON Outputs",
+            "on_deploy": "Käytä pilkata JSON lähdöitä käytössä olevassa sovelluksessa"
           }
         },
         "s3": {
@@ -3840,7 +3851,8 @@
         "select": "Valitse"
       },
       "select": {
-        "confirm_button": "Valitse"
+        "confirm_button": "Valitse",
+        "select_entry": "Valitse"
       }
     },
     "drive_builder": {
@@ -4623,7 +4635,8 @@
     "update_modal": {
       "button": "Päivitä",
       "title": "Muokkaa"
-    }
+    },
+    "checkbox_ai_agent": "Synkronoi liittyvä AI Agent Marketplaceen"
   },
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
