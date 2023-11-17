@@ -3595,7 +3595,8 @@
         "turn_off": "Zrušit příspěvek",
         "app": {
           "desc": "Po přispění vaší aplikace do komunity si ostatní uživatelé mohou prohlédnout její rozhraní, spustit její akce a rozštěpit ji. Při vytváření aplikace nejsou zahrnuty informace o konfiguraci zdrojů, takže není třeba se znepokojovat zveřejněním informací o konfiguraci zdrojů."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Sdílet na",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AI agenti",
   "marketplace": {
     "star": "Hvězda",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Vytvořit aplikaci s tímto AI agentem"
+    }
   },
   "load": {
     "before": "Načíst více"
