@@ -111,14 +111,16 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             }}
             appDesc={appInfo.config.description}
             appName={appInfo.appName}
-            onAppInfoUpdate={(appName, appDesc) => {
+            onAppInfoUpdate={(appConfig) => {
+              const { publishWithAIAgent } = appConfig
               dispatch(
                 appInfoActions.updateAppInfoReducer({
                   ...appInfo,
-                  appName,
+                  appName: appConfig.publishWithAIAgent,
                   config: {
                     ...appInfo.config,
-                    description: appDesc,
+                    description: appConfig.appDesc,
+                    publishWithAIAgent,
                   },
                 }),
               )
@@ -167,6 +169,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             }}
             defaultAppPublic={appInfo.config.public}
             defaultAppContribute={appInfo.config.publishedToMarketplace}
+            defaultPublishWithAIAgent={appInfo.config.publishWithAIAgent}
             appID={appInfo.appId}
             userRoleForThisApp={teamInfo.myRole}
             ownerTeamID={teamInfo.id}

@@ -1,10 +1,9 @@
 import { builderRequest } from "@illa-public/illa-net"
-import { ComponentTreeNode } from "@illa-public/public-types"
+import { AppInfoShape, ComponentTreeNode } from "@illa-public/public-types"
 import { createAction } from "@/api/actions"
 import { DeployResp } from "@/page/App/Module/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
 import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
 import store from "@/store"
 import { buildTreeByMapNode } from "../utils/componentNode/flatTree"
@@ -109,7 +108,7 @@ interface IAppCreateRequestData {
 }
 
 export const fetchCreateApp = (data: IAppCreateRequestData) => {
-  return builderRequest<DashboardApp>(
+  return builderRequest<AppInfoShape>(
     {
       url: "/apps",
       method: "POST",
@@ -152,7 +151,7 @@ export const updateWaterMarkConfig = async (
   waterMark: boolean,
   appID: string,
 ) => {
-  return builderRequest<DashboardApp>(
+  return builderRequest<AppInfoShape>(
     {
       method: "PATCH",
       url: `/apps/${appID}/config`,
@@ -175,7 +174,7 @@ export const updateAppConfig = async (
     appName?: string
   },
 ) => {
-  return builderRequest<DashboardApp>(
+  return builderRequest<AppInfoShape>(
     {
       method: "PATCH",
       url: `/apps/${appID}/config`,
@@ -215,7 +214,7 @@ export const forkCurrentApp = async (appName: string) => {
 }
 
 export const fetchCopyApp = (appID: string, name: string) => {
-  return builderRequest<DashboardApp>(
+  return builderRequest<AppInfoShape>(
     {
       url: `/apps/${appID}/duplication`,
       method: "POST",

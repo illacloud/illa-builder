@@ -92,7 +92,7 @@ const ResourceChoose: FC<ResourceChooseProps> = ({
               actionType: resource.resourceType,
               resourceID: value as string,
               content:
-                selectedAction.actionType === value
+                selectedAction.actionType === resource.resourceType
                   ? selectedAction.content
                   : getInitialContent(resource.resourceType),
             }),

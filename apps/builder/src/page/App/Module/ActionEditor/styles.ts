@@ -138,4 +138,5 @@ export const agentActionStyle = (size: string) => css`
   width: ${size};
   height: ${size};
   flex-shrink: 0;
+  border-radius: 4px;
 `

@@ -66,13 +66,18 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
+import { createAction } from "@/api/actions"
 import { TextSignal } from "@/api/ws/textSignal"
+import { ReactComponent as GridFillIcon } from "@/assets/agent/gridFill.svg"
+import { FullPageLoading } from "@/components/FullPageLoading"
+import { buildActionInfo, buildAppWithAgentSchema } from "@/config/AppWithAgent"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interface"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
+import { fetchCreateApp } from "@/services/apps"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../../components/ChatContext"
@@ -152,6 +157,9 @@ export const AIAgentRunPC: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
+
+  // ui state
+  const [isFullPageLoading, setIsFullPageLoading] = useState(false)
 
   const { t } = useTranslation()
 
@@ -495,6 +503,55 @@ export const AIAgentRunPC: FC = () => {
                 )}
               </Button>
             )}
+          {canManage(
+            currentTeamInfo.myRole,
+            ATTRIBUTE_GROUP.APP,
+            getPlanUtils(currentTeamInfo),
+            ACTION_MANAGE.CREATE_APP,
+          ) && (
+            <Button
+              ml="8px"
+              colorScheme="grayBlue"
+              loading={forkLoading}
+              leftIcon={<GridFillIcon />}
+              onClick={async () => {
+                try {
+                  setIsFullPageLoading(true)
+                  const finalAgent =
+                    agent.teamID === currentTeamInfo.id
+                      ? agent
+                      : (await forkAIAgentToTeam(agent.aiAgentID)).data
+
+                  const variableKeys = finalAgent.variables.map((v) => v.key)
+                  const { appInfo, variableKeyMapInputNodeDisplayName } =
+                    buildAppWithAgentSchema(variableKeys)
+                  const appInfoResp = await fetchCreateApp({
+                    appName: "Untitled app",
+                    initScheme: appInfo,
+                  })
+                  const agentActionInfo = buildActionInfo(
+                    agent,
+                    variableKeyMapInputNodeDisplayName,
+                  )
+                  await createAction(appInfoResp.data.appId, agentActionInfo)
+                  window.open(
+                    `${getILLABuilderURL()}/${currentTeamInfo.identifier}/app/${
+                      appInfoResp.data.appId
+                    }`,
+                    "_blank",
+                  )
+                } catch {
+                  message.error({
+                    content: t("create_fail"),
+                  })
+                } finally {
+                  setIsFullPageLoading(false)
+                }
+              }}
+            >
+              <span>{t("marketplace.agent.create_app")}</span>
+            </Button>
+          )}
         </div>
       )}
     />
@@ -832,6 +889,7 @@ export const AIAgentRunPC: FC = () => {
         />
       </div>
       {dialog}
+      {isFullPageLoading && <FullPageLoading hasMask />}
     </ChatContext.Provider>
   )
 }

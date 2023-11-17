@@ -1,5 +1,5 @@
-import { DashboardApp } from "@/redux/currentApp/appInfo/appInfoState"
+import { AppInfoShape } from "@illa-public/public-types"
 
 export interface ContributeButtonProps {
-  appInfo: DashboardApp
+  appInfo: AppInfoShape
 }
