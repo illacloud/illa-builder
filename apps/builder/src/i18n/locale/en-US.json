@@ -1930,16 +1930,14 @@
           "y-axis_type": "Y-axis type"
         },
         "grid_list": {
-          "column_adaptation": "Column num adaptation",
+          "column_adaptation": "Column adaptation",
           "column_count": "Column count",
           "row_height": "Row adaptation",
           "item_radius": "Item radius",
           "item_shadow": "Item shadow",
           "item_spacing": "Item spacing",
           "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns",
-          "column_num": "Number of columns",
-          "min_column_width": "Min column width(px)"
+          "min_column_count": "Min number of columns"
         },
         "src": "src",
         "page_size_options": "Page size options",
@@ -1962,8 +1960,7 @@
         "quick_filter_setting": "Quick filter",
         "exclude_hidden_columns": "Exclude hidden columns",
         "allow_users_select": "Allow row selection",
-        "enable_pagination": "Pagination",
-        "item_gap": "Spacing of items"
+        "enable_pagination": "Pagination"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -2258,15 +2255,13 @@
           "y-axis_type": "Setting the chart type can enhance data readability."
         },
         "grid_list": {
-          "column_adaptation": "In Auto mode,  the number of columns is not fixed. Resizing the browser window will alter the number of columns.\nIn Fixed mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.",
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
           "column_count": "Used to configure the number of columns, which determines how many grids are displayed per row.",
           "row_height": "Used to configure the height of each row. In Auto mode, the height is adaptive, and the row height is determined by the tallest grid in the current row. In Fixed mode, the row height is fixed, and all grids have the same height.",
           "item_radius": "Used to configure the corner radius of each grid",
           "item_shadow": "Used to configure the shadow size of each grid",
           "item_spacing": "Used to configure the spacing between grids",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further.",
-          "column_num": "To set the number of columns",
-          "min_column_width": "To set the min column width. It will take effect in dynamic adaptation. The specific number of columns displayed in dynamic adaptation will be determined based on this value."
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
         },
         "primary_key": "A unique key for identifying a row",
         "selection_mode": "Used to set multiple row selection or single row selection",
@@ -2420,12 +2415,6 @@
           "x-axis_type": {
             "Default": "Default",
             "Date": "Date"
-          }
-        },
-        "grid_list": {
-          "column_adaptation": {
-            "fixed": "Fixed",
-            "dynamic": "Dynamic"
           }
         }
       },
@@ -3607,7 +3596,10 @@
         "app": {
           "desc": "After contributing your app to the community, other users can view its interface, run its actions, and fork it. When forking an app, the resource configuration information is not included, so there is no need to worry about the disclosure of resource configuration information."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Share on",
