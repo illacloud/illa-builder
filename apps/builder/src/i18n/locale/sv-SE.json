@@ -3595,7 +3595,8 @@
         "turn_off": "Avbryt bidrag",
         "app": {
           "desc": "Efter att ha bidragit med din app till gemenskapen, kan andra användare se dess gränssnitt, köra sina åtgärder och forka den. När du forsar en app inkluderas inte informationen om resurskonfigurationen, så det finns ingen anledning att oroa sig för utlämnandet av information om resurskonfiguration."
-        }
+        },
+        "contribute_only": "Contribute app only"
       },
       "social_media": {
         "label": "Dela på",
@@ -4615,7 +4616,10 @@
   "ai-agents": "AI agenter",
   "marketplace": {
     "star": "Stjärna",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Skapa app med denna AI-agent"
+    }
   },
   "load": {
     "before": "Ladda mer"
