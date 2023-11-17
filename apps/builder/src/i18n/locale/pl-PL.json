@@ -1930,7 +1930,7 @@
           "y-axis_type": "Typ osi Y"
         },
         "grid_list": {
-          "column_adaptation": "Dostosowanie kolumn",
+          "column_adaptation": "Column adaptation",
           "column_count": "Liczba kolumn",
           "row_height": "Dostosowanie wiersza",
           "item_radius": "Promień elementu",
@@ -2255,7 +2255,7 @@
           "y-axis_type": "Ustawianie typu wykresu może poprawić czytelność danych."
         },
         "grid_list": {
-          "column_adaptation": "W trybie automatycznym liczba kolumn pozostaje na stałym poziomie, podczas gdy szerokość kolumny jest regulowana. Zmiana rozmiaru okna przeglądarki zmieni odpowiednio szerokość kolumny.\r\nW trybie stałym, liczba kolumn nie jest ustalona, podczas gdy szerokość kolumny pozostaje stała. Zmiana rozmiaru okna przeglądarki zmieni liczbę kolumn.",
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
           "column_count": "Służy do konfigurowania liczby kolumn, która określa, ile siatek jest wyświetlanych w wierszu.",
           "row_height": "Używane do konfigurowania wysokości każdego wiersza. W trybie automatycznym wysokość jest dostosowana, a wysokość wiersza jest określana przez najwyższą siatkę w bieżącym rzędzie. W trybie stałym, wysokość wiersza jest stała, a wszystkie sieci mają tę samą wysokość.",
           "item_radius": "Używane do konfigurowania promienia narożnika każdej siatki",
@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Po przekazaniu aplikacji do społeczności, inni użytkownicy mogą przeglądać swój interfejs, uruchamiać swoje działania i je rozwikłać. Przy forkowaniu aplikacji informacje o konfiguracji zasobów nie są uwzględniane, więc nie ma potrzeby obawiania się o ujawnienie informacji o konfiguracji zasobów."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Udostępnij na",

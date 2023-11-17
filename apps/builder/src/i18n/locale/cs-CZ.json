@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Po přispění vaší aplikace do komunity si ostatní uživatelé mohou prohlédnout její rozhraní, spustit její akce a rozštěpit ji. Při vytváření aplikace nejsou zahrnuty informace o konfiguraci zdrojů, takže není třeba se znepokojovat zveřejněním informací o konfiguraci zdrojů."
         },
-        "contribute_only": "Pouze přispět aplikací"
+        "contribute_only": "Pouze přispět aplikací",
+        "contribute_together": "Přispívat aplikaci a přidružené AI agentovi",
+        "contribute_only_tips": "Chcete-li přispět pouze aplikací. Pokud jsou v této aplikaci přiřazeni AI, uživatelé nemohou rozštěpit AI agenty.",
+        "contribute_together_tips": "Pokud v této aplikaci existují asociovaní AI agenti, přidružené AI agenti budou společně přispívat k tržišti. "
       },
       "social_media": {
         "label": "Sdílet na",

@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "După ce a contribuit aplicația ta la comunitate, alți utilizatori își pot vizualiza interfața, pot executa acțiunile și îl pot furca. Atunci când forjezi o aplicație, informațiile de configurare a resurselor nu sunt incluse, deci nu este nevoie să îți faci griji cu privire la publicarea informațiilor de configurare a resurselor."
         },
-        "contribute_only": "Contribuie numai aplicația"
+        "contribute_only": "Contribuie numai aplicația",
+        "contribute_together": "Contribuie aplicatia si Agentul AI asociat",
+        "contribute_only_tips": "Pentru a contribui doar aplicația. Dacă există AI Agenți asociați în această aplicație, utilizatorii nu pot furca Agentii AI.",
+        "contribute_together_tips": "Dacă există agenţi AI asociaţi în această aplicaţie, agenţii AI asociaţi vor contribui la marketplace împreună. "
       },
       "social_media": {
         "label": "Distribuie pe",

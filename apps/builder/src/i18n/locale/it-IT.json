@@ -1930,7 +1930,7 @@
           "y-axis_type": "Tipo di asse Y"
         },
         "grid_list": {
-          "column_adaptation": "Adattamento colonna",
+          "column_adaptation": "Column adaptation",
           "column_count": "Conteggio colonne",
           "row_height": "Adattamento riga",
           "item_radius": "Raggio oggetto",
@@ -2255,7 +2255,7 @@
           "y-axis_type": "Impostare il tipo di grafico può migliorare la leggibilità dei dati."
         },
         "grid_list": {
-          "column_adaptation": "In modalità automatica, il numero di colonne rimane fisso mentre la larghezza della colonna è regolabile. Il ridimensionamento della finestra del browser cambierà di conseguenza la larghezza della colonna.\r\nIn modalità fissa, il numero di colonne non è fisso mentre la larghezza della colonna rimane costante. Ridimensionando la finestra del browser cambierà il numero di colonne.",
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
           "column_count": "Usato per configurare il numero di colonne, che determina quante griglie vengono visualizzate per riga.",
           "row_height": "Usato per configurare l'altezza di ogni riga. In modalità automatica, l'altezza è adattabile e l'altezza della riga è determinata dalla griglia più alta della riga corrente. In modalità fissa, l'altezza della riga è fissa, e tutte le griglie hanno la stessa altezza.",
           "item_radius": "Usato per configurare il raggio d'angolo di ogni griglia",
@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Dopo aver contribuito la tua app alla comunità, altri utenti possono visualizzare la sua interfaccia, eseguire le sue azioni e effettuare il fork. Quando si forgia un'app, le informazioni di configurazione delle risorse non sono incluse, quindi non c'è bisogno di preoccuparsi della divulgazione delle informazioni di configurazione delle risorse."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Condividi su",

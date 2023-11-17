@@ -1930,7 +1930,7 @@
           "y-axis_type": "Y-as type"
         },
         "grid_list": {
-          "column_adaptation": "Kolom aanpassing",
+          "column_adaptation": "Column adaptation",
           "column_count": "Aantal kolommen",
           "row_height": "Rij aanpassing",
           "item_radius": "Item straal",
@@ -2255,7 +2255,7 @@
           "y-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren."
         },
         "grid_list": {
-          "column_adaptation": "In Auto Modus blijft het aantal kolommen vast staan terwijl de kolombreedte aanpasbaar is. Het wijzigen van het browservenster zal de kolombreedte wijzigen.\r\nIn vaste modus, is het aantal kolommen niet vast gezet terwijl de kolombreedte constant blijft. Het browservenster wijzigen zal het aantal kolommen wijzigen.",
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
           "column_count": "Wordt gebruikt om het aantal kolommen te configureren, die bepalen hoeveel rasters per rij worden weergegeven.",
           "row_height": "Gebruikt om de hoogte van elke rij te configureren. In Auto Mode is de hoogte aangepast en wordt de rijhoogte bepaald door het hoogste raster in de huidige rij. In vaste modus, is de rijhoogte vastgezet en alle rasters hebben dezelfde hoogte.",
           "item_radius": "Gebruikt om de straal van de hoek van elk raster te configureren",
@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Na het bijdragen van je app aan de community, kunnen andere gebruikers de interface bekijken, de acties uitvoeren en deze forken. Bij het forken van een app wordt de resource configuratie informatie niet opgenomen, dus er is geen reden om je zorgen te maken over de openbaarmaking van de resource configuratie informatie."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Delen op",

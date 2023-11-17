@@ -77,13 +77,13 @@
       "delete-failed": "Не вдалося видалити. Будь ласка, спробуйте ще раз. ",
       "delete-suc": "Успішно видалено. ",
       "mobile-fork-suc": "Успішно відгалужено. Будь ласка, відредагуйте на робочому столі.",
-      "save_resource": "Save successful, the page will be closing in 3 seconds..."
+      "save_resource": "Збереження успішне, сторінка буде закрита через 3 секунди..."
     },
     "create": "Створити",
     "pwa": {
       "guide": {
-        "title": "Add ILLA Cloud to your desktop",
-        "desc": "Add to your desktop to access to your workspace quickly. Boost your efficiency. "
+        "title": "Додайте ILLA Cloud до свого робочого столу",
+        "desc": "Додайте на свій комп'ютер, щоб швидко отримати доступ до робочого простору. Підвищіть свою ефективність. "
       }
     }
   },
@@ -211,7 +211,7 @@
           "oracle": {
             "sid": "Врахувати ім'я бази даних як",
             "ssl": "SSL",
-            "version": "Oracle version"
+            "version": "Версія Oracle"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
@@ -250,8 +250,8 @@
           "airtable": {
             "authentication": "Автентифікація"
           },
-          "old_oracle": "9i or below",
-          "new_oracle": "9i above"
+          "old_oracle": "9 і нижче",
+          "new_oracle": "9i більше"
         },
         "placeholder": {
           "url": "Введіть URL запит",
@@ -364,8 +364,8 @@
             },
             "ssl": "Використовувати SSL при наявності",
             "version": {
-              "below": "9i or below",
-              "above": "9i above"
+              "below": "9 і нижче",
+              "above": "9i більше"
             }
           },
           "couchdb": {
@@ -539,13 +539,13 @@
               "file_name": "illa.png",
               "file_id": "{{drivePicker1.value[0].fileID}}",
               "page": "{{0}} or {{dataGrid1.page}}",
-              "limit": "{{20}} or {{dataGrid1.pageSize}}",
-              "file_name_array": "{{upload1.files.map(file => file.name)}}",
+              "limit": "{{20}} або {{dataGrid1.pageSize}}",
+              "file_name_array": "{{upload1.files.map(файл => file.name)}}",
               "file_data_array": "{{upload1.value}}",
-              "file_ids": "{{[\"id1\",\"id2\"]}} or {{drivePicker1.value.map(file => fileID)}}",
-              "target_file_name": "new_file.csv"
+              "file_ids": "{{[\"id1\",\"id2\"]}} або {{drivePicker1.value.map(файл => fileID)}}",
+              "target_file_name": "новий_file.csv"
             },
-            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} or {{upload1.files.map(file =>file.type)}}"
+            "file_type_array": "{{[\"png\", \"jpg\", \"csv\"]}} або {{upload1.files.map(файл =>file.type)}}"
           },
           "option": {
             "couchdb": {
@@ -630,29 +630,29 @@
               }
             },
             "general": {
-              "js": "Transformer",
-              "global-data": "Global data",
+              "js": "Трансформатор",
+              "global-data": "Глобальні дані",
               "ai-agent": "AI Agent",
-              "more": "More",
-              "create-resource": "Create from resource",
-              "unsafe": "Unsafe",
-              "safe": "Safe"
+              "more": "Більше",
+              "create-resource": "Створити з ресурсу",
+              "unsafe": "Небезпечний",
+              "safe": "Безпечний"
             },
             "drive": {
               "method": {
-                "list": "List files",
-                "upload_file": "Upload 1 file",
-                "upload_multi_file": "Upload multiple files",
-                "download": "Download 1 file",
-                "download_multi_file": "Download multiple files",
-                "delete": "Delete 1 file",
-                "delete_multi_file": "Delete multiple files",
-                "update": "Rename file"
+                "list": "Список файлів",
+                "upload_file": "Завантажити 1 файл",
+                "upload_multi_file": "Завантажити декілька файлів",
+                "download": "Завантажити 1 файл",
+                "download_multi_file": "Завантажити декілька файлів",
+                "delete": "Видалити 1 файл",
+                "delete_multi_file": "Видалити кілька файлів",
+                "update": "Перейменувати файл"
               },
               "file_type": {
-                "none": "None",
-                "by_id": "By ID",
-                "by_name": "By name"
+                "none": "Без ефекту",
+                "by_id": "По ID",
+                "by_name": "За іменем"
               }
             }
           },
@@ -697,25 +697,25 @@
               "user_locales": "<0>Натисніть тут</0> щоб перевірити всі підтримувані мови. "
             },
             "global-data": {
-              "how-to-use": "Use this global data by {{globalData.state1}}"
+              "how-to-use": "Використовувати ці глобальні дані {{globalData.state1}}"
             },
             "general": {
               "safe_mode": "When using the safe mode, your SQL can only reference variables in the place of variables, for example, where name = '{{input1.value}}'. This prevents users from compromising your database by inputting statements like '; drop table;' in input1. When using the unsafe mode, SQL syntax words can also be replaced with variables, such as where {{input1.value}} {{input2.value}} '{{input3.value}}'. However, in this case, the database can be compromised by the content entered by the user. It is not recommended for you to use this mode."
             },
             "drive": {
-              "method": "Used to set what actions you plan to perform on the drive.",
-              "filter_type": "If you want to filter files, you can use this configuration option to specify filtering by file name or file ID. File name uses fuzzy matching, while file ID uses exact matching.",
-              "file_name": "Used for fuzzy matching files.",
-              "file_id": "Used to accurately list a specific file.",
+              "method": "Використовується, щоб встановити, які дії ви плануєте виконати на диску.",
+              "filter_type": "Якщо ви хочете фільтрувати файли, ви можете використовувати цю опцію конфігурації, щоб вказати фільтрування за назвою файлу або ідентифікатором файлу. Ім'я файлу використовує неточну збігу, в той час як ID файлу використовує точну відповідність.",
+              "file_name": "Використовується для нечіткого збігу файлів.",
+              "file_id": "Використовується для точного переліку конкретного файлу.",
               "folder": "Select a folder to operate. ",
               "page": "If you need server-side pagination, you can use this configuration option to set the page number of the data to retrieve. This is an index value that starts from 0.",
-              "limit": "If you need server-side pagination, you can use this configuration option to set the number of data items to be returned per page.",
-              "file_name_array": "An array consisting of the names of the files you want to upload, including the file extensions, such as [file1.csv, file2.csv]. You can directly retrieve this value using the upload component, like {{upload1.files.map(file => file.name)}}.",
-              "file_data_array": "An array of the data of the files you want to upload. You can get it via {{upload1.value}}.",
-              "file_ids": "An array of file IDs that you want to download. You can retrieve this value from the Drive Picker component using {{drivePicker1.value.map(file => fileID)}}, or you can obtain it through the list method.",
-              "file_type_array": "An array of type of the files to be uploaded. You can use {{upload1.files.map(file =>file.type)}} to get the file types from upload component. ",
-              "target_file_name": "Used to set the new name",
-              "overwrite": "If overwrite, we will replace the file with the new one. If not overwrite, we will rename the new file end with a random string. "
+              "limit": "Якщо вам потрібна сторінка з боку сервера, ви можете використовувати цю опцію конфігурації, щоб встановити кількість елементів передачі даних для повернення на одну сторінку.",
+              "file_name_array": "Масив складається з імен файлів, які ви хочете завантажити, в тому числі розширень файлів, таких як [file1.csv, file2. sv]. Ви можете безпосередньо отримати це значення використовуючи компонент завантаження, наприклад {{upload1.files.map(file => file.name)}}.",
+              "file_data_array": "Масив даних завантажених файлів. Ви можете отримати його через {{upload1.value}}.",
+              "file_ids": "Масив ідентифікаторів файлів, які ви хочете завантажити. Ви можете отримати це значення з компонента Drive Picker, використовуючи {{drivePicker1. alue.map(файл => fileID)}}, або ви можете отримати його за допомогою методу списку.",
+              "file_type_array": "Масив для завантаження файлів. Ви можете використати {{upload1.files.map(file =>file.type)}}, щоб отримати типи файлів від компонента завантаження. ",
+              "target_file_name": "Використовується для встановлення нового імені",
+              "overwrite": "Якщо ви заміните файл на новий. Якщо ви не переписали, ми перейменуємо новий файл на випадковий рядок. "
             }
           },
           "advanced": {
@@ -755,26 +755,26 @@
             "max-token": "Максимальний токен"
           },
           "general": {
-            "connect-data-source": "Connect to database or api",
-            "more-type": "More type of data sources",
-            "safe_mode": "Mode",
-            "ai_agent_title": "Integrate with AI Agent",
-            "integration_title": "Integrate with data source"
+            "connect-data-source": "Підключення до бази даних чи API",
+            "more-type": "Більше типу джерел даних",
+            "safe_mode": "Режим",
+            "ai_agent_title": "Інтегрувати з агентом AI",
+            "integration_title": "Інтегрувати з джерелом даних"
           },
           "drive": {
-            "method": "Method",
-            "filter_type": "Filter type",
-            "file_name": "File name",
-            "file_id": "File ID",
-            "folder": "Folder",
-            "page": "Page",
-            "limit": "Limit",
-            "file_name_array": "File name array",
-            "file_data_array": "File data array",
-            "file_ids": "File ID array",
-            "file_type_array": "File type array",
-            "target_file_name": "New name with extension",
-            "overwrite": "Overwrite when the name is duplicate"
+            "method": "Метод",
+            "filter_type": "Тип фільтру",
+            "file_name": "Ім'я файлу",
+            "file_id": "ID файлу",
+            "folder": "Тека",
+            "page": "Сторінка",
+            "limit": "Ліміт",
+            "file_name_array": "Масив імен файлу",
+            "file_data_array": "Масив даних файлу",
+            "file_ids": "Масив ID файлу",
+            "file_type_array": "Масив типу файлу",
+            "target_file_name": "Нове ім'я з розширенням",
+            "overwrite": "Перезаписувати, якщо ім'я дублюється"
           }
         },
         "menu": {
@@ -806,16 +806,16 @@
           "trigger": {
             "manually": "Виконати дію лише за умови активації вручну",
             "on_change": "Виконати дію автоматично при зміні входів",
-            "label": "Trigger type"
+            "label": "Тип виклику"
           },
           "mock": {
-            "label": "Mock",
-            "data_label": "Data",
-            "data_production": "Production",
-            "data_mock": "Mock",
+            "label": "Мок",
+            "data_label": "Дані",
+            "data_production": "Виробництво",
+            "data_mock": "Мок",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Use the mock JSON outputs on deployed app",
-            "duration": "Runtime duration(ms)"
+            "on_deploy": "Використовуйте фіктивні виводи JSON в розгорнутому додатку",
+            "duration": "Тривалість виконання (мс)"
           }
         },
         "s3": {
@@ -988,7 +988,7 @@
         },
         "title": {
           "general": {
-            "initial-title": "Connect to your data source and create an action to perform CRUD"
+            "initial-title": "Підключіться до джерела даних та створіть дію для виконання CRUD"
           }
         }
       },
@@ -1276,9 +1276,9 @@
           "placeholder": "{{ { count: 0 }}}"
         }
       },
-      "library": "Libraries",
+      "library": "Бібліотеки",
       "component_layer": {
-        "floating": "Modal"
+        "floating": "Модал"
       }
     },
     "deploy": {
@@ -1389,13 +1389,13 @@
           "on_menu_select": "Виберіть пункт меню",
           "pageChange": "Зміна сторінки",
           "clickItem": "Натиснути предмет",
-          "columnVisibilityChange": "Column visibility change",
-          "onPaginationModelChange": "Page change",
-          "onRefresh": "Refresh",
-          "onFilterModelChange": "Filter change",
-          "onRowSelectionModelChange": "Row selection change",
-          "onSortModelChange": "Sort change",
-          "onColumnVisibilityModelChange": "Column visibility change"
+          "columnVisibilityChange": "Змінити видимість стовпця",
+          "onPaginationModelChange": "Зміна сторінки",
+          "onRefresh": "Оновити",
+          "onFilterModelChange": "Зміна фільтра",
+          "onRowSelectionModelChange": "Зміна вибору рядків",
+          "onSortModelChange": "Впорядкувати",
+          "onColumnVisibilityModelChange": "Змінити видимість стовпця"
         },
         "image_list": {
           "title": "Малюнки",
@@ -1421,11 +1421,11 @@
         "sortChange": "сортувальна зміна",
         "pageChange": "Зміна сторінки",
         "refresh": "оновити",
-        "density_setting": "Density",
-        "column_setting": "Columns",
-        "refresh_setting": "Refresh",
+        "density_setting": "Густина",
+        "column_setting": "Стовпці",
+        "refresh_setting": "Оновити",
         "widget_action_type_naame": {
-          "onSortModelChange": "Sort change"
+          "onSortModelChange": "Впорядкувати"
         }
       },
       "setter_default_value": {
@@ -1510,9 +1510,9 @@
         "event": "Подія",
         "MESSAGE": "ПОВІДОМЛЕННЯ",
         "Toolbar": "ЗАТРИМКА",
-        "divider": "Inner divider",
-        "shadow": "Inner shadow",
-        "background": "Background",
+        "divider": "Розділювач",
+        "shadow": "Внутрішня тінь",
+        "background": "Фон",
         "padding": "Padding ( px )"
       },
       "setter_label": {
@@ -1803,7 +1803,7 @@
           "background": "Фон",
           "calendar_background": "Фон",
           "calendar_border": "Border",
-          "calendar_text": "Secondary text",
+          "calendar_text": "Додатковий текст",
           "event_background": "Фон",
           "event_text": "Текст",
           "draggable": "Перетягуємий",
@@ -1843,10 +1843,10 @@
           "currency_code": "Код валюти",
           "cell_selection": "Вибір клітинки",
           "click_outside_to_des": "Натисніть на вулицю, щоб зняти виділення",
-          "page": "Default page index",
-          "export_all_data_setting": "Export all",
-          "locale": "Locale",
-          "column_field": "Column field"
+          "page": "Стандартний індекс сторінки",
+          "export_all_data_setting": "Експортувати все",
+          "locale": "Локалізація",
+          "column_field": "Поле стовпця"
         },
         "previous_cursor": "Попередній курсор",
         "input": {
@@ -1930,37 +1930,37 @@
           "y-axis_type": "Y-вісь"
         },
         "grid_list": {
-          "column_adaptation": "Адаптація колонок",
+          "column_adaptation": "Column adaptation",
           "column_count": "Кількість стовпців",
           "row_height": "Рядкова адаптація",
           "item_radius": "Радіус елемента",
           "item_shadow": "Тіні елемента",
           "item_spacing": "Відстань між предметами",
-          "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "max_column_count": "Максимальна кількість стовпців",
+          "min_column_count": "Мінімальна кількість стовпців"
         },
         "src": "src",
-        "page_size_options": "Page size options",
-        "export_setting": "Export",
-        "filter_setting": "Filter",
-        "primary_key": "Primary key",
-        "allow_row_selection": "Allow row selection",
-        "selection_mode": "Selection mode",
-        "pin_column": "Pin column",
-        "enable_users_to_pin": "Enable users to pin",
-        "enable_users_to_filter": "Enable users to filter",
-        "enable_users_to_hide": "Enable users to hide",
-        "enable_users_to_set_group_by": "Enable users to set group by",
-        "column_description": "Description",
-        "enable_users_to_aggregate": "Enable users to aggregate",
-        "enable_users_to_resize": "Enable users to resize",
-        "enable_users_to_sort": "Enable users to sort",
-        "disable_users_to_reorder": "Disable users to reorder columns",
+        "page_size_options": "Параметри розміру сторінки",
+        "export_setting": "Експорт",
+        "filter_setting": "Фільтр",
+        "primary_key": "Первинний ключ",
+        "allow_row_selection": "Дозволити вибір рядків",
+        "selection_mode": "Режим вибору",
+        "pin_column": "Закріпити стовпчик",
+        "enable_users_to_pin": "Дозволити закріплювати користувачів",
+        "enable_users_to_filter": "Включити користувачам фільтрування",
+        "enable_users_to_hide": "Дозволити користувачам приховувати",
+        "enable_users_to_set_group_by": "Увімкнути користувачам для налаштування групи",
+        "column_description": "Опис",
+        "enable_users_to_aggregate": "Увімкнути користувачам для агрегування",
+        "enable_users_to_resize": "Дозволити користувачам змінювати розмір",
+        "enable_users_to_sort": "Дозволити користувачам сортування",
+        "disable_users_to_reorder": "Відключити користувачам зміну налаштувань стовпців",
         "default_width": "Default width",
-        "quick_filter_setting": "Quick filter",
-        "exclude_hidden_columns": "Exclude hidden columns",
-        "allow_users_select": "Allow row selection",
-        "enable_pagination": "Pagination"
+        "quick_filter_setting": "Швидкий фільтр",
+        "exclude_hidden_columns": "Виключити приховані стовпці",
+        "allow_users_select": "Дозволити вибір рядків",
+        "enable_pagination": "Розбивка на сторінки"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -2022,10 +2022,10 @@
         "showFooter": "Виберіть, чи показувати в футері",
         "senderAvatar": "Встановіть аватар. Наприклад, у вашому джерелі даних аватар відправник - це поле відправника \"Аватар\", і ви можете встановити поле {{item.sendAvatar}}.",
         "receiving": "Виберіть, чи показувати завантаження при отриманні повідомлень. Якщо ваше повідомлення отримано від дії 1, ви можете встановити його в {{action1.isRunning}}, і статус завантаження буде відображений при запуску action1.",
-        "export_setting": "Used to set whether or not users are allowed to export filtered data.",
-        "filter_setting": "Used to set whether or not to display filters, allowing users to filter data in the table.",
-        "quick_filter_setting": "Used to set whether to enable quick filter",
-        "exclude_hidden_columns": "Used to set whether to exlude the hidden columns when use quick filter. "
+        "export_setting": "Використовується для встановлення, чи дозволено користувачам експортувати відфільтровані дані.",
+        "filter_setting": "Використовується для встановлення, чи показувати фільтри, що дозволяє користувачам фільтрувати дані в таблиці.",
+        "quick_filter_setting": "Використовується для включення швидкого фільтру",
+        "exclude_hidden_columns": "Використовується для установки, чи виключити приховані стовпці при використанні швидкого фільтра. "
       },
       "tab_title": "Оглянути",
       "unselected_tip1": "Немає вибраних компонентів.",
@@ -2037,7 +2037,7 @@
         },
         "placeholder": {
           "file_download": {
-            "file_name": "file.csv or {{upload1.files[0].name}}"
+            "file_name": "file.csv або {{upload1.files[0].name}}"
           },
           "drive_builder": {
             "fileData": "{{upload1.value[0]}}"
@@ -2060,8 +2060,8 @@
         },
         "file_download": {
           "file_data": "Підтримка даних base64, необроблені дані, зіставлені дані таблиці. ",
-          "file_name": "The name of the file you want to upload, including the file extension, such as file.csv. You can get this value using the upload component, like {{upload1.files[0].name}}. ",
-          "file_type": "The type of the file to be uploaded"
+          "file_name": "Ім'я файлу, який ви хочете завантажити, включаючи розширення файлу, таке як файл. sv. Ви можете отримати це значення за допомогою компоненту завантаження, наприклад {{upload1.files[0].name}}. ",
+          "file_type": "Тип файлу, який потрібно завантажити"
         },
         "variable": {
           "available_in_objects": "Доступно в об'єктах і масивах. Шлях до атрибуту в об’єкті: {{objectName.attributeName}}. Індекс значення в масиві: {{1}}. Масив в об’єкті: {{objectName.attributeName.1}}",
@@ -2186,11 +2186,11 @@
           "currency_code": "Долари США",
           "whether_allow_users_": "Дозволити користувачам вибирати клітинку",
           "supported_in_the_row": "Підтримується в режимі одного вибору рядка. Після увімкнення натисніть область поза таблицею, щоб зняти виділення з рядка.",
-          "density_setting": "Used to set the row height density or not. ",
-          "refresh_setting": "Used to set whether to show a refresh icon",
-          "export_raw_data_setting": "Used to set whether or not users are allowed to export unfiltered raw data.",
-          "locale": "For example, en-US",
-          "column_field": "Used to set the column"
+          "density_setting": "Використовується для встановлення щільності на рівні рядків. ",
+          "refresh_setting": "Використовується для встановлення, чи показувати значок оновлення",
+          "export_raw_data_setting": "Використовується для встановлення, чи дозволено користувачам експортувати невідфільтровані дані.",
+          "locale": "Наприклад, uk-UA",
+          "column_field": "Використовується для встановлення стовпця"
         },
         "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}",
         "input": {
@@ -2255,32 +2255,32 @@
           "y-axis_type": "Установка типу діаграми може підвищити читабельність даних."
         },
         "grid_list": {
-          "column_adaptation": "У автоматичному режимі кількість стовпців залишається виправленою під час налаштування ширини стовпця. Зміна вікна браузера відповідною мірою змінить ширину колонки.\r\nУ фіксованому режимі кількість стовпців не виправлена, тоді як ширина стовпця залишається незмінною. Зміна розміру вікна браузера змінить кількість стовпців.",
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
           "column_count": "Використовується для налаштування кількості стовпців, яка визначає кількість сіток для кожного рядка.",
           "row_height": "Використовується для налаштування висоти кожного рядка. В автоматичному режимі висота адаптивна, а висота рядка визначається найвищою сіткою в поточному рядку. Фіксований режим, висота рядка фіксована, і всі сітки мають однакову висоту.",
           "item_radius": "Використовується для налаштування кутового радіусу кожної сітки",
           "item_shadow": "Використовується для налаштування розміру тіні для кожної сітки",
           "item_spacing": "Використовується для налаштування інтервалу між сітками",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Встановіть максимальну кількість стовпців, що можуть відображатися в компоненті списку Grid в міру збільшення ширини. Якщо досягнута максимальна кількість колонок і ширина полотна продовжує зростати, ширина стовпця буде збільшена до розміщення макету, а кількість колонок не збільшуватиметься далі."
         },
-        "primary_key": "A unique key for identifying a row",
-        "selection_mode": "Used to set multiple row selection or single row selection",
-        "allow_row_selection": "Used to set whether or not allow users to select row",
-        "pin_column": "Used to pin the column to all users",
-        "enable_users_to_pin": "Used to set whether or not allow users to pin the column",
-        "enable_users_to_filter": "Used to set whether or not allow users to filter on this column",
-        "enable_users_to_hide": "Used to set whether or not allow users to hide the column",
-        "enable_users_to_aggregate": "Used to set whether or not to allow users to perform data aggregation on this column.",
-        "enable_users_to_set_group_by": "Used to set whether or not to allow users to set up the data grouping display. ",
-        "column_description": "Used to set a description of this column",
-        "enable_users_to_sort": "Used to set whether or not allow users to change the sorting of this column. ",
-        "disable_users_to_reorder": "Used to set whether or not disable users to reorder the columns",
-        "default_width": "Used to set the default width of the column",
-        "max_count": "Used to set the max count of stars",
-        "allow_users_select": "Used to set whether allow users to select row. ",
-        "table_update_content": "The Table component will no longer be maintained. To ensure uninterrupted access to new features, please migrate your data to the Data Grid component.",
-        "table_update_title": "Update",
-        "enable_users_to_resize": "Used to set whether allow users to adjust width of the column."
+        "primary_key": "Унікальний ключ для визначення рядка",
+        "selection_mode": "Використовується для встановлення кількох рядків вибору або одного рядка",
+        "allow_row_selection": "Використовується, щоб встановити, чи дозволити користувачам вибрати рядок",
+        "pin_column": "Використовується для закріплення колонки для всіх користувачів",
+        "enable_users_to_pin": "Використовується, щоб встановити, чи дозволити користувачам закріпити стовпець",
+        "enable_users_to_filter": "Використовується для встановлення, чи дозволити користувачам фільтрувати на цей стовпець",
+        "enable_users_to_hide": "Використовується, щоб встановити, чи дозволити користувачам приховати стовпець",
+        "enable_users_to_aggregate": "Використовується для установки, чи дозволити користувачам виконувати агрегацію даних на цьому стовпці.",
+        "enable_users_to_set_group_by": "Використовується для встановлення, чи дозволити користувачам налаштувати відображення групування даних. ",
+        "column_description": "Використовується для встановлення опису цього стовпця",
+        "enable_users_to_sort": "Використовується, щоб встановити, чи дозволити користувачам змінити сортування цього стовпця. ",
+        "disable_users_to_reorder": "Використовується, щоб встановити, чи не відключити користувачів для повторного замовлення стовпців",
+        "default_width": "Використовується для встановлення типової ширини стовпця",
+        "max_count": "Використовується для встановлення максимальної кількості зірок",
+        "allow_users_select": "Використовується для установки, чи дозволити користувачам вибрати рядок. ",
+        "table_update_content": "Компонент таблиці більше не буде підтримуватися. Щоб безперервно отримати доступ до нових функцій, змініть свої дані на компонент сітки даних.",
+        "table_update_title": "Оновити",
+        "enable_users_to_resize": "Використовується для налаштування ширини стовпця."
       },
       "setter_option": {
         "fixed": "Виправлена",
@@ -2350,24 +2350,24 @@
           "cursor_based": "На основі курсору",
           "graphql_relay_cursor": "GraphQL Relay cursor-based",
           "column_type": {
-            "auto": "Auto",
-            "text": "Text",
-            "date": "Date",
-            "tag": "Tag",
-            "time": "Time",
-            "datetime": "Date time",
-            "number": "Number",
-            "percent": "Percent",
-            "link": "Link",
-            "button": "Button",
-            "buttongroup": "Button group",
+            "auto": "Авто",
+            "text": "Текст",
+            "date": "Дата",
+            "tag": "Тег",
+            "time": "Час",
+            "datetime": "Дата й час",
+            "number": "Номер",
+            "percent": "Відсоток",
+            "link": "Лінк",
+            "button": "Кнопка",
+            "buttongroup": "Група кнопок",
             "boolean": "Boolean",
-            "image": "Image",
-            "icongroup": "Icon group",
-            "rating": "Rating",
+            "image": "Зображення",
+            "icongroup": "Група іконок",
+            "rating": "Рейтинг",
             "markdown": "Markdown",
             "html": "Html",
-            "currency": "Currency"
+            "currency": "Валюта"
           }
         },
         "input": {
@@ -2455,8 +2455,8 @@
           "submit_button_text": "Задати текст кнопки Відправити"
         },
         "choose_image": "Choose an image",
-        "choose_pdf": "Select a folder and upload",
-        "choose_video": "Choose a video",
+        "choose_pdf": "Оберіть теку та завантажте",
+        "choose_video": "Виберіть відео",
         "choose_audio": "Choose an audio"
       },
       "setter_tootip": {
@@ -2511,8 +2511,8 @@
         "blank_view": "Без підсторінки"
       },
       "setter_options": {
-        "single_row_selection": "Single selection",
-        "multiple_row_selection": "Multiple selection"
+        "single_row_selection": "Єдиний вибір",
+        "multiple_row_selection": "Декілька варіантів"
       }
     },
     "page": {
@@ -2886,27 +2886,27 @@
         "text-generation": "Генерація тексту"
       },
       "validation_blank": {
-        "name": "Please enter a name",
-        "prompt": "Please enter the prompt",
-        "description": "Please enter the description",
-        "icon": "Please upload or generate an icon",
-        "variable_value": "Please ensure that both the key and value are either empty or not empty.",
-        "variable_key": "Please enter the key or delete the value. ",
-        "temperature": "Please enter the temperature between 0.1 to 2",
-        "max_token": "Please enter the max token not less than 1"
+        "name": "Будь ласка, введіть ім'я",
+        "prompt": "Введіть запит",
+        "description": "Будь ласка, введіть опис",
+        "icon": "Будь ласка, завантажте або згенеруйте значок",
+        "variable_value": "Будь ласка, переконайтеся, що і ключ, і значення не порожні, або ні.",
+        "variable_key": "Введіть ключ або видаліть значення. ",
+        "temperature": "Будь ласка, введіть температуру між 0,1 до 2",
+        "max_token": "Будь ласка, введіть макс. маркер не менше 1"
       },
       "length_invalid": {
-        "description": "Please limit the character count to 160 or less"
+        "description": "Будь ласка, обмежити кількість символів 160 або менше"
       },
       "value_invalid": {
-        "temperature": "Please enter the temperature between 0.1 to 2",
-        "max_token": "Please enter the max token not less than 1"
+        "temperature": "Будь ласка, введіть температуру між 0,1 до 2",
+        "max_token": "Будь ласка, введіть макс. маркер не менше 1"
       },
       "group": {
-        "advanced_settings": "Advanced settings",
-        "information": "Basic information"
+        "advanced_settings": "Розширені налаштування",
+        "information": "Основна інформація"
       },
-      "doc": "Doc"
+      "doc": "Доки"
     },
     "common": {
       "required": "Обов'язково"
@@ -3198,8 +3198,8 @@
       "select_options": {
         "manual": "Вручну",
         "mapped": "Зроблено",
-        "url": "URL",
-        "upload": "Upload"
+        "url": "Адреса",
+        "upload": "Вивантажити"
       },
       "top": "Верх"
     },
@@ -3224,14 +3224,14 @@
       "name": "Стіл",
       "pagination": "Розбивка на сторінки",
       "scroll": "Прокрутка",
-      "default": "Default",
-      "export_all_data": "Export all",
-      "refresh": "Refresh",
+      "default": "Типово",
+      "export_all_data": "Експортувати все",
+      "refresh": "Оновити",
       "export": {
-        "title": "Export",
-        "csv": "Export as csv",
+        "title": "Експорт",
+        "csv": "Експортувати як csv",
         "excel": "Export as excel",
-        "print": "Print"
+        "print": "Друк"
       }
     },
     "tabs": {
@@ -3348,13 +3348,13 @@
       "name": "Список сіток"
     },
     "frame": {
-      "initial-title": "Drag a component to add it to the frame"
+      "initial-title": "Перетягни компонент для того, щоб додати його в кадр"
     },
     "iframe": {
       "name": "IFrame"
     },
     "data_grid": {
-      "name": "Data grid"
+      "name": "Ґрід"
     }
   },
   "page": {
@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Після участі у розробці програми до спільноти, інші користувачі можуть переглядати її інтерфейс, виконувати її дії та форкувати. Коли програма форжить, інформація про конфігурацію ресурсів не включена, тому немає необхідності турбуватися про розкриття інформації з конфігурації ресурсів."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Зробити внесок тільки додатком",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Поділитися на",
@@ -3753,7 +3756,7 @@
         }
       },
       "setter_label": {
-        "enable_users_to_aggregate": "Enable users to aggregate"
+        "enable_users_to_aggregate": "Увімкнути користувачам для агрегування"
       }
     }
   },
@@ -3820,55 +3823,55 @@
     "message": {
       "start_upload": "Почати вивантаження",
       "start_download": "Почати завантаження",
-      "create_suc": "Successfully created",
-      "create_failed": "Failed to create",
-      "generate_url_fail": "Failed to generate the URL. Please select the file manually. "
+      "create_suc": "Успішно створено",
+      "create_failed": "Не вдалося створити",
+      "generate_url_fail": "Не вдалося згенерувати URL. Будь ласка, виберіть файл вручну. "
     },
     "create_modal": {
       "title": {
-        "create_a_folder": "Create a folder",
-        "create": "Create",
-        "cancel": "Cancel"
+        "create_a_folder": "Створити папку",
+        "create": "Створити",
+        "cancel": "Скасувати"
       },
-      "validate": "Letters, numbers and -~_=: are allowed",
-      "validate_failed": "Only letters, numbers and -~_=: are allowed. The limit is 255 characters or less"
+      "validate": "Дозволи, цифри та -~_=:",
+      "validate_failed": "Допускаються лише літери, цифри і -~_=. Обмеження - 255 символів"
     },
     "move_modal": {
       "no_folders": "No files here"
     },
     "same_name_modal": {
       "this_folder_already": "The file with the same name already exists in this folder or is being uploaded to this folder. Would you like to replace it?",
-      "keep_both": "Keep both",
-      "replace": "Replace",
-      "this_folder_already_": "The folder with the same name already exists. Would you like to replace it?"
+      "keep_both": "Залишити обидва",
+      "replace": "Заміняти",
+      "this_folder_already_": "Папка з таким ім'ям вже існує. Ви хотіли б замінити її?"
     },
     "upload": {
       "modal": {
         "title": "Select a folder to upload to",
-        "upload_to": "Upload to",
-        "all": "Root",
-        "create_folder": "Create new folder",
-        "cancel": "Cancel",
+        "upload_to": "Відвантажити до",
+        "all": "Корінь",
+        "create_folder": "Створити нову теку",
+        "cancel": "Скасувати",
         "file_upload": "Upload",
-        "select_folder": "Select the folder: ",
-        "select": "Select"
+        "select_folder": "Виберіть теку: ",
+        "select": "Вибрати"
       },
       "select": {
-        "confirm_button": "Select",
-        "select_entry": "Select"
+        "confirm_button": "Вибрати",
+        "select_entry": "Вибрати"
       }
     },
     "drive_builder": {
       "public_folder": {
-        "tips": "The \"PublicAccess\" is used to store files that can be accessed publicly through components in the Builder. Accessing files in this folder does not require authentication. To ensure file security, please don't store important files here."
+        "tips": "\"PublicAccess\" використовується для зберігання файлів, до яких можна отримати публічний доступ через компоненти в конструкторі. Доступ до файлів у цій папці не вимагає аутентифікації. Для забезпечення безпеки файлів, будь ласка, не зберігайте важливі файли тут."
       }
     },
     "modal": {
       "delete_going_on_task": {
-        "title": "Delete this task?",
-        "cancel": "Cancel",
-        "delete": "Delete",
-        "description": "Are you sure you want to delete this task? Once deleted, the task will be terminated."
+        "title": "Видалити це завдання?",
+        "cancel": "Скасувати",
+        "delete": "Видалити",
+        "description": "Ви дійсно бажаєте видалити цю задачу? Після видалення завдання буде скасовано."
       }
     }
   },
@@ -3997,9 +4000,9 @@
     "plus-btn": "Спробуйте безкоштовну версію",
     "enterprise-btn": "Зв'язатися з нами",
     "menu": {
-      "overview": "Overview",
-      "pricing": "Pricing",
-      "balance": "Balance",
+      "overview": "Перегляд попереднього контакту",
+      "pricing": "Ціноутворення",
+      "balance": "Баланс",
       "billing": "Біллінг",
       "license": "Ліцензія",
       "drive": "Драйв",
@@ -4010,36 +4013,36 @@
     },
     "pricing": {
       "premium": {
-        "desc": "Upgrade your team to access advanced features",
+        "desc": "Оновіть свою команду, щоб отримати доступ до додаткових можливостей",
         "feature": {
           "builder": {
-            "viewer": "FREE for unlimited viewers",
-            "audit_log": "Audit logs",
-            "public": "App public",
-            "sql": "AI SQL Generation",
-            "history": "Backup editing history & restore",
-            "theme": "Custom themes for your apps",
-            "multi_environment": "Multi-environment ( coming soon )",
-            "deployed_version": "Keep deployed versions & revert ( coming soon )"
+            "viewer": "БЕЗКОШТОВНА для необмеженої кількості глядачів",
+            "audit_log": "Журнал аудиту",
+            "public": "Публічний додаток",
+            "sql": "Генерація AI SQL",
+            "history": "Створити резервну копію історії та відновити",
+            "theme": "Користувацькі теми для ваших програм",
+            "multi_environment": "Багаторівнева територія (незабаром )",
+            "deployed_version": "Зберегти розгорнуті версії і скасувати ( найближчим часом)"
           },
           "agent": {
-            "gpt": "Access to more models such as GPT-4, GPT-3.5...",
-            "colla": "2.5k Colla / month"
+            "gpt": "Доступ до інших моделей, таких як GPT-4, GPT-3.5...",
+            "colla": "2.5k Колла / місяць"
           }
         },
-        "price": "/month/editor"
+        "price": "/місяць/редактор"
       },
       "colla": {
-        "desc": "Used for payment of fees incurred for value-added services within ILLA Cloud, including the following services",
+        "desc": "Використовується для сплати за платежами, викладеними на послуги з доданою вартістю в умовах ILLA Cloud, включаючи наступні послуги",
         "feature": {
-          "storage": "File storage. Used to storage files on ILLA Drive.",
-          "traffic": "Traffic. Used to download files from ILLA Drive.",
-          "token": "AI Agent token. Used to run AI Agents.",
+          "storage": "Пам'ять файлу. Використовується для зберігання файлів на диску ILLA.",
+          "traffic": "Трафік. Використовується для завантаження файлів з ILLA Drive.",
+          "token": "AI Agent маркер. Використовується для запуску співробітників.",
           "conversion": {
             "1": "10k Colla",
-            "2": "5GB storage",
-            "3": "5GB traffic",
-            "4": "50k token"
+            "2": "5 ҐБ сховища",
+            "3": "5 ГБ трафіку",
+            "4": "50к токен"
           }
         },
         "price": "/month/10k Colla",
@@ -4052,35 +4055,35 @@
       "drive": "Драйв",
       "colla": "Колла",
       "appsumo": "Аппсумо",
-      "overview": "Overview",
-      "pricing": "Pricing",
-      "balance": "Balance",
-      "colla_usage": "Colla usage"
+      "overview": "Перегляд попереднього контакту",
+      "pricing": "Ціноутворення",
+      "balance": "Баланс",
+      "colla_usage": "Змієносець"
     },
     "colla_usage": {
-      "used": "Used",
-      "token": "Token",
-      "storage": "Storage",
-      "traffic": "Traffic"
+      "used": "Використано",
+      "token": "Маркер",
+      "storage": "Сховище",
+      "traffic": "Трафік"
     },
     "subscription_general": {
       "team_type": {
-        "free": "Free",
-        "plus": "Plus",
-        "premium": "Premium"
+        "free": "Безкоштовно",
+        "plus": "Плюс",
+        "premium": "Преміум"
       },
       "colla": {
-        "desc": "Used for payment of fees incurred for value-added services within ILLA Cloud, including storage for ILLA Drive, traffic for ILLA Drive and token for AI Agent.",
+        "desc": "Використовується для сплати за платежами, викладених на послуги з доданою вартістю в умовах ILLA Cloud, включаючи сховище для керування, трафіку та токену ILLA Agent.",
         "table_title": {
-          "colla": "Colla",
-          "seats": "Seats"
+          "colla": "Колла",
+          "seats": "Місця"
         },
         "table_desc": {
-          "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla."
+          "bouns": "Коли вашого поточного балансу кола недостатньо, ми автоматично додамо Колла. Бонусний Колла є додатковою платою і не входить до складу підписки на цей цикл. Коли ваша підписка автоматично подовжуватиметься в наступному циклі, вона не включатиме Преміальний Коллок."
         },
         "table_button": {
-          "seats": "Manage seats",
-          "colla": "Manage Colla"
+          "seats": "Управління місцями",
+          "colla": "Управління коллою"
         }
       },
       "plan": {
@@ -4103,25 +4106,25 @@
         "storage": "Сховище",
         "traffic": "Трафік",
         "colla": "Колла",
-        "colla_unsub": "Balance",
-        "colla_sub": "Colla",
-        "seats": "Seats",
-        "bouns": "Bouns Colla"
+        "colla_unsub": "Баланс",
+        "colla_sub": "Колла",
+        "seats": "Місця",
+        "bouns": "Бунс Колла"
       },
       "period": {
         "current": "Поточна версія",
         "next": "Уперед"
       },
       "cycle": {
-        "month": "/ month",
-        "year": "/ year"
+        "month": "/ місяць",
+        "year": "/ рік"
       },
       "table_desc": {
-        "bouns": "When your current cycle's Colla balance is insufficient, we will automatically add Colla for you. Bonus Colla is an additional charge and is not included in the subscription for the cycle. When your subscription automatically renews in the next cycle, it will not include Bonus Colla. "
+        "bouns": "Коли вашого поточного балансу кола недостатньо, ми автоматично додамо Колла. Бонусний Колла є додатковою платою і не входить до складу підписки на цей цикл. Коли ваша підписка автоматично подовжуватиметься в наступному циклі, вона не включатиме Преміальний Коллок. "
       },
       "table_button": {
-        "seats": "Manage seats",
-        "colla": "Manage Colla"
+        "seats": "Управління місцями",
+        "colla": "Управління коллою"
       }
     },
     "subscription_card": {
@@ -4238,9 +4241,9 @@
       },
       "colla": {
         "1": "{{purchaseNum}} Colla",
-        "2": "{{storageNum}} storage",
-        "3": "{{trafficNum}} traffic",
-        "4": "{{tokenNum}} token"
+        "2": "Сховище {{storageNum}}",
+        "3": "{{trafficNum}} трафік",
+        "4": "Токен {{tokenNum}}"
       },
       "description_title": {
         "add_storage": "Ви збираєтеся додати {{changeNum}} ГБ сховища. Після підтвердження ми негайно віднімемо платіж за нове сховище для цього циклу оплати. <0>Дізнатися більше</0>",
@@ -4318,47 +4321,47 @@
       "unsubscription_fail": "Не вдалося скасувати підписку. Будь ласка, спробуйте ще раз пізніше.",
       "failed_to_update": "Не вдалося оновити підписку. Будь ласка, спробуйте ще раз. ",
       "update_suc": "Підписку успішно оновлено",
-      "no_storage": "Insufficient storage. Please contact the administrator to increase Colla.",
-      "no_traffic": "Insufficient traffic. Please contact the administrator to increase Colla.",
-      "no_token": "Insufficient token. Please contact the administrator to increase Colla."
+      "no_storage": "Недостатньо пам’яті. Будь ласка, зверніться до адміністратора, щоб збільшити Колір.",
+      "no_traffic": "Недостатньо трафіку. Будь ласка, зверніться до адміністратора, щоб збільшити Колію.",
+      "no_token": "Недостатній маркер. Зверніться до адміністратора, щоб збільшити Колір."
     },
     "modal": {
       "colla_insufficient_modal": {
         "storage": {
-          "title": "Insufficient storage",
+          "title": "Недостатньо пам'яті для збереження",
           "desc": {
-            "1": "Your storage is insufficient. Please subscribe to Colla to increase your storage.",
-            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+            "1": "Недостатньо пам'яті. Будь ласка, підпишіться на Colla для збільшення зберігання.",
+            "2": "Після підписки на Colla, ваш Colla може бути використаний, щоб збільшити зберігання, збільшити трафік, і додати маркер, який буде автоматично розподілятися на основі ваших потреб."
           }
         },
         "traffic": {
-          "title": "Insufficient traffic",
+          "title": "Недостатньо трафіку",
           "desc": {
-            "1": "Your traffic is insufficient. Please subscribe to Colla to increase your traffic.",
-            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+            "1": "Недостатньо вашого трафіку. Будь ласка, підпишіться на Colla щоб збільшити трафік.",
+            "2": "Після підписки на Colla, ваш Colla може бути використаний, щоб збільшити зберігання, збільшити трафік, і додати маркер, який буде автоматично розподілятися на основі ваших потреб."
           }
         },
         "token": {
-          "title": "Insufficient token",
+          "title": "Недостатньо токену",
           "desc": {
-            "1": "Your token is insufficient. Please subscribe to Colla to increase your token.",
-            "2": "After subscribing to Colla, your Colla can be utilized to increase storage, boost traffic, and augment token, which will be automatically allocated based on your needs."
+            "1": "Недостатньо вашого токену. Будь ласка, підпишіться на Colla для збільшення вашого токену.",
+            "2": "Після підписки на Colla, ваш Colla може бути використаний, щоб збільшити зберігання, збільшити трафік, і додати маркер, який буде автоматично розподілятися на основі ваших потреб."
           }
         },
-        "button": "Increase Colla",
+        "button": "Фінт Колла",
         "cycle": "/monthly/10k Colla",
         "failed": {
-          "title": "Failed to increase Colla",
+          "title": "Не вдалося збільшити Кольла",
           "storage": {
-            "desc": "Your Colla balance is insufficient to cover the current storage requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+            "desc": "Вашого балансу Colla недостатньо, щоб покрити поточну вимогу для зберігання. Ми зіткнулися з деякими проблемами під час збільшення вашого Колеги. Будь ласка, збільшіть Colla вручну."
           },
           "traffic": {
-            "desc": "Your Colla balance is insufficient to cover the current traffic requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+            "desc": "Ваш баланс Colla недостатній для покриття поточної вимоги до трафіку. Ми зіткнулися з деякими проблемами при збільшенні вашої Коллії. Будь ласка, збільшіть Colla вручну."
           },
           "token": {
-            "desc": "Your Colla balance is insufficient to cover the current token requirement. And we encountered some issues while increasing your Colla. Please increase Colla manually."
+            "desc": "Ваш баланс Colla недостатній, щоб покрити поточні вимоги до токена. Ми зіткнулися з деякими проблемами при збільшенні вашого Колеги. Будь ласка, збільшіть Colla вручну."
           },
-          "button": "Increase Colla"
+          "button": "Фінт Колла"
         }
       },
       "storage_insufficient_modal": {
@@ -4451,9 +4454,9 @@
         "string2": "Щоб використовувати його, будь ласка, оновіть Premium-версію. Купуючи Premium, ви також матимете доступ до наступних функцій. "
       },
       "upgrade_now_not_admin": {
-        "upgrade_title": "This model is for Premium teams",
-        "upgrade_desc": "To use this model, please contact the admin to upgrade your team.",
-        "upgrade_button": "OK"
+        "upgrade_title": "Ця модель для Преміум команд",
+        "upgrade_desc": "Щоб використовувати цю модель, будь ласка, зверніться до адміністратора, щоб оновити вашу команду.",
+        "upgrade_button": "Гаразд"
       }
     },
     "homepage": {
@@ -4525,9 +4528,9 @@
       "feature": "Видалити водяний знак"
     },
     "label": {
-      "canceled": "Canceled",
-      "expired": "Expired",
-      "paused": "Paused"
+      "canceled": "Скасовано",
+      "expired": "Термін дії закінчився",
+      "paused": "Призупинено"
     }
   },
   "network": {
@@ -4618,7 +4621,7 @@
     "star": "Зірка",
     "fork": "Fork",
     "agent": {
-      "create_app": "Create app with this AI Agent"
+      "create_app": "Створити програму за допомогою цього AI Agent"
     }
   },
   "load": {
@@ -4627,25 +4630,25 @@
   "size_exceed_copied_tips": "Вміст занадто довгий для копіювання. (поточний розмір: {{current_size}} байт, обмеження: {{limit_size}} байт)",
   "contribute": {
     "tag": {
-      "recommended": "Recommended",
-      "add_tag": "Add tags",
-      "tag": "Tag",
-      "failed_to_save": "Failed to save"
+      "recommended": "Рекомендовані",
+      "add_tag": "Додавання тегів",
+      "tag": "Тег",
+      "failed_to_save": "Не вдалося зберегти"
     },
-    "update": "Edit tags",
-    "copy_link": "Copy link",
+    "update": "Редагування тегів",
+    "copy_link": "Скопіювати посилання",
     "first_time_modal": {
-      "title": "Contribute to community",
-      "button": "Contribute"
+      "title": "Сприяти спільноті",
+      "button": "Зробити свій внесок"
     },
     "update_modal": {
-      "button": "Update",
-      "title": "Edit"
+      "button": "Оновити",
+      "title": "Редагувати"
     },
-    "checkbox_ai_agent": "Sync the associated AI Agent to Marketplace"
+    "checkbox_ai_agent": "Синхронізуйте асоційованого AI Agent на ринку"
   },
   "error_page": {
     "fobidden": "Немає дозволу на доступ"
   },
-  "show_states": "Show states"
+  "show_states": "Показати області"
 }
