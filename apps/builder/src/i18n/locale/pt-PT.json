@@ -1930,7 +1930,7 @@
           "y-axis_type": "Tipo Eixo-Y"
         },
         "grid_list": {
-          "column_adaptation": "Adaptação da coluna",
+          "column_adaptation": "Column adaptation",
           "column_count": "Contagem de colunas",
           "row_height": "Adaptação da linha",
           "item_radius": "Raio do item",
@@ -2255,7 +2255,7 @@
           "y-axis_type": "Definir o tipo de gráfico pode melhorar a legibilidade de dados."
         },
         "grid_list": {
-          "column_adaptation": "No modo automático, o número de colunas permanece fixo enquanto a largura da coluna é ajustável. Redimensionar a janela do navegador alterará a largura da coluna de acordo.\r\nNo modo fixo, o número de colunas não é corrigido enquanto a largura da coluna permanece constante. Redimensionando a janela do navegador irá alterar o número de colunas.",
+          "column_adaptation": "In Auto mode, the number of columns remains fixed while the column width is adjustable. Resizing the browser window will change the column width accordingly.\r\nIn Fixed mode, the number of columns is not fixed while the column width remains constant. Resizing the browser window will alter the number of columns.",
           "column_count": "Usado para configurar o número de colunas, que determina quantas grades são exibidas por linha.",
           "row_height": "Usado para configurar a altura de cada linha. No modo automático, a altura é adaptável, e a altura da linha é determinada pela grade mais alta da linha atual. No modo fixo, a altura da linha é corrigida, e todas as grades têm a mesma altura.",
           "item_radius": "Usado para configurar o raio do canto de cada grade",
@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Depois de contribuir com seu aplicativo para a comunidade, outros usuários podem ver sua interface, executar suas ações e bifurcá-lo. Ao criar um aplicativo, as informações de configuração de recursos não estão incluídas, não há necessidade de se preocupar com a divulgação das informações de configuração de recursos."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Compartilhar em",
