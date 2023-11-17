@@ -1930,7 +1930,7 @@
           "y-axis_type": "Tipo eje Y"
         },
         "grid_list": {
-          "column_adaptation": "Adaptación a columnas",
+          "column_adaptation": "Column adaptation",
           "column_count": "Número de columnas",
           "row_height": "Adaptación de fila",
           "item_radius": "Radio del artículo",
@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Después de contribuir con tu aplicación a la comunidad, otros usuarios pueden ver su interfaz, ejecutar sus acciones y bifurcarla. Al bifurcar una aplicación, la información de configuración de recursos no está incluida, por lo que no hay necesidad de preocuparse por la divulgación de información de configuración de recursos."
         },
-        "contribute_only": "Contribute app only"
+        "contribute_only": "Contribute app only",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Compartir en",
