@@ -3596,7 +3596,10 @@
         "app": {
           "desc": "Etter at du har bidratt med appen til samfunnet, kan andre brukere se grensesnittet, kjøre handlingene dens og gaffke den. Når du har lagt til en app, er ikke ressurskonfigurasjonsinformasjonen inkludert, så det er ikke nødvendig å bekymre deg om utlevering av informasjon om ressurskonfigurasjon."
         },
-        "contribute_only": "Bidra kun med appen"
+        "contribute_only": "Bidra kun med appen",
+        "contribute_together": "Contribute App and associated AI Agent",
+        "contribute_only_tips": "To contribute the app only. If there are associated AI Agents in this app, users can not fork the AI Agents.",
+        "contribute_together_tips": "If there are associated AI Agents in this app, the associated AI Agents will be contributed to marketplace together. "
       },
       "social_media": {
         "label": "Del på",
