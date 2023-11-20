@@ -18,15 +18,15 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "CONTAINER",
   w: 13,
   h: 38,
-  version: 1,
+  version: 0,
   childrenNode: [
     {
       ...BasicContainerConfig,
       childrenNode: [
         {
           ...IMAGE_WIDGET_CONFIG,
-          w: 13,
-          h: 22,
+          w: 8,
+          h: 16,
           x: 0,
           y: 1,
           defaults: {
@@ -38,49 +38,13 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
         },
         {
           ...TEXT_WIDGET_CONFIG,
-          w: 19,
+          w: 23,
           h: 9,
-          x: 13,
-          y: 1,
+          x: 9,
+          y: 2,
           defaults: {
             ...TEXT_WIDGET_CONFIG.defaults,
             value: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => ('### ' + currentItem.name))}}`,
-            $dynamicAttrPaths: ["value"],
-          },
-        },
-        {
-          ...TEXT_WIDGET_CONFIG,
-          w: 19,
-          h: 4,
-          x: 13,
-          y: 10,
-          defaults: {
-            ...TEXT_WIDGET_CONFIG.defaults,
-            value: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.company))}}`,
-            $dynamicAttrPaths: ["value"],
-          },
-        },
-        {
-          ...TEXT_WIDGET_CONFIG,
-          w: 19,
-          h: 4,
-          x: 13,
-          y: 14,
-          defaults: {
-            ...TEXT_WIDGET_CONFIG.defaults,
-            value: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => ( currentItem.title))}}`,
-            $dynamicAttrPaths: ["value"],
-          },
-        },
-        {
-          ...TEXT_WIDGET_CONFIG,
-          w: 19,
-          h: 4,
-          x: 13,
-          y: 18,
-          defaults: {
-            ...TEXT_WIDGET_CONFIG.defaults,
-            value: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.email))}}`,
             $dynamicAttrPaths: ["value"],
           },
         },
@@ -95,12 +59,12 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     paginationType: PAGINATION_TYPE.LIMIT_OFFSET_BASED,
     itemBackGroundColor: "white",
     themeColor: "blue",
-    itemHeight: 205,
+    itemHeight: 150,
     selectedIndex: undefined,
     selectedItem: undefined,
     dataSources: `{{
-  ${JSON.stringify(DEFAULT_LIST)}
-}}`,
+      ${JSON.stringify(DEFAULT_LIST)}
+    }}`,
     dynamicHeight: "fixed",
     resizeDirection: RESIZE_DIRECTION.ALL,
     page: 0,

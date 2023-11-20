@@ -42,7 +42,7 @@ const ListGapSetter: FC<BaseInputSetterProps> = (props) => {
       <span>
         <PanelLabel
           labelName={t("editor.inspect.setter_label.grid_list.item_spacing")}
-          labelDesc="editor.inspect.setter_tips.grid_list.item_spacing"
+          labelDesc={t("editor.inspect.setter_tips.grid_list.item_spacing")}
         />
       </span>
       {isGridGap ? (

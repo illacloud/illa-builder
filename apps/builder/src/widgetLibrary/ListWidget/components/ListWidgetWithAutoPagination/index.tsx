@@ -134,7 +134,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       }}
       ref={containerRef}
     >
-      <div css={itemContainerStyle(itemGap)}>
+      <div css={itemContainerStyle(itemGap, itemShadow)}>
         {(page == undefined || page === 0) && (
           <Resizable
             size={{

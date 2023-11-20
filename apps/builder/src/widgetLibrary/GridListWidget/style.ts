@@ -1,6 +1,7 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { COLUMN_NUM_ADAPTATION } from "./interface"
+import { COLUMN_NUM_ADAPTATION, ShadowOptions } from "./interface"
+import { getPaddingByShadow } from "./utils"
 
 export const listParentContainerStyle = css`
   width: 100%;
@@ -61,6 +62,7 @@ export const itemContainerStyle = (
   columnNumAdaptation: COLUMN_NUM_ADAPTATION,
   itemGapX: number,
   itemGapY: number,
+  shadow?: ShadowOptions,
   numberOfColumns?: number,
   minColumnWidth?: number,
 ) => {
@@ -77,13 +79,14 @@ export const itemContainerStyle = (
       );
     `
   }
+  let paddingStyle = getPaddingByShadow(shadow)
   return css`
     display: grid;
     width: 100%;
     gap: ${itemGapX}px ${itemGapY}px;
     ${gridStyle};
     overflow-y: auto;
-    padding: 1px;
+    padding: ${paddingStyle};
   `
 }
 
