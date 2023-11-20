@@ -1,0 +1,50 @@
+name: Build all in one image
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  release:
+    types: [published]
+
+env:
+  ILLA_MUI_LICENSE: ${{ secrets.ILLA_MUI_LICENSE }}
+  DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
+  DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
+
+jobs:
+  build:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set IMAGE_TAG
+        run: |
+          echo "IMAGE_TAG=${{ github.event_name == 'release'&& github.event.release.tag_name || github.ref_name }}" >> $GITHUB_ENV
+
+      - name: Set BE_BRANCH
+        run: |
+          echo "BE_BRANCH=${{ github.event_name == 'release' && 'main' || 'develop' }}" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v4
+        with:
+          repository: illacloud/build-all-in-one-image
+          path: build-all-in-one-image
+
+      - name: Build Docker Image
+        run: |
+          cd ./build-all-in-one-image
+          docker build -f ./dockerfile -t illasoft/illa-builder:${IMAGE_TAG} --build-arg FE=${IMAGE_TAG} --build-arg BE=${BE_BRANCH} --build-arg SBE=${BE_BRANCH} --no-cache --build-arg ILLA_MUI_LICENSE=${ILLA_MUI_LICENSE} .
+
+      - name: Push Docker image
+        run: |
+          docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
+          docker push illasoft/illa-builder:${IMAGE_TAG}
+
+      - name: Release Docker image
+        when:
+          github.event_name == 'release' &&
+          startsWith(github.event.release.tag_name, 'illa-builder@')
+        run: |
+          docker tag illasoft/illa-builder:${IMAGE_TAG} illasoft/illa-builder:latest
+          docker push illasoft/illa-builder:latest
