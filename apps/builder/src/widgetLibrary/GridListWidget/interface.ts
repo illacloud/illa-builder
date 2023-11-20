@@ -5,7 +5,12 @@ export enum PAGINATION_TYPE {
   LIMIT_OFFSET_BASED = "limitOffsetBased",
   CURSOR_BASED = "cursorBased",
 }
-export interface ListWidgetProps extends BaseWidgetProps {
+
+export enum COLUMN_NUM_ADAPTATION {
+  FIXED = "fixed",
+  DYNAMIC = "dynamic",
+}
+export interface GridListWidgetProps extends BaseWidgetProps {
   dataSources?: Array<unknown>
   enablePagination?: boolean
   enableServerSidePagination?: boolean
@@ -16,10 +21,10 @@ export interface ListWidgetProps extends BaseWidgetProps {
   nextCursor?: string
   hasNextPage?: boolean
   totalRowCount?: number
-  itemGap?: number
+  itemGapX?: number
+  itemGapY?: number
   itemHeight: number
   currentPage: number
-  selectedIndex: number
   itemBackGroundColor: string
   itemBorderWidth?: string
   itemBorderColor?: string
@@ -31,6 +36,9 @@ export interface ListWidgetProps extends BaseWidgetProps {
   h: number
   dynamicMinHeight?: number
   dynamicMaxHeight?: number
+  columnNumAdaptation?: COLUMN_NUM_ADAPTATION
+  numberOfColumns?: number
+  minColumnWidth?: number
   themeColor?: string
   loading?: boolean
 }
@@ -58,8 +66,8 @@ export interface RenderCopyContainerProps {
   displayNamePrefix: string
 }
 
-export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {
+export interface ListWidgetPropsWithChildrenNodes extends GridListWidgetProps {
   copyComponents: ComponentTreeNode[] | null
-  selectIndexForMark?: number
   handleUpdateSelectedItem: (index: number) => void
+  selectIndexForMark?: number
 }

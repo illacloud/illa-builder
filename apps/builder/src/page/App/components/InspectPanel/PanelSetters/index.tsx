@@ -342,6 +342,16 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter"
       ),
   ),
+  ITEM_BORDER_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/ItemBorderSetter"
+      ),
+  ),
+  LIST_GAP_SETTER: lazy(
+    () =>
+      import("@/page/App/components/InspectPanel/PanelSetters/ListGapSetter"),
+  ),
   ...DeprecatedSetterTypeMapSetter,
 }
 

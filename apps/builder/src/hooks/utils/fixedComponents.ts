@@ -40,6 +40,20 @@ const fixedMenuComponent = (component: ComponentTreeNode) => {
   return component
 }
 
+const fixedListComponent = (component: ComponentTreeNode) => {
+  return {
+    ...component,
+    props: {
+      ...component.props,
+      enablePagination:
+        component.props && component.props.overflowMethod === "PAGINATION"
+          ? true
+          : false,
+      backgroundColor: "#ffffffbf",
+    },
+  }
+}
+
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentTreeNode,
 ) => {
@@ -54,6 +68,8 @@ export const fixedComponentsToNewComponents = (
           case "MENU_WIDGET": {
             return fixedMenuComponent(component)
           }
+          case "LIST_WIDGET":
+            return fixedListComponent(component)
           default: {
             return fixedComponentsToNewComponents(component)
           }

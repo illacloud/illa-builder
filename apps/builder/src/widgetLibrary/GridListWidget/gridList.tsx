@@ -11,12 +11,12 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
-import { ListWidgetProps } from "@/widgetLibrary/ListWidget/interface"
 import ListWidgetWithAutoPagination from "./components/ListWidgetWithAutoPagination"
 import ListWidgetWithServerPagination from "./components/ListWidgetWithServerPagination"
 import { ComponentLoading } from "./components/Loading"
+import { GridListWidgetProps } from "./interface"
 
-export const ListWidget: FC<ListWidgetProps> = (props) => {
+export const GridListWidget: FC<GridListWidgetProps> = (props) => {
   const {
     displayName,
     dataSources,
@@ -34,11 +34,10 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const executionResult = useSelector(getExecutionResult)
   const rawTree = useSelector(getRawTree)
   const components = useSelector(getComponentMap)
+  const prevDataSourcesRef = useRef(dataSources)
   const [selectIndexForMark, setSelectIndexForMark] = useState<
     undefined | number
   >()
-
-  const prevDataSourcesRef = useRef(dataSources)
 
   const updateTemplateContainerNodesProps = useCallback(
     (childrenNodeDisplayNames: string[]) => {
@@ -105,7 +104,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                 set(
                   currentItem,
                   "displayName",
-                  `list-child-${index}-${currentItemDisplayName}`,
+                  `grid-list-child-${index}-${currentItemDisplayName}`,
                 )
                 if (disabled != undefined) {
                   set(currentItem, "props.disabled", disabled)
@@ -137,7 +136,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
           set(
             currentItemContainer,
             "displayName",
-            `list-widget-container-${index}`,
+            `grid-list-widget-container-${index}`,
           )
         }
         return currentItemContainer as unknown as ComponentTreeNode
@@ -198,7 +197,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
         ])
         resolve(value)
       }).then(() => {
-        triggerEventHandler("rowSelect")
+        triggerEventHandler("clickItem")
       })
     },
     [
@@ -248,15 +247,15 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
         <ListWidgetWithServerPagination
           {...props}
           copyComponents={getChildrenNodes}
-          selectIndexForMark={selectIndexForMark}
           handleUpdateSelectedItem={handleUpdateSelectedItem}
+          selectIndexForMark={selectIndexForMark}
         />
       ) : (
         <ListWidgetWithAutoPagination
           {...props}
           copyComponents={getChildrenNodes}
-          selectIndexForMark={selectIndexForMark}
           handleUpdateSelectedItem={handleUpdateSelectedItem}
+          selectIndexForMark={selectIndexForMark}
         />
       )}
       {loading && <ComponentLoading themeColor={themeColor} />}
@@ -264,4 +263,4 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   )
 }
 
-export default ListWidget
+export default GridListWidget

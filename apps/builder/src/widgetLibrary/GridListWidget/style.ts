@@ -1,9 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import {
-  LIST_ITEM_MARGIN_TOP,
-  WIDGET_SCALE_SQUARE_BORDER_WIDTH,
-} from "@/page/App/components/ScaleSquare/constant/widget"
+import { COLUMN_NUM_ADAPTATION } from "./interface"
 
 export const listParentContainerStyle = css`
   width: 100%;
@@ -28,7 +25,6 @@ export const ListParentContainerWithScroll = css`
 
 export const applyListItemStyle = (
   isFirst: boolean = false,
-  canShowBorder: boolean = false,
   bgColor: string,
   shadowStyle: string,
   borderStyle: string,
@@ -46,8 +42,6 @@ export const applyListItemStyle = (
     height: ${itemHeight ? `${itemHeight}px` : "100%"};
     background-color: ${bgColor || "white"};
     flex: none;
-    border: ${WIDGET_SCALE_SQUARE_BORDER_WIDTH}px dashed
-      ${canShowBorder ? getColor("techPurple", "01") : "transparent"};
     opacity: ${isEditor && !isFirst ? 0.5 : 1};
     ${borderStyle};
     box-shadow: ${shadowStyle};
@@ -63,13 +57,40 @@ export const paginationWrapperStyle = css`
   flex: none;
 `
 
-export const itemContainerStyle = (itemGap?: number) => css`
+export const itemContainerStyle = (
+  columnNumAdaptation: COLUMN_NUM_ADAPTATION,
+  itemGapX: number,
+  itemGapY: number,
+  numberOfColumns?: number,
+  minColumnWidth?: number,
+) => {
+  let gridStyle
+  if (columnNumAdaptation === COLUMN_NUM_ADAPTATION.FIXED) {
+    gridStyle = css`
+      grid-template-columns: repeat(${numberOfColumns ?? 3}, 1fr);
+    `
+  } else {
+    gridStyle = css`
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(${minColumnWidth ?? 240}px, 1fr)
+      );
+    `
+  }
+  return css`
+    display: grid;
+    width: 100%;
+    gap: ${itemGapX}px ${itemGapY}px;
+    ${gridStyle};
+    overflow-y: auto;
+    padding: 1px;
+  `
+}
+
+export const radioButtonOptionItemStyle = css`
   display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: ${itemGap ?? LIST_ITEM_MARGIN_TOP}px;
-  overflow-y: auto;
-  padding: 1px;
+  align-items: center;
+  gap: 8px;
 `
 
 export const selectStyle = (
