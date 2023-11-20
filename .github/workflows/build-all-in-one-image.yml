@@ -20,7 +20,13 @@ jobs:
     steps:
       - name: Set IMAGE_TAG
         run: |
-          echo "IMAGE_TAG=${{ github.event_name == 'release'&& github.event.release.tag_name || github.ref_name }}" >> $GITHUB_ENV
+          if [ "${{ github.event_name }}" = "release" ]; then
+            TAG=${{ github.event.release.tag_name }}
+            VERSION=v${TAG#illa-builder@}
+            echo "IMAGE_TAG=${VERSION}" >> $GITHUB_ENV
+          else
+            echo "IMAGE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+          fi
 
       - name: Set BE_BRANCH
         run: |
