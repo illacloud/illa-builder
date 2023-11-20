@@ -339,7 +339,7 @@ export const GRID_LIST_PANEL_CONFIG: PanelConfig[] = [
             attrName: "itemShadow",
             setterType: "SHADOW_SELECT_SETTER",
             useCustomLayout: true,
-            defaultValue: "small",
+            defaultValue: "medium",
           },
         ],
       },

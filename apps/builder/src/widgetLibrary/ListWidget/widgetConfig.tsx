@@ -33,7 +33,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
             ...IMAGE_WIDGET_CONFIG.defaults,
             imageSrc: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.photo))}}`,
             $dynamicAttrPaths: ["imageSrc"],
-            radius: "8px",
+            radius: "4px",
           },
         },
         {
@@ -70,7 +70,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     page: 0,
     offset: 0,
     itemBorderRadius: "4px",
-    itemShadow: "none",
+    itemShadow: "medium",
     beforeCursor: undefined,
     afterCursor: undefined,
     totalRowCount: undefined,
