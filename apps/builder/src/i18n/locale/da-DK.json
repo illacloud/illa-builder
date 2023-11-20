@@ -1937,7 +1937,9 @@
           "item_shadow": "Element skygge",
           "item_spacing": "Element afstand",
           "max_column_count": "Maks. antal kolonner",
-          "min_column_count": "Min. antal kolonner"
+          "min_column_count": "Min. antal kolonner",
+          "column_num": "Antal kolonner",
+          "min_column_width": "Min. bredde af kolonner"
         },
         "src": "src",
         "page_size_options": "Indstillinger for sidestørrelse",
@@ -2261,7 +2263,9 @@
           "item_radius": "Bruges til at konfigurere hjørneradius for hvert gitter",
           "item_shadow": "Bruges til at konfigurere skyggestørrelsen for hvert gitter",
           "item_spacing": "Bruges til at konfigurere afstanden mellem gitre",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component component as its width increases (Automatic Copy) Når det maksimale antal kolonner er nået, og lærredets bredde fortsætter med at stige, kolonnens bredde vil blive øget for at rumme layoutet, og antallet af kolonner vil ikke stige yderligere."
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component component as its width increases (Automatic Copy) Når det maksimale antal kolonner er nået, og lærredets bredde fortsætter med at stige, kolonnens bredde vil blive øget for at rumme layoutet, og antallet af kolonner vil ikke stige yderligere.",
+          "column_num": "Bruges til at indstille antallet af kolonner",
+          "min_column_width": "Bruges til at indstille min bredden af kolonner"
         },
         "primary_key": "En unik nøgle til identifikation af en række",
         "selection_mode": "Bruges til at indstille flere række valg eller enkelt række valg",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Standard",
             "Date": "Dato"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Fast",
+            "dynamic": "Dynamisk"
           }
         }
       },
