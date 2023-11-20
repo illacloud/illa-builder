@@ -1937,7 +1937,9 @@
           "item_shadow": "Stín položek",
           "item_spacing": "Mezery položek",
           "max_column_count": "Maximální počet sloupců",
-          "min_column_count": "Minimální počet sloupců"
+          "min_column_count": "Minimální počet sloupců",
+          "column_num": "Počet sloupců",
+          "min_column_width": "Min. šířka sloupců"
         },
         "src": "src",
         "page_size_options": "Možnosti velikosti stránky",
@@ -2261,7 +2263,9 @@
           "item_radius": "Používá se pro nastavení poloměru rohů každé mřížky",
           "item_shadow": "Používá se ke konfiguraci stínu každé mřížky",
           "item_spacing": "Používá se ke konfiguraci mezery mezi mřížkami",
-          "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší."
+          "max_column_count": "Nastavte maximální počet sloupců, které mohou být zobrazeny v komponentě seznamu mřížek, jak se jeho šířka zvětšuje. Když je dosaženo maximálního počtu sloupců a šířka plátna se nadále zvyšuje, Šířka sloupce bude zvýšena, aby se přizpůsobila rozložení, a počet sloupců se dále nezvýší.",
+          "column_num": "Slouží k nastavení počtu sloupců",
+          "min_column_width": "Použít k nastavení minimální šířky sloupců"
         },
         "primary_key": "Jedinečný klíč pro identifikaci řádku",
         "selection_mode": "Používá se k nastavení výběru více řádků nebo výběru jednoho řádku",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Výchozí",
             "Date": "Datum:"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Fixní",
+            "dynamic": "Dynamický"
           }
         }
       },
