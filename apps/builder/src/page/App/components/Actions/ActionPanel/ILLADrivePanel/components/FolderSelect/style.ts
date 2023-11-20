@@ -64,3 +64,12 @@ export const actionItemCodeEditorStyle = css`
   width: 100%;
   margin: 0 0 8px 16px;
 `
+
+export const nameStyle = css`
+  display: flex;
+  width: 160px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+`

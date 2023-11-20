@@ -46,7 +46,7 @@ export const smartSubstituteDynamicValues = (
         finalBinding = finalBinding.replace(b, `${value}`)
         break
       case Types.STRING:
-        finalBinding = finalBinding.replace(b, `${JSON.stringify(value)}`)
+        finalBinding = finalBinding.replace(b, value as string)
         break
       case Types.ARRAY:
       case Types.OBJECT:
@@ -62,7 +62,7 @@ export const substituteDynamicBindingWithValues = (
   stringSnippets: string[],
   values: unknown[],
 ): string => {
-  return smartSubstituteDynamicValues(dynamicString, stringSnippets, values)
+  return templateSubstituteDynamicValues(dynamicString, stringSnippets, values)
 }
 
 const ASYNC_SCRIPT_CODE_INPUT_START_MARKS = "{{(async function (){"

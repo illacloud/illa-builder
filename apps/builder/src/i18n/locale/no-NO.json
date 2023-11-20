@@ -814,7 +814,8 @@
             "data_production": "Produksjon",
             "data_mock": "Feil",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Bruk mock JSON utdata på distribuert app"
+            "on_deploy": "Bruk mock JSON utdata på distribuert app",
+            "duration": "Varetid (ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Raskt filter",
         "exclude_hidden_columns": "Ekskluder skjulte kolonner",
-        "allow_users_select": "Tillat radmarkering"
+        "allow_users_select": "Tillat radmarkering",
+        "enable_pagination": "Paginering"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -3593,7 +3595,11 @@
         "turn_off": "Avbryt bidrag",
         "app": {
           "desc": "Etter at du har bidratt med appen til samfunnet, kan andre brukere se grensesnittet, kjøre handlingene dens og gaffke den. Når du har lagt til en app, er ikke ressurskonfigurasjonsinformasjonen inkludert, så det er ikke nødvendig å bekymre deg om utlevering av informasjon om ressurskonfigurasjon."
-        }
+        },
+        "contribute_only": "Bidra kun med appen",
+        "contribute_together": "Bidra til App og tilhørende AI Agent",
+        "contribute_only_tips": "For å bidra bare med appen. Hvis det er tilknyttede AI-agenter i denne appen, kan brukere ikke forke AI-agentene.",
+        "contribute_together_tips": "Hvis det finnes tilknyttede AI-agenter i denne appen, vil de tilknyttede AI-agentene bli bidratt til en markedsplass sammen. "
       },
       "social_media": {
         "label": "Del på",
@@ -4613,7 +4619,10 @@
   "ai-agents": "AI agenter",
   "marketplace": {
     "star": "Stjerne",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Lag en app med denne AI-agenten"
+    }
   },
   "load": {
     "before": "Last mer"

@@ -814,7 +814,8 @@
             "data_production": "Production",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "デプロイされたアプリでモックJSON出力を使用する"
+            "on_deploy": "デプロイされたアプリでモックJSON出力を使用する",
+            "duration": "ランタイムの継続時間 (ms)"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "クイックフィルタ",
         "exclude_hidden_columns": "非表示の列を除外",
-        "allow_users_select": "行の選択を許可"
+        "allow_users_select": "行の選択を許可",
+        "enable_pagination": "改ページ"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -3593,7 +3595,11 @@
         "turn_off": "投稿をキャンセル",
         "app": {
           "desc": "アプリをコミュニティに貢献すると、他のユーザーがインターフェイスを表示したり、アクションを実行したり、フォークしたりできます。 アプリをフォークするとき、リソース構成情報は含まれないため、リソース構成情報の開示を心配する必要はありません。"
-        }
+        },
+        "contribute_only": "アプリのみに貢献する",
+        "contribute_together": "アプリと関連する AI Agent に貢献する",
+        "contribute_only_tips": "アプリにAIエージェントが関連付けられている場合、ユーザーはAIエージェントをフォークできません。",
+        "contribute_together_tips": "このアプリにAIエージェントが関連付けられている場合、AIエージェントは一緒に市場に貢献します。 "
       },
       "social_media": {
         "label": "共有先：",
@@ -4613,7 +4619,10 @@
   "ai-agents": "AIエージェント",
   "marketplace": {
     "star": "スター",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "この AI エージェントでアプリを作成"
+    }
   },
   "load": {
     "before": "さらに読み込む"

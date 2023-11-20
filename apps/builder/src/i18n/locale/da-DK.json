@@ -814,7 +814,8 @@
             "data_production": "Produktion",
             "data_mock": "Mock",
             "json": "Mock JSON Outputs",
-            "on_deploy": "Brug mock JSON udgange på implementeret app"
+            "on_deploy": "Brug mock JSON udgange på implementeret app",
+            "duration": "Varighed af køretid"
           }
         },
         "s3": {
@@ -1958,7 +1959,8 @@
         "default_width": "Default width",
         "quick_filter_setting": "Hurtigt filter",
         "exclude_hidden_columns": "Udeluk skjulte kolonner",
-        "allow_users_select": "Tillad valg af række"
+        "allow_users_select": "Tillad valg af række",
+        "enable_pagination": "Sideinddeling"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -3593,7 +3595,11 @@
         "turn_off": "Annuller bidrag",
         "app": {
           "desc": "Efter at have bidraget din app til fællesskabet, kan andre brugere se sin grænseflade, køre sine handlinger, og gaffel det. Når en app forges, er ressourcekonfigurationsoplysningerne ikke inkluderet, så der er ingen grund til at bekymre sig om offentliggørelse af ressourcekonfigurationsoplysninger."
-        }
+        },
+        "contribute_only": "Bidrag kun til app",
+        "contribute_together": "Bidrag app og tilknyttet AI-agent",
+        "contribute_only_tips": "Kun for at bidrage med appen. Hvis der er tilknyttet AI Agents i denne app, kan brugerne ikke gaffel AI Agenter.",
+        "contribute_together_tips": "Hvis der er tilknyttet AI Agents i denne app, vil de tilknyttede AI Agents blive bidraget til markedspladsen sammen. "
       },
       "social_media": {
         "label": "Del på",
@@ -4613,7 +4619,10 @@
   "ai-agents": "AI Agenter",
   "marketplace": {
     "star": "Stjerne",
-    "fork": "Fork"
+    "fork": "Fork",
+    "agent": {
+      "create_app": "Opret app med denne AI Agent"
+    }
   },
   "load": {
     "before": "Indlæs mere"
