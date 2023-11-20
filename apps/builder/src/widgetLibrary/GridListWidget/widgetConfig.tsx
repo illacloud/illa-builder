@@ -6,7 +6,7 @@ import { IMAGE_WIDGET_CONFIG } from "@/widgetLibrary/ImageWidget"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import { DEFAULT_LIST } from "./constants"
-import { PAGINATION_TYPE } from "./interface"
+import { COLUMN_NUM_ADAPTATION, PAGINATION_TYPE } from "./interface"
 
 export const GRID_LIST_WIDGET_CONFIG: WidgetConfig = {
   type: "GRID_LIST_WIDGET",
@@ -99,8 +99,11 @@ export const GRID_LIST_WIDGET_CONFIG: WidgetConfig = {
     dataSources: `{{
       ${JSON.stringify(DEFAULT_LIST)}
     }}`,
+    columnNumAdaptation: COLUMN_NUM_ADAPTATION.FIXED,
     dynamicHeight: "fixed",
     resizeDirection: RESIZE_DIRECTION.ALL,
+    numberOfColumns: "{{3}}",
+    minColumnWidth: "{{240}}",
     page: "{{0}}",
     offset: "{{0}}",
     itemBorderRadius: "4px",
