@@ -167,6 +167,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
           columnNumAdaptation!,
           itemGapX,
           itemGapY,
+          itemShadow,
           numberOfColumns,
           minColumnWidth,
         )}

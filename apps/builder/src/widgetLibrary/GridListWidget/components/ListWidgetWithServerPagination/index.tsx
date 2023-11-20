@@ -232,6 +232,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
           columnNumAdaptation!,
           itemGapX,
           itemGapY,
+          itemShadow,
           numberOfColumns,
           minColumnWidth,
         )}

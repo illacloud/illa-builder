@@ -198,7 +198,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
         setIsMouseHover(false)
       }}
     >
-      <div css={itemContainerStyle(itemGap)}>
+      <div css={itemContainerStyle(itemGap, itemShadow)}>
         <Resizable
           size={{
             width: "100%",
