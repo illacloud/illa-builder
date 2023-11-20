@@ -124,7 +124,7 @@ export const generateComponentNodeByWidgetInfo = (
     version,
     props: props ?? {},
   }
-  if (baseDSL.type === "LIST_WIDGET") {
+  if (baseDSL.type === "LIST_WIDGET" || baseDSL.type === "GRID_LIST_WIDGET") {
     baseDSL = transformListWidget(baseDSL)
   }
   return baseDSL
@@ -270,7 +270,7 @@ export const newGenerateComponentNode = (
     props: props ?? {},
     version,
   }
-  if (baseDSL.type === "LIST_WIDGET") {
+  if (baseDSL.type === "LIST_WIDGET" || baseDSL.type === "GRID_LIST_WIDGET") {
     baseDSL = transformListWidget(baseDSL)
   } else {
     baseDSL = transFormTemplateDisplayName(baseDSL)

@@ -1,13 +1,17 @@
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
+import { ReactComponent as ColumnAutoIcon } from "@/assets/rightPagePanel/gridList/columnAuto.svg"
+import { ReactComponent as ColumnFixedIcon } from "@/assets/rightPagePanel/gridList/columnFixed.svg"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { LIST_ITEM_MARGIN_TOP } from "@/page/App/components/ScaleSquare/constant/widget"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { LIST_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ListWidget/eventHandlerConfig"
+import { GRID_LIST_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/GridListWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { PAGINATION_TYPE } from "./interface"
+import { COLUMN_NUM_ADAPTATION, PAGINATION_TYPE } from "./interface"
+import { radioButtonOptionItemStyle } from "./style"
 
-const baseWidgetName = "list"
-export const LIST_PANEL_CONFIG: PanelConfig[] = [
+const baseWidgetName = "gridList"
+export const GRID_LIST_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,
     groupName: i18n.t("editor.inspect.setter_group.data"),
@@ -28,7 +32,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          LIST_EVENT_HANDLER_CONFIG.events,
+          GRID_LIST_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {
@@ -182,6 +186,80 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
+        id: `${baseWidgetName}-layout-Column_num_adaptation`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.grid_list.column_adaptation",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.grid_list.column_adaptation",
+        ),
+        attrName: "columnNumAdaptation",
+        setterType: "RADIO_GROUP_SETTER",
+        isSetterSingleRow: true,
+        defaultValue: COLUMN_NUM_ADAPTATION.FIXED,
+        options: [
+          {
+            label: (
+              <span css={radioButtonOptionItemStyle}>
+                <ColumnFixedIcon />
+                <span>
+                  {i18n.t(
+                    "editor.inspect.setter_option.grid_list.column_adaptation.fixed",
+                  )}
+                </span>
+              </span>
+            ),
+            value: COLUMN_NUM_ADAPTATION.FIXED,
+          },
+          {
+            label: (
+              <span css={radioButtonOptionItemStyle}>
+                <ColumnAutoIcon />
+                <span>
+                  {i18n.t(
+                    "editor.inspect.setter_option.grid_list.column_adaptation.dynamic",
+                  )}
+                </span>
+              </span>
+            ),
+            value: COLUMN_NUM_ADAPTATION.DYNAMIC,
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-layout-number_of_columns`,
+        labelName: i18n.t("editor.inspect.setter_label.grid_list.column_num"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.grid_list.column_num"),
+        attrName: "numberOfColumns",
+        setterType: "INPUT_SETTER",
+        bindAttrName: ["columnNumAdaptation"],
+        shown: (v) => v === COLUMN_NUM_ADAPTATION.FIXED,
+        expectedType: VALIDATION_TYPES.NUMBER,
+      },
+      {
+        id: `${baseWidgetName}-layout-Min_column_width(px)`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.grid_list.min_column_width",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.grid_list.min_column_width",
+        ),
+        attrName: "minColumnWidth",
+        setterType: "INPUT_SETTER",
+        bindAttrName: ["columnNumAdaptation"],
+        shown: (v) => v === COLUMN_NUM_ADAPTATION.DYNAMIC,
+        expectedType: VALIDATION_TYPES.NUMBER,
+      },
+      {
+        id: `${baseWidgetName}-layout-item_gap`,
+        setterType: "LIST_GAP_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.grid_list.item_spacing"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.grid_list.item_spacing"),
+        attrName: "itemGap",
+        defaultValue: LIST_ITEM_MARGIN_TOP,
+        expectedType: VALIDATION_TYPES.NUMBER,
+      },
+      {
         id: `${baseWidgetName}-layout-height`,
         labelName: i18n.t("editor.inspect.setter_label.height"),
         attrName: "dynamicHeight",
@@ -197,14 +275,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
-      {
-        id: `${baseWidgetName}-layout-item_gap`,
-        setterType: "LIST_GAP_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.grid_list.item_spacing"),
-        labelDesc: i18n.t("editor.inspect.setter_tips.grid_list.item_spacing"),
-        attrName: "itemGap",
-        expectedType: VALIDATION_TYPES.NUMBER,
-      },
+
       {
         id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",

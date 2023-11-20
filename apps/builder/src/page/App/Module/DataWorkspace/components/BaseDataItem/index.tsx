@@ -163,7 +163,10 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
                     />
                   )
                 }
-                if (value.$widgetType === "LIST_WIDGET")
+                if (
+                  value.$widgetType === "LIST_WIDGET" ||
+                  value.$widgetType === "GRID_LIST_WIDGET"
+                )
                   return (
                     <BaseDataItem
                       key={item.displayName}
