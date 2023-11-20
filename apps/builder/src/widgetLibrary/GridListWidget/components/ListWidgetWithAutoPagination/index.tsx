@@ -143,11 +143,16 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
 
   const shadowStyle = getShadowStyle(itemShadow)
   const borderStyle = useMemo(() => {
+    let borderWidth, borderRadius
+    const borderWidthNum = itemBorderWidth?.match(/\d+(\.\d+)?/g)
+    if (borderWidth) borderWidth = borderWidthNum?.join("") + "px"
+    const radiusNum = itemBorderRadius?.match(/\d+(\.\d+)?/g)
+    if (radiusNum) borderRadius = radiusNum?.join("") + "px"
     return `
     border: ${
-      itemBorderWidth ? `${itemBorderWidth} solid ${itemBorderColor}` : "unset"
+      borderWidth ? `${borderWidth} solid ${itemBorderColor}` : "unset"
     };
-      border-radius: ${itemBorderRadius ?? "unset"}
+      border-radius: ${borderRadius ?? "unset"}
     `
   }, [itemBorderColor, itemBorderRadius, itemBorderWidth])
 
