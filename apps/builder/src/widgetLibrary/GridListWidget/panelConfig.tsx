@@ -36,6 +36,15 @@ export const GRID_LIST_PANEL_CONFIG: PanelConfig[] = [
         ),
       },
       {
+        id: `${baseWidgetName}-interaction-loading`,
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
+        attrName: "loading",
+        placeholder: "{{false}}",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
@@ -127,7 +136,7 @@ export const GRID_LIST_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.previous_cursor"),
         attrName: "previousCursor",
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
+        expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: [
           "enablePagination",
           "enableServerSidePagination",
@@ -143,7 +152,7 @@ export const GRID_LIST_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.table.next_cursor"),
         attrName: "nextCursor",
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
+        expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: [
           "enablePagination",
           "enableServerSidePagination",

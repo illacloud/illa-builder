@@ -55,6 +55,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     dynamicHeight = "fixed",
     selectIndexForMark,
     themeColor,
+    loading,
     handleUpdateMultiExecutionResult,
     h,
   } = props
@@ -186,7 +187,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
             }
             handleComponent={isMouseHover ? resizeBottomHandler() : undefined}
             enable={
-              dynamicHeight !== "fixed"
+              dynamicHeight !== "fixed" || loading
                 ? {}
                 : {
                     bottom: true,
@@ -210,6 +211,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   shadowStyle,
                   borderStyle,
                   isEditMode,
+                  loading,
                 )}
                 ref={itemRef}
                 onClick={() => {
@@ -263,6 +265,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   shadowStyle,
                   borderStyle,
                   isEditMode,
+                  loading,
                   itemHeight,
                 )}
                 onClick={() => {

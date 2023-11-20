@@ -92,7 +92,7 @@ export const GRID_LIST_WIDGET_CONFIG: WidgetConfig = {
     pageSize: "{{10}}",
     paginationType: PAGINATION_TYPE.LIMIT_OFFSET_BASED,
     itemBackGroundColor: "white",
-    backgroundColor: "white",
+    themeColor: "blue",
     itemHeight: 205,
     selectedIndex: undefined,
     selectedItem: undefined,

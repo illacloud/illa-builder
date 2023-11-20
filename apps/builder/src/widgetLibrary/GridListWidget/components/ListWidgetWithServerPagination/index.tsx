@@ -65,6 +65,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     enablePagination,
+    loading,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [paginationRef, paginationBounds] = useMeasure()
@@ -80,7 +81,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const propsRef = useRef(props)
   const handleChangePage = useCallback(
     (pageNumber: number) => {
-      if (pageNumber <= 1 || disabled) return
+      if (pageNumber <= 0 || disabled) return
       new Promise((resolve) => {
         handleUpdateMultiExecutionResult([
           {
@@ -248,7 +249,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
           }
           handleComponent={isMouseHover ? resizeBottomHandler() : undefined}
           enable={
-            dynamicHeight !== "fixed"
+            dynamicHeight !== "fixed" || loading
               ? {}
               : {
                   bottom: true,
@@ -272,6 +273,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 shadowStyle,
                 borderStyle,
                 isEditMode,
+                loading,
               )}
               onClick={() => {
                 handleUpdateSelectedItem(0)
@@ -321,6 +323,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   shadowStyle,
                   borderStyle,
                   isEditMode,
+                  loading,
                   itemHeight,
                 )}
                 ref={itemRef}
@@ -339,7 +342,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
           )
         })}
       </div>
-      {enableServerSidePagination && (
+      {enablePagination && enableServerSidePagination && (
         <div css={paginationWrapperStyle} ref={paginationRef}>
           {paginationType === PAGINATION_TYPE.LIMIT_OFFSET_BASED ? (
             <Pagination

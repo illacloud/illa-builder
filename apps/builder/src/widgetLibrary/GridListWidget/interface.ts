@@ -40,6 +40,7 @@ export interface GridListWidgetProps extends BaseWidgetProps {
   numberOfColumns?: number
   minColumnWidth?: number
   themeColor?: string
+  loading?: boolean
 }
 
 export interface RenderTemplateContainerProps {
