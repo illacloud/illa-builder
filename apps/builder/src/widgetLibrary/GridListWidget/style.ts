@@ -29,6 +29,7 @@ export const applyListItemStyle = (
   shadowStyle: string,
   borderStyle: string,
   isEditor: boolean = false,
+  loading?: boolean,
   itemHeight?: number,
 ) => {
   let extraPadding = isFirst
@@ -45,6 +46,7 @@ export const applyListItemStyle = (
     ${borderStyle};
     box-shadow: ${shadowStyle};
     ${extraPadding};
+    pointer-events: ${loading ? "none" : "unset"};
   `
 }
 
@@ -77,7 +79,6 @@ export const itemContainerStyle = (
   }
   return css`
     display: grid;
-    height: 100%;
     width: 100%;
     gap: ${itemGapX}px ${itemGapY}px;
     ${gridStyle};
@@ -102,6 +103,7 @@ export const selectStyle = (
   if (isEditMode || !isSelect) {
     return css`
       width: 100%;
+      height: ${itemHeight ? `${itemHeight}px` : "100%"};
     `
   }
   return css`

@@ -32,6 +32,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
   dynamicMinHeight?: number
   dynamicMaxHeight?: number
   themeColor?: string
+  loading?: boolean
 }
 
 export interface RenderTemplateContainerProps {

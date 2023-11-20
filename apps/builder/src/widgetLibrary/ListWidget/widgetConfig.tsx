@@ -94,7 +94,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     itemGap: LIST_ITEM_MARGIN_TOP,
     paginationType: PAGINATION_TYPE.LIMIT_OFFSET_BASED,
     itemBackGroundColor: "white",
-    backgroundColor: "white",
+    themeColor: "blue",
     itemHeight: 205,
     selectedIndex: undefined,
     selectedItem: undefined,

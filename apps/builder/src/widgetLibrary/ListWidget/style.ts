@@ -33,6 +33,7 @@ export const applyListItemStyle = (
   shadowStyle: string,
   borderStyle: string,
   isEditor: boolean = false,
+  loading?: boolean,
   itemHeight?: number,
 ) => {
   let extraPadding = isFirst
@@ -51,6 +52,7 @@ export const applyListItemStyle = (
     ${borderStyle};
     box-shadow: ${shadowStyle};
     ${extraPadding};
+    pointer-events: ${loading ? "none" : "unset"};
   `
 }
 
@@ -63,7 +65,6 @@ export const paginationWrapperStyle = css`
 
 export const itemContainerStyle = (itemGap?: number) => css`
   display: flex;
-  height: 100%;
   width: 100%;
   flex-direction: column;
   gap: ${itemGap ?? LIST_ITEM_MARGIN_TOP}px;
@@ -81,6 +82,7 @@ export const selectStyle = (
   if (isEditMode || !isSelect) {
     return css`
       width: 100%;
+      height: ${itemHeight ? `${itemHeight}px` : "100%"};
     `
   }
   return css`
