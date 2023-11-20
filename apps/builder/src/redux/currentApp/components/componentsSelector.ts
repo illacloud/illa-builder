@@ -311,7 +311,7 @@ export const getContainerListWidget = createSelector(
     }
 
     return componentNodes.filter((node) => {
-      return node.type === "LIST_WIDGET"
+      return node.type === "LIST_WIDGET" || node.type === "GRID_LIST_WIDGET"
     })
   },
 )
