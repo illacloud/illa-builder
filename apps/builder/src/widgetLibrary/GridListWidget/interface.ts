@@ -10,6 +10,8 @@ export enum COLUMN_NUM_ADAPTATION {
   FIXED = "fixed",
   DYNAMIC = "dynamic",
 }
+
+export type ShadowOptions = "none" | "small" | "medium" | "large"
 export interface GridListWidgetProps extends BaseWidgetProps {
   dataSources?: Array<unknown>
   enablePagination?: boolean
@@ -29,7 +31,7 @@ export interface GridListWidgetProps extends BaseWidgetProps {
   itemBorderWidth?: string
   itemBorderColor?: string
   itemBorderRadius?: string
-  itemShadow?: "none" | "small" | "medium" | "large"
+  itemShadow?: ShadowOptions
   disabled: boolean
   columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"

@@ -31,7 +31,6 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
     themeColor,
   } = props
 
-  const propsRef = useRef(props)
   const executionResult = useSelector(getExecutionResult)
   const rawTree = useSelector(getRawTree)
   const components = useSelector(getComponentMap)
@@ -39,12 +38,6 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
   const [selectIndexForMark, setSelectIndexForMark] = useState<
     undefined | number
   >()
-
-  useEffect(() => {
-    if (!isEqual(propsRef.current, props)) {
-      propsRef.current = props
-    }
-  }, [props])
 
   const updateTemplateContainerNodesProps = useCallback(
     (childrenNodeDisplayNames: string[]) => {

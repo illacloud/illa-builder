@@ -31,7 +31,6 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     themeColor,
   } = props
 
-  const propsRef = useRef(props)
   const executionResult = useSelector(getExecutionResult)
   const rawTree = useSelector(getRawTree)
   const components = useSelector(getComponentMap)
@@ -40,12 +39,6 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   >()
 
   const prevDataSourcesRef = useRef(dataSources)
-
-  useEffect(() => {
-    if (!isEqual(propsRef.current, props)) {
-      propsRef.current = props
-    }
-  }, [props])
 
   const updateTemplateContainerNodesProps = useCallback(
     (childrenNodeDisplayNames: string[]) => {

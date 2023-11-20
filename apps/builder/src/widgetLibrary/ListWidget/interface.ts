@@ -5,6 +5,7 @@ export enum PAGINATION_TYPE {
   LIMIT_OFFSET_BASED = "limitOffsetBased",
   CURSOR_BASED = "cursorBased",
 }
+export type ShadowOptions = "none" | "small" | "medium" | "large"
 export interface ListWidgetProps extends BaseWidgetProps {
   dataSources?: Array<unknown>
   enablePagination?: boolean
@@ -24,7 +25,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
   itemBorderWidth?: string
   itemBorderColor?: string
   itemBorderRadius?: string
-  itemShadow?: "none" | "small" | "medium" | "large"
+  itemShadow?: ShadowOptions
   disabled: boolean
   columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"
