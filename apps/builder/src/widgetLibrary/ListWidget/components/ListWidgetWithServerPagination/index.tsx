@@ -169,8 +169,9 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const shadowStyle = getShadowStyle(itemShadow)
   const borderStyle = useMemo(() => {
     return `
-    border: ${itemBorderWidth}px solid ${itemBorderColor}
-      : "unset";
+    border: ${
+      itemBorderWidth ? `${itemBorderWidth} solid ${itemBorderColor}` : "unset"
+    };
       border-radius: ${itemBorderRadius ?? "unset"}
     `
   }, [itemBorderColor, itemBorderRadius, itemBorderWidth])
