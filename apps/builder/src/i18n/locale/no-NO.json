@@ -1937,7 +1937,9 @@
           "item_shadow": "Skygge for element",
           "item_spacing": "Mellomrom mellom enheter",
           "max_column_count": "Maksimalt antall kolonner",
-          "min_column_count": "Minimum antall kolonner"
+          "min_column_count": "Minimum antall kolonner",
+          "column_num": "Antall kolonner",
+          "min_column_width": "Min. bredde på kolonner"
         },
         "src": "src",
         "page_size_options": "Alternativer for sidestørrelse",
@@ -2261,7 +2263,9 @@
           "item_radius": "Brukes til å konfigurere hjørneradius i hver tabell",
           "item_shadow": "Brukes til å konfigurere skyggestørrelsen for hver rute",
           "item_spacing": "Brukes til å konfigurere mellomrom mellom tabeller",
-          "max_column_count": "Angi maksimalt antall kolonner som kan vises i rutenettlistekomponenten når den øker bredden. Når det største antallet kolonner nås, og lerretsbredden fortsetter å øke, kolonnebredden vil økes for å romme opplegget, og antall kolonner vil ikke øke ytterligere."
+          "max_column_count": "Angi maksimalt antall kolonner som kan vises i rutenettlistekomponenten når den øker bredden. Når det største antallet kolonner nås, og lerretsbredden fortsetter å øke, kolonnebredden vil økes for å romme opplegget, og antall kolonner vil ikke øke ytterligere.",
+          "column_num": "Brukes til å angi antall kolonner",
+          "min_column_width": "Brukes til å angi minimumsbredden på kolonner"
         },
         "primary_key": "En unik nøkkel for å identifisere en rad",
         "selection_mode": "Brukes til å angi valg av flere rader eller enkeltradvalg",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Standard",
             "Date": "Dato"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Fast",
+            "dynamic": "Dynamisk"
           }
         }
       },
