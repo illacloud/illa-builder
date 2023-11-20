@@ -42,7 +42,7 @@ jobs:
           docker push illasoft/illa-builder:${IMAGE_TAG}
 
       - name: Release Docker image
-        when:
+        if:
           github.event_name == 'release' &&
           startsWith(github.event.release.tag_name, 'illa-builder@')
         run: |
