@@ -1,3 +1,4 @@
+import { OutputData } from "@editorjs/editorjs"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
@@ -13,4 +14,5 @@ export interface RichTextWidgetProps
 
 export interface ICustomRef {
   focus: () => void
+  render: (value: OutputData) => void
 }
