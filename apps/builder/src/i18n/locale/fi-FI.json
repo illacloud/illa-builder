@@ -1937,7 +1937,9 @@
           "item_shadow": "Kohteen varjo",
           "item_spacing": "Kohteiden väli",
           "max_column_count": "Maksimi määrä sarakkeita",
-          "min_column_count": "Sarakkeiden vähimmäismäärä"
+          "min_column_count": "Sarakkeiden vähimmäismäärä",
+          "column_num": "Sarakkeiden määrä",
+          "min_column_width": "Sarakkeiden vähimmäisleveys"
         },
         "src": "src",
         "page_size_options": "Sivun kokoasetukset",
@@ -2261,7 +2263,9 @@
           "item_radius": "Käytetään määrittämään kulman säde kunkin ruudukon",
           "item_shadow": "Käytetään kunkin ruudukon varjon koon määrittämiseen",
           "item_spacing": "Käytetään ruudukkojen välisen välin määrittämiseen",
-          "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva."
+          "max_column_count": "Aseta suurin määrä sarakkeita, jotka voidaan näyttää ruudukko-luettelon komponentin sisällä, kun sen leveys kasvaa. Kun sarakkeiden enimmäismäärä saavutetaan ja kankaan leveys kasvaa edelleen, sarakkeen leveyttä lisätään siten, että se mahtuu ulkoasuun, eikä sarakkeiden määrä kasva.",
+          "column_num": "Käytetään määritettäessä sarakkeiden lukumäärää",
+          "min_column_width": "Käytetään sarakkeiden pienimmän leveyden määrittämiseen"
         },
         "primary_key": "Yksilöllinen avain rivin tunnistamiseen",
         "selection_mode": "Käytetään useamman rivin valinnan tai yhden rivin valinnan asettamiseen",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Oletus",
             "Date": "Päivämäärä"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Kiinteä",
+            "dynamic": "Dynaaminen"
           }
         }
       },
