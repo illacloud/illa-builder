@@ -1937,7 +1937,9 @@
           "item_shadow": "Obiectul umbră",
           "item_spacing": "Spațiere articole",
           "max_column_count": "Numărul maxim de coloane",
-          "min_column_count": "Număr minim de coloane"
+          "min_column_count": "Număr minim de coloane",
+          "column_num": "Numărul de coloane",
+          "min_column_width": "Lățimea minimă a coloanelor"
         },
         "src": "src",
         "page_size_options": "Opțiuni pentru dimensiunea paginii",
@@ -2261,7 +2263,9 @@
           "item_radius": "Folosit pentru a configura raza de colţ a fiecărei grile",
           "item_shadow": "Folosit pentru a configura dimensiunea umbrei pentru fiecare grilă",
           "item_spacing": "Folosit pentru a configura distanța dintre grile",
-          "max_column_count": "Setați numărul maxim de coloane care pot fi afișate în componenta listă pe măsură ce lățimea crește. (Automatic Translation) Când se atinge numărul maxim de coloane şi lăţimea pânzei continuă să crească, lățimea coloanei va fi mărită pentru a accepta aspectul și numărul de coloane nu va crește mai mult."
+          "max_column_count": "Setați numărul maxim de coloane care pot fi afișate în componenta listă pe măsură ce lățimea crește. (Automatic Translation) Când se atinge numărul maxim de coloane şi lăţimea pânzei continuă să crească, lățimea coloanei va fi mărită pentru a accepta aspectul și numărul de coloane nu va crește mai mult.",
+          "column_num": "Folosit pentru a seta numărul de coloane",
+          "min_column_width": "Folosit pentru a seta lățimea minimă a coloanelor"
         },
         "primary_key": "O cheie unică pentru identificarea unui rând",
         "selection_mode": "Folosit pentru a seta selecția mai multor rânduri sau selecția unui singur rând",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Implicit",
             "Date": "Data"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Fixat",
+            "dynamic": "Dinamic"
           }
         }
       },

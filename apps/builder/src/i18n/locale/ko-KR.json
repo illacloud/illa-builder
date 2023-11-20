@@ -1937,7 +1937,9 @@
           "item_shadow": "Item shadow",
           "item_spacing": "Item spacing",
           "max_column_count": "Max number of columns",
-          "min_column_count": "Min number of columns"
+          "min_column_count": "Min number of columns",
+          "column_num": "Number of columns",
+          "min_column_width": "Min width of columns"
         },
         "src": "src",
         "page_size_options": "Page size options",
@@ -2261,7 +2263,9 @@
           "item_radius": "Used to configure the corner radius of each grid",
           "item_shadow": "Used to configure the shadow size of each grid",
           "item_spacing": "Used to configure the spacing between grids",
-          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further."
+          "max_column_count": "Set the maximum number of columns that can be displayed in the Grid list component as its width increases. When the maximum number of columns is reached and the canvas width continues to increase, the column width will be increased to accommodate the layout, and the number of columns will not increase further.",
+          "column_num": "Used to set the number of columns",
+          "min_column_width": "Used to set the min width of columns"
         },
         "primary_key": "A unique key for identifying a row",
         "selection_mode": "Used to set multiple row selection or single row selection",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Default",
             "Date": "Date"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Fixed",
+            "dynamic": "Dynamic"
           }
         }
       },
