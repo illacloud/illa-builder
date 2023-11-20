@@ -13,6 +13,7 @@ import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 import ListWidgetWithAutoPagination from "./components/ListWidgetWithAutoPagination"
 import ListWidgetWithServerPagination from "./components/ListWidgetWithServerPagination"
+import { ComponentLoading } from "./components/Loading"
 import { GridListWidgetProps } from "./interface"
 
 export const GridListWidget: FC<GridListWidgetProps> = (props) => {
@@ -26,6 +27,8 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     disabled,
+    loading,
+    themeColor,
   } = props
 
   const propsRef = useRef(props)
@@ -245,20 +248,25 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
     enableServerSidePagination,
   ])
 
-  return enableServerSidePagination ? (
-    <ListWidgetWithServerPagination
-      {...props}
-      copyComponents={getChildrenNodes}
-      handleUpdateSelectedItem={handleUpdateSelectedItem}
-      selectIndexForMark={selectIndexForMark}
-    />
-  ) : (
-    <ListWidgetWithAutoPagination
-      {...props}
-      copyComponents={getChildrenNodes}
-      handleUpdateSelectedItem={handleUpdateSelectedItem}
-      selectIndexForMark={selectIndexForMark}
-    />
+  return (
+    <>
+      {enableServerSidePagination ? (
+        <ListWidgetWithServerPagination
+          {...props}
+          copyComponents={getChildrenNodes}
+          handleUpdateSelectedItem={handleUpdateSelectedItem}
+          selectIndexForMark={selectIndexForMark}
+        />
+      ) : (
+        <ListWidgetWithAutoPagination
+          {...props}
+          copyComponents={getChildrenNodes}
+          handleUpdateSelectedItem={handleUpdateSelectedItem}
+          selectIndexForMark={selectIndexForMark}
+        />
+      )}
+      {loading && <ComponentLoading themeColor={themeColor} />}
+    </>
   )
 }
 

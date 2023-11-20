@@ -14,6 +14,7 @@ import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 import { ListWidgetProps } from "@/widgetLibrary/ListWidget/interface"
 import ListWidgetWithAutoPagination from "./components/ListWidgetWithAutoPagination"
 import ListWidgetWithServerPagination from "./components/ListWidgetWithServerPagination"
+import { ComponentLoading } from "./components/Loading"
 
 export const ListWidget: FC<ListWidgetProps> = (props) => {
   const {
@@ -26,6 +27,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     disabled,
+    loading,
+    themeColor,
   } = props
 
   const propsRef = useRef(props)
@@ -246,20 +249,25 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     enableServerSidePagination,
   ])
 
-  return enableServerSidePagination ? (
-    <ListWidgetWithServerPagination
-      {...props}
-      copyComponents={getChildrenNodes}
-      selectIndexForMark={selectIndexForMark}
-      handleUpdateSelectedItem={handleUpdateSelectedItem}
-    />
-  ) : (
-    <ListWidgetWithAutoPagination
-      {...props}
-      copyComponents={getChildrenNodes}
-      selectIndexForMark={selectIndexForMark}
-      handleUpdateSelectedItem={handleUpdateSelectedItem}
-    />
+  return (
+    <>
+      {enableServerSidePagination ? (
+        <ListWidgetWithServerPagination
+          {...props}
+          copyComponents={getChildrenNodes}
+          selectIndexForMark={selectIndexForMark}
+          handleUpdateSelectedItem={handleUpdateSelectedItem}
+        />
+      ) : (
+        <ListWidgetWithAutoPagination
+          {...props}
+          copyComponents={getChildrenNodes}
+          selectIndexForMark={selectIndexForMark}
+          handleUpdateSelectedItem={handleUpdateSelectedItem}
+        />
+      )}
+      {loading && <ComponentLoading themeColor={themeColor} />}
+    </>
   )
 }
 
