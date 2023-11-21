@@ -117,7 +117,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const borderStyle = useMemo(() => {
     let borderWidth, borderRadius
     const borderWidthNum = itemBorderWidth?.match(/\d+(\.\d+)?/g)
-    if (borderWidth) borderWidth = borderWidthNum?.join("") + "px"
+    if (borderWidthNum) borderWidth = borderWidthNum?.join("") + "px"
     const radiusNum = itemBorderRadius?.match(/\d+(\.\d+)?/g)
     if (radiusNum) borderRadius = radiusNum?.join("") + "px"
     return `
