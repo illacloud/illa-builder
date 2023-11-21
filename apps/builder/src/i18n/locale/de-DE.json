@@ -1937,7 +1937,9 @@
           "item_shadow": "Item Schatten",
           "item_spacing": "Elementabstand",
           "max_column_count": "Maximale Anzahl von Spalten",
-          "min_column_count": "Min. Anzahl der Spalten"
+          "min_column_count": "Min. Anzahl der Spalten",
+          "column_num": "Anzahl der Spalten",
+          "min_column_width": "Min. Spaltenbreite"
         },
         "src": "src",
         "page_size_options": "Seitengrößenoptionen",
@@ -2261,7 +2263,9 @@
           "item_radius": "Wird verwendet, um den Eckradius jedes Rasters zu konfigurieren",
           "item_shadow": "Zur Konfiguration der Schattengröße jedes Rasters",
           "item_spacing": "Wird verwendet, um den Abstand zwischen Gittern zu konfigurieren",
-          "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen."
+          "max_column_count": "Legen Sie die maximale Anzahl der Spalten fest, die in der Rasterlistenkomponente angezeigt werden können, wenn sich die Breite erhöht. Wenn die maximale Anzahl an Spalten erreicht wird und die Leinenbreite weiter zunimmt, wird die Spaltenbreite erhöht, um das Layout anzupassen und die Anzahl der Spalten wird nicht weiter ansteigen.",
+          "column_num": "Verwendet um die Anzahl der Spalten zu setzen",
+          "min_column_width": "Wird verwendet, um die Mindestbreite der Spalten zu setzen"
         },
         "primary_key": "Ein eindeutiger Schlüssel zur Identifizierung einer Zeile",
         "selection_mode": "Wird verwendet, um mehrere Zeilen oder eine einzelne Zeilenauswahl zu setzen",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Standard",
             "Date": "Datum"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Feste",
+            "dynamic": "Dynamisch"
           }
         }
       },

@@ -1937,7 +1937,9 @@
           "item_shadow": "格子的阴影",
           "item_spacing": "格子间距",
           "max_column_count": "最大列数",
-          "min_column_count": "最小列数"
+          "min_column_count": "最小列数",
+          "column_num": "列数",
+          "min_column_width": "最小列宽"
         },
         "src": "源",
         "page_size_options": "每页显示数量选项",
@@ -2261,7 +2263,9 @@
           "item_radius": "用来配置每个格子的圆角",
           "item_shadow": "用来配置每个格子的阴影大小",
           "item_spacing": "用于配置格子之间的间距",
-          "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。"
+          "max_column_count": "设置当Grid list组件宽度变大时，Grid list中可以最多显示多少列。当达到最大列数，但画布宽度在一直变大时，会通过增加列宽来适配，列数不会继续增加。",
+          "column_num": "用于设置列数",
+          "min_column_width": "用于设置最小列宽"
         },
         "primary_key": "用于标识行的唯一键值",
         "selection_mode": "用于设置多行选择还是单行选择",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "默认",
             "Date": "日期"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "固定",
+            "dynamic": "动态"
           }
         }
       },
