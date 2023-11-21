@@ -440,6 +440,7 @@ const getTargetSectionWidget = (
         const viewDisplayNames = targetSection.$childrenNode
         const currentViewDisplayName = viewDisplayNames[currentViewIndex]
 
+        if (!currentViewDisplayName) return []
         viewDisplayNames.forEach((displayName: string) => {
           const viewWidget = widgets[displayName]
           if (viewWidget) {
@@ -451,6 +452,7 @@ const getTargetSectionWidget = (
         })
         const currentSectionWidgets =
           targetSectionMapHasNodeDisplayNames[currentViewDisplayName]
+        if (!currentSectionWidgets) return []
         return currentPageWidgets.filter((widget) =>
           currentSectionWidgets.includes(widget.displayName),
         )
