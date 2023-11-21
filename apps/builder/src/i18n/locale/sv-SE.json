@@ -1937,7 +1937,9 @@
           "item_shadow": "Skugga för objekt",
           "item_spacing": "Objektavstånd",
           "max_column_count": "Max antal kolumner",
-          "min_column_count": "Minsta antal kolumner"
+          "min_column_count": "Minsta antal kolumner",
+          "column_num": "Antal kolumner",
+          "min_column_width": "Minsta bredd på kolumner"
         },
         "src": "src",
         "page_size_options": "Alternativ för sidstorlek",
@@ -2261,7 +2263,9 @@
           "item_radius": "Används för att konfigurera hörnradien för varje rutnät",
           "item_shadow": "Används för att konfigurera skuggstorleken på varje rutnät",
           "item_spacing": "Används för att konfigurera avståndet mellan rutnäten",
-          "max_column_count": "Ange det maximala antalet kolumner som kan visas i Grid list-komponenten när dess bredd ökar. När det maximala antalet kolumner är nått och duken bredd fortsätter att öka, kolumnbredden kommer att ökas för att rymma layouten och antalet kolumner kommer inte att öka ytterligare."
+          "max_column_count": "Ange det maximala antalet kolumner som kan visas i Grid list-komponenten när dess bredd ökar. När det maximala antalet kolumner är nått och duken bredd fortsätter att öka, kolumnbredden kommer att ökas för att rymma layouten och antalet kolumner kommer inte att öka ytterligare.",
+          "column_num": "Används för att ställa in antalet kolumner",
+          "min_column_width": "Används för att ställa in min bredd på kolumner"
         },
         "primary_key": "En unik nyckel för att identifiera en rad",
         "selection_mode": "Används för att ställa in flera radval eller val av enstaka rader",
@@ -2415,6 +2419,12 @@
           "x-axis_type": {
             "Default": "Standard",
             "Date": "Datum"
+          }
+        },
+        "grid_list": {
+          "column_adaptation": {
+            "fixed": "Fast",
+            "dynamic": "Dynamisk"
           }
         }
       },

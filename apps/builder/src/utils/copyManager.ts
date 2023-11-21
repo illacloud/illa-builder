@@ -203,7 +203,8 @@ export class CopyManager {
                       }
                       break
                     }
-                    case "LIST_WIDGET": {
+                    case "LIST_WIDGET":
+                    case "GRID_LIST_WIDGET": {
                       const targetParentNode = searchDSLByDisplayName(
                         targetNode.childrenNode[0],
                       )

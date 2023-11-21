@@ -898,6 +898,15 @@ export const generatorEventHandlerConfig = (
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "enabled",
       },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-render`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        expectedType: VALIDATION_TYPES.STRING,
+        shown: (method) => method === "renderEditor",
+      },
     ],
   }
 }

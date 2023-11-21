@@ -1,13 +1,13 @@
-import { v4 } from "uuid"
 import { ReactComponent as ListWidgetIcon } from "@/assets/widgetCover/list.svg"
 import i18n from "@/i18n/config"
+import { LIST_ITEM_MARGIN_TOP } from "@/page/App/components/ScaleSquare/constant/widget"
 import { TEMPLATE_DISPLAYNAME_KEY } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
-import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
 import { IMAGE_WIDGET_CONFIG } from "@/widgetLibrary/ImageWidget"
-import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { DEFAULT_LIST } from "./constants"
+import { PAGINATION_TYPE } from "./interface"
 
 export const LIST_WIDGET_CONFIG: WidgetConfig = {
   type: "LIST_WIDGET",
@@ -16,7 +16,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["list", "列表"],
   icon: <ListWidgetIcon />,
   sessionType: "CONTAINER",
-  w: 16,
+  w: 13,
   h: 38,
   version: 0,
   childrenNode: [
@@ -24,81 +24,58 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
       ...BasicContainerConfig,
       childrenNode: [
         {
-          ...TEXT_WIDGET_CONFIG,
-          w: 6,
-          h: 10,
-          x: 11,
-          y: 0,
-          defaults: {
-            ...TEXT_WIDGET_CONFIG.defaults,
-            value: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => ('## ' + currentItem.name))}}`,
-            $dynamicAttrPaths: ["value"],
-          },
-        },
-        {
           ...IMAGE_WIDGET_CONFIG,
           w: 8,
-          h: 15,
-          x: 1,
+          h: 16,
+          x: 0,
           y: 1,
           defaults: {
             ...IMAGE_WIDGET_CONFIG.defaults,
-            imageSrc: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.img))}}`,
+            imageSrc: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.photo))}}`,
             $dynamicAttrPaths: ["imageSrc"],
-            radius: "8px",
+            radius: "4px",
           },
         },
         {
-          ...BUTTON_WIDGET_CONFIG,
-          w: 8,
-          h: 5,
-          x: 23,
-          y: 5,
+          ...TEXT_WIDGET_CONFIG,
+          w: 23,
+          h: 9,
+          x: 9,
+          y: 2,
           defaults: {
-            ...BUTTON_WIDGET_CONFIG.defaults,
-            text: "Show notification",
-            events: [
-              {
-                actionType: "showNotification",
-                id: v4(),
-                eventType: "click",
-                title: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.name))}}`,
-                description: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => (currentItem.email))}}`,
-                notificationType: "success",
-              },
-            ],
-            $dynamicAttrPaths: ["events[0].title", "events[0].description"],
+            ...TEXT_WIDGET_CONFIG.defaults,
+            value: `{{${TEMPLATE_DISPLAYNAME_KEY}.dataSources.map((currentItem) => ('### ' + currentItem.name))}}`,
+            $dynamicAttrPaths: ["value"],
           },
         },
       ],
     },
   ],
   defaults: {
-    overflowMethod: OVERFLOW_TYPE.SCROLL,
-    pageSize: "{{6}}",
+    enablePagination: "{{true}}",
+    enableServerSidePagination: false,
+    pageSize: "{{10}}",
+    itemGap: LIST_ITEM_MARGIN_TOP,
+    paginationType: PAGINATION_TYPE.LIMIT_OFFSET_BASED,
     itemBackGroundColor: "white",
-    backgroundColor: "white",
-    itemHeight: 146,
+    themeColor: "blue",
+    itemHeight: 150,
     selectedIndex: undefined,
     selectedItem: undefined,
-    dataSources: `{{[
-  {
-    "name": "user1",
-    "email": "user1@illasoft.com",
-    "img": "https://cdn.dribbble.com/users/693674/screenshots/20021608/media/d12b3f2b117d71626f17ee2dfd48681f.png"
-  },
-  {
-    "name": "user2",
-    "email": "user2@illasoft.com",
-    "img": "https://cdn.dribbble.com/users/693674/screenshots/20021608/media/d12b3f2b117d71626f17ee2dfd48681f.png"
-  },
-  {
-    "name": "user3",
-    "email": "user3@illasoft.com",
-    "img": "https://cdn.dribbble.com/users/693674/screenshots/20021608/media/d12b3f2b117d71626f17ee2dfd48681f.png"
-  }
-]}}`,
+    dataSources: `{{
+      ${JSON.stringify(DEFAULT_LIST)}
+    }}`,
     dynamicHeight: "fixed",
     resizeDirection: RESIZE_DIRECTION.ALL,
+    page: 0,
+    offset: 0,
+    itemBorderRadius: "4px",
+    itemShadow: "medium",
+    beforeCursor: undefined,
+    afterCursor: undefined,
+    totalRowCount: undefined,
+    previousCursor: undefined,
+    nextCursor: undefined,
+    hasNextPage: undefined,
   },
 }

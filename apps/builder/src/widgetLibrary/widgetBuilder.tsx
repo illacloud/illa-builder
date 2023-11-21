@@ -265,6 +265,11 @@ import {
   VIDEO_PANEL_CONFIG,
   VIDEO_WIDGET_CONFIG,
 } from "@/widgetLibrary/VideoWidget"
+import {
+  GRID_LIST_EVENT_HANDLER_CONFIG,
+  GRID_LIST_PANEL_CONFIG,
+  GRID_LIST_WIDGET_CONFIG,
+} from "./GridListWidget"
 import { IFRAME_EVENT_HANDLER_CONFIG } from "./IFrameWidget/eventHandlerConfig"
 import { EventHandlerConfig, WidgetConfig } from "./interface"
 
@@ -471,6 +476,12 @@ export const WidgetConfigMap: Record<
     panelConfig: LIST_PANEL_CONFIG,
     eventHandlerConfig: LIST_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/ListWidget/list")),
+  },
+  GRID_LIST_WIDGET: {
+    config: GRID_LIST_WIDGET_CONFIG,
+    panelConfig: GRID_LIST_PANEL_CONFIG,
+    eventHandlerConfig: GRID_LIST_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/GridListWidget/gridList")),
   },
   // navigation
   MENU_WIDGET: {
