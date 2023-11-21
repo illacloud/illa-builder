@@ -1,20 +1,3 @@
-<div align="center">
-  <h2>Hacktoberfest 2023｜ILLA Cloud</h2>
-</div>
-
-AI 에이전트 또는 ILLA 앱을 ILLA 커뮤니티에 제공하고 ILLA에 풀 요청을 제출하면 Hacktoberfest에서 디지털 보상 키트를 받고 ILLA Cloud에서 Swags를 받을 수 있습니다.
-
-<a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202979.png"></a>
-
-<div align="center">
-  <h3>더 알아보기 👇</h3>
-  <a href="https://www.illacloud.com/hacktoberfest2023">
-    <img alt="Hacktoberfest2023|ILLA Cloud" src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Hacktoberfest%20OW%20banner.png"/>
-  </a>
-</div>
-
----
-
 
 <div align="center">
   <a href="https://cloud.illacloud.com/">
