@@ -1,20 +1,3 @@
-<div align="center">
-  <h2>Hacktoberfest 2023｜ILLA Cloud</h2>
-</div>
-
-AI エージェントまたは ILLA アプリを ILLA コミュニティに貢献し、ILLA にプル リクエストを送信すると、Hacktoberfest からデジタル リワード キットを、ILLA クラウドからスワッグを受け取る機会が得られます。
-
-<a href="https://www.illacloud.com/hacktoberfest2023"><img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Group%202979.png"></a>
-
-<div align="center">
-  <h3>もっと詳しく知る 👇</h3>
-  <a href="https://www.illacloud.com/hacktoberfest2023">
-    <img alt="Hacktoberfest2023|ILLA Cloud" src="https://cdn.illacloud.com/official-website/img/hacktoberFest/Hacktoberfest%20OW%20banner.png"/>
-  </a>
-</div>
-
----
-
 
 <div align="center">
   <a href="https://cloud.illacloud.com/">
