@@ -2,6 +2,7 @@ import {
   actionBasicRequest,
   actionRequest,
   builderRequest,
+  notNeedAuthAxios,
 } from "@illa-public/illa-net"
 import { BUILDER_REQUEST_PREFIX } from "@illa-public/illa-net/constant"
 import { ResourceType } from "@illa-public/public-types"
@@ -74,7 +75,7 @@ export const fetchS3ActionRunResult = (
   headers: AxiosRequestConfig["headers"],
   data?: unknown,
 ) => {
-  return actionBasicRequest<BlobPart>({
+  return notNeedAuthAxios({
     baseURL: url,
     method,
     headers,
