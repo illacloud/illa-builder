@@ -59,6 +59,7 @@ export interface RenderTemplateContainerProps {
   extraHeight?: number
   itemGap?: number
   enableAutoPagination?: boolean
+  itemShadow?: ShadowOptions
 }
 
 export interface RenderCopyContainerProps {
