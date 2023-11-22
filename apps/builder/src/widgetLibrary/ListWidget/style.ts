@@ -5,7 +5,7 @@ import {
   WIDGET_SCALE_SQUARE_BORDER_WIDTH,
 } from "@/page/App/components/ScaleSquare/constant/widget"
 import { ShadowOptions } from "./interface"
-import { getPaddingByShadow } from "./utils"
+import { getGapByShadow } from "./utils"
 
 export const listParentContainerStyle = css`
   width: 100%;
@@ -74,7 +74,7 @@ export const itemContainerStyle = (
   flex-direction: column;
   gap: ${itemGap ?? LIST_ITEM_MARGIN_TOP}px;
   overflow-y: auto;
-  padding: ${getPaddingByShadow(shadow)};
+  padding: ${getGapByShadow(shadow)}px;
 `
 
 export const selectStyle = (

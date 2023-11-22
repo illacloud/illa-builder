@@ -22,24 +22,19 @@ export const resizeBottomHandler = () => {
   }
 }
 
-export const getPaddingByShadow = (itemShadow?: ShadowOptions) => {
-  let padding
+export const getGapByShadow = (itemShadow?: ShadowOptions) => {
   switch (itemShadow) {
     case "large": {
-      padding = "20px"
-      break
+      return 20
     }
     case "medium": {
-      padding = "16px"
-      break
+      return 16
     }
     case "small": {
-      padding = "4px"
-      break
+      return 4
     }
     case "none":
     default:
-      padding = "1px"
+      return 1
   }
-  return padding
 }

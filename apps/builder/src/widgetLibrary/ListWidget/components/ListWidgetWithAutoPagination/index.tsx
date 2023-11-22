@@ -61,17 +61,12 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const currentContainerBoundsHeight =
     containerBounds.height - paginationBounds.height
   const itemNumber = useMemo(() => {
-    return (
-      safePageSize ||
-      Math.floor(currentContainerBoundsHeight / itemHeight) ||
-      dataSources?.length
-    )
-  }, [
-    currentContainerBoundsHeight,
-    dataSources?.length,
-    itemHeight,
-    safePageSize,
-  ])
+    if (enablePagination) {
+      return safePageSize
+    } else {
+      return dataSources?.length
+    }
+  }, [dataSources?.length, enablePagination, safePageSize])
 
   const handleChangeCurrentPage = useCallback(
     (pageNumber: number) => {
@@ -194,6 +189,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   dynamicHeight={dynamicHeight}
                   itemNumber={currentData?.length}
                   extraHeight={paginationBounds.height}
+                  itemShadow={itemShadow}
                   enableAutoPagination={enablePagination}
                   handleUpdateOriginalDSLMultiAttr={
                     handleUpdateOriginalDSLMultiAttr
