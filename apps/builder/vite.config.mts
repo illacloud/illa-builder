@@ -63,7 +63,7 @@ export default defineConfig(({ command, mode }) => {
         sentryVitePlugin({
           org: "sentry",
           project: "illa-builder",
-          url: "http://sentry.illasoft.com/",
+          url: "https://sentry.illasoft.com/",
           authToken: env.ILLA_SENTRY_AUTH_TOKEN,
           release: {
             name: `illa-builder@${version}`,
