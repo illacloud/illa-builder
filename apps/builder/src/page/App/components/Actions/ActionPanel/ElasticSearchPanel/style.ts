@@ -1,10 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const esContainerStyle = css`
-  display: flex;
-  flex-direction: column;
-`
 export const esItemStyle = css`
   display: flex;
   flex-direction: row;

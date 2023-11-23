@@ -3,16 +3,11 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { MSSQLGUIMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLGUIMode"
 import { MSSQLSqlMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLSqlMode"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import {
-  actionItemContainer,
-  panelContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/style"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/style"
 import {
   getCachedAction,
   getSelectedAction,
@@ -110,61 +105,55 @@ const MicrosoftSqlPanel: FC = () => {
   )
 
   return (
-    <div css={panelContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          componentType="radio-group"
-          type="button"
-          title={t("editor.action.panel.mssql.config_type")}
-          forceEqualWidth={true}
-          onChange={handleValueChange}
-          value={
-            content.mode === "sql" || content.mode === "sql-safe"
-              ? "sql"
-              : "gui"
-          }
-          radioOptions={ConfigTypeOptions}
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        componentType="radio-group"
+        type="button"
+        title={t("editor.action.panel.mssql.config_type")}
+        forceEqualWidth={true}
+        onChange={handleValueChange}
+        value={
+          content.mode === "sql" || content.mode === "sql-safe" ? "sql" : "gui"
+        }
+        radioOptions={ConfigTypeOptions}
+      />
+      {content.mode === "sql" || content.mode === "sql-safe" ? (
+        <MSSQLSqlMode
+          modeContent={sqlModeInitial}
+          onChange={handleQueryChange}
         />
-        {content.mode === "sql" || content.mode === "sql-safe" ? (
-          <MSSQLSqlMode
-            modeContent={sqlModeInitial}
-            onChange={handleQueryChange}
-          />
-        ) : (
-          <MSSQLGUIMode
-            modeContent={guiModeInitial}
-            onChange={handleQueryChange}
-            resourceID={cachedAction.resourceID}
-          />
-        )}
-        {(content.mode === "sql" || content.mode === "sql-safe") && (
-          <div css={modeContainerStyle}>
-            <div css={labelContainerStyle}>
-              <Trigger
-                content={
-                  <ILLAMarkdown
-                    textString={t(
-                      "editor.action.panel.label.tips.general.safe_mode",
-                    )}
-                  />
-                }
-                trigger="hover"
-                position="left"
-                maxW="240px"
-              >
-                <span css={labelStyle}>
-                  {t("editor.action.panel.label.general.safe_mode")}
-                  <span css={labelTipsStyle} />
-                </span>
-              </Trigger>
-            </div>
-            <SQLModeSelector />
+      ) : (
+        <MSSQLGUIMode
+          modeContent={guiModeInitial}
+          onChange={handleQueryChange}
+          resourceID={cachedAction.resourceID}
+        />
+      )}
+      {(content.mode === "sql" || content.mode === "sql-safe") && (
+        <div css={modeContainerStyle}>
+          <div css={labelContainerStyle}>
+            <Trigger
+              content={
+                <ILLAMarkdown
+                  textString={t(
+                    "editor.action.panel.label.tips.general.safe_mode",
+                  )}
+                />
+              }
+              trigger="hover"
+              position="left"
+              maxW="240px"
+            >
+              <span css={labelStyle}>
+                {t("editor.action.panel.label.general.safe_mode")}
+                <span css={labelTipsStyle} />
+              </span>
+            </Trigger>
           </div>
-        )}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+          <SQLModeSelector />
+        </div>
+      )}
+      <TransformerComponent />
     </div>
   )
 }

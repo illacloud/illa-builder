@@ -8,16 +8,12 @@ import {
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionEventHandler } from "../ActionEventHandler"
-import TriggerModeChoose from "../PanelHeader/TriggerModeChoose"
 import { TransformerComponent } from "../TransformerComponent"
 import { ActionMockPanelProps } from "./interface"
 import {
   mockDataContainerStyle,
   mockDataTitleStyle,
   mockPanelContainerStyle,
-  spaceStyle,
-  triggerModeContainerStyle,
 } from "./style"
 
 const ActionMockPanel: FC<ActionMockPanelProps> = (props) => {
@@ -44,11 +40,6 @@ const ActionMockPanel: FC<ActionMockPanelProps> = (props) => {
 
   return (
     <>
-      <div css={triggerModeContainerStyle}>
-        <span css={mockDataTitleStyle}>{t("resources")}</span>
-        <TriggerModeChoose />
-      </div>
-      <Space w="100%" h="8px" css={spaceStyle} disp="block" />
       <div css={mockPanelContainerStyle}>
         <div css={mockDataContainerStyle}>
           <span css={mockDataTitleStyle}>
@@ -74,7 +65,6 @@ const ActionMockPanel: FC<ActionMockPanelProps> = (props) => {
       </div>
       <TransformerComponent fullWidth />
       <Space w="100%" h="8px" disp="block" />
-      <ActionEventHandler />
     </>
   )
 }

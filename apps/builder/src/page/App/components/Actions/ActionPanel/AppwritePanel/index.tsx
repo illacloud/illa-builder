@@ -1,15 +1,10 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { DocumentSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/DocumentSubPanel"
 import { ListDocumentsSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/ListDocuments"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import {
-  actionItemContainer,
-  panelContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/style"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/style"
 import {
   getCachedAction,
   getSelectedAction,
@@ -100,26 +95,22 @@ const AppwritePanel: FC = () => {
   const withDataEditor = !["get", "delete"].includes(content.method)
 
   return (
-    <div css={panelContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          componentType="select"
-          onChange={handleMethodValueChange}
-          value={content.method}
-          options={AppwriteActionMethodsOptions}
-          title={"Method"}
-        />
-        <Component
-          key={content.method}
-          handleValueChange={handleValueChange}
-          withDataEditor={withDataEditor}
-          params={content.opts}
-          collectionIds={collectionIds}
-        />
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        componentType="select"
+        onChange={handleMethodValueChange}
+        value={content.method}
+        options={AppwriteActionMethodsOptions}
+        title={"Method"}
+      />
+      <Component
+        key={content.method}
+        handleValueChange={handleValueChange}
+        withDataEditor={withDataEditor}
+        params={content.opts}
+        collectionIds={collectionIds}
+      />
+      <TransformerComponent />
     </div>
   )
 }

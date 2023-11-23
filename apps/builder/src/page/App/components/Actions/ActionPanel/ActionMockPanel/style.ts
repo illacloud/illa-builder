@@ -15,18 +15,7 @@ export const mockDataTitleStyle = css`
   line-height: 22px;
 `
 
-export const spaceStyle = css`
-  border-bottom: 1px solid ${getColor("grayBlue", "08")};
-`
-
 export const mockPanelContainerStyle = css`
   padding: 8px 16px;
   width: 100%;
-`
-
-export const triggerModeContainerStyle = css`
-  display: flex;
-  padding: 8px 16px;
-  justify-content: space-between;
-  align-items: center;
 `

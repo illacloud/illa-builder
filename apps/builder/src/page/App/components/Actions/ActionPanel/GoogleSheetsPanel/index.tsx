@@ -2,7 +2,6 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { SelectOptionObject, SelectValue } from "@illa-design/react"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { AppendSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/AppendSpreadsheetSubPanel"
 import { BulkUpdateSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BulkUpdateSpreadsheetSubPanel"
 import { CopySpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/CopySpreadSheetSubPanel"
@@ -12,13 +11,9 @@ import { GetSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPane
 import { ReadSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/ReadSpreadsheetSubPanel"
 import { UpdateSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/UpdateSpreadsheetSubPanel"
 import { GoogleSheetsActionTypesOptions } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/values"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import {
-  actionItemContainer,
-  panelContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/style"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/style"
 import {
   getCachedAction,
   getSelectedAction,
@@ -123,26 +118,22 @@ const GoogleSheetsPanel: FC = () => {
   const SubPanel = SubPanelMap[content.method]
 
   return (
-    <div css={panelContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          title={t("editor.action.form.label.gs.action_type")}
-          componentType="select"
-          value={content.method}
-          options={GoogleSheetsActionTypesOptions}
-          onSelectedValueChange={handleSelectValueChange}
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        title={t("editor.action.form.label.gs.action_type")}
+        componentType="select"
+        value={content.method}
+        options={GoogleSheetsActionTypesOptions}
+        onSelectedValueChange={handleSelectValueChange}
+      />
+      {SubPanel && (
+        <SubPanel
+          opts={content.opts}
+          onChange={handleValueChange}
+          spreadsheetsOption={spreadsheetsOption}
         />
-        {SubPanel && (
-          <SubPanel
-            opts={content.opts}
-            onChange={handleValueChange}
-            spreadsheetsOption={spreadsheetsOption}
-          />
-        )}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+      )}
+      <TransformerComponent />
     </div>
   )
 }

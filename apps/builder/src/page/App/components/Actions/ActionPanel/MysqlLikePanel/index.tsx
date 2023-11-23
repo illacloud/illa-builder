@@ -11,17 +11,14 @@ import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
   actionItemContainer,
   labelStyle,
   labelTipsStyle,
   modeContainerStyle,
-  mysqlContainerStyle,
   sqlInputStyle,
   sqlTransStyle,
 } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -160,108 +157,104 @@ const MysqlLikePanel: FC = () => {
   ])
 
   return (
-    <div css={mysqlContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        {isCloudVersion ? (
-          <div css={sqlTransStyle}>
-            <Select
-              mr="-1px"
-              autoAlignPopupWidth={true}
-              w="120px"
-              flexGrow="0"
-              flexShrink="0"
-              bdRadius="8px 0 0 8px"
-              value={currentSqlAction}
-              options={[
-                {
-                  label: "SELECT",
-                  value: 1,
-                },
-                {
-                  label: "INSERT",
-                  value: 2,
-                },
-                {
-                  label: "UPDATE",
-                  value: 3,
-                },
-                {
-                  label: "DELETE",
-                  value: 4,
-                },
-              ]}
-              onChange={(v) => {
-                setCurrentSqlAction(v as number)
-              }}
-              size="large"
-              colorScheme="techPurple"
-            />
-            <Input
-              size="large"
-              colorScheme="techPurple"
-              bdRadius="0"
-              flexGrow="1"
-              flexShrink="1"
-              placeholder={t("editor.action.panel.sqlgc.placeholder.text")}
-              inputRef={inputRef}
-            />
-            <Button
-              minW="168px"
-              loading={generateLoading}
-              size="large"
-              flexGrow="0"
-              flexShrink="0"
-              bdRadius="0 8px 8px 0"
-              pd="9px 24px"
-              bg="linear-gradient(90deg, #FF53D9 0%, #AE47FF 100%);"
-              leftIcon={<OpenAIIcon />}
-              onClick={handleClickGenerate}
-            >
-              {t("editor.action.panel.sqlgc.button.text")}
-            </Button>
-          </div>
-        ) : null}
-        <div css={sqlInputStyle}>
-          <CodeEditor
-            className={`${displayName}-query`}
-            placeholder="select * from users;"
-            showLineNumbers
-            height="88px"
-            value={value}
-            lang={mode}
-            canShowCompleteInfo
-            expectValueType={VALIDATION_TYPES.STRING}
-            sqlScheme={sqlTable}
-            onChange={handleQueryChange}
-            onBlur={onBlurOnCodeMirror}
+    <div css={actionItemContainer}>
+      {isCloudVersion ? (
+        <div css={sqlTransStyle}>
+          <Select
+            mr="-1px"
+            autoAlignPopupWidth={true}
+            w="120px"
+            flexGrow="0"
+            flexShrink="0"
+            bdRadius="8px 0 0 8px"
+            value={currentSqlAction}
+            options={[
+              {
+                label: "SELECT",
+                value: 1,
+              },
+              {
+                label: "INSERT",
+                value: 2,
+              },
+              {
+                label: "UPDATE",
+                value: 3,
+              },
+              {
+                label: "DELETE",
+                value: 4,
+              },
+            ]}
+            onChange={(v) => {
+              setCurrentSqlAction(v as number)
+            }}
+            size="large"
+            colorScheme="techPurple"
           />
+          <Input
+            size="large"
+            colorScheme="techPurple"
+            bdRadius="0"
+            flexGrow="1"
+            flexShrink="1"
+            placeholder={t("editor.action.panel.sqlgc.placeholder.text")}
+            inputRef={inputRef}
+          />
+          <Button
+            minW="168px"
+            loading={generateLoading}
+            size="large"
+            flexGrow="0"
+            flexShrink="0"
+            bdRadius="0 8px 8px 0"
+            pd="9px 24px"
+            bg="linear-gradient(90deg, #FF53D9 0%, #AE47FF 100%);"
+            leftIcon={<OpenAIIcon />}
+            onClick={handleClickGenerate}
+          >
+            {t("editor.action.panel.sqlgc.button.text")}
+          </Button>
         </div>
-        {(mysqlContent.mode === "sql" || mysqlContent.mode === "sql-safe") && (
-          <div css={modeContainerStyle}>
-            <Trigger
-              content={
-                <ILLAMarkdown
-                  textString={t(
-                    "editor.action.panel.label.tips.general.safe_mode",
-                  )}
-                />
-              }
-              trigger="hover"
-              position="left"
-              maxW="240px"
-            >
-              <span css={labelStyle}>
-                {t("editor.action.panel.label.general.safe_mode")}
-                <span css={labelTipsStyle} />
-              </span>
-            </Trigger>
-            <SQLModeSelector />
-          </div>
-        )}
-        <TransformerComponent fullWidth />
+      ) : null}
+      <div css={sqlInputStyle}>
+        <CodeEditor
+          className={`${displayName}-query`}
+          placeholder="select * from users;"
+          showLineNumbers
+          height="88px"
+          value={value}
+          lang={mode}
+          canShowCompleteInfo
+          expectValueType={VALIDATION_TYPES.STRING}
+          sqlScheme={sqlTable}
+          onChange={handleQueryChange}
+          onBlur={onBlurOnCodeMirror}
+        />
       </div>
-      <ActionEventHandler />
+      {(mysqlContent.mode === "sql" || mysqlContent.mode === "sql-safe") && (
+        <div css={modeContainerStyle}>
+          <Trigger
+            content={
+              <ILLAMarkdown
+                textString={t(
+                  "editor.action.panel.label.tips.general.safe_mode",
+                )}
+              />
+            }
+            trigger="hover"
+            position="left"
+            maxW="240px"
+          >
+            <span css={labelStyle}>
+              {t("editor.action.panel.label.general.safe_mode")}
+              <span css={labelTipsStyle} />
+            </span>
+          </Trigger>
+          <SQLModeSelector />
+        </div>
+      )}
+      <TransformerComponent fullWidth />
     </div>
   )
 }
