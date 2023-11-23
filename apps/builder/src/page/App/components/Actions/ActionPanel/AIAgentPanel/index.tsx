@@ -11,10 +11,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { AIAgentResourceChoose } from "../AIAgentResourceChoose"
-import { ActionEventHandler } from "../ActionEventHandler"
 import HorizontalWithLabel from "../Layout/HorizontalWithLabel"
-import ActionPanelSpace from "../Layout/Space"
 import { TransformerComponent } from "../TransformerComponent"
 
 const AIAgentPanel: FC = () => {
@@ -89,8 +86,6 @@ const AIAgentPanel: FC = () => {
 
   return (
     <div>
-      <AIAgentResourceChoose />
-      <ActionPanelSpace />
       <HorizontalWithLabel labelName={t("editor.ai-agent.label.model")}>
         <Input
           prefix={getLLM(aiAgentContent.virtualResource.model)?.logo}
@@ -119,7 +114,6 @@ const AIAgentPanel: FC = () => {
         />
       </HorizontalWithLabel>
       <TransformerComponent />
-      <ActionEventHandler />
     </div>
   )
 }

@@ -1,8 +1,6 @@
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
@@ -31,7 +29,7 @@ import { ListAllPart } from "./ListAllPart"
 import { ReadOnePart } from "./ReadOnePart"
 import { UploadMultiplePart } from "./UploadMultiplePart"
 import { UploadPart } from "./UploadPart"
-import { actionItemContainer, s3ContainerStyle } from "./style"
+import { actionItemContainer } from "./style"
 
 const S3Panel: FC = () => {
   const { t } = useTranslation()
@@ -110,21 +108,17 @@ const S3Panel: FC = () => {
   }
 
   return (
-    <div css={s3ContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          title={t("editor.action.panel.s3.action_type")}
-          componentType="select"
-          value={content.commands}
-          showSearch
-          onChange={handleActionChange}
-          options={S3ActionList}
-        />
-        {renderInputBody}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        title={t("editor.action.panel.s3.action_type")}
+        componentType="select"
+        value={content.commands}
+        showSearch
+        onChange={handleActionChange}
+        options={S3ActionList}
+      />
+      {renderInputBody}
+      <TransformerComponent />
     </div>
   )
 }

@@ -6,8 +6,6 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
@@ -25,7 +23,7 @@ import {
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { actionItemContainer, esContainerStyle } from "./style"
+import { actionItemContainer } from "./style"
 
 const ElasticSearchPanel: FC = () => {
   const { t } = useTranslation()
@@ -107,64 +105,60 @@ const ElasticSearchPanel: FC = () => {
   )
 
   return (
-    <div css={esContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          componentType="select"
-          value={content.operation}
-          title={t("editor.action.panel.elastic.action_type")}
-          options={ElasticSearchActionList}
-          onSelectedValueChange={handleSelectedValueChange}
-        />
-        {isBodyContent && (
-          <InputEditor
-            value={content.body ?? ""}
-            onChange={handleValueChange("body")}
-            title={t("editor.action.panel.elastic.body")}
-            lineNumbers
-            style={{ height: "88px" }}
-            expectedType={VALIDATION_TYPES.STRING}
-            mode={CODE_LANG.JAVASCRIPT}
-            codeType={CODE_TYPE.EXPRESSION}
-            canShowCompleteInfo
-          />
-        )}
-        {isQueryContent && (
-          <InputEditor
-            value={content.query ?? ""}
-            onChange={handleValueChange("query")}
-            title={t("editor.action.panel.elastic.query")}
-            lineNumbers
-            expectedType={VALIDATION_TYPES.STRING}
-            mode={CODE_LANG.JAVASCRIPT}
-            style={{ height: "88px" }}
-            codeType={CODE_TYPE.EXPRESSION}
-            canShowCompleteInfo
-          />
-        )}
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        componentType="select"
+        value={content.operation}
+        title={t("editor.action.panel.elastic.action_type")}
+        options={ElasticSearchActionList}
+        onSelectedValueChange={handleSelectedValueChange}
+      />
+      {isBodyContent && (
         <InputEditor
-          value={content.index}
-          onChange={handleValueChange("index")}
-          title={t("editor.action.panel.elastic.index")}
+          value={content.body ?? ""}
+          onChange={handleValueChange("body")}
+          title={t("editor.action.panel.elastic.body")}
+          lineNumbers
+          style={{ height: "88px" }}
           expectedType={VALIDATION_TYPES.STRING}
           mode={CODE_LANG.JAVASCRIPT}
           codeType={CODE_TYPE.EXPRESSION}
+          canShowCompleteInfo
         />
-        {isShowID && (
-          <InputEditor
-            value={content.id ?? ""}
-            onChange={handleValueChange("id")}
-            title={t("editor.action.panel.elastic.id")}
-            expectedType={VALIDATION_TYPES.STRING}
-            mode={CODE_LANG.JAVASCRIPT}
-            codeType={CODE_TYPE.EXPRESSION}
-            canShowCompleteInfo
-          />
-        )}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+      )}
+      {isQueryContent && (
+        <InputEditor
+          value={content.query ?? ""}
+          onChange={handleValueChange("query")}
+          title={t("editor.action.panel.elastic.query")}
+          lineNumbers
+          expectedType={VALIDATION_TYPES.STRING}
+          mode={CODE_LANG.JAVASCRIPT}
+          style={{ height: "88px" }}
+          codeType={CODE_TYPE.EXPRESSION}
+          canShowCompleteInfo
+        />
+      )}
+      <InputEditor
+        value={content.index}
+        onChange={handleValueChange("index")}
+        title={t("editor.action.panel.elastic.index")}
+        expectedType={VALIDATION_TYPES.STRING}
+        mode={CODE_LANG.JAVASCRIPT}
+        codeType={CODE_TYPE.EXPRESSION}
+      />
+      {isShowID && (
+        <InputEditor
+          value={content.id ?? ""}
+          onChange={handleValueChange("id")}
+          title={t("editor.action.panel.elastic.id")}
+          expectedType={VALIDATION_TYPES.STRING}
+          mode={CODE_LANG.JAVASCRIPT}
+          codeType={CODE_TYPE.EXPRESSION}
+          canShowCompleteInfo
+        />
+      )}
+      <TransformerComponent />
     </div>
   )
 }

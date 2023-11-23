@@ -4,13 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import {
-  actionItemContainer,
-  panelContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/style"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/style"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -61,8 +56,7 @@ const OracleDBPanel: FC = () => {
   )
 
   return (
-    <div css={panelContainerStyle}>
-      <PanelHeader />
+    <>
       <div css={actionItemContainer}>
         <InputEditor
           style={{ height: "88px" }}
@@ -99,8 +93,7 @@ const OracleDBPanel: FC = () => {
           <SQLModeSelector />
         </div>
       )}
-      <ActionEventHandler />
-    </div>
+    </>
   )
 }
 OracleDBPanel.displayName = "OracleDBPanel"

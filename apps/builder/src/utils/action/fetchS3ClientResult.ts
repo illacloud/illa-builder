@@ -14,7 +14,6 @@ export const fetchS3ClientResult = async (
     }
     const headers = {
       "Content-Encoding": "compress",
-      Authorization: "",
     }
     let result
     const { commands } = actionContent

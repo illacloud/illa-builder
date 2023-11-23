@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { SelectValue } from "@illa-design/react"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { AggregatePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/AggregatePart"
 import { BulkWritePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/BulkWritePart"
 import { CommandPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/Command"
@@ -19,11 +18,7 @@ import { InsertOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDb
 import { UpdateManyPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateManyPart"
 import { UpdateOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateOnePart"
 import { ListCollectionsPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/listCollectionsPart"
-import {
-  actionItemContainer,
-  mongoContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
@@ -195,31 +190,27 @@ const MongoDbPanel: FC = () => {
   )
 
   return (
-    <div css={mongoContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          componentType="select"
-          showSearch={true}
-          value={content.actionType}
-          onSelectedValueChange={handleActionTypeChange}
-          options={MongoDbActionList}
-          title={t("editor.action.panel.mongodb.action_type")}
-        />
-        {cachedAction.content.actionType !== "command" &&
-          cachedAction.content.actionType !== "listCollections" && (
-            <InputEditor
-              value={content.collection}
-              title={t("editor.action.panel.mongodb.collection")}
-              onChange={handleCollectionChange}
-              mode={CODE_LANG.JAVASCRIPT}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
-          )}
-        {renderInputBody}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        componentType="select"
+        showSearch={true}
+        value={content.actionType}
+        onSelectedValueChange={handleActionTypeChange}
+        options={MongoDbActionList}
+        title={t("editor.action.panel.mongodb.action_type")}
+      />
+      {cachedAction.content.actionType !== "command" &&
+        cachedAction.content.actionType !== "listCollections" && (
+          <InputEditor
+            value={content.collection}
+            title={t("editor.action.panel.mongodb.collection")}
+            onChange={handleCollectionChange}
+            mode={CODE_LANG.JAVASCRIPT}
+            expectedType={VALIDATION_TYPES.STRING}
+          />
+        )}
+      {renderInputBody}
+      <TransformerComponent />
     </div>
   )
 }

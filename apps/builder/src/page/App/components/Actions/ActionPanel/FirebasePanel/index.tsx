@@ -2,7 +2,6 @@ import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { SelectValue } from "@illa-design/react"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { AppendDataToListPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/AppendDataToList"
 import { CreateOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/CreateOneUser"
 import { DeleteOneDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/DeleteOneDocument"
@@ -21,7 +20,6 @@ import { SetDataPart } from "@/page/App/components/Actions/ActionPanel/FirebaseP
 import { UpdateDataPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateData"
 import { UpdateDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateDocument"
 import { UpdateOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateOneUser"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
@@ -45,7 +43,7 @@ import {
   ServiceTypeInitialValue,
   ServiceTypeValue,
 } from "@/redux/currentApp/action/firebaseAction"
-import { actionContainerStyle, actionItemContainer } from "./style"
+import { actionItemContainer } from "./style"
 
 const FirebasePanel: FC = () => {
   const { t } = useTranslation()
@@ -164,32 +162,28 @@ const FirebasePanel: FC = () => {
   }, [content.operation, content.options, handleOptionsValueChange])
 
   return (
-    <div css={actionContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          title={t("editor.action.panel.firebase.service_type")}
-          componentType="select"
-          value={content.service}
-          showSearch
-          options={FirebaseServiceType}
-          onSelectedValueChange={handleValueChange("service")}
-        />
-        <SingleTypeComponent
-          title={t("editor.action.panel.firebase.action_type")}
-          componentType="select"
-          showSearch={true}
-          value={content.operation}
-          placeholder={t(
-            "editor.action.panel.firebase.placeholder.select_an_action",
-          )}
-          options={ActionTypeList[content.service]}
-          onSelectedValueChange={handleValueChange("operation")}
-        />
-        {renderInputBody}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        title={t("editor.action.panel.firebase.service_type")}
+        componentType="select"
+        value={content.service}
+        showSearch
+        options={FirebaseServiceType}
+        onSelectedValueChange={handleValueChange("service")}
+      />
+      <SingleTypeComponent
+        title={t("editor.action.panel.firebase.action_type")}
+        componentType="select"
+        showSearch={true}
+        value={content.operation}
+        placeholder={t(
+          "editor.action.panel.firebase.placeholder.select_an_action",
+        )}
+        options={ActionTypeList[content.service]}
+        onSelectedValueChange={handleValueChange("operation")}
+      />
+      {renderInputBody}
+      <TransformerComponent />
     </div>
   )
 }

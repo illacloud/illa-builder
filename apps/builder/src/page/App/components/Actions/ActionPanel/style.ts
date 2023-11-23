@@ -21,7 +21,6 @@ export const actionPanelContainerStyle = css`
 `
 
 export const actionContentStyle = css`
-  padding-bottom: 48px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -37,9 +36,4 @@ export const outterActionContainerStyle = css`
 
 export const actionItemContainer = css`
   padding: 8px 0;
-`
-
-export const panelContainerStyle = css`
-  display: flex;
-  flex-direction: column;
 `
