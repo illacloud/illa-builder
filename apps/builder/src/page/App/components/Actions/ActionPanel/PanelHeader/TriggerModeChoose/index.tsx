@@ -21,7 +21,7 @@ const TriggerModeChoose: FC = () => {
       ml="8px"
       colorScheme="techPurple"
       value={action.triggerMode}
-      w="400px"
+      w="360px"
       onChange={(value) => {
         dispatch(
           configActions.updateCachedAction({

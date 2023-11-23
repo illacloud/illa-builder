@@ -292,6 +292,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 columnNumber={columnNumber}
                 dynamicHeight={dynamicHeight}
                 extraHeight={paginationBounds.height}
+                itemShadow={itemShadow}
                 enableAutoPagination={enablePagination}
                 handleUpdateOriginalDSLMultiAttr={
                   handleUpdateOriginalDSLMultiAttr

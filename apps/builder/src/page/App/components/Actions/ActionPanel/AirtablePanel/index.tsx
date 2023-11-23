@@ -5,7 +5,6 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { CreateRecordsPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/CreateRecordsPart"
 import { DeleteMultipleRecordsPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/DeleteMultipleRecordsPart"
 import { DeleteRecordPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/DeleteRecordPart"
@@ -13,13 +12,9 @@ import { GetRecordPart } from "@/page/App/components/Actions/ActionPanel/Airtabl
 import { ListRecordsPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/ListRecordsPart"
 import { UpdateMultipleRecordsPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/UpdateMultipleRecordsPart"
 import { UpdateRecordPart } from "@/page/App/components/Actions/ActionPanel/AirtablePanel/UpdateRecordPart"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import {
-  actionItemContainer,
-  panelContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/style"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/style"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import {
   getCachedAction,
@@ -79,105 +74,101 @@ const AirtablePanel: FC = () => {
   }, [content.method])
 
   return (
-    <div css={panelContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <InputEditor
-          title={t("editor.action.panel.label.airtable.base_id")}
-          value={content.baseConfig.baseId}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  baseConfig: {
-                    ...cachedAction.content.baseConfig,
-                    baseId: value,
-                  },
+    <div css={actionItemContainer}>
+      <InputEditor
+        title={t("editor.action.panel.label.airtable.base_id")}
+        value={content.baseConfig.baseId}
+        onChange={(value) => {
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...cachedAction.content,
+                baseConfig: {
+                  ...cachedAction.content.baseConfig,
+                  baseId: value,
                 },
-              }),
-            )
-          }}
-          expectedType={VALIDATION_TYPES.STRING}
-          mode={CODE_LANG.JAVASCRIPT}
-          codeType={CODE_TYPE.EXPRESSION}
-          tips={t("editor.action.panel.label.tips.airtable.base_id")}
-          canShowCompleteInfo
-        />
-        <InputEditor
-          title={t("editor.action.panel.label.airtable.table_name")}
-          value={content.baseConfig.tableName}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  baseConfig: {
-                    ...cachedAction.content.baseConfig,
-                    tableName: value,
-                  },
+              },
+            }),
+          )
+        }}
+        expectedType={VALIDATION_TYPES.STRING}
+        mode={CODE_LANG.JAVASCRIPT}
+        codeType={CODE_TYPE.EXPRESSION}
+        tips={t("editor.action.panel.label.tips.airtable.base_id")}
+        canShowCompleteInfo
+      />
+      <InputEditor
+        title={t("editor.action.panel.label.airtable.table_name")}
+        value={content.baseConfig.tableName}
+        onChange={(value) => {
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...cachedAction.content,
+                baseConfig: {
+                  ...cachedAction.content.baseConfig,
+                  tableName: value,
                 },
-              }),
-            )
-          }}
-          expectedType={VALIDATION_TYPES.STRING}
-          mode={CODE_LANG.JAVASCRIPT}
-          codeType={CODE_TYPE.EXPRESSION}
-          canShowCompleteInfo
-        />
-        <SingleTypeComponent
-          componentType="select"
-          showSearch={true}
-          value={content.method}
-          onSelectedValueChange={(value) => {
-            let config = selectedAction.content.config
-            if (selectedAction.content.method !== value) {
-              switch (value) {
-                case "list":
-                  config = AirtableListRecordInitial
-                  break
-                case "get":
-                  config = AirtableGetRecordInitial
-                  break
-                case "create":
-                  config = AirtableCreateRecordInitial
-                  break
-                case "update":
-                  config = AirtableUpdateRecordInitial
-                  break
-                case "bulkUpdate":
-                  config = AirtableUpdateMultipleRecordInitial
-                  break
-                case "bulkDelete":
-                  config = AirtableDeleteMultipleRecordInitial
-                  break
-                case "delete":
-                  config = AirtableDeleteRecordInitial
-                  break
-                default:
-                  break
-              }
+              },
+            }),
+          )
+        }}
+        expectedType={VALIDATION_TYPES.STRING}
+        mode={CODE_LANG.JAVASCRIPT}
+        codeType={CODE_TYPE.EXPRESSION}
+        canShowCompleteInfo
+      />
+      <SingleTypeComponent
+        componentType="select"
+        showSearch={true}
+        value={content.method}
+        onSelectedValueChange={(value) => {
+          let config = selectedAction.content.config
+          if (selectedAction.content.method !== value) {
+            switch (value) {
+              case "list":
+                config = AirtableListRecordInitial
+                break
+              case "get":
+                config = AirtableGetRecordInitial
+                break
+              case "create":
+                config = AirtableCreateRecordInitial
+                break
+              case "update":
+                config = AirtableUpdateRecordInitial
+                break
+              case "bulkUpdate":
+                config = AirtableUpdateMultipleRecordInitial
+                break
+              case "bulkDelete":
+                config = AirtableDeleteMultipleRecordInitial
+                break
+              case "delete":
+                config = AirtableDeleteRecordInitial
+                break
+              default:
+                break
             }
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  method: value as AirtableActionMethodsType,
-                  config: config,
-                },
-              }),
-            )
-          }}
-          options={AirtableMethodList}
-          title={t("editor.action.panel.mongodb.action_type")}
-        />
-        {part}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+          }
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...cachedAction.content,
+                method: value as AirtableActionMethodsType,
+                config: config,
+              },
+            }),
+          )
+        }}
+        options={AirtableMethodList}
+        title={t("editor.action.panel.mongodb.action_type")}
+      />
+      {part}
+      <TransformerComponent />
     </div>
   )
 }

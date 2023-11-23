@@ -1,12 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
-import {
-  actionItemContainer,
-  redisContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -45,25 +40,20 @@ const RedisPanel: FC = () => {
   )
 
   return (
-    <div css={redisContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <InputEditor
-          style={{ maxHeight: "88px" }}
-          placeholder="SET runoobkey redis"
-          lineNumbers
-          canShowCompleteInfo
-          value={currentContent.query}
-          mode={CODE_LANG.JAVASCRIPT}
-          expectedType={VALIDATION_TYPES.STRING}
-          sqlScheme={sqlTable}
-          onChange={handleValueChange}
-        />
+    <div css={actionItemContainer}>
+      <InputEditor
+        style={{ maxHeight: "88px" }}
+        placeholder="SET runoobkey redis"
+        lineNumbers
+        canShowCompleteInfo
+        value={currentContent.query}
+        mode={CODE_LANG.JAVASCRIPT}
+        expectedType={VALIDATION_TYPES.STRING}
+        sqlScheme={sqlTable}
+        onChange={handleValueChange}
+      />
 
-        <TransformerComponent fullWidth />
-      </div>
-
-      <ActionEventHandler />
+      <TransformerComponent fullWidth />
     </div>
   )
 }

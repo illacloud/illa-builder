@@ -2,20 +2,15 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { DeleteItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/DeleteItemPanel"
 import { GetItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/GetItemPanel"
 import { PutItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/PutItemPanel"
 import { QueryPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/QueryPanel"
 import { ScanPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/ScanPanel"
 import { UpdateItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/UpdateItemPanel"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import {
-  actionItemContainer,
-  panelContainerStyle,
-} from "@/page/App/components/Actions/ActionPanel/style"
+import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/style"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import {
   getCachedAction,
@@ -116,52 +111,48 @@ const DynamoDBPanel: FC = () => {
   const PanelComponent = DynamoActionMap[content.method] ?? QueryPanel
 
   return (
-    <div css={panelContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <SingleTypeComponent
-          title={t("editor.action.panel.dynamo.label.method")}
-          componentType="select"
-          onChange={(value) => handleValueChange(value as string, "method")}
-          value={content.method}
-          options={DynamoDBSelectOptions}
-        />
+    <div css={actionItemContainer}>
+      <SingleTypeComponent
+        title={t("editor.action.panel.dynamo.label.method")}
+        componentType="select"
+        onChange={(value) => handleValueChange(value as string, "method")}
+        value={content.method}
+        options={DynamoDBSelectOptions}
+      />
+      <InputEditor
+        title={t("editor.action.panel.dynamo.label.table")}
+        lineNumbers={false}
+        expectedType={VALIDATION_TYPES.STRING}
+        sqlScheme={sqlTable}
+        mode={CODE_LANG.SQL}
+        value={content.table}
+        onChange={(value) => handleValueChange(value as string, "table")}
+      />
+      <SingleTypeComponent
+        title=""
+        componentType="checkbox"
+        value={content.useJson}
+        onChange={(value) => handleValueChange(value as boolean, "useJson")}
+        options={DynamoDBSelectOptions}
+        checkoutTitle={t("editor.action.panel.dynamo.label.json_input")}
+      />
+      {content.useJson ? (
         <InputEditor
-          title={t("editor.action.panel.dynamo.label.table")}
-          lineNumbers={false}
+          title={t("editor.action.panel.dynamo.label.parameters")}
+          style={{ height: "88px" }}
+          lineNumbers={true}
           expectedType={VALIDATION_TYPES.STRING}
-          sqlScheme={sqlTable}
-          mode={CODE_LANG.SQL}
-          value={content.table}
-          onChange={(value) => handleValueChange(value as string, "table")}
+          value={content.parameters}
+          placeholder={t("editor.action.panel.dynamo.placeholder.parameters")}
+          onChange={(value) => handleValueChange(value, "parameters")}
         />
-        <SingleTypeComponent
-          title=""
-          componentType="checkbox"
-          value={content.useJson}
-          onChange={(value) => handleValueChange(value as boolean, "useJson")}
-          options={DynamoDBSelectOptions}
-          checkoutTitle={t("editor.action.panel.dynamo.label.json_input")}
+      ) : (
+        <PanelComponent
+          structParams={content.structParams}
+          handleValueChange={handleStructParamsValueChange}
         />
-        {content.useJson ? (
-          <InputEditor
-            title={t("editor.action.panel.dynamo.label.parameters")}
-            style={{ height: "88px" }}
-            lineNumbers={true}
-            expectedType={VALIDATION_TYPES.STRING}
-            value={content.parameters}
-            placeholder={t("editor.action.panel.dynamo.placeholder.parameters")}
-            onChange={(value) => handleValueChange(value, "parameters")}
-          />
-        ) : (
-          <PanelComponent
-            structParams={content.structParams}
-            handleValueChange={handleStructParamsValueChange}
-          />
-        )}
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+      )}
+      <TransformerComponent />
     </div>
   )
 }

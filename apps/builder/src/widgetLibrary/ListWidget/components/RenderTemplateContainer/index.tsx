@@ -5,6 +5,7 @@ import {
 } from "@/page/App/components/ScaleSquare/constant/widget"
 import { RenderTemplateContainerProps } from "@/widgetLibrary/ListWidget/interface"
 import RenderChildrenCanvas from "@/widgetLibrary/PublicSector/RenderChildrenCanvas"
+import { getGapByShadow } from "../../utils"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   const {
@@ -18,6 +19,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     updateComponentHeight,
     itemNumber = 1,
     enableAutoPagination,
+    itemShadow,
   } = props
 
   const enableAutoHeight = dynamicHeight !== "fixed"
@@ -37,7 +39,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
         )
       }
 
-      // height + pagination height + pagination gap + every item height
+      // height + pagination height + pagination gap + every item height + container padding y * 2
       let componentHeight: number
       let gap = itemGap >= 0 ? itemGap : LIST_ITEM_MARGIN_TOP
       if (enableAutoPagination) {
@@ -47,13 +49,15 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
           LIST_ITEM_MARGIN_TOP +
           2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH +
           (height + 2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH + gap) *
-            (itemNumber - 1)
+            (itemNumber - 1) +
+          getGapByShadow(itemShadow) * 2
       } else {
         componentHeight =
           height +
           2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH +
           (height + 2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH + gap) *
-            (itemNumber - 1)
+            (itemNumber - 1) +
+          getGapByShadow(itemShadow) * 2
       }
       updateComponentHeight(componentHeight)
     },
@@ -65,6 +69,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
       extraHeight,
       enableAutoPagination,
       itemGap,
+      itemShadow,
     ],
   )
 
