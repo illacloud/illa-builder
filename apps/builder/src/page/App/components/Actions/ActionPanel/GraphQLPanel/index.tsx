@@ -3,9 +3,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/components/RecordEditor"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import PanelHeader from "@/page/App/components/Actions/ActionPanel/PanelHeader"
-import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -102,43 +99,39 @@ const GraphQLPanel: FC = () => {
   )
 
   return (
-    <div css={redisContainerStyle}>
-      <PanelHeader />
-      <div css={actionItemContainer}>
-        <InputEditor
-          lineNumbers
-          title={t("editor.action.panel.graphql.query")}
-          placeholder={t("editor.action.panel.graphql.placeholder.query")}
-          value={content.query}
-          onChange={(value) => handleValueChange(value, "query")}
-          mode={CODE_LANG.SQL}
-          style={{ height: "88px" }}
-          expectedType={VALIDATION_TYPES.STRING}
-        />
-        <RecordEditor
-          key="variables"
-          label={t("editor.action.panel.graphql.variables")}
-          records={content.variables}
-          name="variables"
-          onAdd={handleOnAddKeys}
-          onDelete={handleOnDeleteKeyValue}
-          onChangeKey={handleOnChangeKeyOrValue}
-          onChangeValue={handleOnChangeKeyOrValue}
-          valueInputType={VALIDATION_TYPES.ANY}
-        />
-        <RecordEditor
-          key="headers"
-          label={t("editor.action.panel.graphql.headers")}
-          name="headers"
-          records={content.headers}
-          onAdd={handleOnAddKeys}
-          onDelete={handleOnDeleteKeyValue}
-          onChangeKey={handleOnChangeKeyOrValue}
-          onChangeValue={handleOnChangeKeyOrValue}
-        />
-        <TransformerComponent />
-      </div>
-      <ActionEventHandler />
+    <div css={actionItemContainer}>
+      <InputEditor
+        lineNumbers
+        title={t("editor.action.panel.graphql.query")}
+        placeholder={t("editor.action.panel.graphql.placeholder.query")}
+        value={content.query}
+        onChange={(value) => handleValueChange(value, "query")}
+        mode={CODE_LANG.SQL}
+        style={{ height: "88px" }}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <RecordEditor
+        key="variables"
+        label={t("editor.action.panel.graphql.variables")}
+        records={content.variables}
+        name="variables"
+        onAdd={handleOnAddKeys}
+        onDelete={handleOnDeleteKeyValue}
+        onChangeKey={handleOnChangeKeyOrValue}
+        onChangeValue={handleOnChangeKeyOrValue}
+        valueInputType={VALIDATION_TYPES.ANY}
+      />
+      <RecordEditor
+        key="headers"
+        label={t("editor.action.panel.graphql.headers")}
+        name="headers"
+        records={content.headers}
+        onAdd={handleOnAddKeys}
+        onDelete={handleOnDeleteKeyValue}
+        onChangeKey={handleOnChangeKeyOrValue}
+        onChangeValue={handleOnChangeKeyOrValue}
+      />
+      <TransformerComponent />
     </div>
   )
 }

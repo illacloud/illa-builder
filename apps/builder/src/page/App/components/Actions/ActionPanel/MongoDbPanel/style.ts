@@ -1,11 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const mongoContainerStyle = css`
-  display: flex;
-  flex-direction: column;
-`
-
 export const codeEditorLabelStyle = css`
   min-width: 160px;
   font-size: 14px;

@@ -24,7 +24,7 @@ import { trackInEditor } from "@/utils/mixpanelHelper"
 import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
 import ActionMockPanel from "./ActionMockPanel"
 import { INIT_ACTION_MOCK_CONFIG } from "./ActionMockPanel/constant"
-import MockOperation from "./PanelHeader/MockOperation"
+import GeneralPanelLayout from "./Layout/GeneralPanelLayout"
 
 const AdvancedPanel = lazy(
   () => import("@/page/App/components/Actions/AdvancedPanel"),
@@ -223,15 +223,19 @@ export const ActionPanel: FC = () => {
         <Suspense fallback={<WidgetLoading />}>
           {activeKey === "general" && (
             <div css={outterActionContainerStyle}>
-              <MockOperation enableMock={!!mockConfig?.enabled} />
-              {mockConfig?.enabled ? (
-                <ActionMockPanel
-                  enableForReleasedApp={mockConfig.enableForReleasedApp}
-                  mockData={mockConfig.mockData}
-                />
-              ) : (
-                <div css={actionContentStyle}>{panel}</div>
-              )}
+              <GeneralPanelLayout
+                actionType={cachedAction?.actionType}
+                mockEnabled={mockConfig?.enabled}
+              >
+                {mockConfig?.enabled ? (
+                  <ActionMockPanel
+                    enableForReleasedApp={mockConfig.enableForReleasedApp}
+                    mockData={mockConfig.mockData}
+                  />
+                ) : (
+                  <div css={actionContentStyle}>{panel}</div>
+                )}
+              </GeneralPanelLayout>
             </div>
           )}
           {activeKey === "advanced" && (
