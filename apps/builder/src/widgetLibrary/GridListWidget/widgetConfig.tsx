@@ -1,4 +1,4 @@
-import { ReactComponent as GridListWidgetIcon } from "@/assets/widgetCover/gridList.svg"
+import GridListWidgetIcon from "@/assets/widgetCover/gridList.svg?react"
 import i18n from "@/i18n/config"
 import { TEMPLATE_DISPLAYNAME_KEY } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"

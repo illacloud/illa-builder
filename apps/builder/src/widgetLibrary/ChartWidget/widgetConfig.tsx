@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as ChartWidgetIcon } from "@/assets/widgetCover/chart.svg"
+import ChartWidgetIcon from "@/assets/widgetCover/chart.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

@@ -1,5 +1,5 @@
 import { builderRequest, notNeedAuthRequest } from "@illa-public/illa-net"
-import { AccessType } from "@/redux/resource/googleSheetResource"
+import { AccessType } from "@illa-public/public-types"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamID } from "../utils/team"
 

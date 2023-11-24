@@ -1,4 +1,4 @@
-import { ReactComponent as JsonEditorWidgetIcon } from "@/assets/widgetCover/jsonEditor.svg"
+import JsonEditorWidgetIcon from "@/assets/widgetCover/jsonEditor.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

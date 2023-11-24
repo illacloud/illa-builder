@@ -1,11 +1,9 @@
+import { ActionContent } from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { omit } from "lodash"
 import { v4 } from "uuid"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 import {
   fetchCreateAction,
   fetchDeleteAction,

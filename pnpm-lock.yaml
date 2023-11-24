@@ -378,7 +378,7 @@ importers:
         version: 0.1.4(react-dom@18.2.0)(react@18.2.0)
       react-dnd:
         specifier: ^16.0.1
-        version: 16.0.1(@types/react@18.2.22)(react@18.2.0)
+        version: 16.0.1(@types/node@18.17.19)(@types/react@18.2.22)(react@18.2.0)
       react-dnd-touch-backend:
         specifier: ^16.0.1
         version: 16.0.1
@@ -550,10 +550,10 @@ importers:
         version: link:../../packages/tsconfig
       vite-plugin-checker:
         specifier: ^0.6.2
-        version: 0.6.2(vite@4.4.9)
+        version: 0.6.2(eslint@8.50.0)(typescript@5.2.2)(vite@4.4.9)
       vite-plugin-svgr:
-        specifier: ^3.3.0
-        version: 3.3.0(rollup@3.28.1)(vite@4.4.9)
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
 
   apps/cloud:
     dependencies:
@@ -676,8 +676,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.2(eslint@8.50.0)(typescript@5.2.2)(vite@4.4.9)
       vite-plugin-svgr:
-        specifier: ^3.2.0
-        version: 3.3.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
 
   apps/playwright:
     dependencies:
@@ -2756,13 +2756,13 @@ importers:
       react-router-dom:
         specifier: ^6.16.0
         version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/CodeEditor:
     dependencies:
@@ -2854,13 +2854,13 @@ importers:
       react-i18next:
         specifier: ^13.2.2
         version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/Dashboard:
     dependencies:
@@ -2918,13 +2918,13 @@ importers:
       react-hook-form:
         specifier: ^7.40.0
         version: 7.43.1(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/ILLANet:
     dependencies:
@@ -2952,6 +2952,49 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../illa-design/packages/react
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.2.22
+        version: 18.2.22
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.7
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-i18next:
+        specifier: ^13.2.2
+        version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+      vite:
+        specifier: ^4.4.9
+        version: 4.4.9(@types/node@18.17.19)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
+    devDependencies:
+      '@types/node':
+        specifier: ^18.14.4
+        version: 18.17.19
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/illa-public-component/IconHotSpot:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.1
+        version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../illa-design/packages/react
       '@types/react':
         specifier: ^18.2.22
         version: 18.2.22
@@ -2965,18 +3008,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@illa-public/public-types':
-        specifier: workspace:*
-        version: link:../publicTypes
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/InviteModal:
     dependencies:
@@ -3058,6 +3092,9 @@ importers:
       react-share:
         specifier: ^4.4.1
         version: 4.4.1(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       '@types/lodash':
         specifier: ^4.14.199
@@ -3068,18 +3105,12 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/LayoutAutoChange:
     dependencies:
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.22)(react@18.2.0)
-      '@illa-design/react':
-        specifier: workspace:*
-        version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
@@ -3120,6 +3151,9 @@ importers:
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../ILLANet
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/record-editor':
         specifier: workspace:*
         version: link:../RecordEditor
@@ -3141,13 +3175,13 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/MarketApp:
     dependencies:
@@ -3353,12 +3387,24 @@ importers:
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../ILLANet
+      '@illa-public/market-agent':
+        specifier: workspace:*
+        version: link:../MarketAgent
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../MixpanelUtils
+      '@illa-public/public-configs':
+        specifier: workspace:*
+        version: link:../publicConfig
       '@illa-public/public-types':
         specifier: workspace:*
         version: link:../publicTypes
+      '@illa-public/text-link':
+        specifier: workspace:*
+        version: link:../TextLink
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../UserData
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
@@ -3368,19 +3414,34 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.7
         version: 18.2.7
+      '@types/uuid':
+        specifier: ^9.0.7
+        version: 9.0.7
       react:
         specifier: ^18.2.0
         version: 18.2.0
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.48.2
+        version: 7.48.2(react@18.2.0)
+      react-i18next:
+        specifier: ^13.2.2
+        version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
+      vite:
+        specifier: ^4.4.9
+        version: 4.4.9(@types/node@18.17.19)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/RoleSelector:
     dependencies:
@@ -3414,13 +3475,13 @@ importers:
       react-i18next:
         specifier: ^13.2.2
         version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/SSOModule:
     dependencies:
@@ -3478,6 +3539,9 @@ importers:
       react-router-dom:
         specifier: ^6.16.0
         version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       '@types/mdx':
         specifier: ^2.0.3
@@ -3488,9 +3552,6 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/TextLink:
     dependencies:
@@ -3515,13 +3576,13 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/UpgradeModal:
     dependencies:
@@ -3576,6 +3637,9 @@ importers:
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       '@types/node':
         specifier: ^18.14.4
@@ -3586,9 +3650,6 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/UpgradeTag:
     dependencies:
@@ -3616,13 +3677,13 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      vite-plugin-svgr:
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(vite@4.4.9)
 
   packages/illa-public-component/UsageCard:
     dependencies:
@@ -3654,8 +3715,8 @@ importers:
         specifier: ^13.2.2
         version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
       vite-plugin-svgr:
-        specifier: '*'
-        version: 2.4.0(vite@4.4.9)
+        specifier: ^4.2.0
+        version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
@@ -6159,12 +6220,13 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
+    dev: true
 
-  /@rollup/pluginutils@5.0.4(rollup@3.28.1):
-    resolution: {integrity: sha512-0KJnIoRI8A+a1dqOYLxH8vBf8bphDmty5QvIm2hqm7oFCFYKCAZWWd2hXgMibaPsNDhI0AtpYfQZJG47pt/k4g==}
+  /@rollup/pluginutils@5.0.5(rollup@3.28.1):
+    resolution: {integrity: sha512-6aEYR910NyP73oHiJglti74iRyOwgFU4x3meH/H8OJx6Ry0j6cOVZ5X/wTvub7G7Ao6qaHBEaNsV3GLJkSsF+Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -6173,7 +6235,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
-    dev: true
 
   /@scena/dragscroll@1.4.0:
     resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==, tarball: https://registry.yarnpkg.com/@scena/dragscroll/-/dragscroll-1.4.0.tgz}
@@ -6353,14 +6414,6 @@ packages:
       - supports-color
     dev: true
 
-  /@svgr/babel-plugin-add-jsx-attribute@6.5.1(@babel/core@7.21.8):
-    resolution: {integrity: sha512-9PYGcXrAxitycIjRmZB+Q0JaN07GZIWaTBIGQzfaZv+qr1n8X1XUEJ5rZ/vx6OVD9RRYlrNnXWExQXcmZeD/BQ==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
-
   /@svgr/babel-plugin-add-jsx-attribute@8.0.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-b9MIk7yhdS1pMCZM8VeNfUlSKVRhsHZNMl5O9SfaX0l0t5wjdgu4IDzGB8bpnGBBOjGST3rRFVsaaEtI4W6f7g==}
     engines: {node: '>=14'}
@@ -6368,7 +6421,6 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-    dev: true
 
   /@svgr/babel-plugin-remove-jsx-attribute@8.0.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-BcCkm/STipKvbCl6b7QFrMh/vx00vIP63k2eM66MfHJzPr6O2U0jYEViXkHJWqXqQYjdeA9cuCl5KWmlwjDvbA==}
@@ -6386,26 +6438,9 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
 
-  /@svgr/babel-plugin-replace-jsx-attribute-value@6.5.1(@babel/core@7.21.8):
-    resolution: {integrity: sha512-8DPaVVE3fd5JKuIC29dqyMB54sA6mfgki2H2+swh+zNJoynC8pMPzOkidqHOSc6Wj032fhl8Z0TVn1GiPpAiJg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
-
   /@svgr/babel-plugin-replace-jsx-attribute-value@8.0.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-KVQ+PtIjb1BuYT3ht8M5KbzWBhdAjjUPdlMtpuw/VjT8coTrItWX6Qafl9+ji831JaJcu6PJNKCV0bp01lBNzQ==}
     engines: {node: '>=14'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
-    dev: true
-
-  /@svgr/babel-plugin-svg-dynamic-title@6.5.1(@babel/core@7.21.8):
-    resolution: {integrity: sha512-FwOEi0Il72iAzlkaHrlemVurgSQRDFbk0OC8dSvD5fSBPHltNh7JtLsxmZUhjYBZo2PpcU/RJvvi6Q0l7O7ogw==}
-    engines: {node: '>=10'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -6418,28 +6453,10 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-    dev: true
-
-  /@svgr/babel-plugin-svg-em-dimensions@6.5.1(@babel/core@7.21.8):
-    resolution: {integrity: sha512-gWGsiwjb4tw+ITOJ86ndY/DZZ6cuXMNE/SjcDRg+HLuCmwpcjOktwRF9WgAiycTqJD/QXqL2f8IzE2Rzh7aVXA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
 
   /@svgr/babel-plugin-svg-em-dimensions@8.0.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-mURHYnu6Iw3UBTbhGwE/vsngtCIbHE43xCRK7kCw4t01xyGqb2Pd+WXekRRoFOBIY29ZoOhUCTEweDMdrjfi9g==}
     engines: {node: '>=14'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
-    dev: true
-
-  /@svgr/babel-plugin-transform-react-native-svg@6.5.1(@babel/core@7.21.8):
-    resolution: {integrity: sha512-2jT3nTayyYP7kI6aGutkyfJ7UMGtuguD72OjeGLwVNyfPRBD8zQthlvL+fAbAKk5n9ZNcvFkp/b1lZ7VsYqVJg==}
-    engines: {node: '>=10'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -6452,15 +6469,6 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-    dev: true
-
-  /@svgr/babel-plugin-transform-svg-component@6.5.1(@babel/core@7.21.8):
-    resolution: {integrity: sha512-a1p6LF5Jt33O3rZoVRBqdxL350oge54iZWHNI6LJB5tQ7EelvD/Mb1mfBiZNAan0dt4i3VArkFRjA4iObuNykQ==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
 
   /@svgr/babel-plugin-transform-svg-component@8.0.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-DFx8xa3cZXTdb/k3kfPeaixecQLgKh5NVBMwD0AQxOzcZawK4oo1Jh9LbrcACUivsCA7TLG8eeWgrDXjTMhRmw==}
@@ -6469,23 +6477,6 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-    dev: true
-
-  /@svgr/babel-preset@6.5.1(@babel/core@7.21.8):
-    resolution: {integrity: sha512-6127fvO/FF2oi5EzSQOAjo1LE3OtNVh11R+/8FXa+mHx1ptAaS4cknIjnUA7e6j6fwGGJ17NzaTJFUwOV2zwCw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.21.8
-      '@svgr/babel-plugin-add-jsx-attribute': 6.5.1(@babel/core@7.21.8)
-      '@svgr/babel-plugin-remove-jsx-attribute': 8.0.0(@babel/core@7.21.8)
-      '@svgr/babel-plugin-remove-jsx-empty-expression': 8.0.0(@babel/core@7.21.8)
-      '@svgr/babel-plugin-replace-jsx-attribute-value': 6.5.1(@babel/core@7.21.8)
-      '@svgr/babel-plugin-svg-dynamic-title': 6.5.1(@babel/core@7.21.8)
-      '@svgr/babel-plugin-svg-em-dimensions': 6.5.1(@babel/core@7.21.8)
-      '@svgr/babel-plugin-transform-react-native-svg': 6.5.1(@babel/core@7.21.8)
-      '@svgr/babel-plugin-transform-svg-component': 6.5.1(@babel/core@7.21.8)
 
   /@svgr/babel-preset@8.1.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-7EYDbHE7MxHpv4sxvnVPngw5fuR6pw79SkcrILHJ/iMpuKySNCl5W1qcwPEpU+LgyRXOaAFgH0KhwD18wwg6ug==}
@@ -6502,33 +6493,6 @@ packages:
       '@svgr/babel-plugin-svg-em-dimensions': 8.0.0(@babel/core@7.21.8)
       '@svgr/babel-plugin-transform-react-native-svg': 8.1.0(@babel/core@7.21.8)
       '@svgr/babel-plugin-transform-svg-component': 8.0.0(@babel/core@7.21.8)
-    dev: true
-
-  /@svgr/core@6.5.1:
-    resolution: {integrity: sha512-/xdLSWxK5QkqG524ONSjvg3V/FkNyCv538OIBdQqPNaAta3AsXj/Bd2FbvR87yMbXO2hFSWiAe/Q6IkVPDw+mw==}
-    engines: {node: '>=10'}
-    dependencies:
-      '@babel/core': 7.21.8
-      '@svgr/babel-preset': 6.5.1(@babel/core@7.21.8)
-      '@svgr/plugin-jsx': 6.5.1(@svgr/core@6.5.1)
-      camelcase: 6.3.0
-      cosmiconfig: 7.1.0
-    transitivePeerDependencies:
-      - supports-color
-
-  /@svgr/core@8.1.0:
-    resolution: {integrity: sha512-8QqtOQT5ACVlmsvKOJNEaWmRPmcojMOzCz4Hs2BGG/toAp/K38LcsMRyLp349glq5AzJbCEeimEoxaX6v/fLrA==}
-    engines: {node: '>=14'}
-    dependencies:
-      '@babel/core': 7.21.8
-      '@svgr/babel-preset': 8.1.0(@babel/core@7.21.8)
-      camelcase: 6.3.0
-      cosmiconfig: 8.3.6
-      snake-case: 3.0.4
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    dev: true
 
   /@svgr/core@8.1.0(typescript@5.2.2):
     resolution: {integrity: sha512-8QqtOQT5ACVlmsvKOJNEaWmRPmcojMOzCz4Hs2BGG/toAp/K38LcsMRyLp349glq5AzJbCEeimEoxaX6v/fLrA==}
@@ -6542,14 +6506,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
-    dev: true
-
-  /@svgr/hast-util-to-babel-ast@6.5.1:
-    resolution: {integrity: sha512-1hnUxxjd83EAxbL4a0JDJoD3Dao3hmjvyvyEV8PzWmLK3B9m9NPlW7GKjFyoWE8nM7HnXzPcmmSyOW8yOddSXw==}
-    engines: {node: '>=10'}
-    dependencies:
-      '@babel/types': 7.22.10
-      entities: 4.4.0
 
   /@svgr/hast-util-to-babel-ast@8.0.0:
     resolution: {integrity: sha512-EbDKwO9GpfWP4jN9sGdYwPBU0kdomaPIL2Eu4YwmgP+sJeXT+L7bMwJUBnhzfH8Q2qMBqZ4fJwpCyYsAN3mt2Q==}
@@ -6557,21 +6513,6 @@ packages:
     dependencies:
       '@babel/types': 7.22.10
       entities: 4.4.0
-    dev: true
-
-  /@svgr/plugin-jsx@6.5.1(@svgr/core@6.5.1):
-    resolution: {integrity: sha512-+UdQxI3jgtSjCykNSlEMuy1jSRQlGC7pqBCPvkG/2dATdWo082zHTTK3uhnAju2/6XpE6B5mZ3z4Z8Ns01S8Gw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@svgr/core': ^6.0.0
-    dependencies:
-      '@babel/core': 7.21.8
-      '@svgr/babel-preset': 6.5.1(@babel/core@7.21.8)
-      '@svgr/core': 6.5.1
-      '@svgr/hast-util-to-babel-ast': 6.5.1
-      svg-parser: 2.0.4
-    transitivePeerDependencies:
-      - supports-color
 
   /@svgr/plugin-jsx@8.1.0(@svgr/core@8.1.0):
     resolution: {integrity: sha512-0xiIyBsLlr8quN+WyuxooNW9RJ0Dpr8uOnH/xrCVO8GLUcwHISwj1AG0k+LFzteTkAA0GbX0kj9q6Dk70PTiPA==}
@@ -6581,12 +6522,11 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@svgr/babel-preset': 8.1.0(@babel/core@7.21.8)
-      '@svgr/core': 8.1.0
+      '@svgr/core': 8.1.0(typescript@5.2.2)
       '@svgr/hast-util-to-babel-ast': 8.0.0
       svg-parser: 2.0.4
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@swc/core-darwin-arm64@1.3.68:
     resolution: {integrity: sha512-Z5pNxeuP2NxpOHTzDQkJs0wAPLnTlglZnR3WjObijwvdwT/kw1Y5EPDKM/BVSIeG40SPMkDLBbI0aj0qyXzrBA==}
@@ -7070,6 +7010,7 @@ packages:
 
   /@types/node@20.4.7:
     resolution: {integrity: sha512-bUBrPjEry2QUTsnuEjzjbS7voGWCc30W0qzgMf90GPeDGFRakvrz47ju+oqDAKCXLUCe39u57/ORMl/O/04/9g==}
+    dev: true
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -7226,6 +7167,10 @@ packages:
   /@types/uuid@9.0.5:
     resolution: {integrity: sha512-xfHdwa1FMJ082prjSJpoEI57GZITiQz10r3vEJCHa2khEFQjKy91aWKz6+zybzssCvXUwE1LQWgWVwZ4nYUvHQ==}
     dev: true
+
+  /@types/uuid@9.0.7:
+    resolution: {integrity: sha512-WUtIVRUZ9i5dYXefDEAI7sh9/O7jGvHg7Df/5O/gtH3Yabe5odI3UWopVR1qbPXQtvOxWu3mM4XxlYeZtMWF4g==}
+    dev: false
 
   /@types/warning@3.0.0:
     resolution: {integrity: sha512-t/Tvs5qR47OLOr+4E9ckN8AmP2Tf16gWq+/qA4iUGS/OOyHVO8wv2vjJuX8SNOUTJyWb+2t7wJm6cXILFnOROA==}
@@ -7693,7 +7638,7 @@ packages:
     peerDependencies:
       vite: ^4.4.9
     dependencies:
-      vite: 4.4.9
+      vite: 4.4.9(@types/node@18.17.19)
     dev: true
 
   /@vitejs/plugin-react-swc@3.3.2(vite@4.4.9):
@@ -7713,7 +7658,7 @@ packages:
       vite: ^4.4.9
     dependencies:
       '@swc/core': 1.3.88
-      vite: 4.4.9
+      vite: 4.4.9(@types/node@18.17.19)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: true
@@ -8903,21 +8848,6 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /cosmiconfig@8.3.6:
-    resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      typescript: ^5.2.2
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      import-fresh: 3.3.0
-      js-yaml: 4.1.0
-      parse-json: 5.2.0
-      path-type: 4.0.0
-    dev: true
-
   /cosmiconfig@8.3.6(typescript@5.2.2):
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
@@ -8932,7 +8862,6 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
       typescript: 5.2.2
-    dev: true
 
   /crc-32@1.2.2:
     resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
@@ -9322,7 +9251,6 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.5.0
-    dev: true
 
   /dot-prop@5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
@@ -11544,7 +11472,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.4.7
+      '@types/node': 18.17.19
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: false
@@ -12055,7 +11983,6 @@ packages:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
       tslib: 2.5.0
-    dev: true
 
   /lowlight@1.20.0:
     resolution: {integrity: sha512-8Ktj+prEb1RoCPkEOrPMYUN/nCggB7qAWe3a7OpMjWQkh3l2RD5wKRQ+o8Q8YuI9RG/xs95waaI/E6ym/7NsTw==}
@@ -12908,7 +12835,6 @@ packages:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.5.0
-    dev: true
 
   /node-fetch@2.6.12:
     resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==}
@@ -13782,7 +13708,7 @@ packages:
       dnd-core: 16.0.1
     dev: false
 
-  /react-dnd@16.0.1(@types/react@18.2.22)(react@18.2.0):
+  /react-dnd@16.0.1(@types/node@18.17.19)(@types/react@18.2.22)(react@18.2.0):
     resolution: {integrity: sha512-QeoM/i73HHu2XF9aKksIUuamHPDvRglEwdHL4jsp784BgUuWcg6mzfxT0QDdQz8Wj0qyRKx2eMg8iZtWvU4E2Q==}
     peerDependencies:
       '@types/hoist-non-react-statics': '>= 3.3.1'
@@ -13799,6 +13725,7 @@ packages:
     dependencies:
       '@react-dnd/invariant': 4.0.2
       '@react-dnd/shallowequal': 4.0.2
+      '@types/node': 18.17.19
       '@types/react': 18.2.22
       dnd-core: 16.0.1
       fast-deep-equal: 3.1.3
@@ -13879,6 +13806,15 @@ packages:
 
   /react-hook-form@7.43.1(react@18.2.0):
     resolution: {integrity: sha512-+s3+s8LLytRMriwwuSqeLStVjRXFGxgjjx2jED7Z+wz1J/88vpxieRQGvJVvzrzVxshZ0BRuocFERb779m2kNg==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /react-hook-form@7.48.2(react@18.2.0):
+    resolution: {integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^18.2.0
@@ -14945,7 +14881,6 @@ packages:
     dependencies:
       dot-case: 3.0.4
       tslib: 2.5.0
-    dev: true
 
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
@@ -16194,75 +16129,12 @@ packages:
       vscode-uri: 3.0.7
     dev: true
 
-  /vite-plugin-checker@0.6.2(vite@4.4.9):
-    resolution: {integrity: sha512-YvvvQ+IjY09BX7Ab+1pjxkELQsBd4rPhWNw8WLBeFVxu/E7O+n6VYAqNsKdK/a2luFlX/sMpoWdGFfg4HvwdJQ==}
-    engines: {node: '>=14.16'}
-    peerDependencies:
-      eslint: '>=7'
-      meow: ^9.0.0
-      optionator: ^0.9.1
-      stylelint: '>=13'
-      typescript: ^5.2.2
-      vite: ^4.4.9
-      vls: '*'
-      vti: '*'
-      vue-tsc: '>=1.3.9'
-    peerDependenciesMeta:
-      eslint:
-        optional: true
-      meow:
-        optional: true
-      optionator:
-        optional: true
-      stylelint:
-        optional: true
-      typescript:
-        optional: true
-      vls:
-        optional: true
-      vti:
-        optional: true
-      vue-tsc:
-        optional: true
-    dependencies:
-      '@babel/code-frame': 7.22.10
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      chokidar: 3.5.3
-      commander: 8.3.0
-      fast-glob: 3.2.12
-      fs-extra: 11.1.0
-      lodash.debounce: 4.0.8
-      lodash.pick: 4.4.0
-      npm-run-path: 4.0.1
-      semver: 7.5.4
-      strip-ansi: 6.0.1
-      tiny-invariant: 1.3.1
-      vite: 4.4.9
-      vscode-languageclient: 7.0.0
-      vscode-languageserver: 7.0.0
-      vscode-languageserver-textdocument: 1.0.8
-      vscode-uri: 3.0.7
-    dev: true
-
-  /vite-plugin-svgr@2.4.0(vite@4.4.9):
-    resolution: {integrity: sha512-q+mJJol6ThvqkkJvvVFEndI4EaKIjSI0I3jNFgSoC9fXAz1M7kYTVUin8fhUsFojFDKZ9VHKtX6NXNaOLpbsHA==}
+  /vite-plugin-svgr@4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9):
+    resolution: {integrity: sha512-SC7+FfVtNQk7So0XMjrrtLAbEC8qjFPifyD7+fs/E6aaNdVde6umlVVh0QuwDLdOMu7vp5RiGFsB70nj5yo0XA==}
     peerDependencies:
       vite: ^4.4.9
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.28.1)
-      '@svgr/core': 6.5.1
-      vite: 4.4.9(@types/node@18.17.19)
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-
-  /vite-plugin-svgr@3.3.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9):
-    resolution: {integrity: sha512-vWZMCcGNdPqgziYFKQ3Y95XP0d0YGp28+MM3Dp9cTa/px5CKcHHrIoPl2Jw81rgVm6/ZUNONzjXbZQZ7Kw66og==}
-    peerDependencies:
-      vite: ^4.4.9
-    dependencies:
-      '@rollup/pluginutils': 5.0.4(rollup@3.28.1)
+      '@rollup/pluginutils': 5.0.5(rollup@3.28.1)
       '@svgr/core': 8.1.0(typescript@5.2.2)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0)
       vite: 4.4.9(@types/node@18.17.19)
@@ -16270,57 +16142,6 @@ packages:
       - rollup
       - supports-color
       - typescript
-    dev: true
-
-  /vite-plugin-svgr@3.3.0(rollup@3.28.1)(vite@4.4.9):
-    resolution: {integrity: sha512-vWZMCcGNdPqgziYFKQ3Y95XP0d0YGp28+MM3Dp9cTa/px5CKcHHrIoPl2Jw81rgVm6/ZUNONzjXbZQZ7Kw66og==}
-    peerDependencies:
-      vite: ^4.4.9
-    dependencies:
-      '@rollup/pluginutils': 5.0.4(rollup@3.28.1)
-      '@svgr/core': 8.1.0
-      '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0)
-      vite: 4.4.9
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-      - typescript
-    dev: true
-
-  /vite@4.4.9:
-    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.18.11
-      postcss: 8.4.31
-      rollup: 3.28.1
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
 
   /vite@4.4.9(@types/node@18.17.19):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}

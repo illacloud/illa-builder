@@ -1,3 +1,11 @@
+import {
+  ApiKeyAuth,
+  GraphQLAuth,
+  GraphQLAuthValue,
+  GraphQLBasicAuth,
+  GraphQLBearerAuth,
+  GraphQLResource,
+} from "@illa-public/public-types"
 import { FC } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -13,20 +21,12 @@ import {
 import { APIKeyAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/APIKeyAuthPanel"
 import { BasicAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/GraphQLConfigElement/BearerAuthPanel"
-import {
-  ApiKeyAuth,
-  BasicAuth,
-  BearerAuth,
-  GraphQLAuth,
-  GraphQLAuthTypeSelect,
-  GraphQLAuthValue,
-  GraphQLResource,
-} from "@/redux/resource/graphqlResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
+import { GraphQLAuthTypeSelect } from "./constants"
 
 const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
   const { resourceID } = props
@@ -171,13 +171,13 @@ const GraphQLConfigElement: FC<BaseConfigElementProps> = (props) => {
         {authType === GraphQLAuthValue.BASIC && (
           <BasicAuthPanel
             control={control}
-            auth={resource?.content.authContent as BasicAuth}
+            auth={resource?.content.authContent as GraphQLBasicAuth}
           />
         )}
         {authType === GraphQLAuthValue.BEARER && (
           <BearerAuthPanel
             control={control}
-            auth={resource?.content.authContent as BearerAuth}
+            auth={resource?.content.authContent as GraphQLBearerAuth}
           />
         )}
         {authType === GraphQLAuthValue.APIKEY && (

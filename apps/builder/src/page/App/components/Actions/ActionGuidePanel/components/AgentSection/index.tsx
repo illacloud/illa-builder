@@ -1,23 +1,26 @@
-import { Agent, getAIAgentMarketplaceInfo } from "@illa-public/market-agent"
+import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent"
+import {
+  INIT_ACTION_ADVANCED_CONFIG,
+  actionItemInitial,
+  getInitialAgentContent,
+} from "@illa-public/public-configs"
+import {
+  ActionContent,
+  ActionItem,
+  Agent,
+  AiAgentActionContent,
+} from "@illa-public/public-types"
 import { FC, memo, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Button, NextIcon, Skeleton, useMessage } from "@illa-design/react"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
-import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/AdvancedPanel/constant"
 import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
 import { aiAgentActions } from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
-import { getInitialAgentContent } from "@/redux/currentApp/action/getInitialContent"
 import { fetchCreateAction } from "@/services/action"
 import { forkAIAgentToTeam } from "@/services/agent"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"

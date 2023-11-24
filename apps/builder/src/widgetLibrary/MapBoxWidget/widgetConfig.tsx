@@ -1,4 +1,4 @@
-import { ReactComponent as MapWidgetIcon } from "@/assets/widgetCover/map.svg"
+import MapWidgetIcon from "@/assets/widgetCover/map.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { DefaultCenter, DefaultMarkers } from "./content"

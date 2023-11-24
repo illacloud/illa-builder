@@ -1,3 +1,4 @@
+import { GoogleSheetsActionReadOpts } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { FC } from "react"
 import { Trans, useTranslation } from "react-i18next"
@@ -10,7 +11,6 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/style"
 import { ReadGoogleSheetsActionOptions } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/values"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { GoogleSheetsActionReadOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   optionLabelContainerStyle,

@@ -1,3 +1,4 @@
+import { GoogleSheetsActionUpdateOpts, Params } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
@@ -20,8 +21,6 @@ import {
   updateEditorValueContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/style"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { GoogleSheetsActionUpdateOpts } from "@/redux/currentApp/action/googleSheetsAction"
-import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (

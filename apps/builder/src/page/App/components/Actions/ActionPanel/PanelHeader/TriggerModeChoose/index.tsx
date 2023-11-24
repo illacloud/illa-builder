@@ -1,15 +1,15 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import {
+  ACTION_RUN_TIME,
+  ActionTriggerMode,
+  IAdvancedConfig,
+} from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  ACTION_RUN_TIME,
-  ActionTriggerMode,
-  IAdvancedConfig,
-} from "@/redux/currentApp/action/actionState"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 
 const TriggerModeChoose: FC = () => {

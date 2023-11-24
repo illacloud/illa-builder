@@ -2,7 +2,7 @@ import {
   ILLADriveAction,
   ILLADriveActionTypeContent,
   ILLA_DRIVE_ACTION_REQUEST_TYPE,
-} from "@/redux/currentApp/action/illaDriveAction"
+} from "@illa-public/public-types"
 import { DeleteMultiplePart } from "./DeleteMultiplePart"
 import { DeleteOnePart } from "./DeleteOnePart"
 import { DownloadMultiplePart } from "./DownloadMultiplePart"

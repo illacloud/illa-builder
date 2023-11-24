@@ -1,4 +1,18 @@
-import { AccessType, ResourceType } from "@illa-public/public-types"
+import {
+  DATABASE_INDEX,
+  DEFAULT_NAME,
+  generateSSLConfig,
+} from "@illa-public/public-configs"
+import {
+  AccessType,
+  ActionContent,
+  ActionItem,
+  GlobalDataActionContent,
+  GraphQLAuth,
+  GraphQLAuthValue,
+  ResourceType,
+  RestApiAuth,
+} from "@illa-public/public-types"
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
@@ -6,20 +20,9 @@ import i18n from "@/i18n/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  GlobalDataActionContent,
-} from "@/redux/currentApp/action/actionState"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import {
-  ResourceContent,
-  generateSSLConfig,
-} from "@/redux/resource/resourceState"
-import { RestApiAuth } from "@/redux/resource/restapiResource"
-import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
+import { ResourceContent } from "@/redux/resource/resourceState"
 import {
   fetchActionTestConnection,
   fetchCreateAction,

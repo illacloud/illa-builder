@@ -167,6 +167,6 @@
     "rollup-plugin-visualizer": "^5.9.2",
     "tsconfig": "workspace:*",
     "vite-plugin-checker": "^0.6.2",
-    "vite-plugin-svgr": "^3.3.0"
+    "vite-plugin-svgr": "^4.2.0"
   }
 }

@@ -1,4 +1,4 @@
-import { ReactComponent as CircleProgressWidgetIcon } from "@/assets/widgetCover/circleProgress.svg"
+import CircleProgressWidgetIcon from "@/assets/widgetCover/circleProgress.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

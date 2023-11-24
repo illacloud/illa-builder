@@ -1,7 +1,7 @@
+import { GraphQLBearerAuth } from "@illa-public/public-types"
 import { Control } from "react-hook-form"
-import { BearerAuth } from "@/redux/resource/graphqlResource"
 
 export interface BearerAuthPanelProps {
-  auth?: BearerAuth
+  auth?: GraphQLBearerAuth
   control: Control
 }

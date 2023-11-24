@@ -1,5 +1,5 @@
 import { FC, useContext } from "react"
-import { ReactComponent as Folder } from "@/assets/drive/panelFolder.svg"
+import Folder from "@/assets/drive/panelFolder.svg?react"
 import { DriveFileSelectContext } from "@/components/DriveFileSelect"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import {

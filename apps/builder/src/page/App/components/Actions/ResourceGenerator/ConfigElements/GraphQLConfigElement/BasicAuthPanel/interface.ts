@@ -1,7 +1,7 @@
+import { RestAPIBasicAuth } from "@illa-public/public-types"
 import { Control } from "react-hook-form"
-import { BasicAuth } from "@/redux/resource/graphqlResource"
 
 export interface BasicAuthPanelProps {
-  auth?: BasicAuth
+  auth?: RestAPIBasicAuth
   control: Control
 }

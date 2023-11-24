@@ -1,13 +1,13 @@
+import { MongoDbUriConfigContentInitial } from "@illa-public/public-configs"
+import {
+  MongoDbResource,
+  MongoDbUriConfigContent,
+} from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { MongoDbConfigModeProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/interface"
-import {
-  MongoDbResource,
-  MongoDbUriConfigContent,
-  MongoDbUriConfigContentInitial,
-} from "@/redux/resource/mongodbResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"

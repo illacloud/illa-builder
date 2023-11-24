@@ -1,9 +1,9 @@
+import { DigestAuth } from "@illa-public/public-types"
 import { FC } from "react"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { ControlledType } from "@/page/App/components/Actions/ControlledElement/interface"
 import { RestApiAuthPanelProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/interface"
 import { DigestAuthInfo } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/values"
-import { DigestAuth } from "@/redux/resource/restapiResource"
 
 export const DigestAuthPanel: FC<RestApiAuthPanelProps> = (props) => {
   const { control } = props

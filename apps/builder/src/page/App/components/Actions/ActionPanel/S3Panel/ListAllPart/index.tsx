@@ -1,3 +1,9 @@
+import {
+  ActionItem,
+  S3Action,
+  S3ActionTypeContent,
+  S3ListAllContent,
+} from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -7,14 +13,8 @@ import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/S
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  ListAllContent,
-  S3Action,
-  S3ActionTypeContent,
-  SelectOption,
-} from "@/redux/currentApp/action/s3Action"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { SelectOption } from "../constants"
 
 export const ListAllPart: FC<S3ActionPartProps> = (props) => {
   const { t } = useTranslation()
@@ -22,7 +22,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
   >
-  const commandArgs = props.commandArgs as ListAllContent
+  const commandArgs = props.commandArgs as S3ListAllContent
   const isShowSignedURL = commandArgs.signedURL
 
   const handleValueChange = useCallback(
@@ -35,7 +35,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
             commandArgs: {
               ...commandArgs,
               [name]: value,
-            } as ListAllContent,
+            } as S3ListAllContent,
           },
         }),
       )

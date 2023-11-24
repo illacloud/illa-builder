@@ -1,3 +1,5 @@
+import { RestApiResourceInit } from "@illa-public/public-configs"
+import { RestApiAuth, RestApiResource } from "@illa-public/public-types"
 import { FC } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -14,11 +16,6 @@ import {
   VerificationModeOptions,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/values"
 import { Resource } from "@/redux/resource/resourceState"
-import {
-  RestApiAuth,
-  RestApiResource,
-  RestApiResourceInit,
-} from "@/redux/resource/restapiResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 import { BaseConfigElementProps } from "../interface"

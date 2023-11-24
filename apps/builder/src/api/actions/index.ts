@@ -1,8 +1,6 @@
 import { builderRequest } from "@illa-public/illa-net"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
+import { ActionContent } from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   Resource,

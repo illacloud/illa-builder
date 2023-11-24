@@ -1,3 +1,9 @@
+import {
+  ActionItem,
+  MongoDbAction,
+  MongoDbActionTypeContent,
+  MongoDbUpdateOneContent,
+} from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -6,12 +12,6 @@ import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPane
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  MongoDbAction,
-  MongoDbActionTypeContent,
-  UpdateOneContent,
-} from "@/redux/currentApp/action/mongoDbAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
@@ -20,7 +20,7 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     MongoDbAction<MongoDbActionTypeContent>
   >
-  const typeContent = props.typeContent as UpdateOneContent
+  const typeContent = props.typeContent as MongoDbUpdateOneContent
 
   const handleValueChange = useCallback(
     (name: string) => (value: string) => {
@@ -32,7 +32,7 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
             typeContent: {
               ...typeContent,
               [name]: value,
-            } as UpdateOneContent,
+            } as MongoDbUpdateOneContent,
           },
         }),
       )

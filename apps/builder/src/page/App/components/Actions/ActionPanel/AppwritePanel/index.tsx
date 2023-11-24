@@ -1,3 +1,13 @@
+import {
+  AppwriteDocumentOperationsInitial,
+  AppwriteListDocumentsInitial,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  AppwriteAction,
+  AppwriteActionMethodsType,
+  AppwriteActionTypes,
+} from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { DocumentSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/DocumentSubPanel"
@@ -10,15 +20,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  AppwriteAction,
-  AppwriteActionMethodsOptions,
-  AppwriteActionMethodsType,
-  AppwriteActionTypes,
-  DocumentOperationsInitial,
-  ListDocumentsInitial,
-} from "@/redux/currentApp/action/appwriteAction"
 import { fetchResourceMeta } from "@/services/resource"
 
 const AppwriteSubComponentMap = {
@@ -28,6 +29,32 @@ const AppwriteSubComponentMap = {
   delete: DocumentSubPanel,
   list: ListDocumentsSubPanel,
 }
+
+export const AppwriteActionMethodsOptions: {
+  label: string
+  value: AppwriteActionMethodsType
+}[] = [
+  {
+    label: "Create a document",
+    value: "create",
+  },
+  {
+    label: "Get a document",
+    value: "get",
+  },
+  {
+    label: "Update a document",
+    value: "update",
+  },
+  {
+    label: "Delete a document",
+    value: "delete",
+  },
+  {
+    label: "List documents",
+    value: "list",
+  },
+]
 
 const AppwritePanel: FC = () => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
@@ -59,8 +86,8 @@ const AppwritePanel: FC = () => {
           : {
               opts:
                 value === "list"
-                  ? ListDocumentsInitial
-                  : DocumentOperationsInitial,
+                  ? AppwriteListDocumentsInitial
+                  : AppwriteDocumentOperationsInitial,
               method: value,
             }
       dispatch(

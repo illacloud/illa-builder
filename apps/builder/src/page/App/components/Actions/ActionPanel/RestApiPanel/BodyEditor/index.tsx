@@ -1,3 +1,12 @@
+import { RestAPIRawBodyInitial } from "@illa-public/public-configs"
+import {
+  ActionItem,
+  RestAPIAction,
+  RestAPIBodyContent,
+  RestAPIBodyType,
+  RestAPIRawBody,
+} from "@illa-public/public-types"
+import { Params } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,16 +17,6 @@ import { RecordEditor } from "@/components/RecordEditor"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  BodyContent,
-  BodyType,
-  RawBody,
-  RawBodyContent,
-  RawBodyInitial,
-  RestApiAction,
-} from "@/redux/currentApp/action/restapiAction"
-import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   bodyChooserStyle,
@@ -38,13 +37,13 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const isFormData = bodyType === "form-data"
 
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
-    RestApiAction<BodyContent>
+    RestAPIAction<RestAPIBodyContent>
   >
   const dispatch = useDispatch()
 
   let mode: CODE_LANG = CODE_LANG.JAVASCRIPT
   if (bodyType === "raw") {
-    switch ((body as RawBody<RawBodyContent>).type) {
+    switch ((body as RestAPIRawBody).type) {
       case "text":
         mode = CODE_LANG.JAVASCRIPT
         break
@@ -66,7 +65,8 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const handleActionTypeChange = useCallback(
     (value: string) => {
       let newBody = null
-      const content = selectedAction?.content as RestApiAction<BodyContent>
+      const content =
+        selectedAction?.content as RestAPIAction<RestAPIBodyContent>
       if (
         selectedAction.resourceID === actionItem.resourceID &&
         content.method !== "GET" &&
@@ -86,7 +86,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             newBody = [{ key: "", type: "", value: "" }] as Params[]
             break
           case "raw":
-            newBody = RawBodyInitial
+            newBody = RestAPIRawBodyInitial
             break
           case "binary":
             newBody = ""
@@ -98,7 +98,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           ...actionItem,
           content: {
             ...actionItem.content,
-            bodyType: value as BodyType,
+            bodyType: value as RestAPIBodyType,
             body: newBody,
           },
         }),
@@ -141,7 +141,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           content: {
             ...actionItem.content,
             body: {
-              ...(body as RawBody<RawBodyContent>),
+              ...(body as RestAPIRawBody),
               [paramName]: value,
             },
           },
@@ -208,7 +208,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               colorScheme="techPurple"
               w="162px"
               ml="-1px"
-              value={(body as RawBody<RawBodyContent>).type}
+              value={(body as RestAPIRawBody).type}
               options={["text", "json", "xml", "javascript", "html"]}
               onChange={(val) => handleRawBodyTypeChange(val as string, "type")}
             />
@@ -219,7 +219,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             <CodeEditor
               showLineNumbers
               lang={mode}
-              value={(body as RawBody<RawBodyContent>).content}
+              value={(body as RestAPIRawBody).content}
               expectValueType={VALIDATION_TYPES.STRING}
               height="88px"
               onChange={(value) => handleRawBodyTypeChange(value, "content")}

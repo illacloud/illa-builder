@@ -1,13 +1,11 @@
+import { AirtableResourceInitial } from "@illa-public/public-configs"
+import { AirtableResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { FC } from "react"
 import { useFormContext } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import {
-  AirtableResource,
-  AirtableResourceInitial,
-} from "@/redux/resource/airtableResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"

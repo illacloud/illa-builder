@@ -1,17 +1,19 @@
+import {
+  INIT_ACTION_ADVANCED_CONFIG,
+  INIT_ACTION_MOCK_CONFIG,
+} from "@illa-public/public-configs"
+import {
+  ActionContent,
+  IAdvancedConfig,
+  IMockConfig,
+} from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { INIT_ACTION_MOCK_CONFIG } from "@/page/App/components/Actions/ActionPanel/ActionMockPanel/constant"
-import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/AdvancedPanel/constant"
 import {
   ConfigInitialState,
   ConfigState,
   IllaMode,
 } from "@/redux/config/configState"
-import {
-  ActionContent,
-  ActionItem,
-  IAdvancedConfig,
-  IMockConfig,
-} from "@/redux/currentApp/action/actionState"
 import {
   UpdateCanvasShapePayload,
   UpdateWSStatusPayload,

@@ -1,10 +1,8 @@
+import { APIKeyAddToValue } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import {
-  APIKeyAddToSelect,
-  APIKeyAddToValue,
-} from "@/redux/resource/graphqlResource"
+import { APIKeyAddToSelect } from "./constants"
 import { APIKeyAuthPanelProps } from "./interface"
 
 export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {

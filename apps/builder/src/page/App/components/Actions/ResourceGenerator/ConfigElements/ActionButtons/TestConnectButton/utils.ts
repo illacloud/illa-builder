@@ -1,8 +1,7 @@
+import { DATABASE_INDEX, generateSSLConfig } from "@illa-public/public-configs"
 import { ResourceType } from "@illa-public/public-types"
 import { FieldValues } from "react-hook-form"
 import { generateGraphQLAuthContent } from "@/page/App/components/Actions/api"
-import { generateSSLConfig } from "@/redux/resource/resourceState"
-import { DATABASE_INDEX } from "@/redux/resource/upstashResource"
 
 export const formatTestConnectValues = (
   data: FieldValues,

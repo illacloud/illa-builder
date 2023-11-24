@@ -1,3 +1,4 @@
+import { MysqlLikeResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useMemo } from "react"
@@ -16,15 +17,12 @@ import {
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { hostInputContainer } from "@/page/App/components/Actions/ControlledElement/style"
-import {
-  MysqlLikeResource,
-  tiDBServertCertDefaultValue,
-} from "@/redux/resource/mysqlLikeResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { handleLinkOpen } from "@/utils/navigate"
 import { container } from "../style"
+import { tiDBServertCertDefaultValue } from "./constants"
 import { MysqlLikeConfigElementProps } from "./interface"
 
 const getResourceDefaultPort = (resourceType: string) => {

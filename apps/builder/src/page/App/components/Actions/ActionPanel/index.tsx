@@ -5,6 +5,7 @@ import {
   ILLA_PAGE_NAME,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
+import { INIT_ACTION_MOCK_CONFIG } from "@illa-public/public-configs"
 import { Suspense, lazy } from "react"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
@@ -23,7 +24,6 @@ import {
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
 import ActionMockPanel from "./ActionMockPanel"
-import { INIT_ACTION_MOCK_CONFIG } from "./ActionMockPanel/constant"
 import GeneralPanelLayout from "./Layout/GeneralPanelLayout"
 
 const AdvancedPanel = lazy(

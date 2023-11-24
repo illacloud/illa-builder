@@ -1,3 +1,10 @@
+import { snowflakeResourceInitial } from "@illa-public/public-configs"
+import {
+  SnowflakeAuthenticationType,
+  SnowflakeBasicAuthenticationType,
+  SnowflakeKeyAuthenticationType,
+  SnowflakeResource,
+} from "@illa-public/public-types"
 import { FC } from "react"
 import { useFormContext } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -7,18 +14,11 @@ import { optionLabelStyle } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { BasicAuthConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/BasicAuthConfig"
 import { KeyPairConfig } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/SnowflakeConfigElement/KeyPairConfig"
-import {
-  AuthenticationOptions,
-  SnowflakeAuthenticationType,
-  SnowflakeBasicAuthenticationType,
-  SnowflakeKeyAuthenticationType,
-  SnowflakeResource,
-  snowflakeResourceInitial,
-} from "@/redux/resource/snowflakeResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 import { BaseConfigElementProps } from "../interface"
 import { container } from "../style"
+import { AuthenticationOptions } from "./constants"
 
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 

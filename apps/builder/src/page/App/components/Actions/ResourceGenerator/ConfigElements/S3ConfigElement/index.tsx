@@ -1,3 +1,5 @@
+import { S3ResourceInitial } from "@illa-public/public-configs"
+import { S3ACL, S3Resource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
@@ -17,11 +19,6 @@ import {
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { Resource } from "@/redux/resource/resourceState"
-import {
-  S3Resource,
-  S3ResourceInitial,
-  SelectOptions,
-} from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 import { BaseConfigElementProps } from "../interface"
@@ -35,6 +32,11 @@ const S3ConfigElement: FC<BaseConfigElementProps> = (props) => {
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceID === resourceID)
   })
+
+  const SelectOptions = Object.keys(S3ACL).map((type) => ({
+    label: t(`editor.action.acl.option.${type}`),
+    value: S3ACL[type as keyof typeof S3ACL],
+  }))
 
   let content: S3Resource
   if (findResource === undefined) {

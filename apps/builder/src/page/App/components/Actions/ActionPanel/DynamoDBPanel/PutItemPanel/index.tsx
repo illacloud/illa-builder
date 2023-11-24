@@ -1,3 +1,4 @@
+import { DynamoPutItemStructParams } from "@illa-public/public-types"
 import { FC } from "react"
 import {
   DynamoDBPanelItemsInfo,
@@ -5,10 +6,9 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/interface"
 import { putItemPanelItems } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/items"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { PutItemStructParams } from "@/redux/currentApp/action/dynamoDBAction"
 
 export const PutItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
-  const structParams = props.structParams as PutItemStructParams
+  const structParams = props.structParams as DynamoPutItemStructParams
   const { handleValueChange } = props
 
   return (
@@ -20,7 +20,7 @@ export const PutItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
             key={name}
             lineNumbers
             style={{ maxHeight: "88px" }}
-            value={structParams[name as keyof PutItemStructParams]}
+            value={structParams[name as keyof DynamoPutItemStructParams]}
             onChange={(value) => handleValueChange(value, name)}
             expectedType={expectedType}
             title={title}

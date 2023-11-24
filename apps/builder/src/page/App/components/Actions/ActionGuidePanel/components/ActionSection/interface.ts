@@ -1,4 +1,4 @@
-import { ActionType } from "@/redux/currentApp/action/actionState"
+import { ActionType } from "@illa-public/public-types"
 
 export interface PanelSectionProps {
   actionTypes: ActionType[]

@@ -1,4 +1,14 @@
 import { getIconFromResourceType } from "@illa-public/icon"
+import {
+  actionItemInitial,
+  getInitialContent,
+} from "@illa-public/public-configs"
+import {
+  ActionContent,
+  ActionItem,
+  ActionType,
+  GlobalDataActionContent,
+} from "@illa-public/public-types"
 import { isCloudVersion } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useContext, useState } from "react"
@@ -17,7 +27,7 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
+import ActionListEmptyState from "@/assets/action-list-empty-state.svg?react"
 import {
   getCachedAction,
   getIsILLAGuideMode,
@@ -26,14 +36,6 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { getActionMixedList } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  ActionType,
-  GlobalDataActionContent,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"

@@ -1,4 +1,4 @@
-import { S3ActionTypeContent } from "@/redux/currentApp/action/s3Action"
+import { S3ActionTypeContent } from "@illa-public/public-types"
 
 export interface S3ActionPartProps {
   commandArgs: S3ActionTypeContent

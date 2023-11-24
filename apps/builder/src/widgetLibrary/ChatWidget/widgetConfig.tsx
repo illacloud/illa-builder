@@ -1,4 +1,4 @@
-import { ReactComponent as ChatWidgetIcon } from "@/assets/widgetCover/chat.svg"
+import ChatWidgetIcon from "@/assets/widgetCover/chat.svg?react"
 import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"

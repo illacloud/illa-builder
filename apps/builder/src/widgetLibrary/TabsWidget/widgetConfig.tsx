@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as TabsWidgetIcon } from "@/assets/widgetCover/tabs.svg"
+import TabsWidgetIcon from "@/assets/widgetCover/tabs.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

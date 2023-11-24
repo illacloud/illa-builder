@@ -1,3 +1,8 @@
+import { MongoDbGuiConfigContentInitial } from "@illa-public/public-configs"
+import {
+  MongoDbGuiConfigContent,
+  MongoDbResource,
+} from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
@@ -13,11 +18,6 @@ import {
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { MongoDbConfigModeProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/MongoDbConfigElement/interface"
-import {
-  MongoDbGuiConfigContent,
-  MongoDbGuiConfigContentInitial,
-  MongoDbResource,
-} from "@/redux/resource/mongodbResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath } from "@/utils/form"

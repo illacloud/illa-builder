@@ -1,6 +1,6 @@
 import { FC } from "react"
-import { ReactComponent as DeleteSvg } from "@/assets/chat/delete.svg"
-import { ReactComponent as ReplySvg } from "@/assets/chat/replay.svg"
+import DeleteSvg from "@/assets/chat/delete.svg?react"
+import ReplySvg from "@/assets/chat/replay.svg?react"
 import { OptionsProps } from "@/widgetLibrary/ChatWidget/interface"
 import { optionsStyle } from "@/widgetLibrary/ChatWidget/style"
 

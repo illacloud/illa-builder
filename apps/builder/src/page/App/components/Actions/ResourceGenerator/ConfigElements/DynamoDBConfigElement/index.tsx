@@ -1,3 +1,5 @@
+import { DynamoDBResourceInitial } from "@illa-public/public-configs"
+import { DynamoDBResource } from "@illa-public/public-types"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useMemo } from "react"
 import { useFormContext } from "react-hook-form"
@@ -13,10 +15,6 @@ import {
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import {
-  DynamoDBResource,
-  DynamoDBResourceInitial,
-} from "@/redux/resource/dynamoResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"

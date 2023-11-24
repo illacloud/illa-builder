@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as StepsWidgetIcon } from "@/assets/widgetCover/steps.svg"
+import StepsWidgetIcon from "@/assets/widgetCover/steps.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

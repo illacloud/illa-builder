@@ -1,3 +1,8 @@
+import { GoogleSheetResourceInitial } from "@illa-public/public-configs"
+import {
+  GoogleSheetAuthStatus,
+  GoogleSheetResource,
+} from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { FC, useCallback, useMemo } from "react"
 import { useFormContext } from "react-hook-form"
@@ -12,11 +17,6 @@ import {
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
-import {
-  GoogleSheetAuthStatus,
-  GoogleSheetResource,
-  GoogleSheetResourceInitial,
-} from "@/redux/resource/googleSheetResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { validate } from "@/utils/form"
 import { BaseConfigElementProps } from "../interface"

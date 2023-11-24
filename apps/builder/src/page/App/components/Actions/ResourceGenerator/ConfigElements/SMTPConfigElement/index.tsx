@@ -1,3 +1,5 @@
+import { SMTPResourceInitial } from "@illa-public/public-configs"
+import { SMTPResource } from "@illa-public/public-types"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
 import { useFormContext } from "react-hook-form"
@@ -14,10 +16,6 @@ import {
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { Resource } from "@/redux/resource/resourceState"
-import {
-  SMTPResource,
-  SMTPResourceInitial,
-} from "@/redux/resource/smtpResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 import { BaseConfigElementProps } from "../interface"

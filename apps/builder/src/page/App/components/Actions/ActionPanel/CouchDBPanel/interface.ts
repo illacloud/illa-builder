@@ -1,5 +1,5 @@
+import { CouchDBOptionsType } from "@illa-public/public-types"
 import { SelectValue } from "@illa-design/react"
-import { CouchDBOptionsType } from "@/redux/currentApp/action/couchDBAction"
 
 export interface CouchDBSubPanelProps {
   onInputValueChange: (name: string | string[]) => (value: SelectValue) => void

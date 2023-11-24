@@ -1,4 +1,14 @@
 import { getIconFromResourceType } from "@illa-public/icon"
+import {
+  actionItemInitial,
+  getInitialContent,
+} from "@illa-public/public-configs"
+import {
+  ActionContent,
+  ActionItem,
+  ActionType,
+  GlobalDataActionContent,
+} from "@illa-public/public-types"
 import { getResourceNameFromResourceType } from "@illa-public/resource-generator"
 import { FC, Suspense, memo, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -9,14 +19,6 @@ import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  ActionType,
-  GlobalDataActionContent,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"

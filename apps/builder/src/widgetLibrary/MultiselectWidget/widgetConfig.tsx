@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as MultiselectWidgetIcon } from "@/assets/widgetCover/multiselect.svg"
+import MultiselectWidgetIcon from "@/assets/widgetCover/multiselect.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

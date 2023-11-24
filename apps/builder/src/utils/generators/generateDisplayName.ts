@@ -1,11 +1,8 @@
 // string for component
-import { ComponentTreeNode } from "@illa-public/public-types"
+import { ActionContent, ComponentTreeNode } from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"

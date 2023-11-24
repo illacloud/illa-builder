@@ -1,8 +1,8 @@
+import { SnowflakeBasicAuthenticationType } from "@illa-public/public-types"
 import { FC } from "react"
 import { Control } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import { SnowflakeBasicAuthenticationType } from "@/redux/resource/snowflakeResource"
 import { validate } from "@/utils/form"
 
 export const BasicAuthConfig: FC<

@@ -1,36 +1,31 @@
-import { ResourceType } from "@illa-public/public-types"
-import { AirtableResource } from "@/redux/resource/airtableResource"
-import { AppWriteResource } from "@/redux/resource/appWriteResource"
 import {
+  AirtableResource,
+  AppWriteResource,
   ClickhouseResource,
-  ClickhouseSSL,
-  ClickhouseSSLInitial,
-} from "@/redux/resource/clickhouseResource"
-import { CouchdbResource } from "@/redux/resource/couchdbResource"
-import { DynamoDBResource } from "@/redux/resource/dynamoResource"
-import { FirebaseResource } from "@/redux/resource/firebaseResource"
-import { GoogleSheetResource } from "@/redux/resource/googleSheetResource"
-import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
-import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
-import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
-import {
+  CouchdbResource,
+  DynamoDBResource,
+  ElasticSearchResource,
+  FirebaseResource,
+  GoogleSheetResource,
+  GraphQLAuth,
+  GraphQLResource,
+  HuggingFaceEndpointResource,
+  HuggingFaceResource,
   MicrosoftSqlResource,
-  MicrosoftSqlSSL,
-  MicrosoftSqlSSLInitial,
-} from "@/redux/resource/microsoftSqlResource"
-import { NeonResource } from "@/redux/resource/neonResource"
-import { OracleResource } from "@/redux/resource/oracleResource"
-import { SMTPResource } from "@/redux/resource/smtpResource"
-import {
+  MongoDbConfig,
+  MongoDbResource,
+  MysqlLikeResource,
+  NeonResource,
+  OracleResource,
+  RedisResource,
+  ResourceType,
+  RestApiAuth,
+  RestApiResource,
+  S3Resource,
+  SMTPResource,
   SnowflakeAuthenticationType,
   SnowflakeResource,
-} from "@/redux/resource/snowflakeResource"
-import { ElasticSearchResource } from "./elasticSearchResource"
-import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
-import { MysqlLikeResource } from "./mysqlLikeResource"
-import { RedisResource } from "./redisResource"
-import { RestApiAuth, RestApiResource } from "./restapiResource"
-import { S3Resource } from "./s3Resource"
+} from "@illa-public/public-types"
 
 export type ResourceContent =
   | HuggingFaceResource
@@ -70,68 +65,6 @@ export interface ResourceInitialConfig<T extends ResourceContent> {
   resourceName: string
   resourceType: ResourceType
   content: T
-}
-
-export interface DbSSL {
-  ssl: boolean
-  serverCert: string
-  clientKey: string
-  clientCert: string
-}
-
-const DbSSLInitial: DbSSL = {
-  ssl: false,
-  clientKey: "",
-  clientCert: "",
-  serverCert: "",
-}
-
-type AllSSLConfigType = DbSSL | ClickhouseSSL | MicrosoftSqlSSL
-
-const SSLConfigDefaultValue: Record<string, AllSSLConfigType> = {
-  mssql: MicrosoftSqlSSLInitial,
-  clickhouse: ClickhouseSSLInitial,
-}
-
-const getSSLConfig = (
-  data: { [p: string]: any },
-  type?: ResourceType,
-): AllSSLConfigType => {
-  switch (type) {
-    case "mssql":
-      return {
-        ssl: true,
-        privateKey: data.privateKey,
-        clientCert: data.clientCert,
-        caCert: data.caCert,
-        verificationMode: !!data.caCert ? "full" : "skip",
-      } as MicrosoftSqlSSL
-    case "clickhouse":
-      return {
-        ssl: true,
-        selfSigned: data.selfSigned,
-        privateKey: data.privateKey,
-        clientCert: data.clientCert,
-        caCert: data.caCert,
-      } as ClickhouseSSL
-    default:
-      return {
-        ssl: true,
-        clientKey: data.clientKey,
-        clientCert: data.clientCert,
-        serverCert: data.serverCert,
-      } as DbSSL
-  }
-}
-
-export function generateSSLConfig(
-  open: boolean,
-  data: { [p: string]: any },
-  type?: ResourceType,
-): DbSSL | ClickhouseSSL | MicrosoftSqlSSL {
-  return open
-    ? getSSLConfig(data, type)
-    : SSLConfigDefaultValue[type || ""] || DbSSLInitial
 }
 
 export type ResourceListState = Resource<ResourceContent>[]

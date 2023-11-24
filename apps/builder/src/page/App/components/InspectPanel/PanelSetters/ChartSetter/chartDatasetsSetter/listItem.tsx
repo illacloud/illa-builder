@@ -8,7 +8,7 @@ import {
   illaPrefix,
   useModal,
 } from "@illa-design/react"
-import { ReactComponent as DeleteIcon } from "@/assets/delete-dataset-icon.svg"
+import DeleteIcon from "@/assets/delete-dataset-icon.svg?react"
 import { DatasetsContext } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
 import { ListItemProps } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import {

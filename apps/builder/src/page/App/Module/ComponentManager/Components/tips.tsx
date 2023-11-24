@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as VectorIcon } from "@/assets/tutorial/vector.svg"
+import VectorIcon from "@/assets/tutorial/vector.svg?react"
 import { tipContainerStyle, tipTextStyle, vectorStyle } from "./style"
 
 export const Tip: FC = () => {

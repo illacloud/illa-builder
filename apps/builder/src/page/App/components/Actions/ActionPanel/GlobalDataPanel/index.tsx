@@ -1,10 +1,10 @@
+import { GlobalDataActionContent } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { GlobalDataActionContent } from "@/redux/currentApp/action/actionState"
 import Space from "../Layout/Space"
 import {
   globalDataPanelContainerStyle,

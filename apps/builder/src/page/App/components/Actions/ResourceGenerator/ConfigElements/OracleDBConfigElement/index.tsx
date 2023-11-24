@@ -1,3 +1,5 @@
+import { OracleResourceInitial } from "@illa-public/public-configs"
+import { OracleResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
@@ -16,11 +18,6 @@ import {
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import {
-  ConnectTypeOptions,
-  OracleResource,
-  OracleResourceInitial,
-} from "@/redux/resource/oracleResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { container } from "../style"
@@ -32,7 +29,16 @@ const OracleDBConfigElement: FC<OracleDBConfigElementProps> = (props) => {
   const { control, formState } = useFormContext()
 
   const [showAlert, setShowAlert] = useState<boolean>(false)
-
+  const ConnectTypeOptions = [
+    {
+      label: t("editor.action.form.option.oracle.sid.sid"),
+      value: "SID",
+    },
+    {
+      label: t("editor.action.form.option.oracle.sid.service"),
+      value: "Service",
+    },
+  ]
   const resource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceID === resourceID)
   })

@@ -1,5 +1,10 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { ComponentMapNode, ComponentTreeNode } from "@illa-public/public-types"
+import {
+  ActionContent,
+  ComponentMapNode,
+  ComponentTreeNode,
+} from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import i18n from "i18next"
 import { cloneDeep, set } from "lodash"
 import { createMessage } from "@illa-design/react"
@@ -7,10 +12,6 @@ import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
 import { canCrossDifferenceColumnNumber } from "@/page/App/components/DotPanel/utils/getDragShadow"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {

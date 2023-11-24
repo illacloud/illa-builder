@@ -1,4 +1,4 @@
-import { ReactComponent as DateTimeWidgetIcon } from "@/assets/widgetCover/dateTime.svg"
+import DateTimeWidgetIcon from "@/assets/widgetCover/dateTime.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

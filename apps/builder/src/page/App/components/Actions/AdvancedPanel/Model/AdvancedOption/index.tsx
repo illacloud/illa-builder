@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { IAdvancedConfig } from "@illa-public/public-types"
 import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -11,7 +12,6 @@ import { AdvancedPanelControl } from "@/page/App/components/Actions/AdvancedPane
 import { AdvancedPanelHeader } from "@/page/App/components/Actions/AdvancedPanel/Components/Header"
 import { getCachedActionAdvancedConfig } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { IAdvancedConfig } from "@/redux/currentApp/action/actionState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const AdvancedOptionSetting: FC = () => {

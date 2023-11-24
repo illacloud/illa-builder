@@ -1,12 +1,12 @@
 import {
+  ActionContent,
+  ActionType,
+  ILLA_DRIVE_ACTION_REQUEST_TYPE,
+} from "@illa-public/public-types"
+import {
   CollarModalType,
   handleCollaPurchaseError,
 } from "@illa-public/upgrade-modal"
-import {
-  ActionContent,
-  ActionType,
-} from "@/redux/currentApp/action/actionState"
-import { ILLA_DRIVE_ACTION_REQUEST_TYPE } from "@/redux/currentApp/action/illaDriveAction"
 import { isDriveActionContent } from "../typeHelper"
 
 export const runActionErrorForColla = (

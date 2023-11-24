@@ -1,3 +1,5 @@
+import { CouchdbResourceInitial } from "@illa-public/public-configs"
+import { CouchdbResource } from "@illa-public/public-types"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
 import { useFormContext } from "react-hook-form"
@@ -15,10 +17,6 @@ import {
   optionLabelStyle,
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import {
-  CouchdbResource,
-  CouchdbResourceInitial,
-} from "@/redux/resource/couchdbResource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 import { BaseConfigElementProps } from "../interface"

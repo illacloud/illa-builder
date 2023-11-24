@@ -4,8 +4,8 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLocation, useParams } from "react-router-dom"
-import { ReactComponent as ResourceIcon } from "@/assets/icon/workspace/resource.svg"
-import { ReactComponent as AppIcon } from "@/assets/icon/workspace/workspace.svg"
+import ResourceIcon from "@/assets/icon/workspace/resource.svg?react"
+import AppIcon from "@/assets/icon/workspace/workspace.svg?react"
 import { DashBoardDynamicMenuProps } from "./interface"
 
 export const DashBoardDynamicMenu: FC<DashBoardDynamicMenuProps> = (props) => {

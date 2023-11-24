@@ -1,3 +1,14 @@
+import {
+  GoogleSheetsActionInitial,
+  GoogleSheetsActionInitialMaps,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  GoogleSheetsAction,
+  GoogleSheetsActionOpts,
+  GoogleSheetsActionType,
+} from "@illa-public/public-types"
+import { Params } from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -19,15 +30,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  GoogleSheetsAction,
-  GoogleSheetsActionInitial,
-  GoogleSheetsActionInitialMaps,
-  GoogleSheetsActionOpts,
-  GoogleSheetsActionType,
-} from "@/redux/currentApp/action/googleSheetsAction"
-import { Params } from "@/redux/resource/restapiResource"
 import { fetchResourceMeta } from "@/services/resource"
 
 const SubPanelMap: Record<GoogleSheetsActionType, any> = {

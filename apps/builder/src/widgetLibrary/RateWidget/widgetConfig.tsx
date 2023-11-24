@@ -1,4 +1,4 @@
-import { ReactComponent as RateWidgetIcon } from "@/assets/widgetCover/rate.svg"
+import RateWidgetIcon from "@/assets/widgetCover/rate.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

@@ -1,5 +1,5 @@
+import { RestApiAuthType, VerifyMode } from "@illa-public/public-types"
 import i18n from "@/i18n/config"
-import { RestApiAuthType, VerifyMode } from "@/redux/resource/restapiResource"
 
 export const AuthenticationOptions: {
   label: string

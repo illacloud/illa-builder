@@ -1,4 +1,4 @@
-import { ReactComponent as RecordingWidgetIcon } from "@/assets/widgetCover/recording.svg"
+import RecordingWidgetIcon from "@/assets/widgetCover/recording.svg?react"
 import i18n from "@/i18n/config"
 import {
   DefaultClearText,

@@ -1,3 +1,4 @@
+import { AppwriteListDocuments, Params } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"
@@ -15,18 +16,61 @@ import {
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import {
-  ListDocuments,
-  ListDocumentsFilterOptions,
-  ListDocumentsOrderOptions,
-} from "@/redux/currentApp/action/appwriteAction"
-import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+
+const useListDocumentsFilterOptions = () => {
+  const { t } = useTranslation()
+
+  return [
+    {
+      label: t("editor.action.form.option.appwrite.filter.equal"),
+      value: "equal",
+    },
+    {
+      label: t("editor.action.form.option.appwrite.filter.notequal"),
+      value: "notEqual",
+    },
+    {
+      label: t("editor.action.form.option.appwrite.filter.lessthan"),
+      value: "lessThan",
+    },
+    {
+      label: t("editor.action.form.option.appwrite.filter.lessthanEqual"),
+      value: "lessThanEqual",
+    },
+    {
+      label: t("editor.action.form.option.appwrite.filter.greaterthan"),
+      value: "greaterThan",
+    },
+    {
+      label: t("editor.action.form.option.appwrite.filter.greaterthanequal"),
+      value: "greaterThanEqual",
+    },
+  ]
+}
+
+const useListDocumentsOrderOptions = () => {
+  const { t } = useTranslation()
+
+  return [
+    {
+      label: t("editor.action.form.option.appwrite.order.asc"),
+      value: "asc",
+    },
+    {
+      label: t("editor.action.form.option.appwrite.order.desc"),
+      value: "desc",
+    },
+  ]
+}
 
 export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
   const { handleValueChange, collectionIds } = props
-  const params = props.params as ListDocuments
+  const params = props.params as AppwriteListDocuments
   const { t } = useTranslation()
+
+  const listDocumentsFilterOptions = useListDocumentsFilterOptions()
+  const listDocumentsOrderOptions = useListDocumentsOrderOptions()
 
   const handleOnAddKeys = useCallback(
     (name?: string) => {
@@ -153,7 +197,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                   val as string,
                 )
               }
-              options={ListDocumentsFilterOptions}
+              options={listDocumentsFilterOptions}
             />
             <div css={actionItemRecordEditorStyle}>
               <CodeEditor
@@ -222,7 +266,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                   "orderBy",
                 )
               }
-              options={ListDocumentsOrderOptions}
+              options={listDocumentsOrderOptions}
             />
           </>
         )}

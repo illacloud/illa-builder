@@ -1,3 +1,4 @@
+import { HuggingFaceEndpointResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { FC } from "react"
 import { useFormContext } from "react-hook-form"
@@ -17,7 +18,6 @@ import {
   labelStyle,
   tipsStyle,
 } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/HuggingFaceConfigElement/style"
-import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"

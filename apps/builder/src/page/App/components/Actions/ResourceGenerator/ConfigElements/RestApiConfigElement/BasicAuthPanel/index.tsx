@@ -1,13 +1,13 @@
+import { RestAPIBasicAuth } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { RestApiAuthPanelProps } from "@/page/App/components/Actions/ResourceGenerator/ConfigElements/RestApiConfigElement/interface"
-import { BasicAuth } from "@/redux/resource/restapiResource"
 import { validate } from "@/utils/form"
 
 export const BasicAuthPanel: FC<RestApiAuthPanelProps> = (props) => {
   const { control } = props
-  const auth = props.auth as BasicAuth
+  const auth = props.auth as RestAPIBasicAuth
   const { t } = useTranslation()
 
   return (

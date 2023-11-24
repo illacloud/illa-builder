@@ -1,4 +1,4 @@
-import { ReactComponent as CascaderWidgetIcon } from "@/assets/widgetCover/cascader.svg"
+import CascaderWidgetIcon from "@/assets/widgetCover/cascader.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

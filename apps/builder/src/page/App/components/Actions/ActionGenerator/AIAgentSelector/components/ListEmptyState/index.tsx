@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as EmptyIcon } from "./emptyIcon.svg"
+import EmptyIcon from "./emptyIcon.svg?react"
 import { emptyContainerStyle, emptyTipsStyle } from "./style"
 
 export const ListEmptyState: FC = () => {

@@ -1,5 +1,5 @@
+import { Params } from "@illa-public/public-types"
 import { ReactNode } from "react"
-import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface RecordEditorProps {

@@ -1,14 +1,3 @@
-import { DbSSL } from "./resourceState"
-
-export interface MysqlLikeResource {
-  host: string
-  port: string
-  databaseName: string
-  databaseUsername: string
-  databasePassword: string
-  ssl: DbSSL
-}
-
 export const tiDBServertCertDefaultValue = `-----BEGIN CERTIFICATE-----
 MIIFazCCA1OgAwIBAgIRAIIQz7DSQONZRGPgu2OCiwAwDQYJKoZIhvcNAQELBQAw
 TzELMAkGA1UEBhMCVVMxKTAnBgNVBAoTIEludGVybmV0IFNlY3VyaXR5IFJlc2Vh

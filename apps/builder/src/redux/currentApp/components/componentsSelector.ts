@@ -1,11 +1,15 @@
-import { ComponentMapNode, ComponentTreeNode } from "@illa-public/public-types"
+import {
+  ActionItem,
+  ComponentMapNode,
+  ComponentTreeNode,
+  GlobalDataActionContent,
+} from "@illa-public/public-types"
 import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store, { RootState } from "@/store"
-import { ActionItem, GlobalDataActionContent } from "../action/actionState"
 import { ComponentsState } from "./componentsState"
 
 export function searchDSLByDisplayName(

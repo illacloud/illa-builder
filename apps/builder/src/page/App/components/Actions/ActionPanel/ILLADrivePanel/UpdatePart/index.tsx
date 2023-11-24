@@ -1,14 +1,14 @@
+import { ILLADriveUpdateContent } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { UpdateContent } from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ILLADriveActionPartProps } from "../interface"
 
 export const UpdatePart: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const commandArgs = props.commandArgs as UpdateContent
+  const commandArgs = props.commandArgs as ILLADriveUpdateContent
   const { handleOptionsValueChange } = props
 
   return (

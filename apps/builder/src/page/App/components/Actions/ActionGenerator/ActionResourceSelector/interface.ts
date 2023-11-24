@@ -1,6 +1,6 @@
 import { ResourceType } from "@illa-public/public-types"
+import { ActionType } from "@illa-public/public-types"
 import { ActionCreatorPage } from "@/page/App/components/Actions/ActionGenerator/interface"
-import { ActionType } from "@/redux/currentApp/action/actionState"
 
 export interface ActionResourceSelectorProps {
   actionType: ActionType

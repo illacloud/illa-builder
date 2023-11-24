@@ -1,3 +1,10 @@
+import { OracleDBActionInitial } from "@illa-public/public-configs"
+import {
+  ActionItem,
+  OracleDBAction,
+  OracleDBActionSQLMode,
+  OracleDBActionType,
+} from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,13 +16,6 @@ import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/s
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  OracleDBAction,
-  OracleDBActionInitial,
-  OracleDBActionSQLMode,
-  OracleDBActionType,
-} from "@/redux/currentApp/action/oracleDBAction"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { SQLModeSelector } from "../pulicComponent/SQLModeSelector"

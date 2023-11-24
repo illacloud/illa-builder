@@ -1,3 +1,5 @@
+import { FirebaseResourceInitial } from "@illa-public/public-configs"
+import { FirebaseResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
@@ -23,10 +25,6 @@ import {
   privateKeyItem,
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import {
-  FirebaseResource,
-  FirebaseResourceInitial,
-} from "@/redux/resource/firebaseResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"

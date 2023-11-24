@@ -1,4 +1,4 @@
-import { ReactComponent as AudioWidgetIcon } from "@/assets/widgetCover/audio.svg"
+import AudioWidgetIcon from "@/assets/widgetCover/audio.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

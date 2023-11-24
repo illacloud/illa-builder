@@ -1,3 +1,9 @@
+import {
+  AirtableAction,
+  AirtableActionConfigType,
+  AirtableListRecord,
+} from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { FC } from "react"
 import { Trans, useTranslation } from "react-i18next"
@@ -9,12 +15,6 @@ import {
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  AirtableAction,
-  AirtableActionConfigType,
-  AirtableListRecord,
-} from "@/redux/currentApp/action/airtableAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const ListRecordsPart: FC = () => {

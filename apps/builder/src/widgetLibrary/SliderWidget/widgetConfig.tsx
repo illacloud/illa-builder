@@ -1,4 +1,4 @@
-import { ReactComponent as SliderWidgetIcon } from "@/assets/widgetCover/slider.svg"
+import SliderWidgetIcon from "@/assets/widgetCover/slider.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

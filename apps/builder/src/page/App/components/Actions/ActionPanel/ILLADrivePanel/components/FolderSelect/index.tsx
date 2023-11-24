@@ -1,6 +1,6 @@
 import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as Folder } from "@/assets/drive/panelFolder.svg"
+import Folder from "@/assets/drive/panelFolder.svg?react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { FolderOperateModalContext } from "@/components/FolderOperateModal/context"

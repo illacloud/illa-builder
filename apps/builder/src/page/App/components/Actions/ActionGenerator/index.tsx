@@ -1,9 +1,21 @@
-import { Agent } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
-import { ResourceType } from "@illa-public/public-types"
+import {
+  INIT_ACTION_ADVANCED_CONFIG,
+  actionItemInitial,
+  getInitialAgentContent,
+  getInitialContent,
+} from "@illa-public/public-configs"
+import {
+  ActionContent,
+  ActionItem,
+  ActionType,
+  Agent,
+  ResourceType,
+} from "@illa-public/public-types"
+import { AiAgentActionContent } from "@illa-public/public-types"
 import { ResourceTypeSelector } from "@illa-public/resource-generator"
 import { FC, useCallback, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -15,21 +27,9 @@ import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGene
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  ActionType,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
-import {
-  getInitialAgentContent,
-  getInitialContent,
-} from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { INIT_ACTION_ADVANCED_CONFIG } from "../AdvancedPanel/constant"
 import { ResourceCreator } from "../ResourceGenerator/ResourceCreator"
 import { ModalHeader } from "./Header"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"

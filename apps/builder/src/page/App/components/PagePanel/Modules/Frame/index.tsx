@@ -9,8 +9,8 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-fixed.svg"
-import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
+import FrameFixedIcon from "@/assets/rightPagePanel/frame-fixed.svg?react"
+import FrameResponsiveIcon from "@/assets/rightPagePanel/frame-responsive.svg?react"
 import { PanelBar } from "@/components/PanelBar"
 import i18n from "@/i18n/config"
 import {

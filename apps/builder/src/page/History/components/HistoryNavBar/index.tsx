@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { Button, ExitIcon } from "@illa-design/react"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import Logo from "@/assets/illa-logo.svg?react"
 import {
   informationStyle,
   logoCursorStyle,

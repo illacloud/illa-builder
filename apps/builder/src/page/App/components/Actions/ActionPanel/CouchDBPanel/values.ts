@@ -1,14 +1,14 @@
-import i18n from "@/i18n/config"
 import {
-  CouchDBOptionsType,
-  CreateRecordInitial,
-  DeleteRecordInitial,
-  FindRecordInitial,
-  GetViewInitial,
-  ListRecordsInitial,
-  RetrieveRecordInitial,
-  UpdateRecordInitial,
-} from "@/redux/currentApp/action/couchDBAction"
+  CouchDBCreateRecordInitial,
+  CouchDBDeleteRecordInitial,
+  CouchDBFindRecordInitial,
+  CouchDBGetViewInitial,
+  CouchDBListRecordsInitial,
+  CouchDBRetrieveRecordInitial,
+  CouchDBUpdateRecordInitial,
+} from "@illa-public/public-configs"
+import { CouchDBOptionsType } from "@illa-public/public-types"
+import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CouchDBPanelMethodOptions = [
@@ -234,11 +234,11 @@ export const GetViewRecordsInfo = [
 
 export const CouchDBMethodsInitialValueMap: Record<string, CouchDBOptionsType> =
   {
-    listRecords: ListRecordsInitial,
-    retrieveRecord: RetrieveRecordInitial,
-    createRecord: CreateRecordInitial,
-    updateRecord: UpdateRecordInitial,
-    deleteRecord: DeleteRecordInitial,
-    find: FindRecordInitial,
-    getView: GetViewInitial,
+    listRecords: CouchDBListRecordsInitial,
+    retrieveRecord: CouchDBRetrieveRecordInitial,
+    createRecord: CouchDBCreateRecordInitial,
+    updateRecord: CouchDBUpdateRecordInitial,
+    deleteRecord: CouchDBDeleteRecordInitial,
+    find: CouchDBFindRecordInitial,
+    getView: CouchDBGetViewInitial,
   }

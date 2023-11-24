@@ -1,9 +1,9 @@
-import { Agent } from "@illa-public/market-agent"
 import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { Agent } from "@illa-public/public-types"
 import { debounce } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"

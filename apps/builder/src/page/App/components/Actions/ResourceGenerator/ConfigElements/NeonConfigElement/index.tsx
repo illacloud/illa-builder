@@ -1,3 +1,5 @@
+import { neonDefaultPort } from "@illa-public/public-configs"
+import { NeonResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback } from "react"
@@ -26,7 +28,6 @@ import {
   hostInputContainer,
 } from "@/page/App/components/Actions/ControlledElement/style"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
-import { NeonResource, neonDefaultPort } from "@/redux/resource/neonResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"

@@ -4,7 +4,7 @@ import { showInviteModal } from "@illa-public/user-role-utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { ReactComponent as InviteIcon } from "@/assets/icon/workspace/invite.svg"
+import InviteIcon from "@/assets/icon/workspace/invite.svg?react"
 import { IInviteMenuItemProps } from "./interface"
 
 export const InviteMenuItem: FC<IInviteMenuItemProps> = (props) => {

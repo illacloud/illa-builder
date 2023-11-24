@@ -1,3 +1,5 @@
+import { ElasticSearchResourceInitial } from "@illa-public/public-configs"
+import { ElasticSearchResource } from "@illa-public/public-types"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useMemo } from "react"
 import { useFormContext } from "react-hook-form"
@@ -14,10 +16,6 @@ import {
   labelContainer,
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
-import {
-  ElasticSearchResource,
-  ElasticSearchResourceInitial,
-} from "@/redux/resource/elasticSearchResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"

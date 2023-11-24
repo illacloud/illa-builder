@@ -1,13 +1,13 @@
+import { FirebaseQueryDatabase } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { QueryDatabase } from "@/redux/currentApp/action/firebaseAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const QueryDatabasePart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const options = props.options as QueryDatabase
+  const options = props.options as FirebaseQueryDatabase
   const { handleValueChange } = props
 
   return (

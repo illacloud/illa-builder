@@ -1,3 +1,5 @@
+import { RedisResourceInitial } from "@illa-public/public-configs"
+import { RedisResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useMemo, useState } from "react"
@@ -17,10 +19,6 @@ import {
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { ControlledType } from "@/page/App/components/Actions/ControlledElement/interface"
 import { hostInputContainer } from "@/page/App/components/Actions/ControlledElement/style"
-import {
-  RedisResource,
-  RedisResourceInitial,
-} from "@/redux/resource/redisResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"

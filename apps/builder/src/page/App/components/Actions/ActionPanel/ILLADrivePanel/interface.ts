@@ -1,4 +1,4 @@
-import { ILLADriveActionTypeContent } from "@/redux/currentApp/action/illaDriveAction"
+import { ILLADriveActionTypeContent } from "@illa-public/public-types"
 
 export interface ILLADriveActionPartProps {
   commandArgs: ILLADriveActionTypeContent

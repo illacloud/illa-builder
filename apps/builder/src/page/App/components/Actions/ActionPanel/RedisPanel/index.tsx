@@ -1,3 +1,4 @@
+import { RedisAction } from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -6,7 +7,6 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { RedisAction } from "@/redux/currentApp/action/redisAction"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

@@ -1,3 +1,12 @@
+import {
+  ActionContent,
+  ActionType,
+  MysqlLikeAction,
+  RestAPIAction,
+  RestAPIBodyContent,
+  SMPTAction,
+} from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { createMessage } from "@illa-design/react"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
@@ -7,18 +16,7 @@ import {
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import {
-  ActionContent,
-  ActionItem,
-  ActionType,
-} from "@/redux/currentApp/action/actionState"
 import { Events } from "@/redux/currentApp/action/actionState"
-import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
-import {
-  BodyContent,
-  RestApiAction,
-} from "@/redux/currentApp/action/restapiAction"
-import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { fetchActionRunResult } from "@/services/action"
@@ -140,7 +138,7 @@ export const runActionWithExecutionResult = async (
   abortSignal?: AbortSignal,
 ) => {
   const { displayName } = action as ActionItem<
-    MysqlLikeAction | RestApiAction<BodyContent>
+    MysqlLikeAction | RestAPIAction<RestAPIBodyContent>
   >
   const {
     content,

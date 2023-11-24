@@ -1,8 +1,9 @@
-import { Agent, MarketAIAgent } from "@illa-public/market-agent"
 import {
   MARKET_AGENT_SORTED_OPTIONS,
+  MarketAIAgent,
   fetchMarketAgentList,
 } from "@illa-public/market-agent"
+import { Agent } from "@illa-public/public-types"
 import { FC, useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
 import { FixedSizeList, ListChildComponentProps } from "react-window"

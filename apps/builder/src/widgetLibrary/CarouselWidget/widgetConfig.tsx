@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as CarouselWidgetIcon } from "@/assets/widgetCover/carousel.svg"
+import CarouselWidgetIcon from "@/assets/widgetCover/carousel.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

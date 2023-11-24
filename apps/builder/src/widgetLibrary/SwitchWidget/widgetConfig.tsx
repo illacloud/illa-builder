@@ -1,4 +1,4 @@
-import { ReactComponent as SwitchWidgetIcon } from "@/assets/widgetCover/switch.svg"
+import SwitchWidgetIcon from "@/assets/widgetCover/switch.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

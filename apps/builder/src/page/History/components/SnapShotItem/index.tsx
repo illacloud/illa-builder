@@ -13,7 +13,7 @@ import {
 } from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot, recoverSnapShotWS } from "@/services/history"
 import { isILLAAPiError } from "@/utils/typeHelper"
-import { ReactComponent as SaveIcon } from "./assets/save.svg"
+import SaveIcon from "./assets/save.svg?react"
 import {
   applyDotStyle,
   applyTimeStyle,

@@ -1,3 +1,14 @@
+import {
+  ElasticSearchBodyContentType,
+  ElasticSearchIDEditorType,
+  ElasticSearchQueryContentType,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  ElasticSearchAction,
+  ElasticSearchActionRequestType,
+  ElasticSearchActionType,
+} from "@illa-public/public-types"
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -14,16 +25,31 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  BodyContentType,
-  ElasticSearchAction,
-  ElasticSearchActionList,
-  IDEditorType,
-  QueryContentType,
-} from "@/redux/currentApp/action/elasticSearchAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { actionItemContainer } from "./style"
+
+const esActionOptions = [
+  {
+    label: ElasticSearchActionType.SEARCH,
+    value: ElasticSearchActionRequestType.SEARCH,
+  },
+  {
+    label: ElasticSearchActionType.GET_ONE,
+    value: ElasticSearchActionRequestType.GET_ONE,
+  },
+  {
+    label: ElasticSearchActionType.INSERT_ONE,
+    value: ElasticSearchActionRequestType.INSERT_ONE,
+  },
+  {
+    label: ElasticSearchActionType.UPDATE_ONE,
+    value: ElasticSearchActionRequestType.UPDATE_ONE,
+  },
+  {
+    label: ElasticSearchActionType.DELETE_ONE,
+    value: ElasticSearchActionRequestType.DELETE_ONE,
+  },
+]
 
 const ElasticSearchPanel: FC = () => {
   const { t } = useTranslation()
@@ -36,15 +62,16 @@ const ElasticSearchPanel: FC = () => {
   let content = cachedAction.content as ElasticSearchAction
 
   const isShowID = useMemo(
-    () => IDEditorType.includes(cachedAction.content.operation),
+    () => ElasticSearchIDEditorType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
   const isBodyContent = useMemo(
-    () => BodyContentType.includes(cachedAction.content.operation),
+    () => ElasticSearchBodyContentType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
   const isQueryContent = useMemo(
-    () => QueryContentType.includes(cachedAction.content.operation),
+    () =>
+      ElasticSearchQueryContentType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
 
@@ -110,7 +137,7 @@ const ElasticSearchPanel: FC = () => {
         componentType="select"
         value={content.operation}
         title={t("editor.action.panel.elastic.action_type")}
-        options={ElasticSearchActionList}
+        options={esActionOptions}
         onSelectedValueChange={handleSelectedValueChange}
       />
       {isBodyContent && (

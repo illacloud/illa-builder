@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as CheckboxWidgetIcon } from "@/assets/widgetCover/checkBox.svg"
+import CheckboxWidgetIcon from "@/assets/widgetCover/checkBox.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

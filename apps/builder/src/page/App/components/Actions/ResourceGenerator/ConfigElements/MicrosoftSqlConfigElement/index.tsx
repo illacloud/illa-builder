@@ -1,3 +1,5 @@
+import { MicrosoftSqlResourceInitial } from "@illa-public/public-configs"
+import { MicrosoftSqlResource } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
@@ -17,10 +19,6 @@ import {
 } from "@/page/App/Module/ActionEditor/styles"
 import { ControlledElement } from "@/page/App/components/Actions/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/Actions/InputRecordEditor"
-import {
-  MicrosoftSqlResource,
-  MicrosoftSqlResourceInitial,
-} from "@/redux/resource/microsoftSqlResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"

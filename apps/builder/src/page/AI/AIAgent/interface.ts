@@ -1,4 +1,4 @@
-import { AI_AGENT_MODEL, AI_AGENT_TYPE, Agent } from "@illa-public/market-agent"
+import { AI_AGENT_MODEL, AI_AGENT_TYPE, Agent } from "@illa-public/public-types"
 
 export const AgentInitial: Agent = {
   name: "",

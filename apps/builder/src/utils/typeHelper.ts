@@ -1,20 +1,16 @@
 import { ILLAApiError } from "@illa-public/illa-net"
-import { AxiosResponse } from "axios"
-import { isString } from "@illa-design/react"
-import {
-  ILLADriveAction,
-  ILLADriveActionTypeContent,
-  ILLA_DRIVE_ACTION_REQUEST_TYPE,
-} from "@/redux/currentApp/action/illaDriveAction"
-import {
-  ClientS3,
-  S3Action,
-  S3ActionTypeContent,
-} from "@/redux/currentApp/action/s3Action"
 import {
   ActionContent,
   ActionType,
-} from "../redux/currentApp/action/actionState"
+  ILLADriveAction,
+  ILLADriveActionTypeContent,
+  ILLA_DRIVE_ACTION_REQUEST_TYPE,
+  S3Action,
+  S3ActionRequestType,
+  S3ActionTypeContent,
+} from "@illa-public/public-types"
+import { AxiosResponse } from "axios"
+import { isString } from "@illa-design/react"
 
 const DISPLAY_NAME_REGEX = /^([a-zA-Z_$])([a-zA-Z0-9_$])*$/
 
@@ -107,7 +103,12 @@ export const isClientS3ActionContent = (
   return (
     actionType === "s3" &&
     "commands" in actionContent &&
-    ClientS3.includes(actionContent.commands)
+    [
+      S3ActionRequestType.READ_ONE,
+      S3ActionRequestType.DOWNLOAD_ONE,
+      S3ActionRequestType.UPLOAD,
+      S3ActionRequestType.UPLOAD_MULTIPLE,
+    ].includes(actionContent.commands)
   )
 }
 

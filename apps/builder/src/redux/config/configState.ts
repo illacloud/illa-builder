@@ -1,11 +1,9 @@
+import { ActionContent } from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 
 export type IllaMode = "preview" | "edit" | "production" | "template-edit"
 

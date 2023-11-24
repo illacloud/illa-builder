@@ -1,5 +1,5 @@
+import { S3ActionRequestType } from "@illa-public/public-types"
 import { AxiosResponse } from "axios"
-import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
 import { fetchS3ActionRunResult } from "@/services/action"
 import { downloadSingleFile } from "@/utils/file"
 

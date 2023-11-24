@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Trigger } from "@illa-design/react"
-import { ReactComponent as RequireIcon } from "@/assets/agent/require.svg"
+import RequireIcon from "@/assets/agent/require.svg?react"
 import { AIAgentBlockProps } from "./interface"
 import {
   agentBlockStyle,

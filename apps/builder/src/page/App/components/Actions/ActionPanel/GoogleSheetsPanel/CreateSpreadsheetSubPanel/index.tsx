@@ -1,8 +1,8 @@
+import { GoogleSheetsActionCreateOpts } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { GoogleSheetsActionCreateOpts } from "@/redux/currentApp/action/googleSheetsAction"
 
 export const CreateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
