@@ -24,25 +24,6 @@ export const fetchTeamAgent = (signal?: AbortSignal) => {
   )
 }
 
-export const fetchTeamAgentListByPage = (
-  page: number,
-  keywords: string = "",
-  signal?: AbortSignal,
-) => {
-  return agentRequest<TeamAgentListData>(
-    {
-      url: keywords
-        ? `/aiAgent/list/limit/10/page/${page}/sortBy/id/like/keywords/${keywords}`
-        : `/aiAgent/list/limit/10/page/${page}/sortBy/id`,
-      method: "GET",
-      signal,
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
-  )
-}
-
 export interface ForkAgentResponse {
   aiAgentID: string
 }

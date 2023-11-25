@@ -1,6 +1,7 @@
 import {
   ActionItem,
   Params,
+  Resource,
   RestAPIAction,
   RestAPIBodyContent,
   RestAPIBodyType,
@@ -29,7 +30,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

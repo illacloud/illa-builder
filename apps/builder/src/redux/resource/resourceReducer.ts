@@ -1,9 +1,6 @@
+import { Resource, ResourceContent } from "@illa-public/public-types"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import {
-  Resource,
-  ResourceContent,
-  ResourceListState,
-} from "@/redux/resource/resourceState"
+import { ResourceListState } from "@/redux/resource/resourceState"
 
 export const updateResourceListReducer: CaseReducer<
   ResourceListState,

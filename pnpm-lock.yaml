@@ -3384,6 +3384,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@illa-public/icon-hot-spot':
+        specifier: workspace:*
+        version: link:../IconHotSpot
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../ILLANet
@@ -3417,6 +3420,9 @@ importers:
       '@types/uuid':
         specifier: ^9.0.7
         version: 9.0.7
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3429,6 +3435,12 @@ importers:
       react-i18next:
         specifier: ^13.2.2
         version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+      react-window:
+        specifier: ^1.8.9
+        version: 1.8.9(react-dom@18.2.0)(react@18.2.0)
+      react-window-infinite-loader:
+        specifier: ^1.0.9
+        version: 1.0.9(react-dom@18.2.0)(react@18.2.0)
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -3439,6 +3451,15 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0(rollup@3.28.1)(typescript@5.2.2)(vite@4.4.9)
     devDependencies:
+      '@types/lodash':
+        specifier: ^4.14.202
+        version: 4.14.202
+      '@types/react-window':
+        specifier: ^1.8.5
+        version: 1.8.5
+      '@types/react-window-infinite-loader':
+        specifier: ^1.0.6
+        version: 1.0.6
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -5661,7 +5682,7 @@ packages:
   /@manypkg/find-root@1.1.0:
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.2
       '@types/node': 12.20.55
       find-up: 4.1.0
       fs-extra: 8.1.0
@@ -6971,6 +6992,10 @@ packages:
 
   /@types/lodash@4.14.199:
     resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
+    dev: true
+
+  /@types/lodash@4.14.202:
+    resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
     dev: true
 
   /@types/mdast@3.0.10:
@@ -14211,7 +14236,7 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.23.2
       memoize-one: 5.2.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
