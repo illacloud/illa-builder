@@ -1,4 +1,4 @@
-import { ReactComponent as TimelineWidgetIcon } from "@/assets/widgetCover/timeline.svg"
+import TimelineWidgetIcon from "@/assets/widgetCover/timeline.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

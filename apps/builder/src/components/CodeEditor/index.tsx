@@ -1,7 +1,7 @@
 import { debounce } from "lodash"
 import { FC, useCallback, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-import { ReactComponent as OpenWindowIcon } from "@/assets/public/openWindow.svg"
+import OpenWindowIcon from "@/assets/public/openWindow.svg?react"
 import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
 import {
   CODE_TYPE,

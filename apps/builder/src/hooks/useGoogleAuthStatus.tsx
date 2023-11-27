@@ -1,10 +1,10 @@
+import { GoogleSheetAuthStatus } from "@illa-public/public-types"
 import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { GoogleSheetAuthStatus } from "@/redux/resource/googleSheetResource"
 
 export const useGoogleAuthStatus = (
   finished?: (resourceID: string) => void,

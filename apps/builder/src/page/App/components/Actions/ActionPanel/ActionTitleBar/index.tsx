@@ -1,5 +1,17 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { getDocLink } from "@illa-public/public-configs"
+import {
+  ElasticSearchBodyContentType,
+  ElasticSearchIDEditorType,
+  ElasticSearchQueryContentType,
+  getDocLink,
+} from "@illa-public/public-configs"
+import {
+  ActionContent,
+  ActionItem,
+  ElasticSearchAction,
+  GlobalDataActionContent,
+  SMPTAction,
+} from "@illa-public/public-types"
 import { isEqual } from "lodash"
 import {
   FC,
@@ -37,18 +49,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  GlobalDataActionContent,
-} from "@/redux/currentApp/action/actionState"
-import {
-  BodyContentType,
-  ElasticSearchAction,
-  IDEditorType,
-  QueryContentType,
-} from "@/redux/currentApp/action/elasticSearchAction"
-import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
@@ -99,7 +99,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
   switch (cachedAction?.actionType) {
     case "elasticsearch":
       let content = cachedAction.content as ElasticSearchAction
-      if (!IDEditorType.includes(content.operation)) {
+      if (!ElasticSearchIDEditorType.includes(content.operation)) {
         const { id: _id = "", ...otherContent } = content
         cachedActionValue = {
           ...cachedAction,
@@ -107,7 +107,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
         }
         content = otherContent
       }
-      if (!BodyContentType.includes(content.operation)) {
+      if (!ElasticSearchBodyContentType.includes(content.operation)) {
         const { body: _body = "", ...otherContent } = content
         cachedActionValue = {
           ...cachedActionValue,
@@ -115,7 +115,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
         }
         content = otherContent
       }
-      if (!QueryContentType.includes(content.operation)) {
+      if (!ElasticSearchQueryContentType.includes(content.operation)) {
         const { query: _query = "", ...otherContent } = content
         cachedActionValue = {
           ...cachedActionValue,

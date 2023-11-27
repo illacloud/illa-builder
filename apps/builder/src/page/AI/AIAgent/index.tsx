@@ -1,8 +1,8 @@
-import { Agent } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { Agent } from "@illa-public/public-types"
 import { FC, useEffect } from "react"
 import {
   Await,

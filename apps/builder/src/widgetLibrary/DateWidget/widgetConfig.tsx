@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import { ReactComponent as DateWidgetIcon } from "@/assets/widgetCover/date.svg"
+import DateWidgetIcon from "@/assets/widgetCover/date.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

@@ -1,4 +1,4 @@
-import { ReactComponent as TimePickerWidgetIcon } from "@/assets/widgetCover/timePicker.svg"
+import TimePickerWidgetIcon from "@/assets/widgetCover/timePicker.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

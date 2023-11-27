@@ -1,19 +1,20 @@
-import { EXPIRATION_TYPE, UPLOAD_FILE_STATUS } from "@illa-public/public-types"
+import { ILLA_DRIVE_ROOT_PATH } from "@illa-public/public-configs"
+import {
+  EXPIRATION_TYPE,
+  ILLADriveAction,
+  ILLADriveActionTypeContent,
+  ILLADriveListAllContent,
+  ILLADriveUpdateStatusAction,
+  ILLADriveUploadMultipleContent,
+  ILLADriveUploadOneContent,
+  ILLA_DRIVE_ACTION_REQUEST_TYPE,
+  ILLA_DRIVE_FILTER_TYPE,
+  ILLA_DRIVE_UPLOAD_FILE_TYPE,
+  UPLOAD_FILE_STATUS,
+} from "@illa-public/public-types"
 import { AxiosResponse } from "axios"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
 import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
-import {
-  FILTER_TYPE,
-  ILLADriveAction,
-  ILLADriveActionTypeContent,
-  ILLADriveUpdateStatusAction,
-  ILLA_DRIVE_ACTION_REQUEST_TYPE,
-  ListAllContent,
-  ROOT_PATH,
-  UPLOAD_FILE_TYPE,
-  UploadMultipleContent,
-  UploadOneContent,
-} from "@/redux/currentApp/action/illaDriveAction"
 import { IActionRunResultResponseData } from "@/services/action"
 import { dataURLtoFile } from "@/widgetLibrary/UploadWidget/util"
 import {
@@ -27,7 +28,7 @@ import { fetchCommonActionResult } from "./runAction"
 const getFileInfo = (
   fileName: string,
   fileData: string,
-  fileType: UPLOAD_FILE_TYPE,
+  fileType: ILLA_DRIVE_UPLOAD_FILE_TYPE,
 ) => {
   const isBase64 = isBase64Simple(fileData)
   const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
@@ -82,7 +83,7 @@ const scheduler = async (task: (() => Promise<any>)[]) => {
 const handleDetail = (
   name: string,
   path: string,
-  contentType: UPLOAD_FILE_TYPE,
+  contentType: ILLA_DRIVE_UPLOAD_FILE_TYPE,
   needUploadFile: File,
   queryID: string,
 ) => {
@@ -131,17 +132,17 @@ export const transformDriveData = (
   const operation = contents.operation
   switch (operation) {
     case ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST: {
-      const commandArgs = contents.commandArgs as ListAllContent
+      const commandArgs = contents.commandArgs as ILLADriveListAllContent
       return {
         operation,
-        path: `/${removeSuffixPath(commandArgs.path) || ROOT_PATH}`,
+        path: `/${removeSuffixPath(commandArgs.path) || ILLA_DRIVE_ROOT_PATH}`,
         limit: commandArgs.limit,
         search:
-          commandArgs.filterType === FILTER_TYPE.BY_NAME
+          commandArgs.filterType === ILLA_DRIVE_FILTER_TYPE.BY_NAME
             ? commandArgs.search
             : undefined,
         fileID:
-          commandArgs.filterType === FILTER_TYPE.BY_ID
+          commandArgs.filterType === ILLA_DRIVE_FILTER_TYPE.BY_ID
             ? commandArgs.fileID
             : undefined,
         page: commandArgs.page,
@@ -154,7 +155,7 @@ export const transformDriveData = (
       }
     }
     case ILLA_DRIVE_ACTION_REQUEST_TYPE.UPLOAD: {
-      const commandArgs = contents.commandArgs as UploadOneContent
+      const commandArgs = contents.commandArgs as ILLADriveUploadOneContent
       const { fileDownloadName, needUploadFile } = getFileInfo(
         commandArgs.fileName,
         commandArgs.fileData,
@@ -162,7 +163,7 @@ export const transformDriveData = (
       )
       return {
         operation,
-        path: `/${removeSuffixPath(commandArgs.path) || ROOT_PATH}`,
+        path: `/${removeSuffixPath(commandArgs.path) || ILLA_DRIVE_ROOT_PATH}`,
         overwriteDuplicate: commandArgs.overwriteDuplicate,
         fileName: fileDownloadName,
         fileSize: needUploadFile.size,
@@ -172,7 +173,7 @@ export const transformDriveData = (
     }
 
     case ILLA_DRIVE_ACTION_REQUEST_TYPE.UPLOAD_MULTIPLE:
-      const commandArgs = contents.commandArgs as UploadMultipleContent
+      const commandArgs = contents.commandArgs as ILLADriveUploadMultipleContent
       const files: Record<string, string | number | File>[] = []
       let minLength = Math.min(
         commandArgs.fileDataArray.length,
@@ -181,9 +182,11 @@ export const transformDriveData = (
       )
 
       for (let i = 0; i < minLength; i++) {
-        let fileType = commandArgs.fileTypeArray[i] as UPLOAD_FILE_TYPE
-        if (!Object.values(UPLOAD_FILE_TYPE).includes(fileType)) {
-          fileType = UPLOAD_FILE_TYPE.AUTO
+        let fileType = commandArgs.fileTypeArray[
+          i
+        ] as ILLA_DRIVE_UPLOAD_FILE_TYPE
+        if (!Object.values(ILLA_DRIVE_UPLOAD_FILE_TYPE).includes(fileType)) {
+          fileType = ILLA_DRIVE_UPLOAD_FILE_TYPE.AUTO
         }
         const { fileDownloadName, needUploadFile } = getFileInfo(
           commandArgs.fileNameArray[i],
@@ -200,7 +203,7 @@ export const transformDriveData = (
 
       return {
         operation,
-        path: `/${removeSuffixPath(commandArgs.path) || ROOT_PATH}`,
+        path: `/${removeSuffixPath(commandArgs.path) || ILLA_DRIVE_ROOT_PATH}`,
         overwriteDuplicate: commandArgs.overwriteDuplicate,
         files,
       }

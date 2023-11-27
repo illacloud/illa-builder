@@ -1,3 +1,4 @@
+import { TransformerAction } from "@illa-public/public-types"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,7 +9,6 @@ import {
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import {
   realInputValueWithScript,
   wrapperScriptCode,

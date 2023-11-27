@@ -1,9 +1,9 @@
+import { GoogleSheetsActionAppendOpts } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig"
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { GoogleSheetsActionAppendOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const AppendSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (

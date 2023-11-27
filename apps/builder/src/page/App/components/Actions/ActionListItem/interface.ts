@@ -1,8 +1,6 @@
+import { ActionContent } from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { HTMLAttributes } from "react"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 
 export interface ActionListItemProps extends HTMLAttributes<HTMLDivElement> {
   action: ActionItem<ActionContent>

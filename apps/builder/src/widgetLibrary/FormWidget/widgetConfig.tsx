@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
+import FormWidgetIcon from "@/assets/widgetCover/form.svg?react"
 import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"

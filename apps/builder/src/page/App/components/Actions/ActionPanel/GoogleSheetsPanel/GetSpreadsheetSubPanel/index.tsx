@@ -1,7 +1,7 @@
+import { GoogleSheetsActionGetOpts } from "@illa-public/public-types"
 import { FC } from "react"
 import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig"
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
-import { GoogleSheetsActionGetOpts } from "@/redux/currentApp/action/googleSheetsAction"
 
 export const GetSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,

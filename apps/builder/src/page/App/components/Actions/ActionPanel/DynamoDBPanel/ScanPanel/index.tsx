@@ -1,3 +1,4 @@
+import { DynamoScanStructParams } from "@illa-public/public-types"
 import { FC } from "react"
 import {
   DynamoDBPanelItemsInfo,
@@ -5,10 +6,9 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/interface"
 import { scanPanelItems } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/items"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { ScanStructParams } from "@/redux/currentApp/action/dynamoDBAction"
 
 export const ScanPanel: FC<DynamoDBSubPanelProps> = (props) => {
-  const structParams = props.structParams as ScanStructParams
+  const structParams = props.structParams as DynamoScanStructParams
   const { handleValueChange } = props
 
   return (
@@ -20,7 +20,7 @@ export const ScanPanel: FC<DynamoDBSubPanelProps> = (props) => {
             key={name}
             lineNumbers
             style={{ maxHeight: "88px" }}
-            value={structParams[name as keyof ScanStructParams]}
+            value={structParams[name as keyof DynamoScanStructParams]}
             onChange={(value) => handleValueChange(value, name)}
             expectedType={expectedType}
             title={title}

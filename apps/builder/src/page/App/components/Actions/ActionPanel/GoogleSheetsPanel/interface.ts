@@ -1,6 +1,6 @@
+import { GoogleSheetsActionOpts } from "@illa-public/public-types"
+import { Params } from "@illa-public/public-types"
 import { SelectOptionObject } from "@illa-design/react"
-import { GoogleSheetsActionOpts } from "@/redux/currentApp/action/googleSheetsAction"
-import { Params } from "@/redux/resource/restapiResource"
 
 export interface GoogleSheetsActionSubPanelProps {
   opts: GoogleSheetsActionOpts

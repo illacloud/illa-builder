@@ -1,13 +1,13 @@
+import { FirebaseSetData } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { SetData } from "@/redux/currentApp/action/firebaseAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const SetDataPart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const options = props.options as SetData
+  const options = props.options as FirebaseSetData
   const { handleValueChange } = props
 
   return (

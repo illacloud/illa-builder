@@ -1,4 +1,4 @@
-import { ReactComponent as TableWidgetIcon } from "@/assets/widgetCover/table.svg"
+import TableWidgetIcon from "@/assets/widgetCover/table.svg?react"
 import i18n from "@/i18n/config"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
 import { WidgetConfig } from "@/widgetLibrary/interface"

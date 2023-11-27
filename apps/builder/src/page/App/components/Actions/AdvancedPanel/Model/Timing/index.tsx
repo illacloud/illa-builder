@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { ACTION_RUN_TIME, IAdvancedConfig } from "@illa-public/public-types"
 import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -12,10 +13,6 @@ import { AdvancedPanelControl } from "@/page/App/components/Actions/AdvancedPane
 import { AdvancedPanelHeader } from "@/page/App/components/Actions/AdvancedPanel/Components/Header"
 import { getCachedActionAdvancedConfig } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  ACTION_RUN_TIME,
-  IAdvancedConfig,
-} from "@/redux/currentApp/action/actionState"
 import { getCurrentAppPageNames } from "@/redux/currentApp/components/componentsSelector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

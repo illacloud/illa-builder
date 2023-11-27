@@ -1,17 +1,17 @@
+import {
+  FirebaseCollectionType,
+  FirebaseDeleteDocument,
+} from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CollectionInput } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import {
-  CollectionType,
-  DeleteDocument,
-} from "@/redux/currentApp/action/firebaseAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DeleteOneDocumentPart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const options = props.options as DeleteDocument
+  const options = props.options as FirebaseDeleteDocument
   const { handleValueChange } = props
 
   return (
@@ -19,7 +19,7 @@ export const DeleteOneDocumentPart: FC<FirebaseActionPartProps> = (props) => {
       <CollectionInput
         handleValueChange={handleValueChange}
         value={options.collection}
-        collectionType={options.collectionType as CollectionType}
+        collectionType={options.collectionType as FirebaseCollectionType}
       />
       <InputEditor
         title={t("editor.action.panel.firebase.document_id")}

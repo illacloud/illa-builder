@@ -2,8 +2,6 @@ import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
 import { ShareAgentPC } from "@illa-public/invite-modal"
 import {
-  AI_AGENT_TYPE,
-  Agent,
   MarketAIAgent,
   getAIAgentMarketplaceInfo,
   getLLM,
@@ -14,6 +12,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
+import { AI_AGENT_TYPE, Agent } from "@illa-public/public-types"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -68,7 +67,7 @@ import {
 } from "@illa-design/react"
 import { createAction } from "@/api/actions"
 import { TextSignal } from "@/api/ws/textSignal"
-import { ReactComponent as GridFillIcon } from "@/assets/agent/gridFill.svg"
+import GridFillIcon from "@/assets/agent/gridFill.svg?react"
 import { FullPageLoading } from "@/components/FullPageLoading"
 import { buildActionInfo, buildAppWithAgentSchema } from "@/config/AppWithAgent"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"

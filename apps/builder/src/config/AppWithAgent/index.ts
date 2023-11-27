@@ -1,15 +1,12 @@
-import { Agent } from "@illa-public/market-agent"
+import { ACTION_RUN_TIME, Agent } from "@illa-public/public-types"
 import {
   CONTAINER_TYPE,
   ComponentTreeNode,
   Params,
 } from "@illa-public/public-types"
+import { AiAgentActionContent } from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { cloneDeep } from "lodash"
-import {
-  ACTION_RUN_TIME,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
-import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { searchDSLFromTree } from "@/redux/currentApp/components/componentsSelector"
 import { TEST_ROOT_NODE } from "./templateNode"
 

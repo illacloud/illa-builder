@@ -1,8 +1,8 @@
+import { ILLADriveUploadMultipleContent } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { UploadMultipleContent } from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { SingleTypeComponent } from "../../SingleTypeComponent"
 import FolderSelect from "../components/FolderSelect"
@@ -11,7 +11,7 @@ import { ILLADriveActionPartProps } from "../interface"
 export const UploadMultiplePart: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const commandArgs = props.commandArgs as UploadMultipleContent
+  const commandArgs = props.commandArgs as ILLADriveUploadMultipleContent
   const { handleOptionsValueChange } = props
 
   return (

@@ -1,12 +1,10 @@
-import { AxiosResponse } from "axios"
 import {
   ActionContent,
-  ActionType,
-} from "@/redux/currentApp/action/actionState"
-import {
   ILLADriveAction,
   ILLADriveActionTypeContent,
-} from "@/redux/currentApp/action/illaDriveAction"
+} from "@illa-public/public-types"
+import { ActionType } from "@illa-public/public-types"
+import { AxiosResponse } from "axios"
 import { isClientS3ActionContent } from "@/utils/typeHelper"
 import { transformDriveResFormat } from "./driveActions"
 

@@ -1,19 +1,19 @@
+import { CouchDBFindRecord } from "@illa-public/public-types"
 import { FC } from "react"
 import { CouchDBSubPanelProps } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/interface"
 import { FindRecordInfo } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/values"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { FindRecord } from "@/redux/currentApp/action/couchDBAction"
 
 export const FindRecordSubPanel: FC<CouchDBSubPanelProps> = (props) => {
   const { onInputValueChange } = props
-  const opts = props.opts as FindRecord
+  const opts = props.opts as CouchDBFindRecord
 
   return (
     <>
       {FindRecordInfo.map((info) => {
         const { title, name, expectedType, lineNumbers, style, placeholder } =
           info
-        const value = opts[name[1] as keyof FindRecord]
+        const value = opts[name[1] as keyof CouchDBFindRecord]
         return (
           <InputEditor
             key={name.join("-")}

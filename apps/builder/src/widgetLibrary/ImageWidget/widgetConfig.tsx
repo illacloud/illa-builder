@@ -1,4 +1,4 @@
-import { ReactComponent as ImageWidgetIcon } from "@/assets/widgetCover/image.svg"
+import ImageWidgetIcon from "@/assets/widgetCover/image.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

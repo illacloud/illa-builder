@@ -1,7 +1,7 @@
-import { ReactComponent as AudioIcon } from "@/assets/drive/audio.svg"
-import { ReactComponent as ImageIcon } from "@/assets/drive/image.svg"
-import { ReactComponent as PdfIcon } from "@/assets/drive/pdf.svg"
-import { ReactComponent as VideoIcon } from "@/assets/drive/video.svg"
+import AudioIcon from "@/assets/drive/audio.svg?react"
+import ImageIcon from "@/assets/drive/image.svg?react"
+import PdfIcon from "@/assets/drive/pdf.svg?react"
+import VideoIcon from "@/assets/drive/video.svg?react"
 import i18n from "@/i18n/config"
 
 export const getUploadModeInfo = (widgetType: string) => {

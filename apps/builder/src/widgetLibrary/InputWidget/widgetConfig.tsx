@@ -1,4 +1,4 @@
-import { ReactComponent as TextInputWidgetIcon } from "@/assets/widgetCover/textInput.svg"
+import TextInputWidgetIcon from "@/assets/widgetCover/textInput.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

@@ -1,4 +1,4 @@
-import { Agent } from "@illa-public/market-agent"
+import { Agent } from "@illa-public/public-types"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   AddTeamAIAgentPayload,

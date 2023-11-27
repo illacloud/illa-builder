@@ -1,5 +1,5 @@
 import { ForwardedRef, forwardRef } from "react"
-import { ReactComponent as ResizeBarIcon } from "@/assets/public/resize-bar-icon.svg"
+import ResizeBarIcon from "@/assets/public/resize-bar-icon.svg?react"
 import { ModalFooterProps } from "@/components/Modal/Footer/interface"
 import {
   applyModalFooterWrapperStyle,

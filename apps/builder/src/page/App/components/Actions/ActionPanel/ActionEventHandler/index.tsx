@@ -1,3 +1,4 @@
+import { ActionContent } from "@illa-public/public-types"
 import { cloneDeep } from "lodash"
 import { FC, Suspense, useCallback } from "react"
 import { useTranslation } from "react-i18next"
@@ -11,7 +12,6 @@ import RenderPanelSetter from "@/page/App/components/InspectPanel/components/Pan
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionContent } from "@/redux/currentApp/action/actionState"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
 import {

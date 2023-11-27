@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as SwitchGroupWidgetIcon } from "@/assets/widgetCover/switchGroup.svg"
+import SwitchGroupWidgetIcon from "@/assets/widgetCover/switchGroup.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

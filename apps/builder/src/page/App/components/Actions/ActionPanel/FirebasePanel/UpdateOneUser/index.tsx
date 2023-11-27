@@ -1,13 +1,13 @@
+import { FirebaseUpdateOneUser } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { UpdateOneUser } from "@/redux/currentApp/action/firebaseAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const UpdateOneUserPart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const options = props.options as UpdateOneUser
+  const options = props.options as FirebaseUpdateOneUser
   const { handleValueChange } = props
 
   return (

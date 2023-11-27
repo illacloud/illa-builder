@@ -1,8 +1,8 @@
-import { StructParams } from "@/redux/currentApp/action/dynamoDBAction"
+import { DynamoStructParams } from "@illa-public/public-types"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface DynamoDBSubPanelProps {
-  structParams: StructParams
+  structParams: DynamoStructParams
   handleValueChange: (value: string, name: string) => void
 }
 

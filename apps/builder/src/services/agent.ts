@@ -1,5 +1,5 @@
 import { agentRequest, marketplaceRequest } from "@illa-public/illa-net"
-import { Agent, AgentRaw } from "@illa-public/market-agent"
+import { Agent, AgentRaw } from "@illa-public/public-types"
 import { v4 } from "uuid"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file"
@@ -15,25 +15,6 @@ export const fetchTeamAgent = (signal?: AbortSignal) => {
   return agentRequest<TeamAgentListData>(
     {
       url: `/aiAgent/list/sortBy/updatedAt`,
-      method: "GET",
-      signal,
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
-  )
-}
-
-export const fetchTeamAgentListByPage = (
-  page: number,
-  keywords: string = "",
-  signal?: AbortSignal,
-) => {
-  return agentRequest<TeamAgentListData>(
-    {
-      url: keywords
-        ? `/aiAgent/list/limit/10/page/${page}/sortBy/id/like/keywords/${keywords}`
-        : `/aiAgent/list/limit/10/page/${page}/sortBy/id`,
       method: "GET",
       signal,
     },

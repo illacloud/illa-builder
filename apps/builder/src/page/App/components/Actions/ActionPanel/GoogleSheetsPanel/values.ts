@@ -1,5 +1,5 @@
+import { GoogleSheetsActionType } from "@illa-public/public-types"
 import i18n from "@/i18n/config"
-import { GoogleSheetsActionType } from "@/redux/currentApp/action/googleSheetsAction"
 
 export const GoogleSheetsActionTypesOptions: {
   label: string

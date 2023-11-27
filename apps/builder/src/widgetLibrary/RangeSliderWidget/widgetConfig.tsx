@@ -1,4 +1,4 @@
-import { ReactComponent as RangeSliderWidgetIcon } from "@/assets/widgetCover/rangeSlider.svg"
+import RangeSliderWidgetIcon from "@/assets/widgetCover/rangeSlider.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

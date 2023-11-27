@@ -1,4 +1,4 @@
-import { Agent } from "@illa-public/market-agent"
+import { Agent } from "@illa-public/public-types"
 
 export const agentData2JSONReport = (agent: Agent) => {
   try {

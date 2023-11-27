@@ -1,14 +1,12 @@
 import { builderRequest } from "@illa-public/illa-net"
 import {
   ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import {
   Resource,
   ResourceContent,
-  ResourceInitialConfig,
-} from "@/redux/resource/resourceState"
+} from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { ResourceInitialConfig } from "@/redux/resource/resourceState"
 import store from "@/store"
 import { getCurrentTeamID } from "@/utils/team"
 

@@ -30,8 +30,8 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+import Logo from "@/assets/illa-logo.svg?react"
+import SnowIcon from "@/assets/snow-icon.svg?react"
 import { UpgradeTag } from "@/components/UpgradeTag"
 import { AppName } from "@/page/App/Module/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/Module/PageNavBar/AppSizeButtonGroup"

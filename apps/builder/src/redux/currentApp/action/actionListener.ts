@@ -1,3 +1,4 @@
+import { ActionContent, ActionItem } from "@illa-public/public-types"
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -12,11 +13,7 @@ import { fetchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { registerActionPeriod } from "@/utils/action/runAction"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
-import {
-  ActionContent,
-  ActionItem,
-  UpdateActionSlicePropsPayload,
-} from "./actionState"
+import { UpdateActionSlicePropsPayload } from "./actionState"
 
 async function handleAddActionItemEffect(
   action: ReturnType<typeof actionActions.addActionItemReducer>,

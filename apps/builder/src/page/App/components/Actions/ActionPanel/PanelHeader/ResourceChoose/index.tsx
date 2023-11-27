@@ -1,4 +1,5 @@
 import { getIconFromResourceType } from "@illa-public/icon"
+import { getInitialContent } from "@illa-public/public-configs"
 import { FC, Suspense } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -15,7 +16,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { createNewStyle, itemContainer, itemLogo, itemText } from "./style"
 

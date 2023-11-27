@@ -1,11 +1,11 @@
+import {
+  ILLADriveUploadOneContent,
+  ILLA_DRIVE_UPLOAD_FILE_TYPE,
+} from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import {
-  FileTypeOptions,
-  UploadOneContent,
-} from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { SingleTypeComponent } from "../../SingleTypeComponent"
 import FolderSelect from "../components/FolderSelect"
@@ -13,8 +13,47 @@ import { ILLADriveActionPartProps } from "../interface"
 
 export const UploadPart: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const commandArgs = props.commandArgs as UploadOneContent
+  const commandArgs = props.commandArgs as ILLADriveUploadOneContent
   const { handleOptionsValueChange } = props
+
+  const FileTypeOptions = [
+    {
+      label: t("editor.inspect.setter_option.file_download.auto"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.AUTO,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.plain_text"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.TXT,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.jpeg"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.JPEG,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.png"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.PNG,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.svg"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.SVG,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.json"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.JSON,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.csv"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.CSV,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.tsv"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.TSV,
+    },
+    {
+      label: t("editor.inspect.setter_option.file_download.excel"),
+      value: ILLA_DRIVE_UPLOAD_FILE_TYPE.XLSX,
+    },
+  ]
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { MinusIcon, PlusIcon, getColor } from "@illa-design/react"
-import { ReactComponent as BorderIcon } from "@/assets/border.svg"
+import BorderIcon from "@/assets/border.svg?react"
 import IconHotSpot from "@/components/IconHotSpot"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"

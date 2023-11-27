@@ -1,3 +1,4 @@
+import { DynamoDeleteItemStructParams } from "@illa-public/public-types"
 import { FC } from "react"
 import {
   DynamoDBPanelItemsInfo,
@@ -5,10 +6,9 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/interface"
 import { deleteItemPanelItems } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/items"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { DeleteItemStructParams } from "@/redux/currentApp/action/dynamoDBAction"
 
 export const DeleteItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
-  const structParams = props.structParams as DeleteItemStructParams
+  const structParams = props.structParams as DynamoDeleteItemStructParams
   const { handleValueChange } = props
 
   return (
@@ -20,7 +20,7 @@ export const DeleteItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
             key={name}
             lineNumbers
             style={{ maxHeight: "88px" }}
-            value={structParams[name as keyof DeleteItemStructParams]}
+            value={structParams[name as keyof DynamoDeleteItemStructParams]}
             onChange={(value) => handleValueChange(value, name)}
             expectedType={expectedType}
             title={title}

@@ -1,3 +1,4 @@
+import { DynamoGetItemStructParams } from "@illa-public/public-types"
 import { FC } from "react"
 import {
   DynamoDBPanelItemsInfo,
@@ -5,10 +6,9 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/interface"
 import { getItemPanelItems } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/items"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { GetItemStructParams } from "@/redux/currentApp/action/dynamoDBAction"
 
 export const GetItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
-  const structParams = props.structParams as GetItemStructParams
+  const structParams = props.structParams as DynamoGetItemStructParams
   const { handleValueChange } = props
 
   return (
@@ -20,7 +20,7 @@ export const GetItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
             key={name}
             lineNumbers
             style={{ maxHeight: "88px" }}
-            value={structParams[name as keyof GetItemStructParams]}
+            value={structParams[name as keyof DynamoGetItemStructParams]}
             onChange={(value) => handleValueChange(value, name)}
             expectedType={expectedType}
             title={title}

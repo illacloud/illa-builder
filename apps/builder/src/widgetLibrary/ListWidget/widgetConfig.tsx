@@ -1,4 +1,4 @@
-import { ReactComponent as ListWidgetIcon } from "@/assets/widgetCover/list.svg"
+import ListWidgetIcon from "@/assets/widgetCover/list.svg?react"
 import i18n from "@/i18n/config"
 import { LIST_ITEM_MARGIN_TOP } from "@/page/App/components/ScaleSquare/constant/widget"
 import { TEMPLATE_DISPLAYNAME_KEY } from "@/utils/generators/generateComponentNode"

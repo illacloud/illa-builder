@@ -1,10 +1,10 @@
+import { MicrosoftSqlActionGUIMode } from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { createMessage } from "@illa-design/react"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { MicrosoftSqlActionGUIMode } from "@/redux/currentApp/action/microsoftSqlAction"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

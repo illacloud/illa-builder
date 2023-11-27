@@ -1,3 +1,18 @@
+import {
+  AirtableCreateRecordInitial,
+  AirtableDeleteMultipleRecordInitial,
+  AirtableDeleteRecordInitial,
+  AirtableGetRecordInitial,
+  AirtableListRecordInitial,
+  AirtableUpdateMultipleRecordInitial,
+  AirtableUpdateRecordInitial,
+} from "@illa-public/public-configs"
+import {
+  AirtableAction,
+  AirtableActionConfigType,
+  AirtableActionMethodsType,
+} from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -21,21 +36,38 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  AirtableAction,
-  AirtableActionConfigType,
-  AirtableActionMethodsType,
-  AirtableCreateRecordInitial,
-  AirtableDeleteMultipleRecordInitial,
-  AirtableDeleteRecordInitial,
-  AirtableGetRecordInitial,
-  AirtableListRecordInitial,
-  AirtableMethodList,
-  AirtableUpdateMultipleRecordInitial,
-  AirtableUpdateRecordInitial,
-} from "@/redux/currentApp/action/airtableAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+
+export const AirtableMethodList = [
+  {
+    label: "List Records",
+    value: "list",
+  },
+  {
+    label: "Get Record",
+    value: "get",
+  },
+  {
+    label: "Create Records",
+    value: "create",
+  },
+  {
+    label: "Update Record",
+    value: "update",
+  },
+  {
+    label: "Update Multiple Records",
+    value: "bulkUpdate",
+  },
+  {
+    label: "Delete Record",
+    value: "delete",
+  },
+  {
+    label: "Delete Multiple Records",
+    value: "bulkDelete",
+  },
+]
 
 const AirtablePanel: FC = () => {
   const { t } = useTranslation()

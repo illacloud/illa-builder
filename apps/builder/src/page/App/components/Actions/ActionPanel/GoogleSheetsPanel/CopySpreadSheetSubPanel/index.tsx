@@ -1,3 +1,4 @@
+import { GoogleSheetsActionCopyOpts } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { FxIcon } from "@illa-design/react"
@@ -10,7 +11,6 @@ import {
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { GoogleSheetsActionCopyOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (

@@ -1,3 +1,7 @@
+import {
+  TransformerInitial,
+  TransformerInitialTrue,
+} from "@illa-public/public-configs"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -22,11 +26,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  Transformer,
-  TransformerInitial,
-  TransformerInitialTrue,
-} from "@/redux/currentApp/action/actionState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const TransformerComponent: FC<TransformComponentProps> = (props) => {
@@ -69,7 +68,7 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
               },
             ]}
             onChange={(value) => {
-              let transformer: Transformer = TransformerInitial
+              let transformer = TransformerInitial
               if (
                 selectedAction &&
                 selectedAction.transformer.enable === value
