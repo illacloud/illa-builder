@@ -324,6 +324,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     </Button>
   )
 
+  const canShowShareAppModal = showShareAppModal(
+    teamInfo,
+    teamInfo.myRole,
+    appInfo.config.public,
+    appInfo.config.publishedToMarketplace,
+    appInfo.deployed,
+  )
+
+  useEffect(() => {
+    !isGuideMode &&
+      canShowShareAppModal &&
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, { element: "invite_entry" })
+  }, [canShowShareAppModal, isGuideMode])
+
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
@@ -353,13 +367,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {!isGuideMode && (
           <div css={shareButtonGroupStyle}>
             <CollaboratorsList />
-            {showShareAppModal(
-              teamInfo,
-              teamInfo.myRole,
-              appInfo.config.public,
-              appInfo.config.publishedToMarketplace,
-              appInfo.deployed,
-            ) && <ShareAppButton appInfo={appInfo} />}
+            {canShowShareAppModal && <ShareAppButton appInfo={appInfo} />}
           </div>
         )}
         {isEditMode ? (
@@ -460,15 +468,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Badge>
               {PreviewButton}
-              {!isGuideMode &&
-                isCloudVersion &&
-                showShareAppModal(
-                  teamInfo,
-                  teamInfo.myRole,
-                  appInfo.config.public,
-                  appInfo.config.publishedToMarketplace,
-                  appInfo.deployed,
-                ) && <ContributeButton appInfo={appInfo} />}
+              {!isGuideMode && isCloudVersion && canShowShareAppModal && (
+                <ContributeButton appInfo={appInfo} />
+              )}
               <DeployButtonGroup
                 disPrivate={appInfo.config.publishedToMarketplace}
                 loading={deployLoading}

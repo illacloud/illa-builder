@@ -40,7 +40,7 @@ import {
   getILLACloudURL,
 } from "@illa-public/utils"
 import { motion } from "framer-motion"
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -152,6 +152,9 @@ export const AIAgentRunMobile: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
+
+  const canShowInviteButton =
+    canUseBillingFeature || getValues("publishedToMarketplace")
 
   const dispatch = useDispatch()
 
@@ -597,6 +600,17 @@ export const AIAgentRunMobile: FC = () => {
     />
   )
 
+  useEffect(() => {
+    canShowInviteButton &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+        {
+          element: "invite_entry",
+        },
+      )
+  }, [canShowInviteButton])
+
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
       <div css={aiAgentContainerStyle}>
@@ -724,7 +738,7 @@ export const AIAgentRunMobile: FC = () => {
                           ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                           ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
                           {
-                            element: "share",
+                            element: "invite_entry",
                             parameter5: agent.aiAgentID,
                           },
                         )
