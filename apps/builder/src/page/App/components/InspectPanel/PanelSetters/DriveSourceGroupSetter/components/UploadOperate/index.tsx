@@ -16,7 +16,11 @@ import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
 import { fetchGenerateTinyUrl } from "@/services/drive"
 import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { FileUploadContext } from "../../provider/FileUploadProvider"
-import { getPathForSignedUrl, getUploadAccept } from "../../utils"
+import {
+  getPathForSignedUrl,
+  getReportElementForUpload,
+  getUploadAccept,
+} from "../../utils"
 
 const UploadOperate = () => {
   const uploadFileRef = useRef<HTMLInputElement | null>(null)
@@ -62,12 +66,21 @@ const UploadOperate = () => {
         ...uploadParams,
       },
     })
-    const uploadRes = await uploadFileToDrive(
-      queryID,
-      file,
-      uploadParams,
-      abortController.signal,
-    )
+    let uploadRes
+    try {
+      uploadRes = await uploadFileToDrive(
+        queryID,
+        file,
+        uploadParams,
+        abortController.signal,
+      )
+    } catch (e) {
+      handleCollaPurchaseError(
+        e,
+        CollarModalType.TRAFFIC,
+        getReportElementForUpload(widgetType)!,
+      )
+    }
     if (!!uploadRes) {
       try {
         const selectIds = [uploadRes.id]
@@ -81,15 +94,9 @@ const UploadOperate = () => {
         setUploadName(uploadRes.name)
         handleUpdateResult(value)
       } catch (e) {
-        const isCollaPurchaseError = handleCollaPurchaseError(
-          e,
-          CollarModalType.TRAFFIC,
-        )
-        if (!isCollaPurchaseError) {
-          message.error({
-            content: t("drive.message.generate_url_fail"),
-          })
-        }
+        message.error({
+          content: t("drive.message.generate_url_fail"),
+        })
       } finally {
         setIsUpLoading(false)
       }

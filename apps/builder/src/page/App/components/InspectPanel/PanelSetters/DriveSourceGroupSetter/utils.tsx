@@ -51,3 +51,29 @@ export const getPathForSignedUrl = (path: string) => {
     return path.replace("root/", "")
   }
 }
+
+export const getReportElementForUpload = (widgetType: string) => {
+  switch (widgetType) {
+    case "IMAGE_WIDGET":
+      return "builder_editor_storage_not_enough_image"
+    case "CAROUSEL_WIDGET":
+      return "builder_editor_storage_not_enough_carousel"
+    case "VIDEO_WIDGET":
+      return "builder_editor_storage_not_enough_video"
+    case "AUDIO_WIDGET":
+      return "builder_editor_storage_not_enough_audio"
+  }
+}
+
+export const getReportElementForSelect = (widgetType: string) => {
+  switch (widgetType) {
+    case "IMAGE_WIDGET":
+      return "builder_editor_traffic_not_enough_image"
+    case "CAROUSEL_WIDGET":
+      return "builder_editor_traffic_not_enough_carousel"
+    case "VIDEO_WIDGET":
+      return "builder_editor_traffic_not_enough_video"
+    case "AUDIO_WIDGET":
+      return "builder_editor_traffic_not_enough_audio"
+  }
+}
