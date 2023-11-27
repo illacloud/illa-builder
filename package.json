@@ -39,7 +39,7 @@
     "prettier": "^3.1.0",
     "turbo": "^1.10.16",
     "typescript": "^5.3.2",
-    "vite": "^5.0.2",
+    "vite": "^4.5.0",
     "vite-plugin-checker": "^0.6.2",
     "vite-plugin-svgr": "^4.2.0"
   },
