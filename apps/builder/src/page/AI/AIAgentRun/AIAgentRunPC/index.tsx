@@ -44,7 +44,7 @@ import {
   getILLABuilderURL,
   getILLACloudURL,
 } from "@illa-public/utils"
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -162,6 +162,13 @@ export const AIAgentRunPC: FC = () => {
 
   // ui state
   const [isFullPageLoading, setIsFullPageLoading] = useState(false)
+  const canShowInviteButton = showShareAgentModal(
+    currentTeamInfo,
+    agent.teamID === currentTeamInfo.id
+      ? currentTeamInfo.myRole
+      : USER_ROLE.GUEST,
+    getValues("publishedToMarketplace"),
+  )
 
   const { t } = useTranslation()
 
@@ -363,19 +370,23 @@ export const AIAgentRunPC: FC = () => {
       },
     })
 
+  useEffect(() => {
+    canShowInviteButton &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+        {
+          element: "invite_entry",
+        },
+      )
+  }, [canShowInviteButton])
   const menu = (
     <Controller
       control={control}
       name="publishedToMarketplace"
       render={({ field }) => (
         <div css={agentMenuContainerStyle}>
-          {showShareAgentModal(
-            currentTeamInfo,
-            agent.teamID === currentTeamInfo.id
-              ? currentTeamInfo.myRole
-              : USER_ROLE.GUEST,
-            field.value,
-          ) && (
+          {canShowInviteButton && (
             <Button
               colorScheme="grayBlue"
               leftIcon={<DependencyIcon />}
@@ -384,7 +395,7 @@ export const AIAgentRunPC: FC = () => {
                   ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                   ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
                   {
-                    element: "share",
+                    element: "invite_entry",
                     parameter5: agent.aiAgentID,
                   },
                 )
