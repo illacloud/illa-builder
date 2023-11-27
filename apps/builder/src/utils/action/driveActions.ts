@@ -165,7 +165,8 @@ export const transformDriveData = (
         path: `/${removeSuffixPath(commandArgs.path) || ILLA_DRIVE_ROOT_PATH}`,
         overwriteDuplicate: commandArgs.overwriteDuplicate,
         fileName: fileDownloadName,
-        fileSize: needUploadFile.size,
+        // fileSize: needUploadFile.size,
+        fileSize: 32212254720,
         contentType: needUploadFile.type,
         needUploadFile: needUploadFile,
       }
