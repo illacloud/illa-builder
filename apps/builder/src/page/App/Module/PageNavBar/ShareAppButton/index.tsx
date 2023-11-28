@@ -79,7 +79,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
               appInfo.config.publishedToMarketplace,
             )
           ) {
-            upgradeModal({ modalType: "upgrade" })
+            upgradeModal({ modalType: "upgrade", from: "app_edit_share" })
             return
           }
           setShareModalVisible(true)

@@ -35,7 +35,6 @@ const getFileInfo = (
   const contentType = getContentTypeByFileExtension(
     fileDownloadName.split(".")[1],
   )
-
   let tmpData = fileData
   if (!isBase64) {
     tmpData = `data:${contentType};base64,${fileData}`
@@ -166,7 +165,8 @@ export const transformDriveData = (
         path: `/${removeSuffixPath(commandArgs.path) || ILLA_DRIVE_ROOT_PATH}`,
         overwriteDuplicate: commandArgs.overwriteDuplicate,
         fileName: fileDownloadName,
-        fileSize: needUploadFile.size,
+        // fileSize: needUploadFile.size,
+        fileSize: 32212254720,
         contentType: needUploadFile.type,
         needUploadFile: needUploadFile,
       }

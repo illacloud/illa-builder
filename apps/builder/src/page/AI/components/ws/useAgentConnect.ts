@@ -228,6 +228,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                   case 18:
                     collaModal({
                       modalType: CollarModalType.TOKEN,
+                      from: "agent_run",
                     })
                     break
                   case 3:
@@ -247,7 +248,11 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
         onStartRunning()
       } catch (e) {
         onConnecting(false)
-        const res = handleCollaPurchaseError(e, CollarModalType.TOKEN)
+        const res = handleCollaPurchaseError(
+          e,
+          CollarModalType.TOKEN,
+          "agent_run",
+        )
         if (res) return
         message.error({
           content: t("editor.ai-agent.message.start-failed"),

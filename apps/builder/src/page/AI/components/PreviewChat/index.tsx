@@ -1,7 +1,19 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
 import { AI_AGENT_TYPE } from "@illa-public/public-types"
 import { getCurrentUser } from "@illa-public/user-data"
 import { AnimatePresence, motion } from "framer-motion"
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
@@ -67,6 +79,8 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
 
   const { t } = useTranslation()
 
+  const { track } = useContext(MixpanelTrackContext)
+
   const messagesList = useMemo(() => {
     return chatMessages.map((message) => {
       if (
@@ -120,6 +134,18 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     )
   }, [generationMessage])
 
+  useEffect(() => {
+    editState === "EDIT" &&
+      showShareDialog &&
+      track?.(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        {
+          element: "invite_entry",
+        },
+        "both",
+      )
+  }, [editState, showShareDialog, track])
+
   return (
     <div css={previewChatContainerStyle}>
       {!isMobile && (
@@ -136,6 +162,13 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               colorScheme="grayBlue"
               leftIcon={<DependencyIcon />}
               onClick={() => {
+                track?.(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  {
+                    element: "invite_entry",
+                  },
+                  "both",
+                )
                 onShowShareDialog?.()
               }}
             >

@@ -2710,6 +2710,9 @@ importers:
       '@illa-public/invite-modal':
         specifier: workspace:*
         version: link:../InviteModal
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:*
+        version: link:../MixpanelUtils
       '@illa-public/public-configs':
         specifier: workspace:*
         version: link:../publicConfig
@@ -3564,6 +3567,9 @@ importers:
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../ILLANet
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:*
+        version: link:../MixpanelUtils
       '@illa-public/text-link':
         specifier: workspace:*
         version: link:../TextLink
@@ -16736,7 +16742,7 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
   '@cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz':
-    resolution: {tarball: https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz}
+    resolution: {registry: https://registry.npmjs.org/, tarball: https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz}
     name: xlsx
     version: 0.20.0
     engines: {node: '>=0.8'}
