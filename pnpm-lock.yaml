@@ -2614,9 +2614,9 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../illa-design/packages/react
-      '@illa-public/user-data':
+      '@illa-public/public-types':
         specifier: workspace:*
-        version: link:../UserData
+        version: link:../publicTypes
       '@illa-public/user-role-utils':
         specifier: workspace:*
         version: link:../UserRoleUtils
@@ -2716,6 +2716,9 @@ importers:
       '@illa-public/public-configs':
         specifier: workspace:*
         version: link:../publicConfig
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData
@@ -3025,6 +3028,9 @@ importers:
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../MixpanelUtils
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/role-selector':
         specifier: workspace:*
         version: link:../RoleSelector
@@ -3034,9 +3040,6 @@ importers:
       '@illa-public/usage-card':
         specifier: workspace:*
         version: link:../UsageCard
-      '@illa-public/user-data':
-        specifier: workspace:*
-        version: link:../UserData
       '@illa-public/user-role-utils':
         specifier: workspace:*
         version: link:../UserRoleUtils
@@ -3218,6 +3221,9 @@ importers:
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../MixpanelUtils
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/role-selector':
         specifier: workspace:*
         version: link:../RoleSelector
@@ -3435,9 +3441,9 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../illa-design/packages/react
-      '@illa-public/user-data':
+      '@illa-public/public-types':
         specifier: workspace:*
-        version: link:../UserData
+        version: link:../publicTypes
       '@illa-public/user-role-utils':
         specifier: workspace:*
         version: link:../UserRoleUtils
@@ -3570,6 +3576,9 @@ importers:
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../MixpanelUtils
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/text-link':
         specifier: workspace:*
         version: link:../TextLink
@@ -3693,6 +3702,15 @@ importers:
 
   packages/illa-public-component/UserData:
     dependencies:
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../ILLANet
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@reduxjs/toolkit':
         specifier: ^1.9.7
         version: 1.9.7(react-redux@8.1.3)(react@18.2.0)
@@ -3718,6 +3736,9 @@ importers:
 
   packages/illa-public-component/UserRoleUtils:
     dependencies:
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData
@@ -3778,9 +3799,6 @@ importers:
       '@illa-public/public-types':
         specifier: workspace:*
         version: link:../publicTypes
-      '@illa-public/user-data':
-        specifier: workspace:*
-        version: link:../UserData
       '@types/react':
         specifier: ^18.2.38
         version: 18.2.38

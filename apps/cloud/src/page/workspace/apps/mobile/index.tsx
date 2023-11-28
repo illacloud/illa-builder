@@ -1,9 +1,6 @@
 import { MobileAppCardItem, TeamContentEmpty } from "@illa-public/dashboard"
-import {
-  USER_ROLE,
-  getCurrentTeamInfo,
-  getPlanUtils,
-} from "@illa-public/user-data"
+import { USER_ROLE } from "@illa-public/public-types"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_ACCESS,
   ATTRIBUTE_GROUP,

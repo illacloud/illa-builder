@@ -1,4 +1,4 @@
-import { TeamInfo, USER_ROLE } from "@illa-public/user-data"
+import { TeamInfo, USER_ROLE } from "@illa-public/public-types"
 import { isBiggerThanTargetRole } from "@illa-public/user-role-utils"
 
 export const canMemberAccess = (teamInfo?: TeamInfo) => {

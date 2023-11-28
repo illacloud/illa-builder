@@ -1,4 +1,4 @@
-import { MemberInfo } from "@illa-public/user-data"
+import { MemberInfo } from "@illa-public/public-types"
 import { HTMLAttributes } from "react"
 
 export interface MemberProps extends HTMLAttributes<HTMLDivElement> {}

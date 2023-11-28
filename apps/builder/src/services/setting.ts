@@ -1,5 +1,5 @@
 import { authCloudRequest } from "@illa-public/illa-net"
-import { CurrentUser } from "@illa-public/user-data"
+import { CurrentUserInfo } from "@illa-public/public-types"
 
 export const fetchChangeNickname = (nickname: string) => {
   return authCloudRequest<{}>({
@@ -12,7 +12,7 @@ export const fetchChangeNickname = (nickname: string) => {
 }
 
 export const fetchChangeLanguage = (language: string) => {
-  return authCloudRequest<CurrentUser>({
+  return authCloudRequest<CurrentUserInfo>({
     url: "/users/language",
     method: "PATCH",
     data: {

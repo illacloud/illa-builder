@@ -3,10 +3,8 @@ import {
   MobileCloudDashboardLayout,
 } from "@illa-public/cloud-dashboard-layout"
 import { InviteMemberMobile } from "@illa-public/invite-modal"
+import { MemberInfo, USER_ROLE, USER_STATUS } from "@illa-public/public-types"
 import {
-  MemberInfo,
-  USER_ROLE,
-  USER_STATUS,
   getCurrentTeamInfo,
   getCurrentUserID,
   teamActions,
