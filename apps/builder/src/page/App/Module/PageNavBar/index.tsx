@@ -188,6 +188,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       if (key === "public" && !canUseBillingFeature) {
         upgradeModal({
           modalType: "upgrade",
+          from: "app_edit_deploy_public",
         })
       } else {
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
@@ -272,6 +273,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     if (!canUseBillingFeature) {
       upgradeModal({
         modalType: "upgrade",
+        from: "app_edit_more_history",
       })
     } else {
       navigate(`/${teamIdentifier}/appHistory/${appId}`)
@@ -308,6 +310,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     if (!canUseBillingFeature) {
       upgradeModal({
         modalType: "upgrade",
+        from: "app_edit_more_watermark",
       })
     }
   }, [canUseBillingFeature, upgradeModal])

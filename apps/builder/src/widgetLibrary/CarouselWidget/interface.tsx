@@ -33,7 +33,10 @@ export interface CarouselProps {
   draggable?: boolean
   onClickItem?: (index: number) => void
   onChange?: (index: number) => void
-  sourceLoadErrorHandler: (sourceURL: string | undefined) => void
+  sourceLoadErrorHandler: (
+    sourceURL: string | undefined,
+    widgetType: string,
+  ) => void
 }
 
 export interface CarouselWidgetProps

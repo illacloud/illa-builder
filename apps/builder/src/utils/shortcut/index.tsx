@@ -342,6 +342,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     if (!canUseBillingFeature) {
       upgradeModal({
         modalType: "upgrade",
+        from: "app_edit_keyboard_history",
       })
     } else if (appId) {
       if (saveLoading) return

@@ -56,6 +56,7 @@ export const WaterMark: FC = () => {
     if (!canUseBillingFeature) {
       upgradeModal({
         modalType: "upgrade",
+        from: "deploy_watermark",
       })
     }
   }
