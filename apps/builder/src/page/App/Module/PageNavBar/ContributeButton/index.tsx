@@ -81,6 +81,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
           ) {
             upgradeModal({
               modalType: "upgrade",
+              from: "app_edit_contribute",
             })
             return
           }

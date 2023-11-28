@@ -501,6 +501,7 @@ export const AIAgentRunMobile: FC = () => {
           if (isPremiumModel(data.model) && !canUseBillingFeature) {
             upgradeModal({
               modalType: "agent",
+              from: "agent_run_gpt4",
             })
             return
           }
@@ -753,6 +754,7 @@ export const AIAgentRunMobile: FC = () => {
                         ) {
                           upgradeModal({
                             modalType: "upgrade",
+                            from: "agent_run_share",
                           })
                           return
                         }

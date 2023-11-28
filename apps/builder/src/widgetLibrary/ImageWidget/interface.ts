@@ -8,7 +8,10 @@ export interface WrappedImageProps
   altText?: ImageProps["alt"]
   objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down"
   handleOnClick: () => void
-  sourceLoadErrorHandle: (source: string | undefined) => void
+  sourceLoadErrorHandle: (
+    source: string | undefined,
+    widgetType: string,
+  ) => void
 }
 
 export interface ImageWidgetProps

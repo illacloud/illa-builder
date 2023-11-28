@@ -542,6 +542,7 @@ export const AIAgent: FC = () => {
     if (isPremiumModel(getValues("model")) && !canUseBillingFeature) {
       upgradeModal({
         modalType: "agent",
+        from: "agent_run_gpt4",
       })
       return
     }
@@ -773,6 +774,7 @@ export const AIAgent: FC = () => {
                         ) {
                           upgradeModal({
                             modalType: "agent",
+                            from: "agent_edit_gpt4",
                           })
                           return
                         }
@@ -1326,6 +1328,7 @@ export const AIAgent: FC = () => {
                             ) {
                               upgradeModal({
                                 modalType: "upgrade",
+                                from: "agent_edit_share",
                               })
                               return
                             }
@@ -1349,6 +1352,7 @@ export const AIAgent: FC = () => {
                               ) {
                                 upgradeModal({
                                   modalType: "upgrade",
+                                  from: "agent_edit_contribute",
                                 })
                                 return
                               }
@@ -1372,6 +1376,7 @@ export const AIAgent: FC = () => {
                               ) {
                                 upgradeModal({
                                   modalType: "upgrade",
+                                  from: "agent_edit_contribute",
                                 })
                                 return
                               }

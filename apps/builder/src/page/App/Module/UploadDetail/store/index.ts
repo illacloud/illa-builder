@@ -1,3 +1,7 @@
+import {
+  CollarModalType,
+  handleCollaPurchaseError,
+} from "@illa-public/upgrade-modal"
 import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { IUploadDetailStore } from "./interface"
 
@@ -51,7 +55,13 @@ export const updateFileDetailStore: IUploadDetailStore = {
         uploadInfo.saveToILLADriveParams.fileData,
         uploadInfo.saveToILLADriveParams,
         uploadInfo.abortController?.signal!,
-      )
+      ).catch((e) => {
+        handleCollaPurchaseError(
+          e,
+          CollarModalType.STORAGE,
+          "upload_detail_re_try_storage_not_enough",
+        )
+      })
       updateFileDetailStore.listeners.forEach((listener) => listener())
     }
   },
