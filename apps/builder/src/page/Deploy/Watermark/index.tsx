@@ -1,10 +1,7 @@
 import { UpgradeIcon } from "@illa-public/icon"
+import { USER_ROLE } from "@illa-public/public-types"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import {
-  USER_ROLE,
-  getCurrentTeamInfo,
-  getPlanUtils,
-} from "@illa-public/user-data"
+import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,

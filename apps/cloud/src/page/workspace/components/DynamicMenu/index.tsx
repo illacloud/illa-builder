@@ -1,5 +1,6 @@
 import { DynamicMenu, MenuItemShape } from "@illa-public/cloud-dashboard-layout"
-import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import { USER_ROLE } from "@illa-public/public-types"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"

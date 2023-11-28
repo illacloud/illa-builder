@@ -1,9 +1,8 @@
 import { PCAppCard, TeamContentEmpty } from "@illa-public/dashboard"
 import { AppListContextProvider } from "@illa-public/dashboard"
 import { BASIC_APP_CONFIG } from "@illa-public/public-configs"
-import { AppInfoShape } from "@illa-public/public-types"
+import { AppInfoShape, USER_ROLE } from "@illa-public/public-types"
 import {
-  USER_ROLE,
   getCurrentId,
   getCurrentTeamInfo,
   getCurrentUser,

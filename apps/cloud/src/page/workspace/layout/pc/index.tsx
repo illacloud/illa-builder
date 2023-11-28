@@ -1,10 +1,8 @@
 import { PCCloudDashBoardLayout } from "@illa-public/cloud-dashboard-layout"
 import { BottomList } from "@illa-public/cloud-dashboard-layout/components/BottomList"
 import { InviteMemberPC } from "@illa-public/invite-modal"
+import { MemberInfo, USER_ROLE, USER_STATUS } from "@illa-public/public-types"
 import {
-  MemberInfo,
-  USER_ROLE,
-  USER_STATUS,
   currentUserActions,
   getCurrentTeamInfo,
   getCurrentUserID,

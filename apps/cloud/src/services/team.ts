@@ -1,5 +1,5 @@
 import { authCloudRequest } from "@illa-public/illa-net"
-import { MemberInfo, TeamInfo } from "@illa-public/user-data"
+import { MemberInfo, TeamInfo } from "@illa-public/public-types"
 
 export const fetchJoinTeam = (inviteToken: string) => {
   return authCloudRequest<TeamInfo>({

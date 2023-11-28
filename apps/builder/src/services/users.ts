@@ -2,11 +2,11 @@ import {
   authCloudRequest,
   notNeedAuthCloudRequest,
 } from "@illa-public/illa-net"
-import { CurrentUser } from "@illa-public/user-data"
+import { CurrentUserInfo } from "@illa-public/public-types"
 import { getAuthToken } from "@illa-public/utils"
 
 export const fetchUserInfo = () => {
-  return authCloudRequest<CurrentUser>({
+  return authCloudRequest<CurrentUserInfo>({
     url: "/users",
   })
 }
@@ -15,7 +15,7 @@ export const tryFetchUserInfo = async () => {
   const token = getAuthToken()
 
   try {
-    return await notNeedAuthCloudRequest<CurrentUser>({
+    return await notNeedAuthCloudRequest<CurrentUserInfo>({
       url: "/users",
       headers: {
         Authorization: token,

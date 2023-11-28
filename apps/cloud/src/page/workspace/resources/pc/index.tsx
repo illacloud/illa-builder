@@ -1,7 +1,7 @@
 import { ResourceCard, TeamContentEmpty } from "@illa-public/dashboard"
+import { USER_ROLE } from "@illa-public/public-types"
 import { ResourceTypeSelector } from "@illa-public/resource-generator"
 import {
-  USER_ROLE,
   getCurrentId,
   getCurrentTeamInfo,
   getPlanUtils,

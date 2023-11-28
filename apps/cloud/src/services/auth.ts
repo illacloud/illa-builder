@@ -2,14 +2,14 @@ import {
   authCloudRequest,
   notNeedAuthCloudRequest,
 } from "@illa-public/illa-net"
-import { CurrentUser } from "@illa-public/user-data"
+import { CurrentUserInfo } from "@illa-public/public-types"
 
 interface SignInRequestBody {
   email: string
   password: string
 }
 export const fetchSignIn = (data?: SignInRequestBody) => {
-  return notNeedAuthCloudRequest<CurrentUser>({
+  return notNeedAuthCloudRequest<CurrentUserInfo>({
     url: "/auth/signin",
     method: "POST",
     data,
@@ -43,7 +43,7 @@ interface IFetchSignInRequestData {
 }
 
 export const fetchSignUp = (data: IFetchSignInRequestData) => {
-  return authCloudRequest<CurrentUser>({
+  return authCloudRequest<CurrentUserInfo>({
     method: "POST",
     url: "/auth/signup",
     data: data,

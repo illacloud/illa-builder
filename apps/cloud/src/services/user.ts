@@ -1,5 +1,5 @@
 import { authCloudRequest } from "@illa-public/illa-net"
-import { CurrentUser } from "@illa-public/user-data"
+import { CurrentUserInfo } from "@illa-public/public-types"
 
 interface updateUserPasswordRequestData {
   currentPassword: string
@@ -37,7 +37,7 @@ export const fetchUpdateNickName = (nickname: string) => {
 }
 
 export const fetchUserInfo = async () => {
-  return await authCloudRequest<CurrentUser>({
+  return await authCloudRequest<CurrentUserInfo>({
     url: "/users",
     method: "GET",
   })
