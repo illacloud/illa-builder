@@ -1,5 +1,10 @@
 import { getIconFromResourceType } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import {
+  ActionItem,
+  AiAgentActionContent,
+  GlobalDataActionContent,
+} from "@illa-public/public-types"
 import { isEqual } from "lodash"
 import {
   Suspense,
@@ -29,11 +34,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionItem,
-  GlobalDataActionContent,
-} from "@/redux/currentApp/action/actionState"
-import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"

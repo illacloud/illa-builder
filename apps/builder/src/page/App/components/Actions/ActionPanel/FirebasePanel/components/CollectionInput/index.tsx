@@ -1,3 +1,4 @@
+import { FirebaseCollectionType } from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -15,22 +16,21 @@ import {
   actionItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
-import { CollectionType } from "@/redux/currentApp/action/firebaseAction"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CollectionInput: FC<CollectionInputProps> = (props) => {
   const { t } = useTranslation()
   const { handleValueChange, collectionType, value } = props
-  const isDropdown = collectionType === CollectionType.DROPDOWN
+  const isDropdown = collectionType === FirebaseCollectionType.DROPDOWN
   const action = useSelector(getCachedAction)!
 
   const [collectionSelect, setCollectionSelect] = useState<string[]>([])
 
   const handleCollectionTypeChange = useCallback(() => {
     const contentType = isDropdown
-      ? CollectionType.RAW
-      : CollectionType.DROPDOWN
+      ? FirebaseCollectionType.RAW
+      : FirebaseCollectionType.DROPDOWN
     handleValueChange(contentType, "collectionType")
   }, [handleValueChange, isDropdown])
 

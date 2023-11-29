@@ -1,4 +1,4 @@
-import { ReactComponent as DrivePickerWidgetIcon } from "@/assets/widgetCover/drivePicker.svg"
+import DrivePickerWidgetIcon from "@/assets/widgetCover/drivePicker.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

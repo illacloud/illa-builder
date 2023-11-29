@@ -1,4 +1,4 @@
-import { ReactComponent as JsonSchemaFormWidgetIcon } from "@/assets/widgetCover/jsonSchemaForm.svg"
+import JsonSchemaFormWidgetIcon from "@/assets/widgetCover/jsonSchemaForm.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

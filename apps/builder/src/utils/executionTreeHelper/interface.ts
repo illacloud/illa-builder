@@ -1,9 +1,6 @@
-import { CurrentUser } from "@illa-public/user-data"
+import { ActionContent, CurrentUserInfo } from "@illa-public/public-types"
+import { ActionItem } from "@illa-public/public-types"
 import { BuilderInfo } from "@/redux/builderInfo/builderInfoState"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 
 export interface CurrentUserInfoInTree {
   userID: string
@@ -37,6 +34,6 @@ export interface RawTreeSeedShape {
   widgets: WidgetSeedShape
   actions: ActionSeedShape
   builderInfo: BuilderInfo
-  currentUserInfo: CurrentUser
+  currentUserInfo: CurrentUserInfo
   globalData: Record<string, unknown>
 }

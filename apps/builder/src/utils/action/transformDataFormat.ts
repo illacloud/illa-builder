@@ -1,6 +1,12 @@
-import { isNumber, isString } from "@illa-design/react"
-import { ActionType } from "@/redux/currentApp/action/actionState"
 import {
+  CouchDBActionStructParamsDataTransferType,
+  DynamoActionStructParamsDataTransferType,
+  GoogleSheetDataTypeTransform,
+  HuggingFaceBooleanTypes,
+  HuggingFaceBooleanValueMap,
+} from "@illa-public/public-configs"
+import {
+  ActionType,
   AirtableAction,
   AirtableActionConfigType,
   AirtableCreateRecord,
@@ -9,24 +15,14 @@ import {
   AirtableListRecord,
   AirtableUpdateMultipleRecords,
   AirtableUpdateRecord,
-} from "@/redux/currentApp/action/airtableAction"
-import { CouchDBActionStructParamsDataTransferType } from "@/redux/currentApp/action/couchDBAction"
-import { DynamoActionStructParamsDataTransferType } from "@/redux/currentApp/action/dynamoDBAction"
-import {
-  AuthActionTypeValue,
-  FirestoreActionTypeValue,
-  ServiceTypeValue,
-} from "@/redux/currentApp/action/firebaseAction"
-import { GoogleSheetDataTypeTransform } from "@/redux/currentApp/action/googleSheetsAction"
-import {
-  BooleanTypes,
-  BooleanValueMap,
-} from "@/redux/currentApp/action/huggingFaceAction"
-import {
+  FirebaseAuthActionTypeValue,
+  FirebaseServiceTypeValue,
+  FirebaseStoreActionTypeValue,
   ILLADriveAction,
   ILLADriveActionTypeContent,
-} from "@/redux/currentApp/action/illaDriveAction"
-import { Params } from "@/redux/resource/restapiResource"
+} from "@illa-public/public-types"
+import { Params } from "@illa-public/public-types"
+import { isNumber, isString } from "@illa-design/react"
 import { isObject } from "@/utils/typeHelper"
 import { transformDriveData } from "./driveActions"
 
@@ -73,8 +69,8 @@ export const transformDataFormat = (
     case "firebase":
       const { service, operation } = contents
       if (
-        service === ServiceTypeValue.AUTH &&
-        operation === AuthActionTypeValue.LIST_USERS
+        service === FirebaseServiceTypeValue.AUTH &&
+        operation === FirebaseAuthActionTypeValue.LIST_USERS
       ) {
         const { number = "", ...others } = contents.options
         return {
@@ -86,9 +82,9 @@ export const transformDataFormat = (
         }
       }
       if (
-        service === ServiceTypeValue.FIRESTORE &&
-        (operation === FirestoreActionTypeValue.QUERY_FIREBASE ||
-          operation === FirestoreActionTypeValue.QUERY_COLLECTION_GROUP)
+        service === FirebaseServiceTypeValue.FIRESTORE &&
+        (operation === FirebaseStoreActionTypeValue.QUERY_FIREBASE ||
+          operation === FirebaseStoreActionTypeValue.QUERY_COLLECTION_GROUP)
       ) {
         const { limit = "", ...others } = contents.options
         return {
@@ -130,9 +126,10 @@ export const transformDataFormat = (
         return {
           key,
           value: currentValue
-            ? BooleanTypes.includes(key)
-              ? BooleanValueMap[currentValue as keyof typeof BooleanValueMap] ??
-                currentValue
+            ? HuggingFaceBooleanTypes.includes(key)
+              ? HuggingFaceBooleanValueMap[
+                  currentValue as keyof typeof HuggingFaceBooleanValueMap
+                ] ?? currentValue
               : parseFloat(currentValue)
             : "",
         }

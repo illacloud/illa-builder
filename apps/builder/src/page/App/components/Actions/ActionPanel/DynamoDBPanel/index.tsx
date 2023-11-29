@@ -1,3 +1,10 @@
+import { DynamoDBInitialMap } from "@illa-public/public-configs"
+import {
+  ActionItem,
+  DynamoActionMethods,
+  DynamoDBAction,
+  DynamoStructParams,
+} from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -17,14 +24,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  DynamoActionMethods,
-  DynamoDBAction,
-  DynamoDBInitialMap,
-  DynamoDBSelectOptions,
-  StructParams,
-} from "@/redux/currentApp/action/dynamoDBAction"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -37,14 +36,23 @@ const DynamoActionMap = {
   deleteItem: DeleteItemPanel,
 }
 
+export const dynamoDBSelectOptions = [
+  "query",
+  "scan",
+  "getItem",
+  "putItem",
+  "updateItem",
+  "deleteItem",
+]
+
 const DynamoDBPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
-    DynamoDBAction<StructParams>
+    DynamoDBAction<DynamoStructParams>
   >
   const cachedAction = useSelector(getCachedAction) as ActionItem<
-    DynamoDBAction<StructParams>
+    DynamoDBAction<DynamoStructParams>
   >
   const content = cachedAction.content
   const { content: selectedContent } = selectedAction
@@ -60,7 +68,7 @@ const DynamoDBPanel: FC = () => {
 
   const handleValueChange = useCallback(
     (value: string | boolean, name: string) => {
-      let newContent: DynamoDBAction<StructParams>
+      let newContent: DynamoDBAction<DynamoStructParams>
       if (name === "method") {
         if (value === selectedContent.method) {
           newContent = { ...selectedContent }
@@ -117,7 +125,7 @@ const DynamoDBPanel: FC = () => {
         componentType="select"
         onChange={(value) => handleValueChange(value as string, "method")}
         value={content.method}
-        options={DynamoDBSelectOptions}
+        options={dynamoDBSelectOptions}
       />
       <InputEditor
         title={t("editor.action.panel.dynamo.label.table")}
@@ -133,7 +141,7 @@ const DynamoDBPanel: FC = () => {
         componentType="checkbox"
         value={content.useJson}
         onChange={(value) => handleValueChange(value as boolean, "useJson")}
-        options={DynamoDBSelectOptions}
+        options={dynamoDBSelectOptions}
         checkoutTitle={t("editor.action.panel.dynamo.label.json_input")}
       />
       {content.useJson ? (

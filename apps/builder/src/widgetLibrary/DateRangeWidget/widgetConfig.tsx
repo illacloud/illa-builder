@@ -1,4 +1,4 @@
-import { ReactComponent as DateRangeWidgetIcon } from "@/assets/widgetCover/dateRange.svg"
+import DateRangeWidgetIcon from "@/assets/widgetCover/dateRange.svg?react"
 import i18n from "@/i18n/config"
 import { TEMPLATE_DISPLAYNAME_KEY } from "@/utils/generators/generateComponentNode"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"

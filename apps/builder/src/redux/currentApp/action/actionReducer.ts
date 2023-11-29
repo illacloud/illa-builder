@@ -1,8 +1,7 @@
+import { ActionContent, ActionItem } from "@illa-public/public-types"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { cloneDeep, set } from "lodash"
 import {
-  ActionContent,
-  ActionItem,
   RemoveActionItemReducerPayload,
   UpdateActionDisplayNamePayload,
   UpdateActionSlicePropsPayload,

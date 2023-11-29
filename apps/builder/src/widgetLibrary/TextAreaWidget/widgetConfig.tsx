@@ -1,4 +1,4 @@
-import { ReactComponent as TextAreaWidgetIcon } from "@/assets/widgetCover/text.svg"
+import TextAreaWidgetIcon from "@/assets/widgetCover/text.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

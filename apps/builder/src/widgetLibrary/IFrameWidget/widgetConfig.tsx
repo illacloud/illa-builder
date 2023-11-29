@@ -1,4 +1,4 @@
-import { ReactComponent as IFrameWidgetIcon } from "@/assets/widgetCover/iframe.svg"
+import IFrameWidgetIcon from "@/assets/widgetCover/iframe.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

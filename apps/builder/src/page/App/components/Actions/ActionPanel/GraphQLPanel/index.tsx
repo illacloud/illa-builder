@@ -1,3 +1,5 @@
+import { ActionItem, GraphQLAction } from "@illa-public/public-types"
+import { Params } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -7,9 +9,6 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
-import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { actionItemContainer } from "./style"
 

@@ -9,8 +9,8 @@ import {
   Trigger,
   useMessage,
 } from "@illa-design/react"
-import { ReactComponent as HomepageIcon } from "@/assets/dataWorkspace/homepage.svg"
-import { ReactComponent as WebsiteIcon } from "@/assets/dataWorkspace/website.svg"
+import HomepageIcon from "@/assets/dataWorkspace/homepage.svg?react"
+import WebsiteIcon from "@/assets/dataWorkspace/website.svg?react"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"

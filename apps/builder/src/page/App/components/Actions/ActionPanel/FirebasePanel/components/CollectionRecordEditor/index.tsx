@@ -1,3 +1,4 @@
+import { FirebaseWhere } from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -13,11 +14,8 @@ import {
   codeMirrorWrapperValueStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
-import {
-  OperationSelectList,
-  Params,
-} from "@/redux/currentApp/action/firebaseAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { OperationSelectList } from "./constants"
 import { CollectionRecordEditorProps } from "./interface"
 
 export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
@@ -40,7 +38,7 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
       onChange: (...event: any[]) => void,
     ) => {
       const value = getValues()[name]
-      let newRecords: Params[] = [...value]
+      let newRecords: FirebaseWhere[] = [...value]
       const curOperation = operation || newRecords[index].condition || ""
       newRecords[index] = {
         field: key,

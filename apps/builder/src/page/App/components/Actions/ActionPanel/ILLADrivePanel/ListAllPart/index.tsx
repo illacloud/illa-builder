@@ -1,25 +1,51 @@
+import {
+  EXPIRATION_TYPE,
+  ILLADriveListAllContent,
+  ILLA_DRIVE_FILTER_TYPE,
+} from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ILLADriveActionPartProps } from "@/page/App/components/Actions/ActionPanel/ILLADrivePanel/interface"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import {
-  EXPIRATION_TYPE,
-  FILTER_TYPE,
-  FileUrlExpiredTypeOption,
-  FilterTypeOption,
-  ListAllContent,
-} from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import FolderSelect from "../components/FolderSelect"
 
 export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const commandArgs = props.commandArgs as ListAllContent
+  const commandArgs = props.commandArgs as ILLADriveListAllContent
   const { handleOptionsValueChange } = props
   const filterType = commandArgs.filterType
   const expirationType = commandArgs.expirationType
+
+  const FileUrlExpiredTypeOption = [
+    {
+      label: t("editor.inspect.setter_option.drive_builder.expired_time.never"),
+      value: EXPIRATION_TYPE.PERSISTENT,
+    },
+    {
+      label: t(
+        "editor.inspect.setter_option.drive_builder.expired_time.customer",
+      ),
+      value: EXPIRATION_TYPE.CUSTOM,
+    },
+  ]
+
+  const FilterTypeOption = [
+    {
+      label: t("editor.action.panel.label.option.drive.file_type.none"),
+      value: ILLA_DRIVE_FILTER_TYPE.NONE,
+    },
+    {
+      label: t("editor.action.panel.label.option.drive.file_type.by_id"),
+      value: ILLA_DRIVE_FILTER_TYPE.BY_ID,
+    },
+    {
+      label: t("editor.action.panel.label.option.drive.file_type.by_name"),
+      value: ILLA_DRIVE_FILTER_TYPE.BY_NAME,
+    },
+  ]
 
   return (
     <>
@@ -33,7 +59,7 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
         onChange={(value) => handleOptionsValueChange("filterType", value)}
         options={FilterTypeOption}
       />
-      {filterType === FILTER_TYPE.BY_NAME && (
+      {filterType === ILLA_DRIVE_FILTER_TYPE.BY_NAME && (
         <InputEditor
           title={t("editor.action.panel.label.drive.file_name")}
           tips={t("editor.action.panel.label.tips.drive.file_name")}
@@ -47,7 +73,7 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
           expectedType={VALIDATION_TYPES.STRING}
         />
       )}
-      {filterType === FILTER_TYPE.BY_ID && (
+      {filterType === ILLA_DRIVE_FILTER_TYPE.BY_ID && (
         <InputEditor
           title={t("editor.action.panel.label.drive.file_id")}
           tips={t("editor.action.panel.label.tips.drive.file_id")}

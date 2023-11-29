@@ -1,7 +1,7 @@
 import { getILLACloudURL } from "@illa-public/utils"
 import { FC } from "react"
 import { Link, Outlet } from "react-router-dom"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import Logo from "@/assets/illa-logo.svg?react"
 import {
   asideContainerStyle,
   headerContainerStyle,

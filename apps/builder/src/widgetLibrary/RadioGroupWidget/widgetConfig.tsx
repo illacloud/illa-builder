@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as RadioGroupWidgetIcon } from "@/assets/widgetCover/radioGroup.svg"
+import RadioGroupWidgetIcon from "@/assets/widgetCover/radioGroup.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

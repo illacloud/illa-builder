@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
 import { v4 } from "uuid"
-import { ReactComponent as EventCalendarWidgetIcon } from "@/assets/widgetCover/eventCalendar.svg"
+import EventCalendarWidgetIcon from "@/assets/widgetCover/eventCalendar.svg?react"
 import i18n from "@/i18n/config"
 import { formatDateTime } from "@/widgetLibrary/EventCalendarWidget/utils"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"

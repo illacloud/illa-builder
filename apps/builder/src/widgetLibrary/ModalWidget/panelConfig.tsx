@@ -1,4 +1,4 @@
-import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
+import RadioIcon from "@/assets/radius-icon.svg?react"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { MODAL_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ModalWidget/eventHandlerConfig"

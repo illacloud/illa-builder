@@ -1,3 +1,18 @@
+import {
+  S3DeleteMultipleContentInitial,
+  S3DeleteOneContentInitial,
+  S3DownloadOneContentInitial,
+  S3ListAllContentInitial,
+  S3ReadOneContentInitial,
+  S3UploadContentInitial,
+  S3UploadMultipleContentInitial,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  S3Action,
+  S3ActionRequestType,
+  S3ActionTypeContent,
+} from "@illa-public/public-types"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,20 +23,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  DeleteMultipleContentInitial,
-  DeleteOneContentInitial,
-  DownloadOneContentInitial,
-  ListAllContentInitial,
-  ReadOneContentInitial,
-  S3Action,
-  S3ActionList,
-  S3ActionRequestType,
-  S3ActionTypeContent,
-  UploadContentInitial,
-  UploadMultipleContentInitial,
-} from "@/redux/currentApp/action/s3Action"
 import { DeleteMultiplePart } from "./DeleteMultiplePart"
 import { DeleteOnePart } from "./DeleteOnePart"
 import { DownloadOnePart } from "./DownloadOnePart"
@@ -29,6 +30,7 @@ import { ListAllPart } from "./ListAllPart"
 import { ReadOnePart } from "./ReadOnePart"
 import { UploadMultiplePart } from "./UploadMultiplePart"
 import { UploadPart } from "./UploadPart"
+import { S3ActionList } from "./constants"
 import { actionItemContainer } from "./style"
 
 const S3Panel: FC = () => {
@@ -62,7 +64,7 @@ const S3Panel: FC = () => {
   }, [content.commands, content.commandArgs])
 
   const handleActionChange = (value: S3ActionRequestType) => {
-    let newCommandArgs: S3ActionTypeContent = ListAllContentInitial
+    let newCommandArgs: S3ActionTypeContent = S3ListAllContentInitial
     if (
       cachedAction.resourceID === selectedAction.resourceID &&
       (selectedAction.content as S3Action<S3ActionTypeContent>).commands ===
@@ -73,25 +75,25 @@ const S3Panel: FC = () => {
     } else {
       switch (value) {
         case S3ActionRequestType.LIST_ALL:
-          newCommandArgs = ListAllContentInitial
+          newCommandArgs = S3ListAllContentInitial
           break
         case S3ActionRequestType.READ_ONE:
-          newCommandArgs = ReadOneContentInitial
+          newCommandArgs = S3ReadOneContentInitial
           break
         case S3ActionRequestType.DOWNLOAD_ONE:
-          newCommandArgs = DownloadOneContentInitial
+          newCommandArgs = S3DownloadOneContentInitial
           break
         case S3ActionRequestType.DELETE_ONE:
-          newCommandArgs = DeleteOneContentInitial
+          newCommandArgs = S3DeleteOneContentInitial
           break
         case S3ActionRequestType.DELETE_MULTIPLE:
-          newCommandArgs = DeleteMultipleContentInitial
+          newCommandArgs = S3DeleteMultipleContentInitial
           break
         case S3ActionRequestType.UPLOAD:
-          newCommandArgs = UploadContentInitial
+          newCommandArgs = S3UploadContentInitial
           break
         case S3ActionRequestType.UPLOAD_MULTIPLE:
-          newCommandArgs = UploadMultipleContentInitial
+          newCommandArgs = S3UploadMultipleContentInitial
           break
       }
     }

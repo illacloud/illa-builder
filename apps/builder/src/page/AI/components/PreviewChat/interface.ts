@@ -2,7 +2,7 @@ import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   AgentAdvanceConfig,
-} from "@illa-public/market-agent"
+} from "@illa-public/public-types"
 import { Params } from "@illa-public/record-editor"
 
 export type EDIT_STATE = "EDIT" | "RUN"

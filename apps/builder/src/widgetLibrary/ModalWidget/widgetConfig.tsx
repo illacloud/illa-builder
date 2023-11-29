@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as ModalWidgetIcon } from "@/assets/widgetCover/modal.svg"
+import ModalWidgetIcon from "@/assets/widgetCover/modal.svg?react"
 import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"

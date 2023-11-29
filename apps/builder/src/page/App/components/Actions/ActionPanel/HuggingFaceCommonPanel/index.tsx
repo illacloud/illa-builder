@@ -1,3 +1,14 @@
+import {
+  HuggingFaceInputInitial,
+  HuggingFacePairsBodyInitital,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  HuggingFaceAction,
+  HuggingFaceBodyContent,
+  HuggingFaceParametesType,
+} from "@illa-public/public-types"
+import { Params } from "@illa-public/public-types"
 import { TextLink } from "@illa-public/text-link"
 import { Namespace, TFunction } from "i18next"
 import { FC, useCallback } from "react"
@@ -23,18 +34,8 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  HuggingFaceAction,
-  HuggingFaceBodyContent,
-  HuggingFaceParametesType,
-  InputInitial,
-  PairsBodyInitital,
-  ParametersTypeMap,
-  TextRawBody,
-} from "@/redux/currentApp/action/huggingFaceAction"
-import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { ParametersTypeMap } from "./constants"
 import { actionItemContainer, textCodeEditorStyle } from "./style"
 
 const getDetailedParameters = ({
@@ -208,7 +209,10 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
 
   const handleParameterChange = useCallback(
     (value?: SelectValue) => {
-      let newBody = value === "pairs" ? PairsBodyInitital : InputInitial
+      let newBody =
+        value === "pairs"
+          ? HuggingFacePairsBodyInitital
+          : HuggingFaceInputInitial
       if (
         selectedAction.resourceID === cachedAction.resourceID &&
         selectedAction.content?.inputs?.type === value
@@ -371,7 +375,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
             <div css={textCodeEditorStyle}>
               <CodeEditor
                 lang={CODE_LANG.JAVASCRIPT}
-                value={(content?.inputs.content ?? "") as TextRawBody}
+                value={(content?.inputs.content ?? "") as string}
                 onChange={handleInputsValueChange}
                 expectValueType={VALIDATION_TYPES.STRING}
                 placeholder={t(

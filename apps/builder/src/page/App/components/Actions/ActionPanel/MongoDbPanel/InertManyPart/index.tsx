@@ -1,3 +1,9 @@
+import {
+  ActionItem,
+  MongoDbAction,
+  MongoDbActionTypeContent,
+  MongoDbInsertManyContent,
+} from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -6,12 +12,6 @@ import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPane
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  InsertManyContent,
-  MongoDbAction,
-  MongoDbActionTypeContent,
-} from "@/redux/currentApp/action/mongoDbAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const InsertManyPart: FC<MongoDbActionPartProps> = (props) => {
@@ -21,7 +21,7 @@ export const InsertManyPart: FC<MongoDbActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     MongoDbAction<MongoDbActionTypeContent>
   >
-  const typeContent = props.typeContent as InsertManyContent
+  const typeContent = props.typeContent as MongoDbInsertManyContent
 
   const handleValueChange = useCallback(
     (value: string) => {
@@ -33,7 +33,7 @@ export const InsertManyPart: FC<MongoDbActionPartProps> = (props) => {
             typeContent: {
               ...typeContent,
               document: value,
-            } as InsertManyContent,
+            } as MongoDbInsertManyContent,
           },
         }),
       )

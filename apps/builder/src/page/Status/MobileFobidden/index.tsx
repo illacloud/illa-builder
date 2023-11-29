@@ -4,7 +4,7 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { FC, useEffect } from "react"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as LaptopIcon } from "@/assets/laptop.svg"
+import LaptopIcon from "@/assets/laptop.svg?react"
 import {
   contentStyle,
   contentWrapperStyle,

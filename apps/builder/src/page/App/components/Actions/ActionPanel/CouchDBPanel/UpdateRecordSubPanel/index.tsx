@@ -1,12 +1,12 @@
+import { CouchDBUpdateRecord } from "@illa-public/public-types"
 import { FC } from "react"
 import { CouchDBSubPanelProps } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/interface"
 import { UpdateRecordInfo } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/values"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { UpdateRecord } from "@/redux/currentApp/action/couchDBAction"
 
 export const UpdateRecordSubPanel: FC<CouchDBSubPanelProps> = (props) => {
   const { onInputValueChange } = props
-  const opts = props.opts as UpdateRecord
+  const opts = props.opts as CouchDBUpdateRecord
 
   return (
     <>
@@ -19,7 +19,7 @@ export const UpdateRecordSubPanel: FC<CouchDBSubPanelProps> = (props) => {
           style = {},
           placeholder,
         } = info
-        const value = opts[name[1] as keyof UpdateRecord]
+        const value = opts[name[1] as keyof CouchDBUpdateRecord]
         return (
           <InputEditor
             key={name.join("-")}

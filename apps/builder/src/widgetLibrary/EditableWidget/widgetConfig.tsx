@@ -1,4 +1,4 @@
-import { ReactComponent as EditableTextWidgetIcon } from "@/assets/widgetCover/editableText.svg"
+import EditableTextWidgetIcon from "@/assets/widgetCover/editableText.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

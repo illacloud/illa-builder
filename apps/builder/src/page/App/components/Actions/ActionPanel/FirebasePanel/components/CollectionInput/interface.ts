@@ -1,7 +1,7 @@
-import { CollectionType } from "@/redux/currentApp/action/firebaseAction"
+import { FirebaseCollectionType } from "@illa-public/public-types"
 
 export interface CollectionInputProps {
   handleValueChange: (value: string, name: string) => void
-  collectionType: CollectionType
+  collectionType: FirebaseCollectionType
   value: string
 }

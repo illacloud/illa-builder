@@ -1,7 +1,27 @@
 import { getIconFromResourceType } from "@illa-public/icon"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import {
+  actionItemInitial,
+  getInitialContent,
+} from "@illa-public/public-configs"
+import {
+  ActionContent,
+  ActionItem,
+  ActionType,
+  GlobalDataActionContent,
+  Resource,
+} from "@illa-public/public-types"
+import {
+  ActionGenerator,
+  ResourceGeneratorProvider,
+} from "@illa-public/resource-generator"
 import { isCloudVersion } from "@illa-public/utils"
 import { isEqual } from "lodash"
-import { FC, useContext, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
@@ -17,7 +37,7 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
+import ActionListEmptyState from "@/assets/action-list-empty-state.svg?react"
 import {
   getCachedAction,
   getIsILLAGuideMode,
@@ -26,22 +46,17 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { getActionMixedList } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  ActionType,
-  GlobalDataActionContent,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { getAllResources } from "@/redux/resource/resourceSelector"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { track } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import DatabaseIcon from "../../Icons/database"
-import { ActionGenerator } from "../ActionGenerator"
 import { ActionListItem } from "../ActionListItem"
 import { onCopyActionItem } from "../api"
+import { useCreateAction } from "../hook"
 import { ListWithNewButtonProps } from "./interface"
 import {
   actionListEmptyStyle,
@@ -178,6 +193,34 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
       }
     }
   }
+
+  const [handleDirectCreateAction, handleCreateAgentAction] = useCreateAction()
+
+  const handleFinishCreateNewResource = useCallback(
+    (resource: Resource, isUpdate: boolean) => {
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+        {
+          element: "resource_configure_save",
+          parameter5: resource.resourceType,
+        },
+      )
+      if (isUpdate) {
+        dispatch(resourceActions.updateResourceItemReducer(resource))
+      } else {
+        dispatch(resourceActions.addResourceItemReducer(resource))
+      }
+      handleDirectCreateAction(
+        resource.resourceType,
+        resource.resourceID,
+        () => {
+          setGeneratorVisible(false)
+        },
+      )
+    },
+    [dispatch, handleDirectCreateAction],
+  )
 
   return (
     <>
@@ -342,13 +385,25 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
           </div>
         )}
         {generatorVisible && (
-          <ActionGenerator
-            visible={generatorVisible}
-            onClose={() => setGeneratorVisible(false)}
-            defaultStep={currentActionType ? "createAction" : "select"}
-            defaultActionType={currentActionType}
-            canBackToSelect={!currentActionType}
-          />
+          <MixpanelTrackProvider
+            basicTrack={track}
+            pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
+          >
+            <ResourceGeneratorProvider
+              getAllResourceSelector={getAllResources}
+              createOrUpdateResourceCallback={handleFinishCreateNewResource}
+            >
+              <ActionGenerator
+                visible={generatorVisible}
+                onClose={() => setGeneratorVisible(false)}
+                defaultStep={currentActionType ? "createAction" : "select"}
+                defaultActionType={currentActionType}
+                canBackToSelect={!currentActionType}
+                handleDirectCreateAction={handleDirectCreateAction}
+                handleCreateAgentAction={handleCreateAgentAction}
+              />
+            </ResourceGeneratorProvider>
+          </MixpanelTrackProvider>
         )}
       </div>
     </>

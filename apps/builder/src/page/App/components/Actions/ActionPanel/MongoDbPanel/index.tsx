@@ -1,3 +1,26 @@
+import {
+  MongoDbAggregateContentInitial,
+  MongoDbBulkWriteContentInitial,
+  MongoDbCommandContentInitial,
+  MongoDbCountContentInitial,
+  MongoDbDeleteManyContentInitial,
+  MongoDbDeleteOneContentInitial,
+  MongoDbDistinctContentInitial,
+  MongoDbFindContentInitial,
+  MongoDbFindOneAndUpdateContentInitial,
+  MongoDbFindOneContentInitial,
+  MongoDbInsertManyContentInitial,
+  MongoDbInsertOneContentInitial,
+  MongoDbListCollectionsContentInitial,
+  MongoDbUpdateManyContentInitial,
+  MongoDbUpdateOneContentInitial,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  MongoDbAction,
+  MongoDbActionType,
+  MongoDbActionTypeContent,
+} from "@illa-public/public-types"
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -27,29 +50,8 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  AggregateContentInitial,
-  BulkWriteContentInitial,
-  CommandContentInitial,
-  CountContentInitial,
-  DeleteManyContentInitial,
-  DeleteOneContentInitial,
-  DistinctContentInitial,
-  FindContentInitial,
-  FindOneAndUpdateContentInitial,
-  FindOneContentInitial,
-  InsertManyContentInitial,
-  InsertOneContentInitial,
-  ListCollectionsContentInitial,
-  MongoDbAction,
-  MongoDbActionList,
-  MongoDbActionType,
-  MongoDbActionTypeContent,
-  UpdateManyContentInitial,
-  UpdateOneContentInitial,
-} from "@/redux/currentApp/action/mongoDbAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { MongoDbActionList } from "./constants"
 
 const MongoDbPanel: FC = () => {
   const { t } = useTranslation()
@@ -101,7 +103,8 @@ const MongoDbPanel: FC = () => {
 
   const handleActionTypeChange = useCallback(
     (value: SelectValue) => {
-      let newTypeContent: MongoDbActionTypeContent = AggregateContentInitial
+      let newTypeContent: MongoDbActionTypeContent =
+        MongoDbAggregateContentInitial
       if (
         selectedAction &&
         cachedAction.resourceID === selectedAction.resourceID &&
@@ -114,49 +117,49 @@ const MongoDbPanel: FC = () => {
       } else {
         switch (value) {
           case "aggregate":
-            newTypeContent = AggregateContentInitial
+            newTypeContent = MongoDbAggregateContentInitial
             break
           case "bulkWrite":
-            newTypeContent = BulkWriteContentInitial
+            newTypeContent = MongoDbBulkWriteContentInitial
             break
           case "count":
-            newTypeContent = CountContentInitial
+            newTypeContent = MongoDbCountContentInitial
             break
           case "deleteMany":
-            newTypeContent = DeleteManyContentInitial
+            newTypeContent = MongoDbDeleteManyContentInitial
             break
           case "deleteOne":
-            newTypeContent = DeleteOneContentInitial
+            newTypeContent = MongoDbDeleteOneContentInitial
             break
           case "distinct":
-            newTypeContent = DistinctContentInitial
+            newTypeContent = MongoDbDistinctContentInitial
             break
           case "find":
-            newTypeContent = FindContentInitial
+            newTypeContent = MongoDbFindContentInitial
             break
           case "findOne":
-            newTypeContent = FindOneContentInitial
+            newTypeContent = MongoDbFindOneContentInitial
             break
           case "findOneAndUpdate":
-            newTypeContent = FindOneAndUpdateContentInitial
+            newTypeContent = MongoDbFindOneAndUpdateContentInitial
             break
           case "insertOne":
-            newTypeContent = InsertOneContentInitial
+            newTypeContent = MongoDbInsertOneContentInitial
             break
           case "insertMany":
-            newTypeContent = InsertManyContentInitial
+            newTypeContent = MongoDbInsertManyContentInitial
             break
           case "listCollections":
-            newTypeContent = ListCollectionsContentInitial
+            newTypeContent = MongoDbListCollectionsContentInitial
             break
           case "updateMany":
-            newTypeContent = UpdateManyContentInitial
+            newTypeContent = MongoDbUpdateManyContentInitial
             break
           case "updateOne":
-            newTypeContent = UpdateOneContentInitial
+            newTypeContent = MongoDbUpdateOneContentInitial
             break
           case "command":
-            newTypeContent = CommandContentInitial
+            newTypeContent = MongoDbCommandContentInitial
             break
         }
       }

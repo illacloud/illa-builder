@@ -1,3 +1,14 @@
+import {
+  ActionItem,
+  Params,
+  Resource,
+  RestAPIAction,
+  RestAPIBodyContent,
+  RestAPIBodyType,
+  RestAPIMethod,
+  RestApiAuth,
+  RestApiResource,
+} from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -19,23 +30,10 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  ApiMethod,
-  BodyContent,
-  BodyType,
-  RestApiAction,
-} from "@/redux/currentApp/action/restapiAction"
-import { Resource } from "@/redux/resource/resourceState"
-import {
-  Params,
-  RestApiAuth,
-  RestApiResource,
-} from "@/redux/resource/restapiResource"
 import { RootState } from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-const resetAPIMethodSelectOptions: ApiMethod[] = [
+const resetAPIMethodSelectOptions: RestAPIMethod[] = [
   "GET",
   "POST",
   "PUT",
@@ -48,12 +46,12 @@ const resetAPIMethodSelectOptions: ApiMethod[] = [
 const RestApiPanel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<
-    RestApiAction<BodyContent>
+    RestAPIAction<RestAPIBodyContent>
   >
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
-    RestApiAction<BodyContent>
+    RestAPIAction<RestAPIBodyContent>
   >
-  const content = cachedAction.content as RestApiAction<BodyContent>
+  const content = cachedAction.content as RestAPIAction<RestAPIBodyContent>
   const dispatch = useDispatch()
 
   const currentResource = useSelector((state: RootState) => {
@@ -62,7 +60,7 @@ const RestApiPanel: FC = () => {
 
   const handleChangeMethod = useCallback(
     (value?: SelectValue) => {
-      let newBodyType: BodyType = "none"
+      let newBodyType: RestAPIBodyType = "none"
       let newBody = null
 
       if (value !== "GET") {
@@ -79,7 +77,7 @@ const RestApiPanel: FC = () => {
           ...cachedAction,
           content: {
             ...content,
-            method: value as ApiMethod,
+            method: value as RestAPIMethod,
             bodyType: newBodyType,
             body: newBody,
           },

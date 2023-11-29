@@ -8,7 +8,6 @@ import { Status500 } from "@/page/status/500"
 import { ILLARoutesObject } from "@/router/interface"
 import { SettingLazyLoad } from "@/router/lazyLoad/SettingLazyLoad"
 import { rootLoader } from "./loader/rootLoader"
-import { teamMemberLoader } from "./loader/teamMemberLoader"
 
 const WorkSpaceLanding = lazy(() => import("@/page/workspace"))
 const InitWorkSpaceLanding = lazy(() => import("@/page/workspace/InitTeamPage"))
@@ -23,10 +22,7 @@ const LanguageSetting = lazy(() => import("@/page/setting/account/language"))
 const PasswordSettingPage = lazy(
   () => import("@/page/setting/account/password"),
 )
-const TeamMembers = lazy(() => import("@/page/setting/team/member"))
 const LoginPage = lazy(() => import("@/page/user/login"))
-const RegisterPage = lazy(() => import("@/page/user/register"))
-const ForgotPasswordPage = lazy(() => import("@/page/user/resetPassword"))
 
 export const routerConfig: ILLARoutesObject[] = [
   {
@@ -38,22 +34,6 @@ export const routerConfig: ILLARoutesObject[] = [
     element: (
       <Suspense fallback={<FullPageLoading />}>
         <LoginPage />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/register",
-    element: (
-      <Suspense fallback={<FullPageLoading />}>
-        <RegisterPage />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/forgotPassword",
-    element: (
-      <Suspense fallback={<FullPageLoading />}>
-        <ForgotPasswordPage />
       </Suspense>
     ),
   },
@@ -111,16 +91,6 @@ export const routerConfig: ILLARoutesObject[] = [
       {
         path: "password",
         element: <PasswordSettingPage />,
-      },
-      {
-        path: ":teamIdentifier",
-        children: [
-          {
-            path: "members",
-            element: <TeamMembers />,
-            loader: teamMemberLoader,
-          },
-        ] as ILLARoutesObject[],
       },
     ] as ILLARoutesObject[],
   },

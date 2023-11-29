@@ -1,4 +1,4 @@
-import { Transformer } from "@/redux/currentApp/action/actionState"
+import { Transformer } from "@illa-public/public-types"
 import { evaluateDynamicString } from "../evaluateDynamicString"
 import { wrapFunctionCode } from "../evaluateDynamicString/utils"
 import { ILLAEditorRuntimePropsCollectorInstance } from "../executionTreeHelper/runtimePropsCollector"

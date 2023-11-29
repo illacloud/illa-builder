@@ -1,4 +1,10 @@
-import { ComponentTreeNode } from "@illa-public/public-types"
+import {
+  ActionContent,
+  ActionItem,
+  ComponentTreeNode,
+  Resource,
+  ResourceContent,
+} from "@illa-public/public-types"
 import { isEqual } from "lodash"
 import { v4 } from "uuid"
 import { createResource } from "@/api/actions"
@@ -10,12 +16,7 @@ import { TemplateActions, TemplateResources } from "@/config/template/interface"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import store from "@/store"
 
 export const GUIDE_COMPONENTS = Components as unknown as ComponentTreeNode[]

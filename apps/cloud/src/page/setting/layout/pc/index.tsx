@@ -4,10 +4,8 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { PreviousIcon } from "@illa-design/react"
-import { ReactComponent as ProfileIcon } from "@/assets/page/setting/profile.svg"
-import { ReactComponent as TeamIcon } from "@/assets/page/setting/team.svg"
+import ProfileIcon from "@/assets/page/setting/profile.svg?react"
 import { Menu } from "@/components/Menu"
-import { canMemberAccess } from "@/router/loader/accessUtils"
 import { SettingLayoutProps } from "./interface"
 import {
   asideMenuStyle,
@@ -19,7 +17,6 @@ import {
   navWrapperStyle,
   rightAsideWrapperStyle,
   rightSectionContainerStyle,
-  teamSettingContainerStyle,
 } from "./style"
 
 const SettingLayout: FC<SettingLayoutProps> = (props) => {
@@ -27,8 +24,6 @@ const SettingLayout: FC<SettingLayoutProps> = (props) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!
-
-  const hiddenMember = !canMemberAccess(currentTeamInfo)
 
   const accountOptions = [
     {
@@ -44,15 +39,6 @@ const SettingLayout: FC<SettingLayoutProps> = (props) => {
     {
       path: "/setting/language",
       label: t("profile.setting.language"),
-      icon: <></>,
-    },
-  ]
-
-  const teamOptions = [
-    {
-      path: `/setting/${currentTeamInfo?.identifier}/members`,
-      label: t("team_setting.left_panel.member"),
-      hidden: hiddenMember,
       icon: <></>,
     },
   ]
@@ -83,21 +69,6 @@ const SettingLayout: FC<SettingLayoutProps> = (props) => {
               />
             </div>
           </div>
-          {currentTeamInfo && !hiddenMember && (
-            <div css={teamSettingContainerStyle}>
-              <div css={menuWrapperTittleStyle}>
-                <TeamIcon />
-                <span>{t("profile.setting.group.team")}</span>
-              </div>
-              <div css={menuContainerStyle}>
-                <Menu
-                  itemList={teamOptions}
-                  containerClassName="settingMenuClass"
-                  itemClassName="settingMenuItemClass"
-                />
-              </div>
-            </div>
-          )}
         </div>
       </aside>
       <aside css={rightAsideWrapperStyle}>

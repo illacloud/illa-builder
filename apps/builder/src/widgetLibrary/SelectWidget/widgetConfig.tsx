@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as SelectWidgetIcon } from "@/assets/widgetCover/select.svg"
+import SelectWidgetIcon from "@/assets/widgetCover/select.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

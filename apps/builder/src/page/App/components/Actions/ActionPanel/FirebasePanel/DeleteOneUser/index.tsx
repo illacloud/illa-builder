@@ -1,13 +1,13 @@
+import { FirebaseDeleteOneUser } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { DeleteOneUser } from "@/redux/currentApp/action/firebaseAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DeleteOneUserPart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const options = props.options as DeleteOneUser
+  const options = props.options as FirebaseDeleteOneUser
   const { handleValueChange } = props
 
   return (

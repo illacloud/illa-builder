@@ -1,13 +1,13 @@
 import {
-  CheckboxParams,
+  FirebaseCheckboxParams,
   FirebaseContentType,
-  Params,
-} from "@/redux/currentApp/action/firebaseAction"
+  FirebaseWhere,
+} from "@illa-public/public-types"
 
 export interface FirebaseActionPartProps {
   options: FirebaseContentType
   handleValueChange: (
-    value: string | boolean | Params[] | CheckboxParams,
+    value: string | boolean | FirebaseWhere[] | FirebaseCheckboxParams,
     name: string,
   ) => void
 }

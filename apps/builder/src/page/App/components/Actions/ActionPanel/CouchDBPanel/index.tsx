@@ -1,3 +1,9 @@
+import {
+  ActionItem,
+  CouchDBAction,
+  CouchDBActionMethods,
+  CouchDBOptionsType,
+} from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -21,12 +27,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  CouchDBAction,
-  CouchDBActionMethods,
-  CouchDBOptionsType,
-} from "@/redux/currentApp/action/couchDBAction"
 import { fetchResourceMeta } from "@/services/resource"
 
 type CouchDBPanelType = ActionItem<CouchDBAction<CouchDBOptionsType>>

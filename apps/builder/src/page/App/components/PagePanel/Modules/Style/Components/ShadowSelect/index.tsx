@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
-import { ReactComponent as ShadowIcon } from "@/assets/shadow-icon.svg"
+import ShadowIcon from "@/assets/shadow-icon.svg?react"
 import { SHADOW_OPTIONS } from "./constants"
 import { ShadowSetterProps } from "./interface"
 import {

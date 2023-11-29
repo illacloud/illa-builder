@@ -8,9 +8,6 @@ import {
   ShareAgentTab,
 } from "@illa-public/invite-modal"
 import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  Agent,
   freeModelList,
   getLLM,
   isPremiumModel,
@@ -21,12 +18,17 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
-import { RecordEditor } from "@illa-public/record-editor"
-import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  AI_AGENT_MODEL,
+  AI_AGENT_TYPE,
+  Agent,
   MemberInfo,
   USER_ROLE,
   USER_STATUS,
+} from "@illa-public/public-types"
+import { RecordEditor } from "@illa-public/record-editor"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import {
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,
@@ -77,7 +79,7 @@ import {
 } from "@illa-design/react"
 import { createAction } from "@/api/actions"
 import { TextSignal } from "@/api/ws/textSignal"
-import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
+import AIIcon from "@/assets/agent/ai.svg?react"
 import { FullPageLoading } from "@/components/FullPageLoading"
 import { buildActionInfo, buildAppWithAgentSchema } from "@/config/AppWithAgent"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"

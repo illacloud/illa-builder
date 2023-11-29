@@ -9,7 +9,7 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { ReactComponent as DocIcon } from "@/assets/doc.svg"
+import DocIcon from "@/assets/doc.svg?react"
 import { SCROLL_CONTAINER_PADDING } from "@/page/App/components/DotPanel/constant/canvas"
 import { CollaboratorsList } from "@/page/App/components/ScaleSquare/components/CollaboratorsList"
 import {

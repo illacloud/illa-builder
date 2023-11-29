@@ -1,7 +1,7 @@
+import { INIT_ACTION_ADVANCED_CONFIG } from "@illa-public/public-configs"
+import { ACTION_RUN_TIME } from "@illa-public/public-types"
 import { createSelector } from "@reduxjs/toolkit"
-import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/AdvancedPanel/constant"
 import { RootState } from "@/store"
-import { ACTION_RUN_TIME } from "../currentApp/action/actionState"
 
 const getEditorConfig = (state: RootState) => {
   return state.config

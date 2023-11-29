@@ -1,5 +1,5 @@
+import { ActionType } from "@illa-public/public-types"
 import { isCloudVersion } from "@illa-public/utils"
-import { ActionType } from "@/redux/currentApp/action/actionState"
 
 export const RECOMMEND_RESOURCES_SELF_HOST: ActionType[] = [
   "restapi",

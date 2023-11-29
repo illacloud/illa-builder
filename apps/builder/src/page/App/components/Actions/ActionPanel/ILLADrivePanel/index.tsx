@@ -1,3 +1,19 @@
+import {
+  ILLADriveDeleteMultipleContentInitial,
+  ILLADriveDeleteOneContentInitial,
+  ILLADriveDownloadMultipleContentInitial,
+  ILLADriveDownloadOneContentInitial,
+  ILLADriveListAllContentInitial,
+  ILLADriveUpdateContentInitial,
+  ILLADriveUploadMultipleContentInitial,
+  ILLADriveUploadOneContentInitial,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  ILLADriveAction,
+  ILLADriveActionTypeContent,
+  ILLA_DRIVE_ACTION_REQUEST_TYPE,
+} from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,21 +25,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  DeleteMultipleContentInitial,
-  DeleteOneContentInitial,
-  DownloadMultipleContentInitial,
-  DownloadOneContentInitial,
-  ILLADriveAction,
-  ILLADriveActionList,
-  ILLADriveActionTypeContent,
-  ILLA_DRIVE_ACTION_REQUEST_TYPE,
-  ListAllContentInitial,
-  UpdateContentInitial,
-  UploadMultipleContentInitial,
-  UploadOneContentInitial,
-} from "@/redux/currentApp/action/illaDriveAction"
 import { PathSelectProvider } from "./provider"
 import { actionItemContainer } from "./style"
 import { getInputBody } from "./utils"
@@ -59,7 +60,8 @@ const ILLADrivePanel: FC = () => {
   const renderInputBody = getInputBody(content, handleOptionsValueChange)
 
   const handleActionChange = (value: ILLA_DRIVE_ACTION_REQUEST_TYPE) => {
-    let newCommandArgs: ILLADriveActionTypeContent = ListAllContentInitial
+    let newCommandArgs: ILLADriveActionTypeContent =
+      ILLADriveListAllContentInitial
     if (
       cachedAction.resourceID === selectedAction.resourceID &&
       (selectedAction.content as ILLADriveAction<ILLADriveActionTypeContent>)
@@ -71,27 +73,27 @@ const ILLADrivePanel: FC = () => {
     } else {
       switch (value) {
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST:
-          newCommandArgs = ListAllContentInitial
+          newCommandArgs = ILLADriveListAllContentInitial
           break
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.DOWNLOAD_ONE:
-          newCommandArgs = DownloadOneContentInitial
+          newCommandArgs = ILLADriveDownloadOneContentInitial
           break
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.DOWNLOAD_MULTIPLE:
-          newCommandArgs = DownloadMultipleContentInitial
+          newCommandArgs = ILLADriveDownloadMultipleContentInitial
           break
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.DELETE_ONE:
-          newCommandArgs = DeleteOneContentInitial
+          newCommandArgs = ILLADriveDeleteOneContentInitial
           break
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.DELETE_MULTIPLE:
-          newCommandArgs = DeleteMultipleContentInitial
+          newCommandArgs = ILLADriveDeleteMultipleContentInitial
           break
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.UPLOAD:
-          newCommandArgs = UploadOneContentInitial
+          newCommandArgs = ILLADriveUploadOneContentInitial
           break
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.UPLOAD_MULTIPLE:
-          newCommandArgs = UploadMultipleContentInitial
+          newCommandArgs = ILLADriveUploadMultipleContentInitial
         case ILLA_DRIVE_ACTION_REQUEST_TYPE.UPDATE:
-          newCommandArgs = UpdateContentInitial
+          newCommandArgs = ILLADriveUpdateContentInitial
           break
       }
     }
@@ -106,6 +108,47 @@ const ILLADrivePanel: FC = () => {
       }),
     )
   }
+
+  const ILLADriveActionList = [
+    {
+      label: t("editor.action.panel.label.option.drive.method.list"),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST,
+    },
+    {
+      label: t("editor.action.panel.label.option.drive.method.download"),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.DOWNLOAD_ONE,
+    },
+    {
+      label: t(
+        "editor.action.panel.label.option.drive.method.download_multi_file",
+      ),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.DOWNLOAD_MULTIPLE,
+    },
+    {
+      label: t("editor.action.panel.label.option.drive.method.delete"),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.DELETE_ONE,
+    },
+    {
+      label: t(
+        "editor.action.panel.label.option.drive.method.delete_multi_file",
+      ),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.DELETE_MULTIPLE,
+    },
+    {
+      label: t("editor.action.panel.label.option.drive.method.upload_file"),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.UPLOAD,
+    },
+    {
+      label: t(
+        "editor.action.panel.label.option.drive.method.upload_multi_file",
+      ),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.UPLOAD_MULTIPLE,
+    },
+    {
+      label: t("editor.action.panel.label.option.drive.method.update"),
+      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.UPDATE,
+    },
+  ]
 
   return (
     <PathSelectProvider handleOptionsValueChange={handleOptionsValueChange}>

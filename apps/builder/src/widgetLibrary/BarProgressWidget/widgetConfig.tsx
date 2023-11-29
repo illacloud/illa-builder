@@ -1,4 +1,4 @@
-import { ReactComponent as LineProgressWidgetIcon } from "@/assets/widgetCover/lineProgress.svg"
+import LineProgressWidgetIcon from "@/assets/widgetCover/lineProgress.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

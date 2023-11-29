@@ -1,3 +1,4 @@
+import { DynamoUpdateItemStructParams } from "@illa-public/public-types"
 import { FC } from "react"
 import {
   DynamoDBPanelItemsInfo,
@@ -5,10 +6,9 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/interface"
 import { updateItemPanelItems } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/items"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { UpdateItemStructParams } from "@/redux/currentApp/action/dynamoDBAction"
 
 export const UpdateItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
-  const structParams = props.structParams as UpdateItemStructParams
+  const structParams = props.structParams as DynamoUpdateItemStructParams
   const { handleValueChange } = props
 
   return (
@@ -20,7 +20,7 @@ export const UpdateItemPanel: FC<DynamoDBSubPanelProps> = (props) => {
             key={name}
             lineNumbers
             style={{ maxHeight: "88px" }}
-            value={structParams[name as keyof UpdateItemStructParams]}
+            value={structParams[name as keyof DynamoUpdateItemStructParams]}
             onChange={(value) => handleValueChange(value, name)}
             expectedType={expectedType}
             title={title}

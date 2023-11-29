@@ -1,5 +1,4 @@
-import { AppwriteActionTypes } from "@/redux/currentApp/action/appwriteAction"
-import { Params } from "@/redux/resource/restapiResource"
+import { AppwriteActionTypes, Params } from "@illa-public/public-types"
 
 export interface AppwriteSubPanelProps {
   params: AppwriteActionTypes

@@ -1,3 +1,9 @@
+import {
+  ActionItem,
+  S3Action,
+  S3ActionTypeContent,
+  S3DeleteMultipleContent,
+} from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -6,12 +12,6 @@ import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3P
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  DeleteMultipleContent,
-  S3Action,
-  S3ActionTypeContent,
-} from "@/redux/currentApp/action/s3Action"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
@@ -20,7 +20,7 @@ export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
   >
-  const commandArgs = props.commandArgs as DeleteMultipleContent
+  const commandArgs = props.commandArgs as S3DeleteMultipleContent
 
   const handleValueChange = useCallback(
     (name: string) => (value: string) => {
@@ -32,7 +32,7 @@ export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
             commandArgs: {
               ...commandArgs,
               [name]: value,
-            } as DeleteMultipleContent,
+            } as S3DeleteMultipleContent,
           },
         }),
       )

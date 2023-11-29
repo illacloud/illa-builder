@@ -11,7 +11,7 @@ import {
 import { useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
-import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
+import ResizeBar from "@/assets/resizeBar.svg?react"
 import { DropResultInfo } from "@/page/App/components/DotPanel/components/Canvas/interface"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { DragInfo } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"

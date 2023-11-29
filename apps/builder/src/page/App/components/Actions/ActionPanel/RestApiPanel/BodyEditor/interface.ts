@@ -1,9 +1,9 @@
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
-  BodyContent,
-  RestApiAction,
-} from "@/redux/currentApp/action/restapiAction"
+  ActionItem,
+  RestAPIAction,
+  RestAPIBodyContent,
+} from "@illa-public/public-types"
 
 export interface BodyEditorProps {
-  actionItem: ActionItem<RestApiAction<BodyContent>>
+  actionItem: ActionItem<RestAPIAction<RestAPIBodyContent>>
 }

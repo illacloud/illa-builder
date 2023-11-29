@@ -1,7 +1,7 @@
-import { Params } from "@/redux/currentApp/action/firebaseAction"
+import { FirebaseWhere } from "@illa-public/public-types"
 
 export interface CollectionRecordEditorProps {
-  defaultValue: Params[]
+  defaultValue: FirebaseWhere[]
   name: string
-  handleValueChange: (value: Params[], name: string) => void
+  handleValueChange: (value: FirebaseWhere[], name: string) => void
 }

@@ -1,4 +1,4 @@
-import { ReactComponent as VideoWidgetIcon } from "@/assets/widgetCover/video.svg"
+import VideoWidgetIcon from "@/assets/widgetCover/video.svg?react"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 

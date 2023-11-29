@@ -1,14 +1,14 @@
+import { AppwriteDocumentOperations } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { AppwriteSubPanelProps } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/interface"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { DocumentOperations } from "@/redux/currentApp/action/appwriteAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DocumentSubPanel: FC<AppwriteSubPanelProps> = (props) => {
   const { handleValueChange, withDataEditor, collectionIds } = props
-  const params = props.params as DocumentOperations
+  const params = props.params as AppwriteDocumentOperations
   const { t } = useTranslation()
   return (
     <>

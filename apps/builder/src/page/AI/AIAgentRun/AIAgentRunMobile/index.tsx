@@ -2,8 +2,6 @@ import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
 import { ShareAgentMobile } from "@illa-public/invite-modal"
 import {
-  AI_AGENT_TYPE,
-  Agent,
   MarketAIAgent,
   getAIAgentMarketplaceInfo,
   getLLM,
@@ -14,12 +12,16 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
-import { RecordEditor } from "@illa-public/record-editor"
-import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
+  AI_AGENT_TYPE,
+  Agent,
   MemberInfo,
   USER_ROLE,
   USER_STATUS,
+} from "@illa-public/public-types"
+import { RecordEditor } from "@illa-public/record-editor"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import {
   getCurrentTeamInfo,
   getCurrentUser,
   getPlanUtils,

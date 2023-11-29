@@ -1,3 +1,12 @@
+import {
+  MicrosoftSqlActionGUIModeInitial,
+  MicrosoftSqlActionSqlModeInitial,
+} from "@illa-public/public-configs"
+import {
+  ActionItem,
+  MicrosoftSqlAction,
+  MicrosoftSqlActionType,
+} from "@illa-public/public-types"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -13,13 +22,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  MicrosoftSqlAction,
-  MicrosoftSqlActionGUIModeInitial,
-  MicrosoftSqlActionSqlModeInitial,
-  MicrosoftSqlActionType,
-} from "@/redux/currentApp/action/microsoftSqlAction"
 import { SQLModeSelector } from "../pulicComponent/SQLModeSelector"
 import {
   labelContainerStyle,

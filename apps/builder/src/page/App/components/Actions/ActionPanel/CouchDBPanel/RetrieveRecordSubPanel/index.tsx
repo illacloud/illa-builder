@@ -1,18 +1,18 @@
+import { CouchDBRetrieveRecord } from "@illa-public/public-types"
 import { FC } from "react"
 import { CouchDBSubPanelProps } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/interface"
 import { RetrieveRecordInfo } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/values"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { RetrieveRecord } from "@/redux/currentApp/action/couchDBAction"
 
 export const RetrieveRecordSubPanel: FC<CouchDBSubPanelProps> = (props) => {
   const { onInputValueChange } = props
-  const opts = props.opts as RetrieveRecord
+  const opts = props.opts as CouchDBRetrieveRecord
 
   return (
     <>
       {RetrieveRecordInfo.map((info) => {
         const { title, name, expectedType, lineNumbers, style = {} } = info
-        const value = opts[name[1] as keyof RetrieveRecord]
+        const value = opts[name[1] as keyof CouchDBRetrieveRecord]
         return (
           <InputEditor
             key={name.join("-")}

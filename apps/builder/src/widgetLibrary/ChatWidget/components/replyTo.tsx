@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as CloseReplySvg } from "@/assets/chat/closeReplay.svg"
+import CloseReplySvg from "@/assets/chat/closeReplay.svg?react"
 import { MessageContent } from "@/widgetLibrary/ChatWidget/interface"
 import {
   replyContent,

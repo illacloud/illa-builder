@@ -9,7 +9,7 @@ import {
   moveIconStyle,
   stepFirstLineStyle,
 } from "@/components/Guide/WidgetStepMask/style"
-import { ReactComponent as MoveIcon } from "@/components/Guide/assets/move.svg"
+import MoveIcon from "@/components/Guide/assets/move.svg?react"
 import { GUIDE_SELECT_WIDGET } from "@/config/guide/config"
 import {
   DEFAULT_BODY_COLUMNS_NUMBER,

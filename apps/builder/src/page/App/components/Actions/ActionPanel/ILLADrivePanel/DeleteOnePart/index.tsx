@@ -1,14 +1,14 @@
+import { ILLADriveDeleteOneContent } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
-import { DeleteOneContent } from "@/redux/currentApp/action/illaDriveAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ILLADriveActionPartProps } from "../interface"
 
 export const DeleteOnePart: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const commandArgs = props.commandArgs as DeleteOneContent
+  const commandArgs = props.commandArgs as ILLADriveDeleteOneContent
   const { handleOptionsValueChange } = props
 
   return (
