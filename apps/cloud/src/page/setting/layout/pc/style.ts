@@ -82,7 +82,3 @@ export const rightSectionContainerStyle = css`
   height: 100%;
   padding: 0 32px;
 `
-
-export const teamSettingContainerStyle = css`
-  width: 100%;
-`

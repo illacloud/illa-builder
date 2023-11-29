@@ -1,28 +1,20 @@
 import { PCCloudDashBoardLayout } from "@illa-public/cloud-dashboard-layout"
 import { BottomList } from "@illa-public/cloud-dashboard-layout/components/BottomList"
-import { InviteMemberPC } from "@illa-public/invite-modal"
-import { MemberInfo, USER_ROLE, USER_STATUS } from "@illa-public/public-types"
+import { USER_ROLE } from "@illa-public/public-types"
 import {
   currentUserActions,
   getCurrentTeamInfo,
   getCurrentUserID,
   getIsTutorialViewed,
   getPlanUtils,
-  teamActions,
 } from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   canManage,
-  canManageInvite,
-  showInviteModal,
 } from "@illa-public/user-role-utils"
-import {
-  getAuthToken,
-  getILLABuilderURL,
-  isCloudVersion,
-} from "@illa-public/utils"
-import { FC, Suspense, useEffect, useRef, useState } from "react"
+import { getAuthToken, getILLABuilderURL } from "@illa-public/utils"
+import { FC, Suspense, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
@@ -30,14 +22,11 @@ import { useModal } from "@illa-design/react"
 import { FullSectionLoading } from "@/components/FullSectionLoading"
 import { DashBoardDynamicMenu } from "@/page/workspace/components/DynamicMenu"
 import { updateTutorialViewed } from "@/services/user"
-import { copy } from "@/utils/copy"
-import { InviteMenuItem } from "../components/InviteMenuItem"
 
 export const PCDashBoardLayout: FC = () => {
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const isLogin = useSelector(getCurrentUserID)
   const currentUserRole = currentTeamInfo?.myRole ?? USER_ROLE.VIEWER
-  const [inviteModalVisible, setInviteModalVisible] = useState(false)
   const dispatch = useDispatch()
   const isTutorialViewed = useSelector(getIsTutorialViewed)
   const teamPlan = getPlanUtils(currentTeamInfo)
@@ -86,10 +75,6 @@ export const PCDashBoardLayout: FC = () => {
     }
   }, [canEditApp, dispatch, isTutorialViewed, modal, t, teamIdentifier])
 
-  const handleClickInvite = () => {
-    setInviteModalVisible(true)
-  }
-
   return (
     <PCCloudDashBoardLayout
       dynamicMenu={
@@ -97,79 +82,12 @@ export const PCDashBoardLayout: FC = () => {
           <DashBoardDynamicMenu />
         </div>
       }
-      bottomComponent={
-        <BottomList
-          extBottomComponent={
-            showInviteModal(currentTeamInfo) && (
-              <InviteMenuItem onClickInvite={handleClickInvite} />
-            )
-          }
-        />
-      }
+      bottomComponent={<BottomList />}
     >
       {isLogin && (
         <Suspense fallback={<FullSectionLoading />}>
           <Outlet />
         </Suspense>
-      )}
-      {inviteModalVisible && (
-        <InviteMemberPC
-          itemID={currentTeamInfo!.id}
-          redirectURL=""
-          onClose={() => setInviteModalVisible(false)}
-          canInvite={canManageInvite(
-            currentTeamInfo!.myRole,
-            currentTeamInfo!.permission.allowEditorManageTeamMember,
-            currentTeamInfo!.permission.allowViewerManageTeamMember,
-          )}
-          currentUserRole={currentUserRole}
-          defaultAllowInviteLink={currentTeamInfo!.permission.inviteLinkEnabled}
-          defaultInviteUserRole={USER_ROLE.VIEWER}
-          defaultBalance={
-            isCloudVersion
-              ? currentTeamInfo?.currentTeamLicense?.balance ?? 0
-              : Infinity
-          }
-          onCopyInviteLink={copy}
-          onInviteLinkStateChange={(isInviteLink) => {
-            dispatch(
-              teamActions.updateTeamMemberPermissionReducer({
-                teamID: currentTeamInfo!.id,
-                newPermission: {
-                  ...currentTeamInfo!.permission,
-                  inviteLinkEnabled: isInviteLink,
-                },
-              }),
-            )
-          }}
-          teamID={currentTeamInfo!.id}
-          onBalanceChange={(balance) => {
-            dispatch(
-              teamActions.updateTeamMemberSubscribeReducer({
-                teamID: currentTeamInfo!.id,
-                subscribeInfo: {
-                  ...currentTeamInfo!.currentTeamLicense,
-                  balance: balance,
-                },
-              }),
-            )
-          }}
-          onInvitedChange={(userList) => {
-            const memberListInfo: MemberInfo[] = userList.map((user) => {
-              return {
-                ...user,
-                userID: "",
-                nickname: "",
-                avatar: "",
-                userStatus: USER_STATUS.PENDING,
-                permission: {},
-                createdAt: "",
-                updatedAt: "",
-              }
-            })
-            dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
-          }}
-        />
       )}
     </PCCloudDashBoardLayout>
   )

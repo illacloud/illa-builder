@@ -367,7 +367,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <AppSizeButtonGroup />
       </div>
       <div css={rightContentStyle}>
-        {!isGuideMode && (
+        {isCloudVersion && !isGuideMode && (
           <div css={shareButtonGroupStyle}>
             <CollaboratorsList />
             {canShowShareAppModal && <ShareAppButton appInfo={appInfo} />}
