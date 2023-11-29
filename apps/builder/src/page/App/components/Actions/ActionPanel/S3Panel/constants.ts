@@ -1,4 +1,4 @@
-import { S3ActionRequestType } from "@illa-public/public-types"
+import { S3ActionRequestType, S3_CONTENT_TYPE } from "@illa-public/public-types"
 
 enum S3ActionType {
   LIST_ALL = "List all objects in bucket",
@@ -49,5 +49,24 @@ export const SelectOption = [
   {
     label: "Yes",
     value: 1,
+  },
+]
+
+export const ContentTypeOptions = [
+  {
+    label: "Binary",
+    value: S3_CONTENT_TYPE.BINARY,
+  },
+  {
+    label: "CSV",
+    value: S3_CONTENT_TYPE.CSV,
+  },
+  {
+    label: "JSON",
+    value: S3_CONTENT_TYPE.JSON,
+  },
+  {
+    label: "String",
+    value: S3_CONTENT_TYPE.STRING,
   },
 ]
