@@ -31,7 +31,7 @@ import { Button, getColor } from "@illa-design/react"
 import { ShareAppButtonProps } from "@/page/App/Module/PageNavBar/ShareAppButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { copyToClipboard } from "@/utils/copyToClipboard"
-import { track } from "@/utils/mixpanelHelper"
+import { track, trackInEditor } from "@/utils/mixpanelHelper"
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   const { t } = useTranslation()
@@ -59,6 +59,24 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
     teamInfo?.permission?.allowViewerManageTeamMember,
   )
 
+  const handleClick = () => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "invite_entry",
+    })
+    if (
+      !openShareAppModal(
+        teamInfo,
+        teamInfo.myRole,
+        appInfo.config.public,
+        appInfo.config.publishedToMarketplace,
+      )
+    ) {
+      upgradeModal({ modalType: "upgrade", from: "app_edit_share" })
+      return
+    }
+    setShareModalVisible(true)
+  }
+
   return (
     <>
       <Button
@@ -69,20 +87,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             <UpgradeIcon color={getColor("techPurple", "01")} />
           )
         }
-        onClick={() => {
-          if (
-            !openShareAppModal(
-              teamInfo,
-              teamInfo.myRole,
-              appInfo.config.public,
-              appInfo.config.publishedToMarketplace,
-            )
-          ) {
-            upgradeModal({ modalType: "upgrade", from: "app_edit_share" })
-            return
-          }
-          setShareModalVisible(true)
-        }}
+        onClick={handleClick}
       >
         {t("share")}
       </Button>
