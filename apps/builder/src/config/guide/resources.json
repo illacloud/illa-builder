@@ -10,7 +10,7 @@
       "databaseName": "illa_demo",
       "databasePassword": "illa2022",
       "databaseUsername": "illa",
-      "host": "143.198.231.148",
+      "host": "146.190.161.73",
       "port": "30739",
       "ssl": {
         "clientCert": "",

@@ -117,6 +117,7 @@ export const useCreateAction = (): [
         config: {
           public: false,
           advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+          mockConfig: INIT_ACTION_MOCK_CONFIG,
           icon: item.icon,
         },
       }
