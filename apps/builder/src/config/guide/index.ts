@@ -13,6 +13,7 @@ import Components from "@/config/guide/components.json"
 import data from "@/config/guide/data.json"
 import Resources from "@/config/guide/resources.json"
 import { TemplateActions, TemplateResources } from "@/config/template/interface"
+import { fixedActionToNewAction } from "@/hooks/utils/fixedAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -102,7 +103,7 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
       }),
     )
     if (actionList?.length) {
-      const currentAction = actionList[0]
+      const currentAction = fixedActionToNewAction(actionList)[0]
       store.dispatch(actionActions.addActionItemReducer(currentAction))
       store.dispatch(configActions.changeSelectedAction(currentAction))
     }
