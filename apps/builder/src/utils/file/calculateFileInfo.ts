@@ -230,8 +230,8 @@ export const getFileName = (fileName: string, fileType: string) => {
     (!fileName
       ? "download"
       : length > 1
-      ? namePart.slice(0, -1).join(".")
-      : namePart[0]) || "download"
+        ? namePart.slice(0, -1).join(".")
+        : namePart[0]) || "download"
   const fileExtension = length > 1 ? namePart[length - 1] : ""
 
   if (fileExtension) {
