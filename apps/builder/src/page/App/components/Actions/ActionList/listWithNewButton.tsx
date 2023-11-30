@@ -5,6 +5,8 @@ import {
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
 import {
+  INIT_ACTION_ADVANCED_CONFIG,
+  INIT_ACTION_MOCK_CONFIG,
   actionItemInitial,
   getInitialContent,
 } from "@illa-public/public-configs"
@@ -152,6 +154,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
           dispatch(configActions.changeSelectedAction(createActionData))
           break
         }
+        // TODO: WTF add new method
         case "illadrive": {
           const displayName = DisplayNameGenerator.generateDisplayName(type)
           const initialContent = getInitialContent(type)
@@ -162,10 +165,16 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
             isVirtualResource: true,
             ...actionItemInitial,
           }
+
           if (isGuideMode) {
             const createActionData: ActionItem<ActionContent> = {
               ...data,
               actionID: v4(),
+              config: {
+                public: false,
+                advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+                mockConfig: INIT_ACTION_MOCK_CONFIG,
+              },
             }
             dispatch(actionActions.addActionItemReducer(createActionData))
             dispatch(configActions.changeSelectedAction(createActionData))

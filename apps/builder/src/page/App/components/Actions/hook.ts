@@ -1,5 +1,6 @@
 import {
   INIT_ACTION_ADVANCED_CONFIG,
+  INIT_ACTION_MOCK_CONFIG,
   actionItemInitial,
   getInitialAgentContent,
   getInitialContent,
@@ -58,6 +59,7 @@ export const useCreateAction = (): [
       data.config = {
         public: false,
         advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+        mockConfig: INIT_ACTION_MOCK_CONFIG,
       }
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
@@ -115,6 +117,7 @@ export const useCreateAction = (): [
         config: {
           public: false,
           advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+          mockConfig: INIT_ACTION_MOCK_CONFIG,
           icon: item.icon,
         },
       }
