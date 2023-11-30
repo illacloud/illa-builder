@@ -1,6 +1,7 @@
 import { S3ActionRequestType, S3_CONTENT_TYPE } from "@illa-public/public-types"
 import { isFile } from "@illa-public/utils"
 import { AxiosResponse } from "axios"
+import { createWriteStream } from "streamsaver"
 import { fetchS3ActionRunResult } from "@/services/action"
 import { downloadSingleFile, getFileName } from "@/utils/file"
 import { isBase64Simple } from "@/utils/url/base64"
@@ -60,11 +61,13 @@ export const fetchS3ClientResult = async (
         if (isSerializedText(contentType)) {
           data.body = response.data
         } else if (isFileType(contentType)) {
-          const blob = new Blob([response.data], {
-            type: response?.headers["content-type"],
-          })
-          const base64 = await fileToDataURL(blob)
-          data.body = `${base64}`
+          const fileResponse = await fetch(readURL)
+          let base64: unknown = ""
+          if (fileResponse) {
+            const blob = await fileResponse.blob()
+            base64 = await fileToDataURL(blob)
+            data.body = `${base64}`
+          }
         } else {
           data.body = response.data
         }
@@ -87,6 +90,15 @@ export const fetchS3ClientResult = async (
           data = JSON.stringify(data)
         } else if (isSerializedText(contentType)) {
           data = `${data}`
+        } else if (isFileType(contentType)) {
+          const fileResponse = await fetch(url)
+          if (window.WritableStream && fileResponse.body?.pipeTo) {
+            const fileStream = createWriteStream(downloadCommandArgs.objectKey)
+            await fileResponse.body.pipeTo(fileStream)
+            downloadResponse.data = fileResponse.url
+            result = downloadResponse
+            return
+          }
         }
         downloadSingleFile(
           contentType,
