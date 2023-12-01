@@ -13,6 +13,7 @@ import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import ContentTypeSelect from "../components/ContentTypeSelect"
 
 export const UploadPart: FC<S3ActionPartProps> = (props) => {
   const { t } = useTranslation()
@@ -22,7 +23,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
   >
   const commandArgs = props.commandArgs as S3UploadContent
   const handleValueChange = useCallback(
-    (name: string) => (value: string) => {
+    (name: string) => (value: string | boolean) => {
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
@@ -48,12 +49,10 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
         onChange={handleValueChange("bucketName")}
         expectedType={VALIDATION_TYPES.STRING}
       />
-      <InputEditor
-        title={t("editor.action.panel.s3.content_type")}
-        mode={CODE_LANG.JAVASCRIPT}
+      <ContentTypeSelect
         value={commandArgs.contentType}
-        onChange={handleValueChange("contentType")}
-        expectedType={VALIDATION_TYPES.STRING}
+        onChange={handleValueChange}
+        fx={commandArgs.fx}
       />
       <InputEditor
         title={t("editor.action.panel.s3.upload_object_name")}
