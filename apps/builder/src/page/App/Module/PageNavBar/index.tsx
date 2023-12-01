@@ -54,6 +54,7 @@ import {
   getCurrentAppWaterMarkConfig,
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { getViewportSizeSelector } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import {
   fetchDeployApp,
@@ -99,6 +100,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const teamInfo = useSelector(getCurrentTeamInfo)!!
+  const { viewportSizeType } = useSelector(getViewportSizeSelector)
+  const showCustomInputs = viewportSizeType === "custom"
   const upgradeModal = useUpgradeModal()
 
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
@@ -362,7 +365,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           )}
         </div>
       </div>
-      <div css={viewControlStyle}>
+      <div css={viewControlStyle(showCustomInputs)}>
         {isEditMode && <WindowIcons />}
         <AppSizeButtonGroup />
       </div>

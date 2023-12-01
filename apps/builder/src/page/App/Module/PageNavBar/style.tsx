@@ -9,7 +9,9 @@ export const navBarStyle = css`
   justify-content: space-between;
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
   padding: 6px 16px;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 16px;
 `
 
 export const rowCenter = css`
@@ -18,10 +20,11 @@ export const rowCenter = css`
   align-items: center;
 `
 
-export const viewControlStyle = css`
+export const viewControlStyle = (showInput: boolean) => css`
   color: ${getColor("grayBlue", "04")};
 
   ${rowCenter}
+  margin-right: ${showInput ? 296 : 0}px;
   & > svg {
     &:hover {
       color: ${getColor("grayBlue", "02")};
