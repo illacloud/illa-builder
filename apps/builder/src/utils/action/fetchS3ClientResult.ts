@@ -49,7 +49,6 @@ export const fetchS3ClientResult = async (
     const { commands } = actionContent
     switch (commands) {
       case S3ActionRequestType.READ_ONE: {
-        const { signedURL } = actionContent.commandArgs?.signedURL
         const readURL = urlInfos[0].url
         const response = await fetchS3ActionRunResult(readURL, "GET", headers)
         const contentType = response?.headers["content-type"]
@@ -58,10 +57,10 @@ export const fetchS3ClientResult = async (
           contentType,
           isJson: contentType === S3_CONTENT_TYPE.JSON,
         }
-        if (!!signedURL) {
+        if (actionContent.commandArgs?.signedURL) {
           data.signedURL = readURL
         } else {
-          data.URL = readURL
+          data.url = readURL
         }
         if (isSerializedText(contentType)) {
           data.body = response.data
