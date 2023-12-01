@@ -97,7 +97,7 @@ export const fetchS3ClientResult = async (
             await fileResponse.body.pipeTo(fileStream)
             downloadResponse.data = fileResponse.url
             result = downloadResponse
-            return
+            return result
           }
         }
         downloadSingleFile(
