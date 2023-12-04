@@ -48,6 +48,7 @@ export const TextMessage: FC<Partial<MessageSpecProps>> = (props) => {
           remarkPlugins={[remarkGfm]}
           components={{
             p: ({ children }) => <Paragraph>{children}</Paragraph>,
+            img: ({ src, alt }) => <img src={src} alt={alt} width="100%" />,
           }}
         >
           {content ?? ""}
