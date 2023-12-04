@@ -18,5 +18,7 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
     radius: "0px",
     hidden: false,
     objectFit: "cover",
+    dynamicHeight: "fixed",
+    horizontalAlign: "center",
   },
 }
