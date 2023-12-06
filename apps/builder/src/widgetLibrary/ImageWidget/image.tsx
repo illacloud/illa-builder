@@ -35,7 +35,7 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
   const {
     imageSrc,
     altText,
-    radius,
+    imageRadius,
     objectFit,
     aspectRatio = 1,
     dynamicHeight,
@@ -62,11 +62,11 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
     <Image
       ref={imageRef}
       src={imageSrc}
+      radius={imageRadius}
       objectFit={finalObjectFit}
       alt={altText}
       width={width}
       height={height}
-      radius={radius}
       css={imageWrapperContainerStyle(horizontalAlign)}
       draggable={false}
       onClick={handleOnClick}
@@ -82,8 +82,9 @@ WrappedImage.displayName = "WrappedImage"
 export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const {
     imageSrc,
-    radius,
+    imageRadius,
     objectFit,
+    horizontalAlign,
     dynamicHeight,
     handleUpdateDsl,
     updateComponentRuntimeProps,
@@ -123,11 +124,11 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const finalRadius = useMemo(() => {
     const reg = /^\d+$/
     const pattern = new RegExp(reg)
-    if (radius && pattern.test(radius)) {
-      return radius + "px"
+    if (imageRadius && pattern.test(imageRadius)) {
+      return imageRadius + "px"
     }
-    return radius
-  }, [radius])
+    return imageRadius
+  }, [imageRadius])
 
   const handleOnClick = useCallback(() => {
     triggerEventHandler("click")
@@ -153,7 +154,7 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
           <WrappedImage
             {...props}
             imageSrc={finalSrc}
-            radius={finalRadius}
+            imageRadius={finalRadius}
             objectFit={objectFit}
             dynamicHeight={dynamicHeight}
             handleOnClick={handleOnClick}
