@@ -56,11 +56,13 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
     objectFit,
   )
 
+  const finalObjectFit = dynamicHeight === "auto" ? "cover" : objectFit
+
   return (
     <Image
       ref={imageRef}
       src={imageSrc}
-      objectFit={objectFit}
+      objectFit={finalObjectFit}
       alt={altText}
       width={width}
       height={height}
