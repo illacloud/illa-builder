@@ -141,7 +141,7 @@ const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
 }
 const applyCalendarBg = (slotBackground: string) => {
   return css`
-    background-color: ${getColor(slotBackground, "03")}!important;
+    background-color: ${getColor(slotBackground, "08")}!important;
     .rbc-header,
     .rbc-row-bg,
     .rbc-label,
@@ -149,7 +149,7 @@ const applyCalendarBg = (slotBackground: string) => {
     .rbc-day-slot,
     .rbc-calendar,
     tbody {
-      background-color: ${getColor(slotBackground, "03")}!important;
+      background-color: ${getColor(slotBackground, "08")}!important;
     }
   `
 }
@@ -283,6 +283,7 @@ export const ApplyCustomStyle = (
       .rbc-timeslot-group:first-of-type .rbc-label {
         visibility: hidden;
       }
+    }
     }
     .rbc-addons-dnd-resizable {
       overflow: hidden;

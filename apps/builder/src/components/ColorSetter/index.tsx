@@ -1,7 +1,7 @@
 import { hexToHsva } from "@uiw/color-convert"
 import { debounce } from "lodash"
 import { FC, useRef } from "react"
-import { BindIcon, Trigger, globalColor, illaPrefix } from "@illa-design/react"
+import { BindIcon, Trigger, handleSpecialColor } from "@illa-design/react"
 import { ColorPicker } from "@/components/ColorPicker"
 import { colorSchemes } from "@/components/ColorPicker/constants"
 import { ColorPickerSetterProps } from "./interface"
@@ -23,7 +23,7 @@ const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
   let isInnerColorScheme = false
   if (colorSchemes.includes(value)) {
     isInnerColorScheme = true
-    c = globalColor(`--${illaPrefix}-${value}-03`)
+    c = handleSpecialColor(value, "03")
   }
   return (
     <Trigger
