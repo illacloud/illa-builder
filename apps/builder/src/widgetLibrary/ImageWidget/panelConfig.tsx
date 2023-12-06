@@ -10,6 +10,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { IMAGE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ImageWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { ObjectFit } from "./interface"
 
 const baseWidgetName = "input"
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
@@ -125,8 +126,9 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-layout-col`,
         labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
         attrName: "horizontalAlign",
-        bindAttrName: ["dynamicHeight"],
-        shown: (dynamicHeight: "fixed" | "auto") => dynamicHeight === "fixed",
+        bindAttrName: ["dynamicHeight", "objectFit"],
+        shown: (dynamicHeight: "fixed" | "auto", objectFit: ObjectFit) =>
+          dynamicHeight === "fixed" && objectFit !== "cover",
         setterType: "RADIO_GROUP_SETTER",
         isSetterSingleRow: true,
         options: [
@@ -163,7 +165,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.radius"),
             setterType: "MEASURE_CHECK_INPUT_SETTER",
             useCustomLayout: true,
-            attrName: "radius",
+            attrName: "imageRadius",
             icon: <RadioIcon />,
             defaultValue: "0px",
             expectedType: VALIDATION_TYPES.STRING,
