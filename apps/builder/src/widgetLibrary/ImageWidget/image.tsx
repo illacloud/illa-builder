@@ -39,7 +39,6 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
     objectFit,
     aspectRatio = 1,
     dynamicHeight,
-    horizontalAlign,
     handleOnClick,
     sourceLoadErrorHandle,
   } = props
@@ -56,7 +55,12 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
     objectFit,
   )
 
-  const finalObjectFit = dynamicHeight === "auto" ? "cover" : objectFit
+  const finalObjectFit =
+    dynamicHeight === "auto"
+      ? "cover"
+      : dynamicHeight === "fixed" && objectFit === "contain"
+        ? undefined
+        : "cover"
 
   return (
     <Image
@@ -65,9 +69,9 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
       radius={imageRadius}
       objectFit={finalObjectFit}
       alt={altText}
-      width={width}
-      height={height}
-      css={imageWrapperContainerStyle(horizontalAlign)}
+      width="100%"
+      height="100%"
+      css={imageWrapperContainerStyle(width, height)}
       draggable={false}
       onClick={handleOnClick}
       onError={() => {
@@ -150,7 +154,7 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
         updateComponentHeight={updateComponentHeight}
         enable={enableAutoHeight}
       >
-        <div css={ImageWrapperStyle}>
+        <div css={ImageWrapperStyle(horizontalAlign)}>
           <WrappedImage
             {...props}
             imageSrc={finalSrc}
