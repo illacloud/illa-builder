@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { handleSpecialColor } from "@illa-design/react"
 import { LEFT_MIN_WIDTH } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyLeftSectionWrapperStyle = (
@@ -18,7 +18,7 @@ export const applyLeftSectionWrapperStyle = (
   flex-direction: row;
   min-width: ${isFold ? 0 : `${LEFT_MIN_WIDTH}px`};
   border-right: ${dividerColor
-    ? `1px solid ${getColor(dividerColor, "03")}`
+    ? `1px solid ${handleSpecialColor(dividerColor, "03")}`
     : "unset"};
-  background: ${getColor(background, "03")};
+  background: ${handleSpecialColor(background, "03")};
 `

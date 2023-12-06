@@ -9,7 +9,17 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   let c = selectedColor
   if (colorSchemes.includes(selectedColor)) {
-    c = getColor(selectedColor, "03")
+    if (selectedColor === "white") {
+      c = getColor(selectedColor, "01")
+    } else if (
+      selectedColor === "blackAlpha" ||
+      selectedColor === "gray" ||
+      selectedColor === "grayBlue"
+    ) {
+      c = getColor(selectedColor, "02")
+    } else {
+      c = getColor(selectedColor, "03")
+    }
   }
 
   return (
@@ -18,6 +28,7 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
       presetColors={PRE_COLOR}
       disableAlpha={disableAlpha}
       onChange={(color) => {
+        console.log(COLOR_MAP, color)
         if (COLOR_MAP.has(color.hexa) || COLOR_MAP.has(color.hex)) {
           onChange(COLOR_MAP.get(color.hex) || COLOR_MAP.get(color.hexa)!!)
         } else {

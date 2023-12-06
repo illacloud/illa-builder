@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { handleSpecialColor } from "@illa-design/react"
 import { FOOTER_MIN_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyFooterSectionWrapperStyle = (
@@ -18,7 +18,7 @@ export const applyFooterSectionWrapperStyle = (
   flex-direction: column-reverse;
   min-height: ${FOOTER_MIN_HEIGHT}px;
   border-top: ${dividerColor
-    ? `1px solid ${getColor(dividerColor, "03")}`
+    ? `1px solid ${handleSpecialColor(dividerColor, "03")}`
     : "unset"};
-  background: ${getColor(background, "03")};
+  background: ${handleSpecialColor(background, "03")};
 `

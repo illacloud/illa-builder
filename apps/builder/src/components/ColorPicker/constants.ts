@@ -1,4 +1,4 @@
-import { getColor } from "@illa-design/react"
+import { handleSpecialColor } from "@illa-design/react"
 
 export const colorSchemes = [
   "white",
@@ -17,7 +17,7 @@ export const colorSchemes = [
 export const COLOR_MAP = (() => {
   const m = new Map<string, string>()
   colorSchemes.forEach((color) => {
-    m.set(getColor(color, "03"), color)
+    m.set(handleSpecialColor(color, "03"), color)
   })
   return m
 })()
@@ -25,6 +25,6 @@ export const COLOR_MAP = (() => {
 export const PRE_COLOR = colorSchemes.map((color) => {
   return {
     title: color,
-    color: getColor(color, "03"),
+    color: handleSpecialColor(color, "03"),
   }
 })
