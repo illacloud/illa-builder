@@ -12,14 +12,14 @@ export const getFxIconStyle = (selected?: boolean) => {
     width: 16px;
     height: 16px;
     color: ${selected
-      ? getColor("techPurple", "01")
+      ? getColor("techPurple", "03")
       : getColor("grayBlue", "04")};
     cursor: pointer;
     z-index: 1;
     margin-right: 16px;
     :hover {
       cursor: pointer;
-      color: ${getColor("techPurple", "01")};
+      color: ${getColor("techPurple", "03")};
     }
   `
 }

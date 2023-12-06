@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const createNewStyle = css`
-  color: ${getColor("techPurple", "01")};
+  color: ${getColor("techPurple", "03")};
 `
 
 export const itemContainer = css`

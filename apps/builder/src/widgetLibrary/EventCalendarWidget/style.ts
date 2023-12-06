@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { View } from "react-big-calendar"
-import { getColor } from "@illa-design/react"
+import { getColor, getSpecialThemeColor } from "@illa-design/react"
 
 const applyCalendarFont = css`
   font-family: "Inter";
@@ -34,10 +34,10 @@ const applyEventCardStyle = (
       flex-direction: column;
       align-items: center;
       gap: 4px;
-      background-color: ${getColor(eventBackground, "07")};
-      border-left: 2px solid ${getColor(eventBackground, "03")}!important;
+      background-color: ${getColor(eventBackground, "08")};
+      border-left: 2px solid ${getSpecialThemeColor(eventBackground)}!important;
       border-radius: 4px;
-      color: ${getColor(eventTextColor, "01")};
+      color: ${getSpecialThemeColor(eventTextColor)};
       padding: ${view !== "month" ? "12px 16px" : ""};
       overflow: hidden;
     }
@@ -50,10 +50,10 @@ const applyEventCardStyle = (
 const applyMonthView = (titleColor: string, eventTextColor: string) => {
   return css`
     .rbc-month-view {
-      color: ${getColor(titleColor, "01")};
+      color: ${getSpecialThemeColor(titleColor)};
       font-weight: 600;
       .rbc-off-range {
-        color: ${getColor(titleColor, "05")}!important;
+        color: ${getColor(titleColor, "06")}!important;
       }
       .rbc-off-range-bg {
         background: none;
@@ -66,7 +66,7 @@ const applyMonthView = (titleColor: string, eventTextColor: string) => {
         background-color: transparent !important;
         &:focus,
         &:hover {
-          color: ${getColor(eventTextColor, "03")};
+          color: ${getSpecialThemeColor(eventTextColor)};
         }
       }
     }
@@ -105,7 +105,7 @@ const applyIndicatorStyle = (indicatorTop: number) => {
 
 const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
   const color = css`
-    color: ${getColor(titleColor, "01")}!important;
+    color: ${getSpecialThemeColor(titleColor)}!important;
   `
   return css`
     .rbc-btn-group {
@@ -141,7 +141,7 @@ const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
 }
 const applyCalendarBg = (slotBackground: string) => {
   return css`
-    background-color: ${getColor(slotBackground, "01")}!important;
+    background-color: ${getColor(slotBackground, "08")}!important;
     .rbc-header,
     .rbc-row-bg,
     .rbc-label,
@@ -149,7 +149,7 @@ const applyCalendarBg = (slotBackground: string) => {
     .rbc-day-slot,
     .rbc-calendar,
     tbody {
-      background-color: ${getColor(slotBackground, "01")}!important;
+      background-color: ${getColor(slotBackground, "08")}!important;
     }
   `
 }
@@ -191,10 +191,10 @@ export const applyTitleColor = (titleColor: string) => {
     .rbc-button-link,
     .rbc-time-gutter .rbc-timeslot-group,
     tbody {
-      color: ${getColor(titleColor, "01")};
+      color: ${getSpecialThemeColor(titleColor)};
     }
     .rbc-off-range .rbc-button-link {
-      color: ${getColor(titleColor, "05")}!important;
+      color: ${getColor(titleColor, "06")}!important;
     }
   `
 }
@@ -239,7 +239,7 @@ export const ApplyCustomStyle = (
       background: none !important;
     }
     [data-target="${displayName}"] {
-      color: ${getColor(titleColor, "01")} !important;
+      color: ${getSpecialThemeColor(titleColor)} !important;
       visibility: ${showCurrentTime ? "visible" : "hidden"} !important;
     }
     .rbc-addons-dnd-resizable {
@@ -266,8 +266,8 @@ export const ApplyCustomStyle = (
         position: sticky;
         left: 0;
         background-color: white;
-        border-right: 1px solid #EBEBEB;;
-        z-index: 10!important;
+        border-right: 1px solid #ebebeb;
+        z-index: 10 !important;
         margin-right: -1px;
         ${applyCalendarFont};
         font-family: "SF Pro Display";
@@ -283,15 +283,15 @@ export const ApplyCustomStyle = (
       .rbc-timeslot-group:first-of-type .rbc-label {
         visibility: hidden;
       }
-      }
+    }
     }
     .rbc-addons-dnd-resizable {
       overflow: hidden;
     }
-    .rbc-month-row{
+    .rbc-month-row {
       min-height: 80px;
     }
-    .rbc-row-content  {
+    .rbc-row-content {
       min-height: 60px;
     }
     .rbc-day-slot {
@@ -301,7 +301,8 @@ export const ApplyCustomStyle = (
       margin: 0 8px;
       padding: 8px;
     }
-    .rbc-time-header-cell .rbc-header, .rbc-allday-cell .rbc-day-bg {
+    .rbc-time-header-cell .rbc-header,
+    .rbc-allday-cell .rbc-day-bg {
       box-sizing: border-box;
       min-width: 140px;
     }
@@ -320,7 +321,7 @@ export const ApplyCustomStyle = (
         border-radius: ${view !== "month" ? "4px" : "0"}!important;
       }
       .rbc-selected {
-        background-color: ${getColor(eventBackground, "07")}!important;
+        background-color: ${getColor(eventBackground, "08")}!important;
       }
       .rbc-addons-dnd-resize-ew-anchor {
         top: 50%;

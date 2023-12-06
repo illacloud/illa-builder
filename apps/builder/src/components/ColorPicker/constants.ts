@@ -1,8 +1,7 @@
-import { getColor } from "@illa-design/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 
 export const colorSchemes = [
   "white",
-  "blackAlpha",
   "grayBlue",
   "red",
   "orange",
@@ -11,13 +10,15 @@ export const colorSchemes = [
   "blue",
   "cyan",
   "purple",
-  "transparent",
 ]
+
+// for old app
+export const deletedColorSchemes = ["transparent", "blackAlpha"]
 
 export const COLOR_MAP = (() => {
   const m = new Map<string, string>()
   colorSchemes.forEach((color) => {
-    m.set(getColor(color, "03"), color)
+    m.set(getSpecialThemeColor(color), color)
   })
   return m
 })()
@@ -25,6 +26,6 @@ export const COLOR_MAP = (() => {
 export const PRE_COLOR = colorSchemes.map((color) => {
   return {
     title: color,
-    color: getColor(color, "03"),
+    color: getSpecialThemeColor(color),
   }
 })

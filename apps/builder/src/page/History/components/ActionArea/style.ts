@@ -9,7 +9,7 @@ export const actionWrapperStyle = css`
 export const actionTextStyle = css`
   min-height: 38px;
   padding: 8px;
-  color: ${getColor("techPurple", "01")};
+  color: ${getColor("techPurple", "03")};
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;

@@ -8,7 +8,7 @@ export const createFolderModalMaskStyle = css`
 
 export const invalidTipsStyle = css`
   display: inline-flex;
-  color: ${getColor("orange", "02")};
+  color: ${getColor("orange", "03")};
   font-size: 14px;
   margin-top: 4px;
 `

@@ -8,8 +8,8 @@ export const applyHintTooltipContentWrapperStyle = (hasError: boolean) => css`
   border-radius: 0 0 8px 8px;
   font-family: "fira code", monospace;
   background-color: ${hasError
-    ? getColor("red", "07")
-    : getColor("green", "07")};
+    ? getColor("red", "08")
+    : getColor("green", "08")};
 `
 
 export const applyHintTooltipContentMainWrapperStyle = (
@@ -18,7 +18,7 @@ export const applyHintTooltipContentMainWrapperStyle = (
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: ${hasError ? getColor("red", "01") : getColor("green", "01")};
+  color: ${hasError ? getColor("red", "03") : getColor("green", "03")};
   flex: 9;
 `
 

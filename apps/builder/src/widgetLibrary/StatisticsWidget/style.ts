@@ -1,5 +1,10 @@
 import { css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import {
+  getColor,
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 
 const overflowStyle = css`
   overflow: hidden;
@@ -43,7 +48,7 @@ export const getSecondaryStatisticStyle = (color?: string) => {
     overflow: hidden;
     & > div:last-child > div,
     & > div:last-child > div > span {
-      color: ${getColor(color || "", "03")};
+      color: ${getSpecialThemeColor(color || "")};
       max-width: 100%;
     }
     & span {
@@ -61,7 +66,7 @@ export const getStatisticStyle = (color?: string) => {
     white-space: nowrap;
     & > div:last-child > div,
     & > div:last-child > div > span {
-      color: ${getColor(color || "", "03")};
+      color: ${getSpecialThemeColor(color || "")};
       max-width: 100%;
     }
     line-height: 36px;
@@ -71,7 +76,7 @@ export const getStatisticStyle = (color?: string) => {
 export const getPrefixIconStyle = (color?: string, secondary?: boolean) => {
   const size = secondary ? 12 : 24
   return css`
-    color: ${getColor(color || "", "03")};
+    color: ${getSpecialThemeColor(color || "")};
     display: inline-flex;
     height: 100%;
     align-items: center;
@@ -120,7 +125,7 @@ export const getSecondaryStatisticContainerStyle = (color?: string) => {
     height: 18px;
     padding: 0 4px;
     border-radius: 2px;
-    background: ${getColor(color || "", "07")};
+    background: ${getColor(color || "", "08")};
     & span {
       line-height: 18px;
       font-size: 12px;

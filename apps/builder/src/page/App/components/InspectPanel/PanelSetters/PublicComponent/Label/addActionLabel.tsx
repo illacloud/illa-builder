@@ -19,7 +19,7 @@ export const AddActionLabel: FC<AddActionLabelProps> = (props) => {
         variant="text"
         onClick={handleAddItem}
         leftIcon={
-          <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
+          <AddIcon color={globalColor(`--${illaPrefix}-techPurple-03`)} />
         }
       >
         {t("editor.inspect.setter_content.event_handler_list.new")}

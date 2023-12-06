@@ -130,7 +130,7 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
             <section css={gridItemStyle}>
               <label css={formLabelStyle}>
                 {t("new_dashboard.app_setting.app_name")}
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
+                <span css={applyConfigItemLabelText(getColor("red", "03"))}>
                   *
                 </span>
               </label>

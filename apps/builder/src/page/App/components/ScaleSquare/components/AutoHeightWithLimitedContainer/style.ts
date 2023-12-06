@@ -5,7 +5,7 @@ import { applyBarPointerShapeStyle } from "@/page/App/components/ScaleSquare/sty
 export const containerStyle = css`
   height: 100%;
   width: 100%;
-  border: 1px dashed ${getColor("techPink", "01")};
+  border: 1px dashed ${getColor("techPink", "03")};
   padding: 2px;
   border-top: none;
   pointer-events: none;
@@ -25,8 +25,8 @@ export const containerBorderStyle = (
         height: 1px;
         background: linear-gradient(
           to right,
-          ${getColor("techPink", "01")},
-          ${getColor("techPink", "01")} 5px,
+          ${getColor("techPink", "03")},
+          ${getColor("techPink", "03")} 5px,
           transparent 5px,
           transparent
         );
@@ -42,8 +42,8 @@ export const containerBorderStyle = (
         height: 1px;
         background: linear-gradient(
           to right,
-          ${getColor("techPink", "01")},
-          ${getColor("techPink", "01")} 5px,
+          ${getColor("techPink", "03")},
+          ${getColor("techPink", "03")} 5px,
           transparent 5px,
           transparent
         );
@@ -58,8 +58,8 @@ export const containerBorderStyle = (
         height: 100%;
         background: linear-gradient(
           to bottom,
-          ${getColor("techPink", "01")},
-          ${getColor("techPink", "01")} 5px,
+          ${getColor("techPink", "03")},
+          ${getColor("techPink", "03")} 5px,
           transparent 5px,
           transparent
         );
@@ -75,8 +75,8 @@ export const containerBorderStyle = (
         height: 100%;
         background: linear-gradient(
           to bottom,
-          ${getColor("techPink", "01")},
-          ${getColor("techPink", "01")} 5px,
+          ${getColor("techPink", "03")},
+          ${getColor("techPink", "03")} 5px,
           transparent 5px,
           transparent
         );
@@ -89,11 +89,11 @@ export const containerBorderStyle = (
 export const applyResizeBarPointStyle = css`
   ${applyBarPointerShapeStyle("b")}
   background-color: white;
-  border: 1px solid ${getColor("techPink", "01")};
+  border: 1px solid ${getColor("techPink", "03")};
   :hover {
-    background-color: ${getColor("techPink", "01")};
+    background-color: ${getColor("techPink", "03")};
   }
   :active {
-    background-color: ${getColor("techPink", "01")};
+    background-color: ${getColor("techPink", "03")};
   }
 `

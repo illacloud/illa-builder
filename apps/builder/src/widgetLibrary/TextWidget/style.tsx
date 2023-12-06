@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 import { VerticalAlign } from "@/widgetLibrary/TextWidget/interface"
 
 export function applyAlignStyle(
@@ -69,10 +69,10 @@ export const applyTextStyle = (horizontalAlign?: string) => {
 export const applyContainerStyle = (colorScheme: string) => {
   return css`
     width: 100%;
-    color: ${getColor(colorScheme, "02")};
+    color: ${getSpecialThemeColor(colorScheme)};
     a,
     span {
-      color: ${getColor(colorScheme, "02")};
+      color: ${getSpecialThemeColor(colorScheme)};
     }
   `
 }

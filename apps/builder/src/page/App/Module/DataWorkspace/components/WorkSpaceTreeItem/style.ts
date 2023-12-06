@@ -138,7 +138,7 @@ export const applySimpleItemContainerStyle = (
   align-items: center;
   justify-content: space-between;
   padding-left: ${level * 16}px;
-  background-color: ${isSelected ? getColor("techPurple", "07") : ""};
+  background-color: ${isSelected ? getColor("techPurple", "08") : ""};
   font-size: 12px;
   font-family: "Fira Code", monospace;
   :hover {
