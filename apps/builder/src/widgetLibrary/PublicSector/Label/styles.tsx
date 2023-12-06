@@ -101,6 +101,6 @@ export const labelCaptionCss = css`
 `
 
 export const labelRequiredCss = css`
-  color: ${globalColor(`--${illaPrefix}-red-01`)};
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
   margin-left: 2px;
 `

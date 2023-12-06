@@ -122,7 +122,7 @@ export const selectoSelectionStyle = css`
     width: var(--illa-select-area-width, 0) !important;
     height: var(--illa-select-area-height, 0) !important;
     background: rgba(101, 74, 236, 0.08) !important;
-    border: 1px solid ${getColor("techPurple", "01")} !important;
+    border: 1px solid ${getColor("techPurple", "03")} !important;
   }
 `
 

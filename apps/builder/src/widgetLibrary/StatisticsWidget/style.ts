@@ -120,7 +120,7 @@ export const getSecondaryStatisticContainerStyle = (color?: string) => {
     height: 18px;
     padding: 0 4px;
     border-radius: 2px;
-    background: ${getColor(color || "", "07")};
+    background: ${getColor(color || "", "08")};
     & span {
       line-height: 18px;
       font-size: 12px;

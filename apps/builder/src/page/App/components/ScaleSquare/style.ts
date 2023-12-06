@@ -5,7 +5,7 @@ import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
 export function getSelectedColor(selected: boolean): string {
-  return selected ? globalColor(`--${illaPrefix}-techPurple-01`) : "transparent"
+  return selected ? globalColor(`--${illaPrefix}-techPurple-03`) : "transparent"
 }
 
 export function applySquarePointerStyle(
@@ -145,20 +145,20 @@ export function applyBarPointerStyle(
 
   const baseColor =
     isLimitedMode && selected
-      ? getColor("techPink", "01")
+      ? getColor("techPink", "03")
       : getSelectedColor(selected)
   return css`
     ${barPositionStyle};
     border: 1px solid ${baseColor};
     :hover {
       background-color: ${isLimitedMode
-        ? getColor("techPink", "01")
-        : getColor("techPurple", "01")};
+        ? getColor("techPink", "03")
+        : getColor("techPurple", "03")};
     }
     :active {
       background-color: ${isLimitedMode
-        ? getColor("techPink", "01")
-        : getColor("techPurple", "01")};
+        ? getColor("techPink", "03")
+        : getColor("techPurple", "03")};
     }
   `
 }
@@ -231,7 +231,7 @@ const getWrapperBorderColor = (
     return "transparent"
   }
   if (isSelected || hasEditors || isHover) {
-    return getColor("techPurple", "01")
+    return getColor("techPurple", "03")
   }
   return "transparent"
 }
@@ -298,7 +298,7 @@ export const applyWrapperPendingStyle = (
     isDragging,
   )};
   background-color: ${isEditor && hasError && !isSelected
-    ? globalColor(`--${illaPrefix}-red-07`)
+    ? globalColor(`--${illaPrefix}-red-08`)
     : "transparent"};
   ${isLimitedModeAndOverLap && isSelected
     ? `border-bottom:unset !important`
@@ -320,7 +320,7 @@ export const applyDashedLineStyle = (
   max-height: ${maxHeight ? `${maxHeight}px` : "unset"};
   pointer-events: none;
   border: ${isShowCanvasDot && !isSelected && !isDragging
-    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-03`)}`
     : "none"};
 `
 
@@ -338,10 +338,10 @@ export const applyXDirectionDashedLineStyle = (
   max-height: ${maxHeight ? `${maxHeight}px` : "unset"};
   pointer-events: none;
   border-left: ${isShowCanvasDot && !isSelected && !isDragging
-    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-03`)}`
     : "none"};
   border-right: ${isShowCanvasDot && !isSelected && !isDragging
-    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-03`)}`
     : "none"};
 `
 

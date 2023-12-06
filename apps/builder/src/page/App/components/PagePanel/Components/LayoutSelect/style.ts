@@ -31,24 +31,24 @@ export const applyLayoutOptionItemIconStyle = (isSelected: boolean) => {
   return css`
     padding: 8px;
     background-color: ${isSelected
-      ? globalColor(`--${illaPrefix}-techPurple-07`)
+      ? globalColor(`--${illaPrefix}-techPurple-08`)
       : globalColor(`--${illaPrefix}-grayBlue-09`)};
     border-radius: 4px;
     flex: none;
     border: 1px solid
       ${isSelected
-        ? globalColor(`--${illaPrefix}-techPurple-01`)
+        ? globalColor(`--${illaPrefix}-techPurple-03`)
         : "transparent"};
     cursor: pointer;
     transition: all 0.2s ease-in-out 0s;
     :hover {
-      border: 1px solid ${globalColor(`--${illaPrefix}-techPurple-01`)};
+      border: 1px solid ${globalColor(`--${illaPrefix}-techPurple-03`)};
       box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
-      background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-techPurple-08`)};
     }
     :active {
-      border: 1px solid ${globalColor(`--${illaPrefix}-techPurple-01`)};
-      background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+      border: 1px solid ${globalColor(`--${illaPrefix}-techPurple-03`)};
+      background-color: ${globalColor(`--${illaPrefix}-techPurple-08`)};
     }
   `
 }

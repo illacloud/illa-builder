@@ -18,6 +18,6 @@ export const dragPreviewStyle = (
     ? `rgba(101, 74, 236, 0.1)`
     : `rgba(255, 71, 71, 0.1)`};
   border-top: 3px solid
-    ${canDrop ? getColor("techPurple", "01") : getColor("red", "03")};
+    ${canDrop ? getColor("techPurple", "03") : getColor("red", "03")};
   z-index: 10;
 `

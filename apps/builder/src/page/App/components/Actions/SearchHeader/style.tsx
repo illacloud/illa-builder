@@ -30,9 +30,9 @@ export const searchInputStyle = css`
 
   & > span {
     border-radius: 8px !important;
-    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)} !important;
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-03`)} !important;
     box-shadow: 0 0 8px 0
-      ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
+      ${chroma(globalColor(`--${illaPrefix}-techPurple-03`))
         .alpha(0.2)
         .hex()};
   }

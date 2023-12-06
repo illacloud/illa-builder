@@ -3,7 +3,7 @@ import { Variants } from "framer-motion"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const errorContainerStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-techPink-07`)};
+  background-color: ${globalColor(`--${illaPrefix}-techPink-08`)};
 `
 
 export const errorItemStyle = css`

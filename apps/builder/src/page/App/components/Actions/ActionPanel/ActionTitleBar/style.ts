@@ -37,7 +37,7 @@ export const actionSuccessBlockStyle = css`
   height: 32px;
   margin-right: 8px;
   cursor: pointer;
-  background: ${getColor("green", "07")};
+  background: ${getColor("green", "08")};
   color: ${getColor("green", "03")};
   border-radius: 8px;
 `
@@ -50,7 +50,7 @@ export const actionFailBlockStyle = css`
   cursor: pointer;
   align-items: center;
   height: 32px;
-  background: ${getColor("orange", "07")};
+  background: ${getColor("orange", "08")};
   color: ${getColor("orange", "03")};
   border-radius: 8px;
 `

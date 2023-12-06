@@ -20,7 +20,7 @@ export const operationIconStyle = (disabled: boolean) => {
     height: 32px;
     border-radius: 4px;
     cursor: ${disabled ? "not-allowed" : "pointer"};
-    color: ${getColor("grayBlue", disabled ? "07" : "02")};
+    color: ${getColor("grayBlue", disabled ? "08" : "03")};
     background-color: unset;
   `
 }

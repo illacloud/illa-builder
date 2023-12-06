@@ -69,10 +69,10 @@ export const applyTextStyle = (horizontalAlign?: string) => {
 export const applyContainerStyle = (colorScheme: string) => {
   return css`
     width: 100%;
-    color: ${getColor(colorScheme, "02")};
+    color: ${getColor(colorScheme, "03")};
     a,
     span {
-      color: ${getColor(colorScheme, "02")};
+      color: ${getColor(colorScheme, "03")};
     }
   `
 }
