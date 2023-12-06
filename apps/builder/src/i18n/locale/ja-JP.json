@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "アクセス権限がありません"
   },
-  "show_states": "州を表示"
+  "show_states": "州を表示",
+  "aspect-ratio": "アスペクトラジオ"
 }
