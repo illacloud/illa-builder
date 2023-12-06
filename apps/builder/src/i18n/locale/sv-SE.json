@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Ingen åtkomstbehörighet"
   },
-  "show_states": "Visa delstater"
+  "show_states": "Visa delstater",
+  "aspect-ratio": "Bildradio"
 }
