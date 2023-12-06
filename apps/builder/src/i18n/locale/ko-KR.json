@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "No access permission"
   },
-  "show_states": "Show states"
+  "show_states": "Show states",
+  "aspect-ratio": "Aspect radio"
 }
