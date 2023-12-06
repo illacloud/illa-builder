@@ -48,7 +48,7 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            dividerColor: getColor(value, "03"),
+            dividerColor: value,
           },
           sectionName: "leftSection",
         }),
@@ -73,7 +73,7 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            dividerColor: getColor(value, "03"),
+            dividerColor: value,
           },
           sectionName: "rightSection",
         }),
@@ -98,7 +98,7 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            dividerColor: getColor(value, "03"),
+            dividerColor: value,
           },
           sectionName: "headerSection",
         }),
@@ -123,7 +123,7 @@ export const DividerSetter: FC = () => {
         componentsActions.updateCurrentPageStyleReducer({
           pageName: displayName,
           style: {
-            dividerColor: getColor(value, "03"),
+            dividerColor: value,
           },
           sectionName: "footerSection",
         }),

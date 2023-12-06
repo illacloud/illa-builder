@@ -266,8 +266,8 @@ export const ApplyCustomStyle = (
         position: sticky;
         left: 0;
         background-color: white;
-        border-right: 1px solid #EBEBEB;;
-        z-index: 10!important;
+        border-right: 1px solid #ebebeb;
+        z-index: 10 !important;
         margin-right: -1px;
         ${applyCalendarFont};
         font-family: "SF Pro Display";
@@ -283,15 +283,14 @@ export const ApplyCustomStyle = (
       .rbc-timeslot-group:first-of-type .rbc-label {
         visibility: hidden;
       }
-      }
     }
     .rbc-addons-dnd-resizable {
       overflow: hidden;
     }
-    .rbc-month-row{
+    .rbc-month-row {
       min-height: 80px;
     }
-    .rbc-row-content  {
+    .rbc-row-content {
       min-height: 60px;
     }
     .rbc-day-slot {
@@ -301,7 +300,8 @@ export const ApplyCustomStyle = (
       margin: 0 8px;
       padding: 8px;
     }
-    .rbc-time-header-cell .rbc-header, .rbc-allday-cell .rbc-day-bg {
+    .rbc-time-header-cell .rbc-header,
+    .rbc-allday-cell .rbc-day-bg {
       box-sizing: border-box;
       min-width: 140px;
     }
