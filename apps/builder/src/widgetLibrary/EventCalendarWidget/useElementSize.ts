@@ -59,7 +59,7 @@ export const useElementSize = (
 
   useEffect(() => {
     if (slotBackground) {
-      const formatColor = getColor(slotBackground, "01")
+      const formatColor = getColor(slotBackground, "03")
       setIsLight(isLightColor(formatColor))
     }
   }, [slotBackground])

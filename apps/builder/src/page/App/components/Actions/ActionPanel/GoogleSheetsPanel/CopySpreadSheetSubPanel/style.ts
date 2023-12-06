@@ -19,13 +19,13 @@ export function applyFxIconStyle(selected?: boolean): SerializedStyles {
     width: 16px;
     height: 16px;
     color: ${selected
-      ? getColor("techPurple", "01")
+      ? getColor("techPurple", "03")
       : getColor("grayBlue", "04")};
     cursor: pointer;
     z-index: 1;
     :hover {
       cursor: pointer;
-      color: ${getColor("techPurple", "01")};
+      color: ${getColor("techPurple", "03")};
     }
   `
 }

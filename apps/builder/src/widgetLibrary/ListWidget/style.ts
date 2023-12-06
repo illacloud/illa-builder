@@ -46,10 +46,10 @@ export const applyListItemStyle = (
   return css`
     width: 100%;
     height: ${itemHeight ? `${itemHeight}px` : "100%"};
-    background-color: ${bgColor || "white"};
+    background-color: ${bgColor ? getColor(bgColor, "03") : "transparent"};
     flex: none;
     border: ${WIDGET_SCALE_SQUARE_BORDER_WIDTH}px dashed
-      ${canShowBorder ? getColor("techPurple", "01") : "transparent"};
+      ${canShowBorder ? getColor("techPurple", "03") : "transparent"};
     opacity: ${isEditor && !isFirst ? 0.5 : 1};
     ${borderStyle};
     box-shadow: ${shadowStyle};
@@ -93,7 +93,7 @@ export const selectStyle = (
   return css`
     width: 100%;
     height: ${itemHeight ? `${itemHeight}px` : "100%"};
-    outline: 1px solid ${themeColor ?? getColor("blue", "01")} !important;
+    outline: 1px solid ${themeColor ?? getColor("blue", "03")} !important;
     border-radius: ${radius ?? "unset"};
   `
 }

@@ -34,7 +34,7 @@ export const codeEditorLabelStyle = css`
 `
 
 export const codeEditorSublabelStyle = css`
-  color: ${getColor("techPurple", "01")};
+  color: ${getColor("techPurple", "03")};
   cursor: pointer;
   height: 20px;
   line-height: 20px;

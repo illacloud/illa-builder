@@ -9,7 +9,7 @@ export const applyMultiSelectedScaleSquareStyle = (
 ) => {
   return css`
     position: absolute;
-    border: 1px dashed ${getColor("techPurple", "01")};
+    border: 1px dashed ${getColor("techPurple", "03")};
     width: ${width}px;
     height: ${height}px;
     left: 0;

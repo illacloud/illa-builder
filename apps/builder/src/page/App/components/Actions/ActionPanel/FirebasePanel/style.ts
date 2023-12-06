@@ -28,7 +28,7 @@ export const actionItemContainer = css`
 `
 
 export const actionBodyTypeStyle = css`
-  color: ${getColor("techPurple", "01")};
+  color: ${getColor("techPurple", "03")};
   cursor: pointer;
   margin-top: 5px;
 `

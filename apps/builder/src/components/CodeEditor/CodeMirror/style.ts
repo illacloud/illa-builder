@@ -12,7 +12,7 @@ const getEditorWrapperBorderColor = (
   if (isFocused) {
     return getColor("green", "03")
   }
-  return isHovered ? getColor("techPurple", "06") : getColor("grayBlue", "08")
+  return isHovered ? getColor("techPurple", "07") : getColor("grayBlue", "08")
 }
 export const applyEditorWrapperStyle = (
   hasError: boolean,

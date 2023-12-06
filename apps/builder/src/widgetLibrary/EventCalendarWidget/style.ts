@@ -34,10 +34,10 @@ const applyEventCardStyle = (
       flex-direction: column;
       align-items: center;
       gap: 4px;
-      background-color: ${getColor(eventBackground, "07")};
+      background-color: ${getColor(eventBackground, "08")};
       border-left: 2px solid ${getColor(eventBackground, "03")}!important;
       border-radius: 4px;
-      color: ${getColor(eventTextColor, "01")};
+      color: ${getColor(eventTextColor, "03")};
       padding: ${view !== "month" ? "12px 16px" : ""};
       overflow: hidden;
     }
@@ -50,10 +50,10 @@ const applyEventCardStyle = (
 const applyMonthView = (titleColor: string, eventTextColor: string) => {
   return css`
     .rbc-month-view {
-      color: ${getColor(titleColor, "01")};
+      color: ${getColor(titleColor, "03")};
       font-weight: 600;
       .rbc-off-range {
-        color: ${getColor(titleColor, "05")}!important;
+        color: ${getColor(titleColor, "06")}!important;
       }
       .rbc-off-range-bg {
         background: none;
@@ -105,7 +105,7 @@ const applyIndicatorStyle = (indicatorTop: number) => {
 
 const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
   const color = css`
-    color: ${getColor(titleColor, "01")}!important;
+    color: ${getColor(titleColor, "03")}!important;
   `
   return css`
     .rbc-btn-group {
@@ -141,7 +141,7 @@ const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
 }
 const applyCalendarBg = (slotBackground: string) => {
   return css`
-    background-color: ${getColor(slotBackground, "01")}!important;
+    background-color: ${getColor(slotBackground, "03")}!important;
     .rbc-header,
     .rbc-row-bg,
     .rbc-label,
@@ -149,7 +149,7 @@ const applyCalendarBg = (slotBackground: string) => {
     .rbc-day-slot,
     .rbc-calendar,
     tbody {
-      background-color: ${getColor(slotBackground, "01")}!important;
+      background-color: ${getColor(slotBackground, "03")}!important;
     }
   `
 }
@@ -191,10 +191,10 @@ export const applyTitleColor = (titleColor: string) => {
     .rbc-button-link,
     .rbc-time-gutter .rbc-timeslot-group,
     tbody {
-      color: ${getColor(titleColor, "01")};
+      color: ${getColor(titleColor, "03")};
     }
     .rbc-off-range .rbc-button-link {
-      color: ${getColor(titleColor, "05")}!important;
+      color: ${getColor(titleColor, "06")}!important;
     }
   `
 }
@@ -239,7 +239,7 @@ export const ApplyCustomStyle = (
       background: none !important;
     }
     [data-target="${displayName}"] {
-      color: ${getColor(titleColor, "01")} !important;
+      color: ${getColor(titleColor, "03")} !important;
       visibility: ${showCurrentTime ? "visible" : "hidden"} !important;
     }
     .rbc-addons-dnd-resizable {
@@ -320,7 +320,7 @@ export const ApplyCustomStyle = (
         border-radius: ${view !== "month" ? "4px" : "0"}!important;
       }
       .rbc-selected {
-        background-color: ${getColor(eventBackground, "07")}!important;
+        background-color: ${getColor(eventBackground, "08")}!important;
       }
       .rbc-addons-dnd-resize-ew-anchor {
         top: 50%;

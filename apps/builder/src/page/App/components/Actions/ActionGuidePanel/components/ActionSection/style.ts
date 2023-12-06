@@ -38,8 +38,8 @@ export const basicButtonStyle = css`
   transition: all 0.2s ease-in-out;
   &:hover {
     box-shadow: 0 4px 10px 0 ${getColor("blackAlpha", "07")};
-    background-color: ${getColor("techPurple", "07")};
-    border-color: ${getColor("techPurple", "01")};
+    background-color: ${getColor("techPurple", "08")};
+    border-color: ${getColor("techPurple", "03")};
   }
 `
 

@@ -52,7 +52,9 @@ const applyDotBackgroundStyle = (
         transparent 0px
       );
     background-repeat: repeat;
-    background-size: ${unitWidth}px ${unitHeight}px, 100% ${unitHeight}px;
+    background-size:
+      ${unitWidth}px ${unitHeight}px,
+      100% ${unitHeight}px;
   `
 }
 
@@ -65,7 +67,7 @@ export const applyDotLintRectangleStyle = (
   return css`
     width: ${w}px;
     height: ${h}px;
-    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-03`)};
     position: absolute;
     transform: translate(${x}px, ${y}px);
     z-index: 6;
@@ -84,7 +86,7 @@ export const applyRectangleStyle = (
     width: ${w}px;
     height: ${h}px;
     background-color: ${canDrop
-      ? globalColor(`--${illaPrefix}-techPurple-01`)
+      ? globalColor(`--${illaPrefix}-techPurple-03`)
       : "red"};
     opacity: 0.16;
     position: absolute;
@@ -113,7 +115,7 @@ export const applyFreezePlaceholderShapeStyle = (
     top: ${top}px;
     width: ${width}px;
     height: ${height}px;
-    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-03`)};
     z-index: 6;
   `
 }
@@ -133,13 +135,13 @@ export const applyViewportContainerWrapperStyle = (
     width: ${mode === "production"
       ? "100%"
       : width != undefined
-      ? `${width}px`
-      : "100%"};
+        ? `${width}px`
+        : "100%"};
     height: ${mode === "production"
       ? "100%"
       : height != undefined
-      ? `${height}px`
-      : "100%"};
+        ? `${height}px`
+        : "100%"};
     background-color: ${getColor("white", "01")};
     overflow: auto;
     margin: 0 auto;
@@ -156,7 +158,7 @@ export const applyMultiSelectedScaleSquareStyle = (
 ) => {
   return css`
     position: absolute;
-    border: 1px dashed ${getColor("techPurple", "01")};
+    border: 1px dashed ${getColor("techPurple", "03")};
     width: ${width}px;
     height: ${height}px;
     left: 0;

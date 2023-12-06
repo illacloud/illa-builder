@@ -66,7 +66,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
         rightIcon={
           isCloudVersion &&
           !canUseBillingFeature && (
-            <UpgradeIcon color={getColor("techPurple", "01")} />
+            <UpgradeIcon color={getColor("techPurple", "03")} />
           )
         }
         onClick={() => {

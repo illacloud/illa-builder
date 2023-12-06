@@ -7,12 +7,12 @@ export const outerContainerStyle = (
 ) => css`
   width: 100%;
   background-color: ${isSelected
-    ? getColor("techPurple", "07")
+    ? getColor("techPurple", "08")
     : getColor("white", "01")};
   cursor: pointer;
   font-family: "Fira Code", monospace;
   :hover {
-    background-color: ${getColor("techPurple", "07")};
+    background-color: ${getColor("techPurple", "08")};
     #action-bar {
       visibility: visible;
     }

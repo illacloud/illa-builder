@@ -117,7 +117,7 @@ export const messageTextStyle = (
   return css`
     background-color: ${backgroundColor
       ? backgroundColor
-      : getColor(leftMessageColor, "07")};
+      : getColor(leftMessageColor, "08")};
     color: ${color}!important;
     padding: 8px 12px;
     border-radius: 8px;
@@ -140,7 +140,7 @@ export const receivingStyle = (leftMessageColor: string) => {
     height: 33px;
     background-color: ${backgroundColor
       ? backgroundColor
-      : getColor(leftMessageColor, "07")};
+      : getColor(leftMessageColor, "08")};
     color: ${getColor("grayBlue", "02")}!important;
     &:before {
       content: "";
