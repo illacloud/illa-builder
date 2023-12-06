@@ -99,7 +99,6 @@ export const copyToClipboard = (copiedValue: unknown) => {
 export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
   const { pagePath, viewPath = "" } = params
   if (typeof pagePath !== "string" || typeof viewPath !== "string") return
-
   const isProductionMode = getIsILLAProductMode(store.getState())
   const rootNodeProps = getRootNodeExecutionResult(store.getState())
   const { pageSortedKey } = rootNodeProps

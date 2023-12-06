@@ -318,8 +318,8 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             {isMocking
               ? t("editor.action.panel.option.mock.label")
               : isRunning
-              ? calcLoadingTimeString(currentRunningTime)
-              : calcTimeString(startRunningTime, endRunningTime)}
+                ? calcLoadingTimeString(currentRunningTime)
+                : calcTimeString(startRunningTime, endRunningTime)}
           </div>
         </div>
       </Dropdown>

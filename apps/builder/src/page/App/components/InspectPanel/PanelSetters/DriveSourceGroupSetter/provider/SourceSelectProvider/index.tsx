@@ -21,6 +21,7 @@ import {
   PAGESIZE,
 } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/constants"
 import { fetchFileList, fetchGenerateTinyUrl } from "@/services/drive"
+import { getReportElementForSelect } from "../../utils"
 
 interface Props {
   widgetType: string
@@ -70,12 +71,16 @@ export const SourceSelectProvider: FC<Props> = (props) => {
           handleCloseModal()
           resolve(true)
         } catch (e) {
-          handleCollaPurchaseError(e, CollarModalType.TRAFFIC)
+          handleCollaPurchaseError(
+            e,
+            CollarModalType.TRAFFIC,
+            getReportElementForSelect(widgetType)!,
+          )
           reject(e)
         }
       })
     },
-    [handleCloseModal, handleUpdateResult],
+    [handleCloseModal, handleUpdateResult, widgetType],
   )
 
   const getFileList = useCallback(

@@ -1,48 +1,81 @@
-import {
-  FC,
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-} from "react"
+import { FC, useCallback, useContext, useEffect, useMemo } from "react"
+import useMeasure from "react-use-measure"
 import { Image } from "@illa-design/react"
 import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import { isValidUrlScheme } from "@/utils/typeHelper"
-import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"
+import {
+  ImageWrapperStyle,
+  imageWrapperContainerStyle,
+} from "@/widgetLibrary/ImageWidget/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { ImageWidgetProps, WrappedImageProps } from "./interface"
+import {
+  DynamicHeight,
+  ImageWidgetProps,
+  ObjectFit,
+  WrappedImageProps,
+} from "./interface"
 
-export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
-  (props, ref) => {
-    const {
-      imageSrc,
-      altText,
-      radius,
-      objectFit,
-      handleOnClick,
-      sourceLoadErrorHandle,
-    } = props
+const getHeight = (
+  dynamicHeight: DynamicHeight,
+  aspectRatio: number,
+  width: number,
+  objectFit?: ObjectFit,
+) => {
+  if (dynamicHeight === "auto" && aspectRatio && aspectRatio > 0) {
+    return `${width * aspectRatio}px`
+  } else {
+    return dynamicHeight === "fixed" || objectFit === "contain"
+      ? "100%"
+      : "auto"
+  }
+}
 
-    return (
-      <Image
-        ref={ref}
-        src={imageSrc}
-        objectFit={objectFit}
-        alt={altText}
-        radius={radius}
-        height="100%"
-        width="100%"
-        css={ImageWrapperStyle}
-        draggable={false}
-        onClick={handleOnClick}
-        onError={() => {
-          sourceLoadErrorHandle?.(imageSrc)
-        }}
-      />
-    )
-  },
-)
+export const WrappedImage: FC<WrappedImageProps> = (props) => {
+  const {
+    imageSrc,
+    altText,
+    radius,
+    objectFit,
+    aspectRatio = 1,
+    dynamicHeight,
+    horizontalAlign,
+    handleOnClick,
+    sourceLoadErrorHandle,
+  } = props
+
+  const [imageRef, imageBouds] = useMeasure()
+
+  const width =
+    dynamicHeight === "auto" || objectFit === "cover" ? "100%" : "auto"
+
+  const height = getHeight(
+    dynamicHeight,
+    aspectRatio,
+    imageBouds.width,
+    objectFit,
+  )
+
+  const finalObjectFit = dynamicHeight === "auto" ? "cover" : objectFit
+
+  return (
+    <Image
+      ref={imageRef}
+      src={imageSrc}
+      objectFit={finalObjectFit}
+      alt={altText}
+      width={width}
+      height={height}
+      radius={radius}
+      css={imageWrapperContainerStyle(horizontalAlign)}
+      draggable={false}
+      onClick={handleOnClick}
+      onError={() => {
+        sourceLoadErrorHandle?.(imageSrc, "image")
+      }}
+    />
+  )
+}
 
 WrappedImage.displayName = "WrappedImage"
 
@@ -51,11 +84,13 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     imageSrc,
     radius,
     objectFit,
+    dynamicHeight,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     tooltipText,
     triggerEventHandler,
+    updateComponentHeight,
   } = props
 
   const { sourceLoadErrorHandler } = useContext(MediaSourceLoadContext)
@@ -98,18 +133,34 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     triggerEventHandler("click")
   }, [triggerEventHandler])
 
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight])
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={ImageWrapperStyle}>
-        <WrappedImage
-          {...props}
-          imageSrc={finalSrc}
-          radius={finalRadius}
-          objectFit={objectFit}
-          handleOnClick={handleOnClick}
-          sourceLoadErrorHandle={sourceLoadErrorHandler}
-        />
-      </div>
+      <AutoHeightContainer
+        updateComponentHeight={updateComponentHeight}
+        enable={enableAutoHeight}
+      >
+        <div css={ImageWrapperStyle}>
+          <WrappedImage
+            {...props}
+            imageSrc={finalSrc}
+            radius={finalRadius}
+            objectFit={objectFit}
+            dynamicHeight={dynamicHeight}
+            handleOnClick={handleOnClick}
+            sourceLoadErrorHandle={sourceLoadErrorHandler}
+          />
+        </div>
+      </AutoHeightContainer>
     </TooltipWrapper>
   )
 }

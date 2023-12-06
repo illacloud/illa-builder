@@ -293,7 +293,7 @@ function transFormTemplateDisplayName(
 ) {
   const props = baseDSL.props
   if (props && Array.isArray(props.$dynamicAttrPaths)) {
-    props.$dynamicAttrPaths.forEach((path) => {
+    props.$dynamicAttrPaths.forEach((path: string) => {
       const originValue = get(baseDSL, `props.${path}`, "")
       const finalValue = originValue.replace(
         TEMPLATE_DISPLAYNAME_KEY,

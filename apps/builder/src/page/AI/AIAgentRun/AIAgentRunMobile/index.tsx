@@ -43,7 +43,7 @@ import {
   getILLACloudURL,
 } from "@illa-public/utils"
 import { motion } from "framer-motion"
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -155,6 +155,9 @@ export const AIAgentRunMobile: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
+
+  const canShowInviteButton =
+    canUseBillingFeature || getValues("publishedToMarketplace")
 
   const dispatch = useDispatch()
 
@@ -315,7 +318,6 @@ export const AIAgentRunMobile: FC = () => {
                   }),
                 )
               }}
-              teamPlan={getPlanUtils(currentTeamInfo)}
               onShare={(platform) => {
                 track(
                   ILLA_MIXPANEL_EVENT_TYPE.CLICK,
@@ -342,6 +344,7 @@ export const AIAgentRunMobile: FC = () => {
                 })
                 dispatch(teamActions.updateInvitedUserReducer(memberListInfo))
               }}
+              teamPlan={getPlanUtils(currentTeamInfo)}
             />
           )}
         </MixpanelTrackProvider>
@@ -501,6 +504,7 @@ export const AIAgentRunMobile: FC = () => {
           if (isPremiumModel(data.model) && !canUseBillingFeature) {
             upgradeModal({
               modalType: "agent",
+              from: "agent_run_gpt4",
             })
             return
           }
@@ -599,6 +603,17 @@ export const AIAgentRunMobile: FC = () => {
       )}
     />
   )
+
+  useEffect(() => {
+    canShowInviteButton &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+        {
+          element: "invite_entry",
+        },
+      )
+  }, [canShowInviteButton])
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
@@ -727,7 +742,7 @@ export const AIAgentRunMobile: FC = () => {
                           ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                           ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
                           {
-                            element: "share",
+                            element: "invite_entry",
                             parameter5: agent.aiAgentID,
                           },
                         )
@@ -742,6 +757,7 @@ export const AIAgentRunMobile: FC = () => {
                         ) {
                           upgradeModal({
                             modalType: "upgrade",
+                            from: "agent_run_share",
                           })
                           return
                         }

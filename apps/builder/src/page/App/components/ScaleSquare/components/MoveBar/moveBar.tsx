@@ -43,6 +43,7 @@ export const WidgetDoc: FC<WidgetDocProps> = (props) => {
   const { t } = useTranslation()
   switch (props.widgetType) {
     case "LIST_WIDGET":
+    case "GRID_LIST_WIDGET":
       return (
         <Trigger
           content={
