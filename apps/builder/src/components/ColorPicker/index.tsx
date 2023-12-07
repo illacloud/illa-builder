@@ -1,6 +1,6 @@
 import Sketch from "@uiw/react-color-sketch"
 import { FC } from "react"
-import { getColor } from "@illa-design/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 import { COLOR_MAP, PRE_COLOR, colorSchemes } from "./constants"
 import { ColorPickerProps } from "./interface"
 
@@ -9,17 +9,7 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   let c = selectedColor
   if (colorSchemes.includes(selectedColor)) {
-    if (selectedColor === "white") {
-      c = getColor(selectedColor, "01")
-    } else if (
-      selectedColor === "blackAlpha" ||
-      selectedColor === "gray" ||
-      selectedColor === "grayBlue"
-    ) {
-      c = getColor(selectedColor, "02")
-    } else {
-      c = getColor(selectedColor, "03")
-    }
+    c = getSpecialThemeColor(selectedColor)
   }
 
   return (

@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 import { getShadowStyle } from "@/utils/styleUtils/shadow"
 
 export const applyValidateMessageWrapperStyle = (
@@ -57,7 +57,7 @@ const getWrapperBackgroundColor = (
     widgetType === "FORM_WIDGET"
   ) {
     return backgroundColor
-      ? globalColor(`--${illaPrefix}-${backgroundColor}-03`) || backgroundColor
+      ? getSpecialThemeColor(backgroundColor) || backgroundColor
       : "white"
   }
   return "transparent"
@@ -75,7 +75,7 @@ export const applyWrapperStylesStyle = (
   if (borderColor && borderWidth) {
     borderStyle = `${borderWidth} solid ${
       borderColor
-        ? globalColor(`--${illaPrefix}-${borderColor}-03`) || borderColor
+        ? getSpecialThemeColor(borderColor) || borderColor
         : "transparent"
     }`
   }
