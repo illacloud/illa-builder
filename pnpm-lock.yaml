@@ -805,7 +805,7 @@ importers:
         specifier: ^5.0.4
         version: 5.3.2
       vite:
-        specifier: ^4.4.2
+        specifier: ^4.4.12
         version: 4.5.0(@types/node@18.18.13)
 
   packages/illa-design/packages/affix:
