@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Fără permisiune de acces"
   },
-  "show_states": "Arată județele"
+  "show_states": "Arată județele",
+  "aspect-ratio": "Vizualizare radio"
 }

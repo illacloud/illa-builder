@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Keine Zugriffsberechtigung"
   },
-  "show_states": "Status anzeigen"
+  "show_states": "Status anzeigen",
+  "aspect-ratio": "Seitenradio"
 }

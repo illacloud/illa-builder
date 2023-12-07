@@ -3424,7 +3424,7 @@
         "description": {
           "forgot_password": "비밀번호를 잊으 셨나요?",
           "policy": "\"로그인\"을 클릭하여 < 0 > 서비스 약관 < /0 > 및 < 1 > 개인 정보 보호 계약 < /1 > 을 읽고 동의했음을 나타냅니다.",
-          "register": "새로운 사용자? < 0 > 계정 등록 < /0 >"
+          "register": "새로운 사용자? <0> 계정 등록 </0>"
         },
         "error_message": {
           "email": {
@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "No access permission"
   },
-  "show_states": "Show states"
+  "show_states": "Show states",
+  "aspect-ratio": "Aspect radio"
 }

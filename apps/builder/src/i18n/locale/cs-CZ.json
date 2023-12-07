@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Žádné přístupové oprávnění"
   },
-  "show_states": "Zobrazit stavy"
+  "show_states": "Zobrazit stavy",
+  "aspect-ratio": "Prozkoumejte rádio"
 }
