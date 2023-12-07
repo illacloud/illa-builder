@@ -9,7 +9,9 @@ import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
 import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
+import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { fetchDownloadURLByTinyURL } from "@/services/drive"
+import store from "@/store"
 import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { getContentTypeByFileExtension, getFileName } from "@/utils/file"
 import { isILLAAPiError } from "@/utils/typeHelper"
@@ -87,7 +89,15 @@ export const downloadFromILLADrive = async (
           }
         }
       } catch (e) {
-        const res = handleCollaPurchaseError(e, CollarModalType.TRAFFIC)
+        const rootState = store.getState()
+        const isProductionMode = getIsILLAProductMode(rootState)
+        const res = handleCollaPurchaseError(
+          e,
+          CollarModalType.STORAGE,
+          isProductionMode
+            ? "deploy_traffic_not_enough_event_handler"
+            : "builder_editor_traffic_not_enough_event_handler",
+        )
         if (res) return
         if (isILLAAPiError(e)) {
           if (
@@ -197,14 +207,26 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
     return
   }
 
-  await uploadFileToDrive(
-    queryID,
-    needUploadFile,
-    {
-      allowAnonymous,
-      folder,
-      replace,
-    },
-    abortController.signal,
-  )
+  try {
+    await uploadFileToDrive(
+      queryID,
+      needUploadFile,
+      {
+        allowAnonymous,
+        folder,
+        replace,
+      },
+      abortController.signal,
+    )
+  } catch (e) {
+    const rootState = store.getState()
+    const isProductionMode = getIsILLAProductMode(rootState)
+    handleCollaPurchaseError(
+      e,
+      CollarModalType.STORAGE,
+      isProductionMode
+        ? "deploy_storage_not_enough_event_handler"
+        : "builder_editor_storage_not_enough_event_handler",
+    )
+  }
 }

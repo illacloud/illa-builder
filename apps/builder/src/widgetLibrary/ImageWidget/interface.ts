@@ -15,7 +15,10 @@ export interface WrappedImageProps
   horizontalAlign?: HorizontalAlign
   imageRadius?: string
   handleOnClick: () => void
-  sourceLoadErrorHandle: (source: string | undefined) => void
+  sourceLoadErrorHandle: (
+    source: string | undefined,
+    widgetType: string,
+  ) => void
 }
 
 export interface ImageWidgetProps

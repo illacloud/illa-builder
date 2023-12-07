@@ -283,7 +283,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
         <div css={applyConfigItemContainer(hasTextArea)}>
           <div css={labelStyle ? labelStyle : labelContainer}>
             {isRequired && (
-              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
+              <span css={applyConfigItemLabelText(getColor("red", "03"))}>
                 *
               </span>
             )}

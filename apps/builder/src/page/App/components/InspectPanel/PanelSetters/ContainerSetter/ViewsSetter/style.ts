@@ -33,7 +33,7 @@ export const applyOptionStyle = (isSelect: boolean) => {
     height: 16px;
     border-radius: 8px;
     border: ${isSelect
-      ? `4px solid ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+      ? `4px solid ${globalColor(`--${illaPrefix}-techPurple-03`)}`
       : `2px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)}`};
     cursor: pointer;
   `

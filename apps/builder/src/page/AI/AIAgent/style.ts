@@ -116,13 +116,13 @@ export const premiumContainerStyle = css`
   box-sizing: border-box;
   border-radius: 4px;
   padding: 1px 7px;
-  color: ${getColor("techPurple", "01")};
+  color: ${getColor("techPurple", "03")};
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
   text-transform: capitalize;
-  background: ${getColor("techPurple", "07")};
+  background: ${getColor("techPurple", "08")};
 `
 
 export const uploadContainerStyle = css`

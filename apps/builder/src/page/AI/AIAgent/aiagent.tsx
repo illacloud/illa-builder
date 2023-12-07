@@ -546,6 +546,7 @@ export const AIAgent: FC = () => {
     if (isPremiumModel(getValues("model")) && !canUseBillingFeature) {
       upgradeModal({
         modalType: "agent",
+        from: "agent_run_gpt4",
       })
       return
     }
@@ -777,6 +778,7 @@ export const AIAgent: FC = () => {
                         ) {
                           upgradeModal({
                             modalType: "agent",
+                            from: "agent_edit_gpt4",
                           })
                           return
                         }
@@ -1263,91 +1265,78 @@ export const AIAgent: FC = () => {
                 <Controller
                   render={({ field: contributeField }) => (
                     <div css={rightPanelContainerStyle}>
-                      <PreviewChat
-                        showShareDialog={showShareAgentModalOnlyForShare(
-                          currentTeamInfo,
-                        )}
-                        showContributeDialog={showShareAgentModal(
-                          currentTeamInfo,
-                          currentTeamInfo.myRole,
-                          contributeField.value,
-                        )}
-                        isRunning={isRunning}
-                        hasCreated={Boolean(idField.value)}
-                        isMobile={false}
-                        editState="EDIT"
-                        agentType={field.value}
-                        chatMessages={chatMessages}
-                        generationMessage={generationMessage}
-                        isReceiving={isReceiving}
-                        blockInput={!isRunning || blockInputDirty}
-                        onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
-                          track(
-                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                            {
-                              element: "send",
-                              parameter5: getValues("aiAgentID") || "-1",
-                            },
-                          )
-                          sendMessage(
-                            {
-                              threadID: message.threadID,
-                              prompt: encodeURIComponent(message.message),
-                              variables: [],
-                              actionID: getValues("aiAgentID"),
-                              modelConfig: getValues("modelConfig"),
-                              model: getValues("model"),
-                              agentType: getValues("agentType"),
-                            } as ChatSendRequestPayload,
-                            TextSignal.RUN,
-                            agentType,
-                            "chat",
-                            true,
+                      <MixpanelTrackProvider
+                        basicTrack={track}
+                        pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT}
+                      >
+                        <PreviewChat
+                          showShareDialog={showShareAgentModalOnlyForShare(
+                            currentTeamInfo,
+                          )}
+                          showContributeDialog={showShareAgentModal(
+                            currentTeamInfo,
+                            currentTeamInfo.myRole,
+                            contributeField.value,
+                          )}
+                          isRunning={isRunning}
+                          hasCreated={Boolean(idField.value)}
+                          isMobile={false}
+                          editState="EDIT"
+                          agentType={field.value}
+                          chatMessages={chatMessages}
+                          generationMessage={generationMessage}
+                          isReceiving={isReceiving}
+                          blockInput={!isRunning || blockInputDirty}
+                          onSendMessage={(
                             message,
-                          )
-                        }}
-                        onCancelReceiving={() => {
-                          sendMessage(
-                            {} as ChatSendRequestPayload,
-                            TextSignal.STOP_ALL,
-                            field.value,
-                            "stop_all",
-                            false,
-                          )
-                          setIsReceiving(false)
-                        }}
-                        onShowShareDialog={() => {
-                          if (
-                            !openShareAgentModalOnlyForShare(currentTeamInfo)
-                          ) {
-                            upgradeModal({
-                              modalType: "upgrade",
-                            })
-                            return
-                          }
-                          setDefaultShareTag(ShareAgentTab.SHARE_WITH_TEAM)
-                          setShareDialogVisible(true)
-                          track(
-                            ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                            {
-                              element: "share_modal",
-                              parameter5: data.agent.aiAgentID,
-                            },
-                          )
-                        }}
-                        onShowContributeDialog={() => {
-                          if (contributeField.value) {
+                            agentType: AI_AGENT_TYPE,
+                          ) => {
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                              {
+                                element: "send",
+                                parameter5: getValues("aiAgentID") || "-1",
+                              },
+                            )
+                            sendMessage(
+                              {
+                                threadID: message.threadID,
+                                prompt: encodeURIComponent(message.message),
+                                variables: [],
+                                actionID: getValues("aiAgentID"),
+                                modelConfig: getValues("modelConfig"),
+                                model: getValues("model"),
+                                agentType: getValues("agentType"),
+                              } as ChatSendRequestPayload,
+                              TextSignal.RUN,
+                              agentType,
+                              "chat",
+                              true,
+                              message,
+                            )
+                          }}
+                          onCancelReceiving={() => {
+                            sendMessage(
+                              {} as ChatSendRequestPayload,
+                              TextSignal.STOP_ALL,
+                              field.value,
+                              "stop_all",
+                              false,
+                            )
+                            setIsReceiving(false)
+                          }}
+                          onShowShareDialog={() => {
                             if (
                               !openShareAgentModalOnlyForShare(currentTeamInfo)
                             ) {
                               upgradeModal({
                                 modalType: "upgrade",
+                                from: "agent_edit_share",
                               })
                               return
                             }
-                            setDefaultShareTag(ShareAgentTab.TO_MARKETPLACE)
+                            setDefaultShareTag(ShareAgentTab.SHARE_WITH_TEAM)
                             setShareDialogVisible(true)
                             track(
                               ILLA_MIXPANEL_EVENT_TYPE.SHOW,
@@ -1357,24 +1346,50 @@ export const AIAgent: FC = () => {
                                 parameter5: data.agent.aiAgentID,
                               },
                             )
-                          } else {
-                            if (
-                              !openShareAgentModal(
-                                currentTeamInfo,
-                                currentTeamInfo.myRole,
-                                contributeField.value,
+                          }}
+                          onShowContributeDialog={() => {
+                            if (contributeField.value) {
+                              if (
+                                !openShareAgentModalOnlyForShare(
+                                  currentTeamInfo,
+                                )
+                              ) {
+                                upgradeModal({
+                                  modalType: "upgrade",
+                                  from: "agent_edit_contribute",
+                                })
+                                return
+                              }
+                              setDefaultShareTag(ShareAgentTab.TO_MARKETPLACE)
+                              setShareDialogVisible(true)
+                              track(
+                                ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
+                                {
+                                  element: "share_modal",
+                                  parameter5: data.agent.aiAgentID,
+                                },
                               )
-                            ) {
-                              upgradeModal({
-                                modalType: "upgrade",
-                              })
-                              return
+                            } else {
+                              if (
+                                !openShareAgentModal(
+                                  currentTeamInfo,
+                                  currentTeamInfo.myRole,
+                                  contributeField.value,
+                                )
+                              ) {
+                                upgradeModal({
+                                  modalType: "upgrade",
+                                  from: "agent_edit_contribute",
+                                })
+                                return
+                              }
+                              setContributedDialogVisible(true)
                             }
-                            setContributedDialogVisible(true)
-                          }
-                        }}
-                        onClickCreateApp={handleClickCreateApp}
-                      />
+                          }}
+                          onClickCreateApp={handleClickCreateApp}
+                        />
+                      </MixpanelTrackProvider>
                     </div>
                   )}
                   name="publishedToMarketplace"

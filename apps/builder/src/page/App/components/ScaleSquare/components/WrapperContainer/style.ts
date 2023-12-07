@@ -21,7 +21,7 @@ const getWrapperBorderColor = (
     return "transparent"
   }
   if (isSelected || hasEditors || isHover || canShowDot) {
-    return getColor("techPurple", "01")
+    return getColor("techPurple", "03")
   }
   return "transparent"
 }
@@ -94,7 +94,7 @@ export const applyWrapperPendingStyle = (
     canShowDot,
   )};
   background-color: ${isEditor && hasError && !isSelected
-    ? getColor("red", "07")
+    ? getColor("red", "08")
     : "transparent"};
   ${isLimitedModeAndOverLap && isSelected
     ? `border-bottom:unset !important`

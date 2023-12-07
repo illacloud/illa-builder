@@ -19,7 +19,7 @@ export const applyCustomIconStyle = (
 ): SerializedStyles => {
   const selectedStyle = isSelected
     ? css`
-        color: ${globalColor(`--${illaPrefix}-purple-01`)};
+        color: ${globalColor(`--${illaPrefix}-purple-03`)};
       `
     : css`
         color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
@@ -36,7 +36,7 @@ export const applyCustomIconStyle = (
 
     :hover {
       cursor: pointer;
-      color: ${globalColor(`--${illaPrefix}-purple-01`)};
+      color: ${globalColor(`--${illaPrefix}-purple-03`)};
     }
   `
 }

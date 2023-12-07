@@ -78,7 +78,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           onPause={onPause}
           onEnded={onEnded}
           onError={() => {
-            sourceLoadErrorHandler?.(url)
+            sourceLoadErrorHandler?.(url, "VIDEO_WIDGET")
             setLoading(false)
             setError(true)
           }}

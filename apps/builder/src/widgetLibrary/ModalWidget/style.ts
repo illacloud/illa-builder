@@ -34,13 +34,13 @@ export const resizeLineStyle = css`
 
 export const resizeBarStyle = css`
   fill: ${globalColor(`--${illaPrefix}-white-01`)};
-  stroke: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+  stroke: ${globalColor(`--${illaPrefix}-techPurple-03`)};
   :hover {
-    fill: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    fill: ${globalColor(`--${illaPrefix}-techPurple-03`)};
     stroke: ${globalColor(`--${illaPrefix}-white-01`)};
   }
   :active {
-    fill: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    fill: ${globalColor(`--${illaPrefix}-techPurple-03`)};
     stroke: ${globalColor(`--${illaPrefix}-white-01`)};
   }
 `

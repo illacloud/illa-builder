@@ -75,7 +75,7 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
       draggable={false}
       onClick={handleOnClick}
       onError={() => {
-        sourceLoadErrorHandle?.(imageSrc)
+        sourceLoadErrorHandle?.(imageSrc, "image")
       }}
     />
   )

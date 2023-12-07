@@ -22,7 +22,7 @@ export const applyMoveBarWrapperStyle = (
 
   const backgroundColorStyle = isError
     ? globalColor(`--${illaPrefix}-red-03`)
-    : globalColor(`--${illaPrefix}-techPurple-01`)
+    : globalColor(`--${illaPrefix}-techPurple-03`)
   return css`
     height: ${MOVE_BAR_HEIGHT}px;
     padding: 1px 4px 1px 0;

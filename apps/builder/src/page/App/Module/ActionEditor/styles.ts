@@ -117,8 +117,8 @@ export const getOAuthStatusContentStyle = (isSuccess: boolean) => {
     gap: 8px;
     height: 40px;
     background: ${isSuccess
-      ? getColor("green", "07")
-      : getColor("orange", "07")};
+      ? getColor("green", "08")
+      : getColor("orange", "08")};
     border-radius: 4px;
     align-items: center;
   `

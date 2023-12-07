@@ -29,7 +29,7 @@ export const listItemContainerStyle = css`
 export const singleListItemContainerStyle = (isSelected: boolean) => css`
   ${listItemContainerStyle};
   background-color: ${isSelected
-    ? getColor("techPurple", "07")
+    ? getColor("techPurple", "08")
     : "transparent"};
 `
 

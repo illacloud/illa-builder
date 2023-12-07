@@ -53,7 +53,7 @@ export function applyActionItemContainerStyle(
 ): SerializedStyles {
   return css`
     background: ${selected
-      ? globalColor(`--${illaPrefix}-techPurple-07`)
+      ? globalColor(`--${illaPrefix}-techPurple-08`)
       : "transparent"};
     width: 100%;
     align-items: center;
@@ -66,7 +66,7 @@ export function applyActionItemContainerStyle(
 
     &:hover {
       background: ${selected
-        ? globalColor(`--${illaPrefix}-techPurple-07`)
+        ? globalColor(`--${illaPrefix}-techPurple-08`)
         : globalColor(`--${illaPrefix}-grayBlue-09`)};
     }
   `
