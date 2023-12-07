@@ -2,7 +2,6 @@ import { getSpecialThemeColor } from "@illa-design/react"
 
 export const colorSchemes = [
   "white",
-  "blackAlpha",
   "grayBlue",
   "red",
   "orange",
@@ -11,7 +10,6 @@ export const colorSchemes = [
   "blue",
   "cyan",
   "purple",
-  "transparent",
 ]
 
 export const COLOR_MAP = (() => {
