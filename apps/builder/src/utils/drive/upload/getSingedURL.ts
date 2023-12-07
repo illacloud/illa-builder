@@ -180,8 +180,7 @@ export const uploadFileToDrive = async (
       folder,
       {
         fileName: needUploadFile.name,
-        // size: needUploadFile.size,
-        size: 32212254720,
+        size: needUploadFile.size,
         contentType: needUploadFile.type,
         replace,
       },
