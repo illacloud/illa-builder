@@ -18,7 +18,6 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
       presetColors={PRE_COLOR}
       disableAlpha={disableAlpha}
       onChange={(color) => {
-        console.log(COLOR_MAP, color)
         if (COLOR_MAP.has(color.hexa) || COLOR_MAP.has(color.hex)) {
           onChange(COLOR_MAP.get(color.hex) || COLOR_MAP.get(color.hexa)!!)
         } else {

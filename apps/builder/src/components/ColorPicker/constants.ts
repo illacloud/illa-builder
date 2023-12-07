@@ -12,6 +12,9 @@ export const colorSchemes = [
   "purple",
 ]
 
+// for old app
+export const deletedColorSchemes = ["transparent", "blackAlpha"]
+
 export const COLOR_MAP = (() => {
   const m = new Map<string, string>()
   colorSchemes.forEach((color) => {
