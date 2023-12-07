@@ -57,8 +57,8 @@ export const mobileMenuWrapperStyle = css`
 export const applyMobileLinkStyle = (selected: boolean): SerializedStyles => {
   const selectedStyle = selected
     ? css`
-        background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-        color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+        background: ${globalColor(`--${illaPrefix}-techPurple-08`)};
+        color: ${globalColor(`--${illaPrefix}-techPurple-03`)};
         font-weight: 500;
       `
     : null
