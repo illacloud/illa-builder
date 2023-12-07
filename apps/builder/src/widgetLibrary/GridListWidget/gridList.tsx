@@ -29,6 +29,8 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
     disabled,
     loading,
     themeColor,
+    page = 1,
+    pageSize = 10,
   } = props
 
   const executionResult = useSelector(getExecutionResult)
@@ -184,8 +186,11 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
             selectedIndex: 0,
           }
         } else {
+          const selectItemIndex = enableServerSidePagination
+            ? index
+            : index + page * (pageSize ?? 0)
           value = {
-            selectedItem: dataSources[index],
+            selectedItem: dataSources[selectItemIndex],
             selectedIndex: index,
           }
         }
@@ -204,7 +209,10 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
       dataSources,
       disabled,
       displayName,
+      enableServerSidePagination,
       handleUpdateMultiExecutionResult,
+      page,
+      pageSize,
       selectIndexForMark,
       triggerEventHandler,
     ],
