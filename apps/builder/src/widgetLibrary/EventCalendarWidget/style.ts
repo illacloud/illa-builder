@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { View } from "react-big-calendar"
-import { getColor } from "@illa-design/react"
+import { getColor, getSpecialThemeColor } from "@illa-design/react"
 
 const applyCalendarFont = css`
   font-family: "Inter";
@@ -35,9 +35,9 @@ const applyEventCardStyle = (
       align-items: center;
       gap: 4px;
       background-color: ${getColor(eventBackground, "08")};
-      border-left: 2px solid ${getColor(eventBackground, "03")}!important;
+      border-left: 2px solid ${getSpecialThemeColor(eventBackground)}!important;
       border-radius: 4px;
-      color: ${getColor(eventTextColor, "03")};
+      color: ${getSpecialThemeColor(eventTextColor)};
       padding: ${view !== "month" ? "12px 16px" : ""};
       overflow: hidden;
     }
@@ -50,7 +50,7 @@ const applyEventCardStyle = (
 const applyMonthView = (titleColor: string, eventTextColor: string) => {
   return css`
     .rbc-month-view {
-      color: ${getColor(titleColor, "03")};
+      color: ${getSpecialThemeColor(titleColor)};
       font-weight: 600;
       .rbc-off-range {
         color: ${getColor(titleColor, "06")}!important;
@@ -66,7 +66,7 @@ const applyMonthView = (titleColor: string, eventTextColor: string) => {
         background-color: transparent !important;
         &:focus,
         &:hover {
-          color: ${getColor(eventTextColor, "03")};
+          color: ${getSpecialThemeColor(eventTextColor)};
         }
       }
     }
@@ -105,7 +105,7 @@ const applyIndicatorStyle = (indicatorTop: number) => {
 
 const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
   const color = css`
-    color: ${getColor(titleColor, "03")}!important;
+    color: ${getSpecialThemeColor(titleColor)}!important;
   `
   return css`
     .rbc-btn-group {
@@ -191,7 +191,7 @@ export const applyTitleColor = (titleColor: string) => {
     .rbc-button-link,
     .rbc-time-gutter .rbc-timeslot-group,
     tbody {
-      color: ${getColor(titleColor, "03")};
+      color: ${getSpecialThemeColor(titleColor)};
     }
     .rbc-off-range .rbc-button-link {
       color: ${getColor(titleColor, "06")}!important;
@@ -239,7 +239,7 @@ export const ApplyCustomStyle = (
       background: none !important;
     }
     [data-target="${displayName}"] {
-      color: ${getColor(titleColor, "03")} !important;
+      color: ${getSpecialThemeColor(titleColor)} !important;
       visibility: ${showCurrentTime ? "visible" : "hidden"} !important;
     }
     .rbc-addons-dnd-resizable {

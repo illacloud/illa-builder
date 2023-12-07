@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 import { TableCellAlign } from "@/widgetLibrary/TableWidget/interface"
 
 export const overFlowStyle = css`
@@ -92,7 +92,7 @@ export const applyTableCellBackgroundStyle = (
 ): SerializedStyles => {
   if (color) {
     return css`
-      background-color: ${getColor(color, "03")};
+      background-color: ${getSpecialThemeColor(color)};
     `
   }
   return css``
