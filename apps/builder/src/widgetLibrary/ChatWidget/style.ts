@@ -1,5 +1,9 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import {
+  getColor,
+  getSpecialThemeColor,
+  hasNineStepColor,
+} from "@illa-design/react"
 
 export const resizeLineStyle = css`
   width: 100%;
@@ -21,7 +25,7 @@ export const chatContainerStyle = (backgroundColor: string) => css`
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  background-color: ${getColor(backgroundColor, "01")};
+  background-color: ${getSpecialThemeColor(backgroundColor)};
 `
 
 export const messageListContainerStyle = css`
@@ -110,14 +114,15 @@ export const messageTextStyle = (
   rightMessageColor: string,
 ) => {
   const backgroundColor = isOwn
-    ? getColor(rightMessageColor, "03")
-    : getColor(leftMessageColor, "09")
+    ? getSpecialThemeColor(rightMessageColor)
+    : getColor(
+        leftMessageColor,
+        hasNineStepColor(leftMessageColor) ? "09" : "08",
+      )
   const color = isOwn ? getColor("white", "01") : getColor("grayBlue", "02")
 
   return css`
-    background-color: ${backgroundColor
-      ? backgroundColor
-      : getColor(leftMessageColor, "08")};
+    background-color: ${backgroundColor};
     color: ${color}!important;
     padding: 8px 12px;
     border-radius: 8px;
@@ -132,15 +137,16 @@ export const messageTextStyle = (
 }
 
 export const receivingStyle = (leftMessageColor: string) => {
-  const backgroundColor = getColor(leftMessageColor, "09")
+  const backgroundColor = getColor(
+    leftMessageColor,
+    hasNineStepColor(leftMessageColor) ? "09" : "08",
+  )
   return css`
     padding: 8px 12px;
     border-radius: 8px;
     width: 40px;
     height: 33px;
-    background-color: ${backgroundColor
-      ? backgroundColor
-      : getColor(leftMessageColor, "08")};
+    background-color: ${backgroundColor};
     color: ${getColor("grayBlue", "02")}!important;
     &:before {
       content: "";

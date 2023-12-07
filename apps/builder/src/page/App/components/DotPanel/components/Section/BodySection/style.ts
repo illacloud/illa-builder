@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { handleSpecialColor } from "@illa-design/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 
 export const bodySectionWrapperStyle = (background: string) => css`
   position: absolute;
@@ -7,5 +7,5 @@ export const bodySectionWrapperStyle = (background: string) => css`
   left: var(--illa-canvas-body-left, 0);
   top: var(--illa-canvas-body-top, 0);
   height: var(--illa-canvas-body-height);
-  background: ${handleSpecialColor(background, "03")};
+  background: ${getSpecialThemeColor(background)};
 `

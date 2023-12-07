@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { getColor, getSpecialThemeColor } from "@illa-design/react"
 import {
   LIST_ITEM_MARGIN_TOP,
   WIDGET_SCALE_SQUARE_BORDER_WIDTH,
@@ -46,7 +46,9 @@ export const applyListItemStyle = (
   return css`
     width: 100%;
     height: ${itemHeight ? `${itemHeight}px` : "100%"};
-    background-color: ${bgColor ? getColor(bgColor, "03") : "transparent"};
+    background-color: ${bgColor
+      ? getSpecialThemeColor(bgColor)
+      : "transparent"};
     flex: none;
     border: ${WIDGET_SCALE_SQUARE_BORDER_WIDTH}px dashed
       ${canShowBorder ? getColor("techPurple", "03") : "transparent"};
