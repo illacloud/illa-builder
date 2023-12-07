@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Ingen tilgang"
   },
-  "show_states": "Vis tilstander"
+  "show_states": "Vis tilstander",
+  "aspect-ratio": "Velge om"
 }

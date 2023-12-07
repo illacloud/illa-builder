@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Ingen adgangstilladelse"
   },
-  "show_states": "Vis tilstande"
+  "show_states": "Vis tilstande",
+  "aspect-ratio": "Kontrollér radio"
 }

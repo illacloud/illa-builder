@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Ei käyttöoikeuksia"
   },
-  "show_states": "Näytä tilat"
+  "show_states": "Näytä tilat",
+  "aspect-ratio": "Kuvasuhde radio"
 }
