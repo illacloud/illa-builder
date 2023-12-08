@@ -15,7 +15,7 @@
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com/">
-  <img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/20230919-210525.png">
+  <img src="https://github.com/illacloud/illa-builder/assets/112603073/90fb83fb-f93d-4a14-9f60-9f98756fd448">
 </a>
 </p>
 
