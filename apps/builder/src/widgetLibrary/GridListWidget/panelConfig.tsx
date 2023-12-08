@@ -241,6 +241,7 @@ export const GRID_LIST_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.grid_list.column_num"),
         attrName: "numberOfColumns",
         setterType: "INPUT_SETTER",
+        isSetterSingleRow: true,
         bindAttrName: ["columnNumAdaptation"],
         shown: (v) => v === COLUMN_NUM_ADAPTATION.FIXED,
         expectedType: VALIDATION_TYPES.NUMBER,
