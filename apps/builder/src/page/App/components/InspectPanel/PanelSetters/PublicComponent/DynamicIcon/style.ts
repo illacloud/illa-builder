@@ -7,7 +7,7 @@ export const applyCustomIconStyle = (
 ): SerializedStyles => {
   return css`
     color: ${isDynamic
-      ? getColor("techPurple", "01")
+      ? getColor("techPurple", "03")
       : getColor("grayBlue", "06")};
     width: 16px;
     height: 16px;
@@ -19,7 +19,7 @@ export const applyCustomIconStyle = (
 
     :hover {
       cursor: pointer;
-      color: ${getColor("techPurple", "01")};
+      color: ${getColor("techPurple", "03")};
     }
   `
 }

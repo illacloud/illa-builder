@@ -5,10 +5,6 @@ import {
   UPLOAD_FILE_DUPLICATION_HANDLER,
   UPLOAD_FILE_STATUS,
 } from "@illa-public/public-types"
-import {
-  CollarModalType,
-  handleCollaPurchaseError,
-} from "@illa-public/upgrade-modal"
 import axios from "axios"
 import { Zip, ZipPassThrough } from "fflate"
 import { createWriteStream } from "streamsaver"
@@ -237,19 +233,10 @@ export const uploadFileToDrive = async (
     updateFileDetailStore.updateFileDetailInfo(queryID, {
       status: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
     })
-    const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
-    if (res) return
-    if (isILLAAPiError(e)) {
-      if (e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_VOLUME) {
-        message.error({
-          content: i18n.t("editor.inspect.setter_message.noStorage"),
-        })
-        return
-      }
-    }
     message.error({
       content: i18n.t("editor.inspect.setter_message.uploadfail"),
     })
+    throw e
   }
 }
 
@@ -284,8 +271,6 @@ export const handleFileToDriveResource = async (
       status: uploadResult,
     }
   } catch (e) {
-    const res = handleCollaPurchaseError(e, CollarModalType.STORAGE)
-    if (res) return
     if (isILLAAPiError(e)) {
       if (e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_VOLUME) {
         message.error({

@@ -108,7 +108,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
             variant="text"
             onClick={onAdd}
             leftIcon={
-              <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
+              <AddIcon color={globalColor(`--${illaPrefix}-techPurple-03`)} />
             }
           >
             {t("editor.action.panel.btn.new")}

@@ -35,7 +35,6 @@ const getFileInfo = (
   const contentType = getContentTypeByFileExtension(
     fileDownloadName.split(".")[1],
   )
-
   let tmpData = fileData
   if (!isBase64) {
     tmpData = `data:${contentType};base64,${fileData}`

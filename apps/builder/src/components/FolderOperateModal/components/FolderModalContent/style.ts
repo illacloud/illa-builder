@@ -79,5 +79,5 @@ export const closeStyle = css`
 `
 
 export const breadItemStyle = (isLast: boolean) => css`
-  color: ${isLast ? getColor("techPurple", "01") : getColor("gray", "04")};
+  color: ${isLast ? getColor("techPurple", "03") : getColor("gray", "04")};
 `

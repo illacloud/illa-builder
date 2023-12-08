@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "没有访问权限"
   },
-  "show_states": "Show states"
+  "show_states": "Show states",
+  "aspect-ratio": "横纵比"
 }

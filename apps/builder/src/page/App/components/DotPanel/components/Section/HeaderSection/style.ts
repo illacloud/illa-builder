@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 import { HEADER_MIN_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyHeaderSectionWrapperStyle = (
@@ -16,6 +17,8 @@ export const applyHeaderSectionWrapperStyle = (
   display: flex;
   flex-direction: column;
   min-height: ${HEADER_MIN_HEIGHT}px;
-  border-bottom: ${dividerColor ? `1px solid ${dividerColor}` : "unset"};
-  background: ${background};
+  border-bottom: ${dividerColor
+    ? `1px solid ${getSpecialThemeColor(dividerColor)}`
+    : "unset"};
+  background: ${getSpecialThemeColor(background)};
 `

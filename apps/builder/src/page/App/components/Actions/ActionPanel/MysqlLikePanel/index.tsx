@@ -109,6 +109,7 @@ const MysqlLikePanel: FC = () => {
     if (!canUseBillingFeature) {
       upgradeModal({
         modalType: "upgrade",
+        from: "sql_generate",
       })
       return
     }

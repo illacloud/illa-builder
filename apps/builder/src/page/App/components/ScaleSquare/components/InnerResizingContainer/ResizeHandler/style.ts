@@ -113,20 +113,20 @@ export function applyBarPointerStyle(
     applyBarPointerShapeStyle(barPosition)
 
   const baseColor = isLimitedMode
-    ? getColor("techPink", "01")
-    : getColor("techPurple", "01")
+    ? getColor("techPink", "03")
+    : getColor("techPurple", "03")
   return css`
     ${barPositionStyle};
     border: 1px solid ${baseColor};
     :hover {
       background-color: ${isLimitedMode
-        ? getColor("techPink", "01")
-        : getColor("techPurple", "01")};
+        ? getColor("techPink", "03")
+        : getColor("techPurple", "03")};
     }
     :active {
       background-color: ${isLimitedMode
-        ? getColor("techPink", "01")
-        : getColor("techPurple", "01")};
+        ? getColor("techPink", "03")
+        : getColor("techPurple", "03")};
     }
   `
 }
@@ -172,18 +172,18 @@ export function applySquarePointerStyle(
   return css`
     ${positionStyle};
     box-sizing: border-box;
-    border: 1px solid ${getColor("techPurple", "01")};
+    border: 1px solid ${getColor("techPurple", "03")};
     height: 5px;
     width: 5px;
     position: absolute;
     background: ${getColor("white", "01")};
     z-index: 150;
     &:active {
-      background: ${getColor("techPurple", "01")};
+      background: ${getColor("techPurple", "03")};
     }
 
     &:hover {
-      background: ${getColor("techPurple", "01")};
+      background: ${getColor("techPurple", "03")};
     }
   `
 }

@@ -20,7 +20,7 @@ export const applyDotStyle = (selected?: boolean) => {
     width: 6px;
     height: 6px;
     background-color: ${selected
-      ? getColor("techPurple", "01")
+      ? getColor("techPurple", "03")
       : getColor("grayBlue", "02")};
     border-radius: 50%;
   `
@@ -69,7 +69,7 @@ export const itemHeaderStyle = css`
 export const applyTimeStyle = (selected?: boolean) => {
   return css`
     color: ${selected
-      ? getColor("techPurple", "01")
+      ? getColor("techPurple", "03")
       : getColor("grayBlue", "02")};
     font-size: 16px;
     font-weight: 500;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { View } from "react-big-calendar"
-import { getColor } from "@illa-design/react"
+import { getSpecialThemeColor } from "@illa-design/react"
 import {
   isInWeekOrDay,
   isLightColor,
@@ -59,7 +59,7 @@ export const useElementSize = (
 
   useEffect(() => {
     if (slotBackground) {
-      const formatColor = getColor(slotBackground, "01")
+      const formatColor = getSpecialThemeColor(slotBackground)
       setIsLight(isLightColor(formatColor))
     }
   }, [slotBackground])

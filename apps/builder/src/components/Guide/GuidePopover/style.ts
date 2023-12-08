@@ -20,7 +20,7 @@ export const bottomStyle = css`
 `
 
 export const guidePopoverStyle = css`
-  background-color: ${getColor("techPurple", "01")};
+  background-color: ${getColor("techPurple", "03")};
   padding: 8px 4px;
   max-width: 264px;
 `
@@ -56,12 +56,12 @@ export const actionStyle = css`
 export const triggerStyle = css`
   & > div > div {
     & > div {
-      background-color: ${getColor("techPurple", "01")};
+      background-color: ${getColor("techPurple", "03")};
       border-radius: 2px;
     }
 
     & > svg {
-      color: ${getColor("techPurple", "01")};
+      color: ${getColor("techPurple", "03")};
     }
   }
 `

@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { getColor, getSpecialThemeColor } from "@illa-design/react"
 import { COLUMN_NUM_ADAPTATION, ShadowOptions } from "./interface"
 import { getGapByShadow } from "./utils"
 
@@ -41,7 +41,9 @@ export const applyListItemStyle = (
   return css`
     width: 100%;
     height: ${itemHeight ? `${itemHeight}px` : "100%"};
-    background-color: ${bgColor || "white"};
+    background-color: ${bgColor
+      ? getSpecialThemeColor(bgColor)
+      : "transparent"};
     flex: none;
     opacity: ${isEditor && !isFirst ? 0.5 : 1};
     ${borderStyle};
@@ -112,7 +114,7 @@ export const selectStyle = (
   return css`
     width: 100%;
     height: ${itemHeight ? `${itemHeight}px` : "100%"};
-    outline: 1px solid ${themeColor ?? getColor("blue", "01")} !important;
+    outline: 1px solid ${themeColor ?? getColor("blue", "03")} !important;
     border-radius: ${radius ?? "unset"};
   `
 }

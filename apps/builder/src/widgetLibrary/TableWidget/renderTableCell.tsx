@@ -8,6 +8,7 @@ import {
   Rate,
   Tag,
   getColor,
+  getSpecialThemeColor,
 } from "@illa-design/react"
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
@@ -107,8 +108,8 @@ const getTagColor = (color: string, rowIndex: number, index: number) => {
   return color === "auto"
     ? tagDefaultColor[(rowIndex + index) % tagDefaultColor.length]
     : tagColorSchemeOptions.includes(color)
-    ? color
-    : getColor(color, "03")
+      ? color
+      : getSpecialThemeColor(color)
 }
 
 export const RenderTableTag: FC<{

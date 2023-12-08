@@ -12,13 +12,13 @@ const applyTriangleStyle = (position: CurrentMaskPosition) => {
       ? css`
           bottom: -5px;
           border-width: 6px 6px 0 6px;
-          border-color: ${getColor("techPurple", "01")} transparent transparent
+          border-color: ${getColor("techPurple", "03")} transparent transparent
             transparent;
         `
       : css`
           top: -5px;
           border-width: 0 6px 6px 6px;
-          border-color: transparent transparent ${getColor("techPurple", "01")}
+          border-color: transparent transparent ${getColor("techPurple", "03")}
             transparent;
         `
   return css`
@@ -46,21 +46,21 @@ export const applyPopoverStyle = (
           left: ${domRect?.left - 60}px;
         `
       : position === "right"
-      ? css`
-          top: ${domRect?.top + POPOVER_MARGIN}px;
-          left: ${domRect?.left - domRect?.width}px;
-        `
-      : css`
-          top: ${domRect?.bottom + POPOVER_MARGIN}px;
-          left: ${domRect?.left - domRect?.width}px;
-        `
+        ? css`
+            top: ${domRect?.top + POPOVER_MARGIN}px;
+            left: ${domRect?.left - domRect?.width}px;
+          `
+        : css`
+            top: ${domRect?.bottom + POPOVER_MARGIN}px;
+            left: ${domRect?.left - domRect?.width}px;
+          `
     : css``
 
   return css`
     cursor: move;
     z-index: 11;
     position: absolute;
-    background-color: ${getColor("techPurple", "01")};
+    background-color: ${getColor("techPurple", "03")};
     color: ${getColor("white", "01")};
     padding: 8px 12px;
     border-radius: 2px;

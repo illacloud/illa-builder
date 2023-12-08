@@ -24,8 +24,8 @@ export const stepMaskStyle = css`
   justify-content: center;
   align-items: center;
   color: ${getColor("grayBlue", "04")};
-  background: ${getColor("techPurple", "07")};
-  border: 1px dashed ${getColor("techPurple", "01")};
+  background: ${getColor("techPurple", "08")};
+  border: 1px dashed ${getColor("techPurple", "03")};
 `
 
 // transform stepMaskStyle to function, set {width, height}
@@ -41,8 +41,8 @@ export const applyStepMaskStyle = (shape: {
     justify-content: center;
     align-items: center;
     color: ${getColor("grayBlue", "04")};
-    background: ${getColor("techPurple", "07")};
-    border: 1px dashed ${getColor("techPurple", "01")};
+    background: ${getColor("techPurple", "08")};
+    border: 1px dashed ${getColor("techPurple", "03")};
   `
 }
 

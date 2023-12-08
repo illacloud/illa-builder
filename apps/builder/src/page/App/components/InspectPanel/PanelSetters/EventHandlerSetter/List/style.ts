@@ -28,7 +28,7 @@ export const headerWrapperStyle = css`
 export const fontButtonWrapperStyle = css`
   display: flex;
   align-items: center;
-  color: ${globalColor(`--${illaPrefix}-purple-01`)};
+  color: ${globalColor(`--${illaPrefix}-purple-03`)};
   cursor: pointer;
   height: 24px;
   padding: 1px 8px;

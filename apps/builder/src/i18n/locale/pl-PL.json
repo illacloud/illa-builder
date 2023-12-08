@@ -4660,5 +4660,6 @@
   "error_page": {
     "fobidden": "Brak uprawnień dostępu"
   },
-  "show_states": "Show states"
+  "show_states": "Show states",
+  "aspect-ratio": "Aspect radio"
 }

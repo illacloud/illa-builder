@@ -8,7 +8,7 @@ export const pageItemContainerStyle = (
   padding-left: ${level > 1 ? level * 16 + 8 : 16}px;
   padding-right: 16px;
   background-color: ${isSelected
-    ? getColor("techPurple", "07")
+    ? getColor("techPurple", "08")
     : "transparent"};
   cursor: pointer;
   :hover {
