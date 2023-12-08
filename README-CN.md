@@ -12,10 +12,11 @@
 <div align="center">
 <a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | 简体中文 | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
 </div>
+
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com/">
-  <img src="https://cdn.illacloud.com/official-website/img/hacktoberFest/20230919-210525.png">
+  <img src="https://github.com/illacloud/illa-builder/assets/112603073/90fb83fb-f93d-4a14-9f60-9f98756fd448">
 </a>
 </p>
 
