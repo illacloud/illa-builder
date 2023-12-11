@@ -168,6 +168,7 @@
     "cross-env": "^7.0.3",
     "eslint-config-illa": "workspace:*",
     "protoc": "1.0.4",
+    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-visualizer": "^5.9.2",
     "tsconfig": "workspace:*"
   }
