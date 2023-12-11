@@ -53,6 +53,7 @@
     "@types/lodash": "^4.14.194",
     "@types/uuid": "^9.0.0",
     "eslint-config-illa": "workspace:*",
+    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-visualizer": "^5.9.0",
     "tsconfig": "workspace:*"
   }
