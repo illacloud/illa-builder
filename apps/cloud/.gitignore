@@ -29,3 +29,4 @@ dev-dist
 /playwright/.auth
 stats.html
 /e2e/drive/download-files
+public/locales
