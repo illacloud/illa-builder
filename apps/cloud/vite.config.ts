@@ -1,11 +1,19 @@
 import basicSsl from "@vitejs/plugin-basic-ssl"
 import react from "@vitejs/plugin-react-swc"
 import { resolve } from "path"
+import copy from "rollup-plugin-copy"
 import { visualizer } from "rollup-plugin-visualizer"
 import { PluginOption, defineConfig, loadEnv } from "vite"
 import { checker } from "vite-plugin-checker"
 import svgr from "vite-plugin-svgr"
 import packageConfig from "./package.json"
+
+const I18N_SOURCE_PATH = resolve(
+  __dirname,
+  "../../packages/illa-public-component",
+  "locales/*.json",
+)
+const I18N_TARGET_PATH = resolve(__dirname, "public/locales")
 
 const getUsedEnv = (env: Record<string, string>) => {
   const usedEnv: Record<string, string> = {}
@@ -25,7 +33,16 @@ const getUsedEnv = (env: Record<string, string>) => {
   return usedEnv
 }
 
-const VITE_PLUGINS: PluginOption[] = [
+const VITE_PLUGINS = [
+  copy({
+    targets: [
+      {
+        src: [I18N_SOURCE_PATH, "!**/package.json"],
+        dest: I18N_TARGET_PATH,
+      },
+    ],
+    hook: "buildStart",
+  }),
   react({
     jsxImportSource: "@emotion/react",
   }),

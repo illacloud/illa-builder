@@ -665,6 +665,9 @@ importers:
       eslint-config-illa:
         specifier: workspace:*
         version: link:../../packages/eslint-config-illa
+      rollup-plugin-copy:
+        specifier: ^3.5.0
+        version: 3.5.0
       rollup-plugin-visualizer:
         specifier: ^5.9.0
         version: 5.9.2(rollup@4.6.0)
