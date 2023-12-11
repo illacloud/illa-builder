@@ -4,24 +4,31 @@ import basicSsl from "@vitejs/plugin-basic-ssl"
 import react from "@vitejs/plugin-react-swc"
 import { writeFileSync } from "fs"
 import { resolve } from "path"
+import copy from "rollup-plugin-copy"
 import { visualizer } from "rollup-plugin-visualizer"
 import { defineConfig, loadEnv } from "vite"
+import { PluginOption } from "vite"
 import checker from "vite-plugin-checker"
 import svgr from "vite-plugin-svgr"
 import pkg from "./package.json"
-import { PluginOption } from "vite";
 
 const warningsToIgnore = [
-  ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
-  ['INVALID_ANNOTATION', 'contains an annotation that Rollup cannot interpret'],
+  ["SOURCEMAP_ERROR", "Can't resolve original location of error"],
+  ["INVALID_ANNOTATION", "contains an annotation that Rollup cannot interpret"],
 ]
 
+const I18N_SOURCE_PATH = resolve(
+  __dirname,
+  "../../packages/illa-public-component",
+  "locales/*.json",
+)
+const I18N_TARGET_PATH = resolve(__dirname, "src/i18n/locale")
 
-const muteWarningsPlugin = (warningsToIgnore: string[][]):PluginOption => {
+const muteWarningsPlugin = (warningsToIgnore: string[][]): PluginOption => {
   const mutedMessages = new Set()
   return {
-    name: 'mute-warnings',
-    enforce: 'pre',
+    name: "mute-warnings",
+    enforce: "pre",
     config: (userConfig) => ({
       build: {
         rollupOptions: {
@@ -51,9 +58,9 @@ const muteWarningsPlugin = (warningsToIgnore: string[][]):PluginOption => {
       const diff = warningsToIgnore.filter((x) => !mutedMessages.has(x.join()))
       if (diff.length > 0) {
         this.warn(
-          'Some of your muted warnings never appeared during the build process:',
+          "Some of your muted warnings never appeared during the build process:",
         )
-        diff.forEach((m) => this.warn(`- ${m.join(': ')}`))
+        diff.forEach((m) => this.warn(`- ${m.join(": ")}`))
       }
     },
   }
@@ -82,6 +89,15 @@ export default defineConfig(({ command, mode }) => {
   const isBuildSelfHost =
     env.ILLA_INSTANCE_ID === "SELF_HOST_CLOUD" && command === "build"
   const BASIC_PLUGIN = [
+    copy({
+      targets: [
+        {
+          src: [I18N_SOURCE_PATH, "!**/package.json"],
+          dest: I18N_TARGET_PATH,
+        },
+      ],
+      hook: "buildStart",
+    }),
     mdx(),
     react({
       jsxImportSource: "@emotion/react",
@@ -99,7 +115,7 @@ export default defineConfig(({ command, mode }) => {
     visualizer({
       template: "network",
     }),
-    muteWarningsPlugin(warningsToIgnore)
+    muteWarningsPlugin(warningsToIgnore),
   ]
 
   const plugin = BASIC_PLUGIN

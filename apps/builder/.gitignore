@@ -7,24 +7,15 @@
 node_modules/
 lerna-debug.log
 npm-debug.log
-packages/*/lib
-packages/*/.next
-storybook-static
-packages/*/coverage
-packages/*/dist
-packages/*/node_modules
 npm-debug.log*
 packages/*/.env
 *.log
 *.cache
 yarn-error.log
-packages/*/.rpt2_cache
-packages/*/.rts2_cache*
-packages/*/tsconfig.tsbuildinfo
-tsconfig.tsbuildinfo
 .next
 .idea
 dist
+src/i18n/locale/*.json
 
 # Local Netlify folder
 .netlify
