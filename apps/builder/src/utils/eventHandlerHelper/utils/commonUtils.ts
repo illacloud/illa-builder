@@ -150,9 +150,24 @@ export const setRouter = (params: { pagePath: string; viewPath?: string }) => {
       }
     })
   }
+
   store.dispatch(
     executionActions.updateExecutionByMultiDisplayNameReducer(updateSlice),
   )
+  if (!viewPath) {
+    store.dispatch(
+      executionActions.updateCurrentPagePathReducer({
+        pageDisplayName: pagePath,
+      }),
+    )
+  } else {
+    store.dispatch(
+      executionActions.updateCurrentPagePathReducer({
+        pageDisplayName: pagePath,
+        subPagePath: viewPath,
+      }),
+    )
+  }
 }
 
 export const downloadFile = (params: {
