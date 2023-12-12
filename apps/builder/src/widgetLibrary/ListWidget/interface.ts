@@ -1,4 +1,4 @@
-import { ComponentTreeNode } from "@illa-public/public-types"
+import { ComponentTreeNode, PADDING_MODE } from "@illa-public/public-types"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export enum PAGINATION_TYPE {
@@ -6,6 +6,11 @@ export enum PAGINATION_TYPE {
   CURSOR_BASED = "cursorBased",
 }
 export type ShadowOptions = "none" | "small" | "medium" | "large"
+
+type ItemPadding = {
+  size: string
+  mode: PADDING_MODE
+}
 export interface ListWidgetProps extends BaseWidgetProps {
   dataSources?: Array<unknown>
   enablePagination?: boolean
@@ -34,6 +39,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
   dynamicMaxHeight?: number
   themeColor?: string
   loading?: boolean
+  itemPadding?: ItemPadding
 }
 
 export interface RenderTemplateContainerProps {
@@ -51,6 +57,7 @@ export interface RenderTemplateContainerProps {
   itemGap?: number
   enableAutoPagination?: boolean
   itemShadow?: ShadowOptions
+  itemPadding?: ItemPadding
 }
 
 export interface RenderCopyContainerProps {
@@ -58,6 +65,7 @@ export interface RenderCopyContainerProps {
   templateContainerHeight: number
   columnNumber: number
   displayNamePrefix: string
+  itemPadding?: ItemPadding
 }
 
 export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {

@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { RenderComponentCanvasWithJson } from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainerWithJson"
-import { LIKE_CONTAINER_WIDGET_PADDING } from "@/page/App/components/ScaleSquare/constant/widget"
 import { RenderCopyContainerProps } from "@/widgetLibrary/GridListWidget/interface"
 
 const RenderCopyContainer: FC<RenderCopyContainerProps> = (props) => {
@@ -13,7 +12,7 @@ const RenderCopyContainer: FC<RenderCopyContainerProps> = (props) => {
   return templateComponentNodes ? (
     <RenderComponentCanvasWithJson
       componentNode={templateComponentNodes}
-      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
+      containerPadding={0}
       columnNumber={columnNumber}
       displayNamePrefix={displayNamePrefix}
     />

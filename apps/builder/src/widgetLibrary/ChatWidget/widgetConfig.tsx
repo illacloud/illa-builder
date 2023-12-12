@@ -89,5 +89,6 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
     replyMessage: emptyMessage,
     radius: "4px",
     shadow: "small",
+    avatarPadding: "32px",
   },
 }

@@ -1,6 +1,6 @@
 import PartialIcon from "@assets/rightPagePanel/partial.svg?react"
+import { get } from "lodash"
 import { FC, FocusEventHandler, useRef } from "react"
-import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { Input, RadioGroup } from "@illa-design/react"
 import AllIcon from "@/assets/rightPagePanel/all.svg?react"
@@ -61,12 +61,12 @@ const options = [
 export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   props,
 ) => {
-  const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { handleUpdateMultiAttrDSL, componentNode } = props
+  const { handleUpdateMultiAttrDSL, componentNode, attrName, labelName } = props
+
   const paddingValue = {
-    mode: componentNode?.props?.padding?.mode ?? PADDING_MODE.ALL,
-    size: componentNode?.props?.padding?.size ?? "0",
+    mode: get(componentNode, `props.${attrName}.mode`, PADDING_MODE.ALL),
+    size: get(componentNode, `props.${attrName}.size`, "0"),
   }
 
   const values = paddingValue.size.split(" ")
@@ -76,7 +76,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
 
   const handleChangeAllValue = (allValue: string) => {
     handleUpdateMultiAttrDSL?.({
-      padding: {
+      [attrName]: {
         mode: PADDING_MODE.ALL,
         size: allValue,
       },
@@ -85,7 +85,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
 
   const handleBlurAllValue: FocusEventHandler<HTMLInputElement> = (e) => {
     handleUpdateMultiAttrDSL?.({
-      padding: {
+      [attrName]: {
         mode: PADDING_MODE.ALL,
         size: formatValue(e.target.value ?? ""),
       },
@@ -98,7 +98,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
       values[index] = partialValue
       if (partialValue !== "" && !/^[0-9]+$/.test(partialValue)) return
       handleUpdateMultiAttrDSL?.({
-        padding: {
+        [attrName]: {
           mode: PADDING_MODE.PARTIAL,
           size: values.join(" "),
         },
@@ -117,7 +117,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
         }
 
         handleUpdateMultiAttrDSL?.({
-          padding: {
+          [attrName]: {
             size: result,
             mode: mode,
           },
@@ -135,7 +135,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
         }
 
         handleUpdateMultiAttrDSL?.({
-          padding: {
+          [attrName]: {
             size: result,
             mode: mode,
           },
@@ -155,7 +155,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
       const value = formatPartialValue(e.target.value)
       values[index] = value
       handleUpdateMultiAttrDSL?.({
-        padding: {
+        [attrName]: {
           mode: PADDING_MODE.PARTIAL,
           size: values.join(" "),
         },
@@ -167,7 +167,7 @@ export const DirectionPaddingSetter: FC<DirectionPaddingSetterProps> = (
   return (
     <>
       <div css={setterContainerStyle}>
-        <PanelLabel labelName={t("editor.inspect.setter_group.padding")} />
+        <PanelLabel labelName={labelName} />
         <RadioGroup
           type="button"
           options={options}

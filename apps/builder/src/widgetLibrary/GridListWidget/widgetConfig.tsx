@@ -1,3 +1,4 @@
+import { PADDING_MODE } from "@illa-public/public-types"
 import GridListWidgetIcon from "@/assets/widgetCover/gridList.svg?react"
 import i18n from "@/i18n/config"
 import { TEMPLATE_DISPLAYNAME_KEY } from "@/utils/generators/generateComponentNode"
@@ -51,7 +52,7 @@ export const GRID_LIST_WIDGET_CONFIG: WidgetConfig = {
     },
   ],
   defaults: {
-    enablePagination: "{{true}}",
+    enablePagination: true,
     enableServerSidePagination: false,
     pageSize: "{{10}}",
     paginationType: PAGINATION_TYPE.LIMIT_OFFSET_BASED,
@@ -72,6 +73,10 @@ export const GRID_LIST_WIDGET_CONFIG: WidgetConfig = {
     offset: 0,
     itemBorderRadius: "4px",
     itemShadow: "medium",
+    itemPadding: {
+      mode: PADDING_MODE.ALL,
+      size: "4",
+    },
     beforeCursor: undefined,
     afterCursor: undefined,
     totalRowCount: undefined,
