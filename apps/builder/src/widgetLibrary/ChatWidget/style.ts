@@ -60,36 +60,42 @@ export const messageHeaderTimeStyle = css`
   line-height: 20px;
   color: ${getColor("grayBlue", "03")};
 `
-export const messageContentStyle = (isOwn: boolean) => css`
-  .cs-message__content-wrapper {
-    margin-top: 12px;
-    width: 100%;
-  }
-  .cs-message__footer {
-    margin: 0;
-  }
-  .cs-message__content {
-    height: auto;
-    width: auto;
-    border-radius: 0;
-    padding: 0;
-    background-color: transparent !important;
-  }
-  .cs-message__avatar {
-    margin: ${isOwn ? "12px 40px 0 16px" : "12px 16px 0 40px"} !important;
-    width: 32px;
-    .cs-avatar {
-      height: 32px;
-      width: 32px;
-      min-height: 32px;
-      min-width: 32px;
+export const messageContentStyle = (isOwn: boolean, avatarPadding?: string) => {
+  const finalAvatarPadding = !avatarPadding ? "32px" : avatarPadding
+
+  return css`
+    .cs-message__content-wrapper {
+      margin-top: 12px;
+      width: 100%;
     }
-  }
-  .cs-message__custom-content {
-    padding-bottom: 8px;
-    display: flex;
-  }
-`
+    .cs-message__footer {
+      margin: 0;
+    }
+    .cs-message__content {
+      height: auto;
+      width: auto;
+      border-radius: 0;
+      padding: 0;
+      background-color: transparent !important;
+    }
+    .cs-message__avatar {
+      margin: ${isOwn
+        ? `12px ${finalAvatarPadding} 0 16px`
+        : `12px 16px 0 ${finalAvatarPadding}`} !important;
+      width: 32px;
+      .cs-avatar {
+        height: 32px;
+        width: 32px;
+        min-height: 32px;
+        min-width: 32px;
+      }
+    }
+    .cs-message__custom-content {
+      padding-bottom: 8px;
+      display: flex;
+    }
+  `
+}
 
 export const messageFooterStyle = (isOwn: boolean) => css`
   flex-direction: ${isOwn ? "row-reverse" : "row"};

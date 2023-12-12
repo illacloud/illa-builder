@@ -60,6 +60,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     selectIndexForMark,
     themeColor,
     loading,
+    itemPadding,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [paginationRef, paginationBounds] = useMeasure()
@@ -266,6 +267,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 dynamicMinHeight={dynamicMinHeight}
                 dynamicMaxHeight={dynamicMaxHeight}
                 itemGap={itemGap}
+                itemPadding={itemPadding}
               />
             </div>
           </div>
@@ -296,6 +298,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   isEditMode,
                   loading,
                   itemHeight,
+                  itemPadding?.size,
                 )}
                 key={node.displayName}
                 onClick={() => {

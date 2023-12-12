@@ -1,3 +1,4 @@
+import { PADDING_MODE } from "@illa-public/public-types"
 import ListWidgetIcon from "@/assets/widgetCover/list.svg?react"
 import i18n from "@/i18n/config"
 import { LIST_ITEM_MARGIN_TOP } from "@/page/App/components/ScaleSquare/constant/widget"
@@ -52,7 +53,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     },
   ],
   defaults: {
-    enablePagination: "{{true}}",
+    enablePagination: true,
     enableServerSidePagination: false,
     pageSize: "{{10}}",
     itemGap: LIST_ITEM_MARGIN_TOP,
@@ -70,6 +71,10 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     page: 0,
     offset: 0,
     itemBorderRadius: "4px",
+    itemPadding: {
+      mode: PADDING_MODE.ALL,
+      size: "4",
+    },
     itemShadow: "medium",
     beforeCursor: undefined,
     afterCursor: undefined,

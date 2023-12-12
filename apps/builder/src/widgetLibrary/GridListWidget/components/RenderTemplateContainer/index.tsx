@@ -20,6 +20,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     itemNumber = 1,
     enableAutoPagination,
     itemShadow,
+    itemPadding,
   } = props
   const enableAutoHeight = dynamicHeight !== "fixed"
 
@@ -78,6 +79,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
       columnNumber={columnNumber}
       handleUpdateHeight={handleUpdateHeight}
       canResizeCanvas={enableAutoHeight}
+      containerPadding={itemPadding?.size}
     />
   )
 }

@@ -1,9 +1,11 @@
 import { css } from "@emotion/react"
 import { getColor, getSpecialThemeColor } from "@illa-design/react"
+import { SCROLL_CONTAINER_PADDING } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   LIST_ITEM_MARGIN_TOP,
   WIDGET_SCALE_SQUARE_BORDER_WIDTH,
 } from "@/page/App/components/ScaleSquare/constant/widget"
+import { getPaddingShape } from "@/utils/styleUtils/padding"
 import { ShadowOptions } from "./interface"
 import { getGapByShadow } from "./utils"
 
@@ -37,12 +39,14 @@ export const applyListItemStyle = (
   isEditor: boolean = false,
   loading?: boolean,
   itemHeight?: number,
+  padding?: string,
 ) => {
-  let extraPadding = isFirst
-    ? ""
-    : css`
-        padding: 5px;
-      `
+  // canvas container hash scroll container padding
+  let extraPadding = isFirst ? 0 : SCROLL_CONTAINER_PADDING
+
+  const { paddingTop, paddingBottom, paddingLeft, paddingRight } =
+    getPaddingShape(padding)
+
   return css`
     width: 100%;
     height: ${itemHeight ? `${itemHeight}px` : "100%"};
@@ -55,7 +59,9 @@ export const applyListItemStyle = (
     opacity: ${isEditor && !isFirst ? 0.5 : 1};
     ${borderStyle};
     box-shadow: ${shadowStyle};
-    ${extraPadding};
+
+    padding: ${paddingTop + extraPadding}px ${paddingRight + extraPadding}px
+      ${paddingBottom + extraPadding}px ${paddingLeft + extraPadding}px;
     pointer-events: ${loading ? "none" : "unset"};
   `
 }

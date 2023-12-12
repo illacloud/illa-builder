@@ -57,8 +57,10 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     themeColor,
     loading,
     handleUpdateMultiExecutionResult,
+    itemPadding,
     h,
   } = props
+
   const [containerRef, containerBounds] = useMeasure()
   const [paginationRef, paginationBounds] = useMeasure()
   const [itemRef, itemBounds] = useMeasure()
@@ -236,6 +238,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   dynamicMinHeight={dynamicMinHeight}
                   dynamicMaxHeight={dynamicMaxHeight}
                   itemGap={itemGapY}
+                  itemPadding={itemPadding}
                 />
               </div>
             </div>
@@ -269,6 +272,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   isEditMode,
                   loading,
                   itemHeight,
+                  itemPadding?.size,
                 )}
                 onClick={() => {
                   handleUpdateSelectedItem(index)
