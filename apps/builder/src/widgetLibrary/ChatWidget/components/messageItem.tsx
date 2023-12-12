@@ -23,6 +23,7 @@ export const MessageItem: FC<IMessageItem> = (props) => {
     showAvatar,
     showName,
     showSendTime,
+    avatarPadding,
   } = props
   const {
     message: content = "",
@@ -36,7 +37,6 @@ export const MessageItem: FC<IMessageItem> = (props) => {
   } = message
 
   const isOwnMessage = !!currentSenderId && senderId === currentSenderId
-
   return (
     <>
       <Message
@@ -46,7 +46,7 @@ export const MessageItem: FC<IMessageItem> = (props) => {
           position: "single",
         }}
         avatarPosition={isOwnMessage ? "tr" : "tl"}
-        css={messageContentStyle(isOwnMessage)}
+        css={messageContentStyle(isOwnMessage, avatarPadding)}
       >
         {showAvatar && <Avatar src={senderAvatar} />}
         <Message.Header>
