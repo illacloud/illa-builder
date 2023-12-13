@@ -37,7 +37,6 @@ Um ILLA auszuprobieren, ist es am bequemsten, sich zu registrieren und einzulogg
 Sie können ILLA-Utilities auch manuell bereitstellen und selbst hosten [Docker, docker-compose, und k8s](https://github.com/illacloud/illa-builder/blob/main/README-KR.md#%EC%9E%90%EC%B2%B4-%ED%98%B8%EC%8A%A4%ED%8C%85).
 
 <p>
-  <a href="https://docs.illacloud.com/self-hosted-deployment/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
