@@ -49,7 +49,7 @@ To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](ht
 You can also deploy and [self-host](https://docs.illacloud.com/self-hosted-deployment/) ILLA utils manually([Docker](https://www.docker.com/), [docker-compose](https://docs.docker.com/compose/), and [k8s](https://kubernetes.io/)).
 
 <p>
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
+  <a href="https://docs.illacloud.com/self-hosted-deployment/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
