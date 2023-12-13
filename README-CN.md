@@ -38,7 +38,6 @@
 
 您还可以[本地部署](https://github.com/illacloud/illa-builder/blob/main/README-CN.md#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2)ILLA工具（Docker、Docker Compose和Kubernetes）。
 <p>
-  <a href="https://docs.illacloud.com/self-hosted-deployment/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
