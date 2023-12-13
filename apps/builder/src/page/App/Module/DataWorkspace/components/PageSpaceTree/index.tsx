@@ -26,6 +26,7 @@ export const PageSpaceTree: FC = () => {
     pageSortedKey = [],
     currentSubPagePath,
   } = rootNodeProps
+
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const dispatch = useDispatch()
 
