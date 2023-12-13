@@ -16,7 +16,7 @@
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img src="https://github.com/illacloud/illa-builder/assets/112603073/90fb83fb-f93d-4a14-9f60-9f98756fd448">
+  <img src="https://github.com/illacloud/illa-builder/assets/7929686/8a046562-ba25-4994-bc44-5cc1eb63b30b">
 </a>
 </p>
 
