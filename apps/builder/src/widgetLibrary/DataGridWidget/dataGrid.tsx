@@ -348,7 +348,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           columns={(renderColumns as GridColDef[]) ?? []}
           paginationMode={enableServerSidePagination ? "server" : "client"}
           rowCount={
-            totalRowCount !== undefined
+            totalRowCount !== undefined && enableServerSidePagination
               ? Math.ceil(totalRowCount / (pageSize ?? 1))
               : undefined
           }
