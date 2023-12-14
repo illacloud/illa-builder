@@ -41,7 +41,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     displayName,
     rowSelection,
     rowSelectionMode,
-    overFlow,
     pageSize,
     page,
     pageSizeOptions,
@@ -62,6 +61,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     columns,
+    enablePagination,
   } = props
 
   const rawData = dataSourceMode === "dynamic" ? dataSourceJS : dataSource
@@ -229,6 +229,8 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
             } else {
               if (primaryKey in row) {
                 return get(row, primaryKey)
+              } else {
+                return ""
               }
             }
           }}
@@ -291,7 +293,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
                 ]
               : []
           }
-          pagination={overFlow === "pagination"}
+          pagination={enablePagination}
           pageSizeOptions={isArray(pageSizeOptions) ? pageSizeOptions : []}
           autoPageSize={pageSize === undefined}
           paginationModel={
