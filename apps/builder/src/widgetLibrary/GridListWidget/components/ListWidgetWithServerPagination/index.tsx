@@ -83,6 +83,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const handleChangePage = useCallback(
     (pageNumber: number) => {
       if (pageNumber <= 0 || disabled) return
+      handleUpdateSelectedItem()
       new Promise((resolve) => {
         handleUpdateMultiExecutionResult([
           {
@@ -98,9 +99,10 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       })
     },
     [
-      displayName,
       disabled,
+      handleUpdateSelectedItem,
       handleUpdateMultiExecutionResult,
+      displayName,
       triggerEventHandler,
     ],
   )
@@ -108,6 +110,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const handleCursorBasedChangePage = useCallback(
     (isNext: boolean) => {
       if ((page <= 0 && !isNext) || disabled) return
+      handleUpdateSelectedItem()
       let value: {
         page: number
         beforeCursor: string | undefined
@@ -142,6 +145,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       disabled,
       displayName,
       handleUpdateMultiExecutionResult,
+      handleUpdateSelectedItem,
       nextCursor,
       page,
       previousCursor,
