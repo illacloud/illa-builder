@@ -141,7 +141,7 @@ export const DATA_GRID_WIDGET_CONFIG: WidgetConfig = {
     excludeHiddenColumns: true,
     dataSourceJS: `{{${JSON.stringify(originData, null, "  ")}}}`,
     dataSource: [],
-    overFlow: "scroll",
+    enablePagination: false,
     sortOrder: "default",
   },
 }

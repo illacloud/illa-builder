@@ -17,7 +17,6 @@ export interface BaseDataGridProps extends BaseWidgetProps {
   sortOrder?: "asc" | "desc" | "default"
   rowSelection?: boolean
   rowSelectionMode?: "single" | "multiple"
-  overFlow?: "pagination" | "scroll"
   pageSize?: number
   page?: number
   pageSizeOptions?: number[]
@@ -36,6 +35,7 @@ export interface BaseDataGridProps extends BaseWidgetProps {
   columnVisibilityModel?: GridColumnVisibilityModel
   selectedRowsPrimaryKeys?: GridInputRowSelectionModel
   columns?: ColumnConfig[]
+  enablePagination?: boolean
 }
 
 export const ColumnTypeList = [
