@@ -58,6 +58,19 @@ const fixedListComponent = (component: ComponentTreeNode) => {
   }
 }
 
+const fixedDataGridComponent = (component: ComponentTreeNode) => {
+  return {
+    ...component,
+    props: {
+      ...component.props,
+      enablePagination:
+        component.props && component.props.overflowMethod === "PAGINATION"
+          ? true
+          : false,
+    },
+  }
+}
+
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentTreeNode,
 ) => {
@@ -74,6 +87,8 @@ export const fixedComponentsToNewComponents = (
           }
           case "LIST_WIDGET":
             return fixedListComponent(component)
+          case "DATA_GRID_WIDGET":
+            return fixedDataGridComponent(component)
           default: {
             return fixedComponentsToNewComponents(component)
           }
