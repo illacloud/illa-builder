@@ -71,6 +71,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
 
   const handleChangeCurrentPage = useCallback(
     (pageNumber: number) => {
+      handleUpdateSelectedItem()
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -80,7 +81,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
         },
       ])
     },
-    [displayName, handleUpdateMultiExecutionResult],
+    [displayName, handleUpdateMultiExecutionResult, handleUpdateSelectedItem],
   )
 
   const currentData = useMemo(() => {
