@@ -58,7 +58,6 @@ jobs:
           pnpm install --frozen-lockfile
           echo "Building for $GITHUB_REF_NAME branch,ILLA APP ENV is $ILLA_APP_ENV"
           pnpm build-self
-          cp ./build-all-in-one ../build-all-in-one-image/Dockerfile
           cp ./apps/builder/dist ../build-all-in-one-image/builder -r
           cp ./apps/cloud/dist ../build-all-in-one-image/cloud -r
           cd ..
@@ -95,8 +94,8 @@ jobs:
           push: true
           tags: |
             illasoft/illa-builder:${{ env.IMAGE_TAG }}
+            ${{ github.event_name == 'release' && startsWith(github.event.release.tag_name, 'illa-builder@') && 'illasoft/illa-builder:latest' || '' }}
           build-args: |
             FE=${{ env.BUILD_FE_BRANCH }}
             BE=${{ env.BUILD_BE_BRANCH }}
             SBE=${{ env.BUILD_SBE_BRANCH }}
-            ILLA_MUI_LICENSE=${{ secrets.ILLA_MUI_LICENSE }}
