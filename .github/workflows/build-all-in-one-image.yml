@@ -10,8 +10,6 @@ on:
 
 env:
   ILLA_MUI_LICENSE: ${{ secrets.ILLA_MUI_LICENSE }}
-  DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
-  DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
 
 jobs:
   build:
@@ -39,15 +37,69 @@ jobs:
           repository: illacloud/build-all-in-one-image
           path: build-all-in-one-image
 
-      - name: Build Docker Image
-        run: |
-          cd ./build-all-in-one-image
-          docker build -f ./dockerfile -t illasoft/illa-builder:${IMAGE_TAG} --build-arg FE=${BUILD_FE_BRANCH} --build-arg BE=${BUILD_BE_BRANCH} --build-arg SBE=${BUILD_SBE_BRANCH} --no-cache --build-arg ILLA_MUI_LICENSE=${ILLA_MUI_LICENSE} .
+      - uses: actions/checkout@v4
+        with:
+          repository: illacloud/illa-builder
+          path: illa-builder
+          submodules: true
 
-      - name: Push Docker image
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.1
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.7.0
+
+      - name: Build website
         run: |
-          docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
-          docker push illasoft/illa-builder:${IMAGE_TAG}
+          ls
+          cd illa-builder
+          pnpm install --frozen-lockfile
+          echo "Building for $GITHUB_REF_NAME branch,ILLA APP ENV is $ILLA_APP_ENV"
+          pnpm build-self
+          cp ./build-all-in-one ../build-all-in-one-image/Dockerfile
+          cp ./apps/builder/dist ../build-all-in-one-image/builder -r
+          cp ./apps/cloud/dist ../build-all-in-one-image/cloud -r
+          cd ..
+
+      - name: ls build-all-in-one
+        run: |
+          ls build-all-in-one-image
+
+      - name: ls cloud
+        run: |
+          ls build-all-in-one-image/cloud
+
+      - name: ls builder
+        run: |
+          ls build-all-in-one-image/builder
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_LOGIN }}
+          password: ${{ secrets.DOCKER_PWD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./build-all-in-one-image
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            illasoft/illa-builder:${{ env.IMAGE_TAG }}
+          build-args: |
+            FE=${{ env.BUILD_FE_BRANCH }}
+            BE=${{ env.BUILD_BE_BRANCH }}
+            SBE=${{ env.BUILD_SBE_BRANCH }}
+            ILLA_MUI_LICENSE=${{ secrets.ILLA_MUI_LICENSE }}
 
       - name: Release Docker image
         if:
