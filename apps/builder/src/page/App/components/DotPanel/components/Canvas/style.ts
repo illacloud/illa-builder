@@ -52,7 +52,7 @@ export const outerComponentCanvasContainerWithJsonStyle = (
   width: 100%;
   padding: ${padding}px;
   position: relative;
-  overflow: auto;
+  overflow: hidden auto;
 `
 
 export const componentCanvasContainerStyle = css`

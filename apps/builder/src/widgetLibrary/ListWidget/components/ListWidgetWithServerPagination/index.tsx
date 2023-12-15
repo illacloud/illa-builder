@@ -60,6 +60,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     selectIndexForMark,
     themeColor,
     loading,
+    itemPadding,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [paginationRef, paginationBounds] = useMeasure()
@@ -75,6 +76,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const handleChangePage = useCallback(
     (pageNumber: number) => {
       if (pageNumber <= 0 || disabled) return
+      handleUpdateSelectedItem()
       new Promise((resolve) => {
         handleUpdateMultiExecutionResult([
           {
@@ -93,6 +95,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       disabled,
       displayName,
       handleUpdateMultiExecutionResult,
+      handleUpdateSelectedItem,
       triggerEventHandler,
     ],
   )
@@ -100,6 +103,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const handleCursorBasedChangePage = useCallback(
     (isNext: boolean) => {
       if ((page <= 0 && !isNext) || disabled) return
+      handleUpdateSelectedItem()
       let value: {
         page: number
         beforeCursor: string | undefined
@@ -134,6 +138,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       disabled,
       displayName,
       handleUpdateMultiExecutionResult,
+      handleUpdateSelectedItem,
       nextCursor,
       page,
       previousCursor,
@@ -266,6 +271,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 dynamicMinHeight={dynamicMinHeight}
                 dynamicMaxHeight={dynamicMaxHeight}
                 itemGap={itemGap}
+                itemPadding={itemPadding}
               />
             </div>
           </div>
@@ -296,6 +302,7 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   isEditMode,
                   loading,
                   itemHeight,
+                  itemPadding?.size,
                 )}
                 key={node.displayName}
                 onClick={() => {

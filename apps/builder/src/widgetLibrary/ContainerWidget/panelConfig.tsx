@@ -175,7 +175,7 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-styles-padding`,
         setterType: "PADDING_INPUT_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.style"),
+        labelName: i18n.t("editor.inspect.setter_group.padding"),
         attrName: "padding",
         useCustomLayout: true,
       },
