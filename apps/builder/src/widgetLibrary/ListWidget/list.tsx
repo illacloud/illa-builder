@@ -43,18 +43,12 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const prevDataSourcesRef = useRef(dataSources)
 
   const updateTemplateContainerNodesProps = useCallback(
-    (childrenNodeDisplayNames: string[], parentDisplayName?: string) => {
+    (childrenNodeDisplayNames: string[]) => {
       return childrenNodeDisplayNames.map((itemContainerDisplayName, index) => {
         const currentItemContainer = cloneDeep(
           components[itemContainerDisplayName],
         )
-
         const currentItemDisplayNames = currentItemContainer.childrenNode
-        updateTemplateContainerNodesProps(
-          currentItemDisplayNames,
-          itemContainerDisplayName,
-        )
-
         if (
           Array.isArray(currentItemDisplayNames) &&
           currentItemDisplayNames.length > 0
@@ -115,14 +109,13 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                   "displayName",
                   `list-child-${index}-${currentItemDisplayName}`,
                 )
-                if (disabled !== undefined) {
+                if (disabled != undefined) {
                   set(currentItem, "props.disabled", disabled)
                 }
               }
               return currentItem
             },
           )
-
           newCurrentItems = newCurrentItems.map((item) => {
             const displayName = item.displayName
             const displayNameArray = displayName.split("-")
@@ -140,17 +133,9 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
             }
             return item
           })
-
           set(currentItemContainer, "childrenNode", newCurrentItems)
         }
-
-        if (parentDisplayName) {
-          set(
-            currentItemContainer,
-            "displayName",
-            `${parentDisplayName}-${index}-${itemContainerDisplayName}`,
-          )
-        } else if (index !== 0) {
+        if (index !== 0) {
           set(
             currentItemContainer,
             "displayName",
@@ -185,6 +170,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     }
     return null
   }, [childrenNode, dataSources, transTemplateContainerNodes])
+
+  console.log("getChildrenNodes", getChildrenNodes)
 
   const handleUpdateSelectedItem = useCallback(
     (index?: number) => {
