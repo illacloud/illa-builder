@@ -352,6 +352,18 @@ const SetterTypeMapSetter = {
     () =>
       import("@/page/App/components/InspectPanel/PanelSetters/ListGapSetter"),
   ),
+  CUSTOM_BG_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/CustomBgSelect"
+      ),
+  ),
+  DYNAMIC_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/dynamicSelectSetter"
+      ),
+  ),
   ...DeprecatedSetterTypeMapSetter,
 }
 
