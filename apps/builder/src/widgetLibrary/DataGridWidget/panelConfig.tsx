@@ -679,14 +679,13 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.pagination"),
     children: [
       {
-        id: `${baseWidgetName}-basic-overFlow`,
-        labelName: i18n.t("editor.inspect.setter_label.overFlow"),
-        attrName: "overFlow",
-        setterType: "RADIO_GROUP_SETTER",
-        options: [
-          { label: i18n.t("widget.table.pagination"), value: "pagination" },
-          { label: i18n.t("widget.table.scroll"), value: "scroll" },
-        ],
+        id: `${baseWidgetName}-basic-enable_pagination`,
+        labelName: i18n.t("editor.inspect.setter_label.enable_pagination"),
+        attrName: "enablePagination",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        openDynamic: true,
+        useCustomLayout: true,
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: `${baseWidgetName}-basic-enableServerSidePagination`,
@@ -696,33 +695,13 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t(
           "editor.inspect.setter_tips.table.enable_server_side_p",
         ),
+        bindAttrName: ["enablePagination"],
+        shown: (value) => value,
         attrName: "enableServerSidePagination",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         openDynamic: true,
         useCustomLayout: true,
-      },
-      {
-        id: `${baseWidgetName}-column-paginationType`,
-        labelName: i18n.t("editor.inspect.setter_label.table.pagination_type"),
-        labelDesc: i18n.t("editor.inspect.setter_tips.table.pagination_type"),
-        attrName: "paginationType",
-        setterType: "SEARCH_SELECT_SETTER",
-        isSetterSingleRow: true,
-        bindAttrName: ["enableServerSidePagination"],
-        shown: (value) => value,
-        options: [
-          {
-            label: i18n.t(
-              "editor.inspect.setter_option.table.limit_offset_based",
-            ),
-            value: "limitOffsetBased",
-          },
-          {
-            label: i18n.t("editor.inspect.setter_option.table.cursor_based"),
-            value: "cursorBased",
-          },
-        ],
       },
       {
         id: `${baseWidgetName}-basic-totalRowCount`,
@@ -731,38 +710,9 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
         isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: ["enableServerSidePagination"],
-        shown: (value) => value,
-      },
-      {
-        id: `${baseWidgetName}-basic-previousCursor`,
-        labelName: i18n.t("editor.inspect.setter_label.previous_cursor"),
-        attrName: "previousCursor",
-        setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
-        bindAttrName: ["enableServerSidePagination", "paginationType"],
-        shown: (enable, paginationType) =>
-          enable && paginationType === "cursorBased",
-      },
-      {
-        id: `${baseWidgetName}-basic-nextCursor`,
-        labelName: i18n.t("editor.inspect.setter_label.table.next_cursor"),
-        attrName: "nextCursor",
-        setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
-        bindAttrName: ["enableServerSidePagination", "paginationType"],
-        shown: (enable, paginationType) =>
-          enable && paginationType === "cursorBased",
-      },
-      {
-        id: `${baseWidgetName}-basic-hasNextPage`,
-        labelName: i18n.t("editor.inspect.setter_label.table.has_next_page"),
-        attrName: "hasNextPage",
-        setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-        bindAttrName: ["enableServerSidePagination", "paginationType"],
-        shown: (enable, paginationType) =>
-          enable && paginationType === "cursorBased",
+        bindAttrName: ["enablePagination", "enableServerSidePagination"],
+        shown: (enablePagination, enableServerSidePagination) =>
+          enablePagination && enableServerSidePagination,
       },
       {
         id: `${baseWidgetName}-basic-pageSize`,
@@ -770,12 +720,8 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
         placeholder: "{{30}}",
         attrName: "pageSize",
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        bindAttrName: [
-          "overFlow",
-          "enableServerSidePagination",
-          "paginationType",
-        ],
-        shown: (overFlow) => overFlow === "pagination",
+        bindAttrName: ["enablePagination"],
+        shown: (enablePagination) => enablePagination,
         expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
@@ -784,16 +730,8 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
         placeholder: "{{0}}",
         attrName: "page",
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        bindAttrName: [
-          "overFlow",
-          "enableServerSidePagination",
-          "paginationType",
-        ],
-        shown: (overFlow, enableServerSidePagination, paginationType) =>
-          overFlow === "pagination" &&
-          (enableServerSidePagination
-            ? paginationType === "limitOffsetBased"
-            : true),
+        bindAttrName: ["enablePagination"],
+        shown: (enablePagination) => enablePagination,
         expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
@@ -802,8 +740,8 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
         placeholder: "{{[5, 10, 25]}}",
         attrName: "pageSizeOptions",
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        bindAttrName: ["overFlow"],
-        shown: (overFlow) => overFlow === "pagination",
+        bindAttrName: ["enablePagination"],
+        shown: (enablePagination) => enablePagination,
         isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.ARRAY,
       },

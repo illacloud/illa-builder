@@ -58,6 +58,23 @@ const fixedListComponent = (component: ComponentTreeNode) => {
   }
 }
 
+const fixedDataGridComponent = (component: ComponentTreeNode) => {
+  let fixedEnablePagination = true
+  if (component.props) {
+    fixedEnablePagination =
+      component.props.enablePagination !== undefined
+        ? component.props.enablePagination
+        : component.props.overflowMethod === "PAGINATION"
+  }
+  return {
+    ...component,
+    props: {
+      ...component.props,
+      enablePagination: fixedEnablePagination,
+    },
+  }
+}
+
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentTreeNode,
 ) => {
@@ -74,6 +91,8 @@ export const fixedComponentsToNewComponents = (
           }
           case "LIST_WIDGET":
             return fixedListComponent(component)
+          case "DATA_GRID_WIDGET":
+            return fixedDataGridComponent(component)
           default: {
             return fixedComponentsToNewComponents(component)
           }
