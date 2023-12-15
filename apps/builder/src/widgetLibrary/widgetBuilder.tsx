@@ -266,6 +266,11 @@ import {
   VIDEO_WIDGET_CONFIG,
 } from "@/widgetLibrary/VideoWidget"
 import {
+  AVATAR_EVENT_HANDLER_CONFIG,
+  AVATAR_PANEL_CONFIG,
+  AVATAR_WIDGET_CONFIG,
+} from "./AvatarWidget"
+import {
   GRID_LIST_EVENT_HANDLER_CONFIG,
   GRID_LIST_PANEL_CONFIG,
   GRID_LIST_WIDGET_CONFIG,
@@ -532,6 +537,12 @@ export const WidgetConfigMap: Record<
     panelConfig: ICON_PANEL_CONFIG,
     eventHandlerConfig: ICON_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/IconWidget/icon")),
+  },
+  AVATAR_WIDGET: {
+    config: AVATAR_WIDGET_CONFIG,
+    panelConfig: AVATAR_PANEL_CONFIG,
+    eventHandlerConfig: AVATAR_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/AvatarWidget/avatar")),
   },
   STATISTIC_WIDGET: {
     config: STATISTICS_WIDGET_CONFIG,
