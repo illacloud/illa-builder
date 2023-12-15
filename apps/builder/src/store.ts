@@ -7,7 +7,6 @@ import {
   configureStore,
   createListenerMiddleware,
 } from "@reduxjs/toolkit"
-import { logger } from "redux-logger"
 import { guideAsync } from "@/middleware/guideAsync"
 import { reduxAsync } from "@/middleware/reduxAsync"
 import aiAgent from "@/redux/aiAgent/dashboardTeamAIAgentSlice"
@@ -39,10 +38,6 @@ const appReducer = combineReducers({
 })
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]
-
-if (import.meta.env.ILLA_APP_ENV === "development") {
-  middlewares.push(logger)
-}
 
 if (isCloudVersion) {
   middlewares.unshift(mixpanelReport)
