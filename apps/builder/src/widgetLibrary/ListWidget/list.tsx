@@ -171,8 +171,6 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     return null
   }, [childrenNode, dataSources, transTemplateContainerNodes])
 
-  console.log("getChildrenNodes", getChildrenNodes)
-
   const handleUpdateSelectedItem = useCallback(
     (index?: number) => {
       if (!Array.isArray(dataSources) || disabled) return
