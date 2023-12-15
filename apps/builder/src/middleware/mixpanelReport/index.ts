@@ -1,7 +1,10 @@
-import { Middleware } from "@reduxjs/toolkit"
+import { Middleware, isAction } from "@reduxjs/toolkit"
 import { reportMessage } from "./reportMessage"
 
 export const mixpanelReport: Middleware = (store) => (next) => (action) => {
+  if (!isAction(action) || !("payload" in action)) {
+    return next(action)
+  }
   const { type } = action
   const typeList = type.split("/")
   const isRemoteAction = typeList[typeList.length - 1] === "remote"

@@ -120,7 +120,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
               dispatch(
                 appInfoActions.updateAppInfoReducer({
                   ...appInfo,
-                  appName: appConfig.publishWithAIAgent,
+                  appName: appConfig.appName,
                   config: {
                     ...appInfo.config,
                     description: appConfig.appDesc,
