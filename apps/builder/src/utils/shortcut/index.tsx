@@ -2,6 +2,7 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, ReactNode, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
@@ -366,8 +367,13 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     `${isMAC() ? Key.Meta : Key.Control}+s`,
     (keyboardEvent) => {
       if (keyboardEvent.repeat) return
-
-      handleSaveToHistory()
+      if (isCloudVersion) {
+        handleSaveToHistory()
+      } else {
+        message.success({
+          content: t("dont_need_save"),
+        })
+      }
     },
     {
       enableOnFormTags: true,
