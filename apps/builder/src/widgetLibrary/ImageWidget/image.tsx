@@ -1,4 +1,11 @@
-import { FC, useCallback, useContext, useEffect, useMemo } from "react"
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import useMeasure from "react-use-measure"
 import { Image } from "@illa-design/react"
 import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
@@ -44,9 +51,12 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
   } = props
 
   const [imageRef, imageBouds] = useMeasure()
+  const [error, setError] = useState(false)
 
   const width =
-    dynamicHeight === "auto" || objectFit === "cover" ? "100%" : "auto"
+    dynamicHeight === "auto" || objectFit === "cover" || !imageSrc || error
+      ? "100%"
+      : "auto"
 
   const height = getHeight(
     dynamicHeight,
@@ -74,7 +84,11 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
       css={imageWrapperContainerStyle(width, height)}
       draggable={false}
       onClick={handleOnClick}
+      onLoad={() => {
+        setError(false)
+      }}
       onError={() => {
+        setError(true)
         sourceLoadErrorHandle?.(imageSrc, "image")
       }}
     />
