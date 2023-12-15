@@ -1,4 +1,4 @@
-import { ComponentTreeNode } from "@illa-public/public-types"
+import { ComponentTreeNode, PADDING_MODE } from "@illa-public/public-types"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export enum PAGINATION_TYPE {
@@ -9,6 +9,11 @@ export enum PAGINATION_TYPE {
 export enum COLUMN_NUM_ADAPTATION {
   FIXED = "fixed",
   DYNAMIC = "dynamic",
+}
+
+type ItemPadding = {
+  size: string
+  mode: PADDING_MODE
 }
 
 export type ShadowOptions = "none" | "small" | "medium" | "large"
@@ -43,6 +48,7 @@ export interface GridListWidgetProps extends BaseWidgetProps {
   minColumnWidth?: number
   themeColor?: string
   loading?: boolean
+  itemPadding?: ItemPadding
 }
 
 export interface RenderTemplateContainerProps {
@@ -60,6 +66,7 @@ export interface RenderTemplateContainerProps {
   itemGap?: number
   enableAutoPagination?: boolean
   itemShadow?: ShadowOptions
+  itemPadding?: ItemPadding
 }
 
 export interface RenderCopyContainerProps {
@@ -67,10 +74,11 @@ export interface RenderCopyContainerProps {
   templateContainerHeight: number
   columnNumber: number
   displayNamePrefix: string
+  itemPadding?: ItemPadding
 }
 
 export interface ListWidgetPropsWithChildrenNodes extends GridListWidgetProps {
   copyComponents: ComponentTreeNode[] | null
-  handleUpdateSelectedItem: (index: number) => void
+  handleUpdateSelectedItem: (index?: number) => void
   selectIndexForMark?: number
 }

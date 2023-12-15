@@ -48,6 +48,7 @@ export interface BaseChatProps extends BaseWidgetProps {
   showSendTime?: boolean
   showFooter?: boolean
   backgroundColor?: string
+  avatarPadding?: string
   handleOnReply?: (message: MessageContent | undefined) => void
   handleOnDelete?: (message: MessageContent | undefined) => void
 }

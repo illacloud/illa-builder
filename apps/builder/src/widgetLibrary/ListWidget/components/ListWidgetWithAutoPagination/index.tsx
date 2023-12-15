@@ -28,6 +28,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     itemHeight = 48,
     displayName,
     page = 0,
+    itemPadding,
     dynamicMinHeight,
     dynamicMaxHeight,
     enablePagination,
@@ -70,6 +71,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
 
   const handleChangeCurrentPage = useCallback(
     (pageNumber: number) => {
+      handleUpdateSelectedItem()
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -79,7 +81,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
         },
       ])
     },
-    [displayName, handleUpdateMultiExecutionResult],
+    [displayName, handleUpdateMultiExecutionResult, handleUpdateSelectedItem],
   )
 
   const currentData = useMemo(() => {
@@ -199,6 +201,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   dynamicMinHeight={dynamicMinHeight}
                   dynamicMaxHeight={dynamicMaxHeight}
                   itemGap={itemGap}
+                  itemPadding={itemPadding}
                 />
               </div>
             </div>
@@ -233,6 +236,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   isEditMode,
                   loading,
                   itemHeight,
+                  itemPadding?.size,
                 )}
                 key={node.displayName}
                 onClick={() => {

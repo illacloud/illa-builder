@@ -132,7 +132,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.previous_cursor"),
         attrName: "previousCursor",
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
+        expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: [
           "enablePagination",
           "enableServerSidePagination",
@@ -148,7 +148,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.table.next_cursor"),
         attrName: "nextCursor",
         setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
+        expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: [
           "enablePagination",
           "enableServerSidePagination",
@@ -298,6 +298,13 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
             defaultValue: "white",
           },
         ],
+      },
+      {
+        id: `${baseWidgetName}-styles-padding`,
+        setterType: "PADDING_INPUT_SETTER",
+        labelName: i18n.t("editor.inspect.setter_group.item_padding"),
+        attrName: "itemPadding",
+        useCustomLayout: true,
       },
     ],
   },

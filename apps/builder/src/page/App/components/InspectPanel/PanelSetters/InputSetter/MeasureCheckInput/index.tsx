@@ -34,10 +34,10 @@ const MeasureCheckInput: FC<MeasureCheckInputSetterProps> = (props) => {
         if (decimalArr) currentValue = decimalArr.join("") + "px"
       }
       handleUpdateMultiAttrDSL?.({
-        borderWidth: currentValue,
+        [attrName]: currentValue,
       })
     },
-    [handleUpdateMultiAttrDSL],
+    [attrName, handleUpdateMultiAttrDSL],
   )
 
   return (

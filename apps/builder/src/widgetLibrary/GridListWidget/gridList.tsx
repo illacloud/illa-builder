@@ -171,16 +171,16 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
   }, [childrenNode, dataSources, transTemplateContainerNodes])
 
   const handleUpdateSelectedItem = useCallback(
-    (index: number) => {
+    (index?: number) => {
       if (!Array.isArray(dataSources) || disabled) return
-      if (selectIndexForMark === index) {
+      if (selectIndexForMark === index || index === undefined) {
         setSelectIndexForMark(undefined)
       } else {
         setSelectIndexForMark(index)
       }
       new Promise((resolve) => {
         let value
-        if (index < 0 || index > dataSources.length) {
+        if (index === undefined || index < 0 || index > dataSources.length) {
           value = {
             selectedItem: dataSources[0],
             selectedIndex: 0,
