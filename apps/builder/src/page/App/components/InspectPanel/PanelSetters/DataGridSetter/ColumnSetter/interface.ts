@@ -20,6 +20,7 @@ export type ColumnType =
   | "buttongroup"
   | "boolean"
   | "image"
+  | "avatar"
   | "rating"
   | "markdown"
   | "html"

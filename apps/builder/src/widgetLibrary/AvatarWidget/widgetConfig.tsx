@@ -15,7 +15,7 @@ export const AVATAR_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
   defaults: {
     avatarType: "image",
-    image:
+    imageSrc:
       "https://images.pexels.com/photos/1870376/pexels-photo-1870376.jpeg?auto=compress&cs=tinysrgb&w=800",
     hidden: false,
     label: "Label",
