@@ -10,7 +10,7 @@ export const AVATAR_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["avatar", "头像"],
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   sessionType: "PRESENTATION",
-  w: 8,
+  w: 6,
   h: 6,
   version: 0,
   defaults: {
@@ -18,10 +18,10 @@ export const AVATAR_WIDGET_CONFIG: WidgetConfig = {
     imageSrc:
       "https://images.pexels.com/photos/1870376/pexels-photo-1870376.jpeg?auto=compress&cs=tinysrgb&w=800",
     hidden: false,
-    label: "Label",
+    label: "{{currentUserInfo.nickname}}",
     labelAlign: "left",
     labelPosition: "right",
-    labelCaption: "Caption",
+    labelCaption: "{{currentUserInfo.email}}",
     avatarSize: "medium",
   },
 }

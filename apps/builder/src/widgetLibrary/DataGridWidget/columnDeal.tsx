@@ -381,7 +381,7 @@ export function getColumnFromType(
                 ) as AvatarType
               }
               imageSrc={getValueFromMappedValue(
-                get(params.colDef, "image"),
+                get(params.colDef, "imageSrc"),
                 index,
               )}
               text={getValueFromMappedValue(get(params.colDef, "text"), index)}
