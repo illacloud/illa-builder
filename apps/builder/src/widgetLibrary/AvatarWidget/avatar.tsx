@@ -75,7 +75,7 @@ export const WrapperAvatar: FC<WrappedAvatarProps> = ({
       )}
       {avatarType === "text" && (
         <Avatar
-          text={getSafeNode(text?.slice(0, 2))}
+          text={getSafeNode(text?.slice(0, 2)?.toLocaleUpperCase())}
           size={avatarSize}
           colorScheme={finalColorScheme}
           onClick={handleOnClick}
