@@ -1,7 +1,7 @@
-export interface ShadowSelectProps {
-  attrName: string
+import { BaseSetter } from "../../interface"
+
+export interface ShadowSelectProps extends BaseSetter {
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
-  labelName?: string
   value: string
-  widgetType: string
+  useCustomLayout?: boolean
 }

@@ -37,9 +37,11 @@ import {
   CurrencyCode,
   getHashCode,
   getPreColor,
+  getValueFromMappedValue,
   isValidLocale,
 } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
+import { AvatarType, WrapperAvatar } from "@/widgetLibrary/AvatarWidget"
 import {
   cellContainer,
   currencyContainerStyle,
@@ -358,6 +360,44 @@ export function getColumnFromType(
         },
         valueGetter: (params: GridValueGetterParams) => {
           return get(params.colDef, "mappedValue") ?? params.value
+        },
+      }
+    case "avatar":
+      return {
+        ...column,
+        type: "string",
+        renderCell: (params: GridRenderCellParams) => {
+          const index = params.api
+            .getAllRowIds()
+            .findIndex((id) => id === params.id)
+
+          return (
+            <WrapperAvatar
+              avatarType={
+                getValueFromMappedValue(
+                  get(params.colDef, "avatarType", "image"),
+                  index,
+                  "image",
+                ) as AvatarType
+              }
+              imageSrc={getValueFromMappedValue(
+                get(params.colDef, "image"),
+                index,
+              )}
+              text={getValueFromMappedValue(get(params.colDef, "text"), index)}
+              icon={get(params.colDef, "icon")}
+              label={getValueFromMappedValue(
+                get(params.colDef, "label"),
+                index,
+              )}
+              labelCaption={getValueFromMappedValue(
+                get(params.colDef, "labelCaption"),
+                index,
+              )}
+              labelHidden={get(params.colDef, "labelHidden")}
+              colorScheme={get(params.colDef, "colorScheme")}
+            />
+          )
         },
       }
     case "number":
