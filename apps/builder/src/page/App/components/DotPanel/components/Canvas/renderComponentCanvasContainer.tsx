@@ -522,6 +522,7 @@ const RenderComponentCanvasContainer: FC<
         background,
         shadowSize,
       )}
+      data-outer-canvas-container={displayName}
       ref={canvasRef}
     >
       <div
@@ -566,7 +567,7 @@ const RenderComponentCanvasContainer: FC<
               currentLayoutInfo?.childrenNode?.map((childName) => {
                 return (
                   <ComponentParser
-                    key={`${displayName}-${childName}}`}
+                    key={`${displayName}-${childName}`}
                     displayName={childName}
                     unitW={unitWidth}
                     parentNodeDisplayName={displayName}
@@ -582,9 +583,6 @@ const RenderComponentCanvasContainer: FC<
             )}
             {collectedProps.isOver && isEditMode && (
               <DragPreview
-                containerLeft={fixedBounds.left}
-                containerTop={fixedBounds.top}
-                containerScrollTop={scrollContainerScrollTop}
                 unitW={unitWidth}
                 parentNodeDisplayName={displayName}
                 columnNumber={columnNumber}
