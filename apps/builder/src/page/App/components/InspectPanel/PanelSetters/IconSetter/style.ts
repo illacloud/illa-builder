@@ -5,20 +5,21 @@ import { fixedWidthStyle } from "@/page/App/components/InspectPanel/PanelSetters
 export const applyBaseIconWrapperStyle = (
   isSetterSingleRow: boolean = false,
 ): SerializedStyles => {
-  return isSetterSingleRow
+  const width = isSetterSingleRow
     ? css`
         width: 100%;
       `
     : fixedWidthStyle
+  return css`
+    ${width};
+    height: 100%;
+  `
 }
 
 export const iconSelectorIconStyle = css`
   width: 24px;
   height: 24px;
   padding: 4px;
-  position: absolute;
-  top: 4px;
-  left: 8px;
   & > svg {
     width: 16px;
     height: 16px;
@@ -29,10 +30,13 @@ export const iconSelectorContainerStyle = css`
   width: 100%;
   height: 100%;
   position: relative;
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  padding: 3px 12px;
+  border-radius: 8px;
   cursor: pointer;
+  gap: 8px;
   display: flex;
   overflow: hidden;
-  justify-content: space-between;
   align-items: center;
   :hover > div:last-child {
     display: flex;
@@ -40,36 +44,21 @@ export const iconSelectorContainerStyle = css`
 `
 
 export const iconContentStyle = css`
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  height: 100%;
+  display: flex;
   font-size: 12px;
-  line-height: 20px;
+  line-height: 22px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  padding-left: 24px;
-  padding-right: 28px;
-  border-radius: 8px;
-  & > div {
-    border: none;
-    background: none;
-    cursor: pointer;
-    & > input:disabled {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      cursor: pointer;
-      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    }
-  }
 `
 
 export const clearIconStyle = css`
   width: 16px;
   height: 16px;
-  display: flex;
+  display: none;
   cursor: pointer;
   position: absolute;
-  display: none;
   right: 12px;
   top: 8px;
   justify-content: center;
@@ -77,7 +66,6 @@ export const clearIconStyle = css`
   & > svg {
     width: 12px;
     height: 12px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   }
 `
 
