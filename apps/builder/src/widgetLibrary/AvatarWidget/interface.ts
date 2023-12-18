@@ -17,6 +17,6 @@ export interface WrappedAvatarProps
   handleOnClick?: () => void
 }
 
-export interface AvatarWidgetProps
-  extends BaseWidgetProps,
-    WrappedAvatarProps {}
+export interface AvatarWidgetProps extends BaseWidgetProps, WrappedAvatarProps {
+  disabled?: boolean
+}
