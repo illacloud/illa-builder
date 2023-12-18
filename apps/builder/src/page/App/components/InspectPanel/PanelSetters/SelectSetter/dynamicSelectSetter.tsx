@@ -17,6 +17,7 @@ const DynamicSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     labelName,
     labelDesc,
     options,
+    defaultValue,
     handleUpdateMultiAttrDSL,
   } = props
 
@@ -52,10 +53,11 @@ const DynamicSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const handleClickFxButton = useCallback(() => {
     if (isDynamic) {
       handleUpdateDsl(`${widgetDisplayName}.${attrName}JS`, "select")
+      handleUpdateDsl(attrName, defaultValue)
     } else {
       handleUpdateDsl(`${widgetDisplayName}.${attrName}JS`, "dynamic")
     }
-  }, [attrName, handleUpdateDsl, isDynamic, widgetDisplayName])
+  }, [attrName, defaultValue, handleUpdateDsl, isDynamic, widgetDisplayName])
 
   const handleChangeSelect = useCallback(
     (value: string) => {

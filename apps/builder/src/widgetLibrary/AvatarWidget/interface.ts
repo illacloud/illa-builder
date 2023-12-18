@@ -3,13 +3,10 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export type AvatarType = "image" | "icon" | "text"
 
-export interface WrappedAvatarProps extends AvatarWidgetProps {
-  handleOnClick: () => void
-}
-
-export interface AvatarWidgetProps extends BaseWidgetProps, LabelProps {
+export interface WrappedAvatarProps
+  extends Pick<LabelProps, "label" | "labelCaption" | "labelHidden"> {
   avatarType: AvatarType
-  image?: string
+  imageSrc?: string
   text?: string
   icon?: string
   colorScheme?: string
@@ -17,4 +14,9 @@ export interface AvatarWidgetProps extends BaseWidgetProps, LabelProps {
   avatarSize?: "small" | "medium" | "large"
   labelPosition?: "left" | "right"
   labelAlign?: "left" | "right"
+  handleOnClick?: () => void
 }
+
+export interface AvatarWidgetProps
+  extends BaseWidgetProps,
+    WrappedAvatarProps {}
