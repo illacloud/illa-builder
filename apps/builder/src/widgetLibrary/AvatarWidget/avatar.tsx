@@ -85,11 +85,11 @@ export const WrapperAvatar: FC<WrappedAvatarProps> = ({
   )
 }
 export const AvatarWidget: FC<AvatarWidgetProps> = (props) => {
-  const { triggerEventHandler, updateComponentHeight } = props
+  const { triggerEventHandler, updateComponentHeight, disabled } = props
 
   const handleOnClick = useCallback(() => {
-    triggerEventHandler("click")
-  }, [triggerEventHandler])
+    !disabled && triggerEventHandler("click")
+  }, [disabled, triggerEventHandler])
 
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
