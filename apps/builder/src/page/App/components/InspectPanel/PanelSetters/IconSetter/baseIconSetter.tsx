@@ -1,5 +1,5 @@
 import { FC, MouseEventHandler, useCallback, useEffect, useState } from "react"
-import { ErrorCircleIcon, Input } from "@illa-design/react"
+import { ErrorCircleIcon, getColor } from "@illa-design/react"
 import {
   applyBaseIconWrapperStyle,
   clearIconStyle,
@@ -36,13 +36,9 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
         <div css={iconSelectorIconStyle}>
           {displayData?.getIcon && displayData?.getIcon({})}
         </div>
-        <Input
-          _css={iconContentStyle}
-          value={displayData?.name ?? ""}
-          disabled
-        />
+        <span css={iconContentStyle}>{displayData?.name ?? ""}</span>
         <div css={clearIconStyle} onClick={handleClearClick}>
-          <ErrorCircleIcon />
+          <ErrorCircleIcon color={getColor("grayBlue", "05")} />
         </div>
       </div>
     </div>
