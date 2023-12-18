@@ -21,25 +21,33 @@ export const AVATAR_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
         useCustomLayout: true,
         openDynamic: true,
+        defaultValue: "image",
         options: [
           {
-            label: i18n.t("Image"),
+            label: i18n.t(
+              "editor.inspect.setter_label.avatar_type_options.image",
+            ),
             value: "image",
           },
           {
-            label: i18n.t("icon"),
+            label: i18n.t(
+              "editor.inspect.setter_label.avatar_type_options.icon",
+            ),
             value: "icon",
           },
           {
-            label: i18n.t("text"),
+            label: i18n.t(
+              "editor.inspect.setter_label.avatar_type_options.text",
+            ),
             value: "text",
           },
         ],
       },
       {
         id: `${baseWidgetName}-label-image`,
-        labelName: i18n.t("editor.inspect.setter_label.image"),
-        attrName: "image",
+        labelName: i18n.t("editor.inspect.setter_label.imageSrc"),
+        attrName: "imageSrc",
+        isSetterSingleRow: true,
         bindAttrName: ["avatarType"],
         shown: (avatarType: AvatarType) => avatarType === "image",
         expectedType: VALIDATION_TYPES.STRING,
@@ -162,15 +170,23 @@ export const AVATAR_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-adornments-tooltip`,
-        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
+        labelName: i18n.t("editor.inspect.setter_label.avatar_size"),
         attrName: "avatarSize",
         setterType: "BASE_SELECT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         options: [
-          { label: i18n.t("small"), value: "small" },
-          { label: i18n.t("medium"), value: "medium" },
-          { label: i18n.t("large"), value: "large" },
+          {
+            label: i18n.t("editor.inspect.setter_option.shadow.large"),
+            value: "large",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.shadow.medium"),
+            value: "medium",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.shadow.small"),
+            value: "small",
+          },
         ],
       },
       {

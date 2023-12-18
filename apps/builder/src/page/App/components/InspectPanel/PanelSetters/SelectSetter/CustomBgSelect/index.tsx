@@ -4,7 +4,7 @@ import { Select, SelectValue } from "@illa-design/react"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import ColorPickerSetter from "../../ColorPickerSetter"
 import { ShadowSelectProps } from "./interface"
-import { setterContainerStyle } from "./style"
+import { containerStyle, setterContainerStyle } from "./style"
 
 enum CUSTOM_BG_SELECT_OPTIONS {
   AUTO = "auto",
@@ -12,17 +12,23 @@ enum CUSTOM_BG_SELECT_OPTIONS {
 }
 
 const CustomBgSelect: FC<ShadowSelectProps> = (props) => {
-  const { attrName, handleUpdateMultiAttrDSL, value, labelName } = props
+  const {
+    attrName,
+    handleUpdateMultiAttrDSL,
+    value,
+    labelName,
+    useCustomLayout,
+  } = props
 
   const { t } = useTranslation()
 
   const options = [
     {
-      label: t("auto"),
+      label: t("editor.inspect.setter_group.custom_bg.options.auto"),
       value: CUSTOM_BG_SELECT_OPTIONS.AUTO,
     },
     {
-      label: t("custom"),
+      label: t("editor.inspect.setter_group.custom_bg.options.custom"),
       value: CUSTOM_BG_SELECT_OPTIONS.CUSTOM,
     },
   ]
@@ -41,13 +47,19 @@ const CustomBgSelect: FC<ShadowSelectProps> = (props) => {
   }
 
   return (
-    <div>
+    <div css={containerStyle}>
       <div css={setterContainerStyle}>
-        <PanelLabel labelName={labelName} labelSize="small" />
+        <PanelLabel
+          labelName={labelName}
+          labelSize={useCustomLayout ? "small" : "medium"}
+        />
         <Select
           onChange={handleUpdateSelectState}
           value={selectValue}
-          w="170px"
+          dropdownProps={{
+            position: "top",
+          }}
+          w={useCustomLayout ? "170px" : "182px"}
           colorScheme="techPurple"
           options={options}
         />
@@ -55,6 +67,7 @@ const CustomBgSelect: FC<ShadowSelectProps> = (props) => {
       {selectValue === "custom" && (
         <ColorPickerSetter
           labelName={t("editor.inspect.setter_group.color")}
+          labelSize={useCustomLayout ? "small" : "medium"}
           value={value}
           defaultValue="blue"
           attrName={attrName}

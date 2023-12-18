@@ -57,6 +57,7 @@ export const applyLabelAndComponentWrapperStyle = (
   labelHidden?: boolean,
 ) => {
   return css`
+    max-width: 100%;
     display: flex;
     flex-direction: ${labelPosition === "right" ? "row-reverse" : "row"};
     gap: ${!labelHidden ? "8px" : "0"};
