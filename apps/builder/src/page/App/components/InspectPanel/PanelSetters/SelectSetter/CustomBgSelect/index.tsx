@@ -56,6 +56,9 @@ const CustomBgSelect: FC<ShadowSelectProps> = (props) => {
         <Select
           onChange={handleUpdateSelectState}
           value={selectValue}
+          dropdownProps={{
+            position: "top",
+          }}
           w={useCustomLayout ? "170px" : "182px"}
           colorScheme="techPurple"
           options={options}
