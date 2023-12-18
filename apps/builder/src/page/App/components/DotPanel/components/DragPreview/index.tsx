@@ -7,14 +7,7 @@ import { DragCollectedProps, DragPreviewProps } from "./interface"
 import { dragPreviewStyle } from "./style"
 
 const DragPreview: FC<DragPreviewProps> = (props) => {
-  const {
-    containerLeft,
-    containerTop,
-    unitW,
-    containerScrollTop,
-    parentNodeDisplayName,
-    columnNumber,
-  } = props
+  const { unitW, parentNodeDisplayName, columnNumber } = props
 
   const collectedProps = useDragLayer<DragCollectedProps, DragInfo>(
     (monitor) => {
@@ -33,11 +26,6 @@ const DragPreview: FC<DragPreviewProps> = (props) => {
     parentNodeDisplayName,
     unitW,
     collectedProps,
-    {
-      containerTop,
-      containerLeft,
-      containerScrollTop,
-    },
     columnNumber,
   )
 
