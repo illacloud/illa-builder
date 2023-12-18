@@ -47,6 +47,7 @@ export const AVATAR_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-label-image`,
         labelName: i18n.t("editor.inspect.setter_label.imageSrc"),
         attrName: "imageSrc",
+        isSetterSingleRow: true,
         bindAttrName: ["avatarType"],
         shown: (avatarType: AvatarType) => avatarType === "image",
         expectedType: VALIDATION_TYPES.STRING,
@@ -81,7 +82,6 @@ export const AVATAR_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.label"),
         attrName: "label",
-        placeholder: "{{currentUserInfo.nickname}}",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
@@ -90,7 +90,6 @@ export const AVATAR_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.caption"),
         attrName: "labelCaption",
-        placeholder: "{{currentUserInfo.email}}",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
@@ -171,8 +170,7 @@ export const AVATAR_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-adornments-tooltip`,
-        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
+        labelName: i18n.t("editor.inspect.setter_label.avatar_size"),
         attrName: "avatarSize",
         setterType: "BASE_SELECT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,

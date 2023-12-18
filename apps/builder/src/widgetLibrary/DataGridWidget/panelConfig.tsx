@@ -359,6 +359,7 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           id: `${baseWidgetName}-label-image`,
           labelName: i18n.t("editor.inspect.setter_label.imageSrc"),
           attrName: "imageSrc",
+          isSetterSingleRow: true,
           bindAttrName: ["avatarType"],
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           placeholder: "{{currentRow}}",
