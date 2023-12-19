@@ -50,6 +50,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/gtag.js": "^0.0.18",
     "@types/lodash": "^4.14.194",
     "@types/uuid": "^9.0.0",
     "eslint-config-illa": "workspace:*",
