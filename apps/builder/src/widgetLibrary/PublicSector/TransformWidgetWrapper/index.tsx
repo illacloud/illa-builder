@@ -406,6 +406,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
               <Component
                 {...realProps}
                 h={layoutInfo.h}
+                w={layoutInfo.w}
                 columnNumber={columnNumber}
                 handleUpdateOriginalDSLMultiAttr={
                   handleUpdateOriginalDSLMultiAttr

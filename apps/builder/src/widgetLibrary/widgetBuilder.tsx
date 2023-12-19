@@ -231,6 +231,11 @@ import {
   TABS_WIDGET_CONFIG,
 } from "@/widgetLibrary/TabsWidget"
 import {
+  TAGS_EVENT_HANDLER_CONFIG,
+  TAGS_PANEL_CONFIG,
+  TAGS_WIDGET_CONFIG,
+} from "@/widgetLibrary/TagsWidget"
+import {
   TEXTAREA_EVENT_HANDLER_CONFIG,
   TEXTAREA_PANEL_CONFIG,
   TEXTAREA_WIDGET_CONFIG,
@@ -520,6 +525,12 @@ export const WidgetConfigMap: Record<
     panelConfig: BUTTON_PANEL_CONFIG,
     eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/ButtonWidget/button")),
+  },
+  TAGS_WIDGET: {
+    config: TAGS_WIDGET_CONFIG,
+    panelConfig: TAGS_PANEL_CONFIG,
+    eventHandlerConfig: TAGS_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/TagsWidget/tags")),
   },
   CHAT_WIDGET: {
     widget: lazy(() => import("@/widgetLibrary/ChatWidget/chat")),
