@@ -29,8 +29,12 @@ const getHeight = (
   width: number,
   objectFit?: ObjectFit,
 ) => {
-  if (dynamicHeight === "auto" && aspectRatio && aspectRatio > 0) {
-    return `${width * aspectRatio}px`
+  if (dynamicHeight === "auto") {
+    if (aspectRatio && aspectRatio > 0) {
+      return `${width * aspectRatio}px`
+    } else {
+      return `${width}px`
+    }
   } else {
     return dynamicHeight === "fixed" || objectFit === "contain"
       ? "100%"

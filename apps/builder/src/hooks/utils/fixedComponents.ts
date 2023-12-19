@@ -75,6 +75,23 @@ const fixedDataGridComponent = (component: ComponentTreeNode) => {
   }
 }
 
+const fixedImageComponent = (component: ComponentTreeNode) => {
+  let fixedDynamicHeight = "auto"
+  if (component.props) {
+    fixedDynamicHeight =
+      component.props.dynamicHeight !== undefined
+        ? component.props.dynamicHeight
+        : fixedDynamicHeight
+  }
+  return {
+    ...component,
+    props: {
+      ...component.props,
+      dynamicHeight: fixedDynamicHeight,
+    },
+  }
+}
+
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentTreeNode,
 ) => {
@@ -93,6 +110,8 @@ export const fixedComponentsToNewComponents = (
             return fixedListComponent(component)
           case "DATA_GRID_WIDGET":
             return fixedDataGridComponent(component)
+          case "IMAGE_WIDGET":
+            return fixedImageComponent(component)
           default: {
             return fixedComponentsToNewComponents(component)
           }

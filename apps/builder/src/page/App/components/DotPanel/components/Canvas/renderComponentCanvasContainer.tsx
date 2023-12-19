@@ -388,7 +388,11 @@ const RenderComponentCanvasContainer: FC<
     if (!innerCanvasDOM) return
     const innerCanvasDOMRect = innerCanvasDOM.getBoundingClientRect()
 
-    if (isFinite(maxHeight) && prevMaxHeight.current > maxHeight) {
+    if (
+      isFinite(maxHeight) &&
+      prevMaxHeight.current > maxHeight &&
+      isResizingGlobal
+    ) {
       return
     }
 
@@ -423,6 +427,7 @@ const RenderComponentCanvasContainer: FC<
     canResizeCanvas,
     fixedBounds.height,
     isEditMode,
+    isResizingGlobal,
     isRootCanvas,
     maxHeight,
     minHeight,
@@ -522,6 +527,7 @@ const RenderComponentCanvasContainer: FC<
         background,
         shadowSize,
       )}
+      data-outer-canvas-container={displayName}
       ref={canvasRef}
     >
       <div
@@ -566,7 +572,7 @@ const RenderComponentCanvasContainer: FC<
               currentLayoutInfo?.childrenNode?.map((childName) => {
                 return (
                   <ComponentParser
-                    key={`${displayName}-${childName}}`}
+                    key={`${displayName}-${childName}`}
                     displayName={childName}
                     unitW={unitWidth}
                     parentNodeDisplayName={displayName}
@@ -582,9 +588,6 @@ const RenderComponentCanvasContainer: FC<
             )}
             {collectedProps.isOver && isEditMode && (
               <DragPreview
-                containerLeft={fixedBounds.left}
-                containerTop={fixedBounds.top}
-                containerScrollTop={scrollContainerScrollTop}
                 unitW={unitWidth}
                 parentNodeDisplayName={displayName}
                 columnNumber={columnNumber}
