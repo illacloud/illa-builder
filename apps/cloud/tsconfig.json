@@ -12,7 +12,7 @@
       "vite-plugin-svgr/client",
       "node",
       "@illa-design/table/src/react-table.d.ts",
-      "@illa-public/utils/types/gtag.d.ts"
+      "@types/gtag.js"
     ]
   },
   "include": [

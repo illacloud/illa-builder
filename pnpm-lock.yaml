@@ -653,6 +653,9 @@ importers:
         specifier: ^9.0.0
         version: 9.0.1
     devDependencies:
+      '@types/gtag.js':
+        specifier: ^0.0.18
+        version: 0.0.18
       '@types/lodash':
         specifier: ^4.14.194
         version: 4.14.199
