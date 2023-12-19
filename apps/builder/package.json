@@ -149,6 +149,7 @@
     "@types/deep-diff": "^1.0.1",
     "@types/downloadjs": "^1.4.4",
     "@types/google.maps": "^3.53.2",
+    "@types/gtag.js": "^0.0.18",
     "@types/lodash": "^4.14.199",
     "@types/mdx": "^2.0.3",
     "@types/papaparse": "^5.3.9",
