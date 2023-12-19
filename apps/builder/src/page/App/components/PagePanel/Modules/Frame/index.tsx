@@ -1,5 +1,12 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { FC, useCallback, useMemo, useState } from "react"
+import {
+  FC,
+  FocusEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -100,15 +107,40 @@ export const PageFrame: FC = () => {
     showLeftFoldIcon,
     showRightFoldIcon,
   } = pageProps
+  const [finalLeftWidth, setFinalLeftWidth] = useState(hasLeft ? leftWidth : 0)
+  const [finalRightWidth, setFinalRightWidth] = useState(
+    hasRight ? rightWidth : 0,
+  )
+
+  useEffect(() => {
+    setFinalLeftWidth(leftWidth)
+  }, [leftWidth])
+
+  useEffect(() => {
+    setFinalRightWidth(rightWidth)
+  }, [rightWidth])
 
   const bodyWidth = useMemo(() => {
-    if (canvasSize === "fixed") return canvasWidth - leftWidth - rightWidth
-    return 100 - leftWidth - rightWidth
-  }, [canvasSize, canvasWidth, leftWidth, rightWidth])
+    if (canvasSize === "fixed")
+      return (
+        canvasWidth - (hasLeft ? leftWidth : 0) - (hasRight ? rightWidth : 0)
+      )
+    return 100 - (hasLeft ? leftWidth : 0) - (hasRight ? rightWidth : 0)
+  }, [canvasSize, canvasWidth, hasLeft, hasRight, leftWidth, rightWidth])
+
+  const [finalBodyWidth, setFinalBodyWidth] = useState(bodyWidth)
+
+  useEffect(() => {
+    setFinalBodyWidth(bodyWidth)
+  }, [bodyWidth])
 
   const [finalCanvasWidth, setFinalCanvasWidth] = useState(
     getRealCanvasWidth(canvasWidth),
   )
+
+  useEffect(() => {
+    setFinalCanvasWidth(getRealCanvasWidth(canvasWidth))
+  }, [canvasWidth])
 
   const finalCanvasSize = canvasSize === "fixed" ? "fixed" : "auto"
 
@@ -173,94 +205,109 @@ export const PageFrame: FC = () => {
   const handleUpdateBodyPanelWidth = useCallback(
     (value?: number) => {
       if (!currentPageDisplayName || !value) return
-      let finalValue = value
-      let finalLeftValue = leftWidth
-      let finalRightValue = rightWidth
-      if (canvasSize === "fixed") {
-        let currentRightValue = finalRightValue
-        let currentLeftValue = finalLeftValue
-        if (finalValue < BODY_MIN_WIDTH) {
-          finalValue = BODY_MIN_WIDTH
-          currentRightValue =
-            canvasShape.canvasWidth - finalValue - finalLeftValue
-        } else {
-          currentRightValue =
-            canvasShape.canvasWidth - finalValue - finalLeftValue
-        }
-        if (currentRightValue < RIGHT_MIN_WIDTH) {
-          finalRightValue = RIGHT_MIN_WIDTH
-          currentLeftValue =
-            canvasShape.canvasWidth - finalValue - finalRightValue
-        }
-        if (currentLeftValue < LEFT_MIN_WIDTH) {
-          finalLeftValue = LEFT_MIN_WIDTH
-          currentRightValue =
-            canvasShape.canvasWidth - finalValue - finalLeftValue
-        }
-        if (
-          currentLeftValue < LEFT_MIN_WIDTH &&
-          currentRightValue < RIGHT_MIN_WIDTH
-        ) {
-          finalLeftValue = LEFT_MIN_WIDTH
-          finalRightValue = RIGHT_MIN_WIDTH
-        }
-      } else {
-        let finalLeftValuePX = (finalLeftValue / 100) * canvasShape.canvasWidth
-        let finalRightValuePX =
-          (finalRightValue / 100) * canvasShape.canvasWidth
-        let finalValuePX = (finalValue / 100) * canvasShape.canvasWidth
-        if (finalValuePX <= BODY_MIN_HEIGHT) {
-          const restWidth = canvasShape.canvasWidth - BODY_MIN_HEIGHT
-          finalLeftValuePX =
-            (finalLeftValuePX / (finalLeftValuePX + finalRightValuePX)) *
-            restWidth
-          finalRightValuePX = restWidth - finalLeftValuePX
-          finalLeftValue = (finalLeftValuePX / canvasShape.canvasWidth) * 100
-          finalRightValue = (finalRightValuePX / canvasShape.canvasWidth) * 100
-        } else {
-          let restWidth = canvasShape.canvasWidth - finalValuePX
-          finalLeftValuePX =
-            (finalLeftValuePX / (finalLeftValuePX + finalRightValuePX)) *
-            restWidth
-          if (finalLeftValuePX < LEFT_MIN_WIDTH) {
-            finalLeftValuePX = LEFT_MIN_WIDTH
-          }
-          finalRightValuePX = restWidth - finalLeftValuePX
-          if (finalRightValuePX < RIGHT_MIN_WIDTH) {
-            finalRightValuePX = LEFT_MIN_WIDTH
-          }
-          finalLeftValue = (finalLeftValuePX / canvasShape.canvasWidth) * 100
-          finalRightValue = (RIGHT_MIN_WIDTH / canvasShape.canvasWidth) * 100
-        }
-      }
-
-      dispatch(
-        componentsActions.updateTargetPagePropsReducer({
-          pageName: currentPageDisplayName,
-          newProps: {
-            leftWidth: finalLeftValue,
-            rightWidth: finalRightValue,
-          },
-        }),
-      )
+      setFinalBodyWidth(value)
     },
-    [
-      canvasShape.canvasWidth,
-      canvasSize,
-      currentPageDisplayName,
-      dispatch,
-      leftWidth,
-      rightWidth,
-    ],
+    [currentPageDisplayName],
   )
 
-  const finalLeftWidth = hasLeft ? leftWidth : 0
-  const finalRightWidth = hasRight ? rightWidth : 0
+  const handleBlurUpdateBodyPanelWidth = useCallback(() => {
+    let finalValue = finalBodyWidth
+    let finalLeftValue = leftWidth
+    let finalRightValue = rightWidth
+    if (canvasSize === "fixed") {
+      let currentRightValue = finalRightValue
+      let currentLeftValue = finalLeftValue
+      if (finalValue < BODY_MIN_WIDTH) {
+        finalValue = BODY_MIN_WIDTH
+        currentRightValue =
+          canvasShape.canvasWidth - finalValue - finalLeftValue
+      } else {
+        currentRightValue =
+          canvasShape.canvasWidth - finalValue - finalLeftValue
+      }
+      if (currentRightValue < RIGHT_MIN_WIDTH) {
+        finalRightValue = RIGHT_MIN_WIDTH
+        currentLeftValue =
+          canvasShape.canvasWidth - finalValue - finalRightValue
+      }
+      if (currentLeftValue < LEFT_MIN_WIDTH) {
+        finalLeftValue = LEFT_MIN_WIDTH
+        currentRightValue =
+          canvasShape.canvasWidth - finalValue - finalLeftValue
+      }
+      if (
+        currentLeftValue < LEFT_MIN_WIDTH &&
+        currentRightValue < RIGHT_MIN_WIDTH
+      ) {
+        finalLeftValue = LEFT_MIN_WIDTH
+        finalRightValue = RIGHT_MIN_WIDTH
+      }
+      setFinalBodyWidth(
+        canvasShape.canvasWidth - finalLeftValue - finalRightValue,
+      )
+    } else {
+      let finalLeftValuePX = (finalLeftValue / 100) * canvasShape.canvasWidth
+      let finalRightValuePX = (finalRightValue / 100) * canvasShape.canvasWidth
+      let finalValuePX = (finalValue / 100) * canvasShape.canvasWidth
+      if (finalValuePX <= BODY_MIN_HEIGHT) {
+        const restWidth = canvasShape.canvasWidth - BODY_MIN_HEIGHT
+        finalLeftValuePX =
+          (finalLeftValuePX / (finalLeftValuePX + finalRightValuePX)) *
+          restWidth
+        finalRightValuePX = restWidth - finalLeftValuePX
+        finalLeftValue = (finalLeftValuePX / canvasShape.canvasWidth) * 100
+        finalRightValue = (finalRightValuePX / canvasShape.canvasWidth) * 100
+      } else {
+        let restWidth = canvasShape.canvasWidth - finalValuePX
+        finalLeftValuePX =
+          (finalLeftValuePX / (finalLeftValuePX + finalRightValuePX)) *
+          restWidth
+        if (finalLeftValuePX < LEFT_MIN_WIDTH) {
+          finalLeftValuePX = LEFT_MIN_WIDTH
+        }
+        finalRightValuePX = restWidth - finalLeftValuePX
+        if (finalRightValuePX < RIGHT_MIN_WIDTH) {
+          finalRightValuePX = LEFT_MIN_WIDTH
+        }
+        finalLeftValue = (finalLeftValuePX / canvasShape.canvasWidth) * 100
+        finalRightValue = (RIGHT_MIN_WIDTH / canvasShape.canvasWidth) * 100
+      }
+      setFinalBodyWidth((1 - finalLeftValue - finalRightValue) * 100)
+    }
 
-  const handleUpdateLeftPanelWidth = useCallback(
-    (value?: number) => {
-      if (!currentPageDisplayName || !value) return
-      let finalValue = value
+    dispatch(
+      componentsActions.updateTargetPagePropsReducer({
+        pageName: currentPageDisplayName,
+        newProps: {
+          leftWidth: finalLeftValue,
+          rightWidth: finalRightValue,
+        },
+      }),
+    )
+  }, [
+    canvasShape.canvasWidth,
+    canvasSize,
+    currentPageDisplayName,
+    dispatch,
+    finalBodyWidth,
+    leftWidth,
+    rightWidth,
+  ])
+
+  const handleUpdateLeftPanelWidth = (value?: number) => {
+    if (!value) return
+    setFinalLeftWidth(value)
+  }
+
+  const handleBlurUpdateLeftPanelWidth = useCallback(
+    (e: FocusEvent<HTMLInputElement, Element>) => {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+        element: "panel_width",
+        parameter2: "left",
+        parameter3: e.target.value,
+      })
+
+      let finalValue = finalLeftWidth
       if (canvasSize === "fixed") {
         if (
           canvasShape.canvasWidth - finalValue - finalRightWidth <
@@ -273,7 +320,7 @@ export const PageFrame: FC = () => {
           finalValue = LEFT_MIN_WIDTH
         }
       } else {
-        const leftWidthPX = (value / 100) * canvasShape.canvasWidth
+        const leftWidthPX = (finalLeftWidth / 100) * canvasShape.canvasWidth
         const currentRightWidthPX =
           (finalRightWidth / 100) * canvasShape.canvasWidth
         if (
@@ -298,20 +345,32 @@ export const PageFrame: FC = () => {
           },
         }),
       )
+      setFinalLeftWidth(finalValue)
     },
     [
       canvasShape.canvasWidth,
       canvasSize,
       currentPageDisplayName,
       dispatch,
+      finalLeftWidth,
       finalRightWidth,
     ],
   )
 
-  const handleUpdateRightPanelWidth = useCallback(
-    (value?: number) => {
-      if (!currentPageDisplayName || !value) return
-      let finalValue = value
+  const handleUpdateRightPanelWidth = (value?: number) => {
+    if (!value) return
+    setFinalRightWidth(value)
+  }
+
+  const handleBlurUpdateRightPanelWidth = useCallback(
+    (e: FocusEvent<HTMLInputElement, Element>) => {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+        element: "panel_width",
+        parameter2: "left",
+        parameter3: e.target.value,
+      })
+
+      let finalValue = finalLeftWidth
       if (canvasSize === "fixed") {
         if (
           canvasShape.canvasWidth - finalValue - finalLeftWidth <
@@ -323,7 +382,7 @@ export const PageFrame: FC = () => {
           finalValue = RIGHT_MIN_WIDTH
         }
       } else {
-        const rightWidthPX = (value / 100) * canvasShape.canvasWidth
+        const rightWidthPX = (finalLeftWidth / 100) * canvasShape.canvasWidth
         const currentLeftWidthPX = (leftWidth / 100) * canvasShape.canvasWidth
         if (
           canvasShape.canvasWidth - rightWidthPX - currentLeftWidthPX <
@@ -584,18 +643,12 @@ export const PageFrame: FC = () => {
               <SetterPadding>
                 <InputNumber
                   w="96px"
-                  value={Number(leftWidth.toFixed(0))}
+                  value={Number(finalLeftWidth.toFixed(0))}
                   precision={0}
                   colorScheme="techPurple"
                   onChange={handleUpdateLeftPanelWidth}
                   step={1}
-                  onBlur={(e) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-                      element: "panel_width",
-                      parameter2: "left",
-                      parameter3: e.target.value,
-                    })
-                  }}
+                  onBlur={handleBlurUpdateLeftPanelWidth}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -659,17 +712,11 @@ export const PageFrame: FC = () => {
                 <InputNumber
                   w="96px"
                   precision={0}
-                  value={Number(rightWidth.toFixed(0))}
+                  value={Number(finalRightWidth.toFixed(0))}
                   colorScheme="techPurple"
                   onChange={handleUpdateRightPanelWidth}
                   step={1}
-                  onBlur={(e) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-                      element: "panel_width",
-                      parameter2: "left",
-                      parameter3: e.target.value,
-                    })
-                  }}
+                  onBlur={handleBlurUpdateRightPanelWidth}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -710,8 +757,9 @@ export const PageFrame: FC = () => {
               w="96px"
               precision={0}
               colorScheme="techPurple"
-              value={Number(bodyWidth.toFixed(0))}
+              value={Number(finalBodyWidth.toFixed(0))}
               onChange={handleUpdateBodyPanelWidth}
+              onBlur={handleBlurUpdateBodyPanelWidth}
               step={1}
               disabled={!hasLeft && !hasRight}
             />
