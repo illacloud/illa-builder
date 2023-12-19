@@ -388,7 +388,11 @@ const RenderComponentCanvasContainer: FC<
     if (!innerCanvasDOM) return
     const innerCanvasDOMRect = innerCanvasDOM.getBoundingClientRect()
 
-    if (isFinite(maxHeight) && prevMaxHeight.current > maxHeight) {
+    if (
+      isFinite(maxHeight) &&
+      prevMaxHeight.current > maxHeight &&
+      isResizingGlobal
+    ) {
       return
     }
 
@@ -423,6 +427,7 @@ const RenderComponentCanvasContainer: FC<
     canResizeCanvas,
     fixedBounds.height,
     isEditMode,
+    isResizingGlobal,
     isRootCanvas,
     maxHeight,
     minHeight,
