@@ -238,7 +238,7 @@ export function getPreColor(index: number) {
     "purple",
     "techPink",
   ]
-  return colors[index % colors.length]
+  return colors[Math.abs(index) % colors.length]
 }
 
 export const realInputValueWithDataList = (

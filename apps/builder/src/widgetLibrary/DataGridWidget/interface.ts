@@ -92,9 +92,7 @@ export const ColumnTypeList = [
     value: "image",
   },
   {
-    label: i18n.t(
-      "editor.inspect.setter_option.table.column_type.image.avatar",
-    ),
+    label: i18n.t("editor.inspect.setter_option.table.column_type.avatar"),
     value: "avatar",
   },
   {
