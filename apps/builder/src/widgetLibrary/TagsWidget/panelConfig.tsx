@@ -66,7 +66,8 @@ export const TAGS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-layout-hidden`,
-        labelName: i18n.t("t_allow wrap"),
+        labelName: i18n.t("editor.inspect.setter_label.slider.allow_wrapping"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.slider.allow_wrapping"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "allowWrap",
         useCustomLayout: true,
@@ -119,7 +120,8 @@ export const TAGS_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: `${baseWidgetName}-style-color`,
-            labelName: i18n.t("t tagColor"),
+            labelName: i18n.t("editor.inspect.setter_label.tag_color"),
+            labelDesc: i18n.t("editor.inspect.setter_tips.tag_color"),
             attrName: "tagColor",
             setterType: "INPUT_SETTER",
             useCustomLayout: true,

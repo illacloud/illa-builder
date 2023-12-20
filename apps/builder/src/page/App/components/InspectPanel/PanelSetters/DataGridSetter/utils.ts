@@ -230,17 +230,12 @@ export const CurrencyCode = {
 
 export function getPreColor(index: number) {
   const colors = [
-    "blackAlpha",
-    "gray",
-    "grayBlue",
     "red",
     "orange",
     "yellow",
     "green",
-    "blue",
     "cyan",
     "purple",
-    "techPurple",
     "techPink",
   ]
   return colors[index % colors.length]
