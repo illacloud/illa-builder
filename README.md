@@ -15,11 +15,10 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 
 <br>
 <p align="center">
-<a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img src="https://github.com/illacloud/illa-builder/assets/7929686/cbab1946-3699-4fa3-92f6-7a369c02d41b">
-</a>
+  <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">  
+    <img width="800" alt="Github" src="https://github.com/illacloud/illa-builder/assets/7929686/6a5adca8-6c9a-43bb-9a77-8526b209a14f">
+  </a>
 </p>
-
 
 <p align="center">
   <a href="https://discord.gg/illacloud"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
@@ -54,11 +53,10 @@ You can also deploy and [self-host](https://docs.illacloud.com/self-hosted-deplo
 ## ✨ Features
 
 1. ⚽ **Real-time Collaboration:** We can create everything in real-time together.
-2. 🛠 **Custom Plugin:** Build any custom plugin to do what you want.
-3. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
-4. 🖥 **Self-hosted:** supports Docker & k8s
-5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
-6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
+2. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
+3. 🖥 **Self-hosted:** supports Docker & k8s
+4. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
+5. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
 
 ## Self-hosted
     
