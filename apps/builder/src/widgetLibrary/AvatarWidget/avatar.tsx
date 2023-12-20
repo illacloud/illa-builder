@@ -1,4 +1,5 @@
 import { getColorByString } from "@illa-public/utils"
+import { isString } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { Avatar } from "@illa-design/react"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"
@@ -42,7 +43,17 @@ export const WrapperAvatar: FC<WrappedAvatarProps> = ({
     }
   }, [avatarType, colorScheme, icon, imageSrc, text])
 
-  const currentIcon = getIcon(icon ?? "")
+  const getTextString = () => {
+    if (!text || !isString(text)) return ""
+    let finalStr = ""
+    finalStr = text
+      .split(" ")
+      .slice(0, 2)
+      .map((s) => s[0])
+      .join("")
+      .toLocaleUpperCase()
+    return finalStr
+  }
 
   return (
     <div css={applyLabelAndComponentWrapperStyle(labelPosition, labelHidden)}>
@@ -67,7 +78,7 @@ export const WrapperAvatar: FC<WrappedAvatarProps> = ({
       )}
       {avatarType === "icon" && (
         <Avatar
-          icon={currentIcon?.({})}
+          icon={getIcon(icon ?? "")?.({})}
           size={avatarSize}
           colorScheme={finalColorScheme}
           onClick={handleOnClick}
@@ -75,7 +86,7 @@ export const WrapperAvatar: FC<WrappedAvatarProps> = ({
       )}
       {avatarType === "text" && (
         <Avatar
-          text={getSafeNode(text?.slice(0, 2)?.toLocaleUpperCase())}
+          text={getSafeNode(getTextString())}
           size={avatarSize}
           colorScheme={finalColorScheme}
           onClick={handleOnClick}
