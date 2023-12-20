@@ -12,23 +12,15 @@
 <div align="center">
 <a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-DE.md">Deutsch</a> | 日本語
 </div>
-
 <br>
-<p align="center">
-<a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img src="https://github.com/illacloud/illa-builder/assets/7929686/8a046562-ba25-4994-bc44-5cc1eb63b30b">
-</a>
-</p>
 
-<p align="center">
-  <a href="https://discord.gg/illacloud"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
-  <a href="https://twitter.com/illacloudHQ"><img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white" height=18></a>
-  <a href="https://github.com/orgs/illacloud/discussions"><img src="https://img.shields.io/badge/discussions-GitHub-333333?logo=github" height=18></a>
-  <a title="Crowdin" target="_blank" href="https://crowdin.com/project/illa-builder"><img src="https://badges.crowdin.net/illa-builder/localized.svg"  height=18></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/illacloud/illa-builder" height=18></a>
-  <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
-</p>
-
+[![Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illacloudHQ)
+[![Discussions](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
+[![Crowdin](https://badges.crowdin.net/illa-builder/localized.svg)](https://crowdin.com/project/illa-builder)
+[![CI (Rolling and Humble)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml/badge.svg?query=branch%3Amain)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml?query=branch%3Amain)
+[![PR:s Welcome](https://img.shields.io/badge/PR:s-welcome-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=socialflat-square&)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## 🚀始めましょう
 [ILLA Cloud](https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme) にサインアップしてログインするのが最も便利です。招待コードを入手するには、この [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) に記入し、できるだけ多くの情報を提供してください。ご提出いただいた内容は、最大2営業日以内にレビューし、できるだけ早くご連絡いたします。
@@ -45,11 +37,10 @@
 ## ✨ 特徴
 
 1. ⚽ **リアルタイム コラボレーション:** すべてをリアルタイムで一緒に作成できます。
-2. 🛠 **カスタム プラグイン:** カスタム プラグインを作成して、必要なことを行います。
-3. 🤖 **サポートの自動化:** すべてを接続して 5 秒で自動化します。
-4. 🖥 **自己ホスト型:** Docker と k8s をサポート
-5. 📝 **ページのサポート:** コンテンツが豊富で UI に適したツールを作成するための基盤。
-6. 🎨 **[ILLA Design](https://github.com/illacloud/illa-design) を利用:** コンポーネントによって想像力が制約されることはありません。
+2. 🤖 **サポートの自動化:** すべてを接続して 5 秒で自動化します。
+3. 🖥 **自己ホスト型:** Docker と k8s をサポート
+4. 📝 **ページのサポート:** コンテンツが豊富で UI に適したツールを作成するための基盤。
+5. 🎨 **[ILLA Design](https://github.com/illacloud/illa-design) を利用:** コンポーネントによって想像力が制約されることはありません。
 ## Self-hosted
     
 ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開できます。 [ここをクリック](https://docs.illacloud.com/self-hosted-deployment) 詳細については。
