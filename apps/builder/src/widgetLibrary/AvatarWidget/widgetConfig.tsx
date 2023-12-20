@@ -1,4 +1,4 @@
-import IconsWidgetIcon from "@/assets/widgetCover/icon.svg?react"
+import AvatarWidgetIcon from "@/assets/widgetCover/avatar.svg?react"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
@@ -6,7 +6,7 @@ export const AVATAR_WIDGET_CONFIG: WidgetConfig = {
   type: "AVATAR_WIDGET",
   displayName: "avatar",
   widgetName: i18n.t("widget.avatar.name"),
-  icon: <IconsWidgetIcon />,
+  icon: <AvatarWidgetIcon />,
   keywords: ["avatar", "头像"],
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   sessionType: "PRESENTATION",
