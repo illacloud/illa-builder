@@ -12,11 +12,11 @@ import MorePanel from "./components/MorePanel"
 import TagContainer from "./components/TagContainer"
 import { GAP, OVERFLOW_GAP } from "./constants"
 import { TagsWidgetProps, WrappedTagsProps } from "./interface"
-import { tagsContainerStyle, wrapperContainerStyle } from "./style"
+import { wrapperContainerStyle } from "./style"
 import { getSafeStringValue } from "./utils"
 
 export const WrappedTags: FC<WrappedTagsProps> = (props) => {
-  const { value = [], tagColor, allowWrap, handleOnSelect } = props
+  const { value = [], tagColor, allowWrap, alignment, handleOnSelect } = props
 
   const [sliceIndex, setSliceIndex] = useState(value.length)
   const tagColorMap = isObject(tagColor) ? tagColor : {}
@@ -81,6 +81,7 @@ export const WrappedTags: FC<WrappedTagsProps> = (props) => {
     <div
       css={wrapperContainerStyle(
         widthArray.current[0] + overflowWidth.current,
+        alignment,
         allowWrap,
       )}
       ref={container}
@@ -133,7 +134,6 @@ export const TagsWidget: FC<TagsWidgetProps> = (props) => {
   const {
     displayName,
     tooltipText,
-    alignment,
     disabled,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -204,7 +204,7 @@ export const TagsWidget: FC<TagsWidgetProps> = (props) => {
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-        <div css={tagsContainerStyle(alignment)}>
+        <div>
           <WrappedTags {...props} handleOnSelect={handleOnSelect} />
         </div>
       </TooltipWrapper>
