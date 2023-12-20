@@ -36,11 +36,10 @@ Sie können ILLA-Utilities auch manuell bereitstellen und selbst hosten [Docker,
 ## ✨ Eigenschaften
 
 1. ⚽ **Kollaboration in Echtzeit:** Wir können alles gemeinsam in Echtzeit erstellen.
-2. 🛠 **Benutzerdefiniertes Plugin::** Erstellen Sie jedes benutzerdefinierte Plugin, um das zu tun, was Sie wollen.
-3. 🤖 **Automatisierte Unterstützungt:** Verbinden Sie alles und automatisieren Sie es in 5 Sekunden
-4. 🖥 **Selbst gehostet:** unterstützt Docker & k8s
-5. 📝 **eitenunterstützung:** Die Basis für die Erstellung eines inhaltsreichen und UI-freundlichen Tools.
-6. 🎨 ** [Angetrieben von ILLA Design](https://github.com/illacloud/illa-design):** : Komponenten sollten Ihre Fantasie nicht einschränken..
+2. 🤖 **Automatisierte Unterstützungt:** Verbinden Sie alles und automatisieren Sie es in 5 Sekunden
+3. 🖥 **Selbst gehostet:** unterstützt Docker & k8s
+4. 📝 **eitenunterstützung:** Die Basis für die Erstellung eines inhaltsreichen und UI-freundlichen Tools.
+5. 🎨 ** [Angetrieben von ILLA Design](https://github.com/illacloud/illa-design):** : Komponenten sollten Ihre Fantasie nicht einschränken..
 
 ## Selbst gehostet
     
