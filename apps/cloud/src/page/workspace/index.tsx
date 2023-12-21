@@ -1,14 +1,30 @@
 import { LayoutAutoChange } from "@illa-public/layout-auto-change"
-import { FC } from "react"
+import { FC, useState } from "react"
+import ChangeLogModal from "./components/ChangeLogModal"
 import { MobileDashBoardLayout } from "./layout/mobile"
 import { PCDashBoardLayout } from "./layout/pc/"
 
 const Workspace: FC = () => {
+  const [changeLogVisible, setChangeLogVisible] = useState<boolean>(false)
+
+  const onOpenChangeLogModal = () => {
+    setChangeLogVisible(true)
+  }
+
   return (
-    <LayoutAutoChange
-      desktopPage={<PCDashBoardLayout />}
-      mobilePage={<MobileDashBoardLayout />}
-    />
+    <>
+      <LayoutAutoChange
+        desktopPage={
+          <PCDashBoardLayout onOpenChangeLogModal={onOpenChangeLogModal} />
+        }
+        mobilePage={
+          <MobileDashBoardLayout onOpenChangeLogModal={onOpenChangeLogModal} />
+        }
+      />
+      {changeLogVisible && (
+        <ChangeLogModal onClose={() => setChangeLogVisible(false)} />
+      )}
+    </>
   )
 }
 

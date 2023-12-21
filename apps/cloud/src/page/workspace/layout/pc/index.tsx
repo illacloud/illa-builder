@@ -22,8 +22,11 @@ import { useModal } from "@illa-design/react"
 import { FullSectionLoading } from "@/components/FullSectionLoading"
 import { DashBoardDynamicMenu } from "@/page/workspace/components/DynamicMenu"
 import { updateTutorialViewed } from "@/services/user"
+import { WorkspaceLayoutProps } from "../interface"
 
-export const PCDashBoardLayout: FC = () => {
+export const PCDashBoardLayout: FC<WorkspaceLayoutProps> = ({
+  onOpenChangeLogModal,
+}) => {
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const isLogin = useSelector(getCurrentUserID)
   const currentUserRole = currentTeamInfo?.myRole ?? USER_ROLE.VIEWER
@@ -41,6 +44,12 @@ export const PCDashBoardLayout: FC = () => {
     teamPlan,
     ACTION_MANAGE.EDIT_APP,
   )
+
+  const handleClickMenuItem = (key: string) => {
+    if (key === "change-log") {
+      onOpenChangeLogModal()
+    }
+  }
 
   useEffect(() => {
     if (
@@ -82,7 +91,9 @@ export const PCDashBoardLayout: FC = () => {
           <DashBoardDynamicMenu />
         </div>
       }
-      bottomComponent={<BottomList />}
+      bottomComponent={
+        <BottomList onClickMenuItemCallback={handleClickMenuItem} />
+      }
     >
       {isLogin && (
         <Suspense fallback={<FullSectionLoading />}>

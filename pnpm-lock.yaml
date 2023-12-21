@@ -571,6 +571,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
+      '@illa-public/illa-markdown':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/ILLAMarkdown
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/ILLANet
