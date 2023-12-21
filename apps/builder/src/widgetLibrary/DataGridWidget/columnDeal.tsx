@@ -122,12 +122,16 @@ export function getColumnFromType(
                     "click",
                     `columns[${params.api.getColumnIndex(
                       params.field,
+                      false,
                     )}].events`,
                     {},
                     (path) => {
                       return formatDataGridColumnEvent(
                         path,
-                        `columns[${params.api.getColumnIndex(params.field)}].`,
+                        `columns[${params.api.getColumnIndex(
+                          params.field,
+                          false,
+                        )}].`,
                       )
                     },
                   )
@@ -176,6 +180,7 @@ export function getColumnFromType(
                           "click",
                           `columns[${params.api.getColumnIndex(
                             params.field,
+                            false,
                           )}].buttonGroup[${buttonIndex}].events`,
                           {},
                           (path) => {
@@ -183,6 +188,7 @@ export function getColumnFromType(
                               path,
                               `columns[${params.api.getColumnIndex(
                                 params.field,
+                                false,
                               )}].buttonGroup[${buttonIndex}].`,
                             )
                           },
