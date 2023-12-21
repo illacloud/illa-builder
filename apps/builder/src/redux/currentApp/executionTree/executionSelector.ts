@@ -56,7 +56,6 @@ export const IGNORE_WIDGET_TYPES = new Set<string>([
   "SECTION_NODE",
   "CANVAS",
   "DOT_PANEL",
-  "MODAL_WIDGET",
   "MODAL_SECTION_NODE",
 ])
 
