@@ -9,6 +9,7 @@ import {
   getExecutionResultToCurrentPageCodeMirror,
   getExecutionResultToGlobalCodeMirror,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 import { runActionWithExecutionResult } from "../action/runAction"
 import {
@@ -154,6 +155,33 @@ class ILLAEditorRuntimePropsCollector {
                 return await runActionWithExecutionResult(prev, false)
               },
             },
+          }
+        }
+        if (prev.$type === "WIDGET") {
+          switch (prev.$widgetType) {
+            case "MODAL_WIDGET":
+              return {
+                ...acc,
+                [prevKey]: {
+                  ...prev,
+                  openModal: () => {
+                    store.dispatch(
+                      executionActions.updateModalDisplayReducer({
+                        display: true,
+                        displayName: prevKey,
+                      }),
+                    )
+                  },
+                  closeModal: () => {
+                    store.dispatch(
+                      executionActions.updateModalDisplayReducer({
+                        display: false,
+                        displayName: prevKey,
+                      }),
+                    )
+                  },
+                },
+              }
           }
         }
         return {
