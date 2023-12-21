@@ -1,4 +1,5 @@
-import { isObject } from "lodash"
+import { isObject, isString } from "lodash"
+import { isNumber } from "@illa-design/react"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
 
 export function dealRawData2ArrayData(rawData: unknown): object[] {
@@ -46,7 +47,6 @@ export function getHashCode(str: string) {
 }
 
 export function isValidLocale(locale: string) {
-  // 使用正则表达式来匹配标准的locale格式
   const localePattern = /^[a-z]{2}(?:-[A-Z]{2})?$/
   return localePattern.test(locale)
 }
@@ -230,21 +230,15 @@ export const CurrencyCode = {
 
 export function getPreColor(index: number) {
   const colors = [
-    "white",
-    "blackAlpha",
-    "gray",
-    "grayBlue",
     "red",
     "orange",
     "yellow",
     "green",
-    "blue",
     "cyan",
     "purple",
-    "techPurple",
     "techPink",
   ]
-  return colors[index % colors.length]
+  return colors[Math.abs(index) % colors.length]
 }
 
 export const realInputValueWithDataList = (
@@ -289,4 +283,18 @@ export const getNeedComputedValueWithDataList = (
   return `{{${widgetDisplayName}.${
     dataSourceMode === "select" ? "dataSource" : "dataSourceJS"
   }.map((currentRow) => (${stringToCanEvaluate}))}}`
+}
+
+export const getValueFromMappedValue = (
+  value: unknown,
+  index: number,
+  defaultValue?: string,
+): string | undefined => {
+  let finalValue = defaultValue
+  if (Array.isArray(value)) {
+    finalValue = isString(value[index]) ? value[index] : finalValue
+  } else if (isNumber(value) || isString(value)) {
+    finalValue = `${value}`
+  }
+  return finalValue
 }

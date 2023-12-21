@@ -140,6 +140,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnTypeSelectSetter"
       ),
   ),
+  DATA_GRID_MAPPED_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnMappedSelect"
+      ),
+  ),
   TABS_LIST_SETTER: lazy(
     () =>
       import(
@@ -351,6 +357,18 @@ const SetterTypeMapSetter = {
   LIST_GAP_SETTER: lazy(
     () =>
       import("@/page/App/components/InspectPanel/PanelSetters/ListGapSetter"),
+  ),
+  CUSTOM_BG_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/CustomBgSelect"
+      ),
+  ),
+  DYNAMIC_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/dynamicSelectSetter"
+      ),
   ),
   ...DeprecatedSetterTypeMapSetter,
 }

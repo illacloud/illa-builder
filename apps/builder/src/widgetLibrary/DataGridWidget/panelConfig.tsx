@@ -326,6 +326,91 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           options: ["container", "cover", "fill", "none", "scale-down"],
         },
       ]
+    case "avatar":
+      return [
+        {
+          id: `${baseWidgetName}-label-avatar-type`,
+          labelName: i18n.t("editor.inspect.setter_label.avatar_type"),
+          attrName: "avatarType",
+          setterType: "DATA_GRID_MAPPED_SELECT_SETTER",
+          defaultValue: "image",
+          options: [
+            {
+              label: i18n.t(
+                "editor.inspect.setter_label.avatar_type_options.image",
+              ),
+              value: "image",
+            },
+            {
+              label: i18n.t(
+                "editor.inspect.setter_label.avatar_type_options.icon",
+              ),
+              value: "icon",
+            },
+            {
+              label: i18n.t(
+                "editor.inspect.setter_label.avatar_type_options.text",
+              ),
+              value: "text",
+            },
+          ],
+        },
+        {
+          id: `${baseWidgetName}-label-image`,
+          labelName: i18n.t("editor.inspect.setter_label.imageSrc"),
+          attrName: "imageSrc",
+          isSetterSingleRow: true,
+          bindAttrName: ["avatarType"],
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-label-text`,
+          labelName: i18n.t("editor.inspect.setter_label.text"),
+          attrName: "text",
+          bindAttrName: ["avatarType"],
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-label-icon`,
+          labelName: i18n.t("editor.inspect.setter_label.icon"),
+          attrName: "icon",
+          bindAttrName: ["avatarType"],
+          expectedType: VALIDATION_TYPES.STRING,
+          setterType: "ICON_SETTER",
+        },
+        {
+          id: `${baseWidgetName}-label-label`,
+          labelName: i18n.t("editor.inspect.setter_label.label"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.slider.label"),
+          attrName: "label",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-label-caption`,
+          labelName: i18n.t("editor.inspect.setter_label.caption"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.slider.caption"),
+          attrName: "labelCaption",
+          setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-label-hidden`,
+          labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
+          labelDesc: i18n.t("editor.inspect.setter_tips.slider.hide_label"),
+          attrName: "labelHidden",
+          setterType: "DYNAMIC_SWITCH_SETTER",
+          useCustomLayout: true,
+        },
+        {
+          id: `${baseWidgetName}-colors-color`,
+          labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+          attrName: "colorScheme",
+          setterType: "CUSTOM_BG_SELECT_SETTER",
+        },
+      ]
     case "rating":
       return [
         {

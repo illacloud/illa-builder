@@ -12,7 +12,7 @@
       "vite-plugin-svgr/client",
       "mdx",
       "node",
-      "@illa-public/utils/types/gtag.d.ts"
+      "@types/gtag.js"
     ]
   },
   "include": [

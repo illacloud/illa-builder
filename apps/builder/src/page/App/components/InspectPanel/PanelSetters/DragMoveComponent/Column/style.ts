@@ -34,3 +34,8 @@ export const columnLabelStyle = css`
   font-weight: 400;
   line-height: 22px;
 `
+
+export const baseModalContainerStyle = css`
+  max-height: 800px;
+  overflow-y: auto;
+`
