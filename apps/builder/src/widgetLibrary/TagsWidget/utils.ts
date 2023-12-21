@@ -1,10 +1,9 @@
-import { isNumber, isObject, isString } from "@illa-design/react"
+import { isObject } from "@illa-design/react"
 
 export const getSafeStringValue = (value: unknown) => {
-  if (isString(value) || isNumber(value)) {
-    return `${value}`
-  } else if (isObject(value)) {
+  if (isObject(value) || Array.isArray(value)) {
     return JSON.stringify(value)
+  } else {
+    return `${value}`
   }
-  return ""
 }
