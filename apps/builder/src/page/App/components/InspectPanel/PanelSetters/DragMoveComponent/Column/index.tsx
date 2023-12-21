@@ -13,7 +13,12 @@ import {
 import IconHotSpot from "@/components/IconHotSpot"
 import { BaseModal } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/Modal"
 import { ColumnProps } from "./interface"
-import { columnContainerStyle, columnLabelStyle, dragIconStyle } from "./style"
+import {
+  baseModalContainerStyle,
+  columnContainerStyle,
+  columnLabelStyle,
+  dragIconStyle,
+} from "./style"
 
 export const Column: FC<ColumnProps> = (props) => {
   const {
@@ -69,6 +74,7 @@ export const Column: FC<ColumnProps> = (props) => {
           <BaseModal
             title={label as string}
             attrPath={attrPath}
+            _css={baseModalContainerStyle}
             widgetDisplayName={widgetDisplayName}
             childrenSetter={childrenSetter}
             extraElement={extraElement}

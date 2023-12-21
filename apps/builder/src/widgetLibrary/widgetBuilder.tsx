@@ -231,6 +231,11 @@ import {
   TABS_WIDGET_CONFIG,
 } from "@/widgetLibrary/TabsWidget"
 import {
+  TAGS_EVENT_HANDLER_CONFIG,
+  TAGS_PANEL_CONFIG,
+  TAGS_WIDGET_CONFIG,
+} from "@/widgetLibrary/TagsWidget"
+import {
   TEXTAREA_EVENT_HANDLER_CONFIG,
   TEXTAREA_PANEL_CONFIG,
   TEXTAREA_WIDGET_CONFIG,
@@ -265,6 +270,11 @@ import {
   VIDEO_PANEL_CONFIG,
   VIDEO_WIDGET_CONFIG,
 } from "@/widgetLibrary/VideoWidget"
+import {
+  AVATAR_EVENT_HANDLER_CONFIG,
+  AVATAR_PANEL_CONFIG,
+  AVATAR_WIDGET_CONFIG,
+} from "./AvatarWidget"
 import {
   GRID_LIST_EVENT_HANDLER_CONFIG,
   GRID_LIST_PANEL_CONFIG,
@@ -521,6 +531,12 @@ export const WidgetConfigMap: Record<
     eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/ButtonWidget/button")),
   },
+  TAGS_WIDGET: {
+    config: TAGS_WIDGET_CONFIG,
+    panelConfig: TAGS_PANEL_CONFIG,
+    eventHandlerConfig: TAGS_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/TagsWidget/tags")),
+  },
   CHAT_WIDGET: {
     widget: lazy(() => import("@/widgetLibrary/ChatWidget/chat")),
     config: CHAT_WIDGET_CONFIG,
@@ -532,6 +548,12 @@ export const WidgetConfigMap: Record<
     panelConfig: ICON_PANEL_CONFIG,
     eventHandlerConfig: ICON_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/IconWidget/icon")),
+  },
+  AVATAR_WIDGET: {
+    config: AVATAR_WIDGET_CONFIG,
+    panelConfig: AVATAR_PANEL_CONFIG,
+    eventHandlerConfig: AVATAR_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/AvatarWidget/avatar")),
   },
   STATISTIC_WIDGET: {
     config: STATISTICS_WIDGET_CONFIG,

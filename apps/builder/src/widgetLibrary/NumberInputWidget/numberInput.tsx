@@ -64,7 +64,7 @@ export const WrappedInputNumber = forwardRef<
 
   return (
     <InputNumber
-      ref={ref}
+      inputRef={ref}
       max={max}
       min={min}
       formatter={openThousandSeparator ? parserThousand : undefined}

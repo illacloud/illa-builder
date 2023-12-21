@@ -4,6 +4,7 @@ export const cellContainer = css`
   display: flex;
   flex-direction: row;
   overflow-x: auto;
+  gap: 8px;
   ::-webkit-scrollbar {
     display: none;
   }
