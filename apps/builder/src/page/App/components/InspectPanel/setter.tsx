@@ -34,6 +34,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     handleUpdateDsl,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
+    handleUpdateExecutionResult,
   } = useContext(SelectedPanelContext)
 
   const canRenderSetter = useMemo(() => {
@@ -81,6 +82,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           handleUpdateDsl={handleUpdateDsl}
           handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
           handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
+          handleUpdateExecutionResult={handleUpdateExecutionResult}
           widgetDisplayName={widgetDisplayName}
           expectedType={expectedType}
           widgetType={widgetType}

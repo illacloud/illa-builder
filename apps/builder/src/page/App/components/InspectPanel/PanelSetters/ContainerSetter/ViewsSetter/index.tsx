@@ -31,13 +31,13 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
     attrName,
     widgetDisplayName,
     childrenSetter,
+    handleUpdateExecutionResult,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
     componentNode,
   } = props
   const { t } = useTranslation()
   const executionResult = useSelector(getExecutionResult)
-
   const dispatch = useDispatch()
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -90,8 +90,8 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
     },
     [
       handleUpdateMultiAttrDSL,
-      handleUpdateOtherMultiAttrDSL,
       linkWidgetDisplayName,
+      handleUpdateOtherMultiAttrDSL,
     ],
   )
 
@@ -123,14 +123,14 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
     }
     dispatch(componentsActions.addComponentReducer([newChildrenNodes]))
   }, [
-    allViewsKeys,
     _componentNode?.displayName,
-    handleUpdateMultiAttrDSL,
+    allViewsKeys,
     attrName,
-    value,
-    linkWidgetDisplayName,
     dispatch,
+    handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
+    linkWidgetDisplayName,
+    value,
   ])
 
   return (
@@ -141,6 +141,7 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
       attrPath={attrName}
       handleUpdateDsl={handleUpdateDsl}
       handleUpdateMultiAttrDSL={updateMultiAttrDSL}
+      handleUpdateExecutionResult={handleUpdateExecutionResult}
       handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
       componentNode={_componentNode}
     >

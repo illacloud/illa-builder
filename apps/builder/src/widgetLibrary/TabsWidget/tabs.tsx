@@ -14,7 +14,7 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
     colorScheme,
     tabPosition,
     handleOnChange,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateExecution,
   } = props
 
   return (
@@ -27,13 +27,10 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
       onChange={(value) => {
         new Promise((resolve) => {
           const currentIndex = tabList?.findIndex((view) => view.key === value)
-          handleUpdateOriginalDSLMultiAttr(
-            {
-              currentKey: value,
-              currentIndex,
-            },
-            true,
-          )
+          handleUpdateExecution?.({
+            currentKey: value,
+            currentIndex,
+          })
           resolve(true)
         }).then(() => {
           handleOnChange?.()
@@ -75,7 +72,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     tabPosition,
     triggerEventHandler,
     updateComponentHeight,
-    handleUpdateOriginalDSLOtherMultiAttr,
+    handleUpdateMultiExecutionResult,
   } = props
 
   useEffect(() => {
@@ -104,20 +101,26 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     return tabList
   }, [navigateContainer, tabList, viewList])
 
-  const handleUpdateMultiExecutionResults = useCallback(
+  const handleUpdateExecution = useCallback(
     (updateSliceItem: Record<string, any>) => {
       if (navigateContainer && linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttr(
-          linkWidgetDisplayName,
-          updateSliceItem,
-          true,
-        )
+        handleUpdateMultiExecutionResult([
+          {
+            displayName: linkWidgetDisplayName,
+            value: updateSliceItem,
+          },
+        ])
       }
-      handleUpdateOriginalDSLOtherMultiAttr(displayName, updateSliceItem, true)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: updateSliceItem,
+        },
+      ])
     },
     [
       displayName,
-      handleUpdateOriginalDSLOtherMultiAttr,
+      handleUpdateMultiExecutionResult,
       linkWidgetDisplayName,
       navigateContainer,
     ],
@@ -141,7 +144,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
             tabPosition={tabPosition}
             disabled={disabled}
             linkWidgetDisplayName={linkWidgetDisplayName}
-            handleUpdateOriginalDSLMultiAttr={handleUpdateMultiExecutionResults}
+            handleUpdateExecution={handleUpdateExecution}
             handleOnChange={handleOnChange}
           />
         </div>
