@@ -15,6 +15,10 @@ export interface BaseSetter {
     displayName: string,
     updateSlice: Record<string, unknown>,
   ) => void
+  handleUpdateExecutionResult?: (
+    displayName: string,
+    updateSlice: Record<string, unknown>,
+  ) => void
   expectedType?: VALIDATION_TYPES
   attrNames?: string[]
   widgetDisplayName: string

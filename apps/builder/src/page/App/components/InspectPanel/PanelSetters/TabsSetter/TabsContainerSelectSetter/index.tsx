@@ -1,25 +1,50 @@
 import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { ChartDataSourceSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/interface"
+import { BaseSelectSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/interface"
+import SearchSelectSetter from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/searchSelect"
+import DynamicSwitchSetter from "@/page/App/components/InspectPanel/PanelSetters/SwitchSetter/dynamicSwitch"
 import { getAllContainerWidget } from "@/redux/currentApp/components/componentsSelector"
-import SearchSelectSetter from "../../SelectSetter/searchSelect"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { containerStyle, selectContainerStyle } from "./style"
 
-const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (props) => {
+const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const {
     value,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
     widgetDisplayName,
+    handleUpdateDsl,
   } = props
   const containers = useSelector(getAllContainerWidget)
+  const { t } = useTranslation()
+
+  const targetComponentProps = useSelector<RootState, Record<string, any>>(
+    (rootState) => {
+      const executionTree = getExecutionResult(rootState)
+      return get(executionTree, widgetDisplayName, {})
+    },
+  )
+
+  const linkWidgetDisplayName = useMemo(() => {
+    return get(targetComponentProps, "linkWidgetDisplayName", "") as string
+  }, [targetComponentProps])
+
+  const isLinkToContainer = get(
+    targetComponentProps,
+    `navigateContainer`,
+    false,
+  )
 
   const selectedOptions = useMemo(() => {
     if (!containers) return
     return Object.keys(containers)
   }, [containers])
 
-  const handleUpdateDsl = useCallback(
+  const handleUpdateViewList = useCallback(
     (attrName: string, targetDisplayName: string) => {
       try {
         const newList = get(containers, `${targetDisplayName}.viewList`, {})
@@ -63,12 +88,47 @@ const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (props) => {
     ],
   )
 
+  const handleUpdateLinkContainer = useCallback(
+    (attrName: string, v: unknown) => {
+      if (!v && linkWidgetDisplayName) {
+        handleUpdateMultiAttrDSL?.({
+          linkWidgetDisplayName: undefined,
+        })
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          linkWidgetDisplayName: undefined,
+        })
+      }
+      handleUpdateDsl(attrName, v)
+    },
+    [
+      handleUpdateDsl,
+      handleUpdateMultiAttrDSL,
+      handleUpdateOtherMultiAttrDSL,
+      linkWidgetDisplayName,
+    ],
+  )
+
   return (
-    <SearchSelectSetter
-      {...props}
-      options={selectedOptions}
-      handleUpdateDsl={handleUpdateDsl}
-    />
+    <div css={containerStyle}>
+      <DynamicSwitchSetter
+        {...props}
+        labelName={t("editor.inspect.setter_label.link_to_container")}
+        value={isLinkToContainer}
+        openDynamic
+        attrName="navigateContainer"
+        expectedType={VALIDATION_TYPES.BOOLEAN}
+        handleUpdateDsl={handleUpdateLinkContainer}
+      />
+      {isLinkToContainer && (
+        <div css={selectContainerStyle}>
+          <SearchSelectSetter
+            {...props}
+            options={selectedOptions}
+            handleUpdateDsl={handleUpdateViewList}
+          />
+        </div>
+      )}
+    </div>
   )
 }
 
