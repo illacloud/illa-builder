@@ -30,9 +30,6 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
   } = props
 
   const changeValue = (value?: unknown) => {
-    if (readOnly) {
-      return
-    }
     new Promise((resolve) => {
       const message = getValidateMessage(value)
       handleUpdateMultiExecutionResult([
