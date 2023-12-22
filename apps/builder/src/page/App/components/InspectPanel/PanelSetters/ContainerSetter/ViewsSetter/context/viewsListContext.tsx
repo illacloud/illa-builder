@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 import { newGenerateChildrenComponentNode } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ViewItemShape } from "../interface"
@@ -21,6 +22,10 @@ interface ProviderProps {
   componentNode: ComponentMapNode
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
+  handleUpdateExecutionResult?: (
+    displayName: string,
+    updateSlice: Record<string, any>,
+  ) => void
   handleUpdateOtherMultiAttrDSL?: (
     displayName: string,
     updateSlice: Record<string, any>,
@@ -44,10 +49,18 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     attrPath,
     widgetDisplayName,
     handleUpdateMultiAttrDSL,
+    handleUpdateExecutionResult,
     componentNode,
   } = props
   const dispatch = useDispatch()
   const executionResult = useSelector(getExecutionResult)
+
+  const targetComponentProps = useSelector<RootState, Record<string, any>>(
+    (rootState) => {
+      const executionTree = getExecutionResult(rootState)
+      return get(executionTree, widgetDisplayName, {})
+    },
+  )
 
   const allViews = useMemo(() => {
     return get(
@@ -56,6 +69,10 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       [],
     ) as ViewItemShape[]
   }, [attrPath, executionResult, widgetDisplayName])
+
+  const linkWidgetDisplayName = useMemo(() => {
+    return get(targetComponentProps, "linkWidgetDisplayName", "") as string
+  }, [targetComponentProps])
 
   const currentViewIndex = useMemo(() => {
     return get(executionResult, `${widgetDisplayName}.currentIndex`)
@@ -101,13 +118,13 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       )
     },
     [
-      viewsList,
-      componentNode.childrenNode,
-      attrPath,
       allViewsKeys,
+      attrPath,
+      componentNode.childrenNode,
       currentViewIndex,
-      handleUpdateMultiAttrDSL,
       dispatch,
+      handleUpdateMultiAttrDSL,
+      viewsList,
     ],
   )
 
@@ -136,12 +153,12 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       dispatch(componentsActions.addComponentReducer([newChildrenNodes]))
     },
     [
-      viewsList,
-      componentNode.displayName,
       allViewsKeys,
-      handleUpdateMultiAttrDSL,
       attrPath,
+      componentNode.displayName,
       dispatch,
+      handleUpdateMultiAttrDSL,
+      viewsList,
     ],
   )
 
@@ -149,12 +166,48 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     (index: number) => {
       if (index > viewsList.length || index < 0) return
       const currentViewKey = allViews[index].key
-      handleUpdateMultiAttrDSL?.({
+      handleUpdateExecutionResult?.(widgetDisplayName, {
         currentIndex: index,
         currentKey: currentViewKey || index,
       })
+      if (linkWidgetDisplayName) {
+        if (Array.isArray(linkWidgetDisplayName)) {
+          linkWidgetDisplayName.forEach((linkDisplayName) => {
+            handleUpdateExecutionResult?.(linkDisplayName, {
+              currentIndex: index,
+              currentKey: currentViewKey || index,
+            })
+          })
+        } else {
+          handleUpdateExecutionResult?.(linkWidgetDisplayName, {
+            currentIndex: index,
+            currentKey: currentViewKey || index,
+          })
+          const linkWidgetLinkedDisplayName = get(
+            executionResult,
+            `${linkWidgetDisplayName}.linkWidgetDisplayName`,
+            [],
+          )
+          linkWidgetLinkedDisplayName &&
+            Array.isArray(linkWidgetLinkedDisplayName) &&
+            linkWidgetLinkedDisplayName.forEach((name) => {
+              name !== widgetDisplayName &&
+                handleUpdateExecutionResult?.(name, {
+                  currentIndex: index,
+                  currentKey: currentViewKey || index,
+                })
+            })
+        }
+      }
     },
-    [allViews, handleUpdateMultiAttrDSL, viewsList.length],
+    [
+      allViews,
+      executionResult,
+      handleUpdateExecutionResult,
+      linkWidgetDisplayName,
+      viewsList.length,
+      widgetDisplayName,
+    ],
   )
 
   const handleMoveOptionItem = useCallback(
