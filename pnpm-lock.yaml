@@ -2521,8 +2521,8 @@ importers:
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.38)(react@18.2.0)
       '@floating-ui/react':
-        specifier: ^0.26.1
-        version: 0.26.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.26.4
+        version: 0.26.4(react-dom@18.2.0)(react@18.2.0)
       '@illa-design/config-provider':
         specifier: workspace:*
         version: link:../config-provider
@@ -5521,17 +5521,6 @@ packages:
       '@floating-ui/utils': 0.1.6
     dev: false
 
-  /@floating-ui/react-dom@2.0.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5qhlDvjaLmAst/rKb3VdlCinwTF4EYMiVxuuc/HVUjs46W0zgtbMmAZ1UTsDrRTxRmUEzl92mOtWbeeXL26lSQ==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      '@floating-ui/dom': 1.5.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /@floating-ui/react-dom@2.0.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-CF8k2rgKeh/49UrnIBs4BdxPUV6vize/Db1d/YbCLyp9GiVZ0BEwf5AiDSxJRCr6yOkGqTFHtmrULxkEfYZ7dQ==}
     peerDependencies:
@@ -5543,13 +5532,13 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@floating-ui/react@0.26.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5gyJIJ2tZOPMgmZ/vEcVhdmQiy75b7LPO71sYIiDsxGcZ4hxLuygQWCuT0YXHqppt//Eese+L6t5KnX/gZ3tVA==}
+  /@floating-ui/react@0.26.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-pRiEz+SiPyfTcckAtLkEf3KJ/sUbB4X4fWMcDm27HT2kfAq+dH+hMc2VoOkNaGpDE35a2PKo688ugWeHaToL3g==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@floating-ui/react-dom': 2.0.2(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.0.4(react-dom@18.2.0)(react@18.2.0)
       '@floating-ui/utils': 0.1.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
