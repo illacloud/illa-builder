@@ -10,7 +10,7 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
     align,
     activeKey,
     disabled,
-    tabList,
+    tabList = [],
     colorScheme,
     tabPosition,
     handleOnChange,
@@ -37,16 +37,17 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
         })
       }}
     >
-      {tabList?.map((item) => {
-        if (item.hidden) return null
-        return (
-          <TabPane
-            key={item.key}
-            title={item.label}
-            disabled={disabled || item.disabled}
-          />
-        )
-      })}
+      {Array.isArray(tabList) &&
+        tabList?.map((item) => {
+          if (item.hidden) return null
+          return (
+            <TabPane
+              key={item.key}
+              title={item.label}
+              disabled={disabled || item.disabled}
+            />
+          )
+        })}
     </Tabs>
   )
 }
@@ -60,7 +61,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     disabled,
     navigateContainer,
     currentKey,
-    tabList,
+    tabList = [],
     viewList,
     displayName,
     linkWidgetDisplayName,

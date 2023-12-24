@@ -10,8 +10,6 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     currentIndex,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateOriginalDSLOtherMultiAttr,
-    handleUpdateOriginalDSLMultiAttr,
     viewList,
     tooltipText,
     childrenNode,
@@ -21,6 +19,8 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     updateComponentHeight,
     linkWidgetDisplayName,
     padding,
+    displayName,
+    handleUpdateMultiExecutionResult,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
 
@@ -60,20 +60,22 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   const handleUpdateOriginalDSLAttrs = useCallback(
     (updateSlice: Record<string, any>) => {
-      handleUpdateOriginalDSLMultiAttr(updateSlice, true)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: updateSlice,
+        },
+      ])
       if (linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttr?.(
-          linkWidgetDisplayName,
-          updateSlice,
-          true,
-        )
+        handleUpdateMultiExecutionResult([
+          {
+            displayName: linkWidgetDisplayName,
+            value: updateSlice,
+          },
+        ])
       }
     },
-    [
-      handleUpdateOriginalDSLMultiAttr,
-      handleUpdateOriginalDSLOtherMultiAttr,
-      linkWidgetDisplayName,
-    ],
+    [displayName, handleUpdateMultiExecutionResult, linkWidgetDisplayName],
   )
 
   useEffect(() => {

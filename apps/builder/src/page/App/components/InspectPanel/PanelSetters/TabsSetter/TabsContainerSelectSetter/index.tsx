@@ -13,7 +13,6 @@ import { containerStyle, selectContainerStyle } from "./style"
 
 const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const {
-    value,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
     widgetDisplayName,
@@ -35,7 +34,7 @@ const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
 
   const isLinkToContainer = get(
     targetComponentProps,
-    `navigateContainer`,
+    "navigateContainer",
     false,
   )
 
@@ -64,17 +63,22 @@ const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
           currentKey,
           [attrName]: targetDisplayName,
         })
-        if (value) {
-          // remove old link
-          handleUpdateOtherMultiAttrDSL?.(value, {
-            linkWidgetDisplayName: undefined,
+        if (targetDisplayName) {
+          const targetLinkedDisplayName = get(
+            containers,
+            `${targetDisplayName}.linkWidgetDisplayName`,
+            [],
+          )
+          if (targetLinkedDisplayName) {
+            handleUpdateOtherMultiAttrDSL?.(targetLinkedDisplayName, {
+              linkWidgetDisplayName: undefined,
+            })
+          }
+          handleUpdateOtherMultiAttrDSL?.(targetDisplayName, {
+            linkWidgetDisplayName: widgetDisplayName,
           })
         }
-        // add new link
-        handleUpdateOtherMultiAttrDSL?.(targetDisplayName, {
-          linkWidgetDisplayName: widgetDisplayName,
-        })
-      } catch {}
+      } catch (e) {}
       handleUpdateMultiAttrDSL?.({
         [attrName]: targetDisplayName,
       })
@@ -83,21 +87,24 @@ const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
       containers,
       handleUpdateMultiAttrDSL,
       handleUpdateOtherMultiAttrDSL,
-      value,
       widgetDisplayName,
     ],
   )
 
   const handleUpdateLinkContainer = useCallback(
     (attrName: string, v: unknown) => {
-      if (!v && linkWidgetDisplayName) {
-        handleUpdateMultiAttrDSL?.({
-          linkWidgetDisplayName: undefined,
-        })
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          linkWidgetDisplayName: undefined,
-        })
+      if (!v) {
+        if (linkWidgetDisplayName) {
+          handleUpdateMultiAttrDSL?.({
+            linkWidgetDisplayName: undefined,
+          })
+          handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+            linkWidgetDisplayName: undefined,
+          })
+        }
+      } else {
       }
+
       handleUpdateDsl(attrName, v)
     },
     [
