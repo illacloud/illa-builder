@@ -38,7 +38,6 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
   openShareAgentModal,
-  openShareAgentModalOnlyForShare,
   showShareAgentModal,
   showShareAgentModalOnlyForShare,
 } from "@illa-public/user-role-utils"
@@ -1327,15 +1326,6 @@ export const AIAgent: FC = () => {
                             setIsReceiving(false)
                           }}
                           onShowShareDialog={() => {
-                            if (
-                              !openShareAgentModalOnlyForShare(currentTeamInfo)
-                            ) {
-                              upgradeModal({
-                                modalType: "upgrade",
-                                from: "agent_edit_share",
-                              })
-                              return
-                            }
                             setDefaultShareTag(ShareAgentTab.SHARE_WITH_TEAM)
                             setShareDialogVisible(true)
                             track(
@@ -1349,17 +1339,6 @@ export const AIAgent: FC = () => {
                           }}
                           onShowContributeDialog={() => {
                             if (contributeField.value) {
-                              if (
-                                !openShareAgentModalOnlyForShare(
-                                  currentTeamInfo,
-                                )
-                              ) {
-                                upgradeModal({
-                                  modalType: "upgrade",
-                                  from: "agent_edit_contribute",
-                                })
-                                return
-                              }
                               setDefaultShareTag(ShareAgentTab.TO_MARKETPLACE)
                               setShareDialogVisible(true)
                               track(
