@@ -2,7 +2,10 @@ import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Input, Password, Search } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import {
+  getValidateVFromString,
+  handleValidateCheck,
+} from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
@@ -141,7 +144,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     (value?: string) => {
       if (!hideValidationMessage) {
         const message = handleValidateCheck({
-          value,
+          value: getValidateVFromString(value),
           pattern,
           regex,
           minLength,

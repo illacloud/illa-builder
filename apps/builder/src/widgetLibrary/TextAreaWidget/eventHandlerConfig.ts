@@ -22,5 +22,5 @@ export const TEXTAREA_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "blur",
     },
   ],
-  methods: ["setValue", "clearValue", "focus"],
+  methods: ["setValue", "clearValue", "focus", "validate"],
 }
