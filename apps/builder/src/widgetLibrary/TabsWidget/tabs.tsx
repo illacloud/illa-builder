@@ -1,5 +1,8 @@
+import { get } from "lodash"
 import { FC, useCallback, useEffect, useMemo } from "react"
+import { useSelector } from "react-redux"
 import { TabPane, Tabs } from "@illa-design/react"
+import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
@@ -76,6 +79,8 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
   } = props
 
+  const components = useSelector(getComponentMap)
+
   useEffect(() => {
     updateComponentRuntimeProps({
       setValue: (value: string) => {
@@ -111,7 +116,33 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
             value: updateSliceItem,
           },
         ])
+        const targetLinkedDisplayNames = get(
+          components,
+          `${linkWidgetDisplayName}.props.linkWidgetDisplayName`,
+          [],
+        )
+        if (Array.isArray(targetLinkedDisplayNames)) {
+          const curUpdateSliceItem = targetLinkedDisplayNames
+            .filter((name) => name !== displayName)
+            .map((name) => ({
+              displayName: name,
+              value: updateSliceItem,
+            }))
+          handleUpdateMultiExecutionResult(curUpdateSliceItem)
+        }
+        targetLinkedDisplayNames &&
+          Array.isArray(targetLinkedDisplayNames) &&
+          targetLinkedDisplayNames.forEach((targetLinkedDisplayName) => {
+            targetLinkedDisplayName !== displayName &&
+              handleUpdateMultiExecutionResult([
+                {
+                  displayName: targetLinkedDisplayName,
+                  value: updateSliceItem,
+                },
+              ])
+          })
       }
+
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -120,6 +151,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
       ])
     },
     [
+      components,
       displayName,
       handleUpdateMultiExecutionResult,
       linkWidgetDisplayName,

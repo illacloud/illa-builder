@@ -67,13 +67,32 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
     (updateSlice: Record<string, unknown>) => {
       handleUpdateMultiAttrDSL?.(updateSlice)
       if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, updateSlice)
+        if (Array.isArray(linkWidgetDisplayName)) {
+          linkWidgetDisplayName.forEach((linkDisplayName) => {
+            handleUpdateOtherMultiAttrDSL?.(linkDisplayName, updateSlice)
+          })
+        } else {
+          handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, updateSlice)
+          const linkWidgetLinkedDisplayName = get(
+            executionResult,
+            `${linkWidgetDisplayName}.linkWidgetDisplayName`,
+            [],
+          )
+          linkWidgetLinkedDisplayName &&
+            Array.isArray(linkWidgetLinkedDisplayName) &&
+            linkWidgetLinkedDisplayName.forEach((name) => {
+              name !== widgetDisplayName &&
+                handleUpdateOtherMultiAttrDSL?.(name, updateSlice)
+            })
+        }
       }
     },
     [
+      executionResult,
       handleUpdateMultiAttrDSL,
       handleUpdateOtherMultiAttrDSL,
       linkWidgetDisplayName,
+      widgetDisplayName,
     ],
   )
 
@@ -83,15 +102,38 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
         [attrName]: value,
       })
       if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          [attrName]: value,
-        })
+        if (Array.isArray(linkWidgetDisplayName)) {
+          linkWidgetDisplayName.forEach((linkDisplayName) => {
+            handleUpdateOtherMultiAttrDSL?.(linkDisplayName, {
+              [attrName]: value,
+            })
+          })
+        } else {
+          handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+            [attrName]: value,
+          })
+          const linkWidgetLinkedDisplayName = get(
+            executionResult,
+            `${linkWidgetDisplayName}.linkWidgetDisplayName`,
+            [],
+          )
+          linkWidgetLinkedDisplayName &&
+            Array.isArray(linkWidgetLinkedDisplayName) &&
+            linkWidgetLinkedDisplayName.forEach((name) => {
+              name !== widgetDisplayName &&
+                handleUpdateOtherMultiAttrDSL?.(name, {
+                  [attrName]: value,
+                })
+            })
+        }
       }
     },
     [
       handleUpdateMultiAttrDSL,
       linkWidgetDisplayName,
       handleUpdateOtherMultiAttrDSL,
+      executionResult,
+      widgetDisplayName,
     ],
   )
 
@@ -117,9 +159,30 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
       [attrName]: [...value, newItem],
     })
     if (linkWidgetDisplayName) {
-      handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-        [attrName]: [...value, newItem],
-      })
+      if (Array.isArray(linkWidgetDisplayName)) {
+        linkWidgetDisplayName.forEach((linkDisplayName) => {
+          handleUpdateOtherMultiAttrDSL?.(linkDisplayName, {
+            [attrName]: [...value, newItem],
+          })
+        })
+      } else {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          [attrName]: [...value, newItem],
+        })
+        const linkWidgetLinkedDisplayName = get(
+          executionResult,
+          `${linkWidgetDisplayName}.linkWidgetDisplayName`,
+          [],
+        )
+        linkWidgetLinkedDisplayName &&
+          Array.isArray(linkWidgetLinkedDisplayName) &&
+          linkWidgetLinkedDisplayName.forEach((name) => {
+            name !== widgetDisplayName &&
+              handleUpdateOtherMultiAttrDSL?.(name, {
+                [attrName]: [...value, newItem],
+              })
+          })
+      }
     }
     dispatch(componentsActions.addComponentReducer([newChildrenNodes]))
   }, [
@@ -127,10 +190,12 @@ const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
     allViewsKeys,
     attrName,
     dispatch,
+    executionResult,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
     linkWidgetDisplayName,
     value,
+    widgetDisplayName,
   ])
 
   return (

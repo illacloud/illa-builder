@@ -28,9 +28,11 @@ const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     },
   )
 
-  const linkWidgetDisplayName = useMemo(() => {
-    return get(targetComponentProps, "linkWidgetDisplayName", "") as string
-  }, [targetComponentProps])
+  const linkWidgetDisplayName = get(
+    targetComponentProps,
+    "linkWidgetDisplayName",
+    "",
+  ) as string
 
   const isLinkToContainer = get(
     targetComponentProps,
@@ -63,19 +65,39 @@ const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
           currentKey,
           [attrName]: targetDisplayName,
         })
-        if (targetDisplayName) {
-          const targetLinkedDisplayName = get(
-            containers,
-            `${targetDisplayName}.linkWidgetDisplayName`,
-            [],
+        const targetLinkedDisplayNames = get(
+          containers,
+          `${targetDisplayName}.linkWidgetDisplayName`,
+          [],
+        )
+        const oldLinkedDisplayNames = get(
+          containers,
+          `${linkWidgetDisplayName}.linkWidgetDisplayName`,
+          [],
+        )
+        // del old link
+        if (oldLinkedDisplayNames && Array.isArray(oldLinkedDisplayNames)) {
+          const needUpdateDisplayNames = oldLinkedDisplayNames.filter(
+            (name) => name !== widgetDisplayName,
           )
-          if (targetLinkedDisplayName) {
-            handleUpdateOtherMultiAttrDSL?.(targetLinkedDisplayName, {
-              linkWidgetDisplayName: undefined,
-            })
-          }
+          handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+            linkWidgetDisplayName: needUpdateDisplayNames,
+          })
+        }
+        // ad new link
+        if (
+          Array.isArray(targetLinkedDisplayNames) &&
+          !targetLinkedDisplayNames.includes(widgetDisplayName)
+        ) {
           handleUpdateOtherMultiAttrDSL?.(targetDisplayName, {
-            linkWidgetDisplayName: widgetDisplayName,
+            linkWidgetDisplayName: [
+              ...targetLinkedDisplayNames,
+              widgetDisplayName,
+            ],
+          })
+        } else {
+          handleUpdateOtherMultiAttrDSL?.(targetDisplayName, {
+            linkWidgetDisplayName: [widgetDisplayName],
           })
         }
       } catch (e) {}
@@ -87,31 +109,39 @@ const TabsContainerSelectSetter: FC<BaseSelectSetterProps> = (props) => {
       containers,
       handleUpdateMultiAttrDSL,
       handleUpdateOtherMultiAttrDSL,
+      linkWidgetDisplayName,
       widgetDisplayName,
     ],
   )
 
   const handleUpdateLinkContainer = useCallback(
     (attrName: string, v: unknown) => {
-      if (!v) {
-        if (linkWidgetDisplayName) {
-          handleUpdateMultiAttrDSL?.({
-            linkWidgetDisplayName: undefined,
-          })
+      if (!v && linkWidgetDisplayName) {
+        handleUpdateMultiAttrDSL?.({
+          linkWidgetDisplayName: undefined,
+        })
+        const targetLinkedDisplayNames = get(
+          containers,
+          `${linkWidgetDisplayName}.linkWidgetDisplayName`,
+          [],
+        )
+        if (Array.isArray(targetLinkedDisplayNames)) {
           handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-            linkWidgetDisplayName: undefined,
+            linkWidgetDisplayName: targetLinkedDisplayNames.filter(
+              (item) => item !== widgetDisplayName,
+            ),
           })
         }
-      } else {
       }
-
       handleUpdateDsl(attrName, v)
     },
     [
+      containers,
       handleUpdateDsl,
       handleUpdateMultiAttrDSL,
       handleUpdateOtherMultiAttrDSL,
       linkWidgetDisplayName,
+      widgetDisplayName,
     ],
   )
 

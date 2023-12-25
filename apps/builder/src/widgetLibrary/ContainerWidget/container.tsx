@@ -66,13 +66,13 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           value: updateSlice,
         },
       ])
-      if (linkWidgetDisplayName) {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName: linkWidgetDisplayName,
-            value: updateSlice,
-          },
-        ])
+      if (linkWidgetDisplayName && linkWidgetDisplayName.length > 0) {
+        const curUpdateSlice = linkWidgetDisplayName.map((name) => ({
+          displayName: name,
+          value: updateSlice,
+        }))
+
+        handleUpdateMultiExecutionResult(curUpdateSlice)
       }
     },
     [displayName, handleUpdateMultiExecutionResult, linkWidgetDisplayName],
