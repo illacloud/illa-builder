@@ -46,7 +46,7 @@ export const Text: FC<TextProps> = (props) => {
           {value}
         </ILLAText>
       ) : (
-        <Typography w="100%">
+        <Typography w="100%" c={colorScheme}>
           <ReactMarkdown
             css={applyMarkdownStyle(horizontalAlign)}
             remarkPlugins={[remarkGfm]}
@@ -57,13 +57,39 @@ export const Text: FC<TextProps> = (props) => {
                   {children}
                 </Link>
               ),
-              p: ({ children }) => <Paragraph>{children}</Paragraph>,
-              h1: ({ children }) => <Heading level="h1">{children}</Heading>,
-              h2: ({ children }) => <Heading level="h2">{children}</Heading>,
-              h3: ({ children }) => <Heading level="h3">{children}</Heading>,
-              h4: ({ children }) => <Heading level="h4">{children}</Heading>,
-              h5: ({ children }) => <Heading level="h5">{children}</Heading>,
-              h6: ({ children }) => <Heading level="h6">{children}</Heading>,
+              p: ({ children }) => (
+                <Paragraph colorScheme={colorScheme}>{children}</Paragraph>
+              ),
+              h1: ({ children }) => (
+                <Heading level="h1" colorScheme={colorScheme}>
+                  {children}
+                </Heading>
+              ),
+              h2: ({ children }) => (
+                <Heading level="h2" colorScheme={colorScheme}>
+                  {children}
+                </Heading>
+              ),
+              h3: ({ children }) => (
+                <Heading level="h3" colorScheme={colorScheme}>
+                  {children}
+                </Heading>
+              ),
+              h4: ({ children }) => (
+                <Heading level="h4" colorScheme={colorScheme}>
+                  {children}
+                </Heading>
+              ),
+              h5: ({ children }) => (
+                <Heading level="h5" colorScheme={colorScheme}>
+                  {children}
+                </Heading>
+              ),
+              h6: ({ children }) => (
+                <Heading level="h6" colorScheme={colorScheme}>
+                  {children}
+                </Heading>
+              ),
             }}
           >
             {value ?? ""}
