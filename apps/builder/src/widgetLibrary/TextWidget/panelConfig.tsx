@@ -174,8 +174,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-style-text-weight`,
-            setterType: "CUSTOM_BG_SELECT_SETTER",
+            setterType: "MEASURE_SELECT_SETTER",
             useCustomLayout: true,
+            defaultValue: 400,
             labelName: i18n.t("editor.inspect.setter_label.weight"),
             attrName: "weight",
             options: [
