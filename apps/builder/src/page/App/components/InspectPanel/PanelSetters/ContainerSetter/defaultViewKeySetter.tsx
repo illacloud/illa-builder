@@ -45,10 +45,12 @@ const ContainerDefaultViewKeySetter: FC<ContainerDefaultViewKeySetterProps> = (
         currentIndex,
         currentKey,
       })
-      if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          currentIndex,
-          currentKey,
+      if (linkWidgetDisplayName && Array.isArray(linkWidgetDisplayName)) {
+        linkWidgetDisplayName.forEach((name) => {
+          handleUpdateOtherMultiAttrDSL?.(name, {
+            currentIndex,
+            currentKey,
+          })
         })
       }
     },

@@ -1,5 +1,8 @@
+import { get } from "lodash"
 import { FC, useCallback, useEffect, useMemo } from "react"
+import { useSelector } from "react-redux"
 import { TabPane, Tabs } from "@illa-design/react"
+import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
@@ -10,7 +13,7 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
     align,
     activeKey,
     disabled,
-    tabList,
+    tabList = [],
     colorScheme,
     tabPosition,
     handleOnChange,
@@ -37,16 +40,17 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
         })
       }}
     >
-      {tabList?.map((item) => {
-        if (item.hidden) return null
-        return (
-          <TabPane
-            key={item.key}
-            title={item.label}
-            disabled={disabled || item.disabled}
-          />
-        )
-      })}
+      {Array.isArray(tabList) &&
+        tabList?.map((item) => {
+          if (item.hidden) return null
+          return (
+            <TabPane
+              key={item.key}
+              title={item.label}
+              disabled={disabled || item.disabled}
+            />
+          )
+        })}
     </Tabs>
   )
 }
@@ -60,7 +64,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     disabled,
     navigateContainer,
     currentKey,
-    tabList,
+    tabList = [],
     viewList,
     displayName,
     linkWidgetDisplayName,
@@ -74,6 +78,8 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     updateComponentHeight,
     handleUpdateMultiExecutionResult,
   } = props
+
+  const components = useSelector(getComponentMap)
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -110,7 +116,33 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
             value: updateSliceItem,
           },
         ])
+        const targetLinkedDisplayNames = get(
+          components,
+          `${linkWidgetDisplayName}.props.linkWidgetDisplayName`,
+          [],
+        )
+        if (Array.isArray(targetLinkedDisplayNames)) {
+          const curUpdateSliceItem = targetLinkedDisplayNames
+            .filter((name) => name !== displayName)
+            .map((name) => ({
+              displayName: name,
+              value: updateSliceItem,
+            }))
+          handleUpdateMultiExecutionResult(curUpdateSliceItem)
+        }
+        targetLinkedDisplayNames &&
+          Array.isArray(targetLinkedDisplayNames) &&
+          targetLinkedDisplayNames.forEach((targetLinkedDisplayName) => {
+            targetLinkedDisplayName !== displayName &&
+              handleUpdateMultiExecutionResult([
+                {
+                  displayName: targetLinkedDisplayName,
+                  value: updateSliceItem,
+                },
+              ])
+          })
       }
+
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -119,6 +151,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
       ])
     },
     [
+      components,
       displayName,
       handleUpdateMultiExecutionResult,
       linkWidgetDisplayName,

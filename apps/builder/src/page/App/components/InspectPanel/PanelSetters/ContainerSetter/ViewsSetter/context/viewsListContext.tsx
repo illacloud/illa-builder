@@ -171,14 +171,38 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         currentKey: currentViewKey || index,
       })
       if (linkWidgetDisplayName) {
-        handleUpdateExecutionResult?.(linkWidgetDisplayName, {
-          currentIndex: index,
-          currentKey: currentViewKey || index,
-        })
+        if (Array.isArray(linkWidgetDisplayName)) {
+          linkWidgetDisplayName.forEach((linkDisplayName) => {
+            handleUpdateExecutionResult?.(linkDisplayName, {
+              currentIndex: index,
+              currentKey: currentViewKey || index,
+            })
+          })
+        } else {
+          handleUpdateExecutionResult?.(linkWidgetDisplayName, {
+            currentIndex: index,
+            currentKey: currentViewKey || index,
+          })
+          const linkWidgetLinkedDisplayName = get(
+            executionResult,
+            `${linkWidgetDisplayName}.linkWidgetDisplayName`,
+            [],
+          )
+          linkWidgetLinkedDisplayName &&
+            Array.isArray(linkWidgetLinkedDisplayName) &&
+            linkWidgetLinkedDisplayName.forEach((name) => {
+              name !== widgetDisplayName &&
+                handleUpdateExecutionResult?.(name, {
+                  currentIndex: index,
+                  currentKey: currentViewKey || index,
+                })
+            })
+        }
       }
     },
     [
       allViews,
+      executionResult,
       handleUpdateExecutionResult,
       linkWidgetDisplayName,
       viewsList.length,
