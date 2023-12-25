@@ -8,7 +8,10 @@ import {
 } from "@/page/App/components/ScaleSquare/constant/widget"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import {
+  getValidateVFromString,
+  handleValidateCheck,
+} from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
@@ -192,7 +195,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     (value?: string) => {
       if (!hideValidationMessage) {
         const message = handleValidateCheck({
-          value,
+          value: getValidateVFromString(value),
           pattern,
           regex,
           minLength,

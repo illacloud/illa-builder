@@ -2,7 +2,10 @@ import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { Input, PenIcon } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import {
+  getValidateVFromString,
+  handleValidateCheck,
+} from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
@@ -114,7 +117,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
   const handleValidate = useCallback(
     (value?: any) => {
       const message = handleValidateCheck({
-        value,
+        value: getValidateVFromString(value),
         required,
         customRule,
         pattern,
@@ -155,7 +158,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
         handleUpdateDsl({ value: undefined })
       },
       validate: () => {
-        handleValidate(value)
+        return handleValidate(value)
       },
     })
     return () => {

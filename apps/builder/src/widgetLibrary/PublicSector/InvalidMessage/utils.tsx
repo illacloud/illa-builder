@@ -1,3 +1,4 @@
+import { isString } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { ValidateCheckProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
@@ -293,4 +294,8 @@ export const handleValidateCheck = (
   }
 
   return handleCheckPattern(options.value, options.pattern, options.regex)
+}
+
+export const getValidateVFromString = (value: unknown) => {
+  return isString(value) && !value ? undefined : value
 }
