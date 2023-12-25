@@ -1,8 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { MysqlLikeAction } from "@illa-public/public-types"
-import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
-import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -36,17 +33,8 @@ const MysqlLikePanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
   const dispatch = useDispatch()
   const appInfo = useSelector(getAppInfo)
-  const teamInfo = useSelector(getCurrentTeamInfo)
-
-  const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo?.myRole,
-    getPlanUtils(teamInfo),
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
-  )
 
   const { t } = useTranslation()
-  const upgradeModal = useUpgradeModal()
 
   useEffect(() => {
     if (currentAction.resourceID == undefined) return
@@ -106,13 +94,6 @@ const MysqlLikePanel: FC = () => {
     })
   }, [])
   const handleClickGenerate = useCallback(async () => {
-    if (!canUseBillingFeature) {
-      upgradeModal({
-        modalType: "upgrade",
-        from: "sql_generate",
-      })
-      return
-    }
     setGenerateLoading(true)
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "sql_generation",
@@ -148,13 +129,11 @@ const MysqlLikePanel: FC = () => {
     setGenerateLoading(false)
   }, [
     appInfo.appId,
-    canUseBillingFeature,
     currentAction,
     currentSqlAction,
     dispatch,
     message,
     mysqlContent,
-    upgradeModal,
   ])
 
   return (
