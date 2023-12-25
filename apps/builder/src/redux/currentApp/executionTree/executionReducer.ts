@@ -240,6 +240,7 @@ export const clearLocalStorageInExecutionReducer: CaseReducer<
   PayloadAction
 > = (state) => {
   state.result.localStorage = {}
+  window.localStorage.removeItem(CUSTOM_STORAGE_PREFIX)
 }
 
 export const setLocalStorageInExecutionReducer: CaseReducer<

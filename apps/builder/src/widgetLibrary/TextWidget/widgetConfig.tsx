@@ -21,6 +21,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     disableMarkdown: false,
     hidden: false,
     fs: "14px",
+    weight: 400,
     dynamicHeight: "fixed",
     resizeDirection: RESIZE_DIRECTION.ALL,
   },

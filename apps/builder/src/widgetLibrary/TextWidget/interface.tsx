@@ -7,6 +7,7 @@ export type VerticalAlign = "start" | "center" | "end"
 
 export interface TextProps extends ILLATextProps {
   value?: string
+  weight?: number
   disableMarkdown?: boolean
   horizontalAlign?: HorizontalAlign
   verticalAlign?: VerticalAlign

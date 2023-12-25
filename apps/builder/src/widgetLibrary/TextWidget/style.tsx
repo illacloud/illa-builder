@@ -58,9 +58,10 @@ export function applyMarkdownStyle(horizontalAlign?: string): SerializedStyles {
   `
 }
 
-export const applyTextStyle = (horizontalAlign?: string) => {
+export const applyTextStyle = (horizontalAlign?: string, weight?: number) => {
   return css`
     width: 100%;
+    font-weight: ${weight ?? 400};
     text-align: ${horizontalAlign};
     overflow-wrap: break-word;
   `
@@ -70,6 +71,7 @@ export const applyContainerStyle = (colorScheme: string) => {
   return css`
     width: 100%;
     color: ${getSpecialThemeColor(colorScheme)};
+
     a,
     span {
       color: ${getSpecialThemeColor(colorScheme)};

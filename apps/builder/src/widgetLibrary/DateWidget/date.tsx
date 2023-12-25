@@ -3,7 +3,10 @@ import { FC, useCallback, useEffect } from "react"
 import { SingleDatePicker } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import {
+  getValidateVFromString,
+  handleValidateCheck,
+} from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
@@ -108,7 +111,7 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     (value?: unknown) => {
       if (!hideValidationMessage) {
         const message = handleValidateCheck({
-          value,
+          value: getValidateVFromString(value),
           required,
           customRule,
           pattern,
