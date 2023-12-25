@@ -57,6 +57,11 @@ export const Text: FC<TextProps> = (props) => {
                   {children}
                 </Link>
               ),
+              code: ({ children }) => (
+                <ILLAText code colorScheme={colorScheme}>
+                  {children}
+                </ILLAText>
+              ),
               p: ({ children }) => (
                 <Paragraph colorScheme={colorScheme}>{children}</Paragraph>
               ),
