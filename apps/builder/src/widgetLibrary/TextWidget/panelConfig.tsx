@@ -135,6 +135,8 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-style`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
+    shown: (disableMarkdown: boolean) => disableMarkdown,
+    bindAttrName: ["disableMarkdown"],
     children: [
       {
         id: `${baseWidgetName}-style-color`,
@@ -169,6 +171,24 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
             icon: <TextSizeIcon />,
             defaultValue: "14px",
             expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-style-text-weight`,
+            setterType: "CUSTOM_BG_SELECT_SETTER",
+            useCustomLayout: true,
+            labelName: i18n.t("editor.inspect.setter_label.weight"),
+            attrName: "weight",
+            options: [
+              {
+                label: "editor.inspect.setter_option.weight.regular",
+                value: 400,
+              },
+              {
+                label: "editor.inspect.setter_option.weight.medium",
+                value: 500,
+              },
+              { label: "editor.inspect.setter_option.weight.bold", value: 700 },
+            ],
           },
         ],
       },

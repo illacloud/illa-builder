@@ -3,21 +3,22 @@ import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
-import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
+import {
+  Heading,
+  Text as ILLAText,
+  Link,
+  Paragraph,
+  Typography,
+} from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
   applyAlignStyle,
   applyAutoHeightContainerStyle,
-  applyContainerStyle,
   applyMarkdownStyle,
   applyTextStyle,
 } from "./style"
-
-const MarkdownContainer: FC<any> = ({ children, colorScheme }) => {
-  return <div css={applyContainerStyle(colorScheme)}>{children}</div>
-}
 
 export const Text: FC<TextProps> = (props) => {
   const {
@@ -27,6 +28,7 @@ export const Text: FC<TextProps> = (props) => {
     colorScheme,
     fs,
     disableMarkdown,
+    weight,
   } = props
 
   const sanitizeOptions = {
@@ -37,34 +39,36 @@ export const Text: FC<TextProps> = (props) => {
     <div css={applyAlignStyle(verticalAlign)}>
       {disableMarkdown ? (
         <ILLAText
-          css={applyTextStyle(horizontalAlign)}
+          css={applyTextStyle(horizontalAlign, weight)}
           colorScheme={colorScheme}
           fs={fs}
         >
           {value}
         </ILLAText>
       ) : (
-        <MarkdownContainer colorScheme={colorScheme}>
+        <Typography>
           <ReactMarkdown
             css={applyMarkdownStyle(horizontalAlign)}
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeOptions]]}
             components={{
               a: ({ href, children }) => (
-                <Link href={href} target="_blank" colorScheme={colorScheme}>
+                <Link href={href} target="_blank">
                   {children}
                 </Link>
               ),
-              p: ({ children }) => (
-                <Paragraph fs={fs} colorScheme={colorScheme}>
-                  {children}
-                </Paragraph>
-              ),
+              p: ({ children }) => <Paragraph>{children}</Paragraph>,
+              h1: ({ children }) => <Heading level="h1">{children}</Heading>,
+              h2: ({ children }) => <Heading level="h2">{children}</Heading>,
+              h3: ({ children }) => <Heading level="h3">{children}</Heading>,
+              h4: ({ children }) => <Heading level="h4">{children}</Heading>,
+              h5: ({ children }) => <Heading level="h5">{children}</Heading>,
+              h6: ({ children }) => <Heading level="h6">{children}</Heading>,
             }}
           >
             {value ?? ""}
           </ReactMarkdown>
-        </MarkdownContainer>
+        </Typography>
       )}
     </div>
   )
@@ -89,6 +93,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     colorScheme,
     fs,
     fw,
+    weight,
   } = props
 
   useEffect(() => {
@@ -145,6 +150,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
         )}
       >
         <Text
+          weight={weight}
           horizontalAlign={horizontalAlign}
           value={value}
           verticalAlign={verticalAlign}
