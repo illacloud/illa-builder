@@ -46,7 +46,7 @@ export const Text: FC<TextProps> = (props) => {
           {value}
         </ILLAText>
       ) : (
-        <Typography>
+        <Typography w="100%">
           <ReactMarkdown
             css={applyMarkdownStyle(horizontalAlign)}
             remarkPlugins={[remarkGfm]}

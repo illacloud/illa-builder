@@ -13,7 +13,7 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { lineStyle, windowIconBodyStyle, windowIconStyle } from "./style"
+import { windowIconBodyStyle, windowIconStyle } from "./style"
 
 export const WindowIcons = () => {
   const dispatch = useDispatch()
@@ -58,7 +58,6 @@ export const WindowIcons = () => {
       <span css={windowIconBodyStyle} onClick={handleClickRightWindowIcon}>
         <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
       </span>
-      <span css={lineStyle} />
     </>
   )
 }

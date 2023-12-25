@@ -367,7 +367,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       </div>
       <div css={viewControlStyle(showCustomInputs)}>
         {isEditMode && <WindowIcons />}
-        <AppSizeButtonGroup />
+        {!isEditMode && <AppSizeButtonGroup />}
       </div>
       <div css={rightContentStyle}>
         {isCloudVersion && !isGuideMode && (
