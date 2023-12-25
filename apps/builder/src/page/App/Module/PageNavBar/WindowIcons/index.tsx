@@ -48,7 +48,11 @@ export const WindowIcons = () => {
   }, [bottomPanelVisible, dispatch])
 
   return (
-    <>
+    <div
+      style={{
+        pointerEvents: "auto",
+      }}
+    >
       <span css={windowIconBodyStyle} onClick={handleClickLeftWindowIcon}>
         <WindowLeftIcon _css={windowIconStyle(leftPanelVisible)} />
       </span>
@@ -58,6 +62,6 @@ export const WindowIcons = () => {
       <span css={windowIconBodyStyle} onClick={handleClickRightWindowIcon}>
         <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
       </span>
-    </>
+    </div>
   )
 }
