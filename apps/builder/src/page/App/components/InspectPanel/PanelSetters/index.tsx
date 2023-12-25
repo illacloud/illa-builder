@@ -364,6 +364,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/CustomBgSelect"
       ),
   ),
+  MEASURE_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/MeasureSelectSetter"
+      ),
+  ),
   DYNAMIC_SELECT_SETTER: lazy(
     () =>
       import(
