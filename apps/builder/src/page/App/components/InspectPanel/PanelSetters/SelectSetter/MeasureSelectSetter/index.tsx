@@ -18,7 +18,7 @@ const MeasureSelectSetter: FC<MeasureSelectSetter> = (props) => {
     options,
   } = props
 
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <div css={containerStyle}>
