@@ -1,13 +1,12 @@
+import { isString } from "lodash"
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
-import { MeasureSelectSetter } from "./interface"
+import { MeasureSelectSetterProps } from "./interface"
 import { containerStyle, setterContainerStyle } from "./style"
-import { useTranslation } from "react-i18next";
-import { isString } from "lodash";
 
-
-const MeasureSelectSetter: FC<MeasureSelectSetter> = (props) => {
+const MeasureSelectSetter: FC<MeasureSelectSetterProps> = (props) => {
   const {
     attrName,
     handleUpdateMultiAttrDSL,
@@ -43,7 +42,7 @@ const MeasureSelectSetter: FC<MeasureSelectSetter> = (props) => {
           options={options?.map((i) => {
             return {
               label: isString(i.label) ? t(i.label) : i.value,
-              value: i.value
+              value: i.value,
             }
           })}
         />
