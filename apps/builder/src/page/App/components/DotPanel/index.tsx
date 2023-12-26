@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { applyViewportContainerWrapperStyle } from "@/page/App/components/DotPanel/style"
 import {
   getIllaMode,
+  getIsILLAPreviewMode,
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import { getViewportSizeSelector } from "@/redux/currentApp/components/componentsSelector"
@@ -33,6 +34,8 @@ export const DotPanel: FC = () => {
   const mode = useSelector(getIllaMode)
   const isProductionMode = useSelector(getIsILLAProductMode)
   const viewportSize = useSelector(getViewportSizeSelector)
+
+  const isPreviewMode = useSelector(getIsILLAPreviewMode)
 
   const { currentPageIndex, pageSortedKey, homepageDisplayName } =
     rootExecutionProps
@@ -99,8 +102,8 @@ export const DotPanel: FC = () => {
         <div
           css={applyViewportContainerWrapperStyle(
             mode,
-            viewportSize.viewportWidth,
-            viewportSize.viewportHeight,
+            isPreviewMode ? viewportSize.viewportWidth : undefined,
+            isPreviewMode ? viewportSize.viewportHeight : undefined,
           )}
         >
           <RenderPage

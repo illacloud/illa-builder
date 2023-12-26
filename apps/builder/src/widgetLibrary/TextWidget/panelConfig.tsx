@@ -135,8 +135,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-style`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
-    shown: (disableMarkdown: boolean) => disableMarkdown,
-    bindAttrName: ["disableMarkdown"],
     children: [
       {
         id: `${baseWidgetName}-style-color`,
@@ -157,6 +155,8 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-style-size`,
+        shown: (disableMarkdown: boolean) => disableMarkdown,
+        bindAttrName: ["disableMarkdown"],
         setterType: "STYLE_CONTAINER_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",

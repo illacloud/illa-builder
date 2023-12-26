@@ -20,11 +20,18 @@ export const rowCenter = css`
   align-items: center;
 `
 
-export const viewControlStyle = (showInput: boolean) => css`
+export const viewControlStyle = () => css`
+  pointer-events: none;
   color: ${getColor("grayBlue", "04")};
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  ${rowCenter};
 
-  ${rowCenter}
-  margin-right: ${showInput ? 296 : 0}px;
   & > svg {
     &:hover {
       color: ${getColor("grayBlue", "02")};

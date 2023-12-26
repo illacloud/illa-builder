@@ -82,7 +82,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       trigger="click"
       showArrow={false}
       position={leftPanelVisible ? "left-start" : "top-start"}
-      clickOutsideToClose
+      clickOutsideToClose={false}
       onVisibleChange={(visible) => {
         if (visible) {
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {

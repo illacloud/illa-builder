@@ -1,7 +1,10 @@
 import { forwardRef, useSyncExternalStore } from "react"
 import { useSelector } from "react-redux"
 import { DotPanel } from "@/page/App/components/DotPanel"
-import { getIsILLAEditMode } from "@/redux/config/configSelector"
+import {
+  getIsILLAEditMode,
+  getIsILLAPreviewMode,
+} from "@/redux/config/configSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { UploadDetailButton } from "../UploadDetail"
 import { updateFileDetailStore } from "../UploadDetail/store"
@@ -13,6 +16,7 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
     const { ...otherProps } = props
 
     const isEditMode = useSelector(getIsILLAEditMode)
+    const isEditPreviewMode = useSelector(getIsILLAPreviewMode)
     const executionResult = useSelector(getExecutionResult)
     const uploadFiles = useSyncExternalStore(
       updateFileDetailStore.subscribe,
@@ -24,7 +28,11 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
     }
 
     return (
-      <div {...otherProps} ref={ref} css={applyScaleContainerStyle(isEditMode)}>
+      <div
+        {...otherProps}
+        ref={ref}
+        css={applyScaleContainerStyle(isEditPreviewMode, isEditMode)}
+      >
         <DotPanel />
         {uploadFiles.length > 0 && <UploadDetailButton />}
       </div>
