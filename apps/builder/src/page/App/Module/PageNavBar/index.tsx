@@ -6,11 +6,11 @@ import {
   showShareAppModal,
 } from "@illa-public/user-role-utils"
 import {
+  fromNow,
   getILLABuilderURL,
   getILLACloudURL,
   isCloudVersion,
 } from "@illa-public/utils"
-import { fromNow } from "@illa-public/utils"
 import { FC, MouseEvent, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -45,6 +45,7 @@ import { duplicateApp } from "@/page/App/Module/PageNavBar/utils"
 import {
   getIsILLAEditMode,
   getIsILLAGuideMode,
+  getIsILLAPreviewMode,
   getIsOnline,
   isOpenDebugger,
 } from "@/redux/config/configSelector"
@@ -54,7 +55,6 @@ import {
   getCurrentAppWaterMarkConfig,
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { getViewportSizeSelector } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import {
   fetchDeployApp,
@@ -98,10 +98,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const debuggerData = useSelector(getExecutionDebuggerData)
   const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
   const isEditMode = useSelector(getIsILLAEditMode)
+  const isPreviewMode = useSelector(getIsILLAPreviewMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const teamInfo = useSelector(getCurrentTeamInfo)!!
-  const { viewportSizeType } = useSelector(getViewportSizeSelector)
-  const showCustomInputs = viewportSizeType === "custom"
   const upgradeModal = useUpgradeModal()
 
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
@@ -365,9 +364,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           )}
         </div>
       </div>
-      <div css={viewControlStyle(showCustomInputs)}>
+      <div css={viewControlStyle()}>
         {isEditMode && <WindowIcons />}
-        <AppSizeButtonGroup />
+        {isPreviewMode && <AppSizeButtonGroup />}
       </div>
       <div css={rightContentStyle}>
         {isCloudVersion && !isGuideMode && (

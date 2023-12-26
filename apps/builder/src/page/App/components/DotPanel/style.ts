@@ -126,7 +126,7 @@ export const applyViewportContainerWrapperStyle = (
   height?: number,
 ) => {
   const borderStyle =
-    mode === "edit" && width != undefined
+    mode === "preview" && width != undefined
       ? css`
           border: 1px solid ${getColor("grayBlue", "09")};
         `

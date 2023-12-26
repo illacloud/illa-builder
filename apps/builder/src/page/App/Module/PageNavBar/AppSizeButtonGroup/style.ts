@@ -3,9 +3,10 @@ import { getColor } from "@illa-design/react"
 
 export const previewButtonGroupWrapperStyle = css`
   display: flex;
+  pointer-events: auto;
+  position: relative;
   align-items: center;
   height: 32px;
-  position: relative;
 `
 
 export const appSizeContainerStyle = css`
