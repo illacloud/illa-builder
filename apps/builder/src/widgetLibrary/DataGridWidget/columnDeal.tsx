@@ -437,9 +437,7 @@ export function getColumnFromType(
       return {
         ...column,
         type: "boolean",
-        valueGetter: (params: GridValueGetterParams) => {
-          return get(params.colDef, "mappedValue") ?? params.value
-        },
+        valueGetter: commonValueGetter,
       }
     case "date":
       return {
