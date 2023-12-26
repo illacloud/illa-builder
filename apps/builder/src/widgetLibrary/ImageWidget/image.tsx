@@ -167,11 +167,11 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   }, [dynamicHeight])
 
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <AutoHeightContainer
-        updateComponentHeight={updateComponentHeight}
-        enable={enableAutoHeight}
-      >
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={enableAutoHeight}
+    >
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={ImageWrapperStyle(horizontalAlign)}>
           <WrappedImage
             {...props}
@@ -183,8 +183,8 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
             sourceLoadErrorHandle={sourceLoadErrorHandler}
           />
         </div>
-      </AutoHeightContainer>
-    </TooltipWrapper>
+      </TooltipWrapper>
+    </AutoHeightContainer>
   )
 }
 ImageWidget.displayName = "ImageWidget"
