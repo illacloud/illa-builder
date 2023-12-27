@@ -6,6 +6,7 @@ import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import { configActions } from "@/redux/config/configSlice"
 import store from "@/store"
 import { changeDisplayNameHelperWhenUndoRedo } from "../componentNode/changeDisplayNameHelper"
+import { DisplayNameGenerator } from "../generators/generateDisplayName"
 import {
   addActionItemWhenUndoRedo,
   removeActionItemWhenUndoRedo,
@@ -169,6 +170,23 @@ export const reduxActionDependOnRestAPI = async (
         })
         break
       }
+      case "components/setGlobalStateReducer": {
+        if (action.payload.key) {
+          const newName = DisplayNameGenerator.updateOrGenerateDisplayName(
+            action.payload.key,
+          )
+          store.dispatch({
+            ...action,
+            from,
+            payload: {
+              ...action.payload,
+              key: newName,
+            },
+          })
+        }
+        break
+      }
+
       default: {
         store.dispatch({
           ...action,
