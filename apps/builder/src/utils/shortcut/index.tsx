@@ -21,6 +21,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import {
   getComponentMap,
+  getOriginalGlobalDataNames,
   searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
@@ -128,9 +129,20 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
                   store.getState(),
                   displayName[i],
                 )
+                const globalDataNames = getOriginalGlobalDataNames(
+                  store.getState(),
+                )
                 if (action) {
                   // fail to await @chenlongbo
                   onDeleteActionItem(action)
+                }
+                if (globalDataNames.includes(displayName[i])) {
+                  dispatch(
+                    componentsActions.deleteGlobalStateByKeyReducer({
+                      key: displayName[i],
+                    }),
+                  )
+                  DisplayNameGenerator.removeDisplayName(displayName[i])
                 }
               }
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
