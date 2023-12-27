@@ -409,6 +409,13 @@ export const getOriginalGlobalData = createSelector(
   },
 )
 
+export const getOriginalGlobalDataNames = createSelector(
+  [getRootComponentNode],
+  (rootNode) => {
+    return Object.keys(rootNode?.props?.globalData ?? {})
+  },
+)
+
 export const getGlobalDataToActionList = createSelector(
   [getRootComponentNode],
   (rootNode) => {

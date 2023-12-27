@@ -38,7 +38,6 @@ export class ILLA_UNDO_REDO {
       })
     } else {
       const info = this.undoStack.pop() as AnyAction[]
-
       reduxActionDependOnRestAPI(info, REDUX_ACTION_FROM.UNDO)
     }
   }

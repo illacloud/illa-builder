@@ -4,6 +4,7 @@ import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import { UpdateComponentContainerPayload } from "@/redux/currentApp/components/componentsPayload"
 import {
   getComponentMap,
+  getOriginalGlobalData,
   searchDSLByDisplayName,
   searchDSLFromTree,
 } from "@/redux/currentApp/components/componentsSelector"
@@ -47,7 +48,7 @@ export const componentsSnapShot = (
     case "deleteComponentNodeReducer": {
       const originActionComponentNode = action.payload.displayNames
         .map((displayName: string) => {
-          return searchDSLByDisplayName(displayName, prevRootState)
+          return buildTreeByMapNode(displayName, prevComponents)
         })
         .filter((item: ComponentTreeNode | null) => item != undefined)
       const newAction = {
@@ -571,6 +572,58 @@ export const componentsSnapShot = (
           pageName: pageName,
           style: sectionNodeStyle,
           sectionName: sectionName,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "setGlobalStateReducer": {
+      const { key, oldKey, value } = action.payload
+      let newAction
+      if (!oldKey) {
+        newAction = {
+          type: "components/deleteGlobalStateByKeyReducer",
+          payload: { key },
+          from: action.from,
+        }
+      } else {
+        newAction = {
+          type: "components/setGlobalStateReducer",
+          payload: { key: oldKey, oldKey: key, value },
+          from: action.from,
+        }
+      }
+
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "deleteGlobalStateByKeyReducer": {
+      const prevGlobalState = getOriginalGlobalData(prevRootState)
+      const { key } = action.payload
+      const targetGlobalState = prevGlobalState[key]
+      const newAction = {
+        type: "components/setGlobalStateReducer",
+        payload: {
+          key,
+          value: targetGlobalState,
+          oldKey: "",
         },
         from: action.from,
       }
