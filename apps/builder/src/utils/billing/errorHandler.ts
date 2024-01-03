@@ -1,7 +1,6 @@
-import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
+import { ERROR_FLAG, isILLAAPiError } from "@illa-public/illa-net"
 import { getILLACloudURL, isCloudVersion } from "@illa-public/utils"
 import { matchPath } from "react-router-dom"
-import { isILLAAPiError } from "@/utils/typeHelper"
 
 export const commonBillingErrorHandler = (error: unknown) => {
   if (isILLAAPiError(error) && isCloudVersion) {
