@@ -103,6 +103,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     columnNumber,
     formData: propsFormData,
     dynamicHeight = "fixed",
+    padding,
     handleUpdateOriginalDSLMultiAttr,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
