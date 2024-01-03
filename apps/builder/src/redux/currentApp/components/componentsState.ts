@@ -5,13 +5,6 @@ import {
   SectionViewShape,
 } from "@illa-public/public-types"
 
-export enum CONTAINER_TYPE {
-  "EDITOR_DOT_PANEL" = "EDITOR_DOT_PANEL",
-  "EDITOR_SCALE_SQUARE" = "EDITOR_SCALE_SQUARE",
-  "EDITOR_PAGE_SQUARE" = "EDITOR_PAGE_SQUARE",
-  "EDITOR_LAYOUT_SQUARE" = "EDITOR_LAYOUT_SQUARE",
-}
-
 export type ViewportSizeType = "fluid" | "desktop" | "tablet" | "custom"
 
 export interface RootComponentNodeProps {
@@ -29,10 +22,6 @@ export interface RootComponentNode extends ComponentMapNode {
   props: RootComponentNodeProps
 }
 
-export enum PADDING_MODE {
-  ALL = "all",
-  PARTIAL = "partial",
-}
 export interface PageNodeProps {
   canvasSize: "auto" | "fixed"
   canvasWidth: number

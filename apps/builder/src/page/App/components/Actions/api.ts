@@ -1,3 +1,4 @@
+import { isILLAAPiError } from "@illa-public/illa-net"
 import {
   ActionContent,
   ActionItem,
@@ -13,7 +14,6 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { fetchCreateAction, fetchDeleteAction } from "@/services/action"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { isILLAAPiError } from "@/utils/typeHelper"
 
 const message = createMessage()
 

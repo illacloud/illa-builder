@@ -1,4 +1,5 @@
 import { Avatar } from "@illa-public/avatar"
+import { isILLAAPiError } from "@illa-public/illa-net"
 import { getILLABuilderURL } from "@illa-public/utils"
 import { formatDate } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
@@ -12,7 +13,6 @@ import {
   SnapshotTriggerMode,
 } from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot, recoverSnapShotWS } from "@/services/history"
-import { isILLAAPiError } from "@/utils/typeHelper"
 import SaveIcon from "./assets/save.svg?react"
 import {
   applyDotStyle,

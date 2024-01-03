@@ -4,6 +4,7 @@ import {
   SECTION_POSITION,
   SectionTreeNode,
 } from "@illa-public/public-types"
+import { CONTAINER_TYPE, PADDING_MODE } from "@illa-public/public-types"
 import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
 import {
@@ -11,8 +12,6 @@ import {
   DEFAULT_BODY_COLUMNS_NUMBER,
 } from "@/page/App/components/DotPanel/constant/canvas"
 import {
-  CONTAINER_TYPE,
-  PADDING_MODE,
   PageNode,
   PageNodeProps,
 } from "@/redux/currentApp/components/componentsState"

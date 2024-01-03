@@ -1,4 +1,5 @@
 import { ERROR_FLAG } from "@illa-public/illa-net"
+import { isILLAAPiError } from "@illa-public/illa-net"
 import {
   DRIVE_FILE_TYPE,
   GCS_OBJECT_TYPE,
@@ -20,7 +21,6 @@ import {
   fetchUploadFilesStatusAnonymous,
   fetchUploadFilesToAnonymous,
 } from "@/services/drive"
-import { isILLAAPiError } from "@/utils/typeHelper"
 
 export enum GET_SINGED_URL_ERROR_CODE {
   NOT_HAS_ROOT_FOLDER = "NOT_HAS_ROOT_FOLDER",

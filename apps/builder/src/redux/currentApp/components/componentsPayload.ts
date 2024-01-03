@@ -1,4 +1,4 @@
-export interface UpdateComponentContainerPayload {
+export interface UpdateComponentPositionPayload {
   oldParentNodeDisplayName: string
   newParentNodeDisplayName: string
   updateSlices: {
@@ -8,6 +8,8 @@ export interface UpdateComponentContainerPayload {
     w: number
     h: number
   }[]
+  columnNumberWhenDrag: number
+  columnNumberWhenDrop: number
 }
 export interface LayoutInfo {
   w: number

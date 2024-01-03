@@ -1,9 +1,9 @@
 import { ComponentTreeNode } from "@illa-public/public-types"
+import { CONTAINER_TYPE } from "@illa-public/public-types"
 import { cloneDeep, get, set } from "lodash"
 import { isObject } from "@illa-design/react"
 import { buildInitDragInfo } from "@/page/App/components/ComponentPanel/componentListBuilder"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
-import { CONTAINER_TYPE } from "@/redux/currentApp/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { WidgetConfig } from "@/widgetLibrary/interface"
@@ -48,6 +48,7 @@ export const generateComponentNodeByWidgetInfo = (
   widgetInfo: Omit<WidgetConfig, "icon" | "sessionType" | "keywords">,
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
+  scale: number = 1,
 ) => {
   let baseDSL: ComponentTreeNode
   let childrenNodeDSL: ComponentTreeNode[] = []
@@ -102,17 +103,18 @@ export const generateComponentNodeByWidgetInfo = (
         childNode,
         displayName,
         pathToChildren,
+        scale,
       )
       childrenNodeDSL.push(child)
     })
   }
 
   baseDSL = {
-    w,
+    w: Math.floor(w * scale),
     h,
     minW,
     minH,
-    x,
+    x: Math.floor(x * scale),
     y,
     z: 0,
     showName: showName,
@@ -134,6 +136,7 @@ export const newGenerateChildrenComponentNode = (
   widgetInfo: Omit<WidgetConfig, "icon" | "sessionType" | "keywords">,
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
+  scale: number = 1,
 ): ComponentTreeNode => {
   if (widgetInfo.type === "CANVAS") {
     const realDisplayName = DisplayNameGenerator.generateDisplayName(
@@ -151,6 +154,7 @@ export const newGenerateChildrenComponentNode = (
           childNode,
           realDisplayName,
           pathToChildren,
+          scale,
         )
         childrenNodeDSL.push(child)
       })
@@ -184,6 +188,7 @@ export const newGenerateChildrenComponentNode = (
     widgetInfo,
     parentNodeDisplayName,
     pathToChildren,
+    scale,
   )
 }
 
@@ -195,6 +200,7 @@ export const newGenerateComponentNode = (
   displayName: string,
   parentNodeDisplayName: string,
   pathToChildren: string[] = [],
+  scale: number = 1,
 ) => {
   let baseDSL: ComponentTreeNode
   const baseConfig = widgetBuilder(widgetType).config
@@ -248,6 +254,7 @@ export const newGenerateComponentNode = (
         childNode,
         displayName,
         pathToChildren,
+        scale,
       )
       childrenNodeDSL.push(child)
     })
