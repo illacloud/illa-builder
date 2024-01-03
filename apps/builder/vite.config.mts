@@ -6,16 +6,10 @@ import { writeFileSync } from "fs"
 import { resolve } from "path"
 import copy from "rollup-plugin-copy"
 import { visualizer } from "rollup-plugin-visualizer"
-import { defineConfig, loadEnv } from "vite"
-import { PluginOption } from "vite"
+import { PluginOption, defineConfig, loadEnv } from "vite"
 import checker from "vite-plugin-checker"
 import svgr from "vite-plugin-svgr"
 import pkg from "./package.json"
-
-const warningsToIgnore = [
-  ["SOURCEMAP_ERROR", "Can't resolve original location of error"],
-  ["INVALID_ANNOTATION", "contains an annotation that Rollup cannot interpret"],
-]
 
 const I18N_SOURCE_PATH = resolve(
   __dirname,
@@ -23,48 +17,6 @@ const I18N_SOURCE_PATH = resolve(
   "locales/*.json",
 )
 const I18N_TARGET_PATH = resolve(__dirname, "src/i18n/locale")
-
-const muteWarningsPlugin = (warningsToIgnore: string[][]): PluginOption => {
-  const mutedMessages = new Set()
-  return {
-    name: "mute-warnings",
-    enforce: "pre",
-    config: (userConfig) => ({
-      build: {
-        rollupOptions: {
-          onwarn(warning, defaultHandler) {
-            if (warning.code) {
-              const muted = warningsToIgnore.find(
-                ([code, message]) =>
-                  code == warning.code && warning.message.includes(message),
-              )
-
-              if (muted) {
-                mutedMessages.add(muted.join())
-                return
-              }
-            }
-
-            if (userConfig.build?.rollupOptions?.onwarn) {
-              userConfig.build.rollupOptions.onwarn(warning, defaultHandler)
-            } else {
-              defaultHandler(warning)
-            }
-          },
-        },
-      },
-    }),
-    closeBundle() {
-      const diff = warningsToIgnore.filter((x) => !mutedMessages.has(x.join()))
-      if (diff.length > 0) {
-        this.warn(
-          "Some of your muted warnings never appeared during the build process:",
-        )
-        diff.forEach((m) => this.warn(`- ${m.join(": ")}`))
-      }
-    },
-  }
-}
 
 const getUsedEnv = (env: Record<string, string>) => {
   const usedEnv: Record<string, string> = {}
@@ -88,7 +40,7 @@ export default defineConfig(({ command, mode }) => {
   const useHttps = env.ILLA_USE_HTTPS === "true"
   const isBuildSelfHost =
     env.ILLA_INSTANCE_ID === "SELF_HOST_CLOUD" && command === "build"
-  const BASIC_PLUGIN = [
+  const BASIC_PLUGIN: PluginOption[] = [
     copy({
       targets: [
         {
@@ -97,8 +49,8 @@ export default defineConfig(({ command, mode }) => {
         },
       ],
       hook: "buildStart",
-    }),
-    mdx(),
+    }) as unknown as PluginOption,
+    mdx() as unknown as PluginOption,
     react({
       jsxImportSource: "@emotion/react",
     }),
@@ -114,8 +66,7 @@ export default defineConfig(({ command, mode }) => {
     }),
     visualizer({
       template: "network",
-    }),
-    muteWarningsPlugin(warningsToIgnore),
+    }) as unknown as PluginOption,
   ]
 
   const plugin = BASIC_PLUGIN
