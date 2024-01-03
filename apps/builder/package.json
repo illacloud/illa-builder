@@ -5,7 +5,7 @@
   "private": true,
   "author": "ILLA Cloud <opensource@illasoft.com>",
   "license": "Apache-2.0",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "scripts": {
     "dev": "vite --strictPort --force",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode cloud",
@@ -168,7 +168,7 @@
     "eslint-config-illa": "workspace:*",
     "protoc": "1.0.4",
     "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-visualizer": "^5.9.2",
+    "rollup-plugin-visualizer": "^5.12.0",
     "tsconfig": "workspace:*"
   }
 }

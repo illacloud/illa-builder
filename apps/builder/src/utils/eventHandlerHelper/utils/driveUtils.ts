@@ -1,3 +1,4 @@
+import { isILLAAPiError } from "@illa-public/illa-net"
 import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
 import {
   CollarModalType,
@@ -14,7 +15,6 @@ import { fetchDownloadURLByTinyURL } from "@/services/drive"
 import store from "@/store"
 import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { getContentTypeByFileExtension, getFileName } from "@/utils/file"
-import { isILLAAPiError } from "@/utils/typeHelper"
 import { isBase64Simple } from "@/utils/url/base64"
 import { dataURLtoFile } from "@/widgetLibrary/UploadWidget/util"
 

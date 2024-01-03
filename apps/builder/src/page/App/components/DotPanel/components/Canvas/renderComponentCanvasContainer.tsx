@@ -197,7 +197,11 @@ const RenderComponentCanvasContainer: FC<
           }
         }
 
-        const { shape: dropResultShape } = dropResult
+        const {
+          shape: dropResultShape,
+          columnNumberWhenDrag,
+          columnNumberWhenDrop,
+        } = dropResult
 
         if (draggedComponents.length === 1) {
           switch (dragEffect) {
@@ -209,6 +213,8 @@ const RenderComponentCanvasContainer: FC<
                 draggedComponents[0].widgetType,
                 draggedComponents[0].displayName,
                 displayName,
+                [],
+                columnNumberWhenDrop / columnNumberWhenDrag,
               )
 
               if (newComponentNode.type === "MODAL_WIDGET") {
@@ -237,51 +243,47 @@ const RenderComponentCanvasContainer: FC<
                 },
               ]
               dispatch(
-                componentsActions.updateComponentContainerReducer({
+                componentsActions.updateComponentPositionReducer({
                   oldParentNodeDisplayName: originParentNode,
                   newParentNodeDisplayName: displayName,
                   updateSlices,
+                  columnNumberWhenDrag,
+                  columnNumberWhenDrop,
                 }),
               )
             }
           }
         }
 
-        if (draggedComponents.length > 1) {
-          switch (dragEffect) {
-            case DRAG_EFFECT.ADD: {
+        if (draggedComponents.length > 1 && dragEffect === DRAG_EFFECT.UPDATE) {
+          const relativeLayoutInfo =
+            getLayoutInfosWithRelativeCombineShape(draggedComponents)
+          const updateSlices = relativeLayoutInfo.map((item) => {
+            const shape = clamWidgetShape(
+              {
+                x: item.layoutInfo.x + dropResultShape.x,
+                y: item.layoutInfo.y + dropResultShape.y,
+                w: item.layoutInfo.w,
+                h: item.layoutInfo.h,
+              },
+              columnNumber,
+              draggedComponents.length > 1,
+            )
+            return {
+              ...shape,
+              h: shape.previewH,
+              displayName: item.displayName,
             }
-
-            case DRAG_EFFECT.UPDATE: {
-              const relativeLayoutInfo =
-                getLayoutInfosWithRelativeCombineShape(draggedComponents)
-
-              const updateSlices = relativeLayoutInfo.map((item) => {
-                const shape = clamWidgetShape(
-                  {
-                    x: item.layoutInfo.x + dropResultShape.x,
-                    y: item.layoutInfo.y + dropResultShape.y,
-                    w: item.layoutInfo.w,
-                    h: item.layoutInfo.h,
-                  },
-                  columnNumber,
-                  draggedComponents.length > 1,
-                )
-                return {
-                  ...shape,
-                  h: shape.previewH,
-                  displayName: item.displayName,
-                }
-              })
-              dispatch(
-                componentsActions.updateComponentContainerReducer({
-                  oldParentNodeDisplayName: originParentNode,
-                  newParentNodeDisplayName: displayName,
-                  updateSlices,
-                }),
-              )
-            }
-          }
+          })
+          dispatch(
+            componentsActions.updateComponentPositionReducer({
+              oldParentNodeDisplayName: originParentNode,
+              newParentNodeDisplayName: displayName,
+              updateSlices,
+              columnNumberWhenDrag,
+              columnNumberWhenDrop,
+            }),
+          )
         }
 
         const mousePosition = cursorPositionRef.current

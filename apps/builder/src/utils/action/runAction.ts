@@ -1,3 +1,4 @@
+import { isILLAAPiError } from "@illa-public/illa-net"
 import {
   ActionContent,
   ActionType,
@@ -26,7 +27,6 @@ import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHe
 import {
   isClientS3ActionContent,
   isDriveActionContent,
-  isILLAAPiError,
 } from "@/utils/typeHelper"
 import { fetchILLADriveClientResult } from "./driveActions"
 import { fetchS3ClientResult } from "./fetchS3ClientResult"

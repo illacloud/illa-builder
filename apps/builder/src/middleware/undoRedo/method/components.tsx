@@ -1,7 +1,7 @@
 import { ComponentTreeNode } from "@illa-public/public-types"
 import { AnyAction } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
-import { UpdateComponentContainerPayload } from "@/redux/currentApp/components/componentsPayload"
+import { UpdateComponentPositionPayload } from "@/redux/currentApp/components/componentsPayload"
 import {
   getComponentMap,
   getOriginalGlobalData,
@@ -118,10 +118,10 @@ export const componentsSnapShot = (
       }
       break
     }
-    case "updateComponentContainerReducer": {
+    case "updateComponentPositionReducer": {
       const layoutInfos = getExecutionWidgetLayoutInfo(prevRootState)
       const originNodeLayoutInfos = (
-        action.payload as UpdateComponentContainerPayload
+        action.payload as UpdateComponentPositionPayload
       ).updateSlices.map((item) => {
         return layoutInfos[item.displayName]
       })
@@ -135,7 +135,7 @@ export const componentsSnapShot = (
         }
       })
       const newAction = {
-        type: "components/updateComponentContainerReducer",
+        type: "components/updateComponentPositionReducer",
         payload: {
           oldParentNodeDisplayName: action.payload.newParentNodeDisplayName,
           newParentNodeDisplayName: action.payload.oldParentNodeDisplayName,

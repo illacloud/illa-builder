@@ -300,7 +300,7 @@ const updateWidgetPositionAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
-    | typeof componentsActions.updateComponentContainerReducer
+    | typeof componentsActions.updateComponentPositionReducer
     | typeof componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer
   >,
 ) => {
@@ -320,7 +320,7 @@ const updateWidgetPositionAdapter = (
       effectDisplayNames.push(displayName)
       break
     }
-    case "components/updateComponentContainerReducer": {
+    case "components/updateComponentPositionReducer": {
       const { payload } = action
       payload.updateSlices.forEach((item) => {
         effectDisplayNames.push(item.displayName)
@@ -354,7 +354,7 @@ function handleUpdateWidgetPositionInExecutionLayoutInfo(
     action as ReturnType<
       | typeof componentsActions.addComponentReducer
       | typeof componentsActions.updateComponentLayoutInfoReducer
-      | typeof componentsActions.updateComponentContainerReducer
+      | typeof componentsActions.updateComponentPositionReducer
       | typeof componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer
     >,
   )
@@ -506,7 +506,7 @@ export function setupExecutionListeners(
         componentsActions.updateTargetPageLayoutReducer,
         componentsActions.updateSectionViewPropsReducer,
         componentsActions.updateComponentDisplayNameReducer,
-        componentsActions.updateComponentContainerReducer,
+        componentsActions.updateComponentPositionReducer,
         componentsActions.addSubPageReducer,
         executionActions.startExecutionReducer,
       ),

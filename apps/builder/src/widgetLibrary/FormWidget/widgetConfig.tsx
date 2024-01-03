@@ -1,3 +1,4 @@
+import { PADDING_MODE } from "@illa-public/public-types"
 import { v4 } from "uuid"
 import FormWidgetIcon from "@/assets/widgetCover/form.svg?react"
 import i18n from "@/i18n/config"
@@ -70,6 +71,10 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
     shadow: "small",
     headerHeight: 11,
     footerHeight: 7,
+    padding: {
+      mode: PADDING_MODE.ALL,
+      size: "4",
+    },
   },
 }
 

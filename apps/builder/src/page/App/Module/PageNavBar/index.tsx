@@ -1,3 +1,4 @@
+import { isILLAAPiError } from "@illa-public/illa-net"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
@@ -63,7 +64,6 @@ import {
 } from "@/services/apps"
 import { takeSnapShot } from "@/services/history"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isILLAAPiError } from "@/utils/typeHelper"
 import { isMAC } from "@/utils/userAgent"
 import {
   badgeStyle,

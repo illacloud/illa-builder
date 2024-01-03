@@ -1,4 +1,5 @@
 import { ComponentMapNode } from "@illa-public/public-types"
+import { CONTAINER_TYPE } from "@illa-public/public-types"
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import {
@@ -30,7 +31,6 @@ import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionStat
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
-import { CONTAINER_TYPE } from "./componentsState"
 
 function handleUpdateComponentDisplayNameEffect(
   action: ReturnType<
@@ -140,12 +140,12 @@ const updateComponentReflowComponentsAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
-    | typeof componentsActions.updateComponentContainerReducer
+    | typeof componentsActions.updateComponentPositionReducer
   >,
   currentLayoutInfo: Record<string, WidgetLayoutInfo>,
 ) => {
   switch (action.type) {
-    case "components/updateComponentContainerReducer": {
+    case "components/updateComponentPositionReducer": {
       const { newParentNodeDisplayName, updateSlices } = action.payload
       const square = combineWidgetInfos(updateSlices)
       const effectedDisplayNames = updateSlices.map(
@@ -224,7 +224,7 @@ function handleUpdateComponentReflowEffect(
     action as ReturnType<
       | typeof componentsActions.addComponentReducer
       | typeof componentsActions.updateComponentLayoutInfoReducer
-      | typeof componentsActions.updateComponentContainerReducer
+      | typeof componentsActions.updateComponentPositionReducer
     >,
     currentLayoutInfo,
   )
@@ -472,7 +472,7 @@ export function setupComponentsListeners(
         componentsActions.addComponentReducer,
         componentsActions.updateComponentLayoutInfoReducer,
         componentsActions.batchUpdateComponentLayoutInfoReducer,
-        componentsActions.updateComponentContainerReducer,
+        componentsActions.updateComponentPositionReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
     }),

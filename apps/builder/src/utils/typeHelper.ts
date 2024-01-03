@@ -1,4 +1,3 @@
-import { ILLAApiError } from "@illa-public/illa-net"
 import {
   ActionContent,
   ActionType,
@@ -9,7 +8,6 @@ import {
   S3ActionRequestType,
   S3ActionTypeContent,
 } from "@illa-public/public-types"
-import { AxiosResponse } from "axios"
 import { isString } from "@illa-design/react"
 
 const DISPLAY_NAME_REGEX = /^([a-zA-Z_$])([a-zA-Z0-9_$])*$/
@@ -80,21 +78,6 @@ export const isInt = (val: string | number): boolean => {
 
 export const isValidDisplayName = (displayName: string): boolean =>
   DISPLAY_NAME_REGEX.test(displayName)
-
-export const isILLAAPiError = (
-  error: unknown,
-): error is AxiosResponse<ILLAApiError> => {
-  return (
-    typeof error === "object" &&
-    error !== null &&
-    "data" in error &&
-    typeof error.data === "object" &&
-    error.data !== null &&
-    "errorCode" in error.data &&
-    "errorMessage" in error.data &&
-    typeof error.data.errorMessage === "string"
-  )
-}
 
 export const isClientS3ActionContent = (
   actionType: ActionType,

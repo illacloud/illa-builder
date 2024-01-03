@@ -7,8 +7,8 @@ import {
 } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
-  UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
+  UpdateComponentPositionPayload,
   UpdateComponentSlicePropsPayload,
 } from "@/redux/currentApp/components/componentsPayload"
 import { getNeedDeleteSectionViewDisplayNames } from "@/redux/currentApp/components/componentsReducer"
@@ -150,9 +150,9 @@ export const componentsAsync = (
       )
       break
     }
-    case "updateComponentContainerReducer": {
+    case "updateComponentPositionReducer": {
       const nextComponentTree = buildTreeByMapNode("root", nextComponents)
-      const updateComponentContainerPayload: UpdateComponentContainerPayload =
+      const updateComponentContainerPayload: UpdateComponentPositionPayload =
         payload
       const {
         updateSlices,
@@ -174,8 +174,8 @@ export const componentsAsync = (
           getTextMessagePayload(
             TextSignal.MOVE_STATE,
             TextTarget.COMPONENTS,
-            true,
-            action,
+            false,
+            null,
             teamID,
             uid,
             allNodes.map((node) => {

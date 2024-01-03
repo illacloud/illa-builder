@@ -1,4 +1,5 @@
 import PartialIcon from "@assets/rightPagePanel/partial.svg?react"
+import { PADDING_MODE } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -12,7 +13,6 @@ import {
   setterContainerStyle,
 } from "@/page/App/components/PagePanel/Modules/Style/style"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { PADDING_MODE } from "@/redux/currentApp/components/componentsState"
 import {
   getCurrentPageBodySection,
   getCurrentPageExecutionResult,
