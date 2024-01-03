@@ -140,12 +140,12 @@ const updateComponentReflowComponentsAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
-    | typeof componentsActions.updateComponentContainerReducer
+    | typeof componentsActions.updateComponentPositionReducer
   >,
   currentLayoutInfo: Record<string, WidgetLayoutInfo>,
 ) => {
   switch (action.type) {
-    case "components/updateComponentContainerReducer": {
+    case "components/updateComponentPositionReducer": {
       const { newParentNodeDisplayName, updateSlices } = action.payload
       const square = combineWidgetInfos(updateSlices)
       const effectedDisplayNames = updateSlices.map(
@@ -224,7 +224,7 @@ function handleUpdateComponentReflowEffect(
     action as ReturnType<
       | typeof componentsActions.addComponentReducer
       | typeof componentsActions.updateComponentLayoutInfoReducer
-      | typeof componentsActions.updateComponentContainerReducer
+      | typeof componentsActions.updateComponentPositionReducer
     >,
     currentLayoutInfo,
   )
@@ -472,7 +472,7 @@ export function setupComponentsListeners(
         componentsActions.addComponentReducer,
         componentsActions.updateComponentLayoutInfoReducer,
         componentsActions.batchUpdateComponentLayoutInfoReducer,
-        componentsActions.updateComponentContainerReducer,
+        componentsActions.updateComponentPositionReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
     }),

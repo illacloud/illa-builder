@@ -496,6 +496,15 @@ export const getDragPreview = (
       result.w,
       result.previewH,
     )
+
+    const clamWidgetResult = clamWidgetShape(
+      {
+        ...result,
+        h: result.previewH,
+      },
+      columnNumber,
+      draggedComponents.length > 1,
+    )
     if (
       draggedComponents.length > 1 &&
       columnNumber !== columnNumberWhenDragged &&
@@ -504,39 +513,22 @@ export const getDragPreview = (
       item.dropResult = {
         shape: undefined,
         canDrop: false,
+        columnNumberWhenDrag: columnNumberWhenDragged,
+        columnNumberWhenDrop: columnNumber,
       }
       return {
-        shape: clamWidgetShape(
-          {
-            ...result,
-            h: result.previewH,
-          },
-          columnNumber,
-          draggedComponents.length > 1,
-        ),
+        shape: clamWidgetResult,
         canDrop: false,
       }
     }
     item.dropResult = {
-      shape: clamWidgetShape(
-        {
-          ...result,
-          h: result.previewH,
-        },
-        columnNumber,
-        draggedComponents.length > 1,
-      ),
+      shape: clamWidgetResult,
       canDrop: true,
+      columnNumberWhenDrag: columnNumberWhenDragged,
+      columnNumberWhenDrop: columnNumber,
     }
     return {
-      shape: clamWidgetShape(
-        {
-          ...result,
-          h: result.previewH,
-        },
-        columnNumber,
-        draggedComponents.length > 1,
-      ),
+      shape: clamWidgetResult,
       canDrop: true,
     }
   } else {

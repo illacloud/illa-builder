@@ -12,8 +12,8 @@ import {
 import {
   BatchUpdateComponentNodeLayoutInfoPayload,
   LayoutInfo,
-  UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
+  UpdateComponentPositionPayload,
   UpdateComponentSlicePropsPayload,
 } from "@/redux/currentApp/components/componentsPayload"
 import { searchComponentFromMap } from "@/redux/currentApp/components/componentsSelector"
@@ -353,12 +353,43 @@ export const updateComponentDisplayNameReducer: CaseReducer<
   }
 }
 
-export const updateComponentContainerReducer: CaseReducer<
+const scaleChildrenNodeHelper = (
+  state: ComponentsState,
+  displayName: string,
+  columnNumberWhenDrag: number,
+  columnNumberWhenDrop: number,
+) => {
+  const targetNode = searchComponentFromMap(state, displayName)
+  if (!targetNode) return
+  if (Array.isArray(targetNode.childrenNode)) {
+    targetNode.childrenNode.forEach((nodeDisplayName) =>
+      scaleChildrenNodeHelper(
+        state,
+        nodeDisplayName,
+        columnNumberWhenDrag,
+        columnNumberWhenDrop,
+      ),
+    )
+  }
+  targetNode.w = Math.floor(
+    targetNode.w * (columnNumberWhenDrop / columnNumberWhenDrag),
+  )
+  targetNode.x = Math.floor(
+    targetNode.x * (columnNumberWhenDrop / columnNumberWhenDrag),
+  )
+}
+
+export const updateComponentPositionReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<UpdateComponentContainerPayload>
+  PayloadAction<UpdateComponentPositionPayload>
 > = (state, action) => {
-  const { oldParentNodeDisplayName, newParentNodeDisplayName, updateSlices } =
-    action.payload
+  const {
+    oldParentNodeDisplayName,
+    newParentNodeDisplayName,
+    updateSlices,
+    columnNumberWhenDrag = 1,
+    columnNumberWhenDrop = 1,
+  } = action.payload
 
   if (oldParentNodeDisplayName === newParentNodeDisplayName) {
     updateSlices.forEach((slice) => {
@@ -397,6 +428,16 @@ export const updateComponentContainerReducer: CaseReducer<
     currentNode.y = slice.y
     currentNode.w = slice.w
     currentNode.h = slice.h
+    if (Array.isArray(currentNode.childrenNode)) {
+      currentNode.childrenNode.forEach((childDisplayName) =>
+        scaleChildrenNodeHelper(
+          state,
+          childDisplayName,
+          columnNumberWhenDrag,
+          columnNumberWhenDrop,
+        ),
+      )
+    }
     if (!Array.isArray(newParentNode.childrenNode)) {
       newParentNode.childrenNode = [currentNode.displayName]
     } else {
