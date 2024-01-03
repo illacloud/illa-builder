@@ -1,4 +1,5 @@
 import { ComponentMapNode } from "@illa-public/public-types"
+import { CONTAINER_TYPE } from "@illa-public/public-types"
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import {
@@ -30,7 +31,6 @@ import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionStat
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
-import { CONTAINER_TYPE } from "./componentsState"
 
 function handleUpdateComponentDisplayNameEffect(
   action: ReturnType<

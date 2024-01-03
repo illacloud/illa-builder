@@ -1,4 +1,5 @@
 import PartialIcon from "@assets/rightPagePanel/partial.svg?react"
+import { PADDING_MODE } from "@illa-public/public-types"
 import { get } from "lodash"
 import { FC, FocusEventHandler, useRef } from "react"
 import { useDispatch } from "react-redux"
@@ -6,7 +7,6 @@ import { Input, RadioGroup } from "@illa-design/react"
 import AllIcon from "@/assets/rightPagePanel/all.svg?react"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { configActions } from "@/redux/config/configSlice"
-import { PADDING_MODE } from "@/redux/currentApp/components/componentsState"
 import { DirectionPaddingSetterProps } from "./interface"
 import {
   directionPaddingContainerStyle,

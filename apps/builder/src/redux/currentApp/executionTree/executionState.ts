@@ -1,6 +1,6 @@
+import { CONTAINER_TYPE } from "@illa-public/public-types"
 import { Diff } from "deep-diff"
 import { LayoutInfo } from "@/redux/currentApp/components/componentsPayload"
-import { CONTAINER_TYPE } from "../components/componentsState"
 
 export enum ExecutionErrorType {
   EVALUATED = "EVALUATED",

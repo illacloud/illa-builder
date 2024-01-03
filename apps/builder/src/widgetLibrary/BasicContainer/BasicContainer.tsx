@@ -1,4 +1,4 @@
-import { CONTAINER_TYPE } from "@/redux/currentApp/components/componentsState"
+import { CONTAINER_TYPE } from "@illa-public/public-types"
 
 export const BasicContainerConfig = {
   type: "CANVAS",
