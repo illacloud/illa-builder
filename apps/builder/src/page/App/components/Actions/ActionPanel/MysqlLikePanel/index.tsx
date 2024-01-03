@@ -1,3 +1,4 @@
+import { isILLAAPiError } from "@illa-public/illa-net"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { MysqlLikeAction } from "@illa-public/public-types"
 import { isCloudVersion } from "@illa-public/utils"
@@ -24,7 +25,6 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { fetchGenerateSQL } from "@/services/action"
 import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isILLAAPiError } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { SQLModeSelector } from "../pulicComponent/SQLModeSelector"
 

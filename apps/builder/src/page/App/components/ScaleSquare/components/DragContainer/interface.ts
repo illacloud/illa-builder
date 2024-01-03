@@ -28,6 +28,8 @@ export interface DragInfo {
       previewH: number
     }
     canDrop: boolean
+    columnNumberWhenDrag: number
+    columnNumberWhenDrop: number
   }
   columnNumberWhenDragged: number
   unitWWhenDragged: number

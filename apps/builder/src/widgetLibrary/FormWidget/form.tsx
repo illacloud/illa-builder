@@ -103,6 +103,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     columnNumber,
     formData: propsFormData,
     dynamicHeight = "fixed",
+    padding,
     handleUpdateOriginalDSLMultiAttr,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -525,6 +526,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
               columnNumber={columnNumber}
               handleUpdateHeight={handleUpdateHeight}
               canResizeCanvas={canResizeCanvas}
+              containerPadding={padding?.size}
             />
           </div>
           {isMouseHover && !isDraggingActive && isEditMode && (
@@ -538,6 +540,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           columnNumber={columnNumber}
           handleUpdateHeight={handleUpdateHeight}
           canResizeCanvas={canResizeCanvas}
+          containerPadding={padding?.size}
         />
         {isMouseHover && !isDraggingActive && isEditMode && (
           <div css={applyXDirectionDashedLineStyle(false, true, false)} />
@@ -568,6 +571,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
               columnNumber={columnNumber}
               handleUpdateHeight={handleUpdateHeight}
               canResizeCanvas={canResizeCanvas}
+              containerPadding={padding?.size}
             />
           </div>
           {isMouseHover && !isDraggingActive && isEditMode && (

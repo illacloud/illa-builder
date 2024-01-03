@@ -1,7 +1,7 @@
+import { PADDING_MODE } from "@illa-public/public-types"
 import { v4 } from "uuid"
 import ContainerWidgetIcon from "@/assets/widgetCover/container.svg?react"
 import i18n from "@/i18n/config"
-import { PADDING_MODE } from "@/redux/currentApp/components/componentsState"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 

@@ -1,3 +1,4 @@
+import { PADDING_MODE } from "@illa-public/public-types"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface FormWidgetProps extends BaseWidgetProps {
@@ -15,4 +16,8 @@ export interface FormWidgetProps extends BaseWidgetProps {
   columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"
   formData?: Record<string, any>
+  padding?: {
+    size: string
+    mode: PADDING_MODE
+  }
 }
