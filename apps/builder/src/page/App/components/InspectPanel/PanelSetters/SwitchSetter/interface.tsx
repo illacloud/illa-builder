@@ -10,7 +10,6 @@ export interface BaseSwitchProps extends BaseSetter {
 }
 
 export interface DynamicSwitchProps extends BaseSetter, PanelLabelProps {
-  panelConfig: Record<string, any>
   openDynamic?: boolean
   value?: string | boolean
 }

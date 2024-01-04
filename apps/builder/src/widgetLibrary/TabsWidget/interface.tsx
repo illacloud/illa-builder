@@ -12,12 +12,7 @@ export interface WrappedTabsProps
   tabList?: viewListItemShaper[]
   linkWidgetDisplayName?: string
   handleOnChange?: () => void
-  handleUpdateMultiExecutionResult: (
-    updateSlice: {
-      displayName: string
-      value: Record<string, any>
-    }[],
-  ) => void
+  handleUpdateExecution?: (updateSliceItem: Record<string, any>) => void
 }
 
 export interface TabsWidgetProps
@@ -27,10 +22,4 @@ export interface TabsWidgetProps
   navigateContainer?: boolean
   linkWidgetDisplayName?: string
   currentKey?: string
-  handleUpdateMultiExecutionResult: (
-    updateSlice: {
-      displayName: string
-      value: Record<string, any>
-    }[],
-  ) => void
 }

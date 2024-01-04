@@ -814,7 +814,7 @@ importers:
         specifier: ^5.0.4
         version: 5.3.2
       vite:
-        specifier: ^4.4.12
+        specifier: ^4.5.0
         version: 4.5.0(@types/node@18.18.13)
 
   packages/illa-design/packages/affix:
@@ -2908,6 +2908,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.17
         version: 18.2.17
+      framer-motion:
+        specifier: ^10.16.16
+        version: 10.17.4(react-dom@18.2.0)(react@18.2.0)
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
@@ -10591,6 +10594,24 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tslib: 2.5.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framer-motion@10.17.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-CYBSs6cWfzcasAX8aofgKFZootmkQtR4qxbfTOksBLny/lbUfkGbQAFOS3qnl6Uau1N9y8tUpI7mVIrHgkFjLQ==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tslib: 2.6.2
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: false

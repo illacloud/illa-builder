@@ -1,5 +1,8 @@
+import { get } from "lodash"
 import { FC, useCallback, useEffect, useMemo } from "react"
+import { useSelector } from "react-redux"
 import { TabPane, Tabs } from "@illa-design/react"
+import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
@@ -10,11 +13,11 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
     align,
     activeKey,
     disabled,
-    tabList,
+    tabList = [],
     colorScheme,
     tabPosition,
     handleOnChange,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateExecution,
   } = props
 
   return (
@@ -27,29 +30,27 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
       onChange={(value) => {
         new Promise((resolve) => {
           const currentIndex = tabList?.findIndex((view) => view.key === value)
-          handleUpdateOriginalDSLMultiAttr(
-            {
-              currentKey: value,
-              currentIndex,
-            },
-            true,
-          )
+          handleUpdateExecution?.({
+            currentKey: value,
+            currentIndex,
+          })
           resolve(true)
         }).then(() => {
           handleOnChange?.()
         })
       }}
     >
-      {tabList?.map((item) => {
-        if (item.hidden) return null
-        return (
-          <TabPane
-            key={item.key}
-            title={item.label}
-            disabled={disabled || item.disabled}
-          />
-        )
-      })}
+      {Array.isArray(tabList) &&
+        tabList?.map((item) => {
+          if (item.hidden) return null
+          return (
+            <TabPane
+              key={item.key}
+              title={item.label}
+              disabled={disabled || item.disabled}
+            />
+          )
+        })}
     </Tabs>
   )
 }
@@ -63,7 +64,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     disabled,
     navigateContainer,
     currentKey,
-    tabList,
+    tabList = [],
     viewList,
     displayName,
     linkWidgetDisplayName,
@@ -75,8 +76,10 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     tabPosition,
     triggerEventHandler,
     updateComponentHeight,
-    handleUpdateOriginalDSLOtherMultiAttr,
+    handleUpdateMultiExecutionResult,
   } = props
+
+  const components = useSelector(getComponentMap)
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -104,20 +107,53 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     return tabList
   }, [navigateContainer, tabList, viewList])
 
-  const handleUpdateMultiExecutionResults = useCallback(
+  const handleUpdateExecution = useCallback(
     (updateSliceItem: Record<string, any>) => {
       if (navigateContainer && linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttr(
-          linkWidgetDisplayName,
-          updateSliceItem,
-          true,
+        handleUpdateMultiExecutionResult([
+          {
+            displayName: linkWidgetDisplayName,
+            value: updateSliceItem,
+          },
+        ])
+        const targetLinkedDisplayNames = get(
+          components,
+          `${linkWidgetDisplayName}.props.linkWidgetDisplayName`,
+          [],
         )
+        if (Array.isArray(targetLinkedDisplayNames)) {
+          const curUpdateSliceItem = targetLinkedDisplayNames
+            .filter((name) => name !== displayName)
+            .map((name) => ({
+              displayName: name,
+              value: updateSliceItem,
+            }))
+          handleUpdateMultiExecutionResult(curUpdateSliceItem)
+        }
+        targetLinkedDisplayNames &&
+          Array.isArray(targetLinkedDisplayNames) &&
+          targetLinkedDisplayNames.forEach((targetLinkedDisplayName) => {
+            targetLinkedDisplayName !== displayName &&
+              handleUpdateMultiExecutionResult([
+                {
+                  displayName: targetLinkedDisplayName,
+                  value: updateSliceItem,
+                },
+              ])
+          })
       }
-      handleUpdateOriginalDSLOtherMultiAttr(displayName, updateSliceItem, true)
+
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: updateSliceItem,
+        },
+      ])
     },
     [
+      components,
       displayName,
-      handleUpdateOriginalDSLOtherMultiAttr,
+      handleUpdateMultiExecutionResult,
       linkWidgetDisplayName,
       navigateContainer,
     ],
@@ -141,7 +177,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
             tabPosition={tabPosition}
             disabled={disabled}
             linkWidgetDisplayName={linkWidgetDisplayName}
-            handleUpdateOriginalDSLMultiAttr={handleUpdateMultiExecutionResults}
+            handleUpdateExecution={handleUpdateExecution}
             handleOnChange={handleOnChange}
           />
         </div>
