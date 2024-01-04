@@ -233,7 +233,7 @@ export const downloadFile = (params: {
         default:
           {
             if (typeof data === "object") {
-              formattedDownloadData = JSON.stringify(data)
+              formattedDownloadData = JSON.stringify(data, undefined, 2)
             } else {
               formattedDownloadData = ""
             }

@@ -536,8 +536,8 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0
       rollup-plugin-visualizer:
-        specifier: ^5.9.2
-        version: 5.9.2(rollup@4.6.0)
+        specifier: ^5.12.0
+        version: 5.12.0(rollup@4.6.0)
       tsconfig:
         specifier: workspace:*
         version: link:../../packages/tsconfig
@@ -672,8 +672,8 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0
       rollup-plugin-visualizer:
-        specifier: ^5.9.0
-        version: 5.9.2(rollup@4.6.0)
+        specifier: ^5.12.0
+        version: 5.12.0(rollup@4.6.0)
       tsconfig:
         specifier: workspace:*
         version: link:../../packages/tsconfig
@@ -15370,12 +15370,12 @@ packages:
       is-plain-object: 3.0.1
     dev: true
 
-  /rollup-plugin-visualizer@5.9.2(rollup@4.6.0):
-    resolution: {integrity: sha512-waHktD5mlWrYFrhOLbti4YgQCn1uR24nYsNuXxg7LkPH8KdTXVWR9DNY1WU0QqokyMixVXJS4J04HNrVTMP01A==}
+  /rollup-plugin-visualizer@5.12.0(rollup@4.6.0):
+    resolution: {integrity: sha512-8/NU9jXcHRs7Nnj07PF2o4gjxmm9lXIrZ8r175bT9dK8qoLlvKTwRMArRCMgpMGlq8CTLugRvEmyMeMXIU2pNQ==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
-      rollup: 2.x || 3.x
+      rollup: 2.x || 3.x || 4.x
     peerDependenciesMeta:
       rollup:
         optional: true
