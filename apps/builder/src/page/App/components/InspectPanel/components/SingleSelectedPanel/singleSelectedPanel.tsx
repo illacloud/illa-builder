@@ -7,6 +7,7 @@ import { SelectedProvider } from "@/page/App/components/InspectPanel/context/sel
 import { panelBuilder } from "@/page/App/components/InspectPanel/utils/panelBuilder"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { isObject } from "@/utils/typeHelper"
 import FieldFactory from "../FieldFactory"
 import {
@@ -68,6 +69,19 @@ const SingleSelectedPanel: FC = () => {
     [dispatch],
   )
 
+  const handleUpdateExecutionResult = useCallback(
+    (displayName: string, updateSlice: Record<string, unknown>) => {
+      if (!isObject(updateSlice)) return
+      dispatch(
+        executionActions.updateExecutionByDisplayNameReducer({
+          displayName,
+          value: updateSlice,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
   const builderPanelConfig = panelBuilder(widgetType)
 
   return (
@@ -80,6 +94,7 @@ const SingleSelectedPanel: FC = () => {
         handleUpdateDsl={handleUpdateDsl}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
         handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
+        handleUpdateExecutionResult={handleUpdateExecutionResult}
         widgetOrAction="WIDGET"
       >
         <div css={singleSelectedPanelWrapperStyle}>

@@ -1,4 +1,5 @@
 import { ComponentTreeNode } from "@illa-public/public-types"
+import { isString } from "@illa-design/react"
 
 export const fixedChartComponent = (component: ComponentTreeNode) => {
   return {
@@ -92,6 +93,24 @@ const fixedImageComponent = (component: ComponentTreeNode) => {
   }
 }
 
+const fixedContainerComponent = (component: ComponentTreeNode) => {
+  let linkedWidget
+  if (component.props) {
+    linkedWidget =
+      component.props.linkWidgetDisplayName !== undefined &&
+      isString(component.props.linkWidgetDisplayName)
+        ? [component.props.linkWidgetDisplayName]
+        : component.props.linkWidgetDisplayName
+  }
+  return {
+    ...component,
+    props: {
+      ...component.props,
+      linkWidgetDisplayName: linkedWidget,
+    },
+  }
+}
+
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentTreeNode,
 ) => {
@@ -112,6 +131,8 @@ export const fixedComponentsToNewComponents = (
             return fixedDataGridComponent(component)
           case "IMAGE_WIDGET":
             return fixedImageComponent(component)
+          case "CONTAINER_WIDGET":
+            return fixedContainerComponent(component)
           default: {
             return fixedComponentsToNewComponents(component)
           }
