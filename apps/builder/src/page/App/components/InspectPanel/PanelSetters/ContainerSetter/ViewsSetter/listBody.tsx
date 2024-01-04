@@ -66,11 +66,11 @@ export const ListBody: FC = () => {
     )
   }, [
     items,
-    currentSelected,
-    attrPath,
-    componentNode,
     handleUpdateMultiAttrDSL,
+    attrPath,
     dispatch,
+    componentNode.displayName,
+    currentSelected.key,
   ])
 
   useEffect(() => {

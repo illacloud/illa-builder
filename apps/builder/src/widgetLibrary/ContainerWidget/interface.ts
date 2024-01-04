@@ -15,7 +15,7 @@ export interface ContainerProps extends BaseWidgetProps {
   viewList: viewListItemShaper[]
   tooltipText?: string
   h: number
-  linkWidgetDisplayName?: string
+  linkWidgetDisplayName?: string[]
   unitH: number
   columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"

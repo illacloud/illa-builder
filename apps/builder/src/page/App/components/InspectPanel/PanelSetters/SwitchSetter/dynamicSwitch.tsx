@@ -18,7 +18,6 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     attrName,
     labelName,
     labelDesc,
-    panelConfig,
     handleUpdateDsl,
     defaultValue,
     handleUpdateMultiAttrDSL,
@@ -26,9 +25,10 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     openDynamic,
     detailedDescription,
     widgetType,
+    componentNode,
   } = props
 
-  const customSelected = get(panelConfig, `${attrName}Dynamic`, false)
+  const customSelected = get(componentNode, `props.${attrName}Dynamic`, false)
 
   const handleClickDynamicIcon = useCallback(() => {
     if (customSelected) {

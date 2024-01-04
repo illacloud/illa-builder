@@ -55,7 +55,6 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     parseValue,
     fileList,
     onRemove,
-    handleOnChange,
     onChange,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
@@ -95,50 +94,40 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         parsedValues,
         fileList,
       })
-    })
-      .then((value) => {
-        const {
-          values,
-          parsedValues,
-          fileList = [],
-        } = value as {
-          values: any[]
-          parsedValues: any[]
-          fileList: UploadItem[]
-        }
-        const validateMessage = getValidateMessage(fileList)
-        const base64value = getFilteredValue(values, "base64")
-        const files = getFiles(fileList, base64value ?? [])
-        const parsed = getFilteredValue(parsedValues)
-        const currentList = getCurrentList(fileList)
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              files,
-              value: base64value,
-              parsedValue: parsed,
-              validateMessage,
-              currentList,
-            },
+    }).then((value) => {
+      const {
+        values,
+        parsedValues,
+        fileList = [],
+      } = value as {
+        values: any[]
+        parsedValues: any[]
+        fileList: UploadItem[]
+      }
+      const validateMessage = getValidateMessage(fileList)
+      const base64value = getFilteredValue(values, "base64")
+      const files = getFiles(fileList, base64value ?? [])
+      const parsed = getFilteredValue(parsedValues)
+      const currentList = getCurrentList(fileList)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            files,
+            value: base64value,
+            parsedValue: parsed,
+            validateMessage,
+            currentList,
           },
-        ])
-      })
-      .then(() => {
-        const allSettled = fileList.every(
-          (file) => file.status === "error" || file.status === "done",
-        )
-        if (allSettled) {
-          handleOnChange?.()
-        }
-      })
+        },
+      ])
+    })
   }, [
     displayName,
     parseValue,
     fileList,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
-    handleOnChange,
   ])
 
   return (
@@ -235,16 +224,13 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     if (previousValueRef.current.length > 0) {
       previousValueRef.current = currentFiles
     }
+    triggerEventHandler("change")
     return true
   }
 
   const customRequest = (options: RequestOptions) => {
     options.onSuccess()
   }
-
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
 
   const onChanges = useCallback(
     (fileList: UploadItem[], file: UploadItem) => {
@@ -275,11 +261,12 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
           fileListRef.current = newList
           previousValueRef.current = []
           fileCountRef.current = 0
+          triggerEventHandler("change")
         }
       }
       return
     },
-    [appendFiles, getFileIndex],
+    [appendFiles, getFileIndex, triggerEventHandler],
   )
 
   const getValidateMessage = useCallback(
@@ -368,7 +355,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
             onRemove={handleOnRemove}
             getValidateMessage={getValidateMessage}
             customRequest={customRequest}
-            handleOnChange={handleOnChange}
           />
         </div>
       </TooltipWrapper>

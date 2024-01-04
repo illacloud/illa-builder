@@ -18,21 +18,12 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.tabs"),
     children: [
       {
-        id: `${baseWidgetName}-linkContainer`,
-        labelName: i18n.t("editor.inspect.setter_label.link_to_container"),
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        attrName: "navigateContainer",
-        useCustomLayout: true,
-        openDynamic: true,
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-      {
         id: `${baseWidgetName}-column-decimalPlaces`,
         labelName: i18n.t("editor.inspect.setter_label.container"),
         attrName: "linkWidgetDisplayName",
         bindAttrName: ["navigateContainer"],
-        shown: (value) => value,
         setterType: "TABS_CONTAINER_SELECT_SETTER",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
