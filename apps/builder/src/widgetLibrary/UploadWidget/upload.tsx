@@ -224,6 +224,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     if (previousValueRef.current.length > 0) {
       previousValueRef.current = currentFiles
     }
+    triggerEventHandler("change")
     return true
   }
 
