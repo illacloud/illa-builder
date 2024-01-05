@@ -2,8 +2,9 @@
 name: Feature request
 about: Suggest an idea for this project
 title: "[Feature Requested] "
-labels: "feature"
-assignees: "wenzhuo2022"
+labels: feature
+assignees: wenzhuo2022
+
 ---
 
 **Is your feature request related to a problem? Please describe.** A clear and
