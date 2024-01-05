@@ -10,13 +10,13 @@
 <p align="center">ILLA is a robust open source low-code platform for developers to build internal tools. By using ILLA's library of Components and Actions, developers can save massive amounts of time on building tools. </p>
 
 <div align="center">
-English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-DE.md">Deutsch</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+English | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-DE.md">Deutsch</a> | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-JP.md">日本語</a>
 </div>
 
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img width="800" alt="Github(1)" src="https://github.com/illacloud/illa-builder/assets/7929686/f136f457-6904-4cba-8ad6-a64adcdafe88">
+  <img width="800" alt="Github(1)" src="https://github.com/illacloud/.github/blob/main/assets/2024/Jan/GitHub%20-%20Readme.png">
 </a>
 </p>
 
