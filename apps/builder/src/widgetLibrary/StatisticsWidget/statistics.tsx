@@ -129,12 +129,13 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
           <div css={getSecondaryStatisticContainerStyle(secondaryColor)}>
             {secondaryIcon}
             <Statistic
-              _css={getSecondaryStatisticStyle(secondaryColor)}
+              _css={getSecondaryStatisticStyle}
               groupSeparator={secondaryGroupSeparator}
               value={secondaryValue}
               precision={secondaryDecimalPlace}
               prefix={secondaryPrefixText}
               suffix={secondarySuffixText}
+              colorScheme={secondaryColor}
             />
           </div>
         )}
@@ -158,11 +159,12 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
         <div css={primaryStatisticContainerStyle}>
           {icon}
           <Statistic
-            _css={getStatisticStyle(color)}
+            _css={getStatisticStyle}
             value={primaryValue}
             precision={decimalPlace}
             prefix={prefixText}
             suffix={suffixText}
+            colorScheme={color}
             groupSeparator={groupSeparator}
           />
         </div>
