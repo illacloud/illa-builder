@@ -88,12 +88,10 @@ export const nameStyle = css`
   line-height: 14px;
 `
 
-export const emptyStyle = css`
+export const emptyContainerStyle = css`
   width: 100%;
-  height: 100%;
+  height: 319px;
   display: flex;
-  padding-top: 122.5px;
-  flex-direction: column;
   align-items: center;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  justify-content: center;
 `

@@ -2,12 +2,16 @@ import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Search } from "@illa-design/react"
 import { buildComponentList } from "@/page/App/components/ComponentPanel/componentListBuilder"
-import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
 import { FocusManager } from "@/utils/focusManager"
 import { ComponentSession } from "./ComponentSession"
+import {
+  ColumnSuggestComponent,
+  RowSuggestComponent,
+} from "./components/SuggestComponent"
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import {
   componentContainerStyle,
+  emptyContainerStyle,
   searchWrapperStyle,
   sessionListContainerStyle,
 } from "./style"
@@ -52,14 +56,18 @@ const ComponentPanel: FC<ComponentPanelProps> = (props) => {
       </div>
       <div css={sessionListContainerStyle}>
         {searchRes && searchRes.length ? (
-          searchRes.map((session) => (
-            <ComponentSession
-              key={"session-" + session.sessionTitle}
-              {...session}
-            />
-          ))
+          searchRes
+            .map((session) => (
+              <ComponentSession
+                key={"session-" + session.sessionTitle}
+                {...session}
+              />
+            ))
+            .concat(<RowSuggestComponent />)
         ) : (
-          <EmptySearchResult />
+          <div css={emptyContainerStyle}>
+            <ColumnSuggestComponent />
+          </div>
         )}
       </div>
     </div>
