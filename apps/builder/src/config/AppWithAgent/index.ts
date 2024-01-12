@@ -6,7 +6,7 @@ import {
 } from "@illa-public/public-types"
 import { AiAgentActionContent } from "@illa-public/public-types"
 import { ActionItem } from "@illa-public/public-types"
-import { cloneDeep } from "lodash"
+import { klona } from "klona/json"
 import { searchDSLFromTree } from "@/redux/currentApp/components/componentsSelector"
 import { TEST_ROOT_NODE } from "./templateNode"
 
@@ -287,7 +287,7 @@ const buildResultContainer = (
 }
 
 export const buildAppWithAgentSchema = (variableKeys: string[]) => {
-  const appInfo = cloneDeep(TEST_ROOT_NODE)
+  const appInfo = klona(TEST_ROOT_NODE)
   const containerNode = searchDSLFromTree(appInfo, "canvas1")!
 
   const variableKeyInputs = variableKeys.map((variableKey, index) =>

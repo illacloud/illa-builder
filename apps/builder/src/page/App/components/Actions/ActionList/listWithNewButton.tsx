@@ -22,7 +22,7 @@ import {
   ResourceGeneratorProvider,
 } from "@illa-public/resource-generator"
 import { isCloudVersion } from "@illa-public/utils"
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"

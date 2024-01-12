@@ -5,7 +5,7 @@ import {
   GlobalDataActionContent,
 } from "@illa-public/public-types"
 import { createSelector } from "@reduxjs/toolkit"
-import { get, set } from "lodash"
+import { get, set } from "lodash-es"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"

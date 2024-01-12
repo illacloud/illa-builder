@@ -1,6 +1,6 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { SectionViewShape } from "@illa-public/public-types"
-import { difference } from "lodash"
+import { difference } from "lodash-es"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"

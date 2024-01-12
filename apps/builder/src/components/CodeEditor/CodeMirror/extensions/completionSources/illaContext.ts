@@ -3,7 +3,7 @@ import {
   CompletionContext,
   CompletionResult,
 } from "@codemirror/autocomplete"
-import { capitalize } from "lodash"
+import { capitalize } from "lodash-es"
 import {
   AutocompleteDataType,
   checkCursorInDynamicFlag,

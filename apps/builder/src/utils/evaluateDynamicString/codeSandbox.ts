@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash"
+import { klona } from "klona"
 
 const blacklistSet = new Set([
   "top",
@@ -160,5 +160,5 @@ export const evalScript = (script: string, dataTree: Record<string, any>) => {
   const userCode = runUsersCode(script)
   const sandbox = proxySandbox(dataTree)
   const result = userCode.call(sandbox)
-  return cloneDeep(result)
+  return klona(result)
 }

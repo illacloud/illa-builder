@@ -1,4 +1,4 @@
-import { get, isEqual } from "lodash"
+import { get, isEqual } from "lodash-es"
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import BaseDynamicSelect from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseDynamicSelect"

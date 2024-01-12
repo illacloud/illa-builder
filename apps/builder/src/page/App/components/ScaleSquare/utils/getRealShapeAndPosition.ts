@@ -1,5 +1,5 @@
 import { ComponentTreeNode } from "@illa-public/public-types"
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"

@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
-import { has, set } from "lodash"
+import { has, set } from "lodash-es"
 import {
   BatchUpdateWidgetLayoutInfoPayload,
   DependenciesState,

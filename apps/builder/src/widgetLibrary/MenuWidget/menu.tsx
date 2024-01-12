@@ -1,7 +1,7 @@
-import { toPath } from "lodash"
+import { convertPathToString } from "@illa-public/dynamic-string"
+import { toPath } from "lodash-es"
 import { FC, useCallback, useMemo } from "react"
 import { Image, Menu, MenuItemProps, SubMenuProps } from "@illa-design/react"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   applyMenuBrandContainerStyle,
   applyMenuTitleStyle,

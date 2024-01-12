@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon, ErrorCircleIcon } from "@illa-design/react"

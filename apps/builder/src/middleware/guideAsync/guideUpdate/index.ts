@@ -1,5 +1,5 @@
 import { Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { get, isObject } from "lodash"
+import { get, isObject } from "lodash-es"
 import {
   GUIDE_SELECT_WIDGET,
   GUIDE_SQL_QUERY,

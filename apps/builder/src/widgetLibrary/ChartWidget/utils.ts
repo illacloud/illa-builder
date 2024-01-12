@@ -1,6 +1,6 @@
 import { ChartType } from "chart.js"
 import dayjs from "dayjs"
-import { get, max, mean, min, sum } from "lodash"
+import { get, max, mean, min, sum } from "lodash-es"
 import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget/interface"
 
 export const formatDataWithSum = (

@@ -1,6 +1,7 @@
 import { ActionContent, ActionItem } from "@illa-public/public-types"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, set } from "lodash"
+import { klona } from "klona/json"
+import { set } from "lodash-es"
 import {
   RemoveActionItemReducerPayload,
   UpdateActionDisplayNamePayload,
@@ -66,7 +67,7 @@ export const batchUpdateMultiActionSlicePropsReducer: CaseReducer<
     })
     if (actionIndex === -1) return
     const action = state[actionIndex]
-    const clonedAction = cloneDeep(action)
+    const clonedAction = klona(action)
     Object.keys(propsSlice).forEach((path) => {
       const newValue = propsSlice[path]
       set(clonedAction, path, newValue)

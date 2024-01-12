@@ -1,6 +1,7 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { getCurrentUserId } from "@illa-public/user-data"
-import { cloneDeep, get } from "lodash"
+import { klona } from "klona/json"
+import { get } from "lodash-es"
 import { FC, MouseEvent, memo, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -109,7 +110,7 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         parameter1: "click",
       })
       if ((isMAC() && e.metaKey) || e.shiftKey || (!isMAC() && e.ctrlKey)) {
-        let currentSelectedDisplayName = cloneDeep(selectedComponents)
+        let currentSelectedDisplayName = klona(selectedComponents)
         const index = currentSelectedDisplayName.findIndex(
           (currentDisplayName) => displayName === currentDisplayName,
         )

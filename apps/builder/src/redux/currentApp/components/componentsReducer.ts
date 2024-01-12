@@ -4,7 +4,8 @@ import {
   SectionViewShape,
 } from "@illa-public/public-types"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, difference, set, unset } from "lodash"
+import { klona } from "klona/json"
+import { difference, set, unset } from "lodash-es"
 import {
   generateNewViewItem,
   generateNewViewItemFromBodySectionConfig,
@@ -237,7 +238,7 @@ export const updateComponentPropsReducer: CaseReducer<
   const node = searchComponentFromMap(state, displayName)
   if (!node) return
   const widgetProps = node.props || {}
-  const clonedWidgetProps = cloneDeep(widgetProps)
+  const clonedWidgetProps = klona(widgetProps)
   node.props = getNewWidgetPropsByUpdateSlice(updateSlice, clonedWidgetProps)
 }
 
@@ -265,7 +266,7 @@ export const updateMultiComponentPropsReducer: CaseReducer<
     const node = searchComponentFromMap(state, displayName)
     if (!node) return
     const widgetProps = node.props || {}
-    const clonedWidgetProps = cloneDeep(widgetProps)
+    const clonedWidgetProps = klona(widgetProps)
     node.props = getNewWidgetPropsByUpdateSlice(updateSlice, clonedWidgetProps)
   })
 }
@@ -281,7 +282,7 @@ export const batchUpdateMultiComponentSlicePropsReducer: CaseReducer<
     const node = searchComponentFromMap(state, displayName)
     if (!node) return
     const widgetProps = node.props || {}
-    const clonedWidgetProps = cloneDeep(widgetProps)
+    const clonedWidgetProps = klona(widgetProps)
     Object.keys(propsSlice).forEach((path) => {
       const newValue = propsSlice[path]
       set(clonedWidgetProps, path, newValue)
@@ -665,7 +666,7 @@ export const addTargetPageSectionReducer: CaseReducer<
   }
 
   if (originSectionNode) {
-    const newOriginSectionNode = cloneDeep(originSectionNode)
+    const newOriginSectionNode = klona(originSectionNode)
     newOriginSectionNode.parentNode = targetPage.displayName
     targetPage.childrenNode.push(newOriginSectionNode.displayName)
     const needAddMapNode = flatTreeToMap(newOriginSectionNode)

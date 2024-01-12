@@ -1,17 +1,24 @@
-import { get, toPath } from "lodash"
-import { UpdateActionSlicePropsPayload } from "@/redux/currentApp/action/actionState"
+import {
+  convertPathToString,
+  hasDynamicStringSnippet,
+} from "@illa-public/dynamic-string"
+import {
+  ActionContent,
+  ActionItem,
+  ComponentMapNode,
+} from "@illa-public/public-types"
+import { get, toPath } from "lodash-es"
+import {
+  Events,
+  UpdateActionSlicePropsPayload,
+} from "@/redux/currentApp/action/actionState"
 import { UpdateComponentSlicePropsPayload } from "@/redux/currentApp/components/componentsPayload"
 import {
   getInDependenciesMap,
   getRawTree,
 } from "../redux/currentApp/executionTree/executionSelector"
 import store from "../store"
-import { hasDynamicStringSnippet } from "./evaluateDynamicString/utils"
-import {
-  convertPathToString,
-  isAction,
-  isWidget,
-} from "./executionTreeHelper/utils"
+import { isAction, isWidget } from "./executionTreeHelper/utils"
 
 export const changeDisplayNameHelper = (
   independenciesMap: Record<string, string[]>,
@@ -71,6 +78,97 @@ export const changeDisplayNameHelper = (
   return { updateWidgetSlice, updateActionSlice }
 }
 
+const changeEventUsedDisplayNameHelper = (
+  events: Record<string, unknown>[],
+  oldDisplayName: string,
+  newDisplayName: string,
+  prefix: string,
+) => {
+  const propsSlice: {
+    [x: string]: unknown
+  } = {}
+  events.forEach((event, index) => {
+    if (event.widgetID === oldDisplayName) {
+      const path = convertPathToString([prefix, index, "widgetID"])
+      propsSlice[path] = newDisplayName
+    }
+
+    if (event.queryID === oldDisplayName) {
+      const path = convertPathToString([prefix, index, "queryID"])
+      propsSlice[path] = newDisplayName
+    }
+
+    if (event.stateDisplayName === oldDisplayName) {
+      const path = convertPathToString([prefix, index, "stateDisplayName"])
+      propsSlice[path] = newDisplayName
+    }
+  })
+  return propsSlice
+}
+
+export const changeEventHandlerReferenceHelper = (
+  oldDisplayName: string,
+  newDisplayName: string,
+  actionLists: ActionItem<ActionContent>[],
+  componentMaps: Record<string, ComponentMapNode>,
+) => {
+  const updateWidgetSlice: UpdateComponentSlicePropsPayload[] = []
+  const updateActionSlice: UpdateActionSlicePropsPayload[] = []
+
+  actionLists.forEach((action) => {
+    const { content } = action
+    const { successEvent, failedEvent } = content as ActionContent & Events
+    if (Array.isArray(successEvent)) {
+      const prefix = "content.successEvent"
+      const propsSlice = changeEventUsedDisplayNameHelper(
+        successEvent,
+        oldDisplayName,
+        newDisplayName,
+        prefix,
+      )
+      updateActionSlice.push({
+        displayName: action.displayName,
+        actionID: action.actionID,
+        propsSlice: propsSlice,
+      })
+    }
+
+    if (Array.isArray(failedEvent)) {
+      const prefix = "content.failedEvent"
+
+      const propsSlice = changeEventUsedDisplayNameHelper(
+        failedEvent,
+        oldDisplayName,
+        newDisplayName,
+        prefix,
+      )
+      updateActionSlice.push({
+        displayName: action.displayName,
+        actionID: action.actionID,
+        propsSlice: propsSlice,
+      })
+    }
+  })
+
+  Object.values(componentMaps).forEach((componentMap) => {
+    const { props } = componentMap
+    if (Array.isArray(props?.events)) {
+      const prefix = "events"
+      const propsSlice = changeEventUsedDisplayNameHelper(
+        props.events,
+        oldDisplayName,
+        newDisplayName,
+        prefix,
+      )
+      updateWidgetSlice.push({
+        displayName: componentMap.displayName,
+        propsSlice: propsSlice,
+      })
+    }
+  })
+  return { updateWidgetSlice, updateActionSlice }
+}
+
 export const copyWidgetHelper = (
   oldDisplayName: string,
   newDisplayName: string,
@@ -102,4 +200,43 @@ export const copyWidgetHelper = (
   })
 
   return updatePathsMapValue
+}
+
+export const mergeUpdateSlice = (
+  updateWidgetSlice: UpdateComponentSlicePropsPayload[],
+  updateActionSlice: UpdateActionSlicePropsPayload[],
+) => {
+  const updateWidgetSliceMap: Record<string, UpdateComponentSlicePropsPayload> =
+    {}
+
+  updateWidgetSlice.forEach((item) => {
+    const { displayName } = item
+    if (updateWidgetSliceMap[displayName]) {
+      updateWidgetSliceMap[displayName].propsSlice = {
+        ...updateWidgetSliceMap[displayName].propsSlice,
+        ...item.propsSlice,
+      }
+    } else {
+      updateWidgetSliceMap[displayName] = item
+    }
+  })
+
+  const updateActionSliceMap: Record<string, UpdateActionSlicePropsPayload> = {}
+
+  updateActionSlice.forEach((item) => {
+    const { displayName } = item
+    if (updateActionSliceMap[displayName]) {
+      updateActionSliceMap[displayName].propsSlice = {
+        ...updateActionSliceMap[displayName].propsSlice,
+        ...item.propsSlice,
+      }
+    } else {
+      updateActionSliceMap[displayName] = item
+    }
+  })
+
+  return {
+    updateWidgetSlice: Object.values(updateWidgetSliceMap),
+    updateActionSlice: Object.values(updateActionSliceMap),
+  }
 }

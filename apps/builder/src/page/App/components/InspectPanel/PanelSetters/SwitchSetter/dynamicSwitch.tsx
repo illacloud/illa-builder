@@ -1,5 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useCallback } from "react"
 import { Switch } from "@illa-design/react"
 import { DynamicIcon } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/DynamicIcon"

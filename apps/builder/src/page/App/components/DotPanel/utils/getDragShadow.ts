@@ -1,4 +1,4 @@
-import { clamp } from "lodash"
+import { clamp } from "lodash-es"
 import { XYCoord } from "react-dnd"
 import { DRAG_EFFECT } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"

@@ -1,5 +1,10 @@
+import {
+  convertPathToString,
+  hasDynamicStringSnippet,
+} from "@illa-public/dynamic-string"
 import { Diff, diff } from "deep-diff"
-import { cloneDeep, flatten, get, set, toPath, unset } from "lodash"
+import { klona } from "klona"
+import { flatten, get, set, toPath, unset } from "lodash-es"
 import toposort from "toposort"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
@@ -16,11 +21,9 @@ import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import {
   getDisplayNameAndAttrPath,
   getWidgetOrActionDynamicAttrPaths,
-  hasDynamicStringSnippet,
 } from "@/utils/evaluateDynamicString/utils"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import {
-  convertPathToString,
   extractReferencesFromScript,
   getImmediateParentsOfPropertyPaths,
   isAction,
@@ -86,8 +89,8 @@ export class ExecutionTreeFactory {
   }
 
   initTree(rawTree: RawTreeShape) {
-    const currentRawTree = cloneDeep(rawTree)
-    this.oldRawTree = cloneDeep(currentRawTree)
+    const currentRawTree = klona(rawTree)
+    this.oldRawTree = klona(currentRawTree)
     try {
       this.dependenciesState = this.generateDependenciesMap(currentRawTree)
       this.evalOrder = this.sortEvalOrder(this.dependenciesState)
@@ -234,9 +237,9 @@ export class ExecutionTreeFactory {
 
   getCompleteSortOrder(changes: string[], inDependencyTree: DependenciesState) {
     let sortOrders: string[] = []
-    let parents = cloneDeep(changes)
+    let parents = klona(changes)
     let subSortOrderArray: string[]
-    const modifyDependencyTree = cloneDeep(inDependencyTree)
+    const modifyDependencyTree = klona(inDependencyTree)
     Object.keys(modifyDependencyTree).forEach((key) => {
       modifyDependencyTree[key] = modifyDependencyTree[key].filter((value) => {
         return !changes.includes(value)
@@ -283,7 +286,7 @@ export class ExecutionTreeFactory {
     paths: string[],
     isDeletedAction?: boolean,
   ) {
-    const oldErrorTree = cloneDeep(this.errorTree)
+    const oldErrorTree = klona(this.errorTree)
     paths.forEach((path) => {
       if (isDeletedAction) {
         unset(oldErrorTree, path)
@@ -303,7 +306,7 @@ export class ExecutionTreeFactory {
     paths: string[],
     isDeletedAction?: boolean,
   ) {
-    const oldDebugDataTree = cloneDeep(this.debuggerData)
+    const oldDebugDataTree = klona(this.debuggerData)
     const allOldDebugDataPaths = Object.keys(oldDebugDataTree || {})
     paths.forEach((path) => {
       if (isDeletedAction) {
@@ -328,7 +331,7 @@ export class ExecutionTreeFactory {
     rawTree: RawTreeShape,
     walkedPath: Set<string>,
   ) {
-    const currentExecutionTree = cloneDeep(executionTree)
+    const currentExecutionTree = klona(executionTree)
     paths.forEach((path) => {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
@@ -341,7 +344,7 @@ export class ExecutionTreeFactory {
   }
 
   updateTree(rawTree: RawTreeShape, isDeleteAction?: boolean) {
-    const currentRawTree = cloneDeep(rawTree)
+    const currentRawTree = klona(rawTree)
     try {
       this.dependenciesState = this.generateDependenciesMap(currentRawTree)
       this.evalOrder = this.sortEvalOrder(this.dependenciesState)
@@ -366,7 +369,7 @@ export class ExecutionTreeFactory {
         independencyTree: this.inDependencyTree,
       }
     }
-    this.oldRawTree = cloneDeep(currentRawTree)
+    this.oldRawTree = klona(currentRawTree)
     const updatePaths = this.getUpdatePathFromDifferences(differences)
     const walkedPath = new Set<string>()
     let currentExecution = this.updateExecutionTreeByUpdatePaths(
@@ -416,7 +419,7 @@ export class ExecutionTreeFactory {
     const updatePaths: string[] = []
     for (const d of differences) {
       if (!Array.isArray(d.path) || d.path.length === 0) continue
-      const subPaths = cloneDeep(d.path)
+      const subPaths = klona(d.path)
       let current = ""
       const originalPathLength = subPaths.length
       if (subPaths.includes("pageInfos")) {
@@ -462,7 +465,7 @@ export class ExecutionTreeFactory {
     executionTree: Record<string, any>,
     walkedPath: Set<string>,
   ) {
-    const currentExecutionTree = cloneDeep(executionTree)
+    const currentExecutionTree = klona(executionTree)
     paths.forEach((path) => {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
@@ -477,7 +480,7 @@ export class ExecutionTreeFactory {
   }
 
   updateTreeFromExecution(executionTree: Record<string, any>) {
-    const currentExecutionTree = cloneDeep(executionTree)
+    const currentExecutionTree = klona(executionTree)
     const differences: Diff<Record<string, any>, Record<string, any>>[] =
       diff(this.executedTree, currentExecutionTree) || []
     if (differences.length === 0) {
@@ -631,7 +634,7 @@ export class ExecutionTreeFactory {
     sortedEvalOrder: string[],
     point: number = -1,
   ) {
-    const oldLocalRawTree = cloneDeep(oldRawTree)
+    const oldLocalRawTree = klona(oldRawTree)
     const errorTree: ExecutionState["error"] = {}
     const debuggerData: ExecutionState["error"] = {}
     try {
