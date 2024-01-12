@@ -1,4 +1,4 @@
-import { chunk } from "lodash"
+import { chunk } from "lodash-es"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"

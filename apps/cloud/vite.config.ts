@@ -88,7 +88,7 @@ export default defineConfig(async (configEnv) => {
             react: ["react", "react-dom", "react-router-dom"],
             "@emotion": ["@emotion/react"],
             "@illa-design": ["@illa-design/react"],
-            "lodash-lib": ["lodash"],
+            "lodash-lib": ["lodash-es"],
           },
         },
       },

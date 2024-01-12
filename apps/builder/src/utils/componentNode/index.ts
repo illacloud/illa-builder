@@ -1,11 +1,12 @@
-import deepDiff, { Diff } from "deep-diff"
-import { cloneDeep, set } from "lodash"
 import {
-  getWidgetOrActionDynamicAttrPaths,
+  convertPathToString,
   hasDynamicStringSnippet,
-} from "@/utils/evaluateDynamicString/utils"
+} from "@illa-public/dynamic-string"
+import deepDiff, { Diff } from "deep-diff"
+import { klona } from "klona/json"
+import { set } from "lodash-es"
+import { getWidgetOrActionDynamicAttrPaths } from "@/utils/evaluateDynamicString/utils"
 import { isObject } from "@/utils/typeHelper"
-import { convertPathToString } from "../executionTreeHelper/utils"
 
 enum DynamicAttrPathActions {
   ADD = "ADD",
@@ -130,7 +131,7 @@ export const getNewWidgetPropsByUpdateSlice = (
   updateSlice: Record<string, unknown>,
   oldWidgetProps: Record<string, unknown>,
 ) => {
-  let newWidgetProps = cloneDeep(oldWidgetProps)
+  let newWidgetProps = klona(oldWidgetProps)
   Object.keys(updateSlice).forEach((attrPath) => {
     set(newWidgetProps, attrPath, updateSlice[attrPath])
   })

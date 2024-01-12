@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@illa-public/user-data"
-import { throttle } from "lodash"
+import { throttle } from "lodash-es"
 import { Connection, getBinaryMessagePayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { ILLARoute } from "@/router"

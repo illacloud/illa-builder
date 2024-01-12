@@ -1,5 +1,5 @@
 import Fuse from "fuse.js"
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 import { useEffect, useRef, useState } from "react"
 
 export function useFuse<T>(

@@ -1,4 +1,4 @@
-import { get, toPath } from "lodash"
+import { get, toPath } from "lodash-es"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { BaseInputSetterProps } from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/interface"

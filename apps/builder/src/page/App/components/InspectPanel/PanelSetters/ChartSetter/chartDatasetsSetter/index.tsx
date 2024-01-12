@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { DatasetsProvider } from "@/page/App/components/InspectPanel/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"

@@ -1,5 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { throttle } from "lodash"
+import { throttle } from "lodash-es"
 import { useCallback, useMemo, useRef } from "react"
 import { XYCoord, useDrag, useDragLayer, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"

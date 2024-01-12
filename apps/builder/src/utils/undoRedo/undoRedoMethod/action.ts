@@ -1,6 +1,6 @@
 import { ActionContent } from "@illa-public/public-types"
 import { ActionItem } from "@illa-public/public-types"
-import { omit } from "lodash"
+import { omit } from "lodash-es"
 import { v4 } from "uuid"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"

@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
-import { merge } from "lodash"
-import _ from "lodash"
+import { merge } from "lodash-es"
+import _ from "lodash-es"
 import numbro from "numbro"
 import Papa from "papaparse"
 import { NIL, parse, stringify, v1, v3, v4, v5, validate, version } from "uuid"

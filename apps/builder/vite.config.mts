@@ -143,7 +143,7 @@ export default defineConfig(({ command, mode }) => {
               "@codemirror/view",
               "@uiw/codemirror-theme-github",
             ],
-            "lodash-lib": ["lodash"],
+            "lodash-lib": ["lodash-es"],
           },
         },
       },

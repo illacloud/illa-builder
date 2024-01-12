@@ -1,5 +1,5 @@
 import { arrayMove } from "@dnd-kit/sortable"
-import { get, isEqual } from "lodash"
+import { get, isEqual } from "lodash-es"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"

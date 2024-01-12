@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"

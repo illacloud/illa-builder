@@ -1,4 +1,4 @@
-import { isString } from "lodash"
+import { isString } from "lodash-es"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"

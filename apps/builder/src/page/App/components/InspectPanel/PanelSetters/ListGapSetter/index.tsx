@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { InputNumber } from "@illa-design/react"

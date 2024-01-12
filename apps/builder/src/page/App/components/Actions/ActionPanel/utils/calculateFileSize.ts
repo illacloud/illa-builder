@@ -1,6 +1,6 @@
+import { hasDynamicStringSnippet } from "@illa-public/dynamic-string"
 import { ActionType } from "@illa-public/public-types"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { calculateFileSize } from "@/utils/file"
 

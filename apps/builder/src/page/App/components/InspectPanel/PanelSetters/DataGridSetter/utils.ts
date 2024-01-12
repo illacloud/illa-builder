@@ -1,4 +1,4 @@
-import { isObject, isString } from "lodash"
+import { isObject, isString } from "lodash-es"
 import { isNumber } from "@illa-design/react"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
 

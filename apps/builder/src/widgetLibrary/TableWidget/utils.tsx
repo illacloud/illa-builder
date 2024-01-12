@@ -1,5 +1,6 @@
+import { convertPathToString } from "@illa-public/dynamic-string"
 import { CellContext } from "@tanstack/table-core"
-import { isBoolean } from "lodash"
+import { isBoolean } from "lodash-es"
 import {
   dayjsPro,
   isArray,
@@ -10,7 +11,6 @@ import {
 } from "@illa-design/react"
 import { isValidCurrencyCode } from "@/constants/currency"
 import i18n from "@/i18n/config"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   ColumnItemShape,
   Columns,

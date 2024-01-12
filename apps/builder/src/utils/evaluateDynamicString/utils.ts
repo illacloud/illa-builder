@@ -1,18 +1,8 @@
-import { getSnippets, getStringSnippets } from "./dynamicConverter"
+import { isDynamicStringSnippet } from "@illa-public/dynamic-string"
+import { getSnippets } from "./dynamicConverter"
 
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
 export const DYNAMIC_STRING_REG = /{{([\s\S]*?)}}/
-
-export const isDynamicStringSnippet = (value: unknown): boolean =>
-  typeof value === "string" && value.endsWith("}}") && value.startsWith("{{")
-
-export const hasDynamicStringSnippet = (value: unknown): boolean => {
-  if (typeof value !== "string") {
-    return false
-  }
-  const dynamicStrings = getStringSnippets(value)
-  return dynamicStrings.some((value) => isDynamicStringSnippet(value))
-}
 
 export const filterBindingSegmentsAndRemoveQuotes = (
   originDynamicString: string,

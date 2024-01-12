@@ -1,9 +1,9 @@
-import { cloneDeep } from "lodash"
-import { hasDynamicStringSnippet } from "../evaluateDynamicString/utils"
+import { hasDynamicStringSnippet } from "@illa-public/dynamic-string"
+import { klona } from "klona"
 import { isObject } from "../typeHelper"
 
 export const generateGlobalData = (globalData: Record<string, unknown>) => {
-  const clonedGlobalData = cloneDeep(globalData)
+  const clonedGlobalData = klona(globalData)
   const $dynamicAttrPaths: string[] = []
   if (isObject(globalData)) {
     Object.keys(globalData).forEach((key) => {

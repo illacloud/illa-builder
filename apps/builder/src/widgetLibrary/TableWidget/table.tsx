@@ -1,10 +1,12 @@
+import { convertPathToString } from "@illa-public/dynamic-string"
 import { PaginationState } from "@tanstack/react-table"
 import {
   CellContext,
   Table as ReactTable,
   RowSelectionState,
 } from "@tanstack/table-core"
-import { cloneDeep, debounce, isEqual, toPath } from "lodash"
+import { klona } from "klona/json"
+import { debounce, isEqual, toPath } from "lodash-es"
 import {
   FC,
   forwardRef,
@@ -25,7 +27,6 @@ import {
   isObject,
 } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { applyAlignmentStyle } from "@/widgetLibrary/TableWidget/style"
 import {
   ColumnItemShape,
@@ -446,7 +447,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     const res: ColumnItemShape[] = []
     columns?.forEach((item, index) => {
       const eventPath = `rowEvents.${index}`
-      const transItem = cloneDeep(item) as ColumnItemShape
+      const transItem = klona(item) as ColumnItemShape
       transItem["meta"] = {
         haveMappedValue: "mappedValue" in transItem,
         getBackgroundColor: (props: CellContext<any, unknown>) => {

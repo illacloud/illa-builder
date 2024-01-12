@@ -1,4 +1,5 @@
-import { toPath } from "lodash"
+import { convertPathToString } from "@illa-public/dynamic-string"
+import { toPath } from "lodash-es"
 import { FC, memo } from "react"
 import { CopyIcon, isArray, isObject } from "@illa-design/react"
 import IconHotSpot from "@/components/IconHotSpot"
@@ -10,7 +11,6 @@ import {
   labelNameAndValueContainerStyle,
 } from "@/page/App/Module/DataWorkspace/components/WorkSpaceTreeItem/style"
 import { copyToClipboard } from "@/utils/copyToClipboard"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { WorkSpaceTreeItem } from "."
 import { renderJsonValue } from "./utils"
 

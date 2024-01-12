@@ -1,5 +1,5 @@
 import { AnimatePresence, Reorder } from "framer-motion"
-import { isEqual, omit } from "lodash"
+import { isEqual, omit } from "lodash-es"
 import {
   FC,
   useCallback,

@@ -12,7 +12,7 @@ import {
   getUiOptions,
   titleId,
 } from "@rjsf/utils"
-import { isNumber, isObject, isString } from "lodash"
+import { isNumber, isObject, isString } from "lodash-es"
 import { Col, Row } from "@illa-design/react"
 
 export default function ObjectFieldTemplate<

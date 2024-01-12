@@ -5,7 +5,7 @@ import {
   LicenseInfo,
 } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
-import { get, isArray, isNumber, isPlainObject } from "lodash"
+import { get, isArray, isNumber, isPlainObject } from "lodash-es"
 import {
   FC,
   MutableRefObject,
