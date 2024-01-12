@@ -1,11 +1,11 @@
-import { get, toPath } from "lodash"
+import { convertPathToString } from "@illa-public/dynamic-string"
+import { get, toPath } from "lodash-es"
 import {
   PanelConfig,
   PanelFieldGroupConfig,
 } from "@/page/App/components/InspectPanel/interface"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { convertPathToString } from "../executionTreeHelper/utils"
 
 export const generateAllTypePathsFromWidgetConfig = (
   panelConfig: PanelConfig[],

@@ -180,6 +180,9 @@ importers:
       '@illa-public/cropper':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Cropper
+      '@illa-public/dynamic-string':
+        specifier: workspace:^
+        version: link:../../packages/illa-public-component/dynamicStringUtils
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
@@ -282,12 +285,6 @@ importers:
       '@uiw/react-color-sketch':
         specifier: ^1.4.2
         version: 1.4.2(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
-      acorn:
-        specifier: ^8.7.1
-        version: 8.8.2
-      acorn-walk:
-        specifier: ^8.2.0
-        version: 8.2.0
       axios:
         specifier: ^1.6.2
         version: 1.6.2
@@ -330,7 +327,10 @@ importers:
       i18next-browser-languagedetector:
         specifier: ^7.0.1
         version: 7.0.1
-      lodash:
+      klona:
+        specifier: ^2.0.6
+        version: 2.0.6
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       lottie-react:
@@ -481,9 +481,9 @@ importers:
       '@types/gtag.js':
         specifier: ^0.0.18
         version: 0.0.18
-      '@types/lodash':
-        specifier: ^4.14.199
-        version: 4.14.199
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/mdx':
         specifier: ^2.0.3
         version: 2.0.3
@@ -634,7 +634,7 @@ importers:
       i18next-http-backend:
         specifier: ^2.2.2
         version: 2.2.2
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react-hook-form:
@@ -659,9 +659,9 @@ importers:
       '@types/gtag.js':
         specifier: ^0.0.18
         version: 0.0.18
-      '@types/lodash':
-        specifier: ^4.14.194
-        version: 4.14.199
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/uuid':
         specifier: ^9.0.0
         version: 9.0.5
@@ -2789,6 +2789,9 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../illa-design/packages/react
+      '@illa-public/dynamic-string':
+        specifier: workspace:^
+        version: link:../dynamicStringUtils
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
@@ -2801,7 +2804,7 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react:
@@ -2814,9 +2817,9 @@ importers:
         specifier: ^13.5.0
         version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.14.191
-        version: 4.14.191
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3104,7 +3107,7 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react:
@@ -3123,9 +3126,9 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1(react@18.2.0)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.14.199
-        version: 4.14.199
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3438,7 +3441,7 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react:
@@ -3466,9 +3469,9 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.14.202
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/react-window':
         specifier: ^1.8.5
         version: 1.8.5
@@ -3793,6 +3796,49 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/illa-public-component/dynamicStringUtils:
+    dependencies:
+      acorn:
+        specifier: ^8.11.3
+        version: 8.11.3
+      acorn-walk:
+        specifier: ^8.3.1
+        version: 8.3.1
+      deep-diff:
+        specifier: ^1.0.2
+        version: 1.0.2
+      fast-sort:
+        specifier: ^3.4.0
+        version: 3.4.0
+      klona:
+        specifier: ^2.0.6
+        version: 2.0.6
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      toposort:
+        specifier: ^2.0.2
+        version: 2.0.2
+      unescape-js:
+        specifier: ^1.1.4
+        version: 1.1.4
+    devDependencies:
+      '@types/deep-diff':
+        specifier: ^1.0.5
+        version: 1.0.5
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      '@types/toposort':
+        specifier: ^2.0.7
+        version: 2.0.7
+      '@types/unescape-js':
+        specifier: ^1.0.2
+        version: 1.0.2
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/illa-public-component/publicConfig:
     dependencies:
       '@illa-public/public-types':
@@ -3863,9 +3909,6 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3888,9 +3931,6 @@ importers:
       '@types/gtag.js':
         specifier: ^0.0.18
         version: 0.0.18
-      '@types/lodash':
-        specifier: ^4.14.194
-        version: 4.14.199
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -7014,6 +7054,10 @@ packages:
     resolution: {integrity: sha512-WD2O611C7Oz7RSwKbSls8LaznKfWfXh39CHY9Amd8FhQz+NJRe20nUHhYpOopVq9M2oqDZd4L6AzqJIXQycxiA==}
     dev: true
 
+  /@types/deep-diff@1.0.5:
+    resolution: {integrity: sha512-PQyNSy1YMZU1hgZA5tTYfHPpUAo9Dorn1PZho2/budQLfqLu3JIP37JAavnwYpR1S2yFZTXa3hxaE4ifGW5jaA==}
+    dev: true
+
   /@types/downloadjs@1.4.4:
     resolution: {integrity: sha512-MkVGL6VdDJZvRx0rgeHVwYMQXIH3PAqTicGUq5iJ3+sB/xYbK2iHBEFDF1Q5u9jZQv9E4ZSWfCBn708u41XjVw==}
     dev: true
@@ -7118,14 +7162,16 @@ packages:
       '@types/node': 18.18.13
     dev: true
 
+  /@types/lodash-es@4.17.12:
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
+    dependencies:
+      '@types/lodash': 4.14.202
+    dev: true
+
   /@types/lodash.debounce@4.0.7:
     resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==}
     dependencies:
       '@types/lodash': 4.14.199
-    dev: true
-
-  /@types/lodash@4.14.191:
-    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
 
   /@types/lodash@4.14.199:
@@ -7312,6 +7358,14 @@ packages:
 
   /@types/toposort@2.0.4:
     resolution: {integrity: sha512-Cf/2hCtUUv8Zz7oQhxmHgAi0t6crZvFwpSFB03uiu7kt9m1dLYRx6SBzTTda1k5/qD0NQTPlAHgAD328U0yx0g==}
+    dev: true
+
+  /@types/toposort@2.0.7:
+    resolution: {integrity: sha512-sQNk65vbC36+UixCkcky+dCr7MlflHcVILg1FVGqlUntsLFv9xd9ToWIVko/gTuin+cVe16t+2YubEFkhnSuPQ==}
+    dev: true
+
+  /@types/unescape-js@1.0.2:
+    resolution: {integrity: sha512-gIO6iMjEfMVknKmslTXdKV86Hqy7wGYxgQ631PZcxWqonXi0SvhQ9BTuMB44d55yS1TkF8JYpWF5llXoc2+whQ==}
     dev: true
 
   /@types/unist@2.0.6:
@@ -7961,28 +8015,20 @@ packages:
       through: 2.3.8
     dev: true
 
-  /acorn-import-assertions@1.9.0(acorn@8.10.0):
+  /acorn-import-assertions@1.9.0(acorn@8.11.3):
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
     peerDependencies:
       acorn: ^8
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.11.3
     dev: false
 
-  /acorn-jsx@5.3.2(acorn@8.8.2):
+  /acorn-jsx@5.3.2(acorn@8.11.3):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.8.2
-    dev: true
-
-  /acorn-jsx@5.3.2(acorn@8.9.0):
-    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: 8.9.0
+      acorn: 8.11.3
 
   /acorn-loose@6.1.0:
     resolution: {integrity: sha512-FHhXoiF0Uch3IqsrnPpWwCtiv5PYvipTpT1k9lDMgQVVYc9iDuSl5zdJV358aI8twfHCYMFBRVYvAVki9wC/ng==}
@@ -7996,8 +8042,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
-  /acorn-walk@8.2.0:
-    resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
+  /acorn-walk@8.3.1:
+    resolution: {integrity: sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw==}
     engines: {node: '>=0.4.0'}
     dev: false
 
@@ -8007,19 +8053,8 @@ packages:
     hasBin: true
     dev: false
 
-  /acorn@8.10.0:
-    resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-    dev: false
-
-  /acorn@8.8.2:
-    resolution: {integrity: sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
-  /acorn@8.9.0:
-    resolution: {integrity: sha512-jaVNAFBHNLXspO543WnNNPZFRtavh3skAkITqD0/2aeMkKZTN+254PyhwxFYrk3vQ1xfY+2wbesJMs/JC8/PwQ==}
+  /acorn@8.11.3:
+    resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -10189,8 +10224,8 @@ packages:
     resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.9.0
-      acorn-jsx: 5.3.2(acorn@8.9.0)
+      acorn: 8.11.3
+      acorn-jsx: 5.3.2(acorn@8.11.3)
       eslint-visitor-keys: 3.4.3
 
   /esprima@4.0.1:
@@ -10414,6 +10449,10 @@ packages:
 
   /fast-shallow-equal@1.0.0:
     resolution: {integrity: sha512-HPtaa38cPgWvaCFmRNhlc6NG7pv6NUHqjPgVAkWGoB9mQMwYB27/K0CvOM5Czy+qpT3e8XJ6Q4aPAnzpNpzNaw==}
+    dev: false
+
+  /fast-sort@3.4.0:
+    resolution: {integrity: sha512-c/cMBGA5mH3OYjaXedtLIM3hQjv+KuZuiD2QEH5GofNOZeQVDIYIN7Okc2AW1KPhk44g5PTZnXp8t2lOMl8qhQ==}
     dev: false
 
   /fastest-stable-stringify@2.0.2:
@@ -11929,6 +11968,11 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
+  /klona@2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
+    dev: false
+
   /language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
 
@@ -13054,8 +13098,8 @@ packages:
   /micromark-extension-mdxjs@1.0.0:
     resolution: {integrity: sha512-TZZRZgeHvtgm+IhtgC2+uDMR7h8eTKF0QUX9YsgoL9+bADBpBY6SiLvWqnBlLbCEevITmTqmEuY3FoxMKVs1rQ==}
     dependencies:
-      acorn: 8.8.2
-      acorn-jsx: 5.3.2(acorn@8.8.2)
+      acorn: 8.11.3
+      acorn-jsx: 5.3.2(acorn@8.11.3)
       micromark-extension-mdx-expression: 1.0.4
       micromark-extension-mdx-jsx: 1.0.3
       micromark-extension-mdx-md: 1.0.0
@@ -15881,6 +15925,10 @@ packages:
       strip-ansi: 7.0.1
     dev: true
 
+  /string.fromcodepoint@0.2.1:
+    resolution: {integrity: sha512-n69H31OnxSGSZyZbgBlvYIXlrMhJQ0dQAX1js1QDhpaUH6zmU3QYlj07bCwCNlPOu3oRXIubGPl2gDGnHsiCqg==}
+    dev: false
+
   /string.prototype.matchall@4.0.8:
     resolution: {integrity: sha512-6zOCOcJ+RJAQshcTvXPHoxoQGONa3e/Lqx90wUA+wEzX78sg5Bo+1tQo4N0pohS0erG9qtCqJDjNCQBjeWVxyg==}
     dependencies:
@@ -16162,7 +16210,7 @@ packages:
     hasBin: true
     dependencies:
       '@jridgewell/source-map': 0.3.4
-      acorn: 8.10.0
+      acorn: 8.11.3
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: false
@@ -16639,6 +16687,12 @@ packages:
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
+  /unescape-js@1.1.4:
+    resolution: {integrity: sha512-42SD8NOQEhdYntEiUQdYq/1V/YHwr1HLwlHuTJB5InVVdOSbgI6xu8jK5q65yIzuFCfczzyDF/7hbGzVbyCw0g==}
+    dependencies:
+      string.fromcodepoint: 0.2.1
+    dev: false
+
   /unified@10.1.2:
     resolution: {integrity: sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==}
     dependencies:
@@ -16775,7 +16829,7 @@ packages:
   /unplugin@1.0.1:
     resolution: {integrity: sha512-aqrHaVBWW1JVKBHmGo33T5TxeL0qWzfvjWokObHA9bYmN7eNDkwOxmLjhioHl9878qDFMAaT51XNroRyuz7WxA==}
     dependencies:
-      acorn: 8.9.0
+      acorn: 8.11.3
       chokidar: 3.5.3
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.5.0
@@ -17206,8 +17260,8 @@ packages:
       '@webassemblyjs/ast': 1.11.6
       '@webassemblyjs/wasm-edit': 1.11.6
       '@webassemblyjs/wasm-parser': 1.11.6
-      acorn: 8.10.0
-      acorn-import-assertions: 1.9.0(acorn@8.10.0)
+      acorn: 8.11.3
+      acorn-import-assertions: 1.9.0(acorn@8.11.3)
       browserslist: 4.22.1
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0

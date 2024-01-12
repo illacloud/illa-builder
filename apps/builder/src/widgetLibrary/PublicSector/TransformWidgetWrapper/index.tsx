@@ -1,4 +1,6 @@
-import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
+import { convertPathToString } from "@illa-public/dynamic-string"
+import { klona } from "klona"
+import { get, isFunction, isNumber, set, toPath } from "lodash-es"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Skeleton } from "@illa-design/react"
@@ -25,7 +27,6 @@ import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
@@ -235,7 +236,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           [],
         )
 
-        const needRunEvents = cloneDeep(originEvents)
+        const needRunEvents = klona(originEvents)
           .filter((originEvent) => {
             return originEvent.eventType === eventType
           })

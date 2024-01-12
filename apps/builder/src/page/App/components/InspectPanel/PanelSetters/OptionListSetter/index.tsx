@@ -1,4 +1,4 @@
-import { get, isString } from "lodash"
+import { get, isString } from "lodash-es"
 import { FC } from "react"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"

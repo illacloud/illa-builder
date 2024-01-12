@@ -1,6 +1,7 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { SectionViewShape } from "@illa-public/public-types"
-import { cloneDeep, set } from "lodash"
+import { klona } from "klona/json"
+import { set } from "lodash-es"
 import { FC, useCallback, useContext } from "react"
 import { useDispatch } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
@@ -46,7 +47,7 @@ export const ListBody: FC<BodyProps> = (props) => {
 
   const handleUpdateItem = useCallback(
     (path: string, value: string) => {
-      const newSectionViewConfigs = cloneDeep(sectionViewConfigs)
+      const newSectionViewConfigs = klona(sectionViewConfigs)
       set(newSectionViewConfigs, path, value)
       dispatch(
         componentsActions.updateSectionViewPropsReducer({

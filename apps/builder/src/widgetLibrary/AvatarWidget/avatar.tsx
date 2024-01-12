@@ -1,5 +1,5 @@
 import { getColorByString } from "@illa-public/utils"
-import { isString } from "lodash"
+import { isString } from "lodash-es"
 import { FC, useCallback, useMemo } from "react"
 import { Avatar } from "@illa-design/react"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"

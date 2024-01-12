@@ -12,7 +12,7 @@ import {
   GlobalDataActionContent,
   SMPTAction,
 } from "@illa-public/public-types"
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 import {
   FC,
   useCallback,

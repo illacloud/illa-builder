@@ -5,7 +5,7 @@ import {
   Resource,
   ResourceContent,
 } from "@illa-public/public-types"
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 import { v4 } from "uuid"
 import { createResource } from "@/api/actions"
 import Actions from "@/config/guide/actions.json"

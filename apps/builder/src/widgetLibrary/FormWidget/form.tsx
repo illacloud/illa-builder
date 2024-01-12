@@ -1,5 +1,5 @@
 import { ComponentMapNode } from "@illa-public/public-types"
-import { get, isEqual, set } from "lodash"
+import { get, isEqual, set } from "lodash-es"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import {
   FC,

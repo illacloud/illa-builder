@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash"
+import { klona } from "klona/json"
 import { FC, ReactNode, createContext, useCallback } from "react"
 import { v4 } from "uuid"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
@@ -43,7 +43,7 @@ export const DatasetsProvider: FC<ProviderProps> = (props) => {
         ...newItem,
         isHidden: !newItem.isHidden,
       }
-      const newDatasets = cloneDeep(datasets)
+      const newDatasets = klona(datasets)
       newDatasets[index] = newItem
       handleUpdateDsl(attrPath, newDatasets)
     },

@@ -1,7 +1,7 @@
 import { ComponentMapNode } from "@illa-public/public-types"
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
-import { cloneDeep } from "lodash"
+import { klona } from "klona/json"
 import {
   getNewPositionWithCrossing,
   sortedRuleByYAndX,
@@ -206,7 +206,7 @@ async function handleUpdateReflowEffect(
     })
   }
 
-  const currentLayoutInfos = cloneDeep(widgetLayoutInfos)
+  const currentLayoutInfos = klona(widgetLayoutInfos)
 
   updateSlice.forEach((slice) => {
     if (currentLayoutInfos[slice.displayName]) {

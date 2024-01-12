@@ -1,3 +1,4 @@
+import { convertPathToString } from "@illa-public/dynamic-string"
 import {
   GridRenderCellParams,
   GridValueGetterParams,
@@ -12,7 +13,7 @@ import {
   isObject,
   isString,
   toPath,
-} from "lodash"
+} from "lodash-es"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
@@ -40,7 +41,6 @@ import {
   getValueFromMappedValue,
   isValidLocale,
 } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { AvatarType, WrapperAvatar } from "@/widgetLibrary/AvatarWidget"
 import {
   cellContainer,

@@ -1,4 +1,4 @@
-import { clamp } from "lodash"
+import { clamp } from "lodash-es"
 import { NodeShape } from "@/page/App/components/DotPanel/utils/crossingHelper"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 

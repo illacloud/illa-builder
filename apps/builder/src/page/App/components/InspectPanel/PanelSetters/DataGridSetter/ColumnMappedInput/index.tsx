@@ -1,5 +1,6 @@
+import { hasDynamicStringSnippet } from "@illa-public/dynamic-string"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { get, isString } from "lodash"
+import { get, isString } from "lodash-es"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -18,7 +19,6 @@ import {
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ColumnMappedInputProps } from "./interface"
 

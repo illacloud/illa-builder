@@ -1,5 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { debounce } from "lodash"
+import { debounce } from "lodash-es"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { Switch, useModal } from "@illa-design/react"

@@ -1,27 +1,16 @@
-import { toPath } from "lodash"
-import { extractIdentifiersFromCode } from "@/utils/ast/ast"
-import { isInt, isObject } from "@/utils/typeHelper"
+import {
+  convertPathToString,
+  extractIdentifierInfoFromCode,
+} from "@illa-public/dynamic-string"
+import { toPath } from "lodash-es"
+import { isObject } from "@/utils/typeHelper"
 
 const IMMEDIATE_PARENT_REGEX = /^(.*)(\..*|\[.*\])$/
 
-export const convertPathToString = (attrPath: string[] | number[]) => {
-  let string = ""
-  attrPath.forEach((segment) => {
-    if (isInt(segment)) {
-      string = string + "[" + segment + "]"
-    } else {
-      if (string.length !== 0) {
-        string = string + "."
-      }
-      string = string + segment
-    }
-  })
-  return string
-}
-
 export const extractReferencesFromScript = (script: string): string[] => {
   const references: Set<string> = new Set<string>()
-  const identifiers = extractIdentifiersFromCode(script)
+  const { references: identifiers } = extractIdentifierInfoFromCode(script)
+
   identifiers.forEach((identifier: string) => {
     references.add(identifier)
     const subPaths = toPath(identifier)

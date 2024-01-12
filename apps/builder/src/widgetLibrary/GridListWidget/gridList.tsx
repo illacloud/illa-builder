@@ -1,5 +1,7 @@
+import { convertPathToString } from "@illa-public/dynamic-string"
 import { ComponentTreeNode } from "@illa-public/public-types"
-import { cloneDeep, get, isEqual, set, toPath } from "lodash"
+import { klona } from "klona"
+import { get, isEqual, set, toPath } from "lodash-es"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
@@ -8,7 +10,6 @@ import {
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 import ListWidgetWithAutoPagination from "./components/ListWidgetWithAutoPagination"
@@ -44,9 +45,7 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
   const updateTemplateContainerNodesProps = useCallback(
     (childrenNodeDisplayNames: string[]) => {
       return childrenNodeDisplayNames.map((itemContainerDisplayName, index) => {
-        const currentItemContainer = cloneDeep(
-          components[itemContainerDisplayName],
-        )
+        const currentItemContainer = klona(components[itemContainerDisplayName])
         const currentItemDisplayNames = currentItemContainer.childrenNode
         if (
           Array.isArray(currentItemDisplayNames) &&

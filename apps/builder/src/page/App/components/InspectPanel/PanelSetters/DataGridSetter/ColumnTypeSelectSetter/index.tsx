@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC } from "react"
 import SearchSelectSetter from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/searchSelect"
 import { ColumnTypeSelectSetterProps } from "./interface"

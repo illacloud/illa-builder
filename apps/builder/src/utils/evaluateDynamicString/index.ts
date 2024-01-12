@@ -1,6 +1,6 @@
+import { hasDynamicStringSnippet } from "@illa-public/dynamic-string"
 import { isRunScriptAttr } from "../executionTreeHelper/executionTreeFactory"
 import { getDynamicValue } from "./dynamicConverter"
-import { hasDynamicStringSnippet } from "./utils"
 import { isWrapperCode, realInputValueWithScript } from "./valueConverter"
 
 export const evaluateDynamicString = (

@@ -1,4 +1,4 @@
-import { isBoolean } from "lodash"
+import { isBoolean } from "lodash-es"
 import {
   FC,
   forwardRef,

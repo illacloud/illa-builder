@@ -1,4 +1,5 @@
-import { toPath } from "lodash"
+import { convertPathToString } from "@illa-public/dynamic-string"
+import { toPath } from "lodash-es"
 import {
   FC,
   HTMLAttributes,
@@ -15,7 +16,6 @@ import { Image } from "@illa-design/react"
 import NextIcon from "@/assets/carousel/next-shadow.svg?react"
 import PreviousIcon from "@/assets/carousel/prev-shadow.svg?react"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { MediaSourceLoadContext } from "@/utils/mediaSourceLoad"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import {

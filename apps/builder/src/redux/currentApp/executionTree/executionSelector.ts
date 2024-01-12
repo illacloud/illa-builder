@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@illa-public/user-data"
 import { createSelector } from "@reduxjs/toolkit"
-import { cloneDeep, get } from "lodash"
+import { klona } from "klona/json"
+import { get } from "lodash-es"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
@@ -184,7 +185,7 @@ export const getExecutionResultToGlobalCodeMirror = createSelector(
         !IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType) &&
         executionResult[key] != undefined
       ) {
-        result[key] = cloneDeep(executionResult[key])
+        result[key] = klona(executionResult[key])
       }
     })
     return result
@@ -213,10 +214,10 @@ export const getExecutionResultToCurrentPageCodeMirror = createSelector(
         !IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType) &&
         currentPageWidgets.includes(key)
       ) {
-        result[key] = cloneDeep(executionResult[key])
+        result[key] = klona(executionResult[key])
       }
       if (currentSeed && currentSeed.$type !== "WIDGET") {
-        result[key] = cloneDeep(executionResult[key])
+        result[key] = klona(executionResult[key])
       }
     })
     return result

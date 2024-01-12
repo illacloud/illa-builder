@@ -1,6 +1,6 @@
 import PartialIcon from "@assets/rightPagePanel/partial.svg?react"
 import { PADDING_MODE } from "@illa-public/public-types"
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, FocusEventHandler, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { Input, RadioGroup } from "@illa-design/react"

@@ -1,6 +1,7 @@
 import { ComponentTreeNode } from "@illa-public/public-types"
 import { CONTAINER_TYPE } from "@illa-public/public-types"
-import { cloneDeep, get, set } from "lodash"
+import { klona } from "klona"
+import { get, set } from "lodash-es"
 import { isObject } from "@illa-design/react"
 import { buildInitDragInfo } from "@/page/App/components/ComponentPanel/componentListBuilder"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
@@ -67,9 +68,9 @@ export const generateComponentNodeByWidgetInfo = (
   } = widgetInfo
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
-    props = cloneDeep(defaults())
+    props = klona(defaults())
   } else {
-    props = cloneDeep(defaults)
+    props = klona(defaults)
   }
   if (isObject(props) && props.hasOwnProperty("formDataKey")) {
     props.formDataKey = `{{${displayName}.displayName}}`
@@ -218,9 +219,9 @@ export const newGenerateComponentNode = (
   } = baseConfig
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
-    props = cloneDeep(defaults())
+    props = klona(defaults())
   } else {
-    props = cloneDeep(defaults)
+    props = klona(defaults)
   }
   if (isObject(props) && Object.hasOwn(props, "formDataKey")) {
     props.formDataKey = `{{${displayName}.displayName}}`

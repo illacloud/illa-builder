@@ -1,4 +1,4 @@
-import { debounce } from "lodash"
+import { debounce } from "lodash-es"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { DefaultCenter } from "./content"
 import { LatLng } from "./interface"

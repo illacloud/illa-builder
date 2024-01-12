@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import useMeasure from "react-use-measure"
 import { Trigger, isArray, isObject } from "@illa-design/react"
