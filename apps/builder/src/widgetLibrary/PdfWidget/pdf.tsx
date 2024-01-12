@@ -1,4 +1,4 @@
-import { debounce } from "lodash"
+import { debounce } from "lodash-es"
 import pdfWorker from "pdfjs-dist/build/pdf.worker.js?url"
 import {
   FC,

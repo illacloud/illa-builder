@@ -1,5 +1,6 @@
 import { ComponentMapNode } from "@illa-public/public-types"
-import { cloneDeep, get } from "lodash"
+import { klona } from "klona/json"
+import { get } from "lodash-es"
 import { FC, ReactNode, createContext, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
@@ -214,7 +215,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     (dragIndex: number, hoverIndex: number) => {
       const dragOptionItem = viewsList[dragIndex]
       const currentSelected = viewsList[currentViewIndex]
-      const newComponentNode = cloneDeep(componentNode.childrenNode)
+      const newComponentNode = klona(componentNode.childrenNode)
       ;[newComponentNode[dragIndex], newComponentNode[hoverIndex]] = [
         newComponentNode[hoverIndex],
         newComponentNode[dragIndex],

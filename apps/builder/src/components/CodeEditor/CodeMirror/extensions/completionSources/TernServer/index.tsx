@@ -3,10 +3,10 @@ import {
   CompletionContext,
   CompletionResult,
 } from "@codemirror/autocomplete"
+import { getStringSnippets } from "@illa-public/dynamic-string"
 import { CompletionsQuery, Server } from "tern"
 import { CompletionsQueryResult } from "tern/lib/tern"
 import { CODE_TYPE } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import ecmaScript from "./defs/ecmascript.json"
 
 // @ts-ignore

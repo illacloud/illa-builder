@@ -1,5 +1,5 @@
 import { AnimatePresence, Reorder } from "framer-motion"
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 import { FC, useContext, useEffect, useState } from "react"
 import { CellItemProps } from "@/page/App/components/InspectPanel/PanelSetters/TableSetter/CellSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/InspectPanel/PanelSetters/TableSetter/ColumnSetter/style"

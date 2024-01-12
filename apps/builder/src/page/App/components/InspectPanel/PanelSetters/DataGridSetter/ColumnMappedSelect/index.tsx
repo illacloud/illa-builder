@@ -1,4 +1,5 @@
-import { get, isString } from "lodash"
+import { hasDynamicStringSnippet } from "@illa-public/dynamic-string"
+import { get, isString } from "lodash-es"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
@@ -18,7 +19,6 @@ import {
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { ColumnMappedSelectProps } from "./interface"
 import {
   basicDynamicSetterContainerStyle,

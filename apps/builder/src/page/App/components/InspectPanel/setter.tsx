@@ -1,11 +1,11 @@
-import { get, toPath } from "lodash"
+import { convertPathToString } from "@illa-public/dynamic-string"
+import { get, toPath } from "lodash-es"
 import { memo, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { getSetterByType } from "@/page/App/components/InspectPanel/PanelSetters"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/components/componentsSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { PanelSetterProps } from "./interface"
 import { applySetterWrapperStyle } from "./style"
 

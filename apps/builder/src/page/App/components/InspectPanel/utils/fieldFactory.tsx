@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 export const canRenderField = (

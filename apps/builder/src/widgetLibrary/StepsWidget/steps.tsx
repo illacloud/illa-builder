@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { useSelector } from "react-redux"
 import { Steps } from "@illa-design/react"

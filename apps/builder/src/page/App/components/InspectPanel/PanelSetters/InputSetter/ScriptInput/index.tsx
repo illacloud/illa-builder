@@ -1,3 +1,4 @@
+import { hasDynamicStringSnippet } from "@illa-public/dynamic-string"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { RUN_SCRIPT_DOC_LINK } from "@illa-public/public-configs"
 import { FC, useCallback, useMemo } from "react"
@@ -15,7 +16,6 @@ import {
   realInputValueWithList,
 } from "@/page/App/components/InspectPanel/PanelSetters/InputSetter/util"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/components/componentsSelector"
-import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import {
   realInputValueWithScript,
   wrapperScriptCode,

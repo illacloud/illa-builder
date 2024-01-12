@@ -1,5 +1,5 @@
 import { hexToHsva } from "@uiw/color-convert"
-import { debounce } from "lodash"
+import { debounce } from "lodash-es"
 import { FC, useRef } from "react"
 import { BindIcon, Trigger, getSpecialThemeColor } from "@illa-design/react"
 import { ColorPicker } from "@/components/ColorPicker"

@@ -1,5 +1,5 @@
 import Fuse from "fuse.js"
-import { debounce } from "lodash"
+import { debounce } from "lodash-es"
 import { useRef, useState } from "react"
 
 export function useSearch<T>(needSearchData: T[], buildKeys: string[]) {

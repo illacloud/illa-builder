@@ -6,7 +6,8 @@ import {
 } from "@illa-public/public-types"
 import { ActionItem } from "@illa-public/public-types"
 import i18n from "i18next"
-import { cloneDeep, set } from "lodash"
+import { klona } from "klona"
+import { set } from "lodash-es"
 import { createMessage } from "@illa-design/react"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
@@ -422,7 +423,7 @@ export class CopyManager {
       newDisplayName,
     )
 
-    const newNode = cloneDeep({
+    const newNode = klona({
       ...node,
       props: node.props ?? {},
       displayName: newDisplayName,

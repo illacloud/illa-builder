@@ -4,7 +4,7 @@ import {
 } from "@illa-public/public-configs"
 import { ACTION_RUN_TIME, ActionContent } from "@illa-public/public-types"
 import { ActionItem } from "@illa-public/public-types"
-import { cloneDeep } from "lodash"
+import { klona } from "klona/json"
 
 export const fixedActionToNewAction = (
   actions?: ActionItem<ActionContent>[],
@@ -14,7 +14,7 @@ export const fixedActionToNewAction = (
       if (action.actionType === "transformer") {
         return action
       }
-      const advancedConfig = cloneDeep(INIT_ACTION_ADVANCED_CONFIG)
+      const advancedConfig = klona(INIT_ACTION_ADVANCED_CONFIG)
       if (action.triggerMode === "automate") {
         advancedConfig.runtime = ACTION_RUN_TIME.APP_LOADED
       }

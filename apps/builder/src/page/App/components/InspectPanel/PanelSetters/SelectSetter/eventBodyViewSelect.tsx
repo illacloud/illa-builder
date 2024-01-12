@@ -1,11 +1,11 @@
-import { get, toPath } from "lodash"
+import { convertPathToString } from "@illa-public/dynamic-string"
+import { get, toPath } from "lodash-es"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import {
   getComponentMap,
   searchComponentFromMap,
 } from "@/redux/currentApp/components/componentsSelector"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { BaseSelectSetterProps } from "./interface"
 import SearchSelectSetter from "./searchSelect"
 

@@ -180,6 +180,9 @@ importers:
       '@illa-public/cropper':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Cropper
+      '@illa-public/dynamic-string':
+        specifier: workspace:^
+        version: link:../../packages/illa-public-component/dynamicStringUtils
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
@@ -282,12 +285,6 @@ importers:
       '@uiw/react-color-sketch':
         specifier: ^1.4.2
         version: 1.4.2(@babel/runtime@7.23.2)(react-dom@18.2.0)(react@18.2.0)
-      acorn:
-        specifier: ^8.7.1
-        version: 8.8.2
-      acorn-walk:
-        specifier: ^8.2.0
-        version: 8.2.0
       axios:
         specifier: ^1.6.2
         version: 1.6.2
@@ -330,7 +327,10 @@ importers:
       i18next-browser-languagedetector:
         specifier: ^7.0.1
         version: 7.0.1
-      lodash:
+      klona:
+        specifier: ^2.0.6
+        version: 2.0.6
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       lottie-react:
@@ -481,9 +481,9 @@ importers:
       '@types/gtag.js':
         specifier: ^0.0.18
         version: 0.0.18
-      '@types/lodash':
-        specifier: ^4.14.199
-        version: 4.14.199
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/mdx':
         specifier: ^2.0.3
         version: 2.0.3
@@ -634,7 +634,7 @@ importers:
       i18next-http-backend:
         specifier: ^2.2.2
         version: 2.2.2
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react-hook-form:
@@ -659,9 +659,9 @@ importers:
       '@types/gtag.js':
         specifier: ^0.0.18
         version: 0.0.18
-      '@types/lodash':
-        specifier: ^4.14.194
-        version: 4.14.199
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/uuid':
         specifier: ^9.0.0
         version: 9.0.5
@@ -2789,6 +2789,9 @@ importers:
       '@illa-design/react':
         specifier: workspace:*
         version: link:../../illa-design/packages/react
+      '@illa-public/dynamic-string':
+        specifier: workspace:^
+        version: link:../dynamicStringUtils
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
@@ -2801,7 +2804,7 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react:
@@ -2814,9 +2817,9 @@ importers:
         specifier: ^13.5.0
         version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.14.191
-        version: 4.14.191
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3104,7 +3107,7 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react:
@@ -3123,9 +3126,9 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1(react@18.2.0)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.14.199
-        version: 4.14.199
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3438,7 +3441,7 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       react:
@@ -3466,9 +3469,9 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.14.202
-        version: 4.14.202
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/react-window':
         specifier: ^1.8.5
         version: 1.8.5
@@ -3906,9 +3909,6 @@ importers:
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3931,9 +3931,6 @@ importers:
       '@types/gtag.js':
         specifier: ^0.0.18
         version: 0.0.18
-      '@types/lodash':
-        specifier: ^4.14.194
-        version: 4.14.199
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -7177,10 +7174,6 @@ packages:
       '@types/lodash': 4.14.199
     dev: true
 
-  /@types/lodash@4.14.191:
-    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
-    dev: true
-
   /@types/lodash@4.14.199:
     resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
     dev: true
@@ -8049,11 +8042,6 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
-  /acorn-walk@8.2.0:
-    resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
-    engines: {node: '>=0.4.0'}
-    dev: false
-
   /acorn-walk@8.3.1:
     resolution: {integrity: sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw==}
     engines: {node: '>=0.4.0'}
@@ -8069,12 +8057,6 @@ packages:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-
-  /acorn@8.8.2:
-    resolution: {integrity: sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-    dev: false
 
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}

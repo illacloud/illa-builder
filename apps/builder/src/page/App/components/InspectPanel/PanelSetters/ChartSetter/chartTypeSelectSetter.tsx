@@ -1,5 +1,5 @@
 import { ChartType } from "chart.js"
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import BarChartIcon from "@/assets/chart/bar-chart.svg?react"

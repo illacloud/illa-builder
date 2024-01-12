@@ -21,7 +21,7 @@ import {
   Title,
   Tooltip,
 } from "chart.js"
-import { get, groupBy as groupByFunc } from "lodash"
+import { get, groupBy as groupByFunc } from "lodash-es"
 import { FC, useMemo, useRef } from "react"
 import { Doughnut, Pie, Radar, Chart as ReactChart } from "react-chartjs-2"
 import { globalColor, illaPrefix } from "@illa-design/react"

@@ -48,7 +48,7 @@ import {
   getILLACloudURL,
   sendTagEvent,
 } from "@illa-public/utils"
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"

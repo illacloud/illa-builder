@@ -12,7 +12,13 @@ import {
 import { fetchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { registerActionPeriod } from "@/utils/action/runAction"
-import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
+import {
+  changeDisplayNameHelper,
+  changeEventHandlerReferenceHelper,
+  mergeUpdateSlice,
+} from "@/utils/changeDisplayNameHelper"
+import { getComponentMap } from "../components/componentsSelector"
+import { getActionList } from "./actionSelector"
 import { UpdateActionSlicePropsPayload } from "./actionState"
 
 async function handleAddActionItemEffect(
@@ -60,13 +66,34 @@ const handleUpdateDisplayNameEffect = (
     oldDisplayName,
     newDisplayName,
   )
+  const {
+    updateActionSlice: updateActionEventSlice,
+    updateWidgetSlice: updateWidgetEventSlice,
+  } = changeEventHandlerReferenceHelper(
+    oldDisplayName,
+    newDisplayName,
+    getActionList(rootState),
+    getComponentMap(rootState),
+  )
+
+  const contactedUpdateActionSlices = updateActionSlice.concat(
+    ...updateActionEventSlice,
+  )
+  const contactedUpdateWidgetSlice = updateWidgetSlice.concat(
+    ...updateWidgetEventSlice,
+  )
+
+  const {
+    updateActionSlice: mergedActionSlice,
+    updateWidgetSlice: mergedWidgetSlice,
+  } = mergeUpdateSlice(contactedUpdateWidgetSlice, contactedUpdateActionSlices)
   listenerApi.dispatch(
     componentsActions.batchUpdateMultiComponentSlicePropsReducer(
-      updateWidgetSlice,
+      mergedWidgetSlice,
     ),
   )
   listenerApi.dispatch(
-    actionActions.batchUpdateMultiActionSlicePropsReducer(updateActionSlice),
+    actionActions.batchUpdateMultiActionSlicePropsReducer(mergedActionSlice),
   )
 }
 

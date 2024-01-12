@@ -29,8 +29,13 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
+import {
+  changeDisplayNameHelper,
+  changeEventHandlerReferenceHelper,
+  mergeUpdateSlice,
+} from "@/utils/changeDisplayNameHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
+import { getActionList } from "../action/actionSelector"
 
 function handleUpdateComponentDisplayNameEffect(
   action: ReturnType<
@@ -368,6 +373,27 @@ const handleUpdateDisplayNameEffect = (
     newDisplayName,
   )
 
+  const {
+    updateActionSlice: updateActionEventSlice,
+    updateWidgetSlice: updateWidgetEventSlice,
+  } = changeEventHandlerReferenceHelper(
+    displayName,
+    newDisplayName,
+    getActionList(rootState),
+    getComponentMap(rootState),
+  )
+  const contactedUpdateActionSlices = updateActionSlice.concat(
+    ...updateActionEventSlice,
+  )
+  const contactedUpdateWidgetSlice = updateWidgetSlice.concat(
+    ...updateWidgetEventSlice,
+  )
+
+  const {
+    updateActionSlice: mergedActionSlice,
+    updateWidgetSlice: mergedWidgetSlice,
+  } = mergeUpdateSlice(contactedUpdateWidgetSlice, contactedUpdateActionSlices)
+
   listenerApi.dispatch(
     executionActions.updateWidgetLayoutInfoWhenChangeDisplayNameReducer({
       oldDisplayName: displayName,
@@ -377,11 +403,11 @@ const handleUpdateDisplayNameEffect = (
 
   listenerApi.dispatch(
     componentsActions.batchUpdateMultiComponentSlicePropsReducer(
-      updateWidgetSlice,
+      mergedWidgetSlice,
     ),
   )
   listenerApi.dispatch(
-    actionActions.batchUpdateMultiActionSlicePropsReducer(updateActionSlice),
+    actionActions.batchUpdateMultiActionSlicePropsReducer(mergedActionSlice),
   )
 }
 
@@ -408,13 +434,34 @@ const handleUpdateGlobalDataDisplayNameEffect = (
     "globalDataKey",
   )
 
+  const {
+    updateActionSlice: updateActionEventSlice,
+    updateWidgetSlice: updateWidgetEventSlice,
+  } = changeEventHandlerReferenceHelper(
+    oldKey,
+    key,
+    getActionList(rootState),
+    getComponentMap(rootState),
+  )
+  const contactedUpdateActionSlices = updateActionSlice.concat(
+    ...updateActionEventSlice,
+  )
+  const contactedUpdateWidgetSlice = updateWidgetSlice.concat(
+    ...updateWidgetEventSlice,
+  )
+
+  const {
+    updateActionSlice: mergedActionSlice,
+    updateWidgetSlice: mergedWidgetSlice,
+  } = mergeUpdateSlice(contactedUpdateWidgetSlice, contactedUpdateActionSlices)
+
   listenerApi.dispatch(
     componentsActions.batchUpdateMultiComponentSlicePropsReducer(
-      updateWidgetSlice,
+      mergedWidgetSlice,
     ),
   )
   listenerApi.dispatch(
-    actionActions.batchUpdateMultiActionSlicePropsReducer(updateActionSlice),
+    actionActions.batchUpdateMultiActionSlicePropsReducer(mergedActionSlice),
   )
 }
 
