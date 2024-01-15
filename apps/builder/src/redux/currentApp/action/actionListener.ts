@@ -3,22 +3,11 @@ import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import {
-  getActionExecutionResult,
-  getInDependenciesMap,
-  getRawTree,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { getActionExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { registerActionPeriod } from "@/utils/action/runAction"
-import {
-  changeDisplayNameHelper,
-  changeEventHandlerReferenceHelper,
-  mergeUpdateSlice,
-} from "@/utils/changeDisplayNameHelper"
-import { getComponentMap } from "../components/componentsSelector"
-import { getActionList } from "./actionSelector"
+import { mixedChangeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import { UpdateActionSlicePropsPayload } from "./actionState"
 
 async function handleAddActionItemEffect(
@@ -57,44 +46,7 @@ const handleUpdateDisplayNameEffect = (
   listenerApi: AppListenerEffectAPI,
 ) => {
   const { oldDisplayName, newDisplayName } = action.payload
-  const rootState = listenerApi.getState()
-  const independenciesMap = getInDependenciesMap(rootState)
-  const seeds = getRawTree(rootState)
-  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
-    independenciesMap,
-    seeds,
-    oldDisplayName,
-    newDisplayName,
-  )
-  const {
-    updateActionSlice: updateActionEventSlice,
-    updateWidgetSlice: updateWidgetEventSlice,
-  } = changeEventHandlerReferenceHelper(
-    oldDisplayName,
-    newDisplayName,
-    getActionList(rootState),
-    getComponentMap(rootState),
-  )
-
-  const contactedUpdateActionSlices = updateActionSlice.concat(
-    ...updateActionEventSlice,
-  )
-  const contactedUpdateWidgetSlice = updateWidgetSlice.concat(
-    ...updateWidgetEventSlice,
-  )
-
-  const {
-    updateActionSlice: mergedActionSlice,
-    updateWidgetSlice: mergedWidgetSlice,
-  } = mergeUpdateSlice(contactedUpdateWidgetSlice, contactedUpdateActionSlices)
-  listenerApi.dispatch(
-    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
-      mergedWidgetSlice,
-    ),
-  )
-  listenerApi.dispatch(
-    actionActions.batchUpdateMultiActionSlicePropsReducer(mergedActionSlice),
-  )
+  mixedChangeDisplayNameHelper(listenerApi, oldDisplayName, newDisplayName)
 }
 
 const handleUpdateAsyncEffect = (

@@ -23,7 +23,7 @@ import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getActionMixedList } from "../redux/currentApp/action/actionSelector"
-import { copyWidgetHelper } from "./changeDisplayNameHelper"
+import { copyWidgetDisplayNameHelper } from "./changeDisplayNameHelper"
 import { getComponentNodeResultByRelativeCombineShape } from "./componentNode/copyHelper"
 import { buildTreeByMapNode } from "./componentNode/flatTree"
 import { getCurrentSectionColumnNumberByChildDisplayName } from "./componentNode/search"
@@ -418,7 +418,7 @@ export class CopyManager {
       node.showName,
     )
 
-    const updatePathsMapValue = copyWidgetHelper(
+    const updatePathsMapValue = copyWidgetDisplayNameHelper(
       node.displayName,
       newDisplayName,
     )

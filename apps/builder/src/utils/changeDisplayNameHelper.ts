@@ -8,19 +8,24 @@ import {
   ComponentMapNode,
 } from "@illa-public/public-types"
 import { get, toPath } from "lodash-es"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   Events,
   UpdateActionSlicePropsPayload,
 } from "@/redux/currentApp/action/actionState"
 import { UpdateComponentSlicePropsPayload } from "@/redux/currentApp/components/componentsPayload"
+import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getInDependenciesMap,
   getRawTree,
-} from "../redux/currentApp/executionTree/executionSelector"
-import store from "../store"
+} from "@/redux/currentApp/executionTree/executionSelector"
+import store, { AppListenerEffectAPI } from "@/store"
+import { EVENT_ACTION_TYPE } from "./eventHandlerHelper"
 import { isAction, isWidget } from "./executionTreeHelper/utils"
 
-export const changeDisplayNameHelper = (
+const changeDisplayNameHelper = (
   independenciesMap: Record<string, string[]>,
   seeds: Record<string, any>,
   oldDisplayName: string,
@@ -102,11 +107,22 @@ const changeEventUsedDisplayNameHelper = (
       const path = convertPathToString([prefix, index, "stateDisplayName"])
       propsSlice[path] = newDisplayName
     }
+
+    if (event.actionType === EVENT_ACTION_TYPE.SET_ROUTER) {
+      if (event.pagePath === oldDisplayName) {
+        const path = convertPathToString([prefix, index, "pagePath"])
+        propsSlice[path] = newDisplayName
+      }
+      if (event.viewPath === oldDisplayName) {
+        const path = convertPathToString([prefix, index, "viewPath"])
+        propsSlice[path] = newDisplayName
+      }
+    }
   })
   return propsSlice
 }
 
-export const changeEventHandlerReferenceHelper = (
+const changeEventHandlerReferenceHelper = (
   oldDisplayName: string,
   newDisplayName: string,
   actionLists: ActionItem<ActionContent>[],
@@ -169,40 +185,7 @@ export const changeEventHandlerReferenceHelper = (
   return { updateWidgetSlice, updateActionSlice }
 }
 
-export const copyWidgetHelper = (
-  oldDisplayName: string,
-  newDisplayName: string,
-) => {
-  const rootState = store.getState()
-  const independenciesMap = getInDependenciesMap(rootState)
-  const seeds = getRawTree(rootState)
-  const updatePathsMapValue: Record<string, unknown> = {}
-  Object.keys(independenciesMap).forEach((inDepPath) => {
-    const usedPaths = independenciesMap[inDepPath]
-    usedPaths.forEach((usedPath) => {
-      const usedPathArray = toPath(usedPath)
-      const displayName = usedPathArray[0]
-      if (displayName !== oldDisplayName) {
-        return
-      }
-      const finalUsedPathArray = [...usedPathArray]
-      const finalUsedPath = convertPathToString(finalUsedPathArray)
-      const maybeDynamicStringValue = get(seeds, finalUsedPath)
-      if (hasDynamicStringSnippet(maybeDynamicStringValue)) {
-        const newDynamicStringValue = maybeDynamicStringValue.replace(
-          oldDisplayName,
-          newDisplayName,
-        )
-        const propsPath = convertPathToString(usedPathArray.slice(1))
-        updatePathsMapValue[propsPath] = newDynamicStringValue
-      }
-    })
-  })
-
-  return updatePathsMapValue
-}
-
-export const mergeUpdateSlice = (
+const mergeUpdateSlice = (
   updateWidgetSlice: UpdateComponentSlicePropsPayload[],
   updateActionSlice: UpdateActionSlicePropsPayload[],
 ) => {
@@ -239,4 +222,84 @@ export const mergeUpdateSlice = (
     updateWidgetSlice: Object.values(updateWidgetSliceMap),
     updateActionSlice: Object.values(updateActionSliceMap),
   }
+}
+
+export const mixedChangeDisplayNameHelper = (
+  listenerApi: AppListenerEffectAPI,
+  oldDisplayName: string,
+  newDisplayName: string,
+  type: "displayName" | "globalDataKey" = "displayName",
+) => {
+  const rootState = listenerApi.getState()
+  const independenciesMap = getInDependenciesMap(rootState)
+  const seeds = getRawTree(rootState)
+  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
+    independenciesMap,
+    seeds,
+    oldDisplayName,
+    newDisplayName,
+    type,
+  )
+  const {
+    updateActionSlice: updateActionEventSlice,
+    updateWidgetSlice: updateWidgetEventSlice,
+  } = changeEventHandlerReferenceHelper(
+    oldDisplayName,
+    newDisplayName,
+    getActionList(rootState),
+    getComponentMap(rootState),
+  )
+
+  const contactedUpdateActionSlices = updateActionSlice.concat(
+    ...updateActionEventSlice,
+  )
+  const contactedUpdateWidgetSlice = updateWidgetSlice.concat(
+    ...updateWidgetEventSlice,
+  )
+
+  const {
+    updateActionSlice: mergedActionSlice,
+    updateWidgetSlice: mergedWidgetSlice,
+  } = mergeUpdateSlice(contactedUpdateWidgetSlice, contactedUpdateActionSlices)
+  listenerApi.dispatch(
+    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
+      mergedWidgetSlice,
+    ),
+  )
+  listenerApi.dispatch(
+    actionActions.batchUpdateMultiActionSlicePropsReducer(mergedActionSlice),
+  )
+}
+
+export const copyWidgetDisplayNameHelper = (
+  oldDisplayName: string,
+  newDisplayName: string,
+) => {
+  const rootState = store.getState()
+  const independenciesMap = getInDependenciesMap(rootState)
+  const seeds = getRawTree(rootState)
+  const updatePathsMapValue: Record<string, unknown> = {}
+  Object.keys(independenciesMap).forEach((inDepPath) => {
+    const usedPaths = independenciesMap[inDepPath]
+    usedPaths.forEach((usedPath) => {
+      const usedPathArray = toPath(usedPath)
+      const displayName = usedPathArray[0]
+      if (displayName !== oldDisplayName) {
+        return
+      }
+      const finalUsedPathArray = [...usedPathArray]
+      const finalUsedPath = convertPathToString(finalUsedPathArray)
+      const maybeDynamicStringValue = get(seeds, finalUsedPath)
+      if (hasDynamicStringSnippet(maybeDynamicStringValue)) {
+        const newDynamicStringValue = maybeDynamicStringValue.replace(
+          oldDisplayName,
+          newDisplayName,
+        )
+        const propsPath = convertPathToString(usedPathArray.slice(1))
+        updatePathsMapValue[propsPath] = newDynamicStringValue
+      }
+    })
+  })
+
+  return updatePathsMapValue
 }
