@@ -1,4 +1,10 @@
-import { FC, useEffect, useState } from "react"
+import {
+  ForwardRefRenderFunction,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react"
 import { createPortal } from "react-dom"
 import { useSelector } from "react-redux"
 import { QuestionCircleIcon, getColor } from "@illa-design/react"
@@ -6,13 +12,26 @@ import MissingResources from "@/page/App/components/MIssingResources"
 import { getHasMissingResourceAction } from "@/redux/currentApp/action/actionSelector"
 import { missingButtonStyle } from "./style"
 
-export const ResourceMissingTipButton: FC = () => {
+export interface MissingTipButtonMethod {
+  changeShown: (shown: boolean) => void
+}
+
+export const ResourceMissingTipButton: ForwardRefRenderFunction<
+  MissingTipButtonMethod,
+  {}
+> = (_props, ref) => {
   const hasMissingResources = useSelector(getHasMissingResourceAction)
   const [shown, setShown] = useState(hasMissingResources)
 
   useEffect(() => {
     setShown(hasMissingResources)
   }, [hasMissingResources])
+
+  useImperativeHandle(ref, () => {
+    return {
+      changeShown: setShown,
+    }
+  })
 
   return (
     hasMissingResources && (
@@ -35,3 +54,5 @@ export const ResourceMissingTipButton: FC = () => {
     )
   )
 }
+
+export default forwardRef(ResourceMissingTipButton)

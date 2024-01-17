@@ -2,6 +2,7 @@ import { ActionContent, ActionItem } from "@illa-public/public-types"
 import { createSelector } from "@reduxjs/toolkit"
 import { getTutorialLink } from "@/page/App/components/MIssingResources/util"
 import { RootState } from "@/store"
+import { getAIAgentIDMapAgent } from "../../aiAgent/dashboardTeamAIAgentSelector"
 import { getResourceIDMapResource } from "../../resource/resourceSelector"
 import { getGlobalDataToActionList } from "../components/componentsSelector"
 
@@ -47,12 +48,19 @@ export const getActionMixedList = createSelector(
 )
 
 export const getMissingResourceActionList = createSelector(
-  [getResourceIDMapResource, getActionList],
-  (resourceMap, actionList) => {
+  [getResourceIDMapResource, getActionList, getAIAgentIDMapAgent],
+  (resourceMap, actionList, aiAgentList) => {
     const missingResourceActionList: ActionItem<ActionContent>[] = []
     actionList.forEach((action) => {
       const resource = resourceMap[action.resourceID!]
-      if (!resource) {
+      const agent = aiAgentList[action.resourceID!]
+      if (
+        !resource &&
+        !agent &&
+        action.actionType !== "globalData" &&
+        action.actionType !== "transformer" &&
+        action.actionType !== "illadrive"
+      ) {
         missingResourceActionList.push(action)
       }
     })

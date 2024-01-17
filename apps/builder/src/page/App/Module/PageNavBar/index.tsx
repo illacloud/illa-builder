@@ -12,7 +12,7 @@ import {
   getILLACloudURL,
   isCloudVersion,
 } from "@illa-public/utils"
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
@@ -20,7 +20,10 @@ import {
   Button,
   ExitIcon,
   FullScreenIcon,
+  QuestionCircleIcon,
+  getColor,
   useMessage,
+  useModal,
 } from "@illa-design/react"
 import Logo from "@/assets/illa-logo.svg?react"
 import SnowIcon from "@/assets/snow-icon.svg?react"
@@ -38,17 +41,22 @@ import {
   getIsOnline,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { getHasMissingResourceAction } from "@/redux/currentApp/action/actionSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { ResourceMissingTipButton } from "./ResourceMissingTipButton"
+import { MissingTipButtonMethod } from "./ResourceMissingTipButton"
+import ResourceMissingTipButton from "./ResourceMissingTipButton"
 import {
   buttonGroupStyle,
   descriptionStyle,
   informationStyle,
   logoCursorStyle,
+  missingContentStyle,
+  missingHeaderContainerStyle,
+  missingResourceHeaderStyle,
+  missingResourceModalContainerStyle,
   navBarStyle,
   rightContentStyle,
   rowCenter,
@@ -66,12 +74,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const appInfo = useSelector(getAppInfo)
   const isOnline = useSelector(getIsOnline)
-  const debuggerData = useSelector(getExecutionDebuggerData)
-  const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
   const isEditMode = useSelector(getIsILLAEditMode)
   const isPreviewMode = useSelector(getIsILLAPreviewMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const teamInfo = useSelector(getCurrentTeamInfo)!!
+  const hasMissingResources = useSelector(getHasMissingResourceAction)
+  const missingResourceButtonRef = useRef<MissingTipButtonMethod>(null)
+  const modal = useModal()
+
   const upgradeModal = useUpgradeModal()
 
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
@@ -82,13 +92,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
-
-  useEffect(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-      element: "debug",
-      parameter2: debugMessageNumber,
-    })
-  }, [debugMessageNumber])
 
   const deployApp = useCallback(
     async (
@@ -129,23 +132,52 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [deployApp],
   )
 
-  const handleClickDeploy = useCallback(async () => {
+  const handleClickDeploy = async () => {
     if (isGuideMode) {
       await forkGuideAppAndDeploy(appInfo.appName)
     } else {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
+      if (hasMissingResources) {
+        modal.show({
+          children: (
+            <div css={missingResourceModalContainerStyle}>
+              <div css={missingHeaderContainerStyle}>
+                <QuestionCircleIcon color={getColor("orange", "03")} />
+                <h6 css={missingResourceHeaderStyle}>
+                  Resources missing
+                  {/* {t("deploy.missing_resource_tip")} */}
+                </h6>
+              </div>
+              <p css={missingContentStyle}>
+                Some resources of actions in this app have been deleted, which
+                may cause abnormal operation of the app. Please verify the
+                operation.
+                {/* {t("deploy.missing_resource_tip_1")} */}
+              </p>
+            </div>
+          ),
+          okText: "Deploy",
+          cancelText: "Configure",
+          maskClosable: false,
+          okButtonProps: {
+            colorScheme: "black",
+          },
+          w: "320px",
+          minW: "320px",
+          onOk: async () => {
+            await deployApp(appInfo.appId, appInfo.config.public)
+          },
+          onCancel() {
+            missingResourceButtonRef.current?.changeShown(true)
+          },
+        })
+        return
+      }
       await deployApp(appInfo.appId, appInfo.config.public)
     }
-  }, [
-    appInfo.appId,
-    appInfo.appName,
-    appInfo.config.public,
-    deployApp,
-    forkGuideAppAndDeploy,
-    isGuideMode,
-  ])
+  }
 
   const handleClickDeployMenu = useCallback(
     async (key: string | number) => {
@@ -273,7 +305,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               </>
             )}
             {PreviewButton}
-            <ResourceMissingTipButton />
+            {hasMissingResources && (
+              <ResourceMissingTipButton ref={missingResourceButtonRef} />
+            )}
             <DeployButtonGroup
               disPrivate={appInfo.config.publishedToMarketplace}
               loading={deployLoading}

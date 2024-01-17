@@ -113,3 +113,18 @@ export const batchUpdateResourceID: CaseReducer<
     }
   })
 }
+
+export const batchUpdateActionItemReducer: CaseReducer<
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>[]>
+> = (state, action) => {
+  action.payload.forEach((item) => {
+    const index = state.findIndex((actionItem) => {
+      return actionItem.actionID === item.actionID
+    })
+    if (index != -1) {
+      state[index] = item
+    }
+  })
+  return state
+}

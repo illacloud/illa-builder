@@ -117,3 +117,33 @@ export const nameStyle = css`
   cursor: pointer;
   color: ${getColor("grayBlue", "02")};
 `
+
+export const missingResourceModalContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+`
+
+export const missingHeaderContainerStyle = css`
+  display: flex;
+  gap: 8px;
+`
+
+export const missingResourceHeaderStyle = css`
+  margin: 0;
+  padding: 0;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+`
+
+export const missingContentStyle = css`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: ${getColor("grayBlue", "02")};
+  margin: 0;
+`

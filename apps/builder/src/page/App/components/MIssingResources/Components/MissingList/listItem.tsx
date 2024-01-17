@@ -75,8 +75,8 @@ export const ListItem: FC<ItemProps> = (props) => {
       <div css={cellStyle("200px")}>
         <ResourceChoose
           resourceID={replacementResourceID}
-          setGeneratorVisible={() => {}}
           changeResourceID={changeResourceID}
+          resourceType={resourceType}
         />
       </div>
       <div css={cellStyle("96px")}>

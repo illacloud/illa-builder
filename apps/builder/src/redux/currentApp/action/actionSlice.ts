@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
   addActionItemReducer,
+  batchUpdateActionItemReducer,
   batchUpdateMultiActionSlicePropsReducer,
   batchUpdateResourceID,
   initActionListReducer,
@@ -23,6 +24,7 @@ const actionSlice = createSlice({
     updateActionDisplayNameReducer,
     batchUpdateMultiActionSlicePropsReducer,
     batchUpdateResourceID,
+    batchUpdateActionItemReducer,
   },
 })
 
