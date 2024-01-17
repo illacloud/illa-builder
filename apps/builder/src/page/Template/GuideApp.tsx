@@ -22,7 +22,6 @@ import {
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
-  leftPanelStyle,
   middlePanelStyle,
   navbarStyle,
 } from "@/page/App/style"
@@ -93,7 +92,7 @@ const GuideApp: FC = () => {
               <PageNavBar css={navbarStyle} />
             </TriggerProvider>
             <div css={contentStyle}>
-              {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
+              {showLeftPanel && <DataWorkspace />}
               <div css={middlePanelStyle}>
                 <TriggerProvider renderInBody zIndex={10}>
                   <CanvasPanel ref={canvasRef} css={centerPanelStyle} />

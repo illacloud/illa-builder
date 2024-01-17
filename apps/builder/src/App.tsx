@@ -1,10 +1,8 @@
-import createCache from "@emotion/cache"
-import { CacheProvider, Global } from "@emotion/react"
+import { Global } from "@emotion/react"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
 } from "@illa-public/mixpanel-utils"
-import { px2Rem } from "@illa-public/styleis-plugin"
 import { UpgradeModalGroup } from "@illa-public/upgrade-modal"
 import { getCurrentTranslateLanguage } from "@illa-public/user-data"
 import { useEffect, useMemo } from "react"
@@ -67,35 +65,23 @@ function App() {
     )
   }, [])
 
-  let cache = createCache({
-    key: "css",
-    stylisPlugins: [
-      px2Rem({
-        unit: "rem",
-        remSize: 100,
-      }),
-    ],
-  })
-
   return (
-    <CacheProvider value={cache}>
-      <HelmetProvider>
-        <DndProvider backend={TouchBackend} options={dragOptions}>
-          <ConfigProvider locale={configLanguage}>
-            <Global styles={globalStyle} />
-            <MessageGroup pt={!isProductMode ? "46px" : "0"} />
-            <UpgradeModalGroup />
-            <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
-            <ModalGroup />
-            <RouterProvider router={ILLARoute} />
-            <div
-              className="illaCodeMirrorWrapper"
-              css={illaCodeMirrorTooltipStyle}
-            />
-          </ConfigProvider>
-        </DndProvider>
-      </HelmetProvider>
-    </CacheProvider>
+    <HelmetProvider>
+      <DndProvider backend={TouchBackend} options={dragOptions}>
+        <ConfigProvider locale={configLanguage}>
+          <Global styles={globalStyle} />
+          <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+          <UpgradeModalGroup />
+          <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
+          <ModalGroup />
+          <RouterProvider router={ILLARoute} />
+          <div
+            className="illaCodeMirrorWrapper"
+            css={illaCodeMirrorTooltipStyle}
+          />
+        </ConfigProvider>
+      </DndProvider>
+    </HelmetProvider>
   )
 }
 

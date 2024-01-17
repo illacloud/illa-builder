@@ -91,6 +91,19 @@ const PanelHeader: FC = () => {
             onClose={() => {
               setGeneratorVisible(false)
             }}
+            filterResourceType={(resourceType) => {
+              return (
+                resourceType !== "restapi" &&
+                resourceType !== "s3" &&
+                resourceType !== "firebase" &&
+                resourceType !== "graphql" &&
+                resourceType !== "smtp" &&
+                resourceType !== "googlesheets" &&
+                resourceType !== "airtable" &&
+                resourceType !== "hfendpoint" &&
+                resourceType !== "huggingface"
+              )
+            }}
           />
         </TriggerProvider>
       </ResourceGeneratorProvider>

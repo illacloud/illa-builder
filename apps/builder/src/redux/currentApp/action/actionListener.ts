@@ -41,6 +41,21 @@ async function handleUpdateActionItem(
   }
 }
 
+async function handleBatchUpdateActionItem(
+  action: ReturnType<typeof actionActions.batchUpdateActionItemReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const selectedAction = listenerApi.getState().config.selectedAction
+  const targetSelectedAction = action.payload.find(
+    (action) => action.actionID === selectedAction?.actionID,
+  )
+  if (targetSelectedAction) {
+    listenerApi.dispatch(
+      configActions.changeSelectedAction(targetSelectedAction),
+    )
+  }
+}
+
 const handleUpdateDisplayNameEffect = (
   action: ReturnType<typeof actionActions.updateActionDisplayNameReducer>,
   listenerApi: AppListenerEffectAPI,
@@ -104,6 +119,10 @@ export function setupActionListeners(
     startListening({
       actionCreator: actionActions.updateActionItemReducer,
       effect: handleUpdateActionItem,
+    }),
+    startListening({
+      actionCreator: actionActions.batchUpdateActionItemReducer,
+      effect: handleBatchUpdateActionItem,
     }),
     startListening({
       actionCreator: actionActions.addActionItemReducer,

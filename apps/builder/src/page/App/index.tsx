@@ -33,7 +33,6 @@ import {
   getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
-  isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -50,7 +49,7 @@ import {
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
 import { Shortcut } from "@/utils/shortcut"
-import { DataWorkspace } from "./Module/DataWorkspace"
+import LeftPanel from "./Module/LeftPanel"
 import { PageNavBar } from "./Module/PageNavBar"
 import { useResize } from "./components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
 import {
@@ -58,7 +57,6 @@ import {
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
-  leftPanelStyle,
   messageWrapperStyle,
   middlePanelStyle,
   modalStyle,
@@ -139,7 +137,6 @@ export const Editor: FC = () => {
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
-  const showLeftPanel = useSelector(isOpenLeftPanel)
   const showRightPanel = useSelector(isOpenRightPanel)
   const showBottomPanel = useSelector(isOpenBottomPanel)
   const showDebugger = useSelector(isOpenDebugger)
@@ -202,9 +199,7 @@ export const Editor: FC = () => {
               <PageNavBar css={navbarStyle} />
             </TriggerProvider>
             <div css={contentStyle}>
-              <TriggerProvider renderInBody zIndex={10}>
-                {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
-              </TriggerProvider>
+              <LeftPanel />
               <div css={middlePanelStyle}>
                 <TriggerProvider renderInBody zIndex={10}>
                   <CanvasPanel css={centerPanelStyle} />

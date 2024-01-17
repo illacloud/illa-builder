@@ -5,6 +5,8 @@ import {
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
 import {
+  INIT_ACTION_ADVANCED_CONFIG,
+  INIT_ACTION_MOCK_CONFIG,
   actionItemInitial,
   getInitialContent,
 } from "@illa-public/public-configs"
@@ -67,6 +69,11 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
             displayName,
             content: initialContent,
             isVirtualResource: false,
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
             ...actionItemInitial,
           }
           if (isGuideMode) {
@@ -118,6 +125,11 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
               enable: false,
               rawData: "",
             },
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
           }
           dispatch(configActions.changeSelectedAction(createActionData))
 
@@ -131,6 +143,11 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
             displayName,
             content: initialContent,
             isVirtualResource: true,
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
             ...actionItemInitial,
           }
           try {
