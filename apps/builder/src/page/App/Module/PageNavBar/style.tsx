@@ -50,6 +50,7 @@ export const rightContentStyle = css`
 
 export const buttonGroupStyle = css`
   display: inline-flex;
+  gap: 8px;
 `
 
 export const badgeStyle = css`
@@ -115,28 +116,4 @@ export const nameStyle = css`
   font-weight: 500;
   cursor: pointer;
   color: ${getColor("grayBlue", "02")};
-`
-
-export const upgradeStyle = css`
-  ${rowCenter};
-  gap: 8px;
-`
-
-export const spaceBetweenStyle = css`
-  ${rowCenter};
-  justify-content: space-between;
-  gap: 8px;
-`
-
-export const keyTextStyle = css`
-  color: ${getColor("grayBlue", "04")};
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  text-transform: capitalize;
-`
-
-export const shareButtonGroupStyle = css`
-  display: flex;
-  gap: 8px;
 `

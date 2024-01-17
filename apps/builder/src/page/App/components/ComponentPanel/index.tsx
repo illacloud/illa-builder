@@ -63,7 +63,7 @@ const ComponentPanel: FC<ComponentPanelProps> = (props) => {
                 {...session}
               />
             ))
-            .concat(<RowSuggestComponent />)
+            .concat(<RowSuggestComponent key="suggest" />)
         ) : (
           <div css={emptyContainerStyle}>
             <ColumnSuggestComponent />
