@@ -29,7 +29,6 @@ import { IMissingResourceModalProps } from "./interface"
 
 const MissingResourceModal: FC<IMissingResourceModalProps> = (props) => {
   const { shown, changeShown } = props
-  console.log("shown", shown)
   const resourceIDMapResource = useSelector(getResourceIDMapResource)
   const missingActionsMap = useSelector(
     getMissingResourceActionGroupByTutorialOrResourceID,
@@ -41,8 +40,8 @@ const MissingResourceModal: FC<IMissingResourceModalProps> = (props) => {
   const dispatch = useDispatch()
 
   const updateActions = async (actionList: ActionItem<ActionContent>[]) => {
-    dispatch(actionActions.batchUpdateActionItemReducer(actionList))
     await fetchBatchUpdateAction(actionList)
+    dispatch(actionActions.batchUpdateActionItemReducer(actionList))
   }
 
   const addResourceCallback = (resource: Resource) => {
