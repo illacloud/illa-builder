@@ -1,3 +1,4 @@
+import { t } from "i18next"
 import { FC } from "react"
 import { Button } from "@illa-design/react"
 import { MissingResourceFooterProps } from "./interface"
@@ -12,7 +13,7 @@ export const MissingResourceFooter: FC<MissingResourceFooterProps> = ({
   return (
     <div css={missingResourceFooterContainerStyle}>
       <Button colorScheme="grayBlue" fullWidth onClick={handleCancelModal}>
-        Cancel
+        {t("editor.action.panel.buttonmissing_resource.cancel")}
       </Button>
       <Button
         colorScheme="black"
@@ -21,7 +22,7 @@ export const MissingResourceFooter: FC<MissingResourceFooterProps> = ({
         loading={isSaving}
         disabled={!canSave}
       >
-        Save
+        {t("editor.action.panel.buttonmissing_resource.save")}
       </Button>
     </div>
   )

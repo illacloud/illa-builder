@@ -146,20 +146,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               <div css={missingHeaderContainerStyle}>
                 <QuestionCircleIcon color={getColor("orange", "03")} />
                 <h6 css={missingResourceHeaderStyle}>
-                  Resources missing
-                  {/* {t("deploy.missing_resource_tip")} */}
+                  {t(
+                    "editor.action.panel.titlemissing_resource.missing_resources",
+                  )}
                 </h6>
               </div>
               <p css={missingContentStyle}>
-                Some resources of actions in this app have been deleted, which
-                may cause abnormal operation of the app. Please verify the
-                operation.
-                {/* {t("deploy.missing_resource_tip_1")} */}
+                {t(
+                  "editor.action.panel.descmissing_resource.some_resources_of_th",
+                )}
               </p>
             </div>
           ),
-          okText: "Deploy",
-          cancelText: "Configure",
+          okText: t("editor.action.panel.buttonmissing_resource.deploy"),
+          cancelText: t("editor.action.panel.buttonmissing_resource.configure"),
           maskClosable: false,
           okButtonProps: {
             colorScheme: "black",

@@ -101,7 +101,12 @@ const ResourceChoose: FC<ResourceChooseProps> = ({
         w="100%"
         colorScheme="techPurple"
         options={options}
-        value={resourceID || " Choose a resource"}
+        value={
+          resourceID ||
+          t(
+            "editor.action.panel.label.placeholder.missing_resource.choose_a_resource",
+          )
+        }
         onChange={(value) => {
           if (value === "create" && !isAIAgent) {
             setGeneratorVisible(true)

@@ -6,6 +6,7 @@ import {
   useState,
 } from "react"
 import { createPortal } from "react-dom"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { QuestionCircleIcon, getColor } from "@illa-design/react"
 import MissingResources from "@/page/App/components/MIssingResources"
@@ -22,6 +23,7 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
 > = (_props, ref) => {
   const hasMissingResources = useSelector(getHasMissingResourceAction)
   const [shown, setShown] = useState(hasMissingResources)
+  const { t } = useTranslation()
 
   useEffect(() => {
     setShown(hasMissingResources)
@@ -43,7 +45,7 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
           }}
         >
           <QuestionCircleIcon color={getColor("orange", "03")} size="16px" />
-          Resource Missing
+          {t("editor.action.panel.titlemissing_resource.missing_resources")}
         </button>
         {shown &&
           createPortal(

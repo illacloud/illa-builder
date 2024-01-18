@@ -48,10 +48,10 @@ export const ListItem: FC<ItemProps> = (props) => {
   const getStatusText = (status: "missing" | "completed") => {
     switch (status) {
       case "missing": {
-        return t("Missing")
+        return t("editor.action.panel.label.option.missing_resource.missing")
       }
       case "completed": {
-        return t("Completed")
+        return t("editor.action.panel.label.option.missing_resource.completed")
       }
     }
   }
@@ -92,7 +92,7 @@ export const ListItem: FC<ItemProps> = (props) => {
           variant="outline"
           colorScheme="grayBlue"
         >
-          watch
+          {t("editor.action.panel.label.option.missing_resource.watch")}
         </Button>
       </div>
     </div>
