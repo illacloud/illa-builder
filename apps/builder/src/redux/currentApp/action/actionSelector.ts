@@ -82,7 +82,7 @@ export const getMissingResourceActionGroupByTutorialOrResourceID =
         }
       > = {}
       missingResourceActionList.forEach((action) => {
-        const hrefLink = action.config.tutorialHref
+        const hrefLink = action.config.tutorialLink
 
         if (hrefLink) {
           if (!tutorialLinkMapActions[hrefLink]) {
