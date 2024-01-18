@@ -1,4 +1,9 @@
-import { FC, useState } from "react"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { FC, useContext, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { getAIAgentIDMapAgent } from "@/redux/aiAgent/dashboardTeamAIAgentSelector"
 import {
@@ -7,7 +12,7 @@ import {
 } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { getResourceIDMapResource } from "@/redux/resource/resourceSelector"
-import { fetchUpdateAction } from "@/services/action"
+import { fetchBatchUpdateAction } from "@/services/action"
 import store from "@/store"
 import { MissingResourceFooter } from "../Footer"
 import { MissingListProps } from "./interface"
@@ -22,6 +27,8 @@ const MissingList: FC<MissingListProps> = (props) => {
   const { handleCancelModal } = props
   const missingResourceActionList = useSelector(getTutorialLinkMapActions)
   const actionIDMapAction = useSelector(getActionIDMapAction)
+  const { track } = useContext(MixpanelTrackContext)
+
   const [isSaving, setIsSaving] = useState(false)
   const [replaceInfo, setReplaceInfo] = useState(
     new Map<
@@ -33,6 +40,7 @@ const MissingList: FC<MissingListProps> = (props) => {
     >(),
   )
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const handleChangePlaceInfo = (
     index: string,
     resourceID: string,
@@ -86,11 +94,17 @@ const MissingList: FC<MissingListProps> = (props) => {
         }
       })
 
-    dispatch(actionActions.batchUpdateActionItemReducer(updateActionList))
+    const missingActionIDs = Object.values(missingResourceActionList)
+      .map((item) => item.actionIDs)
+      .flat()
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "missing_resource_configure_modal_save",
+      parameter1: missingActionIDs.length === updateActionList.length,
+    })
 
-    await Promise.all(
-      updateActionList.map((action) => fetchUpdateAction(action)),
-    )
+    dispatch(actionActions.batchUpdateActionItemReducer(updateActionList))
+    await fetchBatchUpdateAction(updateActionList)
+
     setIsSaving(false)
   }
 
@@ -98,11 +112,21 @@ const MissingList: FC<MissingListProps> = (props) => {
     <>
       <div css={missingListContainerStyle}>
         <header css={columnContainerStyle}>
-          <p css={cellStyle("128px")}>Affected actions</p>
-          <p css={cellStyle("64px")}>Type</p>
-          <p css={cellStyle("200px")}>Replacement</p>
-          <p css={cellStyle("96px")}>Status</p>
-          <p css={cellStyle("96px")}>Tutorial</p>
+          <p css={cellStyle("128px")}>
+            {t("editor.action.panel.label.missing_resource.affected_actions")}
+          </p>
+          <p css={cellStyle("64px")}>
+            {t("editor.action.panel.label.missing_resource.type")}
+          </p>
+          <p css={cellStyle("200px")}>
+            {t("editor.action.panel.label.missing_resource.replacement")}
+          </p>
+          <p css={cellStyle("96px")}>
+            {t("editor.action.panel.label.missing_resource.status")}
+          </p>
+          <p css={cellStyle("96px")}>
+            {t("editor.action.panel.label.missing_resource.tutorial")}
+          </p>
         </header>
         {Object.keys(missingResourceActionList).map((key) => {
           const item = missingResourceActionList[key]

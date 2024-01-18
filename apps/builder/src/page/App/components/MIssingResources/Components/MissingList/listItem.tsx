@@ -1,4 +1,8 @@
-import { FC } from "react"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -42,21 +46,25 @@ export const ListItem: FC<ItemProps> = (props) => {
 
   const actions = useSelector(getActionIDMapAction)
   const { t } = useTranslation()
+  const { track } = useContext(MixpanelTrackContext)
 
   const shownNames = actionIDs.map((id) => actions[id].displayName).join(" ")
 
   const getStatusText = (status: "missing" | "completed") => {
     switch (status) {
       case "missing": {
-        return t("Missing")
+        return t("editor.action.panel.label.option.missing_resource.missing")
       }
       case "completed": {
-        return t("Completed")
+        return t("editor.action.panel.label.option.missing_resource.completed")
       }
     }
   }
 
   const openTutorial = () => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "watch_tutorial",
+    })
     window.open(tutorialHref, "_blank", "width=800px,height=500px")
   }
 
@@ -92,7 +100,7 @@ export const ListItem: FC<ItemProps> = (props) => {
           variant="outline"
           colorScheme="grayBlue"
         >
-          watch
+          {t("editor.action.panel.label.option.missing_resource.watch")}
         </Button>
       </div>
     </div>
