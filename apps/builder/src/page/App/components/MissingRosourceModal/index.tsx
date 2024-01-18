@@ -40,8 +40,8 @@ const MissingResourceModal: FC<IMissingResourceModalProps> = (props) => {
   const dispatch = useDispatch()
 
   const updateActions = async (actionList: ActionItem<ActionContent>[]) => {
-    dispatch(actionActions.batchUpdateActionItemReducer(actionList))
     await fetchBatchUpdateAction(actionList)
+    dispatch(actionActions.batchUpdateActionItemReducer(actionList))
   }
 
   const addResourceCallback = (resource: Resource) => {
