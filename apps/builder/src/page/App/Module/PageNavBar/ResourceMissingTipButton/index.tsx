@@ -1,7 +1,11 @@
+import MissingResources, {
+  MissingResourcesProvider,
+} from "@illa-public/missing-resource-module"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
+import { ActionContent, ActionItem, Resource } from "@illa-public/public-types"
 import {
   ForwardRefRenderFunction,
   forwardRef,
@@ -11,11 +15,25 @@ import {
 } from "react"
 import { createPortal } from "react-dom"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { QuestionCircleIcon, getColor } from "@illa-design/react"
-import MissingResources from "@/page/App/components/MIssingResources"
-import { getHasMissingResourceAction } from "@/redux/currentApp/action/actionSelector"
+import {
+  getAIAgentIDMapAgent,
+  getDashboardTeamAIAgentList,
+} from "@/redux/aiAgent/dashboardTeamAIAgentSelector"
+import {
+  getActionIDMapAction,
+  getHasMissingResourceAction,
+  getMissingResourceActionGroupByTutorialOrResourceID,
+} from "@/redux/currentApp/action/actionSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import {
+  getAllResources,
+  getResourceIDMapResource,
+} from "@/redux/resource/resourceSelector"
+import { fetchBatchUpdateAction } from "@/services/action"
 import { track } from "@/utils/mixpanelHelper"
+import { resourceActions } from "../../../../../redux/resource/resourceSlice"
 import { missingButtonStyle } from "./style"
 
 export interface MissingTipButtonMethod {
@@ -27,8 +45,17 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
   {}
 > = (_props, ref) => {
   const hasMissingResources = useSelector(getHasMissingResourceAction)
+  const resourceIDMapResource = useSelector(getResourceIDMapResource)
+  const missingActionsMap = useSelector(
+    getMissingResourceActionGroupByTutorialOrResourceID,
+  )
+  const resourceList = useSelector(getAllResources)
+  const aiAgentList = useSelector(getDashboardTeamAIAgentList)
+  const actionIDMapAction = useSelector(getActionIDMapAction)
+  const agentIDMapAgent = useSelector(getAIAgentIDMapAgent)
   const [shown, setShown] = useState(hasMissingResources)
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setShown(hasMissingResources)
@@ -40,6 +67,15 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
     }
   })
 
+  const updateActions = async (actionList: ActionItem<ActionContent>[]) => {
+    dispatch(actionActions.batchUpdateActionItemReducer(actionList))
+    await fetchBatchUpdateAction(actionList)
+  }
+
+  const addResourceCallback = (resource: Resource) => {
+    dispatch(resourceActions.addResourceItemReducer(resource))
+  }
+
   return (
     hasMissingResources && (
       <>
@@ -50,7 +86,7 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
           }}
         >
           <QuestionCircleIcon color={getColor("orange", "03")} size="16px" />
-          {t("editor.action.panel.titlemissing_resource.missing_resources")}
+          {t("editor.action.panel.desc.missing_resource.some_resources_of_th")}
         </button>
         {shown &&
           createPortal(
@@ -58,7 +94,18 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
               basicTrack={track}
               pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
             >
-              <MissingResources shown={shown} changeShown={setShown} />
+              <MissingResourcesProvider
+                resourceIDMapResource={resourceIDMapResource}
+                actionIDMapAction={actionIDMapAction}
+                missingActionsMap={missingActionsMap}
+                resourceList={resourceList}
+                aiAgentList={aiAgentList}
+                agentIDMapAgent={agentIDMapAgent}
+                updateActions={updateActions}
+                addResourceCallback={addResourceCallback}
+              >
+                <MissingResources shown={shown} changeShown={setShown} />
+              </MissingResourcesProvider>
             </MixpanelTrackProvider>,
             document.body,
           )}
