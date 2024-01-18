@@ -1,6 +1,6 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { FC } from "react"
 import { MinimizeIcon, Modal, getColor } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { UploadFileList } from "../DetailList"
 import { IUpdateDetailModalProps } from "./interface"
 import { buttonGroupContainerStyle, modalContainerStyle } from "./style"

@@ -1,7 +1,7 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import { DocsIcon } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { LibrariesItemProps } from "./interface"
 import {
   actionGroupContainerStyle,

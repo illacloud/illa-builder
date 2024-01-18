@@ -50,6 +50,7 @@
     "@illa-public/cropper": "workspace:*",
     "@illa-public/dynamic-string": "workspace:^",
     "@illa-public/icon": "workspace:*",
+    "@illa-public/icon-hot-spot": "workspace:^",
     "@illa-public/illa-net": "workspace:*",
     "@illa-public/illa-storage": "workspace:*",
     "@illa-public/invite-modal": "workspace:*",

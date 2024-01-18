@@ -1,9 +1,9 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PlusIcon, getColor } from "@illa-design/react"
 import ColorPickerSetter from "@/components/ColorSetter"
-import IconHotSpot from "@/components/IconHotSpot"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import {
   labelContainerStyle,

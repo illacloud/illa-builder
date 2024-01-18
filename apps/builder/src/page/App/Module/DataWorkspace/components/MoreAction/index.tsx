@@ -1,3 +1,4 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import {
@@ -7,7 +8,6 @@ import {
   MoreIcon,
   getColor,
 } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import store from "@/store"

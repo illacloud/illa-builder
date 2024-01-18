@@ -1,3 +1,4 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
@@ -6,7 +7,6 @@ import { FC, memo } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { HistoryIcon, Trigger, getColor } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 
 const HistoryButton: FC = () => {
   const { teamIdentifier, appId } = useParams()

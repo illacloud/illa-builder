@@ -1,9 +1,9 @@
 import { css } from "@emotion/react"
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { AnimatePresence, motion } from "framer-motion"
 import { Dispatch, FC, SetStateAction, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, Input, SearchIcon } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { SearchHeaderProps } from "./interface"
 import {
   actionListHeaderContainerStyle,
