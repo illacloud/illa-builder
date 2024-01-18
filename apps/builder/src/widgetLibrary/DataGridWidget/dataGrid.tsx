@@ -1,9 +1,5 @@
 import { StyledEngineProvider, ThemeProvider, createTheme } from "@mui/material"
-import {
-  DataGridPremium,
-  GridColDef,
-  LicenseInfo,
-} from "@mui/x-data-grid-premium"
+import { DataGridPremium, GridColDef } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber, isPlainObject } from "lodash-es"
 import {
@@ -25,8 +21,6 @@ import {
 } from "@/widgetLibrary/DataGridWidget/columnDeal"
 import { Toolbar } from "./Toolbar"
 import { BaseDataGridProps } from "./interface"
-
-LicenseInfo.setLicenseKey(import.meta.env.ILLA_MUI_LICENSE)
 
 export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   const {

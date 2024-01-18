@@ -5,6 +5,8 @@ import {
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
 import {
+  INIT_ACTION_ADVANCED_CONFIG,
+  INIT_ACTION_MOCK_CONFIG,
   actionItemInitial,
   getInitialContent,
 } from "@illa-public/public-configs"
@@ -53,6 +55,7 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
     useState<ActionType | null>()
 
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const resourceList = useSelector(getAllResources)
   const dispatch = useDispatch()
   const message = useMessage()
 
@@ -67,6 +70,11 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
             displayName,
             content: initialContent,
             isVirtualResource: false,
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
             ...actionItemInitial,
           }
           if (isGuideMode) {
@@ -118,6 +126,11 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
               enable: false,
               rawData: "",
             },
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
           }
           dispatch(configActions.changeSelectedAction(createActionData))
 
@@ -131,6 +144,11 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
             displayName,
             content: initialContent,
             isVirtualResource: true,
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
             ...actionItemInitial,
           }
           try {
@@ -213,7 +231,7 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
           pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
         >
           <ResourceGeneratorProvider
-            getAllResourceSelector={getAllResources}
+            allResource={resourceList}
             createOrUpdateResourceCallback={handleFinishCreateNewResource}
           >
             <ActionGenerator
