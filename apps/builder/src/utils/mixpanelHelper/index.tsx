@@ -208,16 +208,6 @@ export const trackPageDurationEnd = (pageName: ILLA_PAGE_NAME) => {
   ILLAMixpanel.trackTimeEvent(pageName, teamIdentifier ?? "-1")
 }
 
-export const trackInDashboard = (
-  event: ILLA_MIXPANEL_EVENT_TYPE,
-  pageName: ILLA_PAGE_NAME,
-  properties: Omit<ILLAProperties, "page">,
-) => {
-  track(event, pageName, {
-    ...properties,
-  })
-}
-
 export const resourceContextHelper = (parameter1: string) => {
   return (
     event: ILLA_MIXPANEL_EVENT_TYPE,

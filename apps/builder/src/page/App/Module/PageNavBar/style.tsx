@@ -50,6 +50,7 @@ export const rightContentStyle = css`
 
 export const buttonGroupStyle = css`
   display: inline-flex;
+  gap: 8px;
 `
 
 export const badgeStyle = css`
@@ -117,26 +118,32 @@ export const nameStyle = css`
   color: ${getColor("grayBlue", "02")};
 `
 
-export const upgradeStyle = css`
-  ${rowCenter};
-  gap: 8px;
+export const missingResourceModalContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
 `
 
-export const spaceBetweenStyle = css`
-  ${rowCenter};
-  justify-content: space-between;
-  gap: 8px;
-`
-
-export const keyTextStyle = css`
-  color: ${getColor("grayBlue", "04")};
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  text-transform: capitalize;
-`
-
-export const shareButtonGroupStyle = css`
+export const missingHeaderContainerStyle = css`
   display: flex;
   gap: 8px;
+`
+
+export const missingResourceHeaderStyle = css`
+  margin: 0;
+  padding: 0;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+`
+
+export const missingContentStyle = css`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: ${getColor("grayBlue", "02")};
+  margin: 0;
 `

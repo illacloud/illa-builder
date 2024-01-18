@@ -290,11 +290,13 @@ export const transformDataFormat = (
     }
     case "aiagent": {
       return {
-        agentType: contents.virtualResource.agentType,
-        model: contents.virtualResource.model,
+        agentType: contents.virtualResource?.agentType ?? contents.agentType,
+        model: contents.virtualResource?.model ?? contents.model,
         input: contents.input,
         modelConfig: {
-          maxTokens: contents.virtualResource.modelConfig.maxTokens,
+          maxTokens: (
+            contents.virtualResource?.modelConfig ?? contents.modelConfig
+          ).maxTokens,
           stream: false,
         },
         variables: contents.variables,

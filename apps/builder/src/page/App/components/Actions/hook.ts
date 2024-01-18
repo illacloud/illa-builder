@@ -55,11 +55,11 @@ export const useCreateAction = (): [
         content: initialContent,
         isVirtualResource: false,
         ...actionItemInitial,
-      }
-      data.config = {
-        public: false,
-        advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
-        mockConfig: INIT_ACTION_MOCK_CONFIG,
+        config: {
+          public: false,
+          advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+          mockConfig: INIT_ACTION_MOCK_CONFIG,
+        },
       }
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {

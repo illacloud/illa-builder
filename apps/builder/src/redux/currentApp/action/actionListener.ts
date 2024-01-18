@@ -4,7 +4,7 @@ import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { getActionExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { fetchUpdateAction } from "@/services/action"
+import { fetchBatchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { registerActionPeriod } from "@/utils/action/runAction"
 import { mixedChangeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
@@ -38,6 +38,21 @@ async function handleUpdateActionItem(
     currentAction?.config?.advancedConfig.periodInterval
   ) {
     registerActionPeriod(currentAction)
+  }
+}
+
+async function handleBatchUpdateActionItem(
+  action: ReturnType<typeof actionActions.batchUpdateActionItemReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const selectedAction = listenerApi.getState().config.selectedAction
+  const targetSelectedAction = action.payload.find(
+    (action) => action.actionID === selectedAction?.actionID,
+  )
+  if (targetSelectedAction) {
+    listenerApi.dispatch(
+      configActions.changeSelectedAction(targetSelectedAction),
+    )
   }
 }
 
@@ -90,10 +105,7 @@ const handleUpdateAsyncEffect = (
   }
   const isGuideMode = getIsILLAGuideMode(rootState)
   if (allChangedActions.length && !isGuideMode) {
-    // TODO: it's vary hack,need BE provide new API
-    allChangedActions.forEach((action) => {
-      fetchUpdateAction(action)
-    })
+    fetchBatchUpdateAction(allChangedActions)
   }
 }
 
@@ -104,6 +116,10 @@ export function setupActionListeners(
     startListening({
       actionCreator: actionActions.updateActionItemReducer,
       effect: handleUpdateActionItem,
+    }),
+    startListening({
+      actionCreator: actionActions.batchUpdateActionItemReducer,
+      effect: handleBatchUpdateActionItem,
     }),
     startListening({
       actionCreator: actionActions.addActionItemReducer,

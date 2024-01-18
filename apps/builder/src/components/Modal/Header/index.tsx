@@ -1,3 +1,4 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import {
@@ -6,7 +7,6 @@ import {
   DragPointIcon,
   getColor,
 } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { HeaderProps } from "@/components/Modal/Header/interface"
 import {
   dragIconStyle,
