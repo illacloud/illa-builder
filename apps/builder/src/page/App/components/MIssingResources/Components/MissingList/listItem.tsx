@@ -1,4 +1,8 @@
-import { FC } from "react"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -42,6 +46,7 @@ export const ListItem: FC<ItemProps> = (props) => {
 
   const actions = useSelector(getActionIDMapAction)
   const { t } = useTranslation()
+  const { track } = useContext(MixpanelTrackContext)
 
   const shownNames = actionIDs.map((id) => actions[id].displayName).join(" ")
 
@@ -57,6 +62,9 @@ export const ListItem: FC<ItemProps> = (props) => {
   }
 
   const openTutorial = () => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "watch_tutorial",
+    })
     window.open(tutorialHref, "_blank", "width=800px,height=500px")
   }
 

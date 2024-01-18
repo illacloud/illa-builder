@@ -140,6 +140,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         element: "deploy",
       })
       if (hasMissingResources) {
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+          element: "missing_resource_confirm_modal",
+        })
         modal.show({
           children: (
             <div css={missingResourceModalContainerStyle}>
@@ -167,9 +170,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           w: "320px",
           minW: "320px",
           onOk: async () => {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "missing_resource_confirm_modal_deploy",
+            })
             await deployApp(appInfo.appId, appInfo.config.public)
           },
           onCancel() {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "missing_resource_confirm_modal_configure",
+            })
             missingResourceButtonRef.current?.changeShown(true)
           },
         })

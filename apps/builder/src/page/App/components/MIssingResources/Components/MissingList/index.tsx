@@ -1,4 +1,8 @@
-import { FC, useState } from "react"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { FC, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { getAIAgentIDMapAgent } from "@/redux/aiAgent/dashboardTeamAIAgentSelector"
@@ -23,6 +27,8 @@ const MissingList: FC<MissingListProps> = (props) => {
   const { handleCancelModal } = props
   const missingResourceActionList = useSelector(getTutorialLinkMapActions)
   const actionIDMapAction = useSelector(getActionIDMapAction)
+  const { track } = useContext(MixpanelTrackContext)
+
   const [isSaving, setIsSaving] = useState(false)
   const [replaceInfo, setReplaceInfo] = useState(
     new Map<
@@ -87,6 +93,14 @@ const MissingList: FC<MissingListProps> = (props) => {
           resourceID: newResourceID,
         }
       })
+
+    const missingActionIDs = Object.values(missingResourceActionList)
+      .map((item) => item.actionIDs)
+      .flat()
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "missing_resource_configure_modal_save",
+      parameter1: missingActionIDs.length === updateActionList.length,
+    })
 
     dispatch(actionActions.batchUpdateActionItemReducer(updateActionList))
     await fetchBatchUpdateAction(updateActionList)

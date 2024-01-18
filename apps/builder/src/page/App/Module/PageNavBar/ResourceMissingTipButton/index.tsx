@@ -1,4 +1,8 @@
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import {
   ForwardRefRenderFunction,
   forwardRef,
   useEffect,
@@ -11,6 +15,7 @@ import { useSelector } from "react-redux"
 import { QuestionCircleIcon, getColor } from "@illa-design/react"
 import MissingResources from "@/page/App/components/MIssingResources"
 import { getHasMissingResourceAction } from "@/redux/currentApp/action/actionSelector"
+import { track } from "@/utils/mixpanelHelper"
 import { missingButtonStyle } from "./style"
 
 export interface MissingTipButtonMethod {
@@ -49,7 +54,12 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
         </button>
         {shown &&
           createPortal(
-            <MissingResources shown={shown} changeShown={setShown} />,
+            <MixpanelTrackProvider
+              basicTrack={track}
+              pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
+            >
+              <MissingResources shown={shown} changeShown={setShown} />
+            </MixpanelTrackProvider>,
             document.body,
           )}
       </>
