@@ -53,13 +53,13 @@ const AIAgentPanel: FC = () => {
   )
 
   const variables = useMemo(() => {
-    const resourcesKeys = aiAgentContent.virtualResource.variables.map(
+    const resourcesKeys = (aiAgentContent.virtualResource?.variables ?? []).map(
       (item) => item.key,
     )
 
     let resourcesKeyValues: Record<string, string> = {}
-    if (aiAgentContent.virtualResource.variables.length > 0) {
-      aiAgentContent.virtualResource.variables.forEach((item) => {
+    if ((aiAgentContent.virtualResource?.variables ?? []).length > 0) {
+      ;(aiAgentContent.virtualResource?.variables ?? []).forEach((item) => {
         if (!item) return
         resourcesKeyValues[item.key] = item.value
       })
@@ -81,18 +81,20 @@ const AIAgentPanel: FC = () => {
       }
     })
     return variable
-  }, [aiAgentContent.variables, aiAgentContent.virtualResource.variables])
+  }, [aiAgentContent.variables, aiAgentContent.virtualResource?.variables])
 
   return (
     <div>
-      <HorizontalWithLabel labelName={t("editor.ai-agent.label.model")}>
-        <Input
-          prefix={getLLM(aiAgentContent.virtualResource.model)?.logo}
-          colorScheme="techPurple"
-          readOnly
-          value={getLLM(aiAgentContent.virtualResource.model)?.name}
-        />
-      </HorizontalWithLabel>
+      {aiAgentContent.virtualResource && (
+        <HorizontalWithLabel labelName={t("editor.ai-agent.label.model")}>
+          <Input
+            prefix={getLLM(aiAgentContent.virtualResource.model)?.logo}
+            colorScheme="techPurple"
+            readOnly
+            value={getLLM(aiAgentContent.virtualResource.model)?.name}
+          />
+        </HorizontalWithLabel>
+      )}
       {variables.length > 0 && (
         <RecordEditor
           fillOnly

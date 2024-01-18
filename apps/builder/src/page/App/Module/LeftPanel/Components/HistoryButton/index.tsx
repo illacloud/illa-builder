@@ -1,10 +1,11 @@
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo, getPlanUtils } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { t } from "i18next"
 import { FC, memo } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { HistoryIcon, getColor } from "@illa-design/react"
+import { HistoryIcon, Trigger, getColor } from "@illa-design/react"
 import IconHotSpot from "@/components/IconHotSpot"
 
 const HistoryButton: FC = () => {
@@ -34,9 +35,14 @@ const HistoryButton: FC = () => {
   }
 
   return (
-    <IconHotSpot onClick={handleOpenHistory}>
-      <HistoryIcon color={getColor("grayBlue", "02")} />
-    </IconHotSpot>
+    <Trigger
+      position="right"
+      content={t("flow.editor.app.tooltips.edit_history")}
+    >
+      <IconHotSpot onClick={handleOpenHistory}>
+        <HistoryIcon color={getColor("grayBlue", "02")} />
+      </IconHotSpot>
+    </Trigger>
   )
 }
 

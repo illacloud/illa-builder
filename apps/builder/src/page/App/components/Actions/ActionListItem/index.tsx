@@ -1,10 +1,6 @@
 import { getIconFromResourceType } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import {
-  ActionItem,
-  AiAgentActionContent,
-  GlobalDataActionContent,
-} from "@illa-public/public-types"
+import { Agent, GlobalDataActionContent } from "@illa-public/public-types"
 import { isEqual } from "lodash-es"
 import {
   Suspense,
@@ -277,10 +273,10 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           <div css={actionItemLeftStyle}>
             <div css={actionIconContainer}>
               <Suspense>
-                {action.actionType === "aiagent"
+                {action.actionType === "aiagent" &&
+                "virtualResource" in action.content
                   ? getAgentIcon(
-                      (action as ActionItem<AiAgentActionContent>).content
-                        ?.virtualResource,
+                      action.content.virtualResource as Agent,
                       "16px",
                     )
                   : getIconFromResourceType(action.actionType, "16px")}
