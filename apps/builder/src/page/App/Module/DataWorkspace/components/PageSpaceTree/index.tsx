@@ -31,7 +31,7 @@ export const PageSpaceTree: FC = () => {
   const dispatch = useDispatch()
 
   const handleClickAddButton = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
+    (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "add_page",

@@ -12,7 +12,7 @@ import {
   getILLACloudURL,
   isCloudVersion,
 } from "@illa-public/utils"
-import { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
@@ -46,8 +46,7 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { MissingTipButtonMethod } from "./ResourceMissingTipButton"
-import ResourceMissingTipButton from "./ResourceMissingTipButton"
+import MissingResourceModal from "../../components/MissingRosourceModal"
 import {
   buttonGroupStyle,
   descriptionStyle,
@@ -79,12 +78,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const teamInfo = useSelector(getCurrentTeamInfo)!!
   const hasMissingResources = useSelector(getHasMissingResourceAction)
-  const missingResourceButtonRef = useRef<MissingTipButtonMethod>(null)
   const modal = useModal()
 
   const upgradeModal = useUpgradeModal()
 
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
+  const [shownMissingResource, setShownMissingResource] = useState(false)
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
@@ -181,7 +180,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
               element: "missing_resource_confirm_modal_configure",
             })
-            missingResourceButtonRef.current?.changeShown(true)
+            setShownMissingResource(true)
           },
         })
         return
@@ -316,9 +315,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               </>
             )}
             {PreviewButton}
-            {hasMissingResources && (
+            {/* {hasMissingResources && (
               <ResourceMissingTipButton ref={missingResourceButtonRef} />
-            )}
+            )} */}
             <DeployButtonGroup
               disPrivate={appInfo.config.publishedToMarketplace}
               loading={deployLoading}
@@ -333,6 +332,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           PreviewButton
         )}
       </div>
+      <MissingResourceModal
+        shown={shownMissingResource}
+        changeShown={setShownMissingResource}
+      />
     </div>
   )
 }
