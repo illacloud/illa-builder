@@ -29,7 +29,6 @@ import { IMissingResourceModalProps } from "./interface"
 
 const MissingResourceModal: FC<IMissingResourceModalProps> = (props) => {
   const { shown, changeShown } = props
-  console.log("shown", shown)
   const resourceIDMapResource = useSelector(getResourceIDMapResource)
   const missingActionsMap = useSelector(
     getMissingResourceActionGroupByTutorialOrResourceID,
