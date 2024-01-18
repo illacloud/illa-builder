@@ -1,6 +1,6 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { FC } from "react"
 import { MinusIcon } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { DeleteActionContainerProps } from "./interface"
 import { deleteActionContainerStyle, deleteContainerStyle } from "./style"

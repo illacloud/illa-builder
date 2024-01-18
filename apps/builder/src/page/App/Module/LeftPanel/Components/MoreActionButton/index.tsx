@@ -1,3 +1,4 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { isILLAAPiError } from "@illa-public/illa-net"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
@@ -17,7 +18,6 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { UpgradeTag } from "@/components/UpgradeTag"
 import {
   getAppInfo,

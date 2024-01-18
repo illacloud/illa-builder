@@ -186,6 +186,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
+      '@illa-public/icon-hot-spot':
+        specifier: workspace:^
+        version: link:../../packages/illa-public-component/IconHotSpot
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/ILLANet

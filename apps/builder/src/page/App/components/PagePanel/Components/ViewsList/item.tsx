@@ -1,9 +1,9 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { ReduceIcon, Trigger, useMessage } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import {
   getComponentMap,
   searchDSLByDisplayName,
