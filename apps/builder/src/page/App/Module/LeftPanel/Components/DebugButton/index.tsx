@@ -1,7 +1,8 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { t } from "i18next"
 import { FC, memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Badge, BugIcon, getColor } from "@illa-design/react"
+import { Badge, BugIcon, Trigger, getColor } from "@illa-design/react"
 import IconHotSpot from "@/components/IconHotSpot"
 import { isOpenDebugger } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -26,11 +27,13 @@ const DebugButton: FC = () => {
   }
 
   return (
-    <IconHotSpot onClick={handleClickDebuggerIcon}>
-      <Badge count={debugMessageNumber}>
-        <BugIcon color={getColor("grayBlue", "02")} />
-      </Badge>
-    </IconHotSpot>
+    <Trigger position="right" content={t("flow.editor.app.tooltips.debug")}>
+      <IconHotSpot onClick={handleClickDebuggerIcon}>
+        <Badge count={debugMessageNumber}>
+          <BugIcon color={getColor("grayBlue", "02")} />
+        </Badge>
+      </IconHotSpot>
+    </Trigger>
   )
 }
 
