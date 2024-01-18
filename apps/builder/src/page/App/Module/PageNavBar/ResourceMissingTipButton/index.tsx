@@ -86,7 +86,7 @@ export const ResourceMissingTipButton: ForwardRefRenderFunction<
           }}
         >
           <QuestionCircleIcon color={getColor("orange", "03")} size="16px" />
-          {t("editor.action.panel.desc.missing_resource.some_resources_of_th")}
+          {t("flow.editor.app.tooltips.missing_resources")}
         </button>
         {shown &&
           createPortal(
