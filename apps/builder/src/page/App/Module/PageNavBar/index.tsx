@@ -150,19 +150,21 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 <QuestionCircleIcon color={getColor("orange", "03")} />
                 <h6 css={missingResourceHeaderStyle}>
                   {t(
-                    "editor.action.panel.titlemissing_resource.missing_resources",
+                    "editor.action.panel.title.missing_resource.missing_resources",
                   )}
                 </h6>
               </div>
               <p css={missingContentStyle}>
                 {t(
-                  "editor.action.panel.descmissing_resource.some_resources_of_th",
+                  "editor.action.panel.desc.missing_resource.some_resources_of_th",
                 )}
               </p>
             </div>
           ),
-          okText: t("editor.action.panel.buttonmissing_resource.deploy"),
-          cancelText: t("editor.action.panel.buttonmissing_resource.configure"),
+          okText: t("editor.action.panel.button.missing_resource.deploy"),
+          cancelText: t(
+            "editor.action.panel.button.missing_resource.configure",
+          ),
           maskClosable: false,
           okButtonProps: {
             colorScheme: "black",
