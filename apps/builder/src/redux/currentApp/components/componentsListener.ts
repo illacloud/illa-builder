@@ -10,7 +10,6 @@ import {
 import { getNewPositionWithCrossing } from "@/page/App/components/DotPanel/utils/crossingHelper"
 import { combineWidgetInfos } from "@/page/App/components/DotPanel/utils/getDragShadow"
 import { configActions } from "@/redux/config/configSlice"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   getComponentMap,
@@ -23,19 +22,12 @@ import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
-  getInDependenciesMap,
-  getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import {
-  changeDisplayNameHelper,
-  changeEventHandlerReferenceHelper,
-  mergeUpdateSlice,
-} from "@/utils/changeDisplayNameHelper"
+import { mixedChangeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
-import { getActionList } from "../action/actionSelector"
 
 function handleUpdateComponentDisplayNameEffect(
   action: ReturnType<
@@ -362,52 +354,12 @@ const handleUpdateDisplayNameEffect = (
   listenerApi: AppListenerEffectAPI,
 ) => {
   const { displayName, newDisplayName } = action.payload
-  const rootState = listenerApi.getState()
-  const independenciesMap = getInDependenciesMap(rootState)
-  const seeds = getRawTree(rootState)
-
-  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
-    independenciesMap,
-    seeds,
-    displayName,
-    newDisplayName,
-  )
-
-  const {
-    updateActionSlice: updateActionEventSlice,
-    updateWidgetSlice: updateWidgetEventSlice,
-  } = changeEventHandlerReferenceHelper(
-    displayName,
-    newDisplayName,
-    getActionList(rootState),
-    getComponentMap(rootState),
-  )
-  const contactedUpdateActionSlices = updateActionSlice.concat(
-    ...updateActionEventSlice,
-  )
-  const contactedUpdateWidgetSlice = updateWidgetSlice.concat(
-    ...updateWidgetEventSlice,
-  )
-
-  const {
-    updateActionSlice: mergedActionSlice,
-    updateWidgetSlice: mergedWidgetSlice,
-  } = mergeUpdateSlice(contactedUpdateWidgetSlice, contactedUpdateActionSlices)
-
+  mixedChangeDisplayNameHelper(listenerApi, displayName, newDisplayName)
   listenerApi.dispatch(
     executionActions.updateWidgetLayoutInfoWhenChangeDisplayNameReducer({
       oldDisplayName: displayName,
       newDisplayName,
     }),
-  )
-
-  listenerApi.dispatch(
-    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
-      mergedWidgetSlice,
-    ),
-  )
-  listenerApi.dispatch(
-    actionActions.batchUpdateMultiActionSlicePropsReducer(mergedActionSlice),
   )
 }
 
@@ -424,45 +376,7 @@ const handleUpdateGlobalDataDisplayNameEffect = (
   )
   if (!currentGlobalData) return
   listenerApi.dispatch(configActions.changeSelectedAction(currentGlobalData))
-  const independenciesMap = getInDependenciesMap(rootState)
-  const seeds = getRawTree(rootState)
-  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
-    independenciesMap,
-    seeds,
-    oldKey,
-    key,
-    "globalDataKey",
-  )
-
-  const {
-    updateActionSlice: updateActionEventSlice,
-    updateWidgetSlice: updateWidgetEventSlice,
-  } = changeEventHandlerReferenceHelper(
-    oldKey,
-    key,
-    getActionList(rootState),
-    getComponentMap(rootState),
-  )
-  const contactedUpdateActionSlices = updateActionSlice.concat(
-    ...updateActionEventSlice,
-  )
-  const contactedUpdateWidgetSlice = updateWidgetSlice.concat(
-    ...updateWidgetEventSlice,
-  )
-
-  const {
-    updateActionSlice: mergedActionSlice,
-    updateWidgetSlice: mergedWidgetSlice,
-  } = mergeUpdateSlice(contactedUpdateWidgetSlice, contactedUpdateActionSlices)
-
-  listenerApi.dispatch(
-    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
-      mergedWidgetSlice,
-    ),
-  )
-  listenerApi.dispatch(
-    actionActions.batchUpdateMultiActionSlicePropsReducer(mergedActionSlice),
-  )
+  mixedChangeDisplayNameHelper(listenerApi, oldKey, key, "globalDataKey")
 }
 
 const handlerUpdateViewportSizeEffect = (
@@ -479,6 +393,7 @@ const updateSubPagePathEffect = (
   const { pageName, subPagePath, oldSubPagePath } = action.payload
   const oldExecutionResult = getExecutionResult(listenApi.getState())
   const rootNode = oldExecutionResult.root
+  mixedChangeDisplayNameHelper(listenApi, oldSubPagePath, subPagePath)
   if (rootNode.currentSubPagePath === oldSubPagePath) {
     listenApi.dispatch(
       executionActions.updateCurrentPagePathReducer({

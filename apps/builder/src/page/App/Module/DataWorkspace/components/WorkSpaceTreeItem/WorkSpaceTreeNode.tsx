@@ -1,8 +1,8 @@
 import { convertPathToString } from "@illa-public/dynamic-string"
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { toPath } from "lodash-es"
 import { FC, memo } from "react"
 import { CopyIcon, isArray, isObject } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { WorkSpaceTreeNodeProps } from "@/page/App/Module/DataWorkspace/components/WorkSpaceTreeItem/interface"
 import {
   applyJsonValueColorStyle,

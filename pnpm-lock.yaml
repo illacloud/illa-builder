@@ -186,6 +186,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
+      '@illa-public/icon-hot-spot':
+        specifier: workspace:^
+        version: link:../../packages/illa-public-component/IconHotSpot
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/ILLANet
@@ -201,6 +204,9 @@ importers:
       '@illa-public/market-agent':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MarketAgent
+      '@illa-public/missing-resource-module':
+        specifier: workspace:^
+        version: link:../../packages/illa-public-component/MissingResourceModule
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MixpanelUtils
@@ -3318,6 +3324,55 @@ importers:
       react-redux:
         specifier: ^9.0.4
         version: 9.0.4(@types/react@18.2.38)(react@18.2.0)(redux@5.0.0)
+    devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/illa-public-component/MissingResourceModule:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.11.1
+        version: 11.11.1(@types/react@18.2.38)(react@18.2.0)
+      '@illa-design/react':
+        specifier: workspace:*
+        version: link:../../illa-design/packages/react
+      '@illa-public/icon':
+        specifier: workspace:^
+        version: link:../Icon
+      '@illa-public/icon-hot-spot':
+        specifier: workspace:^
+        version: link:../IconHotSpot
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:^
+        version: link:../MixpanelUtils
+      '@illa-public/public-types':
+        specifier: workspace:*
+        version: link:../publicTypes
+      '@illa-public/resource-generator':
+        specifier: workspace:^
+        version: link:../ResourceGenerator
+      '@illa-public/user-role-utils':
+        specifier: workspace:*
+        version: link:../UserRoleUtils
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.2.38
+        version: 18.2.38
+      '@types/react-dom':
+        specifier: ^18.2.17
+        version: 18.2.17
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-i18next:
+        specifier: ^13.5.0
+        version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
         specifier: workspace:*

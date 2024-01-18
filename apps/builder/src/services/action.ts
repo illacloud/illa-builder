@@ -117,6 +117,24 @@ export const fetchUpdateAction = (action: ActionItem<ActionContent>) => {
   )
 }
 
+export const fetchBatchUpdateAction = (
+  actions: ActionItem<ActionContent>[],
+) => {
+  const appId = getParamsFromIllaRoute("appId") as string
+  return builderRequest<{
+    actions: ActionItem<ActionContent>[]
+  }>(
+    {
+      method: "PUT",
+      url: `/apps/${appId}/actions/byBatch`,
+      data: {
+        actions: actions,
+      },
+    },
+    { teamID: getCurrentTeamID() },
+  )
+}
+
 interface IGenerateSQLRequest {
   description: string | undefined
   resourceID: string | undefined

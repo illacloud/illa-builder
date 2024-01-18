@@ -74,6 +74,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
   const selectedAction = useSelector(getSelectedAction)
   const cachedAction = useSelector(getCachedAction)
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const resourceList = useSelector(getAllResources)
   const shortcut = useContext(ShortCutContext)
   const [generatorVisible, setGeneratorVisible] = useState<boolean>()
   const [currentActionType, setCurrentActionType] =
@@ -102,6 +103,11 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
             displayName,
             content: initialContent,
             isVirtualResource: false,
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
             ...actionItemInitial,
           }
           if (isGuideMode) {
@@ -150,6 +156,11 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
               enable: false,
               rawData: "",
             },
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
           }
           dispatch(configActions.changeSelectedAction(createActionData))
           break
@@ -163,6 +174,11 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
             displayName,
             content: initialContent,
             isVirtualResource: true,
+            config: {
+              public: false,
+              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+              mockConfig: INIT_ACTION_MOCK_CONFIG,
+            },
             ...actionItemInitial,
           }
 
@@ -170,11 +186,6 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
             const createActionData: ActionItem<ActionContent> = {
               ...data,
               actionID: v4(),
-              config: {
-                public: false,
-                advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
-                mockConfig: INIT_ACTION_MOCK_CONFIG,
-              },
             }
             dispatch(actionActions.addActionItemReducer(createActionData))
             dispatch(configActions.changeSelectedAction(createActionData))
@@ -399,7 +410,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
             pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
           >
             <ResourceGeneratorProvider
-              getAllResourceSelector={getAllResources}
+              allResource={resourceList}
               createOrUpdateResourceCallback={handleFinishCreateNewResource}
             >
               <ActionGenerator

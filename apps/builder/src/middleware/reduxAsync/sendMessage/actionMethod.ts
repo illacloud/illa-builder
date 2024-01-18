@@ -84,5 +84,33 @@ export const actionsAsync = (
       )
       break
     }
+    case "batchUpdateResourceID": {
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
+          true,
+          action,
+          teamID,
+          uid,
+          [payload],
+        ),
+      )
+      break
+    }
+    case "batchUpdateActionItemReducer": {
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
+          true,
+          action,
+          teamID,
+          uid,
+          [payload],
+        ),
+      )
+      break
+    }
   }
 }

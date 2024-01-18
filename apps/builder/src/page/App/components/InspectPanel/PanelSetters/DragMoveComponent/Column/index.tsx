@@ -1,5 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { FC, useState } from "react"
 import {
   CopyIcon,
@@ -10,7 +11,6 @@ import {
   Trigger,
   getColor,
 } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { BaseModal } from "@/page/App/components/InspectPanel/PanelSetters/PublicComponent/Modal"
 import { ColumnProps } from "./interface"
 import {

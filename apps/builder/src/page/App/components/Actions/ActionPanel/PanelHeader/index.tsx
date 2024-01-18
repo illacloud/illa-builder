@@ -30,6 +30,7 @@ const PanelHeader: FC = () => {
   const { t } = useTranslation()
   const [editorVisible, setEditorVisible] = useState(false)
   const [generatorVisible, setGeneratorVisible] = useState(false)
+  const resourceList = useSelector(getAllResources)
 
   const action = useSelector(getCachedAction)!!
   const dispatch = useDispatch()
@@ -52,7 +53,7 @@ const PanelHeader: FC = () => {
       pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
     >
       <ResourceGeneratorProvider
-        getAllResourceSelector={getAllResources}
+        allResource={resourceList}
         createOrUpdateResourceCallback={createOrUpdateResourceCallback}
       >
         <TriggerProvider renderInBody zIndex={10}>

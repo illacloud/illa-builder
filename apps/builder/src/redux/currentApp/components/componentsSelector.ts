@@ -439,6 +439,9 @@ export const getGlobalDataToActionList = createSelector(
             enable: false,
             rawData: "",
           },
+          config: {
+            public: false,
+          },
         }
       }) ?? []
 

@@ -98,3 +98,33 @@ export const resetActionReducer: CaseReducer<
 > = () => {
   return actionInitialState
 }
+
+export const batchUpdateResourceID: CaseReducer<
+  ActionItem<ActionContent>[],
+  PayloadAction<Record<string, { actionID: string; resourceID: string }>>
+> = (state, action) => {
+  const payload = action.payload
+  Object.values(payload).forEach(({ actionID, resourceID }) => {
+    const index = state.findIndex((item: ActionItem<ActionContent>) => {
+      return item.actionID === actionID
+    })
+    if (index != -1) {
+      state[index].resourceID = resourceID
+    }
+  })
+}
+
+export const batchUpdateActionItemReducer: CaseReducer<
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>[]>
+> = (state, action) => {
+  action.payload.forEach((item) => {
+    const index = state.findIndex((actionItem) => {
+      return actionItem.actionID === item.actionID
+    })
+    if (index != -1) {
+      state[index] = item
+    }
+  })
+  return state
+}

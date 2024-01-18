@@ -1,9 +1,9 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PlusIcon } from "@illa-design/react"
-import IconHotSpot from "@/components/IconHotSpot"
 import { PanelBar } from "@/components/PanelBar"
 import { getPageDisplayNameMapViewDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
@@ -31,7 +31,7 @@ export const PageSpaceTree: FC = () => {
   const dispatch = useDispatch()
 
   const handleClickAddButton = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
+    (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "add_page",

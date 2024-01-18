@@ -12,73 +12,54 @@ import {
   getILLACloudURL,
   isCloudVersion,
 } from "@illa-public/utils"
-import { FC, MouseEvent, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import {
-  Badge,
-  BugIcon,
   Button,
-  ButtonGroup,
-  DropList,
-  DropListItem,
-  Dropdown,
   ExitIcon,
   FullScreenIcon,
-  MoreIcon,
-  Switch,
+  QuestionCircleIcon,
   getColor,
   useMessage,
+  useModal,
 } from "@illa-design/react"
 import Logo from "@/assets/illa-logo.svg?react"
 import SnowIcon from "@/assets/snow-icon.svg?react"
-import { UpgradeTag } from "@/components/UpgradeTag"
 import { AppName } from "@/page/App/Module/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/Module/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/Module/PageNavBar/CollaboratorsList"
-import { ContributeButton } from "@/page/App/Module/PageNavBar/ContributeButton"
 import { DeployButtonGroup } from "@/page/App/Module/PageNavBar/DeloyButtonGroup"
 import { ShareAppButton } from "@/page/App/Module/PageNavBar/ShareAppButton"
 import { WindowIcons } from "@/page/App/Module/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/Module/PageNavBar/interface"
-import { duplicateApp } from "@/page/App/Module/PageNavBar/utils"
 import {
   getIsILLAEditMode,
   getIsILLAGuideMode,
   getIsILLAPreviewMode,
   getIsOnline,
-  isOpenDebugger,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  getAppInfo,
-  getCurrentAppWaterMarkConfig,
-} from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getHasMissingResourceAction } from "@/redux/currentApp/action/actionSelector"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import {
-  fetchDeployApp,
-  forkCurrentApp,
-  updateWaterMarkConfig,
-} from "@/services/apps"
-import { takeSnapShot } from "@/services/history"
+import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isMAC } from "@/utils/userAgent"
+import MissingResourceModal from "../../components/MissingRosourceModal"
 import {
-  badgeStyle,
   buttonGroupStyle,
   descriptionStyle,
   informationStyle,
-  keyTextStyle,
   logoCursorStyle,
+  missingContentStyle,
+  missingHeaderContainerStyle,
+  missingResourceHeaderStyle,
+  missingResourceModalContainerStyle,
   navBarStyle,
   rightContentStyle,
   rowCenter,
   saveFailedTipStyle,
-  shareButtonGroupStyle,
-  spaceBetweenStyle,
-  upgradeStyle,
   viewControlStyle,
 } from "./style"
 
@@ -87,24 +68,22 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
-  const navigate = useNavigate()
 
-  const { teamIdentifier, appId } = useParams()
+  const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
-  const waterMark = useSelector(getCurrentAppWaterMarkConfig)
-  const debuggerVisible = useSelector(isOpenDebugger)
   const isOnline = useSelector(getIsOnline)
-  const debuggerData = useSelector(getExecutionDebuggerData)
-  const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
   const isEditMode = useSelector(getIsILLAEditMode)
   const isPreviewMode = useSelector(getIsILLAPreviewMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const teamInfo = useSelector(getCurrentTeamInfo)!!
+  const hasMissingResources = useSelector(getHasMissingResourceAction)
+  const modal = useModal()
+
   const upgradeModal = useUpgradeModal()
 
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
-  const [duplicateLoading, setDuplicateLoading] = useState(false)
+  const [shownMissingResource, setShownMissingResource] = useState(false)
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
@@ -112,21 +91,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
-
-  const handleClickDebuggerIcon = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "debug",
-      parameter2: debugMessageNumber,
-    })
-    dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
-  }, [debugMessageNumber, debuggerVisible, dispatch])
-
-  useEffect(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-      element: "debug",
-      parameter2: debugMessageNumber,
-    })
-  }, [debugMessageNumber])
 
   const deployApp = useCallback(
     async (
@@ -167,23 +131,63 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [deployApp],
   )
 
-  const handleClickDeploy = useCallback(async () => {
+  const handleClickDeploy = async () => {
     if (isGuideMode) {
       await forkGuideAppAndDeploy(appInfo.appName)
     } else {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
+      if (hasMissingResources) {
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+          element: "missing_resource_confirm_modal",
+        })
+        modal.show({
+          children: (
+            <div css={missingResourceModalContainerStyle}>
+              <div css={missingHeaderContainerStyle}>
+                <QuestionCircleIcon color={getColor("orange", "03")} />
+                <h6 css={missingResourceHeaderStyle}>
+                  {t(
+                    "editor.action.panel.title.missing_resource.missing_resources",
+                  )}
+                </h6>
+              </div>
+              <p css={missingContentStyle}>
+                {t(
+                  "editor.action.panel.desc.missing_resource.some_resources_of_th",
+                )}
+              </p>
+            </div>
+          ),
+          okText: t("editor.action.panel.button.missing_resource.deploy"),
+          cancelText: t(
+            "editor.action.panel.button.missing_resource.configure",
+          ),
+          maskClosable: false,
+          okButtonProps: {
+            colorScheme: "black",
+          },
+          w: "320px",
+          minW: "320px",
+          onOk: async () => {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "missing_resource_confirm_modal_deploy",
+            })
+            await deployApp(appInfo.appId, appInfo.config.public)
+          },
+          onCancel() {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "missing_resource_confirm_modal_configure",
+            })
+            setShownMissingResource(true)
+          },
+        })
+        return
+      }
       await deployApp(appInfo.appId, appInfo.config.public)
     }
-  }, [
-    appInfo.appId,
-    appInfo.appName,
-    appInfo.config.public,
-    deployApp,
-    forkGuideAppAndDeploy,
-    isGuideMode,
-  ])
+  }
 
   const handleClickDeployMenu = useCallback(
     async (key: string | number) => {
@@ -250,73 +254,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [dispatch, isEditMode])
 
-  const handleDuplicateApp = async () => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "app_duplicate",
-      parameter5: appId,
-    })
-    if (duplicateLoading) return
-    setDuplicateLoading(true)
-    try {
-      const response = await duplicateApp(appInfo.appId, appInfo.appName)
-      navigate(`/${teamIdentifier}/app/${response.data.appId}`)
-    } catch (error) {
-      if (isILLAAPiError(error)) {
-        message.error({ content: t("dashboard.app.duplicate_fail") })
-      } else {
-        message.error({ content: t("network_error") })
-      }
-    } finally {
-      setDuplicateLoading(false)
-    }
-  }
-
-  const handleOpenHistory = useCallback(() => {
-    if (!canUseBillingFeature) {
-      upgradeModal({
-        modalType: "upgrade",
-        from: "app_edit_more_history",
-      })
-    } else {
-      navigate(`/${teamIdentifier}/appHistory/${appId}`)
-    }
-  }, [appId, canUseBillingFeature, navigate, teamIdentifier, upgradeModal])
-
-  const handleSaveToHistory = useCallback(async () => {
-    if (appId) {
-      try {
-        await takeSnapShot(appId)
-        message.success({ content: t("editor.history.message.suc.save") })
-      } catch (error) {
-        if (isILLAAPiError(error)) {
-          message.error({ content: t("editor.history.message.fail.save") })
-        } else {
-          message.error({ content: t("network_error") })
-        }
-      }
-    }
-  }, [appId, message, t])
-
-  const handleWaterMarkChange = useCallback(
-    async (value: boolean, event: MouseEvent) => {
-      if (appId) {
-        event.stopPropagation()
-        const res = await updateWaterMarkConfig(!value, appId)
-        dispatch(appInfoActions.updateAppInfoReducer(res.data))
-      }
-    },
-    [appId, dispatch],
-  )
-
-  const checkUpgrade = useCallback(() => {
-    if (!canUseBillingFeature) {
-      upgradeModal({
-        modalType: "upgrade",
-        from: "app_edit_more_watermark",
-      })
-    }
-  }, [canUseBillingFeature, upgradeModal])
-
   const PreviewButton = (
     <Button
       colorScheme="grayBlue"
@@ -369,128 +306,36 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {isPreviewMode && <AppSizeButtonGroup />}
       </div>
       <div css={rightContentStyle}>
-        {isCloudVersion && !isGuideMode && (
-          <div css={shareButtonGroupStyle}>
-            <CollaboratorsList />
-            {canShowShareAppModal && <ShareAppButton appInfo={appInfo} />}
-          </div>
-        )}
         {isEditMode ? (
           <div css={buttonGroupStyle}>
-            {!isGuideMode && (
-              <Dropdown
-                position="bottom-end"
-                trigger="click"
-                triggerProps={{ closeDelay: 0, openDelay: 0 }}
-                onVisibleChange={(visible) => {
-                  if (visible) {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-                      element: "app_duplicate",
-                      parameter5: appId,
-                    })
-                  }
-                }}
-                dropList={
-                  <DropList>
-                    <DropListItem
-                      key="duplicate"
-                      value="duplicate"
-                      title={t("duplicate")}
-                      onClick={handleDuplicateApp}
-                    />
-                    {isCloudVersion && (
-                      <>
-                        <DropListItem
-                          key="history"
-                          value="history"
-                          title={
-                            <span css={upgradeStyle}>
-                              {t("editor.history.history")}
-                              {!canUseBillingFeature && <UpgradeTag />}
-                            </span>
-                          }
-                          onClick={handleOpenHistory}
-                        />
-                        {canUseBillingFeature && (
-                          <DropListItem
-                            key="saveHistory"
-                            value="saveHistory"
-                            title={
-                              <div css={spaceBetweenStyle}>
-                                <span>{t("editor.history.save")}</span>
-                                <span css={keyTextStyle}>
-                                  {isMAC()
-                                    ? t("editor.history.save_keyboard.cmds")
-                                    : t("editor.history.save_keyboard.ctrls")}
-                                </span>
-                              </div>
-                            }
-                            onClick={handleSaveToHistory}
-                          />
-                        )}
-                        <DropListItem
-                          key="configWaterMark"
-                          value="configWaterMark"
-                          title={
-                            <span css={upgradeStyle}>
-                              {t("billing.advanced.feature")}
-                              {canUseBillingFeature ? (
-                                <Switch
-                                  checked={!waterMark}
-                                  onChange={handleWaterMarkChange}
-                                />
-                              ) : (
-                                <UpgradeTag />
-                              )}
-                            </span>
-                          }
-                          onClick={checkUpgrade}
-                        />
-                      </>
-                    )}
-                  </DropList>
-                }
-              >
-                <Button
-                  mr="8px"
-                  colorScheme="white"
-                  leftIcon={<MoreIcon size="14px" />}
-                />
-              </Dropdown>
+            {isCloudVersion && (
+              <>
+                <CollaboratorsList />
+                {canShowShareAppModal && <ShareAppButton appInfo={appInfo} />}
+              </>
             )}
-            <ButtonGroup css={buttonGroupStyle} spacing="8px">
-              <Badge
-                css={badgeStyle}
-                count={debuggerData && Object.keys(debuggerData).length}
-              >
-                <Button
-                  colorScheme="white"
-                  size="medium"
-                  leftIcon={
-                    <BugIcon color={getColor("grayBlue", "02")} size="14px" />
-                  }
-                  onClick={handleClickDebuggerIcon}
-                />
-              </Badge>
-              {PreviewButton}
-              {!isGuideMode && isCloudVersion && canShowShareAppModal && (
-                <ContributeButton appInfo={appInfo} />
-              )}
-              <DeployButtonGroup
-                disPrivate={appInfo.config.publishedToMarketplace}
-                loading={deployLoading}
-                isPublic={appInfo.config.public}
-                isGuideMode={isGuideMode}
-                canUseBillingFeature={canUseBillingFeature}
-                onClickDeploy={handleClickDeploy}
-                onClickDeployMenu={handleClickDeployMenu}
-              />
-            </ButtonGroup>
+            {PreviewButton}
+            {/* {hasMissingResources && (
+              <ResourceMissingTipButton ref={missingResourceButtonRef} />
+            )} */}
+            <DeployButtonGroup
+              disPrivate={appInfo.config.publishedToMarketplace}
+              loading={deployLoading}
+              isPublic={appInfo.config.public}
+              isGuideMode={isGuideMode}
+              canUseBillingFeature={canUseBillingFeature}
+              onClickDeploy={handleClickDeploy}
+              onClickDeployMenu={handleClickDeployMenu}
+            />
           </div>
         ) : (
           PreviewButton
         )}
       </div>
+      <MissingResourceModal
+        shown={shownMissingResource}
+        changeShown={setShownMissingResource}
+      />
     </div>
   )
 }
