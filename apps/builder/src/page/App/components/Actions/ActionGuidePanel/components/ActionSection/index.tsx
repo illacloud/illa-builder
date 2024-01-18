@@ -55,6 +55,7 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
     useState<ActionType | null>()
 
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const resourceList = useSelector(getAllResources)
   const dispatch = useDispatch()
   const message = useMessage()
 
@@ -230,7 +231,7 @@ const ActionPanelSection: FC<PanelSectionProps> = (props) => {
           pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
         >
           <ResourceGeneratorProvider
-            getAllResourceSelector={getAllResources}
+            allResource={resourceList}
             createOrUpdateResourceCallback={handleFinishCreateNewResource}
           >
             <ActionGenerator

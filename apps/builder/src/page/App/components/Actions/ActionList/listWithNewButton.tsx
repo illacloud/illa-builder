@@ -74,6 +74,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
   const selectedAction = useSelector(getSelectedAction)
   const cachedAction = useSelector(getCachedAction)
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const resourceList = useSelector(getAllResources)
   const shortcut = useContext(ShortCutContext)
   const [generatorVisible, setGeneratorVisible] = useState<boolean>()
   const [currentActionType, setCurrentActionType] =
@@ -409,7 +410,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
             pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
           >
             <ResourceGeneratorProvider
-              getAllResourceSelector={getAllResources}
+              allResource={resourceList}
               createOrUpdateResourceCallback={handleFinishCreateNewResource}
             >
               <ActionGenerator

@@ -58,6 +58,7 @@ const AgentPanelSection: FC<AgentPanelSectionProps> = (props) => {
     useState(false)
 
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const resourceList = useSelector(getAllResources)
   const dispatch = useDispatch()
   const message = useMessage()
   const filterAgents = agents.slice(0, 4)
@@ -240,7 +241,7 @@ const AgentPanelSection: FC<AgentPanelSectionProps> = (props) => {
           pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
         >
           <ResourceGeneratorProvider
-            getAllResourceSelector={getAllResources}
+            allResource={resourceList}
             createOrUpdateResourceCallback={handleFinishCreateNewResource}
           >
             <ActionGenerator

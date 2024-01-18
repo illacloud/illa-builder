@@ -1,6 +1,6 @@
+import { getTutorialLink } from "@illa-public/missing-resource-module/util"
 import { ActionContent, ActionItem } from "@illa-public/public-types"
 import { createSelector } from "@reduxjs/toolkit"
-import { getTutorialLink } from "@/page/App/components/MIssingResources/util"
 import { RootState } from "@/store"
 import { getAIAgentIDMapAgent } from "../../aiAgent/dashboardTeamAIAgentSelector"
 import { getResourceIDMapResource } from "../../resource/resourceSelector"
@@ -68,47 +68,48 @@ export const getMissingResourceActionList = createSelector(
   },
 )
 
-export const getTutorialLinkMapActions = createSelector(
-  [getMissingResourceActionList],
-  (missingResourceActionList) => {
-    const tutorialLinkMapActions: Record<
-      string,
-      {
-        actionIDs: string[]
-        resourceType: string
-        tutorialHref: string
-        hasLink: boolean
-      }
-    > = {}
-    missingResourceActionList.forEach((action) => {
-      const hrefLink = action.config.tutorialHref
+export const getMissingResourceActionGroupByTutorialOrResourceID =
+  createSelector(
+    [getMissingResourceActionList],
+    (missingResourceActionList) => {
+      const tutorialLinkMapActions: Record<
+        string,
+        {
+          actionIDs: string[]
+          resourceType: string
+          tutorialHref: string
+          hasLink: boolean
+        }
+      > = {}
+      missingResourceActionList.forEach((action) => {
+        const hrefLink = action.config.tutorialHref
 
-      if (hrefLink) {
-        if (!tutorialLinkMapActions[hrefLink]) {
-          tutorialLinkMapActions[hrefLink] = {
-            actionIDs: [],
-            resourceType: action.actionType,
-            tutorialHref: hrefLink,
-            hasLink: true,
+        if (hrefLink) {
+          if (!tutorialLinkMapActions[hrefLink]) {
+            tutorialLinkMapActions[hrefLink] = {
+              actionIDs: [],
+              resourceType: action.actionType,
+              tutorialHref: hrefLink,
+              hasLink: true,
+            }
           }
-        }
-        tutorialLinkMapActions[hrefLink].actionIDs.push(action.actionID)
-      } else {
-        const resourceID = action.resourceID!
-        if (!tutorialLinkMapActions[resourceID]) {
-          tutorialLinkMapActions[resourceID] = {
-            actionIDs: [],
-            resourceType: action.actionType,
-            tutorialHref: getTutorialLink(action.actionType),
-            hasLink: false,
+          tutorialLinkMapActions[hrefLink].actionIDs.push(action.actionID)
+        } else {
+          const resourceID = action.resourceID!
+          if (!tutorialLinkMapActions[resourceID]) {
+            tutorialLinkMapActions[resourceID] = {
+              actionIDs: [],
+              resourceType: action.actionType,
+              tutorialHref: getTutorialLink(action.actionType),
+              hasLink: false,
+            }
           }
+          tutorialLinkMapActions[resourceID].actionIDs.push(action.actionID)
         }
-        tutorialLinkMapActions[resourceID].actionIDs.push(action.actionID)
-      }
-    })
-    return tutorialLinkMapActions
-  },
-)
+      })
+      return tutorialLinkMapActions
+    },
+  )
 
 export const getHasMissingResourceAction = createSelector(
   [getMissingResourceActionList],

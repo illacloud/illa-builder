@@ -9,6 +9,7 @@ import {
 } from "@illa-public/resource-generator"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { useMessage } from "@illa-design/react"
 // import { useTranslation } from "react-i18next"
 // import { useMessage } from "@illa-design/react"
@@ -23,6 +24,7 @@ export const ResourceCreateOrEditPanel: FC<ResourceCreateOrEditPanelProps> = (
 
   const message = useMessage()
   const { t } = useTranslation()
+  const resourceList = useSelector(getAllResources)
 
   const handleOnFinished = () => {
     track(
@@ -50,7 +52,7 @@ export const ResourceCreateOrEditPanel: FC<ResourceCreateOrEditPanelProps> = (
       pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE_EDIT}
     >
       <ResourceGeneratorProvider
-        getAllResourceSelector={getAllResources}
+        allResource={resourceList}
         createOrUpdateResourceCallback={handleOnFinished}
       >
         <ResourceCreatePanel
