@@ -26,6 +26,13 @@ export const addActionItemReducer: CaseReducer<
   return state
 }
 
+export const batchAddActionItemReducer: CaseReducer<
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>[]>
+> = (state, action) => {
+  return state.concat(action.payload)
+}
+
 export const updateActionItemReducer: CaseReducer<
   ActionItem<ActionContent>[],
   PayloadAction<ActionItem<ActionContent>>
