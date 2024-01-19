@@ -10,7 +10,7 @@
       "databaseName": "illa_demo",
       "databasePassword": "illa2022",
       "databaseUsername": "illa",
-      "host": "onboarding-mysql01v.illacloud.com",
+      "host": "146.190.2.7",
       "port": "30739",
       "ssl": {
         "clientCert": "",
