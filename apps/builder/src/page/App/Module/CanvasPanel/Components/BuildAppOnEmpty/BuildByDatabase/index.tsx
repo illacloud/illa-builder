@@ -13,7 +13,6 @@ import { Button, getColor } from "@illa-design/react"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -45,7 +44,6 @@ const BuildByDatabase: FC = () => {
         const actions = await fetchBatchCreateAction(teamID, appID, actionsInfo)
         DisplayNameGenerator.updateDisplayNameList(appInfo, actions)
         dispatch(actionActions.batchAddActionItemReducer(actions))
-        dispatch(executionActions.startExecutionReducer())
         resolve(undefined)
       } catch (error) {
         reject(error)

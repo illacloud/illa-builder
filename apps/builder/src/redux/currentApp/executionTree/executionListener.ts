@@ -462,6 +462,7 @@ export function setupExecutionListeners(
         componentsActions.updateCurrentPageStyleReducer,
         componentsActions.deleteCurrentPageStyleReducer,
         actionActions.addActionItemReducer,
+        actionActions.batchAddActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
         actionActions.batchUpdateMultiActionSlicePropsReducer,
