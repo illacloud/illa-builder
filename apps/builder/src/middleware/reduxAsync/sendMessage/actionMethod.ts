@@ -28,6 +28,20 @@ export const actionsAsync = (
       )
       break
     }
+    case "batchAddActionItemReducer": {
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.ACTION,
+          true,
+          action,
+          teamID,
+          uid,
+          [payload],
+        ),
+      )
+      break
+    }
     case "removeActionItemReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
@@ -70,6 +84,7 @@ export const actionsAsync = (
       )
       break
     }
+    // 111
     case "batchUpdateMultiActionSlicePropsReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(

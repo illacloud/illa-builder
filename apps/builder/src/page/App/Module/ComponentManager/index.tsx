@@ -4,13 +4,11 @@ import { useSelector } from "react-redux"
 import { SimpleTabs, getRenderBody } from "@/components/Tabs"
 import { COMPONENT_MANAGER_TABS } from "@/components/Tabs/constant"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
-import { getWidgetCount } from "@/redux/currentApp/components/componentsSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
-import { Tip } from "./Components/tips"
-import { containerStyle, notHasComponentTipsStyle } from "./style"
+import { containerStyle } from "./style"
 
 export const ComponentsManager: FC = () => {
   const [activeKey, setActiveKey] = useState("Insert")
@@ -19,7 +17,6 @@ export const ComponentsManager: FC = () => {
   const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
   const prevPageDisplayName = useRef<string>(currentPageDisplayName)
   const isClickChange = useRef<boolean>(false)
-  const widgetCount = useSelector(getWidgetCount)
 
   useEffect(() => {
     if (!isClickChange.current) {
@@ -70,11 +67,6 @@ export const ComponentsManager: FC = () => {
       <Suspense fallback={<WidgetLoading />}>
         {getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}
       </Suspense>
-      {widgetCount <= 0 && (
-        <div css={notHasComponentTipsStyle}>
-          <Tip />
-        </div>
-      )}
     </div>
   )
 }
