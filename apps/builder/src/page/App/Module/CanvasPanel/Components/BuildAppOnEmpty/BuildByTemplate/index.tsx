@@ -2,6 +2,7 @@ import {
   AppTemplateCard,
   CreateFromTemplateModal,
   REPORT_PARAMETER,
+  fetchBatchCreateAction,
 } from "@illa-public/create-app"
 import { ProductMarketApp } from "@illa-public/market-app"
 import {
@@ -11,13 +12,14 @@ import {
 import { AnimatePresence } from "framer-motion"
 import { FC, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NextIcon } from "@illa-design/react"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { fetchPubicAppInitData } from "@/services/apps"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getCurrentTeamID } from "@/utils/team"
 import {
   containerStyle,
   moreContainerStyle,
@@ -43,6 +45,8 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const { track } = useContext(MixpanelTrackContext)
+  const teamID = useSelector(getCurrentTeamID)!
+  const appID = useSelector(getAppId)!
 
   const handleForkApp = async (appId: string, teamIdentifier?: string) => {
     return new Promise(async (resolve, reject) => {
@@ -70,8 +74,12 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
             updateSlice: data.components.props!,
           }),
         )
-        dispatch(actionActions.batchAddActionItemReducer(data.actions))
-        dispatch(executionActions.startExecutionReducer())
+        const actions = await fetchBatchCreateAction(
+          teamID,
+          appID,
+          data.actions,
+        )
+        dispatch(actionActions.batchAddActionItemReducer(actions))
         resolve(undefined)
       } catch (error) {
         reject(error)
@@ -100,7 +108,7 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
             <div
               key={app?.appId || i}
               css={templateCardContainerStyle(i, showAnimation)}
-              onMouseEnter={() => handleShowPreview(app?.config?.cover)}
+              onMouseEnter={() => handleShowPreview(marketplace?.config?.cover)}
               onMouseLeave={() => handleShowPreview()}
             >
               <AppTemplateCard
@@ -118,7 +126,7 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
                   handleForkApp(appId, teamIdentifier)
                 }}
                 appID={app?.appId}
-                cover={app?.config?.cover}
+                cover={marketplace?.config?.cover}
                 appName={app?.appName}
               />
             </div>
