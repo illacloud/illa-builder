@@ -2856,6 +2856,9 @@ importers:
       '@illa-public/market-app':
         specifier: workspace:*
         version: link:../MarketApp
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:^
+        version: link:../MixpanelUtils
       '@illa-public/public-configs':
         specifier: workspace:*
         version: link:../publicConfig

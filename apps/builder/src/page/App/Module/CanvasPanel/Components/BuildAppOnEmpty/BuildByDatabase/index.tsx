@@ -1,12 +1,19 @@
 import {
   BuildActionInfo,
   CreateFromResourceModal,
+  REPORT_PARAMETER,
   fetchBatchCreateAction,
 } from "@illa-public/create-app"
 import { getIconFromWidgetType } from "@illa-public/icon"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
 import { ComponentTreeNode, Resource } from "@illa-public/public-types"
 import { AnimatePresence } from "framer-motion"
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, getColor } from "@illa-design/react"
@@ -16,6 +23,7 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { resourceContextHelper } from "@/utils/mixpanelHelper"
 import { getCurrentTeamID } from "@/utils/team"
 import { containerStyle, textContentStyle } from "./style"
 
@@ -28,6 +36,8 @@ const BuildByDatabase: FC = () => {
   const resourceList = useSelector(getAllResources) || []
   const [showCreateFromResourceModal, setShowCreateFromResourceModal] =
     useState(false)
+
+  const { track } = useContext(MixpanelTrackContext)
 
   const createFromResourceCallback = async (
     appInfo: ComponentTreeNode,
@@ -58,6 +68,18 @@ const BuildByDatabase: FC = () => {
     [dispatch],
   )
 
+  const handleClickFromResource = () => {
+    track?.(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      {
+        element: "create_app_modal_db",
+        parameter1: REPORT_PARAMETER.BLANK_APP,
+      },
+      "both",
+    )
+    setShowCreateFromResourceModal(true)
+  }
+
   return (
     <>
       <div css={containerStyle}>
@@ -66,22 +88,27 @@ const BuildByDatabase: FC = () => {
           <span>{t("new_dashboard.create_new.generate_crud_app_fr")}</span>
         </div>
         <Button
-          onClick={() => setShowCreateFromResourceModal(true)}
+          onClick={handleClickFromResource}
           colorScheme={getColor("grayBlue", "02")}
         >
           {t("new_dashboard.create_from_resource.input_type_option.create")}
         </Button>
       </div>
-      <AnimatePresence>
-        {showCreateFromResourceModal && (
-          <CreateFromResourceModal
-            updateResourceList={handleUpdateResource}
-            resourceList={resourceList}
-            createCallBack={createFromResourceCallback}
-            closeModal={() => setShowCreateFromResourceModal(false)}
-          />
-        )}
-      </AnimatePresence>
+      <MixpanelTrackProvider
+        basicTrack={resourceContextHelper("blank_app_create")}
+        pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
+      >
+        <AnimatePresence>
+          {showCreateFromResourceModal && (
+            <CreateFromResourceModal
+              updateResourceList={handleUpdateResource}
+              resourceList={resourceList}
+              createCallBack={createFromResourceCallback}
+              closeModal={() => setShowCreateFromResourceModal(false)}
+            />
+          )}
+        </AnimatePresence>
+      </MixpanelTrackProvider>
     </>
   )
 }
