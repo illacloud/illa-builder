@@ -25,7 +25,7 @@ export const containerStyle = (isDraggingInGlobal: boolean) => css`
   width: 100%;
   display: flex;
   background-color: ${getColor("white", "01")};
-  padding: 16px;
+  padding: 16px 16px 0 16px;
   flex-direction: column;
   align-items: center;
   gap: 16px;
@@ -45,19 +45,13 @@ export const containerHeaderStyle = (width: number) => css`
   justify-content: flex-end;
 `
 
-export const closeIconStyle = css`
-  width: 24px;
-  height: 24px;
-  display: flex;
-  flex: none;
-  justify-content: center;
-  align-items: center;
-`
 export const templateContainerStyle = css`
   width: 100%;
   display: flex;
   height: 156px;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
+  padding-bottom: 12px;
+  box-sizing: content-box;
   align-items: center;
   justify-content: center;
   gap: 24px;

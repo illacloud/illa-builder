@@ -1,9 +1,10 @@
 import { CARD_NORMAL_WIDTH, fetchTemplateList } from "@illa-public/create-app"
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { ProductMarketApp } from "@illa-public/market-app"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
-import { CloseIcon, isObject } from "@illa-design/react"
+import { CloseIcon, getColor, isObject } from "@illa-design/react"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
@@ -26,7 +27,6 @@ import {
   SHOWN_BUILD_APP,
 } from "./constants"
 import {
-  closeIconStyle,
   containerHeaderStyle,
   containerStyle,
   lineStyle,
@@ -94,12 +94,6 @@ const BuildAppOnEmpty: FC = () => {
 
   const handleAnimateEnd = () => {
     setShowAnimation(false)
-    const localShownBuildApp =
-      ILLABuilderStorage.getLocalStorage(SHOWN_BUILD_APP) || {}
-    ILLABuilderStorage.setLocalStorage(SHOWN_BUILD_APP, {
-      ...localShownBuildApp,
-      [appID]: true,
-    })
   }
 
   const handleShowPreview = (src?: string) => {
@@ -130,9 +124,9 @@ const BuildAppOnEmpty: FC = () => {
     <>
       <div css={containerStyle(isDraggingInGlobal)} ref={containerRef}>
         <div css={containerHeaderStyle(headerWidth)}>
-          <span css={closeIconStyle} onClick={handleCloseBuildApp}>
-            <CloseIcon size="12px" />
-          </span>
+          <IconHotSpot onClick={handleCloseBuildApp}>
+            <CloseIcon size="12px" color={getColor("grayBlue", "02")} />
+          </IconHotSpot>
         </div>
         <div css={templateContainerStyle} onAnimationEnd={handleAnimateEnd}>
           <BuildByDatabase />

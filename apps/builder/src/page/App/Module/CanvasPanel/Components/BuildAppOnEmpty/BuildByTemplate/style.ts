@@ -7,6 +7,8 @@ export const containerStyle = css`
   display: flex;
   align-items: flex-start;
   height: 100%;
+  box-sizing: content-box;
+  padding-bottom: 4px;
   overflow-y: hidden;
   overflow-x: auto;
   gap: 16px;
@@ -48,7 +50,6 @@ export const moreContainerStyle = (index: number) => css`
   align-items: center;
   gap: 12px;
   height: 100%;
-  border-radius: 8px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "09")};
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.09);
