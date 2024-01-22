@@ -69,6 +69,8 @@
     "@illa-public/user-data": "workspace:*",
     "@illa-public/user-role-utils": "workspace:*",
     "@illa-public/utils": "workspace:*",
+    "@illa-public/create-app": "workspace:*",
+    "@illa-public/market-app": "workspace:*",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "@mui/x-data-grid-premium": "^6.18.2",

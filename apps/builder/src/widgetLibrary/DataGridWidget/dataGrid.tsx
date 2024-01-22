@@ -11,6 +11,7 @@ import {
   useRef,
 } from "react"
 import { useDispatch } from "react-redux"
+import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -214,18 +215,14 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           key={displayName + ":" + primaryKey}
           apiRef={ref}
           getRowId={(row) => {
-            if (primaryKey === undefined || primaryKey === "—") {
-              return (
-                get(row, "id") ??
-                get(row, get(columns, "[0].field") ?? "") ??
-                ""
-              )
+            if (
+              primaryKey === undefined ||
+              primaryKey === "—" ||
+              !(primaryKey in row)
+            ) {
+              return v4()
             } else {
-              if (primaryKey in row) {
-                return get(row, primaryKey)
-              } else {
-                return ""
-              }
+              return get(row, primaryKey)
             }
           }}
           filterModel={

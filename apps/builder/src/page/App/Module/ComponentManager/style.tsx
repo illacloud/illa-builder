@@ -38,10 +38,3 @@ export const containerStyle = css`
   background: ${getColor("white", "01")};
   position: relative;
 `
-
-export const notHasComponentTipsStyle = css`
-  position: absolute;
-  right: calc(100% + 100px);
-  top: 260px;
-  pointer-events: none;
-`
