@@ -68,7 +68,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   const dispatch = useDispatch()
 
   const isInnerDragging = useRef(false)
-  console.log("---", columnVisibilityModel)
 
   const toolbar = useCallback(
     () => (
@@ -187,12 +186,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   ])
 
   const renderColumns = useMemo(() => {
-    const uniqueKey: GridColDef = {
-      field: "$",
-      headerName: "",
-      type: "string",
-    }
-    const currentColumns = columns?.map((column) => {
+    return columns?.map((column) => {
       const safeColumn = getSafeColumn(column)
       return safeColumn.columnType === "auto"
         ? getColumnFromType(
@@ -206,7 +200,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           )
         : getColumnFromType(safeColumn, triggerEventHandler)
     })
-    return [uniqueKey, ...(currentColumns ?? [])]
   }, [arrayData, columns, triggerEventHandler])
 
   return (
@@ -266,12 +259,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
             ])
             triggerEventHandler("onColumnVisibilityModelChange")
           }}
-          // columnVisibilityModel={[
-          //   {
-          //     field: "$",
-          //     visible: false,
-          //   }
-          // ]}
           columnVisibilityModel={columnVisibilityModel}
           onRowSelectionModelChange={(model) => {
             handleUpdateMultiExecutionResult([
