@@ -3,6 +3,10 @@ import { getColor } from "@illa-design/react"
 import { DATABASE_CARD_WIDTH } from "../constants"
 import { templateCardKeyframes } from "../style"
 
+export const paddingStyle = css`
+  padding-bottom: 4px;
+`
+
 export const containerStyle = css`
   width: ${DATABASE_CARD_WIDTH}px;
   flex: none;

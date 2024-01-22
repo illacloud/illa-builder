@@ -25,7 +25,7 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { resourceContextHelper } from "@/utils/mixpanelHelper"
 import { getCurrentTeamID } from "@/utils/team"
-import { containerStyle, textContentStyle } from "./style"
+import { containerStyle, paddingStyle, textContentStyle } from "./style"
 
 const BuildByDatabase: FC = () => {
   const formIcon = getIconFromWidgetType("FORM_WIDGET", "24px")
@@ -82,17 +82,20 @@ const BuildByDatabase: FC = () => {
 
   return (
     <>
-      <div css={containerStyle}>
-        <div css={textContentStyle}>
-          {formIcon}
-          <span>{t("new_dashboard.create_new.generate_crud_app_fr")}</span>
+      <div css={paddingStyle}>
+        <div css={containerStyle}>
+          <div css={textContentStyle}>
+            {formIcon}
+            <span>{t("new_dashboard.create_new.generate_crud_app_fr")}</span>
+          </div>
+          <Button
+            fullWidth
+            onClick={handleClickFromResource}
+            colorScheme={getColor("grayBlue", "02")}
+          >
+            {t("new_dashboard.create_from_resource.input_type_option.create")}
+          </Button>
         </div>
-        <Button
-          onClick={handleClickFromResource}
-          colorScheme={getColor("grayBlue", "02")}
-        >
-          {t("new_dashboard.create_from_resource.input_type_option.create")}
-        </Button>
       </div>
       <MixpanelTrackProvider
         basicTrack={resourceContextHelper("blank_app_create")}
