@@ -20,7 +20,7 @@ import {
 const ActionGuidePanel: FC = () => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
-  const agenList = useSelector(getDashboardTeamAIAgentList)
+  const agentList = useSelector(getDashboardTeamAIAgentList)
 
   return (
     <>
@@ -45,12 +45,6 @@ const ActionGuidePanel: FC = () => {
             </>
           ) : (
             <>
-              <AgentPanelSection
-                title={t("editor.action.panel.label.general.more-type")}
-                agents={agenList}
-                hasMore
-                changeLoading={setIsLoading}
-              />
               <ActionPanelSection
                 title={t(
                   "editor.action.panel.label.general.connect-data-source",
@@ -58,6 +52,12 @@ const ActionGuidePanel: FC = () => {
                 actionTypes={RECOMMEND_RESOURCES_CLOUD}
                 changeLoading={setIsLoading}
                 hasMore
+              />
+              <AgentPanelSection
+                title={t("editor.action.panel.label.general.more-type")}
+                agents={agentList}
+                hasMore
+                changeLoading={setIsLoading}
               />
             </>
           )}

@@ -22,6 +22,7 @@ export const headerContainerStyle = css`
 export const categoryItemContainerStyle = css`
   display: grid;
   gap: 16px;
+  padding-bottom: 16px;
   grid-template-columns: repeat(2, 260px);
 `
 

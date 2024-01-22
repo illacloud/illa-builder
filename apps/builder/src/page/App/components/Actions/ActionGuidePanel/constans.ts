@@ -20,6 +20,7 @@ export const RECOMMEND_RESOURCES_CLOUD: ActionType[] = [
   "restapi",
   "mysql",
   "huggingface",
+  "postgresql",
 ]
 
 export const getRecommendAgentID = () => {
