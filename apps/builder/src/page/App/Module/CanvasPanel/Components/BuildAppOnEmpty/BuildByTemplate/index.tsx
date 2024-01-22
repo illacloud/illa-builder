@@ -1,10 +1,15 @@
 import {
   AppTemplateCard,
   CreateFromTemplateModal,
+  REPORT_PARAMETER,
 } from "@illa-public/create-app"
 import { ProductMarketApp } from "@illa-public/market-app"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
 import { AnimatePresence } from "framer-motion"
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { NextIcon } from "@illa-design/react"
@@ -37,6 +42,7 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
     useState(false)
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  const { track } = useContext(MixpanelTrackContext)
 
   const handleForkApp = async (appId: string, teamIdentifier?: string) => {
     return new Promise(async (resolve, reject) => {
@@ -73,6 +79,18 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
     })
   }
 
+  const handleShowMore = () => {
+    track?.(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      {
+        element: "create_app_modal_more",
+        parameter1: REPORT_PARAMETER.MORE_TEMPLATE,
+      },
+      "both",
+    )
+    setShowCreateFromTemplateModal(true)
+  }
+
   return (
     <>
       <div css={containerStyle}>
@@ -88,7 +106,17 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
               <AppTemplateCard
                 bd="none"
                 teamIdentifier={marketplace?.contributorTeam?.teamIdentifier}
-                handleForkApp={handleForkApp}
+                handleForkApp={(appId: string, teamIdentifier?: string) => {
+                  track?.(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    {
+                      element: "create_app_modal_use_template",
+                      parameter1: REPORT_PARAMETER.BLANK_APP,
+                    },
+                    "both",
+                  )
+                  handleForkApp(appId, teamIdentifier)
+                }}
                 appID={app?.appId}
                 cover={app?.config?.cover}
                 appName={app?.appName}
@@ -96,10 +124,7 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
             </div>
           )
         })}
-        <div
-          css={moreContainerStyle(showCardCount)}
-          onClick={() => setShowCreateFromTemplateModal(true)}
-        >
+        <div css={moreContainerStyle(showCardCount)} onClick={handleShowMore}>
           <div css={moreContentStyle}>
             <span>{t("new_dashboard.create_new.more")}</span>
             <NextIcon size="16px" />
@@ -110,7 +135,17 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
         {showCreateFromTemplateModal && (
           <CreateFromTemplateModal
             hiddenCreateBlank
-            handleForkApp={handleForkApp}
+            handleForkApp={(appId: string, teamIdentifier?: string) => {
+              track?.(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                {
+                  element: "create_app_modal_use_template",
+                  parameter1: REPORT_PARAMETER.CREATE_APP_MODAL,
+                },
+                "both",
+              )
+              handleForkApp(appId, teamIdentifier)
+            }}
             closeModal={() => setShowCreateFromTemplateModal(false)}
           />
         )}
