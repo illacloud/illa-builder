@@ -8,20 +8,20 @@ import { isObject } from "@/utils/typeHelper"
 const IMMEDIATE_PARENT_REGEX = /^(.*)(\..*|\[.*\])$/
 
 export const extractReferencesFromScript = (script: string): string[] => {
-  const references: Set<string> = new Set<string>()
-  const { references: identifiers } = extractIdentifierInfoFromCode(script)
+  const newReference = new Set<string>()
+  const { references } = extractIdentifierInfoFromCode(script)
 
-  identifiers.forEach((identifier: string) => {
-    references.add(identifier)
+  references.forEach((identifier: string) => {
+    newReference.add(identifier)
     const subPaths = toPath(identifier)
     let current = ""
     while (subPaths.length > 1) {
       current = convertPathToString(subPaths)
-      references.add(current)
+      newReference.add(current)
       subPaths.pop()
     }
   })
-  return Array.from(references)
+  return Array.from(newReference)
 }
 
 export function getDisplayNameAndPropertyPath(fullPath: string): {
