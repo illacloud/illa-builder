@@ -2,6 +2,7 @@ import {
   BuildActionInfo,
   CreateFromResourceModal,
   REPORT_PARAMETER,
+  RESOURCE_TYPE,
   fetchBatchCreateAction,
 } from "@illa-public/create-app"
 import { getIconFromWidgetType } from "@illa-public/icon"
@@ -105,7 +106,11 @@ const BuildByDatabase: FC = () => {
           {showCreateFromResourceModal && (
             <CreateFromResourceModal
               updateResourceList={handleUpdateResource}
-              resourceList={resourceList}
+              resourceList={resourceList.filter((item) =>
+                Object.values(RESOURCE_TYPE).includes(
+                  item?.resourceType as RESOURCE_TYPE,
+                ),
+              )}
               createCallBack={createFromResourceCallback}
               closeModal={() => setShowCreateFromResourceModal(false)}
             />
