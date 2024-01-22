@@ -1,6 +1,10 @@
 import { CARD_NORMAL_WIDTH, fetchTemplateList } from "@illa-public/create-app"
 import IconHotSpot from "@illa-public/icon-hot-spot"
 import { ProductMarketApp } from "@illa-public/market-app"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
@@ -13,6 +17,7 @@ import {
   searchDSLByDisplayName,
 } from "@/redux/currentApp/components/componentsSelector"
 import { getIsDragging } from "@/redux/currentApp/executionTree/executionSelector"
+import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
 import BuildByDatabase from "./BuildByDatabase"
 import BuildByTemplate from "./BuildByTemplate"
@@ -122,23 +127,28 @@ const BuildAppOnEmpty: FC = () => {
 
   return (
     <>
-      <div css={containerStyle(isDraggingInGlobal)} ref={containerRef}>
-        <div css={containerHeaderStyle(headerWidth)}>
-          <IconHotSpot onClick={handleCloseBuildApp}>
-            <CloseIcon size="12px" color={getColor("grayBlue", "02")} />
-          </IconHotSpot>
+      <MixpanelTrackProvider
+        basicTrack={track}
+        pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
+      >
+        <div css={containerStyle(isDraggingInGlobal)} ref={containerRef}>
+          <div css={containerHeaderStyle(headerWidth)}>
+            <IconHotSpot onClick={handleCloseBuildApp}>
+              <CloseIcon size="12px" color={getColor("grayBlue", "02")} />
+            </IconHotSpot>
+          </div>
+          <div css={templateContainerStyle} onAnimationEnd={handleAnimateEnd}>
+            <BuildByDatabase />
+            <span css={lineStyle} />
+            <BuildByTemplate
+              templateList={finalTemplateList}
+              showCardCount={showCardCount}
+              showAnimation={showAnimation}
+              handleShowPreview={handleShowPreview}
+            />
+          </div>
         </div>
-        <div css={templateContainerStyle} onAnimationEnd={handleAnimateEnd}>
-          <BuildByDatabase />
-          <span css={lineStyle} />
-          <BuildByTemplate
-            templateList={finalTemplateList}
-            showCardCount={showCardCount}
-            showAnimation={showAnimation}
-            handleShowPreview={handleShowPreview}
-          />
-        </div>
-      </div>
+      </MixpanelTrackProvider>
       {!!showPreviewSrc && <PreviewAppImage showPreviewSrc={showPreviewSrc} />}
     </>
   )
