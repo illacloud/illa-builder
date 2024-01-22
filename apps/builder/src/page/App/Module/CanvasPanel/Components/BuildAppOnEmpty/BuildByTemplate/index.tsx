@@ -113,6 +113,7 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
             >
               <AppTemplateCard
                 bd="none"
+                w="200px"
                 teamIdentifier={marketplace?.contributorTeam?.teamIdentifier}
                 handleForkApp={(appId: string, teamIdentifier?: string) => {
                   track?.(
