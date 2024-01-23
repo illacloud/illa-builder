@@ -54,7 +54,7 @@ const ActionGuidePanel: FC = () => {
                 hasMore
               />
               <AgentPanelSection
-                title={t("editor.action.panel.label.general.more-type")}
+                title={t("editor.action.panel.label.general.ai_agent_title")}
                 agents={agentList}
                 hasMore
                 changeLoading={setIsLoading}
