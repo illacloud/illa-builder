@@ -95,7 +95,7 @@ export function getColumnFromType(
         }
       }
     }
-    return dayjs(v, get(params.colDef, "format")).toDate()
+    return dayjs(v).toDate()
   }
 
   switch (column.columnType) {
@@ -451,6 +451,7 @@ export function getColumnFromType(
               editable={false}
               allowClear={false}
               value={params.value}
+              format={get(params.colDef, "format")}
             />
           )
         },
@@ -468,6 +469,7 @@ export function getColumnFromType(
               editable={false}
               allowClear={false}
               value={params.value}
+              format={get(params.colDef, "format")}
             />
           )
         },
