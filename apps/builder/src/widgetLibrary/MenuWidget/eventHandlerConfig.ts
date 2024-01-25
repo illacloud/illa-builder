@@ -21,6 +21,12 @@ export const MAIN_MENU_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       ),
       value: "onMenuSelect",
     },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.on_menu_logo_click",
+      ),
+      value: "onMenuLogoClick",
+    },
   ],
   methods: [],
 }
