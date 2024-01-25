@@ -16,6 +16,7 @@ export const MSSQLSqlMode: FC<MSSQLModeProps> = (props) => {
       lineNumbers={true}
       value={(modeContent as MicrosoftSqlActionSqlMode).sql}
       onChange={(value) => onChange(value, "sql")}
+      showSafeModeTips
     />
   )
 }

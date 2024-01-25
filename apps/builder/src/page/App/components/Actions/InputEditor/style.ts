@@ -51,3 +51,9 @@ export const actionItemTip = css`
   align-items: stretch;
   color: ${getColor("grayBlue", "04")};
 `
+
+export const sqlModeTipStyle = css`
+  margin-left: 192px;
+  margin-top: 0;
+  margin-right: 16px;
+`
