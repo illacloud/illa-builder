@@ -24,6 +24,7 @@ export const WrappedMenu: FC<WrappedMenuProps> = (props) => {
     onClickSubMenu,
     onClickMenuItem,
     onMenuSelect,
+    onClickMenuLogo,
   } = props
 
   const menuBrandContainer = useMemo(() => {
@@ -38,13 +39,14 @@ export const WrappedMenu: FC<WrappedMenuProps> = (props) => {
               width="unset"
               height={mode === "horizontal" ? "24px" : "32px"}
               objectFit="scale-down"
+              onClick={onClickMenuLogo}
             />
           )}
           {menuTitle && <div css={applyMenuTitleStyle(mode)}>{menuTitle}</div>}
         </div>
       )
     }
-  }, [menuLogo, menuTitle, mode])
+  }, [menuLogo, menuTitle, mode, onClickMenuLogo])
 
   return (
     <div css={applyMenuWidgetContainerStyle(mode)}>
@@ -82,6 +84,7 @@ export const StaticMenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
     updateComponentHeight,
     triggerEventHandler,
+    onClickMenuLogo,
   } = props
   const handleOnClickMenuItem = useCallback(
     (value: string, valuePath: string[]) => {
@@ -175,6 +178,7 @@ export const StaticMenuWidget: FC<MenuWidgetProps> = (props) => {
           ])
           triggerEventHandler("onMenuSelect")
         }}
+        onClickMenuLogo={onClickMenuLogo}
       />
     </AutoHeightContainer>
   )
@@ -195,6 +199,7 @@ export const DynamicMenuWidget: FC<MenuWidgetProps> = (props) => {
     triggerEventHandler,
     displayName,
     handleUpdateMultiExecutionResult,
+    onClickMenuLogo,
   } = props
 
   const total = mappedOption?.values?.length ?? 0
@@ -266,18 +271,25 @@ export const DynamicMenuWidget: FC<MenuWidgetProps> = (props) => {
           ])
           triggerEventHandler("onMenuSelect")
         }}
+        onClickMenuLogo={onClickMenuLogo}
       />
     </AutoHeightContainer>
   )
 }
 
 export const MenuWidget: FC<MenuWidgetProps> = (props) => {
-  const { optionConfigureMode } = props
+  const { optionConfigureMode, triggerEventHandler } = props
+
+  const handleClickMenuLogo = useCallback(() => {
+    triggerEventHandler("onMenuLogoClick")
+  }, [triggerEventHandler])
 
   if (optionConfigureMode === "static") {
-    return <StaticMenuWidget {...props} />
+    return <StaticMenuWidget {...props} onClickMenuLogo={handleClickMenuLogo} />
   } else {
-    return <DynamicMenuWidget {...props} />
+    return (
+      <DynamicMenuWidget {...props} onClickMenuLogo={handleClickMenuLogo} />
+    )
   }
 }
 
