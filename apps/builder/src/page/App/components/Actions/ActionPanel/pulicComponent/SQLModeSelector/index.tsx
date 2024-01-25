@@ -31,7 +31,6 @@ export const SQLModeSelector: FC = () => {
     | MysqlLikeAction
     | OracleDBAction<OracleDBActionType>
   >
-
   const dispatch = useDispatch()
   const handleOnChangeSqlMode = (value: "sql" | "sql-safe") => {
     dispatch(

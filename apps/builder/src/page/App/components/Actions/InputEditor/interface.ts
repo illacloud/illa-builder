@@ -18,6 +18,7 @@ export interface ControlledInputProps
   expectedType?: VALIDATION_TYPES
   placeholder?: string
   tips?: string | ReactNode
+  showSafeModeTips?: boolean
   lineNumbers?: boolean
   mode?: CODE_LANG
   hasExpectedType?: boolean

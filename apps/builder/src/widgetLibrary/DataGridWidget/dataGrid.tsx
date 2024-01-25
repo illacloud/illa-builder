@@ -337,11 +337,17 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
           rows={arrayData}
           columns={(renderColumns as GridColDef[]) ?? []}
-          paginationMode={enableServerSidePagination ? "server" : "client"}
-          rowCount={
-            totalRowCount !== undefined && enableServerSidePagination
-              ? Math.ceil(totalRowCount / (pageSize ?? 1))
+          paginationMode={
+            enablePagination
+              ? enableServerSidePagination
+                ? "server"
+                : "client"
               : undefined
+          }
+          rowCount={
+            enablePagination && enableServerSidePagination && totalRowCount
+              ? totalRowCount
+              : arrayData.length
           }
           keepNonExistentRowsSelected={enableServerSidePagination}
           loading={loading}
