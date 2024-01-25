@@ -57,6 +57,8 @@ import { runOriginAction } from "@/utils/action/runAction"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { SQLModeTipContext } from "../../Context/SqlModeTipContext"
+import { isSafeModeAction } from "../utils/safeModeTip"
 import { ActionTitleBarProps } from "./interface"
 import {
   actionFailBlockStyle,
@@ -148,6 +150,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const message = useMessage()
   const [saveLoading, setSaveLoading] = useState(false)
   const shortcut = useContext(ShortCutContext)
+  const { setShowSQLModeTip } = useContext(SQLModeTipContext)
 
   const selectedAction = useSelector(getSelectedAction)! ?? {}
   const cachedAction = useSelector(getCachedAction)!
@@ -249,12 +252,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         try {
           await runOriginAction(cachedActionValue)
         } catch (e) {
+          isSafeModeAction(cachedActionValue.actionType) &&
+            setShowSQLModeTip(cachedActionValue.actionID, true)
         } finally {
           onResultVisibleChange(true)
         }
       }
     },
-    [onResultVisibleChange],
+    [onResultVisibleChange, setShowSQLModeTip],
   )
 
   const updateAndRunCachedAction = useCallback(

@@ -23,6 +23,7 @@ import {
 } from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
+import { SQLModeTipProvider } from "../Context/SqlModeTipContext"
 import ActionMockPanel from "./ActionMockPanel"
 import GeneralPanelLayout from "./Layout/GeneralPanelLayout"
 
@@ -211,52 +212,54 @@ export const ActionPanel: FC = () => {
 
   return (
     <div css={actionPanelStyle}>
-      <div css={actionPanelContainerStyle}>
-        <ActionTitleBar
-          onResultVisibleChange={(visible) => {
-            setResultVisible(visible)
-          }}
-          openState={resultVisible}
-          activeTab={activeKey}
-          handleChangeTab={handleClickChangeTab}
-        />
-        <Suspense fallback={<WidgetLoading />}>
-          {activeKey === "general" && (
-            <div css={outterActionContainerStyle}>
-              <GeneralPanelLayout
-                actionType={cachedAction?.actionType}
-                mockEnabled={mockConfig?.enabled}
-              >
-                {mockConfig?.enabled ? (
-                  <ActionMockPanel
-                    enableForReleasedApp={mockConfig.enableForReleasedApp}
-                    mockData={mockConfig.mockData}
-                  />
-                ) : (
-                  <div css={actionContentStyle}>{panel}</div>
-                )}
-              </GeneralPanelLayout>
-            </div>
-          )}
-          {activeKey === "advanced" && (
-            <MixpanelTrackProvider
-              basicTrack={basicTrack}
-              pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
-            >
-              <AdvancedPanel />
-            </MixpanelTrackProvider>
-          )}
-        </Suspense>
-        {resultVisible && (
-          <ActionResult
-            key={selectedAction?.actionID}
-            visible={resultVisible}
-            onClose={() => {
-              setResultVisible(false)
+      <SQLModeTipProvider>
+        <div css={actionPanelContainerStyle}>
+          <ActionTitleBar
+            onResultVisibleChange={(visible) => {
+              setResultVisible(visible)
             }}
+            openState={resultVisible}
+            activeTab={activeKey}
+            handleChangeTab={handleClickChangeTab}
           />
-        )}
-      </div>
+          <Suspense fallback={<WidgetLoading />}>
+            {activeKey === "general" && (
+              <div css={outterActionContainerStyle}>
+                <GeneralPanelLayout
+                  actionType={cachedAction?.actionType}
+                  mockEnabled={mockConfig?.enabled}
+                >
+                  {mockConfig?.enabled ? (
+                    <ActionMockPanel
+                      enableForReleasedApp={mockConfig.enableForReleasedApp}
+                      mockData={mockConfig.mockData}
+                    />
+                  ) : (
+                    <div css={actionContentStyle}>{panel}</div>
+                  )}
+                </GeneralPanelLayout>
+              </div>
+            )}
+            {activeKey === "advanced" && (
+              <MixpanelTrackProvider
+                basicTrack={basicTrack}
+                pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
+              >
+                <AdvancedPanel />
+              </MixpanelTrackProvider>
+            )}
+          </Suspense>
+          {resultVisible && (
+            <ActionResult
+              key={selectedAction?.actionID}
+              visible={resultVisible}
+              onClose={() => {
+                setResultVisible(false)
+              }}
+            />
+          )}
+        </div>
+      </SQLModeTipProvider>
     </div>
   )
 }
