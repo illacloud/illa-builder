@@ -4,12 +4,14 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ControlledInputProps } from "@/page/App/components/Actions/InputEditor/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import SQLModeTip from "../ActionPanel/pulicComponent/SQLModeTip"
 import {
   actionItemCodeEditorStyle,
   actionItemStyle,
   actionItemTip,
   codeEditorLabelStyle,
   codeEditorSublabelStyle,
+  sqlModeTipStyle,
 } from "./style"
 
 export const InputEditor: FC<ControlledInputProps> = (props) => {
@@ -19,6 +21,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     expectedType = VALIDATION_TYPES.STRING,
     value,
     tips,
+    showSafeModeTips,
     subtitle,
     handleSubtitleClick,
     placeholder,
@@ -87,6 +90,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
           <span>{tips}</span>
         </div>
       )}
+      {showSafeModeTips && <SQLModeTip value={value} _css={sqlModeTipStyle} />}
     </div>
   )
 }

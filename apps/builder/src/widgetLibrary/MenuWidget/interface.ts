@@ -4,6 +4,7 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 export interface WrappedMenuProps extends MenuProps {
   menuLogo?: string
   menuTitle?: string
+  onClickMenuLogo: () => void
 }
 
 export interface MenuWidgetProps
@@ -20,4 +21,5 @@ export interface MenuWidgetProps
     hidden: boolean[]
     groupLabels: string[]
   }
+  onClickMenuLogo: () => void
 }

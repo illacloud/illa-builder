@@ -27,6 +27,7 @@ import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { SQLModeSelector } from "../pulicComponent/SQLModeSelector"
+import SQLModeTip from "../pulicComponent/SQLModeTip"
 
 const MysqlLikePanel: FC = () => {
   const currentAction = useSelector(getCachedAction)!!
@@ -211,6 +212,7 @@ const MysqlLikePanel: FC = () => {
           onChange={handleQueryChange}
           onBlur={onBlurOnCodeMirror}
         />
+        <SQLModeTip value={value} />
       </div>
       {(mysqlContent.mode === "sql" || mysqlContent.mode === "sql-safe") && (
         <div css={modeContainerStyle}>
