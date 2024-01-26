@@ -57,6 +57,7 @@ export const groupWrapperStyle = css`
 
 export const moreIconWrapperStyle = css`
   width: 32px;
+  flex: none;
   height: 32px;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-radius: 0 8px 8px 0;
@@ -79,20 +80,27 @@ export const eventAndMethodWrapperStyle = css`
   padding: 6px 16px;
   cursor: pointer;
   font-size: 12px;
+  gap: 8px;
+  overflow: hidden;
 `
 
 export const eventNameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   min-width: 64px;
-  margin-right: 8px;
-  display: flex;
-  align-items: center;
+  display: block;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `
 
 export const methodNameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  display: flex;
-  align-items: center;
+  display: block;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `
 
 export const emptyBodyStyle = css`
