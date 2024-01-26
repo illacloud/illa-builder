@@ -16,10 +16,11 @@ import { getCurrentStep } from "@/redux/guide/guideSelector"
 
 export interface GuideProps {
   canvasRef: RefObject<HTMLDivElement>
+  openCreateAppModal?: () => void
 }
 
 export const Guide: FC<GuideProps> = (props) => {
-  const { canvasRef } = props
+  const { canvasRef, openCreateAppModal } = props
   const currentStep = useSelector(getCurrentStep)
   const [firstStepElement, setFirstStepElement] = useState<Element | null>()
 
@@ -73,7 +74,11 @@ export const Guide: FC<GuideProps> = (props) => {
       {/* success tip */}
       {currentStep === 12 && <GuideSuccess />}
       {currentStep === 12 && currentElement && (
-        <GuideDraggablePopover currentStep={currentStep} position="right" />
+        <GuideDraggablePopover
+          currentStep={currentStep}
+          openCreateAppModal={openCreateAppModal}
+          position="right"
+        />
       )}
     </>
   )

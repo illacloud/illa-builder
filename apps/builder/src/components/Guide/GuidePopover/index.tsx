@@ -21,11 +21,19 @@ export interface GuidePopoverProps extends HTMLAttributes<HTMLDivElement> {
   hideExit?: boolean
   isLastStep?: boolean
   onClickDoIt?: () => void
+  openCreateAppModal?: () => void
 }
 
 export const GuidePopover: FC<GuidePopoverProps> = (props) => {
-  const { title, description, hideExit, isLastStep, onClickDoIt, ...rest } =
-    props
+  const {
+    title,
+    description,
+    hideExit,
+    isLastStep,
+    onClickDoIt,
+    openCreateAppModal,
+    ...rest
+  } = props
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -73,14 +81,16 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
         <span
           css={[buttonStyle]}
           onClick={() => {
+            // isLastStep && openCreateAppModal?.()
+            openCreateAppModal?.()
             onClickDoIt?.()
           }}
         >
           {isLastStep
             ? t("editor.tutorial.panel.onboarding_app.congratulations_button")
             : hideExit
-            ? t("editor.tutorial.panel.onboarding_app.test_it_button")
-            : t("editor.tutorial.panel.onboarding_app.do_it")}
+              ? t("editor.tutorial.panel.onboarding_app.test_it_button")
+              : t("editor.tutorial.panel.onboarding_app.do_it")}
         </span>
       </div>
     </div>
