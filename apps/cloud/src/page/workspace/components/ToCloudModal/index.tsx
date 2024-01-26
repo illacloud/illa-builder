@@ -1,4 +1,3 @@
-import { UpgradeIcon } from "@illa-public/icon"
 import { FC } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import {
@@ -8,7 +7,9 @@ import {
   Link,
   Modal,
   Trigger,
+  TriggerProvider,
 } from "@illa-design/react"
+import DiscordIcon from "./assets/discord-icon.svg?react"
 import TipIcon from "./assets/pricing-tip.svg?react"
 import ModalDecorate from "./assets/upgrad-modal-bg.svg?react"
 import {
@@ -66,7 +67,6 @@ export const ToCloudModal: FC<ToCloudModalProps> = ({ onClose }) => {
 
   return (
     <Modal
-      z={2000}
       visible
       _css={modalStyle}
       withoutPadding
@@ -91,43 +91,50 @@ export const ToCloudModal: FC<ToCloudModalProps> = ({ onClose }) => {
           </span>
         </div>
       </div>
-      <div>
-        {FEATURE_CONFIG.map(({ label, tip }) => {
-          return (
-            <div css={applyCardListStyle} key={label}>
-              {label && <TipIcon css={iconStyle} />}
-              <span>{label}</span>
-              <Trigger trigger="hover" colorScheme="techPurple" content={tip}>
-                <span css={doubtStyle}>
-                  <DoubtIcon css={iconStyle} />
-                </span>
-              </Trigger>
+      <TriggerProvider zIndex={1005}>
+        <div>
+          {FEATURE_CONFIG.map(({ label, tip }) => {
+            return (
+              <div css={applyCardListStyle} key={label}>
+                {label && <TipIcon css={iconStyle} />}
+                <span>{label}</span>
+                <Trigger
+                  trigger="hover"
+                  maxW="300px"
+                  colorScheme="techPurple"
+                  content={tip}
+                >
+                  <span css={doubtStyle}>
+                    <DoubtIcon css={iconStyle} />
+                  </span>
+                </Trigger>
+              </div>
+            )
+          })}
+          <div css={footerStyle}>
+            <div>
+              <div css={priceStyle}>$16.7</div>
+              <div css={priceContentStyle}>
+                {t("billing.modal.upgrade_now_admin.pricing")}
+              </div>
             </div>
-          )
-        })}
-        <div css={footerStyle}>
-          <div>
-            <div css={priceStyle}>$16.7</div>
-            <div css={priceContentStyle}>
-              {t("billing.modal.upgrade_now_admin.pricing")}
-            </div>
-          </div>
-          <Link
-            href="https://discord.com/invite/illacloud"
-            css={linkStyle}
-            colorScheme="white"
-            target="_blank"
-          >
-            <Button
-              css={upgradeButtonStyle}
-              leftIcon={<UpgradeIcon />}
-              colorScheme="techPurple"
+            <Link
+              href="https://discord.com/invite/illacloud"
+              css={linkStyle}
+              colorScheme="white"
+              target="_blank"
             >
-              {t("new_dashboard.selfhost.export.button")}
-            </Button>
-          </Link>
+              <Button
+                css={upgradeButtonStyle}
+                leftIcon={<DiscordIcon width="12px" height="12px" />}
+                colorScheme="techPurple"
+              >
+                {t("new_dashboard.selfhost.export.button")}
+              </Button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </TriggerProvider>
     </Modal>
   )
 }
