@@ -7,10 +7,12 @@ import { FC, useState } from "react"
 import { useSelector } from "react-redux"
 import { Outlet } from "react-router-dom"
 import { DashBoardDynamicMenu } from "@/page/workspace/components/DynamicMenu"
+import { UpgradeTip } from "@/page/workspace/components/UpgradeTip"
 import { WorkspaceLayoutProps } from "../interface"
 
 export const MobileDashBoardLayout: FC<WorkspaceLayoutProps> = ({
   onOpenChangeLogModal,
+  openToCloudModal,
 }) => {
   const isLogin = useSelector(getCurrentUserID)
   const [drawerVisible, setDrawerVisible] = useState(false)
@@ -26,6 +28,7 @@ export const MobileDashBoardLayout: FC<WorkspaceLayoutProps> = ({
     <MobileCloudDashboardLayout
       setDrawerVisible={setDrawerVisible}
       drawerVisible={drawerVisible}
+      tipsComponent={<UpgradeTip openToCloudModal={openToCloudModal} />}
       bottomComponent={
         <BottomList onClickMenuItemCallback={handleClickMenuItem} />
       }

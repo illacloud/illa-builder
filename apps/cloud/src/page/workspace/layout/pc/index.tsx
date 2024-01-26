@@ -21,11 +21,13 @@ import { Outlet, useParams } from "react-router-dom"
 import { useModal } from "@illa-design/react"
 import { FullSectionLoading } from "@/components/FullSectionLoading"
 import { DashBoardDynamicMenu } from "@/page/workspace/components/DynamicMenu"
+import { UpgradeTip } from "@/page/workspace/components/UpgradeTip"
 import { updateTutorialViewed } from "@/services/user"
 import { WorkspaceLayoutProps } from "../interface"
 
 export const PCDashBoardLayout: FC<WorkspaceLayoutProps> = ({
   onOpenChangeLogModal,
+  openToCloudModal,
 }) => {
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const isLogin = useSelector(getCurrentUserID)
@@ -91,6 +93,7 @@ export const PCDashBoardLayout: FC<WorkspaceLayoutProps> = ({
           <DashBoardDynamicMenu />
         </div>
       }
+      tipsComponent={<UpgradeTip openToCloudModal={openToCloudModal} />}
       bottomComponent={
         <BottomList onClickMenuItemCallback={handleClickMenuItem} />
       }

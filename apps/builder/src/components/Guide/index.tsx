@@ -1,4 +1,5 @@
 import { Global } from "@emotion/react"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, RefObject, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { useSelector } from "react-redux"
@@ -13,6 +14,7 @@ import {
 } from "@/components/Guide/style"
 import { GUIDE_STEP } from "@/config/guide/config"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
+import GuideCreateApp from "./GuideCreateApp"
 
 export interface GuideProps {
   canvasRef: RefObject<HTMLDivElement>
@@ -72,9 +74,13 @@ export const Guide: FC<GuideProps> = (props) => {
         createPortal(<GuidePoint css={shiftStyle} />, currentElement)}
       {/* success tip */}
       {currentStep === 12 && <GuideSuccess />}
-      {currentStep === 12 && currentElement && (
-        <GuideDraggablePopover currentStep={currentStep} position="right" />
-      )}
+      {currentStep === 12 && currentElement ? (
+        isCloudVersion ? (
+          <GuideCreateApp />
+        ) : (
+          <GuideDraggablePopover currentStep={currentStep} position="right" />
+        )
+      ) : null}
     </>
   )
 }
