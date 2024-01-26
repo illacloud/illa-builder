@@ -1,4 +1,5 @@
 import {
+  GridAggregationModel,
   GridColumnVisibilityModel,
   GridFilterModel,
   GridInputRowSelectionModel,
@@ -36,6 +37,7 @@ export interface BaseDataGridProps extends BaseWidgetProps {
   selectedRowsPrimaryKeys?: GridInputRowSelectionModel
   columns?: ColumnConfig[]
   enablePagination?: boolean
+  aggregationModel?: GridAggregationModel
 }
 
 export const ColumnTypeList = [

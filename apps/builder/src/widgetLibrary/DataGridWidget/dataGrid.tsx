@@ -1,5 +1,9 @@
 import { StyledEngineProvider, ThemeProvider, createTheme } from "@mui/material"
-import { DataGridPremium, GridColDef } from "@mui/x-data-grid-premium"
+import {
+  DataGridPremium,
+  GridAggregationModel,
+  GridColDef,
+} from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber, isPlainObject } from "lodash-es"
 import {
@@ -202,6 +206,16 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     })
   }, [arrayData, columns, triggerEventHandler])
 
+  const aggregationModel = useMemo(() => {
+    const curAggregationModel: GridAggregationModel = {}
+    columns?.forEach((column) => {
+      if (column?.aggregationModel) {
+        curAggregationModel[column.field] = column.aggregationModel
+      }
+    })
+    return curAggregationModel
+  }, [columns])
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider
@@ -225,6 +239,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
               return get(row, primaryKey)
             }
           }}
+          aggregationModel={aggregationModel}
           filterModel={
             filterModel !== undefined
               ? {
