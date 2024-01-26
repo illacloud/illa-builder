@@ -227,3 +227,11 @@ export const fetchCopyApp = (appID: string, name: string) => {
     },
   )
 }
+
+export const fetchForkApp = (appID: string) => {
+  const teamID = getCurrentTeamID()
+  return builderRequest<{ appId: string }>({
+    url: `/apps/${appID}/forkTo/teams/${teamID}`,
+    method: "POST",
+  })
+}

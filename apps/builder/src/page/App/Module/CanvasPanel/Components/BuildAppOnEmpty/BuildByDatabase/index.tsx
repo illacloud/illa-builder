@@ -99,7 +99,7 @@ const BuildByDatabase: FC = () => {
         </div>
       </div>
       <MixpanelTrackProvider
-        basicTrack={resourceContextHelper("blank_app_create")}
+        basicTrack={resourceContextHelper(REPORT_PARAMETER.BLANK_APP_CREATE)}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR}
       >
         <AnimatePresence>

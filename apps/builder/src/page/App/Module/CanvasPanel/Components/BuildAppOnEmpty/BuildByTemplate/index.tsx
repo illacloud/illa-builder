@@ -96,6 +96,14 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
       },
       "both",
     )
+    track?.(
+      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+      {
+        element: "create_app_modal",
+        parameter1: REPORT_PARAMETER.MORE_TEMPLATE,
+      },
+      "both",
+    )
     setShowCreateFromTemplateModal(true)
   }
 

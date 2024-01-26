@@ -35,6 +35,7 @@
     "@illa-public/user-data": "workspace:*",
     "@illa-public/user-role-utils": "workspace:*",
     "@illa-public/utils": "workspace:*",
+    "@illa-public/text-link": "workspace:*",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
