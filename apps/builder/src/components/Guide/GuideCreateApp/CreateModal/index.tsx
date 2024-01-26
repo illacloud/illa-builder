@@ -1,10 +1,8 @@
 import IconHotSpot from "@illa-public/icon-hot-spot"
-import { TextLink } from "@illa-public/text-link"
 import { FC } from "react"
 import { createPortal } from "react-dom"
-import { Trans, useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next"
 import { AddIcon, CloseIcon, Modal, getColor } from "@illa-design/react"
-import { openDiscord } from "@/utils/navigate"
 import {
   closeIconStyle,
   containerStyle,
@@ -49,15 +47,7 @@ const CreateModal: FC<CreateModalProps> = ({
             {t("editor.tutorial.panel.onboarding_app.congratulations_title")}
           </span>
           <span css={descStyle}>
-            <Trans
-              i18nKey={
-                "editor.tutorial.panel.onboarding_app.congratulations_description"
-              }
-              t={t}
-              components={[
-                <TextLink key="openDiscord" onClick={openDiscord} />,
-              ]}
-            />
+            {t("new_dashboard.create_new.onboarding_cloud")}
           </span>
         </div>
         <div css={operateContainerStyle}>
@@ -68,7 +58,7 @@ const CreateModal: FC<CreateModalProps> = ({
             <span css={iconStyle}>
               <AddIcon size="16px" />
             </span>
-            <span>{t("Create from template")}</span>
+            <span>{t("new_dashboard.create_new.create_from_template")}</span>
           </div>
           <div
             css={createOptionsContainerStyle("#1AB0F1")}
