@@ -616,6 +616,9 @@ importers:
       '@illa-public/styleis-plugin':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/styleis-plugin
+      '@illa-public/text-link':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/TextLink
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/UserData

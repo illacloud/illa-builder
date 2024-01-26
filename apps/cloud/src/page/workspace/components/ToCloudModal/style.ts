@@ -76,6 +76,10 @@ export const descriptionStyle = css`
   `)};
 `
 
+export const boldStyle = css`
+  color: ${getColor("grayBlue", "02")};
+`
+
 export const footerStyle = css`
   display: flex;
   flex-direction: row;
@@ -149,4 +153,9 @@ export const iconStyle = css`
     width: 16px;
     height: 16px;
   `)};
+`
+
+export const linkStyle = css`
+  display: flex;
+  padding: 0;
 `
