@@ -4,13 +4,11 @@ import {
   ATTRIBUTE_GROUP,
   canManage,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { TriggerProvider } from "@illa-design/react"
 import { Guide } from "@/components/Guide"
-import GuideCreateApp from "@/components/Guide/GuideCreateApp"
 import { useInitGuideApp } from "@/hooks/useInitGuideApp"
 import { ActionEditor } from "@/page/App/Module/ActionEditor"
 import { CanvasPanel } from "@/page/App/Module/CanvasPanel"
@@ -82,7 +80,6 @@ const GuideApp: FC = () => {
   const { loadingState } = useInitGuideApp()
   const isOpen = useSelector(getGuideStatus)
   const [, resizeDropRef] = useResize()
-  const [showGuideCreateApp, setShowGuideCreateApp] = useState<boolean>(false)
 
   return (
     <div css={editorContainerStyle} ref={resizeDropRef}>
@@ -90,17 +87,7 @@ const GuideApp: FC = () => {
       {!loadingState && (
         <Shortcut>
           <MediaSourceLoadProvider>
-            {isOpen && (
-              <Guide
-                canvasRef={canvasRef}
-                openCreateAppModal={() => setShowGuideCreateApp(true)}
-              />
-            )}
-            {isCloudVersion && showGuideCreateApp && (
-              <GuideCreateApp
-                closeGuideCreateAppModal={() => setShowGuideCreateApp(false)}
-              />
-            )}
+            {isOpen && <Guide canvasRef={canvasRef} />}
             <TriggerProvider renderInBody zIndex={10}>
               <PageNavBar css={navbarStyle} />
             </TriggerProvider>

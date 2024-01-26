@@ -20,6 +20,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
+import { guideActions } from "@/redux/guide/guideSlice"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { fetchCreateApp, fetchForkApp } from "@/services/apps"
@@ -27,13 +28,7 @@ import { resourceContextHelper, track } from "@/utils/mixpanelHelper"
 import { getCurrentTeamID } from "@/utils/team"
 import CreateModal from "./CreateModal"
 
-interface GuideCreateAppProps {
-  closeGuideCreateAppModal: () => void
-}
-
-const GuideCreateApp: FC<GuideCreateAppProps> = ({
-  closeGuideCreateAppModal,
-}) => {
+const GuideCreateApp: FC = () => {
   const message = useMessage()
   const teamID = useSelector(getCurrentTeamID)!
   const { teamIdentifier } = useParams()
@@ -45,6 +40,10 @@ const GuideCreateApp: FC<GuideCreateAppProps> = ({
 
   const [showCreateFromTemplateModal, setShowCreateFromTemplateModal] =
     useState(false)
+
+  const closeGuideCreateAppModal = () => {
+    dispatch(guideActions.updateGuideStatusReducer(false))
+  }
 
   const forkApp = async (appID: string) => {
     track?.(
@@ -99,8 +98,6 @@ const GuideCreateApp: FC<GuideCreateAppProps> = ({
       closeGuideCreateAppModal()
     }
   }
-
-  console.log("1234")
 
   return (
     <AnimatePresence>
