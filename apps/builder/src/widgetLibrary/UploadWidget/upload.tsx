@@ -43,7 +43,6 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const {
     selectionType,
     type,
-    displayName,
     showFileList,
     disabled,
     fileType = [],
@@ -52,83 +51,14 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     dropText,
     colorScheme,
     variant,
-    parseValue,
     fileList,
     onRemove,
     onChange,
-    getValidateMessage,
-    handleUpdateMultiExecutionResult,
     customRequest,
   } = props
 
   const isDrag = type === "dropzone"
   const inputAcceptType = fileType.join(",")
-  const prevFileList = useRef<UploadItem[]>(fileList ?? [])
-  const prevParseValue = useRef<boolean>(parseValue ?? false)
-
-  useEffect(() => {
-    if (
-      !fileList ||
-      (prevFileList.current === fileList &&
-        prevParseValue.current === parseValue)
-    ) {
-      return
-    }
-    prevFileList.current = fileList
-    prevParseValue.current = parseValue ?? false
-    new Promise(async (resolve) => {
-      const values = await Promise.allSettled(
-        fileList.map(async (file) => await toBase64(file)),
-      )
-      let parsedValues
-      if (parseValue) {
-        parsedValues = await Promise.allSettled(
-          fileList.map(async (file) => {
-            const res = await getFileString(file)
-            return res
-          }),
-        )
-      }
-      resolve({
-        values,
-        parsedValues,
-        fileList,
-      })
-    }).then((value) => {
-      const {
-        values,
-        parsedValues,
-        fileList = [],
-      } = value as {
-        values: any[]
-        parsedValues: any[]
-        fileList: UploadItem[]
-      }
-      const validateMessage = getValidateMessage(fileList)
-      const base64value = getFilteredValue(values, "base64")
-      const files = getFiles(fileList, base64value ?? [])
-      const parsed = getFilteredValue(parsedValues)
-      const currentList = getCurrentList(fileList)
-      handleUpdateMultiExecutionResult([
-        {
-          displayName,
-          value: {
-            files,
-            value: base64value,
-            parsedValue: parsed,
-            validateMessage,
-            currentList,
-          },
-        },
-      ])
-    })
-  }, [
-    displayName,
-    parseValue,
-    fileList,
-    getValidateMessage,
-    handleUpdateMultiExecutionResult,
-  ])
 
   return (
     <Upload
@@ -155,6 +85,7 @@ WrappedUpload.displayName = "WrappedUpload"
 
 export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   const {
+    displayName,
     appendFiles,
     customRule,
     tooltipText,
@@ -166,6 +97,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     currentList,
     value,
     files,
+    parseValue,
     minSize,
     validateMessage,
     triggerEventHandler,
@@ -174,12 +106,16 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
+    handleUpdateMultiExecutionResult,
   } = props
 
   const fileListRef = useRef<UploadItem[]>([])
   const [currentFileList, setFileList] = useState<UploadItem[]>([])
   const fileCountRef = useRef<number>(0)
   const previousValueRef = useRef<UploadItem[]>([])
+
+  const prevFileList = useRef<UploadItem[]>(currentFileList ?? [])
+  const prevParseValue = useRef<boolean>(parseValue ?? false)
 
   useEffect(() => {
     const canInitialDragValue =
@@ -211,63 +147,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     const currentFilesKeys = files.map((f) => f.uid || f.name)
     return currentFilesKeys.indexOf(file.uid || file.name)
   }, [])
-
-  const handleOnRemove = (file: UploadItem) => {
-    const currentFiles =
-      previousValueRef.current.length > 0
-        ? [...previousValueRef.current]
-        : [...(fileListRef.current || [])]
-    const index = getFileIndex(currentFiles, file)
-    currentFiles.splice(index, 1)
-    setFileList(currentFiles)
-    fileListRef.current = currentFiles
-    if (previousValueRef.current.length > 0) {
-      previousValueRef.current = currentFiles
-    }
-    triggerEventHandler("change")
-    return true
-  }
-
-  const customRequest = (options: RequestOptions) => {
-    options.onSuccess()
-  }
-
-  const onChanges = useCallback(
-    (fileList: UploadItem[], file: UploadItem) => {
-      let files = [...previousValueRef.current]
-      if (file.status === "init") {
-        files.push(file)
-        previousValueRef.current = [...files]
-        setFileList(files)
-        fileCountRef.current += 1
-        return
-      }
-      const index = getFileIndex(previousValueRef.current, file)
-      if (index < 0) {
-        return
-      }
-      files.splice(index, 1, file)
-      setFileList(files)
-      previousValueRef.current = files
-      if (files.length === fileCountRef.current && !!fileCountRef.current) {
-        const allSettled = files.every(
-          (f) => f.status === "error" || f.status === "done",
-        )
-        if (allSettled) {
-          const newList = appendFiles
-            ? [...(fileListRef.current || []), ...files]
-            : files
-          setFileList(newList)
-          fileListRef.current = newList
-          previousValueRef.current = []
-          fileCountRef.current = 0
-          triggerEventHandler("change")
-        }
-      }
-      return
-    },
-    [appendFiles, getFileIndex, triggerEventHandler],
-  )
 
   const getValidateMessage = useCallback(
     (value?: UploadItem[]) => {
@@ -308,6 +187,134 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       return message
     },
     [getValidateMessage, handleUpdateDsl],
+  )
+
+  const handleFilesChange = useCallback(
+    (fileList?: UploadItem[]) => {
+      if (
+        !fileList ||
+        (prevFileList.current === fileList &&
+          prevParseValue.current === parseValue)
+      ) {
+        return
+      }
+      prevFileList.current = fileList
+      prevParseValue.current = parseValue ?? false
+      new Promise(async (resolve) => {
+        const values = await Promise.allSettled(
+          fileList.map(async (file) => await toBase64(file)),
+        )
+        let parsedValues
+        if (parseValue) {
+          parsedValues = await Promise.allSettled(
+            fileList.map(async (file) => {
+              const res = await getFileString(file)
+              return res
+            }),
+          )
+        }
+        resolve({
+          values,
+          parsedValues,
+          fileList,
+        })
+      })
+        .then((value) => {
+          const {
+            values,
+            parsedValues,
+            fileList = [],
+          } = value as {
+            values: any[]
+            parsedValues: any[]
+            fileList: UploadItem[]
+          }
+          const validateMessage = getValidateMessage(fileList)
+          const base64value = getFilteredValue(values, "base64")
+          const files = getFiles(fileList, base64value ?? [])
+          const parsed = getFilteredValue(parsedValues)
+          const currentList = getCurrentList(fileList)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                files,
+                value: base64value,
+                parsedValue: parsed,
+                validateMessage,
+                currentList,
+              },
+            },
+          ])
+        })
+        .then(() => {
+          triggerEventHandler("change")
+        })
+    },
+    [
+      displayName,
+      getValidateMessage,
+      handleUpdateMultiExecutionResult,
+      parseValue,
+      triggerEventHandler,
+    ],
+  )
+
+  const handleOnRemove = (file: UploadItem) => {
+    const currentFiles =
+      previousValueRef.current.length > 0
+        ? [...previousValueRef.current]
+        : [...(fileListRef.current || [])]
+    const index = getFileIndex(currentFiles, file)
+    currentFiles.splice(index, 1)
+    setFileList(currentFiles)
+    fileListRef.current = currentFiles
+    if (previousValueRef.current.length > 0) {
+      previousValueRef.current = currentFiles
+    }
+    handleFilesChange(currentFiles)
+    return true
+  }
+
+  const customRequest = (options: RequestOptions) => {
+    options.onSuccess()
+  }
+
+  const onChanges = useCallback(
+    (fileList: UploadItem[], file: UploadItem) => {
+      let files = [...previousValueRef.current]
+      if (file.status === "init") {
+        files.push(file)
+        previousValueRef.current = [...files]
+        setFileList(files)
+        fileCountRef.current += 1
+        return
+      }
+      const index = getFileIndex(previousValueRef.current, file)
+      if (index < 0) {
+        return
+      }
+      files.splice(index, 1, file)
+      setFileList(files)
+      previousValueRef.current = files
+      if (files.length === fileCountRef.current && !!fileCountRef.current) {
+        const allSettled = files.every(
+          (f) => f.status === "error" || f.status === "done",
+        )
+        if (allSettled) {
+          const newList = appendFiles
+            ? [...(fileListRef.current || []), ...files]
+            : files
+          setFileList(newList)
+          fileListRef.current = newList
+          previousValueRef.current = []
+          fileCountRef.current = 0
+          handleFilesChange(newList)
+        }
+      }
+      return
+    },
+    [appendFiles, getFileIndex, handleFilesChange],
   )
 
   useEffect(() => {
