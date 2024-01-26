@@ -39,28 +39,28 @@ export const ToCloudModal: FC<ToCloudModalProps> = ({ onClose }) => {
 
   const FEATURE_CONFIG = [
     {
-      label: "new_dashboard.selfhost.export.feature1",
-      tip: "new_dashboard.selfhost.export.feature_tips1",
+      label: t("new_dashboard.selfhost.export.feature1"),
+      tip: t("new_dashboard.selfhost.export.feature_tips1"),
     },
     {
-      label: "new_dashboard.selfhost.export.feature2",
-      tip: "new_dashboard.selfhost.export.feature_tips2",
+      label: t("new_dashboard.selfhost.export.feature2"),
+      tip: t("new_dashboard.selfhost.export.feature_tips2"),
     },
     {
-      label: "new_dashboard.selfhost.export.feature3",
-      tip: "new_dashboard.selfhost.export.feature_tips3",
+      label: t("new_dashboard.selfhost.export.feature3"),
+      tip: t("new_dashboard.selfhost.export.feature_tips3"),
     },
     {
-      label: "new_dashboard.selfhost.export.feature4",
-      tip: "new_dashboard.selfhost.export.feature_tips4",
+      label: t("new_dashboard.selfhost.export.feature4"),
+      tip: t("new_dashboard.selfhost.export.feature_tips4"),
     },
     {
-      label: "new_dashboard.selfhost.export.feature5",
-      tip: "new_dashboard.selfhost.export.feature_tips5",
+      label: t("new_dashboard.selfhost.export.feature5"),
+      tip: t("new_dashboard.selfhost.export.feature_tips5"),
     },
     {
-      label: "new_dashboard.selfhost.export.feature6",
-      tip: "new_dashboard.selfhost.export.feature_tips6",
+      label: t("new_dashboard.selfhost.export.feature6"),
+      tip: t("new_dashboard.selfhost.export.feature_tips6"),
     },
   ]
 
@@ -92,22 +92,16 @@ export const ToCloudModal: FC<ToCloudModalProps> = ({ onClose }) => {
         </div>
       </div>
       <div>
-        {FEATURE_CONFIG.map(({ label, tip }, i) => {
+        {FEATURE_CONFIG.map(({ label, tip }) => {
           return (
-            <div css={applyCardListStyle} key={`${label}${i}`}>
+            <div css={applyCardListStyle} key={label}>
               {label && <TipIcon css={iconStyle} />}
-              <span>{t(label)}</span>
-              {tip && (
-                <Trigger
-                  trigger="hover"
-                  colorScheme="techPurple"
-                  content={t(tip)}
-                >
-                  <span css={doubtStyle}>
-                    <DoubtIcon css={iconStyle} />
-                  </span>
-                </Trigger>
-              )}
+              <span>{label}</span>
+              <Trigger trigger="hover" colorScheme="techPurple" content={tip}>
+                <span css={doubtStyle}>
+                  <DoubtIcon css={iconStyle} />
+                </span>
+              </Trigger>
             </div>
           )
         })}
