@@ -79,8 +79,8 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
           {isLastStep
             ? t("editor.tutorial.panel.onboarding_app.congratulations_button")
             : hideExit
-            ? t("editor.tutorial.panel.onboarding_app.test_it_button")
-            : t("editor.tutorial.panel.onboarding_app.do_it")}
+              ? t("editor.tutorial.panel.onboarding_app.test_it_button")
+              : t("editor.tutorial.panel.onboarding_app.do_it")}
         </span>
       </div>
     </div>
