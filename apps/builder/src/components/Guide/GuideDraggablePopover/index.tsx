@@ -10,10 +10,11 @@ export type CurrentMaskPosition = "top" | "bottom" | "right"
 export interface GuideCurrentMaskProps {
   currentStep: number
   position?: CurrentMaskPosition
+  openCreateAppModal?: () => void
 }
 
 export const GuideDraggablePopover: FC<GuideCurrentMaskProps> = (props) => {
-  const { currentStep, position = "bottom" } = props
+  const { currentStep, position = "bottom", openCreateAppModal } = props
   const { selector, titleKey, descKey, hideExit, doItForMe } =
     GUIDE_STEP[currentStep]
   const isLastStep = useMemo(
@@ -40,6 +41,7 @@ export const GuideDraggablePopover: FC<GuideCurrentMaskProps> = (props) => {
         hideExit={hideExit}
         isLastStep={isLastStep}
         onClickDoIt={doItForMe}
+        openCreateAppModal={openCreateAppModal}
       />
     </motion.div>,
     document.body,
