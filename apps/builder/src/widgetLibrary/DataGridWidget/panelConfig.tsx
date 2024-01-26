@@ -31,6 +31,7 @@ export function getColumnsTypeSetter(type: ColumnType): PanelFieldConfig[] {
 }
 
 export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
+  const baseAggregationOptions = ["size"]
   switch (type) {
     case "auto":
       return [
@@ -42,6 +43,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           placeholder: "{{currentRow}}",
         },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
+        },
       ]
     case "text":
       return [
@@ -51,6 +60,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
           attrName: "mappedValue",
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
           placeholder: "{{currentRow}}",
         },
       ]
@@ -72,6 +89,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           defaultValue: "YYYY-MM-DD",
           expectedType: VALIDATION_TYPES.STRING,
         },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: ["min", "max", ...baseAggregationOptions],
+          placeholder: "{{currentRow}}",
+        },
       ]
     case "tag":
       return [
@@ -89,6 +114,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           attrName: "tagColor",
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
         },
       ]
     case "datetime":
@@ -108,6 +141,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           defaultValue: "YYYY-MM-DD HH:mm:ss",
           expectedType: VALIDATION_TYPES.STRING,
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: ["min", "max", ...baseAggregationOptions],
+          placeholder: "{{currentRow}}",
         },
       ]
     case "number":
@@ -150,6 +191,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.STRING,
           openDynamic: true,
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: ["sum", "avg", "min", "max", ...baseAggregationOptions],
+          placeholder: "{{currentRow}}",
         },
       ]
     case "percent":
@@ -196,6 +245,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           openDynamic: true,
           useCustomLayout: true,
         },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
+        },
       ]
     case "html":
       return [
@@ -207,6 +264,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           placeholder: "{{currentRow}}",
         },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
+        },
       ]
     case "link":
       return [
@@ -216,6 +281,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
           attrName: "mappedValue",
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
           placeholder: "{{currentRow}}",
         },
       ]
@@ -251,6 +324,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelSize: "medium",
           attrName: "colorScheme",
           defaultValue: "blue",
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
         },
       ]
     case "buttongroup":
@@ -295,6 +376,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
             },
           ],
         },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
+        },
       ]
     case "boolean":
       return [
@@ -304,6 +393,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
           attrName: "mappedValue",
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
           placeholder: "{{currentRow}}",
         },
       ]
@@ -324,6 +421,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           defaultValue: "scale-down",
           setterType: "SEARCH_SELECT_SETTER",
           options: ["container", "cover", "fill", "none", "scale-down"],
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
         },
       ]
     case "avatar":
@@ -410,6 +515,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           attrName: "colorScheme",
           setterType: "CUSTOM_BG_SELECT_SETTER",
         },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
+        },
       ]
     case "rating":
       return [
@@ -429,6 +542,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
           expectedType: VALIDATION_TYPES.NUMBER,
         },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
+        },
       ]
     case "markdown":
       return [
@@ -438,6 +559,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
           attrName: "mappedValue",
           setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+          placeholder: "{{currentRow}}",
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
           placeholder: "{{currentRow}}",
         },
       ]
@@ -495,6 +624,14 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           shown: (value) => value,
           openDynamic: true,
           useCustomLayout: true,
+        },
+        {
+          id: `${baseWidgetName}-column-aggregationModel`,
+          labelName: i18n.t("aggregationModel"),
+          attrName: "aggregationModel",
+          setterType: "BASE_SELECT_SETTER",
+          options: baseAggregationOptions,
+          placeholder: "{{currentRow}}",
         },
       ]
     default:
