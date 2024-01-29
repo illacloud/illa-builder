@@ -1,6 +1,6 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { configActions } from "@/redux/config/configSlice"
-import store, { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { searchParent } from "@/utils/componentNode/search"
 import { updateCurrentAllComponentsAttachedUsers } from "../currentApp/collaborators/collaboratorsHandlers"
 import { getExecutionWidgetLayoutInfo } from "../currentApp/executionTree/executionSelector"
@@ -29,9 +29,9 @@ export const handleUpdateSelectedComponentExecution = (
 
 async function handleChangeSelectedActionExecution(
   action: ReturnType<typeof configActions.changeSelectedAction>,
-  _listenerApi: AppListenerEffectAPI,
+  listenerApi: AppListenerEffectAPI,
 ) {
-  store.dispatch(configActions.updateCachedAction(action.payload))
+  listenerApi.dispatch(configActions.updateCachedAction(action.payload))
 }
 
 export function setupConfigListeners(
