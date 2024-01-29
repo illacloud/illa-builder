@@ -1,4 +1,5 @@
 import FormRef from "@rjsf/core"
+import { debounce } from "lodash-es"
 import { FC, useCallback, useEffect, useRef } from "react"
 import { isObject } from "@/utils/typeHelper"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
@@ -18,9 +19,8 @@ export const JsonSchemaFormWidget: FC<JsonSchemaFormWidgetProps> = (props) => {
 
   const enableAutoHeight = dynamicHeight !== "fixed"
   const formRef = useRef<FormRef>(null)
-
-  const handleOnChange = useCallback(
-    (formData: unknown) => {
+  const onChangeRef = useRef(
+    debounce((formData: unknown) => {
       if (isObject(formData)) {
         handleUpdateMultiExecutionResult([
           {
@@ -31,8 +31,7 @@ export const JsonSchemaFormWidget: FC<JsonSchemaFormWidgetProps> = (props) => {
           },
         ])
       }
-    },
-    [displayName, handleUpdateMultiExecutionResult],
+    }, 180),
   )
 
   const handleValidate = useCallback(() => {
@@ -93,7 +92,7 @@ export const JsonSchemaFormWidget: FC<JsonSchemaFormWidgetProps> = (props) => {
       <WrapperSchemaForm
         ref={formRef}
         {...props}
-        handleOnChange={handleOnChange}
+        handleOnChange={onChangeRef.current}
         handleOnSubmit={handleOnSubmit}
       />
     </AutoHeightContainer>

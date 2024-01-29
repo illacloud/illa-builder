@@ -1,9 +1,7 @@
-import { AnyAction } from "@reduxjs/toolkit"
-import { Connection } from "@/api/ws"
+import { UnknownAction } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
-import { ILLARoute } from "@/router"
 
-export const receiveMessage = (action: AnyAction, currentAppID: string) => {
+export const receiveMessage = (action: UnknownAction, currentAppID: string) => {
   const { type, payload } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]
@@ -13,18 +11,6 @@ export const receiveMessage = (action: AnyAction, currentAppID: string) => {
   action.from = REDUX_ACTION_FROM.WS
 
   switch (newType) {
-    case "apps/removeDashboardAppReducer": {
-      if (payload === currentAppID) {
-        const wsUrl = Connection.roomMap.get(currentAppID) ?? ""
-        if (wsUrl) {
-          Connection.leaveRoom("app", currentAppID)
-        }
-        ILLARoute.navigate("/404", {
-          replace: true,
-        })
-      }
-      break
-    }
     case "enter/remote": {
       if (currentAppID !== "") {
         action.type = "collaborators/setInRoomUsers"
@@ -33,8 +19,14 @@ export const receiveMessage = (action: AnyAction, currentAppID: string) => {
     }
     case "attachComponent/remote": {
       if (currentAppID !== "") {
-        action.type = "collaborators/updateComponentAttachedUsers"
-        action.payload = payload.componentAttachedUsers
+        if (
+          typeof payload === "object" &&
+          payload !== null &&
+          "componentAttachedUsers" in payload
+        ) {
+          action.type = "collaborators/updateComponentAttachedUsers"
+          action.payload = payload.componentAttachedUsers
+        }
       }
       break
     }
