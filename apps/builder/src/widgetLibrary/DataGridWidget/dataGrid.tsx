@@ -71,6 +71,34 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
 
   const dispatch = useDispatch()
 
+  const handleAggregationModelChange = (modal: GridAggregationModel) => {
+    if (!columns || !Array.isArray(columns)) return
+    let curColumns = [...(columns || [])]
+    Object.keys(modal).forEach((key) => {
+      const index = columns.findIndex((column) => {
+        return column?.field === key
+      })
+      if (!columns || index === -1) return
+      curColumns = [
+        ...curColumns.slice(0, index),
+        {
+          ...columns[index],
+          aggregationModel: modal[key],
+        },
+        ...curColumns.slice(index + 1),
+      ]
+    })
+
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          columns: curColumns,
+        },
+      },
+    ])
+  }
+
   const isInnerDragging = useRef(false)
 
   const toolbar = useCallback(
@@ -240,6 +268,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
             }
           }}
           aggregationModel={aggregationModel}
+          onAggregationModelChange={handleAggregationModelChange}
           filterModel={
             filterModel !== undefined
               ? {
