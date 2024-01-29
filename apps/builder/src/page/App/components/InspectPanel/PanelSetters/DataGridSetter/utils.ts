@@ -15,15 +15,15 @@ export function dealRawData2ArrayData(rawData: unknown): object[] {
       if (isObject(rawData[0])) {
         return rawData.map((item) => {
           return {
-            ...item,
             [UNIQUE_ID_NAME]: v4(),
+            ...item,
           }
         })
       } else {
         return rawData.map((item) => {
           return {
-            field: item,
             [UNIQUE_ID_NAME]: v4(),
+            field: item,
           }
         })
       }
@@ -32,15 +32,15 @@ export function dealRawData2ArrayData(rawData: unknown): object[] {
     if (isObject(rawData)) {
       return [
         {
-          ...rawData,
           [UNIQUE_ID_NAME]: v4(),
+          ...rawData,
         },
       ]
     } else {
       return [
         {
-          field: rawData,
           [UNIQUE_ID_NAME]: v4(),
+          field: rawData,
         },
       ]
     }
