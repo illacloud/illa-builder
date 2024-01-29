@@ -74,7 +74,11 @@ export default defineConfig(({ command, mode }) => {
   if (command === "serve" && useHttps) {
     plugin.push(basicSsl())
   } else {
-    if (env.ILLA_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
+    if (
+      env.ILLA_INSTANCE_ID === "CLOUD" &&
+      env.ILLA_SENTRY_AUTH_TOKEN &&
+      env.ILLA_APP_ENV === "production"
+    ) {
       plugin.push(
         sentryVitePlugin({
           authToken: env.ILLA_SENTRY_AUTH_TOKEN,
