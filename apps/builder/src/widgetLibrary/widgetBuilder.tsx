@@ -281,6 +281,11 @@ import {
   GRID_LIST_WIDGET_CONFIG,
 } from "./GridListWidget"
 import { IFRAME_EVENT_HANDLER_CONFIG } from "./IFrameWidget/eventHandlerConfig"
+import {
+  QR_CODE_EVENT_HANDLER_CONFIG,
+  QR_CODE_PANEL_CONFIG,
+  QR_CODE_WIDGET_CONFIG,
+} from "./QRCodeWidget"
 import { EventHandlerConfig, WidgetConfig } from "./interface"
 
 export const WidgetConfigMap: Record<
@@ -634,6 +639,12 @@ export const WidgetConfigMap: Record<
     panelConfig: IFRAME_PANEL_CONFIG,
     eventHandlerConfig: IFRAME_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/IFrameWidget/iframe")),
+  },
+  QR_CODE_WIDGET: {
+    config: QR_CODE_WIDGET_CONFIG,
+    panelConfig: QR_CODE_PANEL_CONFIG,
+    eventHandlerConfig: QR_CODE_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/QRCodeWidget/qrCode")),
   },
 }
 
