@@ -7,6 +7,7 @@ import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelS
 import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { getColumnTypeFromValue } from "@/widgetLibrary/DataGridWidget/columnDeal"
 import { getColumnsTypeSetter } from "@/widgetLibrary/DataGridWidget/panelConfig"
 import { Column } from "../../DragMoveComponent/Column"
 import { ColumnEmpty } from "../../DragMoveComponent/Empty"
@@ -57,20 +58,17 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     undefined,
   )
 
+  const dataSourceMode = get(targetComponentProps, "dataSourceMode", "dynamic")
+
+  const rawData = get(
+    targetComponentProps,
+    dataSourceMode === "dynamic" ? "dataSourceJS" : "dataSource",
+    undefined,
+  )
+
+  const arrayData: object[] = dealRawData2ArrayData(rawData)
+
   const calculateColumns: ColumnConfig[] = useMemo(() => {
-    const dataSourceMode = get(
-      targetComponentProps,
-      "dataSourceMode",
-      "dynamic",
-    )
-    const rawData = get(
-      targetComponentProps,
-      dataSourceMode === "dynamic" ? "dataSourceJS" : "dataSource",
-      undefined,
-    )
-
-    const arrayData: object[] = dealRawData2ArrayData(rawData)
-
     if (arrayData.length == 0) {
       return []
     } else {
@@ -78,7 +76,7 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
         return generateCalcColumnConfig(key, true, false)
       })
     }
-  }, [targetComponentProps])
+  }, [arrayData])
 
   const mixedColumns: ColumnConfig[] = useMemo(() => {
     if (calculateColumns.length === 0) {
@@ -154,7 +152,10 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
                 [attrName]: finalColumns,
               })
             }}
-            childrenSetter={getColumnsTypeSetter(config.columnType)}
+            childrenSetter={getColumnsTypeSetter(
+              config.columnType,
+              getColumnTypeFromValue(get(arrayData[0], config.field)),
+            )}
             showDelete={!config.isCalc}
             attrPath={`${attrName}.${index}`}
             widgetDisplayName={widgetDisplayName}
