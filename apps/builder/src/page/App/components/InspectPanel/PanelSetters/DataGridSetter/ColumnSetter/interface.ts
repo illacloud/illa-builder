@@ -44,6 +44,7 @@ export interface ColumnConfig {
   resizable: boolean
   disableReorder: boolean
   headerAlign: GridAlignment
+  aggregationModel?: string
   valueGetter?: (params: GridValueGetterParams) => any
   renderCell?: (params: GridRenderCellParams) => ReactNode
 }

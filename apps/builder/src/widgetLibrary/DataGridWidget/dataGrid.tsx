@@ -1,5 +1,9 @@
 import { StyledEngineProvider, ThemeProvider, createTheme } from "@mui/material"
-import { DataGridPremium, GridColDef } from "@mui/x-data-grid-premium"
+import {
+  DataGridPremium,
+  GridAggregationModel,
+  GridColDef,
+} from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber, isPlainObject } from "lodash-es"
 import {
@@ -66,6 +70,34 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   const ref = useRef<GridApiPremium>(null) as MutableRefObject<GridApiPremium>
 
   const dispatch = useDispatch()
+
+  const handleAggregationModelChange = (modal: GridAggregationModel) => {
+    if (!columns || !Array.isArray(columns)) return
+    let curColumns = [...(columns || [])]
+    Object.keys(modal).forEach((key) => {
+      const index = columns.findIndex((column) => {
+        return column?.field === key
+      })
+      if (!columns || index === -1) return
+      curColumns = [
+        ...curColumns.slice(0, index),
+        {
+          ...columns[index],
+          aggregationModel: modal[key],
+        },
+        ...curColumns.slice(index + 1),
+      ]
+    })
+
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          columns: curColumns,
+        },
+      },
+    ])
+  }
 
   const isInnerDragging = useRef(false)
 
@@ -202,6 +234,16 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     })
   }, [arrayData, columns, triggerEventHandler])
 
+  const aggregationModel = useMemo(() => {
+    const curAggregationModel: GridAggregationModel = {}
+    columns?.forEach((column) => {
+      if (column?.aggregationModel) {
+        curAggregationModel[column.field] = column.aggregationModel
+      }
+    })
+    return curAggregationModel
+  }, [columns])
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider
@@ -225,6 +267,8 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
               return get(row, primaryKey)
             }
           }}
+          aggregationModel={aggregationModel}
+          onAggregationModelChange={handleAggregationModelChange}
           filterModel={
             filterModel !== undefined
               ? {

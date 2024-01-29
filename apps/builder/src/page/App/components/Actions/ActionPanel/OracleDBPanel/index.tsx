@@ -68,6 +68,7 @@ const OracleDBPanel: FC = () => {
           value={(content.opts as OracleDBActionSQLMode).raw}
           onChange={handleValueChange("raw")}
           sqlScheme={sqlTable}
+          showSafeModeTips={content.mode === "sql-safe"}
         />
         <TransformerComponent fullWidth />
       </div>

@@ -90,7 +90,9 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
           <span>{tips}</span>
         </div>
       )}
-      {showSafeModeTips && <SQLModeTip value={value} _css={sqlModeTipStyle} />}
+      {showSafeModeTips && (
+        <SQLModeTip value={value} _css={sqlModeTipStyle(!!title)} />
+      )}
     </div>
   )
 }
