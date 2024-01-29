@@ -1,6 +1,8 @@
 import { isObject, isString } from "lodash-es"
+import { v4 } from "uuid"
 import { isNumber } from "@illa-design/react"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
+import { UNIQUE_ID_NAME } from "@/widgetLibrary/DataGridWidget/constants"
 
 export function dealRawData2ArrayData(rawData: unknown): object[] {
   if (rawData === undefined || rawData === "" || rawData === null) {
@@ -11,22 +13,34 @@ export function dealRawData2ArrayData(rawData: unknown): object[] {
       return []
     } else {
       if (isObject(rawData[0])) {
-        return rawData
+        return rawData.map((item) => {
+          return {
+            ...item,
+            [UNIQUE_ID_NAME]: v4(),
+          }
+        })
       } else {
         return rawData.map((item) => {
           return {
             field: item,
+            [UNIQUE_ID_NAME]: v4(),
           }
         })
       }
     }
   } else {
     if (isObject(rawData)) {
-      return [rawData]
+      return [
+        {
+          ...rawData,
+          [UNIQUE_ID_NAME]: v4(),
+        },
+      ]
     } else {
       return [
         {
           field: rawData,
+          [UNIQUE_ID_NAME]: v4(),
         },
       ]
     }
