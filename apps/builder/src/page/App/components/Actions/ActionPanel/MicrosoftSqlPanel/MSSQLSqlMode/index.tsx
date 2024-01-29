@@ -5,7 +5,7 @@ import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/Micros
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 
 export const MSSQLSqlMode: FC<MSSQLModeProps> = (props) => {
-  const { modeContent, onChange } = props
+  const { modeContent, showSafeModeTips, onChange } = props
   const { t } = useTranslation()
 
   return (
@@ -16,7 +16,7 @@ export const MSSQLSqlMode: FC<MSSQLModeProps> = (props) => {
       lineNumbers={true}
       value={(modeContent as MicrosoftSqlActionSqlMode).sql}
       onChange={(value) => onChange(value, "sql")}
-      showSafeModeTips
+      showSafeModeTips={showSafeModeTips}
     />
   )
 }

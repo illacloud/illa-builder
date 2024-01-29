@@ -19,10 +19,71 @@ import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/
 
 const baseWidgetName = "dataGrid"
 
-export function getColumnsTypeSetter(type: ColumnType): PanelFieldConfig[] {
+export const getAggregationSetter = (type: ColumnType): PanelFieldConfig => {
+  let aggregationOptions = [
+    {
+      label: i18n.t("editor.inspect.setter_option.aggregation.size"),
+      value: "size",
+    },
+  ]
+
+  switch (type) {
+    case "number":
+      aggregationOptions = [
+        {
+          label: i18n.t("editor.inspect.setter_option.aggregation.sum"),
+          value: "sum",
+        },
+        {
+          label: i18n.t("editor.inspect.setter_option.aggregation.avg"),
+          value: "avg",
+        },
+        {
+          label: i18n.t("editor.inspect.setter_option.aggregation.min"),
+          value: "min",
+        },
+        {
+          label: i18n.t("editor.inspect.setter_option.aggregation.max"),
+          value: "max",
+        },
+        ...aggregationOptions,
+      ]
+      break
+    case "date":
+    case "datetime":
+      aggregationOptions = [
+        {
+          label: i18n.t("editor.inspect.setter_option.aggregation.min"),
+          value: "min",
+        },
+        {
+          label: i18n.t("editor.inspect.setter_option.aggregation.max"),
+          value: "max",
+        },
+        ...aggregationOptions,
+      ]
+      break
+  }
+
+  return {
+    id: `${baseWidgetName}-column-aggregationModel`,
+    labelName: i18n.t("editor.inspect.setter_label.aggregation"),
+    attrName: "aggregationModel",
+    bindAttrName: ["aggregable"],
+    shown: (value) => value,
+    setterType: "BASE_SELECT_SETTER",
+    options: aggregationOptions,
+  }
+}
+
+export function getColumnsTypeSetter(
+  type: ColumnType,
+  defaultValueType: ColumnType,
+): PanelFieldConfig[] {
   return [
     ...DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.slice(0, 4),
     ...getColumnsTypeSubSetter(type),
+    getAggregationSetter(type !== "auto" ? type : defaultValueType),
     ...DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.slice(
       4,
       DATA_GRID_COMMON_COLUMN_SETTER_CONFIG.length,
