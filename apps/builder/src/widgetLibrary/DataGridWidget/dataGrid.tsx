@@ -65,7 +65,10 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
 
   const rawData = dataSourceMode === "dynamic" ? dataSourceJS : dataSource
 
-  const arrayData: object[] = dealRawData2ArrayData(rawData)
+  const arrayData: object[] = useMemo(
+    () => dealRawData2ArrayData(rawData),
+    [rawData],
+  )
 
   const ref = useRef<GridApiPremium>(null) as MutableRefObject<GridApiPremium>
 
@@ -219,7 +222,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
 
   const renderColumns = useMemo(() => {
     if (!columns) return []
-    const currentColumns: GridColDef[] = columns.map((column) => {
+    return columns.map((column) => {
       const safeColumn = getSafeColumn(column)
       return safeColumn.columnType === "auto"
         ? getColumnFromType(
@@ -233,12 +236,6 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           )
         : getColumnFromType(safeColumn, triggerEventHandler)
     })
-    const uniqueId = {
-      field: UNIQUE_ID_NAME,
-      headerName: "",
-      type: "string",
-    }
-    return [uniqueId, ...currentColumns]
   }, [arrayData, columns, triggerEventHandler])
 
   const aggregationModel = useMemo(() => {

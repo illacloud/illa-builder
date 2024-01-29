@@ -6,6 +6,7 @@ import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelS
 import SearchSelectSetter from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/searchSelect"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { UNIQUE_ID_NAME } from "@/widgetLibrary/DataGridWidget/constants"
 import { ColumnsSelectSetterProps } from "./interface"
 
 const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
@@ -50,10 +51,11 @@ const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
     ]
     if (arrayData.length > 0) {
       Object.keys(arrayData[0]).map((key) => {
-        opt.push({
-          value: key,
-          label: key,
-        })
+        key !== UNIQUE_ID_NAME &&
+          opt.push({
+            value: key,
+            label: key,
+          })
       })
     }
     return opt
