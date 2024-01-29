@@ -1,5 +1,5 @@
 import mdx from "@mdx-js/rollup"
-import { sentryVitePlugin } from "@sentry/vite-plugin"
+// import { sentryVitePlugin } from "@sentry/vite-plugin"
 import basicSsl from "@vitejs/plugin-basic-ssl"
 import react from "@vitejs/plugin-react-swc"
 import { writeFileSync } from "fs"
@@ -23,13 +23,12 @@ const getUsedEnv = (env: Record<string, string>) => {
   Object.keys(env).forEach((key) => {
     if (key.startsWith("ILLA_")) {
       let value = env[key]
-      if (key === "ILLA_APP_VERSION") {
-        value = pkg.version
-      }
       usedEnv[`import.meta.env.${key}`] = JSON.stringify(value)
       usedEnv[`process.env.${key}`] = JSON.stringify(value)
     }
   })
+  usedEnv[`import.meta.env.ILLA_APP_VERSION`] = JSON.stringify(pkg.version)
+  usedEnv[`process.env.ILLA_APP_VERSION`] = JSON.stringify(pkg.version)
   return usedEnv
 }
 
@@ -75,27 +74,27 @@ export default defineConfig(({ command, mode }) => {
   if (command === "serve" && useHttps) {
     plugin.push(basicSsl())
   } else {
-    if (env.ILLA_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
-      plugin.push(
-        sentryVitePlugin({
-          org: "sentry",
-          project: "illa-builder",
-          url: "https://sentry.illasoft.com/",
-          authToken: env.ILLA_SENTRY_AUTH_TOKEN,
-          release: {
-            name: `illa-builder@${version}`,
-            uploadLegacySourcemaps: {
-              urlPrefix: "~/assets",
-              paths: ["./dist/assets"],
-              ignore: ["node_modules"],
-            },
-            deploy: {
-              env: env.ILLA_APP_ENV,
-            },
-          },
-        }),
-      )
-    }
+    // if (env.ILLA_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
+    //   plugin.push(
+    //     sentryVitePlugin({
+    //       org: "sentry",
+    //       project: "illa-builder",
+    //       url: "https://sentry.illasoft.com/",
+    //       authToken: env.ILLA_SENTRY_AUTH_TOKEN,
+    //       release: {
+    //         name: `illa-builder@${version}`,
+    //         uploadLegacySourcemaps: {
+    //           urlPrefix: "~/assets",
+    //           paths: ["./dist/assets"],
+    //           ignore: ["node_modules"],
+    //         },
+    //         deploy: {
+    //           env: env.ILLA_APP_ENV,
+    //         },
+    //       },
+    //     }),
+    //   )
+    // }
   }
   writeFileSync("./public/appInfo.json", `{"version":${version}}`)
 
