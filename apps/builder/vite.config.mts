@@ -23,13 +23,12 @@ const getUsedEnv = (env: Record<string, string>) => {
   Object.keys(env).forEach((key) => {
     if (key.startsWith("ILLA_")) {
       let value = env[key]
-      if (key === "ILLA_APP_VERSION") {
-        value = pkg.version
-      }
       usedEnv[`import.meta.env.${key}`] = JSON.stringify(value)
       usedEnv[`process.env.${key}`] = JSON.stringify(value)
     }
   })
+  usedEnv[`import.meta.env.ILLA_APP_VERSION`] = JSON.stringify(pkg.version)
+  usedEnv[`process.env.ILLA_APP_VERSION`] = JSON.stringify(pkg.version)
   return usedEnv
 }
 
@@ -78,20 +77,12 @@ export default defineConfig(({ command, mode }) => {
     if (env.ILLA_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
       plugin.push(
         sentryVitePlugin({
-          org: "sentry",
-          project: "illa-builder",
-          url: "https://sentry.illasoft.com/",
           authToken: env.ILLA_SENTRY_AUTH_TOKEN,
+          org: "illa-cloud",
+          project: "illa-builder",
           release: {
             name: `illa-builder@${version}`,
-            uploadLegacySourcemaps: {
-              urlPrefix: "~/assets",
-              paths: ["./dist/assets"],
-              ignore: ["node_modules"],
-            },
-            deploy: {
-              env: env.ILLA_APP_ENV,
-            },
+            dist: env.ILLA_APP_ENV,
           },
         }),
       )
