@@ -123,6 +123,7 @@ const MicrosoftSqlPanel: FC = () => {
         <MSSQLSqlMode
           modeContent={sqlModeInitial}
           onChange={handleQueryChange}
+          showSafeModeTips={content.mode === "sql-safe"}
         />
       ) : (
         <MSSQLGUIMode

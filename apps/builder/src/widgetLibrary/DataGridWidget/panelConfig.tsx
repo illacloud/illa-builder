@@ -69,6 +69,8 @@ export const getAggregationSetter = (type: ColumnType): PanelFieldConfig => {
     id: `${baseWidgetName}-column-aggregationModel`,
     labelName: i18n.t("editor.inspect.setter_label.aggregation"),
     attrName: "aggregationModel",
+    bindAttrName: ["aggregable"],
+    shown: (value) => value,
     setterType: "BASE_SELECT_SETTER",
     options: aggregationOptions,
   }
