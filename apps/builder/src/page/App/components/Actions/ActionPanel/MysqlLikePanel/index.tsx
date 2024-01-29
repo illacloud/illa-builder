@@ -212,7 +212,7 @@ const MysqlLikePanel: FC = () => {
           onChange={handleQueryChange}
           onBlur={onBlurOnCodeMirror}
         />
-        <SQLModeTip value={value} />
+        {mysqlContent.mode === "sql-safe" && <SQLModeTip value={value} />}
       </div>
       {(mysqlContent.mode === "sql" || mysqlContent.mode === "sql-safe") && (
         <div css={modeContainerStyle}>

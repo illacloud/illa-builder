@@ -52,8 +52,8 @@ export const actionItemTip = css`
   color: ${getColor("grayBlue", "04")};
 `
 
-export const sqlModeTipStyle = css`
-  margin-left: 192px;
+export const sqlModeTipStyle = (hasTitle: boolean) => css`
+  margin-left: ${hasTitle ? "192px" : "32px"};
   margin-top: 0;
   margin-right: 16px;
 `
