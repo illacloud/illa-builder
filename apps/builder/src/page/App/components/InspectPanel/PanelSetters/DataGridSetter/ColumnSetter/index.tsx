@@ -75,7 +75,10 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     undefined,
   )
 
-  const arrayData: object[] = dealRawData2ArrayData(rawData)
+  const arrayData: object[] = useMemo(
+    () => dealRawData2ArrayData(rawData),
+    [rawData],
+  )
 
   const calculateColumns: ColumnConfig[] = useMemo(() => {
     if (arrayData.length == 0) {
