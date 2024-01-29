@@ -15,7 +15,6 @@ import {
   useRef,
 } from "react"
 import { useDispatch } from "react-redux"
-import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -25,6 +24,7 @@ import {
   getSafeColumn,
 } from "@/widgetLibrary/DataGridWidget/columnDeal"
 import { Toolbar } from "./Toolbar"
+import { UNIQUE_ID_NAME } from "./constants"
 import { BaseDataGridProps } from "./interface"
 
 export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
@@ -218,7 +218,8 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   ])
 
   const renderColumns = useMemo(() => {
-    return columns?.map((column) => {
+    if (!columns) return []
+    const currentColumns: GridColDef[] = columns.map((column) => {
       const safeColumn = getSafeColumn(column)
       return safeColumn.columnType === "auto"
         ? getColumnFromType(
@@ -232,6 +233,12 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           )
         : getColumnFromType(safeColumn, triggerEventHandler)
     })
+    const uniqueId = {
+      field: UNIQUE_ID_NAME,
+      headerName: "",
+      type: "string",
+    }
+    return [uniqueId, ...currentColumns]
   }, [arrayData, columns, triggerEventHandler])
 
   const aggregationModel = useMemo(() => {
@@ -262,7 +269,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
               primaryKey === "—" ||
               !(primaryKey in row)
             ) {
-              return v4()
+              return get(row, UNIQUE_ID_NAME)
             } else {
               return get(row, primaryKey)
             }
@@ -303,7 +310,10 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
             ])
             triggerEventHandler("onColumnVisibilityModelChange")
           }}
-          columnVisibilityModel={columnVisibilityModel}
+          columnVisibilityModel={{
+            [UNIQUE_ID_NAME]: false,
+            ...columnVisibilityModel,
+          }}
           onRowSelectionModelChange={(model) => {
             handleUpdateMultiExecutionResult([
               {

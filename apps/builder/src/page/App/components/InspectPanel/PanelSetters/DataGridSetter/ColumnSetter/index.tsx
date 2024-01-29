@@ -8,6 +8,7 @@ import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { getColumnTypeFromValue } from "@/widgetLibrary/DataGridWidget/columnDeal"
+import { UNIQUE_ID_NAME } from "@/widgetLibrary/DataGridWidget/constants"
 import { getColumnsTypeSetter } from "@/widgetLibrary/DataGridWidget/panelConfig"
 import { Column } from "../../DragMoveComponent/Column"
 import { ColumnEmpty } from "../../DragMoveComponent/Empty"
@@ -18,8 +19,16 @@ function generateCalcColumnConfig(
   isCalc: boolean,
   randomKey: boolean,
 ): ColumnConfig {
+  let field
+  if (key === UNIQUE_ID_NAME) {
+    field = UNIQUE_ID_NAME
+  } else if (randomKey) {
+    field = v4()
+  } else {
+    field = `${key}`
+  }
   return {
-    field: randomKey ? v4() : `${key}`,
+    field,
     headerName: `${key}`,
     width: 170,
     isCalc: isCalc,
@@ -142,38 +151,40 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
       items={mixedColumns.map((item) => item.field)}
     >
       {mixedColumns.length > 0 ? (
-        mixedColumns.map((config, index) => (
-          <Column
-            onDelete={(id) => {
-              const finalColumns = mixedColumns.filter(
-                (item) => item.field !== id,
-              )
-              handleUpdateMultiAttrDSL?.({
-                [attrName]: finalColumns,
-              })
-            }}
-            childrenSetter={getColumnsTypeSetter(
-              config.columnType,
-              getColumnTypeFromValue(get(arrayData[0], config.field)),
-            )}
-            showDelete={!config.isCalc}
-            attrPath={`${attrName}.${index}`}
-            widgetDisplayName={widgetDisplayName}
-            key={config.field}
-            id={config.field}
-            showVisible={true}
-            label={config.headerName ?? config.field}
-            visibility={columnVisibilityModel?.[config.field] ?? true}
-            onVisibilityChange={(visibility) => {
-              handleUpdateMultiAttrDSL?.({
-                ["columnVisibilityModel"]: {
-                  ...columnVisibilityModel,
-                  [config.field]: visibility,
-                },
-              })
-            }}
-          />
-        ))
+        mixedColumns.map((config, index) =>
+          config.field === UNIQUE_ID_NAME ? null : (
+            <Column
+              onDelete={(id) => {
+                const finalColumns = mixedColumns.filter(
+                  (item) => item.field !== id,
+                )
+                handleUpdateMultiAttrDSL?.({
+                  [attrName]: finalColumns,
+                })
+              }}
+              childrenSetter={getColumnsTypeSetter(
+                config.columnType,
+                getColumnTypeFromValue(get(arrayData[0], config.field)),
+              )}
+              showDelete={!config.isCalc}
+              attrPath={`${attrName}.${index}`}
+              widgetDisplayName={widgetDisplayName}
+              key={config.field}
+              id={config.field}
+              showVisible={true}
+              label={config.headerName ?? config.field}
+              visibility={columnVisibilityModel?.[config.field] ?? true}
+              onVisibilityChange={(visibility) => {
+                handleUpdateMultiAttrDSL?.({
+                  ["columnVisibilityModel"]: {
+                    ...columnVisibilityModel,
+                    [config.field]: visibility,
+                  },
+                })
+              }}
+            />
+          ),
+        )
       ) : (
         <ColumnEmpty />
       )}
