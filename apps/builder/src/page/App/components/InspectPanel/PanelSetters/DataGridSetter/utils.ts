@@ -1,10 +1,13 @@
 import { isObject, isString } from "lodash-es"
-import { v4 } from "uuid"
 import { isNumber } from "@illa-design/react"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
 import { UNIQUE_ID_NAME } from "@/widgetLibrary/DataGridWidget/constants"
 
-export function dealRawData2ArrayData(rawData: unknown): object[] {
+export function dealRawData2ArrayData(
+  rawData: unknown,
+  enableServerSidePagination?: boolean,
+  serverSideOffset?: number,
+): object[] {
   if (rawData === undefined || rawData === "" || rawData === null) {
     return []
   }
@@ -13,33 +16,45 @@ export function dealRawData2ArrayData(rawData: unknown): object[] {
       return []
     } else {
       if (isObject(rawData[0])) {
-        return rawData.map((item) => {
+        return rawData.map((item, i) => {
+          let uniqueID = i
+          if (enableServerSidePagination && serverSideOffset) {
+            uniqueID = serverSideOffset + i
+          }
           return {
-            [UNIQUE_ID_NAME]: v4(),
+            [UNIQUE_ID_NAME]: uniqueID,
             ...item,
           }
         })
       } else {
-        return rawData.map((item) => {
+        return rawData.map((item, i) => {
+          let uniqueID = i
+          if (enableServerSidePagination && serverSideOffset) {
+            uniqueID = serverSideOffset + i
+          }
           return {
-            [UNIQUE_ID_NAME]: v4(),
+            [UNIQUE_ID_NAME]: uniqueID,
             field: item,
           }
         })
       }
     }
   } else {
+    let uniqueID = 0
+    if (enableServerSidePagination && serverSideOffset) {
+      uniqueID = serverSideOffset
+    }
     if (isObject(rawData)) {
       return [
         {
-          [UNIQUE_ID_NAME]: v4(),
+          [UNIQUE_ID_NAME]: uniqueID,
           ...rawData,
         },
       ]
     } else {
       return [
         {
-          [UNIQUE_ID_NAME]: v4(),
+          [UNIQUE_ID_NAME]: uniqueID,
           field: rawData,
         },
       ]
