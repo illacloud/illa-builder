@@ -64,10 +64,16 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   } = props
 
   const rawData = dataSourceMode === "dynamic" ? dataSourceJS : dataSource
+  const serverSideOffset = (page ?? 0) * (pageSize ?? 10)
 
   const arrayData: object[] = useMemo(
-    () => dealRawData2ArrayData(rawData),
-    [rawData],
+    () =>
+      dealRawData2ArrayData(
+        rawData,
+        enableServerSidePagination,
+        serverSideOffset,
+      ),
+    [rawData, enableServerSidePagination, serverSideOffset],
   )
 
   const ref = useRef<GridApiPremium>(null) as MutableRefObject<GridApiPremium>
