@@ -3471,6 +3471,9 @@ importers:
 
   packages/illa-public-component/MixpanelUtils:
     dependencies:
+      '@amplitude/analytics-browser':
+        specifier: ^2.4.0
+        version: 2.4.0
       '@fingerprintjs/fingerprintjs':
         specifier: ^3.4.0
         version: 3.4.0
@@ -4088,6 +4091,58 @@ packages:
   /@aashutoshrathi/word-wrap@1.2.6:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
+
+  /@amplitude/analytics-browser@2.4.0:
+    resolution: {integrity: sha512-QHEHCxGiEYeYv052MCnRWmPVD56micO65kODsR5hqWMkJQcemql8gvZfwYPt0rDGxxmvTxEN95uxHbbV2p3bpw==}
+    dependencies:
+      '@amplitude/analytics-client-common': 2.0.11
+      '@amplitude/analytics-core': 2.2.0
+      '@amplitude/analytics-types': 2.4.0
+      '@amplitude/plugin-page-view-tracking-browser': 2.1.0
+      '@amplitude/plugin-web-attribution-browser': 2.1.0
+      tslib: 2.6.2
+    dev: false
+
+  /@amplitude/analytics-client-common@2.0.11:
+    resolution: {integrity: sha512-f2zzo7Sk1hz8/WT7kPB6HZqAyHJrxMzw9nTqbLoRsaG9xm4YOJ0WCwtlu42RVRqIoWR89RTmIkqIjqimqMaHEQ==}
+    dependencies:
+      '@amplitude/analytics-connector': 1.5.0
+      '@amplitude/analytics-core': 2.2.0
+      '@amplitude/analytics-types': 2.4.0
+      tslib: 2.6.2
+    dev: false
+
+  /@amplitude/analytics-connector@1.5.0:
+    resolution: {integrity: sha512-T8mOYzB9RRxckzhL0NTHwdge9xuFxXEOplC8B1Y3UX3NHa3BLh7DlBUZlCOwQgMc2nxDfnSweDL5S3bhC+W90g==}
+    dev: false
+
+  /@amplitude/analytics-core@2.2.0:
+    resolution: {integrity: sha512-JVx1chKa/sfqpBNEZn6jaZZV3DW/6cOoJxx8b5oqHIn+5HXizEOV85aLFY0rrtZ/uR/HrdffxrMKzr/uBFlV+A==}
+    dependencies:
+      '@amplitude/analytics-types': 2.4.0
+      tslib: 2.6.2
+    dev: false
+
+  /@amplitude/analytics-types@2.4.0:
+    resolution: {integrity: sha512-GVj9W4X3XMVyGfqXdES2vFU8pqTIHvihj/vNOjOrwYHVdia3GjlcGl77GXuERCIwr52MoiUVTGXmXn3adf+A+Q==}
+    dev: false
+
+  /@amplitude/plugin-page-view-tracking-browser@2.1.0:
+    resolution: {integrity: sha512-iAZzLcmk6RGFf0emihBLtVBX2mZwmW6pyQOHQT7dLxCE8+L/Sgj2zhMyoRomL3RBoUUnXfu03ET3L9fv30LMGA==}
+    dependencies:
+      '@amplitude/analytics-client-common': 2.0.11
+      '@amplitude/analytics-types': 2.4.0
+      tslib: 2.6.2
+    dev: false
+
+  /@amplitude/plugin-web-attribution-browser@2.1.0:
+    resolution: {integrity: sha512-2b/LTZifOLvx8XTVPfyaxh39uX5ANNbvypByk9zywprucbKUj+1hzycgP57lN8Xw2iuqRfypQz7V2YGdR9w4MQ==}
+    dependencies:
+      '@amplitude/analytics-client-common': 2.0.11
+      '@amplitude/analytics-core': 2.2.0
+      '@amplitude/analytics-types': 2.4.0
+      tslib: 2.6.2
+    dev: false
 
   /@ampproject/remapping@2.2.0:
     resolution: {integrity: sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w==}
