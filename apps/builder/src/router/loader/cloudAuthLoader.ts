@@ -8,12 +8,12 @@ import {
 } from "@illa-public/user-data"
 import { canAccessManage } from "@illa-public/user-role-utils"
 import {
+  getAuthToken,
   getILLACloudURL,
   isCloudVersion,
   sendConfigEvent,
   setAuthToken,
 } from "@illa-public/utils"
-import { getAuthToken } from "@illa-public/utils"
 import { LoaderFunction, redirect } from "react-router-dom"
 import i18n from "@/i18n/config"
 import { fetchMyTeamsInfo } from "@/services/team"
@@ -52,16 +52,16 @@ export const getUserInfoLoader: LoaderFunction = async () => {
         i18n.changeLanguage(lng)
         window.location.reload()
       }
-      ILLAMixpanel.getMixpanelInstance()?.identify(response.data.userID)
+      ILLAMixpanel.setUserID(response.data.userID)
       const reportedUserInfo: Record<string, any> = {}
       Object.entries(response.data).forEach(([key, value]) => {
         reportedUserInfo[`illa_${key}`] = value
       })
-      ILLAMixpanel.getMixpanelInstance()?.people.set(reportedUserInfo)
+      ILLAMixpanel.setUserProperties(reportedUserInfo)
       store.dispatch(currentUserActions.updateCurrentUserReducer(response.data))
       return null
     } catch (e) {
-      ILLAMixpanel.getMixpanelInstance()?.reset()
+      ILLAMixpanel.reset()
       return redirect("/403")
     }
   }
