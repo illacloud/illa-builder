@@ -72,7 +72,7 @@ jobs:
       - name: Push application Docker image
         run: |
           docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
-          docker tag illa-builder-frontend "illasoft/illa-builder-cname-frontend:$GITHUB_REF_NAME"
+          docker tag illa-builder-cname-frontend "illasoft/illa-builder-cname-frontend:$GITHUB_REF_NAME"
           docker push "illasoft/illa-builder-cname-frontend:$GITHUB_REF_NAME"
 
       - uses: actions/checkout@v4
