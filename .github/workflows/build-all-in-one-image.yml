@@ -56,6 +56,7 @@ jobs:
           ls
           cd illa-builder
           pnpm install --frozen-lockfile
+          echo "ILLA_BASE_PATH=/builder" >> $GITHUB_ENV
           echo "Building for $GITHUB_REF_NAME branch,ILLA APP ENV is $ILLA_APP_ENV"
           pnpm build-self
           cp ./apps/builder/dist ../build-all-in-one-image/builder -r
