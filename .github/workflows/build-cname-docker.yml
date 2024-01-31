@@ -15,6 +15,7 @@ env:
   DO_CLUSTER: ${{ secrets.DO_CLUSTER }}
   DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
   DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
+  ILLA_BASE_PATH: /builder
 
 jobs:
   build:
@@ -64,7 +65,6 @@ jobs:
       - name: Build website
         run: |
           echo "Building for $GITHUB_REF_NAME branch,ILLA APP ENV is $ILLA_APP_ENV"
-          echo "ILLA_BASE_PATH=/builder" >> $GITHUB_ENV
           pnpm build-cloud
       - name: Build Docker
         run: |
