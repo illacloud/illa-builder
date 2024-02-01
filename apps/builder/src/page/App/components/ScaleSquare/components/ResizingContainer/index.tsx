@@ -29,6 +29,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
     widgetWidth,
     widgetType,
     columnNumber,
+    parentNodeDisplayName,
   } = props
 
   const firstDragShadow = useSelector(getFirstDragShadowInfo)
@@ -69,6 +70,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
           widgetType={widgetType}
           columnNumber={columnNumber}
           widgetTop={widgetTop}
+          parentNodeDisplayName={parentNodeDisplayName}
         >
           <>
             {children}

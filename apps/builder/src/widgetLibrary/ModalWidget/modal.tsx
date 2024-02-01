@@ -146,7 +146,11 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+    dispatch(
+      executionActions.setResizingNodeIDsReducer([
+        `${displayName}-resize-modal-header`,
+      ]),
+    )
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(

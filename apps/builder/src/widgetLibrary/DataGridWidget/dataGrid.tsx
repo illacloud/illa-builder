@@ -412,7 +412,11 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
             toolbar: toolbar,
           }}
           onColumnHeaderEnter={() => {
-            dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+            dispatch(
+              executionActions.setResizingNodeIDsReducer([
+                `${displayName}-column-header-resize`,
+              ]),
+            )
             isInnerDragging.current = true
           }}
           onColumnHeaderLeave={() => {

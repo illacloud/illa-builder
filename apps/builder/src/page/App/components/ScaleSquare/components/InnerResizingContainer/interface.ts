@@ -10,4 +10,5 @@ export interface ResizingContainerProps {
   widgetType: string
   columnNumber: number
   widgetTop: number
+  parentNodeDisplayName: string
 }

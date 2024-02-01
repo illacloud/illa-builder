@@ -162,7 +162,11 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+    dispatch(
+      executionActions.setResizingNodeIDsReducer([
+        `${displayName}-resize-list-item`,
+      ]),
+    )
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(

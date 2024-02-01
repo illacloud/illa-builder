@@ -404,7 +404,11 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+    dispatch(
+      executionActions.setResizingNodeIDsReducer([
+        `${displayName}-resize-form-header`,
+      ]),
+    )
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
