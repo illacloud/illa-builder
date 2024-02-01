@@ -1,6 +1,7 @@
 import { arrayMove } from "@dnd-kit/sortable"
-import { get, isEqual } from "lodash-es"
-import { FC, useEffect, useMemo } from "react"
+import deepDiff from "deep-diff"
+import { get } from "lodash-es"
+import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
@@ -90,39 +91,60 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     }
   }, [arrayData])
 
+  const customColumns = useMemo(() => {
+    return value.filter((item) => !item.isCalc)
+  }, [value])
+
   const mixedColumns: ColumnConfig[] = useMemo(() => {
     if (calculateColumns.length === 0) {
       return value
     }
-    const mixedColumns: ColumnConfig[] = []
+    const mixedColumnsResult: ColumnConfig[] = []
 
-    value.forEach((config) => {
-      const index = calculateColumns.findIndex(
-        (item) => item.field === config.field,
-      )
-      if (index !== -1) {
-        calculateColumns.splice(index, 1)
-        mixedColumns.push(config)
+    calculateColumns.forEach((config) => {
+      const oldConfig = value.find((item) => item.field === config.field)
+      if (oldConfig) {
+        mixedColumnsResult.push(oldConfig)
       } else {
-        if (!config.isCalc) {
-          mixedColumns.push(config)
-        }
+        mixedColumnsResult.push(config)
       }
     })
-    calculateColumns.forEach((config) => {
-      mixedColumns.push(config)
+    mixedColumnsResult.push(...customColumns)
+
+    mixedColumnsResult.sort((a, b) => {
+      const aIndex = value.findIndex((item) => item.field === a.field)
+      const bIndex = value.findIndex((item) => item.field === b.field)
+
+      if (aIndex === -1 && bIndex === -1) {
+        return 0
+      }
+      if (aIndex === -1) {
+        return 1
+      }
+
+      if (bIndex === -1) {
+        return -1
+      }
+
+      return aIndex - bIndex
     })
 
-    return mixedColumns
-  }, [calculateColumns, value])
+    const diff = deepDiff(value, mixedColumnsResult)
 
-  useEffect(() => {
-    if (!isEqual(mixedColumns, value)) {
+    if ((diff?.length ?? 0) > 0) {
       handleUpdateMultiAttrDSL?.({
-        [attrName]: mixedColumns,
+        [attrName]: mixedColumnsResult,
       })
     }
-  }, [attrName, handleUpdateMultiAttrDSL, mixedColumns, value])
+
+    return mixedColumnsResult
+  }, [
+    attrName,
+    calculateColumns,
+    customColumns,
+    handleUpdateMultiAttrDSL,
+    value,
+  ])
 
   return (
     <ColumnContainer
