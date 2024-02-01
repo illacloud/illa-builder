@@ -7,4 +7,7 @@ export interface ResizingContainerProps {
   minHeight: number
   displayName: string
   children: ReactNode
+  widgetType: string
+  columnNumber: number
+  widgetTop: number
 }

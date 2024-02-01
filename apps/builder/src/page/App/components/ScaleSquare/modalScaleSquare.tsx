@@ -16,7 +16,6 @@ import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimit
 import { DragContainer } from "./components/DragContainer"
 import { getResizeHandler } from "./components/ResizingContainer/utils"
 import WrapperContainer from "./components/WrapperContainer"
-import { MOVE_BAR_HEIGHT } from "./constant/moveBar"
 import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquareProps } from "./interface"
 import { modalstopPropagationContainerStyle } from "./style"
@@ -131,10 +130,7 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
             displayName={displayName}
             parentNodeDisplayName={parentNodeDisplayName}
             widgetHeight={height}
-            widgetWidth={width}
             widgetType={widgetType}
-            widgetTop={MOVE_BAR_HEIGHT}
-            columnNumber={columnNumber}
           >
             <TransformWidgetWrapper
               displayName={displayName}

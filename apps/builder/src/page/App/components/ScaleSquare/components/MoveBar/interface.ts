@@ -3,9 +3,7 @@ import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaborator
 export interface MoveBarProps {
   displayName: string
   isError: boolean
-  isMouseOver: boolean
   maxWidth: number
-  selected: boolean
   widgetTop: number
   widgetType: string
   userList: CollaboratorsInfo[]

@@ -67,16 +67,8 @@ export const WidgetDoc: FC<WidgetDocProps> = (props) => {
 }
 
 export const MoveBar: FC<MoveBarProps> = (props) => {
-  const {
-    displayName,
-    isError,
-    maxWidth,
-    selected,
-    widgetTop,
-    widgetType,
-    userList,
-    isMouseOver,
-  } = props
+  const { displayName, isError, maxWidth, widgetTop, widgetType, userList } =
+    props
 
   const [currentState, setCurrentState] = useState<string>("right")
   const [containerRef, bounds] = useMeasure()
@@ -119,11 +111,8 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         maxWidth,
         minWidth,
         isError,
-        selected,
         isLikeProductionMode,
         topPosition,
-        !!userList.length,
-        isMouseOver,
       )}
       id="moveBar"
       ref={containerRef}

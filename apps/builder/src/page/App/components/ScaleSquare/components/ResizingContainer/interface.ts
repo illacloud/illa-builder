@@ -9,4 +9,6 @@ export interface ResizingContainerProps {
   widgetWidth: number
   widgetLeft: number
   widgetTop: number
+  widgetType: string
+  columnNumber: number
 }

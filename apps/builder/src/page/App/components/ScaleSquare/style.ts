@@ -248,7 +248,7 @@ const getWrapperBorderStyle = (
   return "solid"
 }
 
-const getWrapperBorder = (
+export const getWrapperBorder = (
   isLikProductionMode: boolean,
   isSelected: boolean,
   hasEditors: boolean,
@@ -277,33 +277,11 @@ const getWrapperBorder = (
   `
 }
 
-export const applyWrapperPendingStyle = (
-  hasEditors: boolean,
-  isSelected: boolean,
-  hasError: boolean,
-  isDragging: boolean,
-  isEditor: boolean,
-  isLimitedModeAndOverLap: boolean = false,
-  isLikProductionMode: boolean,
-  isHover: boolean,
-) => css`
+export const jsonWrapperPendingStyle = css`
   width: 100%;
   height: 100%;
   padding: 2px;
-  ${getWrapperBorder(
-    isLikProductionMode,
-    isSelected,
-    hasEditors,
-    isHover,
-    isDragging,
-  )};
-  background-color: ${isEditor && hasError && !isSelected
-    ? globalColor(`--${illaPrefix}-red-08`)
-    : "transparent"};
-  ${isLimitedModeAndOverLap && isSelected
-    ? `border-bottom:unset !important`
-    : ""}
-  ${isEditor && "cursor: move"}
+  background-color: transparent;
 `
 
 export const applyDashedLineStyle = (
