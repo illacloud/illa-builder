@@ -74,13 +74,21 @@ export const AutoHeightWithLimitedContainer: FC<
   const resizeStartCallback: ResizeStartCallback = useCallback(() => {
     setResizeMinHeight(true)
     dispatch(configActions.updateShowDot(true))
-    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+    dispatch(
+      executionActions.setResizingNodeIDsReducer([
+        `${displayName}-resize-minHeight`,
+      ]),
+    )
   }, [dispatch, displayName])
 
   const resizeMaxHeightStartCallback: ResizeStartCallback = useCallback(() => {
     setResizeMaxHeight(true)
     dispatch(configActions.updateShowDot(true))
-    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+    dispatch(
+      executionActions.setResizingNodeIDsReducer([
+        `${displayName}-resize-maxHeight`,
+      ]),
+    )
   }, [dispatch, displayName])
 
   const resizeMaxHeightCallback: ResizeCallback = useCallback(

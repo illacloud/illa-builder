@@ -44,6 +44,8 @@ const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       widgetTop={canDrag ? top : 0}
       widgetLeft={canDrag ? left : 0}
       parentNodeDisplayName={parentNodeDisplayName}
+      widgetType={widgetType}
+      columnNumber={columnNumber}
     >
       <DragContainer
         displayName={displayName}
@@ -56,10 +58,7 @@ const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           displayName={displayName}
           parentNodeDisplayName={parentNodeDisplayName}
           widgetHeight={height}
-          widgetWidth={width}
           widgetType={widgetType}
-          widgetTop={top}
-          columnNumber={columnNumber}
         >
           <TransformWidgetWrapper
             displayName={displayName}

@@ -10,11 +10,8 @@ export const applyMoveBarWrapperStyle = (
   maxWidth: number,
   minWidth: number,
   isError: boolean,
-  selected: boolean,
   isLikeProductionMode: boolean,
   topPosition: number,
-  hasEditors: boolean,
-  isMouseHover: boolean,
 ) => {
   let borderRadiusStyle = css`
     border-radius: 4px 4px 0 0;
@@ -37,10 +34,7 @@ export const applyMoveBarWrapperStyle = (
     color: #fff;
     max-width: ${maxWidth}px;
     min-width: ${minWidth}px;
-    visibility: ${!isLikeProductionMode &&
-    (selected || hasEditors || isMouseHover)
-      ? "visible"
-      : "hidden"};
+    visibility: ${!isLikeProductionMode ? "visible" : "hidden"};
     z-index: 100;
     cursor: move;
   `

@@ -1,37 +1,20 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { getCurrentUserId } from "@illa-public/user-data"
-import { klona } from "klona/json"
 import { get } from "lodash-es"
-import { FC, MouseEvent, memo, useCallback, useContext, useMemo } from "react"
+import { FC, memo, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
-import { useMouseHover } from "@/page/App/components/ScaleSquare/utils/useMouseHover"
 import {
-  getHoveredComponents,
   getIsILLAEditMode,
-  getIsLikeProductMode,
   getSelectedComponentDisplayNames,
-  isShowDot,
 } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
-import {
-  getComponentAttachUsers,
-  getTargetCurrentUsersExpendMe,
-} from "@/redux/currentApp/collaborators/collaboratorsSelector"
-import { getComponentDisplayNameMapDepth } from "@/redux/currentApp/components/componentsSelector"
 import {
   getExecutionError,
   getExecutionResult,
-  getExecutionWidgetLayoutInfo,
-  getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { CopyManager } from "@/utils/copyManager"
-import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { isMAC } from "@/utils/userAgent"
-import { MoveBar } from "../MoveBar/moveBar"
 import { WrapperContainerProps } from "./interface"
 import { applyWrapperPendingStyle, hoverHotSpotStyle } from "./style"
 
@@ -40,42 +23,16 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
     displayName,
     parentNodeDisplayName,
     widgetHeight,
-    widgetWidth,
     widgetType,
-    widgetTop,
     children,
-    columnNumber,
   } = props
-  const { handleMouseEnter, handleMouseLeave } = useMouseHover()
-  const hoveredComponents = useSelector(getHoveredComponents)
-  const isLikeProductionMode = useSelector(getIsLikeProductMode)
-  const canShowDot = useSelector(isShowDot)
   const executionResult = useSelector(getExecutionResult)
   const { t } = useTranslation()
   const shortcut = useContext(ShortCutContext)
-  const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
 
-  const isMouseOver =
-    hoveredComponents[hoveredComponents.length - 1] === displayName
-
-  const currentUserID = useSelector(getCurrentUserId)
-  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
-
-  const filteredComponentAttachedUserList = useMemo(() => {
-    return getTargetCurrentUsersExpendMe(
-      componentsAttachedUsers,
-      displayName,
-      currentUserID,
-    )
-  }, [componentsAttachedUsers, currentUserID, displayName])
-  const dispatch = useDispatch()
-  const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
-  const isResizing = useSelector(getIsResizing)
   const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
-
-  const hasEditors = !!filteredComponentAttachedUserList.length
 
   const isSelected = useMemo(() => {
     return selectedComponents.some((currentDisplayName) => {
@@ -94,98 +51,6 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
     isAutoLimitedMode &&
     (realProps?.dynamicMaxHeight === widgetHeight ||
       realProps?.dynamicMinHeight === widgetHeight)
-
-  const handleOnSelection = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
-      if (isResizing) return
-      FocusManager.switchFocus("canvas", {
-        displayName: displayName,
-        type: "component",
-        clickPosition: [],
-      })
-      if (!isEditMode) return
-      e.stopPropagation()
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
-        element: "component",
-        parameter1: "click",
-      })
-      if ((isMAC() && e.metaKey) || e.shiftKey || (!isMAC() && e.ctrlKey)) {
-        let currentSelectedDisplayName = klona(selectedComponents)
-        const index = currentSelectedDisplayName.findIndex(
-          (currentDisplayName) => displayName === currentDisplayName,
-        )
-        if (index !== -1) {
-          currentSelectedDisplayName.splice(index, 1)
-        } else {
-          currentSelectedDisplayName.push(displayName)
-        }
-
-        const depths = currentSelectedDisplayName.map((displayName) => {
-          return displayNameMapDepth[displayName]
-        })
-        let isEqual = depths.every((depth) => depth === depths[0])
-        if (!isEqual) {
-          return
-        }
-        if (currentSelectedDisplayName.length > 1) {
-          const firstParentNode =
-            widgetExecutionLayoutInfo[currentSelectedDisplayName[0]].parentNode
-          const isSameParentNode = currentSelectedDisplayName.every(
-            (displayName) => {
-              const parentNode =
-                widgetExecutionLayoutInfo[displayName].parentNode
-              return parentNode === firstParentNode
-            },
-          )
-          if (!isSameParentNode) {
-            const lastParentNode =
-              widgetExecutionLayoutInfo[
-                currentSelectedDisplayName[
-                  currentSelectedDisplayName.length - 1
-                ]
-              ].parentNode
-            currentSelectedDisplayName = currentSelectedDisplayName.filter(
-              (displayName) => {
-                const currentParentNode =
-                  widgetExecutionLayoutInfo[displayName].parentNode
-                return lastParentNode === currentParentNode
-              },
-            )
-          }
-        }
-        currentSelectedDisplayName = Array.from(
-          new Set(currentSelectedDisplayName),
-        )
-        dispatch(
-          configActions.updateSelectedComponent(currentSelectedDisplayName),
-        )
-        return
-      }
-      dispatch(configActions.updateSelectedComponent([displayName]))
-    },
-    [
-      dispatch,
-      displayName,
-      displayNameMapDepth,
-      isEditMode,
-      isResizing,
-      selectedComponents,
-      widgetExecutionLayoutInfo,
-    ],
-  )
-
-  const handleContextMenu = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
-      FocusManager.switchFocus("canvas", {
-        displayName: displayName,
-        type: "component",
-        clickPosition: [],
-      })
-      e.stopPropagation()
-      dispatch(configActions.updateSelectedComponent([displayName]))
-    },
-    [displayName, dispatch],
-  )
 
   return (
     <Dropdown
@@ -227,34 +92,15 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         css={hoverHotSpotStyle}
         data-displayname={displayName}
         data-parentnode={parentNodeDisplayName}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={handleOnSelection}
-        onContextMenu={handleContextMenu}
       >
         <div
-          css={applyWrapperPendingStyle(
-            hasEditors,
-            isSelected,
+          css={applyWrapperPendingStyle({
             hasError,
-            isEditMode,
-            isOverLap,
-            isLikeProductionMode,
-            isMouseOver,
-            canShowDot,
-          )}
+            isSelected,
+            isEditor: isEditMode,
+            isLimitedModeAndOverLap: isOverLap,
+          })}
         >
-          <MoveBar
-            isError={hasError}
-            isMouseOver={isMouseOver}
-            displayName={displayName}
-            maxWidth={widgetWidth}
-            selected={isSelected}
-            widgetTop={widgetTop}
-            widgetType={widgetType}
-            userList={filteredComponentAttachedUserList}
-            columnNumber={columnNumber}
-          />
           {children}
         </div>
       </div>
