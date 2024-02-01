@@ -97,18 +97,19 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      if (isResizing) return
+      e.stopPropagation()
+
+      if (isResizing || !isEditMode) return
       FocusManager.switchFocus("canvas", {
         displayName: displayName,
         type: "component",
         clickPosition: [],
       })
-      if (!isEditMode) return
-      e.stopPropagation()
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
         element: "component",
         parameter1: "click",
       })
+
       if ((isMAC() && e.metaKey) || e.shiftKey || (!isMAC() && e.ctrlKey)) {
         let currentSelectedDisplayName = klona(selectedComponents)
         const index = currentSelectedDisplayName.findIndex(
@@ -161,6 +162,7 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         )
         return
       }
+
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
     [
