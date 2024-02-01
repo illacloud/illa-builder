@@ -4,7 +4,7 @@ import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/Tra
 import { UNIT_HEIGHT } from "../DotPanel/constant/canvas"
 import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquarePropsWithJSON } from "./interface"
-import { applyWrapperPendingStyle } from "./style"
+import { jsonWrapperPendingStyle } from "./style"
 import { getRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 
 const ScaleSquareWithJSON = (props: ScaleSquarePropsWithJSON) => {
@@ -31,19 +31,7 @@ const ScaleSquareWithJSON = (props: ScaleSquarePropsWithJSON) => {
       minWidth={DEFAULT_MIN_COLUMN * unitW}
       minHeight={componentNode.minH * UNIT_HEIGHT}
     >
-      <div
-        className="wrapperPending"
-        css={applyWrapperPendingStyle(
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-        )}
-      >
+      <div className="wrapperPending" css={jsonWrapperPendingStyle}>
         <TransformWidgetWrapperWithJson
           componentNode={componentNode}
           unitW={unitW}

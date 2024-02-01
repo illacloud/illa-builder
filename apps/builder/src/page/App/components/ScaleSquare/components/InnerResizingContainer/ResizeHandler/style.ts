@@ -61,7 +61,7 @@ export function applyBarHandlerStyle(
   switch (barPosition) {
     case "t":
       barPositionStyle = css`
-        top: -2px;
+        top: -3px;
         left: 0;
         right: 0;
         height: 5px;
@@ -70,7 +70,7 @@ export function applyBarHandlerStyle(
       break
     case "b":
       barPositionStyle = css`
-        bottom: -2px;
+        bottom: -3px;
         left: 0;
         right: 0;
         height: 5px;
@@ -80,7 +80,7 @@ export function applyBarHandlerStyle(
     case "l":
       barPositionStyle = css`
         bottom: 0;
-        left: -2px;
+        left: -3px;
         top: 0;
         width: 5px;
         cursor: col-resize;
@@ -89,7 +89,7 @@ export function applyBarHandlerStyle(
     case "r":
       barPositionStyle = css`
         bottom: 0;
-        right: -2px;
+        right: -3px;
         top: 0;
         cursor: col-resize;
         width: 5px;
@@ -138,30 +138,30 @@ export function applySquarePointerStyle(
   switch (pointerPosition) {
     case "tl":
       positionStyle = css`
-        top: -2px;
-        left: -2px;
+        top: -3px;
+        left: -3px;
         cursor: nwse-resize;
       `
       break
     case "tr":
       positionStyle = css`
         cursor: nesw-resize;
-        top: -2px;
-        right: -2px;
+        top: -3px;
+        right: -3px;
       `
       break
     case "bl":
       positionStyle = css`
         cursor: nesw-resize;
-        bottom: -2px;
-        left: -2px;
+        bottom: -3px;
+        left: -3px;
       `
       break
     case "br":
       positionStyle = css`
         cursor: nwse-resize;
-        bottom: -2px;
-        right: -2px;
+        bottom: -3px;
+        right: -3px;
       `
       break
     default:

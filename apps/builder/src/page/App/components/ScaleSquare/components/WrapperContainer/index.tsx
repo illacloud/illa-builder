@@ -1,5 +1,4 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { getCurrentUserId } from "@illa-public/user-data"
 import { klona } from "klona/json"
 import { get } from "lodash-es"
 import { FC, MouseEvent, memo, useCallback, useContext, useMemo } from "react"
@@ -8,17 +7,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
 import { useMouseHover } from "@/page/App/components/ScaleSquare/utils/useMouseHover"
 import {
-  getHoveredComponents,
   getIsILLAEditMode,
-  getIsLikeProductMode,
   getSelectedComponentDisplayNames,
-  isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  getComponentAttachUsers,
-  getTargetCurrentUsersExpendMe,
-} from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { getComponentDisplayNameMapDepth } from "@/redux/currentApp/components/componentsSelector"
 import {
   getExecutionError,
@@ -31,7 +23,6 @@ import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isMAC } from "@/utils/userAgent"
-import { MoveBar } from "../MoveBar/moveBar"
 import { WrapperContainerProps } from "./interface"
 import { applyWrapperPendingStyle, hoverHotSpotStyle } from "./style"
 
@@ -40,42 +31,21 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
     displayName,
     parentNodeDisplayName,
     widgetHeight,
-    widgetWidth,
     widgetType,
-    widgetTop,
     children,
-    columnNumber,
   } = props
   const { handleMouseEnter, handleMouseLeave } = useMouseHover()
-  const hoveredComponents = useSelector(getHoveredComponents)
-  const isLikeProductionMode = useSelector(getIsLikeProductMode)
-  const canShowDot = useSelector(isShowDot)
   const executionResult = useSelector(getExecutionResult)
   const { t } = useTranslation()
   const shortcut = useContext(ShortCutContext)
   const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
 
-  const isMouseOver =
-    hoveredComponents[hoveredComponents.length - 1] === displayName
-
-  const currentUserID = useSelector(getCurrentUserId)
-  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
-
-  const filteredComponentAttachedUserList = useMemo(() => {
-    return getTargetCurrentUsersExpendMe(
-      componentsAttachedUsers,
-      displayName,
-      currentUserID,
-    )
-  }, [componentsAttachedUsers, currentUserID, displayName])
   const dispatch = useDispatch()
   const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const isResizing = useSelector(getIsResizing)
   const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
-
-  const hasEditors = !!filteredComponentAttachedUserList.length
 
   const isSelected = useMemo(() => {
     return selectedComponents.some((currentDisplayName) => {
@@ -235,28 +205,13 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         onContextMenu={handleContextMenu}
       >
         <div
-          css={applyWrapperPendingStyle(
-            hasEditors,
-            isSelected,
+          css={applyWrapperPendingStyle({
             hasError,
-            isEditMode,
-            isOverLap,
-            isLikeProductionMode,
-            isMouseOver,
-            canShowDot,
-          )}
+            isSelected,
+            isEditor: isEditMode,
+            isLimitedModeAndOverLap: isOverLap,
+          })}
         >
-          <MoveBar
-            isError={hasError}
-            isMouseOver={isMouseOver}
-            displayName={displayName}
-            maxWidth={widgetWidth}
-            selected={isSelected}
-            widgetTop={widgetTop}
-            widgetType={widgetType}
-            userList={filteredComponentAttachedUserList}
-            columnNumber={columnNumber}
-          />
           {children}
         </div>
       </div>
