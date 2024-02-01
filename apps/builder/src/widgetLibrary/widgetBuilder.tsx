@@ -536,6 +536,12 @@ export const WidgetConfigMap: Record<
     eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/ButtonWidget/button")),
   },
+  QR_CODE_WIDGET: {
+    config: QR_CODE_WIDGET_CONFIG,
+    panelConfig: QR_CODE_PANEL_CONFIG,
+    eventHandlerConfig: QR_CODE_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/QRCodeWidget/qrCode")),
+  },
   TAGS_WIDGET: {
     config: TAGS_WIDGET_CONFIG,
     panelConfig: TAGS_PANEL_CONFIG,
@@ -639,12 +645,6 @@ export const WidgetConfigMap: Record<
     panelConfig: IFRAME_PANEL_CONFIG,
     eventHandlerConfig: IFRAME_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/IFrameWidget/iframe")),
-  },
-  QR_CODE_WIDGET: {
-    config: QR_CODE_WIDGET_CONFIG,
-    panelConfig: QR_CODE_PANEL_CONFIG,
-    eventHandlerConfig: QR_CODE_EVENT_HANDLER_CONFIG,
-    widget: lazy(() => import("@/widgetLibrary/QRCodeWidget/qrCode")),
   },
 }
 
