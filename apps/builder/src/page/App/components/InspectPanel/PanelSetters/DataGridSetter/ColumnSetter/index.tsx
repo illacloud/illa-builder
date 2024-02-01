@@ -1,6 +1,6 @@
 import { arrayMove } from "@dnd-kit/sortable"
 import { get, isEqual } from "lodash-es"
-import { FC, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
@@ -112,13 +112,17 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     calculateColumns.forEach((config) => {
       mixedColumns.push(config)
     })
+
+    return mixedColumns
+  }, [calculateColumns, value])
+
+  useEffect(() => {
     if (!isEqual(mixedColumns, value)) {
       handleUpdateMultiAttrDSL?.({
         [attrName]: mixedColumns,
       })
     }
-    return mixedColumns
-  }, [attrName, calculateColumns, handleUpdateMultiAttrDSL, value])
+  }, [attrName, handleUpdateMultiAttrDSL, mixedColumns, value])
 
   return (
     <ColumnContainer
