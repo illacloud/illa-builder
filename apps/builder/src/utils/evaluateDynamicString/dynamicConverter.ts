@@ -2,7 +2,6 @@ import {
   getStringSnippets,
   isDynamicStringSnippet,
 } from "@illa-public/dynamic-string"
-import { merge } from "lodash-es"
 import { ILLAEditorRuntimePropsCollectorInstance } from "../executionTreeHelper/runtimePropsCollector"
 import { evalScript } from "./codeSandbox"
 import { substituteDynamicBindingWithValues } from "./valueConverter"
@@ -33,11 +32,10 @@ export const getDynamicValue = (
   dataTree: Record<string, any>,
 ) => {
   const { jsSnippets, stringSnippets } = getSnippets(dynamicString)
-  const calcContext = merge(
-    {},
-    dataTree,
-    ILLAEditorRuntimePropsCollectorInstance.getThirdPartyPackages(),
-  )
+  const calcContext = {
+    ...dataTree,
+    ...ILLAEditorRuntimePropsCollectorInstance.getThirdPartyPackages(),
+  }
   if (stringSnippets.length) {
     let context: Record<string, unknown> = {}
     const values = jsSnippets.map((jsSnippet, index) => {
