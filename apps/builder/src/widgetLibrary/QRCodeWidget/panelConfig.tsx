@@ -47,7 +47,7 @@ export const QR_CODE_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: `${baseWidgetName}-style-colors-bg-color`,
-            labelName: i18n.t("bg color"),
+            labelName: i18n.t("editor.inspect.setter_label.background"),
             attrName: "bgColorSchema",
             setterType: "COLOR_PICKER_SETTER",
             useCustomLayout: true,
@@ -55,7 +55,7 @@ export const QR_CODE_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-style-colors-fg-color`,
-            labelName: i18n.t("fgColor"),
+            labelName: i18n.t("editor.inspect.setter_label.qr_code.foreground"),
             attrName: "fgColorSchema",
             setterType: "COLOR_PICKER_SETTER",
             useCustomLayout: true,
