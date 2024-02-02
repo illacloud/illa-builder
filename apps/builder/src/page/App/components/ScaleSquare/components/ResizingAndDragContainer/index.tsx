@@ -123,9 +123,9 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
   }, [attachedUsers, currentUserID, displayName])
 
   const handleOnSelection = (e: MouseEvent<HTMLDivElement>) => {
-    if (isGlobalResizing || !isEditMode) return
     const rootState = store.getState()
     const isEditMode = getIsILLAEditMode(rootState)
+    if (isGlobalResizing || !isEditMode) return
     const displayNameMapDepth = getComponentDisplayNameMapDepth(rootState)
     const widgetExecutionLayoutInfo = getClientWidgetLayoutInfo(rootState)
     FocusManager.switchFocus("canvas", {
