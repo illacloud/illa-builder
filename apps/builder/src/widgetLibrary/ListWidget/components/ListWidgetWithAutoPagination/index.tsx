@@ -6,7 +6,7 @@ import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/react"
 import { applyDashedLineStyle } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { getShadowStyle } from "@/utils/styleUtils/shadow"
 import { ListWidgetPropsWithChildrenNodes } from "@/widgetLibrary/ListWidget/interface"
 import {
@@ -94,7 +94,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     e.preventDefault()
     e.stopPropagation()
     dispatch(
-      executionActions.setResizingNodeIDsReducer([
+      configActions.setResizingNodeIDsReducer([
         `${displayName}-resize-listItem`,
       ]),
     )
@@ -107,7 +107,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       handleUpdateOriginalDSLMultiAttr({
         itemHeight: finalHeight,
       })
-      dispatch(executionActions.setResizingNodeIDsReducer([]))
+      dispatch(configActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, handleUpdateOriginalDSLMultiAttr, itemHeight],
   )

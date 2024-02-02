@@ -3,7 +3,7 @@ import { useDrag } from "react-dnd"
 import { useSelector } from "react-redux"
 import { ComponentItemProps } from "@/page/App/components/ComponentPanel/interface"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import store from "@/store"
 import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
@@ -56,7 +56,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
             }
           }
           const rootState = store.getState()
-          let allWidgetLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+          let allWidgetLayoutInfo = getClientWidgetLayoutInfo(rootState)
           illaSnapshot.setSnapshot(allWidgetLayoutInfo)
           startDragMultiNodes([widgetLayoutInfo])
           return {

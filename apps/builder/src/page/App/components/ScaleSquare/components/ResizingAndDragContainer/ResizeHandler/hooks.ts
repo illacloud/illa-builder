@@ -13,12 +13,12 @@ import { sendShadowMessageHandler } from "@/page/App/components/DotPanel/utils/s
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
+import { layoutInfoActions } from "@/redux/currentApp/layoutInfo/layoutInfoSlice"
 import {
   BatchUpdateWidgetLayoutInfoPayload,
   WidgetLayoutInfo,
-} from "@/redux/currentApp/executionTree/executionState"
+} from "@/redux/currentApp/layoutInfo/layoutInfoState"
 import store from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BarPosition } from "./interface"
@@ -43,10 +43,10 @@ export const useResizeStart = (
       },
       item: () => {
         const rootState = store.getState()
-        let allWidgetLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+        let allWidgetLayoutInfo = getClientWidgetLayoutInfo(rootState)
         illaSnapshot.setSnapshot(allWidgetLayoutInfo)
         dispatch(configActions.updateShowDot(true))
-        dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+        dispatch(configActions.setResizingNodeIDsReducer([displayName]))
 
         return {
           barPosition,
@@ -105,7 +105,7 @@ export const useResize = () => {
             parentNode: currentWidgetSnapShot.parentNode,
           }),
         )
-        dispatch(executionActions.setResizingNodeIDsReducer([]))
+        dispatch(configActions.setResizingNodeIDsReducer([]))
 
         sendShadowMessageHandler(-1, "", [], 0, 0, 0, 0, 0, 0, 0, 0)
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
@@ -220,7 +220,9 @@ export const useResizingUpdateRealTime = (isActive: boolean) => {
           )
         })
       }
-      dispatch(executionActions.batchUpdateWidgetLayoutInfoReducer(updateSlice))
+      dispatch(
+        layoutInfoActions.batchUpdateWidgetLayoutInfoReducer(updateSlice),
+      )
     }, 16)
   }, [dispatch])
 

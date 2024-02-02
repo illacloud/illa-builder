@@ -15,14 +15,12 @@ import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNe
 import { canCrossDifferenceColumnNumber } from "@/page/App/components/DotPanel/utils/getDragShadow"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import {
-  getExecution,
-  getExecutionWidgetLayoutInfo,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecution } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getActionMixedList } from "../redux/currentApp/action/actionSelector"
+import { getClientWidgetLayoutInfo } from "../redux/currentApp/layoutInfo/layoutInfoSelector"
 import { copyWidgetDisplayNameHelper } from "./changeDisplayNameHelper"
 import { getComponentNodeResultByRelativeCombineShape } from "./componentNode/copyHelper"
 import { buildTreeByMapNode } from "./componentNode/flatTree"
@@ -82,7 +80,7 @@ export class CopyManager {
 
   static copyComponentNodeByDisplayName(displayNames: string[]) {
     if (displayNames.length > 0) {
-      const widgetLayoutInfos = getExecutionWidgetLayoutInfo(store.getState())
+      const widgetLayoutInfos = getClientWidgetLayoutInfo(store.getState())
       illaSnapshot.setSnapshot(widgetLayoutInfos)
       const copiedColumnNumber =
         getCurrentSectionColumnNumberByChildDisplayName(displayNames[0])
@@ -94,7 +92,7 @@ export class CopyManager {
   }
 
   static paste(sources: "keyboard" | "duplicate") {
-    const widgetLayoutInfos = getExecutionWidgetLayoutInfo(store.getState())
+    const widgetLayoutInfos = getClientWidgetLayoutInfo(store.getState())
     illaSnapshot.setSnapshot(widgetLayoutInfos)
     switch (FocusManager.getFocus()) {
       case "data_action":

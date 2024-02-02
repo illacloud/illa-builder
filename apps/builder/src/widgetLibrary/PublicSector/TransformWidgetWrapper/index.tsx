@@ -18,7 +18,6 @@ import {
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getExecutionResult,
-  getExecutionWidgetLayoutInfo,
   getIsDragging,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -31,6 +30,8 @@ import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { getClientWidgetLayoutInfo } from "../../../redux/currentApp/layoutInfo/layoutInfoSelector"
+import { layoutInfoActions } from "../../../redux/currentApp/layoutInfo/layoutInfoSlice"
 import { MIN_HEIGHT } from "./config"
 
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
@@ -40,7 +41,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
     const displayNameMapProps = useSelector(getExecutionResult)
     const layoutInfo = useSelector<RootState, LayoutInfo>((rootState) => {
-      const layoutInfos = getExecutionWidgetLayoutInfo(rootState)
+      const layoutInfos = getClientWidgetLayoutInfo(rootState)
       return layoutInfos[displayName].layoutInfo
     })
     const originComponentNode = searchDSLByDisplayName(displayName)
@@ -110,7 +111,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       (newHeight: number) => {
         if (isDraggingInGlobal) return
         const rootState = store.getState()
-        const widgetLayoutInfos = getExecutionWidgetLayoutInfo(rootState)
+        const widgetLayoutInfos = getClientWidgetLayoutInfo(rootState)
         const oldH = widgetLayoutInfos[displayName]?.layoutInfo.h ?? 0
 
         if (dynamicHeight !== "fixed") {
@@ -149,7 +150,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         if (newH === oldH) return
 
         dispatch(
-          executionActions.updateWidgetLayoutInfoReducer({
+          layoutInfoActions.updateWidgetLayoutInfoReducer({
             displayName,
             layoutInfo: {
               h: newH,

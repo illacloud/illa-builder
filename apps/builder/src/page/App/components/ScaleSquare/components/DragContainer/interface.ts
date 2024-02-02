@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 
 export interface DragContainerProps {
   children: ReactNode

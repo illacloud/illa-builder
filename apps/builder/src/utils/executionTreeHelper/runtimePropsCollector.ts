@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import { merge } from "lodash-es"
+import { klona } from "klona/json"
 import _ from "lodash-es"
 import numbro from "numbro"
 import Papa from "papaparse"
@@ -99,13 +99,16 @@ class ILLAEditorRuntimePropsCollector {
     return THIRD_PARTY_PACKAGES
   }
 
-  public getGlobalCalcContext(otherContext?: Record<string, unknown>) {
+  public getGlobalCalcContext(otherContext: Record<string, unknown> = {}) {
     const rootState = store.getState()
     const executionResult = getExecutionResult(rootState)
+    const cloneDeepExecutionResult = klona(executionResult)
 
-    const formatedExecutionResult = Object.keys(executionResult).reduce(
+    const formatedExecutionResult = Object.keys(
+      cloneDeepExecutionResult,
+    ).reduce(
       (acc, prevKey) => {
-        const prev = executionResult[prevKey]
+        const prev = cloneDeepExecutionResult[prevKey]
         if (!prev) {
           return acc
         }
@@ -120,6 +123,18 @@ class ILLAEditorRuntimePropsCollector {
             },
           }
         }
+        if (prev.$type === "WIDGET") {
+          const runtimePros = this._runtimeProps[prev.displayName]
+          if (runtimePros) {
+            return {
+              ...acc,
+              [prev.displayName]: {
+                ...prev,
+                ...runtimePros,
+              },
+            }
+          }
+        }
         return {
           ...acc,
           [prevKey]: prev,
@@ -127,17 +142,29 @@ class ILLAEditorRuntimePropsCollector {
       },
       {} as Record<string, any>,
     )
-    return merge({}, this._runtimeProps, formatedExecutionResult, otherContext)
+
+    const utils = this._runtimeProps.utils as Record<string, unknown>
+    const mergeResult = {
+      ...formatedExecutionResult,
+      ...THIRD_PARTY_PACKAGES,
+      ...utils,
+      ...otherContext,
+    }
+
+    return mergeResult
   }
 
-  public getCurrentPageCalcContext(otherContext?: Record<string, unknown>) {
+  public getCurrentPageCalcContext(otherContext: Record<string, unknown> = {}) {
     const rootState = store.getState()
     const executionResult = getExecutionResultToCurrentPageCodeMirror(
       rootState,
     ) as Record<string, any>
-    const formatedExecutionResult = Object.keys(executionResult).reduce(
+    const cloneDeepExecutionResult = klona(executionResult)
+    const formatedExecutionResult = Object.keys(
+      cloneDeepExecutionResult,
+    ).reduce(
       (acc, prevKey) => {
-        const prev = executionResult[prevKey]
+        const prev = cloneDeepExecutionResult[prevKey]
 
         if (!prev) {
           return acc
@@ -157,6 +184,7 @@ class ILLAEditorRuntimePropsCollector {
             },
           }
         }
+
         if (prev.$type === "WIDGET") {
           switch (prev.$widgetType) {
             case "MODAL_WIDGET":
@@ -182,6 +210,18 @@ class ILLAEditorRuntimePropsCollector {
                   },
                 },
               }
+            default: {
+              const runtimePros = this._runtimeProps[prev.displayName]
+              if (runtimePros) {
+                return {
+                  ...acc,
+                  [prev.displayName]: {
+                    ...prev,
+                    ...runtimePros,
+                  },
+                }
+              }
+            }
           }
         }
         return {
@@ -191,13 +231,29 @@ class ILLAEditorRuntimePropsCollector {
       },
       {} as Record<string, any>,
     )
-    return merge({}, this._runtimeProps, formatedExecutionResult, otherContext)
+    const utils = this._runtimeProps.utils as Record<string, unknown>
+    const mergeResult = {
+      ...formatedExecutionResult,
+      ...THIRD_PARTY_PACKAGES,
+      ...utils,
+      ...otherContext,
+    }
+
+    return mergeResult
   }
 
   public getGlobalCalcContextWithLimit(otherContext?: Record<string, unknown>) {
     const rootState = store.getState()
     const executionResult = getExecutionResultToGlobalCodeMirror(rootState)
-    return merge({}, this._runtimeProps, executionResult, otherContext)
+    const cloneDeepExecutionResult = klona(executionResult)
+    const utils = this._runtimeProps.utils as Record<string, unknown>
+    const mergeResult = {
+      ...cloneDeepExecutionResult,
+      ...THIRD_PARTY_PACKAGES,
+      ...utils,
+      ...otherContext,
+    }
+    return mergeResult
   }
 }
 

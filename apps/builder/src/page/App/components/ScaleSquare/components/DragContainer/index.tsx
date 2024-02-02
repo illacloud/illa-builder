@@ -12,11 +12,9 @@ import {
   getIsILLAEditMode,
   getSelectedComponentDisplayNames,
 } from "@/redux/config/configSelector"
-import {
-  getExecutionWidgetLayoutInfo,
-  getIsResizing,
-} from "@/redux/currentApp/executionTree/executionSelector"
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { getIsResizing } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
+import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 import store from "@/store"
 import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -57,7 +55,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
       },
       item: () => {
         const rootState = store.getState()
-        let allWidgetLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+        let allWidgetLayoutInfo = getClientWidgetLayoutInfo(rootState)
         illaSnapshot.setSnapshot(allWidgetLayoutInfo)
         let draggedSelectedComponents: WidgetLayoutInfo[] = []
         let currentSelectedComponents = selectedComponents
