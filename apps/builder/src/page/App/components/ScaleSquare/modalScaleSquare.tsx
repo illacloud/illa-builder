@@ -14,7 +14,7 @@ import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWi
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimitedContainer"
 import { DragContainer } from "./components/DragContainer"
-import { getResizeHandler } from "./components/ResizingContainer/utils"
+import { getResizeHandler } from "./components/ResizingAndDragContainer/utils"
 import WrapperContainer from "./components/WrapperContainer"
 import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquareProps } from "./interface"
@@ -130,7 +130,6 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
             displayName={displayName}
             parentNodeDisplayName={parentNodeDisplayName}
             widgetHeight={height}
-            widgetType={widgetType}
           >
             <TransformWidgetWrapper
               displayName={displayName}
