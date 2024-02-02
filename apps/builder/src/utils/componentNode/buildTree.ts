@@ -1,4 +1,4 @@
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 
 export interface NeedBuildNode {
   displayName: string

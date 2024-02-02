@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getLargeItemShapeWithNodeScale } from "@/page/App/components/DotPanel/utils"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import {
   MultiSelectedScaleSquareProps,
   SelectedComponentWithShape,
@@ -13,7 +13,7 @@ import { applyMultiSelectedScaleSquareStyle } from "./style"
 const MultiSelectedScaleSquare: FC<MultiSelectedScaleSquareProps> = (props) => {
   const { unitW, containerDisplayName } = props
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
-  const widgetExecutionResult = useSelector(getExecutionWidgetLayoutInfo)
+  const widgetExecutionResult = useSelector(getClientWidgetLayoutInfo)
   const selectedComponentsWithShape: SelectedComponentWithShape[] =
     useMemo(() => {
       let result: SelectedComponentWithShape[] = []

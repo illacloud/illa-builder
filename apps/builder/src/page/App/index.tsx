@@ -40,6 +40,7 @@ import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import { setupLayoutInfoListeners } from "@/redux/currentApp/layoutInfo/layoutInfoListener"
 import { fetchAppBinaryWsUrl, fetchAppTextWsUrl } from "@/services/public"
 import { startAppListening } from "@/store"
 import { MediaSourceLoadProvider } from "@/utils/mediaSourceLoad"
@@ -130,6 +131,7 @@ export const Editor: FC = () => {
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
       setupExecutionListeners(startAppListening),
+      setupLayoutInfoListeners(startAppListening),
       setupComponentsListeners(startAppListening),
       setupActionListeners(startAppListening),
       setupConfigListeners(startAppListening),

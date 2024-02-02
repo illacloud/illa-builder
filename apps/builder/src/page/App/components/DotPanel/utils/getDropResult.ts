@@ -1,4 +1,4 @@
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 import { combineWidgetInfos } from "./getDragShadow"
 
 export interface DropResult {

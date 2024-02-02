@@ -13,8 +13,10 @@ import { RootState } from "@/store"
 import { NeedBuildNode, buildForest } from "@/utils/componentNode/buildTree"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 import { recursiveDelete } from "@/utils/executionTreeHelper/rrecursiveDelete"
-import { ExecutionState, WidgetLayoutInfo } from "./executionState"
-import { getAllDescendantNodeDisplayNamesByExecution } from "./utils"
+import { getEditorConfig } from "../../config/configSelector"
+import { getClientWidgetLayoutInfo } from "../layoutInfo/layoutInfoSelector"
+import { WidgetLayoutInfo } from "../layoutInfo/layoutInfoState"
+import { getAllDescendantNodeDisplayNamesByExecution } from "../layoutInfo/utils"
 
 export const getRawTree = createSelector(
   [
@@ -35,12 +37,18 @@ export const getRawTree = createSelector(
   },
 )
 
-export const getExecution = (state: RootState) =>
-  state.currentApp.execution as ExecutionState
+export const getCurrentApp = (state: RootState) => state.currentApp
+
+export const getExecution = createSelector(
+  [getCurrentApp],
+  (currentApp) => currentApp.execution,
+)
 
 export const getExecutionResult = createSelector(
   [getExecution],
-  (execution) => execution.result || {},
+  (execution) => {
+    return execution.result || {}
+  },
 )
 
 export const getExecutionError = createSelector(
@@ -313,11 +321,6 @@ export const getGlobalInfoExecutionResult = createSelector(
   },
 )
 
-export const getExecutionWidgetLayoutInfo = createSelector(
-  [getExecution],
-  (execution) => execution.widgetsLayoutInfo,
-)
-
 export const getPageLoadingActions = createSelector(
   [getActionExecutionResultArray],
   (actionResult) => {
@@ -464,7 +467,7 @@ const getTargetSectionWidget = (
 }
 
 export const getCurrentPageBodyWidgetTree = createSelector(
-  [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
+  [getCurrentPageWidgetExecutionResultArray, getClientWidgetLayoutInfo],
   (currentPageWidgets, widgets) => {
     return buildForest(
       getTargetSectionWidget(
@@ -478,7 +481,7 @@ export const getCurrentPageBodyWidgetTree = createSelector(
 )
 
 export const getCurrentPageFooterWidgetTree = createSelector(
-  [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
+  [getCurrentPageWidgetExecutionResultArray, getClientWidgetLayoutInfo],
   (currentPageWidgets, widgets) => {
     return buildForest(
       getTargetSectionWidget(
@@ -491,7 +494,7 @@ export const getCurrentPageFooterWidgetTree = createSelector(
   },
 )
 export const getCurrentPageLeftWidgetTree = createSelector(
-  [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
+  [getCurrentPageWidgetExecutionResultArray, getClientWidgetLayoutInfo],
   (currentPageWidgets, widgets) => {
     return buildForest(
       getTargetSectionWidget(
@@ -504,7 +507,7 @@ export const getCurrentPageLeftWidgetTree = createSelector(
   },
 )
 export const getCurrentPageHeaderWidgetTree = createSelector(
-  [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
+  [getCurrentPageWidgetExecutionResultArray, getClientWidgetLayoutInfo],
   (currentPageWidgets, widgets) => {
     return buildForest(
       getTargetSectionWidget(
@@ -517,7 +520,7 @@ export const getCurrentPageHeaderWidgetTree = createSelector(
   },
 )
 export const getCurrentPageRightWidgetTree = createSelector(
-  [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
+  [getCurrentPageWidgetExecutionResultArray, getClientWidgetLayoutInfo],
   (currentPageWidgets, widgets) => {
     return buildForest(
       getTargetSectionWidget(
@@ -530,7 +533,7 @@ export const getCurrentPageRightWidgetTree = createSelector(
   },
 )
 export const getCurrentPageModalWidgetTree = createSelector(
-  [getCurrentPageWidgetExecutionResultArray, getExecutionWidgetLayoutInfo],
+  [getCurrentPageWidgetExecutionResultArray, getClientWidgetLayoutInfo],
   (currentPageWidgets, widgets) => {
     return buildForest(
       getTargetSectionWidget(
@@ -544,14 +547,14 @@ export const getCurrentPageModalWidgetTree = createSelector(
 )
 
 export const getDraggingComponentIDs = createSelector(
-  [getExecution],
-  (execution) => execution.draggingComponentIDs,
+  [getEditorConfig],
+  (editorConfig) => editorConfig.draggingComponentIDs,
 )
 
 export const getResizingComponentIDs = createSelector(
-  [getExecution],
-  (execution) => {
-    return execution.resizingComponentIDs
+  [getEditorConfig],
+  (editorConfig) => {
+    return editorConfig.resizingComponentIDs
   },
 )
 

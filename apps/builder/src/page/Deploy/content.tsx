@@ -19,6 +19,7 @@ import { setupComponentsListeners } from "@/redux/currentApp/components/componen
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { setupLayoutInfoListeners } from "@/redux/currentApp/layoutInfo/layoutInfoListener"
 import { startAppListening } from "@/store"
 import { flatTreeToMap } from "@/utils/componentNode/flatTree"
 import {
@@ -44,6 +45,7 @@ export const DeployContent: FC = () => {
     const subscriptions: Unsubscribe[] = [
       setupComponentsListeners(startAppListening),
       setupExecutionListeners(startAppListening),
+      setupLayoutInfoListeners(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])

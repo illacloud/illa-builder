@@ -283,7 +283,9 @@ export const runOriginAction = async (action: ActionItem<ActionContent>) => {
   const { displayName } = action
   const finalContext =
     ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
-  const realAction = finalContext[displayName] as IExecutionActions
+  const realAction = (finalContext as Record<string, unknown>)[
+    displayName
+  ] as IExecutionActions
   return await runActionWithExecutionResult(realAction)
 }
 

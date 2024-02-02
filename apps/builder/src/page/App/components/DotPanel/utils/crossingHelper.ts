@@ -1,4 +1,4 @@
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 import { illaSnapshot } from "../constant/snapshotNew"
 
 export interface NodeShape {

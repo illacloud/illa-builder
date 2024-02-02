@@ -3,7 +3,7 @@ import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import store from "@/store"
 import { reduxActionDependOnRestAPI } from "./antonymyRule"
 import { CircularStack } from "./circularStack"
@@ -30,7 +30,7 @@ export class ILLA_UNDO_REDO {
 
   popFromUndoStack() {
     const rootState = store.getState()
-    const snapShot = getExecutionWidgetLayoutInfo(rootState)
+    const snapShot = getClientWidgetLayoutInfo(rootState)
     illaSnapshot.setSnapshot(snapShot)
     if (this.undoStack.isEmpty()) {
       message.warning({
@@ -60,7 +60,7 @@ export class ILLA_UNDO_REDO {
 
   popFromRedoStack() {
     const rootState = store.getState()
-    const snapShot = getExecutionWidgetLayoutInfo(rootState)
+    const snapShot = getClientWidgetLayoutInfo(rootState)
     illaSnapshot.setSnapshot(snapShot)
     if (this.redoStack.isEmpty()) {
       message.warning({

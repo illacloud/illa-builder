@@ -53,10 +53,10 @@ import {
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageDisplayName,
-  getExecutionWidgetLayoutInfo,
   getIsDragging,
   getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
 import { getPaddingShape } from "@/utils/styleUtils/padding"
@@ -125,7 +125,7 @@ const RenderComponentCanvasContainer: FC<
   const unitWidth = fixedBounds.width / columnNumber
 
   const [canvasHeight, setCanvasHeight] = useState<number>(fixedBounds.height)
-  const widgetLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
+  const widgetLayoutInfo = useSelector(getClientWidgetLayoutInfo)
   const childWidgetLayoutInfo = Object.values(widgetLayoutInfo).filter(
     (item) => item.parentNode === displayName,
   )
@@ -136,9 +136,8 @@ const RenderComponentCanvasContainer: FC<
   const isLikeProductMode = useSelector(getIsLikeProductMode)
 
   const isEditMode = useSelector(getIsILLAEditMode)
-  const layoutInfos = useSelector(getExecutionWidgetLayoutInfo)
 
-  const currentLayoutInfo = layoutInfos[displayName]
+  const currentLayoutInfo = widgetLayoutInfo[displayName]
 
   const [collectedProps, dropRef] = useDrop<
     DragInfo,

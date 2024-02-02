@@ -17,7 +17,7 @@ import {
 import { useDispatch } from "react-redux"
 import { getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { configActions } from "@/redux/config/configSlice"
 import {
   getColumnFromType,
   getColumnTypeFromValue,
@@ -413,14 +413,14 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           }}
           onColumnHeaderEnter={() => {
             dispatch(
-              executionActions.setResizingNodeIDsReducer([
+              configActions.setResizingNodeIDsReducer([
                 `${displayName}-column-header-resize`,
               ]),
             )
             isInnerDragging.current = true
           }}
           onColumnHeaderLeave={() => {
-            dispatch(executionActions.setResizingNodeIDsReducer([]))
+            dispatch(configActions.setResizingNodeIDsReducer([]))
             isInnerDragging.current = false
           }}
         />
