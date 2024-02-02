@@ -2,7 +2,7 @@ import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useDispatch } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { BaseChat } from "@/widgetLibrary/ChatWidget/components/baseChat"
 import { ReplyTo } from "@/widgetLibrary/ChatWidget/components/replyTo"
 import {
@@ -73,9 +73,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
     e.preventDefault()
     e.stopPropagation()
     dispatch(
-      executionActions.setResizingNodeIDsReducer([
-        `${displayName}-resize-footer`,
-      ]),
+      configActions.setResizingNodeIDsReducer([`${displayName}-resize-footer`]),
     )
   }
 
@@ -85,7 +83,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: footerHeight + height,
       })
-      dispatch(executionActions.setResizingNodeIDsReducer([]))
+      dispatch(configActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, footerHeight, handleUpdateOriginalDSLMultiAttr],
   )

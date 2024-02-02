@@ -23,10 +23,10 @@ import {
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { getComponentMap } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
@@ -405,7 +405,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     e.preventDefault()
     e.stopPropagation()
     dispatch(
-      executionActions.setResizingNodeIDsReducer([
+      configActions.setResizingNodeIDsReducer([
         `${displayName}-resize-form-header`,
       ]),
     )
@@ -423,7 +423,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         headerHeight: finalHeight,
       })
-      dispatch(executionActions.setResizingNodeIDsReducer([]))
+      dispatch(configActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, handleUpdateOriginalDSLMultiAttr, headerHeight, headerMaxHeight],
   )
@@ -440,7 +440,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: finalHeight,
       })
-      dispatch(executionActions.setResizingNodeIDsReducer([]))
+      dispatch(configActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, footerHeight, footerMaxHeight, handleUpdateOriginalDSLMultiAttr],
   )

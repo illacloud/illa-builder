@@ -2,6 +2,7 @@ import {
   getStringSnippets,
   isDynamicStringSnippet,
 } from "@illa-public/dynamic-string"
+import { klona } from "klona"
 import { ILLAEditorRuntimePropsCollectorInstance } from "../executionTreeHelper/runtimePropsCollector"
 import { evalScript } from "./codeSandbox"
 import { substituteDynamicBindingWithValues } from "./valueConverter"
@@ -32,8 +33,9 @@ export const getDynamicValue = (
   dataTree: Record<string, any>,
 ) => {
   const { jsSnippets, stringSnippets } = getSnippets(dynamicString)
+  const cloneDeepDataTree = klona(dataTree)
   const calcContext = {
-    ...dataTree,
+    ...cloneDeepDataTree,
     ...ILLAEditorRuntimePropsCollectorInstance.getThirdPartyPackages(),
   }
   if (stringSnippets.length) {

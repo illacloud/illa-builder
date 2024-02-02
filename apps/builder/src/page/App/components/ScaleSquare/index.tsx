@@ -6,8 +6,7 @@ import {
 } from "@/redux/config/configSelector"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimitedContainer"
-import { DragContainer } from "./components/DragContainer"
-import { ResizingContainer } from "./components/ResizingContainer"
+import { ResizingAndDragContainer } from "./components/ResizingAndDragContainer"
 import WrapperContainer from "./components/WrapperContainer"
 import { ScaleSquareProps } from "./interface"
 import { useGetRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
@@ -36,7 +35,7 @@ const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   }, [displayName, selectedComponents])
 
   return (
-    <ResizingContainer
+    <ResizingAndDragContainer
       displayName={displayName}
       unitW={unitW}
       widgetHeight={height}
@@ -47,34 +46,25 @@ const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       widgetType={widgetType}
       columnNumber={columnNumber}
     >
-      <DragContainer
+      <WrapperContainer
         displayName={displayName}
         parentNodeDisplayName={parentNodeDisplayName}
-        canDrag={canDrag}
-        unitWidth={unitW}
-        columnNumber={columnNumber}
+        widgetHeight={height}
       >
-        <WrapperContainer
+        <TransformWidgetWrapper
           displayName={displayName}
-          parentNodeDisplayName={parentNodeDisplayName}
-          widgetHeight={height}
           widgetType={widgetType}
-        >
-          <TransformWidgetWrapper
-            displayName={displayName}
-            widgetType={widgetType}
-            parentNodeDisplayName={parentNodeDisplayName}
-            columnNumber={columnNumber}
-          />
-        </WrapperContainer>
-      </DragContainer>
+          parentNodeDisplayName={parentNodeDisplayName}
+          columnNumber={columnNumber}
+        />
+      </WrapperContainer>
       {isEditMode && selectedComponents?.length === 1 && isSelected && (
         <AutoHeightWithLimitedContainer
           containerHeight={width}
           displayName={displayName}
         />
       )}
-    </ResizingContainer>
+    </ResizingAndDragContainer>
   )
 }
 

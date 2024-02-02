@@ -1,4 +1,4 @@
-import { WidgetLayoutInfo } from "./executionState"
+import { WidgetLayoutInfo } from "./layoutInfoState"
 
 export const getAllDescendantNodeDisplayNamesByExecution = (
   node: WidgetLayoutInfo,

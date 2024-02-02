@@ -8,7 +8,7 @@ import {
   searchDSLByDisplayName,
   searchDSLFromTree,
 } from "@/redux/currentApp/components/componentsSelector"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import { RootState } from "@/store"
 import { buildTreeByMapNode } from "@/utils/componentNode/flatTree"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
@@ -119,7 +119,7 @@ export const componentsSnapShot = (
       break
     }
     case "updateComponentPositionReducer": {
-      const layoutInfos = getExecutionWidgetLayoutInfo(prevRootState)
+      const layoutInfos = getClientWidgetLayoutInfo(prevRootState)
       const originNodeLayoutInfos = (
         action.payload as UpdateComponentPositionPayload
       ).updateSlices.map((item) => {

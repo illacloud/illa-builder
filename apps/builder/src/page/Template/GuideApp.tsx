@@ -35,11 +35,12 @@ import {
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import { setupLayoutInfoListeners } from "@/redux/currentApp/layoutInfo/layoutInfoListener"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { startAppListening } from "@/store"
 import { MediaSourceLoadProvider } from "@/utils/mediaSourceLoad"
 import { Shortcut } from "@/utils/shortcut"
-import { useResize } from "../App/components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
+import { useResize } from "../App/components/ScaleSquare/components/ResizingAndDragContainer/ResizeHandler/hooks"
 
 const GuideApp: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)
@@ -65,6 +66,7 @@ const GuideApp: FC = () => {
     const subscriptions: Unsubscribe[] = [
       setupExecutionListeners(startAppListening),
       setupComponentsListeners(startAppListening),
+      setupLayoutInfoListeners(startAppListening),
       setupActionListeners(startAppListening),
       setupConfigListeners(startAppListening),
     ]

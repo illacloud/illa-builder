@@ -20,7 +20,7 @@ import {
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { configActions } from "@/redux/config/configSlice"
 import RenderChildrenCanvas from "../PublicSector/RenderChildrenCanvas"
 import { ModalWidgetProps } from "./interface"
 import {
@@ -147,7 +147,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
     e.preventDefault()
     e.stopPropagation()
     dispatch(
-      executionActions.setResizingNodeIDsReducer([
+      configActions.setResizingNodeIDsReducer([
         `${displayName}-resize-modal-header`,
       ]),
     )
@@ -165,7 +165,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         headerHeight: finalHeight,
       })
-      dispatch(executionActions.setResizingNodeIDsReducer([]))
+      dispatch(configActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, handleUpdateOriginalDSLMultiAttr, headerHeight, headerMaxHeight],
   )
@@ -182,7 +182,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: finalHeight,
       })
-      dispatch(executionActions.setResizingNodeIDsReducer([]))
+      dispatch(configActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, footerHeight, footerMaxHeight, handleUpdateOriginalDSLMultiAttr],
   )

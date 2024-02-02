@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import ComponentParser from "@/page/App/components/DotPanel/components/ComponentParser"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
-import {
-  getExecutionResult,
-  getExecutionWidgetLayoutInfo,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import { RenderComponentCanvasContainerProps } from "./interface"
 import { maskStyle, outerModalCanvasContainerStyle } from "./style"
 
@@ -28,7 +26,7 @@ export const RenderModalCanvasContainer: FC<
 
   const unitWidth = bounds.width / columnNumber
 
-  const layoutInfos = useSelector(getExecutionWidgetLayoutInfo)
+  const layoutInfos = useSelector(getClientWidgetLayoutInfo)
 
   const currentLayoutInfo = layoutInfos[displayName]
 

@@ -8,13 +8,12 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimitedContainer"
 import { DragContainer } from "./components/DragContainer"
-import { getResizeHandler } from "./components/ResizingContainer/utils"
+import { getResizeHandler } from "./components/ResizingAndDragContainer/utils"
 import WrapperContainer from "./components/WrapperContainer"
 import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquareProps } from "./interface"
@@ -34,7 +33,7 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
 
   const dispatch = useDispatch()
 
-  const layoutInfoResult = useSelector(getExecutionWidgetLayoutInfo)
+  const layoutInfoResult = useSelector(getClientWidgetLayoutInfo)
   const currentWidgetLayoutInfo = layoutInfoResult[displayName]
 
   const layoutInfo = currentWidgetLayoutInfo?.layoutInfo ?? {}
@@ -72,7 +71,7 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
           parentNode: parentNodeDisplayName,
         }),
       )
-      dispatch(executionActions.setDraggingNodeIDsReducer([]))
+      dispatch(configActions.setDraggingNodeIDsReducer([]))
 
       dispatch(configActions.updateShowDot(false))
     },
@@ -91,7 +90,7 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
     (e) => {
       e.preventDefault()
       e.stopPropagation()
-      dispatch(executionActions.setDraggingNodeIDsReducer([displayName]))
+      dispatch(configActions.setDraggingNodeIDsReducer([displayName]))
 
       dispatch(configActions.updateShowDot(true))
     },
@@ -130,7 +129,6 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
             displayName={displayName}
             parentNodeDisplayName={parentNodeDisplayName}
             widgetHeight={height}
-            widgetType={widgetType}
           >
             <TransformWidgetWrapper
               displayName={displayName}

@@ -1,6 +1,5 @@
 import { configActions } from "@/redux/config/configSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { FocusManager } from "../focusManager"
@@ -8,7 +7,7 @@ import { FocusManager } from "../focusManager"
 export function startDragMultiNodes(dragWidgetInfos: WidgetLayoutInfo[]) {
   store.dispatch(configActions.updateShowDot(true))
   const displayNames = dragWidgetInfos.map((node) => node.displayName)
-  store.dispatch(executionActions.setDraggingNodeIDsReducer(displayNames))
+  store.dispatch(configActions.setDraggingNodeIDsReducer(displayNames))
 }
 
 export function endDragMultiNodes(
@@ -18,7 +17,7 @@ export function endDragMultiNodes(
 ) {
   store.dispatch(configActions.updateShowDot(false))
   const displayNames = dragWidgetInfos.map((node) => node.displayName)
-  store.dispatch(executionActions.setDraggingNodeIDsReducer([]))
+  store.dispatch(configActions.setDraggingNodeIDsReducer([]))
 
   if (isDropOnCanvas) {
     FocusManager.switchFocus("canvas", {

@@ -11,11 +11,8 @@ import {
 import { applyBarHandlerStyle } from "@/page/App/components/ScaleSquare/style"
 import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
-import {
-  getExecutionResult,
-  getExecutionWidgetLayoutInfo,
-} from "@/redux/currentApp/executionTree/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 
 export const DEFAULT_MAX_HEIGHT = 80
 export const DEFAULT_MIN_GAP = 8
@@ -35,7 +32,7 @@ export const AutoHeightWithLimitedContainer: FC<
   const [resizeMaxHeight, setResizeMaxHeight] = useState(false)
   const [resizeMinHeight, setResizeMinHeight] = useState(false)
   const executionResult = useSelector(getExecutionResult)
-  const layoutInfoResult = useSelector(getExecutionWidgetLayoutInfo)
+  const layoutInfoResult = useSelector(getClientWidgetLayoutInfo)
 
   const dynamicMinHeight = get(
     executionResult,
@@ -75,7 +72,7 @@ export const AutoHeightWithLimitedContainer: FC<
     setResizeMinHeight(true)
     dispatch(configActions.updateShowDot(true))
     dispatch(
-      executionActions.setResizingNodeIDsReducer([
+      configActions.setResizingNodeIDsReducer([
         `${displayName}-resize-minHeight`,
       ]),
     )
@@ -85,7 +82,7 @@ export const AutoHeightWithLimitedContainer: FC<
     setResizeMaxHeight(true)
     dispatch(configActions.updateShowDot(true))
     dispatch(
-      executionActions.setResizingNodeIDsReducer([
+      configActions.setResizingNodeIDsReducer([
         `${displayName}-resize-maxHeight`,
       ]),
     )
@@ -111,7 +108,7 @@ export const AutoHeightWithLimitedContainer: FC<
       )
       dispatch(configActions.updateShowDot(false))
       window.setTimeout(() => {
-        dispatch(executionActions.setResizingNodeIDsReducer([]))
+        dispatch(configActions.setResizingNodeIDsReducer([]))
       }, 16)
     },
     [containerHeight, dispatch, displayName, dynamicMaxHeight],
@@ -141,7 +138,7 @@ export const AutoHeightWithLimitedContainer: FC<
       }, 30)
       dispatch(configActions.updateShowDot(false))
       window.setTimeout(() => {
-        dispatch(executionActions.setResizingNodeIDsReducer([]))
+        dispatch(configActions.setResizingNodeIDsReducer([]))
       }, 16)
     },
     [

@@ -3,19 +3,17 @@ import {
   DEFAULT_BODY_COLUMNS_NUMBER,
 } from "@/page/App/components/DotPanel/constant/canvas"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
-import {
-  getExecutionResult,
-  getExecutionWidgetLayoutInfo,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
+import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 import store from "@/store"
 
 export const searchForefatherSectionNodeDisplayName = (
   currentDisplayName: string,
 ): string | null => {
   const rootState = store.getState()
-  const widgetsLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+  const widgetsLayoutInfo = getClientWidgetLayoutInfo(rootState)
   const currentLayoutInfo = widgetsLayoutInfo[currentDisplayName]
   if (currentLayoutInfo && currentLayoutInfo.widgetType !== "SECTION_NODE") {
     if (currentLayoutInfo.parentNode === "root") {
@@ -89,7 +87,7 @@ export const autoChangeContainersIndexWhenClick = (
   currentDisplayName: string,
 ) => {
   const rootState = store.getState()
-  const widgetsLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+  const widgetsLayoutInfo = getClientWidgetLayoutInfo(rootState)
   const canvasForeFatherDisplayNames = searchParent(
     currentDisplayName,
     widgetsLayoutInfo,
@@ -128,7 +126,7 @@ export const autoChangeContainersIndexWhenClick = (
 
 export const autoChangeWhenClickOnCanvas = (canvasDisplayName: string) => {
   const rootState = store.getState()
-  const widgetsLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+  const widgetsLayoutInfo = getClientWidgetLayoutInfo(rootState)
   const parentContainerDisplayName =
     widgetsLayoutInfo[canvasDisplayName]?.parentNode
   const indexOfCanvas =
