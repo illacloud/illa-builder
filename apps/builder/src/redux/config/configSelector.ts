@@ -3,7 +3,7 @@ import { ACTION_RUN_TIME } from "@illa-public/public-types"
 import { createSelector } from "@reduxjs/toolkit"
 import { RootState } from "@/store"
 
-const getEditorConfig = (state: RootState) => {
+export const getEditorConfig = (state: RootState) => {
   return state.config
 }
 

@@ -2,13 +2,13 @@ import { FC, memo } from "react"
 import { useSelector } from "react-redux"
 import ScaleSquare from "@/page/App/components/ScaleSquare"
 import { ModalScaleSquare } from "@/page/App/components/ScaleSquare/modalScaleSquare"
-import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import { ComponentParserProps } from "./interface"
 
 const ComponentParser: FC<ComponentParserProps> = (props) => {
   const { displayName, unitW, parentNodeDisplayName, columnNumber } = props
 
-  const widgetLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
+  const widgetLayoutInfo = useSelector(getClientWidgetLayoutInfo)
   const currentWidgetLayoutInfo = widgetLayoutInfo[displayName]
   const containerType = currentWidgetLayoutInfo.containerType
   const widgetType = currentWidgetLayoutInfo.widgetType

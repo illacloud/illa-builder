@@ -9,7 +9,9 @@ import {
   removeExpandedKey,
   resetConfig,
   resetSelectedActionReducer,
+  setDraggingNodeIDsReducer,
   setExpandedKey,
+  setResizingNodeIDsReducer,
   updateBottomPanel,
   updateCachedAction,
   updateCachedActionAdvancedConfigReducer,
@@ -55,6 +57,8 @@ const configSlice = createSlice({
     resetSelectedActionReducer,
     addExpandedWidgetReducer,
     removeExpandWidgetReducer,
+    setDraggingNodeIDsReducer,
+    setResizingNodeIDsReducer,
   },
 })
 

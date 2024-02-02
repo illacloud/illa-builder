@@ -230,3 +230,17 @@ export const removeExpandWidgetReducer: CaseReducer<
     state.expandedWidgets[displayName] = false
   })
 }
+
+export const setDraggingNodeIDsReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  state.draggingComponentIDs = action.payload
+}
+
+export const setResizingNodeIDsReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  state.resizingComponentIDs = action.payload
+}

@@ -25,10 +25,10 @@ import { getFirstDragShadowInfo } from "@/redux/currentApp/dragShadow/dragShadow
 import {
   getExecutionError,
   getExecutionResult,
-  getExecutionWidgetLayoutInfo,
   getIsDragging,
   getResizingComponentIDs,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import store from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
@@ -72,7 +72,7 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
   const isEditMode = useSelector(getIsILLAEditMode)
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const executionResult = useSelector(getExecutionResult)
-  const layoutInfoResult = useSelector(getExecutionWidgetLayoutInfo)
+  const layoutInfoResult = useSelector(getClientWidgetLayoutInfo)
   const currentWidgetLayoutInfo = layoutInfoResult[displayName]
   const currentWidgetProps = get(executionResult, displayName, {})
 
@@ -126,7 +126,7 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
     const rootState = store.getState()
     const isEditMode = getIsILLAEditMode(rootState)
     const displayNameMapDepth = getComponentDisplayNameMapDepth(rootState)
-    const widgetExecutionLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
+    const widgetExecutionLayoutInfo = getClientWidgetLayoutInfo(rootState)
 
     e.stopPropagation()
 

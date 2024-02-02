@@ -19,15 +19,14 @@ import {
 } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
-import {
-  getExecutionResult,
-  getExecutionWidgetLayoutInfo,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { mixedChangeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
+import { getClientWidgetLayoutInfo } from "../layoutInfo/layoutInfoSelector"
+import { layoutInfoActions } from "../layoutInfo/layoutInfoSlice"
+import { WidgetLayoutInfo } from "../layoutInfo/layoutInfoState"
 
 function handleUpdateComponentDisplayNameEffect(
   action: ReturnType<
@@ -216,7 +215,7 @@ function handleUpdateComponentReflowEffect(
   action: AnyAction,
   listenApi: AppListenerEffectAPI,
 ) {
-  const currentLayoutInfo = getExecutionWidgetLayoutInfo(listenApi.getState())
+  const currentLayoutInfo = getClientWidgetLayoutInfo(listenApi.getState())
   const updateComponents = updateComponentReflowComponentsAdapter(
     action as ReturnType<
       | typeof componentsActions.addComponentReducer
@@ -356,7 +355,7 @@ const handleUpdateDisplayNameEffect = (
   const { displayName, newDisplayName } = action.payload
   mixedChangeDisplayNameHelper(listenerApi, displayName, newDisplayName)
   listenerApi.dispatch(
-    executionActions.updateWidgetLayoutInfoWhenChangeDisplayNameReducer({
+    layoutInfoActions.updateWidgetLayoutInfoWhenChangeDisplayNameReducer({
       oldDisplayName: displayName,
       newDisplayName,
     }),

@@ -25,6 +25,7 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { DashboardAppInitialState } from "@/redux/currentApp/appInfo/appInfoState"
 import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import { setupLayoutInfoListeners } from "@/redux/currentApp/layoutInfo/layoutInfoListener"
 import { getCurrentAppSnapshotID } from "@/redux/currentAppHistory/currentAppHistorySelector"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import { fetchSnapShot } from "@/services/history"
@@ -61,6 +62,7 @@ export const History: FC = () => {
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
       setupExecutionListeners(startAppListening),
+      setupLayoutInfoListeners(startAppListening),
       setupComponentsListeners(startAppListening),
       setupActionListeners(startAppListening),
       setupConfigListeners(startAppListening),

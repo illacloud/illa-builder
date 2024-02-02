@@ -7,7 +7,7 @@ import { Pagination } from "@illa-design/react"
 import { LIST_ITEM_MARGIN_TOP } from "@/page/App/components/ScaleSquare/constant/widget"
 import { applyDashedLineStyle } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { getShadowStyle } from "@/utils/styleUtils/shadow"
 import RenderCopyContainer from "@/widgetLibrary/GridListWidget/components/RenderCopyContainer"
 import RenderTemplateContainer from "@/widgetLibrary/GridListWidget/components/RenderTemplateContainer"
@@ -123,9 +123,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     e.preventDefault()
     e.stopPropagation()
     dispatch(
-      executionActions.setResizingNodeIDsReducer([
-        `${displayName}-resize-grid`,
-      ]),
+      configActions.setResizingNodeIDsReducer([`${displayName}-resize-grid`]),
     )
   }
 
@@ -136,7 +134,7 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       handleUpdateOriginalDSLMultiAttr({
         itemHeight: finalHeight,
       })
-      dispatch(executionActions.setResizingNodeIDsReducer([]))
+      dispatch(configActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
