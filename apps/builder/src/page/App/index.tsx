@@ -51,7 +51,7 @@ import {
 import { Shortcut } from "@/utils/shortcut"
 import LeftPanel from "./Module/LeftPanel"
 import { PageNavBar } from "./Module/PageNavBar"
-import { useResize } from "./components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
+import { useResize } from "./components/ScaleSquare/components/ResizingAndDragContainer/ResizeHandler/hooks"
 import {
   bottomPanelStyle,
   centerPanelStyle,

@@ -39,7 +39,7 @@ import {
   DRAG_EFFECT,
   DragInfo,
 } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"
-import { useResizingUpdateRealTime } from "@/page/App/components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
+import { useResizingUpdateRealTime } from "@/page/App/components/ScaleSquare/components/ResizingAndDragContainer/ResizeHandler/hooks"
 import {
   getIsILLAEditMode,
   getIsLikeProductMode,

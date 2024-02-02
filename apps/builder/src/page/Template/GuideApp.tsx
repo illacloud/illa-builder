@@ -39,7 +39,7 @@ import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { startAppListening } from "@/store"
 import { MediaSourceLoadProvider } from "@/utils/mediaSourceLoad"
 import { Shortcut } from "@/utils/shortcut"
-import { useResize } from "../App/components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
+import { useResize } from "../App/components/ScaleSquare/components/ResizingAndDragContainer/ResizeHandler/hooks"
 
 const GuideApp: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)

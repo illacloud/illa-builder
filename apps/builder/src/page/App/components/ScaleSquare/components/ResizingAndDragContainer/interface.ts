@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-export interface ResizingContainerProps {
+export interface ResizingAndDragContainerProps {
   unitW: number
   displayName: string
   children: ReactNode
