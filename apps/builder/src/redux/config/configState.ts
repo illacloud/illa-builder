@@ -25,6 +25,8 @@ export interface ConfigState {
   isOnline: boolean
   wsStatus: Record<ILLA_WEBSOCKET_CONTEXT, ILLA_WEBSOCKET_STATUS>
   hoveredComponents: string[]
+  draggingComponentIDs: string[]
+  resizingComponentIDs: string[]
 }
 
 export const ConfigInitialState: ConfigState = {
@@ -50,4 +52,6 @@ export const ConfigInitialState: ConfigState = {
     [ILLA_WEBSOCKET_CONTEXT.APP_BINARY]: ILLA_WEBSOCKET_STATUS.INIT,
     [ILLA_WEBSOCKET_CONTEXT.AI_AGENT]: ILLA_WEBSOCKET_STATUS.INIT,
   },
+  draggingComponentIDs: [],
+  resizingComponentIDs: [],
 }
