@@ -123,9 +123,6 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
   }, [attachedUsers, currentUserID, displayName])
 
   const handleOnSelection = (e: MouseEvent<HTMLDivElement>) => {
-  
-
-
     if (isGlobalResizing || !isEditMode) return
     const rootState = store.getState()
     const isEditMode = getIsILLAEditMode(rootState)
