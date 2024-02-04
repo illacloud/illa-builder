@@ -1,5 +1,6 @@
 import { AnimatePresence } from "framer-motion"
 import { CameraDevice, Html5Qrcode } from "html5-qrcode"
+import { t } from "i18next"
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { Button, SelectValue } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -104,12 +105,13 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
   }
 
   const handleScan = useCallback(
-    (id: string) => {
+    (id: string, withoutCameraId?: boolean) => {
       if (!html5QrCodeRef.current) {
         html5QrCodeRef.current = new Html5Qrcode(`${displayName}-reader`, false)
       }
+      const cameraIdOrConfig = withoutCameraId ? { facingMode: id } : id
       html5QrCodeRef.current.start(
-        id,
+        cameraIdOrConfig,
         {
           fps: 2,
         },
@@ -158,12 +160,22 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
     handleStartScanner().then((devices: CameraDevice[]) => {
       triggerEventHandler("openScanner")
       if (!devices || !Array.isArray(devices) || devices.length === 0) return
-      alert(JSON.stringify(devices))
-      setDevices(devices)
       if (devices.length > 1) {
-        handleScan(devices[1].id)
+        const withoutIDDevices = [
+          {
+            id: "user",
+            label: t("editor.inspect.setter_label.scan.front"),
+          },
+          {
+            id: "environment",
+            label: t("editor.inspect.setter_label.scan.rear"),
+          },
+        ]
+        setDevices(withoutIDDevices)
+        handleScan(devices[1].id, true)
         setSelectDeviceID(devices[1].id)
       } else {
+        setDevices(devices)
         handleScan(devices[0].id)
         setSelectDeviceID(devices[0].id)
       }
@@ -173,7 +185,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
   const handleSwitchDevice = async (id?: SelectValue) => {
     await html5QrCodeRef.current?.stop()
     handleStartScanner().then(() => {
-      handleScan(id as string)
+      handleScan(id as string, true)
       setSelectDeviceID(id as string)
     })
   }
