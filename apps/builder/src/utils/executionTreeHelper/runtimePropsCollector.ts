@@ -147,7 +147,7 @@ class ILLAEditorRuntimePropsCollector {
     const mergeResult = {
       ...formatedExecutionResult,
       ...THIRD_PARTY_PACKAGES,
-      ...utils,
+      utils,
       ...otherContext,
     }
 
@@ -235,7 +235,7 @@ class ILLAEditorRuntimePropsCollector {
     const mergeResult = {
       ...formatedExecutionResult,
       ...THIRD_PARTY_PACKAGES,
-      ...utils,
+      utils,
       ...otherContext,
     }
 
@@ -250,7 +250,7 @@ class ILLAEditorRuntimePropsCollector {
     const mergeResult = {
       ...cloneDeepExecutionResult,
       ...THIRD_PARTY_PACKAGES,
-      ...utils,
+      utils,
       ...otherContext,
     }
     return mergeResult

@@ -125,17 +125,17 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
   const handleOnSelection = (e: MouseEvent<HTMLDivElement>) => {
     const rootState = store.getState()
     const isEditMode = getIsILLAEditMode(rootState)
+    if (isGlobalResizing || !isEditMode) return
     const displayNameMapDepth = getComponentDisplayNameMapDepth(rootState)
     const widgetExecutionLayoutInfo = getClientWidgetLayoutInfo(rootState)
-
-    e.stopPropagation()
-
-    if (isGlobalResizing || !isEditMode) return
     FocusManager.switchFocus("canvas", {
       displayName: displayName,
       type: "component",
       clickPosition: [],
     })
+
+    e.stopPropagation()
+
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
       element: "component",
       parameter1: "click",
