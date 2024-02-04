@@ -333,6 +333,9 @@ importers:
       fuse.js:
         specifier: ^6.6.2
         version: 6.6.2
+      html5-qrcode:
+        specifier: ^2.3.8
+        version: 2.3.8
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
@@ -11707,6 +11710,10 @@ packages:
 
   /html-void-elements@2.0.1:
     resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==}
+    dev: false
+
+  /html5-qrcode@2.3.8:
+    resolution: {integrity: sha512-jsr4vafJhwoLVEDW3n1KvPnCCXWaQfRng0/EEYk1vNcQGcG/htAdhJX0be8YyqMoSz7+hZvOZSTAepsabiuhiQ==}
     dev: false
 
   /http-signature@1.2.0:
