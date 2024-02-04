@@ -235,7 +235,8 @@ export const transformEvents = (
         widgetMethod === "slickPrevious" ||
         widgetMethod === "resetValue" ||
         widgetMethod === "resetMarkers" ||
-        widgetMethod === "onFreeTimeDragOrClick"
+        widgetMethod === "onFreeTimeDragOrClick" ||
+        widgetMethod === "openScanner"
       ) {
         return {
           script: `{{${widgetID}.${widgetMethod}()}}`,

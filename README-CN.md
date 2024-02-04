@@ -12,7 +12,14 @@
 <div align="center">
 <a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | 简体中文 | <a href="https://github.com/illacloud/illa-builder/blob/main/README-DE.md">Deutsch</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
 </div>
+
 <br>
+<p align="center">
+<a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
+  <img width="800" alt="GitHub - Readme - jp" src="https://github.com/illacloud/illa-builder/assets/112603073/bbeaaa07-f8e8-45ae-9aaf-6dde05b7926c">
+</a>
+</p>
+
 
 [![Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illacloudHQ)
