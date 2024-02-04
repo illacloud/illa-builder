@@ -172,8 +172,8 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
           },
         ]
         setDevices(withoutIDDevices)
-        handleScan(devices[1].id, true)
-        setSelectDeviceID(devices[1].id)
+        handleScan(withoutIDDevices[1].id, true)
+        setSelectDeviceID(withoutIDDevices[1].id)
       } else {
         setDevices(devices)
         handleScan(devices[0].id)
