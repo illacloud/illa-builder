@@ -276,6 +276,11 @@ import {
   AVATAR_WIDGET_CONFIG,
 } from "./AvatarWidget"
 import {
+  CODE_SCANNER_EVENT_HANDLER_CONFIG,
+  CODE_SCANNER_PANEL_CONFIG,
+  CODE_SCANNER_WIDGET_CONFIG,
+} from "./CodeScannerWidget"
+import {
   GRID_LIST_EVENT_HANDLER_CONFIG,
   GRID_LIST_PANEL_CONFIG,
   GRID_LIST_WIDGET_CONFIG,
@@ -541,6 +546,12 @@ export const WidgetConfigMap: Record<
     panelConfig: QR_CODE_PANEL_CONFIG,
     eventHandlerConfig: QR_CODE_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/QRCodeWidget/qrCode")),
+  },
+  CODE_SCANNER_WIDGET: {
+    config: CODE_SCANNER_WIDGET_CONFIG,
+    panelConfig: CODE_SCANNER_PANEL_CONFIG,
+    eventHandlerConfig: CODE_SCANNER_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/CodeScannerWidget/codeScanner")),
   },
   TAGS_WIDGET: {
     config: TAGS_WIDGET_CONFIG,
