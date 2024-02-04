@@ -111,6 +111,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
     return new Promise((resolve, reject) => {
       Html5Qrcode.getCameras()
         .then((devices: CameraDevice[]) => {
+          setErrorShow(false)
           resolve(devices)
         })
         .catch((e) => {
