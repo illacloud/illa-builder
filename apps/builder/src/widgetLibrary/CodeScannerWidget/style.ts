@@ -75,3 +75,11 @@ export const readerStyle = css`
     min-height: 232px;
   }
 `
+
+export const successContentStyle = css`
+  width: 100%;
+  text-align: center;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  font-weight: 400;
+`
