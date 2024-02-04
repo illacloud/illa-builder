@@ -16,9 +16,10 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img width="800" alt="Github(1)" src="https://github.com/illacloud/.github/blob/main/assets/2024/Jan/GitHub%20-%20Readme.png">
+  <img width="800" alt="Github(1)" src="https://github.com/illacloud/illa-builder/assets/112603073/37e2cc1b-efeb-4a95-9719-76022ac49191">
 </a>
 </p>
+
 
 [![Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illacloudHQ)
