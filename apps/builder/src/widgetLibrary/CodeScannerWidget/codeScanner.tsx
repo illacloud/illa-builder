@@ -158,6 +158,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
     handleStartScanner().then((devices: CameraDevice[]) => {
       triggerEventHandler("openScanner")
       if (!devices || !Array.isArray(devices) || devices.length === 0) return
+      alert(JSON.stringify(devices))
       setDevices(devices)
       if (devices.length > 1) {
         handleScan(devices[1].id)
