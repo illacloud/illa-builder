@@ -45,7 +45,6 @@ export const CODE_SCANNER_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-adornments-start-text`,
         labelName: i18n.t("editor.inspect.setter_label.scan.button_text"),
         attrName: "buttonText",
-        isSetterSingleRow: true,
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
