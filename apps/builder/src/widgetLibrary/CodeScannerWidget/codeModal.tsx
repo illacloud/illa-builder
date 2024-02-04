@@ -15,6 +15,7 @@ import {
   modalStyle,
   readerContainer,
   readerStyle,
+  successContentStyle,
 } from "./style"
 
 interface CodeModalProps {
@@ -99,10 +100,8 @@ export const SuccessModal: FC<SuccessModalProps> = ({
     <TriggerProvider zIndex={SUCCESS_MODAL_INDEX}>
       <Modal
         visible
+        _css={modalStyle}
         title={t("editor.inspect.setter_message.scan.title")}
-        content={t("editor.inspect.setter_message.scan.desc", {
-          scanValue: value,
-        })}
         okText={t("editor.inspect.setter_message.scan.rescan")}
         cancelText={t("editor.inspect.setter_message.scan.close")}
         onOk={onOK}
@@ -110,7 +109,13 @@ export const SuccessModal: FC<SuccessModalProps> = ({
         okButtonProps={{
           colorScheme,
         }}
-      />
+      >
+        <span css={successContentStyle}>
+          {t("editor.inspect.setter_message.scan.desc", {
+            scanValue: value,
+          })}
+        </span>
+      </Modal>
     </TriggerProvider>,
     document.body,
   )
