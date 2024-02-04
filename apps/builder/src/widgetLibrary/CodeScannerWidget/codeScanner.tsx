@@ -107,7 +107,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
     ],
   )
 
-  const handleStartScanner = (): Promise<CameraDevice[]> => {
+  const handleStartScanner = useCallback((): Promise<CameraDevice[]> => {
     return new Promise((resolve, reject) => {
       Html5Qrcode.getCameras()
         .then((devices: CameraDevice[]) => {
@@ -118,7 +118,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
           reject(e)
         })
     })
-  }
+  }, [])
 
   const handleOpenScanner = useCallback(() => {
     setShowScanner(true)
@@ -134,7 +134,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
         setSelectDeviceID(devices[0].id)
       }
     })
-  }, [handleScan, triggerEventHandler])
+  }, [handleScan, handleStartScanner, triggerEventHandler])
 
   const handleSwitchDevice = async (id?: SelectValue) => {
     await html5QrCodeRef.current?.stop()
