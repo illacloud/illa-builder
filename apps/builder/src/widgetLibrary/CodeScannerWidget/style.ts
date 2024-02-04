@@ -82,4 +82,5 @@ export const successContentStyle = css`
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   font-weight: 400;
+  word-wrap: break-word;
 `
