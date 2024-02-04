@@ -2,7 +2,13 @@ import { CameraDevice } from "html5-qrcode"
 import { FC } from "react"
 import { createPortal } from "react-dom"
 import { useTranslation } from "react-i18next"
-import { CloseIcon, Modal, Select, SelectValue } from "@illa-design/react"
+import {
+  CloseIcon,
+  Modal,
+  Select,
+  SelectValue,
+  TriggerProvider,
+} from "@illa-design/react"
 import {
   containerStyle,
   iconStyle,
@@ -13,60 +19,100 @@ import {
 
 interface CodeModalProps {
   displayName: string
-  showScanner: boolean
   errorShow: boolean
+  colorScheme: string
   devices: CameraDevice[]
   selectDeviceID: string
   handleCancel: () => void
   handleSwitchDevice: (value?: SelectValue) => void
 }
 
-const CodeModal: FC<CodeModalProps> = ({
+interface SuccessModalProps {
+  colorScheme: string
+  value: string
+  onOK: () => void
+  onClose: () => void
+}
+
+const SCAN_MODAL_INDEX = 1000
+const SUCCESS_MODAL_INDEX = 1005
+
+export const CodeModal: FC<CodeModalProps> = ({
   displayName,
-  showScanner,
   errorShow,
   devices,
+  colorScheme,
   selectDeviceID,
   handleCancel,
   handleSwitchDevice,
 }) => {
   const { t } = useTranslation()
   return createPortal(
-    <Modal
-      visible={showScanner}
-      _css={modalStyle}
-      onCancel={handleCancel}
-      footer={false}
-      withoutPadding
-      closable
-    >
-      <div css={containerStyle}>
-        <span css={iconStyle} onClick={handleCancel}>
-          <CloseIcon />
-        </span>
-        {errorShow ? (
-          <span>
-            {t("editor.inspect.setter_message.qr_code.startup_failed")}
+    <TriggerProvider zIndex={SCAN_MODAL_INDEX}>
+      <Modal
+        visible
+        _css={modalStyle}
+        onCancel={handleCancel}
+        footer={false}
+        withoutPadding
+        closable
+      >
+        <div css={containerStyle}>
+          <span css={iconStyle} onClick={handleCancel}>
+            <CloseIcon />
           </span>
-        ) : (
-          <div css={readerContainer}>
-            <div id={`${displayName}-reader`} css={readerStyle} />
-            <Select
-              options={devices.map((item) => {
-                return {
-                  label: item.label,
-                  value: item.id,
-                }
-              })}
-              value={selectDeviceID}
-              onChange={handleSwitchDevice}
-            />
-          </div>
-        )}
-      </div>
-    </Modal>,
+          {errorShow ? (
+            <span>
+              {t("editor.inspect.setter_message.qr_code.startup_failed")}
+            </span>
+          ) : (
+            <div css={readerContainer}>
+              <div id={`${displayName}-reader`} css={readerStyle} />
+              <Select
+                colorScheme={colorScheme}
+                options={devices.map((item) => {
+                  return {
+                    label: item.label,
+                    value: item.id,
+                  }
+                })}
+                value={selectDeviceID}
+                onChange={handleSwitchDevice}
+              />
+            </div>
+          )}
+        </div>
+      </Modal>
+    </TriggerProvider>,
     document.body,
   )
 }
 
+export const SuccessModal: FC<SuccessModalProps> = ({
+  value,
+  colorScheme,
+  onClose,
+  onOK,
+}) => {
+  const { t } = useTranslation()
+  return createPortal(
+    <TriggerProvider zIndex={SUCCESS_MODAL_INDEX}>
+      <Modal
+        visible
+        title={t("editor.inspect.setter_message.scan.title")}
+        content={t("editor.inspect.setter_message.scan.desc", {
+          scanValue: value,
+        })}
+        okText={t("editor.inspect.setter_message.scan.rescan")}
+        cancelText={t("editor.inspect.setter_message.scan.close")}
+        onOk={onOK}
+        onCancel={onClose}
+        okButtonProps={{
+          colorScheme,
+        }}
+      />
+    </TriggerProvider>,
+    document.body,
+  )
+}
 export default CodeModal

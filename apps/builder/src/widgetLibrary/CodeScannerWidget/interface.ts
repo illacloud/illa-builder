@@ -6,16 +6,19 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 export interface WrappedCodeScannerProps extends CodeScannerWidgetProps {
   errorShow: boolean
   showScanner: boolean
+  showSuccessModal: boolean
   devices: CameraDevice[]
   selectDeviceID: string
   handleCancel: () => void
   handleOpenScanner: () => void
   handleSwitchDevice: (value?: SelectValue) => void
+  handleResumeScan: () => void
 }
 
 export interface CodeScannerWidgetProps
   extends BaseWidgetProps,
     TooltipWrapperProps {
+  value?: string
   disabled?: boolean
   closeAfterScan?: boolean
   buttonText?: string
