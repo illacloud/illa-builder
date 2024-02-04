@@ -67,6 +67,7 @@ export const readerStyle = css`
   box-sizing: border-box;
   width: 100%;
   min-height: 328px;
+  border-radius: 8px;
   background-color: ${getColor("grayBlue", "08")};
   & video {
     max-width: 100%;

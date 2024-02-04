@@ -1,9 +1,10 @@
+import { AnimatePresence } from "framer-motion"
 import { CameraDevice, Html5Qrcode } from "html5-qrcode"
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { Button, SelectValue } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { AutoHeightContainer } from "../PublicSector/AutoHeightContainer"
-import CodeModal from "./codeModal"
+import { CodeModal, SuccessModal } from "./codeModal"
 import { CodeScannerWidgetProps, WrappedCodeScannerProps } from "./interface"
 import { fullStyle } from "./style"
 
@@ -11,8 +12,10 @@ const WrappedCodeScanner: FC<WrappedCodeScannerProps> = ({
   displayName,
   errorShow,
   showScanner,
+  showSuccessModal,
   selectDeviceID,
   devices,
+  value = "",
   variant = "fill",
   disabled,
   buttonText = "Scanner",
@@ -20,6 +23,7 @@ const WrappedCodeScanner: FC<WrappedCodeScannerProps> = ({
   handleCancel,
   handleOpenScanner,
   handleSwitchDevice,
+  handleResumeScan,
 }) => {
   return (
     <>
@@ -33,15 +37,29 @@ const WrappedCodeScanner: FC<WrappedCodeScannerProps> = ({
       >
         {buttonText}
       </Button>
-      <CodeModal
-        displayName={displayName}
-        showScanner={showScanner}
-        errorShow={errorShow}
-        devices={devices}
-        selectDeviceID={selectDeviceID}
-        handleCancel={handleCancel}
-        handleSwitchDevice={handleSwitchDevice}
-      />
+      <AnimatePresence>
+        {showScanner && (
+          <CodeModal
+            displayName={displayName}
+            errorShow={errorShow}
+            colorScheme={colorScheme}
+            devices={devices}
+            selectDeviceID={selectDeviceID}
+            handleCancel={handleCancel}
+            handleSwitchDevice={handleSwitchDevice}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showSuccessModal && (
+          <SuccessModal
+            value={value}
+            colorScheme={colorScheme}
+            onClose={handleCancel}
+            onOK={handleResumeScan}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }
@@ -65,13 +83,25 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
   const [devices, setDevices] = useState<CameraDevice[]>([])
   const [selectDeviceID, setSelectDeviceID] = useState("")
   const html5QrCodeRef = useRef<Html5Qrcode | null>()
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   const handleCancel = useCallback(() => {
     setShowScanner(false)
+    setShowSuccessModal(false)
     html5QrCodeRef.current?.stop()
     html5QrCodeRef.current = null
     triggerEventHandler("closeScanner")
   }, [triggerEventHandler])
+
+  const handleShowSuccessModal = useCallback(() => {
+    html5QrCodeRef.current?.pause()
+    setShowSuccessModal(true)
+  }, [])
+
+  const handleResumeScan = () => {
+    html5QrCodeRef.current?.resume()
+    setShowSuccessModal(false)
+  }
 
   const handleScan = useCallback(
     (id: string) => {
@@ -81,7 +111,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
       html5QrCodeRef.current.start(
         id,
         {
-          fps: 10,
+          fps: 2,
         },
         (decodedText) => {
           handleUpdateMultiExecutionResult([
@@ -93,6 +123,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
             },
           ])
           triggerEventHandler("scanSuccessful")
+          !closeAfterScan && handleShowSuccessModal()
           closeAfterScan && handleCancel()
         },
         () => {},
@@ -102,6 +133,7 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
       closeAfterScan,
       displayName,
       handleCancel,
+      handleShowSuccessModal,
       handleUpdateMultiExecutionResult,
       triggerEventHandler,
     ],
@@ -183,6 +215,8 @@ export const CodeScannerWidget: FC<CodeScannerWidgetProps> = (props) => {
             handleCancel={handleCancel}
             handleOpenScanner={handleOpenScanner}
             handleSwitchDevice={handleSwitchDevice}
+            showSuccessModal={showSuccessModal}
+            handleResumeScan={handleResumeScan}
           />
         </div>
       </TooltipWrapper>
