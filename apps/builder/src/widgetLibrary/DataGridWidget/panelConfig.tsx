@@ -555,7 +555,6 @@ export function getColumnsTypeSubSetter(type: ColumnType): PanelFieldConfig[] {
           bindAttrName: ["showThousandsSeparator"],
           shown: (value) => value,
           openDynamic: true,
-          useCustomLayout: true,
         },
       ]
     default:
