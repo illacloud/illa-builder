@@ -6,6 +6,7 @@ export const optionListHeaderStyle = css`
   background-color: ${getColor("grayBlue", "09")};
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 40px;
   box-sizing: border-box;
   padding: 0 16px;

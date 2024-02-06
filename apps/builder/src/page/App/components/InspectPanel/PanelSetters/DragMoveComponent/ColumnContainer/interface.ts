@@ -1,6 +1,6 @@
 import { UniqueIdentifier } from "@dnd-kit/core"
 import { DragEndEvent } from "@dnd-kit/core/dist/types"
-import { PropsWithChildren } from "react"
+import { PropsWithChildren, ReactNode } from "react"
 
 export interface ColumnContainerProps extends PropsWithChildren {
   onDragEnd?: (event: DragEndEvent) => void
@@ -16,4 +16,5 @@ export interface ColumnContainerProps extends PropsWithChildren {
         id: UniqueIdentifier
       }
   )[]
+  headerExtNode?: ReactNode
 }
