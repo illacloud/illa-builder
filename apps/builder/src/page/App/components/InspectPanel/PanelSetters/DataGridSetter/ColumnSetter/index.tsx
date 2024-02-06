@@ -17,7 +17,7 @@ import { ColumnEmpty } from "../../DragMoveComponent/Empty"
 import { BasicUpdateButton, UpdateButton } from "./Components/UpdateButton"
 import { ColumnConfig, ColumnSetterProps } from "./interface"
 
-function generateCalcColumnConfig(
+export function generateCalcColumnConfig(
   key: string,
   isCalc: boolean,
   randomKey: boolean,
