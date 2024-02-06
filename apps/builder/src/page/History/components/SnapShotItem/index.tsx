@@ -126,9 +126,9 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
       await recoverSnapShot(snapshot.appID, snapshot.snapshotID)
       await recoverSnapShotWS(snapshot.appID)
       message.success({ content: t("editor.history.message.suc.restore") })
-      window.location.href = `${getILLABuilderURL()}/${teamIdentifier}/app/${
-        snapshot.appID
-      }`
+      window.location.href = `${getILLABuilderURL(
+        window.customDomain,
+      )}/${teamIdentifier}/app/${snapshot.appID}`
     } catch (error) {
       if (isILLAAPiError(error)) {
         message.error({ content: t("editor.history.message.fail.restore") })

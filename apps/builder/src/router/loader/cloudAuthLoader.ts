@@ -96,7 +96,9 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
       )
     ) {
       return redirect(
-        `${getILLACloudURL()}/workspace/${currentTeamInfo.identifier}`,
+        `${getILLACloudURL(window.customDomain)}/workspace/${
+          currentTeamInfo.identifier
+        }`,
       )
     }
     return null

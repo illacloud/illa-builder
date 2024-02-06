@@ -44,6 +44,7 @@ import {
 } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useEffect, useState } from "react"
+import { Helmet } from "react-helmet-async"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -223,7 +224,9 @@ export const AIAgentRunMobile: FC = () => {
                   agentName: agent.name,
                 },
               )}
-              redirectURL={`${getILLABuilderURL()}/${ownerTeamIdentifier}/ai-agent/${
+              redirectURL={`${getILLABuilderURL(
+                window.customDomain,
+              )}/${ownerTeamIdentifier}/ai-agent/${
                 agent.aiAgentID
               }/run?myTeamIdentifier=${searchParams.get("myTeamIdentifier")}`}
               onClose={() => {
@@ -616,52 +619,87 @@ export const AIAgentRunMobile: FC = () => {
   }, [canShowInviteButton])
 
   return (
-    <ChatContext.Provider value={{ inRoomUsers }}>
-      <div css={aiAgentContainerStyle}>
-        <div css={headerContainerStyle}>
-          <Controller
-            name="publishedToMarketplace"
-            control={control}
-            render={({ field }) => {
-              return (
-                <div css={menuContainerStyle}>
-                  <div
-                    css={shareContainerStyle}
-                    onClick={() => {
-                      if (
-                        document.referrer.includes(
-                          import.meta.env.ILLA_CLOUD_URL,
-                        )
-                      ) {
-                        return (location.href = `${getILLACloudURL()}/workspace/${ownerTeamIdentifier}/ai-agents`)
-                      }
-                      if (
-                        document.referrer.includes(
-                          import.meta.env.ILLA_MARKET_URL,
-                        ) &&
-                        agentID
-                      ) {
-                        return (location.href = `${
-                          import.meta.env.ILLA_MARKET_URL
-                        }/ai-agent/${agentID}/detail`)
-                      }
-                      return (location.href = getILLACloudURL())
-                    }}
-                  >
-                    <PreviousIcon fs="24px" />
-                  </div>
-                  <div
-                    style={{
-                      flexGrow: 1,
-                    }}
-                  />
-                  {field.value &&
-                    canManage(
-                      currentTeamInfo.myRole,
-                      ATTRIBUTE_GROUP.AI_AGENT,
-                      getPlanUtils(currentTeamInfo),
-                      ACTION_MANAGE.FORK_AI_AGENT,
-                    ) && (
+    <>
+      <Helmet>
+        <title>{agent.name}</title>
+      </Helmet>
+      <ChatContext.Provider value={{ inRoomUsers }}>
+        <div css={aiAgentContainerStyle}>
+          <div css={headerContainerStyle}>
+            <Controller
+              name="publishedToMarketplace"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <div css={menuContainerStyle}>
+                    <div
+                      css={shareContainerStyle}
+                      onClick={() => {
+                        const cloudUrl = getILLACloudURL(window.customDomain)
+                        if (document.referrer.includes(cloudUrl)) {
+                          return (location.href = `${cloudUrl}/workspace/${ownerTeamIdentifier}/ai-agents`)
+                        }
+                        if (
+                          document.referrer.includes(
+                            import.meta.env.ILLA_MARKET_URL,
+                          ) &&
+                          agentID
+                        ) {
+                          return (location.href = `${
+                            import.meta.env.ILLA_MARKET_URL
+                          }/ai-agent/${agentID}/detail`)
+                        }
+                        return (location.href = cloudUrl)
+                      }}
+                    >
+                      <PreviousIcon fs="24px" />
+                    </div>
+                    <div
+                      style={{
+                        flexGrow: 1,
+                      }}
+                    />
+                    {field.value &&
+                      canManage(
+                        currentTeamInfo.myRole,
+                        ATTRIBUTE_GROUP.AI_AGENT,
+                        getPlanUtils(currentTeamInfo),
+                        ACTION_MANAGE.FORK_AI_AGENT,
+                      ) && (
+                        <div
+                          css={shareContainerStyle}
+                          onClick={async () => {
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                              {
+                                element: "fork",
+                                parameter5: agent.aiAgentID,
+                              },
+                            )
+                            setForkLoading(true)
+                            try {
+                              await forkAIAgentToTeam(agent.aiAgentID)
+                              message.success({
+                                content: t("dashboard.message.mobile-fork-suc"),
+                              })
+                            } catch (e) {
+                              message.error({
+                                content: t("dashboard.message.fork-failed"),
+                              })
+                            } finally {
+                              setForkLoading(false)
+                            }
+                          }}
+                        >
+                          {forkLoading ? (
+                            <LoadingIcon spin={true} fs="24px" />
+                          ) : (
+                            <ForkIcon fs="24px" />
+                          )}
+                        </div>
+                      )}
+                    {field.value && (
                       <div
                         css={shareContainerStyle}
                         onClick={async () => {
@@ -669,207 +707,174 @@ export const AIAgentRunMobile: FC = () => {
                             ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                             ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
                             {
-                              element: "fork",
+                              element: "star",
                               parameter5: agent.aiAgentID,
                             },
                           )
-                          setForkLoading(true)
+                          const currentState = starState
+                          setStarState(!starState)
                           try {
-                            await forkAIAgentToTeam(agent.aiAgentID)
-                            message.success({
-                              content: t("dashboard.message.mobile-fork-suc"),
-                            })
+                            if (starState) {
+                              await unstarAIAgent(agent.aiAgentID)
+                              if (starNum > 0) {
+                                setStarNum(starNum - 1)
+                              }
+                            } else {
+                              await starAIAgent(agent.aiAgentID)
+                              setStarNum(starNum + 1)
+                            }
                           } catch (e) {
+                            setStarState(currentState)
                             message.error({
-                              content: t("dashboard.message.fork-failed"),
+                              content: t("dashboard.message.star-failed"),
                             })
-                          } finally {
-                            setForkLoading(false)
                           }
                         }}
                       >
-                        {forkLoading ? (
-                          <LoadingIcon spin={true} fs="24px" />
+                        {starState ? (
+                          <StarFillIcon c="#FFBB38" fs="24px" />
                         ) : (
-                          <ForkIcon fs="24px" />
+                          <StarOutlineIcon fs="24px" />
                         )}
                       </div>
                     )}
-                  {field.value && (
-                    <div
-                      css={shareContainerStyle}
-                      onClick={async () => {
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
-                          {
-                            element: "star",
-                            parameter5: agent.aiAgentID,
-                          },
-                        )
-                        const currentState = starState
-                        setStarState(!starState)
-                        try {
-                          if (starState) {
-                            await unstarAIAgent(agent.aiAgentID)
-                            if (starNum > 0) {
-                              setStarNum(starNum - 1)
-                            }
-                          } else {
-                            await starAIAgent(agent.aiAgentID)
-                            setStarNum(starNum + 1)
+                    {(canUseBillingFeature || field.value) && (
+                      <div
+                        css={shareContainerStyle}
+                        onClick={() => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                            {
+                              element: "invite_entry",
+                              parameter5: agent.aiAgentID,
+                            },
+                          )
+                          if (
+                            !openShareAgentModal(
+                              currentTeamInfo,
+                              currentTeamInfo.id === agent.teamID
+                                ? currentTeamInfo.myRole
+                                : USER_ROLE.GUEST,
+                              field.value,
+                            )
+                          ) {
+                            upgradeModal({
+                              modalType: "upgrade",
+                              from: "agent_run_share",
+                            })
+                            return
                           }
-                        } catch (e) {
-                          setStarState(currentState)
-                          message.error({
-                            content: t("dashboard.message.star-failed"),
-                          })
-                        }
-                      }}
-                    >
-                      {starState ? (
-                        <StarFillIcon c="#FFBB38" fs="24px" />
-                      ) : (
-                        <StarOutlineIcon fs="24px" />
+                          setShareDialogVisible(true)
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                            {
+                              element: "share_modal",
+                              parameter5: agent.aiAgentID,
+                            },
+                          )
+                        }}
+                      >
+                        <DependencyIcon fs="24px" />
+                      </div>
+                    )}
+                  </div>
+                )
+              }}
+            />
+            <div css={headerInfoStyle}>
+              <Controller
+                name="icon"
+                control={control}
+                render={({ field }) => (
+                  <Avatar css={agentIconStyle} avatarUrl={field.value} />
+                )}
+              />
+              <div css={agentContentContainerStyle}>
+                <Controller
+                  name="name"
+                  control={control}
+                  render={({ field }) => (
+                    <div css={agentNameStyle}>{field.value}</div>
+                  )}
+                />
+                <div css={agentMarketContainerStyle}>
+                  <div css={agentTeamNameStyle}>{agent.teamName}</div>
+                  {agent.publishedToMarketplace && (
+                    <div css={agentMarketResultStyle}>
+                      {starNum > 0 && (
+                        <span>
+                          {t("marketplace.star")}
+                          {formatNumForAgent(starNum)}
+                        </span>
+                      )}
+                      {starNum > 0 &&
+                        (currentMarketplaceInfo?.marketplace.numForks ?? 0) >
+                          0 && <span>&nbsp;·&nbsp;</span>}
+
+                      {(currentMarketplaceInfo?.marketplace.numForks ?? 0) >
+                        0 && (
+                        <span>
+                          {t("marketplace.fork")}
+                          {formatNumForAgent(
+                            currentMarketplaceInfo?.marketplace.numForks ?? 0,
+                          )}
+                        </span>
                       )}
                     </div>
                   )}
-                  {(canUseBillingFeature || field.value) && (
-                    <div
-                      css={shareContainerStyle}
-                      onClick={() => {
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
-                          {
-                            element: "invite_entry",
-                            parameter5: agent.aiAgentID,
-                          },
-                        )
-                        if (
-                          !openShareAgentModal(
-                            currentTeamInfo,
-                            currentTeamInfo.id === agent.teamID
-                              ? currentTeamInfo.myRole
-                              : USER_ROLE.GUEST,
-                            field.value,
-                          )
-                        ) {
-                          upgradeModal({
-                            modalType: "upgrade",
-                            from: "agent_run_share",
-                          })
-                          return
-                        }
-                        setShareDialogVisible(true)
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
-                          {
-                            element: "share_modal",
-                            parameter5: agent.aiAgentID,
-                          },
-                        )
-                      }}
-                    >
-                      <DependencyIcon fs="24px" />
-                    </div>
-                  )}
                 </div>
-              )
-            }}
-          />
-          <div css={headerInfoStyle}>
-            <Controller
-              name="icon"
-              control={control}
-              render={({ field }) => (
-                <Avatar css={agentIconStyle} avatarUrl={field.value} />
-              )}
-            />
-            <div css={agentContentContainerStyle}>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field }) => (
-                  <div css={agentNameStyle}>{field.value}</div>
-                )}
-              />
-              <div css={agentMarketContainerStyle}>
-                <div css={agentTeamNameStyle}>{agent.teamName}</div>
-                {agent.publishedToMarketplace && (
-                  <div css={agentMarketResultStyle}>
-                    {starNum > 0 && (
-                      <span>
-                        {t("marketplace.star")}
-                        {formatNumForAgent(starNum)}
-                      </span>
-                    )}
-                    {starNum > 0 &&
-                      (currentMarketplaceInfo?.marketplace.numForks ?? 0) >
-                        0 && <span>&nbsp;·&nbsp;</span>}
-
-                    {(currentMarketplaceInfo?.marketplace.numForks ?? 0) >
-                      0 && (
-                      <span>
-                        {t("marketplace.fork")}
-                        {formatNumForAgent(
-                          currentMarketplaceInfo?.marketplace.numForks ?? 0,
-                        )}
-                      </span>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
-          </div>
-          <Controller
-            name="agentType"
-            control={control}
-            render={({ field }) => (
-              <div css={tabsContainerStyle}>
-                <div
-                  css={tabContainerStyle}
-                  onClick={() => {
-                    setCurrentSelectTab("config")
-                  }}
-                >
-                  <div css={tabStyle}>{t("editor.ai-agent.tab.prompt")}</div>
-                  {currentSelectTab === "config" && (
-                    <motion.div css={lineStyle} layoutId="underline" />
-                  )}
-                </div>
-                <div css={dividerStyle} />
-                <div
-                  css={tabContainerStyle}
-                  onClick={() => {
-                    if (!isRunning || isDirty) {
-                      message.info({
-                        content: t("editor.ai-agent.message.click-start"),
-                      })
-                      return
-                    }
-                    setCurrentSelectTab("run")
-                  }}
-                >
-                  <div css={tabStyle}>
-                    {field.value === AI_AGENT_TYPE.CHAT
-                      ? t("editor.ai-agent.tab.chat")
-                      : t("editor.ai-agent.tab.text")}
+            <Controller
+              name="agentType"
+              control={control}
+              render={({ field }) => (
+                <div css={tabsContainerStyle}>
+                  <div
+                    css={tabContainerStyle}
+                    onClick={() => {
+                      setCurrentSelectTab("config")
+                    }}
+                  >
+                    <div css={tabStyle}>{t("editor.ai-agent.tab.prompt")}</div>
+                    {currentSelectTab === "config" && (
+                      <motion.div css={lineStyle} layoutId="underline" />
+                    )}
                   </div>
-                  {currentSelectTab === "run" && (
-                    <motion.div css={lineStyle} layoutId="underline" />
-                  )}
+                  <div css={dividerStyle} />
+                  <div
+                    css={tabContainerStyle}
+                    onClick={() => {
+                      if (!isRunning || isDirty) {
+                        message.info({
+                          content: t("editor.ai-agent.message.click-start"),
+                        })
+                        return
+                      }
+                      setCurrentSelectTab("run")
+                    }}
+                  >
+                    <div css={tabStyle}>
+                      {field.value === AI_AGENT_TYPE.CHAT
+                        ? t("editor.ai-agent.tab.chat")
+                        : t("editor.ai-agent.tab.text")}
+                    </div>
+                    {currentSelectTab === "run" && (
+                      <motion.div css={lineStyle} layoutId="underline" />
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          />
+              )}
+            />
+          </div>
+          {currentSelectTab === "run" && previewChatTab}
+          {currentSelectTab === "config" && configTab}
+          {dialog}
         </div>
-        {currentSelectTab === "run" && previewChatTab}
-        {currentSelectTab === "config" && configTab}
-        {dialog}
-      </div>
-    </ChatContext.Provider>
+      </ChatContext.Provider>
+    </>
   )
 }
 

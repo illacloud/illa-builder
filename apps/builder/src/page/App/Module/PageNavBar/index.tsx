@@ -105,7 +105,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         dispatch(appInfoActions.updateAppDeployedReducer(true))
         dispatch(appInfoActions.updateAppPublicReducer(isPublic))
         window.open(
-          `${getILLABuilderURL()}/${teamIdentifier}/deploy/app/${appId}`,
+          `${getILLABuilderURL(
+            window.customDomain,
+          )}/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
         )
         onSuccess?.()
@@ -283,7 +285,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <Link to={getILLACloudURL()}>
+        <Link to={getILLACloudURL(window.customDomain)}>
           <Logo width="34px" css={logoCursorStyle} />
         </Link>
 
