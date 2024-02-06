@@ -51,20 +51,25 @@
         }
       }
 
-      const origin = location.origin
-      if (origin !== "%ILLA_BUILDER_URL%") {
-        fetch(`https://%ILLA_API_BASE_URL%/supervisor/api/v1/domain/validate`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ customDomain: location.host }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
+      export async function validateCustomDomain() {
+        const origin = location.origin
+        if (origin !== "%ILLA_BUILDER_URL%") {
+          window.customDomain = location.host
+          try {
+            const response = await fetch(
+              `https://%ILLA_API_BASE_URL%/supervisor/api/v1/domain/validate`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ customDomain: location.host }),
+              },
+            )
+            const data = await response.json()
             if (!data.customDomainAvaliable) {
               const redirectURL = window.location.href.replace(
-                `https://${window.location.host}/builder`,
+                `https://${window.location.host}/cloud`,
                 "%ILLA_CLOUD_URL%",
               )
               window.location.href = `%ILLA_CLOUD_URL%/redirect-expired?redirectURL=${redirectURL}`
@@ -75,11 +80,14 @@
             } else {
               setFavicon("/ILLAFavicon.ico")
             }
-            window.customDomain = location.host
-          })
-      } else {
-        setFavicon("/ILLAFavicon.ico")
+          } catch {
+            setFavicon("/ILLAFavicon.ico")
+          }
+        } else {
+          setFavicon("/ILLAFavicon.ico")
+        }
       }
+      validateCustomDomain()
     </script>
   </head>
   <body>
