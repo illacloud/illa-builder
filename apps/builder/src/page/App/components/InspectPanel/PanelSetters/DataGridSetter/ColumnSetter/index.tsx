@@ -99,7 +99,7 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     return calculateColumnsByDataSource.map((item) => item.field)
   }, [calculateColumnsByDataSource])
 
-  const generatedColumnConfigIDs = useMemo(() => {
+  const oldColumnConfigIDs = useMemo(() => {
     return value.filter((item) => item.isCalc).map((item) => item.field)
   }, [value])
 
@@ -108,10 +108,18 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
   }, [value])
 
   const removedColumnIDs: string[] = useMemo(() => {
-    return generatedColumnConfigIDs.filter(
+    return oldColumnConfigIDs.filter(
       (item) => !columnIDsByDataSource.includes(item),
     )
-  }, [generatedColumnConfigIDs, columnIDsByDataSource])
+  }, [oldColumnConfigIDs, columnIDsByDataSource])
+
+  const addedColumnsIDs: string[] = useMemo(() => {
+    return columnIDsByDataSource.filter(
+      (item) => !oldColumnConfigIDs.includes(item),
+    )
+  }, [columnIDsByDataSource, oldColumnConfigIDs])
+
+  console.log("aaaa", addedColumnsIDs)
 
   const handleMixedColumns = useCallback(() => {
     if (calculateColumnsByDataSource.length === 0) {
@@ -185,7 +193,7 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
       }}
       items={value.map((item) => item.field)}
       headerExtNode={
-        removedColumnIDs.length > 0 ? (
+        removedColumnIDs.length > 0 || addedColumnsIDs.length > 0 ? (
           <UpdateButton onClick={handleMixedColumns} />
         ) : (
           <BasicUpdateButton onClick={handleMixedColumns} />
