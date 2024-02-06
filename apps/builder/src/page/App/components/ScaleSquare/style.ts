@@ -222,15 +222,12 @@ export function applyBarHandlerStyle(
 }
 
 const getWrapperBorderColor = (
-  isLikProductionMode: boolean,
   isSelected: boolean,
   hasEditors: boolean,
   isHover: boolean,
+  shownDot: boolean,
 ) => {
-  if (isLikProductionMode) {
-    return "transparent"
-  }
-  if (isSelected || hasEditors || isHover) {
+  if (isSelected || hasEditors || isHover || shownDot) {
     return getColor("techPurple", "03")
   }
   return "transparent"
@@ -241,8 +238,9 @@ const getWrapperBorderStyle = (
   isSelected: boolean,
   isDragging: boolean,
   isHover: boolean,
+  shownDot: boolean,
 ) => {
-  if (hasEditors && !isSelected && !isDragging && !isHover) {
+  if (shownDot || (hasEditors && !isSelected && !isDragging && !isHover)) {
     return "dashed"
   }
   return "solid"
@@ -254,6 +252,7 @@ export const getWrapperBorder = (
   hasEditors: boolean,
   isHover: boolean,
   isDragging: boolean,
+  shownDot: boolean,
 ) => {
   if (isLikProductionMode) {
     return css`
@@ -267,12 +266,13 @@ export const getWrapperBorder = (
       isSelected,
       isDragging,
       isHover,
+      shownDot,
     )};
     border-color: ${getWrapperBorderColor(
-      isLikProductionMode,
       isSelected,
       hasEditors,
       isHover,
+      shownDot,
     )};
   `
 }

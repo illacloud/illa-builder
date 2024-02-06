@@ -14,6 +14,7 @@ import {
   getIsILLAEditMode,
   getIsLikeProductMode,
   getSelectedComponentDisplayNames,
+  isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -75,7 +76,7 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
   const layoutInfoResult = useSelector(getClientWidgetLayoutInfo)
   const currentWidgetLayoutInfo = layoutInfoResult[displayName]
   const currentWidgetProps = get(executionResult, displayName, {})
-
+  const isShownDot = useSelector(isShowDot)
   const isDraggingStateInGlobal = useSelector(getIsDragging)
 
   const isAutoLimitedMode =
@@ -133,9 +134,9 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
       type: "component",
       clickPosition: [],
     })
-    
+
     e.stopPropagation()
-    
+
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
       element: "component",
       parameter1: "click",
@@ -266,6 +267,7 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
                 hasEditors: componentsAttachedUsers.length > 0,
                 isHover: isMouseOver,
                 isDragging: false,
+                shownDot: isShownDot,
               },
             )}
           >
@@ -279,7 +281,8 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
               {!isLikeProductionMode &&
                 (isSelected ||
                   isMouseOver ||
-                  componentsAttachedUsers.length > 0) && (
+                  componentsAttachedUsers.length > 0 ||
+                  isShownDot) && (
                   <MoveBar
                     isError={hasError}
                     displayName={displayName}
