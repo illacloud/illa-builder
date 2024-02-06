@@ -2,11 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <link href="/favicon.png" rel="icon" type="image/svg+xml" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <meta
+      key="twitter:title"
+      name="twitter:title"
+      content="ILLA Builder - An open-source low-code Platform for Developers."
+    />
+    <meta
+      key="og:title"
+      property="og:title"
+      content="ILLA Builder - An open-source low-code Platform for Developers."
+    />
+    <link href="/public/font-family/Fira-code/fira_code.css" rel="stylesheet" />
+    <link href="/public/font-family/Inter/inter.css" rel="stylesheet" />
+    <title>Loading...</title>
     <script>
       function createFavicon() {
         const newFavicon = document.createElement("link")
-        newFavicon.type = "image/x-icon"
-        newFavicon.rel = "shortcut icon"
+        newFavicon.rel = "icon"
         document.getElementsByTagName("head")[0].appendChild(newFavicon)
         return newFavicon
       }
@@ -18,10 +36,7 @@
 
         for (let i = 0; i < linkElements.length; i++) {
           const link = linkElements[i]
-          if (
-            link.rel.toLowerCase() === "icon" ||
-            link.rel.toLowerCase() === "shortcut icon"
-          ) {
+          if (link.rel.toLowerCase() === "icon") {
             faviconElements.push(link)
           }
         }
@@ -56,30 +71,16 @@
               return
             }
             if (data.favicon) {
-              let existingFavicon = setFavicon(data.favicon)
+              setFavicon(data.favicon)
+            } else {
+              setFavicon("/ILLAFavicon.ico")
             }
             window.customDomain = location.host
           })
+      } else {
+        setFavicon("/ILLAFavicon.ico")
       }
     </script>
-    <link href="/src/assets/favicon.ico" rel="icon" type="image/svg+xml" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1"
-    />
-    <meta
-      key="twitter:title"
-      name="twitter:title"
-      content="ILLA Builder - An open-source low-code Platform for Developers."
-    />
-    <meta
-      key="og:title"
-      property="og:title"
-      content="ILLA Builder - An open-source low-code Platform for Developers."
-    />
-    <link href="/public/font-family/Fira-code/fira_code.css" rel="stylesheet" />
-    <link href="/public/font-family/Inter/inter.css" rel="stylesheet" />
-    <title>Loading...</title>
   </head>
   <body>
     <div id="root"></div>
