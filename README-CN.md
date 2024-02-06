@@ -10,7 +10,7 @@
 <p align="center">ILLA 是一个强大的开源低代码平台，供开发人员构建内部工具。 通过使用 ILLA 的组件和操作库，开发人员可以节省大量构建工具的时间。 </p>
 
 <div align="center">
-<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | 简体中文 | <a href="https://github.com/illacloud/illa-builder/blob/main/README-DE.md">Deutsch</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+<a href="https://github.com/illacloud/illa-builder/blob/beta/README.md">English</a> | 简体中文 | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-DE.md">Deutsch</a> | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-JP.md">日本語</a>
 </div>
 
 <br>
@@ -22,7 +22,6 @@
 
 
 [![Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illacloudHQ)
 [![Discussions](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
 [![Crowdin](https://badges.crowdin.net/illa-builder/localized.svg)](https://crowdin.com/project/illa-builder)
 [![CI (Rolling and Humble)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml/badge.svg?query=branch%3Amain)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml?query=branch%3Amain)

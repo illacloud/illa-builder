@@ -14,6 +14,7 @@ export const resizingContainerStyle = (
     hasEditors: boolean
     isHover: boolean
     isDragging: boolean
+    shownDot: boolean
   },
 ) => {
   const { width, height, minHeight, minWidth } = shapeInfo
@@ -23,6 +24,7 @@ export const resizingContainerStyle = (
     hasEditors,
     isHover,
     isDragging,
+    shownDot,
   } = borderInfo
   return css`
     width: ${width}px;
@@ -36,6 +38,7 @@ export const resizingContainerStyle = (
       hasEditors,
       isHover,
       isDragging,
+      shownDot,
     )}
   `
 }
