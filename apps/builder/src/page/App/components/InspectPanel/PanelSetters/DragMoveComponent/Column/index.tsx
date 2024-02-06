@@ -16,6 +16,7 @@ import { ColumnProps } from "./interface"
 import {
   baseModalContainerStyle,
   columnContainerStyle,
+  columnLabelContainerStyle,
   columnLabelStyle,
   dragIconStyle,
 } from "./style"
@@ -33,6 +34,7 @@ export const Column: FC<ColumnProps> = (props) => {
     showVisible,
     extraElement,
     showCopy,
+    labelTip,
     onCopy,
     onVisibilityChange,
   } = props
@@ -87,7 +89,10 @@ export const Column: FC<ColumnProps> = (props) => {
         position="left"
         clickOutsideToClose
       >
-        <div css={columnLabelStyle}>{label}</div>
+        <div css={columnLabelContainerStyle}>
+          <span css={columnLabelStyle}> {label}</span>
+          {labelTip}
+        </div>
       </Trigger>
       {showCopy && (
         <IconHotSpot

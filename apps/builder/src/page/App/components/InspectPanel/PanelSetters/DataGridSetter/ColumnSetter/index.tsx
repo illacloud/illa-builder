@@ -1,9 +1,10 @@
 import { arrayMove } from "@dnd-kit/sortable"
-import deepDiff from "deep-diff"
 import { get } from "lodash-es"
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
+import { Trigger, WarningCircleIcon, getColor } from "@illa-design/react"
 import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/utils"
 import { ColumnContainer } from "@/page/App/components/InspectPanel/PanelSetters/DragMoveComponent/ColumnContainer"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -13,6 +14,7 @@ import { UNIQUE_ID_NAME } from "@/widgetLibrary/DataGridWidget/constants"
 import { getColumnsTypeSetter } from "@/widgetLibrary/DataGridWidget/panelConfig"
 import { Column } from "../../DragMoveComponent/Column"
 import { ColumnEmpty } from "../../DragMoveComponent/Empty"
+import { BasicUpdateButton, UpdateButton } from "./Components/UpdateButton"
 import { ColumnConfig, ColumnSetterProps } from "./interface"
 
 function generateCalcColumnConfig(
@@ -55,6 +57,8 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     widgetDisplayName,
   } = props
 
+  const { t } = useTranslation()
+
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     (rootState) => {
       const executionTree = getExecutionResult(rootState)
@@ -81,7 +85,7 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     [rawData],
   )
 
-  const calculateColumns: ColumnConfig[] = useMemo(() => {
+  const calculateColumnsByDataSource: ColumnConfig[] = useMemo(() => {
     if (arrayData.length == 0) {
       return []
     } else {
@@ -91,17 +95,31 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
     }
   }, [arrayData])
 
+  const columnIDsByDataSource = useMemo(() => {
+    return calculateColumnsByDataSource.map((item) => item.field)
+  }, [calculateColumnsByDataSource])
+
+  const columnConfigIDs = useMemo(() => {
+    return value.map((item) => item.field)
+  }, [value])
+
   const customColumns = useMemo(() => {
     return value.filter((item) => !item.isCalc)
   }, [value])
 
-  const mixedColumns: ColumnConfig[] = useMemo(() => {
-    if (calculateColumns.length === 0) {
+  const removedColumnIDs: string[] = useMemo(() => {
+    return columnConfigIDs.filter(
+      (item) => !columnIDsByDataSource.includes(item),
+    )
+  }, [columnConfigIDs, columnIDsByDataSource])
+
+  const handleMixedColumns = useCallback(() => {
+    if (calculateColumnsByDataSource.length === 0) {
       return value
     }
     const mixedColumnsResult: ColumnConfig[] = []
 
-    calculateColumns.forEach((config) => {
+    calculateColumnsByDataSource.forEach((config) => {
       const oldConfig = value.find((item) => item.field === config.field)
       if (oldConfig) {
         mixedColumnsResult.push(oldConfig)
@@ -129,18 +147,14 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
       return aIndex - bIndex
     })
 
-    const diff = deepDiff(value, mixedColumnsResult)
-
-    if ((diff?.length ?? 0) > 0) {
-      handleUpdateMultiAttrDSL?.({
-        [attrName]: mixedColumnsResult,
-      })
-    }
+    handleUpdateMultiAttrDSL?.({
+      [attrName]: mixedColumnsResult,
+    })
 
     return mixedColumnsResult
   }, [
     attrName,
-    calculateColumns,
+    calculateColumnsByDataSource,
     customColumns,
     handleUpdateMultiAttrDSL,
     value,
@@ -148,17 +162,13 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
 
   return (
     <ColumnContainer
-      columnNum={mixedColumns.length}
+      columnNum={value.length}
       onDragEnd={(event) => {
         const { active, over } = event
         if (active && over && active.id !== over.id) {
-          const oldIndex = mixedColumns.findIndex(
-            (item) => item.field === active.id,
-          )
-          const newIndex = mixedColumns.findIndex(
-            (item) => item.field === over.id,
-          )
-          const finalColumns = arrayMove(mixedColumns, oldIndex, newIndex)
+          const oldIndex = value.findIndex((item) => item.field === active.id)
+          const newIndex = value.findIndex((item) => item.field === over.id)
+          const finalColumns = arrayMove(value, oldIndex, newIndex)
           handleUpdateMultiAttrDSL?.({
             [attrName]: finalColumns,
           })
@@ -168,25 +178,38 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
       onClickNew={() => {
         handleUpdateMultiAttrDSL?.({
           [attrName]: [
-            ...mixedColumns,
-            generateCalcColumnConfig(
-              `column${mixedColumns.length + 1}`,
-              false,
-              true,
-            ),
+            ...value,
+            generateCalcColumnConfig(`column${value.length + 1}`, false, true),
           ],
         })
       }}
-      items={mixedColumns.map((item) => item.field)}
+      items={value.map((item) => item.field)}
+      headerExtNode={
+        removedColumnIDs.length > 0 ? (
+          <UpdateButton onClick={handleMixedColumns} />
+        ) : (
+          <BasicUpdateButton onClick={handleMixedColumns} />
+        )
+      }
     >
-      {mixedColumns.length > 0 ? (
-        mixedColumns.map((config, index) =>
+      {value.length > 0 ? (
+        value.map((config, index) =>
           config.field === UNIQUE_ID_NAME ? null : (
             <Column
-              onDelete={(id) => {
-                const finalColumns = mixedColumns.filter(
-                  (item) => item.field !== id,
+              labelTip={
+                removedColumnIDs.length > 0 &&
+                removedColumnIDs.includes(config.field) && (
+                  <Trigger
+                    content={t(
+                      "editor.inspect.setter_tips.grid_list.no_column",
+                    )}
+                  >
+                    <WarningCircleIcon color={getColor("orange", "03")} />
+                  </Trigger>
                 )
+              }
+              onDelete={(id) => {
+                const finalColumns = value.filter((item) => item.field !== id)
                 handleUpdateMultiAttrDSL?.({
                   [attrName]: finalColumns,
                 })
