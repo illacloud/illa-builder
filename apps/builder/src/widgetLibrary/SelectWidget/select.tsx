@@ -21,7 +21,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     disabled,
     loading,
     readOnly,
-    showSearch,
     colorScheme,
     handleUpdateMultiExecutionResult,
     handleOnChange,
@@ -64,7 +63,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       disabled={disabled}
       loading={loading}
       readOnly={readOnly}
-      showSearch={showSearch}
+      showSearch
       colorScheme={colorScheme}
       onChange={onChangeSelectValue}
     />
