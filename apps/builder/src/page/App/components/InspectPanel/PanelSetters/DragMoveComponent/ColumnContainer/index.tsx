@@ -42,6 +42,7 @@ export const ColumnContainer: FC<ColumnContainerProps> = (props) => {
     columnNum,
     children,
     items,
+    headerExtNode,
   } = props
 
   const { t } = useTranslation()
@@ -79,6 +80,7 @@ export const ColumnContainer: FC<ColumnContainerProps> = (props) => {
             <div css={optionListLabelStyle}>
               {t("editor.inspect.setter_content.column_setter.title")}
             </div>
+            {headerExtNode}
           </div>
         )}
         <DndContext

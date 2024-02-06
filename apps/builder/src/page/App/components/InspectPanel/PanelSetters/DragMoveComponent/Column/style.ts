@@ -22,17 +22,24 @@ export const columnContainerStyle = css`
     }
   }
 `
-export const columnLabelStyle = css`
-  color: ${getColor("grayBlue", "02")};
+export const columnLabelContainerStyle = css`
+  display: flex;
   flex-grow: 1;
   cursor: pointer;
+  overflow: hidden;
+  gap: 8px;
+`
+
+export const columnLabelStyle = css`
+  color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   font-style: normal;
   text-overflow: ellipsis;
-  overflow: hidden;
   white-space: nowrap;
   font-weight: 400;
   line-height: 22px;
+  max-width: 180px;
+  overflow: hidden;
 `
 
 export const baseModalContainerStyle = css`

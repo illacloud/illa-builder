@@ -22,6 +22,7 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN
 
 
 [![Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illa_cloud)
 [![Discussions](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
 [![Crowdin](https://badges.crowdin.net/illa-builder/localized.svg)](https://crowdin.com/project/illa-builder)
 [![CI (Rolling and Humble)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml/badge.svg?query=branch%3Amain)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml?query=branch%3Amain)

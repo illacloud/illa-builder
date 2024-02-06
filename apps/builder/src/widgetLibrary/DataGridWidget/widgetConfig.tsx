@@ -1,6 +1,8 @@
 import TableWidgetIcon from "@/assets/widgetCover/table.svg?react"
 import i18n from "@/i18n/config"
+import { generateCalcColumnConfig } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnSetter"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { UNIQUE_ID_NAME } from "./constants"
 
 const originData = [
   {
@@ -143,5 +145,10 @@ export const DATA_GRID_WIDGET_CONFIG: WidgetConfig = {
     dataSource: [],
     enablePagination: false,
     sortOrder: "default",
+    columns: Object.keys(originData[0])
+      .map((key) => {
+        return generateCalcColumnConfig(key, true, false)
+      })
+      .concat(generateCalcColumnConfig(UNIQUE_ID_NAME, true, false)),
   },
 }

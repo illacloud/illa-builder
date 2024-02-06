@@ -15,4 +15,5 @@ export interface ColumnProps {
   visibility?: boolean
   extraElement?: ReactNode
   childrenSetter?: PanelFieldConfig[]
+  labelTip?: ReactNode
 }
