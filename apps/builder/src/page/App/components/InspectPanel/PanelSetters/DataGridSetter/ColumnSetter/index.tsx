@@ -96,11 +96,16 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
   }, [arrayData])
 
   const columnIDsByDataSource = useMemo(() => {
-    return calculateColumnsByDataSource.map((item) => item.field)
+    return calculateColumnsByDataSource
+      .map((item) => item.field)
+      .filter((key) => key !== UNIQUE_ID_NAME)
   }, [calculateColumnsByDataSource])
 
   const oldColumnConfigIDs = useMemo(() => {
-    return value.filter((item) => item.isCalc).map((item) => item.field)
+    return value
+      .filter((item) => item.isCalc)
+      .map((item) => item.field)
+      .filter((key) => key !== UNIQUE_ID_NAME)
   }, [value])
 
   const customColumns = useMemo(() => {
@@ -118,8 +123,6 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
       (item) => !oldColumnConfigIDs.includes(item),
     )
   }, [columnIDsByDataSource, oldColumnConfigIDs])
-
-  console.log("aaaa", addedColumnsIDs)
 
   const handleMixedColumns = useCallback(() => {
     if (calculateColumnsByDataSource.length === 0) {
