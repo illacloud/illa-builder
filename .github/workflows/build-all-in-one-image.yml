@@ -10,7 +10,7 @@ on:
 
 env:
   ILLA_MUI_LICENSE: ${{ secrets.ILLA_MUI_LICENSE }}
-  ILLA_BASE_PATH: /builder
+  ILLA_BASE_PATH: /build
 
 jobs:
   build:
