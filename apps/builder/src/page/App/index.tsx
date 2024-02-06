@@ -12,6 +12,7 @@ import { ACTION_MANAGE, ATTRIBUTE_GROUP } from "@illa-public/user-role-utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
 import { FC, MouseEvent, useCallback, useEffect } from "react"
+import { Helmet } from "react-helmet-async"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useBeforeUnload, useParams } from "react-router-dom"
@@ -37,6 +38,7 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
@@ -184,51 +186,58 @@ export const Editor: FC = () => {
 
   const [, resizeDropRef] = useResize()
 
+  const appInfo = useSelector(getAppInfo)
+
   const combineLoadingState =
     loadingState ||
     wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
     wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
 
   return (
-    <div css={editorContainerStyle} ref={resizeDropRef}>
-      {combineLoadingState && <AppLoading />}
-      {!combineLoadingState && (
-        <Shortcut>
-          <MediaSourceLoadProvider>
-            <TriggerProvider renderInBody zIndex={10}>
-              <PageNavBar css={navbarStyle} />
-            </TriggerProvider>
-            <div css={contentStyle}>
-              <LeftPanel />
-              <div css={middlePanelStyle}>
-                <TriggerProvider renderInBody zIndex={10}>
-                  <CanvasPanel css={centerPanelStyle} />
-                </TriggerProvider>
-                <TriggerProvider renderInBody zIndex={10}>
-                  {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
-                </TriggerProvider>
-                {showDebugger && <Debugger css={bottomPanelStyle} />}
+    <>
+      <Helmet>
+        <title>{appInfo.appName}</title>
+      </Helmet>
+      <div css={editorContainerStyle} ref={resizeDropRef}>
+        {combineLoadingState && <AppLoading />}
+        {!combineLoadingState && (
+          <Shortcut>
+            <MediaSourceLoadProvider>
+              <TriggerProvider renderInBody zIndex={10}>
+                <PageNavBar css={navbarStyle} />
+              </TriggerProvider>
+              <div css={contentStyle}>
+                <LeftPanel />
+                <div css={middlePanelStyle}>
+                  <TriggerProvider renderInBody zIndex={10}>
+                    <CanvasPanel css={centerPanelStyle} />
+                  </TriggerProvider>
+                  <TriggerProvider renderInBody zIndex={10}>
+                    {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
+                  </TriggerProvider>
+                  {showDebugger && <Debugger css={bottomPanelStyle} />}
+                </div>
+                {showRightPanel && (
+                  <TriggerProvider renderInBody zIndex={10}>
+                    <ComponentsManager />
+                  </TriggerProvider>
+                )}
               </div>
-              {showRightPanel && (
-                <TriggerProvider renderInBody zIndex={10}>
-                  <ComponentsManager />
-                </TriggerProvider>
+              {!isOnline && (
+                <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>
+                  <motion.div css={messageWrapperStyle} animate={controls}>
+                    <WarningCircleIcon css={waringIconStyle} />
+                    {wsStatus === ILLA_WEBSOCKET_STATUS.LOCKING
+                      ? t("editor.history.message.version_change")
+                      : t("not_online_tips")}
+                  </motion.div>
+                </div>
               )}
-            </div>
-            {!isOnline && (
-              <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>
-                <motion.div css={messageWrapperStyle} animate={controls}>
-                  <WarningCircleIcon css={waringIconStyle} />
-                  {wsStatus === ILLA_WEBSOCKET_STATUS.LOCKING
-                    ? t("editor.history.message.version_change")
-                    : t("not_online_tips")}
-                </motion.div>
-              </div>
-            )}
-          </MediaSourceLoadProvider>
-        </Shortcut>
-      )}
-    </div>
+            </MediaSourceLoadProvider>
+          </Shortcut>
+        )}
+      </div>
+    </>
   )
 }
 

@@ -13,7 +13,7 @@ import {
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
 import { ComponentTreeNode, Resource } from "@illa-public/public-types"
-import { getAuthToken } from "@illa-public/utils"
+import { getAuthToken, getILLABuilderURL } from "@illa-public/utils"
 import { AnimatePresence } from "framer-motion"
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -57,7 +57,7 @@ const GuideCreateApp: FC = () => {
     try {
       const resp = await fetchForkApp(appID)
       window.open(
-        `${import.meta.env.ILLA_BUILDER_URL}/${teamIdentifier}/app/${
+        `${getILLABuilderURL(window.customDomain)}/${teamIdentifier}/app/${
           resp.data.appId
         }?token=${getAuthToken()}`,
         "_blank",
@@ -87,7 +87,7 @@ const GuideCreateApp: FC = () => {
       })
       await fetchBatchCreateAction(teamID, resp.data.appId, actionsInfo)
       window.open(
-        `${import.meta.env.ILLA_BUILDER_URL}/${teamIdentifier}/app/${
+        `${getILLABuilderURL(window.customDomain)}/${teamIdentifier}/app/${
           resp.data.appId
         }?token=${getAuthToken()}`,
         "_blank",
