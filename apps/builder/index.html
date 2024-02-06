@@ -62,7 +62,7 @@
         })
           .then((response) => response.json())
           .then((data) => {
-            if (!customDomainAvaliable) {
+            if (!data.customDomainAvaliable) {
               const redirectURL = window.location.href.replace(
                 `https://${window.location.host}/builder`,
                 "%ILLA_CLOUD_URL%",
