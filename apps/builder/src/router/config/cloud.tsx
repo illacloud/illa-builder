@@ -13,7 +13,7 @@ export const cloudRouter: RoutesObjectPro[] = [
   {
     index: true,
     loader: async () => {
-      return redirect(getILLACloudURL())
+      return redirect(getILLACloudURL(window.customDomain))
     },
   },
   {

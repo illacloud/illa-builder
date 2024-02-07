@@ -11,8 +11,10 @@ export const commonBillingErrorHandler = (error: unknown) => {
         const match = matchPath("/:teamIdentifier/*", location.pathname)
         const teamIdentifier = match?.params?.teamIdentifier
         window.location.href = teamIdentifier
-          ? `${getILLACloudURL()}/workspace/${teamIdentifier}`
-          : getILLACloudURL()
+          ? `${getILLACloudURL(
+              window.customDomain,
+            )}/workspace/${teamIdentifier}`
+          : getILLACloudURL(window.customDomain)
         break
     }
   }

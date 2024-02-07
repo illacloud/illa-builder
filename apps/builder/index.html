@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link href="/src/assets/favicon.ico" rel="icon" type="image/svg+xml" />
+
+    <link href="/favicon.png" rel="icon" type="image/svg+xml" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
@@ -19,9 +20,76 @@
     />
     <link href="/public/font-family/Fira-code/fira_code.css" rel="stylesheet" />
     <link href="/public/font-family/Inter/inter.css" rel="stylesheet" />
-    <title>
-      ILLA Builder - An open-source low-code Platform for Developers.
-    </title>
+    <title>Loading...</title>
+    <script>
+      function createFavicon() {
+        const newFavicon = document.createElement("link")
+        newFavicon.rel = "icon"
+        document.getElementsByTagName("head")[0].appendChild(newFavicon)
+        return newFavicon
+      }
+
+      function setFavicon(faviconHref) {
+        const linkElements = document.getElementsByTagName("link")
+
+        const faviconElements = []
+
+        for (let i = 0; i < linkElements.length; i++) {
+          const link = linkElements[i]
+          if (link.rel.toLowerCase() === "icon") {
+            faviconElements.push(link)
+          }
+        }
+
+        if (faviconElements.length === 0) {
+          const element = createFavicon()
+          element.href = faviconHref
+        } else {
+          faviconElements.forEach((faviconElement) => {
+            faviconElement.href = faviconHref
+          })
+        }
+      }
+
+      async function validateCustomDomain() {
+        const origin = location.origin
+        if (origin !== "%ILLA_BUILDER_URL%") {
+          window.customDomain = location.host
+          try {
+            const response = await fetch(
+              `https://%ILLA_API_BASE_URL%/supervisor/api/v1/domain/validate`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ customDomain: location.host }),
+              },
+            )
+            const data = await response.json()
+            window.currentTeamIdentifier = data.teamIdentifier
+            if (!data.customDomainAvaliable) {
+              const redirectURL = window.location.href.replace(
+                `https://${window.location.host}/cloud`,
+                "%ILLA_CLOUD_URL%",
+              )
+              window.location.href = `%ILLA_CLOUD_URL%/redirect-expired?redirectURL=${redirectURL}`
+              return
+            }
+            if (data.favicon) {
+              setFavicon(data.favicon)
+            } else {
+              setFavicon("/ILLAFavicon.ico")
+            }
+          } catch {
+            setFavicon("/ILLAFavicon.ico")
+          }
+        } else {
+          setFavicon("/ILLAFavicon.ico")
+        }
+      }
+      validateCustomDomain()
+    </script>
   </head>
   <body>
     <div id="root"></div>

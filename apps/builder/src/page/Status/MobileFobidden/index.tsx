@@ -3,6 +3,7 @@ import {
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
 } from "@illa-public/mixpanel-utils"
 import { FC, useEffect } from "react"
+import { Helmet } from "react-helmet-async"
 import { useTranslation } from "react-i18next"
 import LaptopIcon from "@/assets/laptop.svg?react"
 import {
@@ -22,14 +23,19 @@ export const MobileForbidden: FC = () => {
     )
   }, [])
   return (
-    <div css={wrapperStyle}>
-      <div css={contentWrapperStyle}>
-        <div css={iconWrapperStyle}>
-          <LaptopIcon />
+    <>
+      <Helmet>
+        <title>{t("status.mobile_forbidden")}</title>
+      </Helmet>
+      <div css={wrapperStyle}>
+        <div css={contentWrapperStyle}>
+          <div css={iconWrapperStyle}>
+            <LaptopIcon />
+          </div>
+          <span css={contentStyle}>{t("status.mobile_forbidden")}</span>
         </div>
-        <span css={contentStyle}>{t("status.mobile_forbidden")}</span>
       </div>
-    </div>
+    </>
   )
 }
 
