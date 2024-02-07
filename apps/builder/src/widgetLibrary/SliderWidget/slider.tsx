@@ -1,8 +1,8 @@
+import { debounce } from "lodash-es"
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { Slider } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyValidateMessageWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
@@ -13,43 +13,11 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyWrapperSlider,
 } from "./style"
+import { getValidateMessageFunc } from "./utils"
 
 export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
   (props, ref) => {
-    const {
-      prefixIcon,
-      suffixIcon,
-      hideOutput,
-      handleOnChange,
-      getValidateMessage,
-      handleUpdateMultiExecutionResult,
-      displayName,
-    } = props
-    const onChangeSliderValue = useCallback(
-      (value: unknown) => {
-        new Promise((resolve) => {
-          const message = getValidateMessage(value)
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                value: value ?? 0,
-                validateMessage: message,
-              },
-            },
-          ])
-          resolve(true)
-        }).then(() => {
-          handleOnChange?.()
-        })
-      },
-      [
-        displayName,
-        getValidateMessage,
-        handleOnChange,
-        handleUpdateMultiExecutionResult,
-      ],
-    )
+    const { prefixIcon, suffixIcon, hideOutput, handleOnChange } = props
 
     const getIcon = (iconName: string) =>
       (iconName && AllData[iconName]) || null
@@ -64,10 +32,10 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
         )}
         <Slider
           tooltipVisible={!hideOutput}
-          onChange={onChangeSliderValue}
           isRange={false}
           ref={ref}
           {...props}
+          onChange={handleOnChange}
         />
         {currentSuffixIcon && (
           <span css={applyIcon}>
@@ -103,32 +71,36 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     validateMessage,
+    defaultValue,
     updateComponentHeight,
     triggerEventHandler,
   } = props
 
   const sliderRef = useRef<HTMLDivElement>(null)
-  const [defaultValue] = useState<number>(value as number)
-
-  const getValidateMessage = useCallback(
-    (value: unknown) => {
-      if (!hideValidationMessage) {
-        const message = handleValidateCheck({
-          value,
-          required,
-          customRule,
-        })
-        const showMessage = message && message.length > 0
-        return showMessage ? message : ""
-      }
-      return ""
-    },
-    [customRule, hideValidationMessage, required],
+  const [sliderValue, setSliderValue] = useState<number | undefined>(
+    defaultValue as number,
   )
 
+  useEffect(() => {
+    setSliderValue(defaultValue)
+
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          value: defaultValue || "",
+        },
+      },
+    ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
+
   const handleValidate = useCallback(
-    (value: unknown) => {
-      const message = getValidateMessage(value)
+    (value: number | number[] | undefined) => {
+      const message = getValidateMessageFunc(value, {
+        hideValidationMessage: hideValidationMessage,
+        required: required,
+        customRule: customRule,
+      })
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -139,26 +111,70 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
       ])
       return message
     },
-    [displayName, getValidateMessage, handleUpdateMultiExecutionResult],
+    [
+      customRule,
+      displayName,
+      handleUpdateMultiExecutionResult,
+      hideValidationMessage,
+      required,
+    ],
+  )
+
+  const debounceOnChange = useRef(
+    debounce(
+      (
+        value: number | undefined,
+        triggerEventHandler: SliderWidgetProps["triggerEventHandler"],
+        options?: {
+          hideValidationMessage?: SliderWidgetProps["hideValidationMessage"]
+          pattern?: SliderWidgetProps["pattern"]
+          regex?: SliderWidgetProps["regex"]
+          required?: SliderWidgetProps["required"]
+          customRule?: SliderWidgetProps["customRule"]
+        },
+      ) => {
+        new Promise((resolve) => {
+          const message = getValidateMessageFunc(value, options)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: value || "",
+                validateMessage: message,
+              },
+            },
+          ])
+          resolve(true)
+        }).then(() => {
+          triggerEventHandler("change")
+        })
+      },
+      180,
+    ),
+  )
+
+  const handleOnChange = useCallback(
+    (value: number | number[]) => {
+      setSliderValue(value as number)
+      debounceOnChange.current(value as number, triggerEventHandler, {
+        hideValidationMessage: hideValidationMessage,
+
+        required: required,
+        customRule: customRule,
+      })
+    },
+    [customRule, hideValidationMessage, required, triggerEventHandler],
   )
 
   useEffect(() => {
     updateComponentRuntimeProps({
       setValue: (value: number) => {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: { value },
-          },
-        ])
+        if (typeof value === "number") {
+          handleOnChange(value)
+        }
       },
       clearValue: () => {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: { value: min, validateMessage: "" },
-          },
-        ])
+        handleOnChange(min ?? 0)
       },
       validate: () => {
         return handleValidate(value)
@@ -192,6 +208,7 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     defaultValue,
     deleteComponentRuntimeProps,
     displayName,
+    handleOnChange,
     handleUpdateMultiExecutionResult,
     handleValidate,
     min,
@@ -199,9 +216,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     value,
   ])
 
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -224,9 +238,8 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
           />
           <WrappedSlider
             {...props}
-            value={value}
+            value={sliderValue}
             ref={sliderRef}
-            getValidateMessage={getValidateMessage}
             handleOnChange={handleOnChange}
           />
         </div>

@@ -1,11 +1,8 @@
+import { debounce } from "lodash-es"
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { Input, PenIcon } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import {
-  getValidateVFromString,
-  handleValidateCheck,
-} from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
@@ -15,6 +12,7 @@ import {
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
+import { getValidateMessageFunc } from "./utils"
 
 export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
   const {
@@ -28,11 +26,11 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
     suffixText,
     showCharacterCount,
     colorScheme,
-    handleUpdateDsl,
     maxLength,
     minLength,
     allowClear,
     className,
+    handleOnChange,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -51,9 +49,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
         <Input
           w="100%"
           autoFocus
-          onChange={(value) => {
-            handleUpdateDsl({ value })
-          }}
+          onChange={handleOnChange}
           showWordLimit={showCharacterCount}
           onBlur={() => {
             setFocus(false)
@@ -71,7 +67,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
           colorScheme={colorScheme}
           maxLength={maxLength}
           minLength={minLength}
-          onClear={() => handleUpdateDsl({ value: "" })}
+          onClear={() => handleOnChange("")}
         />
       ) : (
         <span
@@ -89,6 +85,7 @@ WrappedEditableText.displayName = "WrappedEditableText"
 
 export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
   const {
+    displayName,
     value,
     minLength,
     maxLength,
@@ -111,31 +108,28 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     validateMessage,
+    defaultValue,
     triggerEventHandler,
+    handleUpdateMultiExecutionResult,
   } = props
+
+  const [editableTextValue, setEditableTextValue] = useState(defaultValue)
 
   const handleValidate = useCallback(
     (value?: any) => {
-      const message = handleValidateCheck({
-        value: getValidateVFromString(value),
-        required,
-        customRule,
-        pattern,
-        regex,
-        minLength,
-        maxLength,
+      const message = getValidateMessageFunc(value, {
+        hideValidationMessage: hideValidationMessage,
+        pattern: pattern,
+        regex: regex,
+        minLength: minLength,
+        maxLength: maxLength,
+        required: required,
+        customRule: customRule,
       })
-      const showMessage =
-        !hideValidationMessage && message && message.length > 0
-      if (showMessage) {
-        handleUpdateDsl({
-          validateMessage: message,
-        })
-      } else {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
-      }
+      handleUpdateDsl({
+        validateMessage: message,
+      })
+      return message
     },
     [
       customRule,
@@ -148,6 +142,18 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       required,
     ],
   )
+
+  useEffect(() => {
+    setEditableTextValue(defaultValue)
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          value: defaultValue || "",
+        },
+      },
+    ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -172,9 +178,65 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     value,
   ])
 
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
+  const debounceOnChange = useRef(
+    debounce(
+      (
+        value: string,
+        triggerEventHandler: EditableTextWidgetProps["triggerEventHandler"],
+        options?: {
+          hideValidationMessage?: EditableTextWidgetProps["hideValidationMessage"]
+          pattern?: EditableTextWidgetProps["pattern"]
+          regex?: EditableTextWidgetProps["regex"]
+          minLength?: EditableTextWidgetProps["minLength"]
+          maxLength?: EditableTextWidgetProps["maxLength"]
+          required?: EditableTextWidgetProps["required"]
+          customRule?: EditableTextWidgetProps["customRule"]
+        },
+      ) => {
+        new Promise((resolve) => {
+          const message = getValidateMessageFunc(value, options)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: value || "",
+                validateMessage: message,
+              },
+            },
+          ])
+          resolve(true)
+        }).then(() => {
+          triggerEventHandler("change")
+        })
+      },
+      180,
+    ),
+  )
+
+  const handleOnChange = useCallback(
+    (value: string) => {
+      setEditableTextValue(value)
+      debounceOnChange.current(value, triggerEventHandler, {
+        hideValidationMessage: hideValidationMessage,
+        pattern: pattern,
+        regex: regex,
+        minLength: minLength,
+        maxLength: maxLength,
+        required: required,
+        customRule: customRule,
+      })
+    },
+    [
+      customRule,
+      hideValidationMessage,
+      maxLength,
+      minLength,
+      pattern,
+      regex,
+      required,
+      triggerEventHandler,
+    ],
+  )
 
   const handleOnBlur = useCallback(() => {
     triggerEventHandler("blur")
@@ -202,6 +264,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
           />
           <WrappedEditableText
             {...props}
+            value={editableTextValue}
             handleOnChange={handleOnChange}
             handleOnBlur={handleOnBlur}
             handleOnFocus={handleOnFocus}

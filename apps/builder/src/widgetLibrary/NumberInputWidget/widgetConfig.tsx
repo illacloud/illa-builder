@@ -15,6 +15,8 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
   defaults: {
     label: "Label",
+    defaultValue: "",
+    value: "",
     labelAlign: "left",
     labelPosition: "left",
     labelWidth: "{{33}}",

@@ -12,7 +12,10 @@ export const UpdateButton: FC<UpdateButtonProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <Trigger content={t("editor.inspect.setter_tips.grid_list.update")}>
+    <Trigger
+      content={t("editor.inspect.setter_tips.grid_list.update")}
+      position="top-start"
+    >
       <button css={updateButtonContainerStyle} onClick={onClick}>
         <RefreshIcon size="16px" />
         {t("editor.inspect.setter_label.grid_list.update")}
@@ -26,7 +29,10 @@ export const BasicUpdateButton: FC<UpdateButtonProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <Trigger content={t("editor.inspect.setter_tips.grid_list.update")}>
+    <Trigger
+      content={t("editor.inspect.setter_tips.grid_list.update")}
+      position="top-start"
+    >
       <button css={basicUpdateButtonContainerStyle} onClick={onClick}>
         <RefreshIcon size="16px" />
       </button>

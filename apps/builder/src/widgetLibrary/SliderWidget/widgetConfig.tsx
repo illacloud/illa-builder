@@ -15,6 +15,7 @@ export const SLIDER_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
   defaults: {
     value: "{{2}}",
+    defaultValue: "{{2}}",
     min: "{{0}}",
     max: "{{10}}",
     step: "{{1}}",

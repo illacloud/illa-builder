@@ -17,7 +17,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t(
           "editor.inspect.setter_tooltip.component_default_value",
         ),
-        attrName: "value",
+        attrName: "defaultValue",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },

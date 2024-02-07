@@ -17,7 +17,7 @@ import { ColumnEmpty } from "../../DragMoveComponent/Empty"
 import { BasicUpdateButton, UpdateButton } from "./Components/UpdateButton"
 import { ColumnConfig, ColumnSetterProps } from "./interface"
 
-function generateCalcColumnConfig(
+export function generateCalcColumnConfig(
   key: string,
   isCalc: boolean,
   randomKey: boolean,
@@ -96,11 +96,16 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
   }, [arrayData])
 
   const columnIDsByDataSource = useMemo(() => {
-    return calculateColumnsByDataSource.map((item) => item.field)
+    return calculateColumnsByDataSource
+      .map((item) => item.field)
+      .filter((key) => key !== UNIQUE_ID_NAME)
   }, [calculateColumnsByDataSource])
 
-  const columnConfigIDs = useMemo(() => {
-    return value.map((item) => item.field)
+  const oldColumnConfigIDs = useMemo(() => {
+    return value
+      .filter((item) => item.isCalc)
+      .map((item) => item.field)
+      .filter((key) => key !== UNIQUE_ID_NAME)
   }, [value])
 
   const customColumns = useMemo(() => {
@@ -108,10 +113,16 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
   }, [value])
 
   const removedColumnIDs: string[] = useMemo(() => {
-    return columnConfigIDs.filter(
+    return oldColumnConfigIDs.filter(
       (item) => !columnIDsByDataSource.includes(item),
     )
-  }, [columnConfigIDs, columnIDsByDataSource])
+  }, [oldColumnConfigIDs, columnIDsByDataSource])
+
+  const addedColumnsIDs: string[] = useMemo(() => {
+    return columnIDsByDataSource.filter(
+      (item) => !oldColumnConfigIDs.includes(item),
+    )
+  }, [columnIDsByDataSource, oldColumnConfigIDs])
 
   const handleMixedColumns = useCallback(() => {
     if (calculateColumnsByDataSource.length === 0) {
@@ -185,7 +196,7 @@ const ColumnSetter: FC<ColumnSetterProps> = (props) => {
       }}
       items={value.map((item) => item.field)}
       headerExtNode={
-        removedColumnIDs.length > 0 ? (
+        removedColumnIDs.length > 0 || addedColumnsIDs.length > 0 ? (
           <UpdateButton onClick={handleMixedColumns} />
         ) : (
           <BasicUpdateButton onClick={handleMixedColumns} />

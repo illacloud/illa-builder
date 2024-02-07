@@ -2,18 +2,18 @@ import {
   getValidateVFromString,
   handleValidateCheck,
 } from "../PublicSector/InvalidMessage/utils"
-import { InputWidgetProps } from "./interface"
+import { TextareaWidgetProps } from "./interface"
 
 export const getValidateMessageFunc = (
   value: string | undefined,
   options: {
-    hideValidationMessage?: InputWidgetProps["hideValidationMessage"]
-    pattern?: InputWidgetProps["pattern"]
-    regex?: InputWidgetProps["regex"]
-    minLength?: InputWidgetProps["minLength"]
-    maxLength?: InputWidgetProps["maxLength"]
-    required?: InputWidgetProps["required"]
-    customRule?: InputWidgetProps["customRule"]
+    hideValidationMessage?: TextareaWidgetProps["hideValidationMessage"]
+    pattern?: TextareaWidgetProps["pattern"]
+    regex?: TextareaWidgetProps["regex"]
+    minLength?: TextareaWidgetProps["minLength"]
+    maxLength?: TextareaWidgetProps["maxLength"]
+    required?: TextareaWidgetProps["required"]
+    customRule?: TextareaWidgetProps["customRule"]
   } = {},
 ) => {
   const {
