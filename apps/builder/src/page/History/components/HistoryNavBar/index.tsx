@@ -24,7 +24,7 @@ export const HistoryNavBar: FC = () => {
   return (
     <div css={navBarStyle}>
       <div css={rowCenter}>
-        <Link to={getILLACloudURL()}>
+        <Link to={getILLACloudURL(window.customDomain)}>
           <Logo width="34px" css={logoCursorStyle} />
         </Link>
         <div css={informationStyle}>
@@ -32,7 +32,11 @@ export const HistoryNavBar: FC = () => {
         </div>
       </div>
       <span css={navDescStyle}>{t("editor.history.history_list.label")}</span>
-      <Link to={`${getILLABuilderURL()}/${teamIdentifier}/app/${appId}`}>
+      <Link
+        to={`${getILLABuilderURL(
+          window.customDomain,
+        )}/${teamIdentifier}/app/${appId}`}
+      >
         <Button minW="200px" colorScheme="techPurple" leftIcon={<ExitIcon />}>
           {t("exit_preview")}
         </Button>

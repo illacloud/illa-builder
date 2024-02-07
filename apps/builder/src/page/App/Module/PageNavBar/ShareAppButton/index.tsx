@@ -133,10 +133,10 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             title={t("user_management.modal.social_media.default_text.app", {
               appName: appInfo.appName,
             })}
-            editRedirectURL={`${getILLABuilderURL()}/${
+            editRedirectURL={`${getILLABuilderURL(window.customDomain)}/${
               teamInfo.identifier
             }/app/${appInfo.appId}`}
-            useRedirectURL={`${getILLABuilderURL()}/${
+            useRedirectURL={`${getILLABuilderURL(window.customDomain)}/${
               teamInfo.identifier
             }/deploy/app/${appInfo.appId}`}
             defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}

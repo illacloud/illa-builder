@@ -13,7 +13,7 @@ export const ResourceLayout: FC = () => {
   return (
     <div css={resourceLayoutContainerStyle}>
       <header css={headerContainerStyle}>
-        <Link to={getILLACloudURL()}>
+        <Link to={getILLACloudURL(window.customDomain)}>
           <Logo css={iconStyle} />
         </Link>
       </header>
