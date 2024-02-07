@@ -15,7 +15,22 @@ export const JSON_EDITOR_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     colorScheme: "grayBlue",
     hidden: false,
-    value: `[{ "language": "en-US", "userConfig": { "0-16": "planA", "17-24": "planB", "25+": "planC" }, "language": "ja-JP", "userConfig": { "0-16": "planD", "17-24": "planE", "25+": "planF" }}]`,
+    value: `[{
+  language: "en-US",
+  userConfig: { "0-16": "planA", "17-24": "planB", "25+": "planC" },
+},
+{
+  language: "ja-JP",
+  userConfig: { "0-16": "planD", "17-24": "planE", "25+": "planF" },
+}]`,
+    defaultValue: `[{
+  language: "en-US",
+  userConfig: { "0-16": "planA", "17-24": "planB", "25+": "planC" },
+},
+{
+  language: "ja-JP",
+  userConfig: { "0-16": "planD", "17-24": "planE", "25+": "planF" },
+}]`,
     radius: "4px",
     shadow: "small",
   },
