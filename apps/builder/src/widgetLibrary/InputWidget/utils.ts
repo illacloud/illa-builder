@@ -4,7 +4,7 @@ import {
 } from "../PublicSector/InvalidMessage/utils"
 import { InputWidgetProps } from "./interface"
 
-export const getValidateMessage = (
+export const getValidateMessageFunc = (
   value: string | undefined,
   options: {
     hideValidationMessage?: InputWidgetProps["hideValidationMessage"]
