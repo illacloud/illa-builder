@@ -83,28 +83,16 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
 
   useEffect(() => {
     setSliderValue(defaultValue)
-    const message = getValidateMessageFunc(defaultValue, {
-      hideValidationMessage: hideValidationMessage,
-      required: required,
-      customRule: customRule,
-    })
+
     handleUpdateMultiExecutionResult([
       {
         displayName,
         value: {
           value: defaultValue || "",
-          validateMessage: message,
         },
       },
     ])
-  }, [
-    customRule,
-    defaultValue,
-    displayName,
-    handleUpdateMultiExecutionResult,
-    hideValidationMessage,
-    required,
-  ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   const handleValidate = useCallback(
     (value: number | number[] | undefined) => {
@@ -132,23 +120,61 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     ],
   )
 
+  const debounceOnChange = useRef(
+    debounce(
+      (
+        value: number | undefined,
+        triggerEventHandler: SliderWidgetProps["triggerEventHandler"],
+        options?: {
+          hideValidationMessage?: SliderWidgetProps["hideValidationMessage"]
+          pattern?: SliderWidgetProps["pattern"]
+          regex?: SliderWidgetProps["regex"]
+          required?: SliderWidgetProps["required"]
+          customRule?: SliderWidgetProps["customRule"]
+        },
+      ) => {
+        new Promise((resolve) => {
+          const message = getValidateMessageFunc(value, options)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: value || "",
+                validateMessage: message,
+              },
+            },
+          ])
+          resolve(true)
+        }).then(() => {
+          triggerEventHandler("change")
+        })
+      },
+      180,
+    ),
+  )
+
+  const handleOnChange = useCallback(
+    (value: number | number[]) => {
+      setSliderValue(value as number)
+      debounceOnChange.current(value as number, triggerEventHandler, {
+        hideValidationMessage: hideValidationMessage,
+
+        required: required,
+        customRule: customRule,
+      })
+    },
+    [customRule, hideValidationMessage, required, triggerEventHandler],
+  )
+
   useEffect(() => {
     updateComponentRuntimeProps({
       setValue: (value: number) => {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: { value },
-          },
-        ])
+        if (typeof value === "number") {
+          handleOnChange(value)
+        }
       },
       clearValue: () => {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: { value: min, validateMessage: "" },
-          },
-        ])
+        handleOnChange(min ?? 0)
       },
       validate: () => {
         return handleValidate(value)
@@ -182,59 +208,13 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     defaultValue,
     deleteComponentRuntimeProps,
     displayName,
+    handleOnChange,
     handleUpdateMultiExecutionResult,
     handleValidate,
     min,
     updateComponentRuntimeProps,
     value,
   ])
-
-  const debounceOnChange = useRef(
-    debounce(
-      (
-        value: number | undefined,
-        options?: {
-          hideValidationMessage?: SliderWidgetProps["hideValidationMessage"]
-          pattern?: SliderWidgetProps["pattern"]
-          regex?: SliderWidgetProps["regex"]
-          minLength?: SliderWidgetProps["minLength"]
-          maxLength?: SliderWidgetProps["maxLength"]
-          required?: SliderWidgetProps["required"]
-          customRule?: SliderWidgetProps["customRule"]
-        },
-      ) => {
-        new Promise((resolve) => {
-          const message = getValidateMessageFunc(value, options)
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                value: value || "",
-                validateMessage: message,
-              },
-            },
-          ])
-          resolve(true)
-        }).then(() => {
-          triggerEventHandler("change")
-        })
-      },
-      180,
-    ),
-  )
-
-  const handleOnChange = useCallback(
-    (value: number | number[]) => {
-      setSliderValue(value as number)
-      debounceOnChange.current(value as number, {
-        hideValidationMessage: hideValidationMessage,
-
-        required: required,
-        customRule: customRule,
-      })
-    },
-    [customRule, hideValidationMessage, required],
-  )
 
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>

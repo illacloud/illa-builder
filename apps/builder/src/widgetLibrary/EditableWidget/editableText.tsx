@@ -145,36 +145,15 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
 
   useEffect(() => {
     setEditableTextValue(defaultValue)
-    const message = getValidateMessageFunc(defaultValue, {
-      hideValidationMessage: hideValidationMessage,
-      pattern: pattern,
-      regex: regex,
-      minLength: minLength,
-      maxLength: maxLength,
-      required: required,
-      customRule: customRule,
-    })
     handleUpdateMultiExecutionResult([
       {
         displayName,
         value: {
           value: defaultValue || "",
-          validateMessage: message,
         },
       },
     ])
-  }, [
-    customRule,
-    defaultValue,
-    displayName,
-    handleUpdateMultiExecutionResult,
-    hideValidationMessage,
-    maxLength,
-    minLength,
-    pattern,
-    regex,
-    required,
-  ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -203,6 +182,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     debounce(
       (
         value: string,
+        triggerEventHandler: EditableTextWidgetProps["triggerEventHandler"],
         options?: {
           hideValidationMessage?: EditableTextWidgetProps["hideValidationMessage"]
           pattern?: EditableTextWidgetProps["pattern"]
@@ -236,7 +216,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
   const handleOnChange = useCallback(
     (value: string) => {
       setEditableTextValue(value)
-      debounceOnChange.current(value, {
+      debounceOnChange.current(value, triggerEventHandler, {
         hideValidationMessage: hideValidationMessage,
         pattern: pattern,
         regex: regex,
@@ -254,6 +234,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       pattern,
       regex,
       required,
+      triggerEventHandler,
     ],
   )
 

@@ -145,36 +145,16 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
 
   useEffect(() => {
     setInputValue(defaultValue)
-    const message = getValidateMessageFunc(defaultValue, {
-      hideValidationMessage: hideValidationMessage,
-      pattern: pattern,
-      regex: regex,
-      minLength: minLength,
-      maxLength: maxLength,
-      required: required,
-      customRule: customRule,
-    })
+
     handleUpdateMultiExecutionResult([
       {
         displayName,
         value: {
           value: defaultValue || "",
-          validateMessage: message,
         },
       },
     ])
-  }, [
-    customRule,
-    defaultValue,
-    displayName,
-    handleUpdateMultiExecutionResult,
-    hideValidationMessage,
-    maxLength,
-    minLength,
-    pattern,
-    regex,
-    required,
-  ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   const handleValidate = useCallback(
     (value?: string) => {
@@ -203,42 +183,12 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       required,
     ],
   )
-  useEffect(() => {
-    updateComponentRuntimeProps({
-      focus: () => {
-        inputRef.current?.focus()
-      },
-      setValue: (value: boolean | string | number | void) => {
-        handleUpdateDsl({ value })
-      },
-      clearValue: () => {
-        handleUpdateDsl({ value: undefined })
-      },
-      validate: () => {
-        return handleValidate(value)
-      },
-      clearValidation: () => {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
-      },
-    })
-
-    return () => {
-      deleteComponentRuntimeProps()
-    }
-  }, [
-    deleteComponentRuntimeProps,
-    handleUpdateDsl,
-    handleValidate,
-    updateComponentRuntimeProps,
-    value,
-  ])
 
   const debounceOnChange = useRef(
     debounce(
       (
         value: string,
+        triggerEventHandler: InputWidgetProps["triggerEventHandler"],
         options?: {
           hideValidationMessage?: InputWidgetProps["hideValidationMessage"]
           pattern?: InputWidgetProps["pattern"]
@@ -272,7 +222,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
   const handleOnChange = useCallback(
     (value: string) => {
       setInputValue(value)
-      debounceOnChange.current(value, {
+      debounceOnChange.current(value, triggerEventHandler, {
         hideValidationMessage: hideValidationMessage,
         pattern: pattern,
         regex: regex,
@@ -290,19 +240,49 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       pattern,
       regex,
       required,
+      triggerEventHandler,
     ],
   )
 
   const clearValue = useCallback(() => {
-    handleUpdateMultiExecutionResult([
-      {
-        displayName,
-        value: {
-          value: "",
-        },
+    handleOnChange("")
+  }, [handleOnChange])
+
+  useEffect(() => {
+    updateComponentRuntimeProps({
+      focus: () => {
+        inputRef.current?.focus()
       },
-    ])
-  }, [displayName, handleUpdateMultiExecutionResult])
+      setValue: (value: boolean | string | number | void) => {
+        if (typeof value === "string") {
+          handleOnChange(value)
+        }
+      },
+      clearValue: () => {
+        clearValue()
+      },
+      validate: () => {
+        return handleValidate(value)
+      },
+      clearValidation: () => {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      },
+    })
+
+    return () => {
+      deleteComponentRuntimeProps()
+    }
+  }, [
+    clearValue,
+    deleteComponentRuntimeProps,
+    handleOnChange,
+    handleUpdateDsl,
+    handleValidate,
+    updateComponentRuntimeProps,
+    value,
+  ])
 
   const handleOnFocus = useCallback(() => {
     triggerEventHandler("focus")

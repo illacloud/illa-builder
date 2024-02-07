@@ -167,36 +167,15 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
 
   useEffect(() => {
     setTextAreaValue(defaultValue)
-    const message = getValidateMessageFunc(defaultValue, {
-      hideValidationMessage: hideValidationMessage,
-      pattern: pattern,
-      regex: regex,
-      minLength: minLength,
-      maxLength: maxLength,
-      required: required,
-      customRule: customRule,
-    })
     handleUpdateMultiExecutionResult([
       {
         displayName,
         value: {
           value: defaultValue || "",
-          validateMessage: message,
         },
       },
     ])
-  }, [
-    customRule,
-    defaultValue,
-    displayName,
-    handleUpdateMultiExecutionResult,
-    hideValidationMessage,
-    maxLength,
-    minLength,
-    pattern,
-    regex,
-    required,
-  ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   useEffect(() => {
     if (textareaWrapperRef.current) {
@@ -232,41 +211,11 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     ],
   )
 
-  useEffect(() => {
-    updateComponentRuntimeProps({
-      focus: () => {
-        textareaRef.current?.focus()
-      },
-      setValue: (value: boolean | string | number | void) => {
-        handleUpdateDsl({ value })
-      },
-      clearValue: () => {
-        handleUpdateDsl({ value: "" })
-      },
-      validate: () => {
-        return handleValidate(value)
-      },
-      clearValidation: () => {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
-      },
-    })
-    return () => {
-      deleteComponentRuntimeProps()
-    }
-  }, [
-    deleteComponentRuntimeProps,
-    handleUpdateDsl,
-    handleValidate,
-    updateComponentRuntimeProps,
-    value,
-  ])
-
   const debounceOnChange = useRef(
     debounce(
       (
         value: string,
+        triggerEventHandler: TextareaWidgetProps["triggerEventHandler"],
         options?: {
           hideValidationMessage?: TextareaWidgetProps["hideValidationMessage"]
           pattern?: TextareaWidgetProps["pattern"]
@@ -300,7 +249,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   const handleOnChange = useCallback(
     (value: string) => {
       setTextAreaValue(value)
-      debounceOnChange.current(value, {
+      debounceOnChange.current(value, triggerEventHandler, {
         hideValidationMessage: hideValidationMessage,
         pattern: pattern,
         regex: regex,
@@ -318,8 +267,45 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
       pattern,
       regex,
       required,
+      triggerEventHandler,
     ],
   )
+
+  useEffect(() => {
+    updateComponentRuntimeProps({
+      focus: () => {
+        textareaRef.current?.focus()
+      },
+      setValue: (value: boolean | string | number | void) => {
+        if (typeof value === "string") {
+          handleOnChange(value)
+        } else {
+          handleOnChange("")
+        }
+      },
+      clearValue: () => {
+        handleOnChange("")
+      },
+      validate: () => {
+        return handleValidate(value)
+      },
+      clearValidation: () => {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      },
+    })
+    return () => {
+      deleteComponentRuntimeProps()
+    }
+  }, [
+    deleteComponentRuntimeProps,
+    handleOnChange,
+    handleUpdateDsl,
+    handleValidate,
+    updateComponentRuntimeProps,
+    value,
+  ])
 
   const handleOnFocus = useCallback(() => {
     triggerEventHandler("focus")

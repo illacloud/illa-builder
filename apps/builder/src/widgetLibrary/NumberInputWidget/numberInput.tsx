@@ -98,33 +98,70 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
 
   useEffect(() => {
     setNumberInputValue(defaultValue)
-    const message = getValidateMessageFunc(defaultValue, {
-      hideValidationMessage: hideValidationMessage,
-      pattern: pattern,
-      regex: regex,
-
-      required: required,
-      customRule: customRule,
-    })
     handleUpdateMultiExecutionResult([
       {
         displayName,
         value: {
           value: defaultValue || "",
-          validateMessage: message,
         },
       },
     ])
-  }, [
-    customRule,
-    defaultValue,
-    displayName,
-    handleUpdateMultiExecutionResult,
-    hideValidationMessage,
-    pattern,
-    regex,
-    required,
-  ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
+
+  const debounceOnChange = useRef(
+    debounce(
+      (
+        value: number | undefined,
+        triggerEventHandler: NumberInputWidgetProps["triggerEventHandler"],
+        options?: {
+          hideValidationMessage?: NumberInputWidgetProps["hideValidationMessage"]
+          pattern?: NumberInputWidgetProps["pattern"]
+          regex?: NumberInputWidgetProps["regex"]
+          required?: NumberInputWidgetProps["required"]
+          customRule?: NumberInputWidgetProps["customRule"]
+        },
+      ) => {
+        new Promise((resolve) => {
+          const message = getValidateMessageFunc(value, options)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: value === undefined ? "" : value,
+                validateMessage: message,
+              },
+            },
+          ])
+          resolve(true)
+        }).then(() => {
+          triggerEventHandler("change")
+        })
+      },
+
+      180,
+    ),
+  )
+
+  const handleOnChange = useCallback(
+    (value?: number | undefined) => {
+      setNumberInputValue(value)
+      debounceOnChange.current(value, triggerEventHandler, {
+        hideValidationMessage,
+        pattern,
+        regex,
+        required,
+        customRule,
+      })
+    },
+    [
+      customRule,
+      hideValidationMessage,
+      pattern,
+      regex,
+      required,
+      triggerEventHandler,
+    ],
+  )
 
   const handleValidate = useCallback(
     (value?: unknown) => {
@@ -156,10 +193,12 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
         numberInputRef.current?.focus()
       },
       setValue: (value: number) => {
-        handleUpdateDsl({ value })
+        if (typeof value === "number") {
+          handleOnChange(value)
+        }
       },
       clearValue: () => {
-        handleUpdateDsl({ value: 0 })
+        handleOnChange(0)
       },
       validate: () => {
         return handleValidate(value)
@@ -175,56 +214,14 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
       deleteComponentRuntimeProps()
     }
   }, [
-    updateComponentRuntimeProps,
-    handleUpdateDsl,
     deleteComponentRuntimeProps,
+    handleOnChange,
+    handleUpdateDsl,
     handleValidate,
+    updateComponentRuntimeProps,
     value,
   ])
 
-  const debounceOnChange = useRef(
-    debounce(
-      (
-        value?: number | undefined,
-        options?: {
-          hideValidationMessage?: NumberInputWidgetProps["hideValidationMessage"]
-          pattern?: NumberInputWidgetProps["pattern"]
-          regex?: NumberInputWidgetProps["regex"]
-          required?: NumberInputWidgetProps["required"]
-          customRule?: NumberInputWidgetProps["customRule"]
-        },
-      ) => {
-        new Promise((resolve) => {
-          const message = getValidateMessageFunc(value, options)
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                value: value === undefined ? "" : value,
-                validateMessage: message,
-              },
-            },
-          ])
-          resolve(true)
-        }).then(() => {
-          triggerEventHandler("change")
-        })
-      },
-
-      180,
-    ),
-  )
-
-  const handleOnChange = (value?: number | undefined) => {
-    setNumberInputValue(value)
-    debounceOnChange.current(value, {
-      hideValidationMessage,
-      pattern,
-      regex,
-      required,
-      customRule,
-    })
-  }
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
