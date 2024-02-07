@@ -67,6 +67,7 @@
               },
             )
             const data = await response.json()
+            window.currentTeamIdentifier = data.teamIdentifier
             if (!data.customDomainAvaliable) {
               const redirectURL = window.location.href.replace(
                 `https://${window.location.host}/cloud`,
