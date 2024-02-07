@@ -14,7 +14,7 @@ export interface WrappedTextareaProps
   showCharacterCount?: TextAreaProps["showWordLimit"]
   value?: string
   allowClear?: TextAreaProps["allowClear"]
-  handleOnChange?: () => void
+  handleOnChange: (value: string) => void
   handleOnFocus?: () => void
   handleOnBlur?: () => void
   maxLength?: number
@@ -35,9 +35,10 @@ export interface TextareaWidgetProps
   extends WrappedTextareaProps,
     BaseWidgetProps,
     TooltipWrapperProps,
-    ValidateMessageOldProps {
+    Omit<ValidateMessageOldProps, "value"> {
   validateMessage: string
   dynamicHeight: "auto" | "fixed" | "limited"
   dynamicMinHeight?: number
   dynamicMaxHeight?: number
+  defaultValue?: string
 }

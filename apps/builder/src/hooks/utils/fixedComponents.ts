@@ -1,115 +1,11 @@
 import { ComponentTreeNode } from "@illa-public/public-types"
-import { isString } from "@illa-design/react"
-
-export const fixedChartComponent = (component: ComponentTreeNode) => {
-  return {
-    ...component,
-    type: "CHART_WIDGET",
-  }
-}
-
-const fixedMenuComponent = (component: ComponentTreeNode) => {
-  if (component.version === 0 || component.version == undefined) {
-    return {
-      ...component,
-      version: 1,
-      props: {
-        ...component.props,
-        selectedValues:
-          component.props && Array.isArray(component.props?.selectedValues)
-            ? `{{${JSON.stringify(component.props.selectedValues)}}}`
-            : "{{[]}}",
-        optionConfigureMode:
-          component.props && component.props.optionConfigureMode === "dynamic"
-            ? "dynamic"
-            : "static",
-        colorScheme:
-          component.props && component.props.colorScheme
-            ? component.props.colorScheme
-            : "blue",
-        bgColor:
-          component.props && component.props.bgColor
-            ? component.props.bgColor
-            : "transparent",
-        hoverColorScheme:
-          component.props && component.props.hoverColorScheme
-            ? component.props.hoverColorScheme
-            : "grayBlue",
-      },
-    }
-  }
-  return component
-}
-
-const fixedListComponent = (component: ComponentTreeNode) => {
-  let fixedEnablePagination = true
-  if (component.props) {
-    fixedEnablePagination =
-      component.props.enablePagination !== undefined
-        ? component.props.enablePagination
-        : component.props.overflowMethod === "PAGINATION"
-  }
-  return {
-    ...component,
-    props: {
-      ...component.props,
-      enablePagination: fixedEnablePagination,
-      backgroundColor: "#ffffffbf",
-    },
-  }
-}
-
-const fixedDataGridComponent = (component: ComponentTreeNode) => {
-  let fixedEnablePagination = true
-  if (component.props) {
-    fixedEnablePagination =
-      component.props.enablePagination !== undefined
-        ? component.props.enablePagination
-        : component.props.overflowMethod === "PAGINATION"
-  }
-  return {
-    ...component,
-    props: {
-      ...component.props,
-      enablePagination: fixedEnablePagination,
-    },
-  }
-}
-
-const fixedImageComponent = (component: ComponentTreeNode) => {
-  let fixedDynamicHeight = "auto"
-  if (component.props) {
-    fixedDynamicHeight =
-      component.props.dynamicHeight !== undefined
-        ? component.props.dynamicHeight
-        : fixedDynamicHeight
-  }
-  return {
-    ...component,
-    props: {
-      ...component.props,
-      dynamicHeight: fixedDynamicHeight,
-    },
-  }
-}
-
-const fixedContainerComponent = (component: ComponentTreeNode) => {
-  let linkedWidget
-  if (component.props) {
-    linkedWidget =
-      component.props.linkWidgetDisplayName !== undefined &&
-      isString(component.props.linkWidgetDisplayName)
-        ? [component.props.linkWidgetDisplayName]
-        : component.props.linkWidgetDisplayName
-  }
-  return {
-    ...component,
-    props: {
-      ...component.props,
-      linkWidgetDisplayName: linkedWidget,
-    },
-  }
-}
+import { fixedChartComponent } from "./fixComponentsUtils/chart"
+import { fixedContainerComponent } from "./fixComponentsUtils/container"
+import { fixedDataGridComponent } from "./fixComponentsUtils/dataGrid"
+import { fixedImageComponent } from "./fixComponentsUtils/image"
+import { fixedLikeInputComponentDefaultValue } from "./fixComponentsUtils/likeInput"
+import { fixedListComponent } from "./fixComponentsUtils/list"
+import { fixedMenuComponent } from "./fixComponentsUtils/menu"
 
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentTreeNode,
@@ -133,6 +29,14 @@ export const fixedComponentsToNewComponents = (
             return fixedImageComponent(component)
           case "CONTAINER_WIDGET":
             return fixedContainerComponent(component)
+          case "JSON_EDITOR_WIDGET":
+          case "SLIDER_WIDGET":
+          case "TEXTAREA_INPUT_WIDGET":
+          case "EDITABLE_TEXT_WIDGET":
+          case "NUMBER_INPUT_WIDGET":
+          case "INPUT_WIDGET": {
+            return fixedLikeInputComponentDefaultValue(component)
+          }
           default: {
             return fixedComponentsToNewComponents(component)
           }

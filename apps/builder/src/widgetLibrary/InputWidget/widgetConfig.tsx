@@ -15,6 +15,7 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
   defaults: {
     value: "",
+    defaultValue: "",
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",

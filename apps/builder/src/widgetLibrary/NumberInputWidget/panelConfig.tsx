@@ -15,7 +15,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: `${widgetBaseName}-basic-default-value`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.input_default_value"),
-        attrName: "value",
+        attrName: "defaultValue",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
       },

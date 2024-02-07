@@ -15,7 +15,7 @@ export const SLIDER_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-default-value`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.default_value"),
-        attrName: "value",
+        attrName: "defaultValue",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
       },

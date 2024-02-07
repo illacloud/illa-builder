@@ -80,13 +80,19 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
   }
   const response = await fetchMyTeamsInfo()
   const teamsInfo = response.data ?? []
-  const currentTeamInfo = teamsInfo.find(
+  let currentTeamInfo = teamsInfo.find(
     (item) => item.identifier === teamIdentifier,
   )
+  if (window.currentTeamIdentifier) {
+    currentTeamInfo = teamsInfo.find(
+      (item) => item.identifier === teamIdentifier,
+    )
+  }
+
   if (currentTeamInfo) {
     store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
     store.dispatch(teamActions.updateTeamItemsReducer(teamsInfo))
-    ILLAMixpanel.setGroup(teamIdentifier)
+    ILLAMixpanel.setGroup(currentTeamInfo.identifier)
     if (
       isCloudVersion &&
       !canAccessManage(
@@ -96,7 +102,9 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
       )
     ) {
       return redirect(
-        `${getILLACloudURL()}/workspace/${currentTeamInfo.identifier}`,
+        `${getILLACloudURL(window.customDomain)}/workspace/${
+          currentTeamInfo.identifier
+        }`,
       )
     }
     return null

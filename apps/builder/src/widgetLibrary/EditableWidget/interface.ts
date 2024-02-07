@@ -20,7 +20,7 @@ export interface WrappedEditableTextProps
   handleUpdateDsl: (value: any) => void
   colorScheme?: InputProps["colorScheme"]
   allowClear?: InputProps["allowClear"]
-  handleOnChange?: () => void
+  handleOnChange: (value: string) => void
   handleOnFocus?: () => void
   handleOnBlur?: () => void
 }
@@ -34,4 +34,5 @@ export interface EditableTextWidgetProps
     LabelProps,
     Omit<ValidateMessageOldProps, "value"> {
   validateMessage: string
+  defaultValue?: string
 }

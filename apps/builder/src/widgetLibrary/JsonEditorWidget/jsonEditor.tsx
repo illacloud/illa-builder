@@ -1,4 +1,5 @@
 import { ReactCodeMirrorRef } from "@uiw/react-codemirror"
+import { debounce } from "lodash-es"
 import { FC, useCallback, useEffect, useRef } from "react"
 import { BaseJsonEditor } from "@/widgetLibrary/JsonEditorWidget/baseJsonEditor"
 import { JsonEditorWidgetProps } from "@/widgetLibrary/JsonEditorWidget/interface"
@@ -9,6 +10,7 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
     displayName,
     tooltipText,
     value,
+    defaultValue,
     triggerEventHandler,
     handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,
@@ -17,10 +19,11 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
 
   const editorRef = useRef<ReactCodeMirrorRef>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const cacheDefaultValue = useRef(defaultValue)
   const cacheValue = useRef(value)
 
-  const updateOnChange = useCallback(
-    (value: unknown) => {
+  const debounceUpdateOnChange = useRef(
+    debounce((value: unknown) => {
       if (typeof value === "string") {
         handleUpdateMultiExecutionResult([
           {
@@ -31,9 +34,12 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
           },
         ])
       }
-    },
-    [displayName, handleUpdateMultiExecutionResult],
+    }, 180),
   )
+
+  const updateOnChange = useCallback((value: unknown) => {
+    debounceUpdateOnChange.current(value)
+  }, [])
 
   const handleOnFocus = useCallback(() => {
     triggerEventHandler("focus")
@@ -46,6 +52,12 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
+
+  useEffect(() => {
+    if (cacheDefaultValue.current !== defaultValue) {
+      cacheDefaultValue.current = defaultValue
+    }
+  }, [defaultValue, handleOnChange])
 
   useEffect(() => {
     if (cacheValue.current !== value) {

@@ -11,4 +11,6 @@ export interface BaseJsonEditorProps extends BaseWidgetProps {
 
 export interface JsonEditorWidgetProps
   extends BaseJsonEditorProps,
-    Pick<TooltipWrapperProps, "tooltipText"> {}
+    Pick<TooltipWrapperProps, "tooltipText"> {
+  defaultValue?: string
+}

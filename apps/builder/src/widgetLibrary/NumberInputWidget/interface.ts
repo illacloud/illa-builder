@@ -29,7 +29,7 @@ export interface WrappedNumberInputProps
       value: Record<string, any>
     }[],
   ) => void
-  handleOnChange?: () => void
+  handleOnChange: (value?: number | undefined) => void
   handleOnBlur?: () => void
   handleOnFocus?: () => void
 }
@@ -43,5 +43,6 @@ export interface NumberInputWidgetProps
     LabelProps,
     TooltipWrapperProps,
     ValidateMessageOldProps {
+  defaultValue?: number
   validateMessage: string
 }

@@ -1,4 +1,13 @@
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { debounce } from "lodash-es"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import useMeasure from "react-use-measure"
 import { TextArea } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
@@ -8,10 +17,6 @@ import {
 } from "@/page/App/components/ScaleSquare/constant/widget"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import {
-  getValidateVFromString,
-  handleValidateCheck,
-} from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
@@ -26,61 +31,30 @@ import {
   getTextareaContentContainerStyle,
   textAreaStyle,
 } from "@/widgetLibrary/TextAreaWidget/style"
+import { getValidateMessageFunc } from "./utils"
 
 export const WrappedTextarea = forwardRef<
   HTMLTextAreaElement,
   WrappedTextareaProps
 >((props, ref) => {
   const {
-    displayName,
     value,
     placeholder,
     disabled,
     readOnly,
     showCharacterCount,
     colorScheme,
-    handleUpdateDsl,
     handleOnChange,
     handleOnFocus,
     handleOnBlur,
     allowClear,
     maxLength,
-    handleUpdateMultiExecutionResult,
-    getValidateMessage,
     dynamicHeight,
     dynamicMinHeight = 0,
     dynamicMaxHeight = Infinity,
     labelPosition,
     showValidationMessage,
   } = props
-
-  const handleClear = () => handleUpdateDsl({ value: "" })
-
-  const handleChange = useCallback(
-    (value: string) => {
-      new Promise((resolve) => {
-        const message = getValidateMessage(value)
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              value: value || "",
-              validateMessage: message,
-            },
-          },
-        ])
-        resolve(true)
-      }).then(() => {
-        handleOnChange?.()
-      })
-    },
-    [
-      displayName,
-      getValidateMessage,
-      handleOnChange,
-      handleUpdateMultiExecutionResult,
-    ],
-  )
 
   const limitedStyle = useMemo(() => {
     const limitLinePosition =
@@ -142,8 +116,10 @@ export const WrappedTextarea = forwardRef<
       allowClear={allowClear}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
-      onChange={handleChange}
-      onClear={handleClear}
+      onChange={handleOnChange}
+      onClear={() => {
+        handleOnChange("")
+      }}
       autoSize
     />
   )
@@ -179,11 +155,27 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     dynamicHeight = "fixed",
     dynamicMinHeight,
     dynamicMaxHeight,
+    defaultValue,
+    handleUpdateMultiExecutionResult,
+    displayName,
   } = props
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const textareaWrapperRef = useRef<HTMLDivElement>(null)
   const [messageWrapperRef, bounds] = useMeasure()
+  const [textAreaValue, setTextAreaValue] = useState(defaultValue)
+
+  useEffect(() => {
+    setTextAreaValue(defaultValue)
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          value: defaultValue || "",
+        },
+      },
+    ])
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   useEffect(() => {
     if (textareaWrapperRef.current) {
@@ -191,22 +183,81 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 
-  const getValidateMessage = useCallback(
+  const handleValidate = useCallback(
     (value?: string) => {
-      if (!hideValidationMessage) {
-        const message = handleValidateCheck({
-          value: getValidateVFromString(value),
-          pattern,
-          regex,
-          minLength,
-          maxLength,
-          required,
-          customRule,
+      const message = getValidateMessageFunc(value, {
+        hideValidationMessage: hideValidationMessage,
+        pattern: pattern,
+        regex: regex,
+        minLength: minLength,
+        maxLength: maxLength,
+        required: required,
+        customRule: customRule,
+      })
+      handleUpdateDsl({
+        validateMessage: message,
+      })
+      return message
+    },
+    [
+      hideValidationMessage,
+      pattern,
+      regex,
+      minLength,
+      maxLength,
+      required,
+      customRule,
+      handleUpdateDsl,
+    ],
+  )
+
+  const debounceOnChange = useRef(
+    debounce(
+      (
+        value: string,
+        triggerEventHandler: TextareaWidgetProps["triggerEventHandler"],
+        options?: {
+          hideValidationMessage?: TextareaWidgetProps["hideValidationMessage"]
+          pattern?: TextareaWidgetProps["pattern"]
+          regex?: TextareaWidgetProps["regex"]
+          minLength?: TextareaWidgetProps["minLength"]
+          maxLength?: TextareaWidgetProps["maxLength"]
+          required?: TextareaWidgetProps["required"]
+          customRule?: TextareaWidgetProps["customRule"]
+        },
+      ) => {
+        new Promise((resolve) => {
+          const message = getValidateMessageFunc(value, options)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: value || "",
+                validateMessage: message,
+              },
+            },
+          ])
+          resolve(true)
+        }).then(() => {
+          triggerEventHandler("change")
         })
-        const showMessage = message && message.length > 0
-        return showMessage ? message : ""
-      }
-      return ""
+      },
+      180,
+    ),
+  )
+
+  const handleOnChange = useCallback(
+    (value: string) => {
+      setTextAreaValue(value)
+      debounceOnChange.current(value, triggerEventHandler, {
+        hideValidationMessage: hideValidationMessage,
+        pattern: pattern,
+        regex: regex,
+        minLength: minLength,
+        maxLength: maxLength,
+        required: required,
+        customRule: customRule,
+      })
     },
     [
       customRule,
@@ -216,18 +267,8 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
       pattern,
       regex,
       required,
+      triggerEventHandler,
     ],
-  )
-
-  const handleValidate = useCallback(
-    (value?: string) => {
-      const message = getValidateMessage(value)
-      handleUpdateDsl({
-        validateMessage: message,
-      })
-      return message
-    },
-    [getValidateMessage, handleUpdateDsl],
   )
 
   useEffect(() => {
@@ -236,10 +277,14 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
         textareaRef.current?.focus()
       },
       setValue: (value: boolean | string | number | void) => {
-        handleUpdateDsl({ value })
+        if (typeof value === "string") {
+          handleOnChange(value)
+        } else {
+          handleOnChange("")
+        }
       },
       clearValue: () => {
-        handleUpdateDsl({ value: "" })
+        handleOnChange("")
       },
       validate: () => {
         return handleValidate(value)
@@ -255,15 +300,12 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     }
   }, [
     deleteComponentRuntimeProps,
+    handleOnChange,
     handleUpdateDsl,
     handleValidate,
     updateComponentRuntimeProps,
     value,
   ])
-
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
 
   const handleOnFocus = useCallback(() => {
     triggerEventHandler("focus")
@@ -347,8 +389,8 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
           />
           <WrappedTextarea
             {...props}
+            value={textAreaValue}
             ref={textareaRef}
-            getValidateMessage={getValidateMessage}
             handleOnChange={handleOnChange}
             handleOnFocus={handleOnFocus}
             handleOnBlur={handleOnBlur}
