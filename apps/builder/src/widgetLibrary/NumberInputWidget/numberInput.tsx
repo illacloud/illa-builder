@@ -1,4 +1,5 @@
-import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
+import { debounce } from "lodash-es"
+import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { InputNumber, LoadingIcon } from "@illa-design/react"
 import {
   NumberInputWidgetProps,
@@ -6,13 +7,13 @@ import {
 } from "@/widgetLibrary/NumberInputWidget/interface"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { getValidateMessageFunc } from "./utils"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/\d+/, function (s) {
@@ -36,31 +37,10 @@ export const WrappedInputNumber = forwardRef<
     suffix,
     loading,
     colorScheme,
-    displayName,
     handleOnChange,
     handleOnBlur,
     handleOnFocus,
-    handleUpdateMultiExecutionResult,
-    getValidateMessage,
   } = props
-
-  const changeValue = (value?: number | undefined) => {
-    new Promise((resolve) => {
-      const message = getValidateMessage(value)
-      handleUpdateMultiExecutionResult([
-        {
-          displayName,
-          value: {
-            value: value === undefined ? "" : value,
-            validateMessage: message,
-          },
-        },
-      ])
-      resolve(true)
-    }).then(() => {
-      handleOnChange?.()
-    })
-  }
 
   return (
     <InputNumber
@@ -76,7 +56,7 @@ export const WrappedInputNumber = forwardRef<
       prefix={prefix}
       suffix={loading ? <LoadingIcon spin /> : suffix}
       mode="button"
-      onChange={changeValue}
+      onChange={handleOnChange}
       onBlur={handleOnBlur}
       onFocus={handleOnFocus}
       colorScheme={colorScheme}
@@ -86,6 +66,7 @@ export const WrappedInputNumber = forwardRef<
 WrappedInputNumber.displayName = "WrappedInputNumber"
 export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   const {
+    displayName,
     value,
     handleUpdateDsl,
     updateComponentRuntimeProps,
@@ -106,37 +87,67 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     validateMessage,
+    defaultValue,
     triggerEventHandler,
+    handleUpdateMultiExecutionResult,
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
-
-  const getValidateMessage = useCallback(
-    (value?: unknown) => {
-      if (!hideValidationMessage) {
-        const message = handleValidateCheck({
-          value,
-          pattern,
-          regex,
-          required,
-          customRule,
-        })
-        const showMessage = message && message.length > 0
-        return showMessage ? message : ""
-      }
-      return ""
-    },
-    [customRule, hideValidationMessage, pattern, regex, required],
+  const [numberInputValue, setNumberInputValue] = useState(
+    value || defaultValue,
   )
+
+  useEffect(() => {
+    setNumberInputValue(defaultValue)
+    const message = getValidateMessageFunc(defaultValue, {
+      hideValidationMessage: hideValidationMessage,
+      pattern: pattern,
+      regex: regex,
+
+      required: required,
+      customRule: customRule,
+    })
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          value: defaultValue || "",
+          validateMessage: message,
+        },
+      },
+    ])
+  }, [
+    customRule,
+    defaultValue,
+    displayName,
+    handleUpdateMultiExecutionResult,
+    hideValidationMessage,
+    pattern,
+    regex,
+    required,
+  ])
 
   const handleValidate = useCallback(
     (value?: unknown) => {
-      const message = getValidateMessage(value)
+      const message = getValidateMessageFunc(value, {
+        hideValidationMessage: hideValidationMessage,
+        pattern: pattern,
+        regex: regex,
+        required: required,
+        customRule: customRule,
+      })
       handleUpdateDsl({
         validateMessage: message,
       })
       return message
     },
-    [getValidateMessage, handleUpdateDsl],
+    [
+      customRule,
+      handleUpdateDsl,
+      hideValidationMessage,
+      pattern,
+      regex,
+      required,
+    ],
   )
 
   useEffect(() => {
@@ -171,6 +182,49 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     value,
   ])
 
+  const debounceOnChange = useRef(
+    debounce(
+      (
+        value?: number | undefined,
+        options?: {
+          hideValidationMessage?: NumberInputWidgetProps["hideValidationMessage"]
+          pattern?: NumberInputWidgetProps["pattern"]
+          regex?: NumberInputWidgetProps["regex"]
+          required?: NumberInputWidgetProps["required"]
+          customRule?: NumberInputWidgetProps["customRule"]
+        },
+      ) => {
+        new Promise((resolve) => {
+          const message = getValidateMessageFunc(value, options)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: value === undefined ? "" : value,
+                validateMessage: message,
+              },
+            },
+          ])
+          resolve(true)
+        }).then(() => {
+          triggerEventHandler("change")
+        })
+      },
+
+      180,
+    ),
+  )
+
+  const handleOnChange = (value?: number | undefined) => {
+    setNumberInputValue(value)
+    debounceOnChange.current(value, {
+      hideValidationMessage,
+      pattern,
+      regex,
+      required,
+      customRule,
+    })
+  }
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -189,11 +243,9 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
           />
           <WrappedInputNumber
             {...props}
+            value={numberInputValue}
             ref={numberInputRef}
-            getValidateMessage={getValidateMessage}
-            handleOnChange={() => {
-              triggerEventHandler("change")
-            }}
+            handleOnChange={handleOnChange}
             handleOnBlur={() => {
               triggerEventHandler("blur")
             }}
