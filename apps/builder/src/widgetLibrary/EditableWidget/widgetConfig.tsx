@@ -21,5 +21,6 @@ export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
     colorScheme: "blue",
     hidden: false,
     value: "editable text for display",
+    defaultValue: "editable text for display",
   },
 }

@@ -1,0 +1,89 @@
+name: Deploy cname image to k8s
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+      - develop
+
+env:
+  ILLA_GOOGLE_MAP_KEY: ${{ secrets.ILLA_GOOGLE_MAP_KEY }}
+  ILLA_MIXPANEL_API_KEY: ${{ secrets.ILLA_MIXPANEL_API_KEY }}
+  ILLA_MUI_LICENSE: ${{ secrets.ILLA_MUI_LICENSE }}
+  ILLA_SENTRY_AUTH_TOKEN: ${{ secrets.ILLA_SENTRY_AUTH_TOKEN }}
+  DO_CLUSTER: ${{ secrets.DO_CLUSTER }}
+  DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
+  DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
+  ILLA_BASE_PATH: /builder
+
+jobs:
+  build:
+    name: Build website
+    runs-on: ubuntu-latest
+    environment:
+      name:
+        ${{ (github.ref == 'refs/heads/main') && 'production' || (github.ref ==
+        'refs/heads/develop') && 'test' || (github.ref == 'refs/heads/beta') &&
+        'beta' }}
+    env:
+      ILLA_API_BASE_URL: ${{ vars.ILLA_API_BASE_URL }}
+      ILLA_APP_ENV: ${{ vars.ILLA_APP_ENV }}
+      ILLA_BUILDER_URL: ${{ vars.ILLA_BUILDER_URL }}
+      ILLA_CLOUD_URL: ${{ vars.ILLA_CLOUD_URL }}
+      ILLA_MARKET_URL: ${{ vars.ILLA_MARKET_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.1
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.7.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+
+      - name: Install kubectl
+        run: |
+          sudo snap install kubectl --classic
+
+      - name: Setup kubectl
+        run: |
+          doctl kubernetes cluster kubeconfig save $DO_CLUSTER
+          kubectl version
+
+      - name: Build website
+        run: |
+          echo "Building for $GITHUB_REF_NAME branch,ILLA APP ENV is $ILLA_APP_ENV"
+          pnpm build-cloud
+      - name: Build Docker
+        run: |
+          docker build --cache-from=illa-builder-cname-frontend -f Dockerfile -t illa-builder-cname-frontend .
+
+      - name: Push application Docker image
+        run: |
+          docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
+          docker tag illa-builder-cname-frontend "illasoft/illa-builder-cname-frontend:$GITHUB_REF_NAME"
+          docker push "illasoft/illa-builder-cname-frontend:$GITHUB_REF_NAME"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: illacloud/k8s-application-do
+          token: ${{ secrets.ILLA_BOT_TOKEN }}
+          path: k8s-application-do
+
+      - name: Deploy to Kubernetes
+        run: |
+          cd k8s-application-do/namespace-$ILLA_APP_ENV
+          kubectl apply -f ./illa-builder-cname-frontend/ -n $ILLA_APP_ENV
+          kubectl -n $ILLA_APP_ENV rollout restart deployment illa-builder-cname-frontend

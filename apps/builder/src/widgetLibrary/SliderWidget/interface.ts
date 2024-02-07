@@ -17,15 +17,7 @@ export interface WrappedSliderProps
   prefixIcon?: string
   suffixIcon?: string
   required?: boolean
-  handleUpdateValue: (value: any) => void
-  getValidateMessage: (value?: unknown) => string
-  handleUpdateMultiExecutionResult: (
-    updateSlice: {
-      displayName: string
-      value: Record<string, any>
-    }[],
-  ) => void
-  handleOnChange?: () => void
+  handleOnChange: (value: number | number[]) => void
 }
 
 export interface SliderWidgetProps
@@ -34,4 +26,6 @@ export interface SliderWidgetProps
     LabelProps,
     Omit<TooltipWrapperProps, "children"> {
   validateMessage: string
+  value?: number
+  defaultValue?: number
 }

@@ -15,7 +15,7 @@ export const TEXTAREA_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-defaultValue`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.input_default_value"),
-        attrName: "value",
+        attrName: "defaultValue",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },

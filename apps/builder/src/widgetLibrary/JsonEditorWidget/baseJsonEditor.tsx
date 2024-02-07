@@ -37,9 +37,7 @@ export const BaseJsonEditor = forwardRef<
       ref={ref}
       value={formatValue}
       css={baseJsonEditorStyle}
-      onChange={(value) => {
-        handleOnChange && handleOnChange(value)
-      }}
+      onChange={handleOnChange}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
       theme={githubLight}

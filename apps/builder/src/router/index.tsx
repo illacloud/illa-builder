@@ -1,4 +1,3 @@
-import { isCloudVersion } from "@illa-public/utils"
 import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { RoutesObjectPro } from "@/router/interface"
@@ -54,5 +53,5 @@ const wrappedRouter = (
 }
 
 export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig), {
-  basename: import.meta.env.PROD && !isCloudVersion ? "/build" : "/",
+  basename: import.meta.env.ILLA_BASE_PATH ?? "/",
 })

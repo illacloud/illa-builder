@@ -42,5 +42,6 @@ export interface InputWidgetProps
     LabelProps,
     TooltipWrapperProps,
     Omit<ValidateMessageOldProps, "value"> {
+  defaultValue: string
   validateMessage: string
 }
