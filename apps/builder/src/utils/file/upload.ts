@@ -1,14 +1,10 @@
-import { notNeedAuthRequest } from "@illa-public/illa-net"
+import Axios from "axios"
 
 export const upload = async (url: string, file: Blob) => {
   const resUrl = url.split("?")[0]
-  await notNeedAuthRequest({
-    url,
-    method: "PUT",
-    data: file,
+  await Axios.put(url, file, {
     headers: {
       "Content-Type": "multipart/form-data",
-      "Content-Encoding": "compress",
       "x-amz-acl": "public-read",
     },
   })
