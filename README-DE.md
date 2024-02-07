@@ -15,7 +15,7 @@
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img width="800" alt="GitHub - Readme - jp" src="https://github.com/illacloud/illa-builder/assets/112603073/4c9b27c1-b3c4-4c55-99c4-4e3cb529d236">
+  <img width="800" alt="GitHub - Readme - jp" src="https://github.com/illacloud/illa-builder/assets/112603073/1a4b64ac-1384-4eaf-9b3c-9b0b278b40fe">
 </a>
 </p>
 
