@@ -7,7 +7,7 @@ export const fixedLikeInputComponentDefaultValue = (
     ...component,
     props: {
       ...component.props,
-      value: "",
+      value: undefined,
       defaultValue: component.props?.defaultValue || "",
     },
   }

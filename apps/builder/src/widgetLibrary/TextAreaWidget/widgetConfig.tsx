@@ -13,7 +13,7 @@ export const TEXTAREA_WIDGET_CONFIG: WidgetConfig = {
   h: 8,
   version: 0,
   defaults: {
-    value: "",
+    value: undefined,
     defaultValue: "",
     label: "Label",
     labelAlign: "left",
