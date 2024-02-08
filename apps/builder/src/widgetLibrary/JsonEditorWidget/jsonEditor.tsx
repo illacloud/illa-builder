@@ -23,23 +23,33 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
   const cacheValue = useRef(value)
 
   const debounceUpdateOnChange = useRef(
-    debounce((value: unknown) => {
-      if (typeof value === "string") {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              value: value,
+    debounce(
+      (
+        value: unknown,
+        triggerEventHandler: JsonEditorWidgetProps["triggerEventHandler"],
+      ) => {
+        if (typeof value === "string") {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: value,
+              },
             },
-          },
-        ])
-      }
-    }, 180),
+          ])
+          triggerEventHandler("change")
+        }
+      },
+      180,
+    ),
   )
 
-  const updateOnChange = useCallback((value: unknown) => {
-    debounceUpdateOnChange.current(value)
-  }, [])
+  const updateOnChange = useCallback(
+    (value: unknown) => {
+      debounceUpdateOnChange.current(value, triggerEventHandler)
+    },
+    [triggerEventHandler],
+  )
 
   const handleOnFocus = useCallback(() => {
     triggerEventHandler("focus")
@@ -49,22 +59,34 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
     triggerEventHandler("blur")
   }, [triggerEventHandler])
 
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
-
   useEffect(() => {
     if (cacheDefaultValue.current !== defaultValue) {
       cacheDefaultValue.current = defaultValue
     }
-  }, [defaultValue, handleOnChange])
+  }, [defaultValue])
+
+  useEffect(() => {
+    if (
+      cacheDefaultValue.current === defaultValue &&
+      cacheValue.current !== cacheDefaultValue.current
+    ) {
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            value: defaultValue,
+          },
+        },
+      ])
+      cacheValue.current = defaultValue
+    }
+  }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   useEffect(() => {
     if (cacheValue.current !== value) {
-      handleOnChange()
       cacheValue.current = value
     }
-  }, [handleOnChange, value])
+  }, [value])
 
   useEffect(() => {
     updateComponentRuntimeProps({

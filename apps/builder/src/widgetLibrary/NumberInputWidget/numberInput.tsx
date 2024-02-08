@@ -97,15 +97,20 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    setNumberInputValue(defaultValue)
-    handleUpdateMultiExecutionResult([
-      {
-        displayName,
-        value: {
-          value: defaultValue || "",
+    if (
+      typeof defaultValue === "undefined" ||
+      typeof defaultValue === "number"
+    ) {
+      setNumberInputValue(defaultValue)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            value: (defaultValue as unknown) === "" ? undefined : defaultValue,
+          },
         },
-      },
-    ])
+      ])
+    }
   }, [defaultValue, displayName, handleUpdateMultiExecutionResult])
 
   const debounceOnChange = useRef(
@@ -127,7 +132,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
             {
               displayName,
               value: {
-                value: value === undefined ? "" : value,
+                value: (value as unknown) === "" ? undefined : value,
                 validateMessage: message,
               },
             },
@@ -193,7 +198,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
         numberInputRef.current?.focus()
       },
       setValue: (value: number) => {
-        if (typeof value === "number") {
+        if (typeof value === "number" || typeof value === "undefined") {
           handleOnChange(value)
         }
       },
