@@ -14,7 +14,7 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   version: 0,
   defaults: {
-    value: "",
+    value: undefined,
     defaultValue: "",
     label: "Label",
     labelAlign: "left",

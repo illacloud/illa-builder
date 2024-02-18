@@ -16,10 +16,9 @@
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img width="800" alt="GitHub - Readme - jp" src="https://github.com/illacloud/illa-builder/assets/112603073/bbeaaa07-f8e8-45ae-9aaf-6dde05b7926c">
+  <img width="800" alt="GitHub - Readme - jp" src="https://github.com/illacloud/illa-builder/assets/112603073/f3e7105a-b50d-461b-b3b7-a031c43d9465">
 </a>
 </p>
-
 
 [![Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illa_cloud)
@@ -96,7 +95,8 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 
 加入微信群：  
 
-![IMG_5405](https://github.com/illacloud/illa-builder/assets/112603073/9fd62305-13d0-487c-b9cd-ed7fb88d7448)
+![IMG_5468](https://github.com/illacloud/illa-builder/assets/112603073/bbdc47f4-97bd-4258-bc89-893ce28cbe53)
+
 
 
 Discord与Github社区入口

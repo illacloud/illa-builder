@@ -14,7 +14,7 @@ export const SLIDER_WIDGET_CONFIG: WidgetConfig = {
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   version: 0,
   defaults: {
-    value: "{{2}}",
+    value: undefined,
     defaultValue: "{{2}}",
     min: "{{0}}",
     max: "{{10}}",

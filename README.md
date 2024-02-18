@@ -16,7 +16,7 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN
 <br>
 <p align="center">
 <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme">
-  <img width="800" alt="Github(1)" src="https://github.com/illacloud/illa-builder/assets/112603073/37e2cc1b-efeb-4a95-9719-76022ac49191">
+  <img width="800" alt="Github(1)" src="https://github.com/illacloud/illa-builder/assets/112603073/fdc4c02b-e412-4c41-8240-8077d4447ebc">
 </a>
 </p>
 
