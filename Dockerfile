@@ -11,8 +11,7 @@ RUN apk add --no-cache \
 ## copy frontend
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY illa-builder-frontend.conf /etc/nginx/conf.d/illa-builder-frontend.conf
-COPY ./apps/builder/dist/index.html /opt/illa/illa-builder-frontend/index.html
-COPY ./apps/builder/dist/assets /opt/illa/illa-builder-frontend/assets
+COPY ./apps/builder/dist /opt/illa/illa-builder-frontend
 RUN rm /etc/nginx/conf.d/default.conf
 
 # test nginx
