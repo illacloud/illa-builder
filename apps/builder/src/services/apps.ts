@@ -1,6 +1,6 @@
+import { fetchBatchCreateAction } from "@illa-public/create-app"
 import { builderRequest } from "@illa-public/illa-net"
 import { AppInfoShape, ComponentTreeNode } from "@illa-public/public-types"
-import { createAction } from "@/api/actions"
 import { DeployResp } from "@/page/App/Module/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
@@ -205,11 +205,7 @@ export const forkCurrentApp = async (appName: string) => {
     buildTreeByMapNode("root", componentsMap),
   )
   // fork actions
-  await Promise.all(
-    actions.map((data) => {
-      return createAction(appId, data)
-    }),
-  )
+  await fetchBatchCreateAction(getCurrentTeamID()!, appId, actions)
   return appId
 }
 

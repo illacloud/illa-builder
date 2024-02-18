@@ -8,6 +8,7 @@ import {
   INIT_ACTION_ADVANCED_CONFIG,
   INIT_ACTION_MOCK_CONFIG,
   actionItemInitial,
+  generateBaseActionItem,
   getInitialContent,
 } from "@illa-public/public-configs"
 import {
@@ -165,21 +166,15 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
           dispatch(configActions.changeSelectedAction(createActionData))
           break
         }
-        // TODO: WTF add new method
         case "illadrive": {
           const displayName = DisplayNameGenerator.generateDisplayName(type)
           const initialContent = getInitialContent(type)
-          const data: Omit<ActionItem<ActionContent>, "actionID"> = {
+          const baseData = generateBaseActionItem(displayName, "")
+          const data = {
+            ...baseData,
             actionType: type,
-            displayName,
             content: initialContent,
             isVirtualResource: true,
-            config: {
-              public: false,
-              advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
-              mockConfig: INIT_ACTION_MOCK_CONFIG,
-            },
-            ...actionItemInitial,
           }
 
           if (isGuideMode) {
