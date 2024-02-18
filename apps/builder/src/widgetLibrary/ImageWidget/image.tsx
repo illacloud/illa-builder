@@ -57,7 +57,6 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
   const height = getHeight(dynamicHeight, aspectRatio, imageBouds.width)
 
   const finalObjectFit = dynamicHeight === "auto" ? "cover" : objectFit
-  console.log("finalObjectFit", finalObjectFit)
 
   return (
     <Image
