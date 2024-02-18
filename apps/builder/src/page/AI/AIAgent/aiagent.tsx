@@ -496,7 +496,6 @@ export const AIAgent: FC = () => {
             agentInfo,
             variableKeyMapInputNodeDisplayName,
           )
-          // TODO: need add batch creation
           await createAction(appInfoResp.data.appId, agentActionInfo)
           window.open(
             `${getILLABuilderURL(window.customDomain)}/${teamIdentifier}/app/${
