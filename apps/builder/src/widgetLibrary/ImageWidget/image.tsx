@@ -16,18 +16,12 @@ import {
 } from "@/widgetLibrary/ImageWidget/style"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import {
-  DynamicHeight,
-  ImageWidgetProps,
-  ObjectFit,
-  WrappedImageProps,
-} from "./interface"
+import { DynamicHeight, ImageWidgetProps, WrappedImageProps } from "./interface"
 
 const getHeight = (
   dynamicHeight: DynamicHeight,
   aspectRatio: number,
   width: number,
-  objectFit?: ObjectFit,
 ) => {
   if (dynamicHeight === "auto") {
     if (aspectRatio && aspectRatio > 0) {
@@ -36,9 +30,7 @@ const getHeight = (
       return `${width}px`
     }
   } else {
-    return dynamicHeight === "fixed" || objectFit === "contain"
-      ? "100%"
-      : "auto"
+    return dynamicHeight === "fixed" ? "100%" : "auto"
   }
 }
 
@@ -62,19 +54,10 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
       ? "100%"
       : "auto"
 
-  const height = getHeight(
-    dynamicHeight,
-    aspectRatio,
-    imageBouds.width,
-    objectFit,
-  )
+  const height = getHeight(dynamicHeight, aspectRatio, imageBouds.width)
 
-  const finalObjectFit =
-    dynamicHeight === "auto"
-      ? "cover"
-      : dynamicHeight === "fixed" && objectFit === "contain"
-        ? undefined
-        : "cover"
+  const finalObjectFit = dynamicHeight === "auto" ? "cover" : objectFit
+  console.log("finalObjectFit", finalObjectFit)
 
   return (
     <Image
