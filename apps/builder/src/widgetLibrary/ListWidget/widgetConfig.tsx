@@ -68,7 +68,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     }}`,
     dynamicHeight: "fixed",
     resizeDirection: RESIZE_DIRECTION.ALL,
-    page: 0,
+    page: "{{0}}",
     offset: 0,
     itemBorderRadius: "4px",
     itemPadding: {

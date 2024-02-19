@@ -107,7 +107,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-totalRowCount`,
         labelName: i18n.t("editor.inspect.setter_label.table.total_row_count"),
         attrName: "totalRowCount",
-        setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+        setterType: "INPUT_SETTER",
         isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.NUMBER,
         bindAttrName: [
@@ -131,7 +131,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-previousCursor`,
         labelName: i18n.t("editor.inspect.setter_label.previous_cursor"),
         attrName: "previousCursor",
-        setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+        setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: [
           "enablePagination",
@@ -147,7 +147,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-nextCursor`,
         labelName: i18n.t("editor.inspect.setter_label.table.next_cursor"),
         attrName: "nextCursor",
-        setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+        setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: [
           "enablePagination",
@@ -163,7 +163,7 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-hasNextPage`,
         labelName: i18n.t("editor.inspect.setter_label.table.has_next_page"),
         attrName: "hasNextPage",
-        setterType: "DATA_GRID_MAPPED_INPUT_SETTER",
+        setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: [
           "enablePagination",
