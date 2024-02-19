@@ -11,6 +11,7 @@ import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/S
 import { InputEditor } from "@/page/App/components/Actions/InputEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import FolderSelect from "../components/FolderSelect"
+import SortOperate from "../components/SortOperate"
 
 export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
@@ -135,6 +136,11 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
         value={commandArgs.page}
         onChange={(value) => handleOptionsValueChange("page", value)}
         expectedType={VALIDATION_TYPES.NUMBER}
+      />
+      <SortOperate
+        sortedBy={commandArgs.sortedBy}
+        sortedType={commandArgs.sortedType}
+        handleOptionsValueChange={handleOptionsValueChange}
       />
     </>
   )
