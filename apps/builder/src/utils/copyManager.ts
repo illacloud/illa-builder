@@ -1,4 +1,5 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { DEFAULT_BODY_COLUMNS_NUMBER } from "@illa-public/public-configs"
 import {
   ActionContent,
   ComponentMapNode,
@@ -10,7 +11,6 @@ import { klona } from "klona"
 import { set } from "lodash-es"
 import { createMessage } from "@illa-design/react"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
-import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
 import { canCrossDifferenceColumnNumber } from "@/page/App/components/DotPanel/utils/getDragShadow"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"

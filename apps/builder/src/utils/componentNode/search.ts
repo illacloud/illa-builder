@@ -1,7 +1,7 @@
 import {
   DEFAULT_ASIDE_COLUMNS_NUMBER,
   DEFAULT_BODY_COLUMNS_NUMBER,
-} from "@/page/App/components/DotPanel/constant/canvas"
+} from "@illa-public/public-configs"
 import { searchDSLByDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"

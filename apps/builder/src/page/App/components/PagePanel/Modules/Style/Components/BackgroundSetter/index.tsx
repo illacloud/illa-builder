@@ -8,6 +8,7 @@ import {
   sectionContainerStyle,
   setterContainerStyle,
 } from "@/page/App/components/PagePanel/Modules/Style/style"
+import { getIsMobileApp } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageBodySection,
@@ -25,6 +26,7 @@ export const BackgroundSetter: FC = () => {
 
   const currentPage = useSelector(getCurrentPageExecutionResult)
   const { displayName, hasFooter, hasLeft, hasRight, hasHeader } = currentPage
+  const isMobileAPP = useSelector(getIsMobileApp)
 
   const bodySection = useSelector(getCurrentPageBodySection)
   const rightSection = useSelector(getCurrentPageRightSection)
@@ -120,7 +122,7 @@ export const BackgroundSetter: FC = () => {
           />
         </div>
       )}
-      {hasLeft && (
+      {!isMobileAPP && hasLeft && (
         <div css={setterContainerStyle}>
           <PageLabel
             labelName={t("editor.page.label_name.left_panel")}
@@ -132,7 +134,7 @@ export const BackgroundSetter: FC = () => {
           />
         </div>
       )}
-      {hasRight && (
+      {!isMobileAPP && hasRight && (
         <div css={setterContainerStyle}>
           <PageLabel
             labelName={t("editor.page.label_name.right_panel")}

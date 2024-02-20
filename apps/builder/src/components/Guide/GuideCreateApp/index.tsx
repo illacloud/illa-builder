@@ -147,7 +147,6 @@ const GuideCreateApp: FC = () => {
       )}
       {showCreateFromTemplateModal && (
         <CreateFromTemplateModal
-          hiddenCreateBlank
           handleForkApp={async (appID: string) => {
             track?.(
               ILLA_MIXPANEL_EVENT_TYPE.CLICK,

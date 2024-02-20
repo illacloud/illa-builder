@@ -1,5 +1,4 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { ComponentMapNode } from "@illa-public/public-types"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -11,6 +10,7 @@ import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
 import { VerticalLayout } from "@/page/App/components/PagePanel/Layout/verticalLayout"
+import { getIsMobileApp } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
   getComponentMap,
   searchComponentFromMap,
@@ -18,7 +18,6 @@ import {
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { PageNodeProps } from "@/redux/currentApp/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { placePaddingStyle } from "./style"
 
@@ -28,6 +27,7 @@ export const PageBasic: FC = () => {
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
   const homepageControlRef = useRef<HTMLButtonElement>(null)
   const isReportFlag = useRef<boolean>(false)
+  const isMobileAPP = useSelector(getIsMobileApp)
 
   const intersectionObserver = useRef<IntersectionObserver | null>(
     new IntersectionObserver((entries) => {
@@ -59,26 +59,19 @@ export const PageBasic: FC = () => {
 
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
-  const pageProps = useSelector<RootState>((state) => {
-    const components = getComponentMap(state)
-    return (
-      searchComponentFromMap(components, currentPageDisplayName)?.props || {}
-    )
-  }) as PageNodeProps
-
-  const sectionNodes = useSelector<RootState, ComponentMapNode[] | null>(
-    (state) => {
-      const components = getComponentMap(state)
-      const currentPageNode = searchComponentFromMap(
-        components,
-        currentPageDisplayName,
-      )
-      if (!currentPageNode) return null
-      return currentPageNode.childrenNode.map(
-        (displayName) => components[displayName],
-      )
-    },
+  const componentsMap = useSelector(getComponentMap)
+  const currentPageNode = searchComponentFromMap(
+    componentsMap,
+    currentPageDisplayName,
   )
+  const pageProps = currentPageNode?.props || ({} as PageNodeProps)
+
+  const sectionNodes = useMemo(() => {
+    if (!currentPageNode) return null
+    return currentPageNode.childrenNode.map(
+      (displayName) => componentsMap[displayName],
+    )
+  }, [componentsMap, currentPageNode])
 
   const { hasLeft, hasRight, hasFooter, hasHeader } = pageProps
   const isHomepage = useMemo(() => {
@@ -175,7 +168,7 @@ export const PageBasic: FC = () => {
         </VerticalLayout>
       </SetterPadding>
 
-      {hasLeft && (
+      {!isMobileAPP && hasLeft && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
@@ -206,7 +199,7 @@ export const PageBasic: FC = () => {
           </SetterPadding>
         </>
       )}
-      {hasRight && (
+      {!isMobileAPP && hasRight && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
