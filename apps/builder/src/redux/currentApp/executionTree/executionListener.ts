@@ -76,8 +76,16 @@ async function handleStartExecution(
     const isDeleteAction =
       action.type === "components/deleteComponentNodeReducer" ||
       action.type === "action/removeActionItemReducer"
+    const isAddAction =
+      action.type.startsWith("components/add") ||
+      action.type.startsWith("action/add") ||
+      action.type.startsWith("action/batchAdd")
 
-    const executionResult = executionTree.updateTree(rawTree, isDeleteAction)
+    const executionResult = executionTree.updateTree(
+      rawTree,
+      isDeleteAction,
+      isAddAction,
+    )
     asyncExecutionDataToRedux(executionResult, oldExecutionTree, listenerApi)
   }
 }
