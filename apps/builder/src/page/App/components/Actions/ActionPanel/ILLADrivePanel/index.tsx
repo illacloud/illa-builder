@@ -118,10 +118,11 @@ const ILLADrivePanel: FC = () => {
       label: t("editor.action.panel.label.option.drive.method.list"),
       value: ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST,
     },
-    {
-      label: t("editor.action.panel.label.option.drive.method.list_folders"),
-      value: ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST_FOLDERS,
-    },
+    // not support yet
+    // {
+    //   label: t("editor.action.panel.label.option.drive.method.list_folders"),
+    //   value: ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST_FOLDERS,
+    // }
     {
       label: t("editor.action.panel.label.option.drive.method.download"),
       value: ILLA_DRIVE_ACTION_REQUEST_TYPE.DOWNLOAD_ONE,
