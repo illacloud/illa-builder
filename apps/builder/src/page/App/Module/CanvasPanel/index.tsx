@@ -7,7 +7,10 @@ import {
   getIsILLAEditMode,
   getIsILLAPreviewMode,
 } from "@/redux/config/configSelector"
-import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
+import {
+  getAppId,
+  getIsMobileApp,
+} from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { UploadDetailButton } from "../UploadDetail"
@@ -25,6 +28,7 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
     const appID = useSelector(getAppId)
     const isEditPreviewMode = useSelector(getIsILLAPreviewMode)
     const executionResult = useSelector(getExecutionResult)
+    const isMobileAPP = useSelector(getIsMobileApp)
     const uploadFiles = useSyncExternalStore(
       updateFileDetailStore.subscribe,
       updateFileDetailStore.getSnapshot,
@@ -33,6 +37,7 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
       ILLABuilderStorage.getLocalStorage(SHOWN_BUILD_APP)
 
     const showBuildAppOnEmpty =
+      !isMobileAPP &&
       isEditMode &&
       isCloudVersion &&
       (!isObject(localShownBuildAppOnEmpty) ||

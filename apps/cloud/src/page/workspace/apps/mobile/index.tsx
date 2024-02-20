@@ -67,6 +67,8 @@ export const MobileAppWorkspace = () => {
                 appID={appInfo.appId}
                 publishedToMarketplace={appInfo.config.publishedToMarketplace}
                 editorInfo={appInfo.editedBy}
+                appType={appInfo.config.appType}
+                cardType="app"
               />
             ))}
           </div>

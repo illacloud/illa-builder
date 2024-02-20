@@ -1,3 +1,4 @@
+import { DEFAULT_BODY_COLUMNS_NUMBER } from "@illa-public/public-configs"
 import {
   FC,
   MouseEventHandler,
@@ -22,7 +23,6 @@ import { MultiSelectCanvas } from "@/page/App/components/DotPanel/components/Mul
 import MultiSelectedScaleSquare from "@/page/App/components/DotPanel/components/MultiSelectedContainer"
 import {
   ADD_ROWS,
-  DEFAULT_BODY_COLUMNS_NUMBER,
   SAFE_ROWS,
   SCROLL_CONTAINER_PADDING,
   UNIT_HEIGHT,

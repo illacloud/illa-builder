@@ -1,3 +1,4 @@
+import { DEFAULT_BODY_COLUMNS_NUMBER } from "@illa-public/public-configs"
 import {
   ComponentMapNode,
   ComponentTreeNode,
@@ -591,19 +592,25 @@ export const deleteTargetPageSectionReducer: CaseReducer<
     ...generationPageOptionsWhenDelete(deleteSectionName),
   }
 
-  const targetPageChildrenNodeIndex = targetPage.childrenNode.findIndex(
-    (childDisplayName) => childDisplayName === deleteSectionName,
+  const sectionNodeDisplayNames = targetPage.childrenNode.filter(
+    (childDisplayName) => {
+      const targetNode = state[childDisplayName]
+      return targetNode?.showName === deleteSectionName
+    },
   )
-  if (targetPageChildrenNodeIndex === -1) return state
-  const targetPageChildeNode =
-    targetPage.childrenNode[targetPageChildrenNodeIndex]
-  const needDeleteDisplayNames = removeDisplayNames(
-    state[targetPageChildeNode],
-    state,
+
+  if (sectionNodeDisplayNames.length === 0) return state
+
+  sectionNodeDisplayNames.forEach((displayName) => {
+    const needDeleteDisplayNames = removeDisplayNames(state[displayName], state)
+    DisplayNameGenerator.removeDisplayNameMulti(needDeleteDisplayNames)
+  })
+
+  targetPage.childrenNode = targetPage.childrenNode.filter(
+    (childDisplayName) => {
+      return !sectionNodeDisplayNames.includes(childDisplayName)
+    },
   )
-  DisplayNameGenerator.removeDisplayNameMulti(needDeleteDisplayNames)
-  targetPage.childrenNode.splice(targetPageChildrenNodeIndex, 1)
-  rootNode.childrenNode.splice(targetPageIndex, 1, targetPage.displayName)
 }
 
 const generationPageOptionsWhenAdd = (
@@ -687,10 +694,14 @@ export const addTargetPageSectionReducer: CaseReducer<
     if (bodySectionSubPaths.length === 0) {
       bodySectionSubPaths = ["sub-page1"]
     }
+    const bodyColumn =
+      targetPage.props?.bodyColumns ?? DEFAULT_BODY_COLUMNS_NUMBER
+
     const config = generateSectionConfig(
       pageName,
       addedSectionName,
       bodySectionSubPaths,
+      bodyColumn,
     )
     if (!config) return state
     targetPage.childrenNode.push(config.displayName)
