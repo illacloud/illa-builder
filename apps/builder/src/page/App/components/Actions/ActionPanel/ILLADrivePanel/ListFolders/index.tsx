@@ -1,6 +1,5 @@
 import {
-  EXPIRATION_TYPE,
-  ILLADriveListAllContent,
+  ILLADriveListFoldersContent,
   ILLA_DRIVE_FILTER_TYPE,
 } from "@illa-public/public-types"
 import { FC } from "react"
@@ -13,32 +12,19 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import FolderSelect from "../components/FolderSelect"
 import SortOperate from "../components/SortOperate"
 
-export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
+export const ListFolders: FC<ILLADriveActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const commandArgs = props.commandArgs as ILLADriveListAllContent
+  const commandArgs = props.commandArgs as ILLADriveListFoldersContent
   const { handleOptionsValueChange } = props
   const filterType = commandArgs.filterType
-  const expirationType = commandArgs.expirationType
+
   const sortByeOptions = [
     "id",
     "lastModifiedAt",
     "lastModifiedBy",
     "name",
-    "contentType",
-    "size",
-  ]
-
-  const FileUrlExpiredTypeOption = [
-    {
-      label: t("editor.inspect.setter_option.drive_builder.expired_time.never"),
-      value: EXPIRATION_TYPE.PERSISTENT,
-    },
-    {
-      label: t(
-        "editor.inspect.setter_option.drive_builder.expired_time.customer",
-      ),
-      value: EXPIRATION_TYPE.CUSTOM,
-    },
+    "fileNum",
+    "folderNum",
   ]
 
   const FilterTypeOption = [
@@ -68,6 +54,17 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
         onChange={(value) => handleOptionsValueChange("filterType", value)}
         options={FilterTypeOption}
       />
+      {filterType === ILLA_DRIVE_FILTER_TYPE.BY_ID && (
+        <InputEditor
+          title={t("editor.action.panel.label.drive.folder_name")}
+          tips={t("editor.action.panel.label.tips.drive.folder_name")}
+          lineNumbers
+          mode={CODE_LANG.JAVASCRIPT}
+          value={commandArgs.folderID}
+          onChange={(value) => handleOptionsValueChange("fileID", value)}
+          expectedType={VALIDATION_TYPES.STRING}
+        />
+      )}
       {filterType === ILLA_DRIVE_FILTER_TYPE.BY_NAME && (
         <InputEditor
           title={t("editor.action.panel.label.drive.file_name")}
@@ -82,49 +79,7 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
           expectedType={VALIDATION_TYPES.STRING}
         />
       )}
-      {filterType === ILLA_DRIVE_FILTER_TYPE.BY_ID && (
-        <InputEditor
-          title={t("editor.action.panel.label.drive.file_id")}
-          tips={t("editor.action.panel.label.tips.drive.file_id")}
-          placeholder={t("editor.action.panel.label.placeholder.drive.file_id")}
-          lineNumbers
-          mode={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.fileID}
-          onChange={(value) => handleOptionsValueChange("fileID", value)}
-          expectedType={VALIDATION_TYPES.STRING}
-        />
-      )}
       <FolderSelect value={commandArgs.path} />
-
-      <SingleTypeComponent
-        title={t("editor.inspect.setter_label.drive_builder.expired_time")}
-        tips={t("editor.inspect.setter_tips.drive_builder.expired_time")}
-        value={commandArgs.expirationType}
-        componentType="radio-group"
-        type="button"
-        forceEqualWidth={true}
-        onChange={(value) => handleOptionsValueChange("expirationType", value)}
-        radioOptions={FileUrlExpiredTypeOption}
-      />
-      {expirationType === EXPIRATION_TYPE.CUSTOM && (
-        <InputEditor
-          title={t("editor.inspect.setter_label.drive_builder.time")}
-          tips={t("editor.inspect.setter_tips.drive_builder.time")}
-          mode={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.expiry}
-          onChange={(value) => handleOptionsValueChange("expiry", value)}
-          expectedType={VALIDATION_TYPES.NUMBER}
-        />
-      )}
-      <SingleTypeComponent
-        title={t("editor.inspect.setter_label.drive_builder.turn_on_hotlink")}
-        tips={t("editor.inspect.setter_tips.drive_builder.turn_on_hotlink")}
-        value={commandArgs.hotlinkProtection}
-        componentType="switch"
-        onChange={(value) =>
-          handleOptionsValueChange("hotlinkProtection", value)
-        }
-      />
       <InputEditor
         title={t("editor.action.panel.label.drive.limit")}
         tips={t("editor.action.panel.label.tips.drive.limit")}
@@ -154,4 +109,4 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
   )
 }
 
-ListAllPart.displayName = "ListAllPart"
+ListFolders.displayName = "ListFolders"

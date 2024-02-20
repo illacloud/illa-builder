@@ -8,6 +8,7 @@ import { DeleteOnePart } from "./DeleteOnePart"
 import { DownloadMultiplePart } from "./DownloadMultiplePart"
 import { DownloadOnePart } from "./DownloadOnePart"
 import { ListAllPart } from "./ListAllPart"
+import { ListFolders } from "./ListFolders"
 import { UpdatePart } from "./UpdatePart"
 import { UploadMultiplePart } from "./UploadMultiplePart"
 import { UploadPart } from "./UploadPart"
@@ -20,6 +21,13 @@ export const getInputBody = (
     case ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST:
       return (
         <ListAllPart
+          handleOptionsValueChange={handleOptionsValueChange}
+          commandArgs={content.commandArgs}
+        />
+      )
+    case ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST_FOLDERS:
+      return (
+        <ListFolders
           handleOptionsValueChange={handleOptionsValueChange}
           commandArgs={content.commandArgs}
         />
