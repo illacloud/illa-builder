@@ -12,3 +12,13 @@ export const getCurrentAppWaterMarkConfig = (state: RootState) => {
 export const getAppId = createSelector([getAppInfo], (appInfo) => {
   return appInfo.appId
 })
+
+export const getAPPType = createSelector(
+  [getAppInfo],
+  (appInfo) => appInfo.config.appType,
+)
+
+export const getIsMobileApp = createSelector(
+  [getAPPType],
+  (appType) => appType === "mobile",
+)

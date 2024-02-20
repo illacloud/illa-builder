@@ -1,4 +1,4 @@
-import { AppInfoShape } from "@illa-public/public-types"
+import { APP_TYPE, AppInfoShape } from "@illa-public/public-types"
 
 export const DashboardAppInitialState: AppInfoShape = {
   updatedAt: "",
@@ -11,6 +11,7 @@ export const DashboardAppInitialState: AppInfoShape = {
     waterMark: false,
     publishedToMarketplace: false,
     publishWithAIAgent: false,
+    appType: APP_TYPE.PC,
   },
   appActivity: {
     modifier: "",

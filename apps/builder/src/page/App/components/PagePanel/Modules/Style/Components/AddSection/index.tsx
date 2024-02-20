@@ -8,6 +8,7 @@ import {
   getColor,
 } from "@illa-design/react"
 import i18n from "@/i18n/config"
+import { getIsMobileApp } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import {
   getCurrentPageExecutionResult,
@@ -37,6 +38,7 @@ export const AddSection: FC<AddSectionProps> = ({ children }) => {
   const hasRightDivider = !!rightStyle?.dividerColor
   const hasHeaderDivider = !!headerStyle?.dividerColor
   const hasFooterDivider = !!footerStyle?.dividerColor
+  const isMobileAPP = useSelector(getIsMobileApp)
 
   const SECTION_OPTIONS = [
     {
@@ -59,7 +61,12 @@ export const AddSection: FC<AddSectionProps> = ({ children }) => {
       value: "footerSection",
       disabled: !hasFooter || hasFooterDivider,
     },
-  ]
+  ].filter((option) => {
+    if (isMobileAPP) {
+      return option.value !== "leftSection" && option.value !== "rightSection"
+    }
+    return true
+  })
 
   const onClickItem: DropListProps["onClickItem"] = (key) => {
     dispatch(

@@ -1,7 +1,7 @@
 import { PCAppCard, TeamContentEmpty } from "@illa-public/dashboard"
 import { AppListContextProvider } from "@illa-public/dashboard"
 import { BASIC_APP_CONFIG } from "@illa-public/public-configs"
-import { AppInfoShape, USER_ROLE } from "@illa-public/public-types"
+import { APP_TYPE, AppInfoShape, USER_ROLE } from "@illa-public/public-types"
 import {
   getCurrentId,
   getCurrentTeamInfo,
@@ -174,6 +174,7 @@ export const PCAppWorkspace = () => {
         {
           appName: "Untitled app",
           initScheme: BASIC_APP_CONFIG,
+          appType: APP_TYPE.PC,
         },
         currentTeamID,
       )

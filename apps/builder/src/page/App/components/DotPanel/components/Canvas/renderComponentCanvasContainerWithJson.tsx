@@ -1,7 +1,7 @@
+import { DEFAULT_BODY_COLUMNS_NUMBER } from "@illa-public/public-configs"
 import { ComponentTreeNode } from "@illa-public/public-types"
 import { FC, ReactNode, useMemo } from "react"
 import useMeasure from "react-use-measure"
-import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
 import ScaleSquareWithJSON from "@/page/App/components/ScaleSquare/scaleSquareWithJSON"
 import { outerComponentCanvasContainerWithJsonStyle } from "./style"
 

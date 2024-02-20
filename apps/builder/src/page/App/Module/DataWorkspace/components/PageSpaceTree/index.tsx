@@ -1,10 +1,15 @@
 import IconHotSpot from "@illa-public/icon-hot-spot"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import {
+  DEFAULT_BODY_COLUMNS_NUMBER,
+  DEFAULT_MOBILE_BODY_COLUMNS_NUMBER,
+} from "@illa-public/public-configs"
 import { FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { PlusIcon } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
+import { getIsMobileApp } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getPageDisplayNameMapViewDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/components/componentsSlice"
 import { RootComponentNodeProps } from "@/redux/currentApp/components/componentsState"
@@ -29,6 +34,7 @@ export const PageSpaceTree: FC = () => {
 
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const dispatch = useDispatch()
+  const isMobileApp = useSelector(getIsMobileApp)
 
   const handleClickAddButton = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
@@ -36,10 +42,14 @@ export const PageSpaceTree: FC = () => {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "add_page",
       })
-      const newPageConfig = generatePageConfig()
+      const newPageConfig = generatePageConfig(
+        isMobileApp
+          ? DEFAULT_MOBILE_BODY_COLUMNS_NUMBER
+          : DEFAULT_BODY_COLUMNS_NUMBER,
+      )
       dispatch(componentsActions.addPageNodeWithSortOrderReducer(newPageConfig))
     },
-    [dispatch],
+    [dispatch, isMobileApp],
   )
 
   const pageDisplayNameMapSubPageDisplayName = useSelector(
