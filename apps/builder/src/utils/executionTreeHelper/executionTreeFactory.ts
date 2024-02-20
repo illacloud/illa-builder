@@ -28,6 +28,7 @@ import {
   getImmediateParentsOfPropertyPaths,
   isAction,
   isWidget,
+  removeParentPath,
 } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
@@ -332,18 +333,22 @@ export class ExecutionTreeFactory {
     walkedPath: Set<string>,
   ) {
     const currentExecutionTree = klona(executionTree)
-    paths.forEach((path) => {
+    const removedParentPaths = removeParentPath(paths)
+    removedParentPaths.forEach((path) => {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
-        const rootPath = convertPathToString(toPath(path).slice(0, 2))
-        const value = get(rawTree, rootPath, undefined)
-        set(currentExecutionTree, rootPath, value)
+        const value = get(rawTree, path, undefined)
+        set(currentExecutionTree, path, value)
       }
     })
     return currentExecutionTree
   }
 
-  updateTree(rawTree: RawTreeShape, isDeleteAction?: boolean) {
+  updateTree(
+    rawTree: RawTreeShape,
+    isDeleteAction?: boolean,
+    isAddAction?: boolean,
+  ) {
     const currentRawTree = klona(rawTree)
     try {
       this.dependenciesState = this.generateDependenciesMap(currentRawTree)
@@ -379,13 +384,18 @@ export class ExecutionTreeFactory {
       walkedPath,
     )
 
-    const path = this.calcSubTreeSortOrder(differences, currentExecution)
+    const path = this.calcSubTreeSortOrder(
+      differences,
+      currentExecution,
+      !isAddAction,
+    )
     currentExecution = this.updateExecutionTreeByUpdatePaths(
       path,
       currentExecution,
       currentRawTree,
       walkedPath,
     )
+
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentExecution,
       path,

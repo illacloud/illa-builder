@@ -92,6 +92,19 @@ export const removeIgnoredKeys = (result: Record<string, unknown>) => {
   )
 }
 
+export const removeParentPath = (paths: string[]) => {
+  const dotPaths = paths.map((path) => toPath(path).join("."))
+
+  const filteredPaths = dotPaths.filter((path, index, array) => {
+    return !array.some((otherPath, otherIndex) => {
+      if (index === otherIndex) return false
+      return otherPath.startsWith(`${path}.`)
+    })
+  })
+
+  return filteredPaths.map((path) => convertPathToString(toPath(path)))
+}
+
 export const removeWidgetOrActionMethods = (
   result: Record<string, unknown>,
 ) => {
