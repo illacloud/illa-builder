@@ -1,69 +1,46 @@
-import { SORTED_TYPE } from "@illa-public/public-types"
+import { ILLADriveListAllContent, SORTED_TYPE } from "@illa-public/public-types"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { RadioGroup, Select, SelectValue } from "@illa-design/react"
-import { containerStyle, nameStyle } from "./style"
+import { BaseFxSelect } from "../BaseFxSelect"
+import { containerStyle } from "./style"
 
 interface SortOperateProps {
-  sortedBy: string
-  sortedType: SORTED_TYPE
+  commandArgs: ILLADriveListAllContent
   handleOptionsValueChange: (name: string, value: string | boolean) => void
 }
 
 const SortOperate: FC<SortOperateProps> = ({
-  sortedBy,
-  sortedType,
+  commandArgs,
   handleOptionsValueChange,
 }) => {
   const { t } = useTranslation()
-  const selectOptions = [
-    {
-      label: t("drive.table.title.file_name"),
-      value: "name",
-    },
-    {
-      label: t("drive.table.title.file_size"),
-      value: "size",
-    },
-    {
-      label: t("drive.table.title.last_modified"),
-      value: "lastModifiedAt",
-    },
-    {
-      label: t("drive.table.title.last_modifier"),
-      value: "lastModifiedBy",
-    },
+  const sortTypeOptions = [SORTED_TYPE.ascend, SORTED_TYPE.descend]
+  const sortByeOptions = [
+    "id",
+    "lastModifiedAt",
+    "lastModifiedBy",
+    "name",
+    "contentType",
+    "size",
   ]
 
-  const radioOptions = [
-    {
-      label: "asc",
-      value: SORTED_TYPE.ascend,
-    },
-    {
-      label: "desc",
-      value: SORTED_TYPE.descend,
-    },
-  ]
   return (
     <div css={containerStyle}>
-      <span css={nameStyle}>{t("editor.action.panel.label.drive.folder")}</span>
-      <Select
-        w="100%"
-        ml="8px"
-        colorScheme="techPurple"
-        onChange={(v) => handleOptionsValueChange("sortedBy", v as string)}
-        value={sortedBy as SelectValue}
-        options={selectOptions}
+      <BaseFxSelect
+        attrName="sortedBy"
+        label={t("editor.action.panel.label.drive.sort_by")}
+        isFx={commandArgs.sortedByFx}
+        value={commandArgs.sortedBy}
+        options={sortByeOptions}
+        handleOptionsValueChange={handleOptionsValueChange}
       />
-      <RadioGroup
-        w="100%"
-        colorScheme="gray"
-        forceEqualWidth
-        type="button"
-        onChange={(v) => handleOptionsValueChange("sortedType", v as string)}
-        value={sortedType}
-        options={radioOptions}
+      <BaseFxSelect
+        attrName="sortedType"
+        label={t("editor.action.panel.label.drive.sort_direction")}
+        isFx={commandArgs.sortedTypeFx}
+        value={commandArgs.sortedType}
+        options={sortTypeOptions}
+        handleOptionsValueChange={handleOptionsValueChange}
       />
     </div>
   )

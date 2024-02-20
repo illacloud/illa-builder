@@ -138,8 +138,7 @@ export const ListAllPart: FC<ILLADriveActionPartProps> = (props) => {
         expectedType={VALIDATION_TYPES.NUMBER}
       />
       <SortOperate
-        sortedBy={commandArgs.sortedBy}
-        sortedType={commandArgs.sortedType}
+        commandArgs={commandArgs}
         handleOptionsValueChange={handleOptionsValueChange}
       />
     </>
