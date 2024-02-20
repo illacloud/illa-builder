@@ -1,3 +1,4 @@
+import { DEFAULT_BODY_COLUMNS_NUMBER } from "@illa-public/public-configs"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -11,10 +12,7 @@ import {
 } from "@/components/Guide/WidgetStepMask/style"
 import MoveIcon from "@/components/Guide/assets/move.svg?react"
 import { GUIDE_SELECT_WIDGET } from "@/config/guide/config"
-import {
-  DEFAULT_BODY_COLUMNS_NUMBER,
-  UNIT_HEIGHT,
-} from "@/page/App/components/DotPanel/constant/canvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 

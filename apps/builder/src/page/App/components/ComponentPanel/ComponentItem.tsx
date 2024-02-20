@@ -1,3 +1,4 @@
+import { DEFAULT_MOBILE_BODY_COLUMNS_NUMBER } from "@illa-public/public-configs"
 import { FC, memo } from "react"
 import { useDrag } from "react-dnd"
 import { useSelector } from "react-redux"
@@ -9,7 +10,6 @@ import store from "@/store"
 import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
 import { generateWidgetLayoutInfo } from "@/utils/generators/generateComponentNode"
 import { DropResultInfo } from "../DotPanel/components/Canvas/interface"
-import { DEFAULT_BODY_COLUMNS_NUMBER } from "../DotPanel/constant/canvas"
 import { illaSnapshot } from "../DotPanel/constant/snapshotNew"
 import { sendShadowMessageHandler } from "../DotPanel/utils/sendBinaryMessage"
 import {
@@ -52,7 +52,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
               dragEffect: DRAG_EFFECT.ADD,
               draggedDisplayName: "",
               unitWWhenDragged: 0,
-              columnNumberWhenDragged: DEFAULT_BODY_COLUMNS_NUMBER,
+              columnNumberWhenDragged: DEFAULT_MOBILE_BODY_COLUMNS_NUMBER,
             }
           }
           const rootState = store.getState()
@@ -64,7 +64,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
             dragEffect: DRAG_EFFECT.ADD,
             draggedDisplayName: widgetLayoutInfo.displayName,
             unitWWhenDragged: 0,
-            columnNumberWhenDragged: DEFAULT_BODY_COLUMNS_NUMBER,
+            columnNumberWhenDragged: DEFAULT_MOBILE_BODY_COLUMNS_NUMBER,
           }
         },
       }),

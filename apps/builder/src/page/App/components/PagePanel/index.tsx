@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { FocusManager } from "@/utils/focusManager"
 import { PageBasic } from "./Modules/Basic"
-import { PageFrame } from "./Modules/Frame"
+import { PageLayout } from "./Modules/Layout"
 import { PageStyle } from "./Modules/Style"
 import { PagePanelWrapperStyle, PageScrollContainerWrapperStyle } from "./style"
 
@@ -14,7 +14,7 @@ const PagePanel: FC = () => {
       }}
     >
       <div css={PageScrollContainerWrapperStyle}>
-        <PageFrame />
+        <PageLayout />
         <PageBasic />
         <PageStyle />
       </div>

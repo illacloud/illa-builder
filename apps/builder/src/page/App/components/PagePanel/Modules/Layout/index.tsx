@@ -38,6 +38,7 @@ import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftA
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
 import { optionListWrapperStyle } from "@/page/App/components/PagePanel/style"
 import { getCanvasShape } from "@/redux/config/configSelector"
+import { getIsMobileApp } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
   getComponentMap,
   searchComponentFromMap,
@@ -75,7 +76,7 @@ const canvasSizeOptions = [
   },
 ]
 
-export const PageFrame: FC = () => {
+export const PageLayout: FC = () => {
   const { t } = useTranslation()
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
@@ -129,6 +130,8 @@ export const PageFrame: FC = () => {
   }, [canvasSize, canvasWidth, hasLeft, hasRight, leftWidth, rightWidth])
 
   const [finalBodyWidth, setFinalBodyWidth] = useState(bodyWidth)
+
+  const isMobileAPP = useSelector(getIsMobileApp)
 
   useEffect(() => {
     setFinalBodyWidth(bodyWidth)
@@ -560,213 +563,228 @@ export const PageFrame: FC = () => {
 
   return (
     <PanelBar title={t("editor.page.panel_bar_title.frame")}>
-      <LeftAndRightLayout>
-        <RadioGroup
-          type="button"
-          options={canvasSizeOptions}
-          value={finalCanvasSize}
-          w="100%"
-          forceEqualWidth={true}
-          colorScheme="grayBlue"
-          onChange={handleUpdateFrameSize}
-        />
-      </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel
-          labelName={widthI18n}
-          size="big"
-          tooltip={
-            finalCanvasSize !== "fixed"
-              ? t("editor.page.tooltips.auto_canvas_width")
-              : undefined
-          }
-        />
-        <SetterPadding>
-          <InputNumber
-            w="96px"
-            precision={0}
-            step={1}
-            value={Number(finalCanvasWidth.toFixed(0))}
-            colorScheme="techPurple"
-            onChange={handleChangeCanvasWidth}
-            onBlur={handleBlurCanvasWidth}
+      {!isMobileAPP && (
+        <LeftAndRightLayout>
+          <RadioGroup
+            type="button"
+            options={canvasSizeOptions}
+            value={finalCanvasSize}
+            w="100%"
+            forceEqualWidth={true}
+            colorScheme="grayBlue"
+            onChange={handleUpdateFrameSize}
           />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      <PanelDivider />
-      <div css={groupWrapperStyle}>
+        </LeftAndRightLayout>
+      )}
+      {!isMobileAPP && (
         <LeftAndRightLayout>
           <PageLabel
-            labelName={t("editor.page.label_name.preset")}
+            labelName={widthI18n}
             size="big"
+            tooltip={
+              finalCanvasSize !== "fixed"
+                ? t("editor.page.tooltips.auto_canvas_width")
+                : undefined
+            }
           />
-          <SetterPadding>
-            <LayoutSelect
-              value={layout}
-              currentPageName={currentPageDisplayName}
-            />
-          </SetterPadding>
-        </LeftAndRightLayout>
-      </div>
-      <PanelDivider hasMargin={false} />
-      <div css={groupWrapperStyle}>
-        <LeftAndRightLayout>
-          <PageLabel
-            labelName={t("editor.page.label_name.left_panel")}
-            size="big"
-          />
-          <PanelActionBar
-            isFixed={isLeftFixed}
-            hasPanel={hasLeft}
-            deletePanelAction={() => {
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "panel_show",
-                parameter2: "left",
-                parameter3: "hidden",
-              })
-              handleDeleteSection("leftSection")
-            }}
-            addPanelAction={() => {
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "panel_show",
-                parameter2: "left",
-                parameter3: "show",
-              })
-              handleAddSection("leftSection")
-            }}
-          />
-        </LeftAndRightLayout>
-        {hasLeft && (
-          <>
-            <LeftAndRightLayout>
-              <PageLabel labelName={widthI18n} size="small" />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  value={Number(finalLeftWidth.toFixed(0))}
-                  precision={0}
-                  colorScheme="techPurple"
-                  onChange={handleUpdateLeftPanelWidth}
-                  step={1}
-                  onBlur={handleBlurUpdateLeftPanelWidth}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
-            <LeftAndRightLayout>
-              <PageLabel
-                labelName={t("editor.page.label_name.show_fold_icon")}
-                size="small"
-                tooltip={t("editor.page.tooltips.show_fold_icon")}
-              />
-              <SetterPadding>
-                <Switch
-                  checked={showLeftFoldIcon}
-                  onChange={(value) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                      element: "panel_fold",
-                      parameter2: "left",
-                      parameter3: value ? "show" : "hidden",
-                    })
-                    handleUpdateShowFoldIcon(value, "leftSection")
-                  }}
-                  colorScheme="techPurple"
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
-          </>
-        )}
-      </div>
-      <PanelDivider hasMargin={false} />
-      <div css={groupWrapperStyle}>
-        <LeftAndRightLayout>
-          <PageLabel
-            labelName={t("editor.page.label_name.right_panel")}
-            size="big"
-          />
-          <PanelActionBar
-            isFixed={isRightFixed}
-            hasPanel={hasRight}
-            deletePanelAction={() => {
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "panel_show",
-                parameter2: "right",
-                parameter3: "hidden",
-              })
-              handleDeleteSection("rightSection")
-            }}
-            addPanelAction={() => {
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "panel_show",
-                parameter2: "right",
-                parameter3: "show",
-              })
-              handleAddSection("rightSection")
-            }}
-          />
-        </LeftAndRightLayout>
-        {hasRight && (
-          <>
-            <LeftAndRightLayout>
-              <PageLabel labelName={widthI18n} size="small" />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  precision={0}
-                  value={Number(finalRightWidth.toFixed(0))}
-                  colorScheme="techPurple"
-                  onChange={handleUpdateRightPanelWidth}
-                  step={1}
-                  onBlur={handleBlurUpdateRightPanelWidth}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
-            <LeftAndRightLayout>
-              <PageLabel
-                labelName={t("editor.page.label_name.show_fold_icon")}
-                size="small"
-                tooltip={t("editor.page.tooltips.show_fold_icon")}
-              />
-              <SetterPadding>
-                <Switch
-                  checked={showRightFoldIcon}
-                  onChange={(value) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                      element: "panel_fold",
-                      parameter2: "right",
-                      parameter3: value ? "show" : "hidden",
-                    })
-                    handleUpdateShowFoldIcon(value, "rightSection")
-                  }}
-                  colorScheme="techPurple"
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
-          </>
-        )}
-      </div>
-
-      <PanelDivider hasMargin={false} />
-      <div css={groupWrapperStyle}>
-        <LeftAndRightLayout>
-          <PageLabel labelName={t("editor.page.label_name.body")} size="big" />
-        </LeftAndRightLayout>
-        <LeftAndRightLayout>
-          <PageLabel labelName={widthI18n} size="small" />
           <SetterPadding>
             <InputNumber
               w="96px"
               precision={0}
-              colorScheme="techPurple"
-              value={Number(finalBodyWidth.toFixed(0))}
-              onChange={handleUpdateBodyPanelWidth}
-              onBlur={handleBlurUpdateBodyPanelWidth}
               step={1}
-              disabled={!hasLeft && !hasRight}
+              value={Number(finalCanvasWidth.toFixed(0))}
+              colorScheme="techPurple"
+              onChange={handleChangeCanvasWidth}
+              onBlur={handleBlurCanvasWidth}
             />
           </SetterPadding>
         </LeftAndRightLayout>
-      </div>
-      <PanelDivider hasMargin={false} />
+      )}
+      {!isMobileAPP && <PanelDivider />}
+      {!isMobileAPP && (
+        <div css={groupWrapperStyle}>
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={t("editor.page.label_name.preset")}
+              size="big"
+            />
+            <SetterPadding>
+              <LayoutSelect
+                value={layout}
+                currentPageName={currentPageDisplayName}
+              />
+            </SetterPadding>
+          </LeftAndRightLayout>
+        </div>
+      )}
+      {!isMobileAPP && <PanelDivider hasMargin={false} />}
+      {!isMobileAPP && (
+        <div css={groupWrapperStyle}>
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={t("editor.page.label_name.left_panel")}
+              size="big"
+            />
+            <PanelActionBar
+              isFixed={isLeftFixed}
+              hasPanel={hasLeft}
+              deletePanelAction={() => {
+                trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                  element: "panel_show",
+                  parameter2: "left",
+                  parameter3: "hidden",
+                })
+                handleDeleteSection("leftSection")
+              }}
+              addPanelAction={() => {
+                trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                  element: "panel_show",
+                  parameter2: "left",
+                  parameter3: "show",
+                })
+                handleAddSection("leftSection")
+              }}
+            />
+          </LeftAndRightLayout>
+          {hasLeft && (
+            <>
+              <LeftAndRightLayout>
+                <PageLabel labelName={widthI18n} size="small" />
+                <SetterPadding>
+                  <InputNumber
+                    w="96px"
+                    value={Number(finalLeftWidth.toFixed(0))}
+                    precision={0}
+                    colorScheme="techPurple"
+                    onChange={handleUpdateLeftPanelWidth}
+                    step={1}
+                    onBlur={handleBlurUpdateLeftPanelWidth}
+                  />
+                </SetterPadding>
+              </LeftAndRightLayout>
+              <LeftAndRightLayout>
+                <PageLabel
+                  labelName={t("editor.page.label_name.show_fold_icon")}
+                  size="small"
+                  tooltip={t("editor.page.tooltips.show_fold_icon")}
+                />
+                <SetterPadding>
+                  <Switch
+                    checked={showLeftFoldIcon}
+                    onChange={(value) => {
+                      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                        element: "panel_fold",
+                        parameter2: "left",
+                        parameter3: value ? "show" : "hidden",
+                      })
+                      handleUpdateShowFoldIcon(value, "leftSection")
+                    }}
+                    colorScheme="techPurple"
+                  />
+                </SetterPadding>
+              </LeftAndRightLayout>
+            </>
+          )}
+        </div>
+      )}
+      {!isMobileAPP && <PanelDivider hasMargin={false} />}
+      {!isMobileAPP && (
+        <div css={groupWrapperStyle}>
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={t("editor.page.label_name.right_panel")}
+              size="big"
+            />
+            <PanelActionBar
+              isFixed={isRightFixed}
+              hasPanel={hasRight}
+              deletePanelAction={() => {
+                trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                  element: "panel_show",
+                  parameter2: "right",
+                  parameter3: "hidden",
+                })
+                handleDeleteSection("rightSection")
+              }}
+              addPanelAction={() => {
+                trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                  element: "panel_show",
+                  parameter2: "right",
+                  parameter3: "show",
+                })
+                handleAddSection("rightSection")
+              }}
+            />
+          </LeftAndRightLayout>
+          {hasRight && (
+            <>
+              <LeftAndRightLayout>
+                <PageLabel labelName={widthI18n} size="small" />
+                <SetterPadding>
+                  <InputNumber
+                    w="96px"
+                    precision={0}
+                    value={Number(finalRightWidth.toFixed(0))}
+                    colorScheme="techPurple"
+                    onChange={handleUpdateRightPanelWidth}
+                    step={1}
+                    onBlur={handleBlurUpdateRightPanelWidth}
+                  />
+                </SetterPadding>
+              </LeftAndRightLayout>
+              <LeftAndRightLayout>
+                <PageLabel
+                  labelName={t("editor.page.label_name.show_fold_icon")}
+                  size="small"
+                  tooltip={t("editor.page.tooltips.show_fold_icon")}
+                />
+                <SetterPadding>
+                  <Switch
+                    checked={showRightFoldIcon}
+                    onChange={(value) => {
+                      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                        element: "panel_fold",
+                        parameter2: "right",
+                        parameter3: value ? "show" : "hidden",
+                      })
+                      handleUpdateShowFoldIcon(value, "rightSection")
+                    }}
+                    colorScheme="techPurple"
+                  />
+                </SetterPadding>
+              </LeftAndRightLayout>
+            </>
+          )}
+        </div>
+      )}
+
+      {!isMobileAPP && <PanelDivider hasMargin={false} />}
+      {!isMobileAPP && (
+        <div css={groupWrapperStyle}>
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={t("editor.page.label_name.body")}
+              size="big"
+            />
+          </LeftAndRightLayout>
+          <LeftAndRightLayout>
+            <PageLabel labelName={widthI18n} size="small" />
+            <SetterPadding>
+              <InputNumber
+                w="96px"
+                precision={0}
+                colorScheme="techPurple"
+                value={Number(finalBodyWidth.toFixed(0))}
+                onChange={handleUpdateBodyPanelWidth}
+                onBlur={handleBlurUpdateBodyPanelWidth}
+                step={1}
+                disabled={!hasLeft && !hasRight}
+              />
+            </SetterPadding>
+          </LeftAndRightLayout>
+        </div>
+      )}
+      {!isMobileAPP && <PanelDivider hasMargin={false} />}
       <div css={groupWrapperStyle}>
         <LeftAndRightLayout>
           <PageLabel
@@ -828,4 +846,4 @@ export const PageFrame: FC = () => {
   )
 }
 
-PageFrame.displayName = "PageFrame"
+PageLayout.displayName = "PageLayout"

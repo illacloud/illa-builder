@@ -1,8 +1,5 @@
 export const UNIT_HEIGHT = 8
 
-export const DEFAULT_BODY_COLUMNS_NUMBER = 32
-export const DEFAULT_ASIDE_COLUMNS_NUMBER = 8
-
 export const HEADER_MIN_HEIGHT = 40
 export const FOOTER_MIN_HEIGHT = 40
 export const BODY_MIN_HEIGHT = 40

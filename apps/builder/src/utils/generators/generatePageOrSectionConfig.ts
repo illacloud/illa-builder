@@ -1,4 +1,8 @@
 import {
+  DEFAULT_ASIDE_COLUMNS_NUMBER,
+  DEFAULT_BODY_COLUMNS_NUMBER,
+} from "@illa-public/public-configs"
+import {
   ComponentTreeNode,
   ModalSectionNode,
   SECTION_POSITION,
@@ -7,10 +11,6 @@ import {
 import { CONTAINER_TYPE, PADDING_MODE } from "@illa-public/public-types"
 import { v4 } from "uuid"
 import { getColor } from "@illa-design/react"
-import {
-  DEFAULT_ASIDE_COLUMNS_NUMBER,
-  DEFAULT_BODY_COLUMNS_NUMBER,
-} from "@/page/App/components/DotPanel/constant/canvas"
 import {
   PageNode,
   PageNodeProps,
@@ -55,6 +55,7 @@ export const generateSectionContainerConfig = (
 
 const generateSectionsChildrenMenuComponentNode = (
   parentDisplayName: string,
+  targetColumn: number = DEFAULT_BODY_COLUMNS_NUMBER,
 ) => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "MENU_WIDGET",
@@ -63,11 +64,13 @@ const generateSectionsChildrenMenuComponentNode = (
   const menuNode = newGenerateComponentNode(
     0,
     0,
-    32,
+    targetColumn,
     "MENU_WIDGET",
     displayName,
     parentDisplayName,
   )
+
+  console.log("menuNode", menuNode)
   menuNode.props!.$dynamicAttrPaths = ["dataSources", "selectedValues"]
   return menuNode
 }
@@ -76,6 +79,7 @@ export const generateSectionConfig = (
   parentNode: string,
   showName: SectionNodeType,
   bodySubpaths: string[] = ["sub-page1"],
+  targetColumn?: number,
 ): SectionTreeNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "SECTION_NODE",
@@ -89,6 +93,7 @@ export const generateSectionConfig = (
   if (showName === "headerSection") {
     const menuNode = generateSectionsChildrenMenuComponentNode(
       childrenNode.displayName,
+      targetColumn,
     )
     childrenNode.childrenNode.push(menuNode)
   }
@@ -96,8 +101,8 @@ export const generateSectionConfig = (
   if (showName === "leftSection") {
     const menuNode = generateSectionsChildrenMenuComponentNode(
       childrenNode.displayName,
+      DEFAULT_ASIDE_COLUMNS_NUMBER,
     )
-    menuNode.w = 8
     menuNode.props!.mode = "vertical"
     childrenNode.childrenNode.push(menuNode)
   }
@@ -208,7 +213,9 @@ export const defaultPageProps: PageNodeProps = {
   bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
 }
 
-export const generatePageConfig = (): PageNode => {
+export const generatePageConfig = (
+  columnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER,
+): PageNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "PAGE_NODE",
     "page",
@@ -232,7 +239,12 @@ export const generatePageConfig = (): PageNode => {
     y: -1,
     z: 0,
     version: 0,
-    props: defaultPageProps,
+    props: {
+      ...defaultPageProps,
+      bodyColumns: columnNumber,
+      headerColumns: columnNumber,
+      footerColumns: columnNumber,
+    },
     childrenNode: [childrenNode, modalSectionNode],
   }
 }
