@@ -4,6 +4,7 @@ import {
   ILLADriveAction,
   ILLADriveActionTypeContent,
   ILLADriveListAllContent,
+  ILLADriveListFoldersContent,
   ILLADriveUpdateStatusAction,
   ILLADriveUploadMultipleContent,
   ILLADriveUploadOneContent,
@@ -133,9 +134,9 @@ export const transformDriveData = (
     case ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST: {
       const commandArgs = contents.commandArgs as ILLADriveListAllContent
       return {
+        ...commandArgs,
         operation,
         path: `/${removeSuffixPath(commandArgs.path) || ILLA_DRIVE_ROOT_PATH}`,
-        limit: commandArgs.limit,
         search:
           commandArgs.filterType === ILLA_DRIVE_FILTER_TYPE.BY_NAME
             ? commandArgs.search
@@ -144,13 +145,26 @@ export const transformDriveData = (
           commandArgs.filterType === ILLA_DRIVE_FILTER_TYPE.BY_ID
             ? commandArgs.fileID
             : undefined,
-        page: commandArgs.page,
-        expirationType: commandArgs.expirationType,
         expiry:
           commandArgs.expirationType === EXPIRATION_TYPE.CUSTOM
             ? `${commandArgs.expiry ?? 300}s`
             : undefined,
-        hotlinkProtection: commandArgs.hotlinkProtection,
+      }
+    }
+    case ILLA_DRIVE_ACTION_REQUEST_TYPE.LIST_FOLDERS: {
+      const commandArgs = contents.commandArgs as ILLADriveListFoldersContent
+      return {
+        ...commandArgs,
+        operation,
+        path: `/${removeSuffixPath(commandArgs.path) || ILLA_DRIVE_ROOT_PATH}`,
+        search:
+          commandArgs.filterType === ILLA_DRIVE_FILTER_TYPE.BY_NAME
+            ? commandArgs.search
+            : undefined,
+        folderID:
+          commandArgs.filterType === ILLA_DRIVE_FILTER_TYPE.BY_ID
+            ? commandArgs.folderID
+            : undefined,
       }
     }
     case ILLA_DRIVE_ACTION_REQUEST_TYPE.UPLOAD: {
