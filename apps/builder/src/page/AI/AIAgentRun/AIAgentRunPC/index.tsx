@@ -773,32 +773,6 @@ export const AIAgentRunPC: FC = () => {
                   </AIAgentBlock>
                 )}
               />
-              <Controller
-                name={"modelConfig.maxTokens"}
-                control={control}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={"Max Token"}
-                    tips={t("editor.ai-agent.tips.max-token")}
-                  >
-                    <div css={readOnlyTextStyle}>{field.value}</div>
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="modelConfig.temperature"
-                control={control}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={"Temperature"}
-                    tips={t("editor.ai-agent.tips.temperature")}
-                  >
-                    <div css={readOnlyTextStyle}>{field.value}</div>
-                  </AIAgentBlock>
-                )}
-              />
             </div>
             <form
               onSubmit={handleSubmit(async (data) => {

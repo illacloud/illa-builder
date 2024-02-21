@@ -4,12 +4,10 @@ export const AgentInitial: Agent = {
   name: "",
   teamIdentifier: "",
   agentType: AI_AGENT_TYPE.CHAT,
-  model: AI_AGENT_MODEL.GPT_3_5_TURBO,
+  model: AI_AGENT_MODEL.GPT_3_5,
   variables: [{ key: "", value: "" }],
   prompt: "",
   modelConfig: {
-    temperature: 1,
-    maxTokens: 2048,
     stream: true,
   },
   icon: "",
