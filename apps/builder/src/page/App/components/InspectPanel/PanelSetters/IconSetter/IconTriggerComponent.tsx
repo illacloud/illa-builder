@@ -22,7 +22,7 @@ import {
   rightTopItemStyle,
   rightTopPanelStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/IconSetter/style"
-import { ALL_ICONS } from "@/widgetLibrary/IconWidget/utils"
+import { ALL_ICONS } from "@/widgetLibrary/PC/IconWidget/utils"
 
 const defaultItem: IconManifest = {
   id: "default",

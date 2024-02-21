@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@mui/material"
 import Paper from "@mui/material/Paper"
-import React, { FC } from "react"
+import { FC } from "react"
 import { CodeBlock, github } from "react-code-blocks"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
@@ -18,7 +18,7 @@ import remarkGfm from "remark-gfm"
 import { Heading, Link, Paragraph, Typography } from "@illa-design/react"
 import { MarkdownMessageProps } from "@/page/AI/components/MarkdownMessage/interface"
 import { markdownMessageStyle } from "@/page/AI/components/MarkdownMessage/style"
-import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
+import { HTMLTags } from "@/widgetLibrary/PC/TextWidget/constans"
 
 export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
   const { children } = props

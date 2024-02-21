@@ -1,7 +1,7 @@
 import { isObject, isString } from "lodash-es"
 import { isNumber } from "@illa-design/react"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
-import { UNIQUE_ID_NAME } from "@/widgetLibrary/DataGridWidget/constants"
+import { UNIQUE_ID_NAME } from "@/widgetLibrary/PC/DataGridWidget/constants"
 
 export function dealRawData2ArrayData(
   rawData: unknown,

@@ -1,9 +1,9 @@
 import { Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import { get, isObject } from "lodash-es"
 import {
-  GUIDE_SELECT_WIDGET,
   GUIDE_SQL_QUERY,
   GUIDE_STEP,
+  getGuidSelectWidgetList,
 } from "@/config/guide/config"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
@@ -32,7 +32,7 @@ export const guideUpdate = (
         if (payload.length === 1) {
           const addedWidget = payload[0].type
           const isCurrentStepWidget =
-            GUIDE_SELECT_WIDGET[currentStep] === addedWidget
+            getGuidSelectWidgetList()[currentStep] === addedWidget
           handleNext(isCurrentStepWidget)
         }
       }

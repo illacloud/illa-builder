@@ -1,3 +1,4 @@
+import { APP_TYPE } from "@illa-public/public-types"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -14,6 +15,8 @@ import { guideActions } from "@/redux/guide/guideSlice"
 import { GuideInitialState } from "@/redux/guide/guideState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { fetchResources } from "@/services/resource"
+import { registerSelectWidgetItem } from "../config/guide/config"
+import { registerWidget } from "../widgetLibrary/widgetBuilder"
 
 export const useInitGuideApp = (mode: IllaMode = "template-edit") => {
   const { appId = "" } = useParams()
@@ -40,6 +43,8 @@ export const useInitGuideApp = (mode: IllaMode = "template-edit") => {
   )
 
   useEffect(() => {
+    registerWidget(APP_TYPE.PC)
+    registerSelectWidgetItem()
     const controller = new AbortController()
     if (isOnline) {
       new Promise<CurrentAppResp>(async (resolve) => {
