@@ -2,7 +2,7 @@ import { ChartType } from "chart.js"
 import { BaseSetter } from "@/page/App/components/InspectPanel/PanelSetters/interface"
 import { PanelLabelProps } from "@/page/App/components/InspectPanel/components/Label/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget"
+import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/PC/ChartWidget"
 
 export interface ListItemProps {
   color: string

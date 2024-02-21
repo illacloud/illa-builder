@@ -1,3 +1,4 @@
+import { APP_TYPE } from "@illa-public/public-types"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
 import { useCallback, useEffect, useState } from "react"
@@ -22,6 +23,7 @@ import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { aiAgentActions } from "../redux/aiAgent/dashboardTeamAIAgentSlice"
 import { flatTreeToMap } from "../utils/componentNode/flatTree"
+import { registerWidget } from "../widgetLibrary/widgetBuilder"
 import { fixedActionToNewAction } from "./utils/fixedAction"
 import { fixedComponentsToNewComponents } from "./utils/fixedComponents"
 
@@ -32,6 +34,7 @@ export const updateCurrentAppInfo = (
   teamID: string,
   uid: string,
 ) => {
+  registerWidget(data.appInfo.config.appType ?? APP_TYPE.PC)
   store.dispatch(configActions.updateIllaMode(mode))
   store.dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
   const fixedComponents = fixedComponentsToNewComponents(data.components)

@@ -7,7 +7,7 @@ import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
+import WidgetLoading from "@/widgetLibrary/PC/PublicSector/WidgetLoading"
 import { containerStyle } from "./style"
 
 export const ComponentsManager: FC = () => {

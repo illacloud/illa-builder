@@ -6,7 +6,7 @@ import {
   rightBottomItemStyle,
   rightBottomStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/IconSetter/style"
-import { AllData, AllIconData } from "@/widgetLibrary/IconWidget/utils"
+import { AllData, AllIconData } from "@/widgetLibrary/PC/IconWidget/utils"
 
 const IconPickerList: FC<IconPickerListProps> = (props) => {
   const { iconOrigin, iconType, searchInput, handleCurrentIconClick } = props
@@ -23,8 +23,10 @@ const IconPickerList: FC<IconPickerListProps> = (props) => {
     iconType === "All"
       ? iconsInfo
       : iconType === "Filled"
-      ? iconsInfo.filter((icon) => icon.name.toLowerCase().includes("fill"))
-      : iconsInfo.filter((icon) => icon.name.toLowerCase().includes("outline"))
+        ? iconsInfo.filter((icon) => icon.name.toLowerCase().includes("fill"))
+        : iconsInfo.filter((icon) =>
+            icon.name.toLowerCase().includes("outline"),
+          )
 
   const filteredIconsInfoSet = !searchInput
     ? originAndTypeFilter

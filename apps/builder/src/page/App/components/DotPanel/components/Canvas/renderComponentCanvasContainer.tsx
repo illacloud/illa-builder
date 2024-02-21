@@ -60,8 +60,8 @@ import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutI
 import { FocusManager } from "@/utils/focusManager"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
 import { getPaddingShape } from "@/utils/styleUtils/padding"
-import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
-import { useAutoUpdateCanvasHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
+import { ContainerEmptyState } from "@/widgetLibrary/PC/ContainerWidget/emptyState"
+import { useAutoUpdateCanvasHeight } from "@/widgetLibrary/PC/PublicSector/utils/autoUpdateHeight"
 import {
   DropCollectedProps,
   DropResultInfo,

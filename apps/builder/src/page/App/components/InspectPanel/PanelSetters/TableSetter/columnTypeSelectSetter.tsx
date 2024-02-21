@@ -9,7 +9,7 @@ import {
   ColumnType,
   ColumnTypeOption,
   Columns,
-} from "@/widgetLibrary/TableWidget/interface"
+} from "@/widgetLibrary/PC/TableWidget/interface"
 
 interface ColumnTypeSelectSetterProps extends BaseSelectSetterProps {}
 

@@ -16,7 +16,7 @@ import store from "@/store"
 import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { getContentTypeByFileExtension, getFileName } from "@/utils/file"
 import { isBase64Simple } from "@/utils/url/base64"
-import { dataURLtoFile } from "@/widgetLibrary/UploadWidget/util"
+import { dataURLtoFile } from "@/widgetLibrary/PC/UploadWidget/util"
 
 const message = createMessage()
 

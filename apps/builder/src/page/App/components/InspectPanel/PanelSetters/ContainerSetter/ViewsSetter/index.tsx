@@ -23,7 +23,7 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store, { RootState } from "@/store"
 import { newGenerateChildrenComponentNode } from "@/utils/generators/generateComponentNode"
-import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { BasicContainerConfig } from "@/widgetLibrary/PC/BasicContainer/BasicContainer"
 
 const ViewsSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
   const {

@@ -11,7 +11,7 @@ import {
   stepFirstLineStyle,
 } from "@/components/Guide/WidgetStepMask/style"
 import MoveIcon from "@/components/Guide/assets/move.svg?react"
-import { GUIDE_SELECT_WIDGET } from "@/config/guide/config"
+import { getGuidSelectWidgetList } from "@/config/guide/config"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -31,7 +31,7 @@ export const WidgetStepMask: FC<StepMaskProps> = (props) => {
   }, [canvasShape.canvasWidth])
 
   const widgetShape = useMemo(() => {
-    return GUIDE_SELECT_WIDGET.map((widget) => {
+    return getGuidSelectWidgetList().map((widget) => {
       const { w, h } = widgetBuilder(widget).config
       return {
         width: w * unitWidth,
