@@ -14,7 +14,7 @@ import MoveIcon from "@/components/Guide/assets/move.svg?react"
 import { GUIDE_SELECT_WIDGET } from "@/config/guide/config"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape } from "@/redux/config/configSelector"
-import { WidgetConfigMap } from "@/widgetLibrary/widgetBuilder"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 export interface StepMaskProps {
   currentStep: number
@@ -32,7 +32,7 @@ export const WidgetStepMask: FC<StepMaskProps> = (props) => {
 
   const widgetShape = useMemo(() => {
     return GUIDE_SELECT_WIDGET.map((widget) => {
-      const { w, h } = WidgetConfigMap[widget].config
+      const { w, h } = widgetBuilder(widget).config
       return {
         width: w * unitWidth,
         height: h * UNIT_HEIGHT,

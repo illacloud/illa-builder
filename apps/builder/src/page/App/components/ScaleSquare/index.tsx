@@ -46,11 +46,7 @@ const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       widgetType={widgetType}
       columnNumber={columnNumber}
     >
-      <WrapperContainer
-        displayName={displayName}
-        parentNodeDisplayName={parentNodeDisplayName}
-        widgetHeight={height}
-      >
+      <WrapperContainer displayName={displayName} widgetHeight={height}>
         <TransformWidgetWrapper
           displayName={displayName}
           widgetType={widgetType}
