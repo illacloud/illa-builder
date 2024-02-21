@@ -9,7 +9,6 @@ import {
 } from "@illa-public/invite-modal"
 import {
   freeModelList,
-  getLLM,
   isPremiumModel,
   premiumModelList,
 } from "@illa-public/market-agent"
@@ -60,10 +59,8 @@ import {
   Button,
   Divider,
   DocsIcon,
-  DownIcon,
   Image,
   Input,
-  InputNumber,
   Link,
   PlayFillIcon,
   PlusIcon,
@@ -71,9 +68,7 @@ import {
   RadioGroup,
   ResetIcon,
   Select,
-  Slider,
   TextArea,
-  UpIcon,
   getColor,
   useMessage,
 } from "@illa-design/react"
@@ -106,9 +101,6 @@ import {
 } from "../components/PreviewChat/interface"
 import { SCROLL_ID } from "./interface"
 import {
-  advancedDivideStyle,
-  advancedSettingHeaderStyle,
-  advancedSettingStyle,
   aiAgentContainerStyle,
   backTextStyle,
   buttonContainerStyle,
@@ -128,8 +120,6 @@ import {
   leftPanelTitleTextStyle,
   premiumContainerStyle,
   rightPanelContainerStyle,
-  temperatureContainerStyle,
-  temperatureStyle,
   uploadContainerStyle,
   uploadContentContainerStyle,
   uploadTextStyle,
@@ -191,7 +181,6 @@ export const AIAgent: FC = () => {
   const [defaultShareTag, setDefaultShareTag] = useState<ShareAgentTab>(
     ShareAgentTab.SHARE_WITH_TEAM,
   )
-  const [expanded, setExpanded] = useState(false)
 
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
@@ -256,10 +245,6 @@ export const AIAgent: FC = () => {
   const getRunAgent = useCallback(() => {
     return {
       variables: getValues("variables"),
-      modelConfig: {
-        maxTokens: getValues("modelConfig.maxTokens"),
-        temperature: getValues("modelConfig.temperature"),
-      },
       model: getValues("model"),
       prompt: getValues("prompt"),
       agentType: getValues("agentType"),
@@ -268,14 +253,7 @@ export const AIAgent: FC = () => {
 
   const fieldArray = useWatch({
     control: control,
-    name: [
-      "variables",
-      "modelConfig.maxTokens",
-      "modelConfig.temperature",
-      "model",
-      "prompt",
-      "agentType",
-    ],
+    name: ["variables", "model", "prompt", "agentType"],
   })
 
   const blockInputDirty = useMemo(() => {
@@ -287,11 +265,9 @@ export const AIAgent: FC = () => {
         lastRunAgent.variables.filter((v) => v.key !== "" && v.value !== ""),
         fieldArray[0].filter((v) => v.key !== "" && v.value !== ""),
       ) ||
-      !isEqual(lastRunAgent.modelConfig.maxTokens, fieldArray[1]) ||
-      !isEqual(lastRunAgent.modelConfig.temperature, fieldArray[2]) ||
-      !isEqual(lastRunAgent.model, fieldArray[3]) ||
-      !isEqual(lastRunAgent.prompt, fieldArray[4]) ||
-      !isEqual(lastRunAgent.agentType, fieldArray[5])
+      !isEqual(lastRunAgent.model, fieldArray[1]) ||
+      !isEqual(lastRunAgent.prompt, fieldArray[2]) ||
+      !isEqual(lastRunAgent.agentType, fieldArray[3])
     )
   }, [lastRunAgent, fieldArray])
 
@@ -830,139 +806,6 @@ export const AIAgent: FC = () => {
                     </AIAgentBlock>
                   )}
                 />
-                <div css={advancedDivideStyle}>
-                  <Divider />
-                </div>
-                <div
-                  css={advancedSettingHeaderStyle}
-                  onClick={() => setExpanded(!expanded)}
-                >
-                  <span>{t("editor.ai-agent.group.advanced_settings")}</span>
-                  {expanded ? <UpIcon /> : <DownIcon />}
-                </div>
-                {expanded && (
-                  <div css={advancedSettingStyle}>
-                    <Controller
-                      control={control}
-                      name={"model"}
-                      render={({ field: modelField }) => (
-                        <AIAgentBlock
-                          title={"Max Token"}
-                          tips={t("editor.ai-agent.tips.max-token")}
-                          required
-                        >
-                          <Controller
-                            name={"modelConfig.maxTokens"}
-                            control={control}
-                            rules={{
-                              required: t(
-                                "editor.ai-agent.validation_blank.max_token",
-                              ),
-                              validate: (value) => {
-                                const isValidate =
-                                  value > 0 &&
-                                  value <=
-                                    (getLLM(modelField.value)?.limit ?? 1)
-                                return isValidate
-                                  ? isValidate
-                                  : t("editor.ai-agent.value_invalid.max_token")
-                              },
-                            }}
-                            shouldUnregister={false}
-                            render={({ field }) => (
-                              <InputNumber
-                                value={field.value}
-                                onChange={(value) => {
-                                  track(
-                                    ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
-                                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                                    {
-                                      element: "max_token",
-                                      parameter1: value,
-                                      parameter5: data.agent.aiAgentID || "-1",
-                                    },
-                                  )
-                                  field.onChange(value)
-                                }}
-                                colorScheme={"techPurple"}
-                                mode="button"
-                                min={1}
-                                max={getLLM(modelField.value)?.limit ?? 1}
-                              />
-                            )}
-                          />
-                        </AIAgentBlock>
-                      )}
-                    />
-                    <Controller
-                      control={control}
-                      name={"model"}
-                      render={({ field: modelField }) => (
-                        <Controller
-                          name="modelConfig.temperature"
-                          control={control}
-                          rules={{
-                            required: t(
-                              "editor.ai-agent.validation_blank.temperature",
-                            ),
-                            validate: (value) => {
-                              const isValidate =
-                                value >=
-                                  (getLLM(modelField.value)
-                                    ?.temperatureRange[0] ?? 0.1) &&
-                                value <=
-                                  (getLLM(modelField.value)
-                                    ?.temperatureRange[1] ?? 1)
-                              return isValidate
-                                ? isValidate
-                                : t("editor.ai-agent.value_invalid.temperature")
-                            },
-                          }}
-                          shouldUnregister={false}
-                          render={({ field }) => (
-                            <AIAgentBlock
-                              title={"Temperature"}
-                              tips={t("editor.ai-agent.tips.temperature")}
-                              required
-                            >
-                              <div css={temperatureContainerStyle}>
-                                <Slider
-                                  {...field}
-                                  colorScheme={getColor("grayBlue", "02")}
-                                  step={0.1}
-                                  min={
-                                    getLLM(modelField.value)
-                                      ?.temperatureRange[0]
-                                  }
-                                  max={
-                                    getLLM(modelField.value)
-                                      ?.temperatureRange[1]
-                                  }
-                                  onAfterChange={(v) => {
-                                    track(
-                                      ILLA_MIXPANEL_EVENT_TYPE.CHANGE,
-                                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                                      {
-                                        element: "temporature",
-                                        parameter1: v,
-                                        parameter5:
-                                          data.agent.aiAgentID || "-1",
-                                      },
-                                    )
-                                  }}
-                                />
-                                <span css={temperatureStyle}>
-                                  {field.value}
-                                </span>
-                              </div>
-                            </AIAgentBlock>
-                          )}
-                        />
-                      )}
-                    />
-                  </div>
-                )}
-
                 <Divider
                   mt="8px"
                   text={t("editor.ai-agent.group.information")}
