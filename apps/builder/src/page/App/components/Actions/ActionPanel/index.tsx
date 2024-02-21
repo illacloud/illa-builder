@@ -22,7 +22,7 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
+import WidgetLoading from "@/widgetLibrary/PC/PublicSector/WidgetLoading"
 import { SQLModeTipProvider } from "../Context/SqlModeTipContext"
 import ActionMockPanel from "./ActionMockPanel"
 import GeneralPanelLayout from "./Layout/GeneralPanelLayout"

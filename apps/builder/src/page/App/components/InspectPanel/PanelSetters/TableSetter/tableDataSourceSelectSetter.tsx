@@ -13,11 +13,11 @@ import {
 import { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import { ColumnItemShape } from "@/widgetLibrary/PC/TableWidget/interface"
 import {
   tansDataFromOld,
   tansTableDataToColumns,
-} from "@/widgetLibrary/TableWidget/utils"
+} from "@/widgetLibrary/PC/TableWidget/utils"
 
 const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (props) => {
   const {

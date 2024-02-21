@@ -17,7 +17,7 @@ import { isObject } from "@/utils/typeHelper"
 import {
   actionFailedEventHandlerConfig,
   actionSuccessEventHandlerConfig,
-} from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+} from "@/widgetLibrary/PC/PublicSector/utils/generatorEventHandlerConfig"
 
 export const ActionEventHandler: FC = () => {
   const { t } = useTranslation()

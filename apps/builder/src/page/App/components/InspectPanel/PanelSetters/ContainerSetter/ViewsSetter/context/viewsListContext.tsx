@@ -8,7 +8,7 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { newGenerateChildrenComponentNode } from "@/utils/generators/generateComponentNode"
-import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { BasicContainerConfig } from "@/widgetLibrary/PC/BasicContainer/BasicContainer"
 import { ViewItemShape } from "../interface"
 import {
   generateNewViewItem,

@@ -17,7 +17,7 @@ import { AxiosResponse } from "axios"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
 import { updateFileDetailStore } from "@/page/App/Module/UploadDetail/store"
 import { IActionRunResultResponseData } from "@/services/action"
-import { dataURLtoFile } from "@/widgetLibrary/UploadWidget/util"
+import { dataURLtoFile } from "@/widgetLibrary/PC/UploadWidget/util"
 import {
   handleDownloadFromDriveResource,
   handleFileToDriveResource,

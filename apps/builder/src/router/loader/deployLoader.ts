@@ -37,6 +37,7 @@ export const deployLoader: LoaderFunction = async (args) => {
         teamIdentifier,
         args.request.signal,
       )
+
       return defer({
         isPublic,
         appInfo,

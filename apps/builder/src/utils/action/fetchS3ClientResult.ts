@@ -5,7 +5,7 @@ import { createWriteStream } from "streamsaver"
 import { fetchS3ActionRunResult } from "@/services/action"
 import { downloadSingleFile, getFileName } from "@/utils/file"
 import { isBase64Simple } from "@/utils/url/base64"
-import { dataURLtoFile } from "@/widgetLibrary/UploadWidget/util"
+import { dataURLtoFile } from "@/widgetLibrary/PC/UploadWidget/util"
 
 const getFileInfo = (fileName: string, fileData: string, fileType: string) => {
   const isBase64 = isBase64Simple(fileData)
