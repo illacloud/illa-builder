@@ -44,6 +44,7 @@ export const loadingStyle = css`
 export const maskStyle = css`
   width: 100%;
   height: 100%;
+  border-radius: 8px;
   position: absolute;
   color: ${getColor("white", "01")};
   background-color: ${getColor("blackAlpha", "04")};
@@ -66,4 +67,15 @@ export const mediaStyle = css`
   z-index: 0;
   justify-content: center;
   align-items: center;
+`
+
+export const videoItemStyle = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & video {
+    background-color: ${getColor("grayBlue", "08")};
+  }
 `

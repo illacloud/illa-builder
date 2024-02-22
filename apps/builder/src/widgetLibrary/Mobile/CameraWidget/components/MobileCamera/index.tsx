@@ -77,6 +77,7 @@ const MobileCamera = forwardRef<HTMLButtonElement, WrappedCameraProps>(
           URL.revokeObjectURL(url)
           return
         }
+        URL.revokeObjectURL(url)
         handleUpload(file)
       })
     }
