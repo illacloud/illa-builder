@@ -5,9 +5,10 @@ export const applyScaleContainerStyle = (
   isEditorMode: boolean,
 ) => {
   return css`
+    height: 100%;
+    width: 100%;
     box-sizing: border-box;
     min-width: 148px;
-    height: 100%;
     min-height: 280px;
     background: ${isEditorPreview ? "#f7f8fa" : "#fff"};
     overflow: auto;
@@ -19,3 +20,11 @@ export const applyScaleContainerStyle = (
     }`}
   `
 }
+
+export const applyMobileContainerStyle = css`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #f7f8fa;
+`

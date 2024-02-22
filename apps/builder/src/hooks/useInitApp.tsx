@@ -35,6 +35,9 @@ export const updateCurrentAppInfo = (
   uid: string,
 ) => {
   registerWidget(data.appInfo.config.appType ?? APP_TYPE.PC)
+  if (data.appInfo.config.appType === APP_TYPE.MOBILE) {
+    store.dispatch(configActions.updateBottomPanel(false))
+  }
   store.dispatch(configActions.updateIllaMode(mode))
   store.dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
   const fixedComponents = fixedComponentsToNewComponents(data.components)
