@@ -1,6 +1,6 @@
 import { memo } from "react"
 import { Rnd } from "react-rnd"
-import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
+import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PC/PublicSector/TransformWidgetWrapper/renderWithJSON"
 import { UNIT_HEIGHT } from "../DotPanel/constant/canvas"
 import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquarePropsWithJSON } from "./interface"

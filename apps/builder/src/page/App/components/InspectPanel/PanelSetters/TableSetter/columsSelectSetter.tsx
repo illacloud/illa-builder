@@ -3,7 +3,7 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import { ColumnItemShape } from "@/widgetLibrary/PC/TableWidget/interface"
 import SearchSelectSetter from "../SelectSetter/searchSelect"
 import { ColumnsSelectSetterProps, SelectOptions } from "./interface"
 

@@ -1,16 +1,21 @@
 import { css } from "@emotion/react"
-import { GUIDE_SELECT_WIDGET, SELECT_WIDGET_ITEM } from "@/config/guide/config"
+import {
+  SELECT_WIDGET_ITEM,
+  getGuidSelectWidgetList,
+} from "@/config/guide/config"
 
 const applyHighlightStyle = (currentStep: number) => css`
   [data-onboarding-session="COMMON"] {
-    ${GUIDE_SELECT_WIDGET.slice(currentStep).map((widget) => {
-      const { highlightIcon } = SELECT_WIDGET_ITEM[widget]
-      return css`
-        [data-onboarding-icon=${widget}] {
-          content: url(${highlightIcon});
-        }
-      `
-    })}
+    ${getGuidSelectWidgetList()
+      .slice(currentStep)
+      .map((widget) => {
+        const { highlightIcon } = SELECT_WIDGET_ITEM[widget]
+        return css`
+          [data-onboarding-icon=${widget}] {
+            content: url(${highlightIcon});
+          }
+        `
+      })}
   }
 `
 

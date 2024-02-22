@@ -1,6 +1,6 @@
 import { FC, ReactNode, createContext, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import { ColumnItemShape } from "@/widgetLibrary/PC/TableWidget/interface"
 import { generateColumnItemId } from "../utils/generateNewColumns"
 
 interface ProviderProps {

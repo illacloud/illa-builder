@@ -2,7 +2,7 @@ import { v4 } from "uuid"
 import {
   ColumnItemShape,
   defaultColumnItem,
-} from "@/widgetLibrary/TableWidget/interface"
+} from "@/widgetLibrary/PC/TableWidget/interface"
 
 export const generateColumnItemId = () => `column-${v4()}`
 

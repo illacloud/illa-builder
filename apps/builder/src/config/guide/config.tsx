@@ -9,28 +9,38 @@ import { componentsActions } from "@/redux/currentApp/components/componentsSlice
 import { guideActions } from "@/redux/guide/guideSlice"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { WidgetConfigMap } from "@/widgetLibrary/widgetBuilder"
+import { WidgetConfig } from "@/widgetLibrary/interface"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
-export const SELECT_WIDGET_ITEM = {
-  INPUT_WIDGET: {
-    highlightIcon: InputHighlightIcon,
-    ...WidgetConfigMap["INPUT_WIDGET"].config,
-  },
-  BUTTON_WIDGET: {
-    highlightIcon: ButtonHighlightIcon,
-    ...WidgetConfigMap["BUTTON_WIDGET"].config,
-  },
-  DATA_GRID_WIDGET: {
-    highlightIcon: TableHighlightIcon,
-    ...WidgetConfigMap["DATA_GRID_WIDGET"].config,
-  },
+export let SELECT_WIDGET_ITEM: Record<
+  string,
+  WidgetConfig & {
+    highlightIcon: string
+  }
+> = {}
+
+export const registerSelectWidgetItem = () => {
+  SELECT_WIDGET_ITEM = {
+    INPUT_WIDGET: {
+      highlightIcon: InputHighlightIcon,
+      ...widgetBuilder("INPUT_WIDGET").config,
+    },
+    BUTTON_WIDGET: {
+      highlightIcon: ButtonHighlightIcon,
+      ...widgetBuilder("BUTTON_WIDGET").config,
+    },
+    DATA_GRID_WIDGET: {
+      highlightIcon: TableHighlightIcon,
+      ...widgetBuilder("DATA_GRID_WIDGET").config,
+    },
+  }
+}
+
+export const getGuidSelectWidgetList = () => {
+  return Object.keys(SELECT_WIDGET_ITEM) as SelectWidget[]
 }
 
 export type SelectWidget = keyof typeof SELECT_WIDGET_ITEM
-
-export const GUIDE_SELECT_WIDGET = Object.keys(
-  SELECT_WIDGET_ITEM,
-) as SelectWidget[]
 
 export const GUIDE_SQL_QUERY =
   "select * \n" +

@@ -13,7 +13,7 @@ import { WrapperContainerProps } from "./interface"
 import { applyWrapperPendingStyle, hoverHotSpotStyle } from "./style"
 
 const WrapperContainer: FC<WrapperContainerProps> = (props) => {
-  const { displayName, parentNodeDisplayName, widgetHeight, children } = props
+  const { displayName, widgetHeight, children } = props
   const executionResult = useSelector(getExecutionResult)
 
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
@@ -39,11 +39,7 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       realProps?.dynamicMinHeight === widgetHeight)
 
   return (
-    <div
-      css={hoverHotSpotStyle}
-      data-displayname={displayName}
-      data-parentnode={parentNodeDisplayName}
-    >
+    <div css={hoverHotSpotStyle}>
       <div
         css={applyWrapperPendingStyle({
           hasError,

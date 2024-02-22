@@ -7,7 +7,7 @@ import {
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import {
   WidgetType,
-  WidgetTypeList,
+  getWidgetTypeList,
   widgetBuilder,
 } from "@/widgetLibrary/widgetBuilder"
 
@@ -80,11 +80,11 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
 }
 
 export const buildComponentConfigs = () => {
-  return WidgetTypeList.filter(
-    (type) => !DEPRECATED_WIDGETS.includes(type),
-  ).map((item) => {
-    return getListItemConfig(item) as WidgetConfig
-  }) as WidgetConfig[]
+  return getWidgetTypeList()
+    .filter((type) => !DEPRECATED_WIDGETS.includes(type))
+    .map((item) => {
+      return getListItemConfig(item) as WidgetConfig
+    }) as WidgetConfig[]
 }
 
 const buildSessionTypeMapComponentConfig = (): TypeMapComponent => {

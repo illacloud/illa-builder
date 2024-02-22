@@ -6,7 +6,7 @@ import { dealRawData2ArrayData } from "@/page/App/components/InspectPanel/PanelS
 import SearchSelectSetter from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/searchSelect"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { UNIQUE_ID_NAME } from "@/widgetLibrary/DataGridWidget/constants"
+import { UNIQUE_ID_NAME } from "@/widgetLibrary/PC/DataGridWidget/constants"
 import { ColumnsSelectSetterProps } from "./interface"
 
 const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {

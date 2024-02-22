@@ -4,7 +4,7 @@ import {
   getIsILLAEditMode,
   getSelectedComponentDisplayNames,
 } from "@/redux/config/configSelector"
-import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
+import { TransformWidgetWrapper } from "@/widgetLibrary/PC/PublicSector/TransformWidgetWrapper"
 import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimitedContainer"
 import { ResizingAndDragContainer } from "./components/ResizingAndDragContainer"
 import WrapperContainer from "./components/WrapperContainer"
@@ -46,11 +46,7 @@ const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       widgetType={widgetType}
       columnNumber={columnNumber}
     >
-      <WrapperContainer
-        displayName={displayName}
-        parentNodeDisplayName={parentNodeDisplayName}
-        widgetHeight={height}
-      >
+      <WrapperContainer displayName={displayName} widgetHeight={height}>
         <TransformWidgetWrapper
           displayName={displayName}
           widgetType={widgetType}

@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { APP_TYPE } from "@illa-public/public-types"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { AxiosResponse } from "axios"
 import { FC, useEffect } from "react"
@@ -27,6 +28,7 @@ import {
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
+import { registerWidget } from "../../widgetLibrary/widgetBuilder"
 import { CanvasPanel } from "../App/Module/CanvasPanel"
 import { CurrentAppResp } from "../App/resp/currentAppResp"
 
@@ -56,6 +58,7 @@ export const DeployContent: FC = () => {
       document.title = appInfo.data.appInfo.appName
       dispatch(configActions.updateIllaMode("production"))
       dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
+      registerWidget(appInfo.data.appInfo.config.appType ?? APP_TYPE.PC)
       const canvasTree = appInfo.data.components
       let needFixedCanvasTree = canvasTree
       if (canvasTree.props) {

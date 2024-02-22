@@ -9,7 +9,7 @@ import {
 } from "@/page/App/components/InspectPanel/PanelSetters/IconSetter/interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/components/Label"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { AllData } from "@/widgetLibrary/IconWidget/utils"
+import { AllData } from "@/widgetLibrary/PC/IconWidget/utils"
 import { setterContainerStyle } from "./style"
 
 const IconSelector: FC<IconSelectorProps> = (props) => {
