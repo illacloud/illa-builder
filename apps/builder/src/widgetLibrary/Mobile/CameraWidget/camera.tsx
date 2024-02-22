@@ -61,6 +61,40 @@ export const CameraWidget: FC<CameraWidgetProps> = (props) => {
           uploadParams,
           abortController.signal,
         )
+        if (res) {
+          const currentValue = await handleGetValueAfterUpload(
+            file.name,
+            fileList,
+            res.id,
+            appID,
+            allowAnonymousUse,
+          )
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: currentValue,
+              },
+            },
+          ])
+        } else {
+          const currentValue = fileList.map((item) => {
+            if (item.fileName === file.name) {
+              return {
+                ...item,
+                driveUploadStatus: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
+              }
+            } else return item
+          })
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                value: currentValue,
+              },
+            },
+          ])
+        }
       } catch (e) {
         handleCollaPurchaseError(e, CollarModalType.TRAFFIC, "CAMERA_WIDGET")
         const currentValue = fileList.map((item) => {
@@ -80,40 +114,8 @@ export const CameraWidget: FC<CameraWidgetProps> = (props) => {
           },
         ])
       }
-      if (res) {
-        const currentValue = await handleGetValueAfterUpload(
-          file.name,
-          fileList,
-          res.id,
-        )
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              value: currentValue,
-            },
-          },
-        ])
-      } else {
-        const currentValue = fileList.map((item) => {
-          if (item.fileName === file.name) {
-            return {
-              ...item,
-              driveUploadStatus: FILE_ITEM_DETAIL_STATUS_IN_UI.ERROR,
-            }
-          } else return item
-        })
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              value: currentValue,
-            },
-          },
-        ])
-      }
     },
-    [displayName, handleUpdateMultiExecutionResult],
+    [allowAnonymousUse, appID, displayName, handleUpdateMultiExecutionResult],
   )
 
   const handleUpload = async (file: File) => {
