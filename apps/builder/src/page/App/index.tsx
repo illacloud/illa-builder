@@ -57,7 +57,6 @@ import { PageNavBar } from "./Module/PageNavBar"
 import { useResize } from "./components/ScaleSquare/components/ResizingAndDragContainer/ResizeHandler/hooks"
 import {
   bottomPanelStyle,
-  centerPanelStyle,
   contentStyle,
   editorContainerStyle,
   messageWrapperStyle,
@@ -212,7 +211,7 @@ export const Editor: FC = () => {
                 <LeftPanel />
                 <div css={middlePanelStyle}>
                   <TriggerProvider renderInBody zIndex={10}>
-                    <CanvasPanel css={centerPanelStyle} />
+                    <CanvasPanel />
                   </TriggerProvider>
                   <TriggerProvider renderInBody zIndex={10}>
                     {showBottomPanel && !showDebugger ? <ActionEditor /> : null}

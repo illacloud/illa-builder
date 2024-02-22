@@ -46,11 +46,6 @@ export const leftPanelStyle = css`
   padding-bottom: 48px;
 `
 
-export const centerPanelStyle = css`
-  height: 100%;
-  width: 100%;
-`
-
 export const bottomPanelStyle = css`
   box-sizing: border-box;
   width: 100%;

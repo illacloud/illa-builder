@@ -19,7 +19,6 @@ import { AppLoading } from "@/page/App/components/AppLoading"
 import { Debugger } from "@/page/App/components/Debugger"
 import {
   bottomPanelStyle,
-  centerPanelStyle,
   contentStyle,
   editorContainerStyle,
   middlePanelStyle,
@@ -97,7 +96,7 @@ const GuideApp: FC = () => {
               {showLeftPanel && <DataWorkspace />}
               <div css={middlePanelStyle}>
                 <TriggerProvider renderInBody zIndex={10}>
-                  <CanvasPanel ref={canvasRef} css={centerPanelStyle} />
+                  <CanvasPanel ref={canvasRef} />
                 </TriggerProvider>
                 {showBottomPanel && !showDebugger ? <ActionEditor /> : null}
                 {showDebugger && <Debugger css={bottomPanelStyle} />}
