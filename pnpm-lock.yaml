@@ -441,6 +441,9 @@ importers:
       react-virtuoso:
         specifier: ^4.3.11
         version: 4.3.11(react-dom@18.2.0)(react@18.2.0)
+      react-webcam:
+        specifier: ^7.2.0
+        version: 7.2.0(react-dom@18.2.0)(react@18.2.0)
       react-window:
         specifier: ^1.8.9
         version: 1.8.9(react-dom@18.2.0)(react@18.2.0)
@@ -15611,6 +15614,16 @@ packages:
   /react-virtuoso@4.3.11(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-0YrCvQ5GsIKRcN34GxrzhSJGuMNI+hGxWci5cTVuPQ8QWTEsrKfCyqm7YNBMmV3pu7onG1YVUBo86CyCXdejXg==}
     engines: {node: '>=10'}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-webcam@7.2.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-xkrzYPqa1ag2DP+2Q/kLKBmCIfEx49bVdgCCCcZf88oF+0NPEbkwYk3/s/C7Zy0mhM8k+hpdNkBLzxg8H0aWcg==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0

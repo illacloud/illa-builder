@@ -75,7 +75,7 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
       }}
       onError={() => {
         setError(true)
-        sourceLoadErrorHandle?.(imageSrc, "image")
+        sourceLoadErrorHandle?.(imageSrc, "IMAGE_WIDGET")
       }}
     />
   )

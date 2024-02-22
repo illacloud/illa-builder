@@ -236,7 +236,8 @@ export const transformEvents = (
         widgetMethod === "resetValue" ||
         widgetMethod === "resetMarkers" ||
         widgetMethod === "onFreeTimeDragOrClick" ||
-        widgetMethod === "openScanner"
+        widgetMethod === "openScanner" ||
+        widgetMethod === "openCamera"
       ) {
         return {
           script: `{{${widgetID}.${widgetMethod}()}}`,

@@ -135,6 +135,7 @@
     "react-use": "^17.4.0",
     "react-use-measure": "^2.1.1",
     "react-virtuoso": "^4.3.11",
+    "react-webcam": "^7.2.0",
     "react-window": "^1.8.9",
     "react-window-infinite-loader": "^1.0.9",
     "rehype-raw": "^6.1.1",

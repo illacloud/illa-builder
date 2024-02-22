@@ -19,7 +19,7 @@ export const sessionTypeMapSessionNameKey = {
   COMMON: i18n.t("editor.widget_picker.sessions.commonly"),
   INPUTS: i18n.t("editor.widget_picker.sessions.inputs"),
   SELECT: i18n.t("editor.widget_picker.sessions.selects"),
-  ILLA_DRIVE: i18n.t("editor.widget_picker.sessions.drive"),
+  FILE_INPUT: i18n.t("editor.widget_picker.sessions.files"),
   CALENDAR: i18n.t("editor.widget_picker.sessions.calendar"),
   PRESENTATION: i18n.t("editor.widget_picker.sessions.presentation"),
   DATA: i18n.t("editor.widget_picker.sessions.data"),
@@ -50,7 +50,7 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
   const sessionConfigs: TypeMapComponent = {
     COMMON: [],
     INPUTS: [],
-    ILLA_DRIVE: [],
+    FILE_INPUT: [],
     SELECT: [],
     CALENDAR: [],
     DATA: [],

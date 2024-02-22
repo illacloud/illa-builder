@@ -13,7 +13,7 @@ export const RECORDING_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.recording.name"),
   icon: <RecordingWidgetIcon />,
   keywords: ["Recording", "录音"],
-  sessionType: "INPUTS",
+  sessionType: "FILE_INPUT",
   w: 10,
   h: 7,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,

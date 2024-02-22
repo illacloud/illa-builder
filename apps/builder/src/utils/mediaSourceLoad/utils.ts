@@ -12,5 +12,7 @@ export const getReportElementByWidget = (
       return `${prefix}traffic_not_enough_video`
     case "AUDIO_WIDGET":
       return `${prefix}traffic_not_enough_audio`
+    case "CAMERA_WIDGET":
+      return `${prefix}traffic_not_enough_camera`
   }
 }

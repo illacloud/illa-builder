@@ -10,7 +10,7 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   type: "UPLOAD_WIDGET",
   icon: <UploadWidgetIcon />,
   keywords: ["Upload Input", "上传"],
-  sessionType: "INPUTS",
+  sessionType: "FILE_INPUT",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   version: 0,
   defaults: {

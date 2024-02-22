@@ -396,3 +396,13 @@ export const fetchGCSUploadPresignedURL = async (
     return Promise.reject(e)
   }
 }
+
+export const fetchDeleteFile = async (id: string) => {
+  return await driveRequest<null>(
+    {
+      url: `/files/${id}`,
+      method: "DELETE",
+    },
+    { teamID: getCurrentTeamID() },
+  )
+}

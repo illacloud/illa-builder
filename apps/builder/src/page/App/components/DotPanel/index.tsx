@@ -105,7 +105,10 @@ export const DotPanel: FC = () => {
     <MouseHoverProvider>
       <MouseMoveProvider>
         {isMobileAPP ? (
-          <div css={applyMobileViewportContainerWrapperStyle(mode)}>
+          <div
+            data-mobile-fullscreen-container={true}
+            css={applyMobileViewportContainerWrapperStyle(mode)}
+          >
             <RenderPage
               key={currentDisplayName}
               currentPageDisplayName={currentDisplayName}

@@ -12,6 +12,11 @@ import {
   BUTTON_PANEL_CONFIG,
   BUTTON_WIDGET_CONFIG,
 } from "./ButtonWidget"
+import {
+  CAMERA_EVENT_HANDLER_CONFIG,
+  CAMERA_PANEL_CONFIG,
+  CAMERA_WIDGET_CONFIG,
+} from "./CameraWidget"
 import { CHART_PANEL_CONFIG, CHART_WIDGET_V2_CONFIG } from "./ChartWidget"
 import {
   CHECKBOX_GROUP_PANEL_CONFIG,
@@ -243,6 +248,12 @@ export const getMobileWidgetConfig = () => {
       widget: lazy(
         () => import("@/widgetLibrary/Mobile/DrivePickerWidget/drivePicker"),
       ),
+    }
+    MobileWidgetConfigMap["CAMERA_WIDGET"] = {
+      config: CAMERA_WIDGET_CONFIG,
+      panelConfig: CAMERA_PANEL_CONFIG,
+      eventHandlerConfig: CAMERA_EVENT_HANDLER_CONFIG,
+      widget: lazy(() => import("@/widgetLibrary/Mobile/CameraWidget/camera")),
     }
   }
 

@@ -1,3 +1,5 @@
+const MOBILE_USER_AGENT = /Android|webOS|iPhone|iPod|BlackBerry/i
+
 export const getUserPlatform = () => {
   const platform =
     "userAgentData" in navigator
@@ -27,4 +29,8 @@ export const isWindows = () => {
 
 export const isLinux = () => {
   return getUserPlatform() === "Linux"
+}
+
+export const isMobileByUserAgent = () => {
+  return MOBILE_USER_AGENT.test(navigator?.userAgent)
 }
