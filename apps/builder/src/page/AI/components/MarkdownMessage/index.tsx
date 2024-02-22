@@ -64,7 +64,14 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
             ),
             code: ({ children }) => (
               <pre>
-                <CodeBlock theme={github} language="jsx" text={`${children}`} />
+                <CodeBlock
+                  customStyle={{
+                    backgroundColor: "transparent",
+                  }}
+                  theme={github}
+                  language="jsx"
+                  text={`${children}`}
+                />
               </pre>
             ),
           }}
