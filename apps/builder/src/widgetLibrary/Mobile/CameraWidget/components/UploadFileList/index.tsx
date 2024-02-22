@@ -1,14 +1,9 @@
 import { AnimatePresence } from "framer-motion"
 import { FC, useState } from "react"
-import {
-  DeleteIcon,
-  EyeOnIcon,
-  FileVideoIcon,
-  Loading,
-  UploadIcon,
-} from "@illa-design/react"
+import { DeleteIcon, EyeOnIcon, Loading, UploadIcon } from "@illa-design/react"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
 import { fetchDeleteFile } from "@/services/drive"
+import { isIOSMobileByUserAgent } from "@/utils/userAgent"
 import { DEFAULT_LABEL } from "@/widgetLibrary/Mobile/CameraWidget/constant"
 import {
   CAMERA_MODE,
@@ -25,7 +20,6 @@ import {
   loadingStyle,
   maskStyle,
   mediaStyle,
-  videoItemStyle,
 } from "./style"
 
 interface UploadFileListProps
@@ -69,7 +63,9 @@ const UploadFileList: FC<UploadFileListProps> = ({
         <span css={labelStyle}>{label ?? DEFAULT_LABEL}</span>
         <div css={fileListContainerStyle}>
           {value.map((item) => {
-            let url: string = ""
+            let url: string = URL.createObjectURL(
+              UploadStore.getFile(item.fileName),
+            )
             getCurrentItemInputType(item.contentType) === CAMERA_MODE.PHOTO &&
               (url = URL.createObjectURL(UploadStore.getFile(item.fileName)))
             return (
@@ -83,18 +79,14 @@ const UploadFileList: FC<UploadFileListProps> = ({
                 <div css={mediaStyle}>
                   {getCurrentItemInputType(item.contentType) ===
                   CAMERA_MODE.VIDEO ? (
-                    <div css={videoItemStyle}>
-                      {item.driveUploadStatus ===
-                      FILE_ITEM_DETAIL_STATUS_IN_UI.SUCCESS ? (
-                        <video
-                          width="100%"
-                          autoPlay={false}
-                          src={item.tinyURL}
-                        />
-                      ) : (
-                        <FileVideoIcon size="24px" />
-                      )}
-                    </div>
+                    <video
+                      width="100%"
+                      poster={isIOSMobileByUserAgent() ? url : undefined}
+                      src={url}
+                      onLoadStart={() => {
+                        URL.revokeObjectURL(url)
+                      }}
+                    />
                   ) : (
                     <img
                       src={url}

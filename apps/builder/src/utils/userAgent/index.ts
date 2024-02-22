@@ -1,4 +1,4 @@
-const MOBILE_USER_AGENT = /Android|webOS|iPhone|iPod|BlackBerry/i
+const MOBILE_USER_AGENT = /Android|webOS|iPhone|iPod|ipad|BlackBerry/i
 
 export const getUserPlatform = () => {
   const platform =
@@ -33,4 +33,8 @@ export const isLinux = () => {
 
 export const isMobileByUserAgent = () => {
   return MOBILE_USER_AGENT.test(navigator?.userAgent)
+}
+
+export const isIOSMobileByUserAgent = () => {
+  return /iPhone|iPad|iPod/i.test(navigator?.userAgent)
 }
