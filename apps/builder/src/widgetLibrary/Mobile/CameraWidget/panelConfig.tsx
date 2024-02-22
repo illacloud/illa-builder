@@ -70,6 +70,18 @@ export const CAMERA_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
+      {
+        id: `${baseWidgetName}-label-allowAnonymousUse`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.drive_builder.allow_public_use",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.drive_builder.allow_public_use",
+        ),
+        attrName: "allowAnonymousUse",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        setterType: "DRIVE_WITH_STATUS_SWITCH_SETTER",
+      },
     ],
   },
   {

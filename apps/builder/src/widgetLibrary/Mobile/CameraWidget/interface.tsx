@@ -37,6 +37,7 @@ export interface WrappedCameraProps {
   value?: FileInfo[]
   label?: string
   variant?: "fill" | "outline"
+  allowAnonymousUse?: boolean
   handleUpload: (file: File) => void
   handleRetry: (file: File) => void
   handleDeleteFile: (fileName: string) => void

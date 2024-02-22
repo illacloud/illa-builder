@@ -33,6 +33,7 @@ export const CameraWidget: FC<CameraWidgetProps> = (props) => {
     selectionType,
     customRule,
     required,
+    allowAnonymousUse,
     updateComponentHeight,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -150,7 +151,7 @@ export const CameraWidget: FC<CameraWidgetProps> = (props) => {
 
     const uploadParams = {
       folder: `${appID}/${FOLDER_NAME}`,
-      allowAnonymous: false,
+      allowAnonymous: !!allowAnonymousUse,
       replace: true,
     }
     UploadStore.addFile(file)
@@ -161,7 +162,7 @@ export const CameraWidget: FC<CameraWidgetProps> = (props) => {
     const abortController = new AbortController()
     const uploadParams = {
       folder: `${appID}/${FOLDER_NAME}`,
-      allowAnonymous: false,
+      allowAnonymous: !!allowAnonymousUse,
       replace: true,
     }
     const needUpdateValue = value.map((item) => {
