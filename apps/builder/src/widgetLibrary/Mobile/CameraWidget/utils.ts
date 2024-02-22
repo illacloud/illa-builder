@@ -7,7 +7,10 @@ import { IMAGE_FILE_TYPE_RULES, matchRules } from "@illa-public/utils"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
-import { fetchGenerateTinyUrl } from "@/services/drive"
+import {
+  fetchBatchAnonymousGenerateTinyUrl,
+  fetchGenerateTinyUrl,
+} from "@/services/drive"
 import {
   getUploadToDriveSingedURL,
   updateFilesToDrive,
@@ -99,6 +102,8 @@ export const handleGetValueAfterUpload = async (
   targetFileName: string,
   files: FileInfo[],
   fileID: string,
+  appID: string,
+  allowAnonymousUse?: boolean,
 ) => {
   const currentValue = [...files]
   const targetIndex = currentValue.findIndex(
@@ -112,8 +117,13 @@ export const handleGetValueAfterUpload = async (
       expirationType: EXPIRATION_TYPE.PERSISTENT,
       hotlinkProtection: false,
     }
-    const tinyURLRes = await fetchGenerateTinyUrl(requestParams)
-    let tinyURL = `${HTTP_REQUEST_PUBLIC_BASE_URL}${PUBLIC_DRIVE_REQUEST_PREFIX}/${tinyURLRes.data.tinyURL}`
+    const tinyURLRes = allowAnonymousUse
+      ? await fetchBatchAnonymousGenerateTinyUrl(appID, requestParams)
+      : await fetchGenerateTinyUrl(requestParams)
+    const data = Array.isArray(tinyURLRes.data)
+      ? tinyURLRes.data[0]
+      : tinyURLRes.data
+    let tinyURL = `${HTTP_REQUEST_PUBLIC_BASE_URL}${PUBLIC_DRIVE_REQUEST_PREFIX}/${data.tinyURL}`
     targetNode = {
       ...targetNode,
       fileID: fileID,
