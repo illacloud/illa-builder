@@ -18,12 +18,10 @@ import { updateFileDetailStore } from "../UploadDetail/store"
 import BuildAppOnEmpty from "./Components/BuildAppOnEmpty"
 import { SHOWN_BUILD_APP } from "./Components/BuildAppOnEmpty/constants"
 import { CanvasPanelProps } from "./interface"
-import { applyScaleContainerStyle } from "./style"
+import { applyMobileContainerStyle, applyScaleContainerStyle } from "./style"
 
 export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
   (props, ref) => {
-    const { ...otherProps } = props
-
     const isEditMode = useSelector(getIsILLAEditMode)
     const appID = useSelector(getAppId)
     const isEditPreviewMode = useSelector(getIsILLAPreviewMode)
@@ -47,9 +45,14 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
       return null
     }
 
-    return (
+    return isMobileAPP ? (
+      <div ref={ref} css={applyMobileContainerStyle}>
+        <DotPanel />
+        {uploadFiles.length > 0 && <UploadDetailButton />}
+        {showBuildAppOnEmpty && <BuildAppOnEmpty />}
+      </div>
+    ) : (
       <div
-        {...otherProps}
         ref={ref}
         css={applyScaleContainerStyle(isEditPreviewMode, isEditMode)}
       >

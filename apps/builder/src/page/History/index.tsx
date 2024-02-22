@@ -10,7 +10,6 @@ import { Loading, TriggerProvider, useMessage } from "@illa-design/react"
 import { updateCurrentAppInfo } from "@/hooks/useInitApp"
 import { CanvasPanel } from "@/page/App/Module/CanvasPanel"
 import {
-  centerPanelStyle,
   contentStyle,
   editorContainerStyle,
   loadingStyle,
@@ -121,7 +120,7 @@ export const History: FC = () => {
             </div>
           ) : (
             <TriggerProvider renderInBody zIndex={10}>
-              <CanvasPanel css={centerPanelStyle} />
+              <CanvasPanel />
             </TriggerProvider>
           )}
         </div>
