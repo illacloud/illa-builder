@@ -69,13 +69,16 @@ export const mediaStyle = css`
   align-items: center;
 `
 
-export const videoItemStyle = css`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  & video {
-    background-color: ${getColor("grayBlue", "08")};
-  }
-`
+// export const videoItemStyle = css`
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   & video {
+//     background-color: ${getColor("grayBlue", "08")};
+//   }
+//   & video::-webkit-media-controls-enclosure {
+//     display: none;
+//   }
+// `
