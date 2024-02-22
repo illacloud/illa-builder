@@ -2,12 +2,16 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { applyViewportContainerWrapperStyle } from "@/page/App/components/DotPanel/style"
+import {
+  applyMobileViewportContainerWrapperStyle,
+  applyViewportContainerWrapperStyle,
+} from "@/page/App/components/DotPanel/style"
 import {
   getIllaMode,
   getIsILLAPreviewMode,
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
+import { getIsMobileApp } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getViewportSizeSelector } from "@/redux/currentApp/components/componentsSelector"
 import {
   getAppLoadedActions,
@@ -36,6 +40,7 @@ export const DotPanel: FC = () => {
   const viewportSize = useSelector(getViewportSizeSelector)
 
   const isPreviewMode = useSelector(getIsILLAPreviewMode)
+  const isMobileAPP = useSelector(getIsMobileApp)
 
   const { currentPageIndex, pageSortedKey, homepageDisplayName } =
     rootExecutionProps
@@ -99,18 +104,27 @@ export const DotPanel: FC = () => {
   return (
     <MouseHoverProvider>
       <MouseMoveProvider>
-        <div
-          css={applyViewportContainerWrapperStyle(
-            mode,
-            isPreviewMode ? viewportSize.viewportWidth : undefined,
-            isPreviewMode ? viewportSize.viewportHeight : undefined,
-          )}
-        >
-          <RenderPage
-            key={currentDisplayName}
-            currentPageDisplayName={currentDisplayName}
-          />
-        </div>
+        {isMobileAPP ? (
+          <div css={applyMobileViewportContainerWrapperStyle(mode)}>
+            <RenderPage
+              key={currentDisplayName}
+              currentPageDisplayName={currentDisplayName}
+            />
+          </div>
+        ) : (
+          <div
+            css={applyViewportContainerWrapperStyle(
+              mode,
+              isPreviewMode ? viewportSize.viewportWidth : undefined,
+              isPreviewMode ? viewportSize.viewportHeight : undefined,
+            )}
+          >
+            <RenderPage
+              key={currentDisplayName}
+              currentPageDisplayName={currentDisplayName}
+            />
+          </div>
+        )}
       </MouseMoveProvider>
     </MouseHoverProvider>
   )

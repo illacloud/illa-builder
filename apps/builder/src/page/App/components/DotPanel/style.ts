@@ -150,6 +150,26 @@ export const applyViewportContainerWrapperStyle = (
   `
 }
 
+export const applyMobileViewportContainerWrapperStyle = (mode: IllaMode) => {
+  const borderStyle =
+    mode !== "production"
+      ? css`
+          outline: 12px solid ${getColor("grayBlue", "01")} !important;
+          box-shadow: 0px 2px 8px 0px rgba(28, 27, 32, 0.17);
+          border-radius: 16px;
+        `
+      : null
+  return css`
+    width: ${mode !== "production" ? "399px" : "100%"};
+    height: ${mode !== "production" ? "838px" : "100%"};
+    background-color: ${getColor("white", "01")};
+    overflow: auto;
+    margin: 0 auto;
+    position: relative;
+    ${borderStyle}
+  `
+}
+
 export const applyMultiSelectedScaleSquareStyle = (
   width: number,
   height: number,
