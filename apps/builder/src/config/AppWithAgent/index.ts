@@ -338,7 +338,6 @@ export const buildActionInfo = (
       variables: variables,
       input: `{{${variableKeyMapInputNodeDisplayName[SEND_CONTENT_LABEL]}.value}}`,
       modelConfig: {
-        maxTokens: agentInfo.modelConfig.maxTokens,
         stream: false,
       },
       virtualResource: agentInfo,

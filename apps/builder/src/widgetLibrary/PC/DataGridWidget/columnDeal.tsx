@@ -27,7 +27,6 @@ import {
   Rate,
   SingleDatePicker,
   Tag,
-  TimePicker,
 } from "@illa-design/react"
 import { GroupButton } from "@/page/App/components/InspectPanel/PanelSetters/DataGridSetter/ColumnButtonGroupSetter/interface"
 import {
@@ -447,6 +446,7 @@ export function getColumnFromType(
           return (
             <SingleDatePicker
               readonly
+              showTime={false}
               colorScheme="techPurple"
               editable={false}
               allowClear={false}
@@ -463,10 +463,11 @@ export function getColumnFromType(
         type: "datetime",
         renderCell: (params: GridRenderCellParams) => {
           return (
-            <TimePicker
+            <SingleDatePicker
               readonly
               colorScheme="techPurple"
               editable={false}
+              showTime={true}
               allowClear={false}
               value={params.value}
               format={get(params.colDef, "format")}
