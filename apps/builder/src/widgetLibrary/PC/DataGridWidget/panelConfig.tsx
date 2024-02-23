@@ -64,7 +64,10 @@ export const getAggregationSetter = (type: ColumnType): PanelFieldConfig => {
       ]
       break
   }
-
+  aggregationOptions.unshift({
+    label: "—",
+    value: "",
+  })
   return {
     id: `${baseWidgetName}-column-aggregationModel`,
     labelName: i18n.t("editor.inspect.setter_label.aggregation"),
