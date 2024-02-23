@@ -292,6 +292,11 @@ import {
   VIDEO_WIDGET_CONFIG,
 } from "@/widgetLibrary/PC/VideoWidget"
 import { EventHandlerConfig, WidgetConfig } from "@/widgetLibrary/interface"
+import {
+  SIGNATURE_EVENT_HANDLER_CONFIG,
+  SIGNATURE_PANEL_CONFIG,
+  SIGNATURE_WIDGET_CONFIG,
+} from "./SignatureWidget"
 
 export const getPCWidgetConfig = () => {
   const PCWidgetConfigMap: Record<
@@ -381,6 +386,14 @@ export const getPCWidgetConfig = () => {
       config: JSON_SCHEMA_FORM_WIDGET_CONFIG,
       panelConfig: JSON_SCHEMA_FORM_PANEL_CONFIG,
       eventHandlerConfig: JSON_SCHEMA_FORM_EVENT_HANDLER_CONFIG,
+    },
+    SIGNATURE_WIDGET: {
+      widget: lazy(
+        () => import("@/widgetLibrary/PC/SignatureWidget/signature"),
+      ),
+      config: SIGNATURE_WIDGET_CONFIG,
+      panelConfig: SIGNATURE_PANEL_CONFIG,
+      eventHandlerConfig: SIGNATURE_EVENT_HANDLER_CONFIG,
     },
     // select inputs
     SWITCH_WIDGET: {
