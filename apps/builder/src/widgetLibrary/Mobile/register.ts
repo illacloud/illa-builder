@@ -79,6 +79,11 @@ import {
   RICH_TEXT_WIDGET_CONFIG,
 } from "./RichTextWidget"
 import {
+  SIGNATURE_EVENT_HANDLER_CONFIG,
+  SIGNATURE_PANEL_CONFIG,
+  SIGNATURE_WIDGET_CONFIG,
+} from "./SignatureWidget"
+import {
   SLIDER_EVENT_HANDLER_CONFIG,
   SLIDER_PANEL_CONFIG,
   SLIDER_WIDGET_CONFIG,
@@ -135,6 +140,14 @@ export const getMobileWidgetConfig = () => {
       panelConfig: SLIDER_PANEL_CONFIG,
       eventHandlerConfig: SLIDER_EVENT_HANDLER_CONFIG,
       widget: lazy(() => import("@/widgetLibrary/Mobile/SliderWidget/slider")),
+    },
+    SIGNATURE_WIDGET: {
+      widget: lazy(
+        () => import("@/widgetLibrary/Mobile/SignatureWidget/signature"),
+      ),
+      config: SIGNATURE_WIDGET_CONFIG,
+      panelConfig: SIGNATURE_PANEL_CONFIG,
+      eventHandlerConfig: SIGNATURE_EVENT_HANDLER_CONFIG,
     },
     // select inputs
     SWITCH_WIDGET: {
