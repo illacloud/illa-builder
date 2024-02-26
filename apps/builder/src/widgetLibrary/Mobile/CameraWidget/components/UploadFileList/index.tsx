@@ -3,7 +3,7 @@ import { FC, useState } from "react"
 import { DeleteIcon, EyeOnIcon, Loading, UploadIcon } from "@illa-design/react"
 import { FILE_ITEM_DETAIL_STATUS_IN_UI } from "@/page/App/Module/UploadDetail/components/DetailList/interface"
 import { fetchDeleteFile } from "@/services/drive"
-import { isIOSMobileByUserAgent } from "@/utils/userAgent"
+import { isMobileByUserAgent } from "@/utils/userAgent"
 import { DEFAULT_LABEL } from "@/widgetLibrary/Mobile/CameraWidget/constant"
 import {
   CAMERA_MODE,
@@ -66,8 +66,6 @@ const UploadFileList: FC<UploadFileListProps> = ({
             let url: string = URL.createObjectURL(
               UploadStore.getFile(item.fileName),
             )
-            getCurrentItemInputType(item.contentType) === CAMERA_MODE.PHOTO &&
-              (url = URL.createObjectURL(UploadStore.getFile(item.fileName)))
             return (
               <div
                 key={item.fileName}
@@ -81,7 +79,7 @@ const UploadFileList: FC<UploadFileListProps> = ({
                   CAMERA_MODE.VIDEO ? (
                     <video
                       width="100%"
-                      poster={isIOSMobileByUserAgent() ? url : undefined}
+                      poster={isMobileByUserAgent() ? url : undefined}
                       src={url}
                       onLoadStart={() => {
                         URL.revokeObjectURL(url)
