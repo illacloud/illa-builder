@@ -15,7 +15,7 @@ const OptionListSetter: FC<OptionListSetterProps> = (props) => {
     widgetDisplayName,
     childrenSetter,
     handleUpdateMultiAttrDSL,
-    itemName,
+    itemName = "Option",
   } = props
 
   const execResult = useSelector(getExecutionResult)

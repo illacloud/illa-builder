@@ -26,6 +26,7 @@ import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import {
   extractReferencesFromScript,
   getImmediateParentsOfPropertyPaths,
+  getObjectPaths,
   isAction,
   isWidget,
   removeParentPath,
@@ -133,6 +134,7 @@ export class ExecutionTreeFactory {
         getContainerListDisplayNameMappedChildrenNodeDisplayName(
           store.getState(),
         )
+
       const listWidgetDisplayNames = Object.keys(listWidgets)
       let currentListDisplayName = ""
       for (let i = 0; i < listWidgetDisplayNames.length; i++) {
@@ -141,11 +143,13 @@ export class ExecutionTreeFactory {
           break
         }
       }
+
       if (isObject(validationPaths)) {
-        Object.keys(validationPaths).forEach((validationPath) => {
-          const validationType = validationPaths[
-            validationPath
-          ] as VALIDATION_TYPES
+        getObjectPaths(validationPaths).forEach((validationPath) => {
+          const validationType = get(
+            validationPaths,
+            validationPath,
+          ) as VALIDATION_TYPES
           const fullPath = `${displayName}.${validationPath}`
           const validationFunc = validationFactory[validationType]
           const value = get(widgetOrAction, validationPath)
@@ -377,6 +381,7 @@ export class ExecutionTreeFactory {
     this.oldRawTree = klona(currentRawTree)
     const updatePaths = this.getUpdatePathFromDifferences(differences)
     const walkedPath = new Set<string>()
+
     let currentExecution = this.updateExecutionTreeByUpdatePaths(
       updatePaths,
       this.executedTree,
@@ -401,6 +406,7 @@ export class ExecutionTreeFactory {
       path,
       -1,
     )
+
     this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
     this.mergeDebugDataTree(
       debuggerData,
