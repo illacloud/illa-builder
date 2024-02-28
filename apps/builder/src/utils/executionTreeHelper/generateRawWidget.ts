@@ -11,6 +11,7 @@ export const generateRawWidget = (widget: WidgetShape) => {
     panelConfig,
     widget,
   )
+
   return {
     ...widget,
     $validationPaths: validationPaths,

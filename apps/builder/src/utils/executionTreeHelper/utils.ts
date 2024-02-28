@@ -136,3 +136,25 @@ export const removeWidgetOrActionMethods = (
     {},
   )
 }
+
+export function getObjectPaths(obj: Record<string, unknown>, currentPath = "") {
+  let paths: string[] = []
+
+  if (typeof obj === "object" && obj !== null) {
+    Object.keys(obj).forEach((key) => {
+      const value = obj[key]
+      const newPath = Array.isArray(obj)
+        ? `${currentPath}.${key}`
+        : `${currentPath ? currentPath + "." : ""}${key}`
+      if (typeof value === "object" && value !== null) {
+        paths = paths.concat(
+          getObjectPaths(value as Record<string, unknown>, newPath),
+        )
+      } else {
+        paths.push(newPath)
+      }
+    })
+  }
+
+  return paths.map((path) => (path.startsWith(".") ? path.substr(1) : path))
+}
