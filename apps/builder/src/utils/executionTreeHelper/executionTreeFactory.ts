@@ -464,8 +464,15 @@ export class ExecutionTreeFactory {
         updatePaths.push(`${subPaths[0]}`)
       }
       if (d.kind === "A") {
-        const { index } = d
-        updatePaths.push(`${convertPathToString([...subPaths, index])}`)
+        const { index, path } = d
+
+        updatePaths.push(
+          `${convertPathToString([
+            ...subPaths,
+            ...path.filter((p) => !subPaths.includes(p)),
+            index,
+          ])}`,
+        )
       }
     }
     const hasPath = new Set<string>()
