@@ -26,6 +26,7 @@ export const columnLabelContainerStyle = css`
   display: flex;
   flex-grow: 1;
   cursor: pointer;
+  height: 22px;
   overflow: hidden;
   gap: 8px;
 `
