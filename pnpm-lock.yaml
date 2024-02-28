@@ -432,6 +432,9 @@ importers:
       react-slick:
         specifier: ^0.29.0
         version: 0.29.0(react-dom@18.2.0)(react@18.2.0)
+      react-syntax-highlighter:
+        specifier: ^15.5.0
+        version: 15.5.0(react@18.2.0)
       react-use:
         specifier: ^17.4.0
         version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -456,6 +459,9 @@ importers:
       rehype-sanitize:
         specifier: ^5.0.1
         version: 5.0.1
+      remark-breaks:
+        specifier: ^4.0.0
+        version: 4.0.0
       remark-gfm:
         specifier: ^3.0.1
         version: 3.0.1
@@ -526,6 +532,9 @@ importers:
       '@types/react-slick':
         specifier: ^0.23.10
         version: 0.23.10
+      '@types/react-syntax-highlighter':
+        specifier: ^15.5.11
+        version: 15.5.11
       '@types/react-window':
         specifier: ^1.8.5
         version: 1.8.5
@@ -7827,11 +7836,10 @@ packages:
       '@types/react': 18.2.38
     dev: true
 
-  /@types/react-syntax-highlighter@15.5.9:
-    resolution: {integrity: sha512-ven8zRSVMNkqt8ySJ2eEW5ugbfl/V/Z9S1c9UNhGqwkwVZNV5akk10rYDALxgwS25cLmN+/Q5UxlGj9CJmZ6Ew==}
+  /@types/react-syntax-highlighter@15.5.11:
+    resolution: {integrity: sha512-ZqIJl+Pg8kD+47kxUjvrlElrraSUrYa4h0dauY/U/FTUuprSCqvUj+9PNQNQzVc6AJgIWUUxn87/gqsMHNbRjw==}
     dependencies:
       '@types/react': 18.2.38
-    dev: false
 
   /@types/react-transition-group@4.4.10:
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==}
@@ -13334,6 +13342,13 @@ packages:
       - supports-color
     dev: false
 
+  /mdast-util-newline-to-break@2.0.0:
+    resolution: {integrity: sha512-MbgeFca0hLYIEx/2zGsszCSEJJ1JSCdiY5xQxRcLDDGa8EPvlLPupJ4DSajbMPAnC0je8jfb9TiUATnxxrHUog==}
+    dependencies:
+      '@types/mdast': 4.0.3
+      mdast-util-find-and-replace: 3.0.1
+    dev: false
+
   /mdast-util-phrasing@3.0.1:
     resolution: {integrity: sha512-WmI1gTXUBJo4/ZmSk79Wcb2HcjPJBzM1nlI/OUWA8yk2X9ik3ffNbBGsU+09BFmXaL1IBb9fiuvq6/KMiNycSg==}
     dependencies:
@@ -15111,7 +15126,7 @@ packages:
       react: ^18.2.0
     dependencies:
       '@babel/runtime': 7.23.2
-      '@types/react-syntax-highlighter': 15.5.9
+      '@types/react-syntax-highlighter': 15.5.11
       react: 18.2.0
       react-syntax-highlighter: 15.5.0(react@18.2.0)
       styled-components: 6.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -15544,7 +15559,7 @@ packages:
     peerDependencies:
       react: ^18.2.0
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.23.8
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.29.0
@@ -15801,6 +15816,14 @@ packages:
       '@types/hast': 2.3.4
       hast-util-sanitize: 4.1.0
       unified: 10.1.2
+    dev: false
+
+  /remark-breaks@4.0.0:
+    resolution: {integrity: sha512-IjEjJOkH4FuJvHZVIW0QCDWxcG96kCq7An/KVH2NfJe6rKZU2AsHeB3OEjPNRxi4QC34Xdx7I2KGYn6IpT7gxQ==}
+    dependencies:
+      '@types/mdast': 4.0.3
+      mdast-util-newline-to-break: 2.0.0
+      unified: 11.0.4
     dev: false
 
   /remark-gfm@3.0.1:
