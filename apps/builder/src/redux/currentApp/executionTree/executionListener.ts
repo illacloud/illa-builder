@@ -79,8 +79,11 @@ async function handleStartExecution(
     const isAddAction =
       action.type.startsWith("components/add") ||
       action.type.startsWith("action/add") ||
-      action.type.startsWith("action/batchAdd")
-
+      action.type.startsWith("action/batchAdd") ||
+      componentsActions.batchUpdateMultiComponentSlicePropsReducer.match(
+        action,
+      ) ||
+      actionActions.batchUpdateMultiActionSlicePropsReducer.match(action)
     const executionResult = executionTree.updateTree(
       rawTree,
       isDeleteAction,

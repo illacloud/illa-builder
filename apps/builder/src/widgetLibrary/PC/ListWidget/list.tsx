@@ -10,6 +10,7 @@ import {
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { getObjectPaths } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 import { ListWidgetProps } from "@/widgetLibrary/PC/ListWidget/interface"
@@ -86,7 +87,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                     const rawWidget = rawTree[displayName]
                     if (rawWidget && isObject(rawWidget.$validationPaths)) {
                       const validationPaths = rawWidget.$validationPaths
-                      const validationType = validationPaths[finalPath]
+                      const validationType = get(validationPaths, finalPath)
                       if (validationType === VALIDATION_TYPES.ARRAY) {
                         const validationFunc = validationFactory[validationType]
                         const res = validationFunc?.(evalResult, "")
@@ -122,8 +123,11 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
             const rawWidget = rawTree[realDisplayName as string]
             const validationPaths = rawWidget.$validationPaths
             if (isObject(validationPaths)) {
-              Object.keys(validationPaths).forEach((path) => {
-                const validationType = validationPaths[path] as VALIDATION_TYPES
+              getObjectPaths(validationPaths).forEach((path) => {
+                const validationType = get(
+                  validationPaths,
+                  path,
+                ) as VALIDATION_TYPES
                 const validationFunc = validationFactory[validationType]
                 const currentValue = get(item, `props.${path}`, "")
                 const res = validationFunc?.(currentValue, "")

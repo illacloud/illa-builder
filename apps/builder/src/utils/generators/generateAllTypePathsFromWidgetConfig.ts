@@ -1,5 +1,5 @@
 import { convertPathToString } from "@illa-public/dynamic-string"
-import { get, toPath } from "lodash-es"
+import { get, set, toPath } from "lodash-es"
 import {
   PanelConfig,
   PanelFieldGroupConfig,
@@ -23,11 +23,11 @@ export const generateAllTypePathsFromWidgetConfig = (
           const expectedType = filedConfig.expectedType
           if (Array.isArray(expectedType)) {
             attrPath.forEach((path, i) => {
-              configValidationPaths[path] = expectedType[i]
+              set(configValidationPaths, path, expectedType[i])
             })
           } else if (expectedType) {
             attrPath.forEach((path) => {
-              configValidationPaths[path] = expectedType
+              set(configValidationPaths, path, expectedType)
             })
           }
         } else {
@@ -35,9 +35,9 @@ export const generateAllTypePathsFromWidgetConfig = (
             const expectedType = filedConfig.expectedType
 
             if (Array.isArray(expectedType)) {
-              configValidationPaths[attrPath] = expectedType[0]
+              set(configValidationPaths, attrPath, expectedType[0])
             } else if (expectedType) {
-              configValidationPaths[attrPath] = expectedType
+              set(configValidationPaths, attrPath, expectedType)
             }
           }
         }
@@ -56,35 +56,43 @@ export const generateAllTypePathsFromWidgetConfig = (
                 if (Array.isArray(childAttrPath)) {
                   if (Array.isArray(expectedType)) {
                     childAttrPath.forEach((path, i) => {
-                      configValidationPaths[
+                      set(
+                        configValidationPaths,
                         convertPathToString(
                           toPath(`${objectIndexPropertyPath}.${path}`),
-                        )
-                      ] = expectedType[i]
+                        ),
+                        expectedType[i],
+                      )
                     })
                   } else if (expectedType) {
                     childAttrPath.forEach((path) => {
-                      configValidationPaths[
+                      set(
+                        configValidationPaths,
                         convertPathToString(
                           toPath(`${objectIndexPropertyPath}.${path}`),
-                        )
-                      ] = expectedType
+                        ),
+                        expectedType,
+                      )
                     })
                   }
                 } else {
                   if (expectedType) {
                     if (Array.isArray(expectedType)) {
-                      configValidationPaths[
+                      set(
+                        configValidationPaths,
                         convertPathToString(
                           toPath(`${objectIndexPropertyPath}.${childAttrPath}`),
-                        )
-                      ] = expectedType[0]
+                        ),
+                        expectedType[0],
+                      )
                     } else if (expectedType) {
-                      configValidationPaths[
+                      set(
+                        configValidationPaths,
                         convertPathToString(
                           toPath(`${objectIndexPropertyPath}.${childAttrPath}`),
-                        )
-                      ] = expectedType
+                        ),
+                        expectedType,
+                      )
                     }
                   }
                 }
@@ -99,7 +107,11 @@ export const generateAllTypePathsFromWidgetConfig = (
               filedConfig.childrenSetter?.forEach((childConfig) => {
                 const expectedType = childConfig.expectedType
                 if (!Array.isArray(expectedType) && expectedType) {
-                  configValidationPaths[objectIndexPropertyPath] = expectedType
+                  set(
+                    configValidationPaths,
+                    objectIndexPropertyPath,
+                    expectedType,
+                  )
                 }
               })
             })
