@@ -3,13 +3,13 @@ import { applyMobileStyle } from "@illa-public/utils"
 import { getColor } from "@illa-design/react"
 
 export const agentMessageContainer = css`
-  padding: 24px 24px 8px 24px;
+  padding: 24px 40px 8px 88px;
   display: flex;
   justify-content: end;
   width: 100%;
   flex-direction: row;
   ${applyMobileStyle(css`
-    padding: 24px 12px 8px 12px;
+    padding: 24px 12px 8px 48px;
   `)}
 `
 
@@ -18,6 +18,7 @@ export const senderContainerStyle = css`
   overflow-x: hidden;
   flex-direction: column;
   align-items: end;
+  max-width: 100%;
 `
 
 export const senderNicknameStyle = css`
@@ -34,14 +35,16 @@ export const senderNicknameStyle = css`
 
 export const senderAvatarStyle = css`
   margin-left: 16px;
+  height: 32px;
+  width: 32px;
 `
 
 export const messageContainerStyle = css`
   border-radius: 8px;
-  margin-left: 48px;
-  background: ${getColor("grayBlue", "09")};
-  padding: 8px 12px;
+  background: ${getColor("techPurple", "08")};
+  padding: 12px;
   margin-top: 4px;
+  max-width: 100%;
   ${applyMobileStyle(css`
     margin-left: 0;
   `)}
