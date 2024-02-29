@@ -13,7 +13,8 @@ export const generationContainerStyle = css`
   padding-right: 24px;
   border-radius: 8px;
   border: 1px solid #f2f3f5;
-  background: getColor("white", "01");
+  background: ${getColor("white", "01")};
+  max-width: 100%;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
   ${applyMobileStyle(css`
     margin: 48px 20px 20px;

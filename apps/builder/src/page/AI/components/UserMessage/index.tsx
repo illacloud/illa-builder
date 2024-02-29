@@ -20,11 +20,12 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
       <div css={senderContainerStyle}>
         <span css={senderNicknameStyle}>{currentUserInfo.nickname}</span>
         <div css={messageContainerStyle}>
-          <MarkdownMessage>{message.message}</MarkdownMessage>
+          <MarkdownMessage isOwnMessage>{message.message}</MarkdownMessage>
         </div>
       </div>
       {!hideAvatar && (
         <Avatar
+          size={32}
           css={senderAvatarStyle}
           avatarUrl={currentUserInfo.avatar}
           name={currentUserInfo.nickname}
