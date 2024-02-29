@@ -123,7 +123,10 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
                 bd="none"
                 w="200px"
                 teamIdentifier={marketplace?.contributorTeam?.teamIdentifier}
-                handleForkApp={(appId: string, teamIdentifier?: string) => {
+                handleForkApp={async (
+                  appId: string,
+                  teamIdentifier?: string,
+                ) => {
                   track?.(
                     ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                     {
@@ -152,7 +155,7 @@ const BuildByTemplate: FC<BuildByTemplateProps> = ({
         {showCreateFromTemplateModal && (
           <CreateFromTemplateModal
             hiddenCreateBlank
-            handleForkApp={(appId: string, teamIdentifier?: string) => {
+            handleForkApp={async (appId: string, teamIdentifier?: string) => {
               track?.(
                 ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                 {
