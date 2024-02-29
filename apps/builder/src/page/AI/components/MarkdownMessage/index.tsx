@@ -19,7 +19,7 @@ import {
   markdownMessageStyle,
 } from "@/page/AI/components/MarkdownMessage/style"
 import Code from "./Code"
-import { formatTable } from "./utils"
+import { convertMarkdownTables } from "./utils"
 
 export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
   const { children, isOwnMessage } = props
@@ -72,7 +72,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
               code: (props) => <Code {...props} />,
             }}
           >
-            {formatTable.convertMarkdownTables(children ?? "")}
+            {convertMarkdownTables(children ?? "")}
           </ReactMarkdown>
         </Typography>
       </div>
