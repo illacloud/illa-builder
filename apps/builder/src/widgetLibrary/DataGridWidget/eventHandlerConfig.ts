@@ -53,7 +53,6 @@ export const DATA_GRID_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
   ],
   methods: [
-    "refresh",
     "setFilterModel",
     "setColumnVisibilityModel",
     "setPage",

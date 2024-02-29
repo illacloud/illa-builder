@@ -38,6 +38,7 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
     <div css={agentMessageContainer}>
       {!hideAvatar && (
         <Avatar
+          size={32}
           css={senderAvatarStyle}
           avatarUrl={senderAvatar}
           name={senderNickname}

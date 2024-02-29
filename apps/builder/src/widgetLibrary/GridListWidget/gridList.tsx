@@ -182,8 +182,8 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
         let value
         if (index === undefined || index < 0 || index > dataSources.length) {
           value = {
-            selectedItem: dataSources[0],
-            selectedIndex: 0,
+            selectedItem: undefined,
+            selectedIndex: undefined,
           }
         } else {
           const selectItemIndex = enableServerSidePagination
