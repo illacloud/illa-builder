@@ -1,3 +1,5 @@
+import { isString } from "@illa-design/react"
+
 const markCodeBlocks = (markdownText: string) => {
   const codeBlockRegex = /```[\s\S]*?```/g
   const placeholders: string[] = []
@@ -74,4 +76,14 @@ export const convertMarkdownTables = (
   )
   convertedText = restoreCodeBlocks(convertedText, placeholders)
   return convertedText
+}
+
+export const getTextValue = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return value.join("\n")
+  } else if (isString(value)) {
+    return value
+  } else {
+    return ""
+  }
 }

@@ -5,6 +5,7 @@ import { CodeProps } from "react-markdown/lib/ast-to-react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { CopyIcon, Text, useMessage } from "@illa-design/react"
+import { getTextValue } from "../utils"
 import {
   codeBlockContainerStyle,
   codeBlockHeaderStyle,
@@ -15,14 +16,13 @@ import {
 const Code: FC<CodeProps> = (props) => {
   const { t } = useTranslation()
   const message = useMessage()
+
   return (
     <>
       {!!props.inline ? (
-        <Text
-          css={inlineCodeStyle}
-          bg="#FAFAFA"
-          colorScheme="grayBlue"
-        >{`${props.children}`}</Text>
+        <Text css={inlineCodeStyle} bg="#FAFAFA" colorScheme="grayBlue">
+          {getTextValue(props.children)}
+        </Text>
       ) : (
         <div css={codeBlockContainerStyle}>
           <div css={codeBlockHeaderStyle}>
@@ -39,7 +39,7 @@ const Code: FC<CodeProps> = (props) => {
               }}
             >
               <CopyIcon size="16px" />
-              <span>copy code</span>
+              <span>{t("editor.ai-agent.copy_code")}</span>
             </div>
           </div>
           <SyntaxHighlighter
@@ -54,7 +54,7 @@ const Code: FC<CodeProps> = (props) => {
             }
             style={oneLight}
           >
-            {String(props.children).replace(/\n$/, "")}
+            {getTextValue(props.children)}
           </SyntaxHighlighter>
         </div>
       )}

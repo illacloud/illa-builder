@@ -33,7 +33,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
         <span
           css={hoverCopyStyle(isOwnMessage)}
           onClick={() => {
-            copy(`${children}`)
+            copy(children ?? "")
             message.success({
               content: t("copied"),
             })

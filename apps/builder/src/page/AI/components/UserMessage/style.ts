@@ -35,8 +35,6 @@ export const senderNicknameStyle = css`
 
 export const senderAvatarStyle = css`
   margin-left: 16px;
-  height: 32px;
-  width: 32px;
 `
 
 export const messageContainerStyle = css`
