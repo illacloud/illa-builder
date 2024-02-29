@@ -72,7 +72,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
               code: (props) => <Code {...props} />,
             }}
           >
-            {convertMarkdownTables(children ?? "")}
+            {convertMarkdownTables(children ?? "", isOwnMessage)}
           </ReactMarkdown>
         </Typography>
       </div>

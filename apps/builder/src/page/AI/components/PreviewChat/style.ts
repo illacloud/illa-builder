@@ -68,6 +68,7 @@ export const chatContainerStyle = css`
   overflow-y: auto;
   height: 100%;
   padding-bottom: 110px;
+  width: 100%;
 `
 
 export const mobileInputElementStyle = css`
