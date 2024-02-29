@@ -255,7 +255,9 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 loading,
               )}
               onClick={() => {
-                handleUpdateSelectedItem(0)
+                handleUpdateSelectedItem(
+                  selectIndexForMark === 0 ? undefined : 0,
+                )
               }}
             >
               <RenderTemplateContainer
@@ -310,7 +312,9 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 )}
                 key={node.displayName}
                 onClick={() => {
-                  handleUpdateSelectedItem(index)
+                  handleUpdateSelectedItem(
+                    selectIndexForMark === index ? undefined : index,
+                  )
                 }}
               >
                 <RenderCopyContainer

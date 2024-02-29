@@ -221,7 +221,9 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 )}
                 ref={itemRef}
                 onClick={() => {
-                  handleUpdateSelectedItem(0)
+                  handleUpdateSelectedItem(
+                    selectIndexForMark === 0 ? undefined : 0,
+                  )
                 }}
               >
                 <RenderTemplateContainer
@@ -278,7 +280,9 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   itemPadding?.size,
                 )}
                 onClick={() => {
-                  handleUpdateSelectedItem(index)
+                  handleUpdateSelectedItem(
+                    selectIndexForMark === index ? undefined : index,
+                  )
                 }}
               >
                 <RenderCopyContainer
