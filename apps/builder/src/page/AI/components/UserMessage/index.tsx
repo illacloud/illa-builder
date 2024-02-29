@@ -25,6 +25,7 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
       </div>
       {!hideAvatar && (
         <Avatar
+          size={32}
           css={senderAvatarStyle}
           avatarUrl={currentUserInfo.avatar}
           name={currentUserInfo.nickname}

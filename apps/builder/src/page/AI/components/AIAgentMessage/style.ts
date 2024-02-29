@@ -22,8 +22,6 @@ export const senderContainerStyle = css`
 
 export const senderAvatarStyle = css`
   margin-right: 16px;
-  height: 32px;
-  width: 32px;
 `
 
 export const senderNicknameStyle = css`
