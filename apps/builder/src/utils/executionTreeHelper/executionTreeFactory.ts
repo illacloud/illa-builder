@@ -29,7 +29,6 @@ import {
   getObjectPaths,
   isAction,
   isWidget,
-  removeParentPath,
 } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
@@ -331,20 +330,33 @@ export class ExecutionTreeFactory {
   }
 
   updateExecutionTreeByUpdatePaths(
-    paths: string[],
+    updatePathMapAction: Record<string, "NEW" | "DELETE" | "UPDATE">,
     executionTree: RawTreeShape,
     rawTree: RawTreeShape,
     walkedPath: Set<string>,
   ) {
     const currentExecutionTree = klona(executionTree)
-    const removedParentPaths = removeParentPath(paths)
-    removedParentPaths.forEach((path) => {
+    Object.entries(updatePathMapAction).forEach(([path, action]) => {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
-        const value = get(rawTree, path, undefined)
-        set(currentExecutionTree, path, value)
+        if (action === "DELETE") {
+          const pathArray = toPath(path)
+          const parentPath = pathArray.slice(0, pathArray.length - 1)
+          const parentValue = get(currentExecutionTree, parentPath, undefined)
+          if (Array.isArray(parentValue)) {
+            const index = Number(pathArray[pathArray.length - 1])
+            parentValue.splice(index, 1)
+            set(currentExecutionTree, parentPath, parentValue)
+          } else {
+            unset(currentExecutionTree, path)
+          }
+        } else {
+          const value = get(rawTree, path, undefined)
+          set(currentExecutionTree, path, value)
+        }
       }
     })
+
     return currentExecutionTree
   }
 
@@ -380,10 +392,12 @@ export class ExecutionTreeFactory {
     }
     this.oldRawTree = klona(currentRawTree)
     const updatePaths = this.getUpdatePathFromDifferences(differences)
+    const updatePathMapAction =
+      this.getNewUpdatePathFromDifferences(differences)
     const walkedPath = new Set<string>()
 
     let currentExecution = this.updateExecutionTreeByUpdatePaths(
-      updatePaths,
+      updatePathMapAction,
       this.executedTree,
       currentRawTree,
       walkedPath,
@@ -393,12 +407,6 @@ export class ExecutionTreeFactory {
       differences,
       currentExecution,
       !isAddAction,
-    )
-    currentExecution = this.updateExecutionTreeByUpdatePaths(
-      path,
-      currentExecution,
-      currentRawTree,
-      walkedPath,
     )
 
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
@@ -481,6 +489,61 @@ export class ExecutionTreeFactory {
       hasPath.add(path)
       return true
     })
+  }
+
+  getNewUpdatePathFromDifferences(
+    differences: Diff<Record<string, any>, Record<string, any>>[],
+  ) {
+    const updatePathMapAction: Record<string, "NEW" | "DELETE" | "UPDATE"> = {}
+    for (const d of differences) {
+      if (!Array.isArray(d.path) || d.path.length === 0) continue
+      const { path } = d
+      const stringPath = convertPathToString(path)
+      switch (d.kind) {
+        case "N": {
+          const rhs = d.rhs
+          if (rhs && typeof rhs === "object") {
+            const keys = Object.keys(rhs)
+            keys.forEach((key) => {
+              updatePathMapAction[convertPathToString([...path, key])] = "NEW"
+            })
+          }
+          break
+        }
+        case "D": {
+          updatePathMapAction[stringPath] = "DELETE"
+          break
+        }
+        case "E": {
+          updatePathMapAction[stringPath] = "UPDATE"
+          break
+        }
+        case "A": {
+          const { index, path, item } = d
+          switch (item.kind) {
+            case "N": {
+              updatePathMapAction[convertPathToString([...path, index])] = "NEW"
+              break
+            }
+            case "D": {
+              updatePathMapAction[convertPathToString([...path, index])] =
+                "DELETE"
+              break
+            }
+            case "E": {
+              updatePathMapAction[convertPathToString([...path, index])] =
+                "UPDATE"
+              break
+            }
+            case "A": {
+              break
+            }
+          }
+          break
+        }
+      }
+    }
+    return updatePathMapAction
   }
 
   updateRawTreeByUpdatePaths(
