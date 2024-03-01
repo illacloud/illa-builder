@@ -119,11 +119,12 @@ const ChartKeysDynamicSelectSetter: FC<ChartDataSourceSetterProps> = (
     [generateNewDatasets, handleUpdateMultiAttrDSL, value],
   )
 
-  const isError = useSelector<RootState, boolean>((state) => {
-    const errors = getExecutionError(state)
-    const thisError = get(errors, `${widgetDisplayName}.${attrName}JS`)
-    return thisError?.length > 0
-  })
+  const executionErrors = useSelector(getExecutionError)
+  const isError = useMemo(() => {
+    return (
+      (executionErrors[`${widgetDisplayName}.${attrName}JS`] ?? [])?.length > 0
+    )
+  }, [attrName, executionErrors, widgetDisplayName])
 
   const isDynamic = useMemo(() => {
     const dataSourceMode = get(
