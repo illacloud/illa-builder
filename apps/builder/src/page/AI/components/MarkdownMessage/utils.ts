@@ -87,3 +87,7 @@ export const getTextValue = (value: unknown): string => {
     return ""
   }
 }
+
+export const handleMarkdownLine = (text: string) => {
+  return text.replace(/((^\n?---)(\n|$))/gm, "\n---\n")
+}
