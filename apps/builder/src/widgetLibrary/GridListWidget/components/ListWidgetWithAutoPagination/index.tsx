@@ -220,10 +220,11 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   loading,
                 )}
                 ref={itemRef}
-                onClick={() => {
-                  handleUpdateSelectedItem(
-                    selectIndexForMark === 0 ? undefined : 0,
-                  )
+                onClick={(e) => {
+                  const isClickOnContainer = !!(
+                    e.target as HTMLElement
+                  )?.getAttribute("data-list-widget-container")
+                  handleUpdateSelectedItem(0, isClickOnContainer)
                 }}
               >
                 <RenderTemplateContainer
@@ -279,10 +280,11 @@ const ListWidgetWithAutoPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   itemHeight,
                   itemPadding?.size,
                 )}
-                onClick={() => {
-                  handleUpdateSelectedItem(
-                    selectIndexForMark === index ? undefined : index,
-                  )
+                onClick={(e) => {
+                  const isClickOnContainer = !!(
+                    e.target as HTMLElement
+                  )?.getAttribute("data-list-widget-container")
+                  handleUpdateSelectedItem(index, isClickOnContainer)
                 }}
               >
                 <RenderCopyContainer

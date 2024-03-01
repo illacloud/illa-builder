@@ -71,5 +71,5 @@ export interface RenderCopyContainerProps {
 export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {
   copyComponents: ComponentTreeNode[] | null
   selectIndexForMark?: number
-  handleUpdateSelectedItem: (index?: number) => void
+  handleUpdateSelectedItem: (index?: number, isContainerClick?: boolean) => void
 }

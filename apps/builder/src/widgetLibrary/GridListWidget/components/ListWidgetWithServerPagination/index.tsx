@@ -291,8 +291,12 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 isEditMode,
                 loading,
               )}
-              onClick={() => {
-                handleUpdateSelectedItem(0)
+              onClick={(e) => {
+                const isClickOnContainer = !!(
+                  e.target as HTMLElement
+                )?.getAttribute("data-list-widget-container")
+
+                handleUpdateSelectedItem(0, isClickOnContainer)
               }}
             >
               <RenderTemplateContainer
@@ -346,8 +350,12 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   itemPadding?.size,
                 )}
                 ref={itemRef}
-                onClick={() => {
-                  handleUpdateSelectedItem(index)
+                onClick={(e) => {
+                  const isClickOnContainer = !!(
+                    e.target as HTMLElement
+                  )?.getAttribute("data-list-widget-container")
+
+                  handleUpdateSelectedItem(index, isClickOnContainer)
                 }}
               >
                 <RenderCopyContainer
