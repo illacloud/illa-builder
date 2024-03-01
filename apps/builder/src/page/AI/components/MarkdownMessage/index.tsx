@@ -1,3 +1,13 @@
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
+  TableHead,
+  TableRow,
+} from "@mui/material"
 import copy from "copy-to-clipboard"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
@@ -15,11 +25,11 @@ import {
 } from "@illa-design/react"
 import { MarkdownMessageProps } from "@/page/AI/components/MarkdownMessage/interface"
 import {
+  cellStyle,
   hoverCopyStyle,
   markdownMessageStyle,
 } from "@/page/AI/components/MarkdownMessage/style"
 import Code from "./Code"
-import { convertMarkdownTables } from "./utils"
 
 export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
   const { children, isOwnMessage } = props
@@ -54,7 +64,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
         <Typography>
           <ReactMarkdown
             css={markdownMessageStyle}
-            disallowedElements={["table", "thead", "tbody", "tr", "th", "td"]}
+            // disallowedElements={["table", "thead", "tbody", "tr", "th", "td"]}
             remarkPlugins={[remarkGfm, remarkBreaks]}
             components={{
               h1: ({ children }) => <Heading level="h1">{children}</Heading>,
@@ -69,10 +79,27 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
                 </Link>
               ),
               p: ({ children }) => <Paragraph>{children}</Paragraph>,
+              tr: ({ children }) => <TableRow>{children}</TableRow>,
+              th: ({ children }) => (
+                <TableCell align="center">{children}</TableCell>
+              ),
+              td: ({ children }) => (
+                <TableCell align="left" css={cellStyle}>
+                  {children}
+                </TableCell>
+              ),
+              thead: ({ children }) => <TableHead>{children}</TableHead>,
+              tbody: ({ children }) => <TableBody>{children}</TableBody>,
+              tfoot: ({ children }) => <TableFooter>{children}</TableFooter>,
+              table: ({ children }) => (
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 650 }}>{children}</Table>
+                </TableContainer>
+              ),
               code: (props) => <Code {...props} />,
             }}
           >
-            {convertMarkdownTables(children ?? "", isOwnMessage)}
+            {(children ?? "").replaceAll(/(^---\r?\n?)/gm, "\n---\n")}
           </ReactMarkdown>
         </Typography>
       </div>
