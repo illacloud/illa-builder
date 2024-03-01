@@ -558,6 +558,7 @@ const RenderComponentCanvasContainer: FC<
             data-canvas-container={displayName}
             data-column-number={columnNumber}
             data-unit-width={unitWidth}
+            data-list-widget-container
           >
             {isEditMode && (
               <DragShadowPreview

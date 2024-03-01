@@ -49,6 +49,7 @@ export const RenderComponentCanvasWithJson: FC<{
     <div
       css={outerComponentCanvasContainerWithJsonStyle(containerPadding)}
       ref={canvasRef}
+      data-list-widget-container
     >
       {componentTree}
     </div>
