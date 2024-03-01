@@ -31,11 +31,14 @@ const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (props) => {
 
   const actions = useSelector(getActionList)
   const executionResult = useSelector(getExecutionResult)
-  const isError = useSelector<RootState, boolean>((state) => {
-    const errors = getExecutionError(state)
-    const thisError = get(errors, `${widgetDisplayName}.dataSource`)
-    return thisError?.length > 0
-  })
+
+  const executionErrors = useSelector(getExecutionError)
+  const isError = useMemo(() => {
+    return (
+      (executionErrors[`${widgetDisplayName}.dataSource`] ?? [])?.length > 0
+    )
+  }, [executionErrors, widgetDisplayName])
+
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     (rootState) => {
       return searchDSLByDisplayName(widgetDisplayName, rootState)?.props || {}

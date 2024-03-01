@@ -93,8 +93,13 @@ export const ResizingAndDragContainer: FC<ResizingAndDragContainerProps> = (
   const currentUserID = useSelector(getCurrentUserId)
   const errors = useSelector(getExecutionError)
   const hasError = useMemo(() => {
-    const widgetErrors = errors[displayName] ?? {}
-    return Object.keys(widgetErrors).length > 0
+    const keys = Object.keys(errors)
+    return (
+      keys.length > 0 &&
+      keys.some((key) => {
+        return key.startsWith(displayName)
+      })
+    )
   }, [displayName, errors])
   const resizingIDs = useSelector(getResizingComponentIDs)
   const isResizingCurrent = resizingIDs.includes(displayName)

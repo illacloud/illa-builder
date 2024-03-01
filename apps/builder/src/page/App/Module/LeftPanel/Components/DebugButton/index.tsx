@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { Badge, BugIcon, Trigger, getColor } from "@illa-design/react"
 import { isOpenDebugger } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 
 const DebugButton: FC = () => {
-  const debuggerData = useSelector(getExecutionDebuggerData)
+  const debuggerData = useSelector(getExecutionError)
   const debuggerVisible = useSelector(isOpenDebugger)
 
   const debugMessageNumber = debuggerData
