@@ -56,11 +56,13 @@ const ColumnMappedSelect: FC<ColumnMappedSelectProps> = (props) => {
       "select",
     ) === "dynamic"
 
-  const isError = useSelector<RootState, boolean>((state) => {
-    const errors = getExecutionError(state)
-    const thisError = get(errors, `${widgetDisplayName}.${attrName}JS`)
-    return thisError?.length > 0
-  })
+  const executionErrors = useSelector(getExecutionError)
+  const isError = useMemo(() => {
+    return (
+      (executionErrors[`${widgetDisplayName}.${attrName}JS`] ?? [])?.length > 0
+    )
+  }, [attrName, executionErrors, widgetDisplayName])
+
   const handleClickFxButton = useCallback(() => {
     if (isDynamic) {
       handleUpdateDsl(`${widgetDisplayName}.${attrName}JS`, "select")

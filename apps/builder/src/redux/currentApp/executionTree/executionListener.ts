@@ -31,7 +31,6 @@ const asyncExecutionDataToRedux = (
   const evaluatedTree = executionResult.evaluatedTree
   const dependencyMap = executionResult.dependencyTree
   const independencyMap = executionResult.independencyTree
-  const debuggerData = executionResult.debuggerData
   const updates = diff(oldExecutionTree, evaluatedTree) || []
   listenerApi.dispatch(
     executionActions.setExecutionResultReducer({
@@ -51,11 +50,6 @@ const asyncExecutionDataToRedux = (
   listenerApi.dispatch(
     executionActions.setExecutionErrorReducer({
       ...errorTree,
-    }),
-  )
-  listenerApi.dispatch(
-    executionActions.setExecutionDebuggerDataReducer({
-      ...debuggerData,
     }),
   )
 }
@@ -104,23 +98,19 @@ async function handleStartExecutionOnCanvas(
       executionTree.updateTreeFromExecution(oldExecutionTree)
     const evaluatedTree = executionResult.evaluatedTree
     const errorTree = executionResult.errorTree
-    const debuggerData = executionResult.debuggerData
     const updates = diff(oldExecutionTree, evaluatedTree) || []
-    listenerApi.dispatch(
-      executionActions.setExecutionResultReducer({
-        updates,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setExecutionErrorReducer({
-        ...errorTree,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setExecutionDebuggerDataReducer({
-        ...debuggerData,
-      }),
-    )
+    if (updates.length > 0) {
+      listenerApi.dispatch(
+        executionActions.setExecutionResultReducer({
+          updates,
+        }),
+      )
+      listenerApi.dispatch(
+        executionActions.setExecutionErrorReducer({
+          ...errorTree,
+        }),
+      )
+    }
   }
 }
 

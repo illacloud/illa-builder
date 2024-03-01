@@ -56,10 +56,6 @@ export const getExecutionError = createSelector(
   (execution) => execution.error ?? {},
 )
 
-export const getExecutionDebuggerData = createSelector(
-  [getExecution],
-  (execution) => execution.debuggerData ?? {},
-)
 export const IGNORE_WIDGET_TYPES = new Set<string>([
   "PAGE_NODE",
   "SECTION_NODE",
