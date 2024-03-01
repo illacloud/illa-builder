@@ -30,6 +30,7 @@ import {
   markdownMessageStyle,
 } from "@/page/AI/components/MarkdownMessage/style"
 import Code from "./Code"
+import { handleMarkdownLine } from "./utils"
 
 export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
   const { children, isOwnMessage } = props
@@ -64,7 +65,6 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
         <Typography>
           <ReactMarkdown
             css={markdownMessageStyle}
-            // disallowedElements={["table", "thead", "tbody", "tr", "th", "td"]}
             remarkPlugins={[remarkGfm, remarkBreaks]}
             components={{
               h1: ({ children }) => <Heading level="h1">{children}</Heading>,
@@ -99,7 +99,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
               code: (props) => <Code {...props} />,
             }}
           >
-            {(children ?? "").replaceAll(/(^---\r?\n?)/gm, "\n---\n")}
+            {handleMarkdownLine(children ?? "")}
           </ReactMarkdown>
         </Typography>
       </div>
