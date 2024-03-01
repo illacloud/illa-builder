@@ -28,6 +28,7 @@ import {
   cellStyle,
   hoverCopyStyle,
   markdownMessageStyle,
+  tableStyle,
 } from "@/page/AI/components/MarkdownMessage/style"
 import Code from "./Code"
 import { handleMarkdownLine } from "./utils"
@@ -92,7 +93,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
               tbody: ({ children }) => <TableBody>{children}</TableBody>,
               tfoot: ({ children }) => <TableFooter>{children}</TableFooter>,
               table: ({ children }) => (
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} css={tableStyle}>
                   <Table sx={{ minWidth: 650 }}>{children}</Table>
                 </TableContainer>
               ),
