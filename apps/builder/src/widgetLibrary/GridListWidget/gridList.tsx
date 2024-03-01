@@ -73,7 +73,7 @@ export const GridListWidget: FC<GridListWidgetProps> = (props) => {
                   let evalResult: unknown
                   try {
                     evalResult = evaluateDynamicString(
-                      "",
+                      finalPath,
                       requireEvalString,
                       executionResult,
                     )

@@ -74,7 +74,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                   let evalResult: unknown
                   try {
                     evalResult = evaluateDynamicString(
-                      "",
+                      finalPath,
                       requireEvalString,
                       executionResult,
                     )
