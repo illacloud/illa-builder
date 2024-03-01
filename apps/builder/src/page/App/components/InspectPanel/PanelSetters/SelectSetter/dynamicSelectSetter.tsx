@@ -1,5 +1,5 @@
 import { get } from "lodash-es"
-import { FC, useCallback } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import BaseDynamicSelect from "@/page/App/components/InspectPanel/PanelSetters/SelectSetter/baseDynamicSelect"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
@@ -37,11 +37,12 @@ const DynamicSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     [handleUpdateMultiAttrDSL],
   )
 
-  const isError = useSelector<RootState, boolean>((state) => {
-    const errors = getExecutionError(state)
-    const thisError = get(errors, `${widgetDisplayName}.${attrName}JS`)
-    return thisError?.length > 0
-  })
+  const executionErrors = useSelector(getExecutionError)
+  const isError = useMemo(() => {
+    return (
+      (executionErrors[`${widgetDisplayName}.${attrName}JS`] ?? [])?.length > 0
+    )
+  }, [attrName, executionErrors, widgetDisplayName])
 
   const isDynamic =
     get(
