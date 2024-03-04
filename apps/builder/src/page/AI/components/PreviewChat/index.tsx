@@ -114,7 +114,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           <UserMessage
             key={message.threadID}
             message={message}
-            hideAvatar={isMobile}
+            isMobile={isMobile}
           />
         )
       }
@@ -122,7 +122,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         <AIAgentMessage
           key={message.threadID}
           message={message}
-          hideAvatar={isMobile}
+          isMobile={isMobile}
           canShowLongCopy={i === chatMessages.length - 1 && !isReceiving}
         />
       )
@@ -145,60 +145,68 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   }
 
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    const file = files && files[0]
-    if (!file) return
+    let inputFiles = Array.from(e.target.files || [])
     inputRef.current && (inputRef.current.value = "")
-    setParseKnowledgeLoading(true)
-    try {
-      if (file.size > MAX_FILE_SIZE) {
-        message.warning({
-          content: t("dashboard.message.please_use_a_file_wi"),
-        })
-        return
-      }
-      const files = [...knowledgeFiles]
-      const index = files.findIndex(
-        (item) => item.name === file.name && item.type === file.type,
-      )
-      const fileName =
-        index !== -1
-          ? `${file.name.split(".")[0]}(${v4().slice(0, 3)})`
-          : file.name
-
-      files.push({
-        name: fileName,
-        type: file.type,
+    if (!inputFiles.length) return
+    if (inputFiles.length + knowledgeFiles.length > MAX_MESSAGE_FILES_LENGTH) {
+      message.warning({
+        content: t("dashboard.message.support_for_up_to_10"),
       })
-      setKnowledgeFiles(files)
-      const value = await handleParseFile(file, true)
-      if (value === "") {
-        message.warning({
-          content: t("dashboard.message.no_usable_text_conte"),
+      return
+    }
+    setParseKnowledgeLoading(true)
+    const currentFiles = [...knowledgeFiles]
+    try {
+      for (let file of inputFiles) {
+        if (!file) break
+        if (file.size > MAX_FILE_SIZE) {
+          message.warning({
+            content: t("dashboard.message.please_use_a_file_wi"),
+          })
+          return
+        }
+        const index = currentFiles.findIndex(
+          (item) => item.name === file.name && item.type === file.type,
+        )
+        const fileName =
+          index !== -1
+            ? `${file.name.split(".")[0]}(${v4().slice(0, 3)})`
+            : file.name
+
+        currentFiles.push({
+          name: fileName,
+          type: file.type,
         })
-        handleDeleteFile(fileName)
-        return
-      }
-      const afterParseFilesIndex = files.findIndex(
-        (item) => item.name === file.name && item.type === file.type,
-      )
-      if (afterParseFilesIndex !== -1) {
-        const needUpdateFile = files[afterParseFilesIndex]
-        if (!needUpdateFile.value) {
-          files.splice(afterParseFilesIndex, 1, {
-            ...needUpdateFile,
-            ...file,
+        setKnowledgeFiles(currentFiles)
+        const value = await handleParseFile(file, true)
+        if (value === "") {
+          message.warning({
+            content: t("dashboard.message.no_usable_text_conte"),
+          })
+          handleDeleteFile(fileName)
+          return
+        }
+        const afterParseFilesIndex = currentFiles.findIndex(
+          (item) => item.name === file.name && item.type === file.type,
+        )
+        if (afterParseFilesIndex !== -1) {
+          const needUpdateFile = currentFiles[afterParseFilesIndex]
+          if (!needUpdateFile.value) {
+            currentFiles.splice(afterParseFilesIndex, 1, {
+              ...needUpdateFile,
+              ...file,
+              value,
+            })
+          }
+        } else {
+          currentFiles.push({
+            name: fileName,
+            type: file.type,
             value,
           })
         }
-      } else {
-        files.push({
-          name: fileName,
-          type: file.type,
-          value,
-        })
+        setKnowledgeFiles(currentFiles)
       }
-      setKnowledgeFiles(files)
     } catch (e) {
       message.error({
         content: t("dashboard.message.no_usable_text_conte"),

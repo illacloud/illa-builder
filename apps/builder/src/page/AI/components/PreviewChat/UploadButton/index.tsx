@@ -33,6 +33,7 @@ const UploadButton = forwardRef<HTMLInputElement, UploadButton>(
             type="file"
             accept={ACCEPT.join(",")}
             ref={ref}
+            multiple
             onChange={handleFileChange}
           />
         </div>
