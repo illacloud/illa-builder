@@ -89,9 +89,18 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                       const validationPaths = rawWidget.$validationPaths
                       const validationType = get(validationPaths, finalPath)
                       if (validationType === VALIDATION_TYPES.ARRAY) {
-                        const validationFunc = validationFactory[validationType]
-                        const res = validationFunc?.(evalResult, "")
-                        value = res?.safeValue ?? evalResult
+                        if (Array.isArray(evalResult)) {
+                          const needSetValue = evalResult[index] ?? []
+                          const validationFunc =
+                            validationFactory[validationType]
+                          const res = validationFunc?.(needSetValue, "")
+                          value = res?.safeValue ?? needSetValue
+                        } else {
+                          const validationFunc =
+                            validationFactory[validationType]
+                          const res = validationFunc?.(evalResult, "")
+                          value = res?.safeValue ?? evalResult
+                        }
                       } else {
                         value = evalResult[index]
                         const validationFunc = validationFactory[validationType]
