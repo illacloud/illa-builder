@@ -105,7 +105,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const { track } = useContext(MixpanelTrackContext)
 
   const messagesList = useMemo(() => {
-    return chatMessages.map((message) => {
+    return chatMessages.map((message, i) => {
       if (
         message.sender.senderType === SenderType.USER &&
         message.sender.senderID === currentUserInfo.userID
@@ -123,10 +123,11 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           key={message.threadID}
           message={message}
           hideAvatar={isMobile}
+          canShowLongCopy={i === chatMessages.length - 1 && !isReceiving}
         />
       )
     })
-  }, [chatMessages, currentUserInfo.userID, isMobile])
+  }, [chatMessages, currentUserInfo.userID, isMobile, isReceiving])
 
   const handleDeleteFile = (fileName: string) => {
     const files = knowledgeFiles.filter((file) => file.name !== fileName)
@@ -136,8 +137,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const handleUploadFile = () => {
     if (knowledgeFiles.length >= MAX_MESSAGE_FILES_LENGTH) {
       message.warning({
-        // TODO: WTF i18n
-        content: t("最多10个文件"),
+        content: t("dashboard.message.support_for_up_to_10"),
       })
       return
     }
@@ -153,8 +153,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     try {
       if (file.size > MAX_FILE_SIZE) {
         message.warning({
-          // TODO: WTF, i18n
-          content: t("文件大小不能超过20M"),
+          content: t("dashboard.message.please_use_a_file_wi"),
         })
         return
       }
@@ -174,9 +173,8 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       setKnowledgeFiles(files)
       const value = await handleParseFile(file, true)
       if (value === "") {
-        // TODO: WTF, i18n
         message.warning({
-          content: t("没解析出文本内容"),
+          content: t("dashboard.message.no_usable_text_conte"),
         })
         handleDeleteFile(fileName)
         return
@@ -203,7 +201,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       setKnowledgeFiles(files)
     } catch (e) {
       message.error({
-        content: t("解析内容出错"),
+        content: t("dashboard.message.no_usable_text_conte"),
       })
     } finally {
       setParseKnowledgeLoading(false)
