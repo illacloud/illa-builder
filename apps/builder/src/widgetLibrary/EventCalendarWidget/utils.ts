@@ -194,7 +194,9 @@ export const isLightColor = (color: string): boolean => {
 }
 
 const safeNodeValue = (value: unknown) => {
-  return typeof value === "string" ? value : ""
+  return typeof value === "string" || typeof value === "number"
+    ? `${value}`
+    : ""
 }
 
 export const getSafeDate = (value: string | Date | undefined) => {
