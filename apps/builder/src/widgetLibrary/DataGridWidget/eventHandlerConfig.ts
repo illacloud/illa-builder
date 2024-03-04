@@ -53,9 +53,9 @@ export const DATA_GRID_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.onRowClickChange",
+        "editor.inspect.setter_content.widget_action_type_name.onRowClick",
       ),
-      value: "onRowClickChange",
+      value: "onRowClick",
     },
   ],
   methods: [
