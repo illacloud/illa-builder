@@ -45,9 +45,8 @@ const KnowledgeUpload: FC<KnowledgeUploadProps> = ({
     if (!file) return
     try {
       if (file.size > MAX_FILE_SIZE) {
-        // TODO: WTF i18n
         message.warning({
-          content: t("文件大小不能超过20M"),
+          content: t("dashboard.message.please_use_a_file_wi"),
         })
         return
       }
@@ -58,9 +57,8 @@ const KnowledgeUpload: FC<KnowledgeUploadProps> = ({
       addFile(fileItem)
       const value = await handleParseFile(file)
       if (value === "") {
-        // TODO: WTF i18n
         message.warning({
-          content: t("空文件"),
+          content: t("dashboard.message.no_usable_text_conte"),
         })
         removeFile(file.name)
       } else {
@@ -73,7 +71,7 @@ const KnowledgeUpload: FC<KnowledgeUploadProps> = ({
       }
     } catch (e) {
       message.error({
-        content: t("文件上传失败"),
+        content: t("dashboard.message.no_usable_text_conte"),
       })
     }
     inputRef.current && (inputRef.current.value = "")
@@ -96,8 +94,7 @@ const KnowledgeUpload: FC<KnowledgeUploadProps> = ({
   const handleUploadFile = () => {
     if (Array.isArray(values) && values.length >= MAX_MESSAGE_FILES_LENGTH) {
       message.warning({
-        // TODO: WTF i18n
-        content: t("最多10个文件"),
+        content: t("dashboard.message.support_for_up_to_10"),
       })
       return
     }

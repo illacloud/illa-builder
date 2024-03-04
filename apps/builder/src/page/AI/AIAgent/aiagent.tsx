@@ -366,7 +366,7 @@ export const AIAgent: FC = () => {
   const handleSubmitSave = async (data: Agent) => {
     let currentData: Agent = { ...data }
     if (
-      currentData.model !== AI_AGENT_MODEL.GPT_4 &&
+      !isPremiumModel(currentData.model) &&
       currentData.knowledge?.length > 0
     ) {
       currentData = {
@@ -539,8 +539,7 @@ export const AIAgent: FC = () => {
     ) {
       setError("variables", {
         type: "knowledge",
-        // TODO: WTF i18n
-        message: t("有文件还在解析中"),
+        message: t("dashboard.message.parsing_file_in_prog"),
       })
       handleScrollToElement(SCROLL_ID.KNOWLEDGE)
       return false
@@ -755,7 +754,7 @@ export const AIAgent: FC = () => {
                 />
 
                 {CAN_EDIT_KNOWLEDGE_FILE &&
-                  getValues("model") === AI_AGENT_MODEL.GPT_4 && (
+                  isPremiumModel(getValues("model")) && (
                     <Controller
                       name="knowledge"
                       control={control}

@@ -47,15 +47,3 @@ export const messageContainerStyle = css`
     margin-left: 0;
   `)}
 `
-
-export const fileItemContainerStyle = css`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-`
-
-export const fileTypeIconStyle = css`
-  height: 16px;
-`

@@ -1,12 +1,9 @@
+import { isPremiumModel } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
-import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  KnowledgeFile,
-} from "@illa-public/public-types"
+import { AI_AGENT_TYPE, KnowledgeFile } from "@illa-public/public-types"
 import { getCurrentUser } from "@illa-public/user-data"
 import { AnimatePresence, motion } from "framer-motion"
 import {
@@ -101,14 +98,14 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const [parseKnowledgeLoading, setParseKnowledgeLoading] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const canShowKnowledgeFiles = model === AI_AGENT_MODEL.GPT_4
+  const canShowKnowledgeFiles = isPremiumModel(model)
 
   const { t } = useTranslation()
 
   const { track } = useContext(MixpanelTrackContext)
 
   const messagesList = useMemo(() => {
-    return chatMessages.map((message) => {
+    return chatMessages.map((message, i) => {
       if (
         message.sender.senderType === SenderType.USER &&
         message.sender.senderID === currentUserInfo.userID
@@ -117,8 +114,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           <UserMessage
             key={message.threadID}
             message={message}
-            hideAvatar={isMobile}
-            editState={editState}
+            isMobile={isMobile}
           />
         )
       }
@@ -126,11 +122,12 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         <AIAgentMessage
           key={message.threadID}
           message={message}
-          hideAvatar={isMobile}
+          isMobile={isMobile}
+          canShowLongCopy={i === chatMessages.length - 1 && !isReceiving}
         />
       )
     })
-  }, [chatMessages, currentUserInfo.userID, editState, isMobile])
+  }, [chatMessages, currentUserInfo.userID, isMobile, isReceiving])
 
   const handleDeleteFile = (fileName: string) => {
     const files = knowledgeFiles.filter((file) => file.name !== fileName)
@@ -140,8 +137,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const handleUploadFile = () => {
     if (knowledgeFiles.length >= MAX_MESSAGE_FILES_LENGTH) {
       message.warning({
-        // TODO: WTF i18n
-        content: t("最多10个文件"),
+        content: t("dashboard.message.support_for_up_to_10"),
       })
       return
     }
@@ -149,65 +145,71 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   }
 
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    const file = files && files[0]
-    if (!file) return
+    let inputFiles = Array.from(e.target.files || [])
     inputRef.current && (inputRef.current.value = "")
-    setParseKnowledgeLoading(true)
-    try {
-      if (file.size > MAX_FILE_SIZE) {
-        message.warning({
-          // TODO: WTF, i18n
-          content: t("文件大小不能超过20M"),
-        })
-        return
-      }
-      const files = [...knowledgeFiles]
-      const index = files.findIndex(
-        (item) => item.name === file.name && item.type === file.type,
-      )
-      const fileName =
-        index !== -1
-          ? `${file.name.split(".")[0]}(${v4().slice(0, 3)})`
-          : file.name
-
-      files.push({
-        name: fileName,
-        type: file.type,
+    if (!inputFiles.length) return
+    if (inputFiles.length + knowledgeFiles.length > MAX_MESSAGE_FILES_LENGTH) {
+      message.warning({
+        content: t("dashboard.message.support_for_up_to_10"),
       })
-      setKnowledgeFiles(files)
-      const value = await handleParseFile(file, true)
-      if (value === "") {
-        // TODO: WTF, i18n
-        message.warning({
-          content: t("没解析出文本内容"),
+      return
+    }
+    setParseKnowledgeLoading(true)
+    const currentFiles = [...knowledgeFiles]
+    try {
+      for (let file of inputFiles) {
+        if (!file) break
+        if (file.size > MAX_FILE_SIZE) {
+          message.warning({
+            content: t("dashboard.message.please_use_a_file_wi"),
+          })
+          return
+        }
+        const index = currentFiles.findIndex(
+          (item) => item.name === file.name && item.type === file.type,
+        )
+        const fileName =
+          index !== -1
+            ? `${file.name.split(".")[0]}(${v4().slice(0, 3)})`
+            : file.name
+
+        currentFiles.push({
+          name: fileName,
+          type: file.type,
         })
-        handleDeleteFile(fileName)
-        return
-      }
-      const afterParseFilesIndex = files.findIndex(
-        (item) => item.name === file.name && item.type === file.type,
-      )
-      if (afterParseFilesIndex !== -1) {
-        const needUpdateFile = files[afterParseFilesIndex]
-        if (!needUpdateFile.value) {
-          files.splice(afterParseFilesIndex, 1, {
-            ...needUpdateFile,
-            ...file,
+        setKnowledgeFiles(currentFiles)
+        const value = await handleParseFile(file, true)
+        if (value === "") {
+          message.warning({
+            content: t("dashboard.message.no_usable_text_conte"),
+          })
+          handleDeleteFile(fileName)
+          return
+        }
+        const afterParseFilesIndex = currentFiles.findIndex(
+          (item) => item.name === file.name && item.type === file.type,
+        )
+        if (afterParseFilesIndex !== -1) {
+          const needUpdateFile = currentFiles[afterParseFilesIndex]
+          if (!needUpdateFile.value) {
+            currentFiles.splice(afterParseFilesIndex, 1, {
+              ...needUpdateFile,
+              ...file,
+              value,
+            })
+          }
+        } else {
+          currentFiles.push({
+            name: fileName,
+            type: file.type,
             value,
           })
         }
-      } else {
-        files.push({
-          name: fileName,
-          type: file.type,
-          value,
-        })
+        setKnowledgeFiles(currentFiles)
       }
-      setKnowledgeFiles(files)
     } catch (e) {
       message.error({
-        content: t("解析内容出错"),
+        content: t("dashboard.message.no_usable_text_conte"),
       })
     } finally {
       setParseKnowledgeLoading(false)
