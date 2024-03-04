@@ -8,10 +8,7 @@ export const formatMessageString = (
   if (!knowledgeFiles || knowledgeFiles.length === 0) return res
   const fileString = knowledgeFiles
     .map((file, i) => {
-      return `
-    File${i}
-    File name: [${file.name}]
-    File content: [${file.value}]
+      return `File${i}\nFile name: [${file.name}]\nFile content: [\n${file.value}\n]
     `
     })
     .join("\n\n")
