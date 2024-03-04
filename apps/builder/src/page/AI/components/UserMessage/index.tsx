@@ -1,7 +1,7 @@
 import { Avatar } from "@illa-public/avatar"
 import { getFileIconByContentType } from "@illa-public/icon"
 import { GCS_OBJECT_TYPE } from "@illa-public/public-types"
-import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
+import { getCurrentUser } from "@illa-public/user-data"
 import { FC } from "react"
 import { useSelector } from "react-redux"
 import { Tag, getColor } from "@illa-design/react"
@@ -18,17 +18,13 @@ import {
 } from "@/page/AI/components/UserMessage/style"
 
 export const UserMessage: FC<UserMessageProps> = (props) => {
-  const { message, hideAvatar, editState } = props
+  const { message, hideAvatar } = props
   const currentUserInfo = useSelector(getCurrentUser)
-  const team = useSelector(getCurrentTeamInfo)
-
-  const showName = editState === "EDIT" ? currentUserInfo.nickname : team?.name
-  const showAvatar = editState === "EDIT" ? currentUserInfo.avatar : team?.icon
 
   return (
     <div css={agentMessageContainer}>
       <div css={senderContainerStyle}>
-        <span css={senderNicknameStyle}>{showName}</span>
+        <span css={senderNicknameStyle}>{currentUserInfo.nickname}</span>
         {Array.isArray(message.knowledgeFiles) &&
           message.knowledgeFiles.length > 0 && (
             <div css={fileItemContainerStyle}>
@@ -57,8 +53,8 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
         <Avatar
           size={32}
           css={senderAvatarStyle}
-          avatarUrl={showAvatar}
-          name={showName}
+          avatarUrl={currentUserInfo.avatar}
+          name={currentUserInfo.nickname}
           id={currentUserInfo.userID}
         />
       )}

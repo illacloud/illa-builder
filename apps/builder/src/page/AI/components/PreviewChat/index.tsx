@@ -115,7 +115,6 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             key={message.threadID}
             message={message}
             hideAvatar={isMobile}
-            editState={editState}
           />
         )
       }
@@ -127,7 +126,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         />
       )
     })
-  }, [chatMessages, currentUserInfo.userID, editState, isMobile])
+  }, [chatMessages, currentUserInfo.userID, isMobile])
 
   const handleDeleteFile = (fileName: string) => {
     const files = knowledgeFiles.filter((file) => file.name !== fileName)
