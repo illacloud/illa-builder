@@ -3,6 +3,13 @@ import {
   DataGridPremium,
   GridAggregationModel,
   GridColDef,
+  GridColumnVisibilityModel,
+  GridEventListener,
+  GridFilterModel,
+  GridPaginationModel,
+  GridRowIdGetter,
+  GridRowSelectionModel,
+  GridSortModel,
 } from "@mui/x-data-grid-premium"
 import { GridApiPremium } from "@mui/x-data-grid-premium/models/gridApiPremium"
 import { get, isArray, isNumber, isPlainObject } from "lodash-es"
@@ -26,6 +33,7 @@ import {
 import { Toolbar } from "./Toolbar"
 import { UNIQUE_ID_NAME } from "./constants"
 import { BaseDataGridProps } from "./interface"
+import { getDataGridLocalization } from "./utils"
 
 export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
   const {
@@ -254,6 +262,175 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
     return curAggregationModel
   }, [columns])
 
+  const innerFilterModel =
+    filterModel !== undefined
+      ? {
+          ...filterModel,
+          quickFilterExcludeHiddenColumns:
+            filterModel.quickFilterExcludeHiddenColumns ?? excludeHiddenColumns,
+        }
+      : undefined
+
+  const sortModel =
+    sortKey != undefined && sortOrder != undefined
+      ? [
+          {
+            field: sortKey,
+            sort: sortOrder === "default" ? null : sortOrder,
+          },
+        ]
+      : []
+
+  /**
+   *
+   * Data Grid Pagination Attributes Start
+   *
+   */
+
+  const paginationModel =
+    pageSize !== undefined
+      ? {
+          pageSize: pageSize ?? 0,
+          page: page ?? 0,
+        }
+      : undefined
+  const paginationMode = enablePagination
+    ? enableServerSidePagination
+      ? "server"
+      : "client"
+    : undefined
+
+  /**
+   *
+   * Data Grid Pagination Attributes End
+   *
+   */
+
+  const getRowID: GridRowIdGetter<any> = (row) => {
+    if (
+      primaryKey === undefined ||
+      primaryKey === "—" ||
+      !(primaryKey in row)
+    ) {
+      return get(row, UNIQUE_ID_NAME)
+    } else {
+      return get(row, primaryKey)
+    }
+  }
+
+  /**
+   *
+   * DATA GRID Event Listeners Start
+   *
+   */
+
+  const onRowClick: GridEventListener<"rowClick"> = (params) => {
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          clickedRow: params.row,
+        },
+      },
+    ])
+    triggerEventHandler("onRowClick")
+  }
+
+  const onFilterModelChange = (model: GridFilterModel) => {
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          filterModel: model,
+        },
+      },
+    ])
+    triggerEventHandler("onFilterModelChange")
+  }
+
+  const onColumnVisibilityModelChange = (model: GridColumnVisibilityModel) => {
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          columnVisibilityModel: model,
+        },
+      },
+    ])
+    triggerEventHandler("onColumnVisibilityModelChange")
+  }
+
+  const onRowSelectionModelChange = (model: GridRowSelectionModel) => {
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          selectedRowsPrimaryKeys: model,
+          selectedRows: model.map((id) => ref.current.getRowModels().get(id)),
+        },
+      },
+    ])
+    triggerEventHandler("onRowSelectionModelChange")
+  }
+
+  const onPaginationModelChange = (model: GridPaginationModel) => {
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          page: model.page,
+          pageSize: model.pageSize,
+        },
+      },
+    ])
+    triggerEventHandler("onPaginationModelChange")
+  }
+
+  const onSortModelChange = (model: GridSortModel) => {
+    if (model.length > 0) {
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            sortKey: model[0].field,
+            sortOrder: model[0].sort,
+          },
+        },
+      ])
+    } else {
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            sortKey: undefined,
+            sortOrder: undefined,
+          },
+        },
+      ])
+    }
+    triggerEventHandler("onSortModelChange")
+  }
+
+  const onColumnHeaderEnter = () => {
+    dispatch(
+      configActions.setResizingNodeIDsReducer([
+        `${displayName}-column-header-resize`,
+      ]),
+    )
+    isInnerDragging.current = true
+  }
+
+  const onColumnHeaderLeave = () => {
+    dispatch(configActions.setResizingNodeIDsReducer([]))
+    isInnerDragging.current = false
+  }
+
+  /**
+   *
+   * DATA GRID Event Listeners End
+   *
+   */
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider
@@ -264,143 +441,28 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         })}
       >
         <DataGridPremium
+          localeText={getDataGridLocalization()}
           key={displayName + ":" + primaryKey}
           apiRef={ref}
-          getRowId={(row) => {
-            if (
-              primaryKey === undefined ||
-              primaryKey === "—" ||
-              !(primaryKey in row)
-            ) {
-              return get(row, UNIQUE_ID_NAME)
-            } else {
-              return get(row, primaryKey)
-            }
-          }}
+          getRowId={getRowID}
           aggregationModel={aggregationModel}
-          onAggregationModelChange={handleAggregationModelChange}
-          filterModel={
-            filterModel !== undefined
-              ? {
-                  ...filterModel,
-                  quickFilterExcludeHiddenColumns:
-                    filterModel.quickFilterExcludeHiddenColumns ??
-                    excludeHiddenColumns,
-                }
-              : undefined
-          }
-          onFilterModelChange={(model) => {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  filterModel: model,
-                },
-              },
-            ])
-            triggerEventHandler("onFilterModelChange")
-          }}
+          filterModel={innerFilterModel}
           rowSelectionModel={rowSelection ? selectedRowsPrimaryKeys : undefined}
           rowSelection={rowSelection}
-          onColumnVisibilityModelChange={(model) => {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  columnVisibilityModel: model,
-                },
-              },
-            ])
-            triggerEventHandler("onColumnVisibilityModelChange")
-          }}
           columnVisibilityModel={{
             [UNIQUE_ID_NAME]: false,
             ...columnVisibilityModel,
           }}
-          onRowSelectionModelChange={(model) => {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  selectedRowsPrimaryKeys: model,
-                  selectedRows: model.map((id) =>
-                    ref.current.getRowModels().get(id),
-                  ),
-                },
-              },
-            ])
-            triggerEventHandler("onRowSelectionModelChange")
-          }}
-          sortModel={
-            sortKey != undefined && sortOrder != undefined
-              ? [
-                  {
-                    field: sortKey,
-                    sort: sortOrder === "default" ? null : sortOrder,
-                  },
-                ]
-              : []
-          }
+          sortModel={sortModel}
           pagination={enablePagination}
           pageSizeOptions={isArray(pageSizeOptions) ? pageSizeOptions : []}
           autoPageSize={pageSize === undefined}
-          paginationModel={
-            pageSize !== undefined
-              ? {
-                  pageSize: pageSize ?? 0,
-                  page: page ?? 0,
-                }
-              : undefined
-          }
-          onPaginationModelChange={(model) => {
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  page: model.page,
-                  pageSize: model.pageSize,
-                },
-              },
-            ])
-            triggerEventHandler("onPaginationModelChange")
-          }}
-          onSortModelChange={(model) => {
-            if (model.length > 0) {
-              handleUpdateMultiExecutionResult([
-                {
-                  displayName,
-                  value: {
-                    sortKey: model[0].field,
-                    sortOrder: model[0].sort,
-                  },
-                },
-              ])
-            } else {
-              handleUpdateMultiExecutionResult([
-                {
-                  displayName,
-                  value: {
-                    sortKey: undefined,
-                    sortOrder: undefined,
-                  },
-                },
-              ])
-            }
-            triggerEventHandler("onSortModelChange")
-          }}
           disableMultipleRowSelection={
             rowSelectionMode === "single" || !rowSelection
           }
           checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
           rows={arrayData}
           columns={(renderColumns as GridColDef[]) ?? []}
-          paginationMode={
-            enablePagination
-              ? enableServerSidePagination
-                ? "server"
-                : "client"
-              : undefined
-          }
           rowCount={
             enablePagination && enableServerSidePagination && totalRowCount
               ? totalRowCount
@@ -411,18 +473,18 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           slots={{
             toolbar: toolbar,
           }}
-          onColumnHeaderEnter={() => {
-            dispatch(
-              configActions.setResizingNodeIDsReducer([
-                `${displayName}-column-header-resize`,
-              ]),
-            )
-            isInnerDragging.current = true
-          }}
-          onColumnHeaderLeave={() => {
-            dispatch(configActions.setResizingNodeIDsReducer([]))
-            isInnerDragging.current = false
-          }}
+          paginationModel={paginationModel}
+          paginationMode={paginationMode}
+          // Event listeners
+          onAggregationModelChange={handleAggregationModelChange}
+          onFilterModelChange={onFilterModelChange}
+          onColumnVisibilityModelChange={onColumnVisibilityModelChange}
+          onRowSelectionModelChange={onRowSelectionModelChange}
+          onRowClick={onRowClick}
+          onPaginationModelChange={onPaginationModelChange}
+          onSortModelChange={onSortModelChange}
+          onColumnHeaderEnter={onColumnHeaderEnter}
+          onColumnHeaderLeave={onColumnHeaderLeave}
         />
       </ThemeProvider>
     </StyledEngineProvider>

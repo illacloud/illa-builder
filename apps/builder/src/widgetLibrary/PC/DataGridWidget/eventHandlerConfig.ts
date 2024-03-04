@@ -51,6 +51,12 @@ export const DATA_GRID_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       ),
       value: "onColumnVisibilityModelChange",
     },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.onRowClick",
+      ),
+      value: "onRowClick",
+    },
   ],
   methods: [
     "setFilterModel",
