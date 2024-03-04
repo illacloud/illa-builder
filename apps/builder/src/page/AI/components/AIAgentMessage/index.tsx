@@ -17,7 +17,7 @@ import {
 } from "./style"
 
 export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
-  const { message, hideAvatar, canShowLongCopy } = props
+  const { message, isMobile, canShowLongCopy } = props
   const chatContext = useContext(ChatContext)
   const showMessage = useMessage()
   const { t } = useTranslation()
@@ -42,7 +42,7 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
 
   return (
     <div css={agentMessageContainer}>
-      {!hideAvatar && (
+      {!isMobile && (
         <Avatar
           size={32}
           css={senderAvatarStyle}
