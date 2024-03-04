@@ -67,9 +67,6 @@ async function handleStartExecution(
     const executionResult = executionTree.initTree(rawTree)
     asyncExecutionDataToRedux(executionResult, oldExecutionTree, listenerApi)
   } else {
-    const isDeleteAction =
-      action.type === "components/deleteComponentNodeReducer" ||
-      action.type === "action/removeActionItemReducer"
     const isAddAction =
       action.type.startsWith("components/add") ||
       action.type.startsWith("action/add") ||
@@ -78,11 +75,7 @@ async function handleStartExecution(
         action,
       ) ||
       actionActions.batchUpdateMultiActionSlicePropsReducer.match(action)
-    const executionResult = executionTree.updateTree(
-      rawTree,
-      isDeleteAction,
-      isAddAction,
-    )
+    const executionResult = executionTree.updateTree(rawTree, isAddAction)
     asyncExecutionDataToRedux(executionResult, oldExecutionTree, listenerApi)
   }
 }
