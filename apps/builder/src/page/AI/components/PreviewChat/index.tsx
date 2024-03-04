@@ -1,5 +1,3 @@
-import { getFileIconByContentType } from "@illa-public/icon"
-import IconHotSpot from "@illa-public/icon-hot-spot"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
@@ -7,7 +5,6 @@ import {
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
-  GCS_OBJECT_TYPE,
   KnowledgeFile,
 } from "@illa-public/public-types"
 import { getCurrentUser } from "@illa-public/user-data"
@@ -26,13 +23,9 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import {
-  AttachmentIcon,
   Button,
   ContributeIcon,
   DependencyIcon,
-  Loading,
-  Tag,
-  getColor,
   useMessage,
 } from "@illa-design/react"
 import { ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
@@ -50,8 +43,6 @@ import {
   blockInputContainerStyle,
   blockInputTextStyle,
   chatContainerStyle,
-  fileItemContainerStyle,
-  fileTypeIconStyle,
   generatingContainerStyle,
   generatingContentContainerStyle,
   generatingDividerStyle,
@@ -65,18 +56,17 @@ import {
   previewTitleContainerStyle,
   previewTitleTextStyle,
   sendButtonStyle,
-  sendFileContainerStyle,
-  sendFileIconStyle,
   stopIconStyle,
 } from "@/page/AI/components/PreviewChat/style"
 import UserMessage from "@/page/AI/components/UserMessage"
 import { getAgentWSStatus } from "@/redux/config/configSelector"
 import { handleParseFile } from "@/utils/file"
 import {
-  ACCEPT,
   MAX_FILE_SIZE,
   MAX_MESSAGE_FILES_LENGTH,
 } from "../KnowledgeUpload/contants"
+import UploadButton from "./UploadButton"
+import UploadKnowledgeFiles from "./UploadKnowledgeFiles"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
@@ -128,6 +118,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             key={message.threadID}
             message={message}
             hideAvatar={isMobile}
+            editState={editState}
           />
         )
       }
@@ -139,7 +130,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         />
       )
     })
-  }, [chatMessages, currentUserInfo.userID, isMobile])
+  }, [chatMessages, currentUserInfo.userID, editState, isMobile])
 
   const handleDeleteFile = (fileName: string) => {
     const files = knowledgeFiles.filter((file) => file.name !== fileName)
@@ -408,7 +399,13 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           </div>
         ) : isMobile ? (
           <div css={mobileInputStyle}>
-            <input
+            {/* {canShowKnowledgeFiles && (
+              <UploadKnowledgeFiles
+                knowledgeFiles={knowledgeFiles}
+                handleDeleteFile={handleDeleteFile}
+              />
+            )} */}
+            <textarea
               css={mobileInputElementStyle}
               value={textAreaVal}
               placeholder={t("editor.ai-agent.placeholder.send")}
@@ -425,6 +422,14 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
                 setTextAreaVal(v.target.value)
               }}
             />
+            {/* {canShowKnowledgeFiles && (
+              <UploadButton
+                handleClick={handleUploadFile}
+                parseKnowledgeLoading={parseKnowledgeLoading}
+                handleFileChange={handleFileChange}
+                ref={inputRef}
+              />
+            )} */}
             <Button
               disabled={isReceiving || blockInput}
               colorScheme="techPurple"
@@ -456,48 +461,19 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             />
             <div css={operationStyle(canShowKnowledgeFiles)}>
               {canShowKnowledgeFiles && (
-                <div css={fileItemContainerStyle}>
-                  {knowledgeFiles.map((item) => (
-                    <Tag
-                      key={item.name}
-                      closable
-                      onClose={() => handleDeleteFile(item.name)}
-                      bg={getColor("grayBlue", "09")}
-                      icon={getFileIconByContentType(
-                        GCS_OBJECT_TYPE.FILE,
-                        item.type,
-                        fileTypeIconStyle,
-                      )}
-                    >
-                      {item.name}
-                    </Tag>
-                  ))}
-                </div>
+                <UploadKnowledgeFiles
+                  knowledgeFiles={knowledgeFiles}
+                  handleDeleteFile={handleDeleteFile}
+                />
               )}
               <div css={sendButtonStyle}>
-                {model === AI_AGENT_MODEL.GPT_4 && (
-                  <div css={sendFileContainerStyle}>
-                    <IconHotSpot
-                      onClick={handleUploadFile}
-                      css={sendFileIconStyle}
-                    >
-                      {parseKnowledgeLoading ? (
-                        <Loading colorScheme="grayBlue" />
-                      ) : (
-                        <AttachmentIcon
-                          size="16px"
-                          color={getColor("grayBlue", "02")}
-                        />
-                      )}
-                    </IconHotSpot>
-                    <input
-                      style={{ display: "none" }}
-                      type="file"
-                      accept={ACCEPT.join(",")}
-                      ref={inputRef}
-                      onChange={handleFileChange}
-                    />
-                  </div>
+                {canShowKnowledgeFiles && (
+                  <UploadButton
+                    handleClick={handleUploadFile}
+                    parseKnowledgeLoading={parseKnowledgeLoading}
+                    handleFileChange={handleFileChange}
+                    ref={inputRef}
+                  />
                 )}
                 <Button
                   disabled={isReceiving || blockInput}

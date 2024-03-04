@@ -259,7 +259,7 @@ export const AIAgent: FC = () => {
 
   const fieldArray = useWatch({
     control: control,
-    name: ["variables", "model", "prompt", "agentType", "knowledge"],
+    name: ["variables", "model", "prompt", "agentType"],
   })
 
   const blockInputDirty = useMemo(() => {
@@ -273,8 +273,7 @@ export const AIAgent: FC = () => {
       ) ||
       !isEqual(lastRunAgent.model, fieldArray[1]) ||
       !isEqual(lastRunAgent.prompt, fieldArray[2]) ||
-      !isEqual(lastRunAgent.agentType, fieldArray[3]) ||
-      !isEqual(lastRunAgent.knowledge, fieldArray[4])
+      !isEqual(lastRunAgent.agentType, fieldArray[3])
     )
   }, [lastRunAgent, fieldArray])
 
