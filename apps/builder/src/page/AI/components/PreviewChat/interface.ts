@@ -2,6 +2,7 @@ import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   AgentAdvanceConfig,
+  KnowledgeFile,
 } from "@illa-public/public-types"
 import { Params } from "@illa-public/record-editor"
 
@@ -33,6 +34,7 @@ export interface ChatMessage {
   threadID: string
   message: string
   sender: ChatSender
+  knowledgeFiles?: KnowledgeFile[]
 }
 
 export interface ChatSendRequestPayload {
@@ -46,6 +48,7 @@ export interface ChatSendRequestPayload {
 }
 
 export interface PreviewChatProps {
+  model: AI_AGENT_MODEL
   hasCreated: boolean
   editState: EDIT_STATE
   agentType: AI_AGENT_TYPE
