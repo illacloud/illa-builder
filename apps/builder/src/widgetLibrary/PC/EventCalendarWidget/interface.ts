@@ -29,7 +29,7 @@ export interface EventInteractionArgs {
   start: stringOrDate
   end: stringOrDate
   isAllDay: boolean
-  resourceID?: number | string
+  resourceId?: number | string
 }
 
 export interface WrappedEventCalendarProps {

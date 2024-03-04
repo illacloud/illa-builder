@@ -170,6 +170,7 @@ export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
         onEventDrop={moveEvent}
         onEventResize={resizeEvent}
         resizable
+        resourceAccessor={(resource: Event) => resource.resourceID}
         resourceIdAccessor={(resource: Event) => resource.resourceID}
         resources={
           showResource && resourceMapList?.length ? resourceMapList : undefined
@@ -238,13 +239,14 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
   ])
 
   const moveEvent = useCallback(
-    ({
-      event,
-      start,
-      end,
-      resourceID,
-      isAllDay: droppedOnAllDaySlot = false,
-    }: EventInteractionArgs) => {
+    (props: EventInteractionArgs) => {
+      const {
+        event,
+        start,
+        end,
+        resourceId,
+        isAllDay: droppedOnAllDaySlot = false,
+      } = props
       if (!event.draggable) {
         message.info({
           content:
@@ -272,7 +274,7 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
                   ...existing,
                   start: dayjs(start).format(formatDateTime),
                   end: dayjs(end).format(formatDateTime),
-                  resourceID,
+                  resourceID: resourceId,
                   allDay,
                 },
               ],
@@ -280,6 +282,7 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
                 ...existing,
                 start: dayjs(start).format(formatDateTime),
                 end: dayjs(end).format(formatDateTime),
+                resourceID: resourceId,
               },
             },
           },
