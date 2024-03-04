@@ -1,4 +1,5 @@
-import { AI_AGENT_MODEL, AI_AGENT_TYPE } from "@illa-public/public-types"
+import { isPremiumModel } from "@illa-public/market-agent"
+import { AI_AGENT_TYPE } from "@illa-public/public-types"
 import {
   CollarModalType,
   handleCollaPurchaseError,
@@ -71,7 +72,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       Object.keys(encodePayload).forEach((key) => {
         if (key === "prompt") {
           const text = encodePayload[key]
-          if (payload.model === AI_AGENT_MODEL.GPT_4) {
+          if (isPremiumModel(payload.model)) {
             encodePayload[key] = encodeURIComponent(
               formatMessageString(text, messageContent?.knowledgeFiles),
             )

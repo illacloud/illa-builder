@@ -91,3 +91,46 @@ export const getTextValue = (value: unknown): string => {
 export const handleMarkdownLine = (text: string) => {
   return text.replace(/((^\n?---)(\n|$))/gm, "\n---\n")
 }
+
+export const handleMarkdownCode = (
+  text: string,
+  isOwnMessage?: boolean,
+): string => {
+  let res = text
+  if (isOwnMessage) {
+    const startRex =
+      /(^\n?```markdown)|(^\n?```md)|(\n*```markdown) | (\n*```md)/gim
+    const endRex = /(```\n?$)|(```\n\n)/gm
+    if (startRex.test(res) && endRex.test(res)) {
+      res = text.replace(startRex, () => {
+        return `\n\n`
+      })
+      res = res.replace(endRex, () => {
+        return `\n\n`
+      })
+    }
+  } else {
+    const startRex =
+      /(^\n?```markdown)|(^\n?```md)|((\n\n)(.*)```markdown) | ((\n\n)(.*)```md)/im
+    const endRex = /(```\n?$)|(```\n\n)/m
+    if (startRex.test(res) && endRex.test(res)) {
+      res = res.replace(startRex, () => {
+        return `\n\n`
+      })
+      res = res.replace(endRex, () => {
+        return `\n\n`
+      })
+    } else if (startRex.test(res)) {
+      res = res.replace(startRex, () => {
+        return `\n\n`
+      })
+    }
+  }
+  return res
+}
+export const handleParseText = (text: string, isOwnMessage?: boolean) => {
+  let res = text
+  res = handleMarkdownLine(text)
+  res = handleMarkdownCode(res, isOwnMessage)
+  return res
+}
