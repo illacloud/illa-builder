@@ -539,8 +539,7 @@ export const AIAgent: FC = () => {
     ) {
       setError("variables", {
         type: "knowledge",
-        // TODO: WTF i18n
-        message: t("有文件还在解析中"),
+        message: t("dashboard.message.parsing_file_in_prog"),
       })
       handleScrollToElement(SCROLL_ID.KNOWLEDGE)
       return false
