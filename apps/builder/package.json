@@ -106,6 +106,7 @@
     "klona": "^2.0.6",
     "lodash-es": "^4.17.21",
     "lottie-react": "^2.4.0",
+    "mammoth": "^1.7.0",
     "numbro": "^2.4.0",
     "overlap-area": "^1.1.0",
     "papaparse": "^5.4.1",
@@ -148,7 +149,7 @@
     "toposort": "^2.0.2",
     "ts-key-enum": "^2.0.12",
     "uuid": "^8.3.2",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   },
   "devDependencies": {
     "@mdx-js/rollup": "^2.3.0",

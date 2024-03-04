@@ -18,6 +18,7 @@ export const senderContainerStyle = css`
   overflow-x: hidden;
   flex-direction: column;
   align-items: end;
+  gap: 4px;
   max-width: 100%;
 `
 
@@ -41,9 +42,20 @@ export const messageContainerStyle = css`
   border-radius: 8px;
   background: ${getColor("techPurple", "08")};
   padding: 12px;
-  margin-top: 4px;
   max-width: 100%;
   ${applyMobileStyle(css`
     margin-left: 0;
   `)}
+`
+
+export const fileItemContainerStyle = css`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+`
+
+export const fileTypeIconStyle = css`
+  height: 16px;
 `
