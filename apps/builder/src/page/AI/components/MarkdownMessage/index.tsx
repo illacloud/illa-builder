@@ -31,7 +31,7 @@ import {
   tableStyle,
 } from "@/page/AI/components/MarkdownMessage/style"
 import Code from "./Code"
-import { handleMarkdownLine } from "./utils"
+import { handleParseText } from "./utils"
 
 export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
   const { children, isOwnMessage } = props
@@ -100,7 +100,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
               code: (props) => <Code {...props} />,
             }}
           >
-            {handleMarkdownLine(children ?? "")}
+            {handleParseText(children ?? "", isOwnMessage)}
           </ReactMarkdown>
         </Typography>
       </div>

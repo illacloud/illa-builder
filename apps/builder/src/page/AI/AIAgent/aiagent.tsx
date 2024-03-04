@@ -366,7 +366,7 @@ export const AIAgent: FC = () => {
   const handleSubmitSave = async (data: Agent) => {
     let currentData: Agent = { ...data }
     if (
-      currentData.model !== AI_AGENT_MODEL.GPT_4 &&
+      !isPremiumModel(currentData.model) &&
       currentData.knowledge?.length > 0
     ) {
       currentData = {
@@ -755,7 +755,7 @@ export const AIAgent: FC = () => {
                 />
 
                 {CAN_EDIT_KNOWLEDGE_FILE &&
-                  getValues("model") === AI_AGENT_MODEL.GPT_4 && (
+                  isPremiumModel(getValues("model")) && (
                     <Controller
                       name="knowledge"
                       control={control}

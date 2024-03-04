@@ -1,12 +1,9 @@
+import { isPremiumModel } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
-import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  KnowledgeFile,
-} from "@illa-public/public-types"
+import { AI_AGENT_TYPE, KnowledgeFile } from "@illa-public/public-types"
 import { getCurrentUser } from "@illa-public/user-data"
 import { AnimatePresence, motion } from "framer-motion"
 import {
@@ -101,7 +98,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const [parseKnowledgeLoading, setParseKnowledgeLoading] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const canShowKnowledgeFiles = model === AI_AGENT_MODEL.GPT_4
+  const canShowKnowledgeFiles = isPremiumModel(model)
 
   const { t } = useTranslation()
 
