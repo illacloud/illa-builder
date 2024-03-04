@@ -337,7 +337,7 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         },
       },
     ])
-    triggerEventHandler("onRowClick")
+    triggerEventHandler("onRowClickChange")
   }
 
   const onFilterModelChange = (model: GridFilterModel) => {
