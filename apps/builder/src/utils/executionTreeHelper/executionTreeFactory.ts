@@ -363,11 +363,7 @@ export class ExecutionTreeFactory {
     return newUpdateMapActions
   }
 
-  updateTree(
-    rawTree: RawTreeShape,
-    isDeleteAction?: boolean,
-    isAddAction?: boolean,
-  ) {
+  updateTree(rawTree: RawTreeShape, isAddAction?: boolean) {
     const currentRawTree = klona(rawTree)
     try {
       this.dependenciesState = this.generateDependenciesMap(currentRawTree)
@@ -392,6 +388,7 @@ export class ExecutionTreeFactory {
         independencyTree: this.inDependencyTree,
       }
     }
+
     this.oldRawTree = klona(currentRawTree)
     const updatePathMapAction = this.getUpdatePathFromDifferences(differences)
     const walkedPath = new Set<string>()
@@ -453,11 +450,14 @@ export class ExecutionTreeFactory {
       switch (d.kind) {
         case "N": {
           const rhs = d.rhs
-          if (rhs && typeof rhs === "object") {
+          if (typeof rhs === "object" && rhs !== null) {
             const keys = Object.keys(rhs)
             keys.forEach((key) => {
               updatePathMapAction[convertPathToString([...path, key])] = "NEW"
             })
+          }
+          if (typeof rhs !== "object") {
+            updatePathMapAction[stringPath] = "NEW"
           }
           break
         }

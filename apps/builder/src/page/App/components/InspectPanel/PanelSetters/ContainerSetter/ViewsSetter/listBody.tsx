@@ -70,7 +70,7 @@ export const ListBody: FC = () => {
     attrPath,
     dispatch,
     componentNode.displayName,
-    currentSelected.key,
+    currentSelected?.key,
   ])
 
   useEffect(() => {
