@@ -281,6 +281,10 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
         ]
       : []
 
+  const innerRowSelection =
+    rowSelection &&
+    (rowSelectionMode === "multiple" || rowSelectionMode === "single")
+
   /**
    *
    * Data Grid Pagination Attributes Start
@@ -447,8 +451,10 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           getRowId={getRowID}
           aggregationModel={aggregationModel}
           filterModel={innerFilterModel}
-          rowSelectionModel={rowSelection ? selectedRowsPrimaryKeys : undefined}
-          rowSelection={rowSelection}
+          rowSelectionModel={
+            innerRowSelection ? selectedRowsPrimaryKeys : undefined
+          }
+          rowSelection={innerRowSelection}
           columnVisibilityModel={{
             [UNIQUE_ID_NAME]: false,
             ...columnVisibilityModel,
@@ -458,9 +464,11 @@ export const DataGridWidget: FC<BaseDataGridProps> = (props) => {
           pageSizeOptions={isArray(pageSizeOptions) ? pageSizeOptions : []}
           autoPageSize={pageSize === undefined}
           disableMultipleRowSelection={
-            rowSelectionMode === "single" || !rowSelection
+            rowSelectionMode === "single" || !innerRowSelection
           }
-          checkboxSelection={rowSelection && rowSelectionMode === "multiple"}
+          checkboxSelection={
+            innerRowSelection && rowSelectionMode === "multiple"
+          }
           rows={arrayData}
           columns={(renderColumns as GridColDef[]) ?? []}
           rowCount={
