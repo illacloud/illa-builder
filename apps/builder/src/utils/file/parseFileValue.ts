@@ -12,6 +12,8 @@ import { read, utils } from "xlsx"
 
 GlobalWorkerOptions.workerSrc = pdfWorker
 
+const C_MAP_URL = "https://unpkg.com/pdfjs-dist@2.16.105/cmaps/"
+
 export const handleParseSheets = (
   data: any,
   type: "base64" | "buffer" | "string" = "base64",
@@ -22,7 +24,7 @@ export const handleParseSheets = (
   for (let i = 0; i < sheetNames.length; i++) {
     const sheet = f.Sheets[sheetNames[i]]
     const value = {
-      [sheetNames[i]]: utils.sheet_to_json(sheet),
+      [sheetNames[i]]: utils.sheet_to_txt(sheet, { blankrows: false }),
     }
     res = {
       ...res,
@@ -48,7 +50,11 @@ export const handleParsePdf = async (source: ArrayBuffer) => {
   }
 
   try {
-    const pdf = await getDocument(source).promise
+    const pdf = await getDocument({
+      data: source,
+      cMapPacked: true,
+      cMapUrl: C_MAP_URL,
+    }).promise
     const maxPages = pdf.numPages
     const pageTextPromises = []
     for (let pageNo = 1; pageNo <= maxPages; pageNo++) {
