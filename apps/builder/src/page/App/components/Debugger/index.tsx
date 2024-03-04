@@ -41,12 +41,14 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
         <div css={errorContentStyle}>
           {Object.keys(debuggerData)?.map((name, index) => {
             const error = debuggerData[name]
-            if (isArray(error)) {
+
+            if (isArray(error) && error.length > 0) {
               return error?.map((item) => {
                 return <ErrorItem key={index} pathName={name} item={item} />
               })
+            } else {
+              return null
             }
-            return <ErrorItem key={name} pathName={name} item={error} />
           })}
         </div>
       </div>
