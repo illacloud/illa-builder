@@ -185,36 +185,9 @@ export const operationStyle = (showKnowledge: boolean) => css`
   align-self: stretch;
 `
 
-export const fileItemContainerStyle = css`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  align-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  max-height: 150px;
-  overflow-y: auto;
-`
-
-export const fileTypeIconStyle = css`
-  height: 16px;
-`
-
 export const sendButtonStyle = css`
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 16px;
-`
-
-export const sendFileContainerStyle = css`
-  display: flex;
-`
-
-export const sendFileIconStyle = css`
-  display: flex;
-  padding: 12px;
-  width: 40px;
-  height: 40px;
-  flex: none;
 `
