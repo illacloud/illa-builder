@@ -801,9 +801,11 @@ export const DATA_GRID_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.selection_mode"),
         labelDesc: i18n.t("editor.inspect.setter_tips.selection_mode"),
         attrName: "rowSelectionMode",
-        setterType: "RADIO_GROUP_SETTER",
+        setterType: "DYNAMIC_SELECT_SETTER",
         defaultValue: "single",
         isSetterSingleRow: true,
+        useCustomLayout: true,
+        openDynamic: true,
         bindAttrName: ["rowSelection"],
         shown: (value) => value,
         options: [
