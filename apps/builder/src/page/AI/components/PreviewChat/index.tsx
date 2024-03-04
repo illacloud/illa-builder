@@ -2,10 +2,15 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
-import { AI_AGENT_TYPE } from "@illa-public/public-types"
+import {
+  AI_AGENT_MODEL,
+  AI_AGENT_TYPE,
+  KnowledgeFile,
+} from "@illa-public/public-types"
 import { getCurrentUser } from "@illa-public/user-data"
 import { AnimatePresence, motion } from "framer-motion"
 import {
+  ChangeEvent,
   FC,
   useCallback,
   useContext,
@@ -17,7 +22,12 @@ import {
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
-import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
+import {
+  Button,
+  ContributeIcon,
+  DependencyIcon,
+  useMessage,
+} from "@illa-design/react"
 import { ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
 import AgentBlockInput from "@/assets/agent/agent-block-input.svg?react"
 import GridFillIcon from "@/assets/agent/gridFill.svg?react"
@@ -41,13 +51,22 @@ import {
   inputTextContainerStyle,
   mobileInputElementStyle,
   mobileInputStyle,
+  operationStyle,
   previewChatContainerStyle,
   previewTitleContainerStyle,
   previewTitleTextStyle,
+  sendButtonStyle,
   stopIconStyle,
 } from "@/page/AI/components/PreviewChat/style"
 import UserMessage from "@/page/AI/components/UserMessage"
 import { getAgentWSStatus } from "@/redux/config/configSelector"
+import { handleParseFile } from "@/utils/file"
+import {
+  MAX_FILE_SIZE,
+  MAX_MESSAGE_FILES_LENGTH,
+} from "../KnowledgeUpload/contants"
+import UploadButton from "./UploadButton"
+import UploadKnowledgeFiles from "./UploadKnowledgeFiles"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
@@ -63,6 +82,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     isReceiving,
     blockInput,
     editState,
+    model,
     onCancelReceiving,
     onShowShareDialog,
     onShowContributeDialog,
@@ -70,12 +90,18 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
+  const message = useMessage()
 
   const wsStatus = useSelector(getAgentWSStatus)
 
   const chatRef = useRef<HTMLDivElement>(null)
 
   const [textAreaVal, setTextAreaVal] = useState("")
+  const [knowledgeFiles, setKnowledgeFiles] = useState<KnowledgeFile[]>([])
+  const [parseKnowledgeLoading, setParseKnowledgeLoading] = useState(false)
+
+  const inputRef = useRef<HTMLInputElement>(null)
+  const canShowKnowledgeFiles = model === AI_AGENT_MODEL.GPT_4
 
   const { t } = useTranslation()
 
@@ -92,6 +118,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             key={message.threadID}
             message={message}
             hideAvatar={isMobile}
+            editState={editState}
           />
         )
       }
@@ -103,7 +130,89 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         />
       )
     })
-  }, [chatMessages, currentUserInfo.userID, isMobile])
+  }, [chatMessages, currentUserInfo.userID, editState, isMobile])
+
+  const handleDeleteFile = (fileName: string) => {
+    const files = knowledgeFiles.filter((file) => file.name !== fileName)
+    setKnowledgeFiles(files)
+  }
+
+  const handleUploadFile = () => {
+    if (knowledgeFiles.length >= MAX_MESSAGE_FILES_LENGTH) {
+      message.warning({
+        // TODO: WTF i18n
+        content: t("最多10个文件"),
+      })
+      return
+    }
+    inputRef.current?.click()
+  }
+
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    const file = files && files[0]
+    if (!file) return
+    inputRef.current && (inputRef.current.value = "")
+    setParseKnowledgeLoading(true)
+    try {
+      if (file.size > MAX_FILE_SIZE) {
+        message.warning({
+          // TODO: WTF, i18n
+          content: t("文件大小不能超过20M"),
+        })
+        return
+      }
+      const files = [...knowledgeFiles]
+      const index = files.findIndex(
+        (item) => item.name === file.name && item.type === file.type,
+      )
+      const fileName =
+        index !== -1
+          ? `${file.name.split(".")[0]}(${v4().slice(0, 3)})`
+          : file.name
+
+      files.push({
+        name: fileName,
+        type: file.type,
+      })
+      setKnowledgeFiles(files)
+      const value = await handleParseFile(file, true)
+      if (value === "") {
+        // TODO: WTF, i18n
+        message.warning({
+          content: t("没解析出文本内容"),
+        })
+        handleDeleteFile(fileName)
+        return
+      }
+      const afterParseFilesIndex = files.findIndex(
+        (item) => item.name === file.name && item.type === file.type,
+      )
+      if (afterParseFilesIndex !== -1) {
+        const needUpdateFile = files[afterParseFilesIndex]
+        if (!needUpdateFile.value) {
+          files.splice(afterParseFilesIndex, 1, {
+            ...needUpdateFile,
+            ...file,
+            value,
+          })
+        }
+      } else {
+        files.push({
+          name: fileName,
+          type: file.type,
+          value,
+        })
+      }
+      setKnowledgeFiles(files)
+    } catch (e) {
+      message.error({
+        content: t("解析内容出错"),
+      })
+    } finally {
+      setParseKnowledgeLoading(false)
+    }
+  }
 
   useEffect(() => {
     chatRef.current?.scrollTo({
@@ -112,7 +221,10 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   }, [chatMessages, generationMessage])
 
   const sendAndClearMessage = useCallback(() => {
-    if (textAreaVal !== "") {
+    if (
+      (textAreaVal !== "" || knowledgeFiles.length > 0) &&
+      !parseKnowledgeLoading
+    ) {
       onSendMessage(
         {
           threadID: v4(),
@@ -121,12 +233,21 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             senderID: currentUserInfo.userID,
             senderType: SenderType.USER,
           },
+          knowledgeFiles: knowledgeFiles,
         } as ChatMessage,
         agentType,
       )
       setTextAreaVal("")
+      setKnowledgeFiles([])
     }
-  }, [agentType, currentUserInfo.userID, onSendMessage, textAreaVal])
+  }, [
+    agentType,
+    currentUserInfo.userID,
+    knowledgeFiles,
+    onSendMessage,
+    parseKnowledgeLoading,
+    textAreaVal,
+  ])
 
   const generationBlock = useMemo(() => {
     return (
@@ -278,7 +399,13 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           </div>
         ) : isMobile ? (
           <div css={mobileInputStyle}>
-            <input
+            {/* {canShowKnowledgeFiles && (
+              <UploadKnowledgeFiles
+                knowledgeFiles={knowledgeFiles}
+                handleDeleteFile={handleDeleteFile}
+              />
+            )} */}
+            <textarea
               css={mobileInputElementStyle}
               value={textAreaVal}
               placeholder={t("editor.ai-agent.placeholder.send")}
@@ -295,6 +422,14 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
                 setTextAreaVal(v.target.value)
               }}
             />
+            {/* {canShowKnowledgeFiles && (
+              <UploadButton
+                handleClick={handleUploadFile}
+                parseKnowledgeLoading={parseKnowledgeLoading}
+                handleFileChange={handleFileChange}
+                ref={inputRef}
+              />
+            )} */}
             <Button
               disabled={isReceiving || blockInput}
               colorScheme="techPurple"
@@ -324,17 +459,33 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
                 setTextAreaVal(event.target.value)
               }}
             />
-            <Button
-              alignSelf="end"
-              disabled={isReceiving || blockInput}
-              mt="16px"
-              colorScheme="techPurple"
-              onClick={() => {
-                sendAndClearMessage()
-              }}
-            >
-              {t("editor.ai-agent.button.send")}
-            </Button>
+            <div css={operationStyle(canShowKnowledgeFiles)}>
+              {canShowKnowledgeFiles && (
+                <UploadKnowledgeFiles
+                  knowledgeFiles={knowledgeFiles}
+                  handleDeleteFile={handleDeleteFile}
+                />
+              )}
+              <div css={sendButtonStyle}>
+                {canShowKnowledgeFiles && (
+                  <UploadButton
+                    handleClick={handleUploadFile}
+                    parseKnowledgeLoading={parseKnowledgeLoading}
+                    handleFileChange={handleFileChange}
+                    ref={inputRef}
+                  />
+                )}
+                <Button
+                  disabled={isReceiving || blockInput}
+                  colorScheme="techPurple"
+                  onClick={() => {
+                    sendAndClearMessage()
+                  }}
+                >
+                  {t("editor.ai-agent.button.send")}
+                </Button>
+              </div>
+            </div>
           </>
         )}
       </div>

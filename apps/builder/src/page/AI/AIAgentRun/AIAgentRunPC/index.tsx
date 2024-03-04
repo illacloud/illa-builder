@@ -841,6 +841,7 @@ export const AIAgentRunPC: FC = () => {
                       isMobile={false}
                       editState="RUN"
                       agentType={field.value}
+                      model={getValues("model")}
                       chatMessages={chatMessages}
                       generationMessage={generationMessage}
                       isReceiving={isReceiving}

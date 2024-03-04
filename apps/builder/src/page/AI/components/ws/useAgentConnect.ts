@@ -1,4 +1,4 @@
-import { AI_AGENT_TYPE } from "@illa-public/public-types"
+import { AI_AGENT_MODEL, AI_AGENT_TYPE } from "@illa-public/public-types"
 import {
   CollarModalType,
   handleCollaPurchaseError,
@@ -27,6 +27,7 @@ import {
   getAIAgentAnonymousAddress,
   getAIAgentWsAddress,
 } from "@/services/agent"
+import { formatMessageString } from "./utils"
 
 export type AgentMessageType = "chat" | "stop_all" | "clean"
 
@@ -69,7 +70,14 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       const encodePayload: ChatSendRequestPayload = payload
       Object.keys(encodePayload).forEach((key) => {
         if (key === "prompt") {
-          encodePayload[key] = encodeURIComponent(encodePayload[key])
+          const text = encodePayload[key]
+          if (payload.model === AI_AGENT_MODEL.GPT_4) {
+            encodePayload[key] = encodeURIComponent(
+              formatMessageString(text, messageContent?.knowledgeFiles),
+            )
+          } else {
+            encodePayload[key] = encodeURIComponent(encodePayload[key])
+          }
         }
         if (key === "variables") {
           encodePayload[key] = encodePayload[key].map((v) => {

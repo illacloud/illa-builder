@@ -21,6 +21,7 @@ import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   Agent,
+  KnowledgeFile,
   MemberInfo,
   USER_ROLE,
   USER_STATUS,
@@ -95,6 +96,7 @@ import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { ChatContext } from "../components/ChatContext"
 import { ErrorText } from "../components/ErrorText"
+import KnowledgeUpload from "../components/KnowledgeUpload"
 import {
   ChatSendRequestPayload,
   SenderType,
@@ -125,6 +127,9 @@ import {
   uploadTextStyle,
 } from "./style"
 import { agentData2JSONReport } from "./utils"
+
+// TODO: WTF, can edit knowledge file
+const CAN_EDIT_KNOWLEDGE_FILE = false
 
 export const AIAgent: FC = () => {
   const data = useAsyncValue() as {
@@ -248,6 +253,7 @@ export const AIAgent: FC = () => {
       model: getValues("model"),
       prompt: getValues("prompt"),
       agentType: getValues("agentType"),
+      // TODO: add knowledge
     } as Agent
   }, [getValues])
 
@@ -315,6 +321,7 @@ export const AIAgent: FC = () => {
             threadID: v4(),
             prompt: getValues("prompt"),
             variables: getValues("variables"),
+            // TODO: add knowledge
             actionID: getValues("aiAgentID"),
             modelConfig: getValues("modelConfig"),
             model: getValues("model"),
@@ -357,29 +364,39 @@ export const AIAgent: FC = () => {
   }
 
   const handleSubmitSave = async (data: Agent) => {
+    let currentData: Agent = { ...data }
+    if (
+      currentData.model !== AI_AGENT_MODEL.GPT_4 &&
+      currentData.knowledge?.length > 0
+    ) {
+      currentData = {
+        ...currentData,
+        knowledge: [],
+      }
+    }
     track(
       ILLA_MIXPANEL_EVENT_TYPE.CLICK,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
       {
         element: "save",
-        parameter1: agentData2JSONReport(data),
-        parameter5: data.aiAgentID || "-1",
+        parameter1: agentData2JSONReport(currentData),
+        parameter5: currentData.aiAgentID || "-1",
       },
     )
     let agentInfo: Agent
     try {
-      let updateIconURL = data.icon
-      if (data.icon !== undefined && data.icon !== "") {
-        const iconURL = new URL(data.icon)
+      let updateIconURL = currentData.icon
+      if (currentData.icon !== undefined && currentData.icon !== "") {
+        const iconURL = new URL(currentData.icon)
         if (iconURL.protocol !== "http:" && iconURL.protocol !== "https:") {
-          updateIconURL = await uploadAgentIcon(data.icon)
+          updateIconURL = await uploadAgentIcon(currentData.icon)
         }
       }
-      if (data.aiAgentID === undefined || data.aiAgentID === "") {
+      if (currentData.aiAgentID === undefined || currentData.aiAgentID === "") {
         const resp = await createAgent({
-          ...data,
+          ...currentData,
           icon: updateIconURL,
-          variables: data.variables.filter(
+          variables: currentData.variables.filter(
             (v) => v.key !== "" && v.value !== "",
           ),
         })
@@ -399,8 +416,8 @@ export const AIAgent: FC = () => {
         })
         agentInfo = resp.data
       } else {
-        const resp = await putAgentDetail(data.aiAgentID, {
-          ...data,
+        const resp = await putAgentDetail(currentData.aiAgentID, {
+          ...currentData,
           icon: updateIconURL,
           variables: data.variables.filter(
             (v) => v.key !== "" && v.value !== "",
@@ -437,6 +454,9 @@ export const AIAgent: FC = () => {
     let validate = true
     if (!!errors.prompt) {
       handleScrollToElement(SCROLL_ID.PROMPT)
+      validate = false
+    } else if (!!errors.knowledge) {
+      handleScrollToElement(SCROLL_ID.KNOWLEDGE)
       validate = false
     } else if (!!errors.variables) {
       handleScrollToElement(SCROLL_ID.VARIABLES)
@@ -511,6 +531,18 @@ export const AIAgent: FC = () => {
         message: t("editor.ai-agent.validation_blank.variable_value"),
       })
       handleScrollToElement(SCROLL_ID.VARIABLES)
+      return false
+    } else if (
+      Array.isArray(getValues("knowledge")) &&
+      getValues("knowledge").length > 0 &&
+      getValues("knowledge").some((param) => param.value === "")
+    ) {
+      setError("variables", {
+        type: "knowledge",
+        // TODO: WTF i18n
+        message: t("有文件还在解析中"),
+      })
+      handleScrollToElement(SCROLL_ID.KNOWLEDGE)
       return false
     }
     return true
@@ -721,6 +753,75 @@ export const AIAgent: FC = () => {
                     </AIAgentBlock>
                   )}
                 />
+
+                {CAN_EDIT_KNOWLEDGE_FILE &&
+                  getValues("model") === AI_AGENT_MODEL.GPT_4 && (
+                    <Controller
+                      name="knowledge"
+                      control={control}
+                      rules={{
+                        validate: (value) => {
+                          const isValidate =
+                            !value ||
+                            value.length === 0 ||
+                            value.every((param) => param.value !== "")
+                          return isValidate ? isValidate : t("")
+                        },
+                      }}
+                      shouldUnregister={false}
+                      render={({ field }) => (
+                        <AIAgentBlock
+                          title={t("knowledge")}
+                          scrollId={SCROLL_ID.KNOWLEDGE}
+                        >
+                          <KnowledgeUpload
+                            addFile={(
+                              file: KnowledgeFile,
+                              isUpdate?: boolean,
+                            ) => {
+                              const { name, type } = file
+                              const files = field.value || []
+                              const index = files.findIndex(
+                                (item) =>
+                                  item.name === name && item.type === type,
+                              )
+                              if (index !== -1) {
+                                if (isUpdate) {
+                                  let needUpdateFile = files[index]
+                                  files.splice(index, 1, {
+                                    ...needUpdateFile,
+                                    ...file,
+                                  })
+                                } else {
+                                  const fileNamePrefix = `${
+                                    file.name.split(".")[0]
+                                  }(${v4().slice(0, 3)})`
+
+                                  files.push({
+                                    ...file,
+                                    name: `${fileNamePrefix}.${file.name.split(
+                                      ".",
+                                    )?.[1]}`,
+                                  })
+                                }
+                              } else {
+                                files.push(file)
+                              }
+                              field.onChange(files)
+                            }}
+                            removeFile={(name: string) => {
+                              const currentFiles = field.value || []
+                              const files = currentFiles.filter(
+                                (item) => item.name !== name,
+                              )
+                              field.onChange(files)
+                            }}
+                            values={field.value}
+                          />
+                        </AIAgentBlock>
+                      )}
+                    />
+                  )}
 
                 <Controller
                   name="model"
@@ -1094,28 +1195,28 @@ export const AIAgent: FC = () => {
             <form onSubmit={handleSubmit(handleSubmitSave)}>
               <div css={buttonContainerStyle}>
                 <Button
-                  id="save-button"
-                  flex="1"
-                  colorScheme="grayBlue"
-                  onClick={handleVerifyOnSave}
-                  size="large"
-                  loading={isSubmitting}
-                >
-                  {t("editor.ai-agent.save")}
-                </Button>
-                <Button
                   flex="1"
                   size="large"
                   type="button"
                   loading={isConnecting}
-                  ml="8px"
-                  colorScheme={getColor("grayBlue", "02")}
+                  colorScheme="grayBlue"
                   leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
                   onClick={handleClickStart}
                 >
                   {!isRunning
                     ? t("editor.ai-agent.start")
                     : t("editor.ai-agent.restart")}
+                </Button>
+                <Button
+                  id="save-button"
+                  flex="1"
+                  ml="8px"
+                  onClick={handleVerifyOnSave}
+                  colorScheme={getColor("grayBlue", "02")}
+                  size="large"
+                  loading={isSubmitting}
+                >
+                  {t("editor.ai-agent.save")}
                 </Button>
               </div>
             </form>
@@ -1150,6 +1251,7 @@ export const AIAgent: FC = () => {
                             isRunning={isRunning}
                             hasCreated={Boolean(idField.value)}
                             isMobile={false}
+                            model={getValues("model")}
                             editState="EDIT"
                             agentType={field.value}
                             chatMessages={chatMessages}
