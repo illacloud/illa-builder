@@ -11,7 +11,6 @@ import i18n from "@/i18n/config"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/components/componentsSelector"
 import {
   DependenciesState,
-  ErrorShape,
   ExecutionErrorType,
   ExecutionState,
 } from "@/redux/currentApp/executionTree/executionState"
@@ -124,7 +123,7 @@ export class ExecutionTreeFactory {
   }
 
   validateTree(tree: RawTreeShape) {
-    const validateErrors: Record<string, any> = klona(this.errorTree)
+    const validateErrors: Record<string, any> = {}
     const validateResultTree = Object.keys(tree).reduce(
       (current: RawTreeShape, displayName) => {
         const widgetOrAction = current[displayName]
@@ -555,7 +554,9 @@ export class ExecutionTreeFactory {
     )
     const { validateErrors, validateResultTree } =
       this.validateTree(evaluatedTree)
+
     const mergedError = merge({}, validateErrors, errorTree)
+
     const errorTreeResult = this.mergeErrorTree(
       mergedError,
       mergedUpdatePathMapAction,
@@ -717,14 +718,15 @@ export class ExecutionTreeFactory {
                 set(current, fullPath, evaluateValue)
               }
             } catch (e) {
-              const oldError = errorTree[fullPath] ?? ([] as ErrorShape[])
-              if (Array.isArray(oldError)) {
-                oldError.push({
-                  errorType: ExecutionErrorType.EVALUATED,
-                  errorMessage: (e as Error).message,
-                  errorName: (e as Error).name,
-                })
+              let oldError = errorTree[fullPath]
+              if (!Array.isArray(oldError)) {
+                oldError = []
               }
+              oldError.push({
+                errorType: ExecutionErrorType.EVALUATED,
+                errorMessage: (e as Error).message,
+                errorName: (e as Error).name,
+              })
               errorTree[fullPath] = oldError
               set(current, fullPath, undefined)
             }

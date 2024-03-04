@@ -1,7 +1,7 @@
 import IconHotSpot from "@illa-public/icon-hot-spot"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { t } from "i18next"
-import { FC, memo } from "react"
+import { FC, memo, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Badge, BugIcon, Trigger, getColor } from "@illa-design/react"
 import { isOpenDebugger } from "@/redux/config/configSelector"
@@ -13,9 +13,18 @@ const DebugButton: FC = () => {
   const debuggerData = useSelector(getExecutionError)
   const debuggerVisible = useSelector(isOpenDebugger)
 
-  const debugMessageNumber = debuggerData
-    ? Object.keys(debuggerData).length
-    : undefined
+  const debugMessageNumber = useMemo(() => {
+    if (debuggerData) {
+      let count = 0
+      Object.keys(debuggerData).forEach((errors) => {
+        if (Array.isArray(debuggerData[errors])) {
+          count += debuggerData[errors].length
+        }
+      })
+      return count
+    }
+    return undefined
+  }, [debuggerData])
   const dispatch = useDispatch()
 
   const handleClickDebuggerIcon = () => {
