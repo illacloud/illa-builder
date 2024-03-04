@@ -11,7 +11,11 @@ export const useScaleStateSelector = (displayName: string) => {
     return (
       keys.length > 0 &&
       keys.some((key) => {
-        return key.startsWith(displayName)
+        return (
+          Array.isArray(errors[key]) &&
+          errors[key].length > 0 &&
+          key.startsWith(displayName)
+        )
       })
     )
   }, [displayName, errors])
