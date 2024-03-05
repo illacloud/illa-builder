@@ -1,5 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { ShareAgentPC } from "@illa-public/invite-modal"
 import {
   MarketAIAgent,
@@ -44,7 +45,7 @@ import {
   getILLABuilderURL,
   getILLACloudURL,
 } from "@illa-public/utils"
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { Helmet } from "react-helmet-async"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -58,6 +59,7 @@ import {
 import { v4 } from "uuid"
 import {
   Button,
+  CloseIcon,
   DependencyIcon,
   ForkIcon,
   PlayFillIcon,
@@ -99,6 +101,7 @@ import {
   backMenuStyle,
   backTextStyle,
   buttonContainerStyle,
+  closeIconStyle,
   labelLogoStyle,
   labelStyle,
   leftPanelContainerStyle,
@@ -122,6 +125,7 @@ export const AIAgentRunPC: FC = () => {
     mode: "onSubmit",
     defaultValues: agent,
   })
+  const formRef = useRef<HTMLFormElement>(null)
 
   const { isDirty, isValid } = useFormState({
     control,
@@ -171,9 +175,54 @@ export const AIAgentRunPC: FC = () => {
     getValues("publishedToMarketplace"),
   )
 
+  const [showEditPanel, setShowEditPanel] = useState(true)
+
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
+
+  const handleCloseEditPanel = () => {
+    setShowEditPanel(false)
+  }
+
+  const handleClickBack = () => {
+    const cloud_url = getILLACloudURL(window.customDomain)
+    if (document.referrer.includes(cloud_url)) {
+      return (location.href = `${cloud_url}/workspace/${ownerTeamIdentifier}/ai-agents`)
+    }
+    if (
+      document.referrer.includes(import.meta.env.ILLA_MARKET_URL) &&
+      agentID
+    ) {
+      return (location.href = `${
+        import.meta.env.ILLA_MARKET_URL
+      }/ai-agent/${agentID}/detail`)
+    }
+    return (location.href = cloud_url)
+  }
+
+  const handleSubmitClick = handleSubmit(async (data) => {
+    if (isPremiumModel(data.model) && !canUseBillingFeature) {
+      upgradeModal({
+        modalType: "agent",
+        from: "agent_run_gpt4",
+      })
+      return
+    }
+    reset(data)
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+      {
+        element: isRunning ? "restart" : "start",
+        parameter1: data.agentType === 1 ? "chat" : "text",
+        parameter5: agent.aiAgentID,
+      },
+    )
+    isRunning
+      ? await reconnect(data.aiAgentID, data.agentType)
+      : await connect(data.aiAgentID, data.agentType)
+  })
 
   const dialog = (
     <Controller
@@ -581,30 +630,19 @@ export const AIAgentRunPC: FC = () => {
       </Helmet>
       <ChatContext.Provider value={{ inRoomUsers }}>
         <div css={aiAgentContainerStyle}>
-          <div css={leftPanelContainerStyle}>
+          <div css={leftPanelContainerStyle(showEditPanel)}>
             <div css={agentTopContainerStyle}>
-              <div
-                css={backMenuStyle}
-                onClick={() => {
-                  const cloud_url = getILLACloudURL(window.customDomain)
-                  if (document.referrer.includes(cloud_url)) {
-                    return (location.href = `${cloud_url}/workspace/${ownerTeamIdentifier}/ai-agents`)
-                  }
-                  if (
-                    document.referrer.includes(
-                      import.meta.env.ILLA_MARKET_URL,
-                    ) &&
-                    agentID
-                  ) {
-                    return (location.href = `${
-                      import.meta.env.ILLA_MARKET_URL
-                    }/ai-agent/${agentID}/detail`)
-                  }
-                  return (location.href = cloud_url)
-                }}
-              >
-                <PreviousIcon fs="16px" />
-                <div css={backTextStyle}>{t("back")}</div>
+              <div css={backMenuStyle}>
+                <div onClick={handleClickBack}>
+                  <PreviousIcon fs="16px" />
+                  <div css={backTextStyle}>{t("back")}</div>
+                </div>
+                <IconHotSpot
+                  onClick={handleCloseEditPanel}
+                  css={closeIconStyle}
+                >
+                  <CloseIcon size="12px" />
+                </IconHotSpot>
               </div>
               <div css={agentTitleContainerStyle}>
                 <Controller
@@ -774,30 +812,7 @@ export const AIAgentRunPC: FC = () => {
                 )}
               />
             </div>
-            <form
-              onSubmit={handleSubmit(async (data) => {
-                if (isPremiumModel(data.model) && !canUseBillingFeature) {
-                  upgradeModal({
-                    modalType: "agent",
-                    from: "agent_run_gpt4",
-                  })
-                  return
-                }
-                reset(data)
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
-                  {
-                    element: isRunning ? "restart" : "start",
-                    parameter1: data.agentType === 1 ? "chat" : "text",
-                    parameter5: agent.aiAgentID,
-                  },
-                )
-                isRunning
-                  ? await reconnect(data.aiAgentID, data.agentType)
-                  : await connect(data.aiAgentID, data.agentType)
-              })}
-            >
+            <form ref={formRef} onSubmit={handleSubmitClick}>
               <div css={buttonContainerStyle}>
                 <Button
                   size="large"
@@ -836,7 +851,10 @@ export const AIAgentRunPC: FC = () => {
                           : USER_ROLE.GUEST,
                         contributedField.value,
                       )}
+                      showEditPanel={showEditPanel}
+                      setShowEditPanel={setShowEditPanel}
                       isRunning={isRunning}
+                      isConnecting={isConnecting}
                       hasCreated={true}
                       isMobile={false}
                       editState="RUN"
@@ -882,6 +900,7 @@ export const AIAgentRunPC: FC = () => {
                         )
                         setIsReceiving(false)
                       }}
+                      onClickStartRunning={handleSubmitClick}
                     />
                   </div>
                 )}

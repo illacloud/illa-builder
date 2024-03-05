@@ -9,14 +9,15 @@ export const aiAgentContainerStyle = css`
   height: 100%;
 `
 
-export const leftPanelContainerStyle = css`
+export const leftPanelContainerStyle = (showEditPanel: boolean) => css`
   height: 100%;
-  width: 528px;
+  width: ${showEditPanel ? "528px" : 0};
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
   flex: none;
+  transition: width 0.3s ease-in-out;
   ${applyMobileStyle(css`
     display: none;
   `)}
@@ -41,17 +42,30 @@ export const backMenuStyle = css`
   display: flex;
   cursor: pointer;
   flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 32px;
   flex-grow: 1;
 `
 
 export const backTextStyle = css`
+  display: inline-block;
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   margin-left: 8px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
+`
+
+export const closeIconStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  display: flex;
+  width: 24px;
+  height: 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 `
 
 export const agentTitleContainerStyle = css`
