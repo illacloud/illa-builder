@@ -1,3 +1,4 @@
+import { copyToClipboard } from "@illa-public/utils"
 import {
   Paper,
   Table,
@@ -8,7 +9,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material"
-import copy from "copy-to-clipboard"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import ReactMarkdown from "react-markdown"
@@ -46,7 +46,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
         <span
           css={hoverCopyStyle(isOwnMessage)}
           onClick={() => {
-            copy(children ?? "")
+            copyToClipboard(children ?? "")
             message.success({
               content: t("copied"),
             })

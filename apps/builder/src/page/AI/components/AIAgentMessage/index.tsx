@@ -1,5 +1,5 @@
 import { Avatar } from "@illa-public/avatar"
-import copy from "copy-to-clipboard"
+import { copyToClipboard } from "@illa-public/utils"
 import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { CopyIcon, useMessage } from "@illa-design/react"
@@ -56,7 +56,7 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
           <span
             css={hoverCopyStyle}
             onClick={() => {
-              copy(message.message ?? "")
+              copyToClipboard(message.message ?? "")
               showMessage.success({
                 content: t("copied"),
               })

@@ -9,18 +9,14 @@ export const aiAgentContainerStyle = css`
   height: 100%;
 `
 
-export const leftPanelContainerStyle = (showEditPanel: boolean) => css`
+export const leftPanelContainerStyle = css`
   height: 100%;
   width: 528px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  opacity: ${showEditPanel ? 1 : 0};
-  position: ${showEditPanel ? "relative" : "absolute"};
-  transform: ${showEditPanel ? "translateX(0)" : "translateX(-100%)"};
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
   flex: none;
-  transition: all 0.3s ease-in-out;
   ${applyMobileStyle(css`
     display: none;
   `)}
