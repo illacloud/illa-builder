@@ -343,8 +343,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           )}
           {editState === "RUN" && !showEditPanel && (
             <Button
-              colorScheme="techPurple"
-              variant="text"
+              colorScheme="grayBlue"
               loading={isConnecting}
               leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
               onClick={onClickStartRunning}
