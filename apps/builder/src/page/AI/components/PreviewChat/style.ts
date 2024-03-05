@@ -41,6 +41,12 @@ export const previewTitleContainerStyle = css`
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
 `
 
+export const menuIconStyle = css`
+  cursor: pointer;
+  margin-right: 16px;
+  flex: none;
+`
+
 export const previewTitleTextStyle = css`
   color: ${getColor("grayBlue", "02")};
   font-size: 18px;

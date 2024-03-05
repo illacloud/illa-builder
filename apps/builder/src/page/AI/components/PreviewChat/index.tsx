@@ -1,3 +1,4 @@
+import IconHotSpot from "@illa-public/icon-hot-spot"
 import { isPremiumModel } from "@illa-public/market-agent"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -23,11 +24,14 @@ import {
   Button,
   ContributeIcon,
   DependencyIcon,
+  PlayFillIcon,
+  ResetIcon,
   useMessage,
 } from "@illa-design/react"
 import { ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
 import AgentBlockInput from "@/assets/agent/agent-block-input.svg?react"
 import GridFillIcon from "@/assets/agent/gridFill.svg?react"
+import MenuIcon from "@/assets/agent/menuIcon.svg?react"
 import StopIcon from "@/assets/agent/stop.svg?react"
 import AIAgentMessage from "@/page/AI/components/AIAgentMessage"
 import { GenerationMessage } from "@/page/AI/components/GenerationMessage"
@@ -46,6 +50,7 @@ import {
   generatingTextStyle,
   inputStyle,
   inputTextContainerStyle,
+  menuIconStyle,
   mobileInputContainerStyle,
   mobileInputElementStyle,
   mobileInputStyle,
@@ -81,10 +86,14 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     blockInput,
     editState,
     model,
+    showEditPanel,
+    isConnecting,
+    setShowEditPanel,
     onCancelReceiving,
     onShowShareDialog,
     onShowContributeDialog,
     onClickCreateApp,
+    onClickStartRunning,
   } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
@@ -274,6 +283,14 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     <div css={previewChatContainerStyle}>
       {!isMobile && (
         <div css={previewTitleContainerStyle}>
+          {editState === "RUN" && !showEditPanel && (
+            <IconHotSpot
+              onClick={() => setShowEditPanel?.(!showEditPanel)}
+              css={menuIconStyle}
+            >
+              <MenuIcon />
+            </IconHotSpot>
+          )}
           <div css={previewTitleTextStyle}>
             {agentType === AI_AGENT_TYPE.CHAT
               ? t("editor.ai-agent.title-preview.chat")
@@ -322,6 +339,19 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               }}
             >
               {t("marketplace.agent.create_app")}
+            </Button>
+          )}
+          {editState === "RUN" && !showEditPanel && (
+            <Button
+              colorScheme="techPurple"
+              variant="text"
+              loading={isConnecting}
+              leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
+              onClick={onClickStartRunning}
+            >
+              {!isRunning
+                ? t("editor.ai-agent.start")
+                : t("editor.ai-agent.restart")}
             </Button>
           )}
         </div>

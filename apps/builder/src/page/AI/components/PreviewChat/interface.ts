@@ -59,10 +59,14 @@ export interface PreviewChatProps {
   blockInput: boolean
   isReceiving: boolean
   isRunning: boolean
+  isConnecting: boolean
   isMobile: boolean
   showShareDialog: boolean
   showContributeDialog: boolean
+  showEditPanel: boolean
+  setShowEditPanel?: (show: boolean) => void
   onShowShareDialog?: () => void
   onShowContributeDialog?: () => void
   onClickCreateApp?: () => void
+  onClickStartRunning?: () => void
 }
