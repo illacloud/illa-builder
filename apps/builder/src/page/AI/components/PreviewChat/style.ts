@@ -172,6 +172,11 @@ export const stopIconStyle = css`
   cursor: pointer;
 `
 
+export const mobileInputContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`
 export const mobileInputStyle = css`
   display: flex;
   flex-direction: row;

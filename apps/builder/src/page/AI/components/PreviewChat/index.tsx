@@ -46,6 +46,7 @@ import {
   generatingTextStyle,
   inputStyle,
   inputTextContainerStyle,
+  mobileInputContainerStyle,
   mobileInputElementStyle,
   mobileInputStyle,
   operationStyle,
@@ -209,7 +210,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       }
     } catch (e) {
       message.error({
-        content: t("dashboard.message.no_usable_text_conte"),
+        content: t("dashboard.message.bad_file"),
       })
     } finally {
       setParseKnowledgeLoading(false)
@@ -400,47 +401,50 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             </div>
           </div>
         ) : isMobile ? (
-          <div css={mobileInputStyle}>
-            {/* {canShowKnowledgeFiles && (
+          <div css={mobileInputContainerStyle}>
+            <div css={mobileInputStyle}>
+              <input
+                css={mobileInputElementStyle}
+                value={textAreaVal}
+                placeholder={t("editor.ai-agent.placeholder.send")}
+                onKeyDown={(event) => {
+                  if (event.keyCode === 13 && !event.shiftKey) {
+                    event.preventDefault()
+                    if (isReceiving || blockInput) {
+                      return
+                    }
+                    sendAndClearMessage()
+                  }
+                }}
+                onChange={(v) => {
+                  setTextAreaVal(v.target.value)
+                }}
+              />
+              {canShowKnowledgeFiles && (
+                <UploadButton
+                  handleClick={handleUploadFile}
+                  parseKnowledgeLoading={parseKnowledgeLoading}
+                  handleFileChange={handleFileChange}
+                  ref={inputRef}
+                />
+              )}
+              <Button
+                disabled={isReceiving || blockInput}
+                ml="8px"
+                colorScheme="techPurple"
+                onClick={() => {
+                  sendAndClearMessage()
+                }}
+              >
+                {t("editor.ai-agent.button.send")}
+              </Button>
+            </div>
+            {canShowKnowledgeFiles && (
               <UploadKnowledgeFiles
                 knowledgeFiles={knowledgeFiles}
                 handleDeleteFile={handleDeleteFile}
               />
-            )} */}
-            <textarea
-              css={mobileInputElementStyle}
-              value={textAreaVal}
-              placeholder={t("editor.ai-agent.placeholder.send")}
-              onKeyDown={(event) => {
-                if (event.keyCode === 13 && !event.shiftKey) {
-                  event.preventDefault()
-                  if (isReceiving || blockInput) {
-                    return
-                  }
-                  sendAndClearMessage()
-                }
-              }}
-              onChange={(v) => {
-                setTextAreaVal(v.target.value)
-              }}
-            />
-            {/* {canShowKnowledgeFiles && (
-              <UploadButton
-                handleClick={handleUploadFile}
-                parseKnowledgeLoading={parseKnowledgeLoading}
-                handleFileChange={handleFileChange}
-                ref={inputRef}
-              />
-            )} */}
-            <Button
-              disabled={isReceiving || blockInput}
-              colorScheme="techPurple"
-              onClick={() => {
-                sendAndClearMessage()
-              }}
-            >
-              {t("editor.ai-agent.button.send")}
-            </Button>
+            )}
           </div>
         ) : (
           <>

@@ -20,6 +20,7 @@ const UploadKnowledgeFiles: FC<UploadKnowledgeFilesPops> = ({
           key={item.name}
           closable
           onClose={() => handleDeleteFile(item.name)}
+          maxW="300px"
           bg={getColor("grayBlue", "09")}
           icon={getFileIconByContentType(
             GCS_OBJECT_TYPE.FILE,
