@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
+import { getInitialContent } from "@illa-public/public-configs"
 import { Resource } from "@illa-public/public-types"
 import {
   ACTION_MODAL_WIDTH,
@@ -13,7 +14,11 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Modal, Space, TriggerProvider } from "@illa-design/react"
-import { getCachedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { track } from "@/utils/mixpanelHelper"
@@ -33,6 +38,8 @@ const PanelHeader: FC = () => {
   const resourceList = useSelector(getAllResources)
 
   const action = useSelector(getCachedAction)!!
+  const selectedAction = useSelector(getSelectedAction)!!
+
   const dispatch = useDispatch()
 
   const createOrUpdateResourceCallback = (
@@ -40,10 +47,22 @@ const PanelHeader: FC = () => {
     isUpdate: boolean,
   ) => {
     setEditorVisible(false)
+    setGeneratorVisible(false)
     if (isUpdate) {
       dispatch(resourceActions.updateResourceItemReducer(resource))
     } else {
       dispatch(resourceActions.addResourceItemReducer(resource))
+      dispatch(
+        configActions.updateCachedAction({
+          ...action,
+          actionType: resource.resourceType,
+          resourceID: resource.resourceID,
+          content:
+            selectedAction.actionType === resource.resourceType
+              ? selectedAction.content
+              : getInitialContent(resource.resourceType),
+        }),
+      )
     }
   }
 
