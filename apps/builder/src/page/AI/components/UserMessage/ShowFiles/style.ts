@@ -9,6 +9,7 @@ export const containerStyle = css`
   justify-content: flex-end;
   align-items: flex-start;
   flex-wrap: wrap;
+  margin-bottom: 8px;
   ${applyMobileStyle(css`
     display: flex;
     flex-direction: column;

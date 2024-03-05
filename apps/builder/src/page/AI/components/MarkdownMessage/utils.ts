@@ -99,7 +99,7 @@ export const handleMarkdownCode = (
   let res = text
   if (isOwnMessage) {
     const startRex =
-      /(^\n?```markdown)|(^\n?```md)|(\n*```markdown) | (\n*```md)/gim
+      /(^\n?```markdown)|(^\n?```md)|(\n*```markdown)|(\n*```md)/gim
     const endRex = /(```\n?$)|(```\n\n)/gm
     if (startRex.test(res) && endRex.test(res)) {
       res = text.replace(startRex, () => {
