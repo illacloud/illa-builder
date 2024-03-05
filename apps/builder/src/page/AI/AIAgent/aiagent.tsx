@@ -1247,7 +1247,9 @@ export const AIAgent: FC = () => {
                               currentTeamInfo.myRole,
                               contributeField.value,
                             )}
+                            showEditPanel={false}
                             isRunning={isRunning}
+                            isConnecting={isConnecting}
                             hasCreated={Boolean(idField.value)}
                             isMobile={false}
                             model={getValues("model")}
