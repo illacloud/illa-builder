@@ -354,7 +354,6 @@ const ListWidgetWithServerPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                   const isClickOnContainer = !!(
                     e.target as HTMLElement
                   )?.getAttribute("data-list-widget-container")
-
                   handleUpdateSelectedItem(index, isClickOnContainer)
                 }}
               >

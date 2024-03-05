@@ -155,18 +155,18 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
             ? formatPath(path)
             : convertPathToString(toPath(path).slice(1))
 
-          try {
-            const dynamicString = get(needRunEvents, realPath, "")
-            if (dynamicString) {
+          const dynamicString = get(needRunEvents, realPath, "")
+          if (dynamicString) {
+            try {
               const calcValue = evaluateDynamicString(
                 "",
                 dynamicString,
                 finalContext,
               )
               set(needRunEvents, realPath, calcValue)
+            } catch {
+              set(needRunEvents, realPath, undefined)
             }
-          } catch (e) {
-            console.log(e)
           }
         })
         needRunEvents.forEach((scriptObj: any) => {
@@ -184,9 +184,9 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
         )
         dynamicPaths?.forEach((path: string) => {
           const realPath = convertPathToString(toPath(path).slice(2))
-          try {
-            const dynamicString = get(needRunEvents, realPath, "")
-            if (dynamicString) {
+          const dynamicString = get(needRunEvents, realPath, "")
+          if (dynamicString) {
+            try {
               const calcValue = evaluateDynamicString(
                 "",
                 dynamicString,
@@ -197,8 +197,10 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
               } else {
                 set(needRunEvents, realPath, calcValue)
               }
+            } catch {
+              set(needRunEvents, realPath, undefined)
             }
-          } catch (_ignore) {}
+          }
         })
         needRunEvents.forEach((scriptObj: any) => {
           runEventHandler(scriptObj, finalContext)
