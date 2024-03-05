@@ -45,6 +45,7 @@ import {
   getILLABuilderURL,
   getILLACloudURL,
 } from "@illa-public/utils"
+import { AnimatePresence, motion } from "framer-motion"
 import { FC, useEffect, useRef, useState } from "react"
 import { Helmet } from "react-helmet-async"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -630,206 +631,222 @@ export const AIAgentRunPC: FC = () => {
       </Helmet>
       <ChatContext.Provider value={{ inRoomUsers }}>
         <div css={aiAgentContainerStyle}>
-          <div css={leftPanelContainerStyle(showEditPanel)}>
-            <div css={agentTopContainerStyle}>
-              <div css={backMenuStyle}>
-                <div onClick={handleClickBack}>
-                  <PreviousIcon fs="16px" />
-                  <div css={backTextStyle}>{t("back")}</div>
-                </div>
-                <IconHotSpot
-                  onClick={handleCloseEditPanel}
-                  css={closeIconStyle}
-                >
-                  <CloseIcon size="12px" />
-                </IconHotSpot>
-              </div>
-              <div css={agentTitleContainerStyle}>
-                <Controller
-                  control={control}
-                  name="icon"
-                  render={({ field }) => (
-                    <Avatar css={agentAvatarStyle} avatarUrl={field.value} />
-                  )}
-                />
-                <Controller
-                  control={control}
-                  name="name"
-                  render={({ field }) => (
-                    <div css={agentNicknameStyle}>{field.value}</div>
-                  )}
-                />
-              </div>
-              <Controller
-                control={control}
-                name="description"
-                render={({ field }) => (
-                  <div css={agentDescStyle}>{field.value}</div>
-                )}
-              />
-              <div css={agentTeamInfoContainerStyle}>
-                <Controller
-                  control={control}
-                  name="teamIcon"
-                  render={({ field }) => (
-                    <Avatar
-                      css={agentTeamAvatarStyle}
-                      avatarUrl={field.value}
+          <AnimatePresence>
+            {showEditPanel && (
+              <motion.div
+                css={leftPanelContainerStyle}
+                initial={{ opacity: 0, x: "-100%", position: "absolute" }}
+                animate={{ opacity: 1, x: 0, position: "relative" }}
+                exit={{ opacity: 0, x: "-100%", position: "absolute" }}
+              >
+                <div css={agentTopContainerStyle}>
+                  <div css={backMenuStyle}>
+                    <div onClick={handleClickBack}>
+                      <PreviousIcon fs="16px" />
+                      <div css={backTextStyle}>{t("back")}</div>
+                    </div>
+                    <IconHotSpot
+                      onClick={handleCloseEditPanel}
+                      css={closeIconStyle}
+                    >
+                      <CloseIcon size="12px" />
+                    </IconHotSpot>
+                  </div>
+                  <div css={agentTitleContainerStyle}>
+                    <Controller
+                      control={control}
+                      name="icon"
+                      render={({ field }) => (
+                        <Avatar
+                          css={agentAvatarStyle}
+                          avatarUrl={field.value}
+                        />
+                      )}
                     />
-                  )}
-                />
-                <Controller
-                  control={control}
-                  name="teamName"
-                  render={({ field }) => (
-                    <div css={agentTeamNameStyle}>{field.value}</div>
-                  )}
-                />
-              </div>
-              {menu}
-            </div>
-            <div css={agentControlContainerStyle}>
-              <Controller
-                name="agentType"
-                control={control}
-                shouldUnregister={false}
-                render={({ field }) => (
-                  <AIAgentBlock
-                    title={t("editor.ai-agent.label.mode")}
-                    tips={t("editor.ai-agent.tips.mode")}
-                  >
-                    <RadioGroup
-                      value={field.value}
-                      colorScheme={getColor("grayBlue", "02")}
-                      w="100%"
-                      type="button"
-                      forceEqualWidth={true}
-                      options={[
-                        {
-                          value: AI_AGENT_TYPE.CHAT,
-                          label: t("editor.ai-agent.option.mode.chat"),
-                        },
-                        {
-                          value: AI_AGENT_TYPE.TEXT_GENERATION,
-                          label: t("editor.ai-agent.option.mode.text"),
-                        },
-                      ]}
-                      onChange={(value) => {
-                        if (isReceiving || isConnecting) {
-                          message.info({
-                            content: t("editor.ai-agent.message.generating"),
-                          })
-                          return
-                        }
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
-                          {
-                            element: "mode_radio_button",
-                            parameter1: value,
-                            parameter5: agent.aiAgentID,
-                          },
-                        )
-                        field.onChange(value)
-                      }}
+                    <Controller
+                      control={control}
+                      name="name"
+                      render={({ field }) => (
+                        <div css={agentNicknameStyle}>{field.value}</div>
+                      )}
                     />
-                  </AIAgentBlock>
-                )}
-              />
-              <Controller
-                name="prompt"
-                control={control}
-                shouldUnregister={false}
-                render={({ field: promptField }) => (
+                  </div>
                   <Controller
-                    name="variables"
                     control={control}
-                    render={({ field: variables }) => (
-                      <AIAgentBlock title={"Prompt"}>
-                        <CodeEditor
-                          {...promptField}
-                          editable={false}
-                          completionOptions={variables.value}
+                    name="description"
+                    render={({ field }) => (
+                      <div css={agentDescStyle}>{field.value}</div>
+                    )}
+                  />
+                  <div css={agentTeamInfoContainerStyle}>
+                    <Controller
+                      control={control}
+                      name="teamIcon"
+                      render={({ field }) => (
+                        <Avatar
+                          css={agentTeamAvatarStyle}
+                          avatarUrl={field.value}
+                        />
+                      )}
+                    />
+                    <Controller
+                      control={control}
+                      name="teamName"
+                      render={({ field }) => (
+                        <div css={agentTeamNameStyle}>{field.value}</div>
+                      )}
+                    />
+                  </div>
+                  {menu}
+                </div>
+                <div css={agentControlContainerStyle}>
+                  <Controller
+                    name="agentType"
+                    control={control}
+                    shouldUnregister={false}
+                    render={({ field }) => (
+                      <AIAgentBlock
+                        title={t("editor.ai-agent.label.mode")}
+                        tips={t("editor.ai-agent.tips.mode")}
+                      >
+                        <RadioGroup
+                          value={field.value}
+                          colorScheme={getColor("grayBlue", "02")}
+                          w="100%"
+                          type="button"
+                          forceEqualWidth={true}
+                          options={[
+                            {
+                              value: AI_AGENT_TYPE.CHAT,
+                              label: t("editor.ai-agent.option.mode.chat"),
+                            },
+                            {
+                              value: AI_AGENT_TYPE.TEXT_GENERATION,
+                              label: t("editor.ai-agent.option.mode.text"),
+                            },
+                          ]}
+                          onChange={(value) => {
+                            if (isReceiving || isConnecting) {
+                              message.info({
+                                content: t(
+                                  "editor.ai-agent.message.generating",
+                                ),
+                              })
+                              return
+                            }
+                            track(
+                              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_RUN,
+                              {
+                                element: "mode_radio_button",
+                                parameter1: value,
+                                parameter5: agent.aiAgentID,
+                              },
+                            )
+                            field.onChange(value)
+                          }}
                         />
                       </AIAgentBlock>
                     )}
                   />
-                )}
-              />
-              <Controller
-                name="variables"
-                control={control}
-                rules={{
-                  validate: (value) =>
-                    value.every(
-                      (param) => param.key !== "" && param.value !== "",
-                    ) ||
-                    (value.length === 1 &&
-                      value[0].key === "" &&
-                      value[0].value === ""),
-                }}
-                shouldUnregister={false}
-                render={({ field }) =>
-                  field.value.length > 0 ? (
-                    <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
-                      <RecordEditor
-                        fillOnly
-                        records={field.value}
-                        onChangeKey={(index, key) => {
-                          const newVariables = [...field.value]
-                          newVariables[index].key = key
-                          field.onChange(newVariables)
-                        }}
-                        onChangeValue={(index, _, value) => {
-                          const newVariables = [...field.value]
-                          newVariables[index].value = value
-                          field.onChange(newVariables)
-                        }}
-                        onAdd={() => {}}
-                        onDelete={() => {}}
-                        label={""}
+                  <Controller
+                    name="prompt"
+                    control={control}
+                    shouldUnregister={false}
+                    render={({ field: promptField }) => (
+                      <Controller
+                        name="variables"
+                        control={control}
+                        render={({ field: variables }) => (
+                          <AIAgentBlock title={"Prompt"}>
+                            <CodeEditor
+                              {...promptField}
+                              editable={false}
+                              completionOptions={variables.value}
+                            />
+                          </AIAgentBlock>
+                        )}
                       />
-                    </AIAgentBlock>
-                  ) : (
-                    <></>
-                  )
-                }
-              />
-              <Controller
-                name="model"
-                control={control}
-                render={({ field }) => (
-                  <AIAgentBlock title={t("editor.ai-agent.label.model")}>
-                    <div css={labelStyle}>
-                      <span css={labelLogoStyle}>
-                        {getLLM(field.value)?.logo}
-                      </span>
-                      <span css={readOnlyTextStyle}>
-                        {getLLM(field.value)?.name}
-                      </span>
-                    </div>
-                  </AIAgentBlock>
-                )}
-              />
-            </div>
-            <form ref={formRef} onSubmit={handleSubmitClick}>
-              <div css={buttonContainerStyle}>
-                <Button
-                  size="large"
-                  flex="1"
-                  disabled={!isValid}
-                  loading={isConnecting}
-                  ml="8px"
-                  colorScheme={getColor("grayBlue", "02")}
-                  leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
-                >
-                  {!isRunning
-                    ? t("editor.ai-agent.start")
-                    : t("editor.ai-agent.restart")}
-                </Button>
-              </div>
-            </form>
-          </div>
+                    )}
+                  />
+                  <Controller
+                    name="variables"
+                    control={control}
+                    rules={{
+                      validate: (value) =>
+                        value.every(
+                          (param) => param.key !== "" && param.value !== "",
+                        ) ||
+                        (value.length === 1 &&
+                          value[0].key === "" &&
+                          value[0].value === ""),
+                    }}
+                    shouldUnregister={false}
+                    render={({ field }) =>
+                      field.value.length > 0 ? (
+                        <AIAgentBlock
+                          title={t("editor.ai-agent.label.variable")}
+                        >
+                          <RecordEditor
+                            fillOnly
+                            records={field.value}
+                            onChangeKey={(index, key) => {
+                              const newVariables = [...field.value]
+                              newVariables[index].key = key
+                              field.onChange(newVariables)
+                            }}
+                            onChangeValue={(index, _, value) => {
+                              const newVariables = [...field.value]
+                              newVariables[index].value = value
+                              field.onChange(newVariables)
+                            }}
+                            onAdd={() => {}}
+                            onDelete={() => {}}
+                            label={""}
+                          />
+                        </AIAgentBlock>
+                      ) : (
+                        <></>
+                      )
+                    }
+                  />
+                  <Controller
+                    name="model"
+                    control={control}
+                    render={({ field }) => (
+                      <AIAgentBlock title={t("editor.ai-agent.label.model")}>
+                        <div css={labelStyle}>
+                          <span css={labelLogoStyle}>
+                            {getLLM(field.value)?.logo}
+                          </span>
+                          <span css={readOnlyTextStyle}>
+                            {getLLM(field.value)?.name}
+                          </span>
+                        </div>
+                      </AIAgentBlock>
+                    )}
+                  />
+                </div>
+                <form ref={formRef} onSubmit={handleSubmitClick}>
+                  <div css={buttonContainerStyle}>
+                    <Button
+                      size="large"
+                      flex="1"
+                      disabled={!isValid}
+                      loading={isConnecting}
+                      ml="8px"
+                      colorScheme={getColor("grayBlue", "02")}
+                      leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
+                    >
+                      {!isRunning
+                        ? t("editor.ai-agent.start")
+                        : t("editor.ai-agent.restart")}
+                    </Button>
+                  </div>
+                </form>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <Controller
             name="agentType"
             control={control}
