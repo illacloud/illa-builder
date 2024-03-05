@@ -210,7 +210,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       }
     } catch (e) {
       message.error({
-        content: t("dashboard.message.no_usable_text_conte"),
+        content: t("dashboard.message.bad_file"),
       })
     } finally {
       setParseKnowledgeLoading(false)
