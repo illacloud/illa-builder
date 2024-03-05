@@ -16,8 +16,8 @@ export const senderContainerStyle = css`
   display: inline-flex;
   align-items: start;
   flex-direction: column;
-  overflow-x: hidden;
   max-width: 100%;
+  position: relative;
 `
 
 export const senderAvatarStyle = css`
@@ -45,4 +45,18 @@ export const messageContainerStyle = css`
   ${applyMobileStyle(css`
     margin-right: 0;
   `)}
+`
+
+export const hoverCopyStyle = css`
+  display: inline-flex;
+  padding: 4px;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid ${getColor("grayBlue", "08")};
+  background: ${getColor("white", "01")};
+  cursor: pointer;
+  color: ${getColor("grayBlue", "02")};
+  position: absolute;
+  bottom: 0;
+  right: -32px;
 `

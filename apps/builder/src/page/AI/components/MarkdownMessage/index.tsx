@@ -1,3 +1,4 @@
+import { copyToClipboard } from "@illa-public/utils"
 import {
   Paper,
   Table,
@@ -8,7 +9,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material"
-import copy from "copy-to-clipboard"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import ReactMarkdown from "react-markdown"
@@ -31,21 +31,22 @@ import {
   tableStyle,
 } from "@/page/AI/components/MarkdownMessage/style"
 import Code from "./Code"
-import { handleMarkdownLine } from "./utils"
+import { handleParseText } from "./utils"
 
 export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
-  const { children, isOwnMessage } = props
+  const { children, isOwnMessage, disableTrigger } = props
   const { t } = useTranslation()
   const message = useMessage()
 
   return (
     <Trigger
       bdRadius="4px"
+      disabled={disableTrigger}
       content={
         <span
           css={hoverCopyStyle(isOwnMessage)}
           onClick={() => {
-            copy(children ?? "")
+            copyToClipboard(children ?? "")
             message.success({
               content: t("copied"),
             })
@@ -55,7 +56,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
         </span>
       }
       colorScheme="transparent"
-      position={isOwnMessage ? "left-start" : "right-start"}
+      position={isOwnMessage ? "left-end" : "right-end"}
       showArrow={false}
       autoFitPosition={false}
       withoutPadding
@@ -100,7 +101,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
               code: (props) => <Code {...props} />,
             }}
           >
-            {handleMarkdownLine(children ?? "")}
+            {handleParseText(children ?? "", isOwnMessage)}
           </ReactMarkdown>
         </Typography>
       </div>
