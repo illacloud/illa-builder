@@ -8,6 +8,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { getClientWidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoSelector"
 import { WidgetLayoutInfo } from "@/redux/currentApp/layoutInfo/layoutInfoState"
 import store from "@/store"
+import { RawTreeShape } from "../executionTreeHelper/interface"
 
 export const searchForefatherSectionNodeDisplayName = (
   currentDisplayName: string,
@@ -147,4 +148,27 @@ export const autoChangeWhenClickOnCanvas = (canvasDisplayName: string) => {
       ]),
     )
   return firstChildDisplayName
+}
+
+export const isWidgetInGridListOrList = (
+  tree: RawTreeShape,
+  currentDisplayName: string,
+) => {
+  const search = (currentDisplayName: string): boolean => {
+    const currentWidget = tree[currentDisplayName]
+    const parentDisplayName = currentWidget.$parentNode
+    const parentNode = parentDisplayName ? tree[parentDisplayName] : null
+    if (!parentNode) {
+      return false
+    }
+    if (
+      parentNode.$widgetType === "GRID_LIST_WIDGET" ||
+      parentNode.$widgetType === "LIST_WIDGET"
+    ) {
+      return true
+    } else {
+      return search(parentDisplayName)
+    }
+  }
+  return search(currentDisplayName)
 }

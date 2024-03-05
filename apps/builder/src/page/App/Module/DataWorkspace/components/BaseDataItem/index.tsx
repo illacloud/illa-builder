@@ -125,6 +125,7 @@ export const BaseDataItem: FC<BaseDataItemProps> = (props) => {
             >
               {value.$childrenNode.map((item, index) => {
                 if (value.$widgetType === "CONTAINER_WIDGET") {
+                  if (!(value.viewList as ViewItemShape[])[index]) return null
                   return (
                     <BaseDataItem
                       key={item.displayName}

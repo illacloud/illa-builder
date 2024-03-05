@@ -277,9 +277,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           const realPath = isFunction(formatPath)
             ? formatPath(path)
             : convertPathToString(toPath(path).slice(1))
-          try {
-            const dynamicString = get(needRunEvents, realPath, "")
-            if (dynamicString) {
+          const dynamicString = get(needRunEvents, realPath, "")
+          if (dynamicString) {
+            try {
               const calcValue = evaluateDynamicString(
                 `events${realPath}`,
                 dynamicString,
@@ -294,8 +294,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
               } else {
                 set(needRunEvents, realPath, calcValue)
               }
+            } catch {
+              set(needRunEvents, realPath, undefined)
             }
-          } catch (_ignore) {}
+          }
         })
 
         needRunEvents.forEach((scriptObj: any) => {
@@ -322,10 +324,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
             ? formatPath(path)
             : convertPathToString(toPath(path).slice(2))
 
-          try {
-            const dynamicString = get(needRunEvents, realPath, "")
+          const dynamicString = get(needRunEvents, realPath, "")
 
-            if (dynamicString) {
+          if (dynamicString) {
+            try {
               const calcValue = evaluateDynamicString(
                 `events${realPath}`,
                 dynamicString,
@@ -346,9 +348,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
                 }
               }
               set(needRunEvents, realPath, valueToSet)
+            } catch {
+              set(needRunEvents, realPath, undefined)
             }
-          } catch (e) {
-            console.log(e)
           }
         })
         needRunEvents.forEach((scriptObj: any) => {
