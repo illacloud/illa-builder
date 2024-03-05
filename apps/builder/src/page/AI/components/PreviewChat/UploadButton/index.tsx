@@ -16,8 +16,8 @@ const UploadButton = forwardRef<HTMLInputElement, UploadButton>(
     const { t } = useTranslation()
     return (
       <Trigger
-        content={t("dashboard.message.support_for_uploadin")}
-        position="left"
+        content={t("dashboard.message. support_for_uploadin")}
+        position="top"
         maxW="300px"
       >
         <div css={sendFileContainerStyle}>

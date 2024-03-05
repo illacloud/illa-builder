@@ -20,6 +20,7 @@ export const senderContainerStyle = css`
   align-items: end;
   gap: 4px;
   max-width: 100%;
+  width: 100%;
 `
 
 export const senderNicknameStyle = css`
