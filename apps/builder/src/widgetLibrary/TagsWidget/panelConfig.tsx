@@ -65,7 +65,7 @@ export const TAGS_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: `${baseWidgetName}-layout-hidden`,
+        id: `${baseWidgetName}-layout-allowWrap`,
         labelName: i18n.t("editor.inspect.setter_label.slider.allow_wrapping"),
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.allow_wrapping"),
         setterType: "DYNAMIC_SWITCH_SETTER",

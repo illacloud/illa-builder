@@ -35,6 +35,7 @@ import {
   IExecutionActions,
   runActionWithExecutionResult,
 } from "../action/runAction"
+import { isWidgetInGridListOrList } from "../componentNode/search"
 
 const message = createMessage()
 
@@ -130,6 +131,11 @@ export class ExecutionTreeFactory {
         if (!isWidget(widgetOrAction) && !isAction(widgetOrAction)) {
           return current
         }
+        let isWidgetInLikeList = false
+        if (widgetOrAction && isWidget(widgetOrAction)) {
+          isWidgetInLikeList = isWidgetInGridListOrList(current, displayName)
+        }
+
         const validationPaths = widgetOrAction.$validationPaths
         const listWidgets =
           getContainerListDisplayNameMappedChildrenNodeDisplayName(
@@ -154,11 +160,25 @@ export class ExecutionTreeFactory {
             const fullPath = `${displayName}.${validationPath}`
             const validationFunc = validationFactory[validationType]
             const value = get(widgetOrAction, validationPath)
+
             const { isValid, safeValue, errorMessage } = validationFunc(
               value,
               currentListDisplayName,
             )
-            set(current, fullPath, safeValue)
+
+            if (
+              isWidgetInLikeList &&
+              Array.isArray(safeValue) &&
+              validationType === VALIDATION_TYPES.ARRAY
+            ) {
+              if (Array.isArray(safeValue[0])) {
+                set(current, fullPath, safeValue[0])
+              } else {
+                set(current, fullPath, safeValue)
+              }
+            } else {
+              set(current, fullPath, safeValue)
+            }
             let error = validateErrors[fullPath]
             if (!isValid) {
               if (!Array.isArray(error)) {
@@ -409,11 +429,24 @@ export class ExecutionTreeFactory {
       path,
       updatePathMapAction,
     )
+
+    const originUpdateKeys = Object.keys(updatePathMapAction)
+    Object.keys(mergedUpdatePathMapAction).forEach((key) => {
+      if (originUpdateKeys.includes(key)) {
+        return
+      }
+      const originValue = get(this.oldRawTree, key)
+      if (hasDynamicStringSnippet(originValue)) {
+        set(currentExecution, key, originValue)
+      }
+    }, [])
+
     const { evaluatedTree, errorTree } = this.executeTree(
       currentExecution,
       path,
       -1,
     )
+
     const { validateErrors, validateResultTree } =
       this.validateTree(evaluatedTree)
 
