@@ -1,4 +1,4 @@
-import copy from "copy-to-clipboard"
+import { copyToClipboard } from "@illa-public/utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CodeProps } from "react-markdown/lib/ast-to-react"
@@ -32,7 +32,7 @@ const Code: FC<CodeProps> = (props) => {
             <div
               css={copyStyle}
               onClick={() => {
-                copy(`${props.children[0]}`)
+                copyToClipboard(props.children?.[0])
                 message.success({
                   content: t("copied"),
                 })
