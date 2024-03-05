@@ -631,13 +631,26 @@ export const AIAgentRunPC: FC = () => {
       </Helmet>
       <ChatContext.Provider value={{ inRoomUsers }}>
         <div css={aiAgentContainerStyle}>
-          <AnimatePresence>
+          <AnimatePresence mode="wait" initial={false}>
             {showEditPanel && (
               <motion.div
                 css={leftPanelContainerStyle}
-                initial={{ opacity: 0, x: "-100%", position: "absolute" }}
-                animate={{ opacity: 1, x: 0, position: "relative" }}
-                exit={{ opacity: 0, x: "-100%", position: "absolute" }}
+                initial={{
+                  opacity: 0,
+                  x: "-100%",
+                  position: "absolute",
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                  position: "relative",
+                  transition: { duration: 0.3 },
+                }}
+                exit={{
+                  opacity: 0,
+                  x: "-100%",
+                  position: "absolute",
+                }}
               >
                 <div css={agentTopContainerStyle}>
                   <div css={backMenuStyle}>
