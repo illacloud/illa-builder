@@ -9,6 +9,7 @@ import {
 } from "@/services/agent"
 import { fetchMyTeamsInfo } from "@/services/team"
 import store from "@/store"
+import { getUserInfoLoader } from "./cloudAuthLoader"
 
 const fetchAgentFullData = async (
   agentId: string,
@@ -55,6 +56,7 @@ const fetchAgentFullData = async (
 }
 
 export const agentRunLoader: LoaderFunction = async (args) => {
+  await getUserInfoLoader(args)
   const { agentID, ownerTeamIdentifier } = args.params
   const myTeamIdentifier = new URL(args.request.url).searchParams.get(
     "myTeamIdentifier",

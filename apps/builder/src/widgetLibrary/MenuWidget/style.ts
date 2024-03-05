@@ -18,6 +18,7 @@ export function applyMenuTitleStyle(mode: MenuMode): SerializedStyles {
     color: ${getColor("grayBlue", "02")};
     font-size: 14px;
     font-style: normal;
+    white-space: nowrap;
     font-weight: 500;
   `
 }

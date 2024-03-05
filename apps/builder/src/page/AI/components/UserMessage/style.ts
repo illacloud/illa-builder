@@ -18,7 +18,9 @@ export const senderContainerStyle = css`
   overflow-x: hidden;
   flex-direction: column;
   align-items: end;
+  gap: 4px;
   max-width: 100%;
+  width: 100%;
 `
 
 export const senderNicknameStyle = css`
@@ -41,7 +43,6 @@ export const messageContainerStyle = css`
   border-radius: 8px;
   background: ${getColor("techPurple", "08")};
   padding: 12px;
-  margin-top: 4px;
   max-width: 100%;
   ${applyMobileStyle(css`
     margin-left: 0;

@@ -1,5 +1,6 @@
-import copy from "copy-to-clipboard"
+import { copyToClipboard } from "@illa-public/utils"
 import { FC, useContext } from "react"
+import { useTranslation } from "react-i18next"
 import { CopyIcon, useMessage } from "@illa-design/react"
 import { ChatContext } from "@/page/AI/components/ChatContext"
 import { GenerationMessageProps } from "@/page/AI/components/GenerationMessage/interface"
@@ -18,6 +19,7 @@ export const GenerationMessage: FC<GenerationMessageProps> = (props) => {
   const { message } = props
 
   const m = useMessage()
+  const { t } = useTranslation()
 
   const chatContext = useContext(ChatContext)
   const senderNickname =
@@ -52,9 +54,9 @@ export const GenerationMessage: FC<GenerationMessageProps> = (props) => {
       <div
         css={copyContainerStyle}
         onClick={() => {
-          copy(message.message)
+          copyToClipboard(message.message)
           m.success({
-            content: "Copied!",
+            content: t("copied"),
           })
         }}
       >

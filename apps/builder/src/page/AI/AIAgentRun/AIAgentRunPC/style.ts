@@ -41,17 +41,30 @@ export const backMenuStyle = css`
   display: flex;
   cursor: pointer;
   flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 32px;
   flex-grow: 1;
 `
 
 export const backTextStyle = css`
+  display: inline-block;
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   margin-left: 8px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
+`
+
+export const closeIconStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  display: flex;
+  width: 24px;
+  height: 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 `
 
 export const agentTitleContainerStyle = css`
