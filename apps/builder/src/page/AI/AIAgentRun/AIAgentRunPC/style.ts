@@ -11,13 +11,16 @@ export const aiAgentContainerStyle = css`
 
 export const leftPanelContainerStyle = (showEditPanel: boolean) => css`
   height: 100%;
-  width: ${showEditPanel ? "528px" : 0};
+  width: 528px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  opacity: ${showEditPanel ? 1 : 0};
+  position: ${showEditPanel ? "relative" : "absolute"};
+  transform: ${showEditPanel ? "translateX(0)" : "translateX(-100%)"};
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
   flex: none;
-  transition: width 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   ${applyMobileStyle(css`
     display: none;
   `)}
