@@ -53,7 +53,10 @@
 
       async function validateCustomDomain() {
         const origin = location.origin
-        if (origin !== "%ILLA_BUILDER_URL%") {
+        if (
+          "%ILLA_INSTANCE_ID%" === "CLOUD" &&
+          origin !== "%ILLA_BUILDER_URL%"
+        ) {
           window.customDomain = location.host
           try {
             const response = await fetch(
