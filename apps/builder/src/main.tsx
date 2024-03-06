@@ -1,5 +1,5 @@
 import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
-import { initDateReport, initDayjs, isCloudVersion } from "@illa-public/utils"
+import { initDateReport, initDayjs } from "@illa-public/utils"
 import { LicenseInfo } from "@mui/x-data-grid-premium"
 import * as Sentry from "@sentry/react"
 import { StrictMode } from "react"
@@ -34,7 +34,7 @@ if (
   })
 }
 
-if (isCloudVersion) {
+if (import.meta.env.ILLA_MUI_LICENSE) {
   LicenseInfo.setLicenseKey(import.meta.env.ILLA_MUI_LICENSE)
 }
 
