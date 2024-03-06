@@ -1,9 +1,9 @@
-import { FC, useCallback, useEffect } from "react"
+import { FC, useCallback, useEffect, useRef } from "react"
 import { InvalidMessage } from "@/widgetLibrary/PC/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PC/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PC/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PC/PublicSector/TooltipWrapper"
-import { SignatureWidgetProps } from "./interface"
+import { ICustomRef, SignatureWidgetProps } from "./interface"
 import SignatureCanvas from "./signatureCanvas"
 import {
   containerStyle,
@@ -29,15 +29,14 @@ export const SignatureWidget: FC<SignatureWidgetProps> = (props) => {
     displayName,
     customRule,
     padding,
+    backgroundColor,
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
   } = props
 
-  const showValidationMessage = Boolean(
-    !hideValidationMessage && validateMessage,
-  )
+  const customRef = useRef<ICustomRef>(null)
 
   const getValidateMessage = useCallback(
     (value: unknown) => {
@@ -91,6 +90,7 @@ export const SignatureWidget: FC<SignatureWidgetProps> = (props) => {
   useEffect(() => {
     updateComponentRuntimeProps({
       clearValue: () => {
+        customRef.current?.clear()
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -114,12 +114,12 @@ export const SignatureWidget: FC<SignatureWidgetProps> = (props) => {
           },
         ])
       },
-      setDisabled: () => {
+      setDisabled: (disabled?: boolean) => {
         handleUpdateMultiExecutionResult([
           {
             displayName,
             value: {
-              disabled: true,
+              disabled: disabled,
             },
           },
         ])
@@ -138,9 +138,9 @@ export const SignatureWidget: FC<SignatureWidgetProps> = (props) => {
   ])
 
   return (
-    <div css={containerStyle(padding?.size)}>
+    <div css={containerStyle(padding?.size, backgroundColor)}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-        <div css={labelWrapperStyle(labelPosition, showValidationMessage)}>
+        <div css={labelWrapperStyle(labelPosition)}>
           <Label
             labelFull={labelFull}
             label={label}
@@ -155,6 +155,7 @@ export const SignatureWidget: FC<SignatureWidgetProps> = (props) => {
           />
           <SignatureCanvas
             {...props}
+            ref={customRef}
             handleUpdateSignature={handleUpdateSignature}
           />
           {!hideValidationMessage && (
