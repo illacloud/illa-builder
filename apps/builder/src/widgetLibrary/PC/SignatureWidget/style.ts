@@ -1,10 +1,9 @@
 import { css } from "@emotion/react"
 import { getSpecialThemeColor } from "@illa-design/react"
-import { VALIDATE_MESSAGE_HEIGHT } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getPaddingShape } from "@/utils/styleUtils/padding"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PC/PublicSector/TransformWidgetWrapper/style"
 
-export const containerStyle = (padding?: string) => {
+export const containerStyle = (padding?: string, backgroundColor?: string) => {
   const paddings = getPaddingShape(padding)
   return css`
     width: 100%;
@@ -12,21 +11,18 @@ export const containerStyle = (padding?: string) => {
     overflow: hidden;
     padding: ${paddings.paddingTop}px ${paddings.paddingRight}px
       ${paddings.paddingBottom}px ${paddings.paddingLeft}px;
+    background-color: ${backgroundColor};
   `
 }
 
 export const labelWrapperStyle = (
   labelPosition: "left" | "right" | "top" = "left",
-  showValidationMessage: boolean,
 ) => {
   const layoutCss = applyLabelAndComponentWrapperStyle(labelPosition)
   return css`
     ${layoutCss};
     display: flex;
     width: 100%;
-    /* height: ${showValidationMessage
-      ? `calc(100% - ${VALIDATE_MESSAGE_HEIGHT}px)`
-      : "100%"}; */
     height: 100%;
     flex-direction: ${labelPosition === "top" ? "column" : "row"};
     & label {

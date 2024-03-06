@@ -24,4 +24,9 @@ export interface SignatureWidgetProps
     size: string
     mode: PADDING_MODE
   }
+  backgroundColor?: string
+}
+
+export interface ICustomRef {
+  clear: () => void
 }
