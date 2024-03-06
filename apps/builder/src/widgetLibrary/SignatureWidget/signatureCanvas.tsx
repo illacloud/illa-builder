@@ -9,6 +9,7 @@ import {
 } from "react"
 import useMeasure from "react-use-measure"
 import { RefreshIcon, getSpecialThemeColor } from "@illa-design/react"
+import { DPR } from "./constants"
 import { ICustomRef, WrappedSignatureProps } from "./interface"
 import {
   canvasContainerStyle,
@@ -47,7 +48,6 @@ const SignatureCanvas = forwardRef<ICustomRef, SignatureCanvasProps>(
     const ctx = useRef<CanvasRenderingContext2D | null>()
     const startX = useRef(0)
     const startY = useRef(0)
-    const [dpr, setDpr] = useState(1)
 
     useImperativeHandle(ref, () => ({
       clear: () => handleReset(),
@@ -72,7 +72,7 @@ const SignatureCanvas = forwardRef<ICustomRef, SignatureCanvasProps>(
           touch.clientX - touchTarget.getBoundingClientRect().left
         startY.current = touch.clientY - touchTarget.getBoundingClientRect().top
       }
-      ctx.current.lineWidth = 2 * dpr
+      ctx.current.lineWidth = 2 * DPR
       ctx.current.lineCap = "round"
       ctx.current.strokeStyle = getSpecialThemeColor(penColor)
       ctx.current.beginPath()
@@ -94,8 +94,8 @@ const SignatureCanvas = forwardRef<ICustomRef, SignatureCanvasProps>(
         offsetX = touch.clientX - touchTarget.getBoundingClientRect().left
         offsetY = touch.clientY - touchTarget.getBoundingClientRect().top
       }
-      currentCtx.moveTo(startX.current * dpr, startY.current * dpr)
-      currentCtx.lineTo(offsetX * dpr, offsetY * dpr)
+      currentCtx.moveTo(startX.current * DPR, startY.current * DPR)
+      currentCtx.lineTo(offsetX * DPR, offsetY * DPR)
       startX.current = offsetX
       startY.current = offsetY
       currentCtx.stroke()
@@ -135,10 +135,6 @@ const SignatureCanvas = forwardRef<ICustomRef, SignatureCanvasProps>(
       }
     }, [])
 
-    useEffect(() => {
-      setDpr(window.devicePixelRatio)
-    }, [])
-
     return (
       <div css={canvasContainerStyle(disabled)} ref={boundsRef}>
         {!value && !isDrawing && (
@@ -152,8 +148,8 @@ const SignatureCanvas = forwardRef<ICustomRef, SignatureCanvasProps>(
         <canvas
           ref={canvasRef}
           css={canvasStyle}
-          width={dpr * bound.width}
-          height={dpr * bound.height}
+          width={DPR * bound.width}
+          height={DPR * bound.height}
           onMouseDownCapture={handleStartDraw}
           onMouseMoveCapture={handleDraw}
           onMouseUp={handleEndDraw}
