@@ -237,10 +237,9 @@ export const SIGNATURE_PANEL_CONFIG: PanelConfig[] = [
             useCustomLayout: true,
             defaultValue: "#ffffffff",
           },
-          // TODO: WTF i18n
           {
             id: `${baseWidgetName}-style-penColor`,
-            labelName: i18n.t("penColor"),
+            labelName: i18n.t("editor.inspect.setter_label.signature.penColor"),
             attrName: "penColor",
             setterType: "COLOR_PICKER_SETTER",
             useCustomLayout: true,
@@ -248,7 +247,9 @@ export const SIGNATURE_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-style-contentColor`,
-            labelName: i18n.t("contentColor"),
+            labelName: i18n.t(
+              "editor.inspect.setter_label.signature.contentColor",
+            ),
             attrName: "guideColor",
             setterType: "COLOR_PICKER_SETTER",
             useCustomLayout: true,
