@@ -147,7 +147,7 @@ const SignatureCanvas = forwardRef<ICustomRef, SignatureCanvasProps>(
         <RefreshIcon
           css={resetIconStyle(guideColor)}
           onClick={handleReset}
-          size="24px"
+          size="16px"
         />
         <canvas
           ref={canvasRef}
