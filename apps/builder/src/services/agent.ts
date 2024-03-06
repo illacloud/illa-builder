@@ -158,31 +158,6 @@ export const generateDescription = (prompt: string) => {
   )
 }
 
-export const generateIcon = (name: string, description: string) => {
-  return agentRequest<
-    {
-      payload: string
-    },
-    {
-      name: string
-      description: string
-    }
-  >(
-    {
-      url: `/aiAgent/generateAvatar`,
-      method: "POST",
-      data: {
-        name: encodeURIComponent(name),
-        description: encodeURIComponent(description),
-      },
-      timeout: 600000,
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
-  )
-}
-
 export const getAIAgentWsAddress = (
   aiAgentID: string,
   signal?: AbortSignal,
