@@ -103,4 +103,5 @@ export const FORM_CAN_BIND_WIDGET_TYPE = new Map([
   ["SWITCH_GROUP_WIDGET", true],
   ["RECORDING_WIDGET", true],
   ["EDITABLE_TEXT_WIDGET", true],
+  ["SIGNATURE_WIDGET", true],
 ])
