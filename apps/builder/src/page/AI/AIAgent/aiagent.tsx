@@ -87,7 +87,6 @@ import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaborator
 import {
   createAgent,
   generateDescription,
-  generateIcon,
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
@@ -177,7 +176,6 @@ export const AIAgent: FC = () => {
 
   // page state
   const [generateDescLoading, setGenerateDescLoading] = useState(false)
-  const [generateIconLoading, setGenerateIconLoading] = useState(false)
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
@@ -1054,78 +1052,6 @@ export const AIAgent: FC = () => {
                       title={t("editor.ai-agent.label.icon")}
                       required
                       scrollId={SCROLL_ID.ICON}
-                      subtitle={
-                        <div
-                          css={descContainerStyle}
-                          onClick={async () => {
-                            track(
-                              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                              ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                              {
-                                element: "icon_generate",
-                                parameter1: getValues("prompt") ? true : false,
-                                parameter5: data.agent.aiAgentID || "-1",
-                              },
-                            )
-                            const currentTime = performance.now()
-                            if (
-                              !getValues("name") ||
-                              !getValues("description")
-                            ) {
-                              message.error({
-                                content: t(
-                                  "editor.ai-agent.generate-icon.blank",
-                                ),
-                              })
-                              return
-                            }
-                            setGenerateIconLoading(true)
-                            try {
-                              const icon = await generateIcon(
-                                getValues("name"),
-                                getValues("description"),
-                              )
-                              track(
-                                ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
-                                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                                {
-                                  element: "icon_generate",
-                                  consume: performance.now() - currentTime,
-                                  parameter2: "suc",
-                                },
-                              )
-                              field.onChange(icon.data.payload)
-                            } catch (e) {
-                              track(
-                                ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
-                                ILLA_MIXPANEL_BUILDER_PAGE_NAME.AI_AGENT_EDIT,
-                                {
-                                  element: "icon_generate",
-                                  consume: performance.now() - currentTime,
-                                  parameter2: "failed",
-                                },
-                              )
-                              message.error({
-                                content: t(
-                                  "editor.ai-agent.generate-desc.failed",
-                                ),
-                              })
-                            } finally {
-                              setGenerateIconLoading(false)
-                            }
-                          }}
-                        >
-                          {generateIconLoading ? (
-                            <AILoading spin={true} size="12px" />
-                          ) : (
-                            <AIIcon />
-                          )}
-                          <div css={descTextStyle}>
-                            {t("editor.ai-agent.generate-desc.button")}
-                          </div>
-                        </div>
-                      }
-                      subtitleTips={t("editor.ai-agent.generate-icon.tooltips")}
                     >
                       <MixpanelTrackProvider
                         basicTrack={track}
