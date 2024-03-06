@@ -291,6 +291,11 @@ import {
   QR_CODE_PANEL_CONFIG,
   QR_CODE_WIDGET_CONFIG,
 } from "./QRCodeWidget"
+import {
+  SIGNATURE_EVENT_HANDLER_CONFIG,
+  SIGNATURE_PANEL_CONFIG,
+  SIGNATURE_WIDGET_CONFIG,
+} from "./SignatureWidget"
 import { EventHandlerConfig, WidgetConfig } from "./interface"
 
 export const WidgetConfigMap: Record<
@@ -370,6 +375,12 @@ export const WidgetConfigMap: Record<
     config: JSON_SCHEMA_FORM_WIDGET_CONFIG,
     panelConfig: JSON_SCHEMA_FORM_PANEL_CONFIG,
     eventHandlerConfig: JSON_SCHEMA_FORM_EVENT_HANDLER_CONFIG,
+  },
+  SIGNATURE_WIDGET: {
+    widget: lazy(() => import("@/widgetLibrary/SignatureWidget/signature")),
+    config: SIGNATURE_WIDGET_CONFIG,
+    panelConfig: SIGNATURE_PANEL_CONFIG,
+    eventHandlerConfig: SIGNATURE_EVENT_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {
