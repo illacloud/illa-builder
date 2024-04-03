@@ -1,4 +1,4 @@
-import { getIconFromResourceType } from "@illa-public/icon"
+import { UpgradeIcon, getIconFromResourceType } from "@illa-public/icon"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -22,6 +22,9 @@ import {
   ActionGenerator,
   ResourceGeneratorProvider,
 } from "@illa-public/resource-generator"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import { isSubscribeForUseDrive } from "@illa-public/upgrade-modal/utils"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
 import { isEqual } from "lodash-es"
 import { FC, useCallback, useContext, useState } from "react"
@@ -65,9 +68,11 @@ import {
   actionListEmptyStyle,
   addNewActionButtonStyle,
   createDropListItemContainerStyle,
+  dropListWithUpgradeIconStyle,
   listContainerStyle,
   listStyle,
   prefixIconContainerStyle,
+  upgradeContainerStyle,
 } from "./style"
 
 export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
@@ -81,6 +86,8 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
   const [currentActionType, setCurrentActionType] =
     useState<ActionType | null>()
   const actionList = useSelector(getActionMixedList)
+  const teamInfo = useSelector(getCurrentTeamInfo)!
+  const upgradeModal = useUpgradeModal()
 
   const searchList = actionList.filter((value) => {
     return value.displayName
@@ -167,6 +174,13 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
           break
         }
         case "illadrive": {
+          if (!isSubscribeForUseDrive(teamInfo)) {
+            upgradeModal({
+              modalType: "upgrade",
+              from: "drive_action",
+            })
+            return
+          }
           const displayName = DisplayNameGenerator.generateDisplayName(type)
           const initialContent = getInitialContent(type)
           const baseData = generateBaseActionItem(displayName, "")
@@ -302,11 +316,19 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
                   key="illaDrive"
                   value="illaDrive"
                   title={
-                    <div css={createDropListItemContainerStyle}>
-                      <span css={prefixIconContainerStyle}>
-                        {getIconFromResourceType("illadrive", "16px")}
-                      </span>
-                      ILLA Drive
+                    <div css={dropListWithUpgradeIconStyle}>
+                      <div css={createDropListItemContainerStyle}>
+                        <span css={prefixIconContainerStyle}>
+                          {getIconFromResourceType("illadrive", "16px")}
+                        </span>
+                        ILLA Drive
+                      </div>
+                      {!isSubscribeForUseDrive(teamInfo) && (
+                        <div css={upgradeContainerStyle}>
+                          <UpgradeIcon />
+                          <span>{t("Upgrade")}</span>
+                        </div>
+                      )}
                     </div>
                   }
                   onClick={handleClickActionType("illadrive")}
