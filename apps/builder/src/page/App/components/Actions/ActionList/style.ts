@@ -48,3 +48,19 @@ export const prefixIconContainerStyle = css`
   align-items: center;
   justify-content: center;
 `
+
+export const dropListWithUpgradeIconStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const upgradeContainerStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: ${getColor("techPurple", "03")};
+  font-size: 12px;
+  font-style: normal;
+  line-height: 20px;
+`

@@ -1,13 +1,18 @@
+import { UpgradeIcon } from "@illa-public/icon"
+import { isSubscribeForUseDrive } from "@illa-public/upgrade-modal/utils"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { get } from "lodash-es"
 import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { RadioGroup } from "@illa-design/react"
+import { useSelector } from "react-redux"
+import { RadioGroup, getColor } from "@illa-design/react"
 import FilesModal, { ROOT_PATH } from "@/components/DriveFileSelect"
 import FolderOperateModal from "@/components/FolderOperateModal"
 import {
   applyRadioGroupWrapperStyle,
   baseRadioGroupContainerStyle,
   radioGroupStyle,
+  uploadButtonStyle,
 } from "@/page/App/components/InspectPanel/PanelSetters/DriveSourceGroupSetter/style"
 import SourceHeader from "./components/SourceHeader"
 import URLModeInput from "./components/URLModeInput"
@@ -31,6 +36,8 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
   } = props
 
   const { t } = useTranslation()
+  const teamInfo = useSelector(getCurrentTeamInfo)!
+  const canUseDrive = isSubscribeForUseDrive(teamInfo)
 
   const options = [
     {
@@ -38,7 +45,12 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
       value: DRIVE_SOURCE_MODE.URL,
     },
     {
-      label: t("widget.public.select_options.upload"),
+      label: (
+        <span css={uploadButtonStyle}>
+          {!canUseDrive && <UpgradeIcon color={getColor("techPurple", "03")} />}
+          <span>{t("widget.public.select_options.upload")}</span>
+        </span>
+      ),
       value: DRIVE_SOURCE_MODE.UPLOAD,
     },
   ]
@@ -93,6 +105,7 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
             labelDesc={labelDesc}
             labelName={labelName}
             showSelect={selectMode === DRIVE_SOURCE_MODE.URL}
+            canUseDrive={canUseDrive}
           />
           <div css={applyRadioGroupWrapperStyle(isSetterSingleRow)}>
             <RadioGroup
@@ -115,7 +128,7 @@ const DriveSourceGroupSetter: FC<DriveSourceGroupSetterProps> = (props) => {
               />
             )}
             {selectMode === DRIVE_SOURCE_MODE.UPLOAD && (
-              <UploadMode widgetType={widgetType} />
+              <UploadMode widgetType={widgetType} canUseDrive={canUseDrive} />
             )}
           </div>
         </div>

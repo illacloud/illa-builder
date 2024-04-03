@@ -27,6 +27,7 @@ export const ComponentSession = memo((props: ComponentSessionProps) => {
             widgetType={item.widgetType}
             widgetName={item.widgetName}
             displayName={item.displayName}
+            isPremiumWidget={item.isPremiumWidget}
           />
         ))}
       </div>

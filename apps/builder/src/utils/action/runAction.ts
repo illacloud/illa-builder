@@ -30,6 +30,7 @@ import {
 } from "@/utils/typeHelper"
 import { fetchILLADriveClientResult } from "./driveActions"
 import { fetchS3ClientResult } from "./fetchS3ClientResult"
+import { isNeedPreventForPremium } from "./premiumActionHandler"
 import { runActionErrorForColla } from "./runActionErrorForColla"
 import { runAllEventHandler } from "./runActionEventHandler"
 import { runTransformer } from "./runActionTransformer"
@@ -66,7 +67,8 @@ export const fetchCommonActionResult = async (
   abortSignal?: AbortSignal,
 ) => {
   const canSendRequest = checkCanSendRequest(actionType, actionContent)
-  if (!canSendRequest) {
+  const needPreventPremiumAction = isNeedPreventForPremium(actionType)
+  if (!canSendRequest || needPreventPremiumAction) {
     return Promise.reject(false)
   }
 
