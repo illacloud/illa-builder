@@ -12,6 +12,7 @@ import {
 } from "@/widgetLibrary/widgetBuilder"
 
 export const DEPRECATED_WIDGETS = ["CHART", "TABLE_WIDGET"]
+export const PREMIUM_WIDGETS = ["DRIVE_PICKER_WIDGET"]
 
 export type SessionType = keyof typeof sessionTypeMapSessionNameKey
 
@@ -70,6 +71,7 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
       widgetName,
       icon: item.icon,
       displayName,
+      isPremiumWidget: PREMIUM_WIDGETS.includes(type),
     }
     if (COMMONLY_WIDGET.has(type as string)) {
       sessionConfigs.COMMON.push(childrenConfig)

@@ -17,6 +17,7 @@ import { uploadFileToDrive } from "@/utils/drive/upload/getSingedURL"
 import { getContentTypeByFileExtension, getFileName } from "@/utils/file"
 import { isBase64Simple } from "@/utils/url/base64"
 import { dataURLtoFile } from "@/widgetLibrary/PC/UploadWidget/util"
+import { isNeedPreventForPremium } from "./premiumEventUtils"
 
 const message = createMessage()
 
@@ -34,7 +35,7 @@ export const downloadFromILLADrive = async (
   params: IDownloadFromILLADriveParams,
 ) => {
   const { downloadInfo, asZip = false } = params
-  if (!Array.isArray(downloadInfo)) {
+  if (isNeedPreventForPremium() || !Array.isArray(downloadInfo)) {
     return
   }
   let promise = Promise.resolve()
@@ -153,6 +154,7 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
     replace = false,
   } = params
   if (
+    isNeedPreventForPremium() ||
     typeof fileName !== "string" ||
     fileData == undefined ||
     typeof fileData !== "string"
