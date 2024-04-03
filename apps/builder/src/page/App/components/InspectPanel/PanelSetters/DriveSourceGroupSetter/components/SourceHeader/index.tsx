@@ -1,3 +1,4 @@
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { FC, useContext } from "react"
 import Folder from "@/assets/drive/panelFolder.svg?react"
 import { DriveFileSelectContext } from "@/components/DriveFileSelect"
@@ -12,13 +13,26 @@ interface SourceHeaderProps {
   labelName?: string
   labelDesc?: string
   showSelect: boolean
+  canUseDrive: boolean
 }
 const SourceHeader: FC<SourceHeaderProps> = ({
   labelName,
   labelDesc,
   showSelect,
+  canUseDrive,
 }) => {
+  const upgradeModal = useUpgradeModal()
   const { setModalVisible } = useContext(DriveFileSelectContext)
+  const handleClickSelect = () => {
+    if (canUseDrive) {
+      setModalVisible(true)
+    } else {
+      upgradeModal({
+        modalType: "upgrade",
+        from: "panel_setter_select",
+      })
+    }
+  }
   return (
     <div css={sourceHeaderContainerStyle}>
       <PanelLabel
@@ -27,12 +41,7 @@ const SourceHeader: FC<SourceHeaderProps> = ({
         labelSize="medium"
       />
       {showSelect && (
-        <div
-          css={fileSelectContainerStyle}
-          onClick={() => {
-            setModalVisible(true)
-          }}
-        >
+        <div css={fileSelectContainerStyle} onClick={handleClickSelect}>
           <span css={folderIconStyle}>
             <Folder />
           </span>

@@ -1,3 +1,7 @@
+import { UpgradeIcon } from "@illa-public/icon"
+import { isSubscribeForUseDrive } from "@illa-public/upgrade-modal/utils"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, memo } from "react"
 import { useDrag } from "react-dnd"
 import { useSelector } from "react-redux"
@@ -16,14 +20,20 @@ import {
   DRAG_EFFECT,
   DragInfo,
 } from "../ScaleSquare/components/DragContainer/interface"
-import { iconStyle, itemContainerStyle, nameStyle } from "./style"
+import {
+  iconStyle,
+  itemContainerStyle,
+  nameStyle,
+  upgradeIconStyle,
+} from "./style"
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
-    const { widgetName, widgetType, icon, displayName } = props
+    const { widgetName, widgetType, icon, displayName, isPremiumWidget } = props
 
     const isEditMode = useSelector(getIsILLAEditMode)
     const isGuideOpen = useSelector(getGuideStatus)
+    const teamInfo = useSelector(getCurrentTeamInfo)!
 
     const [, dragRef] = useDrag<DragInfo, DropResultInfo>(
       () => ({
@@ -81,6 +91,13 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           css={iconStyle}
           {...(isGuideOpen ? { "data-onboarding-icon": widgetType } : {})}
         >
+          {isPremiumWidget &&
+            isCloudVersion &&
+            !isSubscribeForUseDrive(teamInfo) && (
+              <span css={upgradeIconStyle}>
+                <UpgradeIcon />
+              </span>
+            )}
           {icon}
         </span>
         <span css={nameStyle}>{widgetName}</span>
