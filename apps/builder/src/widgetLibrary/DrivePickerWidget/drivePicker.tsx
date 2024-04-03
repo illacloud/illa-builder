@@ -1,10 +1,15 @@
 import { EXPIRATION_TYPE } from "@illa-public/public-types"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import { isSubscribeForUseDrive } from "@illa-public/upgrade-modal/utils"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { FC, useCallback } from "react"
 import { forwardRef, useContext } from "react"
+import { useSelector } from "react-redux"
 import { Button } from "@illa-design/react"
 import FilesModal from "@/components/DriveFileSelect"
 import { DriveFileSelectContext } from "@/components/DriveFileSelect/context"
 import { FileToPanel } from "@/components/DriveFileSelect/interface"
+import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { DEFAULT_EXPIRED_TIME } from "./constants"
 import {
@@ -21,6 +26,24 @@ export const WrappedDrivePicker = forwardRef<
 >((props, ref) => {
   const { text, variant, colorScheme, disabled } = props
   const { setModalVisible } = useContext(DriveFileSelectContext)
+  const teamInfo = useSelector(getCurrentTeamInfo)!
+  const isProductionMode = useSelector(getIsILLAProductMode)
+  const upgradeModal = useUpgradeModal()
+
+  const openLicenseDrawer = useCallback(() => {
+    upgradeModal({
+      modalType: "upgrade",
+      from: "drive_picker",
+    })
+  }, [upgradeModal])
+
+  const handleClick = () => {
+    if (isProductionMode || isSubscribeForUseDrive(teamInfo)) {
+      setModalVisible(true)
+    } else {
+      openLicenseDrawer()
+    }
+  }
 
   return (
     <div ref={ref} css={wrapperStyle}>
@@ -30,7 +53,7 @@ export const WrappedDrivePicker = forwardRef<
         colorScheme={colorScheme}
         disabled={disabled}
         variant={variant}
-        onClick={() => setModalVisible(true)}
+        onClick={handleClick}
       >
         {text}
       </Button>

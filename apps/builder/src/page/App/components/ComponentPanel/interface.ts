@@ -12,6 +12,7 @@ export interface WidgetCardInfo {
   widgetName: string
   widgetType: string
   icon: ReactNode
+  isPremiumWidget: boolean
 }
 
 export type ComponentSessionProps = {
@@ -29,4 +30,5 @@ export interface ComponentItemProps {
   displayName: string
   widgetType: string
   icon: ReactNode
+  isPremiumWidget: boolean
 }
