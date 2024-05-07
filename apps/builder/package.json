@@ -125,7 +125,7 @@
     "react-i18next": "^13.5.0",
     "react-icons": "^4.7.1",
     "react-markdown": "^8.0.3",
-    "react-pdf": "^6.2.2",
+    "react-pdf": "^7.7.3",
     "react-player": "^2.11.2",
     "react-redux": "^9.0.4",
     "react-rnd": "^10.3.7",
