@@ -52,8 +52,6 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 </br>部署成功后，您可以使用邮箱注册或使用以下信息登录：
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
-
-    
     
 ## 使用指南
 
@@ -94,7 +92,7 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 加入 ILLA 社区，分享您的想法、建议或问题，并与其他用户和贡献者交流。
 
 加入微信群：  
-![IMG_6451](https://github.com/illacloud/illa-builder/assets/112603073/06b024f1-5aad-428a-9342-ee4396d20e92)
+![IMG_6981](https://github.com/illacloud/illa-builder/assets/112603073/e83ca948-3ba3-4fe8-a016-b93a998e2f66)
 
 
 
