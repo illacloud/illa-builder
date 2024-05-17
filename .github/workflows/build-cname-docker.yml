@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - beta
-      - develop
 
 env:
   ILLA_GOOGLE_MAP_KEY: ${{ secrets.ILLA_GOOGLE_MAP_KEY }}
