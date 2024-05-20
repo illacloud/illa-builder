@@ -1,4 +1,4 @@
-name: Deploy to k8s
+name: Deploy to flyio
 
 on:
   push:
@@ -11,19 +11,13 @@ env:
   ILLA_AMPLITUDE_API_KEY: ${{ secrets.ILLA_AMPLITUDE_API_KEY }}
   ILLA_MUI_LICENSE: ${{ secrets.ILLA_MUI_LICENSE }}
   ILLA_SENTRY_AUTH_TOKEN: ${{ secrets.ILLA_SENTRY_AUTH_TOKEN }}
-  DO_CLUSTER: ${{ secrets.DO_CLUSTER }}
-  DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
-  DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
 
 jobs:
   build:
     name: Build website
     runs-on: ubuntu-latest
     environment:
-      name:
-        ${{ (github.ref == 'refs/heads/main') && 'production' || (github.ref ==
-        'refs/heads/develop') && 'test' || (github.ref == 'refs/heads/beta') &&
-        'beta' }}
+      name: "production"
     env:
       ILLA_API_BASE_URL: ${{ vars.ILLA_API_BASE_URL }}
       ILLA_APP_ENV: ${{ vars.ILLA_APP_ENV }}
