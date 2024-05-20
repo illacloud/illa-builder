@@ -46,42 +46,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DO_TOKEN }}
-
-      - name: Install kubectl
-        run: |
-          sudo snap install kubectl --classic
-
-      - name: Setup kubectl
-        run: |
-          doctl kubernetes cluster kubeconfig save $DO_CLUSTER
-          kubectl version
-
       - name: Build website
         run: |
           echo "Building for $GITHUB_REF_NAME branch,ILLA APP ENV is $ILLA_APP_ENV"
           pnpm build-cloud
-      - name: Build Docker
-        run: |
-          docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend .
 
-      - name: Push application Docker image
-        run: |
-          docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
-          docker tag illa-builder-frontend "illasoft/illa-builder-frontend:$GITHUB_REF_NAME"
-          docker push "illasoft/illa-builder-frontend:$GITHUB_REF_NAME"
-
-      - uses: actions/checkout@v4
-        with:
-          repository: illacloud/k8s-application-do
-          token: ${{ secrets.ILLA_BOT_TOKEN }}
-          path: k8s-application-do
-
-      - name: Deploy to Kubernetes
-        run: |
-          cd k8s-application-do/namespace-$ILLA_APP_ENV
-          kubectl apply -f ./illa-builder-frontend/ -n $ILLA_APP_ENV
-          kubectl -n $ILLA_APP_ENV rollout restart deployment illa-builder-frontend
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
