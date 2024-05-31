@@ -92,7 +92,8 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 加入 ILLA 社区，分享您的想法、建议或问题，并与其他用户和贡献者交流。
 
 加入微信群：  
-![IMG_7144](https://github.com/illacloud/illa-builder/assets/112603073/79498626-cf31-4f0b-a2aa-0cff28f05b92)
+![IMG_7420](https://github.com/illacloud/illa-builder/assets/112603073/02a4c9d7-4609-49d9-89e3-0e4253ef5723)
+
 
 
 Discord与Github社区入口
@@ -108,14 +109,6 @@ Discord与Github社区入口
 
 `apps/builder/src/i18n/locale/*`目录是通过Crowdin自动更新的。如果你想作出贡献，请查看我们的[官方翻译页面](https://crowdin.com/project/illa-builder)。
 
-## 🔥正在招聘
-
-你寻找一个充满激情和创造力的团队吗？ 我们正在积极招聘工程师担任以下职位：
-
-- 前端工程师
-- Golang 工程师
-
-联系我们：hr@illasoft.com
 ## 版权说明
 
 ILLA是 [Apache License 2.0](./LICENSE)。
