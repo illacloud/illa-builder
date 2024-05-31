@@ -73,7 +73,7 @@
     "@illa-public/utils": "workspace:*",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
-    "@mui/x-data-grid-premium": "^6.19.6",
+    "@mui/x-data-grid-premium": "^6.20.0",
     "@protobuf-ts/runtime": "^2.8.3",
     "@react-google-maps/api": "^2.18.1",
     "@reduxjs/toolkit": "^2.0.1",

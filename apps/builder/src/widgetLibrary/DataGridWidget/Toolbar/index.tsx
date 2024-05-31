@@ -2,18 +2,12 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt"
 import RefreshIcon from "@mui/icons-material/Refresh"
 import { Button } from "@mui/material"
 import {
-  GridGetRowsToExportParams,
   GridToolbarColumnsButton,
   GridToolbarContainer,
   GridToolbarDensitySelector,
   GridToolbarExport,
   GridToolbarFilterButton,
   GridToolbarQuickFilter,
-  gridPaginatedVisibleSortedGridRowIdsSelector,
-} from "@mui/x-data-grid-premium"
-import {
-  GridCsvGetRowsToExportParams,
-  GridPrintGetRowsToExportParams,
 } from "@mui/x-data-grid-premium"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
@@ -47,22 +41,7 @@ export const Toolbar: FC<ToolbarProps> = (props) => {
         />
       )}
       {densitySetting && <GridToolbarDensitySelector />}
-      {exportSetting && (
-        <GridToolbarExport
-          excelOptions={{
-            getRowsToExport: (params: GridGetRowsToExportParams) =>
-              gridPaginatedVisibleSortedGridRowIdsSelector(params.apiRef),
-          }}
-          csvOptions={{
-            getRowsToExport: (params: GridCsvGetRowsToExportParams) =>
-              gridPaginatedVisibleSortedGridRowIdsSelector(params.apiRef),
-          }}
-          printOptions={{
-            getRowsToExport: (params: GridPrintGetRowsToExportParams) =>
-              gridPaginatedVisibleSortedGridRowIdsSelector(params.apiRef),
-          }}
-        />
-      )}
+      {exportSetting && <GridToolbarExport />}
       {exportAllSetting && <ExportAllSetting />}
       {refreshSetting && (
         <Button
