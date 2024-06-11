@@ -92,7 +92,9 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 加入 ILLA 社区，分享您的想法、建议或问题，并与其他用户和贡献者交流。
 
 加入微信群：  
-![IMG_7613](https://github.com/illacloud/illa-builder/assets/112603073/5c0136fe-6575-41c8-b045-cb4f55d017ad)
+![IMG_7679](https://github.com/illacloud/illa-builder/assets/112603073/f964e098-25ef-4411-8257-070350720c26)
+
+
 
 
 Discord与Github社区入口
