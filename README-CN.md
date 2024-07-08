@@ -44,7 +44,7 @@
 2. 🤖 **自动化支持：** 连接一切组件，并在 5 秒内实现自动化。
 3. 🖥 **本地部署：** 支持Docker和k8s
 4. 📝 **Page支持：** 创建内容丰富且 UI 友好的工具的基础。
-5. 🎨 **由 [ILLA Design](https://github.com/illacloud/illa-design) 提供支持：** 组件不应限制您的想象力。
+5. 🎨 **由 [ILLA Design](https://github.com/viniciussousaazevedo/illa-design) 提供支持：** 组件不应限制您的想象力。
 
 ## 本地部署
     

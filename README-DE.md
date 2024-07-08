@@ -44,7 +44,7 @@ Sie können ILLA-Utilities auch manuell bereitstellen und selbst hosten [Docker,
 2. 🤖 **Automatisierte Unterstützungt:** Verbinden Sie alles und automatisieren Sie es in 5 Sekunden
 3. 🖥 **Selbst gehostet:** unterstützt Docker & k8s
 4. 📝 **eitenunterstützung:** Die Basis für die Erstellung eines inhaltsreichen und UI-freundlichen Tools.
-5. 🎨 ** [Angetrieben von ILLA Design](https://github.com/illacloud/illa-design):** : Komponenten sollten Ihre Fantasie nicht einschränken..
+5. 🎨 ** [Angetrieben von ILLA Design](https://github.com/viniciussousaazevedo/illa-design):** : Komponenten sollten Ihre Fantasie nicht einschränken..
 
 ## Selbst gehostet
     
