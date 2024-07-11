@@ -14,6 +14,8 @@
   "dependencies": {
     "@emotion/cache": "^11.10.5",
     "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
     "@illa-design/react": "workspace:*",
     "@illa-design/table": "workspace:*",
     "@illa-public/avatar": "workspace:*",
@@ -35,6 +37,8 @@
     "@illa-public/user-data": "workspace:*",
     "@illa-public/user-role-utils": "workspace:*",
     "@illa-public/utils": "workspace:*",
+    "@mui/icons-material": "^5.14.18",
+    "@mui/material": "^5.15.21",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
@@ -46,7 +50,7 @@
     "react-hook-form": "^7.40.0",
     "react-i18next": "^13.5.0",
     "react-redux": "^9.0.4",
-    "react-router-dom": "^6.14.0",
+    "react-router-dom": "^6.16.0",
     "swr": "^2.2.4",
     "uuid": "^9.0.0"
   },

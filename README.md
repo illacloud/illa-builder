@@ -47,7 +47,7 @@ You can also deploy and [self-host](https://docs.illacloud.com/self-hosted-deplo
 2. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
 3. 🖥 **Self-hosted:** supports Docker & k8s
 4. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
-5. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
+5. 🎨 **Powered by [ILLA Design](https://github.com/viniciussousaazevedo/illa-design):** Components should not constrain your imagination.
 
 ## Self-hosted
     

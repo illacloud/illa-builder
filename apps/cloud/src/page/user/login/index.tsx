@@ -6,7 +6,7 @@ import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { useMessage } from "@illa-design/react"
+import { Button, useMessage } from "@illa-design/react"
 import { fetchSignIn } from "@/services/auth"
 
 export type LoginErrorMsg = Record<keyof LoginFields, string>
@@ -78,7 +78,12 @@ const UserLogin: FC = () => {
     }
   }
 
-  return <LoginPage loading={loading} errorMsg={errorMsg} onSubmit={onSubmit} />
+  return (
+    <div>
+      <LoginPage loading={loading} errorMsg={errorMsg} onSubmit={onSubmit} />
+      <Button onClick={() => navigate("/signup")}>Sign Up</Button>
+    </div>
+  )
 }
 
 export default UserLogin

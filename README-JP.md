@@ -46,7 +46,7 @@
 2. 🤖 **サポートの自動化:** すべてを接続して 5 秒で自動化します。
 3. 🖥 **自己ホスト型:** Docker と k8s をサポート
 4. 📝 **ページのサポート:** コンテンツが豊富で UI に適したツールを作成するための基盤。
-5. 🎨 **[ILLA Design](https://github.com/illacloud/illa-design) を利用:** コンポーネントによって想像力が制約されることはありません。
+5. 🎨 **[ILLA Design](https://github.com/viniciussousaazevedo/illa-design) を利用:** コンポーネントによって想像力が制約されることはありません。
 ## Self-hosted
     
 ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開できます。 [ここをクリック](https://docs.illacloud.com/self-hosted-deployment) 詳細については。

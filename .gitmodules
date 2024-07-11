@@ -1,7 +1,7 @@
 [submodule "packages/illa-public-component"]
 	path = packages/illa-public-component
-	url = https://github.com/illacloud/illa-public-component.git
+	url = https://github.com/viniciussousaazevedo/illa-public-component
 	branch = beta
 [submodule "packages/illa-design"]
 	path = packages/illa-design
-	url = https://github.com/illacloud/illa-design.git
+	url = https://github.com/viniciussousaazevedo/illa-design
