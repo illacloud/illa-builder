@@ -8,9 +8,25 @@ interface SignInRequestBody {
   email: string
   password: string
 }
+
+interface SignUpRequestBody {
+  nickname: string
+  email: string
+  password: string
+  role: number
+}
+
 export const fetchSignIn = (data?: SignInRequestBody) => {
   return notNeedAuthCloudRequest<CurrentUserInfo>({
     url: "/auth/signin",
+    method: "POST",
+    data,
+  })
+}
+
+export const fetchSignUp = (data?: SignUpRequestBody) => {
+  return notNeedAuthCloudRequest<CurrentUserInfo>({
+    url: "/auth/signup",
     method: "POST",
     data,
   })

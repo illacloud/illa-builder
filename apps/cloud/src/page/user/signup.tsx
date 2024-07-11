@@ -1,8 +1,11 @@
+import { setAuthToken } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { Button, Input, Select, Space } from "@illa-design/react"
+import { useMessage } from "@illa-design/react"
+import { fetchSignUp } from "@/services/auth"
 import "./SignUpPage.css"
 
 interface SignUpFields {
@@ -14,6 +17,7 @@ interface SignUpFields {
 }
 
 const SignUpPage: FC = () => {
+  const message = useMessage()
   const { t } = useTranslation()
   const navigate = useNavigate()
   const {
@@ -24,15 +28,44 @@ const SignUpPage: FC = () => {
   } = useForm<SignUpFields>()
   const [loading, setLoading] = useState(false)
 
+  const roleToNumber = (role: string): number => {
+    switch (role) {
+      case "OWNER":
+        return 1
+      case "ADMIN":
+        return 2
+      case "EDITOR":
+        return 3
+      case "VIEWER":
+        return 4
+      case "OBSERVER":
+        return 5
+      default:
+        return 0 // ou algum valor padrão ou erro
+    }
+  }
+
   const onSubmit: SubmitHandler<SignUpFields> = async (data) => {
     setLoading(true)
     try {
-      // Aqui você pode chamar a função para realizar o cadastro
       console.log(data)
-      // Supondo que o cadastro foi bem-sucedido
+
+      // Convertendo a role para número
+      const formattedData = {
+        ...data,
+        role: roleToNumber(data.role),
+      }
+
+      console.log("teste de build atualizado")
+      const response = await fetchSignUp(formattedData)
+      const token = response.headers["illa-token"]
+      if (!token) return
+      setAuthToken(token)
+      message.success({
+        content: t("page.user.sign_up.tips.success"),
+      })
       navigate("/login")
     } catch (error) {
-      // Tratar erro
       console.error(error)
     } finally {
       setLoading(false)
