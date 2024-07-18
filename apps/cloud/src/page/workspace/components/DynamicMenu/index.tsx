@@ -15,7 +15,7 @@ export const DashBoardDynamicMenu: FC<DashBoardDynamicMenuProps> = (props) => {
   const { pathname } = useLocation()
   const { teamIdentifier } = useParams()
   const { t } = useTranslation()
-
+  // talvez ajude
   const dynamicMenuConfig: MenuItemShape[] = [
     {
       labelKey: "app",

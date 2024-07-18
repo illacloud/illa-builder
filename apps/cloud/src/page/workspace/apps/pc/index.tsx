@@ -50,9 +50,8 @@ export const PCAppWorkspace = () => {
   const currentTeamID = useSelector(getCurrentId)!
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const userInfo = useSelector(getCurrentUser)
-
   const canAccessApps = canAccess(
-    currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
+    currentTeamInfo?.myRole ?? USER_ROLE.OBSERVER,
     ATTRIBUTE_GROUP.APP,
     getPlanUtils(currentTeamInfo),
     ACTION_ACCESS.VIEW,
