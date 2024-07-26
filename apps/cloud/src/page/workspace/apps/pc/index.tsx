@@ -194,7 +194,7 @@ export const PCAppWorkspace = () => {
   return (
     <div css={appContainerStyle}>
       <DashboardHeader
-        titleName={t("page.workspace.menu.apps")}
+        titleName={t("page.workspace.menu.apps")} // MARCUS
         actionGroupComponent={
           <>
             <Search

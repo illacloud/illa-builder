@@ -19,7 +19,7 @@ export const DashBoardDynamicMenu: FC<DashBoardDynamicMenuProps> = (props) => {
   const dynamicMenuConfig: MenuItemShape[] = [
     {
       labelKey: "app",
-      labelName: t("page.workspace.menu.apps"),
+      labelName: t("page.workspace.menu.apps"), // Marcus
       href: `/workspace/${teamIdentifier}/apps`,
       inStation: true,
       icon: <AppIcon />,
@@ -28,13 +28,28 @@ export const DashBoardDynamicMenu: FC<DashBoardDynamicMenuProps> = (props) => {
     },
     {
       labelKey: "resource",
-      labelName: t("page.workspace.menu.resources"),
+      labelName: t("page.workspace.menu.resources"), // Marcus
       href: `/workspace/${teamIdentifier}/resources`,
       inStation: true,
       icon: <ResourceIcon />,
       hidden:
         !teamIdentifier ||
         ![USER_ROLE.OWNER, USER_ROLE.ADMIN, USER_ROLE.EDITOR].includes(
+          currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
+        ),
+      onClickCallback: onClickMenuItemCallback,
+    },
+
+    {
+      labelKey: "TeamManagement",
+      labelName: t("page.workspace.menu.TeamManagement"), // Marcus
+      href: `/workspace/${teamIdentifier}/resources`,
+      inStation: true,
+      icon: <AppIcon />,
+      hidden:
+        !teamIdentifier ||
+        ![USER_ROLE.OWNER, USER_ROLE.ADMIN, USER_ROLE.EDITOR].includes(
+          // Mexer aqui
           currentTeamInfo?.myRole ?? USER_ROLE.VIEWER,
         ),
       onClickCallback: onClickMenuItemCallback,

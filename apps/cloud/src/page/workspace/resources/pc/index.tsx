@@ -87,7 +87,7 @@ export const PCResourcesWorkspace: FC = () => {
   return (
     <div css={resourceContainerStyle}>
       <DashboardHeader
-        titleName={t("page.workspace.menu.resources")}
+        titleName={t("page.workspace.menu.resources")} // Marcus
         actionGroupComponent={
           <>
             <Search

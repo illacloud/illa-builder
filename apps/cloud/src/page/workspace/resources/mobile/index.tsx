@@ -38,7 +38,7 @@ export const MobileResourcesWorkspace: FC = () => {
   return (
     <div css={resourceContainerStyle}>
       <MobileDashboardHeader
-        titleName={t("page.workspace.menu.resources")}
+        titleName={t("page.workspace.menu.resources")} // Marcus
         actionGroupComponent={
           <Search
             w="100%"
