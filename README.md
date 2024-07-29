@@ -108,15 +108,6 @@ Thinking about contributing? All kinds of contributions to ILLA are greatly appr
 
 The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you would like to contribute.
 
-## 🔥 We are Hiring!
-
-Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
-
-- Frontend Engineer
-- Golang Engineer
-
-Contact Us: hr@illasoft.com
-
 ## LICENSE
 
 This project is currently licensed under [Apache License 2.0](./LICENSE).
