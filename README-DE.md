@@ -10,7 +10,7 @@
 <p align="center">ILLA ist eine robuste, quelloffene Low-Code-Plattform für Entwickler zur Erstellung interner Tools. Durch die Verwendung der ILLA-Bibliothek von Komponenten und Aktionen können Entwickler viel Zeit bei der Erstellung von Tools sparen. </p>
 
 <div align="center">
-<a href="https://github.com/illacloud/illa-builder/blob/beta/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN.md">简体中文</a> | Deustch | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-JP.md">日本語</a>
+<a href="https://github.com/illacloud/illa-builder/blob/beta/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN.md">简体中文</a> | Deutsch | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-JP.md">日本語</a>
 </div>
 <br>
 <p align="center">
@@ -41,10 +41,10 @@ Sie können ILLA-Utilities auch manuell bereitstellen und selbst hosten [Docker,
 ## ✨ Eigenschaften
 
 1. ⚽ **Kollaboration in Echtzeit:** Wir können alles gemeinsam in Echtzeit erstellen.
-2. 🤖 **Automatisierte Unterstützungt:** Verbinden Sie alles und automatisieren Sie es in 5 Sekunden
+2. 🤖 **Automatisierte Unterstützung:** Verbinden Sie alles und automatisieren Sie es in 5 Sekunden
 3. 🖥 **Selbst gehostet:** unterstützt Docker & k8s
 4. 📝 **eitenunterstützung:** Die Basis für die Erstellung eines inhaltsreichen und UI-freundlichen Tools.
-5. 🎨 ** [Angetrieben von ILLA Design](https://github.com/illacloud/illa-design):** : Komponenten sollten Ihre Fantasie nicht einschränken..
+5. 🎨 ** [Angetrieben von ILLA Design](https://github.com/illacloud/illa-design):** : Komponenten sollten Ihre Fantasie nicht einschränken.
 
 ## Selbst gehostet
     
@@ -102,7 +102,7 @@ Wir freuen uns über alle Beiträge unserer <a href="https://github.com/illaclou
 
 ## 📢 Übersetzen
 
-Die Verzeichnisse `apps/builder/src/i18n/locale/*` werden automatisch über Crowdin auf dem neuesten Stand gehalten. Sehen Sie sich unsere  [offizielle Übersetzungsseit](https://crowdin.com/project/illa-builder). an, falls Sie dazu beitragen möchten.
+Die Verzeichnisse `apps/builder/src/i18n/locale/*` werden automatisch über Crowdin auf dem neuesten Stand gehalten. Sehen Sie sich unsere  [offizielle Übersetzungsseite](https://crowdin.com/project/illa-builder). an, falls Sie dazu beitragen möchten.
     
 
 ## LIZENZ
