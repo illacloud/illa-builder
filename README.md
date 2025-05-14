@@ -20,12 +20,6 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN
 </a>
 </p>
 
-
-[![Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illa_cloud)
-[![Discussions](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
-[![Crowdin](https://badges.crowdin.net/illa-builder/localized.svg)](https://crowdin.com/project/illa-builder)
-[![CI (Rolling and Humble)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml/badge.svg?query=branch%3Amain)](https://github.com/illacloud/illa-builder/actions/workflows/build-docker.yml?query=branch%3Amain)
 [![PR:s Welcome](https://img.shields.io/badge/PR:s-welcome-brightgreen.svg)](https://github.com/illacloud/illa-builder/pulls)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=socialflat-square&)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -34,11 +28,6 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/beta/README-CN
 To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme). 
 
 You can also deploy and [self-host](https://docs.illacloud.com/self-hosted-deployment/) ILLA utils manually([Docker](https://www.docker.com/), [docker-compose](https://docs.docker.com/compose/), and [k8s](https://kubernetes.io/)).
-
-<p>
-  <a href="https://cloud.illacloud.com?utm_source=github&utm_medium=readme&utm_campaign=github-readme"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
-</p>
-
 
 
 ## ✨ Features
@@ -91,13 +80,6 @@ Deploy your app and self-host it.
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
   </a>
 </p>
-
-
-## 💬 Community
-
-Join ILLA Community to share your ideas, suggestions, or questions and connect with other users and contributors.
-
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)   [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)   
 
 ## 🌱 Contributing
 
