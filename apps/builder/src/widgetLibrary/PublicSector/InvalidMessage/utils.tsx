@@ -123,7 +123,7 @@ export const handleCheckPattern = (
       break
     }
     case "Regex":
-      if (!reg || typeof value === undefined) return
+      if (!reg || typeof value === "undefined") return
       try {
         let finalReg = reg
         if (reg.startsWith("/") && reg.endsWith("/")) {
