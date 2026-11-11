@@ -191,13 +191,13 @@ As a Rust Developer, you can easily build+install the latest ILLA CLI release wi
 
 `cargo install illa`
 
-The cargo tool will download the ILLA CLI with its source dependencies, build and install it into the cargo bin path so that we can run it. 
+Cargo builds and installs the ILLA CLI into the installation root's `bin` directory (by default, `$HOME/.cargo/bin`). Make sure this directory is on your `PATH` so that you can run `illa` from any working directory. If you use a custom Cargo installation root, add its `bin` directory to `PATH` instead.
 
 Once installed, you can run the ILLA CLI utilizing the illa command:
 
-`./illa <COMMAND>`
+`illa <COMMAND>`
 
-Illa CLI is a tool for hosting ILLA Builder in your local environment. Once installed, execute command `./illa deploy --self --port <PORT>`, update `<PORT>` to port number. Again, this will deploy illa-builder-backend at port `<PORT>`. 
+Illa CLI is a tool for hosting ILLA Builder in your local environment. Once installed, execute command `illa deploy --self --port <PORT>`, update `<PORT>` to port number. Again, this will deploy illa-builder-backend at port `<PORT>`. 
 If needing to modify your `.env.self`, input:
 
 ```
