@@ -39,7 +39,7 @@
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
     "fuse.js": "^6.6.2",
-    "i18next": "^23.7.6",
+    "i18next": "^26.3.4",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.2",
     "lodash-es": "^4.17.21",
